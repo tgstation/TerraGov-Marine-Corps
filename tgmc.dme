@@ -1237,6 +1237,7 @@
 #include "code\modules\detectivework\forensics.dm"
 #include "code\modules\detectivework\scanner.dm"
 #include "code\modules\detectivework\scanning_console.dm"
+#include "code\modules\discord\discord_verbs.dm"
 #include "code\modules\economy\Accounts.dm"
 #include "code\modules\economy\ATM.dm"
 #include "code\modules\economy\cash.dm"

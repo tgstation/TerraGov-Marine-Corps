@@ -77,11 +77,11 @@ SUBSYSTEM_DEF(ticker)
 				window_flash(C)
 
 			// Notify bot about roundstart.
-			if(!CONFIG_GET(string/bot_api_url) || !CONFIG_GET(string/bot_api_key) || !CONFIG_GET(string/api_server_name))
+			if(!CONFIG_GET(string/tlb_api_url) || !CONFIG_GET(string/tlb_api_key) || !CONFIG_GET(string/api_server_name))
 				to_chat(world, span_warning("TheLostBay BOT API is disabled!"))
 			else
 				var/datum/http_request/request = new()
-				request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/bot_api_url)]/round?key=[CONFIG_GET(string/bot_api_key)]&state=starting&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
+				request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tlb_api_url)]/round?key=[CONFIG_GET(string/tlb_api_key)]&state=starting&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
 				request.begin_async()
 				UNTIL(request.is_complete())
 
@@ -127,11 +127,11 @@ SUBSYSTEM_DEF(ticker)
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				// Notify bot about roundstart.
-				if(!CONFIG_GET(string/bot_api_url) || !CONFIG_GET(string/bot_api_key) || !CONFIG_GET(string/api_server_name))
+				if(!CONFIG_GET(string/tlb_api_url) || !CONFIG_GET(string/tlb_api_key) || !CONFIG_GET(string/api_server_name))
 					to_chat(world, span_warning("TheLostBay BOT API is disabled!"))
 				else
 					var/datum/http_request/request = new()
-					request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/bot_api_url)]/round?key=[CONFIG_GET(string/bot_api_key)]&state=finished&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
+					request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tlb_api_url)]/round?key=[CONFIG_GET(string/tlb_api_key)]&state=finished&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
 					request.begin_async()
 					UNTIL(request.is_complete())
 
@@ -193,11 +193,11 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	// Notify bot about roundstart.
-	if(!CONFIG_GET(string/bot_api_url) || !CONFIG_GET(string/bot_api_key) || !CONFIG_GET(string/api_server_name))
+	if(!CONFIG_GET(string/tlb_api_url) || !CONFIG_GET(string/tlb_api_key) || !CONFIG_GET(string/api_server_name))
 		to_chat(world, span_warning("TheLostBay BOT API is disabled!"))
 	else
 		var/datum/http_request/request = new()
-		request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/bot_api_url)]/round?key=[CONFIG_GET(string/bot_api_key)]&state=started&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
+		request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tlb_api_url)]/round?key=[CONFIG_GET(string/tlb_api_key)]&state=started&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
 		request.begin_async()
 		UNTIL(request.is_complete())
 

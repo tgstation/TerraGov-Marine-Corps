@@ -33,10 +33,10 @@ Basics, the most important.
 /datum/config_entry/string/centcom_ban_db
 
 /// URL for the TheLostBay DiscordBot API
-/datum/config_entry/string/bot_api_url
+/datum/config_entry/string/tlb_api_url
 
 /// Key for the TheLostBay DiscordBot API
-/datum/config_entry/string/bot_api_key
+/datum/config_entry/string/tlb_api_key
 
 /// Server Name for the TheLostBay DiscordBot API
 /datum/config_entry/string/api_server_name
