@@ -193,53 +193,44 @@ window "infowindow"
 	elem "changelog"
 		type = BUTTON
 		pos = 6,5
-		size = 107x20
+		size = 128x20
 		anchor1 = 1,0
-		anchor2 = 16,0
+		anchor2 = 20,0
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
 	elem "discord"
 		type = BUTTON
-		pos = 113,5
-		size = 107x20
-		anchor1 = 16,0
-		anchor2 = 33,0
+		pos = 134,5
+		size = 128x20
+		anchor1 = 20,0
+		anchor2 = 40,0
 		saved-params = "is-checked"
 		text = "LostBay Discord"
 		command = "discord"
-	elem "rules"
-		type = BUTTON
-		pos = 220,5
-		size = 107x20
-		anchor1 = 33,0
-		anchor2 = 50,0
-		saved-params = "is-checked"
-		text = "RU TGMC Discord"
-		command = "forum"
 	elem "wiki"
 		type = BUTTON
-		pos = 327,5
-		size = 107x20
-		anchor1 = 50,0
-		anchor2 = 67,0
+		pos = 262,5
+		size = 128x20
+		anchor1 = 40,0
+		anchor2 = 60,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
 	elem "github"
 		type = BUTTON
-		pos = 434,5
-		size = 107x20
-		anchor1 = 67,0
-		anchor2 = 84,0
+		pos = 390,5
+		size = 128x20
+		anchor1 = 60,0
+		anchor2 = 80,0
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
 	elem "webmap"
 		type = BUTTON
-		pos = 541,5
-		size = 107x20
-		anchor1 = 84,0
+		pos = 518,5
+		size = 128x20
+		anchor1 = 80,0
 		anchor2 = 100,0
 		saved-params = "is-checked"
 		text = "Webmap"

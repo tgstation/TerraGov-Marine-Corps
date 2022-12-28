@@ -59,7 +59,7 @@ ALLOW_ADMIN_OOCCOLOR
 FORUMURL https://discord.gg/DtP7FBrsXq
 WIKIURL https://tgstation13.org/wiki/TGMC:TGMC
 RULESURL https://docs.google.com/document/d/1mLy5PD2EbTx3IaYV1ALcburE1j8oJphau0hwqiOnNk8/edit
-DISCORDURL https://discord.gg/m5Qu2aG5w9
+DISCORDURL https://thelostbay.space/discord
 #DONATIONURL
 GITHUBURL https://github.com/SpacelessBay/TerraGov-Marine-Corps
 #BANAPPEALS
