@@ -1645,6 +1645,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/aircraft_minigun
 	name = "aircraft minigun bullet"
 	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 15
 	damage_falloff = 0
 	penetration = 15
@@ -1657,6 +1658,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/aircraft_cannon
 	name = "aircraft cannon round"
 	hud_state = "sniper"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_BALLISTIC|AMMO_SUNDERING
 	damage_falloff = 0
 	damage = 40
 	penetration = 50
