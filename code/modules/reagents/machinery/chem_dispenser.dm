@@ -184,7 +184,7 @@
 
 	if(needs_medical_training && ishuman(usr))
 		var/mob/living/carbon/human/user = usr
-		if(!user.skills.getRating("medical"))
+		if(user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
 			if(user.do_actions)
 				return
 			to_chat(user, span_notice("You start fiddling with \the [src]..."))

@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	throwpass = FALSE
+	flags_pass = PASSAIR
 	max_integrity = 50
 	var/state = 0
 	var/base_icon_state = ""

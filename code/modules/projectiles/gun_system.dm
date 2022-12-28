@@ -597,7 +597,7 @@
 
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 		wdelay += 0.3 SECONDS //no training in any firearms
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
@@ -812,6 +812,8 @@
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 	play_fire_sound(loc)
+	gun_user.last_gun = gun_user.get_active_held_item()
+	gun_user.last_gun_delay = world.time + max(fire_delay, extra_delay)
 
 	if(muzzle_flash && !muzzle_flash.applied)
 		var/atom/movable/flash_loc = (master_gun || !istype(loc, /obj/machinery/deployable/mounted)) ? gun_user : loc
@@ -1557,7 +1559,7 @@
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
 	if(user)
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
@@ -1571,7 +1573,7 @@
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
 
-	if(world.time >= delay)
+	if(world.time >= delay && (world.time >= gun_user.last_gun_delay || gun_user.last_gun == gun_user.get_active_held_item() || gun_user.last_gun == gun_user.get_inactive_held_item()))
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
@@ -1646,7 +1648,7 @@
 	if(user)
 		// Apply any skill-based bonuses to accuracy
 		var/skill_accuracy = 0
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 			skill_accuracy = -1
 		else
 			skill_accuracy = user.skills.getRating(gun_skill_category)

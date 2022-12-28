@@ -14,7 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE

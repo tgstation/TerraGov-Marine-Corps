@@ -7,6 +7,11 @@
 #define PASSSMALLSTRUCT (1<<5)
 #define PASSFIRE (1<<6)
 #define PASSXENO (1<<7)
+#define PASSTHROW (1<<8) //you can throw past
+#define PASSPROJECTILE (1<<9) //projectiles can pass
+#define PASSAIR (1<<10) //non-airtight, gas/fire can pass
+#define PASSLASER (1<<11) //lasers and the like can pass unobstructed
+#define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
 #define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 
 //==========================================================================================

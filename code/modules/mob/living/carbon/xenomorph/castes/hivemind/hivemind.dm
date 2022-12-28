@@ -10,9 +10,8 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
+	flags_pass = PASSABLE|PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
-	throwpass = TRUE
 
 	a_intent = INTENT_HELP
 
@@ -128,9 +127,8 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = PASSTABLE | PASSMOB | PASSXENO
+		flags_pass = PASSTABLE|PASSMOB|PASSXENO
 		density = TRUE
-		throwpass = FALSE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
@@ -142,8 +140,7 @@
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
 	flags_pass = initial(flags_pass)
-	density = initial(flags_pass)
-	throwpass = initial(throwpass)
+	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
