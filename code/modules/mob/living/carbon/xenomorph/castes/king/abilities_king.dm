@@ -55,7 +55,7 @@
 	flick("eye_opening", eye)
 	playsound(owner, 'sound/effects/petrify_charge.ogg', 50)
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 
 	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		flick("eye_closing", eye)
@@ -103,7 +103,7 @@
 
 ///cleans up when the charge up is finished or interrupted
 /datum/action/xeno_action/petrify/proc/finish_charging()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 	if(!isxeno(owner))
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -202,7 +202,7 @@
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
 	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
@@ -261,7 +261,7 @@
 ///cleans up when the charge up is finished or interrupted
 /datum/action/xeno_action/activable/shattering_roar/proc/finish_charging()
 	owner.update_icons()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 	if(!isxeno(owner))
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -356,17 +356,17 @@
 	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
 	playsound(owner, 'sound/effects/king_beam_charge.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 
 	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 		add_cooldown(5 SECONDS)
 		return fail_activate()
 
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 	sound_loop.start(owner)
 	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
