@@ -38,16 +38,16 @@
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 
 	if (!powered() && (!kit.cell || kit.cell.charge < TELEPORTING_COST))
-		to_chat(user, span_warning("A red light flashes on [src]. It seems it doesn't have enough power."))
+		to_chat(user, span_warning("A red light flashes on \the [src]. It seems it doesn't have enough power."))
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
 	if(!COOLDOWN_CHECK(kit, teleport_cooldown))
-		to_chat(user, span_warning("[src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
+		to_chat(user, span_warning("\The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
 		return
 
 	if(!kit.linked_teleporter)
-		to_chat(user, span_warning("[src] is not linked to any other teleporter."))
+		to_chat(user, span_warning("\The [src] is not linked to any other teleporter."))
 		return
 
 	if(!istype(kit.linked_teleporter.loc, /obj/machinery/deployable/teleporter))
