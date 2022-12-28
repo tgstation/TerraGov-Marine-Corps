@@ -255,8 +255,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "reload")
-		var/list/users = chassis.return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)
-		var/mob/occupant = users[1]
+		var/mob/occupant = usr
 		if(occupant && !do_after(occupant, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
 			return FALSE
 		rearm()
