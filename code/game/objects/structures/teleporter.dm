@@ -21,7 +21,7 @@
 	if(!kit.cell)
 		. += "It is currently lacking a power cell."
 	if(kit.linked_teleporter)
-		. += "It is currently linked to Teleporter #[kit.linked_teleporter.tele_tag] at [get_area(kit.linked_teleporter)]"
+		. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag] at [get_area(kit.linked_teleporter)]"
 	else
 		. += "It is not linked to any other teleporter."
 
@@ -155,13 +155,16 @@
 	COOLDOWN_DECLARE(teleport_cooldown)
 	
 	///tag to avoid mixups. Purely for players, not for systems.
-	var/tele_tag
+	var/static/tele_tag = 78
+	///Easier reference to the correct number.
+	var/self_tele_tag
 
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
-	tele_tag = rand(1, 999)
+	tele_tag++
+	self_tele_tag = tele_tag
 	name = "\improper ASRS Bluespace teleporter #[tele_tag]"
 	
 
@@ -214,13 +217,5 @@
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)
 	teleporter_a.set_linked_teleporter(teleporter_b)
 	teleporter_b.set_linked_teleporter(teleporter_a)
-	var/created_tele_tag = rand(1, 999)
-	var/teleport_name_a = "\improper ASRS Bluespace teleporter #[created_tele_tag]"
-	var/teleport_name_b = "\improper ASRS Bluespace teleporter #[created_tele_tag + 1]"
-
-	teleporter_a.name = teleport_name_a
-	teleporter_b.name = teleport_name_b
-	teleporter_a.tele_tag = created_tele_tag
-	teleporter_b.tele_tag = created_tele_tag + 1
 	qdel(src)
 
