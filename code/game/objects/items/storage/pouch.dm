@@ -661,10 +661,6 @@
 		/obj/item/stack/sandbags_empty,
 		/obj/item/stack/sandbags,
 	)
-	bypass_w_limit = list(/obj/item/tool/shovel/etool)
-	storage_type_limits = list(
-		/obj/item/tool/shovel/etool = 1,
-	)
 
 /obj/item/storage/pouch/construction/full/Initialize()
 	. = ..()
