@@ -469,7 +469,7 @@ then, for every time you included a field, increment fields. */
 	info = {"Up to date as of December 27th '22<BR>
 	<b>Damage types</b><BR>
 	<BR>
-	Note: You can check your damage by using a health scanner on yourself. They can be found in medical vendors.<BR>
+	Note: You can check your damage by using a health scanner on yourself. They can be found in medical vendors. You can also click on yourself on help intent with an empty hand for a quick if vague check of your bodyparts.<BR>
 	Note: All damages cause pain. Extreme amounts of pain will cause a random chance of dropping items, movement slowdown, earlier fall in critical condition due to damage, and blurred vision.<BR>
 	<BR>
 	<BR><b>Brute</b> = Caused by slashes and ballistics. Past a threshold of damage, the bodypart will fracture. May cause internal bleeding if strike is strong enough, which causes a gradual loss of blood.<BR>
