@@ -21,7 +21,7 @@
 		to_chat(src, span_warning("The forum URL is not set in the server configuration."))
 		return
 
-	if(alert("This will open the RU TGMC Discord link in your browser. Are you sure?", "Forum", "Yes", "No") != "Yes")
+	if(alert("This will open the forum link in your browser. Are you sure?", "Forum", "Yes", "No") != "Yes")
 		return
 
 	DIRECT_OUTPUT(src, link(CONFIG_GET(string/forumurl)))
