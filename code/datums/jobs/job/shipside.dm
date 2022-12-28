@@ -272,7 +272,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 //Pilot Officer
 /datum/job/terragov/command/pilot
-	title = CAS_PILOT_OFFICER
+	title = PILOT_OFFICER
 	paygrade = "WO"
 	comm_title = "PO"
 	total_positions = 1
@@ -299,7 +299,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	minimap_icon = "pilot"
 
 /datum/job/terragov/command/pilot/rebel
-	title = REBEL_CAS_PILOT_OFFICER
+	title = REBEL_PILOT_OFFICER
 	faction = FACTION_TERRAGOV_REBEL
 	access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PILOT_REBEL)
 	minimal_access = list(ACCESS_MARINE_BRIDGE_REBEL, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_PILOT_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_RO_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
@@ -330,14 +330,14 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines with either close air support via the Condor.
+	to_chat(M, {"Your job is to support marines with either close air support via the Condor, or mobile dropship support with the Tadpole.
 While you are in charge of all aerial crafts the Alamo does not require supervision outside of turning automatic mode on or off at crucial times, and you are expected to choose between the Condor and Tadpole.
 Though you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
 "})
 
 
 /datum/outfit/job/command/pilot
-	name = CAS_PILOT_OFFICER
+	name = PILOT_OFFICER
 	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
