@@ -381,12 +381,17 @@
 		return
 	succeed_activate()
 	for(var/turf/target AS in targets)
-		for(var/mob/living/carbon/human/blasted in target)
-			if(blasted.stat == DEAD)
-				continue
-			blasted.take_overall_damage(15, BURN, updating_health = TRUE)
-			blasted.flash_weak_pain()
-			animation_flash_color(blasted)
+		for(var/victim in target)
+			if(ishuman(victim))
+				var/mob/living/carbon/human/human_victim = victim
+				if(human_victim.stat == DEAD)
+					continue
+				human_victim.take_overall_damage(15, BURN, updating_health = TRUE)
+				human_victim.flash_weak_pain()
+				animation_flash_color(human_victim)
+			else if(ismecha(victim))
+				var/obj/vehicle/sealed/mecha/mech_victim = victim
+				mech_victim.take_damage(75, BURN, ENERGY, armour_penetration = 60)
 	timer_ref = addtimer(CALLBACK(src, .proc/execute_attack), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
