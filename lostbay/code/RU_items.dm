@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(ru_items)
 	shell_speed = 3.5
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, knockback = 2, shake = 1)
+	staggerstun(M, P, knockback = 2)
 
 ///////////////////////////////////////////////////////////////////////
 ////////////////////////  T25, old version .///////////////////////////
@@ -716,7 +716,7 @@ SUBSYSTEM_DEF(ru_items)
 	sundering = 0.5
 
 /datum/ammo/bullet/revolver/t500/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
 
 // attachable
 /obj/item/attachable/stock/t500stock
