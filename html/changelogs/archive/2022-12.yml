@@ -482,3 +482,10 @@
   - bugfix: fixed XOOC and MOOC binds incorrectly opening LOOC
   Three333Digit:
   - qol: soldering tool repairs the next damaged limb
+2022-12-29:
+  KuzyXD:
+  - bugfix: Admin can't play music via the Play-Internet-Sound verb
+  Lumipharon:
+  - bugfix: fixed some mech guns not being properly reloadable
+  QualityVan:
+  - balance: Shovels fit in suit storage
