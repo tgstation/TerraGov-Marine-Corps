@@ -490,6 +490,8 @@
 /mob/living/carbon/human/can_sting()
 	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 		return FALSE
+	if(status_flags & GODMODE)
+		return FALSE
 	if(stat != DEAD)
 		return TRUE
 	return FALSE
