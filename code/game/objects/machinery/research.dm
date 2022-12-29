@@ -318,16 +318,16 @@
 
 /obj/item/research_product/money/basic
 	name = "credits - 5"
-	export_points = 5
+	export_points = 50
 
 /obj/item/research_product/money/common
 	name = "credits - 15"
-	export_points = 15
+	export_points = 150
 
 /obj/item/research_product/money/uncommon
 	name = "credits - 25"
-	export_points = 25
+	export_points = 250
 
 /obj/item/research_product/money/rare
 	name = "credits - 80"
-	export_points = 80
+	export_points = 800
