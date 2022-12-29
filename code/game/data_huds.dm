@@ -685,8 +685,8 @@
 		holder.icon_state = "xenohealth0"
 		return
 	var/amount = round(obj_integrity * 100 / max_integrity, 10)
-	/*if(!amount)
-		amount = 1*/
+	if(!amount)
+		amount = 1
 	holder.icon_state = "xenohealth[amount]"
 
 ///Updates helicopter fuel bar (blue)

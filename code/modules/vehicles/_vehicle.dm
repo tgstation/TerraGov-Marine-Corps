@@ -63,6 +63,10 @@
 /obj/vehicle/proc/is_key(obj/item/I)
 	return istype(I, key_type)
 
+///How many open slots for passengers (occupants that are not drivers) exist?
+/obj/vehicle/proc/available_passenger_slots()
+	return max_occupants - occupant_amount() - max_drivers + driver_amount()
+
 /obj/vehicle/proc/return_occupants()
 	return occupants
 
