@@ -424,7 +424,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 65
+	cost = 75
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
