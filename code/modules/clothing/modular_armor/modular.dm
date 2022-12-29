@@ -19,6 +19,7 @@
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_armor_features = ARMOR_NO_DELIMB
 	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
@@ -229,6 +230,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
 	icon_state = "medium"
 	item_state = "medium"
+	flags_armor_features = ARMOR_NO_DELIMB
 	slowdown = 0.5
 
 	attachments_allowed = list(
@@ -799,6 +801,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	icon_state = "som_medium"
 	item_state = "som_medium"
+	flags_armor_features = ARMOR_NO_DELIMB
 	slowdown = 0.5
 
 	attachments_allowed = list(

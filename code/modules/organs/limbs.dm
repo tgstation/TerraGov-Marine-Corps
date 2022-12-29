@@ -266,7 +266,8 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
-	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO)
+	var/obj/item/clothing/worn_clothes = owner.wear_suit
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO && !(worn_clothes?.flags_armor_features & ARMOR_NO_DELIMB))
 		droplimb()
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream")
