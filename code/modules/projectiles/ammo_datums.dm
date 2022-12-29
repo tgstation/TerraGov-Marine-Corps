@@ -2089,7 +2089,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 0.75
 
 /datum/ammo/mortar/howi/drop_nade(turf/T)
-	explosion(T, 4, 8, 0, 12)
+	explosion(T, 1, 9, 0, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
 	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
