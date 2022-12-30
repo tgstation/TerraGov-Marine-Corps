@@ -188,8 +188,12 @@
 	return
 
 ///Handles welder based repair of objects, normally called by welder_act
-/obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0.3, skill_required = SKILL_ENGINEER_METAL, fuel_req = 2, fumble_time)
-	if(LAZYACCESS(user.do_actions, src))
+/obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0, skill_required = SKILL_ENGINEER_METAL, fuel_req = 2, fumble_time)
+	if(user.do_actions)
+		balloon_alert(user, "busy")
+		return FALSE
+
+	if(user.a_intent == INTENT_HARM)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/welder = I
@@ -223,6 +227,7 @@
 		welder.eyecheck(user)
 		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_FRIENDLY))
 			cut_overlay(GLOB.welding_sparks)
+			balloon_alert(user, "interrupted!")
 			return TRUE
 
 		if(obj_integrity <= max_integrity * repair_threshold || obj_integrity >= max_integrity)

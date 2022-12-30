@@ -288,7 +288,7 @@
 	take_damage(20, BURN, "fire")
 
 /obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4)
+	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
 
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"
