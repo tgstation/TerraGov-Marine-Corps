@@ -394,7 +394,7 @@
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
-	icon_vend = "sec_vend"
+	icon_vend = "sec-vend"
 	req_access = list(ACCESS_MARINE_BRIG)
 	products = list(
 		/obj/item/restraints/handcuffs = 8,
