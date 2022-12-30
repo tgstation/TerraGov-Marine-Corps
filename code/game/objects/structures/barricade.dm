@@ -551,7 +551,7 @@
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, repair_threshold = 0.3)
+	. = welder_repair_act(user, I, repair_threshold = 0.3, skill_required = SKILL_ENGINEER_METAL)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
 

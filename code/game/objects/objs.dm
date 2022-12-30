@@ -188,7 +188,7 @@
 	return
 
 ///Handles welder based repair of objects, normally called by welder_act
-/obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0, skill_required = SKILL_ENGINEER_METAL, fuel_req = 2, fumble_time)
+/obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0, skill_required = SKILL_ENGINEER_DEFAULT, fuel_req = 2, fumble_time)
 	if(user.do_actions)
 		balloon_alert(user, "busy")
 		return FALSE
