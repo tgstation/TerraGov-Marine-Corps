@@ -573,32 +573,34 @@
 		return TRUE
 
 	balloon_alert_to_viewers("starting repair...")
+
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
+		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+		span_notice("You fumble around figuring out how to repair [src]."))
+		if(!do_after(user, 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer")), TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 	add_overlay(GLOB.welding_sparks)
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	while(obj_integrity < max_integrity)
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
 
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
+		if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
 
-	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
+		if(!WT.remove_fuel(2, user))
+			balloon_alert(user, "not enough fuel")
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
 
-	if(!WT.remove_fuel(2, user))
-		balloon_alert(user, "not enough fuel")
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
+		repair_damage(150)
+		update_icon()
 
 	balloon_alert_to_viewers("repaired")
 	cut_overlay(GLOB.welding_sparks)
-	repair_damage(150)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
 
 

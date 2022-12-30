@@ -84,16 +84,18 @@
 		return FALSE
 
 	if(current_acid)
-		to_chat(user, "<span class='warning'>You can't get near that, it's melting!<span>")
+		balloon_alert(user, "It's melting")
 		return TRUE
 
 	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs additional metal for repairs."))
+		balloon_alert(user, "Too damaged. Use metal sheets.")
 		return TRUE
 
 	if(obj_integrity == max_integrity)
-		to_chat(user, span_warning("[src] doesn't need repairs."))
+		balloon_alert(user, "already repaired")
 		return TRUE
+
+	balloon_alert_to_viewers("starting repair...")
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
@@ -102,25 +104,23 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-	user.visible_message(span_notice("[user] begins repairing [src]."),
-	span_notice("You begin repairing [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	while(obj_integrity < max_integrity)
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+		if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+			return TRUE
 
-	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		return TRUE
+		if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
+			return TRUE
 
-	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
-		return TRUE
+		if(!WT.remove_fuel(2, user))
+			balloon_alert(user, "not enough fuel")
+			return TRUE
 
-	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the repairs."))
-		return TRUE
+		repair_damage((max_integrity-integrity_failure) * 0.2)
+		update_icon()
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-	user.visible_message(span_notice("[user] finishes repairing [src]."),
-	span_notice("You finish repairing [src]."))
-	repair_damage((max_integrity-integrity_failure) * 0.2)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	balloon_alert_to_viewers("repaired")
 	return TRUE
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
