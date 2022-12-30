@@ -9,7 +9,6 @@
 
 /area/deltastation/maintenance
 	name = "Generic Maintenance"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_COLONY
 
 //Maintenance - Departmental
@@ -258,7 +257,6 @@
 
 /area/deltastation/hallway
 	icon_state = "hall"
-	ceiling = CEILING_METAL
 
 /area/deltastation/hallway/primary
 	name = "\improper Primary Hallway"
@@ -346,7 +344,6 @@
 /area/deltastation/command
 	name = "Command"
 	icon_state = "command"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/deltastation/command/bridge
@@ -415,7 +412,6 @@
 /area/deltastation/commons
 	name = "\improper Crew Facilities"
 	icon_state = "commons"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/deltastation/commons/dorms
@@ -528,7 +524,6 @@
 //Service
 
 /area/deltastation/service
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_CELL_LOW
 
 /area/deltastation/service/cafeteria
@@ -677,7 +672,6 @@
 
 /area/deltastation/engineering
 	icon_state = "engie"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/engineering/engine_smes
@@ -745,7 +739,6 @@
 /area/deltastation/engineering/supermatter/room
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm_room"
-	ceiling = CEILING_METAL
 
 /area/deltastation/engineering/break_room
 	name = "\improper Engineering Foyer"
@@ -847,7 +840,6 @@
 /area/deltastation/maintenance/solars
 	name = "Solar Maintenance"
 	icon_state = "yellow"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/maintenance/solars/port
@@ -891,7 +883,6 @@
 /area/deltastation/medical
 	name = "Medical"
 	icon_state = "medbay"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/deltastation/medical/abandoned
@@ -995,7 +986,6 @@
 /area/deltastation/security
 	name = "Security"
 	icon_state = "security"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/deltastation/security/office
@@ -1164,7 +1154,6 @@
 /area/deltastation/cargo
 	name = "Quartermasters"
 	icon_state = "quart"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_CELL_HIGH
 
 /area/deltastation/cargo/sorting
@@ -1215,7 +1204,6 @@
 /area/deltastation/science
 	name = "\improper Science Division"
 	icon_state = "science"
-	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/deltastation/science/lobby
@@ -1250,7 +1238,6 @@
 /area/deltastation/science/ordnance
 	name = "\improper Ordnance Lab"
 	icon_state = "ord_main"
-	ceiling = CEILING_METAL
 
 /area/deltastation/science/ordnance/office
 	name = "\improper Ordnance Office"
@@ -1327,7 +1314,6 @@
 
 /area/deltastation/tcommsat
 	icon_state = "tcomsatcham"
-	ceiling = CEILING_METAL
 
 /area/deltastation/tcommsat/computer
 	name = "\improper Telecomms Control Room"
@@ -1354,7 +1340,6 @@
 /area/deltastation/maintenance/external
 	name = "\improper External Hull Access"
 	icon_state = "amaint"
-	ceiling = CEILING_METAL
 
 /area/deltastation/maintenance/external/aft
 	name = "\improper Aft External Hull Access"

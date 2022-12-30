@@ -36458,7 +36458,9 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/virology_wing)
 "hrR" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "hrS" = (
@@ -36496,7 +36498,9 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "hsI" = (
 /obj/structure/desertdam/decals/road,
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "hsN" = (

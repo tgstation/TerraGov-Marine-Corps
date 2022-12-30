@@ -10,9 +10,9 @@
 	/// A list of possible items to spawn e.g. list(/obj/item, /obj/structure, /obj/effect)
 	var/list/loot
 	/// The subtypes AND type to combine with the loot list
-	var/loot_type_path
+	var/list/loot_type_path
 	/// The subtypes (this excludes the provided path) to combine with the loot list
-	var/loot_subtype_path
+	var/list/loot_subtype_path
 	/// How many items will be spawned
 	var/spawn_loot_count = 1
 	/// If the same item can be spawned twice
@@ -55,7 +55,7 @@
 
 	if(loot?.len)
 		var/loot_spawned = 0
-		while((spawn_loot_count-loot_spawned) && loot.len)
+		while((spawn_loot_count < loot_spawned) && loot.len)
 			var/lootspawn = pick_weight_recursive(loot)
 			if(!spawn_loot_double)
 				loot.Remove(lootspawn)
@@ -1784,7 +1784,7 @@
 /obj/effect/spawner/random/structure/broken_reinforced_window
 	name = "broken reinforced window spawner"
 	icon_state = "random_col_rwindow"
-	spawn_loot_chance = 70
+	spawn_loot_chance = 60
 	loot = list(
 		/obj/structure/window_frame/colony/reinforced/weakened = 9,
 		/obj/structure/window/framed/colony/reinforced = 1,
@@ -1793,7 +1793,7 @@
 /obj/effect/spawner/random/structure/broken_window
 	name = "broken window spawner"
 	icon_state = "random_col_window"
-	spawn_loot_chance = 70
+	spawn_loot_chance = 50
 	loot = list(
 		/obj/structure/window_frame/colony = 9,
 		/obj/structure/window/framed/colony = 1,
