@@ -24,7 +24,7 @@
 		cut_overlay(atvcover)
 	return ..()
 
-/obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/W)
+/obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/atv/obj_break()
