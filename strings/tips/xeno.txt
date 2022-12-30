@@ -1,11 +1,12 @@
-Always thank your drones and hivelords for supporting the hive!
-Do not fight as a young xenomorph.
+As a xeno, always thank your drones and hivelords for supporting the hive!
+As a xeno, you can drag any items, but you must wait before you drag the desirable item!
+As a xeno, do not fight as a young xenomorph.
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
-If you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
+As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mhelp.
 In the xeno tab, you can use the crawl through vent verb to quickly find and use vents in the floor without having to alt-click them. You can also keybind it!
-It is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
-Acid well extinguishes fire and explode into an acid cloud when destroyed. The queen, the shrike, praetorians, boilers, and hivelords can make acid wells.
+As a xeno, it is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
+As a xeno, acid well extinguishes fire and explode into an acid cloud when destroyed. The queen, the shrike, praetorians, boilers, and hivelords can make acid wells.
 The queen, shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
