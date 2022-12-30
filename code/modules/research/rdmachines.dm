@@ -5,6 +5,7 @@
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
 	req_access = list(ACCESS_MARINE_RESEARCH)
+	interaction_flags = INTERACT_MACHINE_TGUI
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	var/busy = FALSE

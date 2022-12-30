@@ -21,8 +21,6 @@
 
 /obj/machinery/rnd/protolathe/Initialize(mapload)
 	. = ..()
-	// should this be a global list?
-	cached_designs = typesof(/datum/design/research)
 	//virilyth storage
 	create_reagents(0, OPENCONTAINER)
 	update_overlays()
@@ -42,47 +40,40 @@
 /obj/machinery/rnd/protolathe/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Fabricator")
+		ui = new(user, src, "Protolathe", name)
 		ui.open()
 
 /obj/machinery/rnd/protolathe/ui_static_data(mob/user)
 	var/list/data = list()
 	var/list/designs = list()
 
-	for(var/datum/design/design AS in cached_designs)
+	for(var/datum/design/design in GLOB.designs)
 		var/cost = list()
-		for(var/datum/material/material in design.materials)
-			cost[material.name] = design.materials[material]
+		for(var/material in design.materials)
+			cost[material] = design.materials[material]
 
-		designs[REF(design)] = list(
+		designs += list(list(
 			"name" = design.name,
 			"desc" = design.get_description(),
 			"cost" = cost
-		)
+		))
 
 	data["designs"] = designs
-	data["fabName"] = name
 	return data
 
 /obj/machinery/rnd/protolathe/ui_data(mob/user)
 	var/list/data = list()
 	var/list/storage = list()
 	
-	for(var/datum/material/material AS in stored_material)
+	for(var/material AS in stored_material)
 		storage += list(list(
-			"name" = material.name,
+			"name" = GLOB.materials[material].name,
 			"amount" = stored_material[material]
 		))
 
 	data["materials"] = storage
 	data["busy"] = busy
-	var/lockmsg = "allowed"
-	if(locked)
-		if(hacked)
-			lockmsg = "restriction overriden"
-		else
-			lockmsg = "restricted"
-	data["security"] = lockmsg
+	data["locked"] = locked
 	return data
 
 /obj/machinery/rnd/protolathe/ui_act(action, list/params)
@@ -102,11 +93,11 @@
 		return FALSE
 
 	if(locked && !hacked && !allowed(usr))
-		balloon_alert_to_viewers("Build rights restricted by Research Personnel.")
+		balloon_alert_to_viewers("Build rights restricted by Research Personnel.") //how did this happen
 		return FALSE
 
 	if(busy)
-		balloon_alert_to_viewers("Warning: fabricator is busy!")
+		balloon_alert_to_viewers("Warning: fabricator is busy!") //hmm
 		return FALSE
 	
 	for(var/material in request.materials)

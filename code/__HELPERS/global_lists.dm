@@ -130,6 +130,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/material/M = new path
 		GLOB.materials[path] = M
 
+	for(var/path in subtypesof(/datum/design))
+		var/datum/design/DN = path
+		GLOB.designs[path] = DN
 
 	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
 		var/datum/autolathe/recipe/recipe = new R
