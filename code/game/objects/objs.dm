@@ -209,14 +209,13 @@
 		balloon_alert(user, "already repaired")
 		return TRUE
 
-	balloon_alert_to_viewers("starting repair...")
-
 	if(user.skills.getRating("engineer") < skill_required)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
 		if(!do_after(user, repair_time * (skill_required - user.skills.getRating("engineer")), TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
+	balloon_alert_to_viewers("starting repair...")
 	add_overlay(GLOB.welding_sparks)
 	while(obj_integrity < max_integrity)
 		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
@@ -237,5 +236,6 @@
 		update_icon()
 
 	balloon_alert_to_viewers("repaired")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	cut_overlay(GLOB.welding_sparks)
 	return TRUE
