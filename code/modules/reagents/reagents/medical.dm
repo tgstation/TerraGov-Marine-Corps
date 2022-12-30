@@ -353,7 +353,8 @@
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_add(mob/living/L, metabolism)
-	L.add_stamina_regen_modifier(name, -0.5)
+	if(volume > 5)
+			L.add_stamina_regen_modifier(name, -0.5)
 	return ..()
 
 /datum/reagent/medicine/dylovene/on_mob_delete(mob/living/L, metabolism)
