@@ -75,7 +75,7 @@
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, max_integrity * 0.15, 4 SECONDS, integrity_failure)
+	. = welder_repair_act(user, I, max_integrity * 0.15, 4 SECONDS, integrity_failure / max_integrity)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
 
