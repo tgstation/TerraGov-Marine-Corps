@@ -5,13 +5,13 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME [RU] Lost Bay Marine Corps
+SERVER_NAME [RU] The Lost Bay: Marine Corps
 
 ## Hosted by name for unix platforms.
-HOSTEDBY KrykiZZ
+HOSTEDBY KrykiZZ | Powered by Discord-Bot.NET
 
 ## The title of the main window.
-TITLE Lost Bay Marine Corps
+TITLE The Lost Bay: Marine Corps
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -56,7 +56,6 @@ ALLOW_ADMIN_OOCCOLOR
 DEFAULT_NO_VOTE
 
 ## Add your own URLs here.
-FORUMURL https://discord.gg/DtP7FBrsXq
 WIKIURL https://tgstation13.org/wiki/TGMC:TGMC
 RULESURL https://docs.google.com/document/d/1mLy5PD2EbTx3IaYV1ALcburE1j8oJphau0hwqiOnNk8/edit
 DISCORDURL https://discord.thelostbay.space/
@@ -107,7 +106,7 @@ POPUP_ADMIN_PM
 
 # Topic filtering whitelist
 # Addressed listed below are except from any incoming topic filering
-# TOPIC_FILTERING_WHITELIST 127.0.0.1
+TOPIC_FILTERING_WHITELIST 127.0.0.1
 
 ## Only enable this if you have youtube-dl installed!
 # INVOKE_YOUTUBEDL youtube-dl
