@@ -387,7 +387,7 @@
 		return
 
 	var/list/targets
-	var/style = tgui_alert(usr, "Do you want to play this globally or to the xenos/marines?", null, list("Globally", "Xenos", "Marines", "Locally"))
+	var/style = tgui_input_list(usr, "Do you want to play this globally or to the xenos/marines?", null, list("Globally", "Xenos", "Marines", "Locally"))
 	switch(style)
 		if("Globally")
 			targets = GLOB.mob_list
