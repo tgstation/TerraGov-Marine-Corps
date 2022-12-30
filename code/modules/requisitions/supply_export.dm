@@ -9,17 +9,17 @@
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = 5
-		if(XENO_TIER_ZERO)
-			. = 15
-		if(XENO_TIER_ONE)
-			. = 30
-		if(XENO_TIER_TWO)
-			. = 40
-		if(XENO_TIER_THREE)
 			. = 50
+		if(XENO_TIER_ZERO)
+			. = 150
+		if(XENO_TIER_ONE)
+			. = 300
+		if(XENO_TIER_TWO)
+			. = 400
+		if(XENO_TIER_THREE)
+			. = 500
 		if(XENO_TIER_FOUR)
-			. = 100
+			. = 1000
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 
@@ -35,13 +35,13 @@
 		if(JOB_CAT_CIVILIAN)
 			. = 1
 		if(JOB_CAT_ENGINEERING, JOB_CAT_MEDICAL, JOB_CAT_REQUISITIONS)
-			. = 15
+			. = 150
 		if(JOB_CAT_MARINE)
-			. = 10
-		if(JOB_CAT_SILICON)
-			. = 80
-		if(JOB_CAT_COMMAND)
 			. = 100
+		if(JOB_CAT_SILICON)
+			. = 800
+		if(JOB_CAT_COMMAND)
+			. = 1000
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 
