@@ -186,3 +186,56 @@
 ///Called to clear a stored item var, currently for the deployable element
 /obj/proc/clear_internal_item()
 	return
+
+///Handles welder based repair of objects, normally called by welder_act
+/obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0.3, skill_required = SKILL_ENGINEER_METAL, fuel_req = 2)
+	if(LAZYACCESS(user.do_actions, src))
+		return FALSE
+
+	var/obj/item/tool/weldingtool/WT = I
+
+	if(!WT.isOn())
+		return FALSE
+
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			balloon_alert(user, "It's melting")
+			return TRUE
+
+	if(obj_integrity <= max_integrity * repair_threshold)
+		return BELOW_INTEGRITY_THRESHOLD
+
+	if(obj_integrity == max_integrity)
+		balloon_alert(user, "already repaired")
+		return TRUE
+
+	balloon_alert_to_viewers("starting repair...")
+
+	if(user.skills.getRating("engineer") < skill_required)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+		span_notice("You fumble around figuring out how to repair [src]."))
+		if(!do_after(user, repair_time * (skill_required - user.skills.getRating("engineer")), TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+	add_overlay(GLOB.welding_sparks)
+	while(obj_integrity < max_integrity)
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
+
+		if(obj_integrity <= max_integrity * repair_threshold || obj_integrity == max_integrity)
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
+
+		if(!WT.remove_fuel(fuel_req, user))
+			balloon_alert(user, "not enough fuel")
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
+
+		repair_damage(repair_amount)
+		update_icon()
+
+	balloon_alert_to_viewers("repaired")
+	cut_overlay(GLOB.welding_sparks)
+	return TRUE
