@@ -489,3 +489,9 @@
   - bugfix: fixed some mech guns not being properly reloadable
   QualityVan:
   - balance: Shovels fit in suit storage
+2022-12-30:
+  Waselon:
+  - bugfix: fixed inability to reload mech via UI
+  XElectricX:
+  - qol: Spears look like actual spears when thrown and no longer spin. No longer
+      bounce when hitting turfs.

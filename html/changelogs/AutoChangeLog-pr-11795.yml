@@ -1,4 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes:
-  - bugfix: "fixed inability to reload mech via UI"
