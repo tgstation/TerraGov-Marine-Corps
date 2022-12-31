@@ -7,6 +7,7 @@
 	desc = "A glorious singular entity."
 
 	icon_state = "hivemind_marker"
+	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
