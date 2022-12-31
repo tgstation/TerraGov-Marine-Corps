@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/charge
 	name = "Eviscerating Charge"
 	action_icon_state = "charge"
-	mechanics_text = "Charge up to 4 tiles and viciously attack your target."
+	desc = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
@@ -86,7 +86,7 @@
 /datum/action/xeno_action/activable/ravage
 	name = "Ravage"
 	action_icon_state = "ravage"
-	mechanics_text = "Attacks and knockbacks enemies in the direction your facing."
+	desc = "Attacks and knockbacks enemies in the direction your facing."
 	ability_name = "ravage"
 	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
@@ -154,7 +154,7 @@
 /datum/action/xeno_action/endure
 	name = "Endure"
 	action_icon_state = "ignore_pain"
-	mechanics_text = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
+	desc = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	ability_name = "Endure"
 	plasma_cost = 200
 	cooldown_timer = 60 SECONDS
@@ -261,7 +261,7 @@
 /datum/action/xeno_action/rage
 	name = "Rage"
 	action_icon_state = "rage"
-	mechanics_text = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
+	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_name = "Rage"
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 60 SECONDS
@@ -452,7 +452,7 @@
 /datum/action/xeno_action/vampirism
 	name = "Toggle vampirism"
 	action_icon_state = "rage"
-	mechanics_text = "Toggle on to enable boosting on "
+	desc = "Toggle on to enable boosting on "
 	ability_name = "Vampirism"
 	plasma_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_timer = 1 SECONDS
