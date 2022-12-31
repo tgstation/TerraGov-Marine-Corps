@@ -89,7 +89,6 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
