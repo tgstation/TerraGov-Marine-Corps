@@ -2,7 +2,7 @@
 	name = "alien embryo"
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
-	icon_state = "Larva Dead"
+	icon_state = "Embryo"
 	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
 	var/grinder_amount = 5
 	var/mob/living/affected_mob
