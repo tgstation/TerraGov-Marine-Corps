@@ -1062,7 +1062,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	damage = 90
 	penetration = 50
-	sundering = 15
+	sundering = 12.5
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -1094,7 +1094,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 5
 	damage = 75
 	penetration = 35
-	sundering = 15
+	sundering = 12.5
 
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
