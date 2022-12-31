@@ -1591,7 +1591,6 @@
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
-	projectile_to_fire.penetration *= damage_mult
 	projectile_to_fire.sundering *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
