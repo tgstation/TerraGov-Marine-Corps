@@ -1162,10 +1162,6 @@
 		return FALSE
 	if(!X.Adjacent(victim)) //checks if owner next to target
 		return FALSE
-	if(X.on_fire)
-		if(!silent)
-			to_chat(X, span_warning("We're too busy being on fire to do this!"))
-		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
 			to_chat(X, span_warning("This creature is struggling too much for us to drain its life force."))
@@ -1187,7 +1183,7 @@
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
