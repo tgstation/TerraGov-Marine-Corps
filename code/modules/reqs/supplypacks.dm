@@ -712,7 +712,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/mortar_ammo_mustard
 	name = "MG-100Y howitzer ;Mustard' chemical weapon shell (x2)"
 	contains = list(/obj/item/mortal_shell/howitzer/mustard, /obj/item/mortal_shell/howitzer/mustard)
-	cost = 4
+	cost = 40
 
 /datum/supply_packs/explosives/mortar_ammo_wp
 	name = "MG-100Y howitzer white phosporous smoke shell"
