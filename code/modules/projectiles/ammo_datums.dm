@@ -694,7 +694,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	damage = 65
 	penetration = 15
-	sundering = 2
+	sundering = 3.5
 
 /datum/ammo/bullet/rifle/standard_br
 	name = "light marksman bullet"
