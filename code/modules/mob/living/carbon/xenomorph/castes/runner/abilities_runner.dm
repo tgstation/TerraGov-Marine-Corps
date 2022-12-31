@@ -137,7 +137,7 @@
 	if(!.)
 		return FALSE
 
-	if(!A || A.layer >= FLY_LAYER)
+	if(!A || A.layer >= ABOVE_FLY_LAYER)	//Rouny can make the jump, they don't skip leg day
 		return FALSE
 
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()

@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	for(var/mob/living/living_contents in banishment_target.GetAllContents()) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
 		contained_living += living_contents
-		living_contents.apply_status_effect(/datum/status_effect/incapacitating/unconscious)
+		living_contents.apply_status_effect(STATUS_EFFECT_STUN)
 		living_contents.notransform = TRUE
 		living_contents.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind)
 

@@ -12,6 +12,7 @@
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	generic_canpass = FALSE
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	layer = ABOVE_MOB_LAYER	//So that mobs don't clip above it
 	move_resist = MOVE_FORCE_OVERPOWERING
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	coverage = 100
@@ -118,6 +119,14 @@
 	if(LAZYLEN(attached_weapons))
 		return unload(over)
 
+/obj/vehicle/sealed/helicopter/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(LAZYLEN(occupants))	//Aicraft is not perfectly sealed!
+		for(var/mob/living/M in occupants)
+			M.effect_smoke(S)
+
 ///Proc for removing fuel from a jerry can and adding it to the aircraft
 /obj/vehicle/sealed/helicopter/proc/refuel(obj/item/reagent_containers/jerrycan/J, mob/user)
 	if(J.reagents.total_volume == 0)
@@ -134,7 +143,7 @@
 	var/fuel_transfer_amount = min(max_fuel - current_fuel, J.reagents.total_volume)
 	J.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 	current_fuel += fuel_transfer_amount
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 5)
 	if(current_fuel >= max_fuel)
 		balloon_alert(user, "Full!")
 	show_helicopter_fuel()
@@ -152,11 +161,11 @@
 			balloon_alert(user, "Must be deployed in an open area!")
 			return
 		pulledby?.stop_pulling()
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 30)
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 30, FALSE, 5)
 		icon_state = initial(icon_state)
 		move_resist = initial(move_resist)
 	else
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 30)
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 30, FALSE, 5)
 		icon_state = "keys"
 		move_resist = MOVE_RESIST_DEFAULT
 	update_icon()
@@ -205,7 +214,7 @@
 		return
 	gun_to_reload.reload(mag, user, TRUE)
 	balloon_alert_to_viewers("Reloaded!")
-	playsound(loc, gun_to_reload.reload_sound, 25, 1)
+	playsound(loc, gun_to_reload.reload_sound, 25, 1, FALSE, 5)
 
 ///Handles weapon attaching
 /obj/vehicle/sealed/helicopter/proc/attach_weapon(obj/item/weapon/gun/aircraft/gun, mob/user)
@@ -223,7 +232,7 @@
 	attached_weapons += gun
 	ENABLE_BITFIELD(gun.flags_item, IS_DEPLOYED)
 	weapon_slots--
-	playsound(src, 'sound/weapons/guns/fire/tank_minigun_start.ogg', 100)
+	playsound(src, 'sound/weapons/guns/fire/tank_minigun_start.ogg', 50, FALSE, 5)
 	update_icon()
 	if(gunner)
 		//If there was no weapon attached, that means we need to set_interaction to give the gunner proper flags and such
@@ -265,7 +274,7 @@
 	attached_weapons -= gun_to_detach
 	DISABLE_BITFIELD(gun_to_detach.flags_item, IS_DEPLOYED)
 	weapon_slots++
-	playsound(src, 'sound/weapons/guns/fire/tank_minigun_start.ogg', 100)
+	playsound(src, 'sound/weapons/guns/fire/tank_minigun_start.ogg', 50, FALSE, 5)
 	update_icon()
 
 /obj/vehicle/sealed/helicopter/welder_act(mob/living/user, obj/item/I)
@@ -282,7 +291,7 @@
 		balloon_alert(user, "No welding fuel!")
 		return FALSE
 	add_overlay(GLOB.welding_sparks)
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE, 5)
 	///For calculating how fast the user repairs, with a bonus for pilots since they are trained on vehicle maintenance
 	var/repair_skill = user.skills.getRating("engineer") + user.skills.getRating("pilot")
 	///How long it takes to repair, depending on how low integrity is (every 1/10th of max_integrity); shortest possible time is 0.2 seconds
@@ -291,7 +300,7 @@
 	if(!do_after(user, welding_duration SECONDS, TRUE, user, repair_skill ? BUSY_ICON_BUILD : BUSY_ICON_UNSKILLED))
 		cut_overlay(GLOB.welding_sparks)
 		return FALSE
-	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/welder.ogg', 25, TRUE, 5)
 	cut_overlay(GLOB.welding_sparks)
 	///How much fuel to remove from the welder; every 1 unit of fuel will repair 10% of integrity
 	var/welding_fuel_cost = min(CEILING(-((obj_integrity - max_integrity)/(max_integrity/10)), 1), WT.get_fuel())
@@ -566,7 +575,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 				victim.apply_damage(40)
 				victim.Stun(2 SECONDS)
 				visible_message(span_alert("[victim.name] was crushed under the weight of [src]!"))	//Important to keep as a message for logging
-				playsound(src, 'sound/effects/clownstep2.ogg', 100)	//Funny, but placeholder until I find a proper squish/splat sound
+				playsound(src, 'sound/effects/clownstep2.ogg', 100, FALSE, 7)	//Funny, but placeholder until I find a proper squish/splat sound
 			else if(isobj(A))
 				var/obj/victim = A
 				if(!CHECK_BITFIELD(victim.resistance_flags, INDESTRUCTIBLE))
@@ -578,14 +587,14 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	current_fuel--
 	update_icon()
 	if(current_fuel <= 0)
-		playsound(src, 'sound/mecha/lowpower.ogg', 100)	//Should play only to the pilot but we have no helicopter descending sound yet
+		playsound(src, 'sound/mecha/lowpower.ogg', 100, FALSE, 7)	//Should play only to the pilot but we have no helicopter descending sound yet
 		toggle_engine()
 	if(pilot.stat)	//The dead can't fly!
 		balloon_alert_to_viewers("Pilot control lost!")	//To let people know the pilot isn't awake
 		toggle_engine()
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, 35)
-		playsound(get_turf(src), 'sound/effects/tadpolehovering.ogg', 100, TRUE)
+		COOLDOWN_START(src, enginesound_cooldown, 3.5 SECONDS)
+		playsound(src, 'sound/effects/tadpolehovering.ogg', 100, TRUE, 10)
 	if(being_destroyed)
 		setDir(pick(LeftAndRightOfDir(dir, TRUE)))
 
@@ -631,18 +640,18 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		take_damage(FLYING_CRASH_DAMAGE)
 		for(var/mob/M in occupants)
 			shake_camera(M, 5, 3)
-		playsound(A, 'sound/effects/metal_crash.ogg', 100, TRUE)
+		playsound(A, 'sound/effects/metal_crash.ogg', 75, TRUE, 7)
 		update_icon()
 
 /obj/vehicle/sealed/helicopter/obj_break(damage_flag)
-	playsound(src, 'sound/machines/beepalert.ogg', 100)
+	playsound(src, 'sound/machines/beepalert.ogg', 100, FALSE, 7)
 	balloon_alert_to_viewers("Severe damage taken!")
 
 //BLACK HAWK GOING DOWN
 /obj/vehicle/sealed/helicopter/obj_destruction(damage_amount, damage_type, damage_flag)
 	being_destroyed = TRUE
 	if(CHECK_BITFIELD(flags_pass, FLYING))
-		playsound(src, 'sound/effects/alert.ogg', 100)
+		playsound(src, 'sound/effects/alert.ogg', 100, FALSE, 7)
 		animate(src, 5 SECONDS, pixel_z = 0)
 		addtimer(CALLBACK(src, .proc/death_crash), 5 SECONDS)
 	else
@@ -724,7 +733,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	vehicle_entered_target.headlights_toggle = !vehicle_entered_target.headlights_toggle
 	vehicle_entered_target.set_light_on(vehicle_entered_target.headlights_toggle)
 	vehicle_entered_target.update_icon()
-	playsound(owner, vehicle_entered_target.headlights_toggle ? 'sound/vehicles/magin.ogg' : 'sound/vehicles/magout.ogg', 40, TRUE)
+	playsound(owner, vehicle_entered_target.headlights_toggle ? 'sound/vehicles/magin.ogg' : 'sound/vehicles/magout.ogg', 25, FALSE, 5)
 	if(vehicle_entered_target.headlights_toggle)
 		name = "Turn Off Spotlight"
 		action_icon_state = "mech_lights_on"
@@ -755,7 +764,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	name = "\improper V-LRN attack chopper"
 	desc = "Ultralight helicopter with a single weapon attachment point."
 	icon_state = "engineering_pod"
-	max_integrity = 200
+	max_integrity = 100
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, FIRE = 10, ACID = 0)
 	move_delay = 0.3 SECONDS
 	weapon_slots = 1
@@ -780,7 +789,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	name = "\improper ATT \"Beluga\""
 	desc = "Heavily armored and designed to carry 4 passengers. \nAnd don't forget, this troop carrier is in the top 1% of all troop carriers out there!"
 	icon_state = "atv"
-	max_integrity = 500	//Beefy boi
+	max_integrity = 250	//Beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
 	move_delay = 0.4 SECONDS
 	max_occupants = 5
@@ -790,7 +799,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	name = "\improper Pelican gunship"	//Too on the nose?
 	desc = "A flying tank. This bad boy features tough armor and 2 weapon mounts. However, it needs a separate pilot and gunner to operate."
 	icon_state = "atv"
-	max_integrity = 500	//Also a beefy boi
+	max_integrity = 200	//Also a beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
 	move_delay = 0.5 SECONDS
 	max_occupants = 2
