@@ -1,0 +1,4 @@
+author: "Jalopkomit18"
+delete-after: True
+changes:
+  - balance: "Tricordazine and Dylovene pill packet capacity changed from 6->8"
