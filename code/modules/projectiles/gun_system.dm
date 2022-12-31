@@ -479,7 +479,7 @@
 		icon_state = base_gun_icon + "_o"
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
 		icon_state = base_gun_icon + "_u"
-	else if((!length(chamber_items) && max_chamber_items) || !rounds)
+	else if((!length(chamber_items) && max_chamber_items) || (!rounds && !max_chamber_items))
 		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
@@ -597,7 +597,7 @@
 
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 		wdelay += 0.3 SECONDS //no training in any firearms
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
@@ -1458,7 +1458,9 @@
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
+	rounds = total_rounds
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
+		rounds += in_chamber ? rounds_per_shot : 0
 	max_rounds = total_max_rounds
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
@@ -1513,7 +1515,7 @@
 	if(!user || user.incapacitated()  || user.lying_angle || !isturf(user.loc))
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
-		to_chat(user, span_warning("Theres not enough rounds left to fire."))
+		to_chat(user, span_warning("There's not enough rounds left to fire."))
 		return FALSE
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
@@ -1555,7 +1557,7 @@
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
 	if(user)
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
@@ -1644,7 +1646,7 @@
 	if(user)
 		// Apply any skill-based bonuses to accuracy
 		var/skill_accuracy = 0
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 			skill_accuracy = -1
 		else
 			skill_accuracy = user.skills.getRating(gun_skill_category)
