@@ -3006,7 +3006,9 @@
 /area/mainship/command/corporateliaison)
 "dNQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/glass/beaker/biomass,
+/obj/item/reagent_containers/glass/beaker/biomass{
+	name = "biomass beaker"
+	},
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "dNR" = (
@@ -11719,9 +11721,9 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
-/obj/item/bodybag/cryobag,
-/obj/item/bodybag/cryobag,
-/obj/item/bodybag/cryobag,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/machinery/recharger,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "ppB" = (
@@ -13575,9 +13577,9 @@
 /obj/item/reagent_containers/spray/surgery,
 /obj/item/reagent_containers/spray/surgery,
 /obj/item/reagent_containers/spray/surgery,
-/obj/item/reagent_containers/spray/surgery,
-/obj/item/reagent_containers/spray/surgery,
-/obj/item/reagent_containers/spray/surgery,
+/obj/item/reagent_containers/glass/beaker/cryomix{
+	name = "cryo beaker"
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "rIq" = (
@@ -16779,9 +16781,10 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
-/obj/item/defibrillator,
-/obj/item/defibrillator,
 /obj/machinery/recharger,
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vQO" = (
@@ -18737,11 +18740,6 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
-"yii" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/glass/beaker/cryomix,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "yiF" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 9
@@ -47441,7 +47439,7 @@ bOz
 dpY
 kWu
 usa
-yii
+lAT
 oOM
 gQw
 vBY
