@@ -320,6 +320,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define LIMB_PRINTING_TIME 30
 #define LIMB_METAL_AMOUNT 125
+#define LIMB_MATTER_AMOUNT 100
 
 //How long it takes for a human to become undefibbable
 #define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
