@@ -814,7 +814,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 7
+	sundering = 6
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -826,7 +826,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	damage_falloff = 1
 	penetration = 25
-	sundering = 5
+	sundering = 4
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
