@@ -863,6 +863,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/datum/limb/child_limb = c
 		child_limb.robotize()
 
+/// used to give LIMB_BIOTIC flag to the limb
 /datum/limb/proc/biotize()
 	rejuvenate()
 	add_limb_flags(LIMB_BIOTIC)
