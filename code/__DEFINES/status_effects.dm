@@ -39,6 +39,8 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
+#define STATUS_EFFECT_STIMULANT_DROP /datum/status_effect/stacking/stimulant/drop
+
 /////////////
 // DEBUFFS //
 /////////////
