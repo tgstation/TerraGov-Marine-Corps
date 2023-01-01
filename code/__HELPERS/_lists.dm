@@ -570,7 +570,7 @@
 			. += A
 
 /**
- * Like pick_weight, but allowing for nested lists.
+ * Like pickweight, but allowing for nested lists.
  *
  * For example, given the following list:
  * list(A = 1, list(B = 1, C = 1))
@@ -582,9 +582,9 @@
  * Weights should be integers. Entries without weights are assigned weight 1 (so unweighted lists can be used as well)
  */
 /proc/pick_weight_recursive(list/list_to_pick)
-	var/result = pick_weight(fill_with_ones(list_to_pick))
+	var/result = pickweight(fill_with_ones(list_to_pick))
 	while(islist(result))
-		result = pick_weight(fill_with_ones(result))
+		result = pickweight(fill_with_ones(result))
 	return result
 
 /**
