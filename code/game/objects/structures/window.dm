@@ -430,6 +430,9 @@
 /obj/structure/window/framed/mainship/escapeshuttle
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 
+/obj/structure/window/framed/mainship/escapeshuttle/prison
+	resistance_flags = RESIST_ALL
+
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."

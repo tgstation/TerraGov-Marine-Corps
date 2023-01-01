@@ -650,13 +650,9 @@
 	},
 /area/prison/research/secret/biolab)
 "adM" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
-/turf/open/floor/prison/whitepurple{
-	dir = 4
-	},
-/area/prison/research/secret/biolab)
+/obj/structure/window/framed/mainship/escapeshuttle/prison,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "adN" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/structure/disposalpipe/segment{
@@ -1075,11 +1071,6 @@
 /area/prison/research/secret/biolab)
 "aeZ" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
-/area/prison/research/secret/bioengineering)
-"afa" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
 /area/prison/research/secret/bioengineering)
 "afb" = (
 /obj/structure/window/framed/prison/reinforced/hull,
@@ -14138,7 +14129,7 @@
 /area/prison/hallway/staff)
 "aRz" = (
 /obj/structure/showcase/coinpress{
-	desc = "A stand with a plastic display of some kind of weird machine.";
+	desc = "A stand with a plastic display of some kind of weird machine."
 	},
 /turf/open/floor/wood,
 /area/prison/hallway/staff)
@@ -28182,7 +28173,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJz" = (
-/turf/closed/shuttle/escapeshuttle,
+/turf/closed/shuttle/escapeshuttle/prison,
 /area/prison/hangar/main)
 "bJA" = (
 /obj/structure/bookcase,
@@ -38944,11 +38935,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/east)
-"csO" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/prison/disposal)
 "csP" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
@@ -42393,7 +42379,7 @@
 /area/prison/hangar/main)
 "gSs" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -48431,7 +48417,7 @@
 /area/prison/hallway/central)
 "xgV" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -89222,7 +89208,7 @@ acF
 acX
 adr
 adA
-adM
+aeI
 aek
 aeI
 ksL
@@ -91024,7 +91010,7 @@ aab
 aab
 aab
 aqK
-afa
+afb
 afo
 afo
 agm
@@ -94246,7 +94232,7 @@ cqi
 cqi
 cry
 csd
-csO
+csP
 bYF
 bYG
 aab
@@ -109627,17 +109613,17 @@ aXt
 bAP
 bBT
 bJz
-bMQ
+adM
 bJz
-bMQ
-bJz
-bJz
+adM
 bJz
 bJz
 bJz
-bMQ
 bJz
-bMQ
+bJz
+adM
+bJz
+adM
 bJz
 aab
 aab
@@ -109883,7 +109869,7 @@ eJX
 obp
 bAP
 bBT
-bMQ
+adM
 bDj
 bGh
 bDj
@@ -109895,7 +109881,7 @@ bDj
 bDj
 bGh
 bDj
-bMQ
+adM
 adO
 adO
 bHd
@@ -110140,7 +110126,7 @@ bnQ
 obp
 bAP
 bBT
-bMQ
+adM
 bDk
 bDk
 bDk
@@ -110152,7 +110138,7 @@ bDk
 bDk
 bDk
 bDk
-bMQ
+adM
 bDE
 btd
 btd
@@ -110397,7 +110383,7 @@ bnQ
 obp
 bAP
 bBT
-bMQ
+adM
 bDl
 bGh
 bDl
@@ -110409,7 +110395,7 @@ bDl
 bDl
 bGh
 bDl
-bMQ
+adM
 adO
 adO
 adO
@@ -110655,17 +110641,17 @@ aXt
 bAP
 bBT
 bJz
-bMQ
+adM
 bGi
-bMQ
+adM
 bJz
 bJz
 bJz
 bJz
 bJz
-bMQ
+adM
 bGi
-bMQ
+adM
 bJz
 aab
 aab
