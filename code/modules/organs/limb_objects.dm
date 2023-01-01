@@ -1,7 +1,6 @@
 
 /obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
-	var/list/part
 
 /obj/item/limb/Initialize(loc, mob/living/carbon/human/H)
 	. = ..()
@@ -36,42 +35,34 @@
 /obj/item/limb/l_arm
 	name = "left arm"
 	icon_state = "l_arm"
-	part = list(BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
 
 /obj/item/limb/l_foot
 	name = "left foot"
 	icon_state = "l_foot"
-	part = list(BODY_ZONE_PRECISE_L_FOOT)
 
 /obj/item/limb/l_hand
 	name = "left hand"
 	icon_state = "l_hand"
-	part = list(BODY_ZONE_PRECISE_L_HAND)
 
 /obj/item/limb/l_leg
 	name = "left leg"
 	icon_state = "l_leg"
-	part = list(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)
 
 /obj/item/limb/r_arm
 	name = "right arm"
 	icon_state = "r_arm"
-	part = list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
 
 /obj/item/limb/r_foot
 	name = "right foot"
 	icon_state = "r_foot"
-	part = list(BODY_ZONE_PRECISE_R_FOOT)
 
 /obj/item/limb/r_hand
 	name = "right hand"
 	icon_state = "r_hand"
-	part = list(BODY_ZONE_PRECISE_R_HAND)
 
 /obj/item/limb/r_leg
 	name = "right leg"
 	icon_state = "r_leg"
-	part = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT)
 
 /obj/item/limb/head
 	name = "head"
