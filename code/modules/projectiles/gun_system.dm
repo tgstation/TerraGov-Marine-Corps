@@ -212,7 +212,7 @@
 	var/min_scatter_unwielded = -360
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
-	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
+	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing.
 	var/burst_accuracy_mult	= 1
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
@@ -805,7 +805,7 @@
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
 
-	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
+	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
 	if(!isobj(projectile_to_fire))
@@ -1611,71 +1611,64 @@
 	if(dual_wield)
 		projectile_to_fire.point_blank_range = 0
 
-
+///Sets the projectile accuracy and scatter
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)
-	var/gun_accuracy_mult = accuracy_mult_unwielded
-	var/gun_accuracy_mod = 0
-	var/gun_scatter = scatter_unwielded
-	var/wielded_fire
+	var/gun_accuracy_mult //base projectile accuracy is multiplied by the number
+	var/gun_accuracy_mod = 0 //additive to projectile accuracy, after multiplier
+	var/gun_scatter
+	var/wielded_fire = FALSE
 
 	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
+		wielded_fire = TRUE
 		gun_accuracy_mult = accuracy_mult
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
 		gun_scatter = scatter
-		wielded_fire = TRUE
 	else
+		gun_accuracy_mult = accuracy_mult_unwielded
 		scatter_unwielded = clamp((scatter_unwielded + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), min_scatter_unwielded, max_scatter_unwielded)
 		gun_scatter = scatter_unwielded
 
-	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
-		if(wielded_fire)
-			//if you're wielding your weapon, the penalty is lower
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.03))
-			gun_scatter += max(0, movement_acc_penalty_mult * 0.5)
-		else
-			//if you're not wielding your weapon, the penalty is higher
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.06))
-			gun_scatter += max(0, movement_acc_penalty_mult)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+		gun_scatter += deployed_scatter_change
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
+		gun_accuracy_mult *= burst_accuracy_mult
+		if(wielded_fire)
+			gun_scatter += burst_amount * burst_scatter_mult
+		else
+			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
-		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy) //TODO: remove the rng increase
 
 	if(user)
-		// Apply any skill-based bonuses to accuracy
-		var/skill_accuracy = 0
-		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
-			skill_accuracy = -1
-		else
-			skill_accuracy = user.skills.getRating(gun_skill_category)
-		if(skill_accuracy)
-			gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
-
 		projectile_to_fire.firer = user
+		projectile_to_fire.def_zone = user.zone_selected
+
+		if((world.time - user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
+			if(wielded_fire)
+				gun_accuracy_mult -= max(0,movement_acc_penalty_mult * 0.03)
+				gun_scatter += max(0, movement_acc_penalty_mult * 0.5)
+			else
+				gun_accuracy_mult -= max(0,movement_acc_penalty_mult * 0.06)
+				gun_scatter += max(0, movement_acc_penalty_mult)
+
+		//firearm skills modifiers
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
+			gun_accuracy_mult += -0.15
+			gun_scatter.scatter += 10
+		else
+			var/skill_level = user.skills.getRating(gun_skill_category) //specific weapon type skill modifiers
+			gun_accuracy_mult += skill_level * 0.15
+			gun_scatter.scatter -= skill_level * 2
+
 		if(isliving(user))
 			var/mob/living/living_user = user
 			gun_accuracy_mod += living_user.ranged_accuracy_mod
-			if(iscarbon(user))
-				var/mob/living/carbon/carbon_user = user
-				projectile_to_fire.def_zone = user.zone_selected
-				if(carbon_user.stagger)
-					gun_scatter += 5
+			gun_scatter += living_user.ranged_scatter_mod
 
-			// Status effect changes
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
-				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF)
-				gun_accuracy_mod += buff.stacks
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF))
-				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF)
-				gun_accuracy_mod -= debuff.stacks
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF))
-				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF)
-				gun_scatter -= buff.stacks
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF))
-				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
-				gun_scatter += debuff.stacks
+			if(living_user.stagger)
+				gun_scatter += 5
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/shooter_human = user
@@ -1683,31 +1676,8 @@
 			if(shooter_human.marksman_aura)
 				gun_accuracy_mod += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
 
-	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
-
-/obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
-	. = starting_scatter //projectile_to_fire.scatter
-
-	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
-		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
-			. += burst_amount * burst_scatter_mult
-		else
-			. += burst_amount * burst_scatter_mult * 2
-
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
-		. += deployed_scatter_change
-
-	if(!user?.skills.getRating("firearms")) //no training in any firearms
-		. += 10
-	else
-		var/scatter_tweak = user.skills.getRating(gun_skill_category)
-		if(scatter_tweak > 1)
-			. -= scatter_tweak * 2
-
-	if(. <= 0)
-		return 0
-
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.scatter += max(0, gun_scatter) //Add gun scatter value to projectile's scatter value
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
