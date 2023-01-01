@@ -71,17 +71,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return TRUE
 	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
-
-/obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
-	if(world.time >= wield_time)
-		return TRUE
-	else
-		return FALSE
-
-
 /obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
 	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, TRUE, CALLBACK(src, .proc/is_wielded)))
 		return FALSE
+	gun.flags_item |= FULLY_WIELDED
 	setup_bullet_accuracy()
 	return TRUE
 

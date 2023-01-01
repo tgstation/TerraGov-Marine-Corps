@@ -658,6 +658,14 @@
 
 	return TRUE
 
+/obj/item/weapon/gun/toggle_wielded(user, new_value)
+	switch(new_value)
+		if(null)
+			flags_item ^= WIELDED
+		if(FALSE)
+			flags_item &= ~(WIELDED|~FULLY_WIELDED)
+		if(TRUE)
+			flags_item |= WIELDED
 
 //----------------------------------------------------------
 			//							    \\
@@ -849,7 +857,7 @@
 		projectile_to_fire.firer = gun_user
 		projectile_to_fire.def_zone = gun_user.zone_selected
 		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
-			if((flags_item & WIELDED) && wielded_stable())
+			if(flags_item & FULLY_WIELDED)
 				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.03)
 				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult * 0.5))
 			else
@@ -1593,10 +1601,10 @@
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
-		if(!master_gun && !wielded_stable())
+		if(!master_gun && (flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
-		if(master_gun && !master_gun.wielded_stable())
+		if(master_gun && !(master_gun.flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
 			return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -1668,7 +1676,7 @@
 /obj/item/weapon/gun/proc/setup_bullet_accuracy()
 	var/wielded_fire = FALSE
 
-	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
+	if((flags_item & FULLY_WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && (master_gun.flags_item & FULLY_WIELDED) ))
 		wielded_fire = TRUE
 		gun_accuracy_mult = accuracy_mult
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
@@ -1720,7 +1728,7 @@
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
-	if(flags_item & WIELDED && wielded_stable() || master_gun)
+	if((flags_item & FULLY_WIELDED) || master_gun)
 		total_recoil += recoil
 	else
 		total_recoil += recoil_unwielded
