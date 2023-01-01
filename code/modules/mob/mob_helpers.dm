@@ -473,6 +473,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		inactive_item.do_unique_action(src)
 
 ///Handles setting or changing a mob's skills
-/mob/proc/set_skills(/datum/skills/new_skillset)
+/mob/proc/set_skills(datum/skills/new_skillset)
 	skills = new_skillset
 	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)

@@ -7,7 +7,7 @@
 	traumatic_shock = clamp(traumatic_shock+amount,-100,maxHealth*2)
 
 /mob/living/carbon/proc/setTraumatic_Shock(amount)
-	if(traumatic_shock = amount)
+	if(traumatic_shock == amount)
 		return FALSE
 	traumatic_shock = amount
 
@@ -21,7 +21,7 @@
 	setShock_Stage(clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2))
 
 /mob/living/carbon/proc/setShock_Stage(amount)
-	if(shock_stage = amount)
+	if(shock_stage == amount)
 		return FALSE
 	. = shock_stage
 	shock_stage = amount

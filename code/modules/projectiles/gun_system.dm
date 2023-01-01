@@ -261,6 +261,14 @@
 	///what ammo to use for overcharge
 	var/ammo_diff = null
 
+	//projectile modifier vars. Recorded at the gun level for perf reasons
+
+	///Projectile accuracy is multiplied by the number
+	var/gun_accuracy_mult = 1
+	///Additive to projectile accuracy, after gun_accuracy_mult
+	var/gun_accuracy_mod = 0
+	///The actual scatter value of the fired projectile
+	var/gun_scatter = 0
 /*
  *  extra icon and item states or overlays
 */
@@ -427,16 +435,42 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN,
+		COMSIG_MOB_MOUSEUP,
+		COMSIG_ITEM_ZOOM,
+		COMSIG_ITEM_UNZOOM,
+		COMSIG_MOB_MOUSEDRAG,
+		COMSIG_KB_RAILATTACHMENT,
+		COMSIG_KB_UNDERRAILATTACHMENT,
+		COMSIG_KB_UNLOADGUN,
+		COMSIG_KB_FIREMODE,
+		COMSIG_KB_GUN_SAFETY,
+		COMSIG_KB_UNIQUEACTION,
+		COMSIG_PARENT_QDELETING,
+		COMSIG_RANGED_ACCURACY_MOD_CHANGED,
+		COMSIG_RANGED_SCATTER_MOD_CHANGED,
+		COMSIG_MOB_SKILLS_CHANGED,
+		COMSIG_MOB_SHOCK_STAGE_CHANGED,
+		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
+		COMSIG_LIVING_STAGGER_CHANGED,))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user.hud_used.remove_ammo_hud(src)
 		gun_user = null
+
 	if(!user)
+		setup_bullet_accuracy()
 		return
 	if(master_gun?.master_gun) //Prevent gunception
 		return
 	gun_user = user
+	setup_bullet_accuracy()
+	RegisterSignal(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
+		COMSIG_RANGED_SCATTER_MOD_CHANGED,
+		COMSIG_MOB_SKILLS_CHANGED,
+		COMSIG_MOB_SHOCK_STAGE_CHANGED,
+		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
+		COMSIG_LIVING_STAGGER_CHANGED), .proc/setup_bullet_accuracy)
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
 		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
@@ -616,6 +650,7 @@
 	if(!.)
 		return FALSE
 
+	setup_bullet_accuracy()
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
@@ -653,6 +688,7 @@
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			setup_bullet_accuracy()
 			modify_fire_delay(fire_delay * akimbo_additional_delay) // Adds the additional delay to auto_fire
 			modify_auto_burst_delay(autoburst_delay * akimbo_additional_delay)
 			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
@@ -709,6 +745,7 @@
 		modify_fire_delay(-fire_delay + fire_delay/(1 + akimbo_additional_delay)) // Removes the additional delay from auto_fire
 		modify_auto_burst_delay(-autoburst_delay + autoburst_delay/(1 + akimbo_additional_delay))
 		dual_wield = FALSE
+		setup_bullet_accuracy()
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
@@ -803,7 +840,23 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		projectile_to_fire = get_ammo_object()
 	apply_gun_modifiers(projectile_to_fire, target, firer)
-	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
+
+	//maybe chuck all this in apply gun modifiers?
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult))) // Apply gun and user accuracy modifiers to projectile accuracy
+	projectile_to_fire.scatter += gun_scatter //Add gun scatter value to projectile's base scatter value
+
+	if(gun_user) //maybe chuck this in apply gun modifiers?
+		projectile_to_fire.firer = gun_user
+		projectile_to_fire.def_zone = gun_user.zone_selected
+		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
+			if((flags_item & WIELDED) && wielded_stable())
+				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.03)
+				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult * 0.5))
+			else
+				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.06)
+				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult))
+
+	projectile_to_fire.accuracy +=gun_accuracy_mod //additive added after move delay mult
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
@@ -1612,10 +1665,7 @@
 		projectile_to_fire.point_blank_range = 0
 
 ///Sets the projectile accuracy and scatter
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)
-	var/gun_accuracy_mult //base projectile accuracy is multiplied by the number
-	var/gun_accuracy_mod = 0 //additive to projectile accuracy, after multiplier
-	var/gun_scatter
+/obj/item/weapon/gun/proc/setup_bullet_accuracy()
 	var/wielded_fire = FALSE
 
 	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
@@ -1642,43 +1692,29 @@
 	if(dual_wield) //akimbo firing gives terrible scatter
 		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy) //TODO: remove the rng increase
 
-	if(user)
-		projectile_to_fire.firer = user
-		projectile_to_fire.def_zone = user.zone_selected
-
-		if((world.time - user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
-			if(wielded_fire)
-				gun_accuracy_mult -= max(0,movement_acc_penalty_mult * 0.03)
-				gun_scatter += max(0, movement_acc_penalty_mult * 0.5)
-			else
-				gun_accuracy_mult -= max(0,movement_acc_penalty_mult * 0.06)
-				gun_scatter += max(0, movement_acc_penalty_mult)
-
+	if(gun_user)
 		//firearm skills modifiers
-		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
+		if(gun_user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
 			gun_accuracy_mult += -0.15
 			gun_scatter += 10
 		else
-			var/skill_level = user.skills.getRating(gun_skill_category) //specific weapon type skill modifiers
+			var/skill_level = gun_user.skills.getRating(gun_skill_category) //specific weapon type skill modifiers
 			gun_accuracy_mult += skill_level * 0.15
 			gun_scatter -= skill_level * 2
 
-		if(isliving(user))
-			var/mob/living/living_user = user
+		if(isliving(gun_user))
+			var/mob/living/living_user = gun_user
 			gun_accuracy_mod += living_user.ranged_accuracy_mod
 			gun_scatter += living_user.ranged_scatter_mod
 
 			if(living_user.stagger)
 				gun_scatter += 5
 
-		if(ishuman(user))
-			var/mob/living/carbon/human/shooter_human = user
+		if(ishuman(gun_user))
+			var/mob/living/carbon/human/shooter_human = gun_user
 			gun_accuracy_mod -= round(min(20, (shooter_human.shock_stage * 0.2))) //Accuracy declines with pain, being reduced by 0.2% per point of pain.
 			if(shooter_human.marksman_aura)
 				gun_accuracy_mod += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
-
-	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.scatter += max(0, gun_scatter) //Add gun scatter value to projectile's scatter value
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)

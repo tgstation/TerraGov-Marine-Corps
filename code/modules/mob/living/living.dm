@@ -538,10 +538,12 @@
 ///Modifies the mobs inherent accuracy modifier
 /mob/living/proc/adjust_mob_accuracy(accuracy_mod)
 	ranged_accuracy_mod += accuracy_mod
+	SEND_SIGNAL(src, COMSIG_RANGED_ACCURACY_MOD_CHANGED, ranged_accuracy_mod)
 
 ///Modifies the mobs inherent scatter modifier
 /mob/living/proc/adjust_mob_scatter(scatter_mod)
 	ranged_scatter_mod += scatter_mod
+	SEND_SIGNAL(src, COMSIG_RANGED_SCATTER_MOD_CHANGED, ranged_scatter_mod)
 
 /mob/living/proc/smokecloak_on()
 

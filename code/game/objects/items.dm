@@ -1355,3 +1355,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.swap_hand()
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
+
+///Handles registering if an item is flagged as deployed or not
+/obj/item/proc/toggle_deployment_flag(deployed)
+	if(deployed)
+		ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	else
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)

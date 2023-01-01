@@ -641,7 +641,7 @@
 	return stagger
 
 /mob/living/proc/set_stagger(amount)
-	if(stagger = amount)
+	if(stagger == amount)
 		return
 	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
 		return
