@@ -1657,11 +1657,11 @@
 		//firearm skills modifiers
 		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
 			gun_accuracy_mult += -0.15
-			gun_scatter.scatter += 10
+			gun_scatter += 10
 		else
 			var/skill_level = user.skills.getRating(gun_skill_category) //specific weapon type skill modifiers
 			gun_accuracy_mult += skill_level * 0.15
-			gun_scatter.scatter -= skill_level * 2
+			gun_scatter -= skill_level * 2
 
 		if(isliving(user))
 			var/mob/living/living_user = user
