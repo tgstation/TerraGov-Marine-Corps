@@ -641,10 +641,12 @@
 	return stagger
 
 /mob/living/proc/set_stagger(amount)
+	if(stagger = amount)
+		return
 	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
 		return
 	stagger = max(amount, 0)
-	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, stagger)
+	SEND_SIGNAL(src, COMSIG_LIVING_STAGGER_CHANGED, stagger)
 
 ////////////////////////////// SLOW ////////////////////////////////////
 

@@ -887,3 +887,6 @@
 #define COMSIG_RANGED_SCATTER_MOD_CHANGED "ranged_scatter_mod_changed"
 
 #define COMSIG_MOB_SKILLS_CHANGED "mob_skills_changed"
+#define COMSIG_MOB_SHOCK_STAGE_CHANGED "mob_shock_stage_changed"
+#define COMSIG_HUMAN_MARKSMAN_AURA_CHANGED "human_marksman_aura_changed"
+#define COMSIG_LIVING_STAGGER_CHANGED "living_stagger_changed"
