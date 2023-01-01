@@ -570,14 +570,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
 	if(!toggle_on && light_on)
-		icon_state = "flashlight"
+		icon_state = initial(icon_state)
 		master_gun.set_light_range(0)
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
 		light_on = FALSE
 		REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else if(toggle_on & !light_on)
-		icon_state = "flashlight-on"
+		icon_state = initial(icon_state) +"_on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
@@ -602,6 +602,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/obj/item/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
+
+/obj/item/attachable/flashlight/under
+	name = "underbarreled flashlight"
+	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
+	icon_state = "uflashlight"
+	slot = ATTACHMENT_SLOT_UNDER
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 
 

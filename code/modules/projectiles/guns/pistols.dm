@@ -24,6 +24,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
@@ -319,6 +320,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
@@ -365,6 +367,7 @@
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/suppressor/unremovable/invisible,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -504,6 +507,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 	)
