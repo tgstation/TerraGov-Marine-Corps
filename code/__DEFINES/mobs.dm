@@ -190,6 +190,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_AMPUTATED (1<<6) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED (1<<7) //we just repaired the bone, stops the gelling after setting
 #define LIMB_STABILIZED (1<<8) //certain suits will support a broken limb while worn such as the b18
+#define LIMB_BIOTIC (1<<9) //limb is biotic
 
 //limb_wound_status
 #define LIMB_WOUND_BANDAGED (1<<0)

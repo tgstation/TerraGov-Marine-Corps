@@ -173,6 +173,9 @@
 		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
 		burn *= 0.50
 
+	if(limb_status & LIMB_BIOTIC)
+		brute *= 1.3 // 130% damage for biotic limbs
+		burn *= 1.3
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -859,6 +862,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	for(var/c in children)
 		var/datum/limb/child_limb = c
 		child_limb.robotize()
+
+/datum/limb/proc/biotize()
+	rejuvenate()
+	add_limb_flags(LIMB_BIOTIC)
+	for(var/c in children)
+		var/datum/limb/child_limb = c
+		child_limb.biotize()
 
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
