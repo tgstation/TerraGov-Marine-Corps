@@ -18,14 +18,14 @@
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	. = shock_stage
-	shock_stage = clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2)
-	adjust_pain_speed_mod(.)
+	setShock_Stage(clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2))
 
 /mob/living/carbon/proc/setShock_Stage(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	. = shock_stage
 	shock_stage = amount
+	SEND_SIGNAL(src, COMSIG_MOB_SHOCK_STAGE_CHANGED, shock_stage)
 	adjust_pain_speed_mod(.)
 
 

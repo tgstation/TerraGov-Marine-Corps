@@ -637,8 +637,14 @@
 		stagger = clamp(stagger + amount, 0, capped)
 		return stagger
 
-	stagger = max(stagger + amount,0)
+	set_stagger(max(stagger + amount,0))
 	return stagger
+
+/mob/living/proc/set_stagger(amount)
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
+	stagger = max(amount, 0)
+	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAGGER, stagger)
 
 ////////////////////////////// SLOW ////////////////////////////////////
 
