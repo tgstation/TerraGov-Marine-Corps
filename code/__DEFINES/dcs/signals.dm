@@ -881,3 +881,9 @@
 
 /// From reequip components
 #define COMSIG_REEQUIP_FAILURE "reequip failure"
+
+//Gun accuracy and scatter signals
+#define COMSIG_RANGED_ACCURACY_MOD_CHANGED "ranged_accuracy_mod_changed"
+#define COMSIG_RANGED_SCATTER_MOD_CHANGED "ranged_scatter_mod_changed"
+
+#define COMSIG_MOB_SKILLS_CHANGED "mob_skills_changed"
