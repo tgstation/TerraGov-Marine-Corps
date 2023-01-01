@@ -62,7 +62,7 @@
 		var/obj/item/reagent_containers/glass/beaker/B = I
 		if(B.reagents.has_reagent(/datum/reagent/medicine/biomass, 30))
 			to_chat(user, span_notice("\The [src] processes \the [I]."))
-			stored_matter += 50
+			stored_matter += 200
 			B.reagents.remove_reagent(/datum/reagent/medicine/biomass, 30)
 
 	else if(istype(I, /obj/item/limb))
