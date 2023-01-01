@@ -663,7 +663,7 @@
 		if(null)
 			flags_item ^= WIELDED
 		if(FALSE)
-			flags_item &= ~(WIELDED|~FULLY_WIELDED)
+			flags_item &= ~(WIELDED|FULLY_WIELDED)
 		if(TRUE)
 			flags_item |= WIELDED
 
@@ -849,13 +849,14 @@
 		projectile_to_fire = get_ammo_object()
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 
-	//maybe chuck all this in apply gun modifiers?
-	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult))) // Apply gun and user accuracy modifiers to projectile accuracy
-	projectile_to_fire.scatter += gun_scatter //Add gun scatter value to projectile's base scatter value
+	//accuracy and scatter modifiers are applied
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
+	projectile_to_fire.scatter += gun_scatter
 
-	if(gun_user) //maybe chuck this in apply gun modifiers?
+	if(gun_user)
 		projectile_to_fire.firer = gun_user
 		projectile_to_fire.def_zone = gun_user.zone_selected
+
 		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 			if(flags_item & FULLY_WIELDED)
 				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.03)
