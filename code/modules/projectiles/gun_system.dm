@@ -212,8 +212,8 @@
 	var/min_scatter_unwielded = -360
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
-	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing.
-	var/burst_accuracy_mult	= 1
+	///Additive number added to accuracy_mult. Defaults to 0 (no change).
+	var/burst_accuracy_mult	= 0
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
@@ -1632,10 +1632,11 @@
 		gun_scatter += deployed_scatter_change
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
-		gun_accuracy_mult *= burst_accuracy_mult
 		if(wielded_fire)
+			gun_accuracy_mult += burst_accuracy_mult
 			gun_scatter += burst_amount * burst_scatter_mult
 		else
+			gun_accuracy_mult += burst_accuracy_mult * 2
 			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
