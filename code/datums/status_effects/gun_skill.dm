@@ -22,14 +22,14 @@
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/living_owner = owner
-	living_owner.ranged_accuracy_mod += accuracy_modifier
+	living_owner.adjust_mob_accuracy(accuracy_modifier)
 	return TRUE
 
 /datum/status_effect/gun_skill/accuracy/on_remove()
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/living_owner = owner
-	living_owner.ranged_accuracy_mod -= accuracy_modifier
+	living_owner.adjust_mob_accuracy(-accuracy_modifier)
 
 /datum/status_effect/gun_skill/accuracy/buff
 	id = "gun_skill_accuracy_buff"
@@ -49,14 +49,14 @@
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/living_owner = owner
-	living_owner.ranged_scatter_mod += scatter_modifier
+	living_owner.adjust_mob_scatter(scatter_modifier)
 	return TRUE
 
 /datum/status_effect/gun_skill/scatter/on_remove()
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/living_owner = owner
-	living_owner.ranged_scatter_mod -= scatter_modifier
+	living_owner.adjust_mob_scatter(-scatter_modifier)
 
 /datum/status_effect/gun_skill/scatter/buff
 	id = "gun_skill_scatter_buff"

@@ -849,16 +849,14 @@
 		projectile_to_fire = get_ammo_object()
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
+
 	if((flags_item & FULLY_WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && (master_gun.flags_item & FULLY_WIELDED)))
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
-		gun_scatter += scatter
+		projectile_to_fire.scatter += gun_scatter + scatter
 	else
 		scatter_unwielded = clamp((scatter_unwielded + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), min_scatter_unwielded, max_scatter_unwielded)
-		gun_scatter += scatter_unwielded
-
-	//accuracy and scatter modifiers are applied
-	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
-	projectile_to_fire.scatter += gun_scatter
+		projectile_to_fire.scatter += gun_scatter + scatter_unwielded
 
 	if(gun_user)
 		projectile_to_fire.firer = gun_user

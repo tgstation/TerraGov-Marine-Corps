@@ -141,6 +141,11 @@
 	icon_state = "druggy"
 	layer = FULLSCREEN_DRUGGY_LAYER
 
+/atom/movable/screen/fullscreen/stimulant/drop
+	icon = 'icons/mob/screen/generic.dmi'
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	icon_state = "drop"
+	layer = FULLSCREEN_DRUGGY_LAYER
 
 /atom/movable/screen/fullscreen/pain
 	icon_state = "painoverlay"

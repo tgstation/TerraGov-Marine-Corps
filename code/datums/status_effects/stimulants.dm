@@ -14,21 +14,23 @@
 	if(!iscarbon(owner))
 		return FALSE
 	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.ranged_accuracy_mod += 20
-	carbon_owner.ranged_scatter_mod -= 5
+	carbon_owner.adjust_mob_accuracy(20)
+	carbon_owner.adjust_mob_scatter(-5)
 
-	//X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
+	carbon_owner.overlay_fullscreen("drop", /atom/movable/screen/fullscreen/stimulant/drop)
+
 	return TRUE
 
 /datum/status_effect/stacking/stimulant/drop/on_remove()
 	if(!iscarbon(owner))
 		return FALSE
 	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.ranged_accuracy_mod += 20
-	carbon_owner.ranged_scatter_mod -= 5
+	carbon_owner.adjust_mob_accuracy(-20)
+	carbon_owner.adjust_mob_scatter(5)
 
-	//X.remove_filter("resin_jelly_outline")
+	carbon_owner.clear_fullscreen("drop")
 	owner.balloon_alert(owner, "You feel the world turn grey")
+
 	return ..()
 
 /datum/status_effect/stacking/stimulant/drop/tick()
@@ -37,6 +39,9 @@
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.traumatic_shock * 1.3 > carbon_owner.shock_stage)
 		carbon_owner.adjustShock_Stage(carbon_owner.traumatic_shock * 1.3)
+
+	if(prob(7))
+		carbon_owner.emote(pick("twitch","drool"))
 	return ..()
 
 
