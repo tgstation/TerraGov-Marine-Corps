@@ -344,12 +344,12 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/toy/plush/pig
 	cost = 5
 	slot = SLOT_IN_BACKPACK
+
 /datum/gear/hachimaki
-	display_name = "Ancient pilot headband and scarf kit (only for pilots)"
+	display_name = "Ancient pilot headband and scarf kit"
 	path = /obj/item/clothing/head/hachimaki
 	cost = 2
 	slot = SLOT_IN_BACKPACK
-	allowed_roles = list(PILOT_OFFICER)
 
 /datum/gear/koran
 	display_name = "Luxury Koran (only for leaders)"
