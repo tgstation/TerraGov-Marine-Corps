@@ -43,6 +43,8 @@
 
 #define STATUS_EFFECT_STIMULANT_EXILE /datum/status_effect/stacking/stimulant/exile
 
+#define STATUS_EFFECT_STIMULANT_CRASH /datum/status_effect/stacking/stimulant/crash
+
 /////////////
 // DEBUFFS //
 /////////////

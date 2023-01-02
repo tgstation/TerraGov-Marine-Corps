@@ -149,7 +149,10 @@
 	layer = FULLSCREEN_DRUGGY_LAYER
 
 /atom/movable/screen/fullscreen/stimulant/drop
-	icon_state = "drop"
+	icon_state = "drop_stim"
+
+/atom/movable/screen/fullscreen/stimulant/crash
+	icon_state = "crash_stim"
 
 /atom/movable/screen/fullscreen/pain
 	icon_state = "painoverlay"
