@@ -21,6 +21,8 @@
 	setShock_Stage(clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2))
 
 /mob/living/carbon/proc/setShock_Stage(amount)
+	if(HAS_TRAIT(src, TRAIT_PAIN_IMMUNE))
+		amount = 0
 	if(shock_stage == amount)
 		return FALSE
 	. = shock_stage

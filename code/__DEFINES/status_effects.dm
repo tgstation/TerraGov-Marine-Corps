@@ -41,6 +41,8 @@
 
 #define STATUS_EFFECT_STIMULANT_DROP /datum/status_effect/stacking/stimulant/drop
 
+#define STATUS_EFFECT_STIMULANT_EXILE /datum/status_effect/stacking/stimulant/exile
+
 /////////////
 // DEBUFFS //
 /////////////

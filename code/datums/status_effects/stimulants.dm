@@ -1,12 +1,13 @@
-// ***************************************
-// *********** Drop
-// ***************************************
 /datum/status_effect/stacking/stimulant
 	tick_interval = 2 SECONDS
 	alert_type = null
 	delay_before_decay = 30 SECONDS
+	max_stacks = 100
 	stack_threshold = 50
 
+// ***************************************
+// *********** Drop
+// ***************************************
 /datum/status_effect/stacking/stimulant/drop
 	id = "drop stimulant"
 
@@ -44,7 +45,53 @@
 		carbon_owner.emote(pick("twitch","drool"))
 	return ..()
 
+// ***************************************
+// *********** Exile
+// ***************************************
+/datum/status_effect/stacking/stimulant/exile
+	id = "exile stimulant"
 
+/datum/status_effect/stacking/stimulant/exile/on_apply()
+	if(!iscarbon(owner))
+		return FALSE
+	var/mob/living/carbon/carbon_owner = owner
+	ADD_TRAIT(carbon_owner, TRAIT_PAIN_IMMUNE, "exile stimulant")
+	carbon_owner.health_threshold_crit -=35
+	carbon_owner.adjust_mob_accuracy(15)
+	carbon_owner.adjust_mob_scatter(3)
+
+	carbon_owner.overlay_fullscreen("exile", /atom/movable/screen/fullscreen/bloodlust)
+
+	return TRUE
+
+/datum/status_effect/stacking/stimulant/exile/on_remove()
+	if(!iscarbon(owner))
+		return FALSE
+	var/mob/living/carbon/carbon_owner = owner
+	REMOVE_TRAIT(carbon_owner, TRAIT_PAIN_IMMUNE, "exile stimulant")
+	carbon_owner.health_threshold_crit +=35
+	carbon_owner.adjust_mob_accuracy(-15)
+	carbon_owner.adjust_mob_scatter(-3)
+
+	carbon_owner.clear_fullscreen("exile")
+	owner.balloon_alert(owner, "You feel the rage fade")
+
+	return ..()
+
+/datum/status_effect/stacking/stimulant/exile/tick()
+	if(!iscarbon(owner))
+		return FALSE
+	var/mob/living/carbon/carbon_owner = owner
+	carbon_owner.adjustStaminaLoss(-5)
+	carbon_owner.jitter(3)
+
+	if(prob(10))
+		carbon_owner.emote("gasp")
+		carbon_owner.Losebreath(3)
+		carbon_owner.adjustBrainLoss(1)
+	else if(prob(7))
+		carbon_owner.emote(pick("twitch","drool","stare", "scream"))
+	return ..()
 
 //temp until I put this somewhere proper
 
@@ -69,3 +116,10 @@
 	icon_state = "borghypo"
 	stim_type = STATUS_EFFECT_STIMULANT_DROP
 	stim_message = "You can suddenly feel everything!"
+
+/obj/item/stimulant/exile
+	name = "exile booster"
+	desc = "Exile inhibits several key receptors in the brain, triggering a state of extreme aggression and dumbness to pain, allowing the user to continue operating with the most greivous of injuries. Exile does not actually prevent any damage however, and can gradually lead to neural degeneration."
+	icon_state = "borghypo"
+	stim_type = STATUS_EFFECT_STIMULANT_EXILE
+	stim_message = "You feel the urge for violence!"
