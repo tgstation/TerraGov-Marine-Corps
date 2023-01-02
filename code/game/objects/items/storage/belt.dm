@@ -23,6 +23,11 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+///When vended, tries to equip itself. Else, fallback to parent behavior.
+/obj/item/storage/belt/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		return ..()
+
 /obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"

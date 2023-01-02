@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/stomp
 	name = "Stomp"
 	action_icon_state = "stomp"
-	mechanics_text = "Knocks all adjacent targets away and down."
+	desc = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -65,7 +65,7 @@
 /datum/action/xeno_action/activable/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
-	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
+	desc = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
@@ -176,7 +176,7 @@
 /datum/action/xeno_action/activable/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
-	mechanics_text = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
+	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_name = "rapid advance"
 	plasma_cost = 175
 	cooldown_timer = 30 SECONDS

@@ -28,7 +28,7 @@
 			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
-			"desc" = initial(xeno_ability.mechanics_text),
+			"desc" = initial(xeno_ability.desc),
 			"cost" = initial(xeno_ability.plasma_cost),
 			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
 		)
@@ -42,7 +42,7 @@
 				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
-				"desc" = initial(xeno_ability.mechanics_text),
+				"desc" = initial(xeno_ability.desc),
 				"cost" = initial(xeno_ability.plasma_cost),
 				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
 			)

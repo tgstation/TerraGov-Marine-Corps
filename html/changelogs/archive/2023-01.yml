@@ -9,3 +9,11 @@
       their hands!
   novaepee:
   - imageadd: Port embryo sprite from CM
+2023-01-02:
+  Lumipharon:
+  - bugfix: fixes MOOC for real
+  Pariah919:
+  - balance: harness and unarmored leather jackets have 6 light range.
+  - rscadd: Underbarreled flashlight attachment.
+  Waselon:
+  - rscadd: bioprinter can print biotic limbs, biotic limbs can be attached via surgery
