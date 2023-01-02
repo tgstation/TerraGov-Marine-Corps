@@ -7,7 +7,7 @@
 	max_game_time = 10 MINUTES
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
-    blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
 
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
