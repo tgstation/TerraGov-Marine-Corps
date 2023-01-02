@@ -52,7 +52,7 @@
 	name = "Psychic Shield"
 	ability_name = "psychic shield"
 	action_icon_state = "psy_shield"
-	mechanics_text = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
+	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
@@ -243,7 +243,7 @@
 /datum/action/xeno_action/activable/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
-	mechanics_text = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
+	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
 	plasma_cost = 40
 	cooldown_timer = 12 SECONDS
@@ -470,7 +470,7 @@
 /datum/action/xeno_action/activable/psy_blast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
-	mechanics_text = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
+	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	ability_name = "psychic blast"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 230

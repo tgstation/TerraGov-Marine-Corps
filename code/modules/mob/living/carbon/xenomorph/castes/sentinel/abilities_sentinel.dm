@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/xeno_spit/toxic_spit
 	name = "Toxic Spit"
-	mechanics_text = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
+	desc = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
 	ability_name = "toxic spit"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SPIT,
@@ -51,7 +51,7 @@
 /datum/action/xeno_action/toxic_slash
 	name = "Toxic Slash"
 	action_icon_state = "neuroclaws_off"
-	mechanics_text = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
+	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	ability_name = "toxic slash"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 100
@@ -142,7 +142,7 @@
 /datum/action/xeno_action/activable/drain_sting
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
-	mechanics_text = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
+	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	ability_name = "drain sting"
 	cooldown_timer = 25 SECONDS
 	plasma_cost = 75
@@ -209,7 +209,7 @@
 /datum/action/xeno_action/activable/toxic_grenade
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
-	mechanics_text = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
+	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	plasma_cost = 200
 	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
