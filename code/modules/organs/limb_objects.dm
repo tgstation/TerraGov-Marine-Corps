@@ -70,7 +70,6 @@
 	resistance_flags = UNACIDABLE
 	var/mob/living/brain/brainmob
 	var/brain_item_type = /obj/item/organ/brain
-	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)
 
 /obj/item/limb/head/Initialize(mapload, mob/living/carbon/human/H)
 	. = ..()
@@ -104,7 +103,7 @@
 
 	H.regenerate_icons()
 
-	if(braindeath_on_decap)
+	if(!H.species.species_flags & DETACHABLE_HEAD)
 		brainmob.death()
 
 	GLOB.head_list += src
@@ -124,8 +123,6 @@
 //synthetic head, allowing brain mob inside to talk
 /obj/item/limb/head/synth
 	brain_item_type = null
-	braindeath_on_decap = 0
 
 /obj/item/limb/head/robotic
 	brain_item_type = null
-	braindeath_on_decap = 0

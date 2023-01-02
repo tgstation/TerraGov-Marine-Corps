@@ -3,7 +3,6 @@
 /datum/surgery_step/head
 	priority = 1
 	can_infect = 0
-	allowed_species = list("Synthetic", "Early Synthetic", "Combat Robot")
 	var/reattach_step
 
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
@@ -151,13 +150,17 @@
 
 
 /datum/surgery_step/head/attach
-	allowed_tools = list(/obj/item/limb/head/synth = 100, /obj/item/limb/head/robotic = 100)
+	allowed_tools = list(/obj/item/limb/head = 100)
 	can_infect = 0
 	min_duration = 60
 	max_duration = 80
 	reattach_step = 0
 
 /datum/surgery_step/head/attach/can_use(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
+	var/obj/item/limb/head/head_to_attach = tool
+	if(head_to_attach.real_name != head?.brain_mob.real_name)
+		to_chat(user, span_warning("That's not the right head for that body, or the right body for that head!"))
+		return SURGERY_INVALID
 	if(..())
 		if(affected.limb_status & LIMB_AMPUTATED)
 			return SURGERY_CAN_USE
@@ -178,7 +181,7 @@
 
 	var/obj/item/limb/head/B = tool
 
-	affected.robotize()
+	affected.remove_limb_flags(LIMB_DESTROYED|LIMB_AMPUTATED)
 	target.updatehealth()
 	target.update_body()
 	target.UpdateDamageIcon()
