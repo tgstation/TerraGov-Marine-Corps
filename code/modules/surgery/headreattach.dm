@@ -158,7 +158,7 @@
 
 /datum/surgery_step/head/attach/can_use(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	var/obj/item/limb/head/head_to_attach = tool
-	if(head_to_attach.real_name != head?.brain_mob.real_name)
+	if(target.real_name != head_to_attach?.brainmob.real_name)
 		to_chat(user, span_warning("That's not the right head for that body, or the right body for that head!"))
 		return SURGERY_INVALID
 	if(..())
