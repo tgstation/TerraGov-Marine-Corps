@@ -1345,6 +1345,9 @@
 		"Backpacks" = list(
 			/obj/item/storage/backpack/marine/standard = -1,
 			/obj/item/storage/backpack/marine/satchel = -1,
+			/obj/item/storage/backpack/marine/standard/molle = -1,
+			/obj/item/storage/backpack/marine/satchel/molle = -1,
+			/obj/item/storage/backpack/marine/satchel/green = -1,
 			/obj/item/tool/weldpack/marinestandard = -1,
 		),
 		"Instruments" = list(

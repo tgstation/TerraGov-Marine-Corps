@@ -104,6 +104,7 @@
 	name = "medical backpack"
 	desc = "It's a backpack especially designed for use in a sterile environment."
 	icon_state = "medicalpack"
+	item_state = "medicalpack"
 
 /obj/item/storage/backpack/security
 	name = "security backpack"
@@ -172,6 +173,7 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
+	item_state = "satchel-norm"
 
 /obj/item/storage/backpack/satchel/rugged
 	name = "satchel"
@@ -182,11 +184,13 @@
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
+	item_state = "satchel-eng"
 
 /obj/item/storage/backpack/satchel/med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
+	item_state = "satchel-med"
 
 /obj/item/storage/backpack/satchel/vir
 	name = "virologist satchel"
@@ -265,6 +269,12 @@
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
+
+/obj/item/storage/backpack/marine/standard/molle
+	name = "\improper T16 MOLLE Backpack"
+	desc = "The latest backpack developed by Crowford Armory Union on the military order of TGMC. Thanks to the introduction of new MOLLE fastening systems, it turned out to beltbags and backpacks that are not inferior to roominess and portable weight, while also reducing the size of backpacks that have gone to hang from the back on the belt."
+	icon_state = "MOLLEbackpack"
+	item_state = "MOLLEbackpack"
 
 /obj/item/storage/backpack/marine/corpsman
 	name = "\improper TGMC corpsman backpack"
@@ -373,8 +383,14 @@
 	max_storage_space = 15
 	access_delay = 0
 
+/obj/item/storage/backpack/marine/satchel/molle
+	name = "\improper T13 MOLLE Satchel"
+	desc = "The latest satchel developed by Crowford Armory Union on the military order of TGMC. Thanks to the introduction of new MOLLE fastening systems, it turned out to beltbags and backpacks that are not inferior to roominess and portable weight, while also reducing the size of backpacks that have gone to hang from the back on the belt."
+	icon_state = "MOLLEbeltbag"
+	item_state = "MOLLEbeltbag"
+
 /obj/item/storage/backpack/marine/satchel/green
-	name = "\improper TGMC satchel"
+	name = "\improper Green TGMC satchel"
 	icon_state = "marinesat_green"
 
 
