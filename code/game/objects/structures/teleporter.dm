@@ -172,8 +172,8 @@
 	if(linked_teleporter)
 		linked_teleporter.linked_teleporter = null
 		linked_teleporter = null
-		QDEL_NULL(cell)
-		return ..()
+	QDEL_NULL(cell)
+	return ..()
 
 
 ///Link the two teleporters
