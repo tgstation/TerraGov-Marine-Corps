@@ -68,7 +68,7 @@
 /obj/item/storage/firstaid/regular/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/heal_pack/gauze(src)
-	new /obj/item/stack/medical/heal_pack/ointment(src)
+	new /obj/item/stack/medical/heal_pack/regenerative_mesh(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)

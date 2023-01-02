@@ -1029,7 +1029,7 @@
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
-			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/regenerative_mesh = -1,
 			/obj/item/stack/medical/splint = -1,
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 50,
@@ -1073,7 +1073,7 @@
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
-			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/regenerative_mesh = -1,
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = -1,
 			/obj/item/stack/medical/splint = -1,

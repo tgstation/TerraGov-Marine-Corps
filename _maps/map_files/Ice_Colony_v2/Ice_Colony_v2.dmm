@@ -483,7 +483,7 @@
 /area/ice_colony/surface/engineering)
 "ady" = (
 /obj/structure/table,
-/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -36556,7 +36556,7 @@
 /area/ice_colony/underground/maintenance/engineering)
 "xDz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/stack/medical/heal_pack/ointment{
+/obj/item/stack/medical/heal_pack/regenerative_mesh{
 	amount = 6;
 	pixel_x = 11;
 	pixel_y = 14

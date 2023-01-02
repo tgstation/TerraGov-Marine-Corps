@@ -134,12 +134,14 @@
 	span_notice("You treat the wounds on [patient]'s [target_limb.display_name] with [src].") )
 
 /obj/item/stack/medical/heal_pack/gauze
-	name = "roll of gauze"
+	name = "medical gauze"
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
-	icon_state = "brutepack"
+	icon_state = "gauze"
+	gender = PLURAL
 	heal_brute = 3
 	heal_flags = BANDAGE
+	number_of_extra_variants = 2
 
 /obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
@@ -148,21 +150,56 @@
 	user.visible_message(span_notice("[user] bandages [patient]'s [target_limb.display_name]."),
 		span_notice("You bandage [patient]'s [target_limb.display_name].") )
 
-/obj/item/stack/medical/heal_pack/ointment
-	name = "ointment"
+/obj/item/stack/medical/heal_pack/regenerative_mesh
+	name = "regenerative mesh"
 	desc = "Used to treat burns, infected wounds, and relieve itching in unusual places."
+	singular_name = "regenerative mesh"
+	icon_state = "regen_mesh"
 	gender = PLURAL
-	singular_name = "ointment"
-	icon_state = "ointment"
 	heal_burn = 3
 	heal_flags = SALVE
+	number_of_extra_variants = 2
+	var/is_open = TRUE /// This var determines if the sterile packaging of the mesh has been opened.
 
-/obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+/obj/item/stack/medical/heal_pack/regenerative_mesh/Initialize(mapload, new_amount)
+	. = ..()
+	if(amount == max_amount)
+		is_open = FALSE
+		update_icon_state()
+
+/obj/item/stack/medical/heal_pack/regenerative_mesh/update_icon_state()
+	if(!is_open)
+		icon_state = "regen_mesh_closed"
+		return
+	. = ..()
+
+/obj/item/stack/medical/heal_pack/regenerative_mesh/attack(mob/living/carbon/M, mob/user)
+	if(!is_open)
+		to_chat(user, span_warning("You need to open [src] first."))
+		return
+	. = ..()
+
+/obj/item/stack/medical/heal_pack/regenerative_mesh/change_stack(mob/user, new_amount)
+	if(!is_open)
+		to_chat(user, span_warning("You need to open [src] first."))
+		return
+	. = ..()
+
+/obj/item/stack/medical/heal_pack/regenerative_mesh/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
 	user.visible_message(span_notice("[user] salves wounds on [patient]'s [target_limb.display_name]."),
 	span_notice("You salve wounds on [patient]'s [target_limb.display_name]."))
+
+/obj/item/stack/medical/heal_pack/regenerative_mesh/attack_self(mob/user)
+	if(!is_open)
+		is_open = TRUE
+		to_chat(user, span_notice("You open the sterile mesh package."))
+		update_icon_state()
+		playsound(src, 'sound/items/poster_ripped.ogg', 20, TRUE)
+		return
+	return ..()
 
 /obj/item/stack/medical/heal_pack/gauze/sectoid
 	name = "\improper healing resin pack"

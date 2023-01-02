@@ -6890,9 +6890,9 @@
 /obj/item/stack/medical/heal_pack/gauze,
 /obj/item/stack/medical/heal_pack/gauze,
 /obj/item/stack/medical/heal_pack/gauze,
-/obj/item/stack/medical/heal_pack/ointment,
-/obj/item/stack/medical/heal_pack/ointment,
-/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "jrN" = (

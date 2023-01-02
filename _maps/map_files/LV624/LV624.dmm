@@ -9668,7 +9668,7 @@
 /area/lv624/ground/compound/sw)
 "jbW" = (
 /obj/structure/table,
-/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/plating/warning{
 	dir = 4

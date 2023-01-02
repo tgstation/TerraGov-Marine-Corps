@@ -5417,7 +5417,7 @@
 "aDp" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pickaxe,
-/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDq" = (
@@ -34221,7 +34221,7 @@
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "fYM" = (
 /obj/structure/table/mainship,
-/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4

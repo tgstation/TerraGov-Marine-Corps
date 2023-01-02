@@ -593,7 +593,7 @@
 "XM" = (
 /obj/structure/table,
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/regenerative_mesh,
 /obj/item/storage/box/masks,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
