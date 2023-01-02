@@ -3339,6 +3339,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"eiY" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "ejw" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -5947,12 +5954,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"hTi" = (
-/obj/machinery/cloning/vats,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "hTr" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -6626,9 +6627,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "iOz" = (
-/obj/machinery/light/mainship{
-	light_color = "#da2f1b"
-	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -9070,6 +9069,14 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"lQN" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "lRc" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -9694,9 +9701,13 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "mHi" = (
-/obj/machinery/loadout_vendor,
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
-	dir = 5
+	dir = 1
 	},
 /area/mainship/medical/lower_medical)
 "mHk" = (
@@ -13230,7 +13241,6 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "rkq" = (
-/obj/machinery/cloning_console/vats,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -13406,8 +13416,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "ryp" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
+/obj/machinery/cloning_console/vats,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -17865,11 +17874,7 @@
 	},
 /area/mainship/squads/req)
 "xjG" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
+/obj/machinery/cloning/vats,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -45116,7 +45121,7 @@ ndN
 dQG
 dQG
 xjG
-dRR
+lAT
 dRR
 mpw
 mvs
@@ -45373,7 +45378,7 @@ nkX
 uDQ
 dQG
 ryp
-dRR
+lAT
 dRR
 mpw
 mvs
@@ -45629,10 +45634,10 @@ uig
 fTy
 iuw
 dQG
-ryp
+mHi
 dRR
 dRR
-mpw
+lQN
 mvs
 mzF
 iwj
@@ -45886,7 +45891,7 @@ gpC
 gcd
 fGV
 dQG
-xjG
+eiY
 dRR
 dRR
 mpw
@@ -48456,7 +48461,7 @@ coF
 tHY
 xej
 iiC
-mHi
+dvG
 sZh
 mam
 mam
@@ -48713,7 +48718,7 @@ kxm
 kxm
 cPY
 pEN
-hTi
+rkq
 euF
 bnL
 mgw
