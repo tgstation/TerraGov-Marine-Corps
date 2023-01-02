@@ -1,4 +1,0 @@
-author: "KuzyXD"
-delete-after: True
-changes:
-  - bugfix: "Admin can't play music via the Play-Internet-Sound verb"

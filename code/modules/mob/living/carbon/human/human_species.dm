@@ -54,3 +54,4 @@
 
 /mob/living/carbon/human/species/robot
 	race = "Combat Robot"
+	bubble_icon = "robot"

@@ -248,6 +248,33 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
+	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
+	var/current_angle = 45
+
+/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
+	spin = FALSE
+	//Find the angle the spear is to be thrown at, then rotate it based on that angle
+	var/rotation_value = Get_Angle(thrower, get_turf(target)) - current_angle
+	current_angle += rotation_value
+	var/matrix/rotate_me = matrix()
+	rotate_me.Turn(rotation_value)
+	transform = rotate_me
+	return ..()
+
+/obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed, bounce = FALSE)
+	. = ..()
+
+/obj/item/weapon/twohanded/spear/pickup(mob/user)
+	. = ..()
+	if(initial(current_angle) == current_angle)
+		return
+	//Reset the angle of the spear when picked up off the ground so it doesn't stay lopsided
+	var/matrix/rotate_me = matrix()
+	rotate_me.Turn(initial(current_angle) - current_angle)
+	//Rotate the object in the opposite direction because for some unfathomable reason, the above Turn() is applied twice; it just works
+	rotate_me.Turn(-(initial(current_angle) - current_angle))
+	transform = rotate_me
+	current_angle = initial(current_angle)	//Reset the angle
 
 /obj/item/weapon/twohanded/spear/tactical
 	name = "M-23 spear"
