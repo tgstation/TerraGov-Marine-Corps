@@ -13,14 +13,6 @@
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
-	///the maximum range of the ability
-	var/max_range = 1
-
-/datum/action/xeno_action/activable/secrete_resin/ranged/use_ability(atom/A)
-	if(get_dist(owner, A) > max_range)
-		return ..()
-
-	return build_resin(get_turf(A))
 
 // ***************************************
 // *********** Resin walker

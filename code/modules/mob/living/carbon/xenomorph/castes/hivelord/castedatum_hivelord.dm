@@ -50,6 +50,9 @@
 	minimap_icon = "hivelord"
 
 	// *** Abilities *** //
+
+	resin_max_range = 1 //Hivelord can place resin structures from 1 tile away
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

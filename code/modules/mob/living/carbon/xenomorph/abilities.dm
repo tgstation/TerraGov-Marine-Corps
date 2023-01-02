@@ -226,7 +226,11 @@
 	update_button_icon()
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
-	build_resin(get_turf(owner))
+	var/mob/living/carbon/xenomorph/xowner = owner
+	if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
+		build_resin(get_turf(owner))
+	else
+		build_resin(get_turf(A))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
 	. = base_wait
