@@ -138,6 +138,8 @@ Administrative related.
 
 /datum/config_entry/flag/use_exp_restrictions_admin_bypass
 
+/datum/config_entry/flag/use_exp_restrictions_mentor_bypass
+
 /datum/config_entry/flag/prevent_dupe_names
 
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players

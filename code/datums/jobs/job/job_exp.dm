@@ -15,7 +15,7 @@ GLOBAL_PROTECT(exp_to_update)
 		return FALSE
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
-	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_MENTOR, FALSE))
+	if(CONFIG_GET(flag/use_exp_restrictions_mentor_bypass) && check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE
 
 	// Calc client exp and how much do we need
@@ -84,7 +84,7 @@ GLOBAL_PROTECT(exp_to_update)
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] </LI>"
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(src, R_ADMIN, FALSE))
 		return_text += "<LI>Admin (all jobs auto-unlocked)</LI>"
-	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(src, R_MENTOR, FALSE))
+	if(CONFIG_GET(flag/use_exp_restrictions_mentor_bypass) && check_other_rights(src, R_MENTOR, FALSE))
 		return_text += "<LI>Mentor (all jobs auto-unlocked)</LI>"
 	return_text += "</UL>"
 	var/list/jobs_locked = list()
@@ -229,7 +229,7 @@ GLOBAL_PROTECT(exp_to_update)
 		return FALSE
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
-	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_MENTOR, FALSE))
+	if(CONFIG_GET(flag/use_exp_restrictions_mentor_bypass) && check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE
 	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
 	return my_exp < XP_REQ_UNSEASONED
