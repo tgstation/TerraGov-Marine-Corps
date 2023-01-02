@@ -154,9 +154,9 @@
 	var/obj/item/cell/cell
 	COOLDOWN_DECLARE(teleport_cooldown)
 	
-	///tag to avoid mixups. Purely for players, not for systems.
+	///Tag for teleporters number. Exists for fluff reasons. Shared variable. 
 	var/static/tele_tag = 78
-	///Easier reference to the correct number.
+	///References to the number of the teleporter.
 	var/self_tele_tag
 
 /obj/item/teleporter_kit/Initialize()
