@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixes mech arm weapons not taking damage from xeno slashes when targetted and fixes their integrity being set to 400 regardless of intended HP(usually 300 or lower)"

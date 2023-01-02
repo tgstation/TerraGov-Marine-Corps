@@ -20,6 +20,9 @@
 	name = "Change form"
 	action_icon_state = "manifest"
 	mechanics_text = "Change from your incorporal form to your physical on and vice-versa."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
+	)
 	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/change_form/action_activate()

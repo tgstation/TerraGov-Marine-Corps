@@ -255,6 +255,9 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "reload")
+		var/mob/occupant = usr
+		if(occupant && !do_after(occupant, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+			return FALSE
 		rearm()
 		return TRUE
 

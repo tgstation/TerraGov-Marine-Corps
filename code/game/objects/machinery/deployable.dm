@@ -2,7 +2,7 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
-	throwpass = FALSE
+	flags_pass = PASSAIR
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
 	///Item that is deployed to create src.
@@ -97,6 +97,10 @@
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return
 	var/obj/item/item = internal_item
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))

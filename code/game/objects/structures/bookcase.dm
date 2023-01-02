@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
-	throwpass = FALSE
+	flags_pass = PASSAIR
 
 /obj/structure/bookcase/Initialize()
 	. = ..()

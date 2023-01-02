@@ -130,7 +130,10 @@
 				else
 					neuro_applied = TRUE
 			defile_strength_multiplier *= 2
-
+	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		defile_reagent_amount += debuff.stacks
+		debuff.stacks -= round(debuff.stacks * 0.5)
 
 	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
 
@@ -454,7 +457,7 @@
 
 
 ///Called when we slash while reagent slash is active
-/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 
 	if(!target?.can_sting()) //We only care about targets that we can actually sting

@@ -183,6 +183,29 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	cost = 2
 	slot = SLOT_WEAR_MASK
 
+/datum/gear/cigarette/pipe
+	display_name = "Smoking pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe
+	cost = 3
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/cigarette/pipe/corn
+	display_name = "Corn cob pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe/cobpipe
+	cost = 3
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/cigarette/pipe/corn/curved
+	display_name = "Curved corn cob pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe/cobpipe/curved
+	cost = 3
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/cigarette/pipe/bone
+	display_name = "Europan bone pipe"
+	path = /obj/item/clothing/mask/cigarette/pipe/bonepipe
+	cost = 3
+	slot = SLOT_WEAR_MASK
 
 /datum/gear/bgoggles
 	display_name = "Ballistic goggles"

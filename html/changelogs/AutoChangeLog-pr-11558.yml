@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes:
-  - rscadd: "Adds a companion component and puts it on Newt, by using the analyzer on the Newt, it will react to some stuff you say. Say `Newt, help` and it will give you a list of commands."

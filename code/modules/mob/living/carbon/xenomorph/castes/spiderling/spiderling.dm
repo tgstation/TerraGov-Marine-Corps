@@ -34,7 +34,16 @@
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
+	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
+
+/// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
+/datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
+	SIGNAL_HANDLER
+	if(QDELETED(target))
+		return
+	change_action(MOVING_TO_ATOM, target)
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
@@ -54,10 +63,11 @@
 		return
 	if(Adjacent(atom_to_walk_to))
 		return
-	var/mob/living/victim = atom_to_walk_to
-	if(victim.stat != CONSCIOUS)
-		change_action(ESCORTING_ATOM, escorted_atom)
-		return
+	if(isliving(atom_to_walk_to))
+		var/mob/living/victim = atom_to_walk_to
+		if(victim.stat != CONSCIOUS)
+			change_action(ESCORTING_ATOM, escorted_atom)
+			return
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 
@@ -99,3 +109,7 @@
 /datum/ai_behavior/spiderling/proc/kill_parent()
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
 	spiderling_parent.death(gibbing = FALSE)
+
+/datum/ai_behavior/spiderling/proc/parent_resist()
+	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
+	spiderling_parent.do_resist()

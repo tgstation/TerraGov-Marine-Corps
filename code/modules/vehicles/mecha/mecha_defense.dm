@@ -263,7 +263,7 @@
 	while(obj_integrity < max_integrity)
 		if(skill < SKILL_ENGINEER_ENGI)
 			user.balloon_alert_to_viewers("fumbles around trying to repair")
-			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 		if(!started)
 			user.balloon_alert_to_viewers("started welding", "started repairing")
@@ -309,43 +309,39 @@
 		if(!fail_chat_override)
 			to_chat(user, span_warning("This box of ammo is empty!"))
 		return FALSE
-	var/ammo_needed
 	var/found_gun
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun in flat_equipment)
-		ammo_needed = 0
-
 		if(gun.ammo_type != reload_box.ammo_type)
 			continue
 		found_gun = TRUE
-		if(reload_box.direct_load)
-			ammo_needed = initial(gun.projectiles) - gun.projectiles
-		else
-			ammo_needed = gun.projectiles_cache_max - gun.projectiles_cache
 
-		if(!ammo_needed)
+		if(reload_box.direct_load)
+			if((gun.projectiles >= initial(gun.projectiles)) && (gun.projectiles_cache >= gun.projectiles_cache_max))
+				continue
+		else if(gun.projectiles_cache >= gun.projectiles_cache_max)
 			continue
-		if(ammo_needed < reload_box.rounds)
-			if(reload_box.direct_load)
-				gun.projectiles = gun.projectiles + ammo_needed
-			else
-				gun.projectiles_cache = gun.projectiles_cache + ammo_needed
-			playsound(get_turf(user), reload_box.load_audio, 50, TRUE)
-			to_chat(user, span_notice("You add [ammo_needed] [reload_box.ammo_type][ammo_needed > 1?"s":""] to the [gun.name]"))
-			reload_box.rounds = reload_box.rounds - ammo_needed
-			return TRUE
 
+		var/amount_to_fill
+		var/amount_filled = 0
 		if(reload_box.direct_load)
-			gun.projectiles = gun.projectiles + reload_box.rounds
-		else
-			gun.projectiles_cache = gun.projectiles_cache + reload_box.rounds
-		playsound(get_turf(user),reload_box.load_audio,50,TRUE)
-		to_chat(user, span_notice("You add [reload_box.rounds] [reload_box.ammo_type][reload_box.rounds > 1?"s":""] to the [gun.name]"))
-		if(reload_box.qdel_on_empty)
+			amount_to_fill = min(initial(gun.projectiles) - gun.projectiles, reload_box.rounds)
+			gun.projectiles += amount_to_fill
+			reload_box.rounds -= amount_to_fill
+			amount_filled += amount_to_fill
+
+		amount_to_fill = min(gun.projectiles_cache_max - gun.projectiles_cache, reload_box.rounds)
+		gun.projectiles_cache += amount_to_fill
+		reload_box.rounds -= amount_to_fill
+		amount_filled += amount_to_fill
+
+		playsound(get_turf(user), reload_box.load_audio, 50, TRUE)
+		to_chat(user, span_notice("You add [amount_filled] [reload_box.ammo_type][amount_filled > 1?"s":""] to the [gun.name]"))
+
+		if(!reload_box.rounds && reload_box.qdel_on_empty)
 			qdel(reload_box)
-			return TRUE
-		reload_box.rounds = 0
 		reload_box.update_icon()
 		return TRUE
+
 	if(!fail_chat_override)
 		if(found_gun)
 			to_chat(user, span_notice("You can't fit any more ammo of this type!"))

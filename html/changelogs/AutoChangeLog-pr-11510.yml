@@ -1,6 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - refactor: "Numeric age is cumulative across xeno upgrades instead of resetting"
-  - balance: "Xenos upgrade maturity based on accumulated age on evolution instead of old caste maturity level"
-  - balance: "Xenos continue to gain age once they're at maximum maturity tier"

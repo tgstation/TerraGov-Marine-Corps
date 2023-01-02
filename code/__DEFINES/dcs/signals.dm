@@ -214,6 +214,8 @@
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
+#define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at()
+	#define COMPONENT_MOVABLE_BLOCK_PRE_THROW (1<<0)
 #define COMSIG_LIVING_PRE_THROW_IMPACT "movable_living_throw_impact_check" //sent before an item impacts a living mob
 	#define COMPONENT_PRE_THROW_IMPACT_HIT (1<<0)
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
@@ -510,17 +512,7 @@
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
-#define COMSIG_XENOMORPH_ATTACK_BARRICADE "xenomorph_attack_barricade"
-#define COMSIG_XENOMORPH_ATTACK_CLOSET "xenomorph_attack_closet"
-#define COMSIG_XENOMORPH_ATTACK_RAZORWIRE "xenomorph_attack_razorwire"
-#define COMSIG_XENOMORPH_ATTACK_BED "xenomorph_attack_bed"
-#define COMSIG_XENOMORPH_ATTACK_NEST "xenomorph_attack_nest"
-#define COMSIG_XENOMORPH_ATTACK_TABLE "xenomorph_attack_table"
-#define COMSIG_XENOMORPH_ATTACK_RACK "xenomorph_attack_rack"
-#define COMSIG_XENOMORPH_ATTACK_SENTRY "xenomorph_attack_sentry"
-#define COMSIG_XENOMORPH_ATTACK_M56_POST "xenomorph_attack_m56_post"
-#define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
-#define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
+#define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
 
@@ -583,6 +575,9 @@
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
+#define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
+#define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"
 #define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
 #define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
@@ -596,8 +591,6 @@
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
 #define COMSIG_KB_MOB_SWAPHANDS_DOWN "keybinding_mob_swaphands_down"
-#define COMSIG_KB_MOB_SAY_DOWN "keybinding_mob_say_down"
-#define COMSIG_KB_MOB_ME_DOWN "keybinding_mob_me_down"
 #define COMSIG_KB_MOB_ACTIVATEINHAND_DOWN "keybinding_mob_activateinhand_down"
 #define COMSIG_KB_MOB_DROPITEM_DOWN "keybinding_mob_dropitem_down"
 #define COMSIG_KB_MOB_EXAMINE_DOWN "keybinding_mob_examine_down"
@@ -657,6 +650,12 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
+#define COMSIG_XENOABILITY_TOXIC_SPIT "xenoability_toxic_spit"
+#define COMSIG_XENOABILITY_TOXIC_SLASH "xenoability_toxic_slash"
+#define COMSIG_XENOABILITY_DRAIN_STING "xenoability_drain_sting"
+#define COMSIG_XENOABILITY_TOXIC_GRENADE "xenoability_toxic_grenade"
+
+#define COMSIG_XENOABILITY_ACIDIC_SALVE "xenoability_acidic_salve"
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
@@ -747,8 +746,6 @@
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 #define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
 
-#define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
-
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"
 
 #define COMSIG_XENOABILITY_TOGGLE_AGILITY "xenoability_toggle_agility"
@@ -779,6 +776,10 @@
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
+
+#define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
+#define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
+#define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
@@ -877,3 +878,6 @@
 
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"
+
+/// From reequip components
+#define COMSIG_REEQUIP_FAILURE "reequip failure"

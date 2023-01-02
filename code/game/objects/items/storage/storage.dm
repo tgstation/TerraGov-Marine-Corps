@@ -75,10 +75,10 @@
 	if(!usr.restrained() && !usr.stat)
 		switch(over_object.name)
 			if("r_hand")
-				usr.dropItemToGround(src)
+				usr.temporarilyRemoveItemFromInventory(src)
 				usr.put_in_r_hand(src)
 			if("l_hand")
-				usr.dropItemToGround(src)
+				usr.temporarilyRemoveItemFromInventory(src)
 				usr.put_in_l_hand(src)
 
 /obj/item/storage/proc/return_inv()
@@ -581,11 +581,11 @@
 		qdel(I)
 
 //finds a stored item to draw
-/obj/item/storage/do_quick_equip()
+/obj/item/storage/do_quick_equip(mob/user)
 	if(!length(contents))
 		return FALSE //we don't want to equip the storage item itself
 	var/obj/item/W = contents[length(contents)]
-	remove_from_storage(W, user = src)
+	remove_from_storage(W, null, user)
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
@@ -785,6 +785,10 @@
 
 /obj/item/storage/AltClick(mob/user)
 	attempt_draw_object(user)
+
+/obj/item/storage/AltRightClick(mob/user)
+	if(Adjacent(user))
+		open(user)
 
 /obj/item/storage/attack_hand_alternate(mob/living/user)
 	attempt_draw_object(user)

@@ -299,10 +299,6 @@
 	set_on(FALSE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
-	return ..()
-
 /obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	if(damage_amount <= 0)
 		return
@@ -441,15 +437,15 @@
 		if(smoke && smoke.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE && !(T.type in ignored_terrains))
+		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE) && !(T.type in ignored_terrains))
 			return FALSE
 
 		for(var/obj/machinery/MA in T)
-			if(MA.density && MA.throwpass == FALSE && !(MA.type in ignored_terrains))
+			if(MA.density && !(MA.flags_pass & PASSPROJECTILE) && !(MA.type in ignored_terrains))
 				return FALSE
 
 		for(var/obj/structure/S in T)
-			if(S.density && S.throwpass == FALSE && !(S.type in ignored_terrains))
+			if(S.density && !(S.flags_pass & PASSPROJECTILE) && !(S.type in ignored_terrains))
 				return FALSE
 
 	return TRUE

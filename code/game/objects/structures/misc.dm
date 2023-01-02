@@ -248,3 +248,16 @@
 	desc = "Plastic flaps for transporting supplies."
 	obj_flags = null
 	resistance_flags = XENO_DAMAGEABLE
+
+
+	//Magmoor Cryopods
+
+/obj/structure/cryopods
+	name = "hypersleep chamber"
+	icon = 'icons/obj/machines/cryogenics.dmi'
+	icon_state = "body_scanner_0"
+	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep'."
+	density = TRUE
+	anchored = TRUE
+	coverage = 15
+	resistance_flags = XENO_DAMAGEABLE

@@ -5,7 +5,6 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.//This comment is a lie, throwpass is for projectiles apparently
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
@@ -122,9 +121,8 @@
 	if(is_wired)
 		X.visible_message(span_danger("The barbed wire slices into [X]!"),
 		span_danger("The barbed wire slices into us!"), null, 5)
-		X.apply_damage(10, updating_health = TRUE)
+		X.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
@@ -374,7 +372,6 @@
 	max_integrity = 100
 	layer = OBJ_LAYER
 	climbable = FALSE
-	throwpass = FALSE
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3
