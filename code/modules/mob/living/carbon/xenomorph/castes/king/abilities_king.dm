@@ -40,7 +40,7 @@
 /datum/action/xeno_action/petrify
 	name = "Petrify"
 	action_icon_state = "petrify"
-	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
 	ability_name = "petrify"
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
@@ -131,7 +131,7 @@
 /datum/action/xeno_action/activable/off_guard
 	name = "Off-guard"
 	action_icon_state = "off_guard"
-	mechanics_text = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	ability_name = "off guard"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -183,7 +183,7 @@
 /datum/action/xeno_action/activable/shattering_roar
 	name = "Shattering roar"
 	action_icon_state = "shattering_roar"
-	mechanics_text = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	ability_name = "shattering roar"
 	plasma_cost = 225
 	cooldown_timer = 35 SECONDS
@@ -286,7 +286,7 @@
 /datum/action/xeno_action/zero_form_beam
 	name = "Zero-Form Energy Beam"
 	action_icon_state = "zero_form_beam"
-	mechanics_text = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
+	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
 	ability_name = "zero form energy beam"
 	plasma_cost = 25
 	cooldown_timer = 10 SECONDS
