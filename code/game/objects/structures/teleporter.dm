@@ -177,12 +177,12 @@
 
 
 ///Link the two teleporters
-/obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/linked_teleporter)
-	if(src.linked_teleporter)
+/obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
+	if(linked_teleporter)
 		CRASH("A teleporter was linked with another teleporter even though it already has a twin!")
-	if(linked_teleporter == src)
+	if(link_teleport == src)
 		CRASH("A teleporter was linked with itself!")
-	src.linked_teleporter = linked_teleporter
+	linked_teleporter = link_teleport
 
 /obj/item/teleporter_kit/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
@@ -191,16 +191,16 @@
 		return
 	
 	var/obj/item/teleporter_kit/gadget = I
-	if(src.linked_teleporter)
+	if(linked_teleporter)
 		balloon_alert(user, "The teleporter is already linked with another!")
 		return
 	if(linked_teleporter == src)
 		balloon_alert(user, "You can't link the teleporter with itself!")
 		return
-	src.linked_teleporter = linked_teleporter
+	linked_teleporter = linked_teleporter
 	balloon_alert(user, "You link both teleporters to each others.")
 
-	src.set_linked_teleporter(gadget)
+	set_linked_teleporter(gadget)
 	gadget.set_linked_teleporter(src)
 	return
 
