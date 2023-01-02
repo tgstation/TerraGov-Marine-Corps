@@ -128,6 +128,7 @@
 	icon_state = "10"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0
+	light_range = 6
 	flags_atom = NONE
 
 /obj/item/clothing/suit/storage/marine/M3IS

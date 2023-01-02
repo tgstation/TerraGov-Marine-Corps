@@ -441,6 +441,7 @@
 	if(light_on)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
+		var/datum/limb/limb_check = H.get_limb(H.hand? "l_hand" : "r_hand")
 
 		if(istype(H))
 
@@ -451,8 +452,8 @@
 		else
 			prot = 1
 
-		if(prot > 0)
-			to_chat(user, "You remove the light [fitting]")
+		if(prot > 0 || isrobot(H) || (limb_check.limb_status & LIMB_ROBOT))
+			to_chat(user, "You remove the light [fitting].")
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light

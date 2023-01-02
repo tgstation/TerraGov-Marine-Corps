@@ -48,7 +48,7 @@
 			client.looc(entry)
 			return TRUE
 		if(MOOC_CHANNEL)
-			client.ooc(entry)
+			client.mooc(entry)
 			return TRUE
 		if(XOOC_CHANNEL)
 			client.xooc(entry)

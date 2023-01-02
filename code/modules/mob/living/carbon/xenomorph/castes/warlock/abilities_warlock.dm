@@ -52,7 +52,7 @@
 	name = "Psychic Shield"
 	ability_name = "psychic shield"
 	action_icon_state = "psy_shield"
-	mechanics_text = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
+	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
@@ -100,6 +100,7 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
 	action_icon_state = "psy_shield_reflect"
+	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
 
 	GLOB.round_statistics.psy_shields++
@@ -116,6 +117,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
+	update_button_icon()
 	add_cooldown()
 	if(active_shield)
 		active_shield.release_projectiles()
@@ -243,7 +245,7 @@
 /datum/action/xeno_action/activable/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
-	mechanics_text = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
+	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
 	plasma_cost = 40
 	cooldown_timer = 12 SECONDS
@@ -308,6 +310,7 @@
 	orb = new /obj/effect/xeno/crush_orb(target_turf)
 
 	action_icon_state = "psy_crush_activate"
+	update_button_icon()
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
 	do_channel(target_turf)
 
@@ -407,6 +410,7 @@
 	action_icon_state = "psy_crush"
 	xeno_owner.update_glow()
 	add_cooldown()
+	update_button_icon()
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
@@ -470,7 +474,7 @@
 /datum/action/xeno_action/activable/psy_blast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
-	mechanics_text = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
+	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	ability_name = "psychic blast"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 230
@@ -555,6 +559,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
 
 	add_cooldown()
+	update_button_icon()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, .proc/end_channel), 5)
 
