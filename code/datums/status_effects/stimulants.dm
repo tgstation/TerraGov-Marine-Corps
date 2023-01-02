@@ -45,6 +45,17 @@
 
 	if(prob(7))
 		human_owner.emote(pick("twitch","drool"))
+
+	if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_CRASH))
+		human_owner.adjustShock_Stage(200)
+		if(prob(10))
+			owner.balloon_alert(owner, "Your body burns!")
+	if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_EXILE))
+		human_owner.hallucination += 10
+		human_owner.adjustStaminaLoss(6)
+		if(prob(10))
+			owner.balloon_alert(owner, "Everything spins!")
+
 	return ..()
 
 // ***************************************
@@ -96,6 +107,19 @@
 		human_owner.adjustBrainLoss(1)
 	else if(prob(7))
 		human_owner.emote(pick("twitch","drool","stare", "scream"))
+
+		if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_DROP))
+		human_owner.adjustBrainLoss(2)
+		human_owner.adjustStaminaLoss(3)
+		if(prob(10))
+			owner.balloon_alert(owner, "Your mind burns!")
+	if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_CRASH))
+		human_owner.Losebreath(3)
+		human_owner.adjustOxyLoss(2)
+		human_owner.adjustToxLoss(3)
+		if(prob(10))
+			owner.balloon_alert(owner, "You can't breathe!")
+
 	return ..()
 
 // ***************************************
@@ -150,6 +174,18 @@
 
 	if(prob(15))
 		human_owner.emote(pick("twitch","giggle"))
+
+		if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_DROP))
+		human_owner.adjustBruteLoss(3)
+		human_owner.adjustStaminaLoss(3)
+		if(prob(10))
+			owner.balloon_alert(owner, "You body churns!")
+	if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_EXILE))
+		human_owner.adjust_bodytemperature(30, 0, 500)
+		heart.take_damage(2)
+		if(prob(10))
+			owner.balloon_alert(owner, "Your heart is pounding!")
+
 	return ..()
 
 
@@ -173,20 +209,20 @@
 /obj/item/stimulant/drop
 	name = "drop booster"
 	desc = "Drop pushes the user into a heightened state of neural activity, greatly improving hand eye co-ordination but making them more sensitive to pain. Also known to cause severe paranoia and hallucinations, at higher doses."
-	icon_state = "borghypo"
+	icon_state = "drop"
 	stim_type = STATUS_EFFECT_STIMULANT_DROP
 	stim_message = "You can suddenly feel everything!"
 
 /obj/item/stimulant/exile
 	name = "exile booster"
 	desc = "Exile inhibits several key receptors in the brain, triggering a state of extreme aggression and dumbness to pain, allowing the user to continue operating with the most greivous of injuries. Exile does not actually prevent any damage however, and can gradually lead to neural degeneration."
-	icon_state = "borghypo"
+	icon_state = "exile"
 	stim_type = STATUS_EFFECT_STIMULANT_EXILE
 	stim_message = "You feel the urge for violence!"
 
 /obj/item/stimulant/crash
 	name = "crash booster"
 	desc = "Crash hyperstimulates the users nervous system and triggers a rapid metabolic acceleration. This serves to boost the users agility, although it also makes user notoriously twitchy, and can strain the heart."
-	icon_state = "borghypo"
+	icon_state = "crash"
 	stim_type = STATUS_EFFECT_STIMULANT_CRASH
 	stim_message = "You feel the need for speed!"
