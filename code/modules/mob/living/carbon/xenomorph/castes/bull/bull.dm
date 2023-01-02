@@ -4,6 +4,7 @@
 	desc = "A bright red alien with a matching temper."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Bull Walking"
+	bubble_icon = "alienleft"
 	health = 160
 	maxHealth = 160
 	plasma_stored = 200

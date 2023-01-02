@@ -94,7 +94,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
+		INVOKE_ASYNC(src, .proc/take_overall_damage, acid_damage, BURN, ACID, FALSE, FALSE, TRUE)
 		to_chat(src, span_danger("You are scalded by the burning acid!"))
 		return
 	to_chat(src, span_danger("Your feet scald and burn! Argh!"))

@@ -1,7 +1,7 @@
 /datum/action/xeno_action/return_to_core
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
-	mechanics_text = "Teleport back to your core."
+	desc = "Teleport back to your core."
 	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/return_to_core/action_activate()
@@ -19,7 +19,10 @@
 /datum/action/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"
-	mechanics_text = "Change from your incorporal form to your physical on and vice-versa."
+	desc = "Change from your incorporal form to your physical on and vice-versa."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
+	)
 	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/change_form/action_activate()
@@ -29,7 +32,7 @@
 /datum/action/xeno_action/activable/command_minions
 	name = "Command minions"
 	action_icon_state = "rally_minions"
-	mechanics_text = "Command all minions, ordering them to converge on this location."
+	desc = "Command all minions, ordering them to converge on this location."
 	ability_name = "command minions"
 	plasma_cost = 100
 	keybinding_signals = list(

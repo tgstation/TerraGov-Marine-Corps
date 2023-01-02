@@ -7,7 +7,7 @@
 /datum/action/xeno_action/activable/devour
 	name = "Devour"
 	action_icon_state = "regurgitate"
-	mechanics_text = "Devour your victim to be able to carry it faster."
+	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -89,7 +89,7 @@
 /datum/action/xeno_action/activable/drain
 	name = "Drain"
 	action_icon_state = "drain"
-	mechanics_text = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
+	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
 	use_state_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
@@ -171,7 +171,7 @@
 /datum/action/xeno_action/activable/transfusion
 	name = "Transfusion"
 	action_icon_state = "transfusion"
-	mechanics_text = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
+	desc = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 20
@@ -236,7 +236,7 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
+	desc = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	cooldown_timer = 4 SECONDS
 	plasma_cost = GORGER_REJUVENATE_COST
 	target_flags = XABB_MOB_TARGET
@@ -276,7 +276,7 @@
 /datum/action/xeno_action/activable/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
-	mechanics_text = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
+	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -372,7 +372,7 @@
 /datum/action/xeno_action/activable/carnage
 	name = "Carnage"
 	action_icon_state = "carnage"
-	mechanics_text = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
+	desc = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(
@@ -404,7 +404,7 @@
 /datum/action/xeno_action/activable/feast
 	name = "Feast"
 	action_icon_state = "feast"
-	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
+	desc = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(

@@ -976,7 +976,7 @@
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	layer = BELOW_OBJ_LAYER
-	throwpass = FALSE
+	flags_pass = NONE
 
 /obj/structure/dropship_piece/tadpole/cockpit/left
 	icon_state = "blue_cockpit_fl"

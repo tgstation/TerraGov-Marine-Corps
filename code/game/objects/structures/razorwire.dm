@@ -7,7 +7,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
-	throwpass = TRUE	//You can throw objects over this
 	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
@@ -59,10 +58,8 @@
 	if(!M.density)
 		return
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-	var/armor_block = null
 	var/def_zone = ran_zone()
-	armor_block = M.get_soft_armor("melee", def_zone)
-	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
+	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
@@ -113,8 +110,7 @@
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
 	var/def_zone = ran_zone()
-	var/armor_block = entangled.get_soft_armor("melee", def_zone)
-	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE) //Apply damage as we tear free
+	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE) //Apply damage as we tear free
 	return TRUE
 
 
@@ -174,9 +170,8 @@
 			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 
-		var/armor_block = null
 		var/def_zone = ran_zone()
-		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
+		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
 		user.visible_message(span_danger("[user] spartas [M]'s into [src]!"),
 		span_danger("You sparta [M]'s against [src]!"))
 		log_combat(user, M, "spartaed", "", "against \the [src]")
@@ -206,7 +201,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	X.apply_damage(RAZORWIRE_BASE_DAMAGE * 0.7, updating_health = TRUE) //About a third as damaging as actually entering
+	X.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
 	update_icon()
 	return ..()
 

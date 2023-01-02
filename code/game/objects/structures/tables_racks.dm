@@ -9,7 +9,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
@@ -295,7 +294,7 @@
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
+			M.apply_damage(8, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
 			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
 			span_danger("You slam [M]'s face against [src]!"))
 			log_combat(user, M, "slammed", "", "against \the [src]")
@@ -610,7 +609,6 @@
 	density = TRUE
 	layer = TABLE_LAYER
 	anchored = TRUE
-	throwpass = TRUE	//You can shoot past it
 	coverage = 20
 	climbable = TRUE
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal

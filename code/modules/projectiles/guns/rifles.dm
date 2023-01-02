@@ -47,6 +47,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
@@ -78,10 +79,9 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
-	extra_delay = 0.05 SECONDS
+	extra_delay = 0.1 SECONDS
 	accuracy_mult = 1.05
 	scatter = 0
-	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -126,6 +126,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
@@ -208,6 +209,7 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/gyro,
@@ -276,6 +278,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -343,6 +346,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -394,6 +398,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
@@ -562,6 +567,7 @@
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/extended_barrel,
@@ -694,6 +700,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/angledgrip,
@@ -754,6 +761,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -818,6 +826,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -1003,6 +1012,7 @@
 		/obj/item/attachable/stock/tx15,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
@@ -1059,6 +1069,7 @@
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/sgstock,
@@ -1262,6 +1273,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/scope/mini/tx11,
 		/obj/item/attachable/stock/irremoveable/tx11,
 		/obj/item/attachable/magnetic_harness,
@@ -1279,12 +1291,11 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
-	extra_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.15
 	scatter = -1
 	scatter_unwielded = 15
-	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 	movement_acc_penalty_mult = 6
 
@@ -1333,6 +1344,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/angledgrip,
@@ -1492,6 +1504,7 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -1559,6 +1572,7 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -1637,6 +1651,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
@@ -1662,7 +1677,7 @@
 	fire_delay = 0.2 SECONDS
 	aim_slowdown = 0.35
 
-	accuracy_mult = 1.05
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.55
 	scatter = 1
 	scatter_unwielded = 15
@@ -1670,7 +1685,6 @@
 	burst_amount = 3
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
-	autoburst_delay = 0.3 SECONDS
 
 	damage_falloff_mult = 0.7
 
@@ -1738,6 +1752,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,

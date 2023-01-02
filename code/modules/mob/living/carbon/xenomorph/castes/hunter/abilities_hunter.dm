@@ -4,7 +4,7 @@
 /datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
-	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
+	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	plasma_cost = 10
 	keybinding_signals = list(
@@ -157,7 +157,7 @@
 		M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
-/datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 	if(!can_sneak_attack)
 		return
@@ -167,7 +167,7 @@
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 		flavour = "vicious"
 	else
-		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
+		armor_pen = HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
 
@@ -200,7 +200,7 @@
 
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
-	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
+	desc = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
@@ -262,7 +262,7 @@
 /datum/action/xeno_action/activable/hunter_mark
 	name = "Hunter's Mark"
 	action_icon_state = "hunter_mark"
-	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
+	desc = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
 	plasma_cost = 25
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
@@ -345,7 +345,7 @@
 /datum/action/xeno_action/psychic_trace
 	name = "Psychic Trace"
 	action_icon_state = "toggle_queen_zoom"
-	mechanics_text = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
+	desc = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
 	plasma_cost = 1 //Token amount
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_TRACE,
@@ -414,7 +414,7 @@
 /datum/action/xeno_action/mirage
 	name = "Mirage"
 	action_icon_state = "mirror_image"
-	mechanics_text = "Create mirror images of ourselves. Reactivate to swap with an illusion."
+	desc = "Create mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_name = "mirage"
 	plasma_cost = 50
 	keybinding_signals = list(

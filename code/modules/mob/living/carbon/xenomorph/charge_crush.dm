@@ -15,7 +15,7 @@
 /datum/action/xeno_action/ready_charge
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
-	mechanics_text = "Toggles the movement-based charge on and off."
+	desc = "Toggles the movement-based charge on and off."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE,
 	)
@@ -216,7 +216,7 @@
 						continue
 					charger.visible_message(span_danger("[charger] runs [victim] over!"),
 						span_danger("We run [victim] over!"), null, 5)
-					victim.take_overall_damage_armored(CHARGE_SPEED(src) * 10, BRUTE, "melee")
+					victim.take_overall_damage(CHARGE_SPEED(src) * 10, BRUTE,MELEE)
 					animation_flash_color(victim)
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
@@ -284,7 +284,7 @@
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
 			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
-			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 			if(QDELETED(crushed_living))
 				charger.visible_message(span_danger("[charger] anihilates [preserved_name]!"),
 				span_xenodanger("We anihilate [preserved_name]!"))
@@ -501,7 +501,7 @@
 	charger.visible_message(span_danger("The barbed wire slices into [charger]!"),
 	span_danger("The barbed wire slices into you!"), null, 5)
 	charger.Paralyze(0.5 SECONDS)
-	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, ran_zone(), 0, TRUE, updating_health = TRUE) //Armor is being ignored here.
+	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, sharp = TRUE, updating_health = TRUE) //Armor is being ignored here.
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	update_icon()
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.

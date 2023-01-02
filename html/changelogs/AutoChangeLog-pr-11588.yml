@@ -1,7 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "Expand PoS engineering a bit for Nani's incoming factorio update."
-  - rscadd: "Give tadpole in PoS, finally, its own landing zone outline!"
-  - rscdel: "Remove two landing zones when xenomorphs crash Alamo to PoS and move one landing zone."
-  - rscadd: "more easter eggs in PoS! Find them all!"

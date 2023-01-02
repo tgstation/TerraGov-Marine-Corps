@@ -149,6 +149,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
 	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
 
+///When vended, tries to equip itself. Else, fallback to parent behavior.
+/obj/item/radio/headset/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		return ..()
 
 /obj/item/radio/headset/survivor
 	freqlock = TRUE
@@ -475,6 +479,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/mcom/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
+
+/obj/item/radio/headset/mainship/mcom/som
+	frequency = RADIO_CHANNEL_SOM
+	keyslot = /obj/item/encryptionkey/mcom/som
+	hud_type = DATA_HUD_SQUAD_SOM
+	minimap_type = /datum/action/minimap/som
 
 /obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"

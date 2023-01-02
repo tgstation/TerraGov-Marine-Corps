@@ -1,7 +1,7 @@
 
 /datum/action/xeno_action
+	desc = "This ability can not be found in codex." // If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/plasma_cost = 0
-	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
 	var/last_use
 	var/cooldown_timer

@@ -64,7 +64,7 @@
 /datum/action/xeno_action/activable/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
-	mechanics_text = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
+	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_name = "defiler sting"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -130,7 +130,10 @@
 				else
 					neuro_applied = TRUE
 			defile_strength_multiplier *= 2
-
+	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		defile_reagent_amount += debuff.stacks
+		debuff.stacks -= round(debuff.stacks * 0.5)
 
 	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
 
@@ -160,7 +163,7 @@
 /datum/action/xeno_action/emit_neurogas
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
-	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
+	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
@@ -280,7 +283,7 @@
 /datum/action/xeno_action/activable/inject_egg_neurogas
 	name = "Inject Gas"
 	action_icon_state = "inject_egg"
-	mechanics_text = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
+	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
 	ability_name = "inject neurogas"
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
@@ -342,7 +345,7 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
+	desc = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
@@ -405,7 +408,7 @@
 /datum/action/xeno_action/reagent_slash
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
-	mechanics_text = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
+	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
@@ -454,7 +457,7 @@
 
 
 ///Called when we slash while reagent slash is active
-/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 
 	if(!target?.can_sting()) //We only care about targets that we can actually sting
@@ -507,7 +510,7 @@
 /datum/action/xeno_action/activable/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
-	mechanics_text = "Throw one of your tentacles forward to grab a tallhost or item."
+	desc = "Throw one of your tentacles forward to grab a tallhost or item."
 	ability_name = "Tentacle"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 200

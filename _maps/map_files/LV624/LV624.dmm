@@ -4177,8 +4177,10 @@
 /area/lv624/ground/sand8)
 "czI" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/lv624/lazarus/hydroponics)
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
 "czL" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor,
@@ -10406,7 +10408,7 @@
 /area/lv624/ground/jungle1)
 "jRU" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -45962,7 +45964,7 @@ ajz
 aZu
 aOj
 aWM
-mOs
+arW
 mOs
 mOs
 atX
@@ -46139,7 +46141,7 @@ vCy
 vCy
 cbi
 ksD
-jeR
+bnF
 mOs
 atX
 arW
@@ -47235,7 +47237,7 @@ wgH
 xGM
 wgH
 wgH
-wgH
+czI
 wgH
 wgH
 wgH
@@ -48098,7 +48100,7 @@ bcA
 rcz
 rcz
 brD
-czI
+eUY
 biS
 bqx
 bqx

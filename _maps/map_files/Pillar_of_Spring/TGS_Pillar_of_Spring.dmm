@@ -2429,19 +2429,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"gZ" = (
-/obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "ha" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
@@ -3713,6 +3700,16 @@
 	},
 /turf/open/shuttle/escapepod/zero,
 /area/mainship/command/self_destruct)
+"kJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "kK" = (
 /obj/machinery/light/mainship,
 /obj/structure/closet/emcloset,
@@ -5148,6 +5145,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"oM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "oN" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -5229,6 +5236,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"pc" = (
+/obj/machinery/vending/weapon,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "pd" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -8375,7 +8390,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -8469,9 +8483,7 @@
 	dir = 8
 	},
 /obj/machinery/vending/weapon,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "xU" = (
@@ -11445,6 +11457,7 @@
 /area/mainship/engineering/port_atmos)
 "Go" = (
 /obj/effect/decal/cleanable/mucus,
+/obj/item/trash/cigbutt,
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "Gp" = (
@@ -11664,6 +11677,10 @@
 "GT" = (
 /turf/open/floor/mainship/blue,
 /area/mainship/living/numbertwobunks)
+"GU" = (
+/obj/item/trash/cigbutt,
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "GV" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -12226,9 +12243,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ID" = (
@@ -12478,6 +12493,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Jn" = (
@@ -14724,9 +14740,7 @@
 	dir = 8
 	},
 /obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "PM" = (
@@ -18038,6 +18052,22 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"YH" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/vending/weapon,
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "YI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -55408,7 +55438,7 @@ iu
 WN
 IQ
 sy
-xy
+pc
 Fg
 Fg
 Ak
@@ -55653,11 +55683,11 @@ mU
 yL
 Vp
 WN
-Eo
+IQ
 Eo
 xT
 zh
-WN
+YH
 IQ
 IQ
 xT
@@ -55910,7 +55940,7 @@ hZ
 yL
 JT
 WN
-Eo
+IQ
 IQ
 IC
 PF
@@ -57197,7 +57227,7 @@ JT
 xO
 IQ
 IQ
-gZ
+Jm
 zO
 xO
 IQ
@@ -57207,7 +57237,7 @@ JT
 xO
 IQ
 IQ
-gZ
+Jm
 yL
 yL
 gQ
@@ -58481,7 +58511,7 @@ cA
 KC
 yZ
 mf
-CA
+kJ
 sJ
 KC
 sJ
@@ -58738,7 +58768,7 @@ MK
 KC
 BT
 IX
-CA
+oM
 LY
 KC
 nY
@@ -59257,7 +59287,7 @@ BT
 KC
 BT
 uz
-nK
+GU
 XC
 KC
 XC

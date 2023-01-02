@@ -3,20 +3,23 @@
 		return
 	return ..()
 
+/mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
+	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
+	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
+	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)
+	return clamp(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0, damage_amount)
+
 /mob/living/carbon/xenomorph/ex_act(severity)
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-
 	var/bomb_armor = soft_armor.getRating("bomb")
-	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
-	var/bomb_damage_multiplier = max(0, 1 - bomb_effective_armor)
-	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
-	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
-
-
 	if(bomb_armor >= 100)
 		return //immune
+
+	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
+	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
 	//lowered to account for new armor values but keep old gibs
 	//probs needs to be a define somewhere
@@ -31,41 +34,28 @@
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
 
 	//Sunder
-	var/sunder_loss = 50*(3 - severity) * bomb_sunder_multiplier
-	adjust_sunder(max(0, sunder_loss))
+	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier * get_sunder()))
 
 	//Damage
 	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
-	ex_damage *= bomb_damage_multiplier
-
-	apply_damage(ex_damage/2, BRUTE, updating_health = TRUE)
-	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
+	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(status_flags & (GODMODE))
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+	if(status_flags & GODMODE)
 		return
-	var/hit_percent = (100 - blocked) * 0.01
-
-	if(hit_percent <= 0) //total negation
-		return 0
-
-	damage *= CLAMP01(hit_percent) //Percentage reduction
+	if(damagetype != BRUTE && damagetype != BURN)
+		return
+	if(isnum(blocked))
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
+	else
+		damage = modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(!damage) //no damage
 		return 0
 
-	//We still want to check for blood splash before we get to the damage application.
-	var/chancemod = 0
-	if(sharp)
-		chancemod += 10
-	if(edge) //Pierce weapons give the most bonus
-		chancemod += 12
-	if(def_zone != "chest") //Which it generally will be, vs xenos
-		chancemod += 5
-
 	if(damage > 12) //Light damage won't splash.
-		check_blood_splash(damage, damagetype, chancemod)
+		check_blood_splash(damage, damagetype, 0, 1, sharp, edge)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
 
@@ -82,9 +72,6 @@
 		updatehealth()
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
-
-	if(!damage) //If we've actually taken damage, check whether we alert the hive
-		return
 
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
@@ -146,12 +133,16 @@
 
 #undef HANDLE_OVERHEAL
 
-/mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
+/mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
 		return FALSE
-	var/chance = 20 //base chance
+	var/chance = 25 //base chance
 	if(damtype == BRUTE)
 		chance += 5
+	if(sharp)
+		chancemod += 10
+	if(edge) //Pierce weapons give the most bonus
+		chancemod += 12
 	chance += chancemod + (damage * 0.33)
 	var/turf/T = loc
 	if(!T || !istype(T))

@@ -75,12 +75,17 @@
 	user.update_inv_s_store()
 
 //Will only draw the specific holstered item, not ammo etc.
-/obj/item/storage/holster/do_quick_equip()
+/obj/item/storage/holster/do_quick_equip(mob/user)
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
-	remove_from_storage(W, user = src)
+	remove_from_storage(W, null, user)
 	return W
+
+///When vended, tries to equip itself. Else, fallback to parent behavior.
+/obj/item/storage/holster/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		return ..()
 
 //backpack type holster items
 /obj/item/storage/holster/backholster

@@ -112,40 +112,19 @@
 
 /turf/open/beach/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(has_catwalk || !iscarbon(arrived))
 		return
-	if(iscarbon(arrived))
-		var/mob/living/carbon/C = arrived
-		var/beachwater_slowdown = 1.75
+	var/mob/living/carbon/C = arrived
+	C.clean_mob()
 
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = arrived
-			cleanup(H)
+	if(isxeno(C))
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
+	else
+		C.next_move_slowdown += 1.75
 
-		else if(isxeno(C))
-			if(!isxenoboiler(C))
-				beachwater_slowdown = 1.3
-			else
-				beachwater_slowdown = -0.5
-
-		if(C.on_fire)
-			C.ExtinguishMob()
-
-		C.next_move_slowdown += beachwater_slowdown
-
-
-/turf/open/beach/water/proc/cleanup(mob/living/carbon/human/H)
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
+	if(C.on_fire)
+		C.ExtinguishMob()
 
 /turf/open/beach/water2
 	name = "water"
@@ -451,7 +430,7 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), updating_health = TRUE)
+				L.take_overall_damage(LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), BURN, updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()

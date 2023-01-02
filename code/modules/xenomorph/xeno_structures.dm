@@ -608,8 +608,8 @@ TUNNEL
 		return
 
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_L_FOOT) * 0.66) //33% armor pen
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_R_FOOT) * 0.66) //33% armor pen
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
 	stepper.ExtinguishMob()
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
@@ -875,7 +875,7 @@ TUNNEL
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
-	throwpass = FALSE
+	flags_pass = PASSAIR|PASSTHROW
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -1051,17 +1051,17 @@ TUNNEL
 			continue
 		var/blocked = FALSE
 		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+			if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE))
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && MA.throwpass == FALSE)
+				if(MA.opacity || MA.density && !(MA.flags_pass & PASSPROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && S.throwpass == FALSE )
+				if(S.opacity || S.density && !(S.flags_pass & PASSPROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 		if(!blocked)
@@ -1478,7 +1478,7 @@ TUNNEL
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.adjust_stagger(3)
-			H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
+			H.apply_damage(30, BRUTE, "chest", BOMB)
 		qdel(src)
 		return TRUE
 

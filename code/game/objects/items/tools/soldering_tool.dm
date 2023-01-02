@@ -37,4 +37,16 @@
 			span_warning("You solder the wounds on [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 		if(affecting.heal_limb_damage(10, 10, robo_repair = TRUE, updating_health = TRUE))
 			H.UpdateDamageIcon()
+		if(!(affecting.brute_dam || affecting.burn_dam))
+			var/previous_limb = affecting
+			for(var/datum/limb/checked_limb AS in H.limbs)
+				if(!(checked_limb.limb_status & LIMB_ROBOT))
+					continue
+				if(!(checked_limb.brute_dam || checked_limb.burn_dam))
+					continue
+				affecting = checked_limb
+				break
+			if(previous_limb == affecting)
+				balloon_alert(user, "Fully repaired.")
+				break
 	return TRUE
