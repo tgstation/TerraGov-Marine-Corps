@@ -68,6 +68,19 @@
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
+/datum/admins/proc/rouny_all()
+	set name = "Toggle Rouny All"
+	set category = "Fun"
+	set desc = "Turns all living xenos into rouny versions of themselves"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
+		if(!isliving(xenotorouny))
+			return
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
+
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
