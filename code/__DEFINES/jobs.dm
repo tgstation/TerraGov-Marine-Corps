@@ -153,10 +153,10 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 
 // In minutes
 #define XP_REQ_NOVICE 300
-#define XP_REQ_UNSEASONED 600
-#define XP_REQ_INTERMEDIATE 1500
-#define XP_REQ_EXPERIENCED 6000
-#define XP_REQ_EXPERT 6000
+#define XP_REQ_UNSEASONED 300
+#define XP_REQ_INTERMEDIATE 600
+#define XP_REQ_EXPERIENCED 2400
+#define XP_REQ_EXPERT 2400
 #define XP_REQ_SURVIVOR 18000
 
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
