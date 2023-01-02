@@ -187,6 +187,10 @@
 	target.UpdateDamageIcon()
 	target.update_hair()
 
+	var/mob/dead/observer/ghost = B?.brainmob.get_ghost() //If they can't reenter, this'll fail
+	if(ghost)
+		to_chat(ghost, "Someone's stuck your head back to the rest of you, dragging your soul with it.")
+		ghost.reenter_corpse() //But if they can, we need them back so the ghost weakrefs to the right mob later
 	//Prepare mind datum
 	if(B?.brainmob?.mind)
 		B.brainmob.mind.transfer_to(target)
