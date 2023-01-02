@@ -103,7 +103,7 @@
 
 	H.regenerate_icons()
 
-	if(!H.species.species_flags & DETACHABLE_HEAD)
+	if(~H.species.species_flags & DETACHABLE_HEAD)
 		brainmob.death()
 
 	GLOB.head_list += src

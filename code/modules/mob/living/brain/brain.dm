@@ -19,3 +19,14 @@
 			death()
 		ghostize()
 	return ..()
+
+/mob/living/brain/ghost()
+	if(stat == DEAD)
+		ghostize(TRUE)
+		return
+
+	if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive, as much as a head can be. If you ghost, you won't be able to chat when you return unless someone revives you.)", "Ghost", list("Yes", "No")) != "Yes")
+		return
+
+	death()
+	ghostize(TRUE)

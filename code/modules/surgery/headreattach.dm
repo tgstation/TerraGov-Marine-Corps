@@ -69,7 +69,7 @@
 
 /datum/surgery_step/head/shape/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool]."),	\
-	span_notice("You have finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool]."))
+	span_notice("You have finished repositioning flesh and tissue to something anatomically recognizable with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 2
 
@@ -173,8 +173,8 @@
 	..()
 
 /datum/surgery_step/head/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message(span_notice("[user] has attached [target]'s head to the body."),	\
-	span_notice("You have attached [target]'s head to the body."))
+	user.visible_message(span_notice("[user] has attached [tool] to the body."),	\
+	span_notice("You have attached [tool] to the body."))
 	target.balloon_alert_to_viewers("Success")
 
 	//Update our dear victim to have a head again
@@ -188,7 +188,7 @@
 	target.update_hair()
 
 	//Prepare mind datum
-	if(B.brainmob?.mind)
+	if(B?.brainmob?.mind)
 		B.brainmob.mind.transfer_to(target)
 
 	//Deal with the head item properly
