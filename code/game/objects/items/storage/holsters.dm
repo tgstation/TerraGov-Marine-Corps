@@ -82,6 +82,11 @@
 	remove_from_storage(W, null, user)
 	return W
 
+///When vended, tries to equip itself. Else, fallback to parent behavior.
+/obj/item/storage/holster/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		return ..()
+
 //backpack type holster items
 /obj/item/storage/holster/backholster
 	name = "backpack holster"

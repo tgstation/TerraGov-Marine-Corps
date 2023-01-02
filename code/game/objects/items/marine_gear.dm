@@ -301,6 +301,11 @@
 		qdel(reequip_component)
 	reequip_component = null
 
+///When vended, tries to equip itself. Else, fallback to parent behavior.
+/obj/item/belt_harness/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		return ..()
+
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
 	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
