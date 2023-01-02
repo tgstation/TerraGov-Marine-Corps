@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "SL's no longer lose leadership skill from the trauma of demotion"
