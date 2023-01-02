@@ -13,7 +13,7 @@
 /datum/action/xeno_action/psy_gain/hivemind
 	name = "Psy Gain"
 	action_icon_state = "psy_gain"
-	mechanics_text = "give your hive 100 psy point, if marines on the ground"
+	desc = "Gives your hive 100 psy points, if marines are on the ground."
 	cooldown_timer = 200 SECONDS
 
 /datum/action/xeno_action/psy_gain/hivemind/action_activate()

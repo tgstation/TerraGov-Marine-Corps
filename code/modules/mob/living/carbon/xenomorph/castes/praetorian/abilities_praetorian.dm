@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/xeno_action/activable/scatter_spit/praetorian
 	name = "Scatter Spit"
 	action_icon_state = "scatter_spit"
-	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
+	desc = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_name = "scatter spit"
 	plasma_cost = 280
 	cooldown_timer = 0.5 SECONDS
