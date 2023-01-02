@@ -143,17 +143,6 @@
 /atom/movable/vis_obj/xeno_wounds
 	icon = 'icons/Xeno/wound_overlays.dmi'
 	vis_flags = VIS_INHERIT_DIR
-	var/mob/living/carbon/xenomorph/wound_owner
-
-/atom/movable/vis_obj/xeno_wounds/Initialize(mapload, mob/living/carbon/xenomorph/owner)
-	. = ..()
-	if(owner)
-		wound_owner = owner
-
-/atom/movable/vis_obj/xeno_wounds/Destroy()
-	if(wound_owner)
-		wound_owner = null
-	return ..()
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
