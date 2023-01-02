@@ -100,6 +100,7 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
 	action_icon_state = "psy_shield_reflect"
+	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
 
 	GLOB.round_statistics.psy_shields++
@@ -116,6 +117,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
+	update_button_icon()
 	add_cooldown()
 	if(active_shield)
 		active_shield.release_projectiles()
@@ -308,6 +310,7 @@
 	orb = new /obj/effect/xeno/crush_orb(target_turf)
 
 	action_icon_state = "psy_crush_activate"
+	update_button_icon()
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
 	do_channel(target_turf)
 
@@ -407,6 +410,7 @@
 	action_icon_state = "psy_crush"
 	xeno_owner.update_glow()
 	add_cooldown()
+	update_button_icon()
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
@@ -555,6 +559,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
 
 	add_cooldown()
+	update_button_icon()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, .proc/end_channel), 5)
 
