@@ -213,17 +213,17 @@ SUBSYSTEM_DEF(ru_items)
 /datum/supply_packs/weapons/rifle/T25
 	name = "T25 smartrifle"
 	contains = list(/obj/item/weapon/gun/rifle/T25)
-	cost = 40
+	cost = 400
 
 /datum/supply_packs/weapons/ammo_magazine/rifle/T25
 	name = "T25 smartrifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/T25)
-	cost = 2
+	cost = 20
 
 /datum/supply_packs/weapons/ammo_magazine/packet/T25_rifle
 	name = "T25 smartrifle ammo box"
 	contains = list(/obj/item/ammo_magazine/packet/T25_rifle)
-	cost = 6
+	cost = 60
 
 ///////////////////////////////////////////////////////////////////////
 ////////////// Vector, based on KRISS Vector 45ACP. ///////////////////
@@ -328,7 +328,7 @@ SUBSYSTEM_DEF(ru_items)
 /datum/supply_packs/weapons/vector
 	name = "Vector"
 	contains = list(/obj/item/weapon/gun/smg/vector)
-	cost = 20
+	cost = 200
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -357,7 +357,7 @@ SUBSYSTEM_DEF(ru_items)
 /datum/supply_packs/weapons/valihalberd
 	name = "VAL-HAL-A"
 	contains = list(/obj/item/weapon/twohanded/glaive/harvester)
-	cost = 40
+	cost = 400
 
 
 
@@ -479,7 +479,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/clothing/head/helmet/marine/robot/advanced/acid,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/acid,
 	)
-	cost = 60
+	cost = 600
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/robot/advanced/physical
@@ -488,7 +488,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/clothing/head/helmet/marine/robot/advanced/physical,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/physical,
 	)
-	cost = 60
+	cost = 600
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/robot/advanced/bomb
@@ -497,7 +497,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/clothing/head/helmet/marine/robot/advanced/bomb,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/bomb,
 	)
-	cost = 60
+	cost = 600
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/robot/advanced/fire
@@ -506,7 +506,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/clothing/head/helmet/marine/robot/advanced/fire,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/fire,
 	)
-	cost = 60
+	cost = 600
 	available_against_xeno_only = TRUE
 
 /obj/item/toy/plush/pig
@@ -533,7 +533,7 @@ SUBSYSTEM_DEF(ru_items)
 /datum/supply_packs/supplies/pigs
 	name = "Pig toys crate"
 	contains = list(/obj/item/toy/plush/pig, /obj/item/toy/plush/pig, /obj/item/toy/plush/pig, /obj/item/toy/plush/pig, /obj/item/toy/plush/pig)
-	cost = 10
+	cost = 100
 	available_against_xeno_only = TRUE
 	containertype = /obj/structure/closet/crate/supply
 
@@ -813,7 +813,7 @@ SUBSYSTEM_DEF(ru_items)
 /datum/supply_packs/weapons/t500case
 	name = "R-500 bundle"
 	contains = list(/obj/item/storage/box/t500case)
-	cost = 5
+	cost = 50
 
 ///////////////////////////////////////////////////////////////////////
 /////////////////////////  BASED ITEMS  ///////////////////////////////
