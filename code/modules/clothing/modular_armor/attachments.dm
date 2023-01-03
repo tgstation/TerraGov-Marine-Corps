@@ -187,62 +187,6 @@
 				"yellow" = "#B7B21F",
 			)
 
-/obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
-		return
-
-	if(!istype(I, /obj/item/facepaint))
-		return
-
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return
-
-	var/selection
-
-	switch(colorable_allowed)
-		if(COLOR_WHEEL_ONLY)
-			selection = "Color Wheel"
-		if(COLOR_WHEEL_ALLOWED)
-			selection = list("Color Wheel", "Preset Colors")
-			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
-		if(COLOR_WHEEL_NOT_ALLOWED)
-			selection = "Preset Colors"
-
-	if(!selection)
-		return
-
-	var/new_color
-	switch(selection)
-		if("Preset Colors")
-			var/color_selection
-			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
-			if(!color_selection)
-				return
-			if(islist(colorable_colors[color_selection]))
-				var/old_list = colorable_colors[color_selection]
-				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
-				if(!color_selection)
-					return
-				new_color = old_list[color_selection]
-			else
-				new_color = colorable_colors[color_selection]
-		if("Color Wheel")
-			new_color = input(user, "Pick a color", "Pick color") as null|color
-
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, parent ? parent : src, BUSY_ICON_GENERIC))
-		return
-
-	set_greyscale_colors(new_color)
-	paint.uses--
-	update_icon()
-	parent?.update_icon()
-
 ///Colors the armor when the parent is right clicked with facepaint.
 /obj/item/armor_module/armor/proc/handle_color(datum/source, obj/I, mob/user)
 	SIGNAL_HANDLER
