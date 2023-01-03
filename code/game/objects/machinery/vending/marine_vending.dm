@@ -765,8 +765,8 @@
 		Professionals. Better cigarettes for better people. Yes, better people."
 	vend_delay = 14
 	icon_state = "cigs"
-	icon_vend = null
-	icon_deny = null
+	icon_vend = "cigs-vend"
+	icon_deny = "cigs-deny"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -934,7 +934,7 @@
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
-	icon_deny = "lascharger-denied"
+	icon_deny = "lascharger-deny"
 	vending_flags = VENDING_RECHARGER
 	wrenchable = TRUE
 	drag_delay = FALSE
@@ -974,6 +974,8 @@
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "sustenance"
+	icon_vend = "sustenance-vend"
+	icon_deny = "sustenance-deny"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -1148,7 +1150,7 @@
 	desc = "Am automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus-vend"
-	icon_deny = "surplus-deny"
+	icon_deny = "surplus_armor-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -1251,7 +1253,7 @@
 	desc = "Am automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus-vend"
-	icon_deny = "surplus-deny"
+	icon_deny = "surplus_clothes-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -1567,6 +1569,7 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
+	icon_vend = "tool-vend"
 	isshared = TRUE
 	products = list(
 		/obj/item/stack/cable_coil = -1,
