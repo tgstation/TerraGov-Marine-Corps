@@ -12,8 +12,8 @@
 #define CAT_BEL "BELT"
 #define CAT_GLA "GLASSES"
 #define CAT_MAS "MASKS"
-#define CAT_MOD "JAEGER STORAGE MODULES"
-#define CAT_ARMMOD "JAEGER ARMOR MODULES"
+#define CAT_MOD "XENONAUTEN STORAGE MODULES"
+#define CAT_ARMMOD "XENONAUTEN ARMOR MODULES"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -216,16 +216,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -245,9 +236,9 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "black"),
 		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt harness", 0, "black"),
-		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/armor_module/module/welding = list(CAT_HEL, "Xenonauten welding module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Xenonauten binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Xenonauten Antenna module", 0, "orange"),
 		/obj/item/clothing/head/helmet/marine/robot/light = list(CAT_HEL, "Light head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
@@ -286,17 +277,9 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_engineer = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_engineer = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
-		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/robot/light = list(CAT_AMR, "Combat robot light armor plating", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/robot = list(CAT_AMR, "Combat robot medium armor plating", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/robot/heavy = list(CAT_AMR, "Combat robot heavy armor plating", 0, "black"),
@@ -313,9 +296,9 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/utility/full = list(CAT_BEL, "Tool belt", 0, "white"),
-		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/armor_module/module/welding = list(CAT_HEL, "Xenonauten welding module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Xenonauten binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Xenonauten Antenna module", 0, "orange"),
 		/obj/item/clothing/head/beret/eng = list(CAT_HEL, "Engineering beret", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/light = list(CAT_HEL, "Light head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
@@ -353,15 +336,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_medic = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_medic = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -377,9 +352,9 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/item/storage/belt/lifesaver/full = list(CAT_BEL, "Lifesaver belt", 0, "orange"),
 		/obj/item/storage/belt/rig/medical = list(CAT_BEL, "Rig belt", 0, "black"),
 		/obj/item/storage/belt/hypospraybelt = list(CAT_BEL, "Hypospray belt", 0, "black"),
-		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/armor_module/module/welding = list(CAT_HEL, "Xenonauten welding module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Xenonauten binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Xenonauten Antenna module", 0, "orange"),
 		/obj/item/clothing/head/helmet/marine/robot/light = list(CAT_HEL, "Light head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
@@ -405,15 +380,7 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_smartgunner = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_smartgunner = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -432,9 +399,9 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "orange"),
 		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "orange"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "orange"),
-		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/armor_module/module/welding = list(CAT_HEL, "Xenonauten welding module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Xenonauten binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Xenonauten Antenna module", 0, "orange"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
@@ -462,15 +429,7 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/basic_squadleader = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/vendor_bundle/basic_jaeger_squadleader = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
-		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/vendor_bundle/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
-		/obj/effect/vendor_bundle/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
-		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "orange"),
-		/obj/effect/vendor_bundle/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
-		/obj/effect/vendor_bundle/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -490,9 +449,9 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
-		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
-		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/armor_module/module/welding = list(CAT_HEL, "Xenonauten welding module", 0, "orange"),
+		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Xenonauten binoculars module", 0, "orange"),
+		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Xenonauten Antenna module", 0, "orange"),
 		/obj/item/clothing/head/helmet/marine/robot/light = list(CAT_HEL, "Light head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
