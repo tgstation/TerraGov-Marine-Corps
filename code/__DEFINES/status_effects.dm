@@ -39,11 +39,11 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
-#define STATUS_EFFECT_STIMULANT_DROP /datum/status_effect/stacking/stimulant/drop
+#define STATUS_EFFECT_STIMULANT_DROP /datum/status_effect/stimulant/drop
 
-#define STATUS_EFFECT_STIMULANT_EXILE /datum/status_effect/stacking/stimulant/exile
+#define STATUS_EFFECT_STIMULANT_EXILE /datum/status_effect/stimulant/exile
 
-#define STATUS_EFFECT_STIMULANT_CRASH /datum/status_effect/stacking/stimulant/crash
+#define STATUS_EFFECT_STIMULANT_CRASH /datum/status_effect/stimulant/crash
 
 /////////////
 // DEBUFFS //

@@ -1,16 +1,19 @@
-/datum/status_effect/stacking/stimulant
+/datum/status_effect/stimulant
 	tick_interval = 2 SECONDS
-	alert_type = null
-	max_stacks = 150
-	stack_threshold = 70
+
+
+	status_type = STATUS_EFFECT_UNIQUE //How many of the effect can be on one mob, and what happens when you try to add another
+	examine_text //If defined, this text will appear when the mob is examined - to use he, she etc. use "SUBJECTPRONOUN" and replace it in the examines themselves
+	alert_type = /atom/movable/screen/alert/status_effect //the alert thrown by the status effect, contains name and description
+	linked_alert = null //the alert itself, if it exists
 
 // ***************************************
 // *********** Drop
 // ***************************************
-/datum/status_effect/stacking/stimulant/drop
+/datum/status_effect/stimulant/drop
 	id = "drop stimulant"
 
-/datum/status_effect/stacking/stimulant/drop/on_apply()
+/datum/status_effect/stimulant/drop/on_apply()
 	if(!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
@@ -21,7 +24,7 @@
 
 	return TRUE
 
-/datum/status_effect/stacking/stimulant/drop/on_remove()
+/datum/status_effect/stimulant/drop/on_remove()
 	if(!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
@@ -33,7 +36,7 @@
 
 	return ..()
 
-/datum/status_effect/stacking/stimulant/drop/tick()
+/datum/status_effect/stimulant/drop/tick()
 	if(!ishuman(owner))
 		return FALSE
 	if(owner.stat == DEAD)
@@ -61,10 +64,10 @@
 // ***************************************
 // *********** Exile
 // ***************************************
-/datum/status_effect/stacking/stimulant/exile
+/datum/status_effect/stimulant/exile
 	id = "exile stimulant"
 
-/datum/status_effect/stacking/stimulant/exile/on_apply()
+/datum/status_effect/stimulant/exile/on_apply()
 	if(!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
@@ -77,7 +80,7 @@
 
 	return TRUE
 
-/datum/status_effect/stacking/stimulant/exile/on_remove()
+/datum/status_effect/stimulant/exile/on_remove()
 	if(!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
@@ -91,7 +94,7 @@
 
 	return ..()
 
-/datum/status_effect/stacking/stimulant/exile/tick()
+/datum/status_effect/stimulant/exile/tick()
 	if(!ishuman(owner))
 		return FALSE
 	if(owner.stat == DEAD)
@@ -109,8 +112,8 @@
 		human_owner.emote(pick("twitch","drool","stare", "scream"))
 
 		if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_DROP))
-		human_owner.adjustBrainLoss(2)
-		human_owner.adjustStaminaLoss(3)
+			human_owner.adjustBrainLoss(2)
+			human_owner.adjustStaminaLoss(3)
 		if(prob(10))
 			owner.balloon_alert(owner, "Your mind burns!")
 	if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_CRASH))
@@ -125,10 +128,10 @@
 // ***************************************
 // *********** Crash
 // ***************************************
-/datum/status_effect/stacking/stimulant/crash
+/datum/status_effect/stimulant/crash
 	id = "crash stimulant"
 
-/datum/status_effect/stacking/stimulant/crash/on_apply()
+/datum/status_effect/stimulant/crash/on_apply()
 	if(!ishuman(owner))
 		return FALSE
 
@@ -141,7 +144,7 @@
 
 	return TRUE
 
-/datum/status_effect/stacking/stimulant/crash/on_remove()
+/datum/status_effect/stimulant/crash/on_remove()
 	if(!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
@@ -154,15 +157,15 @@
 
 	return ..()
 
-/datum/status_effect/stacking/stimulant/crash/tick()
+/datum/status_effect/stimulant/crash/tick()
 	if(!ishuman(owner))
 		return FALSE
 	if(owner.stat == DEAD)
 		return FALSE
 
 	var/mob/living/carbon/human/human_owner = owner
+	var/datum/internal_organ/heart/heart = human_owner.internal_organs_by_name["heart"]
 	if(human_owner.getStaminaLoss() > -10)
-		var/datum/internal_organ/heart/heart = human_owner.internal_organs_by_name["heart"]
 		if(heart)
 			heart.take_damage(4)
 			human_owner.emote("gasp")
@@ -176,8 +179,8 @@
 		human_owner.emote(pick("twitch","giggle"))
 
 		if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_DROP))
-		human_owner.adjustBruteLoss(3)
-		human_owner.adjustStaminaLoss(3)
+			human_owner.adjustBruteLoss(3)
+			human_owner.adjustStaminaLoss(3)
 		if(prob(10))
 			owner.balloon_alert(owner, "You body churns!")
 	if(human_owner.has_status_effect(STATUS_EFFECT_STIMULANT_EXILE))
@@ -187,42 +190,3 @@
 			owner.balloon_alert(owner, "Your heart is pounding!")
 
 	return ..()
-
-
-//temp until I put this somewhere proper
-
-/obj/item/stimulant
-	icon = 'icons/obj/items/syringe.dmi'
-	icon_state = ""
-	var/datum/status_effect/stacking/stimulant/stim_type
-	var/stim_stacks = 60
-	var/stim_message
-
-/obj/item/stimulant/attack_self(mob/user)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/carbon_user = user
-	carbon_user.apply_status_effect(stim_type, stim_stacks)
-	carbon_user.balloon_alert(carbon_user, stim_message)
-	qdel(src)
-
-/obj/item/stimulant/drop
-	name = "drop booster"
-	desc = "Drop pushes the user into a heightened state of neural activity, greatly improving hand eye co-ordination but making them more sensitive to pain. Also known to cause severe paranoia and hallucinations, at higher doses."
-	icon_state = "drop"
-	stim_type = STATUS_EFFECT_STIMULANT_DROP
-	stim_message = "You can suddenly feel everything!"
-
-/obj/item/stimulant/exile
-	name = "exile booster"
-	desc = "Exile inhibits several key receptors in the brain, triggering a state of extreme aggression and dumbness to pain, allowing the user to continue operating with the most greivous of injuries. Exile does not actually prevent any damage however, and can gradually lead to neural degeneration."
-	icon_state = "exile"
-	stim_type = STATUS_EFFECT_STIMULANT_EXILE
-	stim_message = "You feel the urge for violence!"
-
-/obj/item/stimulant/crash
-	name = "crash booster"
-	desc = "Crash hyperstimulates the users nervous system and triggers a rapid metabolic acceleration. This serves to boost the users agility, although it also makes user notoriously twitchy, and can strain the heart."
-	icon_state = "crash"
-	stim_type = STATUS_EFFECT_STIMULANT_CRASH
-	stim_message = "You feel the need for speed!"
