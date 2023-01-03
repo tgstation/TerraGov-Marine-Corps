@@ -35,42 +35,6 @@
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottlebox.json'
 
-
-/*
- * MODULAR HELMETS
- */
-
-/datum/greyscale_config/modularhelmet
-	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
-/*
- * MODULAR CHESTS
- */
-/datum/greyscale_config/modularchest
-	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
-
-/*
- * MODULAR ARMS
- */
-/datum/greyscale_config/modulararms
-	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
-/*
- * MODULAR LEGS
- */
-/datum/greyscale_config/modularlegs
-	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
-
-/*
- * MODULAR VISORS
- */
-
-/datum/greyscale_config/modular_helmet_visor
-	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modular_visor.json'
-
 /datum/greyscale_config/xenogrenade
 	icon_file = 'icons/obj/items/grenade.dmi'
 	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'

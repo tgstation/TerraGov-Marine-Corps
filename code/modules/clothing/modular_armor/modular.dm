@@ -335,9 +335,6 @@
 
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 
-	greyscale_config = /datum/greyscale_config/modularhelmet
-	greyscale_colors = ARMOR_PALETTE_DESERT
-
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
