@@ -34,8 +34,6 @@
 	human_owner.clear_fullscreen("drop")
 	owner.balloon_alert(owner, "You feel the world turn grey")
 
-	return ..()
-
 /datum/status_effect/stimulant/drop/tick()
 	if(!ishuman(owner))
 		return FALSE
@@ -58,8 +56,6 @@
 		human_owner.adjustStaminaLoss(6)
 		if(prob(10))
 			owner.balloon_alert(owner, "Everything spins!")
-
-	return ..()
 
 // ***************************************
 // *********** Exile
@@ -92,8 +88,6 @@
 	human_owner.clear_fullscreen("exile")
 	owner.balloon_alert(owner, "You feel the rage fade")
 
-	return ..()
-
 /datum/status_effect/stimulant/exile/tick()
 	if(!ishuman(owner))
 		return FALSE
@@ -122,8 +116,6 @@
 		human_owner.adjustToxLoss(3)
 		if(prob(10))
 			owner.balloon_alert(owner, "You can't breathe!")
-
-	return ..()
 
 // ***************************************
 // *********** Crash
@@ -154,8 +146,6 @@
 
 	human_owner.clear_fullscreen("crash")
 	owner.balloon_alert(owner, "The world slows down")
-
-	return ..()
 
 /datum/status_effect/stimulant/crash/tick()
 	if(!ishuman(owner))
@@ -188,5 +178,3 @@
 		heart.take_damage(2)
 		if(prob(10))
 			owner.balloon_alert(owner, "Your heart is pounding!")
-
-	return ..()
