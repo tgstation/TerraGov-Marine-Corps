@@ -409,7 +409,6 @@
 	. = ..()
 	listed_products = list(
 		/obj/effect/vendor_bundle/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
-		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
@@ -803,70 +802,6 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
-	)
-
-/obj/effect/vendor_bundle/infantry
-	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine,
-		/obj/item/clothing/head/modular/marine/infantry,
-		/obj/item/armor_module/armor/chest/marine,
-		/obj/item/armor_module/armor/arms/marine,
-		/obj/item/armor_module/armor/legs/marine,
-	)
-
-/obj/effect/vendor_bundle/eva
-	desc = "A set of medium EVA pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/eva,
-		/obj/item/armor_module/armor/chest/marine/eva,
-		/obj/item/armor_module/armor/arms/marine/eva,
-		/obj/item/armor_module/armor/legs/marine/eva,
-	)
-
-/obj/effect/vendor_bundle/skirmisher
-	desc = "A set of light Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/skirmisher,
-		/obj/item/armor_module/armor/chest/marine/skirmisher,
-		/obj/item/armor_module/armor/arms/marine/skirmisher,
-		/obj/item/armor_module/armor/legs/marine/skirmisher,
-	)
-
-/obj/effect/vendor_bundle/scout
-	desc = "A set of light Scout pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/scout,
-		/obj/item/armor_module/armor/chest/marine/skirmisher/scout,
-		/obj/item/armor_module/armor/arms/marine/scout,
-		/obj/item/armor_module/armor/legs/marine/scout,
-	)
-
-/obj/effect/vendor_bundle/assault
-	desc = "A set of heavy Assault pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/assault,
-		/obj/item/armor_module/armor/chest/marine/assault,
-		/obj/item/armor_module/armor/arms/marine/assault,
-		/obj/item/armor_module/armor/legs/marine/assault,
-	)
-
-/obj/effect/vendor_bundle/eod
-	desc = "A set of heavy EOD pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/eod,
-		/obj/item/armor_module/armor/chest/marine/assault/eod,
-		/obj/item/armor_module/armor/arms/marine/eod,
-		/obj/item/armor_module/armor/legs/marine/eod,
-	)
-
-/obj/effect/vendor_bundle/helljumper
-	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/helljumper,
-		/obj/item/armor_module/armor/chest/marine/helljumper,
-		/obj/item/armor_module/armor/arms/marine/helljumper,
-		/obj/item/armor_module/armor/legs/marine/helljumper,
 	)
 
 /obj/effect/vendor_bundle/mimir
