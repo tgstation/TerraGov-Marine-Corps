@@ -1006,7 +1006,7 @@
 	name = "\improper MarineMed"
 	desc = "Marine Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "marinemed"
-	icon_vend = "marinemed-vent"
+	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = ALL_MARINE_ACCESS
