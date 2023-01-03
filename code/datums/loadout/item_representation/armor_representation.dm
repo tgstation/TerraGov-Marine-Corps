@@ -24,7 +24,7 @@
 	suit.pockets = pockets.instantiate_object(seller, suit, user)
 
 /**
- * Allow to representate a jaeger modular armor with its modules
+ * Allow to representate a modular armor with its modules
  * This is only able to representate items of type /obj/item/clothing/suit/modular
  */
 /datum/item_representation/modular_armor
@@ -37,18 +37,18 @@
 	if(!item_to_copy)
 		return
 	if(!ismodulararmor(item_to_copy))
-		CRASH("/datum/item_representation/modular_armor created from an item that is not a jaeger")
+		CRASH("/datum/item_representation/modular_armor created from an item that is not modular enough")
 	..()
-	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
-	current_variant = jaeger_to_copy.current_variant
-	for(var/key in jaeger_to_copy.attachments_by_slot)
-		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
+	var/obj/item/clothing/suit/modular/armour_to_copy = item_to_copy
+	current_variant = armour_to_copy.current_variant
+	for(var/key in armour_to_copy.attachments_by_slot)
+		if(istype(armour_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
+			attachments += new /datum/item_representation/armor_module/colored(armour_to_copy.attachments_by_slot[key])
 			continue
-		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
-			attachments += new /datum/item_representation/armor_module/storage(jaeger_to_copy.attachments_by_slot[key])
+		if(istype(armour_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
+			attachments += new /datum/item_representation/armor_module/storage(armour_to_copy.attachments_by_slot[key])
 			continue
-		attachments += new /datum/item_representation/armor_module(jaeger_to_copy.attachments_by_slot[key])
+		attachments += new /datum/item_representation/armor_module(armour_to_copy.attachments_by_slot[key])
 
 /datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
@@ -102,7 +102,7 @@
 	return tgui_data
 
 /**
- * Allow to representate an module of a jaeger
+ * Allow to representate an module of modular armor
  * This is only able to representate items of type /obj/item/armor_module
  */
 /datum/item_representation/armor_module
@@ -111,7 +111,7 @@
 	if(!item_to_copy)
 		return
 	if(!ismodulararmormodule(item_to_copy))
-		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger module")
+		CRASH("/datum/item_representation/armor_module created from an item that is not a modular armor module")
 	..()
 
 ///Attach the instantiated item on an armor
@@ -126,7 +126,7 @@
 	SEND_SIGNAL(thing_to_install_on, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT, module)
 
 /**
- * Allow to representate an armor piece of a jaeger, and to color it
+ * Allow to representate an armor piece of modular armor, and to color it
  * This is only able to representate items of type /obj/item/armor_module/armor
  */
 /datum/item_representation/armor_module/colored
@@ -137,7 +137,7 @@
 	if(!item_to_copy)
 		return
 	if(!ismodulararmorarmorpiece(item_to_copy))
-		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger armor piece")
+		CRASH("/datum/item_representation/armor_module created from an item that is not a modular armor piece")
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors
 
@@ -158,7 +158,7 @@
 	if(!item_to_copy)
 		return
 	if(!ismodulararmorstoragemodule(item_to_copy))
-		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger storage module")
+		CRASH("/datum/item_representation/armor_module created from an item that is not a modular armor storage module")
 	..()
 	var/obj/item/armor_module/storage/storage_module = item_to_copy
 	var/obj/item/storage/internal/modular/internal_storage = storage_module.storage

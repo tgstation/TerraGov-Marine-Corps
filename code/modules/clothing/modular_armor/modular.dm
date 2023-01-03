@@ -10,7 +10,7 @@
 
 */
 /obj/item/clothing/suit/modular
-	name = "Jaeger XM-02 combat exoskeleton"
+	name = "XM-02 combat exoskeleton"
 	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor"
@@ -319,8 +319,8 @@
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
-	name = "Jaeger Pattern Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	name = "BAST WT Pattern Helmet"
+	desc = "Usually paired with the XM-2 Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon_state = "medium_helmet"
 	item_state = list(
 		slot_head_str = ""

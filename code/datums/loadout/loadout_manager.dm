@@ -137,7 +137,7 @@
 				if(loadout.version < 9)
 					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
 				if(loadout.version < 10)
-					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
+					message_to_send += "<br>any modular armor pieces have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
@@ -200,7 +200,7 @@
 				if(loadout.version < 9)
 					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
 				if(loadout.version < 10)
-					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
+					message_to_send += "<br>any modular armor pieces have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))

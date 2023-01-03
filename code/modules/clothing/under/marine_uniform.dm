@@ -51,16 +51,6 @@
 /obj/item/clothing/under/marine/engineer/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
-/obj/item/clothing/under/marine/jaeger
-	name = "\improper TGMC jaeger undersuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
-	siemens_coefficient = 0.9
-	icon_state = "marine_undersuit"
-	adjustment_variants = list()
-	has_sensor = 2
-	flags_item_map_variant = null
-
-
 /obj/item/clothing/under/marine/sniper
 	name = "\improper TGMC sniper snow uniform"
 	icon_state = "s_marine_sniper"
