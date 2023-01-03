@@ -17,3 +17,13 @@
   - rscadd: Underbarreled flashlight attachment.
   Waselon:
   - rscadd: bioprinter can print biotic limbs, biotic limbs can be attached via surgery
+2023-01-03:
+  Lumipharon:
+  - qol: Warlock action buttons should reliably update immediately on state change
+  - bugfix: SL's no longer lose leadership skill from the trauma of demotion
+  Naaanii:
+  - bugfix: Mech can't be plasmacut
+  SuperSlayer0:
+  - qol: Adds descriptions for buttons used by xeno abilities
+  collinlunn:
+  - qol: The Automated Closet now auto-equips certain items when vended.
