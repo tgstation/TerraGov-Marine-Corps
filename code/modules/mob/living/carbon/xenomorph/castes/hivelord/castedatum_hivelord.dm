@@ -210,7 +210,7 @@
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/secrete_resin/ranged,
+		/datum/action/xeno_action/activable/secrete_resin/hivelord,
 		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
