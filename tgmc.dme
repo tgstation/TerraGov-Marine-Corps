@@ -622,6 +622,7 @@
 #include "code\game\objects\items\scanners.dm"
 #include "code\game\objects\items\shards.dm"
 #include "code\game\objects\items\shooting_range.dm"
+#include "code\game\objects\items\stimulants.dm"
 #include "code\game\objects\items\stock_parts.dm"
 #include "code\game\objects\items\suit_cooling.dm"
 #include "code\game\objects\items\taperecorder.dm"
