@@ -192,17 +192,17 @@ WEAPONS
 /datum/supply_packs/weapons/ags_emplacement
 	name = "AGLS-37 Mounted Automated Grenade Launcher"
 	contains = list(/obj/item/weapon/gun/standard_agls)
-	cost = 70
+	cost = 700
 
 /datum/supply_packs/weapons/ags_highexplo
 	name = "AGLS-37 AGL High Explosive Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls)
-	cost = 4
+	cost = 40
 
 /datum/supply_packs/weapons/ags_frag
 	name = "AGLS-37 AGL Fragmentation Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
-	cost = 4
+	cost = 40
 
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
