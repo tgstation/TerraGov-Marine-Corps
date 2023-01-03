@@ -4,6 +4,7 @@
 	desc = "A beefy, fast alien with sharp claws."
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Hunter Running"
+	bubble_icon = "alien"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 50

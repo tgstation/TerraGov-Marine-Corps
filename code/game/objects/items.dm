@@ -1362,3 +1362,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	else
 		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
+
+///Used by vendors to attempt to automatically equip a vended item. Attempts to put the item in the user's hand.
+/obj/item/proc/on_vend(mob/user, faction)
+	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
+		pickup(user)

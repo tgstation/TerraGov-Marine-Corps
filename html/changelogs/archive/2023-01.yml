@@ -1,0 +1,29 @@
+2023-01-01:
+  Blundir:
+  - rscadd: added new bubble icons to ai, combat droids and majoriy of xeno castes
+  Jalopkomit18:
+  - balance: Tricordazine and Dylovene pill packet capacity changed from 6->8
+  grinkgo:
+  - qol: A revolutionary heat-dispelling steel alloy now allow combat robots and those
+      with prosthetic limbs to remove powered light bulbs without fear of burning
+      their hands!
+  novaepee:
+  - imageadd: Port embryo sprite from CM
+2023-01-02:
+  Lumipharon:
+  - bugfix: fixes MOOC for real
+  Pariah919:
+  - balance: harness and unarmored leather jackets have 6 light range.
+  - rscadd: Underbarreled flashlight attachment.
+  Waselon:
+  - rscadd: bioprinter can print biotic limbs, biotic limbs can be attached via surgery
+2023-01-03:
+  Lumipharon:
+  - qol: Warlock action buttons should reliably update immediately on state change
+  - bugfix: SL's no longer lose leadership skill from the trauma of demotion
+  Naaanii:
+  - bugfix: Mech can't be plasmacut
+  SuperSlayer0:
+  - qol: Adds descriptions for buttons used by xeno abilities
+  collinlunn:
+  - qol: The Automated Closet now auto-equips certain items when vended.
