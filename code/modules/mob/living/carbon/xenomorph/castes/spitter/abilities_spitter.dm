@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/spray_acid/line
 	name = "Spray Acid"
 	action_icon_state = "spray_acid"
-	mechanics_text = "Spray a line of dangerous acid at your target."
+	desc = "Spray a line of dangerous acid at your target."
 	ability_name = "spray acid"
 	plasma_cost = 250
 	cooldown_timer = 30 SECONDS
@@ -106,7 +106,7 @@
 /datum/action/xeno_action/activable/scatter_spit
 	name = "Scatter Spit"
 	action_icon_state = "scatter_spit"
-	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
+	desc = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_name = "scatter spit"
 	plasma_cost = 280
 	cooldown_timer = 5 SECONDS

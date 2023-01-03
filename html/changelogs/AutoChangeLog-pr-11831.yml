@@ -1,4 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes:
-  - rscadd: "bioprinter can print biotic limbs, biotic limbs can be attached via surgery"

@@ -1,0 +1,4 @@
+author: "collinlunn"
+delete-after: True
+changes:
+  - qol: "The Automated Closet now auto-equips certain items when vended."
