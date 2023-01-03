@@ -6,7 +6,7 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/activable/secrete_resin/ranged
+/datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
