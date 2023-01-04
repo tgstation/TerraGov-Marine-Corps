@@ -76,10 +76,12 @@
 		switch(over_object.name)
 			if("r_hand")
 				usr.temporarilyRemoveItemFromInventory(src)
-				usr.put_in_r_hand(src)
+				if(!usr.put_in_r_hand(src))
+					usr.dropItemToGround(src)
 			if("l_hand")
 				usr.temporarilyRemoveItemFromInventory(src)
-				usr.put_in_l_hand(src)
+				if(!usr.put_in_l_hand(src))
+					usr.dropItemToGround(src)
 
 /obj/item/storage/proc/return_inv()
 
