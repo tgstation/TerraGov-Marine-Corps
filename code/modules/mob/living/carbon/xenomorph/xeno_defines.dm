@@ -121,6 +121,7 @@
 	var/acid_spray_structure_damage = 0
 
 	// *** Secrete resin *** //
+	///The maximum number of tiles to where a xeno can build.
 	var/resin_max_range = 0
 
 	// *** Pheromones *** //
