@@ -1153,6 +1153,7 @@
 			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
 			/obj/item/clothing/suit/storage/marine/cowboy = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
+			/obj/item/facepaint/green = -1,
 			/obj/item/clothing/suit/storage/marine/robot/light = -1,
 			/obj/item/clothing/suit/storage/marine/robot = -1,
 			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
