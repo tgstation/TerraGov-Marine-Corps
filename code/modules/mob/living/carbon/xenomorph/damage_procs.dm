@@ -73,9 +73,6 @@
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
 
-	if(!damage) //If we've actually taken damage, check whether we alert the hive
-		return
-
 	if(isobj(pulling))
 		stop_pulling()
 
