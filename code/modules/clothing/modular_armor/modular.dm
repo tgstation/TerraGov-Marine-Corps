@@ -46,9 +46,6 @@
 	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
 
 	attachments_by_slot = list(
-		ATTACHMENT_SLOT_CHESTPLATE,
-		ATTACHMENT_SLOT_SHOULDER,
-		ATTACHMENT_SLOT_KNEE,
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_BADGE,
@@ -167,12 +164,6 @@
 	. += "<li>[attachments_by_slot[ATTACHMENT_SLOT_MODULE]]</li>"
 	. += "</ul>"
 
-	if(attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
-		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]] installed."
-	if(attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
-		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]] installed."
-	if(attachments_by_slot[ATTACHMENT_SLOT_KNEE])
-		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_KNEE]] installed."
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
@@ -336,7 +327,6 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 
 	attachments_by_slot = list(
-		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_HEAD_MODULE,
 		ATTACHMENT_SLOT_BADGE,
@@ -494,10 +484,6 @@
 		if(storage_module.show_storage)
 			for(var/obj/item/stored AS in storage_module.storage.contents)
 				standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
-	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
-		return standing
-	standing.pixel_x = visorless_offset_x
-	standing.pixel_y = visorless_offset_y
 	return standing
 
 

@@ -70,18 +70,3 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 	UnregisterSignal(equipper, list(COMSIG_HUMAN_APPLY_OVERLAY, COMSIG_HUMAN_REMOVE_OVERLAY))
-
-/**
- * Adds an emissive greyscale overlay to the wearer as the helmets visor
- */
-/datum/element/special_clothing_overlay/modular_helmet_visor
-	///greyscale icon we fetch to make worn icon with
-	var/icon/special_icon
-
-/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, greyscale_type, color_string)
-	if(!special_icon)
-		special_icon = SSgreyscale.GetColoredIconByType(greyscale_type, list(color_string))
-	return ..()
-
-/datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon()
-	return emissive_appearance(special_icon, "")

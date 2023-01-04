@@ -40,16 +40,11 @@
 #define ATTACHMENT_SLOT_FLAMER_NOZZLE "flamer_nozzle"
 
 //Xenonauten attachment slot defines
-#define ATTACHMENT_SLOT_CHESTPLATE "chestplate"
-#define ATTACHMENT_SLOT_SHOULDER "shoulder"
-#define ATTACHMENT_SLOT_KNEE "knee"
 #define ATTACHMENT_SLOT_MODULE "module"
 #define ATTACHMENT_SLOT_STORAGE "storage"
 
 //Xenonauten helmet slot defines
 #define ATTACHMENT_SLOT_HEAD_MODULE "head_module"
-#define ATTACHMENT_SLOT_VISOR "visor"
-
 
 #define ATTACHMENT_SLOT_UNIFORM "uniform"
 #define ATTACHMENT_SLOT_UNIFORM_TIE "tie"
