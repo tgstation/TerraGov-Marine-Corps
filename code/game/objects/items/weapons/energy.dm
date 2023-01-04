@@ -58,8 +58,7 @@
 	edge = 1
 	var/base_sword_icon = "sword"
 	var/sword_color
-	var/active_force = 60
-
+	var/active_force = 40
 
 /obj/item/weapon/energy/sword/Initialize()
 	. = ..()
@@ -72,6 +71,8 @@
 	toggle_active()
 	if(active)
 		force = active_force
+		throwforce = active_force
+		penetration = 25
 		heat = 3500
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]_on"
@@ -83,6 +84,8 @@
 
 	else
 		force = initial(force)
+		throwforce = initial(throwforce)
+		penetration = 0
 		heat = 0
 		icon_state = "[base_sword_icon]"
 		w_class = WEIGHT_CLASS_SMALL
@@ -91,7 +94,7 @@
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand(0)
+		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
 
@@ -114,11 +117,18 @@
 /obj/item/weapon/energy/sword/som
 	icon_state = "som_sword"
 	base_sword_icon = "som_sword"
-	active_force = 75
+	desc = "A SOM energy sword. Designed to cut through armored plate."
+	active_force = 50
+
+/obj/item/weapon/energy/sword/som/Initialize()
+	. = ..()
+	set_light_range_power_color(2, 1, "#F5AF3E")
 
 /obj/item/weapon/energy/sword/som/attack_self(mob/living/user)
 	. = ..()
 	if(active)
 		flick("som_sword_open", src)
+		set_light_on(TRUE)
 	else
 		flick("som_sword_close", src)
+		set_light_on(FALSE)
