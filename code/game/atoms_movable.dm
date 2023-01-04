@@ -420,7 +420,7 @@
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
 //called when src is thrown into hit_atom
-/atom/movable/proc/throw_impact(atom/hit_atom, speed)
+/atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.hitby(src, speed)
@@ -435,8 +435,9 @@
 		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
-			spawn(2)
-				step(src, turn(dir, 180))
+			if(bounce)
+				spawn(2)
+					step(src, turn(dir, 180))
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)

@@ -1,4 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes:
-  - bugfix: "fix for deevolve deleting xenos if they are not at full plasma or health"

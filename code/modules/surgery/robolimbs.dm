@@ -149,7 +149,10 @@
 	target.balloon_alert_to_viewers("Success")
 
 	//Update our dear victim to have a limb again
-	affected.robotize()
+	if(istype(tool, /obj/item/robot_parts/biotic))
+		affected.biotize()
+	else
+		affected.robotize()
 
 	target.update_body()
 	target.updatehealth()
