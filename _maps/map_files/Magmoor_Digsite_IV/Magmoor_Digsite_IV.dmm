@@ -360,8 +360,8 @@
 "ama" = (
 /obj/structure/rack,
 /obj/item/camera_film{
-	pixel_y = 4;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /obj/item/camera_film{
 	pixel_x = -1
@@ -1956,8 +1956,8 @@
 /area/magmoor/landing/two)
 "brx" = (
 /obj/machinery/door/airlock/mainship/command{
-	name = "/improper Gift Shop";
-	dir = 1
+	dir = 1;
+	name = "/improper Gift Shop"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -2767,8 +2767,8 @@
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/item/shard{
-	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 7
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table/reinforced{
@@ -5022,8 +5022,8 @@
 /obj/structure/table/mainship,
 /obj/item/tool/pen/blue,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
@@ -5642,8 +5642,8 @@
 	pixel_x = -9
 	},
 /obj/item/shard{
-	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
@@ -6395,8 +6395,8 @@
 /area/magmoor/civilian/jani)
 "etJ" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Breakroom";
-	dir = 8
+	dir = 8;
+	name = "\improper Security Breakroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -7790,8 +7790,8 @@
 "fnF" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/invisible,
 /turf/open/floor/mainship/orange/full,
@@ -8499,8 +8499,8 @@
 "fLV" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/paralysis,
 /turf/open/floor/mainship/orange{
@@ -10167,8 +10167,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Breakroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Security Breakroom"
 	},
 /turf/open/floor/tile,
 /area/magmoor/security/infocenter)
@@ -12013,8 +12013,8 @@
 "itd" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/red,
 /turf/open/floor/mainship/orange{
@@ -13030,8 +13030,8 @@
 /area/magmoor/cargo/storage/secure/south)
 "jfI" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Breakroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Security Breakroom"
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
@@ -14094,11 +14094,6 @@
 "jMv" = (
 /obj/structure/closet/wardrobe/chaplain_black{
 	name = "mosque wardrobe"
-	},
-/obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest{
-	name = "tactical explosive vest";
-	desc = "Obviously someone just strapped a bomb to a marine harness and called it tactical. The light has been removed, and its switch used as the detonator.<br><span class='notice'>Control-Click to set a warcry.</span> <span class='warning'>This harness has no light, toggling it will detonate the vest!</span>";
-	bad_warcries_regex = "orbital|ORBITAL|bombardment"
 	},
 /turf/open/floor/tile/chapel{
 	dir = 4
@@ -16607,8 +16602,8 @@
 	dir = 1
 	},
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/blue,
 /obj/structure/table/mainship,
@@ -17004,8 +16999,8 @@
 "lUN" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
@@ -17148,8 +17143,8 @@
 	pixel_y = 13
 	},
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice{
-	pixel_y = 9;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 9
 	},
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/jani)
@@ -18798,8 +18793,8 @@
 "nhU" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -20360,8 +20355,8 @@
 /area/magmoor/research/rnd/lobby)
 "oqV" = (
 /obj/machinery/door/airlock/mainship/command{
-	name = "/improper Gift Shop";
-	dir = 1
+	dir = 1;
+	name = "/improper Gift Shop"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -21989,8 +21984,8 @@
 	pixel_x = -9
 	},
 /obj/item/shard{
-	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 7
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -25289,8 +25284,8 @@
 "rDB" = (
 /obj/item/tool/stamp,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/structure/table/mainship,
 /obj/item/destTagger,
@@ -26503,8 +26498,8 @@
 "svu" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
@@ -29501,8 +29496,8 @@
 	},
 /obj/structure/window/reinforced/tinted,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/blue,
 /obj/structure/table/mainship,
@@ -34931,8 +34926,8 @@
 "yeN" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/red,
 /turf/open/floor/plating/mainship,
