@@ -1,4 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes:
-  - balance: "damage_mult applies to sunder"
