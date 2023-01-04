@@ -1166,6 +1166,8 @@
 	if(host.bodytemperature < 170)
 		for(var/datum/limb/limb_to_fix AS in host.limbs)
 			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				if(!(prob(20) || limb_to_fix.brute_dam > limb_to_fix.min_broken_damage))
+					continue //Once every 10s average while active, but guaranteed if the limb'll just break again so we get maximum crunchtube.
 				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
 				break
