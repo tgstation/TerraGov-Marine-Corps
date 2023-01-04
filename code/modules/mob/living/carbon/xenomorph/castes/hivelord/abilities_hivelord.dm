@@ -6,7 +6,7 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/activable/secrete_resin/ranged
+/datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
@@ -14,14 +14,6 @@
 		/obj/structure/mineral_door/resin/thick,
 		/obj/structure/bed/nest,
 	)
-	///the maximum range of the ability
-	var/max_range = 1
-
-/datum/action/xeno_action/activable/secrete_resin/ranged/use_ability(atom/A)
-	if(get_dist(owner, A) > max_range)
-		return ..()
-
-	return build_resin(get_turf(A))
 
 // ***************************************
 // *********** Resin walker
