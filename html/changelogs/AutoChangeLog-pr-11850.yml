@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Dragging equipped storage into an occupied hand won't leave the storage stuck unavailable"
