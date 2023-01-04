@@ -46,7 +46,7 @@
 /obj/item/weapon/energy/sword
 	name = "energy sword"
 	desc = "May the force be within you."
-	icon_state = "sword0"
+	icon_state = "sword"
 	force = 10
 	throwforce = 12
 	throw_speed = 1
@@ -58,6 +58,7 @@
 	edge = 1
 	var/base_sword_icon = "sword"
 	var/sword_color
+	var/active_force = 60
 
 
 /obj/item/weapon/energy/sword/Initialize()
@@ -67,13 +68,13 @@
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
 
-/obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
+/obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	toggle_active()
-	if (active)
-		force = 30
+	if(active)
+		force = active_force
 		heat = 3500
 		if(base_sword_icon != "sword")
-			icon_state = "[base_sword_icon]1"
+			icon_state = "[base_sword_icon]_on"
 		else
 			icon_state = "sword[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
@@ -81,9 +82,9 @@
 		to_chat(user, span_notice("[src] is now active."))
 
 	else
-		force = 3
+		force = initial(force)
 		heat = 0
-		icon_state = "[base_sword_icon]0"
+		icon_state = "[base_sword_icon]"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		to_chat(user, span_notice("[src] can now be concealed."))
@@ -98,16 +99,11 @@
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"
 	desc = "Arrrr matey."
-	icon_state = "cutlass0"
+	icon_state = "cutlass"
 	base_sword_icon = "cutlass"
 
 /obj/item/weapon/energy/sword/green
 	sword_color = "green"
-
-
-/obj/item/weapon/energy/sword/green/attack_self()
-	..()
-	force = active ? 80 : 3
 
 /obj/item/weapon/energy/sword/red
 	sword_color = "red"
@@ -115,5 +111,14 @@
 /obj/item/weapon/energy/sword/blue
 	sword_color = "blue"
 
+/obj/item/weapon/energy/sword/som
+	icon_state = "som_sword"
+	base_sword_icon = "som_sword"
+	active_force = 75
 
-
+/obj/item/weapon/energy/sword/som/attack_self(mob/living/user)
+	. = ..()
+	if(active)
+		flick("som_sword_open", src)
+	else
+		flick("som_sword_close", src)
