@@ -17,3 +17,37 @@
   - rscadd: Underbarreled flashlight attachment.
   Waselon:
   - rscadd: bioprinter can print biotic limbs, biotic limbs can be attached via surgery
+2023-01-03:
+  Lumipharon:
+  - qol: Warlock action buttons should reliably update immediately on state change
+  - bugfix: SL's no longer lose leadership skill from the trauma of demotion
+  Naaanii:
+  - bugfix: Mech can't be plasmacut
+  SuperSlayer0:
+  - qol: Adds descriptions for buttons used by xeno abilities
+  collinlunn:
+  - qol: The Automated Closet now auto-equips certain items when vended.
+2023-01-04:
+  Blundir:
+  - rscadd: tons of deny and vend icon states for vendors
+  - bugfix: fixed some incorrect vendor sprites and typos
+  - imageadd: a lot of retouched vendor sprites and its states
+  QualityVan:
+  - bugfix: Dragging equipped storage into an occupied hand won't leave the storage
+      stuck unavailable
+  - balance: Cryo bone juice takes about ten seconds to heal a fracture, up from two
+  Three333Digit:
+  - bugfix: long range solder and cable
+  Waselon:
+  - balance: damage_mult applies to sunder
+  lbnesquik:
+  - qol: Created the possibility to link 2 engineer teleporters
+  - qol: Removed 'The the' issues on engineer teleporters
+  - qol: Made examining engineer teleporters with no cell tell you that fact
+  - qol: 'Engineer teleporters now have unique #123 names.'
+  - bugfix: Made engineer teleporters properly unlink when one is destroyed
+  novaepee, Shinji Nomura:
+  - imageadd: 'New Title Painting: MP is Depressed'
+  psykzz:
+  - code_imp: removed an extraneous signal
+  - refactor: hide xeno wounds when they have nothing to show

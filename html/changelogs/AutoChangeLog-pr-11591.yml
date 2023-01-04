@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscadd: "Xenos now stop drag channel when taking damage."
+  - rscadd: "Xenos now stop dragging objects when taking damage."

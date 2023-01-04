@@ -1,0 +1,6 @@
+author: "iLikeMemes"
+delete-after: True
+changes:
+  - spellcheck: "Fixed a typo in hivemind's change form ability description"
+  - code_imp: "Cleaned up some secrete resin code related to hivelord and hivemind"
+  - refactor: "Refactored secrete resin code"
