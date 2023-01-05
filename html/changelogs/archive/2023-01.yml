@@ -51,3 +51,16 @@
   psykzz:
   - code_imp: removed an extraneous signal
   - refactor: hide xeno wounds when they have nothing to show
+2023-01-05:
+  Naaanii:
+  - rscadd: Xenos now stop drag channel when taking damage.
+  - rscadd: Xenos now stop dragging objects when taking damage.
+  Waselon:
+  - rscadd: added new striped fatigues
+  iLikeMemes:
+  - spellcheck: Fixed a typo in hivemind's change form ability description
+  - code_imp: Cleaned up some secrete resin code related to hivelord and hivemind
+  - refactor: Refactored secrete resin code
+  novaepee:
+  - rscdel: Remove suicide vest in Magmoor's mosque
+  - imageadd: Add vending animation to marinemed and lasgun charger
