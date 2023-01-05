@@ -23,16 +23,15 @@
 
 /obj/item/blink_drive/update_icon()
 	. = ..()
-	item_state = icon_state
 	if(equipped_user)
 		equipped_user.update_inv_back()
 
 /obj/item/blink_drive/update_icon_state()
 	. = ..()
 	if(charges)
-		icon_state = "bluespace_pack"
+		icon_state = initial(icon_state)
 	else
-		icon_state = "bluespace_pack_e"
+		icon_state = "[initial(icon_state)]_e"
 
 /obj/item/blink_drive/equipped(mob/user, slot)
 	. = ..()

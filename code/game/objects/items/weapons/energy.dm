@@ -57,8 +57,6 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	flags_equip_slot = ITEM_SLOT_BELT
-	///The off state for the sword
-	var/base_sword_icon = "sword"
 	///Sword color, if applicable
 	var/sword_color
 	///Force of the weapon when activated
@@ -92,10 +90,7 @@
 		throwforce = active_force
 		penetration = 25
 		heat = 3500
-		if(base_sword_icon != "sword")
-			icon_state = "[base_sword_icon]_on"
-		else
-			icon_state = "sword[sword_color]"
+		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
 		RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT), .proc/switch_state)
@@ -104,7 +99,7 @@
 		throwforce = initial(throwforce)
 		penetration = 0
 		heat = 0
-		icon_state = "[base_sword_icon]"
+		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
 		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT))
@@ -113,7 +108,7 @@
 	name = "energy cutlass"
 	desc = "Arrrr matey."
 	icon_state = "cutlass"
-	base_sword_icon = "cutlass"
+	sword_color = "on"
 
 /obj/item/weapon/energy/sword/green
 	sword_color = "green"
@@ -126,9 +121,9 @@
 
 /obj/item/weapon/energy/sword/som
 	icon_state = "som_sword"
-	base_sword_icon = "som_sword"
 	desc = "A SOM energy sword. Designed to cut through armored plate."
 	active_force = 50
+	sword_color = "on"
 
 /obj/item/weapon/energy/sword/som/Initialize()
 	. = ..()
