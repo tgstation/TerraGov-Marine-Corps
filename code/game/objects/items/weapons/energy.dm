@@ -88,7 +88,7 @@
 	if(active)
 		force = active_force
 		throwforce = active_force
-		penetration = 25
+		penetration = 30
 		heat = 3500
 		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
