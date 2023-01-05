@@ -1357,10 +1357,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 0
 	pixel_shift_y = 0
 	size_mod = 2
-	wield_delay_mod = 0.2 SECONDS
-	accuracy_mod = 0.1
+	wield_delay_mod = 0.1 SECONDS
+	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -2
+	scatter_unwielded_mod =  4
+	accuracy_unwielded_mod = -0.1
 
 
 /obj/item/attachable/buildasentry
