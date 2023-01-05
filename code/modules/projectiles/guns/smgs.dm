@@ -276,6 +276,7 @@
 	caliber = CALIBER_32ACP //codex
 	max_shells = 20 //codex
 	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
@@ -283,13 +284,13 @@
 	default_ammo_type = /obj/item/ammo_magazine/smg/skorpion
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/skorpion)
 	attachable_allowed = list(
-		/obj/item/attachable/stock/foldable/skorpion,
+		/obj/item/attachable/foldable/skorpion_stock,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 	)
-	starting_attachment_types = list(/obj/item/attachable/stock/foldable/skorpion)
+	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 10, "rail_y" = 24, "under_x" = 23, "under_y" = 15, "stock_x" = -21, "stock_y" = -1)
 
 	burst_delay = 0.1 SECONDS
@@ -302,7 +303,7 @@
 	wield_delay = 0.3 SECONDS
 
 /obj/item/weapon/gun/smg/skorpion/mag_harness
-	starting_attachment_types = list(/obj/item/attachable/stock/foldable/skorpion, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.

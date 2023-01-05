@@ -944,76 +944,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A standard light stock for the Paladin-12 shotgun."
 	icon_state = "pal12stock"
 
-/obj/item/attachable/stock/foldable
-	name = "foldable stock"
-	desc = "A foldable stock. You shouldn't see this."
-	icon_state = ""
-	flags_attach_features = ATTACH_ACTIVATION
-	attachment_action_type = /datum/action/item_action/toggle
-	var/folded = FALSE
-	var/folded_x = 0
-	var/folded_y = 0
-
-/obj/item/attachable/stock/foldable/Initialize()
-	. = ..()
-	activate(turn_off = TRUE)
-
-/obj/item/attachable/stock/foldable/activate(mob/living/user, turn_off)
-	if(turn_off)
-		folded = TRUE //force it to off for dettach purposes
-	else
-		folded = !folded
-		playsound(src, 'sound/machines/click.ogg', 20, FALSE, 4)
-
-	if(folded)
-		if(master_gun)
-			apply_modifiers(master_gun, user, FALSE)
-
-		wield_delay_mod = 0
-		accuracy_mod = 0
-		recoil_mod = 0
-		scatter_mod = 0
-		pixel_shift_x = folded_x
-		pixel_shift_y = folded_y
-	else
-		wield_delay_mod = initial(wield_delay_mod)
-		accuracy_mod = initial(accuracy_mod)
-		recoil_mod = initial(recoil_mod)
-		scatter_mod = initial(scatter_mod)
-
-		pixel_shift_x = initial(pixel_shift_x)
-		pixel_shift_y = initial(pixel_shift_y)
-		if(master_gun)
-			apply_modifiers(master_gun, user, TRUE)
-
-	update_icon()
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-
-
-/obj/item/attachable/stock/foldable/update_icon_state()
-	. = ..()
-	if(folded)
-		icon_state = initial(icon_state)
-	else
-		icon_state = "[initial(icon_state)]_open"
-
-/obj/item/attachable/stock/foldable/skorpion
-	name = "Skorpion submachinegun wooden stock"
-	desc = "A foldable wire stock for a Skorpion submachinegun"
-	icon = 'icons/Marine/attachments_64.dmi'
-	icon_state = "skorpion"
-	flags_attach_features = ATTACH_ACTIVATION
-	pixel_shift_x = 0
-	pixel_shift_y = 0
-	folded_x = 0
-	folded_y = 0
-	wield_delay_mod = 0.2 SECONDS
-	accuracy_mod = 0.1
-	recoil_mod = -2
-	scatter_mod = -2
-
 /obj/item/attachable/stock/mpi_km
 	name = "MPi-KM wooden stock"
 	desc = "A metallic stock with a wooden paint coating, made to fit the MPi-KM."
@@ -1356,6 +1286,82 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 3
 	accuracy_unwielded_mod = -0.20
 	scatter_unwielded_mod = 5
+
+
+//Foldable/deployable attachments
+/obj/item/attachable/foldable
+	name = "foldable stock"
+	desc = "A foldable stock. You shouldn't see this."
+	icon_state = ""
+	slot = ATTACHMENT_SLOT_STOCK
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	attachment_action_type = /datum/action/item_action/toggle
+	///whether the attachment is currently folded or not
+	var/folded = FALSE
+	///pixel_shift_x when folded
+	var/folded_x = 0
+	///pixel_shift_y when folded
+	var/folded_y = 0
+
+/obj/item/attachable/foldable/Initialize()
+	. = ..()
+	activate(turn_off = TRUE)
+
+/obj/item/attachable/foldable/activate(mob/living/user, turn_off)
+	if(turn_off)
+		folded = TRUE //force it to off for dettach purposes
+	else
+		folded = !folded
+		playsound(src, 'sound/machines/click.ogg', 20, FALSE, 4)
+
+	if(folded)
+		if(master_gun)
+			apply_modifiers(master_gun, user, FALSE)
+
+		wield_delay_mod = 0
+		accuracy_mod = 0
+		recoil_mod = 0
+		scatter_mod = 0
+		pixel_shift_x = folded_x
+		pixel_shift_y = folded_y
+	else
+		wield_delay_mod = initial(wield_delay_mod)
+		accuracy_mod = initial(accuracy_mod)
+		recoil_mod = initial(recoil_mod)
+		scatter_mod = initial(scatter_mod)
+
+		pixel_shift_x = initial(pixel_shift_x)
+		pixel_shift_y = initial(pixel_shift_y)
+		if(master_gun)
+			apply_modifiers(master_gun, user, TRUE)
+
+	update_icon()
+	for(var/X in master_gun.actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+
+/obj/item/attachable/foldable/update_icon_state()
+	. = ..()
+	if(folded)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_open"
+
+/obj/item/attachable/foldable/skorpion_stock
+	name = "Skorpion submachinegun wooden stock"
+	desc = "A foldable wire stock for a Skorpion submachinegun"
+	icon = 'icons/Marine/attachments_64.dmi'
+	icon_state = "skorpion"
+	flags_attach_features = ATTACH_ACTIVATION
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+	size_mod = 2
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.1
+	recoil_mod = -2
+	scatter_mod = -2
+
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
