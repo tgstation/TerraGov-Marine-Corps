@@ -83,6 +83,7 @@
 	H.update_inv_l_hand()
 	H.update_inv_r_hand()
 
+///Handles all the state switch stuff
 /obj/item/weapon/energy/sword/proc/switch_state()
 	SIGNAL_HANDLER
 	toggle_active()
@@ -133,7 +134,7 @@
 	. = ..()
 	set_light_range_power_color(2, 1, "#F5AF3E")
 
-/obj/item/weapon/energy/sword/som/attack_self(mob/living/user)
+/obj/item/weapon/energy/sword/som/switch_state()
 	. = ..()
 	if(active)
 		flick("som_sword_open", src)
