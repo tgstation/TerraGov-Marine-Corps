@@ -56,8 +56,12 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
+	flags_equip_slot = ITEM_SLOT_BELT
+	///The off state for the sword
 	var/base_sword_icon = "sword"
+	///Sword color, if applicable
 	var/sword_color
+	///Force of the weapon when activated
 	var/active_force = 40
 
 /obj/item/weapon/energy/sword/Initialize()
@@ -66,8 +70,21 @@
 		sword_color = pick("red","blue","green","purple")
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
+/obj/item/weapon/energy/sword/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_ITEM_EQUIPPED_TO_SLOT)
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
+	switch_state()
+
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	H.update_inv_l_hand()
+	H.update_inv_r_hand()
+
+/obj/item/weapon/energy/sword/proc/switch_state()
+	SIGNAL_HANDLER
 	toggle_active()
 	if(active)
 		force = active_force
@@ -79,9 +96,8 @@
 		else
 			icon_state = "sword[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
-		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, span_notice("[src] is now active."))
-
+		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
+		RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT), .proc/switch_state)
 	else
 		force = initial(force)
 		throwforce = initial(throwforce)
@@ -89,15 +105,8 @@
 		heat = 0
 		icon_state = "[base_sword_icon]"
 		w_class = WEIGHT_CLASS_SMALL
-		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, span_notice("[src] can now be concealed."))
-
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
-
-
+		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
+		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT))
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"
