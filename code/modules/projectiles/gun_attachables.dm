@@ -1322,6 +1322,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		accuracy_mod = 0
 		recoil_mod = 0
 		scatter_mod = 0
+		scatter_unwielded_mod =  0
+		accuracy_unwielded_mod = 0
 		pixel_shift_x = folded_x
 		pixel_shift_y = folded_y
 	else
@@ -1329,6 +1331,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		accuracy_mod = initial(accuracy_mod)
 		recoil_mod = initial(recoil_mod)
 		scatter_mod = initial(scatter_mod)
+		scatter_unwielded_mod =  initial(scatter_unwielded_mod)
+		accuracy_unwielded_mod = initial(accuracy_unwielded_mod)
 
 		pixel_shift_x = initial(pixel_shift_x)
 		pixel_shift_y = initial(pixel_shift_y)
