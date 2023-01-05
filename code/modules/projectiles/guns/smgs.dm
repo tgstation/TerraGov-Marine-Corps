@@ -270,6 +270,7 @@
 /obj/item/weapon/gun/smg/skorpion
 	name = "\improper CZ-81 submachinegun"
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "skorpion"
 	item_state = "skorpion"
 	caliber = CALIBER_32ACP //codex
@@ -281,7 +282,15 @@
 	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/skorpion
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/skorpion)
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
+	attachable_allowed = list(
+		/obj/item/attachable/stock/foldable/skorpion,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+	)
+	starting_attachment_types = list(/obj/item/attachable/stock/foldable/skorpion)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 10, "rail_y" = 24, "under_x" = 23, "under_y" = 15, "stock_x" = -21, "stock_y" = -1)
 
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.1
@@ -293,7 +302,7 @@
 	wield_delay = 0.3 SECONDS
 
 /obj/item/weapon/gun/smg/skorpion/mag_harness
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/stock/foldable/skorpion, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.
