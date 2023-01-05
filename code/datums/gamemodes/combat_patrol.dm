@@ -203,7 +203,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
-/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
+/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags)
 	var/list/som_alive = list()
 	var/list/som_dead = list()
 	var/list/tgmc_alive = list()

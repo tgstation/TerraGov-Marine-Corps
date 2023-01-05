@@ -84,6 +84,9 @@
 	var/mob/living/carbon/human/human_user = usr
 	if(human_user.incapacitated() || human_user.lying_angle)
 		return
+	if(is_mainship_level(human_user.z))
+		human_user.balloon_alert(human_user, "can't use here")
+		return
 	if(charges <= 0)
 		human_user.balloon_alert(human_user, "no charge")
 		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
