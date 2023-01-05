@@ -1303,47 +1303,31 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///pixel_shift_y when folded
 	var/folded_y = 0
 
-/obj/item/attachable/foldable/Initialize()
+/obj/item/attachable/foldable/on_attach(attaching_item, mob/user)
 	. = ..()
-	activate(turn_off = TRUE)
+	activate()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
-	if(turn_off)
-		folded = TRUE //force it to off for dettach purposes
+	if(turn_off && folded == TRUE) //force it to off for dettach purposes
+		return
 	else
 		folded = !folded
 		playsound(src, 'sound/machines/click.ogg', 20, FALSE, 4)
 
 	if(folded)
-		if(master_gun)
-			apply_modifiers(master_gun, user, FALSE)
-
-		wield_delay_mod = 0
-		accuracy_mod = 0
-		recoil_mod = 0
-		scatter_mod = 0
-		scatter_unwielded_mod =  0
-		accuracy_unwielded_mod = 0
 		pixel_shift_x = folded_x
 		pixel_shift_y = folded_y
 	else
-		wield_delay_mod = initial(wield_delay_mod)
-		accuracy_mod = initial(accuracy_mod)
-		recoil_mod = initial(recoil_mod)
-		scatter_mod = initial(scatter_mod)
-		scatter_unwielded_mod =  initial(scatter_unwielded_mod)
-		accuracy_unwielded_mod = initial(accuracy_unwielded_mod)
-
 		pixel_shift_x = initial(pixel_shift_x)
 		pixel_shift_y = initial(pixel_shift_y)
-		if(master_gun)
-			apply_modifiers(master_gun, user, TRUE)
+
+	if(master_gun)
+		apply_modifiers(master_gun, user, !folded)
+		for(var/X in master_gun.actions)
+			var/datum/action/A = X
+			A.update_button_icon()
 
 	update_icon()
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-
 
 /obj/item/attachable/foldable/update_icon_state()
 	. = ..()
