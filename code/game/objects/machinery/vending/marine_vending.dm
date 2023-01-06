@@ -206,6 +206,15 @@
 		SEASONAL_GUNS = "Seasonal",
 	)
 
+	premium = list(/obj/item/weapon/butterfly = 10,
+		/obj/item/weapon/combat_knife/nkvd = 10,
+		/obj/item/weapon/twohanded/spear/tactical/tacticool = 5,
+		/obj/item/storage/belt/gun/pistol/m4a3/fieldcommander = 1,
+		/obj/item/weapon/gun/rifle/som_mg = 2,
+		/obj/item/storage/box/t500case = 10,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended = 10,
+	)
+
 /obj/machinery/vending/weapon/crash
 
 	products = list(
@@ -380,6 +389,15 @@
 
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
+	)
+
+	premium = list(/obj/item/weapon/butterfly = 10,
+		/obj/item/weapon/combat_knife/nkvd = 10,
+		/obj/item/weapon/twohanded/spear/tactical/tacticool = 5,
+		/obj/item/storage/belt/gun/pistol/m4a3/fieldcommander = 1,
+		/obj/item/weapon/gun/rifle/som_mg = 2,
+		/obj/item/storage/box/t500case = 10,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended = 10,
 	)
 
 /obj/machinery/vending/weapon/valhalla
