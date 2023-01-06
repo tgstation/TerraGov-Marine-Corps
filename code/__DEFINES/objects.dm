@@ -90,6 +90,11 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define PLASMACUTTER_RESIN_MULTIPLIER 2.3
 #define PLASMACUTTER_BASE_COST 1000
 
+//flags_token & tokensupport
+//used for coins and vendors, restricting specific tokens to associated vendors.
+
+#define TOKEN_GENERAL (1<<1)
+
 //MEDEVAC DEFINES
 #define MEDEVAC_COOLDOWN 1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
 #define MEDEVAC_TELE_DELAY 50 // 5 seconds

@@ -8,6 +8,7 @@
 	force = 0.0
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
+	var/flags_token = TOKEN_GENERAL
 	var/sides = 2
 
 /obj/item/coin/Initialize()
@@ -48,6 +49,7 @@
 	desc = "A special nano-fiber chip, emblazed with several minuscule tags. Rarely ever seen outside emergency maintenance situations."
 	icon_state = "coin_clown"
 
+/*
 /obj/item/coin/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -75,7 +77,7 @@
 		overlays = list()
 		string_attached = FALSE
 		to_chat(user, span_notice("You detach the string from the coin."))
-
+*/
 
 /obj/item/coin/attack_self(mob/user as mob)
 	var/result = rand(1, sides)
