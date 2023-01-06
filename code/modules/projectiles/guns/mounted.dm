@@ -58,7 +58,7 @@
 		/obj/item/ammo_magazine/tl102,
 	)
 
-	deploy_time = 4 SECONDS
+	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted
 
@@ -120,7 +120,7 @@
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_minigun)
 
-	deploy_time = 4 SECONDS
+	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted
 
@@ -157,11 +157,11 @@
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/dual_cannon)
 
-	deploy_time = 5 SECONDS
-	undeploy_time = 4 SECONDS
+	deploy_time = 6 SECONDS
+	undeploy_time = 3 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 300
+	max_integrity = 500
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
