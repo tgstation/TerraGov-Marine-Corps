@@ -743,6 +743,21 @@ ARMOR
 	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 50
 
+/datum/supply_packs/armor/imager_thermal
+	name = "Optical Thermal Vision Goggles"
+	contains = list(/obj/item/clothing/glasses/night/thermal_goggles)
+	cost = 1000
+
+/datum/supply_packs/armor/imager_nvg
+	name = "Optical NVG Goggles"
+	contains = list(/obj/item/clothing/glasses/night/nvg_goggles)
+	cost = 1000
+
+/datum/supply_packs/armor/imager_xray
+	name = "Optical X-Ray Vision Goggles"
+	contains = list(/obj/item/clothing/glasses/night/xray_goggles)
+	cost = 2000
+
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(

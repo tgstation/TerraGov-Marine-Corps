@@ -71,6 +71,36 @@
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 
+/obj/item/clothing/glasses/night/thermal_goggles
+	name = "\improper Optical thermal vision goggles"
+	desc = "An ugraded version of imagers that now detects heat signatures behind any terrain."
+	icon_state = "thermalhud"
+	item_state = "thermalhud"
+	deactive_state = "degoggles_sec"
+	darkness_view = 2
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	vision_flags = SEE_MOBS
+
+/obj/item/clothing/glasses/night/nvg_goggles
+	name = "\improper Optical night vision goggles"
+	desc = "An upgraded version of the optical imagers that can now see in darkness."
+	icon_state = "nvghud"
+	item_state = "nvghud"
+	deactive_state = "degoggles_sec"
+	darkness_view = 10
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/night/xray_goggles
+	name = "\improper Optical X-Ray vision goggles"
+	desc = "The best version of optical imagers available. These imagers provied X-ray vision that can see in darkness and through terrain."
+	icon_state = "xrayhud"
+	item_state = "xrayhud"
+	deactive_state = "degoggles_sec"
+	darkness_view = 10
+	actions_types = list(/datum/action/item_action/toggle)
+	vision_flags = SEE_TURFS|SEE_MOBS
+
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"
 	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."
