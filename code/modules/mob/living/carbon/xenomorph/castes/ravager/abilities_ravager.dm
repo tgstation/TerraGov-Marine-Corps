@@ -95,6 +95,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
 	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
@@ -109,6 +111,7 @@
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
 	X.face_atom(A)
+	activate_particles(TRUE, X.dir)
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
@@ -132,6 +135,27 @@
 	succeed_activate()
 	add_cooldown()
 
+// Handles the activation and deactivation of particles, as well as their appearance.
+/datum/action/xeno_action/activable/ravage/proc/activate_particles(boolean = FALSE, direction)
+	if(!boolean)
+		QDEL_NULL(particle_holder)
+		return
+	particle_holder = new(owner, /particles/ravager_slash)
+	addtimer(CALLBACK(src, .proc/activate_particles), 5)
+	particle_holder.particles.rotation += dir2angle(direction)
+	switch(direction) // There's no shared logic here because sprites are magical.
+		if(NORTH) // Gotta define stuff for each angle so it looks good.
+			particle_holder.particles.position = list(25, 0)
+			particle_holder.particles.velocity = list(0, 20)
+		if(EAST)
+			particle_holder.particles.position = list(15, -10)
+			particle_holder.particles.velocity = list(20, 0)
+		if(SOUTH)
+			particle_holder.particles.position = list(5, 5)
+			particle_holder.particles.velocity = list(0, -20)
+		if(WEST)
+			particle_holder.particles.position = list(20, 10)
+			particle_holder.particles.velocity = list(-20, 0)
 
 /datum/action/xeno_action/activable/ravage/ai_should_start_consider()
 	return TRUE
@@ -147,6 +171,18 @@
 		return FALSE
 	return TRUE
 
+/particles/ravager_slash
+	icon = 'icons/effects/200x200.dmi'
+	icon_state = "ravager_slash"
+	width = 600
+	height = 600
+	count = 1
+	spawning = 1
+	lifespan = 4
+	fade = 4
+	scale = 0.7
+	rotation = -160
+	friction = 0.6
 
 // ***************************************
 // *********** Endure
