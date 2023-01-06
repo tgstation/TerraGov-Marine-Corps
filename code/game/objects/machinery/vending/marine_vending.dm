@@ -171,7 +171,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
@@ -349,7 +348,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
@@ -540,7 +538,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
@@ -707,7 +704,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(

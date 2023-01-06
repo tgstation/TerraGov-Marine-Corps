@@ -35,6 +35,7 @@
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = CALIBER_10X20_CASELESS //codex
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
@@ -46,7 +47,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/stock/t19stock,
+		/obj/item/attachable/foldable/t19stock,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight/under,
@@ -58,30 +59,39 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/motiondetector,
 	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock)
 
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = -4, "stock_y" = 16)
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
-	scatter = 0
 	fire_delay = 0.15 SECONDS
+
+	scatter = 0
 	scatter_unwielded = 4
+
 	aim_slowdown = 0.15
-	burst_amount = 5
 	movement_acc_penalty_mult = 2
-	akimbo_additional_delay = 1.3
+
+	akimbo_additional_delay = 1
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
+	burst_amount = 1
+	autoburst_delay = 0.1 SECONDS
+	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
+	burst_accuracy_mult = 0.3
+	burst_scatter_mult = 25
+
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
 
 /obj/item/weapon/gun/smg/standard_machinepistol/scanner
-	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 // War is hell. Not glorious.

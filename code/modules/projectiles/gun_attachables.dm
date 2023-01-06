@@ -1011,21 +1011,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/t19stock
-	name = "\improper MP-19 machinepistol stock"
-	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the MP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	flags_attach_features = ATTACH_REMOVABLE
-	wield_delay_mod = 0.1 SECONDS
-	melee_mod = 5
-	size_mod = 1
-	icon_state = "t19stock"
-	pixel_shift_x = 39
-	pixel_shift_y = 11
-	accuracy_mod = 0.1
-	recoil_mod = -2
-	scatter_mod = -2
-	scatter_unwielded_mod = -3
-
 /obj/item/attachable/stock/t35stock
 	name = "\improper SH-35 stock"
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
@@ -1253,7 +1238,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		icon_state = "[initial(icon_state)]_open"
 
 /obj/item/attachable/foldable/skorpion_stock
-	name = "Skorpion submachinegun wooden stock"
+	name = "\improper Skorpion submachinegun wooden stock"
 	desc = "A foldable wire stock for a Skorpion submachinegun"
 	icon = 'icons/Marine/attachments_64.dmi'
 	icon_state = "skorpion"
@@ -1267,6 +1252,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = -6
 	scatter_unwielded_mod =  4
 	accuracy_unwielded_mod = -0.1
+
+/obj/item/attachable/foldable/t19stock
+	name = "\improper MP-19 machinepistol stock"
+	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the MP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	flags_attach_features = ATTACH_ACTIVATION
+	wield_delay_mod = 0.1 SECONDS
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "t19stock"
+	accuracy_mod = 0.3
+	recoil_mod = -2
+	scatter_mod = -8
+	accuracy_unwielded_mod = -0.1
+	scatter_unwielded_mod = 4
 
 /obj/item/attachable/foldable/bipod
 	name = "bipod"
