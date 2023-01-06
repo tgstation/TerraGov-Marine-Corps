@@ -483,7 +483,7 @@ WEAPONS
 /datum/supply_packs/weapons/hmg
 	name = "HMG-08 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
-	cost = 300
+	cost = 400
 
 /datum/supply_packs/weapons/hmg_ammo
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
