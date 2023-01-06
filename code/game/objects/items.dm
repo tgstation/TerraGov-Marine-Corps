@@ -1368,7 +1368,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Otherwise fall back to putting item in player's hand
 	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
 		pickup(user)
-		return
 
 ///Controls how vendors will try to equip this item. Returns whether item was sucessfully equipped
 /obj/item/proc/vendor_equip(mob/user)
