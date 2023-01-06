@@ -28,6 +28,10 @@
 		to_chat(M, span_warning("You can't enter the exosuit with other creatures attached to you!"))
 		log_message("Permission denied (Attached mobs).", LOG_MECHA)
 		return FALSE
+	var/obj/item/I = M.get_item_by_slot(SLOT_BACK)
+	if(I && istype(I, /obj/item/jetpack_marine))
+		to_chat(M, span_warning("Something on your back prevents you from entering the mech!"))
+		return FALSE
 	return ..()
 
 ///proc called when a new non-mmi/AI mob enters this mech
@@ -40,6 +44,7 @@
 	newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
 	add_fingerprint(newoccupant)
+	newoccupant.drop_all_held_items()
 	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
