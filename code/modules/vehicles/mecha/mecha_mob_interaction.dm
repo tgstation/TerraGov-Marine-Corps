@@ -40,11 +40,11 @@
 		return FALSE
 	if(ishuman(newoccupant) && !Adjacent(newoccupant))
 		return FALSE
+	newoccupant.drop_all_held_items()
 	add_occupant(newoccupant)
 	newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
 	add_fingerprint(newoccupant)
-	newoccupant.drop_all_held_items()
 	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
