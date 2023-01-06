@@ -1,0 +1,5 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - rscadd: "vending icon states for many vendors"
+  - bugfix: "fixed icon_deny and icon_vend not being used for some vendor with existing sprites"
