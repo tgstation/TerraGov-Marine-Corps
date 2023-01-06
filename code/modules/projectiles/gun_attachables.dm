@@ -885,7 +885,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock //Generic stock parent and related things.
 	name = "default stock"
 	desc = "Default parent object, not meant for use."
-	icon_state = "stock"
 	slot = ATTACHMENT_SLOT_STOCK
 	flags_attach_features = NONE //most stocks are not removable
 	size_mod = 2
@@ -894,28 +893,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/irremoveable
 	flags_attach_features = NONE
-
-/obj/item/attachable/stock/shotgun
-	name = "\improper shotgun stock"
-	desc = "A non-standard heavy wooden stock for the old V10 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	flags_attach_features = ATTACH_REMOVABLE
-	wield_delay_mod = 0.3 SECONDS
-	icon_state = "stock"
-	accuracy_mod = 0.1
-	recoil_mod = -2
-	scatter_mod = -2
-	melee_mod = 5
-
-/obj/item/attachable/stock/tactical
-	name = "\improper SH-221 tactical stock"
-	desc = "A sturdy polymer stock for the SH-221 shotgun. Supplied in limited numbers and moderately encumbering, it provides an ergonomic surface to ease perceived recoil and usability."
-	icon_state = "tactical_stock"
-	flags_attach_features = ATTACH_REMOVABLE
-	wield_delay_mod = 0.2 SECONDS
-	accuracy_mod = 0.1
-	recoil_mod = -2
-	scatter_mod = -2
-	melee_mod = 5
 
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
@@ -951,12 +928,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/irremoveable/rifle
-	name = "\improper PR-412 solid stock"
-	icon_state = "riflestock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
 /obj/item/attachable/stock/tx15
 	name = "\improper SH-15 stock"
 	desc = "The standard stock for the SH-15. Cannot be removed."
@@ -970,25 +941,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "sg29stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-
-/obj/item/attachable/stock/revolver
-	name = "\improper M44 magnum sharpshooter stock"
-	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
-	flags_attach_features = ATTACH_REMOVABLE
-	wield_delay_mod = 0.2 SECONDS
-	size_mod = 2
-	icon_state = "44stock"
-	pixel_shift_x = 35
-	pixel_shift_y = 19
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -5
-	movement_acc_penalty_mod = 0.1
-	accuracy_unwielded_mod = 0.05
-	recoil_unwielded_mod = -2
-	scatter_unwielded_mod = 1
-	melee_mod = 5
-
 
 /obj/item/attachable/stock/lasgun
 	name = "\improper M43 Sunfury lasgun stock"
