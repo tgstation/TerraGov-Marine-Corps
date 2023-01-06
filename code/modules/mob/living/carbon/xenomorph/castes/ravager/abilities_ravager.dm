@@ -108,7 +108,8 @@
 	spawning = 1
 	lifespan = 4
 	fade = 4
-	scale = 0.7
+	scale = 0.8
+	grow = -0.04
 	rotation = 90
 
 // ***************************************
@@ -211,7 +212,8 @@
 	spawning = 1
 	lifespan = 4
 	fade = 4
-	scale = 0.7
+	scale = 0.6
+	grow = -0.02
 	rotation = -160
 	friction = 0.6
 
