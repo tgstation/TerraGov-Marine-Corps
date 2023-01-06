@@ -11,6 +11,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
 	SIGNAL_HANDLER
@@ -62,8 +64,26 @@
 	succeed_activate()
 
 	X.throw_at(A, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, X)
+	activate_particles(TRUE, X.dir)
 
 	add_cooldown()
+
+/datum/action/xeno_action/activable/charge/proc/activate_particles(boolean = FALSE, direction)
+	if(!boolean)
+		QDEL_NULL(particle_holder)
+		return
+	particle_holder = new(get_turf(owner), /particles/ravager_charge)
+	addtimer(CALLBACK(src, .proc/activate_particles), 5) // Boolean is false by default, so this deactivates particles.
+	particle_holder.particles.rotation += dir2angle(direction)
+	switch(direction)
+		if(NORTH) // Gotta define stuff for each angle so it looks good.
+			particle_holder.particles.position = list(0, 10)
+		if(EAST)
+			particle_holder.particles.position = list(10, 0)
+		if(SOUTH)
+			particle_holder.particles.position = list(0, -10)
+		if(WEST)
+			particle_holder.particles.position = list(-10, 0)
 
 /datum/action/xeno_action/activable/charge/ai_should_start_consider()
 	return TRUE
@@ -79,6 +99,18 @@
 		return FALSE
 	return TRUE
 
+/particles/ravager_charge
+	icon = 'icons/effects/200x200.dmi'
+	icon_state = "ravager_charge"
+	width = 600
+	height = 600
+	count = 1
+	spawning = 1
+	lifespan = 4
+	fade = 4
+	scale = 0.7
+	rotation = 90
+	friction = 0.6
 
 // ***************************************
 // *********** Ravage
