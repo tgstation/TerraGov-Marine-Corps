@@ -922,3 +922,13 @@ SUBSYSTEM_DEF(ru_items)
 	contains = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended,/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended)
 	cost = 350
 	containertype = /obj/structure/closet/crate/ammo
+// finka nkvd
+/obj/item/weapon/combat_knife/nkvd
+	name = "\improper Finka NKVD"
+	icon_state = "upp_knife"
+	item_state = "knife"
+	desc = "Legendary Finka NKVD model 1934 with a 10-year warranty and delivery from 2 days."
+	force = 40
+	throwforce = 50
+	throw_speed = 2
+	throw_range = 8
