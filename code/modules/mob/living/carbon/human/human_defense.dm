@@ -148,7 +148,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
 
-	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, affecting)
+	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
 	var/percentage_penetration = applied_damage / damage * 100
 	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
 	var/armor_verb
@@ -177,7 +177,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	user.do_attack_animation(src, used_item = I)
 
-	apply_damage(applied_damage, I.damtype, affecting, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -300,7 +300,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return
 
 	thrown_item.set_throwing(FALSE) // Hit the limb.
-	var/applied_damage = modify_by_armor(throw_damage, MELEE, thrown_item.penetration, affecting)
+	var/applied_damage = modify_by_armor(throw_damage, MELEE, thrown_item.penetration, zone)
 
 	if(applied_damage <= 0)
 		visible_message(span_notice("\The [thrown_item] bounces on [src]'s armor!"), null, null, 5)
@@ -309,7 +309,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	visible_message(span_warning("[src] has been hit in the [affecting.display_name] by \the [thrown_item]."), null, null, 5)
 
-	apply_damage(applied_damage, thrown_item.damtype, affecting, 0, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
+	apply_damage(applied_damage, thrown_item.damtype, zone, 0, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [throw_damage])")
 
@@ -386,13 +386,15 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/stamina_damage = LERP(140, 70, dist_pct) * reduction //Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
 	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
 
 	to_chat(src, span_danger("An ear-splitting guttural roar tears through your mind and makes your world convulse!"))
 	Stun(stun_duration)
 	Paralyze(stun_duration)
-	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
+	//15 Next to queen , 3 at max distance.
+	adjust_stagger(LERP(7, 3, dist_pct) * reduction)
+	//Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
+	apply_damage(LERP(140, 70, dist_pct) * reduction, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream*

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - refactor: "refactored some damage code"
-  - bugfix: "fixed various minor damage related bugs"

@@ -56,7 +56,7 @@
 /datum/action/xeno_action/activable/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
-	mechanics_text = "Sends an enemy or an item flying. A close ranged ability."
+	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
@@ -139,7 +139,7 @@
 /datum/action/xeno_action/activable/unrelenting_force
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
-	mechanics_text = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
+	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 300
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
@@ -220,7 +220,7 @@
 /datum/action/xeno_action/activable/psychic_cure
 	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Heal and remove debuffs from a target."
+	desc = "Heal and remove debuffs from a target."
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
 	keybinding_signals = list(
@@ -281,6 +281,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
@@ -303,7 +304,7 @@
 /datum/action/xeno_action/place_acidwell
 	name = "Place acid well"
 	action_icon_state = "place_trap"
-	mechanics_text = "Place an acid well that can put out fires."
+	desc = "Place an acid well that can put out fires."
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
@@ -344,7 +345,7 @@
 /datum/action/xeno_action/activable/gravity_grenade
 	name = "Throw gravity grenade"
 	action_icon_state = "gas mine"
-	mechanics_text = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
+	desc = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
 	plasma_cost = 500
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE,

@@ -67,6 +67,7 @@
 		held_item.advance_stage()
 	if(!locate(held_item.type) in get_step(src, REVERSE_DIR(dir)))
 		icon_state = initial(icon_state)
+
 	held_item = null
 
 /obj/machinery/factory/heater
@@ -120,4 +121,4 @@
 	desc = "An industrial level compressor"
 	icon_state = "compressor_inactive"
 	processiconstate = "compressor"
-	process_type = FACTORY_MACHINE_GALVANIZER
+	process_type = FACTORY_MACHINE_COMPRESSOR

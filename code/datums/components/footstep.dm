@@ -88,7 +88,7 @@
 			TRUE,
 			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
 		return
-	if(H.shoes) //are we wearing shoes
+	if(H.shoes || isrobot(H)) //are we wearing shoes
 		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 			GLOB.shoefootstep[T.shoefootstep][2] * volume,
 			TRUE,

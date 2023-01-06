@@ -10,42 +10,49 @@ $lightHover: #eaeaea;
 ////////////////////////////////////////////////
 // Normal chat colors
 $say: #a4bad6;
-$radio: #1ecc43;
+$radio: #158c15;
 $me: #5975da;
-$ooc: #cca300;
+$ooc: #004ed8;
+$looc: #3a9696;
+$xooc: #004ed8;
+$mooc: #004ed8;
 
 ////////////////////////////////////////////////
 // Subchannel chat colors
 $ai: #d65d95;
 $binary: #1e90ff;
-$centcom: #2681a5;
-$command: #fcdf03;
-$engi: #f37746;
-$hive: #855d85;
-$medical: #57b8f0;
-$science: #c68cfa;
-$security: #dd3535;
-$syndicate: #8f4a4b;
-$service: #6ca729;
-$supply: #b88646;
+$command: #3e67b2;
+$engi: #cc631e;
+$hive: #b23593;
+$medical: #158c78;
+$science: #993599;
+$cas: #dd3535;
+$requisitions: #b88646;
+$alpha: #bf2f2f;
+$bravo: #cc8814;
+$charlie: #b259b2;
+$delta: #3656d8;
 
 $_channel_map: (
   'say': $say,
   'radio': $radio,
   'me': $me,
   'ooc': $ooc,
+  'looc': $looc,
+  'xooc': $xooc,
+  'mooc': $mooc,
   'ai': $ai,
   'binary': $binary,
-  'centcom': $centcom,
   'command': $command,
   'engi': $engi,
   'hive': $hive,
   'medical': $medical,
-  'science': $science,
-  'security': $security,
-  'syndicate': $syndicate,
-  'service': $service,
-  'supply': $supply,
+  'firesupport': $cas,
+  'requisitions': $requisitions,
+  'alpha': $alpha,
+  'bravo': $bravo,
+  'charlie': $charlie,
+  'delta': $delta,
 );
 
 $channel_keys: map.keys($_channel_map) !default;

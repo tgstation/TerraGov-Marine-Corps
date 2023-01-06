@@ -1,4 +1,0 @@
-author: "GravitronBlue"
-delete-after: True
-changes:
-  - bugfix: "Deployables covered in acid can no longer be picked up"
