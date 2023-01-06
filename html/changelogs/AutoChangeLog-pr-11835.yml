@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "POS' medbay got remodeled to use more of the empty space, direct traffic, and expanded!"
+  - rscadd: "PoS' Boxing ring is near Alamo now."
+  - rscadd: "Some addition in PoS prep in light of medbay remodeling."
