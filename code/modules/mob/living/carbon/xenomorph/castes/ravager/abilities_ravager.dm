@@ -135,13 +135,13 @@
 	succeed_activate()
 	add_cooldown()
 
-// Handles the activation and deactivation of particles, as well as their appearance.
+/// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/xeno_action/activable/ravage/proc/activate_particles(boolean = FALSE, direction)
 	if(!boolean)
 		QDEL_NULL(particle_holder)
 		return
 	particle_holder = new(owner, /particles/ravager_slash)
-	addtimer(CALLBACK(src, .proc/activate_particles), 5)
+	addtimer(CALLBACK(src, .proc/activate_particles), 5) // Boolean is false by default, so this deactivates particles.
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction) // There's no shared logic here because sprites are magical.
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
