@@ -22,10 +22,6 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/xeno_action/activable/secrete_resin/ranged/slow
-	base_wait = 1 SECONDS
-	max_range = 4
-
 /datum/action/xeno_action/activable/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
