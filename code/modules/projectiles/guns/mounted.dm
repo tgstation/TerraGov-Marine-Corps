@@ -161,7 +161,7 @@
 	undeploy_time = 3 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 500
+	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
