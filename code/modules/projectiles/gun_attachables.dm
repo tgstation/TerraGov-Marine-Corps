@@ -1159,85 +1159,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.15
 
-
-/obj/item/attachable/bipod
-	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed, but also increases weapon size."
-	icon_state = "bipod"
-	slot = ATTACHMENT_SLOT_UNDER
-	size_mod = 2
-	melee_mod = -10
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
-	attachment_action_type = /datum/action/item_action/toggle
-	///person holding the gun that this is attached to
-	var/mob/living/master_user
-	///bonus to accuracy when the bipod is deployed
-	var/deployment_accuracy_mod = 0.30
-	///bonus to recoil when the bipod is deployed
-	var/deployment_recoil_mod = -2
-	///bonus to scatter applied when the bipod is deployed
-	var/deployment_scatter_mod = -10
-	///bonus to burst scatter applied when the bipod is deployed
-	var/deployment_burst_scatter_mod = -3
-	///bonus to aim mode delay by % when the bipod is deployed
-	var/deployment_aim_mode_delay_mod = -0.5
-
-/obj/item/attachable/bipod/activate(mob/living/user, turn_off)
-	if(bipod_deployed)
-		bipod_deployed = FALSE
-		to_chat(user, span_notice("You retract [src]."))
-		master_gun.aim_slowdown -= 1
-		master_gun.wield_delay -= 0.4 SECONDS
-		master_gun.accuracy_mult -= deployment_accuracy_mod
-		master_gun.recoil -= deployment_recoil_mod
-		master_gun.scatter -= deployment_scatter_mod
-		master_gun.scatter_unwielded -= deployment_scatter_mod
-		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
-		master_gun.remove_aim_mode_fire_delay(name)
-		icon_state = "bipod"
-		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
-		UnregisterSignal(master_user, COMSIG_MOVABLE_MOVED)
-		master_user = null
-	else if(turn_off)
-		return //Was already offB
-	else
-		if(user.do_actions)
-			return
-		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
-			return
-		if(bipod_deployed)
-			return
-		bipod_deployed = TRUE
-		to_chat(user, span_notice("You deploy [src]."))
-		master_user = user
-		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
-		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
-		master_gun.aim_slowdown += 1
-		master_gun.wield_delay += 0.4 SECONDS
-		master_gun.accuracy_mult += deployment_accuracy_mod
-		master_gun.recoil += deployment_recoil_mod
-		master_gun.scatter += deployment_scatter_mod
-		master_gun.scatter_unwielded += deployment_scatter_mod
-		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
-		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * deployment_aim_mode_delay_mod)
-		icon_state = "bipod-on"
-
-	for(var/i in master_gun.actions)
-		var/datum/action/action_to_update = i
-		action_to_update.update_button_icon()
-
-	update_icon()
-	return TRUE
-
-
-/obj/item/attachable/bipod/proc/retract_bipod(datum/source)
-	SIGNAL_HANDLER
-	if(!ismob(source))
-		return
-	INVOKE_ASYNC(src, .proc/activate, source, TRUE)
-	to_chat(source, span_warning("Losing support, the bipod retracts!"))
-	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
-
 /obj/item/attachable/lace
 	name = "pistol lace"
 	desc = "A simple lace to wrap around your wrist."
@@ -1296,30 +1217,25 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_STOCK
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
+	///How long it takes to fold or unfold
+	var/deploy_time
 	///whether the attachment is currently folded or not
 	var/folded = FALSE
-	///pixel_shift_x when folded
-	var/folded_x = 0
-	///pixel_shift_y when folded
-	var/folded_y = 0
 
 /obj/item/attachable/foldable/on_attach(attaching_item, mob/user)
 	. = ..()
 	activate()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
-	if(turn_off && folded == TRUE) //force it to off for dettach purposes
-		return
-	else
-		folded = !folded
-		playsound(src, 'sound/machines/click.ogg', 20, FALSE, 4)
+	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
+		return FALSE
 
-	if(folded)
-		pixel_shift_x = folded_x
-		pixel_shift_y = folded_y
-	else
-		pixel_shift_x = initial(pixel_shift_x)
-		pixel_shift_y = initial(pixel_shift_y)
+	if(turn_off && folded == TRUE) //force it to off for dettach purposes
+		return FALSE
+
+	folded = !folded
+	playsound(src, 'sound/machines/click.ogg', 20, FALSE, 4)
+	update_icon()
 
 	if(master_gun)
 		apply_modifiers(master_gun, user, !folded)
@@ -1327,7 +1243,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			var/datum/action/A = X
 			A.update_button_icon()
 
-	update_icon()
+	return TRUE
 
 /obj/item/attachable/foldable/update_icon_state()
 	. = ..()
@@ -1346,12 +1262,49 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 0
 	size_mod = 2
 	wield_delay_mod = 0.1 SECONDS
-	accuracy_mod = 0.2
+	accuracy_mod = 0.25
 	recoil_mod = -2
-	scatter_mod = -2
+	scatter_mod = -6
 	scatter_unwielded_mod =  4
 	accuracy_unwielded_mod = -0.1
 
+/obj/item/attachable/foldable/bipod
+	name = "bipod"
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed, but also increases weapon size."
+	icon_state = "bipod"
+	slot = ATTACHMENT_SLOT_UNDER
+	size_mod = 2
+	melee_mod = -10
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	attachment_action_type = /datum/action/item_action/toggle
+	deploy_time = 1 SECONDS
+	accuracy_mod = 0.3
+	recoil_mod = -2
+	scatter_mod = -10
+	burst_scatter_mod = -3
+	aim_mode_delay_mod = -0.5
+
+/obj/item/attachable/foldable/bipod/activate(mob/living/user, turn_off)
+	. = ..()
+
+	if(user)
+		if(folded)
+			to_chat(user, span_notice("You retract [src]."))
+			UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
+			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		else
+			to_chat(user, span_notice("You deploy [src]."))
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
+			RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
+
+///Signal handler for forced undeployment
+/obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	deploy_time = 0
+	INVOKE_ASYNC(src, .proc/activate, (istype(user) ? user : source), TRUE)
+	deploy_time = initial(deploy_time)
+	to_chat(source, span_warning("Losing support, the bipod retracts!"))
+	//playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"

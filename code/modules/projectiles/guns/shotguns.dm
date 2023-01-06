@@ -344,7 +344,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -573,7 +573,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/flashlight,
