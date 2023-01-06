@@ -76,7 +76,7 @@
 	desc = "An ugraded version of imagers that now detects heat signatures behind any terrain."
 	icon_state = "thermalhud"
 	item_state = "thermalhud"
-	deactive_state = "degoggles_sec"
+	deactive_state = "degoggles_thermalhud"
 	darkness_view = 2
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
@@ -87,7 +87,7 @@
 	desc = "An upgraded version of the optical imagers that can now see in darkness."
 	icon_state = "nvghud"
 	item_state = "nvghud"
-	deactive_state = "degoggles_sec"
+	deactive_state = "degoggles_nvghud"
 	darkness_view = 10
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -96,7 +96,7 @@
 	desc = "The best version of optical imagers available. These imagers provied X-ray vision that can see in darkness and through terrain."
 	icon_state = "xrayhud"
 	item_state = "xrayhud"
-	deactive_state = "degoggles_sec"
+	deactive_state = "degoggles_xrayhud"
 	darkness_view = 10
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS|SEE_MOBS
