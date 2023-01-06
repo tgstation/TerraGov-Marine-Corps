@@ -89,7 +89,7 @@
 //-------------------------------------------------------
 //MG-2005 mounted minigun
 
-/obj/item/weapon/gun/minigun_nest
+/obj/item/weapon/gun/standard_minigun
 	name = "\improper MG-2005 mounted minigun"
 	desc = "The MG-2005 mounted minigun is a gun simple in principle, it will shoot a lot of bullets really fast and will rip through xeno hordes."
 
@@ -114,9 +114,9 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102,)
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_minigun)
 
@@ -127,10 +127,23 @@
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
+///Unmovable ship mounted version.
+/obj/item/weapon/gun/standard_minigun/nest
+	name = "\improper MG-2005 mounted minigun nest"
+	desc = "A MG-2005 mounted minigun mounted upon a small reinforced post with sandbags."
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "minigun_nest"
+
+	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+
 //-------------------------------------------------------
 //ATR-22 mounted heavy dualcannon
 
-/obj/item/weapon/gun/dual_cannon
+/obj/item/weapon/gun/standard_dual_cannon
 	name = "\improper ATR-22 mounted heavy dualcannon"
 	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
 	w_class = WEIGHT_CLASS_HUGE
@@ -151,9 +164,9 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102,)
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/dual_cannon)
 

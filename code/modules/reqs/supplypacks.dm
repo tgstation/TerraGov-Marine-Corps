@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Explosives", 
 	///If this supply pack should be buyable in HvH gamemode
 	var/available_against_xeno_only = FALSE
 
+/datum/supply_packs/proc/generate(atom/movable/location)
 	for(var/i in contains)
 		var/atom/movable/AM = i
 		new AM(location)
@@ -188,9 +189,9 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 30
 
-/datum/supply_packs/weapons/mounted_minigun
+/datum/supply_packs/weapons/minigun_emplacement
 	name = "Mounted Automatic Minigun"
-	contains = list(/obj/item/weapon/gun/minigun_nest)
+	contains = list(/obj/item/weapon/gun/standard_minigun)
 	cost = 600
 
 /datum/supply_packs/weapons/minigun_ammo
@@ -198,9 +199,9 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/heavy_minigun)
 	cost = 30
 
-/datum/supply_packs/weapons/mounted_dualcannon
+/datum/supply_packs/weapons/dualcannon_emplacement
 	name = "Mounted Dualcannon"
-	contains = list(/obj/item/weapon/gun/dual_cannon)
+	contains = list(/obj/item/weapon/gun/standard_dual_cannon)
 	cost = 700
 
 /datum/supply_packs/weapons/dc_ammo
