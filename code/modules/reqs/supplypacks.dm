@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Explosives", 
 	///If this supply pack should be buyable in HvH gamemode
 	var/available_against_xeno_only = FALSE
 
-/datum/supply_packs/proc/generate(atom/movable/location)
 	for(var/i in contains)
 		var/atom/movable/AM = i
 		new AM(location)
@@ -212,7 +211,7 @@ WEAPONS
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
-	cost = 900
+	cost = 800
 
 /datum/supply_packs/weapons/antitankgunammo
 	name = "AT-36 AP-HE Shell (x3)"
