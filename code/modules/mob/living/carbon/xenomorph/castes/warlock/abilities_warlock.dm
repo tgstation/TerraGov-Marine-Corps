@@ -525,19 +525,16 @@
 
 /datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/turf/target = get_turf(A)
-
-	if(!istype(target))
-		return
+	var/turf/target_turf = get_turf(A)
 
 	owner.balloon_alert(owner, "We channel our psychic power")
 
-	generate_particles(target, 7)
+	generate_particles(A, 7)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER) || !can_use_ability(target, FALSE))
+	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target_turf, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
@@ -548,7 +545,7 @@
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
-	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
+	projectile.fire_at(A, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
 
 	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
@@ -571,7 +568,7 @@
 
 //Generates particles and directs them towards target
 /datum/action/xeno_action/activable/psy_blast/proc/generate_particles(atom/target, velocity)
-	var/angle = Get_Angle(get_turf(owner), target) //pixel offsets effect angles
+	var/angle = Get_Angle(get_turf(owner), get_turf(target)) //pixel offsets effect angles
 	var/x_component = sin(angle) * velocity
 	var/y_component = cos(angle) * velocity
 

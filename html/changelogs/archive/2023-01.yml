@@ -64,3 +64,6 @@
   novaepee:
   - rscdel: Remove suicide vest in Magmoor's mosque
   - imageadd: Add vending animation to marinemed and lasgun charger
+2023-01-06:
+  Lumipharon:
+  - bugfix: fixed warlock lance not hitting targetted objects
