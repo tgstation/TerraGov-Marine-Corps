@@ -375,3 +375,9 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/storage/box/t500case
 	cost = 3
 	slot = SLOT_IN_BACKPACK
+
+/datum/gear/coin
+	display_name = "Coin"
+	path = /obj/item/coin/debugtoken
+	cost = 2
+	slot = SLOT_IN_BACKPACK
