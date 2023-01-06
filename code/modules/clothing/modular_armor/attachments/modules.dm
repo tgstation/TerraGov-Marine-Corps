@@ -7,20 +7,6 @@
 	desc = "You better be debugging."
 
 /**
- * Shoulder lamp strength module
- */
-/obj/item/armor_module/module/better_shoulder_lamp
-	name = "\improper Baldur Light Amplification System"
-	desc = "Designed for mounting on modular armor. Substantially increases the power output of your modular armor's mounted flashlight. Be the light in the darkness."
-	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	icon_state = "mod_lamp"
-	item_state = "mod_lamp_a"
-	slowdown = 0
-	light_mod = 4 /// The boost to armor shoulder light
-	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_lamp_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_lamp_xn")
-
-/**
  * Mini autodoc module
  */
 /obj/item/armor_module/module/valkyrie_autodoc

@@ -121,7 +121,7 @@
 
 	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
-	light_range = 4
+	light_range = 6
 	light_system = MOVABLE_LIGHT
 
 /obj/item/clothing/suit/Initialize()

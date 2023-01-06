@@ -82,7 +82,6 @@
 		/obj/item/armor_module/armor/legs/marine/helljumper,
 		/obj/item/armor_module/armor/arms/marine/helljumper,
 
-		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
@@ -104,7 +103,7 @@
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 	)
-	light_range = 5
+	light_range = 6
 
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
@@ -233,7 +232,6 @@
 	slowdown = 0.5
 
 	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
@@ -267,7 +265,7 @@
 	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/xenonauten/engineer
-	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
+	starting_attachments = list(/obj/item/armor_module/storage/engineering)
 
 /obj/item/clothing/suit/modular/xenonauten/mimir
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
@@ -809,7 +807,6 @@
 	slowdown = 0.5
 
 	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
@@ -880,7 +877,6 @@
 	permeability_coefficient = 0.5
 	gas_transfer_coefficient = 0.5
 	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
