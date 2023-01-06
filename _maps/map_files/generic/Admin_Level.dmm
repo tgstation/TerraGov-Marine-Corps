@@ -4112,7 +4112,6 @@
 /area/centcom/valhalla/secondary/entry)
 "frZ" = (
 /obj/structure/rack,
-/obj/item/clothing/glasses/night/imager_goggles,
 /obj/item/clothing/glasses/night/m56_goggles,
 /obj/item/clothing/mask/gas/swat,
 /obj/item/weapon/gun/pistol/auto9,
