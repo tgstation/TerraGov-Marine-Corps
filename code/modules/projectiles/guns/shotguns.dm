@@ -414,9 +414,12 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.75 SECONDS
+	aim_speed_modifier = 0.8
 	fire_delay = 1 SECONDS
 
 	scatter = -25
@@ -427,7 +430,7 @@
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
-	movement_acc_penalty_mult = 5
+	movement_acc_penalty_mult = 6
 
 	placed_overlay_iconstate = "wood"
 
