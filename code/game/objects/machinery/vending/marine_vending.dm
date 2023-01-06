@@ -1108,6 +1108,7 @@
 	name = "\improper MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack dispensery."
 	icon_state = "bloodvendor"
+	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
