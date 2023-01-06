@@ -101,9 +101,9 @@
 	icon_state = "ac_mag"
 	flags_magazine = NONE
 	caliber = CALIBER_20
-	max_rounds = 150
+	max_rounds = 50
 	default_ammo = /datum/ammo/bullet/dual_cannon
-	reload_delay = 5 SECONDS
+	reload_delay = 4 SECONDS
 
 /obj/item/ammo_magazine/heavy_laser
 	name = "heavy-duty weapon laser cell"
