@@ -790,7 +790,7 @@
 /datum/status_effect/drain_surge/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
-	X.soft_armor = X.soft_armor.setRating(arglist(X.xeno_caste.soft_armor)) //maturing edge case
+	X.soft_armor = X.soft_armor.setRating(arglist(X.xeno_caste.soft_armor))
 	X.visible_message(span_danger("[X]'s chitin loses its green glow..."), \
 	span_notice("Your chitinous armor loses its glow."), null, 5)
 	X.color = "#FFFFFF"
