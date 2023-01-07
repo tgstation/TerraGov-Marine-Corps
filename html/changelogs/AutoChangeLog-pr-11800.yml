@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Sticky grenades detonate after four seconds instead of one second, when fired from a grenade launcher"
