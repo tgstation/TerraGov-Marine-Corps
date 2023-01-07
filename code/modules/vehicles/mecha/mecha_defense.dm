@@ -25,16 +25,16 @@
 			gear = equip_by_category[MECHA_R_ARM]
 	if(!gear)
 		return
-	if(gear.obj_integrity <= 1)
-		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
-		playsound(src, gear.destroy_sound, 50)
-		gear.detach()
 
 	// always leave at least 1 health
 	var/damage_to_deal = min(gear.obj_integrity - 1, damage)
 	if(damage_to_deal <= 0)
 		return
 	gear.take_damage(damage_to_deal)
+
+	if(gear.obj_integrity <= 1)
+		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
+		playsound(src, gear.destroy_sound, 50)
 
 /obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration)
 	var/damage_taken = ..()
