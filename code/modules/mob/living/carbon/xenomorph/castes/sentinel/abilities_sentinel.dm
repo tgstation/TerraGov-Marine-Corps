@@ -231,11 +231,11 @@
 	greyscale_colors = "#42A500"
 	greyscale_config = /datum/greyscale_config/xenogrenade
 	det_time = 15
-	smoke_duration = 5
+	smoke_duration = 4
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/toxic
 	arm_sound = 'sound/voice/alien_yell_alt.ogg'
-	smokeradius = 4
+	smokeradius = 3
 
 /obj/item/explosive/grenade/smokebomb/xeno/update_overlays()
 	. = ..()
