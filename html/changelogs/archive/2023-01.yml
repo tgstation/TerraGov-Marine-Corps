@@ -67,3 +67,15 @@
 2023-01-06:
   Lumipharon:
   - bugfix: fixed warlock lance not hitting targetted objects
+2023-01-07:
+  Blundir:
+  - rscadd: vending icon states for many vendors
+  - bugfix: fixed icon_deny and icon_vend not being used for some vendor with existing
+      sprites
+  carlarctg:
+  - rscadd: You now spin while stop drop rolling.
+  novaepee:
+  - rscadd: POS' medbay got remodeled to use more of the empty space, direct traffic,
+      and expanded!
+  - rscadd: PoS' Boxing ring is near Alamo now.
+  - rscadd: Some addition in PoS prep in light of medbay remodeling.
