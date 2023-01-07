@@ -19,6 +19,8 @@
 	var/breathy = TRUE
 	///This covers most of the screen
 	var/hearing_range = 5
+	///Multiplier to stamina regen
+	var/stamina_regen_mult = -0.5
 
 /obj/item/clothing/mask/gas/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -35,6 +37,11 @@
 				continue
 			HM.playsound_local(user, "gasbreath", 20, 1)
 			TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
+	user.add_stamina_regen_modifier(name, stamina_regen_mult)
+
+/obj/item/clothing/mask/gas/unequipped(mob/living/carbon/human/unequipper, slot)
+	unequipper.remove_stamina_regen_modifier(name)
+	return ..()
 
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
