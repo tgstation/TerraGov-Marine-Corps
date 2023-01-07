@@ -4529,11 +4529,6 @@
 /obj/item/frame/table,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
-"cTa" = (
-/obj/structure/window/framed/colony,
-/obj/structure/window/framed/wood,
-/turf/open/floor/plating,
-/area/lv624/lazarus/bar)
 "cTi" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/indestructible,
@@ -26885,7 +26880,7 @@ cMI
 xhO
 ftO
 ssg
-cTa
+lZZ
 xLz
 nSW
 xLz
