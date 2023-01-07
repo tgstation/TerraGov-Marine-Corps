@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "eshields no longer have -5 bullet armour"
+  - balance: "HvH: eshields added as default modules for roles other than engie and medic, where another module is not present"
