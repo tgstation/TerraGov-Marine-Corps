@@ -4997,7 +4997,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aSQ" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -5744,7 +5744,7 @@
 	},
 /area/bigredv2/outside/c)
 "bfK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -6632,7 +6632,7 @@
 	},
 /area/bigredv2/outside/s)
 "bul" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -7781,7 +7781,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bIN" = (
 /obj/structure/cable,
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -8222,7 +8222,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cZm" = (
@@ -8304,10 +8304,10 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "doa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -8379,10 +8379,10 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "duN" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning,
@@ -8535,7 +8535,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "eax" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -8566,7 +8566,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "eeS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -8581,7 +8581,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "efn" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -8593,7 +8593,7 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood/gibs/core,
 /obj/effect/ai_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/freezer,
@@ -8654,7 +8654,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "emH" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /obj/item/shard,
@@ -8704,13 +8704,13 @@
 /area/space)
 "eub" = (
 /obj/structure/flora/pottedplant/ten,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "euP" = (
-/obj/effect/decal/warning_stripes/box/threeside,
+/obj/effect/turf_decal/warning_stripes/box/threeside,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "evb" = (
@@ -8762,7 +8762,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "eHC" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -8803,7 +8803,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "eKw" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "eNF" = (
@@ -8898,7 +8898,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "fax" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -9074,7 +9074,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "fxs" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -9093,7 +9093,7 @@
 /area/bigredv2/outside/c)
 "fxU" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "fzp" = (
@@ -9138,7 +9138,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "fHK" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -9327,7 +9327,7 @@
 	},
 /area/bigredv2/outside/e)
 "geY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/light/built{
@@ -9481,7 +9481,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/freezer,
@@ -9666,7 +9666,7 @@
 "gXA" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/structure/cable,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -9688,7 +9688,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "gZx" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
@@ -9717,7 +9717,7 @@
 /area/bigredv2/outside/filtration_plant)
 "hbR" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -9780,7 +9780,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "hpV" = (
-/obj/effect/decal/sandedge/corner,
+/obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -9880,7 +9880,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/light,
 /obj/structure/xenoautopsy/tank/hugger,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -9994,7 +9994,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -10230,7 +10230,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "iUL" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -10250,7 +10250,7 @@
 	},
 /area/bigredv2/outside/s)
 "iWS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/effect/decal/cleanable/mucus,
@@ -10259,7 +10259,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "iYM" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -10375,7 +10375,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "jiy" = (
 /obj/structure/xenoautopsy/tank/larva,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -10414,7 +10414,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "jnD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -10441,7 +10441,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "jrG" = (
@@ -10529,7 +10529,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "jBq" = (
 /obj/effect/landmark/excavation_site_spawner,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/freezer,
@@ -10621,7 +10621,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/structure/xenoautopsy/tank/broken,
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "jNo" = (
@@ -10644,7 +10644,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "jOV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/light{
@@ -10751,7 +10751,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -10801,7 +10801,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "kpp" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -10824,7 +10824,7 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ksu" = (
-/obj/effect/decal/sandedge/corner,
+/obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "kuf" = (
@@ -10833,7 +10833,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "kux" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -11006,7 +11006,7 @@
 "kYx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -11049,7 +11049,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "liH" = (
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "liJ" = (
@@ -11089,7 +11089,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -11242,7 +11242,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "lON" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/light{
@@ -11264,7 +11264,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
@@ -11275,7 +11275,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "lTA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/light{
@@ -11396,7 +11396,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
 "miz" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning,
@@ -11417,7 +11417,7 @@
 /area/bigredv2/outside/filtration_plant)
 "mmu" = (
 /obj/structure/table,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -11505,10 +11505,10 @@
 /area/bigredv2/outside/nw)
 "mFE" = (
 /obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreencorner{
@@ -11521,10 +11521,10 @@
 /area/bigredv2/outside/bar)
 "mGb" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
@@ -11617,7 +11617,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
 "mRs" = (
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/machinery/constructable_frame,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -11743,7 +11743,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "nln" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/light/built,
@@ -11824,7 +11824,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/marking/delivery,
@@ -11853,7 +11853,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "nzQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
@@ -11896,10 +11896,10 @@
 "nFa" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreencorner{
@@ -11911,7 +11911,7 @@
 /area/bigredv2/caves/northeast)
 "nGs" = (
 /obj/structure/cable,
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/caves/southwest)
 "nHg" = (
@@ -11973,7 +11973,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "nOC" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -12188,7 +12188,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "owc" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -12259,7 +12259,7 @@
 /area/bigredv2/caves/lambda_lab)
 "oGQ" = (
 /obj/structure/cable,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -12363,7 +12363,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "pci" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/mucus,
@@ -12701,7 +12701,7 @@
 /area/bigredv2/outside/nw)
 "qji" = (
 /obj/structure/bed/chair,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -12727,7 +12727,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "qnd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -12906,7 +12906,7 @@
 "qYv" = (
 /obj/structure/table,
 /obj/item/storage/box/nt_mre,
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -12979,7 +12979,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "rfa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/light{
@@ -13040,7 +13040,7 @@
 /area/bigredv2/caves/lambda_lab)
 "rlJ" = (
 /obj/structure/xenoautopsy/tank/alien,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -13268,7 +13268,7 @@
 	},
 /area/bigredv2/outside/s)
 "rUK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -13278,7 +13278,7 @@
 /area/bigredv2/caves/lambda_lab)
 "rVq" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -13405,7 +13405,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "svy" = (
 /obj/machinery/iv_drip,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/freezer,
@@ -13512,7 +13512,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "sRe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -13800,7 +13800,7 @@
 "tJZ" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/structure/cable,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -13838,10 +13838,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "tPh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
@@ -13896,7 +13896,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/e)
 "tXP" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /obj/structure/bed/chair{
@@ -13938,7 +13938,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ubV" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -14080,10 +14080,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "utt" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -14092,7 +14092,7 @@
 /area/bigredv2/caves/southwest)
 "uuU" = (
 /obj/structure/xenoautopsy/tank/alien,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -14178,7 +14178,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "uIc" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor,
@@ -14232,7 +14232,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "uRH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/power/apc/drained,
@@ -14257,7 +14257,7 @@
 	},
 /area/bigredv2/outside/nw)
 "uWz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "uWF" = (
@@ -14327,7 +14327,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -14367,7 +14367,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Break Room"
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/marking/delivery,
@@ -14434,7 +14434,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "vtl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -14473,7 +14473,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
 "vwS" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor,
@@ -14496,7 +14496,7 @@
 /area/bigredv2/outside/filtration_plant)
 "vzx" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14553,7 +14553,7 @@
 "vIk" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -14685,7 +14685,7 @@
 	anchored = 1;
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/box/threeside{
+/obj/effect/turf_decal/warning_stripes/box/threeside{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -14787,7 +14787,7 @@
 /area/bigredv2/outside/filtration_plant)
 "wjH" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -14884,7 +14884,7 @@
 	},
 /area/bigredv2/outside/c)
 "wwP" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /obj/item/clipboard,
@@ -14924,7 +14924,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "wDz" = (
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/machinery/constructable_frame/state_2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -14960,7 +14960,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
 "wKN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -15045,7 +15045,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "wXg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -15074,10 +15074,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "xdt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreencorner,
@@ -15118,16 +15118,16 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "xmr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "xna" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/freezer,
@@ -15265,7 +15265,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/e)
 "xIj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -15283,7 +15283,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "xJA" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -15316,7 +15316,7 @@
 	},
 /area/bigredv2/outside/s)
 "xOF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/light/built{
@@ -15345,7 +15345,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "xPU" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -15369,7 +15369,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "xTt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -15513,10 +15513,10 @@
 /area/bigredv2/outside/c)
 "ykh" = (
 /obj/structure/cable,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{

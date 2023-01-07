@@ -100,7 +100,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_labs)
 "aaP" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door_control{
 	id = "medstorage3";
 	name = "Medical Secure Shutters"
@@ -939,7 +939,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
 "agh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship/open{
@@ -1125,7 +1125,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "ahm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
@@ -3074,7 +3074,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
 "arg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -4586,7 +4586,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "ayn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -6490,7 +6490,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aLQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "aLV" = (
@@ -8995,7 +8995,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "bcc" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_south)
 "bcq" = (
@@ -9099,7 +9099,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bcX" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/warehouse/warehouse)
@@ -9506,8 +9506,8 @@
 	id = "warehouse_dam_3";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -9884,7 +9884,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/hanger)
 "bhB" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "hangar_dam_2";
@@ -10874,10 +10874,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "bnw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "bny" = (
@@ -11377,7 +11377,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/interior/caves/central_caves)
 "bqb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -11837,7 +11837,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13527,7 +13527,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bDm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -15831,7 +15831,7 @@
 	},
 /area/desert_dam/building/security/warden)
 "bQJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -15939,7 +15939,7 @@
 	id = "cargo_hangar2";
 	name = "\improper Cargo Bay Hangar"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door_control{
@@ -16396,7 +16396,7 @@
 "bUf" = (
 /obj/structure/platform_decoration,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "bUg" = (
@@ -17906,7 +17906,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "cbQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/loading)
@@ -18491,7 +18491,7 @@
 /turf/open/floor/tile/dark,
 /area/desert_dam/interior/dam_interior/office)
 "cfn" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	desc = "Heavy shutters reinforced to prevent breaches, no way to get through here.";
 	dir = 2;
@@ -18534,7 +18534,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "cfD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -18630,7 +18630,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "cgi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cargo_container/gorg{
@@ -18674,7 +18674,7 @@
 /area/desert_dam/exterior/river_mouth/southern)
 "cgu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -19013,7 +19013,7 @@
 	},
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "ciO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -19607,7 +19607,7 @@
 /turf/open/floor/bcircuit,
 /area/desert_dam/building/telecommunication)
 "cmn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -19776,7 +19776,7 @@
 	},
 /area/desert_dam/building/warehouse/breakroom)
 "cnd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -19943,7 +19943,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/warehouse/breakroom)
 "coo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/desertdam/decals/road/line{
@@ -20801,8 +20801,8 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -23683,10 +23683,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_civilian)
 "cJm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -23888,7 +23888,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "cKq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -25666,7 +25666,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_mining)
 "cWN" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
@@ -25696,7 +25696,7 @@
 "cXr" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/decal/medical_decals/doc,
+/obj/effect/turf_decal/medical_decals/doc,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "cXw" = (
@@ -25912,7 +25912,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "cZt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -26920,7 +26920,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/northern_hallway)
 "diQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -27271,7 +27271,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/loading)
 "dlW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -27566,9 +27566,9 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/desert_dam/building/water_treatment_one)
 "dqC" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "dqD" = (
@@ -27736,7 +27736,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "dst" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -27990,7 +27990,7 @@
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
 "dvb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -28942,10 +28942,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/dorms/restroom)
 "dDR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -28953,7 +28953,7 @@
 /area/desert_dam/building/warehouse/warehouse)
 "dEd" = (
 /obj/machinery/cryopod,
-/obj/effect/decal/medical_decals/cryo,
+/obj/effect/turf_decal/medical_decals/cryo,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -30112,7 +30112,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dUE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -30940,7 +30940,7 @@
 	},
 /area/desert_dam/building/warehouse/loading)
 "ehH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment/corner{
@@ -30990,7 +30990,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "ejJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
@@ -31037,10 +31037,10 @@
 /turf/open/floor/prison/whitepurple,
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
 "ekK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -31073,7 +31073,7 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "elR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -31153,7 +31153,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/medical_decals/doc/stripe,
+/obj/effect/turf_decal/medical_decals/doc/stripe,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "enG" = (
@@ -31195,7 +31195,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/lobby)
 "eoW" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "epG" = (
@@ -31280,7 +31280,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "eta" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/cellstripe{
 	dir = 8
 	},
@@ -31336,7 +31336,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "eue" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/blood/six{
 	dir = 4
 	},
@@ -31464,7 +31464,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "eyi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -31533,7 +31533,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31611,7 +31611,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "eCe" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "eCk" = (
@@ -31905,7 +31905,7 @@
 /area/desert_dam/building/medical/east_wing_hallway)
 "eMJ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/medical_decals/cryo/cell,
+/obj/effect/turf_decal/medical_decals/cryo/cell,
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
@@ -31940,7 +31940,7 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "eNY" = (
@@ -31957,8 +31957,8 @@
 	id = "warehouse_dam_3";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -31983,7 +31983,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/exterior/valley/valley_hydro)
 "eOF" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -31998,7 +31998,7 @@
 /area/desert_dam/exterior/valley/valley_telecoms)
 "ePe" = (
 /obj/structure/cable,
-/obj/effect/decal/medical_decals/doc/stripe,
+/obj/effect/turf_decal/medical_decals/doc/stripe,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "ePj" = (
@@ -32059,7 +32059,7 @@
 /turf/open/floor/prison/darkbrown/corner,
 /area/desert_dam/building/warehouse/warehouse)
 "eQW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/clothing/head/warning_cone,
@@ -32083,7 +32083,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "eRq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -32113,7 +32113,7 @@
 /area/desert_dam/exterior/valley/north_valley_dam)
 "eSf" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -32212,8 +32212,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "eUj" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "eUl" = (
@@ -32417,13 +32417,13 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "faI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "faV" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/exterior/valley/valley_crashsite)
@@ -32452,7 +32452,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "fbW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -32525,14 +32525,14 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/east_caves)
 "fdY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "feG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -32540,14 +32540,14 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
 "feN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
 "feQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -32601,7 +32601,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
 "fgp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -32654,7 +32654,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "fhf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -32773,7 +32773,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "fkd" = (
-/obj/effect/decal/medical_decals/doc,
+/obj/effect/turf_decal/medical_decals/doc,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "fke" = (
@@ -32833,7 +32833,7 @@
 	id = "cargo_hangar3";
 	name = "\improper Cargo Bay Hangar"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door_control{
@@ -32884,7 +32884,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/break_room)
 "fnP" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
@@ -33048,7 +33048,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_workshop)
 "ftK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/clothing/head/warning_cone,
@@ -33126,7 +33126,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_mining)
 "fvq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -33148,11 +33148,11 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "fvT" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "fwe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -33189,7 +33189,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/east_caves)
 "fwP" = (
-/obj/effect/decal/medical_decals/triage/edge{
+/obj/effect/turf_decal/medical_decals/triage/edge{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreen,
@@ -33389,7 +33389,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/emergency_room)
 "fCS" = (
-/obj/effect/decal/medical_decals/triage/edge{
+/obj/effect/turf_decal/medical_decals/triage/edge{
 	dir = 4
 	},
 /obj/effect/landmark/xeno_resin_door,
@@ -33622,10 +33622,10 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/central_caves)
 "fJQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/building/telecommunication)
 "fKd" = (
@@ -33642,7 +33642,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -33741,7 +33741,7 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "fNj" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -33797,7 +33797,7 @@
 	id = "warehouse_dam_2";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -33817,7 +33817,7 @@
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "fPx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -33847,14 +33847,14 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "fQv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "fQw" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -33959,7 +33959,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "fSk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -34149,10 +34149,10 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "fWK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -34267,7 +34267,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/hallway)
 "gab" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -34326,7 +34326,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "gbr" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/medical_decals/cryo/mid,
+/obj/effect/turf_decal/medical_decals/cryo/mid,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -34378,7 +34378,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "gcp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -34397,7 +34397,7 @@
 /area/desert_dam/exterior/valley/valley_northwest)
 "gdk" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
@@ -34546,7 +34546,7 @@
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_south)
 "ghT" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
@@ -34605,7 +34605,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_northwest)
 "gjv" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/west_tunnel)
@@ -34700,7 +34700,7 @@
 	},
 /area/desert_dam/building/medical/north_wing_hallway)
 "gmn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/largecrate/random/case,
@@ -34732,8 +34732,8 @@
 	id = "cargo_container"
 	},
 /obj/structure/largecrate/random,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -34820,7 +34820,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/desert_dam/exterior/valley/valley_hydro)
 "gph" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
@@ -34970,7 +34970,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/security/marshals_office)
 "guf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "gve" = (
@@ -35080,7 +35080,7 @@
 	},
 /area/desert_dam/building/telecommunication)
 "gzX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -35179,7 +35179,7 @@
 	},
 /area/desert_dam/building/security/northern_hallway)
 "gEx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -35568,7 +35568,7 @@
 /area/desert_dam/interior/dam_interior/control_room)
 "gRw" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/desert_dam/building/water_treatment_one/garage)
 "gRy" = (
@@ -35789,7 +35789,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_northwing)
 "gXQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/surgery_observation)
@@ -35910,10 +35910,10 @@
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "hbs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -35927,7 +35927,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "hbG" = (
@@ -36030,7 +36030,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_medical)
 "hfu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -36066,7 +36066,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/overseer_office)
 "hgj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -36076,7 +36076,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "hgq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -36095,7 +36095,7 @@
 /turf/closed/mineral/smooth,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "hgN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/docking_port/stationary/crashmode,
@@ -36176,7 +36176,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "hiR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
@@ -36272,7 +36272,7 @@
 /turf/open/floor/tile/white,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "hlm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -36666,7 +36666,7 @@
 	id = "warehouse_dam_3";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
@@ -36740,7 +36740,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_three)
 "hAC" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "hAD" = (
@@ -36787,8 +36787,8 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "hBq" = (
@@ -36820,7 +36820,7 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "hBP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -36875,7 +36875,7 @@
 /area/desert_dam/exterior/valley/valley_wilderness)
 "hCI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -36903,7 +36903,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "hDo" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -36934,7 +36934,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "hDP" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
@@ -37182,7 +37182,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/warehouse/breakroom)
 "hKD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -37250,7 +37250,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "hMf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -37260,7 +37260,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/cafeteria/loading)
 "hMx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -37282,7 +37282,7 @@
 /area/desert_dam/building/medical/medsecure)
 "hNo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
@@ -37385,8 +37385,8 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/overseer_office)
 "hQq" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean/two,
@@ -37490,7 +37490,7 @@
 /turf/open/floor/prison/yellow/corner,
 /area/desert_dam/building/hydroponics/hydroponics)
 "hTW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -37672,7 +37672,7 @@
 /turf/open/floor/bcircuit,
 /area/desert_dam/interior/dam_interior/smes_main)
 "hYN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -37856,7 +37856,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "idq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -38009,7 +38009,7 @@
 /turf/open/floor/cult,
 /area/desert_dam/building/security/courtroom)
 "ijH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -38104,7 +38104,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/east_caves)
 "inm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
@@ -38342,7 +38342,7 @@
 /area/desert_dam/building/warehouse/breakroom)
 "its" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/medical_decals/doc/four,
+/obj/effect/turf_decal/medical_decals/doc/four,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "itu" = (
@@ -38363,7 +38363,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 30
 	},
-/obj/effect/decal/warning_stripes{
+/obj/effect/turf_decal/warning_stripes{
 	pixel_y = 30
 	},
 /turf/open/floor/prison/darkyellow{
@@ -38371,7 +38371,7 @@
 	},
 /area/desert_dam/interior/dam_interior/control_room)
 "itU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange,
@@ -38381,7 +38381,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_mining)
 "ium" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "iuA" = (
@@ -38418,7 +38418,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "ivJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -38618,7 +38618,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_wing)
 "iBp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -38876,7 +38876,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/desert_dam/interior/east_engineering)
 "iHx" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/cellstripe{
 	dir = 4
@@ -39115,7 +39115,7 @@
 	id = "warehouse_dam_3";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "iPa" = (
@@ -39150,7 +39150,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "iQo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -39165,7 +39165,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "iQO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -39234,7 +39234,7 @@
 /obj/structure/desertdam/decals/road/edge{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -39275,7 +39275,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
 "iTC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -39291,7 +39291,7 @@
 	start_charge = 0
 	},
 /obj/structure/cable,
-/obj/effect/decal/medical_decals/doc/stripe,
+/obj/effect/turf_decal/medical_decals/doc/stripe,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "iUs" = (
@@ -39450,7 +39450,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_mining)
 "iYD" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/central_tunnel)
@@ -39566,8 +39566,8 @@
 	dir = 8;
 	id = "cargo_storage"
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/plasticflaps,
@@ -39619,7 +39619,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert_dam/interior/dam_interior/CE_office)
 "jcS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -40011,7 +40011,7 @@
 	},
 /area/desert_dam/building/substation/central)
 "jqE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -40034,7 +40034,7 @@
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "jqS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -40071,7 +40071,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
 "jsf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -40152,7 +40152,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/morgue)
 "jtK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -40182,7 +40182,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_civilian)
 "juI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -40335,7 +40335,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_isolation)
 "jzn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -40344,7 +40344,7 @@
 /area/desert_dam/exterior/valley/tradeship)
 "jzt" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean/two,
@@ -40408,7 +40408,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
 "jAO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -40539,10 +40539,10 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "jDi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/warehouse/warehouse)
@@ -40595,7 +40595,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "jEF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -40836,7 +40836,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "jLN" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/desertdam/decals/road/line{
 	dir = 8
 	},
@@ -41057,7 +41057,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "jTj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -41089,7 +41089,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "jTV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -41201,7 +41201,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "jWU" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "hangar_dam_2";
@@ -41498,7 +41498,7 @@
 /obj/machinery/light,
 /obj/structure/flora/pottedplant,
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -41519,7 +41519,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/office)
 "kfh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -41546,7 +41546,7 @@
 /turf/open/floor/grimy,
 /area/desert_dam/building/bar/bar)
 "kfz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "kfF" = (
@@ -41591,7 +41591,7 @@
 "kgM" = (
 /obj/structure/platform,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "khg" = (
@@ -41613,7 +41613,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "khP" = (
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "kih" = (
@@ -41681,7 +41681,7 @@
 /area/desert_dam/building/medical/east_wing_hallway)
 "kjO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -41773,7 +41773,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "kmh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "kmo" = (
@@ -41797,7 +41797,7 @@
 	id = "warehouse_dam_3";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "kni" = (
@@ -41847,16 +41847,16 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/chemistry)
 "knI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
 "kob" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/desert_dam/interior/dam_interior/hanger)
 "kof" = (
@@ -42076,7 +42076,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "kvc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -42223,7 +42223,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "kzj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -42425,7 +42425,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "kFH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
 	},
@@ -42886,7 +42886,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "kQT" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
 "kQY" = (
@@ -43020,7 +43020,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
 "kVi" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "kVC" = (
@@ -43151,7 +43151,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/tech_storage)
 "kYD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -43184,7 +43184,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "kZw" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/north_valley_dam)
 "kZE" = (
@@ -43408,7 +43408,7 @@
 /area/desert_dam/building/security/prison)
 "leX" = (
 /obj/structure/cable,
-/obj/effect/decal/medical_decals/doc/two,
+/obj/effect/turf_decal/medical_decals/doc/two,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "lfa" = (
@@ -43454,7 +43454,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "lhe" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
@@ -43503,7 +43503,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "liy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -43555,7 +43555,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -43638,7 +43638,7 @@
 	},
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "loG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean/two,
@@ -43724,7 +43724,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "lqA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -43791,7 +43791,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/exterior/valley/valley_hydro)
 "lsc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/clothing/head/warning_cone,
@@ -43977,7 +43977,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/interior/east_engineering)
 "lxg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -44221,10 +44221,10 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "lEK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -44232,7 +44232,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "lEZ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "lFE" = (
@@ -44418,7 +44418,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "lKP" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/cellstripe{
 	dir = 4
 	},
@@ -44457,7 +44457,7 @@
 /area/desert_dam/building/water_treatment_two/equipment)
 "lLE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -44489,7 +44489,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
 "lMF" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/medical_decals/triage,
+/obj/effect/turf_decal/medical_decals/triage,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -44511,7 +44511,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "lNY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "lOb" = (
@@ -44586,7 +44586,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/hallway)
 "lQv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -44676,7 +44676,7 @@
 /area/desert_dam/exterior/valley/valley_mining)
 "lTF" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -44813,7 +44813,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/control_room)
 "lYP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -44873,7 +44873,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "lZU" = (
-/obj/effect/decal/medical_decals/cryo/mid,
+/obj/effect/turf_decal/medical_decals/cryo/mid,
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
@@ -44956,7 +44956,7 @@
 	},
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "mdg" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
@@ -45027,7 +45027,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/desert_dam/interior/dam_interior/workshop)
 "mhK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -45059,7 +45059,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
 "miq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cargo_container/gorg{
@@ -45074,7 +45074,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "mix" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -45092,7 +45092,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "mjn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -45189,14 +45189,14 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "mlu" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "mlN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -45218,7 +45218,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "mmh" = (
@@ -45301,7 +45301,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "mpj" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "hangar_dam_2";
@@ -45570,7 +45570,7 @@
 /turf/open/floor/tile/white,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "mwI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -45822,7 +45822,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_cargo)
 "mDV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/desertdam/decals/road/line{
@@ -45920,7 +45920,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "mFP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -45941,7 +45941,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "mHR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -45972,11 +45972,11 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "mJh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
 "mJs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -46045,7 +46045,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "mLe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment/corner{
@@ -46113,7 +46113,7 @@
 	dir = 1;
 	name = "\improper Containment Lock"
 	},
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "mMy" = (
@@ -46123,7 +46123,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "mMA" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
@@ -46251,7 +46251,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_northwest)
 "mPM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -46398,7 +46398,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_east_entrance)
 "mVd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -46497,8 +46497,8 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "mWS" = (
@@ -46575,7 +46575,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "mZg" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "mZo" = (
@@ -46635,7 +46635,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "nbc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -46768,7 +46768,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
 "nfj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -46829,7 +46829,7 @@
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
 "nhW" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "nih" = (
@@ -46837,10 +46837,10 @@
 	dir = 8;
 	id = "cargo_storage"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/warehouse)
 "nil" = (
@@ -47028,7 +47028,7 @@
 /area/desert_dam/exterior/valley/valley_medical_south)
 "nna" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -47123,7 +47123,7 @@
 	},
 /area/desert_dam/exterior/valley/south_valley_dam)
 "nqO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
 "nqV" = (
@@ -47137,8 +47137,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "nra" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -47258,7 +47258,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/valley_mining)
 "nwl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -47284,7 +47284,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_medical_south)
 "nxl" = (
-/obj/effect/decal/medical_decals/doc/stripe,
+/obj/effect/turf_decal/medical_decals/doc/stripe,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "nxq" = (
@@ -47308,10 +47308,10 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/tri_trans1/alpha)
 "nyu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "nyJ" = (
@@ -47344,7 +47344,7 @@
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "nze" = (
 /obj/structure/cable,
-/obj/effect/decal/medical_decals/doc/two,
+/obj/effect/turf_decal/medical_decals/doc/two,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "nzz" = (
@@ -47364,10 +47364,10 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "nzR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "nzU" = (
@@ -47457,7 +47457,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "nBO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -47543,7 +47543,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
 "nDO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/vehicle/truck{
 	dir = 4
 	},
@@ -47556,7 +47556,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_medical_south)
 "nDR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 1;
 	id = "hangar_dam_2";
@@ -47568,7 +47568,7 @@
 /turf/open/floor/prison/plate,
 /area/desert_dam/interior/dam_interior/hanger)
 "nDT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -47645,7 +47645,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "nGT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -47948,7 +47948,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/CMO)
 "nRp" = (
-/obj/effect/decal/medical_decals/triage,
+/obj/effect/turf_decal/medical_decals/triage,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -48076,7 +48076,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "nUN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/largecrate/random/secure,
@@ -48118,7 +48118,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/water_treatment_one/hallway)
 "nWb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -48190,14 +48190,14 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_main)
 "nXz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "nXC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -48298,7 +48298,7 @@
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "nYO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -48344,7 +48344,7 @@
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
 "nZD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean/two,
@@ -48448,10 +48448,10 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "ocH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "oda" = (
@@ -48545,7 +48545,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
 "oeT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/docking_port/stationary/crashmode,
@@ -48566,7 +48566,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_medical)
 "ogy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -48875,10 +48875,10 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_east_hallway)
 "oqr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -49012,7 +49012,7 @@
 /area/desert_dam/building/water_treatment_two/hallway)
 "oup" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/medical_decals/triage/edge{
+/obj/effect/turf_decal/medical_decals/triage/edge{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen{
@@ -49419,7 +49419,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "oIe" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -49569,7 +49569,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/break_room)
 "oKY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -49687,7 +49687,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "oOz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
 "oOD" = (
@@ -49926,7 +49926,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/northern_hallway)
 "oUi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -49948,7 +49948,7 @@
 /turf/open/floor/prison/blue/corner,
 /area/desert_dam/building/administration/hallway)
 "oUK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -49962,7 +49962,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/lobby)
 "oVp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship/open{
@@ -50133,7 +50133,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/warehouse/warehouse)
 "oZm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -50295,8 +50295,8 @@
 /turf/open/floor/tile/purple/whitepurplecorner,
 /area/desert_dam/building/medical/chemistry)
 "pdJ" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -50312,7 +50312,7 @@
 /obj/machinery/door/window{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -50451,7 +50451,7 @@
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
 "pgG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -50554,7 +50554,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/southern_hallway)
 "piV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -50591,7 +50591,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "pju" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -50610,10 +50610,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_mining)
 "pkd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -50707,7 +50707,7 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "pmV" = (
 /obj/structure/desertdam/decals/road,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -50719,7 +50719,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/central_caves)
 "pnb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "pns" = (
@@ -50753,7 +50753,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "poz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -50915,7 +50915,7 @@
 /turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "psw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -51008,7 +51008,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "pvj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/clothing/head/warning_cone,
@@ -51018,7 +51018,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "pvl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -51194,7 +51194,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "pAP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -51205,10 +51205,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/valley_hydro)
 "pAS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -51328,7 +51328,7 @@
 /turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "pEI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -51634,10 +51634,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/dorms/hallway_westwing)
 "pLP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/building/telecommunication)
 "pLT" = (
@@ -51668,7 +51668,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "pML" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -51682,7 +51682,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/cafeteria/loading)
 "pMR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
@@ -51709,10 +51709,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "pND" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/exterior/valley/valley_crashsite)
@@ -51725,7 +51725,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_medical)
 "pOl" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
@@ -51754,7 +51754,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -51775,7 +51775,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "pPi" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/warehouse/warehouse)
 "pPm" = (
@@ -51856,7 +51856,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "pRq" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
@@ -51868,7 +51868,7 @@
 	},
 /area/desert_dam/building/security/prison)
 "pRI" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -52044,7 +52044,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/staffroom)
 "pVZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -52079,7 +52079,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "pWz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -52097,7 +52097,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "pXb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
@@ -52109,7 +52109,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "pXu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -52127,7 +52127,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "pYj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -52149,7 +52149,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "pYZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -52170,7 +52170,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "pZE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -52274,7 +52274,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/desert_dam/exterior/valley/valley_hydro)
 "qco" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -52307,7 +52307,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "qdp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -52370,7 +52370,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/virology_wing)
 "qeH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -52401,10 +52401,10 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/west)
 "qfn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -52620,7 +52620,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "qly" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/darkyellow{
@@ -52888,7 +52888,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "qsO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -53071,7 +53071,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "qyU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -53167,7 +53167,7 @@
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_central_south)
 "qBV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -53270,7 +53270,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "qGb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -53406,8 +53406,8 @@
 	pixel_x = 1;
 	pixel_y = 31
 	},
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "qKx" = (
@@ -53423,7 +53423,7 @@
 	},
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "qKW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cargo_container/gorg{
@@ -53434,7 +53434,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "qLp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
 "qLt" = (
@@ -53471,7 +53471,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
 "qME" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -53683,8 +53683,8 @@
 /area/desert_dam/building/medical/virology_wing)
 "qSL" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "qSO" = (
@@ -53801,7 +53801,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "qWx" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)
 "qWA" = (
@@ -53968,7 +53968,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "raM" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
@@ -54028,8 +54028,8 @@
 /obj/structure/bed/alien{
 	color = "#aba9a9"
 	},
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "rbI" = (
@@ -54059,7 +54059,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/control_room)
 "rcO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/darkyellow{
@@ -54067,7 +54067,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "rcW" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -54107,10 +54107,10 @@
 	id = "warehouse_dam_2";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -54160,7 +54160,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/equipment)
 "reQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
@@ -54198,7 +54198,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
 "rfS" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/surgery_observation)
@@ -54284,7 +54284,7 @@
 	},
 /area/desert_dam/exterior/river_mouth/southern)
 "riT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -54341,7 +54341,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/warehouse/breakroom)
 "rjG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/desertdam/decals/road/line{
@@ -54394,7 +54394,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
 "rlr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -54499,7 +54499,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "rnX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -54537,7 +54537,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/central_caves)
 "rqU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -54567,10 +54567,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "rsg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -54818,7 +54818,7 @@
 /turf/open/floor/grimy,
 /area/desert_dam/building/bar/bar)
 "rzW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -54964,10 +54964,10 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/warehouse/warehouse)
 "rFg" = (
@@ -54994,7 +54994,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
 "rHb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -55125,7 +55125,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -55302,7 +55302,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_south)
 "rPf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -55377,7 +55377,7 @@
 /obj/structure/desertdam/decals/road/line{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -55448,10 +55448,10 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "rSA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -55491,7 +55491,7 @@
 /obj/structure/desertdam/decals/road{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -55541,7 +55541,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
 "rUS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -55645,7 +55645,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/lobby)
 "rWQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/cable,
@@ -55678,7 +55678,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "rXm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -55723,10 +55723,10 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "rYk" = (
@@ -55750,7 +55750,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "rYV" = (
@@ -55761,7 +55761,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "rZf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -55881,7 +55881,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "scB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -55953,7 +55953,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -56026,7 +56026,7 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "sgp" = (
 /obj/structure/desertdam/decals/road,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -56224,7 +56224,7 @@
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
 "slv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -56368,7 +56368,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "soO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -56411,7 +56411,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "spv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -56528,10 +56528,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "ssq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -56771,7 +56771,7 @@
 /turf/open/floor/prison/darkpurple,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "sAJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -56910,7 +56910,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_workshop)
 "sFi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -57112,7 +57112,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/hallway)
 "sLI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -57187,7 +57187,7 @@
 /turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_east)
 "sPX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -57221,7 +57221,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/substation/southwest)
 "sRy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -57305,7 +57305,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "sUw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -57434,7 +57434,7 @@
 	},
 /area/desert_dam/building/warehouse/loading)
 "sYW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -57492,7 +57492,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "taT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -57535,7 +57535,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "tcx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -57581,7 +57581,7 @@
 	},
 /area/desert_dam/building/substation/northeast)
 "tdm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -57615,7 +57615,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/north_valley_dam)
 "tdU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -57633,7 +57633,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "tek" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "hangar_dam_2";
@@ -57665,7 +57665,7 @@
 /area/desert_dam/interior/dam_interior/lobby)
 "teu" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
@@ -57691,7 +57691,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "tfx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -58118,7 +58118,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "tqJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -58406,7 +58406,7 @@
 /area/desert_dam/exterior/river/riverside_south)
 "tzo" = (
 /obj/docking_port/stationary/crashmode,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -58572,7 +58572,7 @@
 	},
 /area/desert_dam/interior/east_engineering)
 "tEY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -58600,7 +58600,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "tFy" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
@@ -58827,7 +58827,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/disposals)
 "tMt" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
@@ -58876,7 +58876,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/emergency_room)
 "tNP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean/two,
@@ -58916,7 +58916,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
 "tOw" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/surgery_observation)
 "tOP" = (
@@ -58957,7 +58957,7 @@
 /turf/closed/wall/mainship,
 /area/desert_dam/exterior/valley/tradeship)
 "tQa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -58977,7 +58977,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "tQG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -59148,7 +59148,7 @@
 /area/desert_dam/exterior/valley/valley_hydro)
 "tVC" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/largecrate/lisa,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
@@ -59260,7 +59260,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/lobby)
 "tYf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -59273,7 +59273,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "tYy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -59321,7 +59321,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_mining)
 "tZF" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/vehicle/crawler/crawler_fuel,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
@@ -59331,7 +59331,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
 "tZN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -59480,10 +59480,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "ueg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -59525,16 +59525,16 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "ueW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_east)
 "ufe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -59726,7 +59726,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -59735,7 +59735,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "ukG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -59885,7 +59885,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "uqw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "uqO" = (
@@ -59923,7 +59923,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "urV" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
@@ -60094,7 +60094,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/hanger)
 "uvl" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
@@ -60212,7 +60212,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "uyc" = (
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
 "uyl" = (
@@ -60271,10 +60271,10 @@
 /turf/open/floor/prison/blue,
 /area/desert_dam/building/administration/hallway)
 "uAI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
@@ -60487,10 +60487,10 @@
 	id = "warehouse_dam_2";
 	name = "\improper Warehouse Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -60637,7 +60637,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "uLj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -60762,10 +60762,10 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "uOq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -60797,7 +60797,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "uOX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -60814,7 +60814,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/loading)
 "uPv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -60913,7 +60913,7 @@
 /area/desert_dam/building/water_treatment_one/hallway)
 "uTg" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -61010,7 +61010,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "uWm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -61141,7 +61141,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/break_room)
 "vag" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -61372,7 +61372,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "vhi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/desertdam/decals/road/line{
@@ -61417,7 +61417,7 @@
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "vis" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -61548,7 +61548,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/armory)
 "vlK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -61589,7 +61589,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "vmD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship/open{
@@ -61617,7 +61617,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "vno" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -61655,7 +61655,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/desert_dam/interior/east_engineering)
 "voe" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -61665,7 +61665,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "voo" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "voI" = (
@@ -61742,7 +61742,7 @@
 /turf/open/floor/plating/catwalk,
 /area/desert_dam/exterior/river/riverside_south)
 "vrV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -61824,13 +61824,13 @@
 /obj/structure/desertdam/decals/road/line{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "vuC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/open{
@@ -61885,7 +61885,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/east_wing_hallway)
 "vvW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -61946,7 +61946,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "vxm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -62014,7 +62014,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/medical_decals/triage,
+/obj/effect/turf_decal/medical_decals/triage,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/east_wing_hallway)
 "vzh" = (
@@ -62060,7 +62060,7 @@
 /area/desert_dam/building/telecommunication)
 "vBg" = (
 /obj/structure/cable,
-/obj/effect/decal/medical_decals/doc/three,
+/obj/effect/turf_decal/medical_decals/doc/three,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
 "vBp" = (
@@ -62110,7 +62110,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "vCa" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
@@ -62230,7 +62230,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
 "vFU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -62287,7 +62287,7 @@
 	},
 /area/desert_dam/interior/caves/temple)
 "vHb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -62444,7 +62444,7 @@
 	},
 /area/desert_dam/interior/dam_interior/CE_office)
 "vLl" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)
@@ -62558,7 +62558,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "vPj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -62746,7 +62746,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "vVs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -62972,7 +62972,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
 "wan" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/loading)
 "wav" = (
@@ -63118,7 +63118,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/treatment_room)
 "wdE" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
@@ -63284,7 +63284,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/control_room)
 "whk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/clothing/head/warning_cone,
@@ -63369,7 +63369,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "wiS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cargo_container/gorg{
@@ -63485,7 +63485,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/southern_hallway)
 "wmA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -63573,7 +63573,7 @@
 /area/desert_dam/building/administration/overseer_office)
 "wqe" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -63585,7 +63585,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "wqq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -63746,7 +63746,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "wvg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -63761,7 +63761,7 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "wvt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cargo_container/gorg{
@@ -63794,7 +63794,7 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "wxq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -63883,10 +63883,10 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/warehouse)
@@ -63898,7 +63898,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "wCc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/docking_port/stationary/crashmode,
@@ -63971,7 +63971,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "wDp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/desertdam/decals/road/line{
@@ -63981,7 +63981,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "wDu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -63998,7 +63998,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "wDJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -64016,14 +64016,14 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/hanger)
 "wDR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/loading)
 "wDT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/prison/plate,
@@ -64038,7 +64038,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_wing)
 "wEO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "wES" = (
@@ -64057,7 +64057,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
 "wFp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
 	},
@@ -64098,7 +64098,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "wGp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)
 "wGv" = (
@@ -64175,7 +64175,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_main)
 "wJk" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "wJl" = (
@@ -64231,7 +64231,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "wKw" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
@@ -64261,7 +64261,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/equipment)
 "wLC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/prison/plate,
@@ -64336,7 +64336,7 @@
 /turf/open/floor/wood/broken,
 /area/desert_dam/interior/caves/central_caves)
 "wOi" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/building/telecommunication)
 "wOt" = (
@@ -64499,7 +64499,7 @@
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "wSf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -64574,7 +64574,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "wTu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -64582,7 +64582,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "wTx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -64666,7 +64666,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/central_caves)
 "wUy" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -64746,8 +64746,8 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "wXk" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -64787,10 +64787,10 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "wZo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
 "wZp" = (
@@ -64798,7 +64798,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "wZq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -64872,7 +64872,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "xbs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -64950,7 +64950,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_medical_south)
 "xer" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "warehouse_dam_2";
@@ -64993,7 +64993,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "xeS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -65005,7 +65005,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "xeV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -65038,7 +65038,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/chemistry)
 "xgz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/open{
@@ -65231,7 +65231,7 @@
 	},
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "xmO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -65295,7 +65295,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "xoe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -65357,7 +65357,7 @@
 	},
 /area/desert_dam/interior/dam_interior/tech_storage)
 "xpI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -65392,7 +65392,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_medical)
 "xrb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/desert_dam/interior/dam_interior/hanger)
@@ -65488,7 +65488,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "xuG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -65624,7 +65624,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/medical_decals/doc,
+/obj/effect/turf_decal/medical_decals/doc,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -65677,7 +65677,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_northwing)
 "xAs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -65707,7 +65707,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/armory)
 "xAH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -65753,7 +65753,7 @@
 "xBi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/medical_decals/cryo/cell/two,
+/obj/effect/turf_decal/medical_decals/cryo/cell/two,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -65804,7 +65804,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_main)
 "xCz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/clothing/head/warning_cone,
@@ -65828,8 +65828,8 @@
 /area/desert_dam/exterior/river/riverside_south)
 "xDC" = (
 /obj/effect/ai_node,
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "xDU" = (
@@ -65899,7 +65899,7 @@
 "xFF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
@@ -65956,7 +65956,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "xHh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
@@ -66072,7 +66072,7 @@
 /area/desert_dam/interior/dam_interior/hanger)
 "xKd" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/desertdam/decals/road/line{
@@ -66258,14 +66258,14 @@
 	id = "cargo_storage"
 	},
 /obj/structure/largecrate/random,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/warehouse)
 "xPY" = (
-/obj/effect/decal/medical_decals/triage/bottom,
+/obj/effect/turf_decal/medical_decals/triage/bottom,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
@@ -66440,7 +66440,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_backup)
 "xVv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -66504,7 +66504,7 @@
 "xWR" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -66529,7 +66529,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/interior/caves/temple)
 "xXR" = (
@@ -66548,7 +66548,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "xXV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -66588,7 +66588,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "xZH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
@@ -66658,7 +66658,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/dorms/pool)
 "ycq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -66814,7 +66814,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "yfC" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)

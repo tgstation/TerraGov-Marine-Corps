@@ -1571,7 +1571,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "MB" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,

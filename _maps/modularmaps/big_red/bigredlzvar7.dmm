@@ -1576,7 +1576,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "KV" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
@@ -1737,7 +1737,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Pj" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
