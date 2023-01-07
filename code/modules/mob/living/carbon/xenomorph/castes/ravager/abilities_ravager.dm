@@ -63,15 +63,17 @@
 	X.usedPounce = TRUE //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
+	var/particle_angle = Get_Angle(get_turf(X), get_turf(A)) //
 	X.throw_at(A, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, X)
-	activate_particles(X.dir)
+	activate_particles(X.dir, particle_angle)
 
 	add_cooldown()
 
-/datum/action/xeno_action/activable/charge/proc/activate_particles(direction)
-	QDEL_NULL_IN(src, particle_holder, 5)
+/// Handles the activation and deactivation of particles, as well as their appearance.
+/datum/action/xeno_action/activable/charge/proc/activate_particles(direction, rotation)
 	particle_holder = new(get_turf(owner), /particles/ravager_charge)
-	particle_holder.particles.rotation += dir2angle(direction)
+	QDEL_NULL_IN(src, particle_holder, 5)
+	particle_holder.particles.rotation += rotation
 	switch(direction)
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
 			particle_holder.particles.position = list(0, 10)
@@ -166,8 +168,8 @@
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/xeno_action/activable/ravage/proc/activate_particles(direction)
-	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder = new(owner, /particles/ravager_slash)
+	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction) // There's no shared logic here because sprites are magical.
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
