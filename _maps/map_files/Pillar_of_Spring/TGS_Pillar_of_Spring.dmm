@@ -4879,6 +4879,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"gmQ" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "gnb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9165,6 +9169,7 @@
 	},
 /area/mainship/command/airoom)
 "lVR" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/sterile/side{
 	dir = 5
 	},
@@ -50487,7 +50492,7 @@ arI
 vAb
 mpj
 uKp
-dpY
+gmQ
 dpY
 hgl
 mHk
