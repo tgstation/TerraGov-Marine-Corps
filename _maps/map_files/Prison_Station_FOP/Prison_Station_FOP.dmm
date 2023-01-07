@@ -5978,7 +5978,7 @@
 	},
 /area/prison/medbay)
 "atl" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -15560,19 +15560,19 @@
 /turf/open/floor/prison/green/corner,
 /area/prison/cellblock/lowsec/ne)
 "aVO" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "aVP" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "aVQ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -15997,7 +15997,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
@@ -18445,7 +18445,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
@@ -18519,7 +18519,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -18527,7 +18527,7 @@
 "beR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "beS" = (
@@ -18955,7 +18955,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "bge" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -19426,7 +19426,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bhz" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /turf/open/ground/grass,
@@ -19453,7 +19453,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "bhD" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /turf/open/ground/grass,
@@ -19615,7 +19615,7 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/vip)
 "bhY" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/ground/grass,
@@ -22994,7 +22994,7 @@
 "bsn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
@@ -29828,7 +29828,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "bOQ" = (
@@ -30597,7 +30597,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "bRC" = (
@@ -30607,7 +30607,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -41023,10 +41023,10 @@
 	},
 /area/prison/intake)
 "cRI" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -41045,10 +41045,10 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/medsec/south)
 "cSJ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -41089,10 +41089,10 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "dkA" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /turf/open/ground/grass,
@@ -41348,8 +41348,8 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
 "eaN" = (
-/obj/effect/decal/woodsiding,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding,
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -41512,10 +41512,10 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "esR" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/effect/landmark/excavation_site_spawner,
@@ -42422,10 +42422,10 @@
 /turf/closed/wall/prison,
 /area/prison/cellblock/lowsec/ne)
 "gZL" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -43043,7 +43043,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "iTH" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -43294,7 +43294,7 @@
 	},
 /area/prison/quarters/research)
 "jtL" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/ground/grass,
@@ -43956,7 +43956,7 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "lvX" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -44239,7 +44239,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "mrt" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -45570,8 +45570,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "pPu" = (
-/obj/effect/decal/woodsiding,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding,
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /turf/open/ground/grass,
@@ -46199,10 +46199,10 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "rpt" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -47243,7 +47243,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/canteen)
 "ubI" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/effect/landmark/fob_sentry,
@@ -47590,7 +47590,7 @@
 	},
 /area/prison/security/checkpoint/highsec/n)
 "vcu" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -47774,10 +47774,10 @@
 /turf/open/floor/wood/broken,
 /area/prison/residential/central)
 "vuV" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -48225,7 +48225,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "wzD" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "wAk" = (
@@ -48721,7 +48721,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/engineering)
 "ydk" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,

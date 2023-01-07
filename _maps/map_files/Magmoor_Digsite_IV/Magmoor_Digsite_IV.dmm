@@ -1622,7 +1622,7 @@
 	},
 /area/magmoor/cave/north)
 "beO" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -1918,7 +1918,7 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/north)
 "bpZ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/mopbucket,
@@ -7029,7 +7029,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "eLe" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -17327,7 +17327,7 @@
 /turf/open/floor/concrete,
 /area/magmoor/compound/north)
 "mgk" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -32442,7 +32442,7 @@
 	},
 /area/magmoor/landing)
 "wCu" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/tile/purple,
