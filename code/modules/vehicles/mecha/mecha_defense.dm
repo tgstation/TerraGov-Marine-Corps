@@ -25,12 +25,13 @@
 			gear = equip_by_category[MECHA_R_ARM]
 	if(!gear)
 		return
+
 	// always leave at least 1 health
-	var/damage_to_deal = min(obj_integrity - 1, damage)
+	var/damage_to_deal = min(gear.obj_integrity - 1, damage)
 	if(damage_to_deal <= 0)
 		return
-
 	gear.take_damage(damage_to_deal)
+
 	if(gear.obj_integrity <= 1)
 		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
 		playsound(src, gear.destroy_sound, 50)
