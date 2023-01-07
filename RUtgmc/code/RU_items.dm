@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/ammo_magazine/packet/t500 = -1,
 		/obj/item/storage/belt/gun/revolver/t500 = -1,
 		/obj/item/storage/box/t500case = 5,
+		/obj/item/ammo_magazine/som_mg = 20,
 	)
 
 	var/list/items_val = list(
