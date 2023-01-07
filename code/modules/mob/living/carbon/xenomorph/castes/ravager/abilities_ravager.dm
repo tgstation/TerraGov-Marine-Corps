@@ -68,9 +68,9 @@
 
 	add_cooldown()
 
-/datum/action/xeno_action/activable/charge/proc/activate_particles(boolean = FALSE, direction)
+/datum/action/xeno_action/activable/charge/proc/activate_particles(toggle = FALSE, direction)
 	if(!boolean)
-		QDEL_NULL(particle_holder)
+		QDEL_NULL_IN(particle_holder)
 		return
 	particle_holder = new(get_turf(owner), /particles/ravager_charge)
 	addtimer(CALLBACK(src, .proc/activate_particles), 5) // Boolean is false by default, so this deactivates particles.
@@ -168,9 +168,9 @@
 	add_cooldown()
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
-/datum/action/xeno_action/activable/ravage/proc/activate_particles(boolean = FALSE, direction)
+/datum/action/xeno_action/activable/ravage/proc/activate_particles(toggle = FALSE, direction)
 	if(!boolean)
-		QDEL_NULL(particle_holder)
+		QDEL_NULL_IN(particle_holder)
 		return
 	particle_holder = new(owner, /particles/ravager_slash)
 	addtimer(CALLBACK(src, .proc/activate_particles), 5) // Boolean is false by default, so this deactivates particles.
