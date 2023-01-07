@@ -50,25 +50,7 @@
 	return ..()
 
 /obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		balloon_alert(user, "Already busy!")
-		return FALSE
-	if(obj_integrity >= max_integrity)
-		return TRUE
-	balloon_alert_to_viewers("[user] starts repairs", ignored_mobs = user)
-	balloon_alert(user, "You start repair")
-	if(!do_after(user, 2 SECONDS))
-		balloon_alert_to_viewers("Stops repair")
-		return
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	obj_integrity += min(10, max_integrity-obj_integrity)
-	if(obj_integrity == max_integrity)
-		balloon_alert_to_viewers("Fully repaired!")
-	else
-		balloon_alert_to_viewers("[user] repairs", ignored_mobs = user)
-		balloon_alert(user, "You repair damage")
-	return TRUE
+	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
 	if(fuel_count <= 0)
