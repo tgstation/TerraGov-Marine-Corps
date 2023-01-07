@@ -64,16 +64,13 @@
 	succeed_activate()
 
 	X.throw_at(A, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, X)
-	activate_particles(TRUE, X.dir)
+	activate_particles(X.dir)
 
 	add_cooldown()
 
-/datum/action/xeno_action/activable/charge/proc/activate_particles(toggle = FALSE, direction)
-	if(!boolean)
-		QDEL_NULL_IN(particle_holder)
-		return
+/datum/action/xeno_action/activable/charge/proc/activate_particles(direction)
+	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder = new(get_turf(owner), /particles/ravager_charge)
-	addtimer(CALLBACK(src, .proc/activate_particles), 5) // Boolean is false by default, so this deactivates particles.
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction)
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
@@ -143,7 +140,7 @@
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
 	X.face_atom(A)
-	activate_particles(TRUE, X.dir)
+	activate_particles(X.dir)
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
@@ -168,12 +165,9 @@
 	add_cooldown()
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
-/datum/action/xeno_action/activable/ravage/proc/activate_particles(toggle = FALSE, direction)
-	if(!boolean)
-		QDEL_NULL_IN(particle_holder)
-		return
+/datum/action/xeno_action/activable/ravage/proc/activate_particles(direction)
+	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder = new(owner, /particles/ravager_slash)
-	addtimer(CALLBACK(src, .proc/activate_particles), 5) // Boolean is false by default, so this deactivates particles.
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction) // There's no shared logic here because sprites are magical.
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
