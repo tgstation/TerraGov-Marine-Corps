@@ -1168,6 +1168,14 @@
 	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
 
+
+/obj/item/storage/box/visual/grenade/sticky
+	name = "\improper M41 adhesieve grenade box"
+	desc = "A secure box holding 25 M41 adhesieve grenades. Explosive, sticks to whatever you throw it at."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/training
+	closed_overlay = "grenade_box_overlay_sticky"
+
 #undef BOX_OVERLAY_SHIFT_X
 #undef BOX_OVERLAY_SHIFT_Y
 

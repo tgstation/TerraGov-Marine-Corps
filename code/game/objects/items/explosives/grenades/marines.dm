@@ -73,7 +73,7 @@
 	light_impact_range = 6
 
 /obj/item/explosive/grenade/sticky
-	name = "\improper M40 adhesive charge grenade"
+	name = "\improper M41 adhesive charge grenade"
 	desc = "Designed for use against various fast moving drones, this grenade will adhere to its target before detonating. It's fuse is set to 5 seconds."
 	icon_state = "grenade_sticky"
 	item_state = "grenade_sticky"
