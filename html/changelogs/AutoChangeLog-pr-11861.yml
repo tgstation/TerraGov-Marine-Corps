@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - imageadd: "Adjusted the cave walls on Big Red to be slightly less blocky"
+  - bugfix: "Corrects some improper hydro trays in Big Red marshals"
