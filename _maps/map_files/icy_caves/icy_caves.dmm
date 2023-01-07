@@ -1598,10 +1598,6 @@
 /obj/item/reagent_containers/food/snacks/applecakeslice,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
-"iw" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside/center)
 "ix" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2708,10 +2704,6 @@
 "nI" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
-"nJ" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside/center)
 "nK" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/tile/dark,
@@ -4861,10 +4853,6 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/space)
-"wU" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside/center)
 "wW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5401,10 +5389,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
-"zs" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/ice_rock/singleT,
-/area/icy_caves/caves/rock)
 "zu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/mainship/red/full,
@@ -5477,11 +5461,6 @@
 "zI" = (
 /turf/closed/shuttle/dropship2/corners,
 /area/icy_caves/caves/northwestmonorail)
-"zJ" = (
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside/center)
 "zK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -8432,11 +8411,6 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
-"MG" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/research)
 "MH" = (
 /turf/closed/ice/thin/end{
 	dir = 1
@@ -11148,10 +11122,6 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/icy_caves/caves/northwestmonorail)
-"YC" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research)
 "YE" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -25941,14 +25911,14 @@ yE
 my
 xm
 xE
-iw
-wU
-iw
-wU
-iw
-iw
-zJ
-iw
+li
+DD
+li
+DD
+li
+li
+vh
+li
 li
 li
 ow
@@ -26097,14 +26067,14 @@ ro
 li
 HA
 my
-iw
+li
 DD
 DD
 jS
 IE
 DD
 ow
-nJ
+ow
 ow
 ow
 ow
@@ -26253,13 +26223,13 @@ ro
 li
 HA
 my
-wU
 DD
 DD
 DD
 DD
 DD
-Yl
+DD
+wD
 Ay
 Mr
 CQ
@@ -26409,13 +26379,13 @@ Tc
 li
 HA
 my
-iw
+li
 DD
 IE
 DD
 DD
 IE
-Yl
+wD
 Yl
 Yl
 SC
@@ -26565,13 +26535,13 @@ MM
 rJ
 HA
 my
-iw
+li
 DD
 DD
 DD
 ow
 ZP
-ZP
+CQ
 SC
 Yl
 Yl
@@ -26721,12 +26691,12 @@ tH
 Mh
 kK
 IS
-MG
-YC
-YC
-Mr
-CQ
-zs
+Mh
+tH
+tH
+YZ
+ZP
+hg
 yZ
 Yl
 Yl

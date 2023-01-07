@@ -398,7 +398,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "by" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "bz" = (
