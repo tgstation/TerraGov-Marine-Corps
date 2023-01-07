@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "Pizza profit margin has been fixed for RO Papa John to feed marines more pizza"
