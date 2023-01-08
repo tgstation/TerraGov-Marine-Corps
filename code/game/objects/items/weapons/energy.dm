@@ -68,10 +68,6 @@
 		sword_color = pick("red","blue","green","purple")
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
-/obj/item/weapon/energy/sword/Destroy()
-	. = ..()
-	UnregisterSignal(src, COMSIG_ITEM_EQUIPPED_TO_SLOT)
-
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	switch_state()
 
