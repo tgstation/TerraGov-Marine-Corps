@@ -587,7 +587,7 @@
 			show_typing = !show_typing
 			// Need to remove any currently shown
 			if(!show_typing && istype(user))
-				user.remove_typing_indicator()
+				user.remove_all_indicators()
 
 		if("tooltips")
 			tooltips = !tooltips

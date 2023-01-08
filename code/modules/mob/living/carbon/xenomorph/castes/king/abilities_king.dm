@@ -6,7 +6,7 @@
 	name = "Nightfall"
 	action_icon_state = "nightfall"
 	ability_name = "Nightfall"
-	mechanics_text = "Shut down all electrical lights nearby for 10 seconds."
+	desc = "Shut down all electrical lights nearby for 10 seconds."
 	cooldown_timer = 45 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
@@ -39,7 +39,7 @@
 /datum/action/xeno_action/activable/gravity_crush
 	name = "Gravity Crush"
 	action_icon_state = "fortify"
-	mechanics_text = "Increases the localized gravity in an area and crushes everything in it."
+	desc = "Increases the localized gravity in an area and crushes everything in it."
 	ability_name = "Gravity crush"
 	plasma_cost = 200
 	cooldown_timer = 30 SECONDS
@@ -133,7 +133,7 @@
 /datum/action/xeno_action/psychic_summon
 	name = "Psychic Summon"
 	action_icon_state = "stomp"
-	mechanics_text = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
+	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_name = "Psychic summon"
 	plasma_cost = 900 //uses all an young kings plasma
 	cooldown_timer = 10 MINUTES

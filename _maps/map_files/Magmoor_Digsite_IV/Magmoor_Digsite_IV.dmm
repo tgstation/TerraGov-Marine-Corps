@@ -68,8 +68,8 @@
 /turf/closed/wall,
 /area/storage/testroom)
 "acI" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -78,7 +78,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "acY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
@@ -121,10 +121,10 @@
 /area/magmoor/compound/north)
 "adW" = (
 /obj/machinery/vending/coffee,
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -165,7 +165,7 @@
 /turf/open/floor/concrete,
 /area/magmoor/cave/west)
 "afj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -360,8 +360,8 @@
 "ama" = (
 /obj/structure/rack,
 /obj/item/camera_film{
-	pixel_y = 4;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /obj/item/camera_film{
 	pixel_x = -1
@@ -550,16 +550,16 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/jani)
 "aty" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 9
 	},
 /turf/open/floor/mainship,
 /area/magmoor/civilian/arrival)
 "atC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "auq" = (
@@ -610,7 +610,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/treatment)
 "avY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/door_control{
@@ -641,8 +641,8 @@
 	},
 /area/magmoor/command/commandroom)
 "axo" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -665,7 +665,7 @@
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/mosque)
 "ayf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
@@ -732,7 +732,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 9
 	},
 /turf/open/floor/mainship,
@@ -759,10 +759,10 @@
 	},
 /area/magmoor/security/arrivals/south)
 "aAK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/mining/storage)
@@ -1017,7 +1017,7 @@
 	},
 /area/magmoor/command/lobby/east)
 "aMF" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -1078,7 +1078,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "aPL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -1219,7 +1219,7 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/magmoor/mining/garage)
 "aUy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/blue{
@@ -1338,7 +1338,7 @@
 	pixel_x = 6;
 	pixel_y = -4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/cobweb,
@@ -1399,10 +1399,10 @@
 	},
 /area/magmoor/command/lobby/east)
 "bam" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/door_control{
@@ -1588,10 +1588,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/surgery)
 "bea" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 5
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -1622,7 +1622,7 @@
 	},
 /area/magmoor/cave/north)
 "beO" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -1738,7 +1738,7 @@
 	},
 /area/magmoor/medical/treatment)
 "biV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/door_control{
@@ -1761,7 +1761,7 @@
 "bky" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/syndicate,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -1775,7 +1775,7 @@
 "blg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/nuke_spawn,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/storage)
 "blh" = (
@@ -1831,7 +1831,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
 "bnK" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 10
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -1918,7 +1918,7 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/north)
 "bpZ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/mopbucket,
@@ -1956,8 +1956,8 @@
 /area/magmoor/landing/two)
 "brx" = (
 /obj/machinery/door/airlock/mainship/command{
-	name = "/improper Gift Shop";
-	dir = 1
+	dir = 1;
+	name = "/improper Gift Shop"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -2000,7 +2000,7 @@
 /turf/open/floor/tile/dark,
 /area/magmoor/medical/surgery)
 "bsf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -2103,7 +2103,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/meter/turf,
@@ -2124,7 +2124,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "bvY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/cargo/arrow,
 /area/magmoor/engi)
 "bwo" = (
@@ -2276,7 +2276,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/mining)
 "bDf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -2433,7 +2433,7 @@
 /turf/open/floor/concrete,
 /area/magmoor/cave/west)
 "bIi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -2517,10 +2517,10 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/north)
 "bKR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -2623,7 +2623,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/rnd)
 "bNx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship/blue/corner{
@@ -2767,8 +2767,8 @@
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/item/shard{
-	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 7
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table/reinforced{
@@ -3109,7 +3109,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
 "cgb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/orange,
@@ -3176,10 +3176,10 @@
 	},
 /area/magmoor/civilian/rnr)
 "ciU" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -3288,10 +3288,10 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
 "cnh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -3319,8 +3319,8 @@
 	},
 /area/magmoor/engi)
 "cnM" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -3438,7 +3438,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "crA" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
@@ -3691,7 +3691,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "cCw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/concrete,
@@ -3869,10 +3869,10 @@
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/mosque)
 "cJe" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -3914,7 +3914,7 @@
 	},
 /area/magmoor/compound/northwest)
 "cKI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -3977,7 +3977,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "cOr" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -4133,7 +4133,7 @@
 /turf/closed/wall,
 /area/magmoor/research/rnd)
 "cUP" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /obj/structure/sign/mait{
@@ -4179,7 +4179,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "cWm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -4542,7 +4542,7 @@
 	},
 /area/magmoor/security/lobby)
 "dhB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/engineer,
@@ -4672,7 +4672,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/research)
 "dkv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -4801,10 +4801,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
 "doZ" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -4876,7 +4876,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/north)
 "drP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -4942,7 +4942,7 @@
 	},
 /area/magmoor/engi/atmos)
 "dsJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/concrete/lines{
 	dir = 4
 	},
@@ -5022,8 +5022,8 @@
 /obj/structure/table/mainship,
 /obj/item/tool/pen/blue,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
@@ -5072,7 +5072,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -5123,7 +5123,7 @@
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/red,
@@ -5228,7 +5228,7 @@
 	},
 /area/magmoor/civilian/dorms)
 "dBq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/landmark/weed_node,
@@ -5307,7 +5307,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/landing/two)
 "dCS" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/storage/secure/south)
 "dCW" = (
@@ -5327,7 +5327,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "dEI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -5384,7 +5384,7 @@
 /turf/open/floor/tile/dark2,
 /area/magmoor/hydroponics/north)
 "dGx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
@@ -5574,7 +5574,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/basket)
 "dOm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5614,7 +5614,7 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/north)
 "dPi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/blue{
@@ -5642,13 +5642,13 @@
 	pixel_x = -9
 	},
 /obj/item/shard{
-	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "dQs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/concrete/lines,
@@ -5719,7 +5719,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/north)
 "dSr" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/storage/south)
 "dSt" = (
@@ -5854,7 +5854,7 @@
 /area/magmoor/compound)
 "dWv" = (
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -5862,7 +5862,7 @@
 /turf/open/floor/mainship/red,
 /area/magmoor/security/storage)
 "dWD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -5875,10 +5875,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "dWJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
@@ -5907,7 +5907,7 @@
 	},
 /area/magmoor/medical/storage)
 "dYj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5972,7 +5972,7 @@
 	},
 /area/magmoor/compound/southeast)
 "eba" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light,
@@ -6263,10 +6263,10 @@
 /turf/open/floor/mainship/blue,
 /area/magmoor/command/lobby/east)
 "enL" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -6350,7 +6350,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "erS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -6395,8 +6395,8 @@
 /area/magmoor/civilian/jani)
 "etJ" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Breakroom";
-	dir = 8
+	dir = 8;
+	name = "\improper Security Breakroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -6415,7 +6415,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/rnd)
 "eud" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/ammo_magazine/rifle/m16,
@@ -6464,7 +6464,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/gambling)
 "euS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/light{
@@ -6508,7 +6508,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/gambling)
 "ewi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -6587,10 +6587,10 @@
 	},
 /area/magmoor/cargo/processing/south)
 "eyk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -6673,16 +6673,16 @@
 /area/magmoor/research/rnd/lobby)
 "eBc" = (
 /obj/structure/table/woodentable,
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "eBh" = (
@@ -6796,7 +6796,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/cargo/freezer)
 "eEu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/light{
@@ -6946,7 +6946,7 @@
 /area/magmoor/command/commandroom)
 "eIB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/atmos)
@@ -7029,7 +7029,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "eLe" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -7085,7 +7085,7 @@
 	},
 /area/magmoor/engi/storage)
 "eNc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -7175,10 +7175,10 @@
 	},
 /area/magmoor/command/lobby/east)
 "eQS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -7210,7 +7210,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
 "eRX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7220,7 +7220,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "eSj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/orange{
@@ -7241,7 +7241,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/south)
 "eTz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/gear{
@@ -7260,7 +7260,7 @@
 /obj/structure/rack,
 /obj/item/weapon/classic_baton,
 /obj/item/weapon/classic_baton,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/red,
@@ -7302,13 +7302,13 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/north)
 "eVI" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/mainship,
 /area/magmoor/landing/two)
 "eVO" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -7384,7 +7384,7 @@
 	},
 /area/magmoor/civilian/cryostasis)
 "eYq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/window/reinforced,
@@ -7569,10 +7569,10 @@
 	},
 /area/magmoor/civilian/rnr)
 "ffA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/floodlight/landing{
@@ -7790,8 +7790,8 @@
 "fnF" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/invisible,
 /turf/open/floor/mainship/orange/full,
@@ -7888,7 +7888,7 @@
 /area/magmoor/civilian/arrival/east)
 "fss" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -8006,7 +8006,7 @@
 	},
 /area/magmoor/compound/south)
 "fzi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -8066,7 +8066,7 @@
 	},
 /area/magmoor/command/lobby/east)
 "fAI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/light{
@@ -8431,7 +8431,7 @@
 /area/magmoor/cargo/storage/secure/south)
 "fJA" = (
 /obj/structure/ore_box,
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "fJO" = (
@@ -8499,8 +8499,8 @@
 "fLV" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/paralysis,
 /turf/open/floor/mainship/orange{
@@ -8871,7 +8871,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/storage)
 "gaa" = (
@@ -8942,7 +8942,7 @@
 	pixel_y = -4
 	},
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/red,
@@ -8974,10 +8974,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/surgery)
 "gee" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/blue{
@@ -8997,7 +8997,7 @@
 	},
 /area/magmoor/medical/treatment)
 "geH" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
@@ -9108,7 +9108,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/cook)
 "gip" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/power/apc/drained,
@@ -9128,10 +9128,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
 "giW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship,
@@ -9158,7 +9158,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/research/lab)
 "gkF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -9247,10 +9247,10 @@
 	},
 /area/magmoor/compound/north)
 "goi" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
@@ -9270,7 +9270,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/thermal)
 "gqb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/door_control{
@@ -9287,7 +9287,7 @@
 /turf/open/floor/bcircuit/off,
 /area/magmoor/research/serverroom)
 "gqk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -9306,7 +9306,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "gqP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -9625,7 +9625,7 @@
 	pixel_x = 6;
 	pixel_y = -4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/red{
@@ -9640,7 +9640,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "gCD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/shard/phoron,
@@ -9655,8 +9655,8 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/secure/south)
 "gDk" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/blue{
@@ -9689,7 +9689,7 @@
 	pixel_y = 4
 	},
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -9713,16 +9713,16 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
 "gES" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/cargo/storage/south)
 "gET" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -9761,7 +9761,7 @@
 	},
 /area/magmoor/compound/north)
 "gFV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
@@ -9836,7 +9836,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/basket)
 "gJB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/splatter,
@@ -9859,10 +9859,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/volcano)
 "gKr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/door_control{
@@ -9912,7 +9912,7 @@
 	},
 /area/magmoor/compound/southwest)
 "gLV" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/magmoor/mining/storage)
 "gMc" = (
@@ -9961,7 +9961,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/north)
 "gOD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -10100,7 +10100,7 @@
 	id = "req_sec_storage";
 	name = "Requesition Secure Storage"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/orange,
@@ -10144,7 +10144,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
 "gWk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/power/apc/drained,
@@ -10167,8 +10167,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Breakroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Security Breakroom"
 	},
 /turf/open/floor/tile,
 /area/magmoor/security/infocenter)
@@ -10198,7 +10198,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
 "gYt" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/concrete/lines{
 	dir = 8
 	},
@@ -10236,8 +10236,8 @@
 	},
 /area/magmoor/compound/south)
 "haG" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/prop/mainship/hangar_stencil,
@@ -10345,7 +10345,7 @@
 /area/magmoor/landing)
 "heQ" = (
 /obj/structure/xenoautopsy/tank/hugger,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/platebotc,
@@ -10415,7 +10415,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/compound/south)
 "hji" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -10461,7 +10461,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
 "hjW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m16,
@@ -10523,7 +10523,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "hnx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
@@ -10542,7 +10542,7 @@
 	},
 /area/magmoor/volcano)
 "hot" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 5
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -10651,7 +10651,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/jani)
 "hrW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -10659,7 +10659,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "hsa" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -10731,8 +10731,8 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/engi/storage)
 "huz" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/floodlight/landing{
@@ -10797,16 +10797,16 @@
 	},
 /area/magmoor/engi/atmos)
 "hxU" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 8
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink,
+/obj/effect/turf_decal/tile/pink,
 /obj/structure/rack,
 /obj/item/clothing/under/sexyclown,
 /turf/open/floor/tile/white,
@@ -10872,7 +10872,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
 "hAL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10911,7 +10911,7 @@
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
 "hCX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/computer3,
@@ -10954,7 +10954,7 @@
 	},
 /area/magmoor/compound/east)
 "hEb" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
 /turf/open/floor/plating/mainship,
@@ -10994,7 +10994,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/civilian/arrival/east)
 "hGq" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/ore_box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
@@ -11010,7 +11010,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "hHi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -11138,7 +11138,7 @@
 /obj/structure/rack,
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/reagent_containers/spray/pepper,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/decal/cleanable/cobweb{
@@ -11397,10 +11397,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "hVW" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -11656,7 +11656,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/hydroponics/north)
 "ieZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/door_control{
@@ -11795,7 +11795,7 @@
 /turf/open/floor/plating,
 /area/magmoor/engi/atmos)
 "ikA" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/plating/mainship,
@@ -12013,8 +12013,8 @@
 "itd" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/red,
 /turf/open/floor/mainship/orange{
@@ -12022,7 +12022,7 @@
 	},
 /area/magmoor/engi/power)
 "itf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -12051,10 +12051,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/patient)
 "iuc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/mining/storage)
 "iui" = (
@@ -12192,10 +12192,10 @@
 	},
 /area/magmoor/command/lobby/east)
 "izl" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -12314,7 +12314,7 @@
 /turf/open/floor/plating,
 /area/magmoor/mining/garage)
 "iET" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -12558,7 +12558,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/hydroponics/north)
 "iOs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12702,7 +12702,7 @@
 	},
 /area/magmoor/compound/northeast)
 "iTl" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor/mainship,
@@ -12865,7 +12865,7 @@
 	dir = 1;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "jau" = (
@@ -12907,10 +12907,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/basket)
 "jcd" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -13018,7 +13018,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
 "jft" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/light{
@@ -13030,8 +13030,8 @@
 /area/magmoor/cargo/storage/secure/south)
 "jfI" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Breakroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Security Breakroom"
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
@@ -13046,7 +13046,7 @@
 	},
 /area/magmoor/compound/south)
 "jgb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -13322,10 +13322,10 @@
 /turf/open/floor/mainship/sterile,
 /area/magmoor/medical/lobby)
 "jmZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -13334,7 +13334,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "jnc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/light{
@@ -13359,7 +13359,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "jns" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/blue/corner{
@@ -13598,7 +13598,7 @@
 	},
 /area/magmoor/civilian/pool)
 "jtL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -13630,16 +13630,16 @@
 	},
 /area/magmoor/compound/south)
 "jwi" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 8
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink,
+/obj/effect/turf_decal/tile/pink,
 /obj/structure/table/woodentable,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
@@ -13674,7 +13674,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
 "jxK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -13727,7 +13727,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/volcano)
 "jAh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
@@ -13771,10 +13771,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "jBX" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -13903,7 +13903,7 @@
 	},
 /area/magmoor/compound)
 "jGH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/door_control{
@@ -14094,11 +14094,6 @@
 "jMv" = (
 /obj/structure/closet/wardrobe/chaplain_black{
 	name = "mosque wardrobe"
-	},
-/obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest{
-	name = "tactical explosive vest";
-	desc = "Obviously someone just strapped a bomb to a marine harness and called it tactical. The light has been removed, and its switch used as the detonator.<br><span class='notice'>Control-Click to set a warcry.</span> <span class='warning'>This harness has no light, toggling it will detonate the vest!</span>";
-	bad_warcries_regex = "orbital|ORBITAL|bombardment"
 	},
 /turf/open/floor/tile/chapel{
 	dir = 4
@@ -14323,10 +14318,10 @@
 /turf/open/floor/plating,
 /area/magmoor/research/rnd/lobby)
 "jUS" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -14385,7 +14380,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/northeast)
 "jXe" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/cargo/arrow,
 /area/magmoor/cargo/processing/south)
 "jXh" = (
@@ -14616,7 +14611,7 @@
 /turf/open/floor/mainship/blue,
 /area/magmoor/command/lobby/east)
 "kgD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/bot/mulebot,
@@ -14674,7 +14669,7 @@
 	},
 /area/magmoor/compound/east)
 "kil" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14759,10 +14754,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
 "klA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship,
@@ -14832,7 +14827,7 @@
 /area/magmoor/compound/south)
 "knJ" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
@@ -14849,7 +14844,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
 "kod" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -14957,7 +14952,7 @@
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/containment)
 "kuj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -14995,10 +14990,10 @@
 	},
 /area/magmoor/landing)
 "kwY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship,
@@ -15013,10 +15008,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
 "kxn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -15026,10 +15021,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "kxY" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15141,10 +15136,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "kAS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15241,7 +15236,7 @@
 /obj/item/shard/phoron{
 	icon_state = "phoronsmall"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -15258,7 +15253,7 @@
 	},
 /area/magmoor/research/containment)
 "kFy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15321,10 +15316,10 @@
 /turf/open/floor/plating,
 /area/magmoor/mining/garage)
 "kIT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -15349,7 +15344,7 @@
 /turf/open/floor/plating,
 /area/magmoor/cargo/freezer)
 "kKo" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -15416,9 +15411,9 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "kNv" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -15554,7 +15549,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "kRx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow,
@@ -15601,10 +15596,10 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
 "kTg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
 	},
@@ -15701,7 +15696,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/north)
 "kXo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15803,7 +15798,7 @@
 	pixel_y = -2
 	},
 /obj/item/storage/box/flashbangs,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/cobweb{
@@ -15822,7 +15817,7 @@
 	},
 /area/magmoor/landing/two)
 "lbR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/orange/corner{
@@ -16007,7 +16002,7 @@
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "lin" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -16093,7 +16088,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/hydroponics/north)
 "lkh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship,
@@ -16126,7 +16121,7 @@
 	},
 /area/magmoor/engi/atmos)
 "lmn" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
@@ -16278,7 +16273,7 @@
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/containment)
 "lrg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/door_control{
@@ -16299,7 +16294,7 @@
 /turf/open/floor/mainship/silver,
 /area/magmoor/civilian/arrival)
 "lsp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/light{
@@ -16416,7 +16411,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "lyj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
@@ -16607,8 +16602,8 @@
 	dir = 1
 	},
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/blue,
 /obj/structure/table/mainship,
@@ -17004,8 +16999,8 @@
 "lUN" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
@@ -17148,8 +17143,8 @@
 	pixel_y = 13
 	},
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice{
-	pixel_y = 9;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 9
 	},
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/jani)
@@ -17332,7 +17327,7 @@
 /turf/open/floor/concrete,
 /area/magmoor/compound/north)
 "mgk" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -17560,7 +17555,7 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "mqF" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /obj/structure/stairs{
@@ -17627,7 +17622,7 @@
 /turf/open/floor/mainship/black,
 /area/magmoor/landing)
 "muc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light/small,
@@ -17834,7 +17829,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/volcano)
 "mCN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18032,7 +18027,7 @@
 /turf/open/floor/carpet/side,
 /area/magmoor/command/conference)
 "mJc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/blue/corner,
@@ -18128,7 +18123,7 @@
 	},
 /area/magmoor/compound/north)
 "mNR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/door_control{
@@ -18146,10 +18141,10 @@
 	},
 /area/magmoor/compound/west)
 "mNZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -18183,7 +18178,7 @@
 /turf/open/floor/mainship,
 /area/magmoor/cargo/processing/south)
 "mOE" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
 	},
@@ -18243,10 +18238,10 @@
 	},
 /area/magmoor/research)
 "mPZ" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -18317,7 +18312,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/clean)
 "mSc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/cable,
@@ -18570,7 +18565,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "nbj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/gear{
@@ -18614,7 +18609,7 @@
 "ncw" = (
 /obj/structure/rack,
 /obj/item/explosive/plastique,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/effect/decal/cleanable/cobweb{
@@ -18625,10 +18620,10 @@
 	},
 /area/magmoor/security/storage)
 "ncy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/floodlight/landing{
@@ -18711,7 +18706,7 @@
 	},
 /area/magmoor/compound/north)
 "neU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -18767,7 +18762,7 @@
 /area/magmoor/cave/rock)
 "ngw" = (
 /obj/structure/xenoautopsy/tank/escaped,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/platebotc,
@@ -18798,8 +18793,8 @@
 "nhU" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -18921,7 +18916,7 @@
 /turf/open/floor/plating,
 /area/magmoor/landing)
 "nlR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/gear{
@@ -18991,8 +18986,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "nov" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -19053,7 +19048,7 @@
 	},
 /area/magmoor/security/lobby)
 "nrb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/floodlight{
 	name = "Spotlight"
 	},
@@ -19098,10 +19093,10 @@
 	},
 /area/magmoor/compound)
 "nsA" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -19227,7 +19222,7 @@
 	},
 /area/magmoor/compound/west)
 "nwM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19250,7 +19245,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/bar)
 "nxQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -19262,10 +19257,10 @@
 /turf/open/floor/concrete/edge,
 /area/magmoor/compound/north)
 "nyr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "nyA" = (
@@ -19380,7 +19375,7 @@
 /area/magmoor/cave/north)
 "nDm" = (
 /obj/structure/table/woodentable,
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -19518,7 +19513,7 @@
 	},
 /area/magmoor/command/commandroom)
 "nHa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -19625,10 +19620,10 @@
 /turf/closed/wall,
 /area/magmoor/research/rnd/lobby)
 "nMN" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -19714,7 +19709,7 @@
 	},
 /area/magmoor/compound/east)
 "nRJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1{
@@ -19921,7 +19916,7 @@
 	},
 /area/magmoor/research/lab)
 "oaK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -20136,10 +20131,10 @@
 /turf/closed/wall,
 /area/magmoor/civilian/bar)
 "oif" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/landing{
@@ -20207,7 +20202,7 @@
 	},
 /area/magmoor/compound/north)
 "ojG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -20241,7 +20236,7 @@
 	},
 /area/magmoor/engi/storage)
 "olm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/closet/walllocker/hydrant/extinguisher{
@@ -20277,7 +20272,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/storage)
@@ -20319,16 +20314,16 @@
 /obj/structure/mirror{
 	pixel_y = 28
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "ope" = (
@@ -20360,8 +20355,8 @@
 /area/magmoor/research/rnd/lobby)
 "oqV" = (
 /obj/machinery/door/airlock/mainship/command{
-	name = "/improper Gift Shop";
-	dir = 1
+	dir = 1;
+	name = "/improper Gift Shop"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -20380,7 +20375,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
 "orD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/door_control{
@@ -20404,7 +20399,7 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "osz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -20442,16 +20437,16 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "otd" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 8
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink,
+/obj/effect/turf_decal/tile/pink,
 /obj/structure/mirror{
 	pixel_y = 28
 	},
@@ -20504,7 +20499,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/rnd)
 "ovw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -20619,10 +20614,10 @@
 /turf/open/floor/concrete,
 /area/magmoor/cave/west)
 "oya" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -20644,7 +20639,7 @@
 	},
 /area/magmoor/medical/treatment)
 "oyU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -20665,10 +20660,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "oAp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -20691,7 +20686,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/rnd)
 "oBA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -20735,10 +20730,10 @@
 /area/magmoor/engi/thermal)
 "oDp" = (
 /obj/machinery/vending/cola,
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -20791,7 +20786,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
 "oEi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -20850,7 +20845,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "oFK" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "oFT" = (
@@ -20882,10 +20877,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "oGC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
@@ -21062,10 +21057,10 @@
 	},
 /area/magmoor/civilian/dorms)
 "oMC" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -21340,7 +21335,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 10
 	},
 /turf/open/floor/mainship,
@@ -21352,7 +21347,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
 "oUZ" = (
-/obj/effect/decal/warning_stripes/thick/corner,
+/obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
@@ -21609,7 +21604,7 @@
 	},
 /area/magmoor/cave/northwest)
 "pcQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -21638,7 +21633,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange{
@@ -21689,7 +21684,7 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "pgv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/xenoautopsy/tank,
@@ -21713,7 +21708,7 @@
 	},
 /area/magmoor/compound)
 "phr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -21837,7 +21832,7 @@
 	},
 /area/magmoor/compound/north)
 "pjH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21907,7 +21902,7 @@
 	},
 /area/magmoor/compound/northwest)
 "pma" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21958,10 +21953,10 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
 "pmQ" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -21989,8 +21984,8 @@
 	pixel_x = -9
 	},
 /obj/item/shard{
-	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 7
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -22009,13 +22004,13 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "poG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "poK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -22274,7 +22269,7 @@
 	},
 /area/magmoor/civilian/clean/shower)
 "pvM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -22342,7 +22337,7 @@
 /obj/item/weapon/shield/riot,
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/suit/armor/riot,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/red{
@@ -22569,7 +22564,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -22636,7 +22631,7 @@
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/mosque)
 "pHF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -23009,19 +23004,19 @@
 	},
 /area/magmoor/compound/south)
 "pVR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "pWk" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -23044,7 +23039,7 @@
 	},
 /area/magmoor/civilian/jani)
 "pWV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -23145,7 +23140,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
 "qbA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/door_control{
@@ -23241,7 +23236,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "qey" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/conveyor_switch,
@@ -23308,7 +23303,7 @@
 /turf/open/floor/plating,
 /area/magmoor/compound)
 "qhn" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -23348,7 +23343,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "qhV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -23445,7 +23440,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "qll" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -23495,10 +23490,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "qmi" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -23507,7 +23502,7 @@
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "qmA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/concrete/lines{
@@ -23695,7 +23690,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -23829,7 +23824,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "qyk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -23862,7 +23857,7 @@
 	},
 /area/magmoor/command/office/main)
 "qzE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/bot/mulebot,
@@ -24025,7 +24020,7 @@
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
 "qHm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -24141,7 +24136,7 @@
 	},
 /area/magmoor/civilian/pool)
 "qMX" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 6
 	},
 /turf/open/floor/mainship,
@@ -24218,10 +24213,10 @@
 	},
 /area/magmoor/engi/atmos)
 "qSa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -24244,7 +24239,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
 "qTD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -24262,7 +24257,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "qUL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -24384,10 +24379,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "qXY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -24407,7 +24402,7 @@
 	},
 /area/magmoor/engi/atmos)
 "qYl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -24651,10 +24646,10 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "rgv" = (
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 4
 	},
-/obj/effect/decal/tile/pink{
+/obj/effect/turf_decal/tile/pink{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -24862,10 +24857,10 @@
 /area/magmoor/civilian/gambling)
 "roT" = (
 /obj/structure/flora/pottedplant/one,
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -24967,10 +24962,10 @@
 	},
 /area/magmoor/compound/north)
 "rtK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/floodlight/landing{
@@ -25054,7 +25049,7 @@
 /area/magmoor/civilian/rnr)
 "ruR" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/landmark/weed_node,
@@ -25110,7 +25105,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
 "rxD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
@@ -25147,10 +25142,10 @@
 	},
 /area/magmoor/engi/atmos)
 "ryS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -25289,8 +25284,8 @@
 "rDB" = (
 /obj/item/tool/stamp,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/structure/table/mainship,
 /obj/item/destTagger,
@@ -25407,7 +25402,7 @@
 /turf/open/lavaland/basalt/dirt,
 /area/magmoor/compound/north)
 "rHX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -25477,7 +25472,7 @@
 	},
 /area/magmoor/research/lab)
 "rKI" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
@@ -25641,7 +25636,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
 "rPE" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/magmoor/mining/storage)
@@ -25675,7 +25670,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "rRM" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -25798,7 +25793,7 @@
 	},
 /area/magmoor/engi)
 "rVI" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
 /turf/open/floor/mainship,
@@ -25945,7 +25940,7 @@
 /turf/open/floor/mainship/black/corner,
 /area/magmoor/landing)
 "scg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -25998,10 +25993,10 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -26041,7 +26036,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
 "sfN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -26073,7 +26068,7 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/treatment)
 "sht" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/magmoor/landing/two)
 "shv" = (
@@ -26130,7 +26125,7 @@
 /turf/open/lavaland/lava/corner,
 /area/magmoor/volcano)
 "sjn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/mono,
@@ -26324,7 +26319,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/treatment)
 "spT" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "spW" = (
@@ -26413,7 +26408,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/gambling)
 "ssI" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -26426,7 +26421,7 @@
 	},
 /area/magmoor/compound/south)
 "ssT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -26437,7 +26432,7 @@
 /turf/open/floor/plating,
 /area/magmoor/medical/storage)
 "stA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -26492,7 +26487,7 @@
 	},
 /area/magmoor/mining)
 "svt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -26503,8 +26498,8 @@
 "svu" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
@@ -26669,7 +26664,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "sBk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -26828,7 +26823,7 @@
 	},
 /area/magmoor/civilian/dorms)
 "sHe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -26870,7 +26865,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "sIM" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
@@ -27067,7 +27062,7 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining)
 "sQM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -27158,8 +27153,8 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "sUi" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/blue{
@@ -27351,7 +27346,7 @@
 	},
 /area/magmoor/compound/north)
 "sZB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/power/apc/drained,
@@ -27678,7 +27673,7 @@
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/north)
 "tkS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -27698,10 +27693,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "tlp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
@@ -27739,7 +27734,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange{
@@ -27761,7 +27756,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "tnD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/landmark/weed_node,
@@ -27815,10 +27810,10 @@
 	},
 /area/magmoor/compound/north)
 "tpy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -27912,7 +27907,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "ttK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/window/reinforced,
@@ -27954,8 +27949,8 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "tvO" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -27993,7 +27988,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/south)
 "tyi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -28389,7 +28384,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
 "tKC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -28400,7 +28395,7 @@
 	icon_state = "phoronsmall"
 	},
 /obj/structure/xenoautopsy/tank/escaped,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/shard/phoron,
@@ -28535,14 +28530,14 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound/east)
 "tPd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/cargo/storage/south)
 "tPN" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/storage)
 "tQd" = (
@@ -28627,7 +28622,7 @@
 /area/magmoor/compound/north)
 "tTR" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -28755,7 +28750,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/cook)
 "tZv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -28785,7 +28780,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange{
@@ -28802,7 +28797,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/rnd)
 "uaU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/item/stack/sheet/wood,
@@ -28848,10 +28843,10 @@
 	},
 /area/magmoor/medical/treatment)
 "ubK" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -28860,7 +28855,7 @@
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "ubN" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/ore_box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/storage)
@@ -28873,7 +28868,7 @@
 	},
 /area/magmoor/medical/treatment)
 "ucp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -28883,7 +28878,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "ucD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/orange{
@@ -29054,7 +29049,7 @@
 	},
 /area/magmoor/medical/treatment)
 "uhL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -29170,7 +29165,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "ukL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -29313,7 +29308,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "upQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
 "uqq" = (
@@ -29419,7 +29414,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
 "utP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/gear{
@@ -29460,7 +29455,7 @@
 	},
 /area/magmoor/civilian/dorms)
 "uuH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -29501,8 +29496,8 @@
 	},
 /obj/structure/window/reinforced/tinted,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/blue,
 /obj/structure/table/mainship,
@@ -29643,7 +29638,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/orange{
@@ -29733,7 +29728,7 @@
 	},
 /area/magmoor/command/commandroom)
 "uFP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -29780,7 +29775,7 @@
 	deity_name = "Allah";
 	name = "koran"
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -29909,10 +29904,10 @@
 /area/magmoor/civilian/rnr)
 "uLx" = (
 /obj/structure/table/woodentable,
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -29948,7 +29943,7 @@
 	id = "req_sec_storage";
 	name = "Requesition Secure Storage"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/orange,
@@ -30006,7 +30001,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/gambling)
 "uQO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/orange{
@@ -30268,7 +30263,7 @@
 	},
 /area/magmoor/compound/southeast)
 "uWg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -30280,7 +30275,7 @@
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
 "uXE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/closet/emcloset,
@@ -30302,7 +30297,7 @@
 	},
 /area/magmoor/command/commandroom)
 "uYk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
@@ -30313,10 +30308,10 @@
 	},
 /area/magmoor/landing/two)
 "uYA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -30443,7 +30438,7 @@
 	},
 /area/magmoor/medical/patient)
 "vdi" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/processing/south)
 "vdz" = (
@@ -30460,7 +30455,7 @@
 	},
 /area/magmoor/compound/south)
 "vdX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -30476,7 +30471,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "vfg" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "vfj" = (
@@ -30493,7 +30488,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "vfQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "vgc" = (
@@ -30720,10 +30715,10 @@
 	},
 /area/magmoor/compound/northeast)
 "vrh" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -30774,7 +30769,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/patient)
 "vtn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -30785,10 +30780,10 @@
 	},
 /area/magmoor/compound)
 "vtv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
@@ -30966,7 +30961,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/magmoor/cave/rock)
 "vAK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship,
@@ -30986,7 +30981,7 @@
 	},
 /area/magmoor/medical/treatment)
 "vBS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -31173,7 +31168,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
 "vIc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -31285,7 +31280,7 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "vNg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -31312,10 +31307,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
 "vOo" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31353,7 +31348,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "vPA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -31381,7 +31376,7 @@
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean/shower)
 "vPW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship,
@@ -31503,7 +31498,7 @@
 	},
 /area/magmoor/compound/east)
 "vTP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -31583,10 +31578,10 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
 "vWt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship,
@@ -31659,10 +31654,10 @@
 /turf/open/lavaland/catwalk,
 /area/magmoor/compound/east)
 "vYP" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 6
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -31692,7 +31687,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/command/commandroom)
 "wba" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/conveyor_switch{
@@ -31717,7 +31712,7 @@
 	},
 /area/magmoor/cargo/storage/secure/south)
 "wbA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -31880,10 +31875,10 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "wjF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -31901,7 +31896,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "wkk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -31938,7 +31933,7 @@
 	},
 /area/magmoor/cave/north)
 "wlO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -31983,7 +31978,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 5
 	},
 /turf/open/floor/mainship,
@@ -32269,7 +32264,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/lab)
 "wxp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/weapon/gun/shotgun/pump/cmb,
@@ -32340,7 +32335,7 @@
 	},
 /area/magmoor/compound)
 "wzX" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/concrete,
 /area/magmoor/compound/north)
@@ -32364,7 +32359,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/basket)
 "wAA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -32447,7 +32442,7 @@
 	},
 /area/magmoor/landing)
 "wCu" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/tile/purple,
@@ -32467,10 +32462,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "wCZ" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -32565,7 +32560,7 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/cargo/processing/south)
 "wGv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship,
@@ -32649,7 +32644,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "wJn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -32660,7 +32655,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/south)
 "wJz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/floor,
 /area/magmoor/cargo/storage/south)
@@ -32929,7 +32924,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "wRz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow,
@@ -33072,7 +33067,7 @@
 	},
 /area/magmoor/compound/north)
 "wWo" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/magmoor/cargo/processing/south)
 "wWs" = (
@@ -33086,7 +33081,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "wXc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange/corner{
@@ -33681,7 +33676,7 @@
 /area/magmoor/engi/storage)
 "xqp" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "xqz" = (
@@ -33747,7 +33742,7 @@
 	},
 /area/magmoor/compound/north)
 "xrO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -33855,12 +33850,12 @@
 	},
 /area/magmoor/engi/storage)
 "xvp" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "xvW" = (
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/ammo_magazine/shotgun/beanbag,
@@ -34000,7 +33995,7 @@
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
 "xzc" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 6
 	},
 /turf/open/floor/mainship,
@@ -34077,10 +34072,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby)
 "xAV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
@@ -34161,10 +34156,10 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "xEx" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/structure/sign/poster{
@@ -34277,7 +34272,7 @@
 /turf/open/floor/concrete/lines,
 /area/magmoor/compound)
 "xHJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/wooden,
@@ -34471,7 +34466,7 @@
 /turf/open/lavaland/lava,
 /area/magmoor/cave/west)
 "xOY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -34532,7 +34527,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "xQS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/bed/chair/office/dark{
@@ -34589,7 +34584,7 @@
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
 "xSI" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -34616,10 +34611,10 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -34640,7 +34635,7 @@
 /turf/open/floor/grass,
 /area/magmoor/hydroponics/south)
 "xTE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -34870,7 +34865,7 @@
 /area/magmoor/engi/thermal)
 "ycC" = (
 /obj/structure/table/woodentable,
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 6
 	},
 /obj/item/weapon/nullrod,
@@ -34905,10 +34900,10 @@
 /turf/open/floor/concrete/edge,
 /area/magmoor/compound)
 "yeD" = (
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -34931,8 +34926,8 @@
 "yeN" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
-	pixel_y = 7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /obj/item/tool/pen/red,
 /turf/open/floor/plating/mainship,
@@ -34963,7 +34958,7 @@
 	},
 /area/magmoor/landing)
 "yfO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -35003,7 +34998,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "yhm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -35041,16 +35036,16 @@
 "yip" = (
 /obj/structure/rack,
 /obj/item/clothing/under/shorts/red,
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/decal/tile/blue{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/effect/decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "yiJ" = (
@@ -35059,7 +35054,7 @@
 	},
 /area/magmoor/compound/east)
 "yiK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,

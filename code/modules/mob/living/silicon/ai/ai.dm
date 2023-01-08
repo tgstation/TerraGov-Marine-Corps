@@ -6,6 +6,7 @@
 	real_name = "ARES v3.2"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
+	bubble_icon = "robot"
 	anchored = TRUE
 	move_resist = MOVE_FORCE_OVERPOWERING
 	density = TRUE

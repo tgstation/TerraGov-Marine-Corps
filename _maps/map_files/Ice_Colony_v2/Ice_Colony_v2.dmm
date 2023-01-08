@@ -24484,7 +24484,7 @@
 	},
 /area/ice_colony/surface/research)
 "cei" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -24536,10 +24536,10 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "cnz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/window/reinforced{
@@ -24724,7 +24724,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "cMO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -24827,7 +24827,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "cXb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/responsehangar)
 "cXp" = (
@@ -25001,8 +25001,8 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "dhD" = (
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -25082,8 +25082,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "dpA" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -25208,7 +25208,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "dAL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark2,
@@ -25351,11 +25351,11 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "dPl" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /obj/structure/window/reinforced,
@@ -25468,7 +25468,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "ear" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
@@ -25612,7 +25612,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "epK" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25740,7 +25740,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "eCI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25775,7 +25775,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "eEZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -25806,7 +25806,7 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/engineering/tool)
 "eLw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -25867,10 +25867,10 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "eRd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -26012,7 +26012,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "ffM" = (
@@ -26094,7 +26094,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "fkV" = (
 /obj/structure/inflatable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -26349,7 +26349,7 @@
 /area/ice_colony/underground/hangar)
 "fMR" = (
 /obj/vehicle/train/cargo/engine,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark2,
@@ -26411,8 +26411,8 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/surface/hydroponics/lobby)
 "fVI" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -26509,7 +26509,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "ghj" = (
 /obj/machinery/conveyor_switch,
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
@@ -26521,7 +26521,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "ghK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/oil,
@@ -26781,7 +26781,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26867,7 +26867,7 @@
 	},
 /area/ice_colony/surface/research)
 "gLv" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -26978,7 +26978,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central/construction)
 "gZf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -27004,10 +27004,10 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "hcU" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/hoop{
 	dir = 8
 	},
@@ -27122,7 +27122,7 @@
 	},
 /area/ice_colony/surface/garage/two)
 "hlZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -27344,7 +27344,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "hMH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -27576,7 +27576,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "ipb" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -27694,7 +27694,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "iBw" = (
@@ -27755,7 +27755,7 @@
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/valley/north)
 "iHn" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "researchoutside";
@@ -27932,7 +27932,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad)
 "iSW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28136,10 +28136,10 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "jez" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -28149,7 +28149,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "jfJ" = (
@@ -28184,7 +28184,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/disposals)
 "jjF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/landmark/weed_node,
@@ -28291,7 +28291,7 @@
 /area/ice_colony/exterior/surface/valley/northeast)
 "jsD" = (
 /obj/structure/largecrate/random,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -28327,7 +28327,7 @@
 /area/ice_colony/exterior/underground/caves/ice_w)
 "jzg" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -28404,17 +28404,17 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/tech_storage)
 "jFd" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "jFo" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -28423,7 +28423,7 @@
 	},
 /area/ice_colony/surface/garage/one)
 "jGt" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -28509,7 +28509,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "jKu" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /obj/machinery/door/window/right{
@@ -28569,7 +28569,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "jPA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -28764,8 +28764,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
 "khr" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -28774,7 +28774,7 @@
 	},
 /area/ice_colony/surface/research)
 "kjW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark/purple2/corner{
@@ -29013,7 +29013,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "kAz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/effect/landmark/weed_node,
@@ -29104,7 +29104,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "kGO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -29373,7 +29373,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "lqg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -29392,7 +29392,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "lrb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -29409,7 +29409,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "lrX" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -29540,7 +29540,7 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "lEl" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29571,7 +29571,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "lHF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -29657,7 +29657,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/cable,
@@ -29701,7 +29701,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "lRv" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /obj/machinery/door/window{
@@ -29733,10 +29733,10 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "lUw" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -29807,7 +29807,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -29997,7 +29997,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "moC" = (
@@ -30077,7 +30077,7 @@
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
 "mvA" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -30093,7 +30093,7 @@
 /area/ice_colony/underground/crew/bball)
 "mwe" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -30133,8 +30133,8 @@
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/surface/cliff)
 "mzq" = (
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -30176,7 +30176,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "mCT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/window/right{
@@ -30235,13 +30235,13 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "mKV" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_1";
 	name = "\improper Hangar Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -30524,7 +30524,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
 "nph" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -30670,11 +30670,11 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "nAu" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
@@ -30741,7 +30741,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "nKk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -31020,7 +31020,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "ony" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -31029,7 +31029,7 @@
 /area/ice_colony/surface/garage/one)
 "onW" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -31064,10 +31064,10 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "osS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2{
@@ -31185,7 +31185,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31247,7 +31247,7 @@
 /area/ice_colony/surface/dorms)
 "oFO" = (
 /obj/machinery/conveyor_switch,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2,
@@ -31537,7 +31537,7 @@
 /area/ice_colony/surface/dorms/lavatory)
 "piT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -31593,7 +31593,7 @@
 /area/ice_colony/surface/engineering/tool)
 "plZ" = (
 /obj/structure/inflatable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -31673,7 +31673,7 @@
 	},
 /area/ice_colony/exterior/underground/caves)
 "puJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -31976,10 +31976,10 @@
 	},
 /area/ice_colony/exterior/underground/caves/ice_se)
 "pYQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/hoop{
 	dir = 4
 	},
@@ -32011,7 +32011,7 @@
 /area/ice_colony/underground/maintenance/central)
 "qae" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -32044,7 +32044,7 @@
 	},
 /area/ice_colony/surface/garage/repair)
 "qcd" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -32187,7 +32187,7 @@
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/valley/north)
 "qnr" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -32211,7 +32211,7 @@
 /turf/closed/ice/thin/straight,
 /area/ice_colony/exterior/underground/caves)
 "qop" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -32313,7 +32313,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -32333,7 +32333,7 @@
 /area/ice_colony/underground/security)
 "qva" = (
 /obj/machinery/disposal,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
@@ -32414,7 +32414,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
@@ -32466,7 +32466,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "qLw" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "qLN" = (
@@ -32479,7 +32479,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "qMz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -32554,7 +32554,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "qUB" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
@@ -32824,7 +32824,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "rnW" = (
@@ -32844,7 +32844,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "ror" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -32988,7 +32988,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "rAJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
@@ -33058,7 +33058,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/disposals)
 "rFS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -33205,7 +33205,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "rWh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -33219,7 +33219,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "rXf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -33254,13 +33254,13 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/tech_storage)
 "rXM" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "rYI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33273,12 +33273,12 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "rZd" = (
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "rZK" = (
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "rZX" = (
@@ -33300,7 +33300,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "sat" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -33320,7 +33320,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "scE" = (
 /obj/effect/spawner/random/tool,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -33450,7 +33450,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "skk" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
@@ -33500,7 +33500,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "spc" = (
@@ -33584,7 +33584,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "svz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
@@ -33631,13 +33631,13 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "sAm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_2";
 	name = "\improper Hangar Shutters"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -33653,7 +33653,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "sBz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33811,7 +33811,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/tech_storage)
 "sLj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33911,7 +33911,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
 "sYf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/excavation_site_spawner,
@@ -34143,7 +34143,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "tsj" = (
 /obj/machinery/space_heater,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -34169,7 +34169,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "ttC" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
@@ -34221,8 +34221,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
 "twu" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light,
@@ -34305,7 +34305,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/lavatory)
 "tDU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2{
@@ -34346,7 +34346,7 @@
 	},
 /area/ice_colony/exterior/underground/caves/ice_se)
 "tJp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -34607,7 +34607,7 @@
 /area/ice_colony/exterior/underground/caves/open)
 "ulo" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -34630,10 +34630,10 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "unu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -34788,8 +34788,8 @@
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command)
 "uCB" = (
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -34825,15 +34825,15 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "uFf" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "uFO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
@@ -35082,7 +35082,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "uZQ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_2";
@@ -35168,7 +35168,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "ves" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -35182,7 +35182,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "veP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -35431,7 +35431,7 @@
 /turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/cliff)
 "vBe" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/research)
 "vBk" = (
@@ -35526,7 +35526,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/purple2/corner{
@@ -35557,7 +35557,7 @@
 "vMK" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -35642,7 +35642,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -35688,10 +35688,10 @@
 /turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/beta)
 "wdM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -35741,7 +35741,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "wnJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -35831,7 +35831,7 @@
 /turf/closed/ice/corner,
 /area/ice_colony/underground/maintenance/east)
 "wuO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark2,
@@ -35919,8 +35919,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "wFl" = (
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -35938,7 +35938,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 32
 	},
-/obj/effect/decal/warning_stripes{
+/obj/effect/turf_decal/warning_stripes{
 	pixel_y = 32
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -35971,10 +35971,10 @@
 	},
 /area/ice_colony/surface/storage_unit/power)
 "wHG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -35989,7 +35989,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "wIC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment/corner{
@@ -36147,7 +36147,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
 "wZB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -36194,7 +36194,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "xci" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -36439,10 +36439,10 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "xvE" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -36454,7 +36454,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "xwr" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_1";
@@ -36489,7 +36489,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "xyx" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -36573,7 +36573,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "xDX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -36773,7 +36773,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2/corner{
@@ -36846,7 +36846,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "ydF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/purple2/corner{
@@ -36876,7 +36876,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "yey" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -36915,7 +36915,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "yhT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,

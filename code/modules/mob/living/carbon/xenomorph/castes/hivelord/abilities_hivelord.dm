@@ -6,21 +6,13 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/activable/secrete_resin/ranged
+/datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
-	///the maximum range of the ability
-	var/max_range = 1
-
-/datum/action/xeno_action/activable/secrete_resin/ranged/use_ability(atom/A)
-	if(get_dist(owner, A) > max_range)
-		return ..()
-
-	return build_resin(get_turf(A))
 
 // ***************************************
 // *********** Resin walker
@@ -28,7 +20,7 @@
 /datum/action/xeno_action/toggle_speed
 	name = "Resin Walker"
 	action_icon_state = "toggle_speed"
-	mechanics_text = "Move faster on resin."
+	desc = "Move faster on resin."
 	plasma_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
@@ -104,7 +96,7 @@
 /datum/action/xeno_action/build_tunnel
 	name = "Dig Tunnel"
 	action_icon_state = "build_tunnel"
-	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
+	desc = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
 	cooldown_timer = 120 SECONDS
 	keybinding_signals = list(
@@ -193,7 +185,7 @@
 /datum/action/xeno_action/place_jelly_pod
 	name = "Place Resin Jelly pod"
 	action_icon_state = "resin_jelly_pod"
-	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
+	desc = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
 	keybinding_signals = list(
@@ -233,7 +225,7 @@
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
 	action_icon_state = "resin_jelly"
-	mechanics_text = "Create a fireproof jelly."
+	desc = "Create a fireproof jelly."
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
@@ -262,7 +254,7 @@
 /datum/action/xeno_action/activable/healing_infusion
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
-	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
+	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
@@ -343,7 +335,7 @@
 /datum/action/xeno_action/sow
 	name = "Sow"
 	action_icon_state = "place_trap"
-	mechanics_text = "Sow the seeds of an alien plant."
+	desc = "Sow the seeds of an alien plant."
 	plasma_cost = 200
 	cooldown_timer = 45 SECONDS
 	use_state_flags = XACT_USE_LYING

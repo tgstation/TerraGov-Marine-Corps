@@ -34,7 +34,7 @@
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
 
 	//Sunder
-	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier))
+	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier * get_sunder()))
 
 	//Damage
 	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
@@ -72,6 +72,10 @@
 		updatehealth()
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
+
+	if(isobj(pulling))
+		stop_pulling()
+
 
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return

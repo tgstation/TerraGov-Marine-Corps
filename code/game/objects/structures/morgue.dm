@@ -119,7 +119,6 @@
 	layer = OBJ_LAYER
 	var/obj/structure/morgue/linked_morgue = null
 	anchored = TRUE
-	throwpass = 1
 
 /obj/structure/morgue_tray/Initialize(mapload, obj/structure/morgue/morgue_source)
 	. = ..()

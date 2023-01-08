@@ -84,7 +84,7 @@
 	window_open = TRUE
 	if(payload["channel"] != OOC_CHANNEL)
 		start_thinking()
-	if(client.typing_indicators)
+	if(client.prefs.show_typing)
 		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators DISABLED.")
@@ -97,7 +97,7 @@
 /datum/tgui_say/proc/close()
 	window_open = FALSE
 	stop_thinking()
-	if(client.typing_indicators)
+	if(client.prefs.show_typing)
 		log_speech_indicators("[key_name(client)] stopped typing at [loc_name(client.mob)], indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] stopped typing at [loc_name(client.mob)], indicators DISABLED.")
