@@ -79,3 +79,31 @@
       and expanded!
   - rscadd: PoS' Boxing ring is near Alamo now.
   - rscadd: Some addition in PoS prep in light of medbay remodeling.
+2023-01-08:
+  Losenis:
+  - balance: Combat injectors now have tricordrazine in replacement of dylovene.
+  Lumipharon:
+  - balance: eshields no longer have -5 bullet armour
+  - balance: 'HvH: eshields added as default modules for roles other than engie and
+      medic, where another module is not present'
+  - balance: Sticky grenades detonate after four seconds instead of one second, when
+      fired from a grenade launcher
+  - balance: Repairs with a welder will now chain repair, fumble is only done once
+      per chain
+  - refactor: refactored welding repair code
+  - refactor: refactored plasteel tool interactions
+  - balance: Reduced Ravager vampirism healing by 50%.
+  - bugfix: fixed Ravager vampirism healing more than it should
+  - balance: Reduced sentinel grenade radius and duration by 1 tile and 1 second respectively
+  - balance: 'HvH: You have 10 seconds of spawn protection when deploying groundside'
+  Pariah919:
+  - balance: AMR is 775 points rather than 650 now.
+  RipGrayson:
+  - imageadd: Adjusted the cave walls on Big Red to be slightly less blocky
+  - bugfix: Corrects some improper hydro trays in Big Red marshals
+  Waselon:
+  - bugfix: mech weapons dont detach from taking damage. fixed a few related runtime
+      errors.
+  novaepee:
+  - bugfix: Pizza profit margin has been fixed for RO Papa John to feed marines more
+      pizza

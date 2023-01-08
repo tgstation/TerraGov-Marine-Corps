@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Reduced sentinel grenade radius and duration by 1 tile and 1 second respectively"

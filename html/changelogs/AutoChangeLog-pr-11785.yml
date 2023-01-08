@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Reduced Ravager vampirism healing by 50%."
-  - bugfix: "fixed Ravager vampirism healing more than it should"

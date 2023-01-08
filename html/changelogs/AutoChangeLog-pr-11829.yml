@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Repairs with a welder will now chain repair, fumble is only done once per chain"
-  - refactor: "refactored welding repair code"
-  - refactor: "refactored plasteel tool interactions"

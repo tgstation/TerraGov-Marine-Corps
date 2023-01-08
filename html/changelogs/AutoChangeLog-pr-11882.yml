@@ -1,4 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes:
-  - bugfix: "mech weapons dont detach from taking damage. fixed a few related runtime errors."
