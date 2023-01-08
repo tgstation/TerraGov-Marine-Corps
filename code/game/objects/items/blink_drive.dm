@@ -121,7 +121,7 @@
 	if(pulled_target)
 		if(!do_after(user, 0.5 SECONDS, TRUE, user, BUSY_ICON_HOSTILE))
 			return
-		user.balloon_alert(user, "you pull [pulled_target] through with you!")
+		user.balloon_alert(user, "pulled someone through")
 
 	teleport_debuff_aoe(user)
 	user.forceMove(target_turf)
