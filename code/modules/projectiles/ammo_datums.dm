@@ -1678,12 +1678,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 1.5
 	max_range = 7
 	barricade_clear_distance = 7
+	handful_amount = 1
+	handful_icon_state = "rocket"
 
 /datum/ammo/rocket/swarm/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 3, 0, 3)
 
 /datum/ammo/rocket/swarm
-	name = "\improper Swarm missile"
+	name = "\improper Swarm rocket"
 	icon_state = "atgun"
 	damage = 10
 	penetration = 20
@@ -1693,6 +1695,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2.5
 	max_range = 7
 	barricade_clear_distance = 7
+	handful_amount = 1
+	handful_icon_state = "shell"
 
 /datum/ammo/rocket/swarm/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 0, 0, 0)

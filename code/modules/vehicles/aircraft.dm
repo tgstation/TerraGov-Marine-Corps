@@ -4,9 +4,10 @@
 #define REFUELING_DELAY 50	//5 seconds	//Time it takes to refuel
 
 /obj/vehicle/sealed/helicopter
-	name = "\improper Volatol recon helicopter"
+	name = "helicopter"
 	desc = "Fast and nimble with only space for one pilot."
-	icon_state = "engineering_pod"
+	icon = 'icons/obj/vehicles/aircraft.dmi'
+	icon_state = ""
 	max_integrity = 50
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, FIRE = 0, ACID = 0)
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
@@ -20,12 +21,18 @@
 	light_range = 6
 	light_power = 3
 	move_delay = 0.2 SECONDS
+	///pixel_x and pixel_y offset values; order is clockwise, starting from NORTH
+	var/list/offsets = list()
 	///Total fuel capacity
 	var/max_fuel = 200
 	///How much fuel is in the tank
 	var/current_fuel = 0
 	///How many weapon slots are available
 	var/weapon_slots = 0
+	///List of coordinates to offset gun sprites; every 2 elements are the X and Y, respectively
+	var/list/weapon_slot_positions = list(0, 0)
+	///List of references to displayed gun sprites
+	var/list/weapon_overlays = list()
 	///Weapon that's attached
 	var/list/obj/item/weapon/gun/aircraft/attached_weapons = list()
 	///If the vehicle should spawn with a weapon allready installed
@@ -62,7 +69,75 @@
 /obj/vehicle/sealed/helicopter/update_icon()
 	show_helicopter_health()
 	show_helicopter_fuel()
+	handle_offsets()
 	return ..()
+
+/obj/vehicle/sealed/helicopter/setDir(newdir)
+	. = ..()
+	handle_offsets()
+
+/obj/vehicle/sealed/helicopter/proc/handle_offsets()
+	switch(dir)
+		if(NORTH)
+			pixel_x = offsets[1]
+			pixel_y = offsets[2]
+		if(NORTHEAST)
+			pixel_x = offsets[3]
+			pixel_y = offsets[4]
+		if(EAST)
+			pixel_x = offsets[5]
+			pixel_y = offsets[6]
+		if(SOUTHEAST)
+			pixel_x = offsets[7]
+			pixel_y = offsets[8]
+		if(SOUTH)
+			pixel_x = offsets[9]
+			pixel_y = offsets[10]
+		if(SOUTHWEST)
+			pixel_x = offsets[11]
+			pixel_y = offsets[12]
+		if(WEST)
+			pixel_x = offsets[13]
+			pixel_y = offsets[14]
+		if(NORTHWEST)
+			pixel_x = offsets[15]
+			pixel_y = offsets[16]
+	if(LAZYLEN(weapon_overlays))
+		//Remove the overlays and re-apply them in the direction the aircraft is facing
+		cut_overlays()
+		weapon_overlays.Cut()
+		for(var/obj/item/weapon/gun/aircraft/gun AS in attached_weapons)
+			var/weapon_position_in_list = attached_weapons.Find(gun)
+			var/x_offset
+			var/y_offset
+			switch(dir)
+				if(NORTH)
+					x_offset = -weapon_slot_positions[weapon_position_in_list * 2 - 1] + 32
+					y_offset = -weapon_slot_positions[weapon_position_in_list * 2] + 32
+				if(NORTHEAST)
+					x_offset = -weapon_slot_positions[weapon_position_in_list * 2 - 1] + 48
+					y_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1] + 16
+				if(EAST)
+					x_offset = -weapon_slot_positions[weapon_position_in_list * 2] + 32
+					y_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1]
+				if(SOUTHEAST)
+					x_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1] + 16
+					y_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1] - 16
+				if(SOUTH)
+					x_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1]
+					y_offset = weapon_slot_positions[weapon_position_in_list * 2]
+				if(SOUTHWEST)
+					x_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1] - 16
+					y_offset = -weapon_slot_positions[weapon_position_in_list * 2 - 1] + 16
+				if(WEST)
+					x_offset = weapon_slot_positions[weapon_position_in_list * 2]
+					y_offset = -weapon_slot_positions[weapon_position_in_list * 2 - 1] + 32
+				if(NORTHWEST)
+					x_offset = -weapon_slot_positions[weapon_position_in_list * 2 - 1] + 16
+					y_offset = -weapon_slot_positions[weapon_position_in_list * 2 - 1] + 48
+			var/image/gun_overlay = image(gun.icon, gun.icon_state + "_a", pixel_x = x_offset, pixel_y = y_offset, layer = ABOVE_MOB_LAYER-0.01)
+			add_overlay(gun_overlay)
+			weapon_overlays += gun_overlay
 
 /obj/vehicle/sealed/helicopter/examine(mob/user)
 	. = ..()
@@ -79,11 +154,12 @@
 		. += "No weapon is attached."
 
 /obj/vehicle/sealed/helicopter/attack_hand(mob/living/user)
+	if(is_occupant(user))
+		balloon_alert(user, "Must be outside!")
+		return FALSE
 	if(CHECK_BITFIELD(flags_pass, FLYING) && !CHECK_MULTIPLE_BITFIELDS(user.flags_pass, FLYING))	//Only another flying unit can reach us!
 		balloon_alert(user, "Out of reach!")
 		return
-	if(LAZYLEN(attached_weapons) && is_occupant(user) && occupants[user] & VEHICLE_CONTROL_EQUIPMENT)	//Retake controls if the gunner lost them
-		return user.set_interaction(src)
 	if(LAZYLEN(occupants) && user.a_intent == INTENT_GRAB)	//For kicking someone out
 		var/mob/evicted = LAZYLEN(occupants) == 1 ? occupants[1] : tgui_input_list(user, "Choose who to remove from [src]", "Occupant Eviction", occupants)
 		if(!evicted)
@@ -97,6 +173,9 @@
 	return ..()
 
 /obj/vehicle/sealed/helicopter/attackby(obj/item/I, mob/user, params)
+	if(is_occupant(user))
+		balloon_alert(user, "Must be outside!")
+		return FALSE
 	if(CHECK_BITFIELD(flags_pass, FLYING) && !CHECK_MULTIPLE_BITFIELDS(user.flags_pass, FLYING))	//Only another flying unit can reach us!
 		balloon_alert(user, "Out of reach!")
 		return
@@ -116,6 +195,9 @@
 
 /obj/vehicle/sealed/helicopter/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
+	if(is_occupant(over))
+		balloon_alert(over, "Must be outside!")
+		return FALSE
 	if(LAZYLEN(attached_weapons))
 		return unload(over)
 
@@ -166,7 +248,7 @@
 		move_resist = initial(move_resist)
 	else
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 30, FALSE, 5)
-		icon_state = "keys"
+		icon_state += "_undeployed"
 		move_resist = MOVE_RESIST_DEFAULT
 	update_icon()
 
@@ -232,6 +314,14 @@
 	attached_weapons += gun
 	ENABLE_BITFIELD(gun.flags_item, IS_DEPLOYED)
 	weapon_slots--
+	//Find the position in the list the gun is in, then find the corresponding coordinates
+	//Example: Gun that user just attached is element number 2 in the attached_weapons list, so it will use the 3rd and 4th numbers in weapon_slot_positions
+	var/weapon_position_in_list = attached_weapons.Find(gun)
+	var/x_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1]
+	var/y_offset = weapon_slot_positions[weapon_position_in_list * 2]
+	var/image/gun_overlay = image(gun.icon, gun.icon_state + "_a", pixel_x = x_offset, pixel_y = y_offset, layer = ABOVE_MOB_LAYER-0.01)
+	add_overlay(gun_overlay)
+	weapon_overlays += gun_overlay
 	playsound(src, 'sound/weapons/guns/fire/tank_minigun_start.ogg', 50, FALSE, 5)
 	update_icon()
 	if(gunner)
@@ -247,6 +337,12 @@
 		gun.forceMove(src)
 		ENABLE_BITFIELD(gun.flags_item, IS_DEPLOYED)
 		weapon_slots--
+		var/weapon_position_in_list = attached_weapons.Find(gun)
+		var/x_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1]
+		var/y_offset = weapon_slot_positions[weapon_position_in_list * 2]
+		var/image/gun_overlay = image(gun.icon, gun.icon_state + "_a", pixel_x = x_offset, pixel_y = y_offset, layer = ABOVE_MOB_LAYER-0.01)
+		add_overlay(gun_overlay)
+		weapon_overlays += gun_overlay
 	update_icon()
 
 /obj/vehicle/sealed/helicopter/wrench_act(mob/living/user, obj/item/I)
@@ -262,7 +358,8 @@
 	balloon_alert_to_viewers("Detaching weapon!")
 	if(!do_after(user, WEAPON_ATTACH_AND_DETACH_DELAY, TRUE, user, BUSY_ICON_BUILD))
 		return
-	if(!attached_weapons.Find(gun_to_detach))	//Safety check
+	var/weapon_position_in_list = attached_weapons.Find(gun_to_detach)
+	if(!weapon_position_in_list)	//Safety check
 		balloon_alert(user, "No weapon attached!")
 		return
 	balloon_alert_to_viewers("Weapon detached!")
@@ -271,7 +368,17 @@
 	else
 		gun_to_detach.set_gun_user(null)
 	user.put_in_hands(gun_to_detach)
+	cut_overlays()
+	weapon_overlays.Cut()
 	attached_weapons -= gun_to_detach
+	if(LAZYLEN(attached_weapons))	//Re-add all gun overlays because there is no easy way to make a system that keeps track of "open" overlay slots
+		for(var/obj/item/weapon/gun/aircraft/gun AS in attached_weapons)
+			weapon_position_in_list = attached_weapons.Find(gun)
+			var/x_offset = weapon_slot_positions[weapon_position_in_list * 2 - 1]
+			var/y_offset = weapon_slot_positions[weapon_position_in_list * 2]
+			var/image/gun_overlay = image(gun.icon, gun.icon_state + "_a", pixel_x = x_offset, pixel_y = y_offset, layer = ABOVE_MOB_LAYER-0.01)
+			add_overlay(gun_overlay)
+			weapon_overlays += gun_overlay
 	DISABLE_BITFIELD(gun_to_detach.flags_item, IS_DEPLOYED)
 	weapon_slots++
 	playsound(src, 'sound/weapons/guns/fire/tank_minigun_start.ogg', 50, FALSE, 5)
@@ -369,7 +476,7 @@
 		if(M == pilot)
 			UnregisterSignal(M, COMSIG_MOB_MOUSEDRAG)
 			pilot = null
-		else
+		if(M == gunner)
 			gunner = null
 	return ..()
 
@@ -432,10 +539,11 @@ VEHICLE_CONTROL_EQUIPMENT: Will be the flag for weapon-related controls, should 
 	else
 		RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, .proc/turn_gun)
 	//By default will select the first weapon
-	for(var/datum/action/action AS in attached_weapons[1].actions)
+	if(!current_weapon)
+		current_weapon = attached_weapons[1]
+	for(var/datum/action/action AS in current_weapon.actions)
 		action.give_action(user)
-	attached_weapons[1].set_gun_user(user)
-	current_weapon = attached_weapons[1]
+	current_weapon.set_gun_user(user)
 
 /obj/vehicle/sealed/helicopter/on_unset_interaction(mob/user)
 	if(!user)
@@ -501,7 +609,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		return FALSE
 	current_weapon.change_target(source, src_object, over_object, src_location, over_location, src_control, over_control, params)
 	if(CHECK_BITFIELD(flags_pass, FLYING))	//Heli can't turn around if it's not flying!
-		face_atom(over_object)
+		setDir(angle_to_dir(Get_Angle(source, over_object)))
 
 ///Proc for turning the vehicle to wherever the cursor is
 /obj/vehicle/sealed/helicopter/proc/turn_vehicle(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -509,7 +617,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	if(!flight_operation_checks(over_object))
 		return FALSE
 	if(CHECK_BITFIELD(flags_pass, FLYING))
-		face_atom(over_object)
+		setDir(angle_to_dir(Get_Angle(source, over_object)))
 
 ///Proc that grabs a new target for firing at
 /obj/vehicle/sealed/helicopter/proc/turn_gun(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -535,6 +643,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		add_filter("flight_shadow", 2, drop_shadow_filter(y = -10, color = "#000000", size = 10))
 		coverage = 0
 		layer = FLY_LAYER
+		icon_state += "_flying"
 		for(var/mob/M in occupants)
 			M.set_flying(TRUE)
 		START_PROCESSING(SSobj, src)
@@ -551,6 +660,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	coverage = initial(coverage)
 	layer = initial(layer)
 	remove_filter("flight_shadow")
+	icon_state = initial(icon_state)
 	for(var/mob/M in occupants)
 		M.set_flying(FALSE)
 	if(pilot)
@@ -748,26 +858,33 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 
 /datum/action/vehicle/sealed/helicopter/change_weapon/action_activate()
 	. = ..()
-	if(LAZYLEN(helicopter.attached_weapons) < 2)
-		to_chat(owner, span_warning("Multiple weapons need to be attached!"))
+	if(!LAZYLEN(helicopter.attached_weapons))
+		to_chat(owner, span_warning("No weapons attached!"))
 		return FALSE
-	helicopter.current_weapon.set_gun_user(null)
-	///The posisition in the list the current weapon is at; used to cycle to the next weapon in the list, or loop back to the first
-	var/position_in_list = helicopter.attached_weapons.Find(helicopter.current_weapon)
-	//The new current_weapon becomes either the next one in the list, or the first one in the list if there is no next weapon
-	helicopter.current_weapon = position_in_list < LAZYLEN(helicopter.attached_weapons) ? helicopter.attached_weapons[position_in_list + 1] : helicopter.attached_weapons[1]
-	helicopter.current_weapon.set_gun_user(owner)
-	to_chat(owner, span_notice("Current weapon: [span_boldnotice("[helicopter.current_weapon.name]")]"))
+	///The position in the list the current weapon is at; used to cycle to the next weapon in the list, or loop back to the first
+	var/position_in_list
+	if(helicopter.current_weapon)
+		position_in_list = helicopter.attached_weapons.Find(helicopter.current_weapon)
+		owner.unset_interaction()
+	else
+		position_in_list = 0	//current_weapon was null, so the first gun in the list will be equipped
+	//The new current_weapon becomes either the next one in the list, or deselects the current weapon
+	helicopter.current_weapon = position_in_list < LAZYLEN(helicopter.attached_weapons) ? helicopter.attached_weapons[position_in_list + 1] : null
+	if(helicopter.current_weapon)
+		owner.set_interaction(helicopter)
+	to_chat(owner, span_notice("Current weapon: [span_boldnotice("[helicopter.current_weapon ? "[helicopter.current_weapon.name]" : "NONE"]")]"))
 
 /* Helicopter variants */
 /obj/vehicle/sealed/helicopter/attack
 	name = "\improper V-LRN attack chopper"
 	desc = "Ultralight helicopter with a single weapon attachment point."
-	icon_state = "engineering_pod"
+	icon_state = "attack"
 	max_integrity = 100
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, FIRE = 10, ACID = 0)
 	move_delay = 0.3 SECONDS
 	weapon_slots = 1
+	weapon_slot_positions = list(16, -4)
+	offsets = list(-16, -24, -20, -20, -24, -16, -20, -12, -16, -8, -12, -12, -8, -16, -12, -20)
 
 /obj/vehicle/sealed/helicopter/attack/minigun
 	desc = "Ultralight helicopter with a single weapon attachment point. Comes equipped with a BZ-22 minigun."
@@ -782,23 +899,24 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	starting_weapons = list(/obj/item/weapon/gun/aircraft/predator)
 
 /obj/vehicle/sealed/helicopter/attack/swarm
-	desc = "Ultralight helicopter with a single weapon attachment point. Comes equipped with a Swarm missile launcher."
+	desc = "Ultralight helicopter with a single weapon attachment point. Comes equipped with a Swarm rocket launcher."
 	starting_weapons = list(/obj/item/weapon/gun/aircraft/swarm)
 
 /obj/vehicle/sealed/helicopter/transport
 	name = "\improper ATT \"Beluga\""
 	desc = "Heavily armored and designed to carry 4 passengers. \nAnd don't forget, this troop carrier is in the top 1% of all troop carriers out there!"
-	icon_state = "atv"
+	icon_state = "transport"
 	max_integrity = 250	//Beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
 	move_delay = 0.4 SECONDS
 	max_occupants = 5
 	max_fuel = 500
+	offsets = list(-16, -20, -20, -20, -20, -16, -20, -12, -16, -12, -12, -12, -12, -16, -12, -20)
 
 /obj/vehicle/sealed/helicopter/gunship
 	name = "\improper Pelican gunship"	//Too on the nose?
 	desc = "A flying tank. This bad boy features tough armor and 2 weapon mounts. However, it needs a separate pilot and gunner to operate."
-	icon_state = "atv"
+	icon_state = "gunship"
 	max_integrity = 200	//Also a beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
 	move_delay = 0.5 SECONDS
@@ -806,6 +924,8 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	max_gunners = 1
 	max_fuel = 400
 	weapon_slots = 2
+	weapon_slot_positions = list(8, -10, 24, -10)
+	offsets = list(-16, -24, -24, -16, -24, -16, -24, -8, -16, -8, -8, -8, -8, -16, -8, -24)
 
 /obj/vehicle/sealed/helicopter/gunship
 	starting_weapons = list(/obj/item/weapon/gun/aircraft/minigun, /obj/item/weapon/gun/aircraft/cannon)
@@ -814,8 +934,8 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/item/weapon/gun/aircraft
 	name = "heli glock"
 	desc = "Square up."
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "placeholderprop"
+	icon = 'icons/obj/vehicles/aircraft_munitions.dmi'
+	icon_state = ""
 	reload_sound = 'sound/weapons/guns/interact/t42_unload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t42_unload.ogg'
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_UNUSUAL_DESIGN
@@ -837,7 +957,6 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
 	if(LAZYLEN(chamber_items))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-			//var/obj/item/ammo_magazine/mag = chamber_items[1]
 			. += "Ammo: <b>[rounds]/[max_rounds]</b>"
 		else	//Don't have any current plans for non-mag based weapons yet, so just leaving it at this
 			. += "It is loaded."
@@ -974,7 +1093,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/item/weapon/gun/aircraft/minigun
 	name = "\improper BZ-22 minigun"
 	desc = "Classic minigun with some modifications done by the TerraGov Air Corp. This aircraft-mounted assembly features lots of space for stored ammunition."
-	icon_state = "30mm_crate"
+	icon_state = "minigun"
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	fire_delay = 1.5
@@ -986,7 +1105,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/item/weapon/gun/aircraft/cannon
 	name = "\improper GAN-36 cannon"
 	desc = "Slow-firing, heavy cannon. Can turn a man into mush."
-	icon_state = "sentry_system"
+	icon_state = "cannon"
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	fire_delay = 0.6 SECONDS
@@ -998,7 +1117,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/item/weapon/gun/aircraft/predator
 	name = "\improper Predator missile pod"	//For the AvP and CoD fans out there
 	desc = "Low-capacity missile pod for the lethal Predator."
-	icon_state = "minirocket_pod"
+	icon_state = "predator"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_UNUSUAL_DESIGN|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	fire_delay = 4 SECONDS
 	max_rounds = 4
@@ -1008,8 +1127,8 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 
 /obj/item/weapon/gun/aircraft/swarm
 	name = "\improper Swarm missile launcher"	//For the Starsector fans
-	desc = "Small and quick, Swarm missiles are designed for saturation bombing rather than precision lethality. Fires in bursts of 3."
-	icon_state = "minirocket"
+	desc = "Small and quick, Swarm rockets are designed for saturation bombing rather than precision lethality. Fires in bursts of 3."
+	icon_state = "swarm"
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_UNUSUAL_DESIGN|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	gun_firemode = GUN_FIREMODE_AUTOBURST
 	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
@@ -1025,8 +1144,8 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/item/ammo_magazine/aircraft
 	name = "generic aircraft magazine box"
 	desc = "Standard issue."
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "heavylaser"
+	icon = 'icons/obj/vehicles/aircraft_munitions.dmi'
+	icon_state = ""
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = null
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
@@ -1034,37 +1153,38 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/item/ammo_magazine/aircraft/minigun
 	name = "\improper BZ-22 ammunition case"
 	desc = "A large case containing of ammo that can be slotted into the BZ-22 minigun assembly."
-	icon_state = "crate"
+	icon_state = "minigun_box"
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/aircraft_minigun
 
 /obj/item/ammo_magazine/aircraft/cannon
 	name = "\improper GAN-36 cannon ammunition case"
 	desc = "A heavy container for the large GAN-36 cannon rounds."
-	icon_state = "ac_mag"
+	icon_state = "cannon_box"
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/aircraft_cannon
 
 /obj/item/ammo_magazine/rocket/aircraft
 	name = "generic aircraft missile rack"
 	desc = "Standard issue."
+	icon = 'icons/obj/vehicles/aircraft_munitions.dmi'
 	icon_state = ""
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = null
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_REFILLABLE
 	reload_delay = 0
 
 /obj/item/ammo_magazine/rocket/aircraft/predator
 	name = "\improper Predator missile rack"
 	desc = "Handy assembly for easy loading of Predator missiles."
-	icon_state = "ltbcannon_4"
+	icon_state = "predator_rack"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/predator
 
 /obj/item/ammo_magazine/rocket/aircraft/swarm
-	name = "\improper Swarm missile case"
-	desc = "Houses the small swarm missiles in neat little rows."
-	icon_state = "glauncher_2"
+	name = "\improper Swarm rocket case"
+	desc = "Houses the small swarm rockets in neat little rows."
+	icon_state = "swarm_rack"
 	max_rounds = 36
 	default_ammo = /datum/ammo/rocket/swarm
 
