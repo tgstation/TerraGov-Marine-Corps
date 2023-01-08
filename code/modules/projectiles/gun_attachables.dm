@@ -368,6 +368,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
+	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonet_t35")
 
 /obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
 	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
@@ -400,6 +401,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
+	variants_by_parent_type = list(/obj/item/weapon/gun/shotgun/pump/t35 = "bayonetknife_t35")
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()
@@ -415,7 +417,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -1
 	size_mod = 1
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big")
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big", /obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big")
 
 
 /obj/item/attachable/heavy_barrel
@@ -437,7 +439,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = -2
 	scatter_unwielded_mod = -3
 	recoil_unwielded_mod = -2
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "comp_big", /obj/item/weapon/gun/smg/som = "comp_big", /obj/item/weapon/gun/shotgun/som = "comp_big")
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "comp_big", /obj/item/weapon/gun/smg/som = "comp_big", /obj/item/weapon/gun/shotgun/som = "comp_big", /obj/item/weapon/gun/shotgun/pump/t35 = "comp_big")
 
 
 /obj/item/attachable/sniperbarrel
@@ -963,16 +965,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/t35stock
-	name = "\improper SH-35 stock"
-	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	flags_attach_features = ATTACH_REMOVABLE
-	wield_delay_mod = 0.2 SECONDS
-	icon_state = "t35stock"
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -2
-
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
 	desc = "A specialized stock for the SH-35."
@@ -1218,6 +1210,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = -8
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 4
+
+/obj/item/attachable/foldable/t35stock
+	name = "\improper SH-35 stock"
+	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	icon = 'icons/Marine/attachments_64.dmi'
+	icon_state = "t35stock"
+	flags_attach_features = ATTACH_ACTIVATION
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.15
+	recoil_mod = -3
+	scatter_mod = -2
 
 /obj/item/attachable/foldable/bipod
 	name = "bipod"
