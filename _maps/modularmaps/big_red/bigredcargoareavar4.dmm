@@ -48,7 +48,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "em" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -469,7 +469,7 @@
 	},
 /area/bigredv2/outside/nw)
 "FG" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /obj/structure/fence,
@@ -736,7 +736,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "VG" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
@@ -745,7 +745,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "Wu" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "Wy" = (

@@ -44,7 +44,7 @@
 /area/lv624/lazarus/spaceport)
 "acj" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -52,7 +52,7 @@
 	},
 /area/lv624/ground/sand8)
 "acs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -407,7 +407,7 @@
 /turf/open/floor/vault,
 /area/lv624/lazarus/crashed_ship)
 "amV" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "anm" = (
@@ -487,7 +487,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "aoP" = (
@@ -604,7 +604,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "asE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -617,7 +617,7 @@
 	},
 /area/lv624/ground/sand5)
 "ata" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/marking/loadingarea{
@@ -844,7 +844,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "awO" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "awP" = (
@@ -926,7 +926,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/caves/central3)
 "axY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -1168,7 +1168,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "aCv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -1532,7 +1532,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "aLp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -1785,10 +1785,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "aQg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -2016,7 +2016,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "aUE" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor,
@@ -2239,10 +2239,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "aZa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -2469,7 +2469,7 @@
 	},
 /area/lv624/ground/jungle7)
 "ber" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/cable,
@@ -2513,8 +2513,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "bfw" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -2638,7 +2638,7 @@
 	},
 /area/lv624/ground/jungle7)
 "bih" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -2785,7 +2785,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -3228,7 +3228,7 @@
 /area/lv624/ground/river2)
 "bvR" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -3308,7 +3308,7 @@
 /area/lv624/lazarus/secure_storage)
 "bzw" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/lv624/fog_blocker,
@@ -3416,7 +3416,7 @@
 /turf/closed/wall,
 /area/lv624/ground/filtration)
 "bDG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -3488,7 +3488,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "bHX" = (
@@ -3533,10 +3533,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle1)
 "bLS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -3590,11 +3590,11 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "bOl" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "bOu" = (
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "bOC" = (
@@ -3711,7 +3711,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/floodlight/colony,
@@ -3735,7 +3735,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "bXC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -3761,7 +3761,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bYI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -3931,10 +3931,10 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "clg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/ai_node,
@@ -4032,7 +4032,7 @@
 	pixel_y = -31
 	},
 /obj/structure/showcase,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "cpV" = (
@@ -4167,10 +4167,10 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "czF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -4190,7 +4190,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "cAg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor,
@@ -4253,7 +4253,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "cEb" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "cEi" = (
@@ -4347,7 +4347,7 @@
 	},
 /area/lv624/ground/jungle9)
 "cIE" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -4420,7 +4420,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "cMD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -4557,7 +4557,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "cUf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -4898,7 +4898,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "dos" = (
@@ -5034,7 +5034,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "dvK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -5056,10 +5056,10 @@
 	},
 /area/lv624/ground/jungle1)
 "dwP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/power/apc/hyper,
@@ -5140,7 +5140,7 @@
 /obj/effect/decal/remains/xeno{
 	pixel_x = 31
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "dAB" = (
@@ -5393,7 +5393,7 @@
 	pixel_y = -31
 	},
 /obj/structure/showcase,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -5426,7 +5426,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/caves/rock)
 "dSX" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor,
@@ -5449,7 +5449,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/corporate_affairs)
 "dUf" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/jungle/vines,
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -5486,7 +5486,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "dWG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -5518,7 +5518,7 @@
 /turf/open/floor/elevatorshaft,
 /area/lv624/lazarus/bar)
 "dZk" = (
-/obj/effect/decal/tracks/human1/wet{
+/obj/effect/turf_decal/tracks/human1/wet{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -5571,7 +5571,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "ebP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -5714,10 +5714,10 @@
 	},
 /area/lv624/ground/jungle1)
 "elQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker,
@@ -5766,7 +5766,7 @@
 	},
 /area/lv624/ground/jungle5)
 "eon" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5865,10 +5865,10 @@
 	},
 /area/lv624/lazarus/spaceport)
 "evm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -5901,9 +5901,9 @@
 	},
 /area/lv624/lazarus/overgrown)
 "ewD" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ewU" = (
@@ -5953,10 +5953,10 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "ezh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
 /turf/open/floor,
@@ -5994,7 +5994,7 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "eCG" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 8
 	},
@@ -6050,10 +6050,10 @@
 	},
 /area/lv624/lazarus/spaceport)
 "eIy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -6158,10 +6158,10 @@
 	},
 /area/lv624/ground/jungle6)
 "ePW" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "eQx" = (
@@ -6264,10 +6264,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "eYh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6298,7 +6298,7 @@
 /turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "eZd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/ai_node,
@@ -6489,10 +6489,10 @@
 	},
 /area/lv624/lazarus/fitness)
 "fkX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
 /turf/open/floor,
@@ -6533,7 +6533,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/lazarus/spaceport)
 "fnP" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -6605,7 +6605,7 @@
 	},
 /area/lv624/lazarus/security)
 "fuw" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
 	},
@@ -6618,7 +6618,7 @@
 	},
 /area/lv624/ground/jungle1)
 "fuW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -6640,7 +6640,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "fwb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -6815,7 +6815,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/corporate_affairs)
 "fFk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor,
@@ -6929,7 +6929,7 @@
 /area/lv624/lazarus/main_hall)
 "fNu" = (
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "fOi" = (
@@ -7478,7 +7478,7 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/overgrown)
 "gsU" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -7536,7 +7536,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "gwV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -7975,7 +7975,7 @@
 	},
 /area/lv624/ground/river2)
 "gYV" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -8016,7 +8016,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "hbg" = (
@@ -8042,7 +8042,7 @@
 	dir = 2
 	},
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "hdi" = (
@@ -8078,10 +8078,10 @@
 	},
 /area/lv624/ground/caves/rock)
 "hel" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -8121,7 +8121,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "hfE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor,
@@ -8141,7 +8141,7 @@
 	},
 /area/lv624/lazarus/research)
 "hgD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -8178,7 +8178,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "hjr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -8398,7 +8398,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "hyF" = (
@@ -8453,7 +8453,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
 /turf/open/floor,
@@ -8532,7 +8532,7 @@
 /area/lv624/lazarus/captain)
 "hIe" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop2/lz2)
 "hIC" = (
@@ -8565,7 +8565,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "hLz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -8625,10 +8625,10 @@
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "hOR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
 /turf/open/floor,
@@ -8661,13 +8661,13 @@
 	},
 /area/lv624/ground/jungle7)
 "hPw" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "hQb" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -8746,7 +8746,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "hVr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor,
@@ -8817,10 +8817,10 @@
 	},
 /area/lv624/lazarus/bar)
 "iaa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/corpsespawner/PMC,
@@ -8846,7 +8846,7 @@
 /area/lv624/lazarus/security)
 "iaS" = (
 /obj/structure/platform,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ibj" = (
@@ -8885,7 +8885,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "idl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
@@ -9006,7 +9006,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "ikz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -9092,7 +9092,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "iqs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -9107,7 +9107,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/ground/compound/c)
 "irl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9516,7 +9516,7 @@
 /area/lv624/ground/caves/west1)
 "iTI" = (
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/ground/river,
@@ -9725,7 +9725,7 @@
 /area/lv624/ground/caves/rock)
 "jgP" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/warning{
@@ -9755,10 +9755,10 @@
 	},
 /area/lv624/ground/jungle8)
 "jiJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "jiY" = (
@@ -9845,11 +9845,11 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "jpM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -10020,7 +10020,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "jxU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -10144,7 +10144,7 @@
 	name = "Vault Access";
 	pixel_x = 25
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -10166,7 +10166,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "jHo" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor,
@@ -10228,7 +10228,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "jIV" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "jJr" = (
@@ -10301,7 +10301,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "jNf" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -10349,7 +10349,7 @@
 /area/lv624/ground/jungle6)
 "jOO" = (
 /obj/structure/cable,
-/obj/effect/decal/tracks/human1/wet{
+/obj/effect/turf_decal/tracks/human1/wet{
 	dir = 8
 	},
 /turf/open/floor/marking/warning{
@@ -10366,8 +10366,8 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "jQc" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "jQf" = (
@@ -10528,14 +10528,14 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle1)
 "kaT" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "kaX" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "kaZ" = (
@@ -10769,7 +10769,7 @@
 /turf/open/floor/vault,
 /area/lv624/lazarus/crashed_ship)
 "knA" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -10784,10 +10784,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "koo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/cable,
@@ -10801,10 +10801,10 @@
 /area/lv624/ground/jungle7)
 "kpi" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -11106,7 +11106,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "kHE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -11137,10 +11137,10 @@
 	},
 /area/lv624/ground/jungle7)
 "kJH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -11162,14 +11162,14 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
 "kKT" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/river3)
 "kLd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -11194,7 +11194,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "kMj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -11427,7 +11427,7 @@
 	},
 /area/lv624/ground/jungle6)
 "kZT" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 8
@@ -11469,7 +11469,7 @@
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "lcT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11501,7 +11501,7 @@
 	},
 /area/lv624/lazarus/security)
 "ldV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/dmg3,
@@ -11592,7 +11592,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "ljr" = (
@@ -11702,14 +11702,14 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "lnx" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "lnN" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
@@ -11796,10 +11796,10 @@
 /turf/open/ground/coast,
 /area/lv624/ground/jungle6)
 "luK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/landmark/weed_node,
@@ -11869,7 +11869,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
 "lzr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
@@ -11911,10 +11911,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "lCi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11945,10 +11945,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "lEV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -11980,7 +11980,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "lHm" = (
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -11990,7 +11990,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
 /turf/open/floor,
@@ -12132,7 +12132,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "lPe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -12145,7 +12145,7 @@
 	},
 /area/lv624/ground/jungle10)
 "lPW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -12324,7 +12324,7 @@
 	},
 /area/lv624/lazarus/research)
 "maP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -12441,11 +12441,11 @@
 	},
 /area/lv624/ground/jungle6)
 "mhd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -12535,7 +12535,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "mkI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -12555,7 +12555,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle3)
 "mlp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -12619,12 +12619,12 @@
 /area/lv624/lazarus/crashed_ship)
 "mpL" = (
 /obj/effect/decal/remains/xeno,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "mqe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -12660,7 +12660,7 @@
 /turf/closed/wall,
 /area/lv624/ground/jungle7)
 "mrU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -12721,7 +12721,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "mwl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -12796,7 +12796,7 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/quartstorage/outdoors)
 "mBO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -12917,10 +12917,10 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "mJM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -12941,7 +12941,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "mKN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -12957,13 +12957,13 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
 "mMU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -13066,7 +13066,7 @@
 /area/lv624/ground/jungle3)
 "mQZ" = (
 /obj/effect/ai_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -13099,7 +13099,7 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "mTN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/ai_node,
@@ -13124,13 +13124,13 @@
 	},
 /area/lv624/ground/jungle7)
 "mWo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -13204,10 +13204,10 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "mZo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -13279,7 +13279,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "ncI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -13343,14 +13343,14 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "ngJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ngS" = (
 /obj/effect/decal/remains/xeno,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -13399,10 +13399,10 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "nlZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -13424,7 +13424,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "nnN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -13527,7 +13527,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "nwe" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -13600,7 +13600,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "nAY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13610,7 +13610,7 @@
 /area/lv624/ground/sand8)
 "nBh" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "nBJ" = (
@@ -13660,7 +13660,7 @@
 	},
 /area/lv624/lazarus/security)
 "nDE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -13744,8 +13744,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "nIO" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor,
@@ -13788,7 +13788,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "nMg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -13895,8 +13895,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "nUN" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral,
@@ -13907,7 +13907,7 @@
 /area/lv624/ground/sand1)
 "nVk" = (
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
 "nVx" = (
@@ -14001,10 +14001,10 @@
 /area/lv624/ground/jungle3)
 "obI" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -14091,7 +14091,7 @@
 /area/lv624/lazarus/spaceport)
 "ofP" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "ofY" = (
@@ -14109,7 +14109,7 @@
 /area/shuttle/drop2/lz2)
 "ohj" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -14433,7 +14433,7 @@
 /area/lv624/ground/sand7)
 "oEf" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14460,7 +14460,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/armory)
 "oFV" = (
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -14526,7 +14526,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "oHK" = (
@@ -14741,7 +14741,7 @@
 "oWt" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "oXa" = (
@@ -14756,7 +14756,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "oXS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -14777,7 +14777,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -14928,7 +14928,7 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "phK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -14959,7 +14959,7 @@
 	},
 /area/lv624/ground/jungle7)
 "pmF" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor,
@@ -14987,7 +14987,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "pnl" = (
@@ -15097,7 +15097,7 @@
 	},
 /area/lv624/ground/jungle7)
 "pvx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -15171,16 +15171,16 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "pAI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "pCF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -15228,7 +15228,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "pES" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/watertank,
@@ -15445,10 +15445,10 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "pRX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/colony,
@@ -15543,7 +15543,7 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "pVy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -15607,7 +15607,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "pYA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/ai_node,
@@ -15687,7 +15687,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
 "qfn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -15729,7 +15729,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "qmg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -15793,10 +15793,10 @@
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "qpz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/landmark/weed_node,
@@ -15901,7 +15901,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "qwx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -15965,10 +15965,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "qyK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -15978,13 +15978,13 @@
 /turf/closed/wall,
 /area/lv624/lazarus/canteen)
 "qzf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/structure/bed,
@@ -16099,7 +16099,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/river1)
 "qGk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
@@ -16330,7 +16330,7 @@
 /area/lv624/lazarus/engineering)
 "qUB" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -16464,7 +16464,7 @@
 	},
 /area/lv624/ground/sand7)
 "qYB" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/river3)
 "qZa" = (
@@ -16616,10 +16616,10 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "rhJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -16669,13 +16669,13 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "rlM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "rmk" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor,
@@ -16705,7 +16705,7 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "rmQ" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "rnp" = (
@@ -17091,10 +17091,10 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "rHw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -17155,7 +17155,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "rKm" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor,
@@ -17230,7 +17230,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "rPZ" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -17310,13 +17310,13 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "rVb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/bed,
@@ -17334,7 +17334,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "rWi" = (
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/plating,
 /area/lv624/ground/caves/rock)
 "rWv" = (
@@ -17512,7 +17512,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "seb" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor,
@@ -17628,7 +17628,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "soz" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -17661,7 +17661,7 @@
 /obj/structure/bed/alien{
 	color = "#aba9a9"
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "sqP" = (
@@ -17711,7 +17711,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle3)
 "sud" = (
-/obj/effect/decal/tracks/human1/wet{
+/obj/effect/turf_decal/tracks/human1/wet{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -17742,7 +17742,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "sxg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -17923,10 +17923,10 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "sJt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -17936,7 +17936,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "sLm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/decal/remains/xeno,
@@ -17950,10 +17950,10 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "sLv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -18004,10 +18004,10 @@
 /area/lv624/ground/jungle1)
 "sQz" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "sRc" = (
@@ -18187,10 +18187,10 @@
 /turf/open/ground/river,
 /area/lv624/ground/river1)
 "tce" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -18527,10 +18527,10 @@
 	},
 /area/lv624/lazarus/research)
 "tvO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -18584,10 +18584,10 @@
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "tyz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -18726,7 +18726,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "tIf" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
@@ -18737,7 +18737,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "tIn" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor,
@@ -18783,10 +18783,10 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/overgrown)
 "tJH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -18842,10 +18842,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "tKy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/floodlight/colony,
@@ -18977,8 +18977,8 @@
 /area/lv624/ground/filtration)
 "tUL" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor,
@@ -19029,7 +19029,7 @@
 	},
 /area/lv624/ground/jungle6)
 "tYo" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -19039,10 +19039,10 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "tYV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "tZa" = (
@@ -19200,8 +19200,8 @@
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "ugZ" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "uiJ" = (
@@ -19248,7 +19248,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "uki" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -19314,16 +19314,16 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "uol" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -19469,7 +19469,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -19630,7 +19630,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "uJy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -19651,7 +19651,7 @@
 	},
 /obj/item/tank/nitrogen,
 /obj/structure/rack,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/structure/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -19871,8 +19871,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle7)
 "uYi" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -20143,7 +20143,7 @@
 /area/lv624/lazarus/engineering)
 "vqK" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor,
@@ -20210,7 +20210,7 @@
 /area/lv624/lazarus/captain)
 "vsX" = (
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "vtl" = (
@@ -20227,7 +20227,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "vuc" = (
-/obj/effect/decal/tracks/human1/wet,
+/obj/effect/turf_decal/tracks/human1/wet,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "vuK" = (
@@ -20540,7 +20540,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/armory)
 "vPI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/effect/ai_node,
@@ -20775,8 +20775,8 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "weu" = (
@@ -20887,10 +20887,10 @@
 /area/lv624/lazarus/main_hall)
 "wir" = (
 /obj/structure/fence,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "wit" = (
@@ -20900,7 +20900,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "wiQ" = (
@@ -20932,7 +20932,7 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "wkF" = (
@@ -20956,7 +20956,7 @@
 	},
 /area/lv624/ground/river1)
 "wla" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -21034,7 +21034,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "wqg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -21042,7 +21042,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "wqy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -21104,7 +21104,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "wuP" = (
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/ground/coast/corner2,
 /area/lv624/ground/river1)
 "wvm" = (
@@ -21236,13 +21236,13 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -21301,7 +21301,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "wEV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
@@ -21377,10 +21377,10 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "wIo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor,
@@ -21425,7 +21425,7 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "wLI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -21530,7 +21530,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "wSm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -21576,10 +21576,10 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "wUg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -21753,7 +21753,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "xeN" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/marking/warning{
@@ -22077,7 +22077,7 @@
 /area/lv624/ground/jungle1)
 "xvz" = (
 /obj/structure/catwalk,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /obj/effect/ai_node,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
@@ -22092,10 +22092,10 @@
 /turf/open/floor,
 /area/lv624/ground/river1)
 "xwu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
 /turf/open/floor,
@@ -22258,7 +22258,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "xGS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -22364,7 +22364,7 @@
 /area/lv624/ground/compound/sw)
 "xMb" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "xMl" = (
@@ -22451,7 +22451,7 @@
 	},
 /area/lv624/lazarus/overgrown)
 "xQz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -22641,7 +22641,7 @@
 /area/lv624/lazarus/spaceport2)
 "ybg" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "ybZ" = (
@@ -22703,7 +22703,7 @@
 /area/lv624/ground/jungle5)
 "ydP" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ydT" = (
@@ -22797,7 +22797,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "ykr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/marking/loadingarea{
@@ -22808,11 +22808,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/colony,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 4
 	},
 /turf/open/floor,

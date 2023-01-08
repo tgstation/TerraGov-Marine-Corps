@@ -195,7 +195,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "mO" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "nd" = (
@@ -525,7 +525,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Of" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "Os" = (

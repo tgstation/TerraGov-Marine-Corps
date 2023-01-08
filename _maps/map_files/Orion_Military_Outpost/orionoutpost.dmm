@@ -155,7 +155,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/vehicledepot)
 "be" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "bf" = (
@@ -487,7 +487,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "dc" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostcent)
 "dd" = (
@@ -1538,9 +1538,9 @@
 	},
 /area/orion_outpost/ground/outpostcent)
 "iQ" = (
-/obj/effect/decal/warning_stripes/medical,
-/obj/effect/decal/warning_stripes/box/small,
-/obj/effect/decal/warning_stripes/box/small{
+/obj/effect/turf_decal/warning_stripes/medical,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
 	},
 /turf/open/floor/mainship/green{
@@ -1899,7 +1899,7 @@
 /area/orion_outpost/ground/outposte)
 "kA" = (
 /obj/structure/flora/ausbushes/reedbush,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "kB" = (
@@ -2648,7 +2648,7 @@
 /area/orion_outpost/ground/outposte)
 "nW" = (
 /obj/structure/flora/ausbushes/reedbush,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostcent)
 "nX" = (
@@ -3255,7 +3255,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveE)
 "qR" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostcent)
@@ -3692,9 +3692,9 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "sS" = (
-/obj/effect/decal/warning_stripes/engineer,
-/obj/effect/decal/warning_stripes/box/small,
-/obj/effect/decal/warning_stripes/box/small{
+/obj/effect/turf_decal/warning_stripes/engineer,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -4199,7 +4199,7 @@
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/breakroom)
 "vH" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostcent)
 "vI" = (
@@ -4741,7 +4741,7 @@
 /area/orion_outpost/surface/building/administration)
 "yt" = (
 /obj/structure/flora/ausbushes/reedbush,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposte)
 "yu" = (
@@ -4802,7 +4802,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/barracks)
 "yO" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "yP" = (
@@ -5165,7 +5165,7 @@
 /area/orion_outpost/ground/outpostsw)
 "AQ" = (
 /obj/structure/flora/ausbushes/reedbush,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "AR" = (
@@ -5219,9 +5219,9 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "Bh" = (
-/obj/effect/decal/warning_stripes/medical,
-/obj/effect/decal/warning_stripes/box/small,
-/obj/effect/decal/warning_stripes/box/small{
+/obj/effect/turf_decal/warning_stripes/medical,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -6133,9 +6133,9 @@
 	},
 /area/orion_outpost/ground/outpostcent)
 "Ge" = (
-/obj/effect/decal/warning_stripes/leader,
-/obj/effect/decal/warning_stripes/box/small,
-/obj/effect/decal/warning_stripes/box/small{
+/obj/effect/turf_decal/warning_stripes/leader,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -8535,7 +8535,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outposte)
 "Ss" = (
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposte)
 "St" = (
