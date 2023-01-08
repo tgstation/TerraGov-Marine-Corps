@@ -16,10 +16,9 @@
 	var/selected = FALSE
 	///The timer for recharging the drive
 	var/charge_timer
-	///Time the drive was last used
-	var/last_used_time
 	///The mob wearing the blink drive. Needed for item updates.
 	var/mob/equipped_user
+	COOLDOWN_DECLARE(blink_stability_cooldown)
 
 /obj/item/blink_drive/update_icon()
 	. = ..()
@@ -110,7 +109,7 @@
 	var/instability = 0 //certain factors can make the teleport unreliable
 	if(target_distance > BLINK_DRIVE_RANGE - 2)
 		instability ++
-	if(last_used_time > world.time - 1 SECONDS)
+	if(!COOLDOWN_CHECK(src, blink_stability_cooldown))
 		instability ++
 	if(!line_of_sight(user, target_turf, 9))
 		instability ++
@@ -138,7 +137,7 @@
 			mob_target.gib()
 		return
 
-	last_used_time = world.time
+	COOLDOWN_START(src, blink_stability_cooldown, 1 SECONDS)
 	charges --
 	deltimer(charge_timer)
 	charge_timer = addtimer(CALLBACK(src, .proc/recharge), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)

@@ -123,7 +123,7 @@
 
 /obj/item/weapon/energy/sword/som/Initialize()
 	. = ..()
-	set_light_range_power_color(2, 1, "#F5AF3E")
+	set_light_range_power_color(2, 1, COLOR_ORANGE)
 
 /obj/item/weapon/energy/sword/som/switch_state()
 	. = ..()
