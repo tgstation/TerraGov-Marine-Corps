@@ -68,9 +68,9 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 	///Skill required to bypass the fumble time.
-	var/skill_threshold = SKILL_MEDICAL_PRACTICED
+	var/skill_threshold = SKILL_MEDICAL_NOVICE
 	///Skill required to have the scanner auto refresh
-	var/upper_skill_threshold = SKILL_MEDICAL_PRACTICED
+	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
 	///Current mob being tracked by the scanner
 	var/mob/living/carbon/patient
 	///Current user of the scanner
