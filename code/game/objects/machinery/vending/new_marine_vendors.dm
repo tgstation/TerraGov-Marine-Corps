@@ -606,6 +606,8 @@
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
+		/obj/item/paper/tutorial/medical,
+		/obj/item/paper/tutorial/mechanics,
 	)
 
 /obj/effect/vendor_bundle/basic_jaeger
@@ -615,6 +617,8 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+		/obj/item/paper/tutorial/medical,
+		/obj/item/paper/tutorial/mechanics,
 	)
 
 /obj/effect/vendor_bundle/basic_smartgunner
