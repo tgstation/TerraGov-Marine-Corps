@@ -1653,7 +1653,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2.5
 	accuracy = 100
 	accurate_range = 7
-	max_range = 7
+	max_range = 10
 
 /datum/ammo/bullet/aircraft_cannon
 	name = "aircraft cannon round"
@@ -1665,7 +1665,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 10
 	accuracy = 100
 	accurate_range = 7
-	max_range = 7
+	max_range = 10
 
 /datum/ammo/rocket/predator
 	name = "\improper Predator missile"
@@ -1676,7 +1676,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 100
 	accurate_range = 7
 	shell_speed = 1.5
-	max_range = 7
+	max_range = 10
 	barricade_clear_distance = 7
 	handful_amount = 1
 	handful_icon_state = "rocket"
@@ -1693,7 +1693,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 100
 	accurate_range = 7
 	shell_speed = 2.5
-	max_range = 7
+	max_range = 10
 	barricade_clear_distance = 7
 	handful_amount = 1
 	handful_icon_state = "shell"

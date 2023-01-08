@@ -21,6 +21,8 @@
 	light_range = 6
 	light_power = 3
 	move_delay = 0.2 SECONDS
+	///How long before the vehicle can change direction
+	var/turn_delay = 0.1 SECONDS
 	///pixel_x and pixel_y offset values; order is clockwise, starting from NORTH
 	var/list/offsets = list()
 	///Total fuel capacity
@@ -47,10 +49,14 @@
 	var/max_gunners = 0
 	///Minimum skill requirement for piloting this craft
 	var/required_pilot_skill = SKILL_PILOT_TRAINED
+	///The preferred spots to dump occupants on when exiting, relative to the current direction
+	var/list/exit_locations = list()
 	var/deployable = TRUE
 	var/deployed = FALSE
 	var/being_destroyed = FALSE
+	COOLDOWN_DECLARE(engine_cooldown)
 	COOLDOWN_DECLARE(enginesound_cooldown)
+	COOLDOWN_DECLARE(turning_cooldown)
 
 /obj/vehicle/sealed/helicopter/Initialize(mapload)
 	. = ..()
@@ -71,6 +77,22 @@
 	show_helicopter_fuel()
 	handle_offsets()
 	return ..()
+
+///Proc for delayed turning
+/obj/vehicle/sealed/helicopter/proc/turn_while_flying(direction)
+	if(direction == dir)
+		return
+	if(!COOLDOWN_CHECK(src, turning_cooldown))
+		return
+	COOLDOWN_START(src, turning_cooldown, turn_delay)
+	if(direction == REVERSE_DIR(dir))
+		return setDir(turn(dir, pick(45, -45)))
+	var/angle1 = dir2angle(direction)
+	var/angle2 = dir2angle(dir)
+	var/angle_to_turn = closer_angle_difference(angle1, angle2) > 0 ? 45 : -45
+	setDir(turn(dir, angle_to_turn))
+	if(direction != dir)
+		addtimer(CALLBACK(src, .proc/turn_while_flying, direction), turn_delay)
 
 /obj/vehicle/sealed/helicopter/setDir(newdir)
 	. = ..()
@@ -292,7 +314,7 @@
 	balloon_alert_to_viewers("Reloading!")
 	if(!do_after(user, ATTACHED_WEAPON_RELOAD_DELAY, TRUE, user))
 		return
-	if(!attached_weapons.Find(gun_to_reload) || gun_to_reload.chamber_items)	//Safety check
+	if(!attached_weapons.Find(gun_to_reload) || LAZYLEN(gun_to_reload.chamber_items))	//Safety check
 		return
 	gun_to_reload.reload(mag, user, TRUE)
 	balloon_alert_to_viewers("Reloaded!")
@@ -455,17 +477,29 @@
 		to_chat(M, span_warning("You can't jump out of [src] mid-flight!"))
 		return FALSE
 	if(being_destroyed)	//Eligible for bailing out
-		return mob_exit(M, TRUE, TRUE, TRUE)
+		return mob_exit(M, FALSE, TRUE, TRUE)
 	return ..()
 
 /obj/vehicle/sealed/helicopter/mob_exit(mob/M, silent, randomstep, bailed = FALSE)
-	. = ..()
+	if(!istype(M))
+		return FALSE
+	remove_occupant(M)
 	M.set_flying(FALSE)	//Just in case
 	if(bailed && iscarbon(M))	//Jumping out of a flying heli can be dangerous
 		var/mob/living/carbon/Carbon = M
 		Carbon.Paralyze(20)
 		Carbon.apply_damage(10)
-		visible_message(span_danger("[Carbon.name] bailed from [src]!"))
+		if(!silent)
+			visible_message(span_danger("[Carbon.name] bailed from [src]!"))
+	if(randomstep)
+		M.forceMove(drop_location())
+		var/turf/target_turf = get_step(M.loc, pick(GLOB.cardinals))
+		M.throw_at(target_turf, 5, 10)
+	else
+		var/turf/target_turf = exit_location(M)
+		if(!target_turf)	//If no available turfs found, just dump them on the source tile
+			return M.forceMove(drop_location())
+		return M.forceMove(target_turf)
 
 /obj/vehicle/sealed/helicopter/remove_occupant(mob/M)
 	//Placing this check here before the rest of the proc and not in mob_exit because by then the occupant control flags are cleared
@@ -479,6 +513,20 @@
 		if(M == gunner)
 			gunner = null
 	return ..()
+
+/obj/vehicle/sealed/helicopter/exit_location(M)
+	if(LAZYLEN(exit_locations))	//Check if there any preferred locations to dump stuff
+		for(var/exit_direction in exit_locations)
+			var/turf/exit_turf = get_step(loc, turn(dir, dir2angle(exit_direction)))
+			if(turf_block_check(M, exit_turf))
+				continue
+			return exit_turf
+	//No preferred location exists or they are not available, so let's pick at random
+	for(var/turf/exit_turf in get_adjacent_open_turfs(M))
+		if(turf_block_check(M, exit_turf))	//Turf may be open, but we still need to check if there are any blockers on it
+			continue
+		return exit_turf
+	return FALSE
 
 //Removing the hand blocking traits from these two procs so that passengers aren't paralyzed while inside
 //However, guns are very buggy when used inside so removing dexterity to prevent gun usage and other exploitables like binoculars
@@ -609,7 +657,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		return FALSE
 	current_weapon.change_target(source, src_object, over_object, src_location, over_location, src_control, over_control, params)
 	if(CHECK_BITFIELD(flags_pass, FLYING))	//Heli can't turn around if it's not flying!
-		setDir(angle_to_dir(Get_Angle(source, over_object)))
+		turn_while_flying(angle_to_dir(Get_Angle(source, over_object)))
 
 ///Proc for turning the vehicle to wherever the cursor is
 /obj/vehicle/sealed/helicopter/proc/turn_vehicle(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -617,7 +665,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	if(!flight_operation_checks(over_object))
 		return FALSE
 	if(CHECK_BITFIELD(flags_pass, FLYING))
-		setDir(angle_to_dir(Get_Angle(source, over_object)))
+		turn_while_flying(angle_to_dir(Get_Angle(source, over_object)))
 
 ///Proc that grabs a new target for firing at
 /obj/vehicle/sealed/helicopter/proc/turn_gun(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -638,9 +686,14 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	if(!CHECK_BITFIELD(flags_pass, FLYING) && current_fuel > 0)
 		if(!pilot)
 			return
+		if(!COOLDOWN_CHECK(src, engine_cooldown))
+			balloon_alert(pilot, "Engine is not ready!")
+			return
+		COOLDOWN_START(src, engine_cooldown, 10 SECONDS)
 		set_flying(TRUE)
-		animate(src, 3 SECONDS, loop = -1, pixel_z = 20)
-		add_filter("flight_shadow", 2, drop_shadow_filter(y = -10, color = "#000000", size = 10))
+		animate(src, 3 SECONDS, pixel_z = 20)
+		add_filter("flight_shadow", 2, drop_shadow_filter(y = 0, size = 0, color = "#000000"))
+		animate(get_filter("flight_shadow"), 3 SECONDS, y = -10, size = 10, flags = ANIMATION_PARALLEL)
 		coverage = 0
 		layer = FLY_LAYER
 		icon_state += "_flying"
@@ -649,6 +702,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		START_PROCESSING(SSobj, src)
 	else if(CHECK_BITFIELD(flags_pass, FLYING))
 		animate(src, 1 SECONDS, pixel_z = 0)
+		animate(get_filter("flight_shadow"), 1 SECONDS, y = 0, size = 0, flags = ANIMATION_PARALLEL)
 		STOP_PROCESSING(SSobj, src)
 		addtimer(CALLBACK(src, .proc/shutdown_procedures), 1 SECONDS)
 	else
@@ -704,7 +758,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		toggle_engine()
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 3.5 SECONDS)
-		playsound(src, 'sound/effects/tadpolehovering.ogg', 100, TRUE, 10)
+		playsound(src, 'sound/effects/tadpolehovering.ogg', 60, TRUE, 10)
 	if(being_destroyed)
 		setDir(pick(LeftAndRightOfDir(dir, TRUE)))
 
@@ -712,7 +766,8 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	. = ..()
 	if(!LAZYLEN(occupants))
 		return
-	current_fuel--
+	if(current_fuel > 0)
+		current_fuel--
 
 /obj/vehicle/sealed/helicopter/relaymove(mob/living/user, direction)
 	if(!CHECK_BITFIELD(flags_pass, FLYING))
@@ -724,7 +779,6 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		if(!TIMER_COOLDOWN_CHECK(src, "helicopter anti spam"))
 			balloon_alert(user,"No fuel left!")
 			TIMER_COOLDOWN_START(src, "helicopter anti spam", 2 SECONDS)
-		return FALSE
 	if(!canmove || !(user in return_drivers()))
 		return FALSE
 	vehicle_move(direction)
@@ -885,6 +939,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	weapon_slots = 1
 	weapon_slot_positions = list(16, -4)
 	offsets = list(-16, -24, -20, -20, -24, -16, -20, -12, -16, -8, -12, -12, -8, -16, -12, -20)
+	exit_locations = list(WEST, EAST, NORTH)
 
 /obj/vehicle/sealed/helicopter/attack/minigun
 	desc = "Ultralight helicopter with a single weapon attachment point. Comes equipped with a BZ-22 minigun."
@@ -909,9 +964,11 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	max_integrity = 250	//Beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
 	move_delay = 0.4 SECONDS
+	turn_delay = 0.2 SECONDS
 	max_occupants = 5
 	max_fuel = 500
 	offsets = list(-16, -20, -20, -20, -20, -16, -20, -12, -16, -12, -12, -12, -12, -16, -12, -20)
+	exit_locations = list(SOUTH, WEST, EAST)
 
 /obj/vehicle/sealed/helicopter/gunship
 	name = "\improper Pelican gunship"	//Too on the nose?
@@ -920,12 +977,14 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	max_integrity = 200	//Also a beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
 	move_delay = 0.5 SECONDS
+	turn_delay = 0.3 SECONDS
 	max_occupants = 2
 	max_gunners = 1
 	max_fuel = 400
 	weapon_slots = 2
 	weapon_slot_positions = list(8, -10, 24, -10)
 	offsets = list(-16, -24, -24, -16, -24, -16, -24, -8, -16, -8, -8, -8, -8, -16, -8, -24)
+	exit_locations = list(NORTH, EAST, WEST)
 
 /obj/vehicle/sealed/helicopter/gunship
 	starting_weapons = list(/obj/item/weapon/gun/aircraft/minigun, /obj/item/weapon/gun/aircraft/cannon)
@@ -1148,7 +1207,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	icon_state = ""
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = null
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_REFILLABLE
 
 /obj/item/ammo_magazine/aircraft/minigun
 	name = "\improper BZ-22 ammunition case"
@@ -1192,4 +1251,8 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /obj/projectile/aircraft/scan_a_turf(turf/turf_to_scan, cardinal_move)
 	if(CHECK_BITFIELD(shot_from.flags_pass, FLYING) && turf_to_scan != original_target_turf)	//Do nothing if it's not the turf the pilot clicked on when firing
 		return FALSE
-	return ..()
+	. = ..()
+	if(!.)	//If nothing is eligible to be hit, just impact the ground
+		ammo.on_hit_turf(turf_to_scan, src)
+		turf_to_scan.bullet_act(src)
+		return TRUE
