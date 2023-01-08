@@ -1834,7 +1834,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Uj" = (
-/obj/effect/decal/warning_stripes{
+/obj/effect/turf_decal/warning_stripes{
 	icon_state = "W-corner"
 	},
 /turf/open/floor/tile/dark,

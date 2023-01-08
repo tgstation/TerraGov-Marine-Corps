@@ -10,7 +10,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "as" = (
@@ -19,7 +19,7 @@
 /area/deathmatch)
 "aJ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -111,7 +111,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/cobweb2,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -149,7 +149,7 @@
 /area/deathmatch)
 "hx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -184,13 +184,13 @@
 "jH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "jM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -238,13 +238,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb2,
 /obj/effect/decal/remains/human,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "nC" = (
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -286,7 +286,7 @@
 "pq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "pD" = (
@@ -308,7 +308,7 @@
 "pT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "pZ" = (
@@ -371,7 +371,7 @@
 "sb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -394,7 +394,7 @@
 "to" = (
 /obj/structure/table/gamblingtable,
 /obj/effect/spawner/random/plushie/nospawnninetyfive{
-	
+
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -516,7 +516,7 @@
 /area/deathmatch)
 "zd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -534,7 +534,7 @@
 "zM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -577,7 +577,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Ba" = (
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -602,7 +602,7 @@
 "Cb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -626,7 +626,7 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Db" = (
@@ -638,7 +638,7 @@
 "Ds" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/xeno,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "DA" = (
@@ -649,7 +649,7 @@
 "DG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -691,7 +691,7 @@
 /area/deathmatch)
 "Go" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/landmark/deathmatch,
@@ -707,7 +707,7 @@
 /area/deathmatch)
 "Gs" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -721,7 +721,7 @@
 "GG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Hg" = (
@@ -739,7 +739,7 @@
 /area/deathmatch)
 "HF" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -762,14 +762,14 @@
 /area/deathmatch)
 "Ip" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "IM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -781,7 +781,7 @@
 "IV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Jd" = (
@@ -795,7 +795,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/ash,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -840,7 +840,7 @@
 "MZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -868,7 +868,7 @@
 /area/deathmatch)
 "Nu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Nw" = (
@@ -892,13 +892,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "ND" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "NR" = (
@@ -930,7 +930,7 @@
 /area/deathmatch)
 "PP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
@@ -943,7 +943,7 @@
 "Qd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/xeno,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Qm" = (
@@ -964,7 +964,7 @@
 /area/deathmatch)
 "QL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -997,7 +997,7 @@
 /area/deathmatch)
 "Sr" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Sz" = (
@@ -1008,7 +1008,7 @@
 /area/deathmatch)
 "SC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "SO" = (
@@ -1032,7 +1032,7 @@
 "Tz" = (
 /obj/structure/closet/cabinet,
 /obj/effect/spawner/random/plushie/nospawnninetyfive{
-	
+
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1049,7 +1049,7 @@
 /area/deathmatch)
 "UK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -1058,7 +1058,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/effect/decal/cleanable/ash,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -1078,7 +1078,7 @@
 /area/deathmatch)
 "VZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal,
+/obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Wj" = (
@@ -1098,7 +1098,7 @@
 "WK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "WT" = (
@@ -1168,7 +1168,7 @@
 /area/deathmatch)
 "YZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/riverdecal/edge{
+/obj/effect/turf_decal/riverdecal/edge{
 	dir = 1
 	},
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -1180,7 +1180,7 @@
 "ZD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/riverdecal/edge,
+/obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)

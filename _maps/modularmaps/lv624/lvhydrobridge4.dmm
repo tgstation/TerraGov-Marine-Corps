@@ -19,13 +19,13 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -38,14 +38,14 @@
 	},
 /area/lv624/ground/river2)
 "k" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -85,13 +85,13 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -105,7 +105,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "F" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/ground/river,
@@ -131,7 +131,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "N" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
@@ -165,7 +165,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "Z" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
