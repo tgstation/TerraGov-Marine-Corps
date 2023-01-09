@@ -337,3 +337,9 @@
 		return
 	user.mob.do_self_harm = !user.mob.do_self_harm
 	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself")
+
+/datum/keybinding/mob/cycle_weapon
+	name = "cycle_weapon"
+	full_name = "Cycle Aircraft Weapon"
+	description = "Switch to the next attached weapon."
+	keybind_signal = COMSIG_KB_CYCLE_WEAPON

@@ -610,6 +610,7 @@
 #define COMSIG_KB_EMOTE "keybinding_emote"
 #define COMSIG_KB_TOGGLE_MINIMAP "toggle_minimap"
 #define COMSIG_KB_SELFHARM "keybind_selfharm"
+#define COMSIG_KB_CYCLE_WEAPON "keybinding_mob_cycle_weapon"
 
 // mecha keybinds
 #define COMSIG_MECHABILITY_TOGGLE_INTERNALS "mechability_toggle_internals"

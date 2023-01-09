@@ -57,6 +57,8 @@
 	COOLDOWN_DECLARE(engine_cooldown)
 	COOLDOWN_DECLARE(enginesound_cooldown)
 	COOLDOWN_DECLARE(turning_cooldown)
+	var/obj/effect/abstract/particle_holder/light_smoke_effect
+	var/obj/effect/abstract/particle_holder/heavy_smoke_effect
 
 /obj/vehicle/sealed/helicopter/Initialize(mapload)
 	. = ..()
@@ -68,14 +70,30 @@
 		attach_starting_weapon()
 	if(deployable && !deployed)
 		deploy(null, TRUE)
-	else
-		update_icon()
 	integrity_failure = max_integrity/5	//20% of HP triggers damage alert
+	light_smoke_effect = new(src, /particles/aircraft_smoke_light)
+	heavy_smoke_effect = new(src, /particles/aircraft_smoke_heavy)
+	light_smoke_effect.pixel_x = 16
+	heavy_smoke_effect.pixel_x = 16
+	update_icon()
 
 /obj/vehicle/sealed/helicopter/update_icon()
 	show_helicopter_health()
 	show_helicopter_fuel()
 	handle_offsets()
+	if(obj_integrity > integrity_failure && obj_integrity < max_integrity * 0.8)	//From 20% to 70% HP, some smoke will emit
+		light_smoke_effect.particles.spawning = initial(light_smoke_effect.particles.spawning)
+		heavy_smoke_effect.particles.spawning = 0
+	else if(obj_integrity <= integrity_failure)	//20% HP and under will produce thick, black smoke
+		heavy_smoke_effect.particles.spawning = initial(heavy_smoke_effect.particles.spawning)
+		light_smoke_effect.particles.spawning = 0
+	else
+		light_smoke_effect.particles.spawning = 0
+		heavy_smoke_effect.particles.spawning = 0
+	light_smoke_effect.pixel_z = pixel_z
+	heavy_smoke_effect.pixel_z = pixel_z
+	light_smoke_effect.layer = layer + 0.01
+	heavy_smoke_effect.layer = layer + 0.01
 	return ..()
 
 ///Proc for delayed turning
@@ -909,6 +927,9 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 /datum/action/vehicle/sealed/helicopter/change_weapon
 	name = "Change Weapon"
 	action_icon_state = "mech_cycle_equip_off"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_CYCLE_WEAPON,
+	)
 
 /datum/action/vehicle/sealed/helicopter/change_weapon/action_activate()
 	. = ..()
@@ -1256,3 +1277,38 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
 		return TRUE
+
+/particles/aircraft_smoke_light
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
+	width = 100
+	height = 200
+	count = 1000
+	spawning = 0.5
+	lifespan = 2 SECONDS
+	fade = 1 SECONDS
+	fadein = 0.5 SECONDS
+	scale = 0.25
+	grow = 0.1
+	drift = generator(GEN_SPHERE, 0, 1, NORMAL_RAND)
+	friction = 0.5
+	gravity = list(0, 2)
+
+/particles/aircraft_smoke_heavy
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	color = "#303030"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 5
+	lifespan = 8
+	fade = 5
+	fadein = 3
+	grow = -0.01
+	position = generator(GEN_BOX, list(-12, -12), list(12, 12),  NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 1.5)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	spin = generator(GEN_NUM, -10, 10)
+	friction = 0.3
