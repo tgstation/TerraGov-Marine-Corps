@@ -7,7 +7,7 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
-	icon_state = "hypo_base"
+	icon_state = "hypo"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = null
 	volume = 60
@@ -185,16 +185,6 @@
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/hypospray/update_icon_state()
-	if(!ismob(loc))
-		icon_state = "hypo"
-		return
-	if(inject_mode)
-		icon_state = "hypo_i"
-		return
-	icon_state = "hypo_d"
-
-
 /obj/item/reagent_containers/hypospray/update_overlays()
 	. = ..()
 	if(isturf(loc) || !description_overlay)
@@ -310,19 +300,37 @@
 				filling.icon_state = "[initial(icon_state)]-10"
 			if(10 to 24)
 				filling.icon_state = "[initial(icon_state)]10"
+				icon_state = "[initial(icon_state)]_10"
 			if(25 to 49)
 				filling.icon_state = "[initial(icon_state)]25"
-			if(50 to 74)
+				icon_state = "[initial(icon_state)]_25"
+			if(50 to 64)
 				filling.icon_state = "[initial(icon_state)]50"
-			if(75 to 79)
-				filling.icon_state = "[initial(icon_state)]75"
+				icon_state = "[initial(icon_state)]_50"
+			if(65 to 79)
+				filling.icon_state = "[initial(icon_state)]65"
+				icon_state = "[initial(icon_state)]_65"
 			if(80 to 90)
 				filling.icon_state = "[initial(icon_state)]80"
+				icon_state = "[initial(icon_state)]_80"
 			if(91 to INFINITY)
 				filling.icon_state = "[initial(icon_state)]100"
+				icon_state = "[initial(icon_state)]_100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		overlays += filling
+
+	else
+		icon_state = "[initial(icon_state)]_0"
+
+	if(ismob(loc))
+		var/injoverlay
+		switch(inject_mode)
+			if (HYPOSPRAY_INJECT_MODE_DRAW)
+				injoverlay = "draw"
+			if (HYPOSPRAY_INJECT_MODE_INJECT)
+				injoverlay = "inject"
+		add_overlay(injoverlay)
 
 /obj/item/reagent_containers/hypospray/advanced/examine(mob/user as mob)
 	. = ..()
@@ -460,7 +468,9 @@
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	item_state = "hypomed"
+	icon_state = "hypomed"
 	core_name = "hypospray"
 	volume = 120
 
