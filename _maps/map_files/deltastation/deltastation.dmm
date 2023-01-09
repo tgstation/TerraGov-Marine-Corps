@@ -140,7 +140,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	dir = 1f
+	dir = 1;
 	},
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
