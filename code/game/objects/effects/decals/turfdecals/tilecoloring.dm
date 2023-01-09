@@ -1,552 +1,552 @@
-/obj/effect/turf_decal/tile/opaque
+/obj/effect/turf_decal/tile/transparent
 	name = "tile decal"
 	icon_state = "tile_corner"
 	alpha = 110
 
 /// Blue tiles
 
-/obj/effect/turf_decal/tile/opaque/blue
+/obj/effect/turf_decal/tile/transparent/blue
 	name = "blue corner"
 	color = "#52B4E9"
 
-/obj/effect/turf_decal/tile/opaque/blue/opposingcorners //Two corners on opposite ends of each other (i.e. Top Right to Bottom Left). Allows for faster mapping and less complicated turf decal storage.
+/obj/effect/turf_decal/tile/transparent/blue/opposingcorners //Two corners on opposite ends of each other (i.e. Top Right to Bottom Left). Allows for faster mapping and less complicated turf decal storage.
 	icon_state = "tile_opposing_corners"
 	name = "opposing blue corners"
 
-/obj/effect/turf_decal/tile/opaque/blue/half
+/obj/effect/turf_decal/tile/transparent/blue/half
 	icon_state = "tile_half"
 	name = "blue half"
 
-/obj/effect/turf_decal/tile/opaque/blue/half/contrasted
+/obj/effect/turf_decal/tile/transparent/blue/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted blue half"
 
-/obj/effect/turf_decal/tile/opaque/blue/anticorner
+/obj/effect/turf_decal/tile/transparent/blue/anticorner
 	icon_state = "tile_anticorner"
 	name = "blue anticorner"
 
-/obj/effect/turf_decal/tile/opaque/blue/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/blue/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted blue anticorner"
 
-/obj/effect/turf_decal/tile/opaque/blue/fourcorners //The reason why we have four corners is to replace the trend of having all four corners on a tile be taken up by four individual corners, while still allowing the visual contrast between the decal and the floor tile.
+/obj/effect/turf_decal/tile/transparent/blue/fourcorners //The reason why we have four corners is to replace the trend of having all four corners on a tile be taken up by four individual corners, while still allowing the visual contrast between the decal and the floor tile.
 	icon_state = "tile_fourcorners"
 	name = "blue fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/blue/full
+/obj/effect/turf_decal/tile/transparent/blue/full
 	icon_state = "tile_full"
 	name = "blue full"
 
-/obj/effect/turf_decal/tile/opaque/blue/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/blue/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "blue diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/blue/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/blue/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "blue diagonal edge"
 
 /// Dark blue tiles
 
-/obj/effect/turf_decal/tile/opaque/dark_blue
+/obj/effect/turf_decal/tile/transparent/dark_blue
 	name = "dark blue corner"
 	color = "#486091"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/opposingcorners
+/obj/effect/turf_decal/tile/transparent/dark_blue/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing dark blue corners"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/half
+/obj/effect/turf_decal/tile/transparent/dark_blue/half
 	icon_state = "tile_half"
 	name = "dark blue half"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/half/contrasted
+/obj/effect/turf_decal/tile/transparent/dark_blue/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted dark blue half"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/anticorner
+/obj/effect/turf_decal/tile/transparent/dark_blue/anticorner
 	icon_state = "tile_anticorner"
 	name = "dark blue anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/dark_blue/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted dark blue anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/fourcorners
+/obj/effect/turf_decal/tile/transparent/dark_blue/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "dark blue fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/full
+/obj/effect/turf_decal/tile/transparent/dark_blue/full
 	icon_state = "tile_full"
 	name = "dark blue full"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "dark blue diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/dark_blue/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "dark blue diagonal edge"
 
 /// Green tiles
 
-/obj/effect/turf_decal/tile/opaque/green
+/obj/effect/turf_decal/tile/transparent/green
 	name = "green corner"
 	color = "#9FED58"
 
-/obj/effect/turf_decal/tile/opaque/green/opposingcorners
+/obj/effect/turf_decal/tile/transparent/green/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing green corners"
 
-/obj/effect/turf_decal/tile/opaque/green/half
+/obj/effect/turf_decal/tile/transparent/green/half
 	icon_state = "tile_half"
 	name = "green half"
 
-/obj/effect/turf_decal/tile/opaque/green/half/contrasted
+/obj/effect/turf_decal/tile/transparent/green/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted green half"
 
-/obj/effect/turf_decal/tile/opaque/green/anticorner
+/obj/effect/turf_decal/tile/transparent/green/anticorner
 	icon_state = "tile_anticorner"
 	name = "green anticorner"
 
-/obj/effect/turf_decal/tile/opaque/green/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/green/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted green anticorner"
 
-/obj/effect/turf_decal/tile/opaque/green/fourcorners
+/obj/effect/turf_decal/tile/transparent/green/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "green fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/green/full
+/obj/effect/turf_decal/tile/transparent/green/full
 	icon_state = "tile_full"
 	name = "green full"
 
-/obj/effect/turf_decal/tile/opaque/green/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/green/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "green diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/green/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/green/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "green diagonal edge"
 
 /// Dark green tiles
 
-/obj/effect/turf_decal/tile/opaque/dark_green
+/obj/effect/turf_decal/tile/transparent/dark_green
 	name = "dark green corner"
 	color = "#439C1E"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/opposingcorners
+/obj/effect/turf_decal/tile/transparent/dark_green/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing dark green corners"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/half
+/obj/effect/turf_decal/tile/transparent/dark_green/half
 	icon_state = "tile_half"
 	name = "dark green half"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/half/contrasted
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted dark green half"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/anticorner
+/obj/effect/turf_decal/tile/transparent/dark_green/anticorner
 	icon_state = "tile_anticorner"
 	name = "dark green anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted dark green anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/fourcorners
+/obj/effect/turf_decal/tile/transparent/dark_green/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "dark green fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/full
+/obj/effect/turf_decal/tile/transparent/dark_green/full
 	icon_state = "tile_full"
 	name = "dark green full"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/dark_green/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "dark green diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/dark_green/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/dark_green/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "dark green diagonal edge"
 
 /// Yellow tiles
 
-/obj/effect/turf_decal/tile/opaque/yellow
+/obj/effect/turf_decal/tile/transparent/yellow
 	name = "yellow corner"
 	color = "#EFB341"
 
-/obj/effect/turf_decal/tile/opaque/yellow/opposingcorners
+/obj/effect/turf_decal/tile/transparent/yellow/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing yellow corners"
 
-/obj/effect/turf_decal/tile/opaque/yellow/half
+/obj/effect/turf_decal/tile/transparent/yellow/half
 	icon_state = "tile_half"
 	name = "yellow half"
 
-/obj/effect/turf_decal/tile/opaque/yellow/half/contrasted
+/obj/effect/turf_decal/tile/transparent/yellow/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted yellow half"
 
-/obj/effect/turf_decal/tile/opaque/yellow/anticorner
+/obj/effect/turf_decal/tile/transparent/yellow/anticorner
 	icon_state = "tile_anticorner"
 	name = "yellow anticorner"
 
-/obj/effect/turf_decal/tile/opaque/yellow/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/yellow/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted yellow anticorner"
 
-/obj/effect/turf_decal/tile/opaque/yellow/fourcorners
+/obj/effect/turf_decal/tile/transparent/yellow/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "yellow fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/yellow/full
+/obj/effect/turf_decal/tile/transparent/yellow/full
 	icon_state = "tile_full"
 	name = "yellow full"
 
-/obj/effect/turf_decal/tile/opaque/yellow/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/yellow/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "yellow diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/yellow/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/yellow/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "yellow diagonal edge"
 
 /// Red tiles
 
-/obj/effect/turf_decal/tile/opaque/red
+/obj/effect/turf_decal/tile/transparent/red
 	name = "red corner"
 	color = "#DE3A3A"
 
-/obj/effect/turf_decal/tile/opaque/red/opposingcorners
+/obj/effect/turf_decal/tile/transparent/red/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing red corners"
 
-/obj/effect/turf_decal/tile/opaque/red/half
+/obj/effect/turf_decal/tile/transparent/red/half
 	icon_state = "tile_half"
 	name = "red half"
 
-/obj/effect/turf_decal/tile/opaque/red/half/contrasted
+/obj/effect/turf_decal/tile/transparent/red/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted red half"
 
-/obj/effect/turf_decal/tile/opaque/red/anticorner
+/obj/effect/turf_decal/tile/transparent/red/anticorner
 	icon_state = "tile_anticorner"
 	name = "red anticorner"
 
-/obj/effect/turf_decal/tile/opaque/red/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted red anticorner"
 
-/obj/effect/turf_decal/tile/opaque/red/fourcorners
+/obj/effect/turf_decal/tile/transparent/red/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "red fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/red/full
+/obj/effect/turf_decal/tile/transparent/red/full
 	icon_state = "tile_full"
 	name = "red full"
 
-/obj/effect/turf_decal/tile/opaque/red/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/red/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "red diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/red/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/red/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "red diagonal edge"
 
 /// Dark red tiles
 
-/obj/effect/turf_decal/tile/opaque/dark_red
+/obj/effect/turf_decal/tile/transparent/dark_red
 	name = "dark red corner"
 	color = "#B11111"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/opposingcorners
+/obj/effect/turf_decal/tile/transparent/dark_red/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing dark_red corners"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/half
+/obj/effect/turf_decal/tile/transparent/dark_red/half
 	icon_state = "tile_half"
 	name = "dark red half"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/half/contrasted
+/obj/effect/turf_decal/tile/transparent/dark_red/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted dark red half"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/anticorner
+/obj/effect/turf_decal/tile/transparent/dark_red/anticorner
 	icon_state = "tile_anticorner"
 	name = "dark red anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/dark_red/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted dark red anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/fourcorners
+/obj/effect/turf_decal/tile/transparent/dark_red/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "dark red fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/full
+/obj/effect/turf_decal/tile/transparent/dark_red/full
 	icon_state = "tile_full"
 	name = "dark red full"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/dark_red/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "dark red diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/dark_red/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/dark_red/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "dark red diagonal edge"
 
 /// Bar tiles
 
-/obj/effect/turf_decal/tile/opaque/bar
+/obj/effect/turf_decal/tile/transparent/bar
 	name = "bar corner"
 	color = "#791500"
 	alpha = 130
 
-/obj/effect/turf_decal/tile/opaque/bar/opposingcorners
+/obj/effect/turf_decal/tile/transparent/bar/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing bar corners"
 
-/obj/effect/turf_decal/tile/opaque/bar/half
+/obj/effect/turf_decal/tile/transparent/bar/half
 	icon_state = "tile_half"
 	name = "bar half"
 
-/obj/effect/turf_decal/tile/opaque/bar/half/contrasted
+/obj/effect/turf_decal/tile/transparent/bar/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted bar half"
 
-/obj/effect/turf_decal/tile/opaque/bar/anticorner
+/obj/effect/turf_decal/tile/transparent/bar/anticorner
 	icon_state = "tile_anticorner"
 	name = "bar anticorner"
 
-/obj/effect/turf_decal/tile/opaque/bar/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/bar/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted bar anticorner"
 
-/obj/effect/turf_decal/tile/opaque/bar/fourcorners
+/obj/effect/turf_decal/tile/transparent/bar/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "bar fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/bar/full
+/obj/effect/turf_decal/tile/transparent/bar/full
 	icon_state = "tile_full"
 	name = "bar full"
 
-/obj/effect/turf_decal/tile/opaque/bar/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/bar/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "bar diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/bar/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/bar/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "bar diagonal edge"
 
 /// Purple tiles
 
-/obj/effect/turf_decal/tile/opaque/purple
+/obj/effect/turf_decal/tile/transparent/purple
 	name = "purple corner"
 	color = "#D381C9"
 
-/obj/effect/turf_decal/tile/opaque/purple/opposingcorners
+/obj/effect/turf_decal/tile/transparent/purple/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing purple corners"
 
-/obj/effect/turf_decal/tile/opaque/purple/half
+/obj/effect/turf_decal/tile/transparent/purple/half
 	icon_state = "tile_half"
 	name = "purple half"
 
-/obj/effect/turf_decal/tile/opaque/purple/half/contrasted
+/obj/effect/turf_decal/tile/transparent/purple/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted purple half"
 
-/obj/effect/turf_decal/tile/opaque/purple/anticorner
+/obj/effect/turf_decal/tile/transparent/purple/anticorner
 	icon_state = "tile_anticorner"
 	name = "purple anticorner"
 
-/obj/effect/turf_decal/tile/opaque/purple/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/purple/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted purple anticorner"
 
-/obj/effect/turf_decal/tile/opaque/purple/fourcorners
+/obj/effect/turf_decal/tile/transparent/purple/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "purple fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/purple/full
+/obj/effect/turf_decal/tile/transparent/purple/full
 	icon_state = "tile_full"
 	name = "purple full"
 
-/obj/effect/turf_decal/tile/opaque/purple/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/purple/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "purple diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/purple/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/purple/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "bar diagonal edge"
 
 /// Brown tiles
 
-/obj/effect/turf_decal/tile/opaque/brown
+/obj/effect/turf_decal/tile/transparent/brown
 	name = "brown corner"
 	color = "#A46106"
 
-/obj/effect/turf_decal/tile/opaque/brown/opposingcorners
+/obj/effect/turf_decal/tile/transparent/brown/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing brown corners"
 
-/obj/effect/turf_decal/tile/opaque/brown/half
+/obj/effect/turf_decal/tile/transparent/brown/half
 	icon_state = "tile_half"
 	name = "brown half"
 
-/obj/effect/turf_decal/tile/opaque/brown/half/contrasted
+/obj/effect/turf_decal/tile/transparent/brown/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted brown half"
 
-/obj/effect/turf_decal/tile/opaque/brown/anticorner
+/obj/effect/turf_decal/tile/transparent/brown/anticorner
 	icon_state = "tile_anticorner"
 	name = "brown anticorner"
-/obj/effect/turf_decal/tile/opaque/brown/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/brown/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted brown anticorner"
 
-/obj/effect/turf_decal/tile/opaque/brown/fourcorners
+/obj/effect/turf_decal/tile/transparent/brown/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "brown fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/brown/full
+/obj/effect/turf_decal/tile/transparent/brown/full
 	icon_state = "tile_full"
 	name = "brown full"
 
-/obj/effect/turf_decal/tile/opaque/brown/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/brown/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "brown diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/brown/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/brown/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "brown diagonal edge"
 
 /// Neutral tiles
 
-/obj/effect/turf_decal/tile/opaque/neutral
+/obj/effect/turf_decal/tile/transparent/neutral
 	name = "neutral corner"
 	color = "#D4D4D4"
 	alpha = 50
 
-/obj/effect/turf_decal/tile/opaque/neutral/opposingcorners
+/obj/effect/turf_decal/tile/transparent/neutral/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing neutral corners"
 
-/obj/effect/turf_decal/tile/opaque/neutral/half
+/obj/effect/turf_decal/tile/transparent/neutral/half
 	icon_state = "tile_half"
 	name = "neutral half"
 
-/obj/effect/turf_decal/tile/opaque/neutral/half/contrasted
+/obj/effect/turf_decal/tile/transparent/neutral/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted neutral half"
 
-/obj/effect/turf_decal/tile/opaque/neutral/anticorner
+/obj/effect/turf_decal/tile/transparent/neutral/anticorner
 	icon_state = "tile_anticorner"
 	name = "neutral anticorner"
 
-/obj/effect/turf_decal/tile/opaque/neutral/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/neutral/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted neutral anticorner"
 
-/obj/effect/turf_decal/tile/opaque/neutral/fourcorners
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "neutral fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/neutral/full
+/obj/effect/turf_decal/tile/transparent/neutral/full
 	icon_state = "tile_full"
 	name = "neutral full"
 
-/obj/effect/turf_decal/tile/opaque/neutral/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/neutral/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "neutral diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/neutral/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/neutral/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "neutral diagonal edge"
 
 /// Dark tiles
 
-/obj/effect/turf_decal/tile/opaque/dark
+/obj/effect/turf_decal/tile/transparent/dark
 	name = "dark corner"
 	color = "#0e0f0f"
 
-/obj/effect/turf_decal/tile/opaque/dark/opposingcorners
+/obj/effect/turf_decal/tile/transparent/dark/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing dark corners"
 
-/obj/effect/turf_decal/tile/opaque/dark/half
+/obj/effect/turf_decal/tile/transparent/dark/half
 	icon_state = "tile_half"
 	name = "dark half"
 
-/obj/effect/turf_decal/tile/opaque/dark/half/contrasted
+/obj/effect/turf_decal/tile/transparent/dark/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted dark half"
 
-/obj/effect/turf_decal/tile/opaque/dark/anticorner
+/obj/effect/turf_decal/tile/transparent/dark/anticorner
 	icon_state = "tile_anticorner"
 	name = "dark anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/dark/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted dark anticorner"
 
-/obj/effect/turf_decal/tile/opaque/dark/fourcorners
+/obj/effect/turf_decal/tile/transparent/dark/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "dark fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/dark/full
+/obj/effect/turf_decal/tile/transparent/dark/full
 	icon_state = "tile_full"
 	name = "dark full"
 
-/obj/effect/turf_decal/tile/opaque/dark/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/dark/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "dark diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/dark/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/dark/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "dark diagonal edge"
 
 /// Random tiles
 
-/obj/effect/turf_decal/tile/opaque/random // so many colors
+/obj/effect/turf_decal/tile/transparent/random // so many colors
 	name = "colorful corner"
 	color = "#E300FF" //bright pink as default for mapping
 
-/obj/effect/turf_decal/tile/opaque/random/opposingcorners
+/obj/effect/turf_decal/tile/transparent/random/opposingcorners
 	icon_state = "tile_opposing_corners"
 	name = "opposing colorful corners"
 
-/obj/effect/turf_decal/tile/opaque/random/half
+/obj/effect/turf_decal/tile/transparent/random/half
 	icon_state = "tile_half"
 	name = "colorful half"
 
-/obj/effect/turf_decal/tile/opaque/random/half/contrasted
+/obj/effect/turf_decal/tile/transparent/random/half/contrasted
 	icon_state = "tile_half_contrasted"
 	name = "contrasted colorful half"
 
-/obj/effect/turf_decal/tile/opaque/random/anticorner
+/obj/effect/turf_decal/tile/transparent/random/anticorner
 	icon_state = "tile_anticorner"
 	name = "colorful anticorner"
 
-/obj/effect/turf_decal/tile/opaque/random/anticorner/contrasted
+/obj/effect/turf_decal/tile/transparent/random/anticorner/contrasted
 	icon_state = "tile_anticorner_contrasted"
 	name = "contrasted colorful anticorner"
 
-/obj/effect/turf_decal/tile/opaque/random/fourcorners
+/obj/effect/turf_decal/tile/transparent/random/fourcorners
 	icon_state = "tile_fourcorners"
 	name = "colorful fourcorners"
 
-/obj/effect/turf_decal/tile/opaque/random/full
+/obj/effect/turf_decal/tile/transparent/random/full
 	icon_state = "tile_full"
 	name = "colorful full"
 
-/obj/effect/turf_decal/tile/opaque/random/diagonal_centre
+/obj/effect/turf_decal/tile/transparent/random/diagonal_centre
 	icon_state = "diagonal_centre"
 	name = "colorful diagonal centre"
 
-/obj/effect/turf_decal/tile/opaque/random/diagonal_edge
+/obj/effect/turf_decal/tile/transparent/random/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "colorful diagonal edge"
 
