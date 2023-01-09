@@ -511,7 +511,7 @@
 	)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 24, "under_x" = 24, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
