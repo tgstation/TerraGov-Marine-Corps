@@ -2494,7 +2494,7 @@
 	},
 /area/space)
 "dgm" = (
-/obj/machinery/computer/med_data,
+/obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "dgy" = (
