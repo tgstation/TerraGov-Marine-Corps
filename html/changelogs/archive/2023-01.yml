@@ -107,3 +107,13 @@
   novaepee:
   - bugfix: Pizza profit margin has been fixed for RO Papa John to feed marines more
       pizza
+2023-01-09:
+  Jalopkomit18:
+  - balance: SL able to use medscanner without fumbling
+  Losenis:
+  - rscadd: Boot camp apologizes for never training marines in what they're expected
+      to know, and have sent a manual or two to be dispensed in their automated vendor
+      as they gear up.
+  RipGrayson:
+  - bugfix: Fixed a bug where a hijack on the PoS could breach into space
+  - code_imp: Reorganized decals
