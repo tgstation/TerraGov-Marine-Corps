@@ -297,24 +297,24 @@
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
 			if(0 to 9)
-				filling.icon_state = "hypo-10"
+				filling.icon_state = "[initial(icon_state)]-10"
 			if(10 to 24)
-				filling.icon_state = "hypo10"
+				filling.icon_state = "[initial(icon_state)]10"
 				icon_state = "[initial(icon_state)]_10"
 			if(25 to 49)
-				filling.icon_state = "hypo25"
+				filling.icon_state = "[initial(icon_state)]25"
 				icon_state = "[initial(icon_state)]_25"
 			if(50 to 64)
-				filling.icon_state = "hypo50"
+				filling.icon_state = "[initial(icon_state)]50"
 				icon_state = "[initial(icon_state)]_50"
 			if(65 to 79)
-				filling.icon_state = "hypo65"
+				filling.icon_state = "[initial(icon_state)]65"
 				icon_state = "[initial(icon_state)]_65"
 			if(80 to 90)
-				filling.icon_state = "hypo80"
+				filling.icon_state = "[initial(icon_state)]80"
 				icon_state = "[initial(icon_state)]_80"
 			if(91 to INFINITY)
-				filling.icon_state = "hypo100"
+				filling.icon_state = "[initial(icon_state)]100"
 				icon_state = "[initial(icon_state)]_100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
@@ -468,7 +468,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
-	desc = "MK2 medical hypospray, which manages to fit more reagents into an even smaller spray. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
 	item_state = "hypomed"
 	icon_state = "hypomed"
 	core_name = "hypospray"
