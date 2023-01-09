@@ -61,7 +61,6 @@
 		var/lootspawn = pick_weight_recursive(loot)
 		if(!spawn_loot_double)
 			loot.Remove(lootspawn)
-		loot_spawned++
 		if(!lootspawn)
 			return
 		if(spawn_locations.len)
@@ -84,6 +83,7 @@
 			else if(spawn_loot_split)
 				if(loot_spawned)
 					spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
+		loot_spawned++
 
 ///If the spawner has a spawn_scatter_radius set, this creates a list of nearby turfs available
 /obj/effect/spawner/random/proc/get_spawn_locations(radius)
