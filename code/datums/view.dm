@@ -56,6 +56,12 @@
 /datum/view_data/proc/add(num_to_add)
 	width += num_to_add
 	height += num_to_add
+
+	if(chief.prefs.widescreenpref) // if widescreen enabled
+	{
+		var/list/wide_size = getviewsize(default) // pickup current resolution
+		width = round(width * (wide_size[1] / wide_size[2])) // trying to save aspect ratio, cant be float/double number
+	}
 	apply()
 
 ///adds the size, which can also be a string, to the default and applies it
@@ -63,6 +69,12 @@
 	var/list/new_size = getviewsize(toAdd)
 	width += new_size[1]
 	height += new_size[2]
+
+	if(chief.prefs.widescreenpref) // if widescreen enabled
+	{
+		var/list/wide_size = getviewsize(default) // pickup current resolution
+		width = round(width * (wide_size[1] / wide_size[2])) // trying to save aspect ratio, cant be float/double number
+	}
 	apply()
 
 ///INCREASES the view radius by this.
@@ -70,6 +82,12 @@
 	var/list/new_size = getviewsize(toAdd)  //Backward compatability to account
 	width = new_size[1] //for a change in how sizes get calculated. we used to include world.view in
 	height = new_size[2] //this, but it was jank, so I had to move it
+
+	if(chief.prefs.widescreenpref) // if widescreen enabled
+	{
+		var/list/wide_size = getviewsize(default) // pickup current resolution
+		width = round(width * (wide_size[1] / wide_size[2])) // trying to save aspect ratio, cant be float/double number
+	}
 	apply()
 
 ///sets width and height as numbers

@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
-		X.zoom_in(11)
+		X.zoom_in(4.5)
 		..()
 
 // ***************************************

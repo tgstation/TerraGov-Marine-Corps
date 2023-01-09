@@ -246,7 +246,7 @@
 	if(message)
 		xeno.visible_message(span_notice("[xeno] emits a broad and weak psychic aura."),
 		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
-	xeno.zoom_in(0, 12)
+	xeno.zoom_in(0, 4.5)
 
 
 /datum/action/xeno_action/toggle_queen_zoom/proc/zoom_xeno_out(message = TRUE)
