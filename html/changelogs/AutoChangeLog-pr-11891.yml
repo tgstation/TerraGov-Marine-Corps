@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed a bug where a hijack on the PoS could breach into space"
-  - code_imp: "Reorganized decals"

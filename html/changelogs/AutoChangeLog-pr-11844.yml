@@ -1,0 +1,4 @@
+author: "SuperSlayer0"
+delete-after: True
+changes:
+  - qol: "Returning to your corpse while being in larva queue will require a confirmation, so you wouldn't accidentally loose your place."
