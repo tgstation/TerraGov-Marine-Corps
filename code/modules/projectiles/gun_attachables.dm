@@ -570,14 +570,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
 	if(!toggle_on && light_on)
-		icon_state = "flashlight"
+		icon_state = initial(icon_state)
 		master_gun.set_light_range(0)
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
 		light_on = FALSE
 		REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else if(toggle_on & !light_on)
-		icon_state = "flashlight-on"
+		icon_state = initial(icon_state) +"_on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
@@ -603,6 +603,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
 
+/obj/item/attachable/flashlight/under
+	name = "underbarreled flashlight"
+	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
+	icon_state = "uflashlight"
+	slot = ATTACHMENT_SLOT_UNDER
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+
 
 
 /obj/item/attachable/quickfire
@@ -621,7 +628,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "magnetic"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
+	///Handles the harness functionality, created when attached to a gun and removed on detach
+	var/datum/component/reequip_component
 
+/obj/item/attachable/magnetic_harness/on_attach(attaching_item, mob/user)
+	. = ..()
+	if(!master_gun)
+		return
+	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+
+/obj/item/attachable/magnetic_harness/on_detach(attaching_item, mob/user)
+	. = ..()
+	if(master_gun)
+		return
+	QDEL_NULL(reequip_component)
 
 /obj/item/attachable/scope
 	name = "rail scope"
@@ -1053,6 +1073,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 0
 	pixel_shift_y = 0
 
+/obj/item/attachable/stock/t18stock
+	name = "\improper AR-18 stock"
+	desc = "A specialized stock for the AR-18."
+	icon_state = "t18stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/t12stock
+	name = "\improper AR-12 stock"
+	desc = "A specialized stock for the AR-12."
+	icon_state = "t12stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/t42stock
+	name = "\improper MG-42 stock"
+	desc = "A specialized stock for the MG-42."
+	icon_state = "t42stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 //Underbarrel
 
 /obj/item/attachable/verticalgrip
@@ -1190,24 +1231,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	INVOKE_ASYNC(src, .proc/activate, source, TRUE)
 	to_chat(source, span_warning("Losing support, the bipod retracts!"))
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
-
-
-//when user fires the gun, we check if they have something to support the gun's bipod.
-/obj/item/attachable/proc/check_bipod_support(obj/item/weapon/gun/G, mob/living/user)
-	return FALSE
-
-/obj/item/attachable/bipod/check_bipod_support(obj/item/weapon/gun/G, mob/living/user)
-	var/turf/T = get_turf(user)
-	for(var/obj/O in T)
-		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
-			return O
-
-	T = get_step(T, user.dir)
-	for(var/obj/O in T)
-		if((istype(O, /obj/structure/window_frame)))
-			return O
-
-	return FALSE
 
 /obj/item/attachable/lace
 	name = "pistol lace"

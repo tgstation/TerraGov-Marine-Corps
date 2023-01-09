@@ -190,6 +190,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_AMPUTATED (1<<6) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED (1<<7) //we just repaired the bone, stops the gelling after setting
 #define LIMB_STABILIZED (1<<8) //certain suits will support a broken limb while worn such as the b18
+#define LIMB_BIOTIC (1<<9) //limb is biotic
 
 //limb_wound_status
 #define LIMB_WOUND_BANDAGED (1<<0)
@@ -319,6 +320,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define LIMB_PRINTING_TIME 30
 #define LIMB_METAL_AMOUNT 125
+#define LIMB_MATTER_AMOUNT 100
 
 //How long it takes for a human to become undefibbable
 #define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
@@ -678,6 +680,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.
 #define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
+
+//Sentinel defines
+#define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
+#define SENTINEL_TOXIC_SLASH_COUNT 3 //Amount of slashes before the buff runs out
+#define SENTINEL_TOXIC_SLASH_DURATION 4 SECONDS //Duration of the buff
+#define SENTINEL_TOXIC_SLASH_STACKS_PER 2 //Amount of debuff stacks to be applied per slash.
+#define SENTINEL_TOXIC_GRENADE_STACKS_PER 10 //Amount of debuff stacks to be applied for every tick spent inside the toxic gas.
+#define SENTINEL_TOXIC_GRENADE_GAS_DAMAGE 20 //Amount of damage dealt for every tick spent in the Toxic Grenade's gas.
+#define SENTINEL_DRAIN_STING_CRIT_REQUIREMENT 20 //Amount of stacks needed to activate Drain Sting's critical effect.
+#define SENTINEL_DRAIN_MULTIPLIER 6 //Amount to multiply Drain Sting's restoration by
+#define SENTINEL_DRAIN_SURGE_ARMOR_MOD 20 //Amount to modify the Sentinel's armor by when under the effects of Drain Surge.
+#define SENTINEL_INTOXICATED_BASE_DAMAGE 1 //Amount of damage per tick dealt by the Intoxicated debuff
+#define SENTINEL_INTOXICATED_RESIST_REDUCTION 3 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
+#define SENTINEL_INTOXICATED_SANGUINAL_INCREASE 3 //Amount of debuff stacks applied for every tick of Sanguinal.
 
 //Wraith defines
 

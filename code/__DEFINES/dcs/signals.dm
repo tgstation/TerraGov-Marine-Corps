@@ -214,6 +214,8 @@
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
+#define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at()
+	#define COMPONENT_MOVABLE_BLOCK_PRE_THROW (1<<0)
 #define COMSIG_LIVING_PRE_THROW_IMPACT "movable_living_throw_impact_check" //sent before an item impacts a living mob
 	#define COMPONENT_PRE_THROW_IMPACT_HIT (1<<0)
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
@@ -649,6 +651,12 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
+#define COMSIG_XENOABILITY_TOXIC_SPIT "xenoability_toxic_spit"
+#define COMSIG_XENOABILITY_TOXIC_SLASH "xenoability_toxic_slash"
+#define COMSIG_XENOABILITY_DRAIN_STING "xenoability_drain_sting"
+#define COMSIG_XENOABILITY_TOXIC_GRENADE "xenoability_toxic_grenade"
+
+#define COMSIG_XENOABILITY_ACIDIC_SALVE "xenoability_acidic_salve"
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
@@ -738,8 +746,6 @@
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 #define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
-
-#define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
 
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"
 
@@ -873,3 +879,6 @@
 
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"
+
+/// From reequip components
+#define COMSIG_REEQUIP_FAILURE "reequip failure"

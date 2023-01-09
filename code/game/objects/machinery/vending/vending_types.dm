@@ -32,6 +32,7 @@
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
+	icon_vend = "boozeomat-vend"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/bottle/gin = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/whiskey = -1,
@@ -70,6 +71,8 @@
 
 /obj/machinery/vending/assist
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+	icon_vend = "generic-vend"
+	icon_deny = "generic-deny"
 	products = list(
 		/obj/item/assembly/prox_sensor = 5,
 		/obj/item/assembly/igniter = 3,
@@ -85,6 +88,7 @@
 	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
+	icon_deny = "coffee-deny"
 	vending_sound = 'sound/machines/vending_coffee.ogg'
 	vend_delay = 34
 	products = list(
@@ -101,6 +105,8 @@
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
 	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	icon_state = "snack"
+	icon_vend = "snack-vend"
+	icon_deny = "snack-deny"
 	products = list(
 		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
@@ -119,6 +125,8 @@
 	icon_state = "Cola_Machine"
 	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
 	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
+	icon_deny = "Cola_Machine-deny"
+	icon_vend = "Cola_Machine-vend"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/cans/souto = -1,
 		/obj/item/reagent_containers/food/drinks/cans/souto/diet = -1,
@@ -151,6 +159,7 @@
 	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "med"
 	icon_deny = "med-deny"
+	icon_vend = "med-vend"
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
@@ -291,6 +300,8 @@
 /obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
+	icon_vend = "generic-vend"
+	icon_deny = "generic-deny"
 	products = list(
 		/obj/item/clothing/under/rank/scientist = 6,
 		/obj/item/clothing/suit/bio_suit = 6,
@@ -308,6 +319,7 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
+	icon_vend = "wallmed-vend"
 	density = FALSE
 	wrenchable = FALSE
 	products = list(
@@ -383,6 +395,7 @@
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
+	icon_vend = "sec-vend"
 	req_access = list(ACCESS_MARINE_BRIG)
 	products = list(
 		/obj/item/restraints/handcuffs = 8,
@@ -403,6 +416,7 @@
 	//product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
+	icon_vend = "nutri-vend"
 	products = list(
 		/obj/item/reagent_containers/glass/fertilizer/ez = 35,
 		/obj/item/reagent_containers/glass/fertilizer/l4z = 25,
@@ -421,6 +435,8 @@
 	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
+	icon_deny = "seeds-deny"
+	icon_vend = "seeds-vend"
 
 	products = list(
 		/obj/item/seeds/bananaseed = 10,
@@ -486,6 +502,8 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
+	icon_vend = "dinnerware-vend"
+	icon_deny = "dinnerware-deny"
 	products = list(
 		/obj/item/tool/kitchen/tray = 8,
 		/obj/item/tool/kitchen/utensil/fork = 6,
@@ -513,6 +531,7 @@
 	name = "Engi-Vend"
 	desc = "Spare engineer vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
+	icon_vend = "engivend-vend"
 	icon_deny = "engivend-deny"
 	products = list(
 		/obj/item/multitool = -1,
@@ -533,6 +552,7 @@
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
+	icon_vend = "robotics-vend"
 	req_access = list(ACCESS_MARINE_RESEARCH)
 	products = list(
 		/obj/item/clothing/suit/storage/labcoat = 4,

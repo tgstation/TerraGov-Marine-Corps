@@ -41,6 +41,11 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+///When vended, tries to equip itself. Else, fallback to parent behavior.
+/obj/item/storage/backpack/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		return ..()
+
 /*
 * Backpack Types
 */

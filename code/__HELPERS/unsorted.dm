@@ -167,11 +167,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
  *	Variables:
- *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	bypass_window - check for PASSLASER - laser like behavior
+ *	projectile - check for PASSPROJECTILE - bullet like behavior
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ *	air_pass - whether to bypass non airtight atoms
  */
-/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
@@ -180,30 +181,32 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno, air_pass))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno, air_pass))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno))
+	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno, air_pass))
 		return TRUE
-	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno))
+	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno, air_pass))
 		return TRUE
 	return FALSE
 
 ///Checks if moving in a direction is blocked
-/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if(object.throwpass && projectile) //projectiles can bypass dense objects with throwpass
+		if((object.flags_pass & PASSPROJECTILE) && projectile)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((istype(object, /obj/machinery/door/window) || istype(object, /obj/structure/window)) && bypass_window) //windows are bypassed energy weapons
+		if((object.flags_pass & PASSLASER) && bypass_window)
+			continue
+		if((object.flags_pass & PASSAIR) && air_pass)
 			continue
 		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue
@@ -1228,10 +1231,11 @@ will handle it, but:
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
  *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects like projectiles
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ *	air_pass - whether to bypass non airtight atoms
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1259,7 +1263,7 @@ will handle it, but:
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno))
+				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno, air_pass))
 					continue
 				cone_turfs += turf_to_check
 				turfs_to_check += turf_to_check
@@ -1277,14 +1281,15 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	start -start point of the path
  *	end - end point of the path
  *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether throwpass will be checked to ignore dense objects in the same way as projectiles
+ *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects in the same way as projectiles
  *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
+ *	air_pass - whether to bypass non airtight atoms
  */
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	var/list/path_to_target = getline(start, end)
 	var/line_count = 1
 	while(line_count < length(path_to_target))
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno))
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno, air_pass))
 			return FALSE
 		line_count ++
 	return TRUE

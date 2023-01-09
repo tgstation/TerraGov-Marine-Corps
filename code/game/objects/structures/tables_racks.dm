@@ -9,7 +9,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
@@ -610,7 +609,6 @@
 	density = TRUE
 	layer = TABLE_LAYER
 	anchored = TRUE
-	throwpass = TRUE	//You can shoot past it
 	coverage = 20
 	climbable = TRUE
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal

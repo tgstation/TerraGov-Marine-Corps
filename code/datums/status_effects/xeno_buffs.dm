@@ -158,7 +158,7 @@
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
 	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
 	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjust_sunder(-heal_amount/20)
+	heal_target.adjust_sunder(-heal_amount/10)
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
@@ -755,9 +755,62 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 
 /atom/movable/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
+
+// ***************************************
+// *********** Drain Surge
+// ***************************************
+/datum/status_effect/drain_surge
+	id = "drain surge"
+	duration = 10 SECONDS
+	tick_interval = 2 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/drain_surge/on_apply()
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	X.soft_armor = X.soft_armor.modifyAllRatings(SENTINEL_DRAIN_SURGE_ARMOR_MOD)
+	X.visible_message(span_danger("[X]'s chitin glows with a vicious green!"), \
+	span_notice("You imbue your chitinous armor with the toxins of your victim!"), null, 5)
+	X.color = "#7FFF00"
+	particle_holder = new(X, /particles/drain_surge)
+	particle_holder.pixel_x = 11
+	particle_holder.pixel_y = 12
+	return TRUE
+
+/datum/status_effect/drain_surge/on_remove()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
+	X.visible_message(span_danger("[X]'s chitin loses its green glow..."), \
+	span_notice("Your chitinous armor loses its glow."), null, 5)
+	X.color = "#FFFFFF"
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/particles/drain_surge
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "drip"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 0.5
+	lifespan = 9
+	fade = 8
+	fadein = 1
+	grow = 0
+	velocity = list(0, 0)
+	position = generator(GEN_CIRCLE, 9, 9, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
+	gravity = list(0, -0.8)
+	scale = 0.6
+	rotation = 0
+	spin = 0

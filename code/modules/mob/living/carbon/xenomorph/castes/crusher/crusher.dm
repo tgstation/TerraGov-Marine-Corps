@@ -4,6 +4,7 @@
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
+	bubble_icon = "alienleft"
 	health = 300
 	maxHealth = 300
 	plasma_stored = 200

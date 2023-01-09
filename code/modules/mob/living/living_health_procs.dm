@@ -226,8 +226,8 @@
 
 
 ///Damages all limbs equally. Overridden by human, otherwise just does apply_damage
-/mob/living/proc/take_overall_damage(brute, burn, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	return apply_damage(brute, burn, blocked, sharp, edge, updating_health)
+/mob/living/proc/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+	return apply_damage(damage, damagetype, null, armortype, sharp, edge, updating_health, penetration)
 
 /mob/living/proc/restore_all_organs()
 	return

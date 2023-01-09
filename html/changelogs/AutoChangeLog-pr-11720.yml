@@ -1,4 +1,0 @@
-author: "collinlunn"
-delete-after: True
-changes:
-  - bugfix: "Limb replacement surgery's attach prosthetic step now works with the radial menu."

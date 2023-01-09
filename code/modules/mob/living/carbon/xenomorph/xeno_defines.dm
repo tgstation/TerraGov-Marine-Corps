@@ -120,6 +120,10 @@
 	///The damage acid spray causes to structure.
 	var/acid_spray_structure_damage = 0
 
+	// *** Secrete resin *** //
+	///The maximum number of tiles to where a xeno can build.
+	var/resin_max_range = 0
+
 	// *** Pheromones *** //
 	///The strength of our aura. Zero means we can't emit any.
 	var/aura_strength = 0
@@ -205,6 +209,10 @@
 	var/crush_strength = 35
 	///The strength of psychic blast's  AOE effects
 	var/blast_strength = 25
+
+	// *** Sentinel Abilities ***
+	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
+	var/additional_stacks = 0
 
 	///the 'abilities' available to a caste.
 	var/list/actions
