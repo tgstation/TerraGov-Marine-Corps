@@ -118,7 +118,9 @@
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
 	addtimer(CALLBACK(src, .proc/toggle_intangibility, TRUE, TRUE), TIME_TO_TRANSFORM)
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel, burnflags)
+	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))
+		return
 	return_to_core()
 	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 

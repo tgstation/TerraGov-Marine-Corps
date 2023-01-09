@@ -75,7 +75,7 @@
 		take_damage(damage)
 
 
-/obj/structure/bush/flamer_fire_act(burnlevel)
+/obj/structure/bush/flamer_fire_act(burnlevel, burnflags)
 	take_damage(burnlevel, BURN, "fire")
 
 //*******************************//

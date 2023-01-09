@@ -334,24 +334,19 @@
 	var/mob/living/carbon/human/person
 	var/mutable_appearance/fire_effect
 
-/datum/status_effect/dragon_fire/on_creation(mob/living/new_owner, ...)
-	if(!ishuman(owner))
-		qdel(src)
-		CRASH("[src.type] somehow applied on a invalid type: [owner.type] [owner]")
-	person = owner
-	// Don't want it to start processing with null vars
-	. = ..()
-
 /datum/status_effect/dragon_fire/on_apply()
 	. = ..()
-	// Let's not have double fire
+	if(!ishuman(owner))
+		return FALSE
+	person = owner
+
 	person.ExtinguishMob()
 	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
 	fire_effect.color = "purple"
 	person.overlays_standing[FIRE_LAYER] = fire_effect
 	person.apply_overlay(FIRE_LAYER)
 
-	owner.balloon_alert("Something viscous is burning on you!")
+	owner.balloon_alert(owner, "Something viscous is burning on you!")
 
 	RegisterSignal(owner, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE, .proc/disable_extinguish_message)
 	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
@@ -360,19 +355,19 @@
 
 /datum/status_effect/dragon_fire/tick()
 	// There's a lot of stuff that affects fire_stacks, this way we get to keep that instead of those effects simply not doing anything
-	// Consume any fire stacks present
-	duration = duration + person.fire_stacks
+	// Consuming all the fire stacks will make it impossible for normal fire to stick around
+	set_duration(person.fire_stacks + duration)
 	person.fire_stacks = 0
 	person.take_overall_damage_armored(5, BURN)
 
-/datum/status_effect/dragon_fire/proc/adjust_duration(amount)
+/datum/status_effect/dragon_fire/proc/set_duration(amount)
 	duration = clamp(amount, 0, 40)
 
 /datum/status_effect/dragon_fire/on_remove()
 	. = ..()
 	person.remove_overlay(FIRE_LAYER)
 	person = null
-	owner.balloon_alert("The last of the viscous material has stopped burning")
+	owner.balloon_alert(owner, "The last of the viscous material has stopped burning")
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE)
 	UnregisterSignal(owner, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISH)
@@ -380,18 +375,19 @@
 
 /datum/status_effect/dragon_fire/proc/override_fire()
 	SIGNAL_HANDLER
-	adjust_duration(duration + 5)
+	set_duration(duration + 5)
 	return COMSIG_IGNITE_CANCEL
 
 // Let's not be on fire anymore
 /datum/status_effect/dragon_fire/proc/extinguish()
 	SIGNAL_HANDLER
-	adjust_duration(-5)
+	set_duration(-5)
 
 /datum/status_effect/dragon_fire/proc/resist_fire()
 	SIGNAL_HANDLER
 	if(!isliving(owner))
 		return
+	set_duration(duration - rand(2, 4))
 	var/mob/living/L = owner
 	L.resist_fire()
 

@@ -3109,6 +3109,7 @@ datum/ammo/bullet/revolver/tp44
 	var/burntime = 17
 	var/burnlevel = 31
 	var/burn_flags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS
+	var/fire_type = /obj/flamer_fire
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))
@@ -3116,12 +3117,13 @@ datum/ammo/bullet/revolver/tp44
 	
 	switch(ignite_shape)
 		if(SINGLE)
-			T.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags)
+			T.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags, burn_flags, fire_type)
 		if(NO_CORNERS)
+			T.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags, burn_flags, fire_type)
 			for(var/turf/turf in range(ignite_range, T))
 				var/dir = get_dir(T, turf)
 				if(dir in GLOB.cardinals)
-					turf.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags)
+					turf.ignite(burntime, burnlevel, fire_color, 0, 0, fire_color, burn_flags, fire_type)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M, obj/projectile/P)
 	drop_flame(get_turf(M))
@@ -3158,14 +3160,26 @@ datum/ammo/bullet/revolver/tp44
 	name = "resin fireball"
 	burn_flags =  BURN_HUMANS|BURN_SNOW
 	max_range = 10
-	shell_speed = 0.3
+	shell_speed = 0.2
+	damage = 10
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bullet_color = COLOR_PURPLE
 	ignite_shape = NO_CORNERS
-	ignite_range = 1
+	ignite_range = 0
 	fire_color = "purple"
+	// A not so hot, but longer lasting flame
+	burnlevel = 10
+	burntime = 30
+	incendiary_strength = 0
+	fire_type = /obj/flamer_fire/smoothed/resin
 	var/added_spit_delay = 0
 	var/spit_cost = 150
+
+/datum/ammo/flamethrower/dragon_fire/on_hit_mob(mob/M, obj/projectile/P)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/human = M
+		human.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
 
 /datum/ammo/water
 	name = "water"

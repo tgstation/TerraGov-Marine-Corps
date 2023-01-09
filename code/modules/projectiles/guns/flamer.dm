@@ -461,13 +461,13 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, flame_color, burn_flags)
+/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, flame_color, burn_flags, fire_type = /obj/flamer_fire)
 	//extinguish any flame present
 	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
 	if(F)
 		qdel(F)
 
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage, flame_color, burn_flags)
+	new fire_type(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage, flame_color, burn_flags)
 
 	for(var/obj/structure/jungle/vines/vines in src)
 		QDEL_NULL(vines)
@@ -631,22 +631,23 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel)
+	T.flamer_fire_act(burnlevel, burnflags)
 
-	var/j = 0
-	for(var/i in T)
-		if(++j >= 11)
+	var/iteration = 0
+	for(var/thing in T)
+		if(iteration >= 11)
 			break
-		var/atom/A = i
+		iteration++
+		var/atom/A = thing
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel)
+		A.flamer_fire_act(burnlevel, burnflags)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
 
 // override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel)
+/mob/living/flamer_fire_act(burnlevel, burnflags)
 	if(!burnlevel)
 		return
 	var/fire_mod = get_fire_resist()
@@ -685,7 +686,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	// How much percentage of the fire lifetime is left
 	var/fire_percentage = firelevel / initial(firelevel)
 	// Gets more seethrough as it's about to go out
-	alpha = clamp(255 * fire_percentage + 20, 0, 255)
+	alpha = clamp(255 * fire_percentage + 40, 0, 255)
 
 /obj/flamer_fire/smoothed/handle_icon_junction(junction)
 	icon_state = "[initial(icon_state)][junction]"

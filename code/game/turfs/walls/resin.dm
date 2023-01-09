@@ -21,7 +21,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/closed/wall/resin/flamer_fire_act(burnlevel)
+/turf/closed/wall/resin/flamer_fire_act(burnlevel, burnflags)
 	take_damage(burnlevel * 1.25, BURN, "fire")
 
 

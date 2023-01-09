@@ -417,7 +417,7 @@ directive is properly returned.
 
 
 ///Generalized Fire Proc. Burn level is the base fire damage being received.
-/atom/proc/flamer_fire_act(burnlevel)
+/atom/proc/flamer_fire_act(burnlevel, burnflags)
 	return
 
 

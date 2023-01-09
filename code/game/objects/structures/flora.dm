@@ -16,7 +16,7 @@
 				qdel(src)
 
 
-/obj/structure/flora/flamer_fire_act(burnlevel)
+/obj/structure/flora/flamer_fire_act(burnlevel, burnflags)
 	take_damage(burnlevel, BURN, "fire")
 
 /obj/structure/flora/fire_act()
@@ -85,7 +85,7 @@
 
 	qdel(src)
 
-/obj/structure/flora/tree/flamer_fire_act(burnlevel)
+/obj/structure/flora/tree/flamer_fire_act(burnlevel, burnflags)
 	take_damage(burnlevel/6, BURN, "fire")
 
 
