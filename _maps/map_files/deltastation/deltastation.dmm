@@ -140,7 +140,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	dir = 1;
+	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
@@ -16713,9 +16713,7 @@
 "dwP" = (
 /obj/effect/turf_decal/tile/transparent/red/fourcorners,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/securearea{
-	pixel_y = -32
-	},
+/obj/structure/sign/securearea,
 /obj/effect/landmark/weed_node,
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
 	dir = 8
@@ -19378,7 +19376,11 @@
 /area/deltastation/service/kitchen/abandoned)
 "dVh" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/iron,
 /area/deltastation/maintenance/department/chapel)
 "dVk" = (
 /obj/effect/landmark/weed_node,
@@ -42060,6 +42062,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/xenobiology)
+"iyY" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/starboard/aft)
 "izb" = (
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/visible{
 	dir = 4
@@ -51175,7 +51182,9 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/lab)
 "ktF" = (
-/obj/structure/sign/securearea,
+/obj/structure/sign/securearea{
+	dir = 8
+	},
 /obj/structure/lattice,
 /turf/open/space,
 /area/space)
@@ -59231,7 +59240,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor{
+	dir = 1
+	},
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
 	name = "Detective's Office"
@@ -73951,6 +73962,12 @@
 "pci" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
@@ -104713,8 +104730,9 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/construction)
 "vfD" = (
+/obj/structure/window/framed/colony/reinforced/hull,
 /obj/structure/sign/securearea,
-/turf/closed/wall/r_wall/unmeltable/regular,
+/turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
 "vfG" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -173513,8 +173531,8 @@ oeK
 dwP
 hlm
 bjX
-bjX
 vfD
+hlm
 xXl
 wEr
 hzs
@@ -173791,7 +173809,7 @@ hWX
 kMu
 fkI
 nFA
-aFt
+iyY
 jbW
 oeP
 cdA

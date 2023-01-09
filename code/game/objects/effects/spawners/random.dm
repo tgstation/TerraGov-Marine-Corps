@@ -53,42 +53,37 @@
 	if(loot_subtype_path)
 		loot += subtypesof(loot_subtype_path)
 
-	if(loot?.len)
-		var/loot_spawned = 0
-		while((spawn_loot_count < loot_spawned) && loot.len)
-			var/lootspawn = pick_weight_recursive(loot)
-			if(!spawn_loot_double)
-				loot.Remove(lootspawn)
-			if(lootspawn && (spawn_scatter_radius == 0 || spawn_locations.len))
-				var/turf/spawn_loc = loc
-				if(spawn_scatter_radius > 0)
-					spawn_loc = pick_n_take(spawn_locations)
+	if(!loot.len)
+		return
 
-				var/atom/movable/spawned_loot = make_item(spawn_loc, lootspawn)
-				if(!spawn_with_original_direction)
-					spawned_loot.setDir(dir)
+	var/loot_spawned = 0
+	while((spawn_loot_count < loot_spawned) && loot.len)
+		var/lootspawn = pick_weight_recursive(loot)
+		if(!spawn_loot_double)
+			loot.Remove(lootspawn)
+		loot_spawned++
+		if(!lootspawn)
+			return
+		if(spawn_locations.len)
+			var/turf/spawn_loc = loc
+			if(spawn_scatter_radius > 0)
+				spawn_loc = pick_n_take(spawn_locations)
 
-				if (!spawn_loot_split && !spawn_random_offset)
-					if (pixel_x != 0)
-						spawned_loot.pixel_x = pixel_x
-					if (pixel_y != 0)
-						spawned_loot.pixel_y = pixel_y
-				else if (spawn_random_offset)
-					spawned_loot.pixel_x = rand(-16, 16)
-					spawned_loot.pixel_y = rand(-16, 16)
-				else if (spawn_loot_split)
-					if (loot_spawned)
-						spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
-			loot_spawned++
+			var/atom/movable/spawned_loot = new lootspawn(spawn_loc)
+			if(!spawn_with_original_direction)
+				spawned_loot.setDir(dir)
 
-/**
- *  Makes the actual item related to our spawner.
- *
- * spawn_loc - where are we spawning it?
- * type_path_to_make - what are we spawning?
- **/
-/obj/effect/spawner/random/proc/make_item(spawn_loc, type_path_to_make)
-	return new type_path_to_make(spawn_loc)
+			if(!spawn_loot_split && !spawn_random_offset)
+				if(pixel_x != 0)
+					spawned_loot.pixel_x = pixel_x
+				if(pixel_y != 0)
+					spawned_loot.pixel_y = pixel_y
+			else if(spawn_random_offset)
+				spawned_loot.pixel_x = rand(-16, 16)
+				spawned_loot.pixel_y = rand(-16, 16)
+			else if(spawn_loot_split)
+				if(loot_spawned)
+					spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
 
 ///If the spawner has a spawn_scatter_radius set, this creates a list of nearby turfs available
 /obj/effect/spawner/random/proc/get_spawn_locations(radius)
