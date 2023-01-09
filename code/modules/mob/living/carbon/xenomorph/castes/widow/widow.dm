@@ -4,6 +4,7 @@
 	desc = "A large arachnid xenomorph, with fangs ready to bear and crawling with many little spiderlings ready to grow."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Widow Walking"
+	bubble_icon = "alienroyal"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 150

@@ -2,6 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
+	bubble_icon = "alien"
 
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 

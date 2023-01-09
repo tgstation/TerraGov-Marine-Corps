@@ -71,7 +71,6 @@
 	icon_state = "platform_deco"
 	anchored = TRUE
 	density = FALSE
-	throwpass = TRUE
 	layer = 3.5
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE

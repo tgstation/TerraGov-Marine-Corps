@@ -234,7 +234,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "gz" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -643,7 +643,7 @@
 /area/bigredv2/outside/space_port)
 "pE" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "pG" = (
@@ -804,7 +804,7 @@
 /area/bigredv2/outside/marshal_office)
 "tS" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -1165,7 +1165,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "CP" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -1791,7 +1791,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
 "SZ" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1

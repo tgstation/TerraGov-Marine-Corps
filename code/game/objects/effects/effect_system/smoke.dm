@@ -9,10 +9,10 @@
 	opacity = TRUE
 	anchored = TRUE
 	layer = FLY_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/amount = 3
-	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
+	///time in decisecond for a smoke to spread one tile.
 	var/expansion_speed = 1
 	var/smoke_traits = NONE
 	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
@@ -262,7 +262,6 @@
 /obj/effect/particle_effect/smoke/satrapine
 	color = "#b02828"
 	lifetime = 6
-	spread_speed = 7
 	expansion_speed = 3
 	strength = 1.5
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
@@ -274,7 +273,6 @@
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno
 	lifetime = 6
-	spread_speed = 7
 	expansion_speed = 3
 	smoke_traits = SMOKE_XENO
 
@@ -307,6 +305,12 @@
 	opacity = FALSE
 	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+
+/obj/effect/particle_effect/smoke/xeno/toxic
+	lifetime = 2
+	smoke_can_spread_through = TRUE
+	color = "#00B22C"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	smoke_can_spread_through = TRUE
@@ -375,6 +379,9 @@
 
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
+
+/datum/effect_system/smoke_spread/xeno/toxic
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
 
 /datum/effect_system/smoke_spread/xeno/hemodile
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile

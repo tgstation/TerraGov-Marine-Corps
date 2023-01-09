@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = SHUTTLE_SUPPLY
 	req_access = list(ACCESS_MARINE_CARGO)
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/supplycomp
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
 	var/shuttle_id = SHUTTLE_SUPPLY
@@ -277,12 +277,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	shuttle_id = "supply_rebel"
 	home_id = "supply_home_rebel"
 	faction = FACTION_TERRAGOV_REBEL
+	circuit = /obj/item/circuitboard/computer/rebelsupplycomp
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(!allowed(user))
+	if(isliving(user) && !allowed(user))
 		return
 	if(!SU)
 		SU = new(src)
@@ -348,8 +349,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	.["elevator_size"] = supply_shuttle?.return_number_of_turfs()
 
 /datum/supply_ui/ui_data(mob/living/user)
-	if(!isliving(user))
-		return
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
@@ -544,8 +543,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
 
 /datum/supply_ui/requests/ui_data(mob/living/user)
-	if(!isliving(user))
-		return
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
@@ -611,7 +608,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "request"
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/ordercomp
 	var/datum/supply_ui/requests/SU
 
 /obj/machinery/computer/ordercomp/interact(mob/user)

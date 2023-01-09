@@ -41,7 +41,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
