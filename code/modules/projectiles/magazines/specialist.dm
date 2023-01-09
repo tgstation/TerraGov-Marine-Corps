@@ -28,15 +28,6 @@
 	icon_state_mini = "mag_sniper_blue"
 	bonus_overlay = "t26_flak"
 
-
-/obj/item/ammo_magazine/rifle/chamberedrifle/flak
-	name = "SR-127 bolt action rifle flak magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
-	icon_state = "tl127_flak"
-	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
-	icon_state_mini = "mag_sniper_blue"
-	bonus_overlay = "tl127_flak"
-
 //SR-42 magazine
 
 /obj/item/ammo_magazine/sniper/elite
