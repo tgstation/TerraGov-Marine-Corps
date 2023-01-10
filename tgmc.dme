@@ -1824,6 +1824,8 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "lostbay\code\clown.dm"
+#include "lostbay\code\militarypolice.dm"
 #include "lostbay\code\necoarc.dm"
 #include "lostbay\code\RU_items.dm"
 #include "lostbay\code\vendorcw.dm"

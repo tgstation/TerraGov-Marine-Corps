@@ -2419,7 +2419,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pistol laser bolt"
 	damage = 20
 	penetration = 5
-	hitscan_effect_icon = "beam_particle"
+	hitscan_effect_icon = "beam"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -2428,7 +2428,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
-	hitscan_effect_icon = "stun"
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"

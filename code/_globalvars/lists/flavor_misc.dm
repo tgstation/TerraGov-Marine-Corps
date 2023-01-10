@@ -90,6 +90,8 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"bravo_smartgunner",
 	"bull",
 	"captain",
+	"clown",
+	"military_police",
 	"carrier",
 	"charlie_engi",
 	"charlie_leader",

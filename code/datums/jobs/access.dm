@@ -361,5 +361,9 @@
 			. = size ? "Mk.II " : "Mark II"
 		if("Mk.I")
 			. = size ? "Mk.I " : "Mark I"
+		if("MP")
+			. = size ? "MP " : "Military Police"
+		if("CLW")
+			. = size ? "HONK " : "Ship Clown"
 		else
 			. = paygrade + " " //custom paygrade
