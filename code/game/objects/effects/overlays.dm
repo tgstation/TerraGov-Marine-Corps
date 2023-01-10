@@ -344,3 +344,9 @@
 	pixel_x = -60
 	pixel_y = -50
 	alpha = 70
+
+/obj/effect/overlay/eye
+	layer = ABOVE_MOB_LAYER
+	icon_state = "eye_open"
+	pixel_x = 16
+	pixel_y = 16
