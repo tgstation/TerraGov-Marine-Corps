@@ -182,7 +182,7 @@
 #define SHATTERING_ROAR_ANGLE 60
 #define SHATTERING_ROAR_SPEED 2
 #define SHATTERING_ROAR_DAMAGE 40
-#define SHATTERING_ROAR_CHARGE_TIME 1 SECONDS
+#define SHATTERING_ROAR_CHARGE_TIME 1.2 SECONDS
 
 /datum/action/xeno_action/activable/shattering_roar
 	name = "Shattering roar"
