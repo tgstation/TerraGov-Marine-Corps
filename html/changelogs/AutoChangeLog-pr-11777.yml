@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Primo spitter now leaves acid pools on hit with autospit, and has acid blood"
+  - balance: "Reduced primo spitter damage falloff so it's less garbage"
+  - bugfix: "acid pools from projectiles will no longer bypass barricades or other solid objects"
+  - bugfix: "acid blood ignoring acid armour and splatter chance not working"
