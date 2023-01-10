@@ -477,7 +477,7 @@
 	if(attached)
 		return TRUE
 
-	if(M.status_flags & XENO_HOST || isxeno(M))
+	if(M.status_flags & XENO_HOST || M.status_flags & GODMODE || isxeno(M))
 		return FALSE
 
 	if(isxeno(loc)) //Being carried? Drop it

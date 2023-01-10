@@ -1,6 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "tons of deny and vend icon states for vendors"
-  - bugfix: "fixed some incorrect vendor sprites and typos"
-  - imageadd: "a lot of retouched vendor sprites and its states"

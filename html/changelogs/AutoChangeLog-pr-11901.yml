@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "Shrike req points 50->500"
+  - balance: "Shrike req points 50->500"

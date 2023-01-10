@@ -1,5 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes:
-  - code_imp: "removed an extraneous signal"
-  - refactor: "hide xeno wounds when they have nothing to show"

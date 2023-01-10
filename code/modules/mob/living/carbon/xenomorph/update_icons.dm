@@ -2,6 +2,7 @@
 /mob/living/carbon/xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
+		//TODO THIS SHOULD USE THE API!
 		overlays += I
 
 /mob/living/carbon/xenomorph/remove_overlay(cache_index)
@@ -15,23 +16,28 @@
 /mob/living/carbon/xenomorph/proc/handle_special_wound_states()
 	return FALSE
 
-/mob/living/carbon/xenomorph/update_icons()
+/mob/living/carbon/xenomorph/toggle_move_intent(new_intent)
+	. = ..()
+	update_icons()
+
+/mob/living/carbon/xenomorph/update_icons(state_change = TRUE)
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		return
-	if(stat == DEAD)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
-	else if(HAS_TRAIT(src, TRAIT_BURROWED))
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
-	else if(lying_angle)
-		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
-		else
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
-	else if(!handle_special_state())
-		if(m_intent == MOVE_INTENT_RUN)
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
-		else
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
+	if(state_change)
+		if(stat == DEAD)
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
+		else if(HAS_TRAIT(src, TRAIT_BURROWED))
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
+		else if(lying_angle)
+			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
+			else
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
+		else if(!handle_special_state())
+			if(m_intent == MOVE_INTENT_RUN)
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+			else
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 

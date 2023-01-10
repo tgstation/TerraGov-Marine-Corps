@@ -5,7 +5,7 @@
 /obj/effect/particle_effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 
 	//Fire
@@ -14,7 +14,7 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
 	var/life = 0.5 //In seconds
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
 /obj/effect/particle_effect/fire/Initialize(mapload, ...)
@@ -56,7 +56,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	var/life = 15.0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
 	if (--life < 1)

@@ -184,7 +184,7 @@
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
 			for (var/obj/item/vended_item in vended_items)
-				vended_item.on_vend(usr, faction)
+				vended_item.on_vend(usr, faction, auto_equip = TRUE)
 
 			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
@@ -196,6 +196,8 @@
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
+	icon_vend = "marineuniform-vend"
+	icon_deny = "marineuniform-deny"
 	vendor_role = /datum/job/terragov/squad/standard
 	use_points = TRUE
 	categories = list(
@@ -503,6 +505,8 @@
 	name = "NEXUS Automated Medical Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
+	icon_vend = "medic-vend"
+	icon_deny = "medic-deny"
 	vendor_role = /datum/job/terragov/squad/corpsman
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
@@ -522,6 +526,8 @@
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
 	icon_state = "engineer"
+	icon_vend = "engineer-vend"
+	icon_deny = "engineer-deny"
 	vendor_role = /datum/job/terragov/squad/engineer
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
@@ -541,6 +547,8 @@
 	name = "NEXUS Automated Smartgunner Equipment Rack"
 	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
 	icon_state = "smartgunner"
+	icon_vend = "smartgunner-vend"
+	icon_deny = "smartgunner-deny"
 	vendor_role = /datum/job/terragov/squad/smartgunner
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
@@ -560,6 +568,8 @@
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
 	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
 	vendor_role = /datum/job/terragov/squad/leader
 	req_access = list(ACCESS_MARINE_LEADER)
 
@@ -596,6 +606,8 @@
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
+		/obj/item/paper/tutorial/medical,
+		/obj/item/paper/tutorial/mechanics,
 	)
 
 /obj/effect/vendor_bundle/basic_jaeger
@@ -605,6 +617,8 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+		/obj/item/paper/tutorial/medical,
+		/obj/item/paper/tutorial/mechanics,
 	)
 
 /obj/effect/vendor_bundle/basic_smartgunner

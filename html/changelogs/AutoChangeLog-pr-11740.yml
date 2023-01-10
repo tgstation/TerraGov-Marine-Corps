@@ -1,8 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Created the possibility to link 2 engineer teleporters"
-  - qol: "Removed 'The the' issues on engineer teleporters"
-  - qol: "Made examining engineer teleporters with no cell tell you that fact"
-  - qol: "Engineer teleporters now have unique #123 names."
-  - bugfix: "Made engineer teleporters properly unlink when one is destroyed"

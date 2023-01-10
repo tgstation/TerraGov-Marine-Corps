@@ -27,3 +27,93 @@
   - qol: Adds descriptions for buttons used by xeno abilities
   collinlunn:
   - qol: The Automated Closet now auto-equips certain items when vended.
+2023-01-04:
+  Blundir:
+  - rscadd: tons of deny and vend icon states for vendors
+  - bugfix: fixed some incorrect vendor sprites and typos
+  - imageadd: a lot of retouched vendor sprites and its states
+  QualityVan:
+  - bugfix: Dragging equipped storage into an occupied hand won't leave the storage
+      stuck unavailable
+  - balance: Cryo bone juice takes about ten seconds to heal a fracture, up from two
+  Three333Digit:
+  - bugfix: long range solder and cable
+  Waselon:
+  - balance: damage_mult applies to sunder
+  lbnesquik:
+  - qol: Created the possibility to link 2 engineer teleporters
+  - qol: Removed 'The the' issues on engineer teleporters
+  - qol: Made examining engineer teleporters with no cell tell you that fact
+  - qol: 'Engineer teleporters now have unique #123 names.'
+  - bugfix: Made engineer teleporters properly unlink when one is destroyed
+  novaepee, Shinji Nomura:
+  - imageadd: 'New Title Painting: MP is Depressed'
+  psykzz:
+  - code_imp: removed an extraneous signal
+  - refactor: hide xeno wounds when they have nothing to show
+2023-01-05:
+  Naaanii:
+  - rscadd: Xenos now stop drag channel when taking damage.
+  - rscadd: Xenos now stop dragging objects when taking damage.
+  Waselon:
+  - rscadd: added new striped fatigues
+  iLikeMemes:
+  - spellcheck: Fixed a typo in hivemind's change form ability description
+  - code_imp: Cleaned up some secrete resin code related to hivelord and hivemind
+  - refactor: Refactored secrete resin code
+  novaepee:
+  - rscdel: Remove suicide vest in Magmoor's mosque
+  - imageadd: Add vending animation to marinemed and lasgun charger
+2023-01-06:
+  Lumipharon:
+  - bugfix: fixed warlock lance not hitting targetted objects
+2023-01-07:
+  Blundir:
+  - rscadd: vending icon states for many vendors
+  - bugfix: fixed icon_deny and icon_vend not being used for some vendor with existing
+      sprites
+  carlarctg:
+  - rscadd: You now spin while stop drop rolling.
+  novaepee:
+  - rscadd: POS' medbay got remodeled to use more of the empty space, direct traffic,
+      and expanded!
+  - rscadd: PoS' Boxing ring is near Alamo now.
+  - rscadd: Some addition in PoS prep in light of medbay remodeling.
+2023-01-08:
+  Losenis:
+  - balance: Combat injectors now have tricordrazine in replacement of dylovene.
+  Lumipharon:
+  - balance: eshields no longer have -5 bullet armour
+  - balance: 'HvH: eshields added as default modules for roles other than engie and
+      medic, where another module is not present'
+  - balance: Sticky grenades detonate after four seconds instead of one second, when
+      fired from a grenade launcher
+  - balance: Repairs with a welder will now chain repair, fumble is only done once
+      per chain
+  - refactor: refactored welding repair code
+  - refactor: refactored plasteel tool interactions
+  - balance: Reduced Ravager vampirism healing by 50%.
+  - bugfix: fixed Ravager vampirism healing more than it should
+  - balance: Reduced sentinel grenade radius and duration by 1 tile and 1 second respectively
+  - balance: 'HvH: You have 10 seconds of spawn protection when deploying groundside'
+  Pariah919:
+  - balance: AMR is 775 points rather than 650 now.
+  RipGrayson:
+  - imageadd: Adjusted the cave walls on Big Red to be slightly less blocky
+  - bugfix: Corrects some improper hydro trays in Big Red marshals
+  Waselon:
+  - bugfix: mech weapons dont detach from taking damage. fixed a few related runtime
+      errors.
+  novaepee:
+  - bugfix: Pizza profit margin has been fixed for RO Papa John to feed marines more
+      pizza
+2023-01-09:
+  Jalopkomit18:
+  - balance: SL able to use medscanner without fumbling
+  Losenis:
+  - rscadd: Boot camp apologizes for never training marines in what they're expected
+      to know, and have sent a manual or two to be dispensed in their automated vendor
+      as they gear up.
+  RipGrayson:
+  - bugfix: Fixed a bug where a hijack on the PoS could breach into space
+  - code_imp: Reorganized decals

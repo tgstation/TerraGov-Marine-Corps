@@ -50,7 +50,7 @@
 	},
 /area/bigredv2/outside/nw)
 "fk" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "fz" = (
@@ -513,7 +513,7 @@
 	},
 /area/bigredv2/outside/virology)
 "QO" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "QT" = (

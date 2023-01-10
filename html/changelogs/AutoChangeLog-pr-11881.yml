@@ -1,0 +1,4 @@
+author: "collinlunn"
+delete-after: True
+changes:
+  - qol: "Vendors will try to insert vended items into the player's currently opened storage. Does not affect Automated Closet."
