@@ -1095,9 +1095,15 @@
 	if(status_flags & INCORPOREAL) //Incorporeal can normally pass through anything
 		blocker_opinion = TRUE
 	if(flags_pass & FLYING)	//An object marked as FLYING can cross over anything so long as it is not out of bounds, like
-		var/area/blocker_area = get_area(blocker)
-		if(blocker_area.outside && !isspacearea(blocker_area))
-			blocker_opinion = TRUE
+		var/area/area_to_enter = get_area(target)
+		if(isspacearea(area_to_enter))	//Prevent crossing into space areas
+			return FALSE
+		if(!area_to_enter.outside)	//Flying units cannot enter an area that is indoors!
+			if(istype(src, /obj/vehicle/sealed/aircraft))
+				var/obj/vehicle/sealed/aircraft/aircraft = src
+				to_chat(aircraft.pilot, span_warning("Can't fly inside!"))	//Balloon alert doesn't work for some reason so normal message
+			return FALSE
+		blocker_opinion = TRUE
 	return blocker_opinion
 
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in

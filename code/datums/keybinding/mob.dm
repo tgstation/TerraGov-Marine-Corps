@@ -342,4 +342,4 @@
 	name = "cycle_weapon"
 	full_name = "Cycle Aircraft Weapon"
 	description = "Switch to the next attached weapon."
-	keybind_signal = COMSIG_KB_CYCLE_WEAPON
+	keybind_signal = COMSIG_KB_CYCLE_AIRCRAFT_WEAPON

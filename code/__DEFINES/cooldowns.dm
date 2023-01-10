@@ -58,6 +58,9 @@
 #define COOLDOWN_MECHA_SKYFALL "mecha_skyfall"
 #define COOLDOWN_MECHA_MISSILE_STRIKE "mecha_missile_strike"
 
+//Aircraft cooldowns
+#define COOLDOWN_AIRCRAFT_MESSAGE "aircraft_message"
+
 //// COOLDOWN SYSTEMS
 /*
  * We have 2 cooldown systems: timer cooldowns (divided between stoppable and regular) and world.time cooldowns.

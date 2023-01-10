@@ -42,22 +42,30 @@
 	///To keep track of whichever weapon is currently selected by the gunner
 	var/obj/item/weapon/gun/aircraft/current_weapon = null
 	///Mob reference to the pilot; much easier than doing a for loop on every occupant
-	var/mob/living/carbon/human/pilot = null
+	var/mob/pilot = null
 	///Mob reference to the gunner; needed for stat checks before firing
-	var/mob/living/carbon/human/gunner = null
+	var/mob/gunner = null
 	///How many occupants can be given gunner permissions
 	var/max_gunners = 0
 	///Minimum skill requirement for piloting this craft
 	var/required_pilot_skill = SKILL_PILOT_TRAINED
 	///The preferred spots to dump occupants on when exiting, relative to the current direction
-	var/list/exit_locations = list()
+	var/list/preferred_exit_dirs = list()
+	///Can this vehicle be folded? Undeployed vehicles can be pushed around for moving through indoor areas
 	var/deployable = TRUE
+	///Is this vehicle deployed, and thus can be entered?
 	var/deployed = FALSE
+	///Is this vehicle currently falling from the sky?
 	var/being_destroyed = FALSE
+	///Time before the engine can be turned on again after being shut down
 	COOLDOWN_DECLARE(engine_cooldown)
+	///Keep track when the last engine sound was made
 	COOLDOWN_DECLARE(enginesound_cooldown)
+	///Keep track when the last direction change was made
 	COOLDOWN_DECLARE(turning_cooldown)
+	///The smoke effect shown when the vehicle has taken light to medium damage; thin, streaming, light gray
 	var/obj/effect/abstract/particle_holder/light_smoke_effect
+	///The smoke effect shown when the vehicle has taken heavy damage; thick clouds, spawns all around the vehicle in cloud, dark gray
 	var/obj/effect/abstract/particle_holder/heavy_smoke_effect
 
 /obj/vehicle/sealed/aircraft/Initialize(mapload)
@@ -66,16 +74,16 @@
 	for(var/datum/atom_hud/squad/aircraft_hud in GLOB.huds) //Add to the squad HUD
 		aircraft_hud.add_to_hud(src)
 	current_fuel = max_fuel
-	if(starting_weapons)
-		attach_starting_weapon()
-	if(deployable && !deployed)
-		deploy(null, TRUE)
 	integrity_failure = max_integrity/5	//20% of HP triggers damage alert
 	light_smoke_effect = new(src, /particles/aircraft_smoke_light)
 	heavy_smoke_effect = new(src, /particles/aircraft_smoke_heavy)
 	light_smoke_effect.pixel_x = 16
 	heavy_smoke_effect.pixel_x = 16
 	update_icon()
+	if(LAZYLEN(starting_weapons))
+		attach_starting_weapon()
+	if(deployable && !deployed)
+		deploy(null, TRUE)
 
 /obj/vehicle/sealed/aircraft/update_icon()
 	show_aircraft_health()
@@ -105,9 +113,7 @@
 	COOLDOWN_START(src, turning_cooldown, turn_delay)
 	if(direction == REVERSE_DIR(dir))
 		return setDir(turn(dir, pick(45, -45)))
-	var/angle1 = dir2angle(direction)
-	var/angle2 = dir2angle(dir)
-	var/angle_to_turn = closer_angle_difference(angle1, angle2) > 0 ? 45 : -45
+	var/angle_to_turn = closer_angle_difference(dir2angle(direction), dir2angle(dir)) > 0 ? 45 : -45
 	setDir(turn(dir, angle_to_turn))
 	if(direction != dir)
 		addtimer(CALLBACK(src, .proc/turn_while_flying, direction), turn_delay)
@@ -235,10 +241,14 @@
 	return ..()
 
 /obj/vehicle/sealed/aircraft/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
-	. = ..()
+	if(!usr || !over || QDELETED(src))
+		return FALSE
+	if(!Adjacent(usr) || !over.Adjacent(usr))
+		return FALSE
 	if(is_occupant(over))
 		balloon_alert(over, "Must be outside!")
 		return FALSE
+	over.MouseDrop_T(src, usr)	//Currently does nothing but leaving it in case anyone makes an action that relies on it
 	if(LAZYLEN(attached_weapons))
 		return unload(over)
 
@@ -534,8 +544,8 @@
 	return ..()
 
 /obj/vehicle/sealed/aircraft/exit_location(M)
-	if(LAZYLEN(exit_locations))	//Check if there any preferred locations to dump stuff
-		for(var/exit_direction in exit_locations)
+	if(LAZYLEN(preferred_exit_dirs))	//Check if there any preferred locations to dump stuff
+		for(var/exit_direction in preferred_exit_dirs)
 			var/turf/exit_turf = get_step(loc, turn(dir, dir2angle(exit_direction)))
 			if(turf_block_check(M, exit_turf))
 				continue
@@ -636,11 +646,11 @@ The reason they are also three separate procs is because operation_checks is run
 	if(!object.loc || get_turf(object) == loc)	//Prevents shooting yourself if you click on something in your inventory too!
 		return FALSE
 	if(pilot.stat)	//The dead can't fly or shoot!
-		if(!TIMER_COOLDOWN_CHECK(src, "aircraft anti spam"))
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_AIRCRAFT_MESSAGE))
 			to_chat(pilot, span_warning(span_alert("You can't fly the [src] in your current state!")))
-			TIMER_COOLDOWN_START(src, "aircraft anti spam", 2 SECONDS)
+			TIMER_COOLDOWN_START(src, COOLDOWN_AIRCRAFT_MESSAGE, 2 SECONDS)
 		if(current_weapon?.gun_user)
-			to_chat(pilot, span_warning(span_alert("You lost gun control! Click [src] to regain control.")))	//To let the user know what to do if they regain consciousness
+			to_chat(pilot, span_warning(span_alert("You lost gun control!")))	//To let the user know they need to re-select a weapon
 			pilot.unset_interaction()
 		return FALSE
 	return TRUE
@@ -768,7 +778,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 //Aircraft burn fuel at all times while flying, even if only hovering
 /obj/vehicle/sealed/aircraft/process()
 	current_fuel--
-	update_icon()
+	show_aircraft_fuel()
 	if(current_fuel <= 0)
 		playsound(src, 'sound/mecha/lowpower.ogg', 100, FALSE, 7)	//Should play only to the pilot but we have no aircraft descending sound yet
 		toggle_engine()
@@ -790,14 +800,14 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 
 /obj/vehicle/sealed/aircraft/relaymove(mob/living/user, direction)
 	if(!CHECK_BITFIELD(flags_pass, FLYING))
-		if(!TIMER_COOLDOWN_CHECK(src, "aircraft anti spam"))
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_AIRCRAFT_MESSAGE))
 			balloon_alert(user, "Engine offline!")
-			TIMER_COOLDOWN_START(src, "aircraft anti spam", 2 SECONDS)
+			TIMER_COOLDOWN_START(src, COOLDOWN_AIRCRAFT_MESSAGE, 2 SECONDS)
 		return FALSE
 	if(current_fuel <= 0)
-		if(!TIMER_COOLDOWN_CHECK(src, "aircraft anti spam"))
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_AIRCRAFT_MESSAGE))
 			balloon_alert(user,"No fuel left!")
-			TIMER_COOLDOWN_START(src, "aircraft anti spam", 2 SECONDS)
+			TIMER_COOLDOWN_START(src, COOLDOWN_AIRCRAFT_MESSAGE, 2 SECONDS)
 	if(!canmove || !(user in return_drivers()))
 		return FALSE
 	vehicle_move(direction)
@@ -837,9 +847,9 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 		playsound(src, 'sound/effects/alert.ogg', 100, FALSE, 7)
 		animate(src, 5 SECONDS, pixel_z = 0)
 		addtimer(CALLBACK(src, .proc/death_crash), 5 SECONDS)
-	else
-		explosion(src, 0, 0, 1, 1, 1, smoke = TRUE)	//Smaller explosion since it didn't crash into the ground
-		return ..()
+		return
+	explosion(src, 0, 0, 1, 1, 1, smoke = TRUE)	//Smaller explosion since it didn't crash into the ground
+	return ..()
 
 //Proc for convenience
 /obj/vehicle/sealed/aircraft/proc/death_crash()
@@ -861,6 +871,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 
 /datum/action/vehicle/sealed/aircraft
 	action_icon = 'icons/mob/actions/actions_mecha.dmi'
+	///Reference to the vehicle in use that the action buttons will interact with
 	var/obj/vehicle/sealed/aircraft/aircraft
 
 /datum/action/vehicle/sealed/aircraft/Destroy()
@@ -929,7 +940,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	name = "Change Weapon"
 	action_icon_state = "mech_cycle_equip_off"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_CYCLE_WEAPON,
+		KEYBINDING_NORMAL = COMSIG_KB_CYCLE_AIRCRAFT_WEAPON,
 	)
 
 /datum/action/vehicle/sealed/aircraft/change_weapon/action_activate()
@@ -961,7 +972,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	weapon_slots = 1
 	weapon_slot_positions = list(16, -4)
 	offsets = list(-16, -24, -20, -20, -24, -16, -20, -12, -16, -8, -12, -12, -8, -16, -12, -20)
-	exit_locations = list(WEST, EAST, NORTH)
+	preferred_exit_dirs = list(WEST, EAST, NORTH)
 
 /obj/vehicle/sealed/aircraft/transport
 	name = "\improper ATT \"Beluga\""
@@ -974,7 +985,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	max_occupants = 5
 	max_fuel = 500
 	offsets = list(-16, -20, -20, -20, -20, -16, -20, -12, -16, -12, -12, -12, -12, -16, -12, -20)
-	exit_locations = list(SOUTH, WEST, EAST)
+	preferred_exit_dirs = list(SOUTH, WEST, EAST)
 
 /obj/vehicle/sealed/aircraft/gunship
 	name = "\improper Pelican gunship"	//Too on the nose?
@@ -990,7 +1001,7 @@ That way pilots and gunners have their respective procs, but if the pilot is the
 	weapon_slots = 2
 	weapon_slot_positions = list(8, -10, 24, -10)
 	offsets = list(-16, -24, -24, -16, -24, -16, -24, -8, -16, -8, -8, -8, -8, -16, -8, -24)
-	exit_locations = list(NORTH, EAST, WEST)
+	preferred_exit_dirs = list(NORTH, EAST, WEST)
 
 /* Aircraft weapons */
 /obj/item/weapon/gun/aircraft
