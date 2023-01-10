@@ -344,7 +344,7 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/stock/irremoveable/ppsh,
+		/obj/item/attachable/stock/ppsh,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
@@ -359,7 +359,7 @@
 	aim_speed_modifier = 2.5
 
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/ppsh,
+		/obj/item/attachable/stock/ppsh,
 	)
 
 	fire_delay = 0.15 SECONDS

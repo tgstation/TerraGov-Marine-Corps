@@ -893,9 +893,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 30
 	pixel_shift_y = 14
 
-/obj/item/attachable/stock/irremoveable
-	flags_attach_features = NONE
-
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
 	desc = "A non-standard long wooden stock for Slavic firearms."
@@ -903,14 +900,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/irremoveable/ppsh
+/obj/item/attachable/stock/ppsh
 	name = "PPSh-17b submachinegun wooden stock"
 	desc = "A long wooden stock for a PPSh-17b submachinegun"
 	icon_state = "ppshstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/irremoveable/t27
+/obj/item/attachable/stock/t27
 	name = "MG-27 Body"
 	desc = "A stock for a MG-27 MMG."
 	icon = 'icons/Marine/marine-mmg.dmi'
@@ -918,7 +915,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 15
 	pixel_shift_y = 0
 
-/obj/item/attachable/stock/irremoveable/pal12
+/obj/item/attachable/stock/pal12
 	name = "Paladin-12 pump shotgun stock"
 	desc = "A standard light stock for the Paladin-12 shotgun."
 	icon_state = "pal12stock"
@@ -993,11 +990,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/irremoveable/m41a
+/obj/item/attachable/stock/m41a
 	name = "PR-11 stock"
 	icon_state = "m41a"
 
-/obj/item/attachable/stock/irremoveable/tx11
+/obj/item/attachable/stock/tx11
 	name = "AR-11 stock"
 	icon_state = "tx11stock"
 
@@ -1028,6 +1025,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t42stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
+
+/obj/item/attachable/stock/t64stock
+	name = "\improper BR-64 stock"
+	desc = "A specialized stock for the BR-64."
+	icon_state = "t64stock"
 
 //Underbarrel
 

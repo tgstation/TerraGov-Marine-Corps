@@ -290,12 +290,12 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 	)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 14)
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 	)
 
 	fire_delay = 15
@@ -310,7 +310,7 @@
 
 /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 		/obj/item/attachable/magnetic_harness,
 	)
 
