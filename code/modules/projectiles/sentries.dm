@@ -55,10 +55,6 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
-		gun.accuracy_mult -= 0.15
-		gun.scatter += 10
-
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_HAS_CAMERA))
 		camera = new (src)
 		camera.network = list("military")
@@ -477,10 +473,6 @@
 		to_chat(user, span_notice("Access denied."))
 		return
 	. = ..()
-	var/obj/item/weapon/gun/gun = internal_item
-	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
-		gun.accuracy_mult += 0.15
-		gun.scatter -= 10
 
 ///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)

@@ -352,7 +352,6 @@
 	max_shots = 6 //codex stuff
 	rounds_per_shot = 100
 	fire_delay = 4 SECONDS
-	turret_flags = TURRET_INACCURATE
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
@@ -402,7 +401,6 @@
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	turret_flags = TURRET_INACCURATE
 	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
