@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.stagger]</b>"))
 		#endif
-		if(!isxenoqueen(carbon_victim)) //Stagger too powerful vs the Queen, so she's immune.
+		if(!HAS_TRAIT(carbon_victim, TRAIT_STAGGER_RESISTANT)) //Some mobs like the Queen are immune to projectile stagger
 			carbon_victim.adjust_stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.stagger]</b>"))

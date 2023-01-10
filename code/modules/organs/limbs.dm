@@ -153,6 +153,8 @@
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
+	if(owner.status_flags & GODMODE)
+		return FALSE
 	var/hit_percent = (100 - blocked) * 0.01
 
 	if(hit_percent <= 0) //total negation
