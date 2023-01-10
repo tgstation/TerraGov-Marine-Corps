@@ -690,8 +690,8 @@
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null
 
-///Updates helicopter health bar (green)
-/obj/vehicle/sealed/helicopter/proc/show_helicopter_health()
+///Updates aircraft health bar (green)
+/obj/vehicle/sealed/aircraft/proc/show_aircraft_health()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 	if(!holder)
 		return
@@ -703,8 +703,8 @@
 		amount = 1
 	holder.icon_state = "xenohealth[amount]"
 
-///Updates helicopter fuel bar (blue)
-/obj/vehicle/sealed/helicopter/proc/show_helicopter_fuel()
+///Updates aircraft fuel bar (blue)
+/obj/vehicle/sealed/aircraft/proc/show_aircraft_fuel()
 	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 	if(!holder)
 		return

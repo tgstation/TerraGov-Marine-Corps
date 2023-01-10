@@ -1625,7 +1625,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-/* Helicopter ammo datums */
+/* Aircraft ammo datums */
 /datum/ammo/bullet/aircraft_minigun
 	name = "aircraft minigun bullet"
 	hud_state = "minigun"

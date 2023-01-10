@@ -364,6 +364,16 @@
 		/obj/item/stack/sandbags,
 	)
 
+/obj/item/storage/backpack/marine/tech_vehicle
+	name = "\improper TGMC aircraft technician backpack"
+	desc = "A large backpack used by TGMC personnel that pilot or maintain aircraft. Comes with extra clips, straps, and an overall larger profile for accommodating fuel and munitions."
+	icon_state = "marinepackt"
+	item_state = "marinepackt"
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/aircraft,
+		/obj/item/ammo_magazine/rocket/aircraft,
+		/obj/item/reagent_containers/jerrycan)
+
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."

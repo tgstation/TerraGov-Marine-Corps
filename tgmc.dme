@@ -765,6 +765,7 @@
 #include "code\game\objects\items\weapons\weaponry.dm"
 #include "code\game\objects\machinery\adv_med.dm"
 #include "code\game\objects\machinery\air_alarm.dm"
+#include "code\game\objects\machinery\aircraft_fabricator.dm"
 #include "code\game\objects\machinery\autodoc.dm"
 #include "code\game\objects\machinery\autolathe.dm"
 #include "code\game\objects\machinery\autolathe_datums.dm"
