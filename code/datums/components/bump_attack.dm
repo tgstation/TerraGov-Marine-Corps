@@ -99,7 +99,7 @@
 		return
 	if(bumper.issamexenohive(target))
 		return //No more nibbling.
-	return living_do_bump_action(target)
+	return xeno_do_bump_action(target)
 
 
 /datum/component/bump_attack/proc/living_do_bump_action(atom/target)
@@ -107,8 +107,6 @@
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	bumper.UnarmedAttack(target, TRUE)
-	GLOB.round_statistics.xeno_bump_attacks++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
@@ -124,7 +122,17 @@
 		held_item.melee_attack_chain(bumper, target)
 	else //disables pushing if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
 		return COMPONENT_BUMP_RESOLVED
-	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	GLOB.round_statistics.human_bump_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "human_bump_attacks")
+	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, held_item ? held_item.attack_speed : CLICK_CD_MELEE)
+	return COMPONENT_BUMP_RESOLVED
+
+/datum/component/bump_attack/proc/xeno_do_bump_action(atom/target)
+	var/mob/living/carbon/xenomorph/bumper = parent
+	if(bumper.next_move > world.time)
+		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
+	bumper.UnarmedAttack(target, TRUE)
+	GLOB.round_statistics.xeno_bump_attacks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
+	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, bumper.xeno_caste.attack_delay)
 	return COMPONENT_BUMP_RESOLVED
