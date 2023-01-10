@@ -10303,7 +10303,7 @@
 /area/sulaco/hangar/cas)
 "bhG" = (
 /obj/machinery/light/mainship,
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison,
 /area/sulaco/hangar/cas)
 "bhV" = (
 /turf/open/floor/prison/arrow/clean{
@@ -10483,7 +10483,7 @@
 /area/sulaco/cargo/prep)
 "bwn" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -10865,6 +10865,10 @@
 /obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
+"bZS" = (
+/obj/machinery/aircraft_fabricator,
+/turf/open/floor/prison,
+/area/sulaco/hangar/cas)
 "caP" = (
 /obj/structure/largecrate/supply/supplies/water,
 /obj/machinery/light/mainship{
@@ -12223,6 +12227,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/bridge)
+"dRl" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "dRt" = (
 /obj/structure/sink{
 	dir = 1
@@ -12437,6 +12447,12 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
+"ejC" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "ejF" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
@@ -12887,7 +12903,7 @@
 /area/sulaco/hallway/central_hall)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -14715,6 +14731,9 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "htQ" = (
@@ -16294,7 +16313,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -23430,7 +23449,7 @@
 /area/sulaco/hangar)
 "sYa" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -26148,7 +26167,7 @@
 /area/sulaco/cafeteria)
 "wKu" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/sulaco/hangar)
 "wKB" = (
@@ -58094,8 +58113,8 @@ pwv
 pwv
 pwv
 wLv
-jtC
-jtC
+dRl
+ejC
 hOC
 pIP
 xKR
@@ -58351,8 +58370,8 @@ pwv
 pwv
 pwv
 jWd
-jtC
-jtC
+ddK
+bZS
 hOC
 iAq
 aSU
@@ -58608,7 +58627,7 @@ pwv
 pwv
 pwv
 cPQ
-jtC
+ddK
 bhG
 omu
 aTA

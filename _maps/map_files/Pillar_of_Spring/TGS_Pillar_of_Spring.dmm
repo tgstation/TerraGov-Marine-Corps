@@ -2253,6 +2253,13 @@
 	},
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
+"cSW" = (
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "cSX" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
@@ -4580,6 +4587,10 @@
 "fRw" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"fRR" = (
+/obj/machinery/aircraft_fabricator,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "fSe" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2/delaytwo,
@@ -6136,6 +6147,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ifT" = (
@@ -53322,9 +53334,9 @@ kDx
 kDx
 kDx
 plN
-mLS
-dpY
-dpY
+cSW
+fRR
+tzk
 dpY
 dpY
 dpY
@@ -53580,8 +53592,8 @@ xDq
 xDq
 aGa
 ifi
-dpY
-dpY
+ilf
+tzk
 dpY
 dpY
 dpY
