@@ -485,7 +485,7 @@
 	new /obj/item/storage/pouch/flare/full(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/attachable/bipod(src)
+	new /obj/item/attachable/foldable/bipod(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/ammo_magazine/standard_lmg(src)
 	new /obj/item/ammo_magazine/standard_lmg(src)
