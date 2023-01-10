@@ -156,6 +156,7 @@
 	caste_desc = "Master of ranged combat, this xeno knows no equal."
 	upgrade = XENO_UPGRADE_FOUR
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
