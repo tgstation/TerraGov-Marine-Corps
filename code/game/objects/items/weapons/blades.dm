@@ -339,7 +339,7 @@
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/post_throw)
-	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/throw_knife))
+	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, .proc/stop_fire), _callback_fire = CALLBACK(src, .proc/throw_knife))
 
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
@@ -362,16 +362,20 @@
 	UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	living_user = null
 
+///Changes the current target.
 /obj/item/stack/throwing_knife/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	set_target(get_turf_on_clickcatcher(over_object, source, params))
 	living_user.face_atom(current_target)
 
+///Stops the Autofire component and resets the current cursor.
 /obj/item/stack/throwing_knife/proc/stop_fire()
 	SIGNAL_HANDLER
 	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon)
+	set_target(null)
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
+///Starts the user firing.
 /obj/item/stack/throwing_knife/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	if(living_user.hand && !istype(living_user.l_hand, /obj/item/stack/throwing_knife/) || !living_user.hand && !istype(living_user.r_hand, /obj/item/stack/throwing_knife/)) // If the object in our active hand is not a throwing knife, abort
@@ -423,12 +427,6 @@
 			continue
 		break
 
-/*'icons/effects/supplypod_target.dmi'*/
-///Resets the autofire component.
-/obj/item/stack/throwing_knife/proc/reset_fire()
-	set_target(null)
-	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon)
-
 ///Sets the current target and registers for qdel to prevent hardels
 /obj/item/stack/throwing_knife/proc/set_target(atom/object)
 	if(object == current_target || object == living_user)
@@ -436,12 +434,6 @@
 	if(current_target)
 		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
 	current_target = object
-	if(current_target)
-		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
-
-/obj/item/stack/throwing_knife/proc/clean_target()
-	SIGNAL_HANDLER
-	current_target = get_turf(living_user)
 
 /obj/item/weapon/chainsword
 	name = "chainsword"
