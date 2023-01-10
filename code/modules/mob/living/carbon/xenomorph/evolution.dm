@@ -229,6 +229,10 @@
 			to_chat(src, span_warning("There already is a living King. The hive cannot support more than one psychic energy repository at once."))
 			return
 
+		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_king_timer)
+			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_king_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
+			return
+
 		if(isxenoresearcharea(get_area(src)))
 			to_chat(src, span_warning("Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!"))
 			return
