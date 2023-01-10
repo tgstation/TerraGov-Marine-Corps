@@ -16,6 +16,7 @@
 	var/icon_on = "smartfridge"
 	var/icon_off = "smartfridge-off"
 	var/icon_panel = "smartfridge-panel"
+	///Maps stripped item names to stored count
 	var/item_quants = list()
 	var/is_secure_fridge = 0
 	var/seconds_electrified = 0;
@@ -80,10 +81,7 @@
 
 		I.forceMove(src)
 
-		if(item_quants[I.name])
-			item_quants[I.name]++
-		else
-			item_quants[I.name] = 1
+		item_quants[strip_improper(I.name)]++
 
 		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
 							"<span class='notice'>You add \the [I] to \the [src].")
@@ -101,10 +99,7 @@
 				return TRUE
 
 			P.remove_from_storage(G, src, user)
-			if(item_quants[G.name])
-				item_quants[G.name]++
-			else
-				item_quants[G.name] = 1
+			item_quants[strip_improper(G.name)]++
 			plants_loaded++
 
 		if(plants_loaded)
@@ -133,6 +128,10 @@
 
 ///Really simple proc, just moves the object "O" into the hands of mob "M" if able, done so I could modify the proc a little for the organ fridge
 /obj/machinery/smartfridge/proc/dispense(obj/item/O, mob/M)
+	var/stripped_name = strip_improper(O.name)
+	item_quants[stripped_name]--
+	if(!item_quants[stripped_name])
+		item_quants -= stripped_name
 	if(!M.put_in_hands(O))
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
@@ -147,17 +146,7 @@
 /obj/machinery/smartfridge/ui_data(mob/user)
 	. = list()
 
-	var/listofitems = list()
-	for (var/I in src)
-		var/atom/movable/O = I
-		if (!QDELETED(O))
-			if (listofitems[O.name])
-				listofitems[O.name]["amount"]++
-			else
-				listofitems[O.name] = list("name" = O.name, "type" = O.type, "amount" = 1)
-	sortList(listofitems)
-
-	.["contents"] = listofitems
+	.["contents"] = item_quants
 	.["name"] = name
 	.["isdryer"] = FALSE
 
@@ -183,7 +172,7 @@
 
 			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
 				for(var/obj/item/O in src)
-					if(O.name == params["name"])
+					if(strip_improper(O.name) == params["name"])
 						dispense(O, usr)
 						break
 				if (visible_contents)
@@ -193,7 +182,7 @@
 			for(var/obj/item/O in src)
 				if(desired <= 0)
 					break
-				if(O.name == params["name"])
+				if(strip_improper(O.name) == params["name"])
 					dispense(O, usr)
 					desired--
 			if (visible_contents)
