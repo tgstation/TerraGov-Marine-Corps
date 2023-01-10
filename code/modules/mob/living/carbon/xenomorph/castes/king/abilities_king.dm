@@ -190,7 +190,7 @@
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	ability_name = "shattering roar"
 	plasma_cost = 225
-	cooldown_timer = 35 SECONDS
+	cooldown_timer = 45 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
@@ -201,7 +201,7 @@
 		return
 	owner.dir = get_cardinal_dir(owner, target)
 
-	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70)
+	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70, sound_range = 20)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"
@@ -215,9 +215,9 @@
 		return fail_activate()
 
 	finish_charging()
-	playsound(owner, 'sound/voice/xenos_roaring.ogg', 100)
+	playsound(owner, 'sound/voice/xenos_roaring.ogg', 90, sound_range = 30)
 	for(var/mob/living/carbon/human/human_victim AS in GLOB.alive_human_list)
-		if(get_dist(human_victim, owner) > 9)
+		if((human_victim.z != owner.z) || (get_dist(human_victim, owner) > 9))
 			continue
 		shake_camera(human_victim, 2 SECONDS, 1)
 
