@@ -149,6 +149,10 @@
 		if(!silent)
 			A.balloon_alert(owner, "not human")
 		return FALSE
+	if(!line_of_sight(owner, A, 9))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
 	if((A.z != owner.z) || get_dist(owner, A) > OFF_GUARD_RANGE)
 		if(!silent)
 			A.balloon_alert(owner, "too far")
