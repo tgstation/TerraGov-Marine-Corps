@@ -28,7 +28,9 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
 		update_handcuffed(null)
+		regenerate_icons()
 		. = ITEM_UNEQUIP_UNEQUIPPED
+
 
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
