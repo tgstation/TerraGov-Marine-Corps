@@ -36,7 +36,6 @@
 ///Instantiates and instals the type onto gun_to_attach
 /datum/item_representation/gun/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
 	var/gun_to_vend
-	var/obj/item/weapon/gun/attachment_type = item_type
 	if(item_type in gun_to_attach.starting_attachment_types)
 		bypass_vendor_check = TRUE
 	gun_to_vend = instantiate_object(seller, null, user)
@@ -59,7 +58,6 @@
 ///Attach the instantiated attachment to the gun
 /datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
 	var/attachment_to_vend
-	var/obj/item/attachable/attachment_type = item_type
 	if(item_type in gun_to_attach.starting_attachment_types)
 		bypass_vendor_check = TRUE
 	attachment_to_vend = instantiate_object(seller, null, user)
