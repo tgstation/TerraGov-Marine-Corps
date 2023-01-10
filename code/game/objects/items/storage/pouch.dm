@@ -31,10 +31,9 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-///When vended, tries to equip itself. Else, fallback to parent behavior.
-/obj/item/storage/pouch/on_vend(mob/user, faction)
-	if (!user.equip_to_appropriate_slot(src))
-		return ..()
+/obj/item/storage/pouch/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 
 
