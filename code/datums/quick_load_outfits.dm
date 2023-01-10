@@ -103,7 +103,7 @@
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/marine/m10x
@@ -287,7 +287,7 @@
 	desc = "For when you need the biggest gun you can carry. Equipped with an MG-27 machinegun and miniscope and a MR-25 SMG as a side arm, as well as medium armor and a small amount of construction supplies. Allows for devestating, albeit static firepower."
 
 	belt = /obj/item/storage/holster/m25
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/shield
 	suit_store = /obj/item/weapon/gun/standard_mmg/machinegunner
 	l_store = /obj/item/storage/pouch/construction
 
@@ -1034,7 +1034,7 @@
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	wear_suit = /obj/item/clothing/suit/modular/som
+	wear_suit = /obj/item/clothing/suit/modular/som/shield
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
@@ -1173,7 +1173,7 @@
 	desc = "Heavy armored breaching configuration. Equipped with a V-21 submachine gun with variable firerate allowing for extreme rates of fire when properly wielded, heavy armor, a boarding shield and a good selection of grenades. Offers outstanding protection although damage may be lacking, particular at longer range."
 
 	glasses = /obj/item/clothing/glasses/welding
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/shield
 	suit_store = /obj/item/weapon/gun/smg/som/one_handed
 	belt = /obj/item/storage/belt/marine/som/som_smg
 	r_hand = /obj/item/weapon/shield/riot/marine/som
@@ -1549,7 +1549,7 @@
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/shield
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran

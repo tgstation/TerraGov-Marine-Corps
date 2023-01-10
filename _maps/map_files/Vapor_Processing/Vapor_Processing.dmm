@@ -398,7 +398,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "by" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "bz" = (
@@ -5033,7 +5033,7 @@
 /area/vapor_processing/caves/se)
 "Ma" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "Mg" = (
@@ -5220,7 +5220,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 30
 	},
-/obj/effect/decal/warning_stripes{
+/obj/effect/turf_decal/warning_stripes{
 	pixel_y = 30
 	},
 /turf/open/floor/tile/dark,

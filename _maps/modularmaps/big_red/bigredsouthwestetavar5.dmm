@@ -31,7 +31,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
@@ -434,7 +434,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Op" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -452,7 +452,7 @@
 /area/bigredv2/caves/south)
 "Px" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2/corner,

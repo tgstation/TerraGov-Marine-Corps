@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "fixed db holster using error placeholder sprite in some situations"

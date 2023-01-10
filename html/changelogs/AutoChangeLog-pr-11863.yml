@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - imageadd: "new valk sprite overlay for xenonauten"

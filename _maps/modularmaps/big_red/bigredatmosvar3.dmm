@@ -9,7 +9,7 @@
 	},
 /area/bigredv2/outside/se)
 "by" = (
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "bz" = (
@@ -17,7 +17,7 @@
 /area/bigredv2/outside/se)
 "ce" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -27,7 +27,7 @@
 /area/bigredv2/outside/s)
 "cx" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes/box/threeside,
+/obj/effect/turf_decal/warning_stripes/box/threeside,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "cT" = (
@@ -79,7 +79,7 @@
 "eR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "eT" = (
@@ -190,7 +190,7 @@
 /area/bigredv2/outside/filtration_plant)
 "kY" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "lo" = (
@@ -325,7 +325,7 @@
 /area/bigredv2/outside/filtration_plant)
 "sk" = (
 /obj/structure/dispenser/oxygen,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ss" = (
@@ -338,7 +338,7 @@
 /area/bigredv2/outside/filtration_plant)
 "uc" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ux" = (
@@ -385,7 +385,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "xJ" = (
@@ -457,7 +457,7 @@
 /obj/structure/cargo_container/ch_red{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "Bq" = (
@@ -512,7 +512,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Fe" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Ff" = (
@@ -541,7 +541,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Ha" = (
-/obj/effect/decal/warning_stripes/box/threeside,
+/obj/effect/turf_decal/warning_stripes/box/threeside,
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -551,7 +551,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Ht" = (
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "HM" = (
@@ -583,7 +583,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Jk" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Jl" = (
@@ -621,7 +621,7 @@
 /area/bigredv2/outside/s)
 "LK" = (
 /obj/structure/largecrate/random,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "LX" = (
@@ -641,7 +641,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Mx" = (
 /obj/structure/cargo_container/ch_red,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "ME" = (
@@ -691,7 +691,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Qp" = (
 /obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Rb" = (
@@ -711,12 +711,12 @@
 /area/bigredv2/outside/filtration_plant)
 "Rz" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "SI" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes/box/threeside{
+/obj/effect/turf_decal/warning_stripes/box/threeside{
 	dir = 1
 	},
 /turf/open/floor,

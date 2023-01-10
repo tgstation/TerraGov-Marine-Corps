@@ -1356,7 +1356,20 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
 
-///Used by vendors to attempt to automatically equip a vended item. Attempts to put the item in the user's hand.
-/obj/item/proc/on_vend(mob/user, faction)
+///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
+/obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	//Put item into player's currently open storage
+	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+		user.s_active.handle_item_insertion(src, FALSE, user)
+		return
+	//Equip item onto player
+	if (auto_equip && vendor_equip(user))
+		return
+	//Otherwise fall back to putting item in player's hand
 	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
 		pickup(user)
+
+///Controls how vendors will try to equip this item. Returns whether item was sucessfully equipped
+/obj/item/proc/vendor_equip(mob/user)
+	return FALSE
+

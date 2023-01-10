@@ -46,7 +46,7 @@
 /obj/effect/overlay/temp
 	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
-	mouse_opacity = 0 //can't click to examine it
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
 
@@ -55,7 +55,7 @@
 /obj/effect/overlay/blinking_laser //Used to indicate incoming CAS
 	name = "blinking laser"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/lases.dmi'
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
@@ -243,14 +243,14 @@
 	name = "blinking laser"
 	anchored = TRUE
 	effect_duration = 10
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
 
 /obj/effect/overlay/temp/sniper_laser
 	name = "laser"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
@@ -275,7 +275,7 @@
 /obj/effect/overlay/temp/tank_laser
 	name = "tanklaser"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 	effect_duration = 20
@@ -344,3 +344,9 @@
 	pixel_x = -60
 	pixel_y = -50
 	alpha = 70
+
+/obj/effect/overlay/eye
+	layer = ABOVE_MOB_LAYER
+	icon_state = "eye_open"
+	pixel_x = 16
+	pixel_y = 16
