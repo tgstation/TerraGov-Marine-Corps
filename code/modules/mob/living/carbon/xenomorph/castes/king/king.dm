@@ -7,7 +7,6 @@
 	attacktext = "bites"
 	attack_sound = null
 	friendly = "nuzzles"
-	wall_smash = 0
 	health = 500
 	maxHealth = 500
 	plasma_stored = 300
