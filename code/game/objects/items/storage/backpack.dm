@@ -372,7 +372,8 @@
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/aircraft,
 		/obj/item/ammo_magazine/rocket/aircraft,
-		/obj/item/reagent_containers/jerrycan)
+		/obj/item/reagent_containers/jerrycan,
+	)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
