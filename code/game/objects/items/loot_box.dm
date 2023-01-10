@@ -101,6 +101,7 @@
 		/obj/item/storage/belt/lifesaver/quick,
 		/obj/item/storage/belt/rig/medical,
 		/obj/effect/supply_drop/mmg,
+		/obj/effect/supply_drop/mixed_stims,
 	)
 	common_list = list(
 		/obj/effect/supply_drop/armor_upgrades,
@@ -113,6 +114,9 @@
 		/obj/effect/supply_drop/combat_rifle,
 		/obj/effect/supply_drop/laser_rifle,
 		/obj/effect/supply_drop/standard_shotgun,
+		/obj/effect/supply_drop/drop_stims,
+		/obj/effect/supply_drop/exile_stims,
+		/obj/effect/supply_drop/crash_stims,
 	)
 
 /obj/item/loot_box/supply_drop/som
@@ -136,6 +140,7 @@
 		/obj/item/storage/belt/lifesaver/som/quick,
 		/obj/item/storage/belt/rig/medical,
 		/obj/effect/supply_drop/charger,
+		/obj/effect/supply_drop/mixed_stims,
 	)
 	common_list = list(
 		/obj/effect/supply_drop/som_armor_upgrades,
@@ -147,6 +152,9 @@
 		/obj/effect/supply_drop/som_smg,
 		/obj/effect/supply_drop/som_shotgun,
 		/obj/effect/supply_drop/som_mg,
+		/obj/effect/supply_drop/drop_stims,
+		/obj/effect/supply_drop/exile_stims,
+		/obj/effect/supply_drop/crash_stims,
 	)
 
 //Alien supply drop, how'd they get a bluespace teleporter?
@@ -279,6 +287,34 @@
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/pump/t35/pointman(loc)
 	new /obj/item/storage/belt/shotgun/mixed(loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/supply_drop/mixed_stims/Initialize()
+	. = ..()
+	new /obj/item/stimulant/drop(loc)
+	new /obj/item/stimulant/drop(loc)
+	new /obj/item/stimulant/exile(loc)
+	new /obj/item/stimulant/exile(loc)
+	new /obj/item/stimulant/crash(loc)
+	new /obj/item/stimulant/crash(loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/supply_drop/drop_stims/Initialize()
+	. = ..()
+	new /obj/item/stimulant/drop(loc)
+	new /obj/item/stimulant/drop(loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/supply_drop/exile_stims/Initialize()
+	. = ..()
+	new /obj/item/stimulant/exile(loc)
+	new /obj/item/stimulant/exile(loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/supply_drop/crash_stims/Initialize()
+	. = ..()
+	new /obj/item/stimulant/crash(loc)
+	new /obj/item/stimulant/crash(loc)
 	return INITIALIZE_HINT_QDEL
 
 //SOM drops
