@@ -98,6 +98,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
+/obj/machinery/computer/camera_advanced/overwatch/medical
+	icon_state = "overwatch_medical"
+	name = "Medical Overwatch Console"
+	desc = "Watching how marines die has never been so rewarding."
+	req_access = list(ACCESS_MARINE_MEDBAY)
+
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
