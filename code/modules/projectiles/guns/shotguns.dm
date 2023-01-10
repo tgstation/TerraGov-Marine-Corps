@@ -414,12 +414,14 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
-
+	starting_attachment_types = list(
+		/obj/item/attachable/bayonetknife,
+	)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.75 SECONDS
 	aim_speed_modifier = 0.8
 	fire_delay = 1 SECONDS
-
+	force = 20
 	scatter = -25
 	scatter_unwielded = 20
 

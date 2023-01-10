@@ -1103,11 +1103,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 120
-	penetration = 30
-	sundering = 10
+	penetration = 20
+	sundering = 15
+	shrapnel_chance = 25
+	accurate_range_min = 3
+	accurate_range = 20
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 1, slowdown = 1, max_range = 18)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
