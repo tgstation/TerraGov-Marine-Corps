@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.stagger]</b>"))
 		#endif
-		if(!isxenoqueen(carbon_victim)) //Stagger too powerful vs the Queen, so she's immune.
+		if(!HAS_TRAIT(carbon_victim, TRAIT_STAGGER_RESISTANT)) //Some mobs like the Queen are immune to projectile stagger
 			carbon_victim.adjust_stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.stagger]</b>"))
@@ -2907,6 +2907,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
+/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
 	damage = 30
@@ -2915,9 +2920,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/acid/auto
 	name = "light acid spatter"
 	damage = 10
-	flags_ammo_behavior = AMMO_XENO
+	damage_falloff = 0.3
 	spit_cost = 25
 	added_spit_delay = 0
+
+/datum/ammo/xeno/acid/auto/on_hit_mob(mob/M, obj/projectile/P)
+	var/turf/T = get_turf(M)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/xeno/acid/auto/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : get_turf(O))
+
+/datum/ammo/xeno/acid/auto/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/xeno/acid/auto/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
@@ -2936,26 +2954,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2
 	max_range = 9
 
-/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M, obj/projectile/P)
 	var/turf/T = get_turf(M)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
-	var/turf/T = get_turf(O)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : get_turf(O))
 
-/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
-
-/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
-	if(T.density)
-		return
-
-	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
-
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter

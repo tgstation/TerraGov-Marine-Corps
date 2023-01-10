@@ -104,6 +104,9 @@
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
 #define PSYCHIC_BLAST_ABILITY_TRAIT "psychic_blast_ability_trait"
 #define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"
+#define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
+#define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
+#define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
 
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
@@ -148,6 +151,7 @@
 #define TRAIT_HIVE_TARGET "hive_target"//mob is targetted for draining by the hive
 #define TRAIT_RESEARCHED "researched" // Whether the thing has been researched/probed
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
+#define TRAIT_STAGGER_RESISTANT	"stagger_resistant" //Resistance to certain sources of stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak

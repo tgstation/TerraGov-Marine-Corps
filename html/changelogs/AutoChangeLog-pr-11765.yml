@@ -1,0 +1,5 @@
+author: "Code: Tivi & Lumi Sprites: Ghost"
+delete-after: True
+changes:
+  - rscadd: "reworked king: removed grav crush, added 4 new abilities and made it available through evo instead of blessings"
+  - bugfix: "Godmode prevents being hugged, stung, or breathing in smoke"

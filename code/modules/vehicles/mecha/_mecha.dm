@@ -218,7 +218,7 @@
 	radio = new(src)
 	radio.name = "[src] radio"
 
-
+	GLOB.nightfall_toggleable_lights += src
 	add_cell()
 	add_scanmod()
 	add_capacitor()
@@ -249,6 +249,8 @@
 /obj/vehicle/sealed/mecha/Destroy()
 	for(var/ejectee in occupants)
 		mob_exit(ejectee, TRUE, TRUE)
+
+	GLOB.nightfall_toggleable_lights -= src
 
 	if(LAZYLEN(flat_equipment))
 		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)

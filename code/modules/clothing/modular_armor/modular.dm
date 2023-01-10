@@ -544,7 +544,7 @@
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
 ///When vended, limits the paintable colors based on the vending machine's faction
-/obj/item/clothing/head/modular/on_vend(mob/user, faction)
+/obj/item/clothing/head/modular/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)

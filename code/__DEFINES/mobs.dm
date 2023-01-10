@@ -469,6 +469,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
+#define KING_DEATH_TIMER 7 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
 
@@ -515,6 +516,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_PLASMADRAIN_IMMUNE (1<<12)
 #define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
+#define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
@@ -524,8 +526,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<5) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_CAN_HOLD_JELLY (1<<6)//whether we can hold fireproof jelly in our hands
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<7) //Can corrupt a generator
-#define CASTE_CAN_BECOME_KING (1<<8) //Can be choose to become a king
-#define CASTE_CAN_RIDE_CRUSHER (1<<9) //Can ride a crusher
+#define CASTE_CAN_RIDE_CRUSHER (1<<8) //Can ride a crusher
 
 #define HIVE_STATUS_SHOW_EMPTY (1<<0)
 #define HIVE_STATUS_COMPACT_MODE (1<<1)

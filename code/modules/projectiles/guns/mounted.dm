@@ -342,10 +342,10 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/stock/irremoveable/t27,
+		/obj/item/attachable/stock/t27,
 	)
 
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
@@ -370,7 +370,7 @@
 	max_integrity = 200
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27, /obj/item/attachable/scope/mini)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/mini)
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 

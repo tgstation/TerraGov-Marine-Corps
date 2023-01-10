@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Vended reagent bottles can be taken back out of the chem smartfridge"
