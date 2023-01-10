@@ -20,11 +20,11 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cg" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cQ" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -48,7 +48,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "fr" = (
-/obj/effect/decal/sandedge/corner,
+/obj/effect/turf_decal/sandedge/corner,
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "gk" = (
@@ -68,7 +68,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "gG" = (
 /obj/structure/xenoautopsy/tank/broken,
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
@@ -83,7 +83,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "hJ" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -95,7 +95,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "iw" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/xenomorph,
@@ -132,7 +132,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kv" = (
 /obj/machinery/computer/security,
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -150,7 +150,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "lQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner,
@@ -159,7 +159,7 @@
 /turf/open/space/basic,
 /area/space)
 "nN" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -176,7 +176,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "og" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -215,7 +215,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rt" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
@@ -223,7 +223,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rB" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/ground/jungle/clear,
@@ -266,7 +266,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "tW" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood,
@@ -281,7 +281,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "uI" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -316,7 +316,7 @@
 "xc" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -377,7 +377,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "BZ" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/ground/jungle/clear,
@@ -386,7 +386,7 @@
 /obj/structure/table,
 /obj/item/alienjar,
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -442,7 +442,7 @@
 "GM" = (
 /obj/effect/spawner/random/technology_scanner,
 /obj/item/xenos_claw,
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /obj/structure/table/flipped,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
@@ -462,7 +462,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "JD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge/corner,
+/obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "JN" = (
@@ -484,7 +484,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2{
@@ -509,7 +509,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "KR" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -546,7 +546,7 @@
 "NO" = (
 /obj/structure/table,
 /obj/item/paper,
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner,
@@ -562,7 +562,7 @@
 /area/bigredv2/caves/south)
 "Op" = (
 /obj/effect/ai_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -581,7 +581,7 @@
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Qm" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/ground/jungle/clear,
@@ -624,7 +624,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Sq" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "St" = (
@@ -632,7 +632,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Tw" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
 	},
 /obj/effect/spawner/random/technology_scanner,
@@ -680,7 +680,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/excavation_site_spawner,
-/obj/effect/decal/sandedge/corner,
+/obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -712,7 +712,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "YN" = (
 /obj/structure/window_frame/colony/reinforced,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /obj/item/shard,
@@ -729,7 +729,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ZD" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2/corner{

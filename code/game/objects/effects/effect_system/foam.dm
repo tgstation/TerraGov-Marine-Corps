@@ -12,7 +12,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_MOB_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	animate_movement = NO_STEPS
 	///How much the foam expands.
 	var/spread_amount = 3

@@ -1006,6 +1006,7 @@
 	name = "\improper MarineMed"
 	desc = "Marine Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "marinemed"
+	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = ALL_MARINE_ACCESS
@@ -1107,6 +1108,7 @@
 	name = "\improper MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack dispensery."
 	icon_state = "bloodvendor"
+	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
@@ -1254,6 +1256,7 @@
 			/obj/item/clothing/under/marine/orion_fatigue = -1,
 			/obj/item/clothing/under/marine/red_fatigue = -1,
 			/obj/item/clothing/under/marine/lv_fatigue = -1,
+			/obj/item/clothing/under/marine/striped = -1,
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
