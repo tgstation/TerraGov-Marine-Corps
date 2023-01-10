@@ -81,14 +81,14 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.15 SECONDS
-	akimbo_additional_delay = 0.6 // Ends up as 0.249, so it'll get moved up to 0.25.
-	accuracy_mult_unwielded = 0.85
+	fire_delay = 0.3 SECONDS
+	akimbo_additional_delay = 0.8 // Ends up as 0.249, so it'll get moved up to 0.25.
+	accuracy_mult_unwielded = 0.55
 	accuracy_mult = 1
-	scatter_unwielded = 15
+	scatter_unwielded = 25
 	scatter = -1
 	recoil = 0
-	recoil_unwielded = 0.75
+	recoil_unwielded = 0.95
 
 /obj/item/weapon/gun/revolver/standard_revolver/Initialize(mapload, spawn_empty)
 	. = ..()
