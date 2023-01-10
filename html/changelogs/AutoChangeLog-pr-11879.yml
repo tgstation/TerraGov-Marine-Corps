@@ -1,0 +1,4 @@
+author: "Waselon"
+delete-after: True
+changes:
+  - balance: "mech pilot cant enter the mech while wearing jetpack, and will drop items in hands on entering the mech."
