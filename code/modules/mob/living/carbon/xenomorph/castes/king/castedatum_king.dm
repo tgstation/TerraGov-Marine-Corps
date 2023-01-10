@@ -12,7 +12,7 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -70,7 +70,7 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = 0
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -95,7 +95,7 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 1100
@@ -122,7 +122,7 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1200
@@ -137,9 +137,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
-	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
-
 	// *** Pheromones *** //
 	aura_strength = 6
 
@@ -152,7 +149,7 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1200
@@ -163,9 +160,6 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
-
-	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 6
