@@ -228,23 +228,6 @@
 					/obj/item/reagent_containers/food/snacks/xenoburger,\
 					/obj/item/reagent_containers/food/snacks/fishfingers)
 
-/obj/effect/spawner/random/christmas_food
-	name = "Random christmas food"
-	icon_state = "random_xmas"
-	spawn_nothing_percentage = 30
-
-/obj/effect/spawner/random/christmas_food/item_to_spawn()
-	return pick(/obj/item/reagent_containers/food/snacks/christmas_cookieone,\
-					/obj/item/reagent_containers/food/snacks/christmas_cookietwo,\
-					/obj/item/reagent_containers/food/snacks/christmas_cookiethree,\
-					/obj/item/reagent_containers/food/snacks/christmas_cookiefour,\
-					/obj/item/reagent_containers/food/snacks/christmas_cookiefive,\
-					/obj/item/reagent_containers/food/snacks/christmas_cookiesix,\
-					/obj/item/reagent_containers/food/snacks/christmas_cookieseven,\
-					/obj/item/reagent_containers/food/snacks/sliceable/fruitcake,\
-					/obj/item/reagent_containers/food/snacks/fruitcakeslice,\
-					/obj/item/reagent_containers/food/drinks/h_chocolate,\
-					/obj/item/reagent_containers/food/drinks/milk/xmas)
 
 ///All the trash.
 /obj/effect/spawner/random/trash
@@ -761,21 +744,3 @@
 					/obj/item/toy/plush/therapy_orange,\
 					/obj/item/toy/plush/therapy_red,\
 					/obj/item/toy/plush/therapy_purple)
-
-/obj/effect/spawner/random/present
-	name = "Random present spawner"
-	icon_state = "random_present"
-	spawn_nothing_percentage = 10
-
-/obj/effect/spawner/random/present/item_to_spawn()
-		return pick(/obj/item/a_gift,\
-					/obj/item/a_gift/free)
-
-/obj/effect/spawner/random_set/christmas_costume
-	name = "Random santa suit set spawner"
-	icon_state = "random_santasuit"
-	spawn_nothing_percentage = 50
-
-	option_list = list(
-		list(/obj/item/clothing/head/helmet/space/santahat, /obj/item/clothing/suit/space/santa,),
-	)

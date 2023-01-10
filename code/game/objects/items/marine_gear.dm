@@ -37,9 +37,6 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal3,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6)
 
 	for(var/i in 1 to 7)

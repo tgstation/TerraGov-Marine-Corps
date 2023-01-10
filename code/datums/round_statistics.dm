@@ -93,6 +93,3 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/psy_lances = 0
 	var/psy_shields = 0
 	var/psy_shield_blasts = 0
-	var/number_of_grinches = 0
-	var/presents_grinched = 0
-	var/presents_delivered = 0

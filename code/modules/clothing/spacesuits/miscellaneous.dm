@@ -22,25 +22,10 @@
 /obj/item/clothing/head/helmet/space/santahat
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
-	icon_state = "santahat2"
+	icon_state = "santahat"
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
 	flags_armor_protection = HEAD
-
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
-	flags_item_map_variant = NONE
-	flags_armor_features = ARMOR_NO_DECAP
-
-
-/obj/item/clothing/head/helmet/space/elf
-	name = "elf hat"
-	desc = "A slightly floppy hat worn by Santa's workforce, a careful look reveals a tag with the words 'Made on Mars' inside."
-	icon_state = "elfhat"
-	soft_armor = list(MELEE = 20, BULLET = 25, LASER = 25, ENERGY = 20, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
-	flags_armor_features = ARMOR_NO_DECAP
-
-/obj/item/clothing/head/helmet/space/elf/regular
-	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
@@ -49,32 +34,6 @@
 	item_state = "santa"
 	slowdown = 0
 	allowed = list(/obj/item) //for stuffing exta special presents
-
-/obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
-	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
-	slowdown = 1
-	flags_item = NODROP|DELONDROP
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD
-	resistance_flags = UNACIDABLE
-
-/obj/item/clothing/head/helmet/space/santahat/special
-	name = "Santa's hat"
-	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
-	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
-	flags_item = NODROP|DELONDROP
-	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
-
-/obj/item/clothing/suit/space/elf
-	name = "Elf suit"
-	desc = "Festive!"
-	icon_state = "elfcostume"
-	item_state = "elfcostume"
-	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 30, FIRE = 20, ACID = 10)
-	flags_item = NODROP|DELONDROP
 
 //Space pirate outfit
 /obj/item/clothing/head/helmet/space/pirate
@@ -101,27 +60,6 @@
 	flags_armor_protection = CHEST|ARMS
 
 
-/obj/item/clothing/suit/costume/snowman
-	name = "snowman outfit"
-	desc = "Two white spheres covered in white glitter. 'Tis the season."
-	icon_state = "snowman"
-	item_state = "snowman"
-	slowdown = 3
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, FIRE = 0, ACID = 0)
-	w_class = WEIGHT_CLASS_NORMAL
-	flags_armor_protection = FULL_BODY
-
-/obj/item/clothing/head/snowman
-	name = "snowman head"
-	desc = "A ball of white styrofoam. So festive."
-	icon_state = "snowman_h"
-	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 15, FIRE = 0, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/helmet/space/compression
 	name = "\improper MK.50 compression helmet"

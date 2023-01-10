@@ -33,7 +33,6 @@
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
-	var/is_christmastree = FALSE
 
 /obj/structure/flora/tree/Initialize()
 	. = ..()
@@ -75,9 +74,6 @@
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
-	if(is_christmastree)
-		user.visible_message(span_notice("[user] has a change of heart and embraces the [src], vowing to be a better person for Christmas."),span_notice("You have a change of heart and decide to not be a grinch."), "You hear the sound of a gentle Christmas melodies.")
-		return
 
 	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
@@ -90,8 +86,6 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act(burnlevel)
-	if(is_christmastree)
-		return
 	take_damage(burnlevel/6, BURN, "fire")
 
 
@@ -122,51 +116,26 @@
 	name = "xmas tree"
 	icon_state = "pine_c"
 
-/obj/structure/flora/tree/pine/xmas/presents
+/obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift/free
-	var/unlimited = FALSE
-	var/static/list/took_presents //shared between all xmas trees
-	///meme version of tree that only dispenses guns not presents
-	is_christmastree = TRUE
-	resistance_flags = RESIST_ALL
+	var/gift_type = /obj/item/gift/marine
+	var/list/ckeys_that_took = list()
 
-/obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
-	. = ..()
-	icon_state = "pinepresents"
-	if(!took_presents)
-		took_presents = list()
-
-/obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
+/obj/structure/flora/tree/xmas/presents/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(!user.ckey)
 		return
 
-	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
-	if(!do_after(user, 3 SECONDS))
-		return
-	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
-		to_chat(user, span_warning("After a bit of rummaging, you locate a small parcel with your name on it, it splits open to reveal coal."))
-		new /obj/item/ore/coal(get_turf(user))
-		took_presents[user.ckey] = TRUE
-		return
-	if(took_presents[user.ckey] && !unlimited)
+	if(ckeys_that_took[user.ckey])
 		to_chat(user, span_warning("There are no presents with your name on."))
 		return
 	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
-
-	if(!unlimited)
-		took_presents[user.ckey] = TRUE
-
+	ckeys_that_took[user.ckey] = TRUE
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
-
-/obj/structure/flora/tree/pine/xmas/presents/unlimited
-	desc = "A wonderous decorated Christmas tree. It has an endless supply of presents!"
-	unlimited = TRUE
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'

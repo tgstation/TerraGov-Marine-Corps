@@ -333,24 +333,6 @@
 	), \
 	attachment_offsets = list("muzzle_x" = 59, "muzzle_y" = 16, "rail_x" = 26, "rail_y" = 18, "under_x" = 40, "under_y" = 12))
 
-
-/obj/item/weapon/twohanded/spear/candycane
-	name = "\improper candy cane"
-	desc = "A large rounded piece of candy, this one is thick enough to use as a melee weapon."
-	icon_state = "candycane"
-	item_state = "candycane"
-	force = 50 //ten higher damage for lower reach
-	sharp = IS_NOT_SHARP_ITEM
-	attack_verb = list("smashed", "beaten", "slammed", "struck", "smashed", "battered", "cracked", "thumped", "festivized", "decorated", "wrapped")
-	reach = 1
-	edge = 0
-
-/obj/item/weapon/twohanded/spear/candycane/elf
-	desc = "Too large and hardened to be eaten by children, the elves first resorted to using candy canes as impromptu battering weapons during a union strike in '95 and have never looked back."
-	force = 60
-	force_wielded = 85
-	reach = 2
-
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
 	icon_state = "glaive"
