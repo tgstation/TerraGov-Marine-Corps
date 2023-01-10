@@ -20,7 +20,7 @@
 	},
 /area/bigredv2/outside/c)
 "g" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "h" = (
@@ -37,10 +37,10 @@
 	},
 /area/bigredv2/outside/c)
 "l" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/hoop{
 	dir = 4;
 	id = "basketball";
@@ -49,13 +49,13 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "m" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "n" = (
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "o" = (
@@ -66,10 +66,10 @@
 	},
 /area/bigredv2/outside/c)
 "p" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "q" = (
@@ -88,14 +88,14 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "s" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "u" = (
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
@@ -120,29 +120,29 @@
 	},
 /area/bigredv2/outside/c)
 "z" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "F" = (
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
@@ -155,8 +155,8 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "H" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "I" = (
@@ -171,10 +171,10 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "L" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/hoop{
 	dir = 8;
 	id = "basketball";
@@ -183,10 +183,10 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "M" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "O" = (
@@ -197,10 +197,10 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "P" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
@@ -225,7 +225,7 @@
 	},
 /area/bigredv2/outside/c)
 "T" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,

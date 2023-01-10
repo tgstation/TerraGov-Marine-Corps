@@ -3,8 +3,8 @@
 	return 0
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4/req/supply_export(faction_selling)
-	SSpoints.supply_points[faction_selling] += 1
-	return new /datum/export_report(1, name, faction_selling)
+	SSpoints.supply_points[faction_selling] += 10
+	return new /datum/export_report(10, name, faction_selling)
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
@@ -24,8 +24,8 @@
 	return new /datum/export_report(., name, faction_selling)
 
 /mob/living/carbon/xenomorph/shrike/supply_export(faction_selling)
-	SSpoints.supply_points[faction_selling] += 50
-	return new /datum/export_report(50, name, faction_selling)
+	SSpoints.supply_points[faction_selling] += 500
+	return new /datum/export_report(500, name, faction_selling)
 
 
 /mob/living/carbon/human/supply_export(faction_selling)

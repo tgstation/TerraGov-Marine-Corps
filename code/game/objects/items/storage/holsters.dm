@@ -82,6 +82,10 @@
 	remove_from_storage(W, null, user)
 	return W
 
+/obj/item/storage/holster/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
+
 //backpack type holster items
 /obj/item/storage/holster/backholster
 	name = "backpack holster"

@@ -1,0 +1,7 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "more soul to POS medbay break room."
+  - bugfix: "Allow POS chemists to reach to fridge."
+  - rscdel: "Remove funny dropship landing on POS medbay that allow xenomorphs to fling marines to space."
+  - bugfix: "Add back the crew monitoring computer back in PoS"

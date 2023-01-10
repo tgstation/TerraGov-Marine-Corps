@@ -298,6 +298,10 @@
 		qdel(reequip_component)
 	reequip_component = null
 
+/obj/item/belt_harness/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
+
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
 	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."

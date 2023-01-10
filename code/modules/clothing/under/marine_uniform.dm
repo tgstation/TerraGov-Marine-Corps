@@ -107,6 +107,13 @@
 		"Down" = "_d",
 	)
 
+/obj/item/clothing/under/marine/striped
+	name = "\improper Striped fatigues"
+	desc = "A simple set of camo pants and a striped shirt."
+	icon_state = "marine_striped"
+	item_state = "marine_striped"
+	adjustment_variants = list()
+
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."

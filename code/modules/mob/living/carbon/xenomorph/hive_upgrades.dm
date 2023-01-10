@@ -300,34 +300,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 
-/datum/hive_upgrade/xenos/king
-	name = "King"
-	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating King."
-	icon = "king"
-	flags_gamemode = ABILITY_DISTRESS
-	psypoint_cost = 1800
-
-/datum/hive_upgrade/xenos/king/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
-	. = ..()
-	if(!.)
-		return
-	if(buyer.hive.king_present)
-		if(!silent)
-			to_chat(buyer, span_xenowarning("Another king is alive already!"))
-		return FALSE
-
-/datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
-	to_chat(buyer, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
-	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
-		return FALSE
-	if(!can_buy(buyer, FALSE))
-		return FALSE
-	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(get_turf(buyer), buyer.hivenumber)
-	log_game("[key_name(buyer)] has created a pod in [AREACOORD(buyer)]")
-	xeno_message("<B>[buyer] has created a king pod at [get_area(buyer)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = buyer.hivenumber, target = king_pod, arrow_type = /atom/movable/screen/arrow/leader_tracker_arrow)
-	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
-	return ..()
-
 /datum/hive_upgrade/xenos/smart_minions
 	name = GHOSTS_CAN_TAKE_MINIONS
 	desc = "Allow ghosts to take control of minions"

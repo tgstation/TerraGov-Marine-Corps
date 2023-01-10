@@ -14,7 +14,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "dl" = (
-/obj/effect/decal/sandytile/sandyplating,
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/closed/wall,
 /area/deathmatch)
 "dB" = (

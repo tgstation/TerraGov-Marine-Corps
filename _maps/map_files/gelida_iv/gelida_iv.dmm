@@ -37,10 +37,10 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -66,7 +66,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "aba" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/shuttle/dropship/floor,
@@ -152,7 +152,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "acL" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -166,8 +166,8 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -230,7 +230,7 @@
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aeG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -246,7 +246,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "aeW" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "aeX" = (
@@ -345,7 +345,7 @@
 /area/gelida/landing_zone_1)
 "ajh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
@@ -541,10 +541,10 @@
 	id = "lvbasketball";
 	side = "left"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "arL" = (
@@ -749,7 +749,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/fitness)
 "ayb" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -763,7 +763,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "ayp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/fence,
@@ -881,7 +881,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/mining)
 "aBu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -983,7 +983,7 @@
 /area/gelida/outdoors/w_rockies)
 "aGf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
@@ -1039,7 +1039,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/gelida/indoors/lone_buildings/engineering)
 "aIj" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -1061,8 +1061,8 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -1183,7 +1183,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "aLW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -1214,7 +1214,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/hallway)
 "aNR" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1296,10 +1296,10 @@
 /area/gelida/outdoors/rock)
 "aQq" = (
 /obj/structure/prop/mainship/gelida/powerccable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1431,10 +1431,10 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "aTH" = (
 /obj/structure/window/reinforced,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -1468,7 +1468,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -1586,7 +1586,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aZi" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -1618,7 +1618,7 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "bay" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/shuttle/dropship/three,
@@ -1677,7 +1677,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "bbT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/structure/cargo_container/gorg{
@@ -1716,7 +1716,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "bcV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -1786,7 +1786,7 @@
 	pixel_x = -9;
 	stat = 2
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -1863,7 +1863,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "bgZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison{
@@ -1896,7 +1896,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "bic" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/closet/crate/trashcart,
@@ -1954,7 +1954,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -2067,7 +2067,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -2208,10 +2208,10 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "btm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "btp" = (
@@ -2229,7 +2229,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 10
 	},
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "buM" = (
@@ -2303,10 +2303,10 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -2503,8 +2503,8 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "bDb" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -2625,7 +2625,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -2715,8 +2715,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/outdoors/rock)
 "bJk" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -2951,7 +2951,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -2971,7 +2971,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "bQE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -2983,7 +2983,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "bQY" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "bRr" = (
@@ -3021,7 +3021,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "bRU" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -3100,7 +3100,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/lone_buildings/spaceport)
 "bVQ" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -3326,7 +3326,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "cfj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/wood,
@@ -3465,7 +3465,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/spaceport)
 "ckM" = (
@@ -3498,7 +3498,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "cml" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -3536,16 +3536,16 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "cnw" = (
 /obj/structure/fakeplatform,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "cnA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
@@ -3671,7 +3671,7 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/central_streets)
 "csU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -3748,7 +3748,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "cuS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -3906,7 +3906,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "czM" = (
-/obj/effect/decal/warning_stripes/thick/corner{
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -4034,8 +4034,8 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -4079,7 +4079,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/gelida/indoors/a_block/medical)
 "cDU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -4171,7 +4171,7 @@
 	dir = 4
 	},
 /obj/item/tool/kitchen/knife/ritual,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -4240,10 +4240,10 @@
 /area/gelida/indoors/c_block/garage)
 "cHP" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -4253,7 +4253,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/gelida/landing_zone_1)
 "cIf" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -4278,13 +4278,13 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "cIx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "cIy" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -4373,7 +4373,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "cLM" = (
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
@@ -4487,10 +4487,10 @@
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "cQd" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "cQe" = (
@@ -4539,7 +4539,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "cRC" = (
 /obj/structure/table/mainship,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -4583,7 +4583,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -4644,7 +4644,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "cUg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cargo_container/green{
@@ -4726,7 +4726,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 4
 	},
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "cWY" = (
@@ -4806,7 +4806,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "cYN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
@@ -4865,7 +4865,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -5045,7 +5045,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "dgr" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -5134,16 +5134,16 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "diU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -5224,7 +5224,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/admin)
 "dmt" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
@@ -5337,10 +5337,10 @@
 /area/gelida/indoors/b_block/bridge)
 "dqv" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -5385,7 +5385,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "drw" = (
 /obj/structure/largecrate/random,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -5561,7 +5561,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "dvQ" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/structure/rack/nometal,
@@ -5654,7 +5654,7 @@
 /turf/open/ground/river,
 /area/gelida/indoors/a_block/fitness)
 "dzJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "dzL" = (
@@ -5676,7 +5676,7 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "dzY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -5749,7 +5749,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "dDm" = (
 /obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/three,
@@ -5790,7 +5790,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/darkpurple/full,
@@ -5805,7 +5805,7 @@
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -5893,10 +5893,10 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/rock)
 "dHh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/r_wall,
@@ -6409,7 +6409,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "dXY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -6762,7 +6762,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/spaceport)
 "egn" = (
@@ -6797,8 +6797,8 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "egJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -6831,7 +6831,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -6931,7 +6931,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -6959,7 +6959,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "eqm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/ai_node,
@@ -6980,7 +6980,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/engineering)
 "eqI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/darkred/full,
@@ -7003,10 +7003,10 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/plate,
@@ -7105,7 +7105,7 @@
 /area/gelida/landing_zone_1)
 "eum" = (
 /obj/item/clothing/head/welding,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -7126,7 +7126,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/c_block/cargo)
 "euO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -7275,7 +7275,7 @@
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "ezl" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "ezx" = (
@@ -7290,7 +7290,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "ezz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -7372,7 +7372,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "eCL" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
@@ -7396,7 +7396,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "eEi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -7473,7 +7473,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "eFf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/central_streets)
 "eFj" = (
@@ -7498,7 +7498,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "eFR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_forecon/landing_zone_4)
@@ -7508,7 +7508,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/west_caves)
 "eFU" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -7592,7 +7592,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "eHT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -7652,7 +7652,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "eKz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/north_street)
 "eKP" = (
@@ -7701,7 +7701,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "eLD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -7888,7 +7888,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "eRR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -7920,7 +7920,7 @@
 /turf/closed/ice_rock/corners,
 /area/gelida/outdoors/rock)
 "eSA" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "eSL" = (
@@ -7995,7 +7995,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "eVj" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -8197,7 +8197,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -8239,7 +8239,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "fcY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -8312,7 +8312,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -8468,7 +8468,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "fno" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/structure/rack/nometal,
@@ -8544,10 +8544,10 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "fpP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -8569,10 +8569,10 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/plate,
@@ -8735,13 +8735,13 @@
 "fxp" = (
 /obj/structure/rack/nometal,
 /obj/item/tool/pickaxe/plasmacutter,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "fxu" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "fxC" = (
@@ -8847,7 +8847,7 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "fCu" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -8989,7 +8989,7 @@
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "fIl" = (
 /obj/structure/closet/crate/internals,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -9240,10 +9240,10 @@
 /area/gelida/indoors/a_block/security)
 "fSp" = (
 /obj/structure/fence,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -9432,7 +9432,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "fZe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -9457,7 +9457,7 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "fZD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -9545,7 +9545,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "gbt" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
@@ -9811,10 +9811,10 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "gjS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/largecrate/random/secure,
@@ -9903,7 +9903,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "glN" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
@@ -9919,10 +9919,10 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "gmB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/fence{
@@ -9932,7 +9932,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
 "gmJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/cable,
@@ -10051,7 +10051,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "gqI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -10118,7 +10118,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/six,
@@ -10329,10 +10329,10 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
@@ -10497,10 +10497,10 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -10754,7 +10754,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/lone_buildings/spaceport)
 "gMH" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -10844,7 +10844,7 @@
 	},
 /area/gelida/indoors/c_block/cargo)
 "gPy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced/windowstake{
@@ -10941,7 +10941,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "gRg" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "gRj" = (
@@ -10968,7 +10968,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "gSb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -10992,7 +10992,7 @@
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/admin)
 "gTf" = (
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "gTw" = (
@@ -11077,7 +11077,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "gZo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -11327,7 +11327,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "hhP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -11426,10 +11426,10 @@
 	id = "lvbasketball";
 	side = "right"
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "hjw" = (
@@ -11593,7 +11593,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/bridge)
 "how" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -11945,10 +11945,10 @@
 /area/gelida/indoors/a_block/kitchen)
 "hBJ" = (
 /obj/structure/window/reinforced,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -12013,7 +12013,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -12029,7 +12029,7 @@
 /area/gelida/indoors/a_block/dorms)
 "hDG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -12167,8 +12167,8 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2{
@@ -12449,10 +12449,10 @@
 /area/gelida/outdoors/rock)
 "hUc" = (
 /obj/structure/prop/mainship/gelida/powerccable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -12485,7 +12485,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "hUy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -12555,7 +12555,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "hWP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
@@ -12918,7 +12918,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/dorm_north)
 "ihx" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
@@ -12933,7 +12933,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "ihZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -13053,10 +13053,10 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -13124,7 +13124,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "imd" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -13248,7 +13248,7 @@
 /area/gelida/indoors/c_block/garage)
 "iqP" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "iqY" = (
@@ -13288,7 +13288,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "irJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -13323,7 +13323,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "itw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -13363,7 +13363,7 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -13506,10 +13506,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/lone_buildings/chunk)
 "iyf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -13683,7 +13683,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "iES" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -13694,7 +13694,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -13771,7 +13771,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "iIu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
@@ -13818,10 +13818,10 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_street)
 "iJR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -13842,7 +13842,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -14017,7 +14017,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "iOE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -14074,7 +14074,7 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 4
 	},
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "iQQ" = (
@@ -14129,7 +14129,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -14280,7 +14280,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "iZH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
@@ -14298,7 +14298,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/kitchen)
 "jan" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -14535,7 +14535,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_street)
 "jio" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -14822,7 +14822,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "jtO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -14885,7 +14885,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "jwF" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -14929,10 +14929,10 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "jxG" = (
 /obj/structure/window/reinforced,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/wood,
@@ -14966,7 +14966,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/darkred/full,
@@ -15032,7 +15032,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "jBU" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -15076,14 +15076,14 @@
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "jDC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -15279,8 +15279,8 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -15433,7 +15433,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -15534,8 +15534,8 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "jRU" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -15709,7 +15709,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "jXL" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "jXM" = (
@@ -15736,7 +15736,7 @@
 /area/gelida/caves/west_caves)
 "jYs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -15751,7 +15751,7 @@
 /area/gelida/indoors/a_block/hallway)
 "jYU" = (
 /obj/structure/largecrate/random/secure,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -15856,7 +15856,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/corpo)
 "kcX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -15960,7 +15960,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "kht" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -16098,16 +16098,16 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "knI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -16165,7 +16165,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -16237,10 +16237,10 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -16290,7 +16290,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "ktM" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -16475,11 +16475,11 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/b_block/bar)
 "kBZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "kCQ" = (
@@ -16495,7 +16495,7 @@
 	layer = 4.3;
 	pixel_y = 9
 	},
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "kDs" = (
@@ -16511,7 +16511,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "kDS" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
@@ -16781,7 +16781,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "kKZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/largecrate/random/secure,
@@ -17017,7 +17017,7 @@
 /area/gelida/indoors/a_block/hallway)
 "kUd" = (
 /obj/structure/largecrate/supply/medicine,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17167,22 +17167,22 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "kZs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_street)
 "kZt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "kZA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -17191,7 +17191,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -17283,10 +17283,10 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "lcI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/powerconnector{
@@ -17468,7 +17468,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -17481,7 +17481,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "lie" = (
 /obj/structure/rack/nometal,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17653,7 +17653,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/central_caves)
 "loO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "lqf" = (
@@ -17886,7 +17886,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "lwk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -17977,7 +17977,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "lAi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -17993,7 +17993,7 @@
 /area/gelida/indoors/lone_buildings/chunk)
 "lAB" = (
 /obj/item/shard,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -18038,7 +18038,7 @@
 	},
 /area/gelida/indoors/a_block/bridges/op_centre)
 "lBm" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -18051,7 +18051,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "lBH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -18089,11 +18089,11 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "lDt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "lDR" = (
@@ -18159,7 +18159,7 @@
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/spaceport)
 "lGx" = (
@@ -18316,7 +18316,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "lKM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/effect/ai_node,
@@ -18371,7 +18371,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "lMM" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -18438,7 +18438,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "lQo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -18624,7 +18624,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/spaceport)
 "lWb" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /turf/open/floor/carpet,
@@ -18774,7 +18774,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "maB" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -18791,14 +18791,14 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/garden)
 "maU" = (
-/obj/effect/decal/warning_stripes/thick/corner{
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
 	},
 /obj/effect/spawner/random/kitchen,
@@ -18889,7 +18889,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges/corpo)
 "meu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -18917,7 +18917,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/cable,
@@ -18950,10 +18950,10 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/medical)
 "mhI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/window/reinforced/windowstake{
@@ -19032,14 +19032,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "mjh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -19220,8 +19220,8 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -19284,7 +19284,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/central_streets)
 "mnU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -19303,7 +19303,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -19324,7 +19324,7 @@
 /area/gelida/landing_zone_1)
 "mpV" = (
 /obj/structure/fakeplatform,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -19548,7 +19548,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "mxZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -19653,7 +19653,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "mBI" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/effect/spawner/random/tool,
@@ -19729,7 +19729,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "mFD" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -19775,7 +19775,7 @@
 	},
 /area/gelida/indoors/a_block/fitness)
 "mHd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -19855,7 +19855,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "mKv" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "mLb" = (
@@ -19980,7 +19980,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "mPk" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
@@ -20069,7 +20069,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/lone_buildings/chunk)
 "mSD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -20136,7 +20136,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -20162,7 +20162,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "mVl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
@@ -20283,7 +20283,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "mZC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -20318,7 +20318,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
 "ncl" = (
@@ -20364,10 +20364,10 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "ndA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -20485,7 +20485,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "nfY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -20569,7 +20569,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/seven,
@@ -21038,7 +21038,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -21051,7 +21051,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "nzX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/rack/nometal,
@@ -21107,7 +21107,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -21428,7 +21428,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "nLj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -21462,10 +21462,10 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/landing_zone_2)
 "nLA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -21496,7 +21496,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "nNn" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
@@ -21795,7 +21795,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "nYR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -21829,10 +21829,10 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "nZH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -21921,7 +21921,7 @@
 /area/gelida/indoors/c_block/cargo)
 "obS" = (
 /obj/structure/fakeplatform,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -21985,10 +21985,10 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -22159,7 +22159,7 @@
 	},
 /area/gelida/outdoors/rock)
 "ojG" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -22198,7 +22198,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "omk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/effect/ai_node,
@@ -22234,7 +22234,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_street)
 "omN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -22543,7 +22543,7 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "ozG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -22608,10 +22608,10 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
 "oBR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -22696,7 +22696,7 @@
 	pixel_x = 4;
 	pixel_y = 16
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -22720,10 +22720,10 @@
 /area/gelida/landing_zone_2)
 "oEA" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "oEN" = (
@@ -22781,7 +22781,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -23090,10 +23090,10 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "oRd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/largecrate/random,
@@ -23136,8 +23136,8 @@
 /area/gelida/indoors/b_block/hydro)
 "oSf" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -23231,7 +23231,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -23432,7 +23432,7 @@
 /turf/closed/shuttle/dropship2/walltwo/alt,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "oZF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -23451,7 +23451,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "par" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
@@ -23582,7 +23582,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorms)
 "peq" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -23596,10 +23596,10 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "peR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -23608,16 +23608,16 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "pfm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -23642,7 +23642,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "pgs" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -23681,7 +23681,7 @@
 /area/gelida/indoors/a_block/security)
 "pgX" = (
 /obj/structure/fakeplatform,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -23690,17 +23690,17 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "pht" = (
 /obj/structure/window/reinforced,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/wood,
@@ -23762,10 +23762,10 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -23835,10 +23835,10 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorms)
 "pkT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -23947,8 +23947,8 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2{
@@ -24117,7 +24117,7 @@
 /area/gelida/outdoors/colony_streets/south_street)
 "pwt" = (
 /obj/structure/largecrate/random/case/double,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -24161,7 +24161,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "pxX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -24337,7 +24337,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "pEg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -24358,10 +24358,10 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -24377,7 +24377,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "pEK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -24440,7 +24440,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/shuttle/dropship/floor,
@@ -24565,7 +24565,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -24589,7 +24589,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_east_street)
 "pJX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -24710,7 +24710,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "pOt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -24818,10 +24818,10 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -24871,7 +24871,7 @@
 /area/gelida/indoors/a_block/admin)
 "pSw" = (
 /obj/structure/fence,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -24880,10 +24880,10 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -24900,7 +24900,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "pSO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -25056,7 +25056,7 @@
 /turf/open/floor/plating/platebot,
 /area/gelida/indoors/c_block/cargo)
 "pYO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -25229,10 +25229,10 @@
 	},
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "qes" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -25252,7 +25252,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -25281,7 +25281,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "qfQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -25326,14 +25326,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "qhw" = (
 /obj/structure/closet/crate/internals,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -25351,7 +25351,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "qhZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -25378,7 +25378,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "qjr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
 "qju" = (
@@ -25420,8 +25420,8 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "qkB" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -25439,7 +25439,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "qlb" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -25498,7 +25498,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "qmF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -25528,10 +25528,10 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "qnR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -25622,10 +25622,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "qsl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/closet/crate/medical,
@@ -25864,12 +25864,12 @@
 	pixel_x = 16;
 	pixel_y = 14
 	},
-/obj/effect/decal/large_rune,
+/obj/effect/turf_decal/symbol/large_rune,
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
 "qAz" = (
 /obj/structure/largecrate/random/case/small,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -25945,7 +25945,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "qEi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -25978,7 +25978,7 @@
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "qFt" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "qFN" = (
@@ -26174,16 +26174,16 @@
 /area/gelida/indoors/c_block/cargo)
 "qLy" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "qLz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -26366,7 +26366,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/c_block/garage)
 "qQf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -26387,7 +26387,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
@@ -26421,10 +26421,10 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -26715,7 +26715,7 @@
 	id = "lvbasketball";
 	pixel_y = 10
 	},
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "raK" = (
@@ -26828,7 +26828,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "rdf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/darkpurple/full,
@@ -27032,7 +27032,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
 "riq" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
@@ -27116,7 +27116,7 @@
 	name = "\improper UA jacket"
 	},
 /obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/three,
@@ -27229,7 +27229,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "rnV" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "roh" = (
@@ -27242,13 +27242,13 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "rou" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rox" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /obj/effect/spawner/random/tool,
@@ -27308,7 +27308,7 @@
 /area/gelida/indoors/lone_buildings/engineering)
 "rra" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -27358,14 +27358,14 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "rsR" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/start/job/xenomorph,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "rsY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/reinforced/windowstake{
@@ -27438,7 +27438,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -27485,13 +27485,13 @@
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rxC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rxI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -27552,7 +27552,7 @@
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -27585,10 +27585,10 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "rBz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/window/reinforced/windowstake{
@@ -27616,8 +27616,8 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "rCD" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cargo_container/gorg,
@@ -27663,7 +27663,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/cargo)
 "rDx" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
@@ -27745,7 +27745,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "rHi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/shuttle/dropship/three,
@@ -27800,7 +27800,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "rIE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -27857,7 +27857,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "rMe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -27869,7 +27869,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/b_block/bridge)
 "rMl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -27912,10 +27912,10 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -28200,7 +28200,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "rWW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
@@ -28258,10 +28258,10 @@
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/central_streets)
 "rZA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -28643,7 +28643,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "sno" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 1
 	},
 /turf/open/floor/carpet,
@@ -28727,7 +28727,7 @@
 /area/gelida/indoors/b_block/bridge)
 "soL" = (
 /obj/structure/ore_box,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -28819,10 +28819,10 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
 "srP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -28906,7 +28906,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "stE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -28999,7 +28999,7 @@
 /turf/closed/ice_rock/singleEnd,
 /area/gelida/outdoors/rock)
 "swH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
@@ -29147,8 +29147,8 @@
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "sAE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -29161,7 +29161,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "sAO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -29214,7 +29214,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "sBI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -29234,8 +29234,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "sCl" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -29301,7 +29301,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "sEe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -29333,7 +29333,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "sFe" = (
-/obj/effect/decal/warning_stripes/thick/corner{
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
@@ -29416,7 +29416,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "sIU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cargo_container/gorg,
@@ -29446,7 +29446,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "sJq" = (
@@ -29495,10 +29495,10 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "sKr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/plate,
@@ -29617,7 +29617,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -29667,10 +29667,10 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "sQn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/structure/fence{
@@ -29758,7 +29758,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sSr" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -29793,7 +29793,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "sUt" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "sUw" = (
@@ -29836,7 +29836,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/b_block/bar)
 "sVQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -29865,8 +29865,8 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -29891,7 +29891,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "sXy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -29920,10 +29920,10 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "sYS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "sZy" = (
@@ -30115,7 +30115,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "tej" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -30182,8 +30182,8 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -30275,7 +30275,7 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
 "tjU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -30382,17 +30382,17 @@
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 10
 	},
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "tmH" = (
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -30572,7 +30572,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "tuA" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/oil,
@@ -30645,7 +30645,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "twR" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "txq" = (
@@ -30677,10 +30677,10 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "tym" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "tyq" = (
@@ -30748,7 +30748,7 @@
 /area/gelida/caves/east_caves)
 "tAo" = (
 /obj/structure/fakeplatform,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -30780,7 +30780,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_street)
 "tCc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/landmark/weed_node,
@@ -31013,7 +31013,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "tKz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
@@ -31028,7 +31028,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "tLt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -31101,7 +31101,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -31195,7 +31195,7 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
@@ -31243,7 +31243,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/south_street)
 "tTe" = (
@@ -31263,7 +31263,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "tTr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -31439,7 +31439,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "tZb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -31530,7 +31530,7 @@
 /area/gelida/indoors/a_block/admin)
 "uco" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
 "ucv" = (
@@ -31551,7 +31551,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "udH" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -31874,10 +31874,10 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/south_street)
 "unA" = (
@@ -32007,7 +32007,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "utM" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/north_street)
 "uug" = (
@@ -32087,7 +32087,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/n_rockies)
 "uxh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -32181,7 +32181,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "uCC" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/brokengen,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -32368,10 +32368,10 @@
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "uHE" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -32425,10 +32425,10 @@
 /area/gelida/indoors/a_block/dorms)
 "uJT" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -32548,7 +32548,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
 "uOC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -32665,7 +32665,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "uSj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -32851,7 +32851,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "uYM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -32918,7 +32918,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "vaq" = (
-/obj/effect/decal/warning_stripes/thick/corner,
+/obj/effect/turf_decal/warning_stripes/thick/corner,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
@@ -32975,7 +32975,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "vbU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -33004,7 +33004,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vdC" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -33080,7 +33080,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "vfK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -33098,14 +33098,14 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "vge" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "vgf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -33299,7 +33299,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "vnB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -33410,10 +33410,10 @@
 /area/gelida/indoors/a_block/dorms)
 "vrt" = (
 /obj/structure/platform_decoration,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -33588,7 +33588,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "vwv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -33726,7 +33726,7 @@
 /turf/closed/shuttle/dropship2/aisle,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "vAA" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -33753,7 +33753,7 @@
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "vBq" = (
 /obj/structure/closet/crate,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -33791,7 +33791,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "vCi" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/b_block/hydro)
@@ -33817,10 +33817,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -33872,7 +33872,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "vEE" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -33911,10 +33911,10 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/w_rockies)
 "vFn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -33963,7 +33963,7 @@
 	dir = 8;
 	layer = 5.2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/darkpurple/full,
@@ -34094,10 +34094,10 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -34127,7 +34127,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "vNf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/landmark/weed_node,
@@ -34257,7 +34257,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "vSD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -34531,7 +34531,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "wbG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -34539,10 +34539,10 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "wbH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /obj/effect/ai_node,
@@ -34556,7 +34556,7 @@
 /area/gelida/indoors/a_block/security)
 "wcb" = (
 /obj/structure/fakeplatform,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -34588,7 +34588,7 @@
 /area/gelida/indoors/a_block/security)
 "wcO" = (
 /obj/item/tool/crowbar,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -34729,7 +34729,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "whO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -34850,7 +34850,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "wmO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -34907,7 +34907,7 @@
 	capacity = 1e+006;
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -34925,7 +34925,7 @@
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "woU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/cable,
@@ -35106,13 +35106,13 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
 "wue" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/w_rockies)
 "wug" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitepurple/full{
@@ -35302,7 +35302,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -35354,14 +35354,14 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "wDv" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "wDw" = (
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/landing_zone_1)
 "wDE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -35387,7 +35387,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "wEA" = (
-/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "wEH" = (
@@ -35427,8 +35427,8 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "wFW" = (
 /obj/item/toy/beach_ball/holoball,
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "wFX" = (
@@ -35451,7 +35451,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "wGF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -35486,7 +35486,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_street)
 "wHB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -35539,10 +35539,10 @@
 /obj/structure/fence{
 	layer = 2.9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "wKr" = (
@@ -35596,7 +35596,7 @@
 "wLT" = (
 /obj/structure/rack/nometal,
 /obj/item/tool/pickaxe/jackhammer,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -35802,7 +35802,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "wTr" = (
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
 "wTv" = (
@@ -35862,14 +35862,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple/full,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "wVl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -35885,7 +35885,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison,
@@ -35939,7 +35939,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "wXZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/ai_node,
@@ -35969,10 +35969,10 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
 "wZC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/wall,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "wZK" = (
@@ -36062,7 +36062,7 @@
 /area/gelida/indoors/a_block/security)
 "xgS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -36186,7 +36186,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "xma" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -36302,7 +36302,7 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "xoy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -36375,7 +36375,7 @@
 /area/gelida/indoors/b_block/bridge)
 "xrA" = (
 /obj/item/wrapping_paper,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -36559,7 +36559,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -36764,7 +36764,7 @@
 /turf/open/floor/podhatch/floor,
 /area/gelida/indoors/c_block/mining)
 "xEP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -36871,7 +36871,7 @@
 /area/gelida/indoors/a_block/medical)
 "xIs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/stripedsquare/tile/border,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/b_block/hydro)
 "xIt" = (
@@ -36959,14 +36959,14 @@
 /area/gelida/indoors/c_block/mining)
 "xJK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "xKz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -37178,7 +37178,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "xPU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -37231,7 +37231,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "xRj" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "xRk" = (
@@ -37433,7 +37433,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "xWJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -37579,7 +37579,7 @@
 "ych" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/window/reinforced,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/wood,
@@ -37588,14 +37588,14 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "ycD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/prison/darkred/full,
@@ -37608,7 +37608,7 @@
 /obj/structure/prop/mainship/gelida/lightstick{
 	pixel_x = -12
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -37774,7 +37774,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -37801,7 +37801,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "ykX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{

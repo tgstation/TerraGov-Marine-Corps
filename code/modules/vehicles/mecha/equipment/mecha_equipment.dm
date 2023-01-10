@@ -31,12 +31,11 @@
 
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	if(chassis)
-		detach(get_turf(src))
-		log_message("[src] is destroyed.", LOG_MECHA)
 		if(LAZYLEN(chassis.occupants))
 			to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_danger("[src] is destroyed!")]")
 			playsound(chassis, destroy_sound, 50)
-		chassis = null
+		detach(get_turf(src))
+		log_message("[src] is destroyed.", LOG_MECHA)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M, attach_right = FALSE)

@@ -54,6 +54,9 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	return ..()
 
+/obj/item/clothing/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
