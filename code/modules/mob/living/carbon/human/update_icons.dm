@@ -74,6 +74,7 @@ There are several things that need to be remembered:
 	SEND_SIGNAL(src, COMSIG_HUMAN_APPLY_OVERLAY, cache_index, to_add)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
+		//TODO THIS SHOULD USE THE API!
 		to_add += I
 	overlays += to_add
 
