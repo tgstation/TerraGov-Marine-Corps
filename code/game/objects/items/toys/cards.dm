@@ -315,7 +315,7 @@
 
 
 /obj/item/toy/deck/kotahi
-	name = "KOTAHI deck (NOT UNO)"
+	name = "KOTAHI deck"
 	desc = "A flashy deck of Nanotrasen KOTAHI playing cards that are definitely NOT UNO. Usually sold alongside crayon packages."
 	icon = 'icons/obj/items/kotahi_cards.dmi'
 	icon_state = "deck"
