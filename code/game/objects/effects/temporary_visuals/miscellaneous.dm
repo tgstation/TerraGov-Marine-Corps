@@ -237,7 +237,7 @@
 	overlays += I //we use an overlay so the icon and light source are both in the correct location
 	icon_state = null
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
-	set_light(2, 2, "#249FDE")
+	set_light(2, 2, LIGHT_COLOR_DARK_BLUE)
 
 /obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'

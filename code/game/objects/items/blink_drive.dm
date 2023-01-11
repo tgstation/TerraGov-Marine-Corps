@@ -22,8 +22,7 @@
 
 /obj/item/blink_drive/update_icon()
 	. = ..()
-	if(equipped_user)
-		equipped_user.update_inv_back()
+	equipped_user?.update_inv_back()
 
 /obj/item/blink_drive/update_icon_state()
 	. = ..()
