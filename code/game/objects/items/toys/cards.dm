@@ -315,8 +315,8 @@
 
 
 /obj/item/toy/deck/kotahi
-	name = "KOTAHI deck"
-	desc = "A flashy deck of Nanotrasen KOTAHI playing cards. Usually sold alongside crayon packages."
+	name = "KOTAHI deck (NOT UNO)"
+	desc = "A flashy deck of Nanotrasen KOTAHI playing cards that are definitely NOT UNO. Usually sold alongside crayon packages."
 	icon = 'icons/obj/items/kotahi_cards.dmi'
 	icon_state = "deck"
 	card_type = "kotahi"
@@ -325,7 +325,7 @@
 	var/datum/playingcard/P
 	var/datum/playingcard/I
 
-	for(var/colour in list("Red","Yellow","Green","Blue"))
+	for(var/colour in list("Red","Yellow","Purple","Blue"))
 		P = new()
 		P.name = "[colour] 0" //kotahi decks have only one colour of each 0, weird huh?
 		P.card_icon = "[colour] 0"
@@ -363,6 +363,6 @@
 
 /obj/item/toy/deck/kotahi/update_icon_state()
 	switch(cards.len)
-		if(72 to 108) icon_state = "deck"
-		if(37 to 72) icon_state = "deck_half"
+		if(107 to 108) icon_state = "deck"
+		if(37 to 106) icon_state = "deck_open"
 		if(0 to 36) icon_state = "deck_empty"
