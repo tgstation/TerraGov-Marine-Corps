@@ -63,26 +63,9 @@
 	X.usedPounce = TRUE //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
-	var/particle_angle = Get_Angle(get_turf(X), get_turf(A)) //
 	X.throw_at(A, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, X)
-	activate_particles(X.dir, particle_angle)
 
 	add_cooldown()
-
-/// Handles the activation and deactivation of particles, as well as their appearance.
-/datum/action/xeno_action/activable/charge/proc/activate_particles(direction, rotation)
-	particle_holder = new(get_turf(owner), /particles/ravager_charge)
-	QDEL_NULL_IN(src, particle_holder, 5)
-	particle_holder.particles.rotation += rotation
-	switch(direction)
-		if(NORTH) // Gotta define stuff for each angle so it looks good.
-			particle_holder.particles.position = list(0, 10)
-		if(EAST)
-			particle_holder.particles.position = list(10, 0)
-		if(SOUTH)
-			particle_holder.particles.position = list(0, -10)
-		if(WEST)
-			particle_holder.particles.position = list(-10, 0)
 
 /datum/action/xeno_action/activable/charge/ai_should_start_consider()
 	return TRUE
@@ -98,18 +81,6 @@
 		return FALSE
 	return TRUE
 
-/particles/ravager_charge
-	icon = 'icons/effects/200x200.dmi'
-	icon_state = "ravager_charge"
-	width = 600
-	height = 600
-	count = 1
-	spawning = 1
-	lifespan = 4
-	fade = 4
-	scale = 0.8
-	grow = -0.04
-	rotation = 90
 
 // ***************************************
 // *********** Ravage
@@ -168,21 +139,21 @@
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/xeno_action/activable/ravage/proc/activate_particles(direction)
-	particle_holder = new(owner, /particles/ravager_slash)
+	particle_holder = new(get_turf(owner), /particles/ravager_slash)
 	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction) // There's no shared logic here because sprites are magical.
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
-			particle_holder.particles.position = list(25, 0)
+			particle_holder.particles.position = list(8, 4)
 			particle_holder.particles.velocity = list(0, 20)
 		if(EAST)
-			particle_holder.particles.position = list(15, -10)
+			particle_holder.particles.position = list(3, -8)
 			particle_holder.particles.velocity = list(20, 0)
 		if(SOUTH)
-			particle_holder.particles.position = list(5, 5)
+			particle_holder.particles.position = list(-9, -3)
 			particle_holder.particles.velocity = list(0, -20)
 		if(WEST)
-			particle_holder.particles.position = list(20, 10)
+			particle_holder.particles.position = list(-4, 9)
 			particle_holder.particles.velocity = list(-20, 0)
 
 /datum/action/xeno_action/activable/ravage/ai_should_start_consider()
