@@ -1342,7 +1342,7 @@
 /area/mainship/hallways/hangar)
 "bLw" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req,
+/obj/item/toy/deck/kotahi,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "bLz" = (
@@ -8193,9 +8193,10 @@
 /turf/open/floor/cult,
 /area/medical/morgue)
 "kWq" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
-/turf/open/floor/mainship,
+/obj/structure/bed/chair/wood/normal,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
 /area/mainship/squads/general)
 "kWu" = (
 /obj/structure/window/framed/mainship/white,
@@ -14752,8 +14753,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "tpE" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal1,
+/obj/structure/bed/chair/wood/normal,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "tpU" = (
@@ -17897,11 +17897,6 @@
 	dir = 8
 	},
 /area/mainship/command/self_destruct)
-"xmJ" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "xnO" = (
 /turf/closed/wall/mainship/research/containment/wall/corner{
 	dir = 4
@@ -56935,7 +56930,7 @@ eDg
 eYx
 mxo
 mxo
-mxo
+cPg
 buS
 fLM
 eMz
@@ -57189,8 +57184,8 @@ kAq
 qEu
 pko
 bSp
-eYx
-xmJ
+kWq
+sYd
 bLw
 tpE
 tJA
@@ -57446,10 +57441,10 @@ kAq
 ylc
 dVo
 bSp
-eYx
-bLw
 kWq
 sYd
+sYd
+tpE
 bYP
 fLM
 eMz
@@ -57706,7 +57701,7 @@ jEy
 bpK
 iZI
 jRR
-iZI
+bpK
 bpK
 weY
 brH
