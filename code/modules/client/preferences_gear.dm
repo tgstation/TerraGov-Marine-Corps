@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	slot = SLOT_GLASSES
 
 /datum/gear/kotahi
-	display_name = "kotahi (NOT UNO)"
+	display_name = "Kotahi deck"
 	path = /obj/item/toy/deck/kotahi
 	cost = 2
 	slot = SLOT_R_HAND
