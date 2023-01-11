@@ -214,7 +214,7 @@
 	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen) // copies queen requirements
 		if(xenojob.required_playtime_remaining(client))
-			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role."))
+			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.exp_type] required to play the king role."))
 			return
 
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
