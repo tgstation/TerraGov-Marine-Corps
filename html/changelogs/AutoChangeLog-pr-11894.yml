@@ -1,6 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - imageadd: "new hypospray sprites"
-  - code_imp: "removed some completely redundant syringe code and sprites"
-  - code_imp: "changed hypospray code to fill the needs of the new sprites"

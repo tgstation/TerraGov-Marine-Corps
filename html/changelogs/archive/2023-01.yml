@@ -117,3 +117,49 @@
   RipGrayson:
   - bugfix: Fixed a bug where a hijack on the PoS could breach into space
   - code_imp: Reorganized decals
+2023-01-11:
+  Blundir:
+  - imageadd: new hypospray sprites
+  - code_imp: removed some completely redundant syringe code and sprites
+  - code_imp: changed hypospray code to fill the needs of the new sprites
+  - bugfix: fixes incorrect morgue sprite when something is inside of it
+  - bugfix: fixed db holster using error placeholder sprite in some situations
+  'Code: Lumi, Sprites: Ocelot & Lumi':
+  - rscadd: Added folding stocks for the MP-19, SH_35 and Skorpion
+  - rscadd: BR-64 comes with a custom UGL. No actual balance change
+  - balance: MP-19 now has fuller auto instead of burst fire, improving the performance
+      of a single gun but nerfing akimbo
+  - bugfix: fixed a couple of minor gun bugs
+  - imageadd: Resprited a variety of guns and attachments
+  - imagedel: deleted a bunch of unused old icons
+  'Code: Tivi & Lumi Sprites: Ghost':
+  - rscadd: 'reworked king: removed grav crush, added 4 new abilities and made it
+      available through evo instead of blessings'
+  - bugfix: Godmode prevents being hugged, stung, or breathing in smoke
+  Lumipharon:
+  - rscadd: Primo spitter now leaves acid pools on hit with autospit, and has acid
+      blood
+  - balance: Reduced primo spitter damage falloff so it's less garbage
+  - bugfix: acid pools from projectiles will no longer bypass barricades or other
+      solid objects
+  - bugfix: acid blood ignoring acid armour and splatter chance not working
+  QualityVan:
+  - bugfix: Vended reagent bottles can be taken back out of the chem smartfridge
+  SuperSlayer0:
+  - qol: Returning to your corpse while being in larva queue will require a confirmation,
+      so you wouldn't accidentally loose your place.
+  Waselon:
+  - balance: mech pilot cant enter the mech while wearing jetpack, and will drop items
+      in hands on entering the mech.
+  collinlunn:
+  - qol: Vendors will try to insert vended items into the player's currently opened
+      storage. Does not affect Automated Closet.
+  novaepee:
+  - imageadd: new valk sprite overlay for xenonauten
+  - rscadd: more soul to POS medbay break room.
+  - bugfix: Allow POS chemists to reach to fridge.
+  - rscdel: Remove funny dropship landing on POS medbay that allow xenomorphs to fling
+      marines to space.
+  - bugfix: Add back the crew monitoring computer back in PoS
+  - bugfix: Shrike req points 50->500
+  - balance: Shrike req points 50->500

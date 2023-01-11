@@ -1,9 +1,0 @@
-author: "Code: Lumi, Sprites: Ocelot & Lumi"
-delete-after: True
-changes:
-  - rscadd: "Added folding stocks for the MP-19, SH_35 and Skorpion"
-  - rscadd: "BR-64 comes with a custom UGL. No actual balance change"
-  - balance: "MP-19 now has fuller auto instead of burst fire, improving the performance of a single gun but nerfing akimbo"
-  - bugfix: "fixed a couple of minor gun bugs"
-  - imageadd: "Resprited a variety of guns and attachments"
-  - imagedel: "deleted a bunch of unused old icons"
