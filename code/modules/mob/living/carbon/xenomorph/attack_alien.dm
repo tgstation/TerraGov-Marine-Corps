@@ -35,20 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
-		return TRUE
-	else if(isnestedhost(src))
-		for(var/obj/item/alien_embryo/embryo in src)
-			if(!embryo.issamexenohive(X))
-				continue
-			to_chat(X, span_warning("We should not harm this host! It has a sister inside."))
-			return FALSE
 	return TRUE
-
-/mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	. = ..()
-	if(!.)
-		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return

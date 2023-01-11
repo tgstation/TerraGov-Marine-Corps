@@ -562,7 +562,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "oO" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -577,7 +577,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pd" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1097,7 +1097,7 @@
 /area/bigredv2/outside/space_port)
 "Ac" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -1235,7 +1235,7 @@
 /area/bigredv2/outside/marshal_office)
 "Fb" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Fl" = (
@@ -1571,7 +1571,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "MB" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,

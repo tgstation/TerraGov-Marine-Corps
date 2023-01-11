@@ -223,7 +223,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "cannon_cables"
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = LADDER_LAYER
 
 /obj/structure/prop/mainship/supermatter //functionally inert, but will consume mobs and objects
@@ -501,7 +501,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "decorative"
 	resistance_flags = RESIST_ALL
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/mainship/meterprop/
 	name = "meter"
@@ -908,7 +908,7 @@
 /obj/structure/prop/vehicle/tank/east/barrel
 	icon_state = "ltb_cannon_0"
 	layer = TANK_BARREL_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/east/barrel/broken
 	icon_state = "ltb_cannon_1"
@@ -924,7 +924,7 @@
 
 /obj/structure/prop/vehicle/tank/east/decoration
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = TANK_DECORATION_LAYER
 
 /obj/structure/prop/vehicle/tank/east/decoration/treads
@@ -1037,7 +1037,7 @@
 /obj/structure/prop/vehicle/tank/north/barrel
 	icon_state = "ltb_cannon_0"
 	layer = ABOVE_MOB_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/north/barrel/broken
 	icon_state = "ltb_cannon_1"
@@ -1053,7 +1053,7 @@
 
 /obj/structure/prop/vehicle/tank/north/decoration
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = TANK_DECORATION_LAYER
 
 /obj/structure/prop/vehicle/tank/north/decoration/treads
@@ -1180,42 +1180,42 @@
 /obj/structure/prop/vehicle/apc/wheelszero
 	icon_state = "wheels_0"
 	layer = TANK_TURRET_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/wheelsone
 	icon_state = "wheels_1"
 	layer = TANK_TURRET_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/damagedframe
 	icon_state = "damaged_frame"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/damagedhptone
 	icon_state = "damaged_hdpt_primary"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/damagedhpttwo
 	icon_state = "damaged_hdpt_secondary"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/damagedhpthree
 	icon_state = "damaged_hdpt_support"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/dualcannonzero
 	icon_state = "dualcannon_0"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/dualcannonone
 	icon_state = "dualcannon_1"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/decoration
 	icon_state = "frontalcannon_0"
 	density = FALSE
 	layer = TANK_DECORATION_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/apc/decoration/frontturretzero
 	icon_state = "frontalcannon_0"

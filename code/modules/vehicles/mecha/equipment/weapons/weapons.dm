@@ -241,9 +241,9 @@
 		occupant.hud_used.add_ammo_hud(src, hud_icons, projectiles)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/detach(atom/moveto)
-	. = ..()
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action_checks(target)
 	if(!..())
