@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
 		/obj/item/ammo_magazine/revolver/rifle = -1,
 		/obj/item/ammo_magazine/packet/long_special = -1,
+		/obj/item/ammo_magazine/rifle/T25/extended = -1,
 		/obj/item/clothing/head/helmet/marine/robot/advanced/acid = -1,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/acid = -1,
 		/obj/item/clothing/head/helmet/marine/robot/advanced/physical = -1,
@@ -149,7 +150,7 @@ SUBSYSTEM_DEF(ru_items)
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/T25
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/T25)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/T25, /obj/item/ammo_magazine/rifle/T25/extended)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -890,3 +891,34 @@ SUBSYSTEM_DEF(ru_items)
 	user.temporarilyRemoveItemFromInventory(src)
 	user.visible_message(span_notice(" [user] puts [R] down."), span_notice(" You put [R] down."))
 	qdel(src)
+
+
+// ext mags
+
+/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended
+	name = "\improper AR-21 extended skirmish rifle magazine"
+	desc = "A extended magazine filled with 10x25mm rifle rounds for the AR-21."
+	icon_state = "t21_ext"
+	max_rounds = 50
+	icon_state_mini = "mag_rifle_big_yellow"
+	bonus_overlay = "t21_ext"
+
+/obj/item/ammo_magazine/rifle/T25/extended
+	name = "\improper T-25 extended magazine (10x26mm)"
+	desc = "A 10mm extended assault rifle magazine."
+	icon_state = "T25_ext"
+	max_rounds = 120
+	icon_state_mini = "mag_rifle_big_yellow"
+	bonus_overlay = "T25_ext"
+
+/datum/supply_packs/weapons/T25_extended_mag
+	name = "T25 extended magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/T25/extended)
+	cost = 200
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/weapons/t21_extended_mag
+	name = "AR-21 extended magazines pack"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended, /obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended,/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended)
+	cost = 350
+	containertype = /obj/structure/closet/crate/ammo
