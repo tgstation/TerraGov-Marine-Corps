@@ -163,3 +163,6 @@
   - bugfix: Add back the crew monitoring computer back in PoS
   - bugfix: Shrike req points 50->500
   - balance: Shrike req points 50->500
+2023-01-12:
+  Lewdcifer:
+  - code_imp: Bump attacks will now respect attack speed/delay if applicable.
