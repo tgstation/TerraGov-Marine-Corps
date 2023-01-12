@@ -5,13 +5,13 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME [RU] The Lost Bay: Marine Corps
+SERVER_NAME [RU] Terra Gov Marine Corps
 
 ## Hosted by name for unix platforms.
-HOSTEDBY KrykiZZ | Powered by Discord-Bot.NET
+HOSTEDBY Boris "GayCommunist" Medvedev
 
 ## The title of the main window.
-TITLE The Lost Bay: Marine Corps
+TITLE RU Terra Gov Marine Corps
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -60,9 +60,9 @@ DEFAULT_NO_VOTE
 ## Add your own URLs here.
 WIKIURL https://tgstation13.org/wiki/TGMC:TGMC
 RULESURL https://docs.google.com/document/d/1mLy5PD2EbTx3IaYV1ALcburE1j8oJphau0hwqiOnNk8/edit
-DISCORDURL https://discord.thelostbay.space/
+DISCORDURL https://discord.gg/7guvfa4Bmy
 #DONATIONURL
-GITHUBURL https://github.com/SpacelessBay/TerraGov-Marine-Corps
+GITHUBURL https://github.com/Cosmic-Overlord/TerraGov-Marine-Corps
 #BANAPPEALS
 
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
@@ -213,6 +213,6 @@ DEFAULT_VIEW_SQUARE 15x15
 
 AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20
 
-#TLB_API_URL http://127.0.0.1:1111
-#TLB_API_KEY changeme
+#BOT_API_URL http://127.0.0.1:1111
+#BOT_API_KEY changeme
 #API_SERVER_NAME tgmc

@@ -75,16 +75,6 @@ SUBSYSTEM_DEF(ticker)
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
-
-			// Notify bot about roundstart.
-			if(!CONFIG_GET(string/tlb_api_url) || !CONFIG_GET(string/tlb_api_key) || !CONFIG_GET(string/api_server_name))
-				to_chat(world, span_warning("TheLostBay BOT API is disabled!"))
-			else
-				var/datum/http_request/request = new()
-				request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tlb_api_url)]/round?key=[CONFIG_GET(string/tlb_api_key)]&state=starting&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
-				request.begin_async()
-				UNTIL(request.is_complete())
-
 			to_chat(world, span_round_body("Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!"))
 			to_chat(world, span_role_body("Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."))
 			current_state = GAME_STATE_PREGAME
@@ -126,15 +116,6 @@ SUBSYSTEM_DEF(ticker)
 			check_queue()
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
-				// Notify bot about roundstart.
-				if(!CONFIG_GET(string/tlb_api_url) || !CONFIG_GET(string/tlb_api_key) || !CONFIG_GET(string/api_server_name))
-					to_chat(world, span_warning("TheLostBay BOT API is disabled!"))
-				else
-					var/datum/http_request/request = new()
-					request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tlb_api_url)]/round?key=[CONFIG_GET(string/tlb_api_key)]&state=finished&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
-					request.begin_async()
-					UNTIL(request.is_complete())
-
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
@@ -191,15 +172,6 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
-
-	// Notify bot about roundstart.
-	if(!CONFIG_GET(string/tlb_api_url) || !CONFIG_GET(string/tlb_api_key) || !CONFIG_GET(string/api_server_name))
-		to_chat(world, span_warning("TheLostBay BOT API is disabled!"))
-	else
-		var/datum/http_request/request = new()
-		request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tlb_api_url)]/round?key=[CONFIG_GET(string/tlb_api_key)]&state=started&server=[CONFIG_GET(string/api_server_name)]&id=[GLOB.round_id]&map1=[length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]&map2=[length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]", "", "")
-		request.begin_async()
-		UNTIL(request.is_complete())
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)

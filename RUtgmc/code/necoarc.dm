@@ -10,7 +10,7 @@
 /datum/species/NecoArc
 	name = "Neco Arc"
 	//name_plural = "Neco Arc"
-	icobase = 'lostbay/icons/mob/human_races/r_NecoArc.dmi'
+	icobase = 'RUtgmc/icons/mob/human_races/r_NecoArc.dmi'
 	default_language_holder = /datum/language_holder/sectoid
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
@@ -18,8 +18,8 @@
 
 	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
 
-	paincries = list("neuter" = 'lostbay/sound/necoarc/NecoVIBIVII!!.ogg')
-	death_sound = 'lostbay/sound/necoarc/Necojooooonoooooooo.ogg'
+	paincries = list("neuter" = 'RUtgmc/sound/necoarc/NecoVIBIVII!!.ogg')
+	death_sound = 'RUtgmc/sound/necoarc/Necojooooonoooooooo.ogg'
 	blood_color = "#00FF00"
 	flesh_color = "#C0C0C0"
 	reagent_tag = IS_SECTOID
@@ -34,66 +34,66 @@
 	key_third_person = "muda muda"
 	message = "Muda Muda"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco Muda muDa.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco Muda muDa.ogg'
 
 /datum/emote/living/carbon/NecoArc/bubu //then add to the grenade throw
 	key = "bubu"
 	key_third_person = "bu bu"
 	message = "bu buuu"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco bu buuu.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco bu buuu.ogg'
 
 /datum/emote/living/carbon/NecoArc/dori
 	key = "dori"
 	key_third_person = "dori dori dori"
 	message = "dori dori dori"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco dori dori dori.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco dori dori dori.ogg'
 
 /datum/emote/living/carbon/NecoArc/sayesa
 	key = "sa"
 	key_third_person = "sa yesa"
 	message = "Sa Yesa!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco Sa Yesa 1.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco Sa Yesa 1.ogg'
 
 /datum/emote/living/carbon/NecoArc/sayesa/two
 	key = "sa2"
 	key_third_person = "sa yesa2"
-	sound = 'lostbay/sound/necoarc/Neco Sa Yesa 2.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco Sa Yesa 2.ogg'
 
 /datum/emote/living/carbon/NecoArc/yanyan
 	key = "yanyan"
 	key_third_person = "yanyan yaan"
 	message = "yanyan yaan"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco yanyan yaan.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco yanyan yaan.ogg'
 
 /datum/emote/living/carbon/NecoArc/nya
 	key = "nya"
 	//key_third_person = "nya"
 	message = "nya"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco-Arc sound effect.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco-Arc sound effect.ogg'
 
 /datum/emote/living/carbon/NecoArc/isa
 	key = "isa"
 	//key_third_person = "nya"
 	message = "iiiiisAAAAA!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco iiiiisAAAAA.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco iiiiisAAAAA.ogg'
 
 /datum/emote/living/carbon/NecoArc/qahu
 	key = "qahu"
 	key_third_person = "quiajuuu"
 	message = "qahuuuuu!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'lostbay/sound/necoarc/Neco quiajuuubn.ogg'
+	sound = 'RUtgmc/sound/necoarc/Neco quiajuuubn.ogg'
 
 /obj/item/clothing/head/helmet/NecoArc
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
-	icon = 'lostbay/icons/item/helmetnecoarc.dmi'
+	icon = 'RUtgmc/icons/item/helmetnecoarc.dmi'
 	icon_state = "shield-blue"
 	item_icons = "helmetNA"
 	flags_item = NODROP|DELONDROP

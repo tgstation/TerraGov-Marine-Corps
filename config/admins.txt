@@ -1,12 +1,18 @@
-KrykiZZ = Admin
+OneloveMeowMeow = Admin
 Blundir = Admin
 
-OneloveMeowMeow = Admin
 KarlFranko = Admin
 NotLikeLuls = Admin
 Creasedzerg = Admin
+BearCommunist = Admin
+Qwadrob = Admin
+Frinid = Admin
+MADMANAP = Admin
+saysei = Admin
 
 Siegluck = Mentor
 Suchinessa = Mentor
 poisonforwin = Mentor
 Yoplan = Mentor
+Prostocvasha = Mentor
+Tatarla = Mentor

@@ -206,7 +206,7 @@ window "infowindow"
 		anchor1 = 20,0
 		anchor2 = 40,0
 		saved-params = "is-checked"
-		text = "LostBay Discord"
+		text = "RU TGMC Discord"
 		command = "discord"
 	elem "wiki"
 		type = BUTTON

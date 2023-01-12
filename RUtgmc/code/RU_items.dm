@@ -391,16 +391,16 @@ SUBSYSTEM_DEF(ru_items)
 
 /obj/item/clothing/head/helmet/marine/robot/advanced
 	flags_item_map_variant = 0
-	icon = 'lostbay/icons/item/Roboarmor.dmi'
+	icon = 'RUtgmc/icons/item/Roboarmor.dmi'
 	item_icons = list(
-		slot_head_str = 'lostbay/icons/item/Roboarmor.dmi',
+		slot_head_str = 'RUtgmc/icons/item/Roboarmor.dmi',
 	)
 
 /obj/item/clothing/suit/storage/marine/robot/advanced
 	flags_item_map_variant = 0
-	icon = 'lostbay/icons/item/Roboarmor.dmi'
+	icon = 'RUtgmc/icons/item/Roboarmor.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'lostbay/icons/item/Roboarmor.dmi',
+		slot_wear_suit_str = 'RUtgmc/icons/item/Roboarmor.dmi',
 	)
 	pockets = /obj/item/storage/internal/modular/general
 
