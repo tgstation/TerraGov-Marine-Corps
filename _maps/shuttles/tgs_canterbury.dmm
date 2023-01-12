@@ -115,7 +115,6 @@
 /obj/item/tool/pen,
 /obj/item/clipboard,
 /obj/item/pinpointer,
-/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "at" = (
@@ -431,6 +430,7 @@
 /obj/item/pinpointer,
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bB" = (
