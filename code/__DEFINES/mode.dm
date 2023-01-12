@@ -164,3 +164,5 @@
 #define FREE_XENO_AT_START 2
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.1
+
+#define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
