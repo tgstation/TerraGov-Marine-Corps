@@ -16,3 +16,4 @@ poisonforwin = Mentor
 Yoplan = Mentor
 Prostocvasha = Mentor
 Tatarla = Mentor
+LeGuin = Mentor
