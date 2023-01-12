@@ -5,13 +5,13 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME [RU] Terra Gov Marine Corps
+SERVER_NAME [RU] TerraGov Marine Corps
 
 ## Hosted by name for unix platforms.
 HOSTEDBY Boris "GayCommunist" Medvedev
 
 ## The title of the main window.
-TITLE RU Terra Gov Marine Corps
+TITLE RU TerraGov Marine Corps
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
