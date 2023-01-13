@@ -185,7 +185,7 @@
 /obj/item/flashlight/flare
 	name = "flare"
 	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	light_power = 6 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"
