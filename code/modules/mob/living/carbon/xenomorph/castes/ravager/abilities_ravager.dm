@@ -136,7 +136,7 @@
 	add_cooldown()
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
-/datum/action/xeno_action/activable/ravage/proc/activate_particles(direction)
+/datum/action/xeno_action/activable/ravage/proc/activate_particles(direction) // This could've been an animate()!
 	particle_holder = new(get_turf(owner), /particles/ravager_slash)
 	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder.particles.rotation += dir2angle(direction)
