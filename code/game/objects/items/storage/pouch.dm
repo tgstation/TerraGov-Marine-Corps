@@ -597,12 +597,7 @@
 		return ..()
 	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
 	for(var/obj/item/flare in contents)
-		if(!(flare.type in can_hold))
-			continue
-		if(user.l_hand && user.r_hand || length(flare_gun.chamber_items))
-			flare_gun.tactical_reload(flare, user)
-		else
-			flare_gun.reload(flare, user)
+		flare_gun.reload(flare, user)
 		orient2hud()
 		return
 
