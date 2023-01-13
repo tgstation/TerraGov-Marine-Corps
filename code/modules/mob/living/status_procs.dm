@@ -640,6 +640,7 @@
 	set_stagger(max(stagger + amount,0))
 	return stagger
 
+///Used to set stagger to a set number
 /mob/living/proc/set_stagger(amount)
 	if(stagger == amount)
 		return

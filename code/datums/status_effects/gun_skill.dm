@@ -16,6 +16,7 @@
 
 //Base accuracy effect
 /datum/status_effect/gun_skill/accuracy
+	///How much the owner's accuracy will be modified by. Positive or negative.
 	var/accuracy_modifier = 0
 
 /datum/status_effect/gun_skill/accuracy/on_apply()
@@ -43,6 +44,7 @@
 
 //Base scatter effect
 /datum/status_effect/gun_skill/scatter
+	///How much the owner's scatter will be modified by. Positive or negative.
 	var/scatter_modifier = 0
 
 /datum/status_effect/gun_skill/scatter/on_apply()
