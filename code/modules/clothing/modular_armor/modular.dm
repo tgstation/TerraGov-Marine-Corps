@@ -46,42 +46,11 @@
 	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
 
 	attachments_by_slot = list(
-		ATTACHMENT_SLOT_CHESTPLATE,
-		ATTACHMENT_SLOT_SHOULDER,
-		ATTACHMENT_SLOT_KNEE,
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_BADGE,
 	)
 	attachments_allowed = list(
-		/obj/item/armor_module/armor/chest/marine,
-		/obj/item/armor_module/armor/legs/marine,
-		/obj/item/armor_module/armor/arms/marine,
-
-		/obj/item/armor_module/armor/chest/marine/skirmisher,
-		/obj/item/armor_module/armor/legs/marine/skirmisher,
-		/obj/item/armor_module/armor/arms/marine/skirmisher,
-
-		/obj/item/armor_module/armor/chest/marine/skirmisher/scout,
-		/obj/item/armor_module/armor/legs/marine/scout,
-		/obj/item/armor_module/armor/arms/marine/scout,
-
-		/obj/item/armor_module/armor/chest/marine/assault,
-		/obj/item/armor_module/armor/legs/marine/assault,
-		/obj/item/armor_module/armor/arms/marine/assault,
-
-		/obj/item/armor_module/armor/chest/marine/eva,
-		/obj/item/armor_module/armor/legs/marine/eva,
-		/obj/item/armor_module/armor/arms/marine/eva,
-
-		/obj/item/armor_module/armor/chest/marine/assault/eod,
-		/obj/item/armor_module/armor/legs/marine/eod,
-		/obj/item/armor_module/armor/arms/marine/eod,
-
-		/obj/item/armor_module/armor/chest/marine/helljumper,
-		/obj/item/armor_module/armor/legs/marine/helljumper,
-		/obj/item/armor_module/armor/arms/marine/helljumper,
-
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -223,6 +192,101 @@
 
 	current_variant = variant
 	update_icon()
+
+// Jaeger suits
+
+// Medium
+
+/obj/item/clothing/suit/modular/jaeger
+	name = "\improper Jaeger Infantry medium exoskeleton"
+	desc = "A Infantry-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	icon_state = "infantry"
+	item_state = "infantry"
+	slowdown = 0.5
+
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	icon_state_variants = list(
+		"drab",
+		"black",
+		"desert",
+		"snow",
+	)
+
+	current_variant = "black"
+
+	allowed_uniform_type = /obj/item/clothing/under
+
+/obj/item/clothing/suit/modular/jaeger/eva
+	name = "\improper Jaeger EVA medium exoskeleton"
+	desc = "A EVA-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	icon_state = "eva"
+	item_state = "eva"
+
+// Light
+
+/obj/item/clothing/suit/modular/jaeger/light
+	name = "\improper Jaeger Scout light exoskeleton"
+	desc = "A Scout-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a light amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	icon_state = "scout"
+	item_state = "scout"
+	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/jaeger/light/skirmisher
+	name = "\improper Jaeger Skirmisher light exoskeleton"
+	desc = "A Skirmisher-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a light amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "skirmisher"
+	item_state = "skirmisher"
+
+// Heavy
+
+/obj/item/clothing/suit/modular/jaeger/heavy
+	name = "\improper Jaeger Gungnir heavy exoskeleton"
+	desc = "A Gungnir-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a high amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	icon_state = "gungnir"
+	item_state = "gungnir"
+	slowdown = 0.7
+
+/obj/item/clothing/suit/modular/jaeger/heavy/assault
+	name = "\improper Jaeger Assault heavy exoskeleton"
+	desc = "A Assault-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a high amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "assault"
+	item_state = "assault"
+
+/obj/item/clothing/suit/modular/jaeger/heavy/eod
+	name = "\improper Jaeger EOD heavy exoskeleton"
+	desc = "A EOD-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a high amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "eod"
+	item_state = "eod"
+
+
+
+// Xenonauten suits
 
 /obj/item/clothing/suit/modular/xenonauten
 	name = "\improper Xenonauten-M pattern armored vest"
@@ -369,11 +433,7 @@
 
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 
-	greyscale_config = /datum/greyscale_config/modularhelmet
-	greyscale_colors = ARMOR_PALETTE_DESERT
-
 	attachments_by_slot = list(
-		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_HEAD_MODULE,
 		ATTACHMENT_SLOT_BADGE,
@@ -552,10 +612,12 @@
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "infantry_helmet"
+	greyscale_colors = null
+	greyscale_config = null
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	accuracy_mod = 0
-	greyscale_config = /datum/greyscale_config/modularhelmet
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -566,12 +628,19 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/visor/marine,
 		/obj/item/armor_module/armor/badge,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+
+	icon_state_variants = list(
+		"green",
+		"black",
+		"brown",
+		"white",
+	)
+
+	current_variant = "black"
 
 /obj/item/clothing/head/modular/marine/update_item_sprites()
 	var/new_color
@@ -592,7 +661,6 @@
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/skirmisher
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -603,17 +671,15 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/visor/marine/skirmisher,
 		/obj/item/armor_module/armor/badge,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/assault
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -624,17 +690,15 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/visor/marine/assault,
 		/obj/item/armor_module/armor/badge,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/eva
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -645,22 +709,20 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/visor/marine/eva,
-		/obj/item/armor_module/armor/visor/marine/eva/skull,
 		/obj/item/armor_module/armor/badge,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA 'Skull' Helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva/skull, /obj/item/armor_module/storage/helmet)
+	icon_state = "eva_skull_helmet"
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/eod
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -670,21 +732,16 @@
 		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
-		/obj/item/armor_module/armor/visor/marine/eod,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/scout
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -695,17 +752,15 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/visor/marine/scout,
 		/obj/item/armor_module/armor/badge,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/helljumper
 	name = "Jaeger Pattern Helljumper Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
 	icon_state = "helljumper_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/helljumper
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -716,16 +771,14 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/visor/marine/helljumper,
 		/obj/item/armor_module/armor/badge,
 	)
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet/infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -746,7 +799,6 @@
 /obj/item/clothing/head/modular/marine/m10x
 	name = "\improper M10X pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "helmet_icon"
 	icon_override = null
 	item_state = "helmet"
@@ -757,8 +809,6 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
-	greyscale_colors = null
-	greyscale_config = null
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -774,15 +824,6 @@
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	visorless_offset_x = 0
 	visorless_offset_y = 0
-
-	icon_state_variants = list(
-		"green",
-		"black",
-		"brown",
-		"white",
-	)
-
-	current_variant = "black"
 
 /obj/item/clothing/head/modular/marine/m10x/welding
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)

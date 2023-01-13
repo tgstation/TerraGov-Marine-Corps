@@ -125,9 +125,6 @@
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
-	greyscale_config = /datum/greyscale_config/modularchest
-	greyscale_colors = ARMOR_PALETTE_DESERT
-
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
