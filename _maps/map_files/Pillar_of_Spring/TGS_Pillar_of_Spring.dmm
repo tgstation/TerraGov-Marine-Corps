@@ -1342,7 +1342,7 @@
 /area/mainship/hallways/hangar)
 "bLw" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req,
+/obj/item/reagent_containers/food/snacks/req_pizza,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "bLz" = (
