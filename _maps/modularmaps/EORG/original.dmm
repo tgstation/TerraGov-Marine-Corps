@@ -725,8 +725,9 @@
 	},
 /area/deathmatch)
 "cV" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
 /area/deathmatch)
 "cW" = (
 /obj/structure/lattice,
@@ -1325,12 +1326,21 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
+"kP" = (
+/turf/open/floor/mainship/emerald{
+	dir = 4
+	},
+/area/deathmatch)
 "ll" = (
 /obj/effect/ai_node,
 /turf/open/ground/coast,
 /area/deathmatch)
 "lu" = (
 /turf/open/floor/freezer,
+/area/deathmatch)
+"on" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "pj" = (
 /obj/effect/ai_node,
@@ -1341,6 +1351,9 @@
 /turf/open/ground/coast/corner{
 	dir = 1
 	},
+/area/deathmatch)
+"pz" = (
+/turf/open/floor/mainship/blue,
 /area/deathmatch)
 "rW" = (
 /turf/open/ground/coast{
@@ -1362,6 +1375,17 @@
 	dir = 1
 	},
 /area/deathmatch)
+"wy" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/emerald{
+	dir = 6
+	},
+/area/deathmatch)
+"xu" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/deathmatch)
 "xw" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
@@ -1370,9 +1394,29 @@
 "xX" = (
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"CR" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/freezer,
+/area/deathmatch)
+"Dp" = (
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/deathmatch)
 "GL" = (
 /turf/open/ground/coast/corner{
 	dir = 4
+	},
+/area/deathmatch)
+"GZ" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/deathmatch)
+"HG" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/orange{
+	dir = 5
 	},
 /area/deathmatch)
 "Jm" = (
@@ -1381,12 +1425,40 @@
 	dir = 4
 	},
 /area/deathmatch)
+"Kj" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/deathmatch)
 "KI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"Lx" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
+/area/deathmatch)
 "LP" = (
 /turf/open/ground/grass,
+/area/deathmatch)
+"PB" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/deathmatch)
+"RA" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/deathmatch)
+"Sh" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/freezer,
 /area/deathmatch)
 "Tu" = (
 /turf/open/ground/coast{
@@ -1401,6 +1473,9 @@
 /area/deathmatch)
 "TP" = (
 /turf/open/ground/river,
+/area/deathmatch)
+"Uz" = (
+/turf/open/floor/mainship/emerald,
 /area/deathmatch)
 "UN" = (
 /obj/machinery/light{
@@ -2686,7 +2761,7 @@ aq
 xX
 al
 cy
-dh
+aR
 bA
 aR
 bA
@@ -2730,13 +2805,13 @@ bI
 tf
 TP
 TP
-VE
-bj
-xX
-xX
-xX
-xX
-bJ
+as
+on
+on
+Lx
+on
+on
+as
 aR
 xX
 cK
@@ -2778,13 +2853,13 @@ cq
 tf
 TP
 TP
-TP
-aq
-xX
-af
-ag
-bj
-xX
+on
+PB
+xu
+lu
+Kj
+RA
+on
 xX
 xX
 xX
@@ -2826,13 +2901,13 @@ al
 tf
 TP
 ap
-rW
-GL
-xX
-ag
-Tu
-VE
-an
+on
+Dp
+lu
+lu
+lu
+pz
+on
 bj
 xX
 al
@@ -2874,13 +2949,13 @@ an
 Tu
 TP
 aq
-al
-TE
-xX
-tf
-TP
-TP
-ap
+on
+lu
+lu
+Sh
+lu
+lu
+on
 GL
 xX
 dD
@@ -2922,13 +2997,13 @@ TP
 TP
 ap
 GL
-xX
+on
 cV
-af
-cK
-rW
-bT
-aq
+lu
+lu
+lu
+Uz
+on
 xX
 TE
 xX
@@ -2970,13 +3045,13 @@ TP
 ap
 GL
 aN
-aU
-aU
-bW
-xX
-al
-cK
-GL
+on
+HG
+GZ
+lu
+kP
+wy
+on
 aN
 bW
 xX
@@ -3018,13 +3093,13 @@ rW
 GL
 aN
 bf
-LP
-LP
-hA
-aU
-aU
-bW
-al
+as
+on
+on
+CR
+on
+on
+as
 aO
 hA
 aU

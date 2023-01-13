@@ -17,6 +17,10 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/closed/wall,
 /area/deathmatch)
+"dA" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/grime,
+/area/deathmatch)
 "dB" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/asteroidplating,
@@ -34,8 +38,7 @@
 /area/deathmatch)
 "fF" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "hw" = (
@@ -75,6 +78,11 @@
 /obj/machinery/door/poddoor/railing,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
+"jU" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "kh" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/asteroidplating,
@@ -86,6 +94,13 @@
 "kU" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"nk" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grime,
 /area/deathmatch)
 "nt" = (
 /obj/structure/ore_box,
@@ -118,6 +133,11 @@
 "pX" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"qF" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "rv" = (
 /obj/machinery/door/poddoor/railing,
@@ -182,6 +202,9 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"ww" = (
+/turf/closed/wall/wood,
+/area/deathmatch)
 "wH" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1
@@ -209,6 +232,11 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"zB" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "zQ" = (
 /obj/structure/ore_box,
@@ -263,6 +291,10 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"Gz" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/grime,
+/area/deathmatch)
 "GJ" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8
@@ -270,6 +302,10 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
+/area/deathmatch)
+"HV" = (
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "Ip" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -282,6 +318,9 @@
 "Jn" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
+"JT" = (
+/turf/open/floor/grime,
 /area/deathmatch)
 "JW" = (
 /obj/machinery/door/poddoor/railing{
@@ -393,6 +432,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"VU" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/grime,
+/area/deathmatch)
 "Wa" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8
@@ -441,8 +484,7 @@
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ZH" = (
@@ -1166,13 +1208,13 @@ KZ
 KZ
 bi
 sr
-bi
-bi
-bi
-bi
-bi
-bi
-bi
+ww
+HV
+HV
+nk
+qF
+qF
+ww
 sr
 bi
 bi
@@ -1214,13 +1256,13 @@ XY
 XY
 Jf
 KZ
-od
-od
-od
-od
-od
-bi
-bi
+zB
+VU
+JT
+JT
+JT
+VU
+jU
 bi
 bi
 bi
@@ -1262,13 +1304,13 @@ XY
 XY
 dj
 dj
-od
-oH
-Mn
-My
-Fp
-bi
-bi
+zB
+JT
+JT
+JT
+JT
+JT
+jU
 bi
 bi
 bi
@@ -1310,13 +1352,13 @@ XY
 XY
 XY
 db
-od
-Mn
-Mn
-Mn
-Fp
-sr
-bi
+zB
+JT
+JT
+dA
+JT
+JT
+jU
 bi
 bi
 bi
@@ -1358,13 +1400,13 @@ XY
 XY
 XY
 Ax
-od
-od
-MV
-Mn
-od
-Jf
-KZ
+zB
+JT
+JT
+JT
+JT
+JT
+jU
 KZ
 bi
 bi
@@ -1406,13 +1448,13 @@ XY
 XY
 XY
 XY
-XY
-od
-Mn
-Mn
-od
-od
-od
+zB
+VU
+JT
+JT
+JT
+VU
+jU
 od
 bi
 bi
@@ -1454,13 +1496,13 @@ od
 od
 od
 od
-od
-od
-Fp
-Fp
-Fp
-Fp
-tf
+ww
+zB
+zB
+Gz
+jU
+jU
+ww
 od
 bi
 sr

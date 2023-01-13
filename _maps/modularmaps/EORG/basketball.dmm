@@ -917,7 +917,7 @@
 /area/deathmatch)
 "Tx" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/mainship/sterile/plain,
+/turf/open/floor/wood,
 /area/deathmatch)
 "TC" = (
 /obj/structure/bed/chair{
@@ -961,7 +961,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Vy" = (
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/mainship/emerald{
 	dir = 6
 	},
@@ -988,7 +988,7 @@
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Xi" = (
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -1632,7 +1632,7 @@ HL
 HL
 HL
 HL
-HL
+Tx
 HL
 aG
 HL
@@ -1903,7 +1903,7 @@ NH
 HL
 aG
 HL
-HL
+Tx
 HL
 aG
 HL
@@ -1935,7 +1935,7 @@ Zu
 aY
 HL
 aG
-HL
+Tx
 HL
 HL
 aG
@@ -2287,7 +2287,7 @@ Qz
 HL
 aG
 HL
-HL
+Tx
 HL
 aG
 HL
@@ -2319,7 +2319,7 @@ Zu
 tG
 HL
 aG
-HL
+Tx
 HL
 HL
 HL
@@ -2592,7 +2592,7 @@ HL
 HL
 HL
 HL
-HL
+Tx
 HL
 HL
 HL
@@ -2754,9 +2754,9 @@ bI
 bI
 cP
 YI
-Tx
-Tx
-Tx
+bg
+bg
+bg
 QG
 WF
 HL
@@ -2802,9 +2802,9 @@ bI
 bI
 cP
 bb
-Tx
+bg
 et
-Tx
+bg
 bb
 WF
 HL
@@ -2850,9 +2850,9 @@ bI
 bI
 cP
 Tn
-Tx
-Tx
-Tx
+bg
+bg
+bg
 Sj
 WF
 HL
