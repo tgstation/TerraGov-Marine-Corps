@@ -91,6 +91,8 @@
 	var/energy_consummed = 4
 	/// The lighting power of the floodlight
 	var/floodlight_light_range = 15
+	/// The amount of integrity repaired with every welder act.
+	var/repair_amount = 100
 
 /obj/machinery/floodlight/combat/Initialize()
 	. = ..()
@@ -108,6 +110,7 @@
 		. += span_notice("It has no cell installed.")
 		return
 	. += span_notice("[cell] has [CEILING(cell.charge / cell.maxcharge * 100, 1)]% charge left.")
+	. += span_notice("It has [obj_integrity]/[max_integrity] integrity left.")
 
 /// Handles the wrench act .
 /obj/machinery/floodlight/combat/wrench_act(mob/living/user, obj/item/I)
@@ -139,6 +142,34 @@
 	user.put_in_hands(cell)
 	cell = null
 	turn_light(user, FALSE, forced = TRUE)
+
+/obj/machinery/floodlight/combat/welder_act(mob/living/user, obj/item/I)
+	if(user.do_actions)
+		return FALSE
+	var/obj/item/tool/weldingtool/welder = I
+	if(obj_integrity >= max_integrity)
+		to_chat(user, span_notice("[src] doesn't need repairs."))
+		return FALSE
+	if(!welder.tool_use_check(user, 2))
+		return FALSE
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+		span_notice("You fumble around figuring out how to repair [src]."))
+		var/fumbling_time = 4 SECONDS * (SKILL_ENGINEER_ENGI - user.skills.getRating("engineer"))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
+	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
+	span_notice("You begin repairing the damage to [src]."))
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return
+	if(!welder.remove_fuel(2, user))
+		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		return TRUE
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	user.visible_message(span_notice("[user] repairs [src]'s damage."),
+	span_notice("You repair [src]."))
+	obj_integrity += repair_amount
 
 /obj/machinery/floodlight/combat/process()
 	cell.charge -= energy_consummed
