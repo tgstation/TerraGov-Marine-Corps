@@ -1,0 +1,4 @@
+author: "Tupina"
+delete-after: True
+changes:
+  - imageadd: "New minimap icons."
