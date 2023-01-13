@@ -1,7 +1,7 @@
 /datum/action/xeno_action/activable/web_spit
 	name = "Web Spit"
 	ability_name = "Web Spit"
-	mechanics_text = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
+	desc = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
 	action_icon_state = "web_spit"
 	plasma_cost = 125
 	cooldown_timer = 10 SECONDS
@@ -28,7 +28,7 @@
 /datum/action/xeno_action/activable/leash_ball
 	name = "Leash Ball"
 	ability_name = "Leash Ball"
-	mechanics_text = "Spit a huge web ball that snares groups of targets for a brief while."
+	desc = "Spit a huge web ball that snares groups of targets for a brief while."
 	action_icon_state = "leash_ball"
 	plasma_cost = 250
 	cooldown_timer = 20 SECONDS
@@ -56,10 +56,10 @@
 	icon_state = "aoe_leash"
 	desc = "Sticky and icky. Destroy it when you are stuck!"
 	destroy_sound = "alien_resin_break"
-	max_integrity = 25
+	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	/// How long the leash ball lasts untill it dies
@@ -128,7 +128,7 @@
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
-	mechanics_text = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time."
+	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time."
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
@@ -173,7 +173,7 @@
 /datum/action/xeno_action/burrow
 	name = "Burrow"
 	ability_name = "Burrow"
-	mechanics_text = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
+	desc = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
 	action_icon_state = "burrow"
 	plasma_cost = 0
 	cooldown_timer = 20 SECONDS
@@ -206,7 +206,7 @@
 	X.fire_resist_modifier += BURROW_FIRE_RESIST_MODIFIER
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
-	X.throwpass = FALSE
+	X.flags_pass &= ~PASSABLE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
@@ -221,7 +221,7 @@
 	// This part here actually burrows the xeno
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	owner.density = FALSE
-	owner.throwpass = TRUE
+	owner.flags_pass |= PASSABLE
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
@@ -239,7 +239,7 @@
 /datum/action/xeno_action/attach_spiderlings
 	name = "Attach Spiderlings"
 	ability_name = "Attach Spiderlings"
-	mechanics_text = "Attach your current spiderlings to you "
+	desc = "Attach your current spiderlings to you "
 	action_icon_state = "attach_spiderling"
 	plasma_cost = 0
 	cooldown_timer = 0 SECONDS
@@ -283,10 +283,10 @@
 /datum/action/xeno_action/activable/web_hook
 	name = "Web Hook"
 	ability_name = "Web Hook"
-	mechanics_text = "Shoot out a web and pull it to traverse forward"
+	desc = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
 	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
 	)

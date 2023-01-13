@@ -195,7 +195,7 @@
 	if(vali_necro_timer > 10 SECONDS)
 		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
 	if(vali_necro_timer > 15 SECONDS)
-		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
+		wearer.overlay_fullscreen("degeneration", /atom/movable/screen/fullscreen/infection, 1)
 		to_chat(wearer, span_highdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
 
 /**
@@ -236,7 +236,16 @@
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
-	if(boost_on)
+	if(!boost_on)
+		if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
+			wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
+			return
+		if(resource_storage_current < resource_drain_amount)
+			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
+			return
+	boost_on = !boost_on
+	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
+	if(!boost_on)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
 		vali_necro_timer = world.time - processing_start
@@ -250,23 +259,12 @@
 				necrotized_counter -= 1
 				if(necrotized_counter < 1)
 					break
-
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-		boost_on = FALSE
 		wearer.balloon_alert(wearer, "Halting green blood injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
 		return
 
-	if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
-		wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
-		return
-
-	if(resource_storage_current < resource_drain_amount)
-		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
-		return
-
-	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)

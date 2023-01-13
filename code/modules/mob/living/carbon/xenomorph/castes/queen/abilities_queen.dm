@@ -4,7 +4,7 @@
 /datum/action/xeno_action/hive_message
 	name = "Hive Message" // Also known as Word of Queen.
 	action_icon_state = "queen_order"
-	mechanics_text = "Announces a message to the hive."
+	desc = "Announces a message to the hive."
 	plasma_cost = 50
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
@@ -13,7 +13,7 @@
 	use_state_flags = XACT_USE_LYING
 
 //Parameters used when displaying hive message to all xenos
-/obj/screen/text/screen_text/queen_order
+/atom/movable/screen/text/screen_text/queen_order
 	maptext_height = 128 //Default 64 doubled in height
 	maptext_width = 456 //Default 480 shifted right by 12
 	maptext_x = 12 //Half of 24
@@ -50,7 +50,7 @@
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
 		SEND_SOUND(X, queen_sound)
 		//Display the queen's hive message at the top of the game screen.
-		X.play_screen_text(queens_word, /obj/screen/text/screen_text/queen_order)
+		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 		//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
 		to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 
@@ -64,7 +64,7 @@
 /datum/action/xeno_action/activable/screech
 	name = "Screech"
 	action_icon_state = "screech"
-	mechanics_text = "A large area knockdown that causes pain and screen-shake."
+	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
 	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
@@ -131,7 +131,7 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
+	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
 	use_state_flags = XACT_USE_LYING
 	var/overwatch_active = FALSE
@@ -221,7 +221,7 @@
 /datum/action/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
-	mechanics_text = "Zoom out for a larger view around wherever you are looking."
+	desc = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
@@ -268,7 +268,7 @@
 /datum/action/xeno_action/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
-	mechanics_text = "Make a target Xenomorph a leader."
+	desc = "Make a target Xenomorph a leader."
 	plasma_cost = 200
 	use_state_flags = XACT_USE_LYING
 
@@ -338,7 +338,7 @@
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal
 	name = "Heal"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Apply a minor heal to the target."
+	desc = "Apply a minor heal to the target."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
@@ -369,7 +369,7 @@
 	var/remainder = max(0, amount - getBruteLoss())
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
-	adjust_sunder(-amount/20)
+	adjust_sunder(-amount/10)
 
 // ***************************************
 // *********** Queen plasma
@@ -377,7 +377,7 @@
 /datum/action/xeno_action/activable/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
-	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
+	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybinding_signals = list(
@@ -443,7 +443,7 @@
 /datum/action/xeno_action/deevolve
 	name = "De-Evolve a Xenomorph"
 	action_icon_state = "xeno_deevolve"
-	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
+	desc = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEEVOLVE,
@@ -466,7 +466,7 @@
 		T.balloon_alert(X, "Cannot deevolve here")
 		return
 
-	if(T.health <= 0)
+	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
 		T.balloon_alert(X, "Cannot deevolve, too weak")
 		return
 
@@ -494,7 +494,7 @@
 	if(!isturf(T.loc))
 		return
 
-	if(T.health <= 0)
+	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
 		return
 
 	T.balloon_alert(T, "Queen deevolution")

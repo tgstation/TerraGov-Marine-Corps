@@ -20,9 +20,9 @@ export const handleRadioPrefix = function (this: Modal) {
   }
   this.fields.value = value?.slice(3);
   // Binary is a "secret" channel
-  if (nextPrefix === ':b ') {
+  if (nextPrefix === ':n ') {
     Byond.sendMessage('thinking', { mode: false });
-  } else if (radioPrefix === ':b ' && nextPrefix !== ':b ') {
+  } else if (radioPrefix === ':n ' && nextPrefix !== ':n ') {
     Byond.sendMessage('thinking', { mode: true });
   }
   this.fields.radioPrefix = nextPrefix;

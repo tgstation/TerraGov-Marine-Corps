@@ -4,7 +4,7 @@
 /datum/action/xeno_action/toggle_agility
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
-	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
+	desc = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
@@ -56,7 +56,7 @@
 /datum/action/xeno_action/activable/lunge
 	name = "Lunge"
 	action_icon_state = "lunge"
-	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
+	desc = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
@@ -169,7 +169,7 @@
 /datum/action/xeno_action/activable/fling
 	name = "Fling"
 	action_icon_state = "fling"
-	mechanics_text = "Knock a target flying up to 5 tiles away."
+	desc = "Knock a target flying up to 5 tiles away."
 	ability_name = "fling"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
@@ -270,7 +270,7 @@
 /datum/action/xeno_action/activable/toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
-	mechanics_text = "Throw a creature you're grappling up to 3 tiles away."
+	desc = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
@@ -348,7 +348,7 @@
 /datum/action/xeno_action/activable/punch
 	name = "Punch"
 	action_icon_state = "punch"
-	mechanics_text = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
+	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
@@ -502,12 +502,10 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			target_zone = BODY_ZONE_CHEST
-			L =  carbon_victim.get_limb(target_zone)
-
-		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor("melee", target_zone))
+			L =  carbon_victim.get_limb(BODY_ZONE_CHEST)
+		apply_damage(damage, BRUTE, L, MELEE)
 	else
-		apply_damage(damage, BRUTE, target_zone, get_soft_armor("melee", target_zone))
+		apply_damage(damage, BRUTE, blocked = MELEE)
 
 	if(push)
 		var/facing = get_dir(X, src)
@@ -564,7 +562,7 @@
 /datum/action/xeno_action/activable/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
-	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
+	desc = "Precisely strike your target from further away, heavily slowing them."
 	plasma_cost = 10
 	range = 2
 	keybinding_signals = list(

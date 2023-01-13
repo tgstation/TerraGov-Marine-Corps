@@ -5,7 +5,7 @@
 /area/bigredv2/outside/space_port)
 "ak" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "al" = (
@@ -625,7 +625,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qR" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -783,7 +783,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "uB" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -994,9 +994,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "zj" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "zw" = (
@@ -1219,7 +1217,7 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "EZ" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
@@ -1728,9 +1726,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "RN" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "RO" = (
@@ -1793,7 +1789,6 @@
 "Tk" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -2011,7 +2006,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "ZV" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,

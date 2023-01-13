@@ -166,11 +166,13 @@
 	parent.siemens_coefficient += siemens_coefficient_mod
 	parent.permeability_coefficient += permeability_coefficient_mod
 	parent.gas_transfer_coefficient += siemens_coefficient_mod
+	ADD_TRAIT(user, TRAIT_INTOXICATION_RESISTANT, ARMOR_TRAIT)
 
 /obj/item/armor_module/module/mimir_environment_protection/on_detach(obj/item/detaching_from, mob/user)
 	parent.siemens_coefficient -= siemens_coefficient_mod
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
+	REMOVE_TRAIT(user, TRAIT_INTOXICATION_RESISTANT, ARMOR_TRAIT)
 	return ..()
 
 /obj/item/armor_module/module/mimir_environment_protection/mark1
@@ -247,16 +249,32 @@
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
 	slot = ATTACHMENT_SLOT_MODULE
+	///Lets us keep track of what icon state we're in
+	var/chemsystem_is_active = FALSE
 
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	parent.AddComponent(/datum/component/chem_booster)
+	var/datum/component/chem_booster/chemsystem = parent.AddComponent(/datum/component/chem_booster)
+	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED, .proc/update_module_icon)
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
 	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
+	UnregisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED)
 	chemsystem.RemoveComponent()
 	return ..()
 
+///Updates the module on the armor to glow or not
+/obj/item/armor_module/module/chemsystem/proc/update_module_icon(datum/source, toggle)
+	SIGNAL_HANDLER
+	chemsystem_is_active = toggle
+	update_icon()
+	parent.update_icon()
+
+/obj/item/armor_module/module/chemsystem/update_icon_state()
+	if(chemsystem_is_active)
+		icon_state = "mod_chemsystem_active"
+		return
+	icon_state = initial(icon_state)
 
 /obj/item/armor_module/module/eshield
 	name = "Arrowhead Energy Shield System"
@@ -265,7 +283,7 @@
 	icon_state = "mod_eshield"
 	item_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
-	soft_armor = list(MELEE = -10, BULLET = -5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
+	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
 
 	///Current shield Health

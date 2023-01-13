@@ -45,12 +45,6 @@
 	return ..()
 
 
-/obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) )
-		to_chat(usr, span_warning("\The [src] clanks on the ground."))
-	else
-		return ..()
-
 /*
 Note: pickup and dropped on weapons must have both the ..() to update zoom AND twohanded,
 As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
@@ -59,7 +53,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	. = ..()
 
 	unwield(user)
-	harness_check(user)
 
 
 /obj/item/weapon/gun/pickup(mob/user)
@@ -90,44 +83,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, TRUE, CALLBACK(src, .proc/is_wielded)))
 		return FALSE
 	return TRUE
-
-/*
-Here we have throwing and dropping related procs.
-This should fix some issues with throwing mag harnessed guns when
-they're not supposed to be thrown. Either way, this fix
-should be alright.
-*/
-/obj/item/weapon/gun/proc/harness_check(mob/user)
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/owner = user
-	if(!has_attachment(/obj/item/attachable/magnetic_harness))
-		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
-		if(!istype(B, /obj/item/belt_harness))
-			return FALSE
-	var/obj/item/I = owner.wear_suit
-	if(!is_type_in_list(I, list(/obj/item/clothing/suit/storage, /obj/item/clothing/suit/armor, /obj/item/clothing/suit/modular)))
-		return FALSE
-	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
-	return TRUE
-
-
-/obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store) && !isnull(user.back))
-		return
-
-	user.equip_to_slot_if_possible(src, SLOT_S_STORE, warning = FALSE)
-	if(user.s_store == src)
-		var/obj/item/I = user.wear_suit
-		to_chat(user, span_warning("[src] snaps into place on [I]."))
-		user.update_inv_s_store()
-		return
-
-	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
-	if(user.back == src)
-		to_chat(user, span_warning("[src] snaps into place on your back."))
-	user.update_inv_back()
-
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
@@ -162,7 +117,7 @@ should be alright.
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
@@ -252,9 +207,9 @@ should be alright.
 ///Helper proc that processes a clicked target, if the target is not black tiles, it will not change it. If they are it will return the turf of the black tiles. It will return null if the object is a screen object other than black tiles.
 /proc/get_turf_on_clickcatcher(atom/target, mob/user, params)
 	var/list/modifiers = params2list(params)
-	if(!istype(target, /obj/screen))
+	if(!istype(target, /atom/movable/screen))
 		return target
-	if(!istype(target, /obj/screen/click_catcher))
+	if(!istype(target, /atom/movable/screen/click_catcher))
 		return null
 	return params2turf(modifiers["screen-loc"], get_turf(user), user.client)
 

@@ -396,5 +396,5 @@
 
 	playsound(origin, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
 	remote_eye.setLoc(get_turf(C))
-	L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/noise)
+	L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 	L.clear_fullscreen("flash", 3)

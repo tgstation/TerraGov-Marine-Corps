@@ -7,7 +7,6 @@
 	attacktext = "bites"
 	attack_sound = null
 	friendly = "nuzzles"
-	wall_smash = 0
 	health = 300
 	maxHealth = 300
 	plasma_stored = 300
@@ -17,6 +16,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alienroyal"
 
 	var/breathing_counter = 0
 	inherent_verbs = list(

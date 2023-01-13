@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(greyscale)
 	var/list/datum/greyscale_layer/layer_types = list()
 
 /datum/controller/subsystem/greyscale/Initialize(start_timeofday)
-	for(var/datum/greyscale_layer/fake_type as anything in subtypesof(/datum/greyscale_layer))
+	for(var/datum/greyscale_layer/fake_type AS in subtypesof(/datum/greyscale_layer))
 		layer_types[initial(fake_type.layer_type)] = fake_type
 
 	for(var/greyscale_type in subtypesof(/datum/greyscale_config))

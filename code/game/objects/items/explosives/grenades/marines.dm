@@ -103,6 +103,9 @@
 		clean_refs()
 	return ..()
 
+/obj/item/explosive/grenade/sticky/launched_det_time()
+	det_time -= 1 SECONDS
+
 ///Cleans references to prevent hard deletes.
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
 	SIGNAL_HANDLER
@@ -170,11 +173,13 @@
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	///radius this smoke grenade will encompass
 	var/smokeradius = 7
+	///The duration of the smoke
+	var/smoke_duration = 11
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(smokeradius, loc, 11)
+	smoke.set_up(smokeradius, loc, smoke_duration)
 	smoke.start()
 	qdel(src)
 
@@ -397,8 +402,7 @@
 		if(!target_zone || rand(40))
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			var/armor_block = L.get_soft_armor("fire", target_zone)
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
 	var/obj/alien/weeds/node/N = locate() in loc

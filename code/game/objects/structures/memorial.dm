@@ -16,7 +16,7 @@ This memorial has been designed for him and any future contributors to perish.
 	icon_state = "memorial"
 	density = TRUE
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/valmoric
@@ -26,5 +26,5 @@ This memorial has been designed for him and any future contributors to perish.
 	icon_state = "memorial2"
 	density = TRUE
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 	resistance_flags = RESIST_ALL

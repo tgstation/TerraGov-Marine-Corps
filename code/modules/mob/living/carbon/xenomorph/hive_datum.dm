@@ -4,8 +4,16 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
+	///Current king, there can only be one
+	var/mob/living/carbon/xenomorph/king/living_xeno_king
+	///Timer for queen evolution after the last one dying
 	var/xeno_queen_timer
-	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
+	///Timer for king evolution after the last one dying
+	var/xeno_king_timer
+	/// minimum amount of xenos needed to support a queen
+	var/xenos_per_queen = 8
+	/// minimum amount of xenos needed to support a king
+	var/xenos_per_king = 12
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
@@ -25,8 +33,6 @@
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
-	///Its an int showing the count of living kings
-	var/king_present = 0
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
@@ -302,6 +308,14 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+
+/datum/hive_status/proc/can_hive_have_a_king()
+	return (get_total_xeno_number() < xenos_per_king)
+
+/datum/hive_status/normal/can_hive_have_a_king()
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	return ((get_total_xeno_number() + stored_larva) < xenos_per_king)
 
 /datum/hive_status/proc/get_total_tier_zeros()
 	return length(xenos_by_tier[XENO_TIER_ZERO])
@@ -643,11 +657,15 @@
 	return
 
 
-// safe for use by gamemode code, this allows per hive overrides
+///Allows a new queen to evolve. Safe for use by gamemode code, this allows per hive overrides
 /datum/hive_status/proc/end_queen_death_timer()
 	xeno_message("The Hive is ready for a new ruler to evolve.", "xenoannounce", 6, TRUE)
 	xeno_queen_timer = null
 
+///Allows a new king to evolve. Safe for use by gamemode code, this allows per hive overrides
+/datum/hive_status/proc/end_king_death_timer()
+	xeno_message("The Hive is ready for a new king to evolve.", "xenoannounce", 6, TRUE)
+	xeno_king_timer = null
 
 /datum/hive_status/proc/check_ruler()
 	return TRUE
@@ -672,6 +690,15 @@
 	if(!xeno_queen_timer)
 		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
 	update_leader_pheromones()
+
+// These are defined for per-hive behaviour
+/datum/hive_status/proc/on_king_death(mob/living/carbon/xenomorph/king/xeno_king)
+	SIGNAL_HANDLER
+	if(living_xeno_king != xeno_king)
+		return FALSE
+	living_xeno_king = null
+	if(!xeno_king_timer)
+		xeno_king_timer = addtimer(CALLBACK(src, .proc/end_king_death_timer), KING_DEATH_TIMER, TIMER_STOPPABLE)
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -699,7 +726,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /obj/screen/arrow/leader_tracker_arrow, arrow_color, report_distance)
+/datum/hive_status/proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /atom/movable/screen/arrow/leader_tracker_arrow, arrow_color, report_distance)
 
 	if(!force && !can_xeno_message())
 		return
@@ -721,7 +748,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
-			var/obj/screen/arrow/arrow_hud = new arrow_type
+			var/atom/movable/screen/arrow/arrow_hud = new arrow_type
 			//Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
 			if(arrow_color) //Set the arrow to our custom colour if applicable
@@ -753,12 +780,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
 	addtimer(CALLBACK(src, .proc/handle_silo_death_timer, TRUE), MINIMUM_TIME_SILO_LESS_COLLAPSE)
-
-/datum/hive_status/normal/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
-	if(living_xeno_queen != Q)
-		return FALSE
-	return ..()
-
 
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
@@ -1059,8 +1080,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR(((zeros + ones + twos + fours) * (evotowers.len * 0.2 + 1)) / 3 + 1, 1))
-	tier2_xeno_limit = max((twos + zeros + ones + fours) * (evotowers.len * 0.2 + 1) + 1 - threes)
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(evotowers) + 1, 1))
+	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(evotowers) * 2 + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos

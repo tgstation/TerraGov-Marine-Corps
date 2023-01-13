@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Blink"
 	action_icon_state = "blink"
 	ability_name = "Blink"
-	mechanics_text = "We teleport ourselves a short distance to a location within line of sight."
+	desc = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
 	plasma_cost = 30
 	cooldown_timer = 0.5 SECONDS
@@ -150,7 +150,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Banish"
 	action_icon_state = "Banish"
 	ability_name = "Banish"
-	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
+	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
 	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		var/mob/living/stasis_target = banishment_target
 		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		stasis_target.notransform = TRUE //Stasis
-		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
+		stasis_target.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind) //Force the blind overlay
 
 	if(!reserved_area) //If we don't have a reserved area, set one
 		reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/banish)
@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		contained_living += living_contents
 		living_contents.apply_status_effect(/datum/status_effect/incapacitating/unconscious)
 		living_contents.notransform = TRUE
-		living_contents.overlay_fullscreen("banish", /obj/screen/fullscreen/blind)
+		living_contents.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind)
 
 	banishment_target.forceMove(target_turf)
 
@@ -291,6 +291,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/return_turf = get_turf(portal)
 	if(!return_turf)
 		return_turf = locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3])
+	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
+	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	banishment_target.forceMove(return_turf)
 
 	var/list/all_contents = banishment_target.GetAllContents()
@@ -305,8 +307,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		living_contents.forceMove(return_turf)
 	contained_living.Cut()
 
-	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
-	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target)
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5))
 	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS)
@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Recall"
 	ability_name = "Recall"
 	action_icon_state = "Recall"
-	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
+	desc = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybinding_signals = list(
@@ -403,7 +403,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Time stop"
 	ability_name = "Time stop"
 	action_icon_state = "time_stop"
-	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	desc = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybinding_signals = list(
@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Portal"
 	ability_name = "Portal"
 	action_icon_state = "portal"
-	mechanics_text = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
+	desc = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
 	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
@@ -563,7 +563,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || ishuman(crosser))
+	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.flags_pass &= ~PASSMOB
@@ -630,7 +630,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Time Shift"
 	ability_name = "Time Shift"
 	action_icon_state = "rewind"
-	mechanics_text = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	desc = "Save the location and status of the target. When the time is up, the target location and status are restored"
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
@@ -721,7 +721,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!loc_b)
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
-		targeted.take_overall_damage(target_initial_brute_damage - targeted.getBruteLoss(), target_initial_burn_damage - targeted.getFireLoss(), updating_health = TRUE)
+		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder

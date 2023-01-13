@@ -422,16 +422,15 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	var/armor_block = get_soft_armor("acid", BODY_ZONE_CHEST)
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
-	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
+	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage)
 	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))
 
-/mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
-	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
+/mob/living/carbon/proc/apply_acid_spray_damage(damage)
+	apply_damage(damage, BURN, null, ACID, updating_health = TRUE)
 
-/mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage_armored(damage, BURN, "acid", updating_health = TRUE)
+/mob/living/carbon/human/apply_acid_spray_damage(damage)
+	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
 	Paralyze(20)
 
@@ -485,12 +484,13 @@
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
-
 /atom/proc/can_sting()
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
 	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+		return FALSE
+	if(status_flags & GODMODE)
 		return FALSE
 	if(stat != DEAD)
 		return TRUE
@@ -575,3 +575,11 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
+
+///updates the xeno's glow, based on the ability being used
+/mob/living/carbon/xenomorph/proc/update_glow(range, power, color)
+	if(!range || !power || !color)
+		set_light_on(FALSE)
+		return
+	set_light_range_power_color(range, power, color)
+	set_light_on(TRUE)

@@ -190,6 +190,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_AMPUTATED (1<<6) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED (1<<7) //we just repaired the bone, stops the gelling after setting
 #define LIMB_STABILIZED (1<<8) //certain suits will support a broken limb while worn such as the b18
+#define LIMB_BIOTIC (1<<9) //limb is biotic
 
 //limb_wound_status
 #define LIMB_WOUND_BANDAGED (1<<0)
@@ -319,6 +320,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define LIMB_PRINTING_TIME 30
 #define LIMB_METAL_AMOUNT 125
+#define LIMB_MATTER_AMOUNT 100
 
 //How long it takes for a human to become undefibbable
 #define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
@@ -402,10 +404,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 // Human Overlay Indexes
-#define HEADBITE_LAYER 30
-#define LASER_LAYER 29 //For sniper targeting laser
-#define MOTH_WINGS_LAYER 28
-#define MUTANTRACE_LAYER 27
+#define LASER_LAYER 28 //For sniper targeting laser
+#define MOTH_WINGS_LAYER 27
 #define MUTATIONS_LAYER 26
 #define DAMAGE_LAYER 25
 #define UNIFORM_LAYER 24
@@ -433,7 +433,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER 1 //If you're on fire
 
-#define TOTAL_LAYERS 30
+#define TOTAL_LAYERS 28
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -469,6 +469,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
+#define KING_DEATH_TIMER 7 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
 
@@ -515,6 +516,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_PLASMADRAIN_IMMUNE (1<<12)
 #define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
+#define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
@@ -524,8 +526,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<5) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_CAN_HOLD_JELLY (1<<6)//whether we can hold fireproof jelly in our hands
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<7) //Can corrupt a generator
-#define CASTE_CAN_BECOME_KING (1<<8) //Can be choose to become a king
-#define CASTE_CAN_RIDE_CRUSHER (1<<9) //Can ride a crusher
+#define CASTE_CAN_RIDE_CRUSHER (1<<8) //Can ride a crusher
 
 #define HIVE_STATUS_SHOW_EMPTY (1<<0)
 #define HIVE_STATUS_COMPACT_MODE (1<<1)
@@ -559,7 +560,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK 1
 #define HANDLE_SNEAK_ATTACK_CHECK 3
-#define HUNTER_SNEAK_SLASH_ARMOR_PEN 0.8 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_SNEAKATTACK_MAX_MULTIPLIER 2.0
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
@@ -592,8 +593,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_MIN_HEALTH_THRESHOLD				0.5 //The maximum % of HP we can have to trigger Rage
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
 #define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
-
-#define VAMPIRISM_MOB_DURATION 45 SECONDS
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
@@ -683,6 +682,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
 
+//Sentinel defines
+#define SENTINEL_TOXIC_SPIT_STACKS_PER 2 //Amount of debuff stacks to be applied per spit.
+#define SENTINEL_TOXIC_SLASH_COUNT 3 //Amount of slashes before the buff runs out
+#define SENTINEL_TOXIC_SLASH_DURATION 4 SECONDS //Duration of the buff
+#define SENTINEL_TOXIC_SLASH_STACKS_PER 2 //Amount of debuff stacks to be applied per slash.
+#define SENTINEL_TOXIC_GRENADE_STACKS_PER 10 //Amount of debuff stacks to be applied for every tick spent inside the toxic gas.
+#define SENTINEL_TOXIC_GRENADE_GAS_DAMAGE 20 //Amount of damage dealt for every tick spent in the Toxic Grenade's gas.
+#define SENTINEL_DRAIN_STING_CRIT_REQUIREMENT 20 //Amount of stacks needed to activate Drain Sting's critical effect.
+#define SENTINEL_DRAIN_MULTIPLIER 6 //Amount to multiply Drain Sting's restoration by
+#define SENTINEL_DRAIN_SURGE_ARMOR_MOD 20 //Amount to modify the Sentinel's armor by when under the effects of Drain Surge.
+#define SENTINEL_INTOXICATED_BASE_DAMAGE 1 //Amount of damage per tick dealt by the Intoxicated debuff
+#define SENTINEL_INTOXICATED_RESIST_REDUCTION 3 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
+#define SENTINEL_INTOXICATED_SANGUINAL_INCREASE 3 //Amount of debuff stacks applied for every tick of Sanguinal.
+
 //Wraith defines
 
 #define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
@@ -713,6 +726,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
+#define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //misc
 

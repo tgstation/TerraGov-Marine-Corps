@@ -1,7 +1,8 @@
-import { useBackend, useLocalState } from '../../backend';
 import { capitalize } from 'common/string';
-import { Button, Section, Box, Stack, ByondUi, ColorBox, Collapsible, Input } from '../../components';
-import { ColorDisplayData, BodypartPickerData, MechVendData, partdefinetofluff } from './data';
+import { useBackend, useLocalState } from '../../backend';
+import { Box, Button, ByondUi, Collapsible, ColorBox, Input, Section, Stack } from '../../components';
+import { formatTime } from '../../format';
+import { BodypartPickerData, ColorDisplayData, MechVendData, partdefinetofluff } from './data';
 
 const ColorDisplayRow = (props: ColorDisplayData, context) => {
   const { shown_colors } = props;
@@ -68,6 +69,7 @@ export const MechAssembly = (props, context) => {
     current_stats,
     all_equipment,
     selected_equipment,
+    cooldown_left,
   } = data;
   const [selectedBodypart, setSelectedBodypart] = useLocalState(
     context,
@@ -88,7 +90,7 @@ export const MechAssembly = (props, context) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack vertical>
+        <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
             <BodypartPicker displayingpart="R_ARM" />
           </Stack.Item>
@@ -218,7 +220,12 @@ export const MechAssembly = (props, context) => {
               }
             />
             <Button
-              content="ASSEMBLE"
+              content={
+                cooldown_left
+                  ? `BUSY (${formatTime(cooldown_left, 'short')})`
+                  : 'ASSEMBLE'
+              }
+              disabled={cooldown_left && cooldown_left > 0}
               fluid
               mt={2}
               color={'red'}
@@ -230,7 +237,7 @@ export const MechAssembly = (props, context) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <Stack vertical>
+        <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
             <BodypartPicker displayingpart="L_ARM" />
           </Stack.Item>
@@ -318,7 +325,7 @@ const ColorSelector = (props, context) => {
   return (
     <Section title={capitalize(type) + ' colors'}>
       {Object.keys(listtoshow).map((title) => (
-        <Collapsible ml={1} minWidth={23} key={title} title={title}>
+        <Collapsible ml={1} minWidth={21} key={title} title={title}>
           {Object.keys(listtoshow[title]).map((palette) => (
             <Stack justify="space-between" key={palette} fill>
               <Stack.Item>

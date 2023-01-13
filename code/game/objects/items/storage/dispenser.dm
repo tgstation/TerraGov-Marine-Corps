@@ -6,7 +6,7 @@
 	anchored = TRUE
 	max_integrity = 250
 	resistance_flags = XENO_DAMAGEABLE
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	coverage = 60
 	///list of human mobs we're currently affecting in our area.
 	var/list/mob/living/carbon/human/affecting_list
@@ -131,4 +131,7 @@
 		return ..()
 
 /obj/item/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
-	to_chat(usr, span_notice("You can't grab anything out of [src] while its not deployed."))
+	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))
+
+/obj/item/storage/backpack/dispenser/do_quick_equip(mob/user)
+	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))

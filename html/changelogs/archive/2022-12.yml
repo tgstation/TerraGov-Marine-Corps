@@ -1,0 +1,500 @@
+2022-12-06:
+  567Turtle:
+  - balance: Amount of harvester knives in the marine vendor increased
+  Arctrooper8:
+  - bugfix: Weyland Yutani references removed
+  - bugfix: ATM var edits removed
+  Ben10083:
+  - qol: TA-40L Rocket Boxes now carry 16 rockets instead of 8. Requisition adjusted
+      to compensate.
+  - qol: Carrier can switch hugger type while resting
+  - bugfix: Mech Pilot added to support section in crew manifest.
+  Blundir:
+  - rscadd: mech pilot's hud icon addition
+  - bugfix: captain's hud icon is now shown
+  - bugfix: blood red beret is now correctly showing up in the loadout menu
+  - bugfix: two weird white dots removed from the tablet
+  - rscadd: Meson eyepatch and its crafting recipe
+  - rscadd: Meson sunglasses and its crafting recipe
+  - rscadd: Medhud sunglasses and its crafting recipe
+  - rscadd: Optical imager sunglasses and its crafting recipe
+  - rscadd: Optical imager eyepatch and its crafting recipe
+  Credit Aghost for animation:
+  - imageadd: added spiderling death anim
+  Credit TiviPlus & Slotbot:
+  - bugfix: fixed vali instant necro bug
+  Credit to Ghost for the sprites:
+  - rscadd: The HP-S Harvester knife.
+  Dgeen:
+  - rscadd: 'Added new ability to the Carrier: Call of younger'
+  KacperRaid:
+  - rscadd: Adds prediction to first explosion for Fatty
+  - balance: Instead of walls, Fatty now remove lives (also brings back cluster explosion)
+  - balance: Changes price back to 250 points
+  - soundadd: replaced sound for the MG42
+  Kuro020:
+  - balance: Mech minigun damage buffed to 30, AP nerfed to 10
+  - balance: Mechs have been upgraded with pepperball proof armor platings, they now
+      have 75 bio armor
+  - balance: Mech lightcannon and minigun nerfed, pistol buffed, shotgun now stuns
+      but does less damage and fires slower
+  - balance: Nerfed mech HP and Armor values
+  - balance: Mech phoron and fusion engine have been rebalanced
+  - balance: Laser smg and projector nerfed, ballistic burst rifle buffed
+  Lewdcifer:
+  - balance: Paracetamol no longer purges Tricordrazine.
+  Lumipharon:
+  - imageadd: randomised the weed node animation timing
+  - balance: Mechs can no longer go through portals
+  - balance: All red barrels have been filled with fuel, and can be interacted with
+      like normal fueltanks
+  - bugfix: fixed some attachment points not working
+  - imageadd: Updated wall, r-wall and white wall sprites
+  - imageadd: Updated weed, resin wall and resin door sprites
+  - code_imp: Renabled wallweeds
+  - imageadd: SOM MRE sprite updated
+  - imageadd: Updated hull sprites
+  - qol: Improved minimap readability
+  - bugfix: Fixed fences not showing on the minimap
+  - bugfix: Civil war contested areas will no longer display on the minimap
+  - bugfix: fixed queen time lock not working for evolution
+  - bugfix: fixed queen time lock betterer
+  - bugfix: Mobs no longer render over miners
+  - imageadd: Updated some window and wall sprites
+  - bugfix: Fixed a rollerbed bug
+  - bugfix: fixed turf smoothing not working for shuttles
+  - rscadd: Added a new xeno caste, the Warlock
+  - bugfix: T2 xeno slots being calculated incorrectly
+  - bugfix: Req railing will not longer smooth with walls nearby
+  - bugfix: Tadpole weapons can no longer be deployed on top of other dense objects
+  - admin: Fixed importing sounds
+  - bugfix: fixed quick equip bypassing access delays and dispenser restrictions
+  - qol: Changed APC prop hitboxes to accurate reflect the amount of space they visually
+      take up.
+  - bugfix: fixed some minor SOM comms oversights
+  - imageadd: added new hull window sprites
+  - bugfix: minor title art fix
+  - qol: Quick equip storage order now prefers equipping items before storing them
+  - imageadd: Updated acid spray sprite
+  - rscadd: Adds supply drop event to HvH
+  - rscadd: Added a supply drop specific SOM burst shotgun
+  - rscadd: Adds a new random event for xenos - Hive threat
+  Naaanii:
+  - rscadd: Adds (infinite) hand labellers to weapons vendor.
+  - rscdel: Removed dupe of TGMC uniform.
+  - balance: Hoot foods and drink vendors now have infinite contents.
+  - balance: Hivemind can pass through all mobs.
+  - rscadd: Added more recipes for Reqtorio (Minigun ammo, Razornades, All AMR ammo,
+      All Howie Shells)
+  - rscadd: Added 3 new machinery components for reqtorio. (Driller, galvanizer and
+      compressor)
+  Overdrive659:
+  - rscadd: Magmoor Digsite IV Rework
+  - rscadd: Code changes to support extended assets used in rework
+  - rscdel: Removed old Magmoor version.
+  Pariah919:
+  - rscadd: Added TGMC Packs to Req, spend 100 points and get a curated random set
+      of gear, with rarities to boot! Go open up some loot boxes. Now.
+  - balance: SADAR Rework-Unguided rockets that go past your clicks added, they have
+      a much higher payload compared to normal rockets, AP rocket reworked from 325Dam/150Pen/100Sunder
+      to 340Dam/200Pen/0Sunder.
+  - balance: SADAR rockets in general have 14 tiles of max travel distance in general,
+      includes unguided and laser guided missiles.
+  - balance: Oxycodone gives 100 pain resistance instead of 50 now.
+  - balance: Mateba buffs, now has long barrel stats, removes snubnose and just makes
+      the longbarrel form the default with the snubnose storage size.
+  - balance: Resin Doors have proper custom Ex_Acts now, and die to 2 light explosions,
+      heavy and devastation explosions delete them off the face of the universe.
+  - balance: Dispenser storage amount nerfed from being about two and a half times
+      bigger than a normal backpack to only being twice as big as a backpack in storage
+      amount.
+  - balance: Revolver now does no slowdown. It now does more damage, and slightly
+      less pen and sunder.
+  Penwin0:
+  - bugfix: Drone link is now removed on death
+  - bugfix: Drone link removal by alt-use of the link ability now works
+  QualityVan:
+  - refactor: Numeric age is cumulative across xeno upgrades instead of resetting
+  - balance: Xenos upgrade maturity based on accumulated age on evolution instead
+      of old caste maturity level
+  - balance: Xenos continue to gain age once they're at maximum maturity tier
+  - bugfix: Autoinjectors can't absorb pills
+  - spellcheck: Lowercased autoinjectors/hypos
+  - bugfix: Spawning in aged xenos via admin tools will give them the proper upgrade_stored
+      for their maturity level
+  - bugfix: Draining the hive threat target give you the necessary stored age for
+      ancient instead of setting you ancient and leaving it too low
+  - balance: First mech slot at 25 marines, second at 65, up from 0/40.
+  - rscadd: Marines can't stop stuffing their mouths? New surgery will get them back
+      in order, scalpel with an open incision on torso
+  - bugfix: Drone enhancement can actually be activated
+  - bugfix: ODs for para, arith, and peri+ work
+  RipGrayson:
+  - code_imp: Purged an additional 1,300 icon_state varedits from our maps, added
+      hard types where appropriate.
+  - rscdel: Removed Icarus Military Port.
+  - balance: Mechs now take damage from standing in lava.
+  - bugfix: Fixed the weed landmark icon to properly display while mapping
+  - imageadd: Added some new sprites for xeno resin silo and windows by aghost.
+  - rscadd: Adjusted tcomms, added more logging.
+  SiegeB0t:
+  - balance: Synth can use mirage grenades.
+  SplinterGP:
+  - rscadd: Adds more depth to scatter mechanics, now gun scatter increases the more
+      you shoot up to a maximum and
+  - bugfix: guns shoulnd't have pinpoint accuracy anymore.
+  - bugfix: TGUI alerts now display buttons in a column when there's more than 2 options.
+  - bugfix: TGUI alerts can now be disabled via turning TGUI inputs off in prefs.
+  - bugfix: Fixed some bluescreens related to TGUI inputs.
+  - bugfix: Fixes a runtime with material containers.
+  - bugfix: TGUI now alerts the user when it is waiting on a refresh cooldown. In
+      many cases, this will prevent screens from breaking that rely on static data.
+  - bugfix: 'TGUI static data loading screens no longer resize the window temporarily.
+      Note: If you are using a UI that gets a lot of these, please make an issue report.'
+  - bugfix: native fast gui boxes work again
+  - bugfix: TGUI and Tooltip windows now work with high-dpi web browsers (People who
+      are using Chromium through black magick or who have manually enabled DPI scaling
+      for IWebBrowser2, or its already native due to byond updates ? idk)
+  - qol: The reconnect button in tgchat will now reopen the game.
+  - refactor: Ping system of tgui-panel has been reworked, which fixes things mentioned
+      below.
+  - bugfix: AFK players now get properly detected and kicked
+  - bugfix: Automatic reconnect should now work 100% of the time
+  - bugfix: Manual reconnect should now work 100% of the time
+  - rscadd: The accounting console has been added to the HOP's office, allowing them
+      to track purchases, and bank balances of the crew on station. It's not illegal,
+      it's the competitive advantage!
+  - bugfix: renamed suffix for tgui-polyfill from bundle.js to min.js to prevent CBT
+      failing after target 'clean'
+  - code_imp: Prettier is now recommended as an extension for UI development (or just
+      in general!)
+  - refactor: Many, many interfaces have been hit with the prettier stick so please
+      report any issues. There should be zero noticeable differences in how UIs look
+      or function.
+  - rscadd: Examining and other chat outputs now display in blocks to make them easier
+      to see
+  - bugfix: AI and borgs no longer have their name show twice upon being examined
+  - bugfix: Fixed "Script Error" in tgui and tgchat (hopefully).
+  - bugfix: Multiline inputs can now finally support line breaks, accessible via shift-enter!
+      A maximum of two consecutive line breaks is allowed, any more than that will
+      be automatically stripped. This only applies to input boxes that start with
+      the multiline view enabled, and will thus not work on input boxes that aren't
+      meant to support it.
+  - code_imp: restrictedinput can now accept negative numbers
+  - qol: the full window refresh time is now one second instead of five seconds
+  - bugfix: refreshing windows ("please wait...") no longer hang for up to twice as
+      long as they should
+  Sunsidec:
+  - balance: Masks no longer make marines immune to inclement weather.
+  TiviPlus:
+  - bugfix: fixed mech speed exploit
+  - admin: added a particle editor
+  - bugfix: fixed extra space in minion names
+  - bugfix: Fixes mech arm weapons not taking damage from xeno slashes when targetted
+      and fixes their integrity being set to 400 regardless of intended HP(usually
+      300 or lower)
+  - bugfix: warrior can punch vehicles as intended
+  - config: test message
+  - rscadd: 'Adds melee core for mechs: makes melee weapons more powerful and makes
+      the mech faster, but makes it unable to use guns'
+  - qol: bomb vest can no longer spam progress bars
+  - qol: bomb vest warcry is set with right click instead of ctrl click
+  - admin: improvced bomb vest logging
+  - bugfix: fixed broken mech extinguisher being selectable on accident
+  - bugfix: fixed MP having lead skill by accident
+  - qol: flamer particles are now colored for blue/green fire
+  - qol: a bunch of barricade and a few gun verbs use balloon alerts now
+  - qol: The mech builder UI preview now updates color changes
+  - bugfix: The mech builder ui is now less wide to fit on smaller screens
+  Walarks:
+  - rscadd: Adds a companion component and puts it on Newt, by using the analyzer
+      on the Newt, it will react to some stuff you say. Say `Newt, help` and it will
+      give you a list of commands.
+  Wayland-Smithy:
+  - bugfix: Widow can now watch other xenos as queen mother intended.
+  - balance: Mechs take the same damage from crusher charge as anchored objects.
+  - qol: Xenos can now destroy bookshelves by slashing.
+  - bugfix: Fixed the Nuke Disk Gen minimap icon blinking forever in some cases.
+  XElectricX:
+  - qol: Alt-right-click storage items to open them. Does not work if right click
+      opens context menu.
+  Zar000:
+  - balance: made it possible for gorger to activate feast or rejuvenete while staggered
+  - qol: spiderlings will attack most things now, unlike before
+  - balance: buff ?
+  - bugfix: spiderlings can now attack objs
+  - rscadd: widow spiderlings will avenge widow
+  - balance: widow primo 20 -> 10 SECOND cooldown
+  - balance: leash ball hp 25->75
+  Zaro & Icon [Credit AGhost] & Code help [Slotbot] & BIG DICK HYPER2SNYDER:
+  - balance: Vali now displays when boost is active
+  - imageadd: added vali glow icon
+  lorianss:
+  - rscadd: Xenomorphs can quickly build acid wells, as well as collapse the top panel
+      with abilities (since all abilities can be used using keyboard shortcuts).
+  novaepee:
+  - imageadd: change widow's minimap sprite
+  - bugfix: Fix packet of .45-70's sprite
+  - rscadd: Expand PoS engineering a bit for Nani's incoming factorio update.
+  - rscadd: Give tadpole in PoS, finally, its own landing zone outline!
+  - rscdel: Remove two landing zones when xenomorphs crash Alamo to PoS and move one
+      landing zone.
+  - rscadd: more easter eggs in PoS! Find them all!
+  - rscadd: Combat canteen has more possible transfer amounts
+  - balance: More options on transfer amounts for combat canteen will inevitably change
+      how marine consume from combat canteen
+  - rscadd: Engineers can purchase TL-182 deployable shield for 3 engineering points
+  - balance: frontline engineers can hunker down on locations to much of xenomorphs'
+      dismay
+  novaepee & Icon [Credit AGhost]:
+  - rscadd: Big Red and LV-624 Fatigue, along with the ability to roll them up!
+  novaepee & Icon [Credit AGhost] & Code help [Credit HYPER2SNYDER]:
+  - rscadd: Rownin Skeleton, a glass cannon armor that can permit modules to be installed.
+      Speed in exchange of armor just like a M3 pattern marine harness or a Jaegar
+      exoskeleton with no Jaegar pieces
+  - rscdel: M3 harness for marines to use in exchange for Rownin Skeleton
+  novaepee, lich, zaha, relevation:
+  - rscadd: 'New Title Art: Grief of a loved one'
+  psykzz:
+  - bugfix: maptable closes when observers move away.
+  - balance: hivemind is shunted back to core when the manifestation dies without
+      weeds nearby
+  - code_imp: send order now uses a TGUI input if the player has them enabled
+  tyeagg:
+  - rscadd: hud impact tablet to mlrs and explosions to the mlrs rockets
+  - qol: fixes issue of camera being 1 tile short of where your aiming since your
+      in the same tile of the gun
+  - qol: you can turn 360 in mounted gun without a care about obstacle blocking you
+  - qol: nobody can move the gun if the gun is movable and if your manning it
+  - qol: reload without getting off amounted gun
+  - balance: mounted guns will no longer act as a shield if your manning it
+  - balance: mounted guns now use coverage instead of completely stopping a projectile
+      if it hits it
+  - balance: remove the extra sentries and hsg in crash
+  - rscadd: change name of marine platoon for distress and nuclear
+  - rscadd: added smart pipes mapping helper for mappers
+2022-12-07:
+  Lumipharon:
+  - bugfix: Spiderlings no longer lose their pixel offsets when unbuckling from widow
+  QualityVan:
+  - balance: Inaprov pills changed to 15u
+  - balance: Inaprov, RR, and neuraline don't unbreak organs
+  RipGrayson:
+  - bugfix: Adjusted a crash location on LV624 that could crush the green disk generator
+  - bugfix: Adjusted a crash location on the Pillar of Spring that could destroy the
+      hull of the ship and lead to space.
+  - bugfix: Changed the button locations on both Canterbury variations so they can't
+      be melted from the outside.
+2022-12-08:
+  Lewdcifer:
+  - rscadd: Added Swarm mode to Laser Machine Gun.
+  Lumipharon:
+  - code_imp: Cleaned up some loadout code for quick equip vendors
+  - balance: Slight reduction in V-31 base accuracy
+  - balance: Reduced AP rifle ammo AP to 25 from 30
+  Naaanii:
+  - rscadd: Adds Warlock to admin player panel tab.
+  XElectricX:
+  - qol: Can open suit inventory with alt right click.
+2022-12-09:
+  TiviPlus:
+  - bugfix: fixed use-inhand keybind bypassing restrainment
+2022-12-10:
+  MLGTASTICa:
+  - balance: Evotowers no longer provide 20% more slots , and instead provide 1 T3
+      slot and 2 T2 slots for each.
+2022-12-11:
+  GravitronBlue:
+  - bugfix: Deployables covered in acid can no longer be picked up
+  Lumipharon:
+  - refactor: refactored some damage code
+  - bugfix: fixed various minor damage related bugs
+  'Sprites: Gregormack':
+  - imageadd: Updated resin wall sprites
+2022-12-12:
+  Blundir:
+  - rscadd: Added two new smoking pipes to the game, added them to gear customization
+      panel
+  - rscadd: Added existing two smoking pipes to gear customization panel
+  - rscdel: Removed different smoking time on different smoking pipes, all pipes now
+      have fixed 400
+  SplinterGP:
+  - bugfix: fixes xenos not receiving burn damage
+  - bugfix: fixes humans runtiming on getting attacked in melee by another human
+  novaepee:
+  - rscdel: Remove a tree south of LV-624 hydro bridge
+2022-12-14:
+  QualityVan:
+  - bugfix: Marine on marine violence more fully uses the correct armor
+2022-12-15:
+  Lumipharon:
+  - balance: Motion sensor pings can be heard by other mobs up to 7 tiles away
+  Naaanii:
+  - rscadd: Added more recipes for items that can be made via reqtorio. (SWAT masks,
+      <s>Optical Imagers,</s> Burn and Trauma Kits and Splints, Valk, Mimir, Tyr,
+      Hlin and Surt modules)
+  - rscadd: Added more material sprites. (See factoryparts.dmi)
+  SplinterGP:
+  - rscadd: Adds the TGUI say modal to replace speech input boxes. Many features!
+  - rscadd: You can switch output channel within the TGUI say modal by clicking the
+      channel button or keying TAB.
+  - rscadd: Added 5-message chat history to the say window. Use arrow keys to scroll
+      recent messages.
+  - rscadd: The say window auto-expands! It adds up to two extra lines and scrolls
+      beyond that.
+  - rscadd: The common radio hotkey - "Y". No need to type ; in radio channel. Help
+      maint!
+  - rscadd: Radio subchannel helpers - Typing subchannels like ":e " will show labels.
+  - rscadd: Getting hurt while speaking has a chance to force you to speak. You read
+      that correc-AUGH
+  - rscadd: Typing indicators! Having an IC channel open will show thinking/typing
+      icons activity.
+  - rscadd: Themes for TGUI Say! There is currently a light mode. More to come.
+2022-12-17:
+  Blundir:
+  - rscadd: added visually visible unpowered chem machines
+  - rscadd: added beaker overlay for liquid dispensers
+  - soundadd: added liquid dispensing sound
+  - imageadd: added new chem machines, beaker overlay
+  - imagedel: deleted old CM chem machines sprites
+  Lewdcifer:
+  - bugfix: SOM SMG belts will now spawn with SMG ammo instead of rifle ammo.
+  grinkgo:
+  - soundadd: Robot footsteps now use the shoe footstep sounds instead of the barefoot
+      sounds
+2022-12-19:
+  Zar000:
+  - rscadd: New primo to ravager
+  - balance: The primo for ravager
+  - rscadd: Cool blood dripping effect when used
+  novaepee:
+  - rscdel: Remove multiple 1 tile chokepoints in Gelida
+2022-12-20:
+  Blundir:
+  - imageadd: new sterile mask sprite
+  - imagedel: deleted old sterile mask sprite
+  QualityVan:
+  - rscadd: The flamethrower's hydrocannon is now a proper underslung gun. It can
+      take the same nozzles the flamer can.
+  - bugfix: Projectile flamethrower won't sometimes get stuck if you mash while in
+      hydro mode
+  - bugfix: Underslung weapons won't appear empty when they aren't
+  - bugfix: Weapons that don't autoeject on empty will still visually have their magazine
+      in until you take it out
+  SiegeB0t:
+  - rscadd: Req consoles can be repaired after friendly fire.
+  collinlunn:
+  - bugfix: Limb replacement surgery's attach prosthetic step now works with the radial
+      menu.
+  - bugfix: Heath analyzers are now more clear about what limbs have infections and
+      necrosis.
+  lbnesquik:
+  - qol: made AI ghosting harder to do accidentally, look better, and notify marines
+      of the fact
+  - admin: made AI ghosting notify admins
+2022-12-21:
+  novaepee:
+  - rscdel: remove two r walls and useless apc in Big Red's admin
+2022-12-22:
+  Lewdcifer:
+  - rscadd: The Sentinel caste has been redesigned, and is now centered around managing
+      the Intoxicated debuff, which will give victims perjudicial effects.
+  - imageadd: Victims affected by this debuff will display an icon on any given xenomorph's
+      HUD, indicating just how much of that debuff they have.
+  - rscadd: 'New Sentinel ability: Toxic Spit. Spit at a target enemy to inflict them
+      with the Intoxicated debuff.'
+  - rscadd: 'New Sentinel ability: Toxic Slash. Imbue your claws with toxins, inflicting
+      the Intoxicated debuff.'
+  - rscadd: 'New Sentinel ability: Drain Sting. Sting your victim, draining their
+      Intoxication. This will grant you several benefits if used on a victim with
+      high Intoxicated stacks.'
+  - rscadd: 'New Sentinel ability: Toxic Grenade. Throw a ball of resin which will
+      burst into a large gas cloud. Victims caught inside its range will be inflicted
+      with the Intoxicated debuff, and take considerable burn damage.'
+  - rscdel: The Sentinel no longer has access to acid and neurotoxin spits.
+  - rscdel: The Sentinel no longer has access to the Neurotoxin Sting ability.
+  - rscdel: Removed the Neurogas Grenade.
+  - balance: Sentinel slash damage reduced from 16/16/17/17 to 14/14/16/16.
+  - balance: Sentinel movement speed increased from -0.8 to -0.9 (the higher the value,
+      the faster).
+  Lumipharon:
+  - code_imp: Minor proc fix
+  QualityVan:
+  - bugfix: abolition of invisigrillity
+  - refactor: Belt harnesses need an item to be attached to it manually, but any item
+      works - so long as it fits in suit storage or back slot.
+  SiegeB0t:
+  - qol: Ghosts can view supply console information.
+  Waselon:
+  - balance: added sunder resistance based on missing sunder, buffed sunder healing
+      for drone, queen and shrike healing abilities.
+  novaepee:
+  - rscadd: Give kebind for | hunter's Mark | hunter's Psychic Trace | drone's acidic
+      salve | hivemind's change form
+  - qol: 'Change a keybind name from Crusher: Toggle Change to Toggle Change to reflect
+      that both crusher, bull, and primo queen uses toggle charge.'
+  psykzz:
+  - balance: mechs now take a minute to build
+2022-12-23:
+  DeltaFire15:
+  - bugfix: The 'show typing indicator' pref should be functioning properly once again.
+  GravitronBlue:
+  - balance: Mech railgun no longer shoots through walls
+  MLGTASTICa:
+  - balance: Queen screech now gives a maximum of 15 stagger , adjusted based on distance
+      , with the minimum being 3.
+  novaepee:
+  - rscadd: directional sprites for ghost ian, now you can spin2win
+  - rscadd: Give Warlock psychic whisper
+  - rscadd: admins can now read psychic whisper
+2022-12-24:
+  Lumipharon:
+  - bugfix: fixed bonus projectiles stacking gun bonuses incorrectly
+  - bugfix: fixed some rockets having far lower range than they should
+  Waselon:
+  - balance: tweaks to burst weapons burstfire
+2022-12-25:
+  QualityVan:
+  - bugfix: You can only repair mechs one attempt at a time per person
+  Waselon:
+  - balance: mech UI reload now takes time
+  novaepee:
+  - rscadd: update death message and pray you have your head on when you died
+  - bugfix: update death message to reflect that you can survive a chestburst
+2022-12-26:
+  Lumipharon:
+  - bugfix: Warlock crush and flamers will no longer get blocked by mechs
+  - refactor: refactored throwpass
+  - bugfix: fixed brain damage making you better at certain things
+  - code_imp: Cleaned up some unused code for ammo
+  - code_imp: Clean up some warlock code
+  - rscadd: CAS GAU animation behaves more sensibly
+  - bugfix: fixed sentinel gas grenades lasting longer than they should
+  Waselon:
+  - bugfix: fix for deevolve deleting xenos if they are not at full plasma or health
+2022-12-27:
+  Lumipharon:
+  - bugfix: fixed some exploits
+  Waselon:
+  - balance: reduced sunder heal for drone, queen and hivelord abilities.
+2022-12-28:
+  Lumipharon:
+  - bugfix: fixed XOOC and MOOC binds incorrectly opening LOOC
+  Three333Digit:
+  - qol: soldering tool repairs the next damaged limb
+2022-12-29:
+  KuzyXD:
+  - bugfix: Admin can't play music via the Play-Internet-Sound verb
+  Lumipharon:
+  - bugfix: fixed some mech guns not being properly reloadable
+  QualityVan:
+  - balance: Shovels fit in suit storage
+2022-12-30:
+  Waselon:
+  - bugfix: fixed inability to reload mech via UI
+  XElectricX:
+  - qol: Spears look like actual spears when thrown and no longer spin. No longer
+      bounce when hitting turfs.
+2022-12-31:
+  novaepee:
+  - bugfix: the wack reinforced window frame orietation in PoS prep

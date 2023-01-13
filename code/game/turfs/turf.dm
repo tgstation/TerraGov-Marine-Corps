@@ -56,7 +56,6 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
-
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
@@ -276,7 +275,7 @@
 	if(old_signal_procs)
 		LAZYOR(W.signal_procs, old_signal_procs)
 
-	for(var/datum/callback/callback as anything in post_change_callbacks)
+	for(var/datum/callback/callback AS in post_change_callbacks)
 		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
@@ -648,7 +647,8 @@
 /turf/open/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 
-
+/turf/open/lavaland/basalt/can_dig_xeno_tunnel()
+	return TRUE
 
 
 

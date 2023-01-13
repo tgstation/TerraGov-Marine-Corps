@@ -10,6 +10,8 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "boiler" //used to match appropriate wound overlays
 
+	gib_flick = "gibbed-a-boiler"
+
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
@@ -33,7 +35,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_ACID_BLOOD
-	can_flags =CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	can_flags =CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 30, FIRE = 40, ACID = 30)
@@ -68,6 +70,8 @@
 		/datum/action/xeno_action/toggle_bomb,
 		/datum/action/xeno_action/activable/spray_acid/line/boiler,
 	)
+
+	water_slowdown = -0.5
 
 /datum/xeno_caste/boiler/young
 	upgrade_name = "Young"

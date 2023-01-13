@@ -9,6 +9,8 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hunter" //used to match appropriate wound overlays
+	gib_anim = "Hunter Gibs"
+	gib_flick = "Hunter Gibbed"
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
@@ -34,7 +36,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)

@@ -364,6 +364,26 @@
 
 //----QUEEN END----//
 //============//
+//---KING START---//
+
+/mob/living/carbon/xenomorph/king/mature
+	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
+
+/mob/living/carbon/xenomorph/king/elder
+	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
+
+/mob/living/carbon/xenomorph/king/ancient
+	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
+
+/mob/living/carbon/xenomorph/king/primordial
+	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
+
+//----KING END----//
+//============//
 //---CRUSHER START---//
 
 /mob/living/carbon/xenomorph/crusher/mature
@@ -542,4 +562,20 @@
 	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //----WIDOW END----//
+//============//
+//----WARLOCK START----//
+
+/mob/living/carbon/xenomorph/warlock/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/warlock/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/warlock/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warlock/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----WARLOCK END----//
 //============//

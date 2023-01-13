@@ -6,6 +6,12 @@
 
 #define isclient(A) (istype(A, /client))
 
+#define isdatum(thing) (istype(thing, /datum))
+
+#define isweakref(D) (istype(D, /datum/weakref))
+
+#define isgenerator(A) (istype(A, /generator))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -103,6 +109,7 @@
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
+#define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))

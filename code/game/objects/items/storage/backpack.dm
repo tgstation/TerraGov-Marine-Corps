@@ -41,6 +41,10 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+/obj/item/storage/backpack/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
+
 /*
 * Backpack Types
 */

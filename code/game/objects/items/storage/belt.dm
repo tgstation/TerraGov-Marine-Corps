@@ -23,6 +23,10 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+/obj/item/storage/belt/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
+
 /obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
@@ -390,6 +394,15 @@
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 
+/obj/item/storage/belt/marine/standard_skirmishrifle/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+
 /obj/item/storage/belt/marine/t90/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
@@ -398,6 +411,15 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
+
+/obj/item/storage/belt/marine/secondary/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/smg/m25(src)
+	new /obj/item/ammo_magazine/smg/m25(src)
+	new /obj/item/ammo_magazine/smg/m25(src)
+	new /obj/item/ammo_magazine/smg/m25(src)
+	new /obj/item/ammo_magazine/smg/m25(src)
+	new /obj/item/ammo_magazine/smg/m25(src)
 
 /obj/item/storage/belt/marine/antimaterial/Initialize()
 	. = ..()
@@ -425,6 +447,24 @@
 	new /obj/item/ammo_magazine/rifle/tx11(src)
 	new /obj/item/ammo_magazine/rifle/tx11(src)
 	new /obj/item/ammo_magazine/rifle/tx11(src)
+
+/obj/item/storage/belt/marine/alf_machinecarbine/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
+	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
+	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
+	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
+	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
+	new /obj/item/ammo_magazine/rifle/alf_machinecarbine(src)
+
+/obj/item/storage/belt/marine/auto_shotgun/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/tx15_slug(src)
+	new /obj/item/ammo_magazine/rifle/tx15_slug(src)
+	new /obj/item/ammo_magazine/rifle/tx15_slug(src)
+	new /obj/item/ammo_magazine/rifle/tx15_flechette(src)
+	new /obj/item/ammo_magazine/rifle/tx15_flechette(src)
+	new /obj/item/ammo_magazine/rifle/tx15_flechette(src)
 
 /obj/item/storage/belt/marine/te_cells/Initialize()
 	. = ..()
@@ -486,21 +526,21 @@
 
 /obj/item/storage/belt/marine/som/som_smg/Initialize()
 	. = ..()
-	new /obj/item/ammo_magazine/rifle/som(src)
-	new /obj/item/ammo_magazine/rifle/som(src)
-	new /obj/item/ammo_magazine/rifle/som(src)
-	new /obj/item/ammo_magazine/rifle/som(src)
-	new /obj/item/ammo_magazine/rifle/som(src)
-	new /obj/item/ammo_magazine/rifle/som(src)
+	new /obj/item/ammo_magazine/smg/som(src)
+	new /obj/item/ammo_magazine/smg/som(src)
+	new /obj/item/ammo_magazine/smg/som(src)
+	new /obj/item/ammo_magazine/smg/som(src)
+	new /obj/item/ammo_magazine/smg/som(src)
+	new /obj/item/ammo_magazine/smg/som(src)
 
 /obj/item/storage/belt/marine/som/som_smg_ap/Initialize()
 	. = ..()
-	new /obj/item/ammo_magazine/rifle/som/ap(src)
-	new /obj/item/ammo_magazine/rifle/som/ap(src)
-	new /obj/item/ammo_magazine/rifle/som/ap(src)
-	new /obj/item/ammo_magazine/rifle/som/ap(src)
-	new /obj/item/ammo_magazine/rifle/som/ap(src)
-	new /obj/item/ammo_magazine/rifle/som/ap(src)
+	new /obj/item/ammo_magazine/smg/som/ap(src)
+	new /obj/item/ammo_magazine/smg/som/ap(src)
+	new /obj/item/ammo_magazine/smg/som/ap(src)
+	new /obj/item/ammo_magazine/smg/som/ap(src)
+	new /obj/item/ammo_magazine/smg/som/ap(src)
+	new /obj/item/ammo_magazine/smg/som/ap(src)
 
 /obj/item/storage/belt/marine/som/volkite/Initialize()
 	. = ..()
@@ -510,6 +550,15 @@
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
+
+/obj/item/storage/belt/marine/som/mpi/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km(src)
 
 /obj/item/storage/belt/marine/sectoid
 	name = "\improper strange ammo belt"
@@ -842,11 +891,11 @@
 		return ..()
 
 //Will only draw the specific holstered item, not ammo etc.
-/obj/item/storage/belt/gun/do_quick_equip()
+/obj/item/storage/belt/gun/do_quick_equip(mob/user)
 	if(!current_gun)
 		return FALSE
 	var/obj/item/W = current_gun
-	remove_from_storage(W, user = src)
+	remove_from_storage(W, null, user)
 	return W
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.

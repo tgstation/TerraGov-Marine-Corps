@@ -6,6 +6,7 @@
 	real_name = "ARES v3.2"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
+	bubble_icon = "robot"
 	anchored = TRUE
 	move_resist = MOVE_FORCE_OVERPOWERING
 	density = TRUE
@@ -25,7 +26,7 @@
 	var/acceleration = FALSE
 
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -499,4 +500,4 @@
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)

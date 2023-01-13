@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/place_acid_well
+	name = "place_acid_well"
+	full_name = "Place acid well"
+	description = "Builds acid well on your tile."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_ACID_WELL
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
@@ -106,6 +113,36 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
+/datum/keybinding/xeno/toggle_charge
+	name = "toggle_charge"
+	full_name = "Toggle Charge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
+/datum/keybinding/xeno/toxic_spit
+	name = "toxic_spit"
+	full_name = "Sentinel: Toxic Spit"
+	description = "A type of spit that inflicts the Intoxicated debuff, dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_SPIT
+
+/datum/keybinding/xeno/toxic_slash
+	name = "toxic_slash"
+	full_name = "Sentinel: Toxic Slash"
+	description = "Imbue your claws with toxins, inflicting the Intoxicated debuff on hit and dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_SLASH
+
+/datum/keybinding/xeno/drain_sting
+	name = "drain_sting"
+	full_name = "Sentinel: Drain Sting"
+	description = "Sting a victim, draining any Intoxicated debuffs they may have, restoring you and dealing damage."
+	keybind_signal = COMSIG_XENOABILITY_DRAIN_STING
+
+/datum/keybinding/xeno/acidic_salve
+	name = "acidic_salve"
+	full_name = "Drone: Acidic Salve"
+	description = "Heal a xenomorph with this."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/essence_link
 	name = "essence_link"
 	full_name = "Drone: Essence Link"
@@ -124,11 +161,11 @@
 	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
 	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
 
-/datum/keybinding/xeno/nurogasnade
-	name = "neurogas"
-	full_name = "Sentinel: Neurogas Grenade"
-	description = "Throws a gas emitting grenade at the targetted area"
-	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
+/datum/keybinding/xeno/toxicgrenade
+	name = "toxic_grenade"
+	full_name = "Sentinel: Toxic Grenade"
+	description = "Throws a ball of resin containing a toxin that inflicts the Intoxicated debuff, dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_GRENADE
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -184,6 +221,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 
+/datum/keybinding/xeno/call_younger
+	name = "call_younger"
+	full_name = "Carrier: Call of Younger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER
+
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
 	full_name = "Carrier: Place Trap"
@@ -219,12 +262,6 @@
 	full_name = "Crusher: Stomp"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_STOMP
-
-/datum/keybinding/xeno/toggle_charge
-	name = "toggle_charge"
-	full_name = "Crusher: Toggle Charge"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
 
 /datum/keybinding/xeno/cresttoss
 	name = "cresttoss"
@@ -376,6 +413,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
+/datum/keybinding/xeno/change_form
+	name = "change_form"
+	full_name = "Hivemind: Change Form"
+	description = ""
+	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
@@ -393,6 +437,20 @@
 	full_name = "Hunter: Mirage"
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+
+/datum/keybinding/xeno/mark
+	name = "mark"
+	full_name = "Hunter: Mark"
+	description = "Mark that lonely marine so that you can track with Psychic Trace."
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/psychic_trace
+	name = "psychic_trace"
+	full_name = "Hunter: Psychic Trace"
+	description = "Locate direction of marine that you've marked."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
+	hotkey_keys = list("G")
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
@@ -660,16 +718,39 @@
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 
 /datum/keybinding/xeno/nightfall
+	hotkey_keys = list("F")
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"
 	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
 
-/datum/keybinding/xeno/gravity_crush
-	name = "gravity_crush"
-	full_name = "King: Gravity Crush"
-	description = "Increases the localized gravity in an area and crushes everything in it."
-	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+/datum/keybinding/xeno/petrify
+	hotkey_keys = list("E")
+	name = "petrify"
+	full_name = "King: Petrify"
+	description = "Petrifies all humans within view. While petrified humans can neither be damaged or take any actions."
+	keybind_signal = COMSIG_XENOABILITY_PETRIFY
+
+/datum/keybinding/xeno/off_guard
+	hotkey_keys = list("Q")
+	name = "off_guard"
+	full_name = "King: Off-guard"
+	description = "Muddles the mind of an enemy, increasing their scatter for a while."
+	keybind_signal = COMSIG_XENOABILITY_OFFGUARD
+
+/datum/keybinding/xeno/shattering_roar
+	hotkey_keys = list("R")
+	name = "shattering_roar"
+	full_name = "King: Shattering roar"
+	description = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+	keybind_signal = COMSIG_XENOABILITY_SHATTERING_ROAR
+
+/datum/keybinding/xeno/zero_form_beam
+	hotkey_keys = list("R")
+	name = "zero_form_beam"
+	full_name = "King: Zero-form beam"
+	description = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
+	keybind_signal = COMSIG_XENOABILITY_ZEROFORMBEAM
 
 /datum/keybinding/xeno/psychic_summon
 	name = "psychic_summon"
@@ -737,3 +818,24 @@
 		return
 	var/mob/living/carbon/xenomorph/xeno = user.mob
 	xeno.vent_crawl()
+
+/datum/keybinding/xeno/psychic_shield
+	name = "Psychic Shield"
+	full_name = "Warlock: Psychic Shield"
+	description = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/psychic_blast
+	name = "Psychic Blast"
+	full_name = "Warlock: Psychic Blast"
+	description = "Fire a lightly-damaging AOE psychic beam which knocks back enemies after a short charge-up."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_BLAST
+	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/psychic_crush
+	name = "Psychic Crush"
+	full_name = "Warlock: Psychic Crush"
+	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
+	hotkey_keys = list("Q")

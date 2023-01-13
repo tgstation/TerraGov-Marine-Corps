@@ -100,11 +100,10 @@
 	name = "TGMC Squad Marine"
 	jobtype = "Squad Marine"
 
-	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/marine/m10x
@@ -122,6 +121,7 @@
 	desc = "The classic line rifleman. Equipped with an AR-12 assault rifle with UGL, heavy armor, and plenty of grenades and ammunition. A solid all-rounder."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+	belt = /obj/item/storage/belt/marine/t12
 
 /datum/outfit/quick/tgmc/marine/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -131,13 +131,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -150,6 +143,7 @@
 	desc = "For when bullets don't cut the mustard. Laser rifle with miniflamer and heavy armor. Lasers are more effective against SOM armor, but cannot break bones and damage organs."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	belt = /obj/item/storage/belt/marine/te_cells
 
 /datum/outfit/quick/tgmc/marine/standard_laserrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -158,13 +152,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
@@ -177,6 +164,7 @@
 	desc = "The modern line rifleman. Equipped with an AR-18 carbine with UGL, heavy armor, and plenty of grenades and ammunition. Boasts better mobility and damage output than the AR-12, but suffers with a smaller magazine and worse performance at longer ranges."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/standard
+	belt = /obj/item/storage/belt/marine/t18
 
 /datum/outfit/quick/tgmc/marine/standard_carbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -186,13 +174,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -205,6 +186,7 @@
 	desc = "The old rifleman. Equipped with an AR-11 combat rifle with heavy armor, and plenty of grenades and ammunition. Has a large capacity with deadly damage output at all ranges, but lacks many attachment options of more modern weapons and somewhat more cumbersome to handle."
 
 	suit_store = /obj/item/weapon/gun/rifle/tx11/standard
+	belt = /obj/item/storage/belt/marine/combat_rifle
 
 /datum/outfit/quick/tgmc/marine/combat_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -214,13 +196,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -233,6 +208,7 @@
 	desc = "Better stopping power at the cost of lower rate of fire. Equipped with an AR-21 skirmish rifle with UGL, heavy armor, and plenty of grenades and ammunition. Rewards good aim with its heavy rounds."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
+	belt = /obj/item/storage/belt/marine/standard_skirmishrifle
 
 /datum/outfit/quick/tgmc/marine/standard_skirmishrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -242,13 +218,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -263,6 +232,7 @@
 	head = /obj/item/clothing/head/modular/marine/m10x/tyr
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/assault
+	belt = /obj/item/storage/belt/marine/alf_machinecarbine
 
 /datum/outfit/quick/tgmc/marine/alf_shocktrooper/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -273,13 +243,6 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alf_machinecarbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alf_machinecarbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alf_machinecarbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alf_machinecarbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alf_machinecarbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alf_machinecarbine, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -324,7 +287,7 @@
 	desc = "For when you need the biggest gun you can carry. Equipped with an MG-27 machinegun and miniscope and a MR-25 SMG as a side arm, as well as medium armor and a small amount of construction supplies. Allows for devestating, albeit static firepower."
 
 	belt = /obj/item/storage/holster/m25
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/shield
 	suit_store = /obj/item/weapon/gun/standard_mmg/machinegunner
 	l_store = /obj/item/storage/pouch/construction
 
@@ -380,6 +343,7 @@
 	belt = /obj/item/storage/belt/shotgun
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/pointman
+	belt = /obj/item/storage/belt/shotgun/mixed
 
 /datum/outfit/quick/tgmc/marine/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -391,21 +355,6 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(H), SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
@@ -419,6 +368,7 @@
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
+	belt = /obj/item/storage/belt/marine/te_cells
 
 /datum/outfit/quick/tgmc/marine/standard_lasercarbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -429,13 +379,6 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -449,6 +392,7 @@
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/scout
+	belt = /obj/item/storage/belt/marine/t18
 
 /datum/outfit/quick/tgmc/marine/light_carbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -458,13 +402,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -480,6 +417,7 @@
 	glasses = /obj/item/clothing/glasses/welding
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
 	suit_store = /obj/item/weapon/gun/smg/m25/magharness
+	belt = /obj/item/storage/belt/marine/secondary
 	r_hand = /obj/item/weapon/shield/riot/marine
 
 /datum/outfit/quick/tgmc/marine/shield_tank/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -491,13 +429,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
@@ -530,6 +461,7 @@
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/rifle/tx8/scout
+	belt = /obj/item/storage/belt/marine/tx8
 
 /datum/outfit/quick/tgmc/marine/scout/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -539,13 +471,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/scanner(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8/incendiary, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8/incendiary, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8/impact, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx8/impact, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
@@ -559,7 +484,6 @@
 	name = "TGMC Squad Engineer"
 	jobtype = "Squad Engineer"
 
-	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/marine/engineer/black_vest
@@ -591,16 +515,10 @@
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/engineer
 	back = /obj/item/storage/holster/backholster/rpg/low_impact
+	belt = /obj/item/storage/belt/marine/t18
 
 /datum/outfit/quick/tgmc/engineer/rrengineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_ACCESSORY)
@@ -613,6 +531,7 @@
 	desc = "Firing more guns than you have hands. Equipped with a AR-12 assault rifle with miniflamer, and two minisentries along with the standard engineer kit. Allows the user to quickly setup strong points and lock areas down, with some sensible placement."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
+	belt = /obj/item/storage/belt/marine/t12
 
 /datum/outfit/quick/tgmc/engineer/sentry/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -622,13 +541,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
@@ -642,6 +554,7 @@
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	back = /obj/item/storage/backpack/marine/tech
+	belt = /obj/item/storage/belt/marine/auto_shotgun
 
 /datum/outfit/quick/tgmc/engineer/demolition/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -657,13 +570,6 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_ACCESSORY)
@@ -919,7 +825,6 @@
 	name = "TGMC Squad Leader"
 	jobtype = "Squad Leader"
 
-	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/hud/health
 	w_uniform = /obj/item/clothing/under/marine/black_vest
@@ -954,6 +859,7 @@
 	desc = "Gives the orders. Equipped with an AR-12 assault rifle with UGL, plenty of grenades, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+	belt = /obj/item/storage/belt/marine/t12
 
 /datum/outfit/quick/tgmc/leader/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -971,13 +877,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -989,6 +888,7 @@
 	desc = "Gives the orders. Equipped with an AR-18 carbine with plasma pistol attachment, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, while unleashing excellent damage at medium range."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
+	belt = /obj/item/storage/belt/marine/t18
 
 /datum/outfit/quick/tgmc/leader/standard_carbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1004,13 +904,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -1022,6 +915,7 @@
 	desc = "Gives the orders. Equipped with an AR-11 combat rifle, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, with excellent damage at all ranges."
 
 	suit_store = /obj/item/weapon/gun/rifle/tx11/standard
+	belt = /obj/item/storage/belt/marine/combat_rifle
 
 /datum/outfit/quick/tgmc/leader/combat_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1039,13 +933,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -1057,6 +944,7 @@
 	desc = "Gives the orders. Equipped with an SH-15 auto shotgun, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, with strong damage and control."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/plasma_pistol
+	belt = /obj/item/storage/belt/marine/auto_shotgun
 
 /datum/outfit/quick/tgmc/leader/auto_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1072,13 +960,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_slug, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx15_flechette, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
@@ -1090,6 +971,7 @@
 	desc = "Gives the orders. Equipped with a laser rifle with UGL for better armor penetration against SOM, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	belt = /obj/item/storage/belt/marine/te_cells
 
 /datum/outfit/quick/tgmc/leader/standard_laserrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1106,13 +988,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
@@ -1125,6 +1000,7 @@
 	quantity = 2
 
 	suit_store = /obj/item/weapon/gun/rifle/tx55/combat_patrol
+	belt = /obj/item/storage/belt/marine/oicw
 
 /datum/outfit/quick/tgmc/leader/oicw/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1136,13 +1012,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
@@ -1162,11 +1031,10 @@
 	name = "SOM Squad Marine"
 	jobtype = "SOM Squad Standard"
 
-	belt = /obj/item/storage/belt/marine/som
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	wear_suit = /obj/item/clothing/suit/modular/som
+	wear_suit = /obj/item/clothing/suit/modular/som/shield
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
@@ -1185,6 +1053,7 @@
 	desc = "The typical SOM infantryman. Equipped with a V-31 assault rifle with integrated 'micro grenade' rail launcher, medium armor and a good selection of grenades. The rail launcher fires grenades that must arm mid flight, so are ineffective at close ranges, but add significant tactical options at medium range."
 
 	suit_store = /obj/item/weapon/gun/rifle/som/standard
+	belt = /obj/item/storage/belt/marine/som/som_rifle
 
 /datum/outfit/quick/som/marine/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1194,13 +1063,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/standard(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_ACCESSORY)
@@ -1213,6 +1075,7 @@
 	desc = "A call back to an earlier time. Equipped with an MPI_KM assault rifle, with under barrel grenade launcher and a large supply of grenades. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
+	belt = /obj/item/storage/belt/marine/som/mpi
 
 /datum/outfit/quick/som/marine/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1222,13 +1085,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/standard(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
@@ -1242,6 +1098,7 @@
 
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
 	suit_store = /obj/item/weapon/gun/smg/som/scout
+	belt = /obj/item/storage/belt/marine/som/som_smg
 
 /datum/outfit/quick/som/marine/scout/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1253,13 +1110,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
@@ -1270,7 +1120,7 @@
 	name = "V-51 Pointman"
 	desc = "For close encounters. Equipped with a V-51 semi-automatic shotgun, light armor with an 'Aegis' shield module and a large selection of grenades. Allows for good mobility and dangerous CQC firepower."
 
-	belt = /obj/item/storage/belt/shotgun/som
+	belt = /obj/item/storage/belt/shotgun/som/mixed
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
 	suit_store = /obj/item/weapon/gun/shotgun/som/pointman
 
@@ -1283,21 +1133,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/standard(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -1338,8 +1173,9 @@
 	desc = "Heavy armored breaching configuration. Equipped with a V-21 submachine gun with variable firerate allowing for extreme rates of fire when properly wielded, heavy armor, a boarding shield and a good selection of grenades. Offers outstanding protection although damage may be lacking, particular at longer range."
 
 	glasses = /obj/item/clothing/glasses/welding
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/shield
 	suit_store = /obj/item/weapon/gun/smg/som/one_handed
+	belt = /obj/item/storage/belt/marine/som/som_smg
 	r_hand = /obj/item/weapon/shield/riot/marine/som
 
 /datum/outfit/quick/som/marine/breacher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1352,13 +1188,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
@@ -1407,6 +1236,7 @@
 	quantity = 4
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
+	belt = /obj/item/storage/belt/marine/som/volkite
 
 /datum/outfit/quick/som/marine/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1416,13 +1246,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/standard(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
@@ -1435,7 +1258,6 @@
 	name = "SOM Squad Engineer"
 	jobtype = "SOM Squad Engineer"
 
-	belt = /obj/item/storage/belt/marine/som
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
@@ -1465,6 +1287,7 @@
 	desc = "Battlefield engineer; building up and tearing down. Equipped with a V-31 assault rifle with integrated 'micro grenade' rail launcher, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. The rail launcher fires grenades that must arm mid flight, so are ineffective at close ranges, but add significant tactical options at medium range."
 
 	suit_store = /obj/item/weapon/gun/rifle/som/standard
+	belt = /obj/item/storage/belt/marine/som/som_rifle
 
 /datum/outfit/quick/som/engineer/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1489,18 +1312,12 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
-
 /datum/outfit/quick/som/engineer/mpi
 	name = "MPI-KM Engineer"
 	desc = "Battlefield engineer; building up and tearing down. Equipped with an MPI_KM assault rifle, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/magharness
+	belt = /obj/item/storage/belt/marine/som/mpi
 
 /datum/outfit/quick/som/engineer/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1525,18 +1342,12 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-
 /datum/outfit/quick/som/engineer/standard_smg
 	name = "V-21 Engineer"
 	desc = "Battlefield engineer; building up and tearing down. Equipped with a V-21 submachine gun with variable firerate allowing for extreme rates of fire when properly wielded, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. "
 
 	suit_store = /obj/item/weapon/gun/smg/som/support
+	belt = /obj/item/storage/belt/marine/som/som_smg
 
 /datum/outfit/quick/som/engineer/standard_smg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1561,18 +1372,11 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-
 /datum/outfit/quick/som/engineer/standard_shotgun
 	name = "V-51 Engineer"
 	desc = "Battlefield engineer; building up and tearing down. Equipped with a V-51 semi-automatic shotgun, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. "
 
-	belt = /obj/item/storage/belt/shotgun/som
+	belt = /obj/item/storage/belt/shotgun/som/flechette
 	suit_store = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/outfit/quick/som/engineer/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1598,27 +1402,12 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BELT)
-
 //Base SOM medic outfit
 /datum/outfit/quick/som/medic
 	name = "SOM Squad Medic"
 	jobtype = "SOM Squad Medic"
 
-	belt = /obj/item/storage/belt/lifesaver/som
+	belt = /obj/item/storage/belt/lifesaver/som/quick
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/medic/vest
 	shoes = /obj/item/clothing/shoes/marine/som/knife
@@ -1643,28 +1432,6 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/dylovene, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/inaprovaline, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/quickclot, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/alkysine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/imidazoline, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/meralyne, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/dermaline, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/hypervene, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BELT)
 
 /datum/outfit/quick/som/medic/standard_assaultrifle
 	name = "V-31 Medic"
@@ -1779,11 +1546,10 @@
 	name = "SOM Squad Veteran"
 	jobtype = "SOM Squad Veteran"
 
-	belt = /obj/item/storage/belt/marine/som
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/shield
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
@@ -1798,6 +1564,7 @@
 
 	back = /obj/item/storage/backpack/lightpack/som
 	suit_store = /obj/item/weapon/gun/rifle/som/veteran
+	belt = /obj/item/storage/belt/marine/som/som_rifle_ap
 
 /datum/outfit/quick/som/veteran/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1813,13 +1580,6 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
@@ -1834,6 +1594,7 @@
 	desc = "Close range high damage, high speed. Equipped with a V-21 submachine gun with variable firerate allowing for extreme rates of fire when properly wielded, heavy armor, a good variety of grenades and AP ammunition. Allows for excellent close to medium range firepower, especially against heavily armored targets, and is surprisingly mobile."
 
 	suit_store = /obj/item/weapon/gun/smg/som/veteran
+	belt = /obj/item/storage/belt/marine/som/som_smg_ap
 
 /datum/outfit/quick/som/veteran/standard_smg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1845,13 +1606,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -1870,6 +1624,7 @@
 	glasses = /obj/item/clothing/glasses/welding
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
+	belt = /obj/item/storage/belt/marine/som/volkite
 	r_hand = /obj/item/weapon/shield/riot/marine/som
 
 /datum/outfit/quick/som/veteran/breacher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1881,13 +1636,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -1903,6 +1651,7 @@
 	desc = "Heavily armed and armored SOM elite. Equipped with a volkite charger with motion sensor and gyrostabiliser for better one handed use, heavy armor and a good variety of grenades. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The charger is the SOM's premier close/medium range weapon, with good mobility, and can be used (with some difficulty) one handed."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
+	belt = /obj/item/storage/belt/marine/som/volkite
 
 /datum/outfit/quick/som/veteran/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1913,13 +1662,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -1935,6 +1677,7 @@
 	desc = "Heavily armed and armored SOM elite. Equipped with a volkite caliver, heavy armor and a good variety of grenades. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The caliver provides deadly firepower at all ranges. Approach with caution."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
+	belt = /obj/item/storage/belt/marine/som/volkite
 
 /datum/outfit/quick/som/veteran/caliver/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1945,13 +1688,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -2001,6 +1737,7 @@
 	desc = "Heavily armed and armored SOM elite, with a taste for nostalgia. Equipped with an MPI_KM assault rifle, with under barrel grenade launcher and a large supply of grenades. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
+	belt = /obj/item/storage/belt/marine/som/mpi
 
 /datum/outfit/quick/som/veteran/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2011,13 +1748,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
@@ -2057,18 +1787,12 @@
 	head = /obj/item/clothing/head/modular/som/mithridatius
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	suit_store = /obj/item/weapon/gun/smg/som/support
+	belt = /obj/item/storage/belt/marine/som/som_smg
 	back = /obj/item/storage/holster/backholster/rpg/som/war_crimes
 	l_store = /obj/item/storage/pouch/grenade/som
 
 /datum/outfit/quick/som/veteran/rocket_man/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_L_POUCH)
@@ -2091,7 +1815,6 @@
 	name = "SOM Squad Leader"
 	jobtype = "SOM Squad Leader"
 
-	belt = /obj/item/storage/belt/marine/som
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/leader/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
@@ -2118,6 +1841,7 @@
 
 	back = /obj/item/storage/backpack/lightpack/som
 	suit_store = /obj/item/weapon/gun/rifle/som/veteran
+	belt = /obj/item/storage/belt/marine/som/som_rifle_ap
 
 /datum/outfit/quick/som/squad_leader/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2134,13 +1858,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
@@ -2152,6 +1869,7 @@
 	desc = "Close range high damage, high speed. Equipped with a V-21 submachine gun with variable firerate allowing for extreme rates of fire when properly wielded, Gorgon heavy armor with 'Valkyrie' autodoctor module, a good variety of grenades and AP ammunition. Allows for excellent close to medium range firepower, especially against heavily armored targets, and is surprisingly mobile."
 
 	suit_store = /obj/item/weapon/gun/smg/som/veteran
+	belt = /obj/item/storage/belt/marine/som/som_smg_ap
 
 /datum/outfit/quick/som/squad_leader/standard_smg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2165,13 +1883,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/incendiary, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/incendiary, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/ap, SLOT_IN_BELT)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -2183,6 +1894,7 @@
 	desc = "For the leader that prefers to be up close and personal. Equipped with a volkite charger with motion sensor and gyrostabiliser for better one handed use, Gorgon heavy armor with 'Valkyrie' autodoctor module and a good variety of grenades. Allows for excellent close to medium range firepower, with first rate survivability. Very dangerous."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
+	belt = /obj/item/storage/belt/marine/som/volkite
 
 /datum/outfit/quick/som/squad_leader/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2193,13 +1905,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -2212,6 +1917,7 @@
 	desc = "Victory through superior firepower. Equipped with a volkite caliver and motion sensor, Gorgon heavy armor with 'Valkyrie' autodoctor module and a good variety of grenades. Allows for excellent damage at all ranges, with first rate survivability. Very dangerous."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
+	belt = /obj/item/storage/belt/marine/som/volkite
 
 /datum/outfit/quick/som/squad_leader/caliver/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2222,13 +1928,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -2241,6 +1940,7 @@
 	desc = "For the leader with a taste for nostalgia. Equipped with an MPI_KM assault rifle, with under barrel grenade launcher, Gorgon heavy armor with 'Valkyrie' autodoctor module and a large supply of grenades. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
+	belt = /obj/item/storage/belt/marine/som/mpi
 
 /datum/outfit/quick/som/squad_leader/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2252,13 +1952,6 @@
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)

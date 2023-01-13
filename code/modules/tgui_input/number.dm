@@ -119,6 +119,7 @@
 	data["min_value"] = min_value
 	data["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
 	data["title"] = title
+	data["round_value"] = round_value
 	return data
 
 /datum/tgui_input_number/ui_data(mob/user)

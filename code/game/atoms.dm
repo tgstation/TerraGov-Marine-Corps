@@ -11,9 +11,8 @@
 	var/blood_color
 	var/list/blood_DNA
 
+	///Flags to indicate whether this atom can bypass certain things, or if certain things can bypass this atom
 	var/flags_pass = NONE
-	///whether items can be thrown past, or projectiles can fire past this atom.
-	var/throwpass = FALSE
 
 	var/resistance_flags = PROJECTILE_IMMUNE
 
@@ -473,6 +472,8 @@ directive is properly returned.
 			log_game(log_text)
 		if(LOG_MECHA)
 			log_mecha(log_text)
+		if(LOG_SPEECH_INDICATORS)
+			log_speech_indicators(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)

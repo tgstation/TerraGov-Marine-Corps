@@ -8,7 +8,6 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
@@ -42,34 +41,34 @@
 	///CAS impact prediction type to use. Explosive, incendiary, etc
 	var/prediction_type = CAS_AMMO_HARMLESS
 
-	attackby(obj/item/I, mob/user)
-
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(PC.linked_powerloader)
-				if(PC.loaded)
-					if(istype(PC.loaded, /obj/structure/ship_ammo))
-						var/obj/structure/ship_ammo/SA = PC.loaded
-						if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
-							if(ammo_count < max_ammo_count)
-								var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
-								ammo_count += transf_amt
-								SA.ammo_count -= transf_amt
-								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
-								if(!SA.ammo_count)
-									PC.loaded = null
-									PC.update_icon()
-									qdel(SA)
-				else
-					forceMove(PC.linked_powerloader)
-					PC.loaded = src
-					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					PC.update_icon()
-					to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
-					update_icon()
-			return TRUE
-		return ..()
+// todo this needs a refactor and needs to call parent first not last
+/obj/structure/ship_ammo/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.linked_powerloader)
+			if(PC.loaded)
+				if(istype(PC.loaded, /obj/structure/ship_ammo))
+					var/obj/structure/ship_ammo/SA = PC.loaded
+					if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
+						if(ammo_count < max_ammo_count)
+							var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+							ammo_count += transf_amt
+							SA.ammo_count -= transf_amt
+							playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+							to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
+							if(!SA.ammo_count)
+								PC.loaded = null
+								PC.update_icon()
+								qdel(SA)
+			else
+				forceMove(PC.linked_powerloader)
+				PC.loaded = src
+				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+				PC.update_icon()
+				to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
+				update_icon()
+		return TRUE
+	return ..()
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
@@ -446,18 +445,36 @@
 
 /obj/structure/ship_ammo/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site. Moving this will require some sort of lifter."
+	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 150
+	point_cost = 250
+	devastating_explosion_range = 2
+	heavy_explosion_range = 3
+	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/list/to_check = filled_turfs(impact, 3, "square")
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
+	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
 
-	for(var/turf/closed/wall/resin/wall in to_check)
-		wall.take_damage(2000)
+/**
+ * proc/delayed_detonation(turf/impact)
+ *
+ * this proc is responsable for calculation and executing explosion in cluster like fashion
+ * * (turf/impact): targets impacted turf from first explosion
+ */
+
+/obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
+	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+	for(var/i=1 to 8)
+		var/list/coords = impact_coords[i]
+		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+		detonation_target.ceiling_debris_check(2)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"

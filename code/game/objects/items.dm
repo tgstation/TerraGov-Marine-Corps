@@ -329,12 +329,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
-/obj/item/proc/do_quick_equip()
+/obj/item/proc/do_quick_equip(mob/user)
 	var/obj/item/found = locate(/obj/item/storage) in contents
 	if(!found)
 		found = locate(/obj/item/armor_module/storage) in contents
 	if(found)
-		return found.do_quick_equip()
+		return found.do_quick_equip(user)
 	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -1355,3 +1355,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.swap_hand()
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
+
+///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
+/obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	//Put item into player's currently open storage
+	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+		user.s_active.handle_item_insertion(src, FALSE, user)
+		return
+	//Equip item onto player
+	if (auto_equip && vendor_equip(user))
+		return
+	//Otherwise fall back to putting item in player's hand
+	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
+		pickup(user)
+
+///Controls how vendors will try to equip this item. Returns whether item was sucessfully equipped
+/obj/item/proc/vendor_equip(mob/user)
+	return FALSE
+

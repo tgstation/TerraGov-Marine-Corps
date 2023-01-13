@@ -53,7 +53,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/tactical,
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
@@ -251,7 +250,6 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/shotgun,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -292,12 +290,12 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 	)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 14)
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 	)
 
 	fire_delay = 15
@@ -312,7 +310,7 @@
 
 /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 		/obj/item/attachable/magnetic_harness,
 	)
 
@@ -344,7 +342,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -573,7 +571,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/flashlight,
@@ -601,8 +599,8 @@
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper SH-35 pump shotgun"
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
-	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t35"
 	item_state = "t35"
 	cock_animation = "t35_pump"
@@ -621,14 +619,14 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/t35stock,
+		/obj/item/attachable/foldable/t35stock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock)
 
-	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 20, "under_x" = 23, "under_y" = 8, "stock_x" = 7, "stock_y" = 12)
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
 	flags_item_map_variant = NONE
 
 	fire_delay = 20
@@ -643,11 +641,11 @@
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/angledgrip, /obj/item/attachable/bayonet)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/motiondetector, /obj/item/attachable/angledgrip, /obj/item/attachable/bayonet)
 
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	starting_attachment_types = list(/obj/item/attachable/stock/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX

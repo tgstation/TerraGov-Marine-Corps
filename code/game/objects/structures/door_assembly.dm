@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	throwpass = FALSE
+	flags_pass = PASSAIR
 	max_integrity = 50
 	var/state = 0
 	var/base_icon_state = ""
@@ -17,11 +17,9 @@
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
-	New()
-
-		..()
-
-		update_state()
+/obj/structure/door_assembly/Initialize()
+	. = ..()
+	update_state()
 
 /obj/structure/door_assembly/door_assembly_com
 	base_icon_state = "com"

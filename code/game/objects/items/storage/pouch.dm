@@ -31,6 +31,9 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+/obj/item/storage/pouch/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 
 

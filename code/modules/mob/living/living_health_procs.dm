@@ -225,38 +225,9 @@
 		updatehealth()
 
 
-// damage MANY limbs, in random order
-/mob/living/proc/take_overall_damage(brute, burn, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(status_flags & GODMODE)
-		return 0//godmode
-
-	var/hit_percent = (100 - blocked) * 0.01
-
-	if(hit_percent <= 0) //total negation
-		return 0
-
-	if(blocked)
-		if(brute)
-			brute *= CLAMP01(hit_percent) //Percentage reduction
-		if(burn)
-			burn *= CLAMP01(hit_percent) //Percentage reduction
-
-	if(!brute && !burn) //Complete negation
-		return 0
-
-	adjustBruteLoss(brute)
-	adjustFireLoss(burn)
-	if(updating_health)
-		updatehealth()
-	return TRUE
-
-/// This proc causes damage evenly on a human mob limbs, accounting individual limb armor, if used on livings will just call take_overall_damage().
-/mob/living/proc/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE) //This proc is overrided on humans, otherwise it just applies some damage and checks armor on chest if not human.
-	if(damagetype == BRUTE)
-		return take_overall_damage(damage, 0, get_soft_armor(armortype), sharp, edge, updating_health)
-	if(damagetype == BURN)
-		return take_overall_damage(0, damage, get_soft_armor(armortype), sharp, edge, updating_health)
-	return FALSE
+///Damages all limbs equally. Overridden by human, otherwise just does apply_damage
+/mob/living/proc/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+	return apply_damage(damage, damagetype, null, armortype, sharp, edge, updating_health, penetration)
 
 /mob/living/proc/restore_all_organs()
 	return
@@ -388,7 +359,6 @@
 	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	dead_ticks = 0
 	chestburst = 0
-	headbitten = FALSE
 	update_body()
 	update_hair()
 	return ..()
@@ -446,7 +416,7 @@
 		faction = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)

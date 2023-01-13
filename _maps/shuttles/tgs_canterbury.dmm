@@ -133,11 +133,16 @@
 /obj/item/binoculars,
 /obj/item/facepaint/sniper,
 /obj/machinery/alarm,
+/obj/machinery/door_control{
+	dir = 4;
+	id = "port_umbilical_outer";
+	name = "outer door-control"
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "av" = (
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/tool/hand_labeler,
@@ -172,20 +177,12 @@
 "ay" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /obj/machinery/alarm,
-/turf/open/floor/mainship/cargo,
-/area/shuttle/canterbury)
-"az" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_outer";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door_control{
-	id = "port_umbilical_outer";
-	name = "outer door-control";
-	pixel_y = 32
+	dir = 8;
+	id = "starboard_umbilical_outer";
+	name = "outer door-control"
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aA" = (
 /obj/structure/barricade/plasteel{
@@ -210,19 +207,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
-"aG" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "starboard_umbilical_outer";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
-	name = "outer door-control";
-	pixel_y = 32
-	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aH" = (
 /obj/machinery/door/poddoor/mainship{
@@ -308,10 +292,10 @@
 /area/shuttle/canterbury)
 "aZ" = (
 /obj/machinery/power/terminal,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -342,7 +326,7 @@
 /area/shuttle/canterbury)
 "bi" = (
 /obj/machinery/power/smes/preset,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -902,7 +886,7 @@ aa
 aa
 an
 an
-az
+aH
 aH
 aH
 an
@@ -1178,7 +1162,7 @@ aa
 aa
 an
 an
-aG
+aK
 aK
 aK
 an

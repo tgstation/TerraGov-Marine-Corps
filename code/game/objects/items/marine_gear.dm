@@ -236,7 +236,7 @@
 //Harness Belts
 /obj/item/belt_harness
 	name = "gun sling"
-	desc = "A leather sling with a spot to attach a gun. Should keep you from losing your weapon, hopefully."
+	desc = "A leather sling with a clip to attach something. Should keep you from losing your weapon, hopefully."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "gun_sling"
 	item_state = "gun_sling"
@@ -245,17 +245,74 @@
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
+	///The current attacher. Gets remade for every new item
+	var/datum/component/reequip/reequip_component
+
+/obj/item/belt_harness/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(reequip_component)
+		. += "There is \a [reequip_component.parent] hooked into it."
+
+/obj/item/belt_harness/unequipped(mob/unequipper, slot)
+	if(reequip_component)
+		detach_item(reequip_component.parent, unequipper)
+	return ..()
+
+/obj/item/belt_harness/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/huser = user
+	if(huser.belt != src)
+		to_chat(user, span_notice("You need to be wearing [src] to attach something to it!"))
+		return
+	if(reequip_component)
+		if(reequip_component.parent == I)
+			detach_item(I, user)
+			return
+		to_chat(user, span_notice("[src] already has \a [reequip_component.parent] hooked into it!"))
+		return
+	attach_item(I, user)
+
+///Set up the link between belt and object
+/obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
+	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
+	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
+
+///Clean out attachment refs/signals
+/obj/item/belt_harness/proc/detach_item(source)
+	SIGNAL_HANDLER
+	if(!reequip_component)
+		return
+	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
+	if(ishuman(loc))
+		to_chat(loc, span_notice("[src] clicks as \the [reequip_component.parent] unhook[reequip_component.parent.p_s()] from it."))
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	if(!QDELING(reequip_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
+		qdel(reequip_component)
+	reequip_component = null
+
+/obj/item/belt_harness/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
-	desc = "A shoulder worn strap with clamps that can attach to a gun. Should keep you from losing your weapon, hopefully."
+	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
 	icon_state = "heavy_harness"
 	item_state = "heavy_harness"
 
-/obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+/obj/item/belt_harness/marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+		to_chat(user, span_danger("!!REMEMBER TO ATTACH YOUR WEAPON TO YOUR HARNESS OR IT WON'T WORK!!"))
 
 /obj/item/compass
 	name = "compass"

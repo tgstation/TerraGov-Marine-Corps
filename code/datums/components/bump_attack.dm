@@ -33,7 +33,7 @@
 	QDEL_NULL(toggle_action)
 	return ..()
 
-
+/// Handles the activation and deactivation of the bump attack component on living mobs.
 /datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable = !active, silent_activation)
 	if(should_enable == active)
 		return
@@ -53,7 +53,7 @@
 	active = FALSE
 	UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 
-
+/// Handles living bump action checks before actually doing the attack checks.
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
@@ -61,7 +61,7 @@
 	if(!(target.flags_atom & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
-
+/// Handles carbon bump action checks before actually doing the attack checks.
 /datum/component/bump_attack/proc/carbon_bump_action_checks(atom/target)
 	var/mob/living/carbon/bumper = parent
 	. = living_bump_action_checks(target)
@@ -71,6 +71,7 @@
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
 
+/// Handles living pre-bump attack checks.
 /datum/component/bump_attack/proc/living_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	. = living_bump_action_checks(target)
@@ -78,8 +79,7 @@
 		return
 	return living_do_bump_action(target)
 
-
-///Handles human pre-bump attack checks
+/// Handles human pre-bump attack checks.
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/bumper = parent
@@ -91,6 +91,7 @@
 		return //FF
 	INVOKE_ASYNC(src, .proc/human_do_bump_action, target)
 
+/// Handles xeno pre-bump attack checks.
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/bumper = parent
@@ -99,20 +100,18 @@
 		return
 	if(bumper.issamexenohive(target))
 		return //No more nibbling.
-	return living_do_bump_action(target)
+	return xeno_do_bump_action(target)
 
-
+/// Handles living bump attacks.
 /datum/component/bump_attack/proc/living_do_bump_action(atom/target)
 	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	bumper.UnarmedAttack(target, TRUE)
-	GLOB.round_statistics.xeno_bump_attacks++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
-///Handles human bump attacks
+/// Handles human bump attacks.
 /datum/component/bump_attack/proc/human_do_bump_action(atom/target)
 	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
@@ -124,7 +123,18 @@
 		held_item.melee_attack_chain(bumper, target)
 	else //disables pushing if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
 		return COMPONENT_BUMP_RESOLVED
-	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	GLOB.round_statistics.human_bump_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "human_bump_attacks")
+	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, held_item ? held_item.attack_speed : CLICK_CD_MELEE)
+	return COMPONENT_BUMP_RESOLVED
+
+/// Handles xeno bump attacks.
+/datum/component/bump_attack/proc/xeno_do_bump_action(atom/target)
+	var/mob/living/carbon/xenomorph/bumper = parent
+	if(bumper.next_move > world.time)
+		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
+	bumper.UnarmedAttack(target, TRUE)
+	GLOB.round_statistics.xeno_bump_attacks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
+	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, bumper.xeno_caste.attack_delay)
 	return COMPONENT_BUMP_RESOLVED
