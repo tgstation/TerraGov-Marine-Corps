@@ -2660,7 +2660,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_heat"
 	hud_state_empty = "battery_empty_flash"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
-	bullet_color = COLOR_LIGHT_ORANGE
+	bullet_color = COLOR_TAN_ORANGE
 	armor_type = "energy"
 	max_range = 14
 	accurate_range = 5 //for charger
