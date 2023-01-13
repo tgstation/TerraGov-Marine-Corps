@@ -1,0 +1,5 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - rscadd: "added synth hud for dead and dnr/no client/no ghost situations"
+  - bugfix: "fixed synth having no damage overlay icon"
