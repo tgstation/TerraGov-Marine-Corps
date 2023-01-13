@@ -88,7 +88,7 @@
 	///the cell powering this floodlight
 	var/obj/item/cell/cell
 	/// The charge consumption every 2 seconds
-	var/energy_consummed = 4
+	var/energy_consummed = 6
 	/// The lighting power of the floodlight
 	var/floodlight_light_range = 15
 	/// The amount of integrity repaired with every welder act.
