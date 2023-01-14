@@ -1,4 +1,4 @@
-#define NEST_RESIST_TIME 1 MINUTES
+#define NEST_RESIST_TIME 80 SECONDS
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 ///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
@@ -76,6 +76,7 @@
 	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),
 		span_xenonotice("[user] drenches you in a foul-smelling resin, trapping you in [src]!"),
 		span_notice("You hear squelching."))
+	buckling_mob.reagents.add_reagent(/datum/reagent/medicine/xenojelly, 15)
 	playsound(loc, "alien_resin_move", 50)
 
 	silent = TRUE

@@ -69,6 +69,9 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
+	if(CHECK_BITFIELD(affected_mob.restrained_flags, RESTRAINED_XENO_NEST)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
+		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
+
 	if(stage <= 4)
 		counter += 5 //Free burst time in 5 min.
 
@@ -77,6 +80,9 @@
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
 		counter -= 3
+
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin))
+		counter -= 0.5
 
 	if(boost_timer)
 		counter += 2.5 //Doubles larval growth progress. Burst time in ~4 min.
