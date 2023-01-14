@@ -50,3 +50,10 @@
 	armour_penetration = 20
 	health = 120
 	maxHealth = 120
+
+/mob/living/simple_animal/hostile/bear/russian/Boris
+	name = "Boris"
+	desc = "A nanite enhanced combat bear, marines fed him nanite enriched honey, the question 'why' is up to debate."
+	health = 1500
+	maxHealth = 1500
+	AIStatus = AI_OFF

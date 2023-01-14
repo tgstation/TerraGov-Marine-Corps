@@ -8522,10 +8522,6 @@
 "gBI" = (
 /obj/machinery/camera/autoname,
 /obj/structure/table/woodentable,
-/obj/item/weapon/combat_knife/vali_knife,
-/obj/item/reagent_containers/glass/bottle/medicalnanites{
-	pixel_x = 10
-	},
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
 "gCf" = (
@@ -11301,6 +11297,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/woodsiding,
+/mob/living/simple_animal/hostile/bear/russian/Boris,
 /turf/open/floor/carpet,
 /area/mainship/squads/delta)
 "iVI" = (
@@ -11517,9 +11514,16 @@
 /obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
-/obj/item/flashlight/lamp,
 /obj/item/radio/intercom/general{
 	dir = 8
+	},
+/obj/item/weapon/combat_knife/vali_knife,
+/obj/item/reagent_containers/glass/bottle/medicalnanites{
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites{
+	pixel_y = 11;
+	pixel_x = -3
 	},
 /turf/open/floor/carpet,
 /area/mainship/squads/delta)
@@ -17265,11 +17269,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/bear/russian{
-	name = "Boris";
-	can_have_ai = 0;
-	AIStatus = 0
-	},
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
 "nms" = (
