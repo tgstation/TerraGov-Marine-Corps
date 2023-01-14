@@ -1170,8 +1170,6 @@
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
-			/obj/item/clothing/head/modular/marine/infantry = -1,
-			/obj/item/clothing/head/modular/marine/helljumper = -1,
 			/obj/item/clothing/head/helmet/marine/robot/light = -1,
 			/obj/item/clothing/head/helmet/marine/robot = -1,
 			/obj/item/clothing/head/helmet/marine/robot/heavy = -1,

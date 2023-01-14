@@ -419,7 +419,7 @@
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "medium_helmet"
+	icon_state = "infantry_helmet"
 	item_state = list(
 		slot_head_str = ""
 	)
@@ -756,45 +756,6 @@
 	)
 
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-
-/obj/item/clothing/head/modular/marine/helljumper
-	name = "Jaeger Pattern Helljumper Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
-	icon_state = "helljumper_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-
-/obj/item/clothing/head/modular/marine/infantry
-	name = "Jaeger Pattern Infantry-Open Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
-	icon_state = "infantryopen_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-
-	visorless_offset_x = 0
-	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/marine/m10x
 	name = "\improper M10X pattern marine helmet"
