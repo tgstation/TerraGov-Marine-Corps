@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Some minor ammo code cleanup"
-  - balance: "Standard flechette now has consistant AP and falloff between the main and addition flechette projectiles"
-  - balance: "Masterkey no longer doubles projectile damage falloff"
