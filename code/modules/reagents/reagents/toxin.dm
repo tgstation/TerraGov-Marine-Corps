@@ -594,7 +594,6 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
-	message_admins("toxin/xeno_sanguinal: on_mob_life")
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 
