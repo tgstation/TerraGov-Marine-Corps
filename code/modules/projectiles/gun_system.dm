@@ -825,67 +825,67 @@
 		switch(firing_angle)
 			if(0, 360)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(1 to 44)
 				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(45)
-				muzzle_flash.pixel_x = 4
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(46 to 89)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = round(4 * ((90 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(90)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(91 to 134)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = round(-3 * ((firing_angle - 90) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(135)
-				muzzle_flash.pixel_x = 4
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(136 to 179)
 				muzzle_flash.pixel_x = round(4 * ((180 - firing_angle) / 45))
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(180)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(181 to 224)
-				muzzle_flash.pixel_x = round(-3 * ((firing_angle - 180) / 45))
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = round(-6 * ((firing_angle - 180) / 45))
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(225)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(226 to 269)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = round(-3 * ((270 - firing_angle) / 45))
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = round(-6 * ((270 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(270)
-				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_x = -6
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(271 to 314)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = round(4 * ((firing_angle - 270) / 45))
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = round(8 * ((firing_angle - 270) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(315)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(316 to 359)
-				muzzle_flash.pixel_x = round(-3 * ((360 - firing_angle) / 45))
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = round(-6 * ((360 - firing_angle) / 45))
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 
 		muzzle_flash.transform = null
@@ -1593,6 +1593,7 @@
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
+	projectile_to_fire.sundering *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	projectile_to_fire.projectile_speed += shell_speed_mod
@@ -1637,7 +1638,7 @@
 			gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.06))
 			gun_scatter += max(0, movement_acc_penalty_mult)
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible scatter

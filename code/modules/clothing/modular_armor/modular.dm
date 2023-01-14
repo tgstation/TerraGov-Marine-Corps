@@ -272,6 +272,9 @@
 /obj/item/clothing/suit/modular/xenonauten/mimir
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
 
+/obj/item/clothing/suit/modular/xenonauten/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield)
+
 /obj/item/clothing/suit/modular/xenonauten/rownin
 	name = "\improper Rownin Skeleton"
 	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -344,6 +347,9 @@
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	starting_attachments = list(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/storage/general)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield)
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -538,7 +544,7 @@
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
 ///When vended, limits the paintable colors based on the vending machine's faction
-/obj/item/clothing/head/modular/on_vend(mob/user, faction)
+/obj/item/clothing/head/modular/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)
@@ -837,6 +843,9 @@
 /obj/item/clothing/suit/modular/som/engineer
 	starting_attachments = list(/obj/item/armor_module/storage/engineering)
 
+/obj/item/clothing/suit/modular/som/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
 	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -868,6 +877,9 @@
 
 /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/som)
+
+/obj/item/clothing/suit/modular/som/heavy/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
 
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"

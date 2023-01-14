@@ -424,7 +424,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 650
+	cost = 775
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
@@ -736,11 +736,6 @@ ARMOR
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
 	contains = list(/obj/item/clothing/mask/gas/swat)
-	cost = 50
-
-/datum/supply_packs/armor/imager_goggle
-	name = "Optical Imager Goggles"
-	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 50
 
 /datum/supply_packs/armor/riot

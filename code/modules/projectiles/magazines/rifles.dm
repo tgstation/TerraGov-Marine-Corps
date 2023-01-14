@@ -77,16 +77,6 @@
 	max_rounds = 20
 	icon_state_mini = "mag_dmr"
 
-/obj/item/ammo_magazine/rifle/standard_dmr/incendiary
-	name = "\improper DMR-37 incendiary magazine (10x27mm)"
-	desc = "A 10mm incendiary DMR magazine, carries less rounds however."
-	caliber = CALIBER_10X27_INCENDIARY_CASELESS
-	icon_state = "t37_incin"
-	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
-	max_rounds = 15
-	icon_state_mini = "mag_dmr_red"
-
 //-------------------------------------------------------
 //T64 BR
 
@@ -99,16 +89,6 @@
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	max_rounds = 36
 	icon_state_mini = "mag_rifle_big"
-
-/obj/item/ammo_magazine/rifle/standard_br/incendiary
-	name = "\improper BR-64 BR incendiary magazine (10x26.5mm)"
-	desc = "A 10mm incendiary battle rifle magazine, carries less rounds however."
-	icon_state = "t64_incin"
-	caliber = CALIBER_10x265_CASELESS
-	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_br/incendiary
-	max_rounds = 36
-	icon_state_mini = "mag_rifle_big_red"
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
@@ -275,6 +255,15 @@
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 7
 	icon_state_mini = "mag_sniper"
+	bonus_overlay = "tl127_mag"
+
+/obj/item/ammo_magazine/rifle/chamberedrifle/flak
+	name = "SR-127 bolt action rifle flak magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
+	icon_state = "tl127_flak"
+	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
+	icon_state_mini = "mag_sniper_blue"
+	bonus_overlay = "tl127_flak"
 
 //-------------------------------------------------------
 //Marine magazine automatic sniper, or the SR-81.

@@ -255,7 +255,7 @@
 	examine_list += "Right click the [parent] with paint to color the [src]"
 
 ///When vended, limits the paintable colors based on the vending machine's faction
-/obj/item/armor_module/armor/on_vend(mob/user, faction)
+/obj/item/armor_module/armor/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
 	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)

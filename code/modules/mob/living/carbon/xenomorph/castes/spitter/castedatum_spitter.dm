@@ -33,7 +33,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_RIDE_CRUSHER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 10, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 10, FIRE = 20, ACID = 10)
@@ -156,6 +156,7 @@
 	caste_desc = "Master of ranged combat, this xeno knows no equal."
 	upgrade = XENO_UPGRADE_FOUR
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
