@@ -29,7 +29,7 @@
 /turf/open/space/basic,
 /area/icarus/interior/lztwo)
 "abf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
@@ -41,7 +41,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "aca" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -76,7 +76,7 @@
 	},
 /area/space)
 "aea" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -206,7 +206,7 @@
 	},
 /area/icarus/interior/lztwo)
 "alT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -284,10 +284,10 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/hangartwo)
 "arg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -486,7 +486,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/scrapyardone)
 "aDh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/sign/electricshock,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
@@ -507,7 +507,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "aED" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -531,7 +531,7 @@
 /area/icarus/interior/biodome)
 "aGl" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/barricade/guardrail{
@@ -541,7 +541,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "aHa" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/icarus/interior/lzone)
 "aHW" = (
@@ -549,10 +549,10 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "aIK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -646,7 +646,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayone)
 "aPj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -677,7 +677,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/scrapyardone)
 "aRD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
@@ -698,8 +698,8 @@
 	},
 /area/icarus/interior/lztwo)
 "aSS" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -723,7 +723,7 @@
 	},
 /area/icarus/interior/lztwo)
 "aUG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
@@ -765,10 +765,10 @@
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholding)
 "aWX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "aWY" = (
@@ -1048,8 +1048,8 @@
 /turf/open/floor/plating,
 /area/icarus/interior/scrapyardone)
 "bnE" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/mainship/outer,
@@ -1097,14 +1097,14 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/biodome)
 "brr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/mainship,
 /area/icarus/interior/hangarone)
 "brs" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -1115,8 +1115,8 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/telecomms)
 "brY" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -1217,7 +1217,7 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "bvG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -1350,7 +1350,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/hangarone)
 "bGl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/mainship,
@@ -1434,7 +1434,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "bOc" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
@@ -1459,7 +1459,7 @@
 	},
 /area/icarus/interior/scrapyardone)
 "bPT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -1507,7 +1507,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cargo_container/gorg,
@@ -1597,7 +1597,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "bWJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -1716,7 +1716,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/icarus/interior/cargoholding)
 "cgu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -1743,7 +1743,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "chj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -1757,15 +1757,15 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "ckb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "cky" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -1798,7 +1798,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "cmX" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
@@ -1828,7 +1828,7 @@
 /turf/open/shuttle/dropship/three,
 /area/icarus/interior/lzone)
 "coP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -1881,13 +1881,13 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
 "crW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/bridge)
 "csl" = (
@@ -1938,10 +1938,10 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "cxY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1954,13 +1954,13 @@
 /area/icarus/interior/library)
 "czn" = (
 /obj/structure/largecrate/supply/medicine/iv,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "czU" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
@@ -1982,16 +1982,16 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/exterior/northeastcaves)
 "cAo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "cAv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cargo_container/ch_red{
@@ -2027,7 +2027,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/lztwo)
 "cDo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/generic/ert{
@@ -2047,17 +2047,17 @@
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/lztwo)
 "cDJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "cDN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -2097,7 +2097,7 @@
 /turf/open/floor/mainship_hull,
 /area/icarus/exterior/northcaves)
 "cGf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
@@ -2197,7 +2197,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/icarus/interior/security)
 "cQm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/fueltank,
@@ -2207,8 +2207,8 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "cQo" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -2471,7 +2471,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "dpp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -2662,7 +2662,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "dDX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2800,7 +2800,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northcaves)
 "dMG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
@@ -2814,7 +2814,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "dOx" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/icarus/interior/unloading)
 "dPj" = (
@@ -2826,13 +2826,13 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "dPN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/generic/ert{
@@ -3044,7 +3044,7 @@
 /area/space)
 "efb" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -3150,7 +3150,7 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/library)
 "eoB" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
@@ -3222,13 +3222,13 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northeastcaves)
 "etO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -3246,7 +3246,7 @@
 /area/icarus/interior/unloading)
 "euZ" = (
 /obj/machinery/fuelcell_recycler,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "evf" = (
@@ -3336,17 +3336,17 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "eDq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/landing,
 /turf/open/floor/mainship/mono,
 /area/icarus/exterior/northeastcaves)
 "eDD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -3716,7 +3716,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "fcb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -3810,10 +3810,10 @@
 /area/icarus/interior/cargo)
 "fhL" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/scrapyardone)
 "fiJ" = (
@@ -3842,13 +3842,13 @@
 /turf/open/floor/wood,
 /area/icarus/interior/dorms)
 "fjK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "fjS" = (
@@ -3885,10 +3885,10 @@
 /area/space)
 "fkK" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -3958,7 +3958,7 @@
 	},
 /area/icarus/exterior/northeastcaves)
 "foh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3990,7 +3990,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "fqs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3998,7 +3998,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "fsl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -4018,16 +4018,16 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "ftq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/bridge)
 "fty" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
@@ -4037,7 +4037,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "fua" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -4216,14 +4216,14 @@
 	},
 /area/icarus/interior/security)
 "fGb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "fGn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -4310,7 +4310,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "fMO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship/mono,
@@ -4347,7 +4347,7 @@
 /area/icarus/interior/hangarone)
 "fPy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -4423,7 +4423,7 @@
 /area/icarus/interior/scrapyardone)
 "fUU" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -4563,7 +4563,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
 "gdC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -4573,10 +4573,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/shipbayconnector)
 "gdW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/ship_ammo/rocket/keeper,
@@ -4599,7 +4599,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/telecomms)
 "gfY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4627,13 +4627,13 @@
 /turf/open/floor/wood,
 /area/icarus/interior/telecomms)
 "gih" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
 "gjm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -4738,8 +4738,8 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "gsV" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -4784,10 +4784,10 @@
 /turf/open/shuttle/dropship/floor,
 /area/icarus/interior/shipbaytwo)
 "gxx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "gxN" = (
@@ -4856,16 +4856,16 @@
 	},
 /area/icarus/interior/telecomms)
 "gDC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4930,7 +4930,7 @@
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/scrapyardone)
 "gIY" = (
@@ -4940,10 +4940,10 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/icarus/interior/research)
 "gJx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -4989,7 +4989,7 @@
 /turf/open/floor/carpet,
 /area/icarus/interior/dorms)
 "gOE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -5095,12 +5095,12 @@
 /turf/open/space/basic,
 /area/space)
 "gWH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5214,13 +5214,13 @@
 /turf/open/floor/mainship/sterile/purple/side,
 /area/icarus/interior/research)
 "hcD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -5281,10 +5281,10 @@
 /area/icarus/interior/security)
 "hif" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "hiy" = (
@@ -5334,8 +5334,8 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/exterior/northcaves)
 "hns" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/closed/wall/mainship,
@@ -5371,7 +5371,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "hpk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -5407,7 +5407,7 @@
 /area/icarus/interior/cargo)
 "hqU" = (
 /obj/structure/largecrate/random/barrel/red,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -5485,7 +5485,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "hvA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -5598,7 +5598,7 @@
 /area/icarus/interior/shipbayconnector)
 "hBI" = (
 /obj/structure/cargo_container/nt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -5689,7 +5689,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholding)
 "hGO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -5702,14 +5702,14 @@
 	},
 /area/icarus/interior/telecomms)
 "hHd" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -5733,7 +5733,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "hHF" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/swcaveslz)
 "hHH" = (
@@ -5767,7 +5767,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/icarus/interior/shipbaytwo)
 "hMn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -5795,13 +5795,13 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "hNA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -5919,7 +5919,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5955,7 +5955,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "hWH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6005,8 +6005,8 @@
 /turf/open/floor/mainship/sterile/side,
 /area/icarus/interior/medbay)
 "hYs" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -6152,10 +6152,10 @@
 /area/icarus/interior/monitoring)
 "igG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -6191,7 +6191,7 @@
 /area/icarus/interior/hangarone)
 "ihU" = (
 /obj/structure/cargo_container/nt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -6234,10 +6234,10 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "ilc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -6269,8 +6269,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/telecomms)
 "ioU" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -6294,10 +6294,10 @@
 /turf/open/floor/tile/darkish,
 /area/icarus/interior/library)
 "ipP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -6324,10 +6324,10 @@
 	},
 /area/icarus/interior/telecomms)
 "irt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light,
@@ -6379,7 +6379,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/library)
 "ity" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -6401,7 +6401,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/research)
 "iuP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6483,10 +6483,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/lzone)
 "iyl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -6686,7 +6686,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholdingtwo)
 "iNr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -6699,7 +6699,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/telecomms)
 "iOY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/dropship_piece/three/front/left,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lzone)
@@ -6762,7 +6762,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/dorms)
 "iSP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/tool/weldingtool,
@@ -6797,17 +6797,17 @@
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "iTF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "iTG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
@@ -6969,7 +6969,7 @@
 	},
 /area/icarus/interior/lzone)
 "jfg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -6993,7 +6993,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -7043,7 +7043,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargoholding)
 "jlj" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "jly" = (
@@ -7178,10 +7178,10 @@
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "jtk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -7197,7 +7197,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/scrapyardone)
 "jts" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -7251,10 +7251,10 @@
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/cargo)
 "jAH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7304,7 +7304,7 @@
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/dorms)
 "jDP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -7385,7 +7385,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "jHq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -7437,7 +7437,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayconnector)
 "jLc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -7447,10 +7447,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lzone)
 "jLH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/floodlight/landing,
@@ -7484,16 +7484,16 @@
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/monitoring)
 "jNq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -7530,13 +7530,13 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangarone)
 "jQt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
@@ -7579,7 +7579,7 @@
 /turf/open/shuttle/dropship/five,
 /area/icarus/interior/shipbaytwo)
 "jTB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -7589,20 +7589,20 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "jTN" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "jUy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
@@ -7618,13 +7618,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "jVS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -7641,7 +7641,7 @@
 /turf/open/shuttle/dropship/five,
 /area/icarus/interior/shipbaytwo)
 "jWY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "jXc" = (
@@ -7694,7 +7694,7 @@
 /area/icarus/interior/biodome)
 "jZH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -7817,7 +7817,7 @@
 	},
 /area/icarus/interior/security)
 "kil" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -7924,10 +7924,10 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "knt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
@@ -7972,7 +7972,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/cargo)
 "krF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/camera/autoname/lz_camera,
@@ -7982,13 +7982,13 @@
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/storage)
 "krO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
@@ -8167,13 +8167,13 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -8266,13 +8266,13 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "kHS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/closed/wall/mainship,
@@ -8322,8 +8322,8 @@
 	},
 /area/icarus/interior/research)
 "kJM" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/closed/wall/mainship/outer,
@@ -8421,7 +8421,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "kRc" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "86"
 	},
@@ -8450,7 +8450,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "kSW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -8475,10 +8475,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/swcaveslz)
 "kUq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/closed/wall/mainship,
@@ -8499,7 +8499,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/telecomms)
 "kVE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -8539,7 +8539,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "kXA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -8597,7 +8597,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/telecomms)
 "kZM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -8609,7 +8609,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -8640,7 +8640,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/lzone)
 "lci" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -8707,10 +8707,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "lgC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -8732,13 +8732,13 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northeastcaves)
 "ljB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
@@ -8790,10 +8790,10 @@
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "loe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/lztwo)
@@ -8869,7 +8869,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "lty" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -8897,7 +8897,7 @@
 /area/icarus/interior/shipbaytwo)
 "lwx" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
@@ -8907,10 +8907,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "lwT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
@@ -8955,10 +8955,10 @@
 /turf/open/floor/wood,
 /area/icarus/interior/telecomms)
 "lzB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/mainship,
@@ -8986,7 +8986,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "lBm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -9006,7 +9006,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayconnector)
 "lCa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/fueltank,
@@ -9032,10 +9032,10 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "lCH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/rack/nometal,
@@ -9107,12 +9107,12 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "lHp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -9192,7 +9192,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/icarus/interior/cargoholding)
 "lMu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -9245,7 +9245,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northeastcaves)
 "lRB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -9297,7 +9297,7 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/security)
 "lVJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/ch_green{
 	dir = 1
 	},
@@ -9388,14 +9388,14 @@
 /turf/closed/shuttle/cas/centertop,
 /area/icarus/interior/hangarone)
 "mcz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
 "mcD" = (
 /turf/open/shuttle/dropship/floor,
 /area/icarus/interior/scrapyardone)
 "mcL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/closed/wall/mainship,
@@ -9425,17 +9425,17 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "mej" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "mey" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -9487,7 +9487,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northeastcaves)
 "mgm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -9536,7 +9536,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/cargo)
 "mjX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/closed/shuttle/cas/rightwingfar,
@@ -9575,13 +9575,13 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/exterior/secaves)
 "mnl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/closed/wall/mainship,
 /area/icarus/interior/swcaveslz)
 "mox" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/stack/sheet/metal,
@@ -9601,11 +9601,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -9654,7 +9654,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/icarus/interior/research)
 "mrE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -9667,7 +9667,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "mrZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/power/geothermal/bigred,
@@ -9679,7 +9679,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/atmospherics)
 "msv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -9763,7 +9763,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
 "myq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/barricade/guardrail{
@@ -9786,10 +9786,10 @@
 	},
 /area/icarus/interior/dorms)
 "mzx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -9821,7 +9821,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/icarus/interior/shipbayone)
 "mDa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/stack/rods,
@@ -9847,7 +9847,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
 "mDI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/closed/shuttle/cas/rightwingfar,
@@ -9966,7 +9966,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "mMD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -9988,7 +9988,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/icarus/interior/cargoholding)
 "mNt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -10064,13 +10064,13 @@
 /turf/open/floor/plating,
 /area/icarus/interior/disposals)
 "mTN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -10090,8 +10090,8 @@
 /turf/open/floor/plating,
 /area/icarus/interior/disposals)
 "mVF" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -10153,7 +10153,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/atmospherics)
 "nbF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -10231,7 +10231,7 @@
 	},
 /area/icarus/interior/atmospherics)
 "neL" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "neV" = (
@@ -10302,13 +10302,13 @@
 /area/icarus/interior/research)
 "nhI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
 "niF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -10357,7 +10357,7 @@
 /area/icarus/interior/security)
 "noy" = (
 /obj/structure/cargo_container/gorg,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -10454,32 +10454,32 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/shipbayone)
 "nwZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "nxe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "nyb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "nyH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "nzb" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -10570,10 +10570,10 @@
 /area/icarus/interior/disposals)
 "nGb" = (
 /obj/structure/ship_ammo/rocket/keeper,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -10597,7 +10597,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayone)
 "nIp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/scrapyardone)
 "nIw" = (
@@ -10614,7 +10614,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
 "nJi" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
 	},
@@ -10643,7 +10643,7 @@
 	},
 /area/icarus/interior/shipbayone)
 "nKN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -10766,13 +10766,13 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/lzone)
 "nRM" = (
@@ -10826,7 +10826,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangartwo)
 "nWc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10864,16 +10864,16 @@
 /turf/open/floor/plating,
 /area/icarus/interior/hangartwo)
 "nXM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/hangartwo)
 "nYp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/vehicle/tank/north/base{
 	dir = 1
 	},
@@ -10892,7 +10892,7 @@
 	},
 /area/icarus/interior/hangarone)
 "oaj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -10908,16 +10908,16 @@
 /turf/closed/wall/r_wall,
 /area/icarus/interior/lztwo)
 "oaM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/mainship,
@@ -10956,7 +10956,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/shipbayone)
 "ocz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
@@ -10975,11 +10975,11 @@
 /turf/open/shuttle/dropship/five,
 /area/icarus/interior/shipbaytwo)
 "odH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "odR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/rack/nometal,
@@ -11066,7 +11066,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
 "ojo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -11091,7 +11091,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
 "olg" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lzone)
 "olr" = (
@@ -11114,7 +11114,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/atmospherics)
 "onh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/barricade/guardrail{
@@ -11167,7 +11167,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/scrapyardone)
 "osa" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
@@ -11190,11 +11190,11 @@
 /area/icarus/interior/swcaveslz)
 "otq" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/light{
@@ -11251,7 +11251,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "ozv" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/storage)
@@ -11336,7 +11336,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "oFr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -11345,8 +11345,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -11358,7 +11358,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "oGK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11375,10 +11375,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/lzone)
 "oIs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -11402,12 +11402,12 @@
 	},
 /area/icarus/interior/lztwo)
 "oKg" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -11449,16 +11449,16 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/shipbaytwo)
 "oOX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11480,7 +11480,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/telecomms)
 "oPZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cargo_container/ch_red{
@@ -11506,10 +11506,10 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
 "oRz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -11581,7 +11581,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "oXx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11608,7 +11608,7 @@
 /turf/open/floor/mainship/red/full,
 /area/icarus/interior/bridge)
 "oZj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -11644,7 +11644,7 @@
 /turf/open/floor/mainship/cargo,
 /area/icarus/interior/cargo)
 "pbI" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
@@ -11682,11 +11682,11 @@
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/scrapyardone)
 "pcx" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -11755,7 +11755,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -11794,10 +11794,10 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/icarus/interior/research)
 "plu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -11877,7 +11877,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "pnC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -11969,7 +11969,7 @@
 	},
 /area/icarus/interior/bridge)
 "prZ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/dropship_piece/one/front/right,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lzone)
@@ -12007,8 +12007,8 @@
 /area/icarus/interior/bridge)
 "pwO" = (
 /obj/structure/cargo_container/gorg,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -12035,12 +12035,12 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "pxV" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
 "pyA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12053,7 +12053,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
 "pyH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -12062,13 +12062,13 @@
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "pyZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -12123,10 +12123,10 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -12202,10 +12202,10 @@
 	},
 /area/icarus/exterior/northeastcaves)
 "pGQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -12344,7 +12344,7 @@
 /area/icarus/interior/dorms)
 "pUQ" = (
 /obj/structure/cargo_container/ch_green,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -12501,17 +12501,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "qgS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "qhZ" = (
@@ -12627,7 +12627,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
 "qnf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -12670,7 +12670,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/scrapyardone)
 "qrp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12751,10 +12751,10 @@
 /turf/open/floor/mainship/cargo,
 /area/icarus/interior/cargo)
 "qzu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cargo_container/gorg,
@@ -12838,7 +12838,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/research)
 "qFo" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "86"
 	},
@@ -12917,7 +12917,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/icarus/interior/library)
 "qJv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/stack/rods,
@@ -12940,7 +12940,7 @@
 /area/icarus/interior/library)
 "qKD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -12969,7 +12969,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "qNq" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -12991,7 +12991,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -13002,7 +13002,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/medbay)
 "qOO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
 	},
@@ -13167,10 +13167,10 @@
 /turf/open/shuttle/dropship/floor,
 /area/icarus/interior/shipbayone)
 "qYV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -13259,7 +13259,7 @@
 /turf/open/floor/mainship/sterile,
 /area/icarus/interior/medbay)
 "rft" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -13309,7 +13309,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -13329,7 +13329,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -13392,7 +13392,7 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/lzone)
 "rli" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -13400,16 +13400,16 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "rmD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/generic/ert{
@@ -13685,8 +13685,8 @@
 /turf/open/floor/plating,
 /area/icarus/interior/disposals)
 "rzK" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -13698,16 +13698,16 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "rAo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/unloading)
 "rAs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/mainship,
@@ -13719,8 +13719,8 @@
 /turf/open/floor/mainship/floor,
 /area/space)
 "rAV" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -13777,7 +13777,7 @@
 /turf/open/floor/grass,
 /area/icarus/interior/security)
 "rEE" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/monitoring)
 "rEX" = (
@@ -13850,7 +13850,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/dorms)
 "rIS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/closed/wall/mainship,
@@ -13877,7 +13877,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "rKs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -13916,7 +13916,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/dorms)
 "rMg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -13955,7 +13955,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/dorms)
 "rNk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13971,10 +13971,10 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/dorms)
 "rNW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -14173,10 +14173,10 @@
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "saj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "sax" = (
@@ -14232,7 +14232,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangartwo)
 "sdU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14242,7 +14242,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "ses" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -14257,7 +14257,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangartwo)
 "sgz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "sgD" = (
@@ -14302,17 +14302,17 @@
 /turf/open/space/basic,
 /area/icarus/interior/lztwo)
 "skW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/dropship_piece/two/corner/rearright,
 /turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "sle" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/shuttle/cas/leftwingfar,
@@ -14324,7 +14324,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/library)
 "slD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -14338,7 +14338,7 @@
 /turf/open/floor/carpet,
 /area/icarus/interior/library)
 "smO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "smZ" = (
@@ -14348,7 +14348,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
 "snr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -14368,7 +14368,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/space)
 "snE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -14405,13 +14405,13 @@
 /turf/open/floor/plating,
 /area/icarus/interior/medbay)
 "ssT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/wall/mainship,
@@ -14472,7 +14472,7 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "svc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -14621,7 +14621,7 @@
 /area/icarus/interior/biodome)
 "sFq" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -14671,7 +14671,7 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/engineering)
 "sJd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -14838,7 +14838,7 @@
 	},
 /area/space)
 "sSf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/largecrate/random,
@@ -14854,15 +14854,15 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "sTY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "sUa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/closed/shuttle/cas/leftwingfar,
@@ -14872,7 +14872,7 @@
 /turf/open/floor/grass,
 /area/icarus/interior/security)
 "sUr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cargo_container/gorg{
@@ -14896,7 +14896,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "sVD" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/scrapyardone)
 "sWu" = (
@@ -14923,7 +14923,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "sYx" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/icarus/interior/library)
@@ -14932,7 +14932,7 @@
 /turf/open/floor/carpet,
 /area/icarus/interior/library)
 "sZj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14999,13 +14999,13 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/hangartwo)
 "tdK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/effect/ai_node,
@@ -15020,7 +15020,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/library)
 "teC" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/closed/wall/mainship,
 /area/icarus/interior/swcaveslz)
 "teN" = (
@@ -15119,7 +15119,7 @@
 /area/icarus/interior/swcaveslz)
 "tqM" = (
 /obj/machinery/power/fusion_engine/random,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
@@ -15160,7 +15160,7 @@
 /turf/open/floor/mainship/cargo,
 /area/icarus/interior/cargo)
 "ttA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15217,10 +15217,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/medbay)
 "tvZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -15260,13 +15260,13 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/lzone)
@@ -15324,7 +15324,7 @@
 /turf/open/floor/prison/darkred,
 /area/icarus/interior/cargoholding)
 "tCQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -15357,7 +15357,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/library)
 "tFJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cargo_container/ch_green{
 	dir = 4
 	},
@@ -15461,7 +15461,7 @@
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "tKD" = (
@@ -15518,7 +15518,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
 "tOg" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -15568,7 +15568,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/hangartwo)
 "tRf" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/attach_point/weapon/dropship3{
 	dir = 1
 	},
@@ -15628,7 +15628,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northeastcaves)
 "tUR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/camera/autoname/lz_camera,
@@ -15673,13 +15673,13 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -15754,16 +15754,16 @@
 	},
 /area/icarus/exterior/northcaves)
 "ubU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/closed/wall/mainship,
@@ -15892,7 +15892,7 @@
 	},
 /area/icarus/interior/medbay)
 "unZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16335,7 +16335,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/research)
 "uSY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/closed/wall/mainship,
@@ -16370,7 +16370,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
 "uVL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -16393,7 +16393,7 @@
 	},
 /area/icarus/interior/dorms)
 "uXs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -16403,7 +16403,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/barricade/guardrail{
@@ -16418,7 +16418,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "uZf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -16481,7 +16481,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -16507,11 +16507,11 @@
 /area/icarus/interior/medbay)
 "vfx" = (
 /obj/structure/ship_ammo/rocket/napalm,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -16706,13 +16706,13 @@
 	},
 /area/space)
 "vqh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
@@ -16793,7 +16793,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/scrapyardone)
 "vwk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/structure/cable,
@@ -16807,7 +16807,7 @@
 /area/icarus/interior/library)
 "vxo" = (
 /obj/structure/cargo_container/ch_green,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -16841,7 +16841,7 @@
 	},
 /area/icarus/interior/lztwo)
 "vAd" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayone)
 "vAx" = (
@@ -16850,8 +16850,8 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "vBx" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -16870,7 +16870,7 @@
 	},
 /area/icarus/interior/shipbayone)
 "vDu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16891,7 +16891,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/library)
 "vFI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -16904,13 +16904,13 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "vHz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
@@ -16944,7 +16944,7 @@
 /turf/open/ground/river,
 /area/icarus/exterior/northeastcaves)
 "vIW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/mono,
@@ -16957,7 +16957,7 @@
 	},
 /area/icarus/interior/lztwo)
 "vJe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -16968,7 +16968,7 @@
 /area/lv624/lazarus/console)
 "vLm" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "vLP" = (
@@ -16995,7 +16995,7 @@
 /turf/open/space/basic,
 /area/space)
 "vNC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -17231,8 +17231,8 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/lzone)
 "wib" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
@@ -17330,8 +17330,8 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "wrb" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -17346,10 +17346,10 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "wrI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -17379,7 +17379,7 @@
 	},
 /area/icarus/interior/biodome)
 "wsD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -17421,13 +17421,13 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/lzone)
@@ -17435,10 +17435,10 @@
 /turf/open/floor/plating,
 /area/icarus/exterior/northeastcaves)
 "wuk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "wuA" = (
@@ -17492,7 +17492,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "wwX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/five,
@@ -17532,7 +17532,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/icarus/interior/bridge)
 "wye" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -17553,10 +17553,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "wzx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/item/clothing/head/welding,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
@@ -17580,13 +17580,13 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/medbay)
 "wCh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/hangarone)
 "wCI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -17629,10 +17629,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
 "wEW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "wFj" = (
@@ -17641,7 +17641,7 @@
 /turf/open/space/basic,
 /area/space)
 "wFv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -17689,10 +17689,10 @@
 /area/icarus/interior/hangarone)
 "wIs" = (
 /obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/dorms)
 "wIJ" = (
@@ -17719,14 +17719,14 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "wJt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "wJv" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/barricade/guardrail,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayone)
@@ -18156,10 +18156,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargoholding)
 "xjm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -18181,7 +18181,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "xkW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -18190,10 +18190,10 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangarone)
 "xkX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/rack/nometal,
@@ -18204,7 +18204,7 @@
 /area/icarus/interior/bridge)
 "xlf" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -18218,7 +18218,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/icarus/interior/cargoholding)
 "xmI" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -18320,7 +18320,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/icarus/interior/shipbayone)
 "xsK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -18331,7 +18331,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "xtw" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/stack/sheet/metal,
@@ -18370,10 +18370,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/swcaveslz)
 "xwC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "xwS" = (
@@ -18407,7 +18407,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "xyD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -18431,10 +18431,10 @@
 	},
 /area/icarus/exterior/northeastcaves)
 "xyZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -18500,7 +18500,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "xCS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -18542,7 +18542,7 @@
 /turf/open/floor/mainship/sterile,
 /area/icarus/interior/medbay)
 "xDH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "xDV" = (
@@ -18552,13 +18552,13 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/lzone)
 "xED" = (
@@ -18723,7 +18723,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "xNV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -19005,7 +19005,7 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/shipbayconnector)
 "ygf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -19128,7 +19128,7 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/shipbaytwo)
 "ylB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{

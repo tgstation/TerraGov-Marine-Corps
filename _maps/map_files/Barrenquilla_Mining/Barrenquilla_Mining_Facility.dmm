@@ -106,7 +106,7 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/wood/wings,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -284,7 +284,7 @@
 /area/barren/engie/engine)
 "bw" = (
 /obj/machinery/landinglight/ds2,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "bx" = (
@@ -940,7 +940,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -1083,7 +1083,7 @@
 	},
 /area/bigredv2/outside/n)
 "fs" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/barren/security)
@@ -1098,7 +1098,7 @@
 /turf/open/floor/grimy,
 /area/barren/civilian)
 "fv" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor,
@@ -1463,7 +1463,7 @@
 /area/barren/misc/eastarmory)
 "gZ" = (
 /obj/structure/cable,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1487,7 +1487,7 @@
 	},
 /area/bigredv2/outside/w)
 "hi" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -1962,7 +1962,7 @@
 	},
 /area/bigredv2/outside/c)
 "jB" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -2250,7 +2250,7 @@
 	},
 /area/bigredv2/outside/nw)
 "lh" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /turf/open/floor/wood{
@@ -2288,7 +2288,7 @@
 /area/barren/engie/engine)
 "lx" = (
 /obj/machinery/landinglight/ds2/delayone,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "ly" = (
@@ -2351,7 +2351,7 @@
 /area/barren/medical)
 "lS" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -2402,7 +2402,7 @@
 /area/bigredv2/outside/general_offices)
 "me" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -2451,7 +2451,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -2811,7 +2811,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -2870,7 +2870,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -3004,7 +3004,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -3061,7 +3061,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -3128,7 +3128,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "pS" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -3746,7 +3746,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "sZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/floodlight/landing,
@@ -3773,7 +3773,7 @@
 /area/barren/security)
 "th" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
@@ -3797,7 +3797,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "tp" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -4272,7 +4272,7 @@
 /turf/open/floor/tile/red/redtaupe,
 /area/barren/security)
 "vO" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -4283,7 +4283,7 @@
 /area/barren/security)
 "vS" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "vT" = (
@@ -4325,7 +4325,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "we" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /turf/open/floor,
@@ -4398,7 +4398,7 @@
 /area/barren/civilian)
 "wB" = (
 /obj/structure/table,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -4409,7 +4409,7 @@
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "wE" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -4803,7 +4803,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/barren/medical)
 "yZ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5138,13 +5138,13 @@
 /turf/closed/wall/r_wall,
 /area/barren/cave/lz1)
 "AL" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/barren/cave/lz1)
 "AN" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "AO" = (
@@ -5430,7 +5430,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
@@ -5518,7 +5518,7 @@
 /turf/open/floor/prison,
 /area/ai_monitored/storage/secure)
 "Cv" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -5572,7 +5572,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -5644,7 +5644,7 @@
 /turf/open/floor,
 /area/barren/civilian)
 "Dm" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -5754,7 +5754,7 @@
 /turf/open/floor/prison/kitchen,
 /area/barren/civilian/cook)
 "DR" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/item/paper/crumpled,
@@ -5959,7 +5959,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -6106,7 +6106,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "FC" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -6237,7 +6237,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -6288,7 +6288,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Gu" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
@@ -6519,7 +6519,7 @@
 	},
 /area/bigredv2/outside/c)
 "HL" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /obj/structure/bed/chair/wood/wings{
@@ -6615,7 +6615,7 @@
 /area/barren/civilian/cook)
 "Io" = (
 /obj/machinery/landinglight/ds2/delaytwo,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "Ir" = (
@@ -6721,7 +6721,7 @@
 /turf/open/floor/wood,
 /area/barren/security)
 "IT" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/floor/wood{
@@ -6884,7 +6884,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -7147,7 +7147,7 @@
 /turf/open/floor/plating,
 /area/barren/civilian/cook)
 "KW" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor,
@@ -7609,7 +7609,7 @@
 /turf/open/floor,
 /area/barren/civilian)
 "Nz" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
 /area/barren/cave/lz1)
 "NA" = (
@@ -7742,7 +7742,7 @@
 /turf/open/floor/wood/broken,
 /area/barren/civilian)
 "Os" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/security)
@@ -7836,7 +7836,7 @@
 /area/barren/engie/engine)
 "OX" = (
 /obj/structure/table,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -8025,7 +8025,7 @@
 /turf/closed/wall/r_wall,
 /area/barren/cave/lz1)
 "PX" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor,
@@ -8048,7 +8048,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/general_offices)
 "Qj" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -8562,7 +8562,7 @@
 /turf/open/floor/marking,
 /area/bigredv2/outside/c)
 "SR" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -8844,7 +8844,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/bigredv2/outside/nw)
 "UC" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -8886,7 +8886,7 @@
 /turf/open/floor/freezer,
 /area/barren/medical/research)
 "UL" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor,
@@ -8927,7 +8927,7 @@
 	},
 /area/bigredv2/caves/southeast)
 "UX" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/floor/wood{
@@ -8959,7 +8959,7 @@
 /area/bigredv2/caves/southeast)
 "Vi" = (
 /obj/structure/bed/chair/wood/wings,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -9117,7 +9117,7 @@
 /area/barren/misc/refinery)
 "VS" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
 /turf/open/floor,
@@ -9171,13 +9171,13 @@
 	},
 /area/barren/security)
 "Wi" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor,
 /area/barren/cave/lz1)
 "Wk" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
 /obj/structure/prop/mainship/hangar_stencil/two,
@@ -9207,7 +9207,7 @@
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
 "Wx" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
 /turf/open/floor,
@@ -9306,7 +9306,7 @@
 /turf/open/shuttle/plating,
 /area/barren/security)
 "Xf" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
@@ -9383,7 +9383,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/barren/misc/eastarmory)
 "Xy" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/floor/wood,
 /area/barren/security)
 "XB" = (
@@ -9611,7 +9611,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -9661,7 +9661,7 @@
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
 "Zj" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -9824,7 +9824,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
