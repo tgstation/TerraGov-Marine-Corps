@@ -876,9 +876,12 @@
 		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
 	)
 	icon_state_variants = list(
+		"drab",
+		"snow",
 		"black",
 		"desert",
 		"red",
+		"blue",
 	)
 	current_variant = "black"
 
