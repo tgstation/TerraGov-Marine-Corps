@@ -3,6 +3,7 @@
 	description = "Jelly used by xenos to stabilize the hosts."
 	color = "#500f4d"
 	taste_description = "glue and grape"
+	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	effect_str = 2
 
