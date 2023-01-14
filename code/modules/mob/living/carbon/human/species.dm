@@ -398,6 +398,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
+	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
