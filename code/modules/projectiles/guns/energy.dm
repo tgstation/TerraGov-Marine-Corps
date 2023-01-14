@@ -500,6 +500,7 @@
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	damage_falloff_mult = 0.2
+	aim_slowdown = 0
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
