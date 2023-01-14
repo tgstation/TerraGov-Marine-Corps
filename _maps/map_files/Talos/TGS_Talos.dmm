@@ -17266,7 +17266,8 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/bear/russian{
-	name = "Boris"
+	name = "Boris";
+	can_have_ai = 0
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
