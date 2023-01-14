@@ -69,11 +69,11 @@
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
 /datum/admins/proc/rouny_all()
-	set name = "Toggle Rouny All"
+	set name = "Toggle Glob Xeno Rouny"
 	set category = "Fun"
-	set desc = "Turns all living xenos into rouny versions of themselves"
+	set desc = "Toggle all living xenos into rouny versions of themselves"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_FUN))
 		return
 
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
