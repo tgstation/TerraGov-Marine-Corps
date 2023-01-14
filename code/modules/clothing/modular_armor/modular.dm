@@ -851,7 +851,7 @@
 	. += jointext(codex_info, "<br>")
 
 /obj/item/clothing/suit/modular/style/leather_jacket
-	name = "\improper Leather Jacket"
+	name = "\improper leather jacket"
 	desc = "A fashionable jacket. Get them with style."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "leather_jacket"
@@ -868,8 +868,8 @@
 	current_variant = "normal"
 
 /obj/item/clothing/suit/modular/style/duster
-	name = "\improper Duster"
-	desc = "A light, loose-fitting long coat, for those that want to have more style."
+	name = "\improper duster"
+	desc = "A light, loose-fitting colorable long coat, for those that want to have more style."
 	icon_state = "duster"
 	item_state = "duster"
 	item_icons = list(
