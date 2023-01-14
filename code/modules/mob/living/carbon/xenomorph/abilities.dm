@@ -723,6 +723,13 @@
 		RegisterSignal(X, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		return ..()
+	get_spit_type(X)
+	if (X.ammo.name && X.ammo.spit_cost)
+		to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
+	X.update_spits(TRUE)
+	update_button_icon()
+
+/datum/action/xeno_action/activable/xeno_spit/proc/get_spit_type(mob/living/carbon/xenomorph/X)
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
@@ -730,11 +737,7 @@
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
-	if (X.ammo.name && X.ammo.spit_cost)
-		to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
-	X.update_spits(TRUE)
-	update_button_icon()
-
+	
 /datum/action/xeno_action/activable/xeno_spit/deselect()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	return ..()

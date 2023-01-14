@@ -32,8 +32,8 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 45, FIRE = 60, ACID = 45)
 
 	// *** Ranged Attack *** //
-	spit_delay = 3 SECONDS
-	spit_types = list(/datum/ammo/flamethrower/dragon_fire)
+	spit_delay = 5 SECONDS
+	spit_types = list(/datum/ammo/flamethrower/dragon_fire, /datum/ammo/flamethrower/dragon_fire/flying)
 
 	// *** Minimap Icon *** //
 	// minimap_icon = "todo"
@@ -44,7 +44,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/tail_stab,
-		/datum/action/xeno_action/activable/flight,
+		/datum/action/xeno_action/flight,
 		/datum/action/xeno_action/activable/xeno_spit/fireball
 	)
 

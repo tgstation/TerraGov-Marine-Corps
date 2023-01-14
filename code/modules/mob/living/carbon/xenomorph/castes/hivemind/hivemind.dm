@@ -118,6 +118,11 @@
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
 	addtimer(CALLBACK(src, .proc/toggle_intangibility, TRUE, TRUE), TIME_TO_TRANSFORM)
 
+/mob/living/carbon/xenomorph/hivemind/toggle_intangibility()
+	. = ..()
+	toggle_upgrading()
+	set_datum(FALSE)
+
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel, burnflags)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))
 		return
@@ -146,7 +151,8 @@
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
-		toggle_intangibility(TRUE, TRUE)
+		toggle_intangibility(TRUE)
+		toggle_upgrading()
 	forceMove(get_turf(core))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
@@ -270,7 +276,11 @@
 	if(isxenohivemind(mover))
 		return FALSE
 
-
+/mob/living/carbon/xenomorph/hivemind/proc/toggle_upgrading()
+	if(upgrade == XENO_UPGRADE_MANIFESTATION)
+		upgrade = initial(upgrade)
+		return
+	upgrade = XENO_UPGRADE_MANIFESTATION
 // =================
 // hivemind core
 /obj/structure/xeno/hivemindcore

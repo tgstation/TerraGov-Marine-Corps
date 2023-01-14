@@ -282,6 +282,8 @@
 	vis_contents -= flash
 
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel, burnflags)
+	if(!CHECK_BITFIELD(burnflags, BURN_HUMANS))
+		return
 	take_damage(burnlevel / 2, BURN, "fire")
 
 /obj/vehicle/unmanned/fire_act()

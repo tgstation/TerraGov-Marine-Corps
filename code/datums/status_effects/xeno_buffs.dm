@@ -450,55 +450,76 @@
 	icon_state = "healing_infusion"
 
 #define PIXELS_TO_DISSAPPEAR 200
+#define FLAP_DELAY 2 SECONDS
+#define LANDING_DELAY 4 SECONDS
 /datum/status_effect/xeno/dragon_flight
 	id = "Flight"
-	var/takeoff_delay = 10
-	var/flap_delay = 0.5 SECONDS
-	var/taking_off = TRUE
-	var/shadow
+	alert_type = null
+	var/takeoff_flaps = 10
+	// var/taking_off = TRUE
+	var/obj/effect/shadow
+	var/plasma_to_sustain = 10
 
 /datum/status_effect/xeno/dragon_flight/on_apply()
 	. = ..()
 	take_off()
 
 /datum/status_effect/xeno/dragon_flight/on_remove()
-	if(taking_off)
-		taking_off = FALSE
-		reset_pixel_y()
 	if(owner.status_flags & INCORPOREAL)
 		owner_xeno.toggle_intangibility()
-	if(shadow)
-		qdel(shadow)
+	land()
+	owner.layer = initial(owner.layer)
+	. = ..()
 
-// TODO: Move this to tick() instead of queueing it up
+/datum/status_effect/xeno/dragon_flight/process()
+	. = ..()
+	// Ran out of fuel? No flying for you
+	if(owner_xeno.plasma_stored <= plasma_to_sustain)
+		qdel(src)
+		return
+	owner_xeno.plasma_stored -= plasma_to_sustain
+
 /datum/status_effect/xeno/dragon_flight/proc/take_off()
-	//Queues up 
-	for(var/step in 1 to takeoff_delay)
-		owner.pixel_y = owner.pixel_y - 1
+	if(!shadow)
+		create_shadow()
+	owner.layer = MOB_LAYER + 1
+	//Queues up flaps, because sleeps are bad
+	for(var/step in 1 to takeoff_flaps)
 		// Give give both the current step and the amount left as args, and delay it so it happens nicely after eachother
-		addtimer(CALLBACK(src, .proc/flap, step, takeoff_delay), step * flap_delay)
+		addtimer(CALLBACK(src, .proc/flap, step, takeoff_flaps), step * FLAP_DELAY)
 
 /datum/status_effect/xeno/dragon_flight/proc/flap(current_step, total_steps)
 	// We want to reach out of the view screen within the steps left
-	if(!taking_off)
-		return
-	var/percentage_left = current_step / total_steps
-	var/pixels_y_to_move = percentage_left * PIXELS_TO_DISSAPPEAR
-	playsound(owner, 'sound/effects/woosh_swoosh.ogg', vary=TRUE, sound_range=14)
-	// Don't dip down on the first step, howabouts
-	if(current_step != 1)
-		animate(owner, pixel_y = owner.pixel_y - pixels_y_to_move / 2, flags = ANIMATION_RELATIVE)
-	// owner.pixel_y = owner.pixel_y + 2
-	animate(owner, pixel_y = pixels_y_to_move, flags = ANIMATION_RELATIVE)
-	if (current_step == total_steps)
+	var/pixel_change = PIXELS_TO_DISSAPPEAR * (current_step / total_steps)
+	playsound(owner, 'sound/effects/woosh_swoosh.ogg', 100, vary = TRUE, sound_range = 14)
+	addtimer(CALLBACK(src, .proc/dissapear, FLAP_DELAY * 4), FLAP_DELAY * 2)
+	animate(owner, FLAP_DELAY, pixel_y = pixel_change, flags = ANIMATION_RELATIVE, easing = BACK_EASING)
+
+	if (current_step >= total_steps)
 		finish_take_off()
+
+/datum/status_effect/xeno/dragon_flight/proc/dissapear(time)
+	animate(owner, time, alpha = 0)
 
 /datum/status_effect/xeno/dragon_flight/proc/reset_pixel_y()
 	owner.pixel_y = initial(owner.pixel_y)
 
 /datum/status_effect/xeno/dragon_flight/proc/finish_take_off()
-	taking_off = FALSE
-	reset_pixel_y()
 	owner_xeno.toggle_intangibility()
 
+/datum/status_effect/xeno/dragon_flight/proc/land()
+	owner.Immobilize(LANDING_DELAY)
+	animate(owner, LANDING_DELAY, pixel_y = initial(owner.pixel_y), easing = BACK_EASING)
+	animate(owner, LANDING_DELAY, alpha = initial(owner.alpha))
+	if(shadow)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, shadow), LANDING_DELAY)
+
+/datum/status_effect/xeno/dragon_flight/proc/create_shadow()
+	shadow = new /obj/effect/following_shadow(get_turf(owner), owner)
+	shadow.alpha = 0
+	shadow.glide_size = owner.glide_size
+	animate(shadow, 10 SECONDS, alpha = 150)
+
 #undef PIXELS_TO_DISSAPPEAR
+#undef FLAP_DELAY
+#undef LANDING_DELAY

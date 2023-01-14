@@ -57,16 +57,37 @@
 	name = "Spit a fireball"
 	mechanics_text = "Belch a fiery fireball at your foes."
 
-/datum/action/xeno_action/activable/flight
+/datum/action/xeno_action/activable/xeno_spit/fireball/get_spit_type()
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if(xeno.has_status_effect(STATUS_EFFECT_FLIGHT))
+		xeno.ammo = /datum/ammo/flamethrower/dragon_fire/flying
+	else
+		xeno.ammo = /datum/ammo/flamethrower/dragon_fire
+
+/datum/action/xeno_action/activable/xeno_spit/fireball/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
+	. = ..()
+	if(!isliving(owner))
+		return
+	var/mob/living/living_owner = owner
+	if(!living_owner.has_status_effect(STATUS_EFFECT_FLIGHT))
+		return
+	var/turf/turf = get_turf(current_target)
+	var/obj/effect/effect = new /obj/effect(turf)
+	effect.icon = 'icons/misc/mark.dmi'
+	effect.icon_state = "X"
+	effect.color = "purple"
+	QDEL_IN(effect, 3 SECONDS)
+
+/datum/action/xeno_action/flight
 	name = "Skycall"
 	mechanics_text = "Take flight and rain hell upon your enemies!"
 	cooldown_timer = 3 MINUTES
 	var/list/blacklisted_areas = list(
 		/area/shuttle/dropship,
-		/area/shuttle/
+		/area/shuttle
 	)
 
-/datum/action/xeno_action/activable/flight/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/xeno_action/flight/can_use_action(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -74,7 +95,7 @@
 		return FALSE
 	var/invalid_area = FALSE
 	for(var/area/area in blacklisted_areas)
-		var/area/owner_area = get_area(get_turf(owner))
+		var/area/owner_area = get_area(owner)
 		if(istype(owner_area, area))
 			invalid_area = TRUE
 			break
@@ -83,9 +104,25 @@
 			owner.balloon_alert("can't fly here!")
 		return FALSE
 
-/datum/action/xeno_action/activable/flight/on_activation()
+/datum/action/xeno_action/flight/action_activate()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	// A status effect for better edge case handling
+	if(owner_xeno.has_status_effect(STATUS_EFFECT_FLIGHT))
+		owner_xeno.remove_status_effect(STATUS_EFFECT_FLIGHT)
+		owner_xeno.Immobilize(2 SECONDS, TRUE)
+		add_cooldown()
+		return fail_activate()
+
 	owner_xeno.apply_status_effect(STATUS_EFFECT_FLIGHT)
+	owner_xeno.Immobilize(10 SECONDS, TRUE)
+	owner_xeno.balloon_alert_to_viewers("unfolds it's wings and takes off!")
+	
 	if(!do_after(owner_xeno, 10 SECONDS))
 		owner_xeno.remove_status_effect(STATUS_EFFECT_FLIGHT)
+		owner_xeno.AdjustImmobilized(-10 SECONDS)
+		add_cooldown(1 MINUTES)
+		return
+	succeed_activate()
+
+/datum/action/xeno_action/remove_action(mob/living/L)
+	. = ..()
+	L.remove_status_effect(STATUS_EFFECT_FLIGHT)

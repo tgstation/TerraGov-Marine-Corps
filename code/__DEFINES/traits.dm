@@ -140,6 +140,7 @@
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
+#define TRAIT_INTANGIBLE "intangible" // mobs with this trait are intangible (go through mobs, can't be meele'd), however, this trait does not apply those effects
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
 #define TRAIT_DROOLING "drooling" //target is drooling

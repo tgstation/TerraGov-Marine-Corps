@@ -1080,8 +1080,8 @@ will handle it, but:
 	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
 	addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 0.5 SECONDS)
 
-/proc/fade_out(image/I, list/show_to)
-	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
+/proc/fade_out(image/I, list/show_to, time = 0.5)
+	animate(I, alpha = 0, time = time SECONDS, easing = EASE_IN)
 	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate

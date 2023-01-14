@@ -236,3 +236,35 @@
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	alpha = 70
+
+// Shadow that follows whatever's provided in arguments
+/obj/effect/following_shadow
+	icon = 'icons/Xeno/shadow.dmi'
+	icon_state = "flying_shadow"
+	alpha = 200
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	// The sprite is bigger than a single
+	pixel_x = -16
+	var/following
+	var/datum/movement_detector/tracker
+
+/obj/effect/following_shadow/Initialize(mapload, follow)
+	. = ..()
+	following = follow
+	if(!following)
+		stack_trace("Somehow spawned a following shadow without someone to follow!")
+		qdel(src)
+		return
+
+	tracker = new /datum/movement_detector(following, CALLBACK(src, .proc/update_position))
+
+/obj/effect/following_shadow/Destroy()
+	qdel(tracker)
+	following = null
+	return ..()
+
+/obj/effect/following_shadow/proc/update_position(atom/movable/tracked, atom/mover, atom/oldloc, direction)
+	SIGNAL_HANDLER
+	// if(oldloc == loc)
+	// 	return
+	abstract_move(tracked.loc)

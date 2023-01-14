@@ -330,7 +330,7 @@
 // TODO: Turn actual fire into status effects?
 /datum/status_effect/dragon_fire
 	id = "dragon_fire"
-	alert_type = /obj/screen/alert/fire
+	alert_type = /obj/screen/alert/status_effect/fire
 	var/mob/living/carbon/human/person
 	var/mutable_appearance/fire_effect
 
@@ -339,39 +339,38 @@
 	if(!ishuman(owner))
 		return FALSE
 	person = owner
-
 	person.ExtinguishMob()
+
 	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
 	fire_effect.color = "purple"
 	person.overlays_standing[FIRE_LAYER] = fire_effect
 	person.apply_overlay(FIRE_LAYER)
+	person.balloon_alert(person, "Something viscous is burning on you!")
 
-	owner.balloon_alert(owner, "Something viscous is burning on you!")
-
-	RegisterSignal(owner, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE, .proc/disable_extinguish_message)
-	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
-	RegisterSignal(owner, COMSIG_LIVING_EXTINGUISH, .proc/extinguish)
-	RegisterSignal(owner, COMSIG_LIVING_IGNITE_ATTEMPT, .proc/override_fire)
+	RegisterSignal(person, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE, .proc/disable_extinguish_message)
+	RegisterSignal(person, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
+	RegisterSignal(person, COMSIG_LIVING_EXTINGUISH, .proc/extinguish)
+	RegisterSignal(person, COMSIG_LIVING_IGNITE_ATTEMPT, .proc/override_fire)
 
 /datum/status_effect/dragon_fire/tick()
 	// There's a lot of stuff that affects fire_stacks, this way we get to keep that instead of those effects simply not doing anything
 	// Consuming all the fire stacks will make it impossible for normal fire to stick around
 	set_duration(person.fire_stacks + duration)
 	person.fire_stacks = 0
-	person.take_overall_damage_armored(5, BURN)
+	person.take_overall_damage_armored(5, BURN, "burn")
 
 /datum/status_effect/dragon_fire/proc/set_duration(amount)
 	duration = clamp(amount, 0, 40)
 
 /datum/status_effect/dragon_fire/on_remove()
-	. = ..()
 	person.remove_overlay(FIRE_LAYER)
+	person.balloon_alert(person, "The last of the viscous material has stopped burning")
+	UnregisterSignal(person, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE)
+	UnregisterSignal(person, COMSIG_LIVING_DO_RESIST)
+	UnregisterSignal(person, COMSIG_LIVING_EXTINGUISH)
+	UnregisterSignal(person, COMSIG_LIVING_IGNITE_ATTEMPT)
 	person = null
-	owner.balloon_alert(owner, "The last of the viscous material has stopped burning")
-	UnregisterSignal(owner, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE)
-	UnregisterSignal(owner, COMSIG_LIVING_DO_RESIST)
-	UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISH)
-	UnregisterSignal(owner, COMSIG_LIVING_IGNITE_ATTEMPT)
+	. = ..()
 
 /datum/status_effect/dragon_fire/proc/override_fire()
 	SIGNAL_HANDLER

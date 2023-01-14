@@ -3157,7 +3157,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_NAVY
 
 /datum/ammo/flamethrower/dragon_fire
-	name = "resin fireball"
+	name = "resin firebolt"
 	burn_flags =  BURN_HUMANS|BURN_SNOW
 	max_range = 10
 	shell_speed = 0.2
@@ -3180,6 +3180,12 @@ datum/ammo/bullet/revolver/tp44
 	if(ishuman(M))
 		var/mob/living/carbon/human/human = M
 		human.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
+
+/datum/ammo/flamethrower/dragon_fire/flying
+	name = "resin fireball"
+	shell_speed = 0.3
+	ignite_range = 1
+	damage = 20
 
 /datum/ammo/water
 	name = "water"
