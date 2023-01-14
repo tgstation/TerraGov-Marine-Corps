@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/faci
 	//Underwear
 GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear indexed by name
 GLOBAL_LIST_INIT(underwear_m, list("Briefs")) //Curse whoever made male/female underwear diffrent colours
-GLOBAL_LIST_INIT(underwear_f, list("Briefs", "Panties"))
+GLOBAL_LIST_INIT(underwear_f, list("Briefs", "Panties", "Blue", "Red", "White", "Yellow", "Black"))
 	//Undershirts
 GLOBAL_LIST_INIT(undershirt_t, list("None","Undershirt(Sleeveless)", "Undershirt(Sleeved)", "Rolled Undershirt(Sleeveless)", "Rolled Undershirt(Sleeved)"))
 	//Mutant Human bits

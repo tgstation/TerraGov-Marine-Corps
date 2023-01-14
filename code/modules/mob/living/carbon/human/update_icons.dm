@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(species.species_flags & HAS_UNDERWEAR)
 
 		//Underwear
-		if(underwear >0 && underwear < 3)
+		if(underwear >0 && underwear < 8)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
 		if(ismarinejob(job)) //undoing override
