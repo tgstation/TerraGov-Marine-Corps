@@ -41,7 +41,7 @@
 		return
 
 	var/list/spawn_locations = get_spawn_locations(spawn_scatter_radius)
-	var/spawn_loot_count = isnull(lootcount_override) ? src.spawn_loot_count : lootcount_override
+	var/spawn_loot_count = lootcount_override ? lootcount_override : src.spawn_loot_count
 
 	if(spawn_all_loot)
 		spawn_loot_count = INFINITY
