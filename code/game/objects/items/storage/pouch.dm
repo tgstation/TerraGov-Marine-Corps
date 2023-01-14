@@ -557,12 +557,18 @@
 	max_storage_space = 28
 	icon_state = "flare"
 	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
-
+	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
+	fill_type = /obj/item/explosive/grenade/flare
 	can_hold = list(
 		/obj/item/flashlight/flare,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
 	)
+
+/obj/item/storage/pouch/flare/full/Initialize()
+	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	fill_number = max_storage_space - flare_gun.w_class
+	return ..()
 
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/m94))
@@ -600,13 +606,6 @@
 		flare_gun.reload(flare, user)
 		orient2hud()
 		return
-
-/obj/item/storage/pouch/flare/full/Initialize()
-	. = ..()
-	if(max_storage_space)
-		for(var/i in 1 to (max_storage_space - 1))
-			new /obj/item/explosive/grenade/flare(src)
-	new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
