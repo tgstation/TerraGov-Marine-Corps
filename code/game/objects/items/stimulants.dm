@@ -33,7 +33,7 @@
 
 /obj/item/stimulant/exile
 	name = "exile booster"
-	desc = "Exile inhibits several key receptors in the brain, triggering a state of extreme aggression and dumbness to pain, allowing the user to continue operating with the most greivous of injuries. Exile does not actually prevent any damage however, and can gradually lead to neural degeneration."
+	desc = "Exile inhibits several key receptors in the brain, triggering a state of extreme aggression and numbness to pain, allowing the user to continue operating with the most grievous of injuries. Exile does not actually prevent any damage however, and can gradually lead to neural degeneration."
 	icon_state = "exile"
 	stim_type = STATUS_EFFECT_STIMULANT_EXILE
 	stim_message = "You feel the urge for violence!"
