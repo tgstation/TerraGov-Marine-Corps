@@ -882,6 +882,8 @@
 		"desert",
 		"red",
 		"blue",
+		"purple",
+		"gold",
 	)
 	current_variant = "black"
 
