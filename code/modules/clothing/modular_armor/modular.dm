@@ -809,7 +809,7 @@
 // ***************************************
 /obj/item/clothing/suit/modular/style
 	name = "\improper Drip"
-	desc = "He got that drip, doe."
+	desc = "They got that drip, doe."
 	flags_item_map_variant = NONE
 	allowed_uniform_type = /obj/item/clothing/under
 	icon = 'icons/obj/clothing/cm_suits.dmi'
