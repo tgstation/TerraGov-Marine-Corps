@@ -22,7 +22,7 @@
 	addtimer(CALLBACK(src, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time) //game end timer will start ticking down on shutter drop
 
 /datum/game_mode/combat_patrol/sensor_capture/game_end_countdown()
-	if(game_timer == "paused")
+	if(game_timer == SENSOR_CAP_TIMER_PAUSED)
 		return "Timer paused, tower activation in progress"
 	return ..()
 

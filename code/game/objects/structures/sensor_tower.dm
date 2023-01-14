@@ -196,14 +196,13 @@
 /obj/structure/sensor_tower_patrol/proc/toggle_game_timer(addition_time)
 	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
 
-	if(mode.game_timer)
-		remaining_game_time = timeleft(mode.game_timer)
-		deltimer(mode.game_timer) //game timer is paused while tower is running
-		mode.game_timer = "paused"
+	if(mode.game_timer == SENSOR_CAP_TIMER_PAUSED)
+		mode.game_timer = addtimer(CALLBACK(mode, /datum/game_mode/combat_patrol.proc/set_game_end), remaining_game_time + addition_time, TIMER_STOPPABLE)
 		return
 
-	mode.game_timer = addtimer(CALLBACK(mode, /datum/game_mode/combat_patrol.proc/set_game_end), remaining_game_time + addition_time, TIMER_STOPPABLE)
-
+	remaining_game_time = timeleft(mode.game_timer)
+	deltimer(mode.game_timer) //game timer is paused while tower is running
+	mode.game_timer = SENSOR_CAP_TIMER_PAUSED
 
 /obj/structure/sensor_tower_patrol/update_icon()
 	. = ..()
