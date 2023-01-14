@@ -15,7 +15,7 @@
 	var/mob/living/carbon/human/H = L
 	L.adjustDrowsyness(6)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
-	if(L.health < H.health_threshold_crit && volume)
+	if(L.health < H.health_threshold_crit)
 		to_chat(L, span_userdanger("You feel a weird sensation from the nest jelly!"))
 		L.reagents.remove_all_type(/datum/reagent/toxin, 2.5*effect_str, 0, 1)
 		L.adjustOxyLoss(-L.getOxyLoss())
