@@ -613,7 +613,6 @@
 /obj/effect/vendor_bundle/basic_jaeger
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -631,7 +630,6 @@
 /obj/effect/vendor_bundle/basic_jaeger_smartgunner
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -647,7 +645,6 @@
 /obj/effect/vendor_bundle/basic_jaeger_squadleader
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -663,7 +660,6 @@
 /obj/effect/vendor_bundle/basic_jaeger_medic
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -679,7 +675,6 @@
 /obj/effect/vendor_bundle/basic_jaeger_engineer
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
@@ -735,7 +730,6 @@
 /obj/effect/vendor_bundle/jaeger_commander
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,

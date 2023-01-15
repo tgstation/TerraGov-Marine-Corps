@@ -1150,7 +1150,6 @@
 			/obj/item/clothing/suit/modular/jaeger/heavy = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/assault = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/eod = -1,
-			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/modular/xenonauten/rownin = -1,
 			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
 			/obj/item/clothing/suit/storage/marine/cowboy = -1,
