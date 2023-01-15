@@ -103,7 +103,7 @@
 
 	var/spawn_location = pick(GLOB.deathmatch)
 
-		var/job = pick(
+	var/job = pick(
         /datum/job/clf/leader,
         /datum/job/clf/standard,
         /datum/job/freelancer/leader,
@@ -141,10 +141,11 @@
 		)
 
 	if(istype(job, /mob/living/carbon/xenomorph))
+		var/mob/living/carbon/xenomorph/X = new job(spawn_location)
 		return
 
-		var/mob/living/L = new /mob/living/carbon/human(spawn_location)
-		mind.transfer_to(L, TRUE)
+	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
+	mind.transfer_to(L, TRUE)
 	L.mind.bypass_ff = TRUE
 	L.revive()
 
@@ -153,8 +154,6 @@
 	var/datum/job/J = SSjob.GetJobType(job)
 	H.apply_assigned_role_to_spawn(J)
 	H.regenerate_icons()
-
-	var/mob/living/carbon/xenomorph/X = L
 
 	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
 
