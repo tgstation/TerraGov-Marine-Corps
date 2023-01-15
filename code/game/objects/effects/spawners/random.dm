@@ -43,6 +43,9 @@
 	var/list/spawn_locations = get_spawn_locations(spawn_scatter_radius)
 	var/spawn_loot_count = lootcount_override ? lootcount_override : src.spawn_loot_count
 
+	if(!spawn_locations.len)
+		return
+
 	if(spawn_all_loot)
 		spawn_loot_count = INFINITY
 		spawn_loot_double = FALSE
@@ -63,26 +66,23 @@
 			loot.Remove(lootspawn)
 		if(!lootspawn)
 			return
-		if(spawn_locations.len)
-			var/turf/spawn_loc = loc
-			if(spawn_scatter_radius > 0)
-				spawn_loc = pick_n_take(spawn_locations)
+		var/turf/spawn_loc = loc
+		if(spawn_scatter_radius > 0)
+			spawn_loc = pick_n_take(spawn_locations)
 
-			var/atom/movable/spawned_loot = new lootspawn(spawn_loc)
-			if(!spawn_with_original_direction)
-				spawned_loot.setDir(dir)
+		var/atom/movable/spawned_loot = new lootspawn(spawn_loc)
+		if(!spawn_with_original_direction)
+			spawned_loot.setDir(dir)
 
-			if(!spawn_loot_split && !spawn_random_offset)
-				if(pixel_x != 0)
-					spawned_loot.pixel_x = pixel_x
-				if(pixel_y != 0)
-					spawned_loot.pixel_y = pixel_y
-			else if(spawn_random_offset)
-				spawned_loot.pixel_x = rand(-16, 16)
-				spawned_loot.pixel_y = rand(-16, 16)
-			else if(spawn_loot_split)
-				if(loot_spawned)
-					spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
+		if(spawn_loot_split && loot_spawned)
+			spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
+		else if(spawn_random_offset)
+			spawned_loot.pixel_x = rand(-16, 16)
+			spawned_loot.pixel_y = rand(-16, 16)
+		else
+			spawned_loot.pixel_x = pixel_x
+			spawned_loot.pixel_y = pixel_y
+
 		loot_spawned++
 
 ///If the spawner has a spawn_scatter_radius set, this creates a list of nearby turfs available
