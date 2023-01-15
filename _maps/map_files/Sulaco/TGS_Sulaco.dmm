@@ -2193,7 +2193,7 @@
 	},
 /area/sulaco/bridge)
 "akv" = (
-/obj/machinery/floodlightcombat,
+/obj/machinery/floodlight/combat,
 /turf/open/floor/prison/red{
 	dir = 5
 	},
@@ -11139,7 +11139,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "cvT" = (
-/obj/machinery/floodlightcombat,
+/obj/machinery/floodlight/combat,
 /obj/machinery/door_control/unmeltable{
 	id = "sd_blastdoor";
 	name = "Self Destruct Blast Door Control";
