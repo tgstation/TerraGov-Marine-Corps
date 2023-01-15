@@ -29,6 +29,11 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
+"eJ" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "eX" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -42,8 +47,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "gY" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "ht" = (
@@ -83,6 +87,11 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
+"jH" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "kz" = (
 /obj/structure/desertdam/decals/loose_sand_overlay/alt,
 /turf/open/floor/industrial,
@@ -101,6 +110,11 @@
 /obj/structure/desertdam/decals/loose_sand_overlay/alt,
 /obj/effect/ai_node,
 /turf/open/floor/industrial,
+/area/deathmatch)
+"mC" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "mE" = (
 /obj/structure/largecrate/random/secure,
@@ -184,6 +198,13 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/tile,
 /area/deathmatch)
+"ry" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
 "uf" = (
 /obj/structure/platform{
 	dir = 8
@@ -207,8 +228,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "xb" = (
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "xg" = (
@@ -227,6 +247,9 @@
 "yN" = (
 /obj/structure/desertdam/decals/loose_sand_overlay,
 /turf/open/floor/industrial,
+/area/deathmatch)
+"yV" = (
+/turf/closed/wall/wood,
 /area/deathmatch)
 "yY" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -247,6 +270,14 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark,
+/area/deathmatch)
+"Bg" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Bt" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/wood,
 /area/deathmatch)
 "BI" = (
 /obj/structure/stairs{
@@ -305,6 +336,9 @@
 "Hh" = (
 /obj/structure/platform,
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"Ht" = (
+/turf/open/floor/wood,
 /area/deathmatch)
 "HM" = (
 /obj/structure/stairs{
@@ -459,6 +493,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"TF" = (
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "Ua" = (
 /turf/open/floor/industrial,
 /area/deathmatch)
@@ -466,6 +504,10 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"Uy" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/wood,
 /area/deathmatch)
 "WT" = (
 /obj/structure/platform{
@@ -1553,12 +1595,12 @@ LF
 hH
 FE
 FE
-YD
-YD
-YD
-YD
-ez
-ez
+FE
+FE
+FE
+FE
+FE
+FE
 FE
 Si
 Hh
@@ -1600,14 +1642,14 @@ zg
 FE
 FE
 FE
-YD
-YD
-YD
-YD
-YD
-YD
-ez
-ez
+FE
+yV
+TF
+TF
+ry
+jH
+jH
+yV
 FE
 Hh
 FE
@@ -1648,14 +1690,14 @@ Sp
 FE
 hH
 FE
-YD
-YD
-YD
-YD
-YD
-YD
-ez
-ez
+FE
+mC
+Bg
+Ht
+Ht
+Ht
+Bg
+eJ
 FE
 Hh
 FE
@@ -1696,14 +1738,14 @@ YD
 YD
 Ii
 FE
-YD
-YD
-YD
-YD
-YD
-YD
-ez
-ez
+FE
+mC
+Ht
+Ht
+Ht
+Ht
+Ht
+eJ
 FE
 Hh
 FE
@@ -1744,14 +1786,14 @@ ez
 YD
 FE
 FE
-YD
-YD
-YD
-YD
-YD
-YD
-ez
-ez
+FE
+mC
+Ht
+Ht
+Bt
+Ht
+Ht
+eJ
 FE
 wG
 FE
@@ -1793,13 +1835,13 @@ YD
 FE
 FE
 FE
-YD
-YD
-YD
-YD
-ez
-ez
-FE
+mC
+Ht
+Ht
+Ht
+Ht
+Ht
+eJ
 FE
 FE
 ZW
@@ -1841,13 +1883,13 @@ YD
 FE
 FE
 FE
-FE
-FE
-Sh
-xg
-xg
-FE
-FE
+mC
+Bg
+Ht
+Ht
+Ht
+Bg
+eJ
 FE
 eX
 FE
@@ -1889,13 +1931,13 @@ YD
 hH
 Ii
 FE
-hH
-FE
-FE
-FE
-FE
-hH
-FE
+yV
+mC
+mC
+Uy
+eJ
+eJ
+yV
 nM
 FE
 FE
@@ -1991,8 +2033,8 @@ FE
 FE
 FE
 FE
-LF
-YD
+FE
+FE
 YD
 YD
 YD
@@ -2041,7 +2083,7 @@ FE
 hH
 FE
 YD
-ez
+YD
 ez
 ez
 ez

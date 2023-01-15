@@ -199,6 +199,7 @@
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
 			/obj/item/tool/hand_labeler = -1,
+			/obj/item/toy/deck/kotahi = -1,
 		),
 	)
 
@@ -1446,7 +1447,6 @@
 		),
 		"Equipment" = list(
 			/obj/item/clothing/mask/gas/swat = -1,
-			/obj/item/clothing/glasses/night/imager_goggles = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
 			/obj/item/clothing/suit/storage/marine/specialist = -1,
 			/obj/item/clothing/head/helmet/marine/specialist = -1,

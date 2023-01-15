@@ -738,11 +738,6 @@ ARMOR
 	contains = list(/obj/item/clothing/mask/gas/swat)
 	cost = 50
 
-/datum/supply_packs/armor/imager_goggle
-	name = "Optical Imager Goggles"
-	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
-	cost = 50
-
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(

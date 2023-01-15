@@ -163,3 +163,34 @@
   - bugfix: Add back the crew monitoring computer back in PoS
   - bugfix: Shrike req points 50->500
   - balance: Shrike req points 50->500
+2023-01-12:
+  Lewdcifer:
+  - code_imp: Bump attacks will now respect attack speed/delay if applicable.
+2023-01-14:
+  Blundir:
+  - rscadd: added synth hud for dead and dnr/no client/no ghost situations
+  - bugfix: fixed synth having no damage overlay icon
+  - bugfix: fixed warlock having no icon in some interfaces
+  Lewdcifer:
+  - rscdel: Removed Optical Imager Goggles from the code and the game.
+  - imageadd: Added a visual effect to the Ravager's Ravage ability.
+  Lumipharon:
+  - bugfix: fixed loadout vendors not vending weapons with certain default attachments
+  - code_imp: Some minor ammo code cleanup
+  - balance: Standard flechette now has consistant AP and falloff between the main
+      and addition flechette projectiles
+  - balance: Masterkey no longer doubles projectile damage falloff
+  Tupina:
+  - imageadd: New minimap icons.
+  novaepee:
+  - imageadd: boiler gibbing with its own sprites
+  tyeagg:
+  - imageadd: new bullet sprites
+2023-01-15:
+  Lewdcifer:
+  - balance: Laser Pistol wielded slowdown reduced from 0.75 to 0.
+  - bugfix: CAS is no longer usable before shutters open, or before Tadpole launches.
+  Three333Digit:
+  - rscadd: Combat robots can speak machine
+  novaepee:
+  - rscadd: ADD BOXING RINGS TO ALL EORD ARENA
