@@ -1089,7 +1089,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
-	hud_state = "minigun"
+	hud_state = "sniper_auto"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	damage = 50
 	penetration = 30
@@ -1124,7 +1124,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smart_minigun
 	name = "smartminigun bullet"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
-	hud_state = "smartgun"
+	hud_state = "smartgun_minigun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 12
