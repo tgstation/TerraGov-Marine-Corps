@@ -130,7 +130,29 @@
 
 	var/mob/living/carbon/xenomorph/X = L
 	var/xeno_caste = pick(
-
+		/datum/xeno_caste/boiler/primordial,
+		/datum/xeno_caste/bull/primordial,
+		/datum/xeno_caste/carrier/primodial,
+		/datum/xeno_caste/crusher/primordial,
+		/datum/xeno_caste/defender/primordial,
+		/datum/xeno_caste/defiler/primordial,
+		/datum/xeno_caste/drone/primordial,
+		/datum/xeno_caste/gorger/primordial,
+		/datum/xeno_caste/hivelord/primordial,
+		/datum/xeno_caste/hunter/primordial,
+		/datum/xeno_caste/king/primordial,
+		/datum/xeno_caste/larva/young,
+		/datum/xeno_caste/praetorian/primordial,
+		/datum/xeno_caste/queen/primordial,
+		/datum/xeno_caste/ravager/primordial,
+		/datum/xeno_caste/runner/primordial,
+		/datum/xeno_caste/sentinel/primordial,
+		/datum/xeno_caste/shrike/primordial,
+		/datum/xeno_caste/spitter/primordial,
+		/datum/xeno_caste/warlock/primordial,
+		/datum/xeno_caste/warrior/primordial,
+		/datum/xeno_caste/widow/primordial,
+		/datum/xeno_caste/wraith/primordial,
 	)
 
 	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
