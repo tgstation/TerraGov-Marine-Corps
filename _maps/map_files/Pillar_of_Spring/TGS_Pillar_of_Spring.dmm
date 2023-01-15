@@ -6304,10 +6304,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"its" = (
-/obj/machinery/roomba,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "iuw" = (
 /obj/machinery/light/mainship,
 /obj/structure/sink{
@@ -55396,7 +55392,7 @@ eYx
 cPg
 cPg
 cMq
-its
+cPg
 cPg
 sqc
 kQp

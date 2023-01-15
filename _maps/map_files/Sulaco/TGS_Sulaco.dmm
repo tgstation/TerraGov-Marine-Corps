@@ -10483,7 +10483,7 @@
 /area/sulaco/cargo/prep)
 "bwn" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -12887,7 +12887,7 @@
 /area/sulaco/hallway/central_hall)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -16294,7 +16294,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -20202,15 +20202,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
-"oPD" = (
-/obj/machinery/roomba,
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/turf/open/floor/prison/green{
-	dir = 4
-	},
-/area/sulaco/marine)
 "oQG" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -23430,7 +23421,7 @@
 /area/sulaco/hangar)
 "sYa" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -25817,7 +25808,6 @@
 /area/sulaco/hallway/central_hall3)
 "whS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/roomba,
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
@@ -26148,7 +26138,7 @@
 /area/sulaco/cafeteria)
 "wKu" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/sulaco/hangar)
 "wKB" = (
@@ -48583,7 +48573,7 @@ aMv
 iHP
 aLF
 alq
-oPD
+qaA
 azx
 xJd
 xKf
