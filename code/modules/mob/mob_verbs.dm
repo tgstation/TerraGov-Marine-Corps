@@ -128,6 +128,11 @@
 	H.apply_assigned_role_to_spawn(J)
 	H.regenerate_icons()
 
+	var/mob/living/carbon/xenomorph/X = L
+	var/xeno_caste = pick(
+
+	)
+
 	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
 
 
