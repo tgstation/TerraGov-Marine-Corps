@@ -9,21 +9,24 @@
 	icon_state = "redshorts"
 
 /obj/item/clothing/under/shorts/red/eord
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	soft_armor = list(MELEE = 0, BULLET = 1000, LASER = 1000, ENERGY = 100, BOMB = 1000, BIO = 100, FIRE = 1000, ACID = 100)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 
 /obj/item/clothing/under/shorts/green
 	name = "green athletic shorts"
 	icon_state = "greenshorts"
 
 /obj/item/clothing/under/shorts/green/eord
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	soft_armor = list(MELEE = 0, BULLET = 1000, LASER = 1000, ENERGY = 100, BOMB = 1000, BIO = 100, FIRE = 1000, ACID = 100)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 
 /obj/item/clothing/under/shorts/blue
 	name = "blue athletic shorts"
 	icon_state = "blueshorts"
 
 /obj/item/clothing/under/shorts/blue/eord
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	soft_armor = list(MELEE = 0, BULLET = 1000, LASER = 1000, ENERGY = 100, BOMB = 1000, BIO = 100, FIRE = 1000, ACID = 100)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 
 /obj/item/clothing/under/shorts/black
 	name = "black athletic shorts"
