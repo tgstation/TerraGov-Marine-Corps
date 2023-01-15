@@ -614,8 +614,7 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "infantry_helmet"
-	greyscale_colors = null
-	greyscale_config = null
+	icon_override = null
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	accuracy_mod = 0
 	attachments_allowed = list(
@@ -641,21 +640,6 @@
 	)
 
 	current_variant = "black"
-
-/obj/item/clothing/head/modular/marine/update_item_sprites()
-	var/new_color
-	switch(SSmapping.configs[GROUND_MAP].armor_style)
-		if(MAP_ARMOR_STYLE_JUNGLE)
-			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = ARMOR_PALETTE_DRAB
-		if(MAP_ARMOR_STYLE_ICE)
-			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = ARMOR_PALETTE_SNOW
-		if(MAP_ARMOR_STYLE_PRISON)
-			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = ARMOR_PALETTE_BLACK
-	set_greyscale_colors(new_color)
-	update_icon()
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
