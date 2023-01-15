@@ -1189,7 +1189,7 @@
 /area/mainship/hull/lower_hull)
 "bxn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/ds2/delaytwo,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -9670,7 +9670,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/ds2/delayone{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -53610,7 +53610,7 @@ bKB
 tXB
 dpY
 nas
-fSe
+bxn
 kDx
 kDx
 kDx
@@ -53867,7 +53867,7 @@ qmJ
 xad
 dpY
 dpY
-bxn
+wdb
 kDx
 kDx
 kDx
@@ -54121,7 +54121,7 @@ dgE
 tyN
 tyN
 ggf
-dpY
+tyN
 dpY
 dpY
 syc
@@ -54387,8 +54387,8 @@ gcs
 uSz
 aKC
 vTN
-gcs
 mwd
+uSz
 aKC
 vTN
 gcs
@@ -55421,7 +55421,7 @@ wPV
 wPV
 wPV
 wPV
-wPV
+bIO
 cgH
 uzm
 hEa
@@ -55935,7 +55935,7 @@ nWT
 nWT
 nWT
 esN
-wPV
+bIO
 wPV
 wPV
 wPV
