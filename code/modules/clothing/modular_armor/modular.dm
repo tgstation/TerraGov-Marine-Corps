@@ -614,6 +614,12 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "infantry_helmet"
+	item_state = "infantry_helmet"
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_override = null
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	accuracy_mod = 0
@@ -641,48 +647,11 @@
 
 	current_variant = "black"
 
-/obj/item/clothing/head/modular/marine/skirmisher
-	name = "Jaeger Pattern Skirmisher Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
-	icon_state = "skirmisher_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-
-/obj/item/clothing/head/modular/marine/assault
-	name = "Jaeger Pattern Assault Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
-	icon_state = "assault_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
+	item_state = "eva_helmet"
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -703,10 +672,11 @@
 	icon_state = "eva_skull_helmet"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
-/obj/item/clothing/head/modular/marine/eod
-	name = "Jaeger Pattern EOD Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
-	icon_state = "eod_helmet"
+/obj/item/clothing/head/modular/marine/skirmisher
+	name = "Jaeger Pattern Skirmisher Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
+	icon_state = "skirmisher_helmet"
+	item_state = "skirmisher_helmet"
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -726,6 +696,67 @@
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
+	item_state = "scout_helmet"
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+
+/obj/item/clothing/head/modular/marine/gungnir
+	name = "Jaeger Pattern Gungnir Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Gungnir markings"
+	icon_state = "gungnir_helmet"
+	item_state = "gungnir_helmet"
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+
+/obj/item/clothing/head/modular/marine/assault
+	name = "Jaeger Pattern Assault Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
+	icon_state = "assault_helmet"
+	item_state = "assault_helmet"
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+
+/obj/item/clothing/head/modular/marine/eod
+	name = "Jaeger Pattern EOD Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
+	icon_state = "eod_helmet"
+	item_state = "eod_helmet"
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -749,11 +780,6 @@
 	item_state = "helmet"
 	item_state_worn = TRUE
 	item_state_slots = null
-	item_icons = list(
-		slot_head_str = 'icons/mob/modular/m10.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
-	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
