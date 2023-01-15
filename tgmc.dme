@@ -417,6 +417,7 @@
 #include "code\datums\helper_datums\stack_end_detector.dm"
 #include "code\datums\jobs\access.dm"
 #include "code\datums\jobs\squads.dm"
+#include "code\datums\jobs\job\boxer.dm"
 #include "code\datums\jobs\job\clf.dm"
 #include "code\datums\jobs\job\deathsquad.dm"
 #include "code\datums\jobs\job\fallen.dm"

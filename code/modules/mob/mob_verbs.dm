@@ -123,6 +123,7 @@
 		/datum/job/som/ert/standard,
 		/datum/job/pmc/leader,
 		/datum/job/pmc/standard,
+		/datum/job/boxer,
 	)
 	var/datum/job/J = SSjob.GetJobType(job)
 	H.apply_assigned_role_to_spawn(J)
