@@ -2493,7 +2493,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/north)
 "bJW" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/structure/prop/mainship/research/destructive_analyzer,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -20395,7 +20395,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "osy" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/structure/prop/mainship/research/mechafab,
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "osz" = (
@@ -28147,7 +28147,7 @@
 /turf/open/lavaland/lava/corner,
 /area/magmoor/cave/north)
 "tCM" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research)
 "tCQ" = (
