@@ -132,7 +132,7 @@
 	var/xeno_caste = pick(
 		/datum/xeno_caste/boiler/primordial,
 		/datum/xeno_caste/bull/primordial,
-		/datum/xeno_caste/carrier/primodial,
+		/datum/xeno_caste/carrier/primordial,
 		/datum/xeno_caste/crusher/primordial,
 		/datum/xeno_caste/defender/primordial,
 		/datum/xeno_caste/defiler/primordial,
