@@ -4,6 +4,7 @@
 	skills_type = /datum/skills/skeleton
 	faction = FACTION_NEUTRAL
 	title = "Boxer"
+	outfit = /datum/outfit/job/boxer/red
 	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/boxer/red,
