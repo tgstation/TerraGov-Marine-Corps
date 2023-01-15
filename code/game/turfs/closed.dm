@@ -609,6 +609,9 @@
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 	walltype = "swall"
 
+/turf/closed/shuttle/escapeshuttle/prison
+	resistance_flags = RESIST_ALL
+
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER

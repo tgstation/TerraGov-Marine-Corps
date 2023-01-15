@@ -1,0 +1,8 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - rscadd: "Flare guns can now be tactically reloaded with a flare pouch by right clicking it."
+  - balance: "Flare packs have had their inventory size reduced."
+  - balance: "Flares have had their inventory size reduced."
+  - balance: "Flare packs can now hold a maximum of 28 items."
+  - balance: "Flare pouches can now hold a maximum of 28 items."

@@ -10,6 +10,8 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "boiler" //used to match appropriate wound overlays
 
+	gib_flick = "gibbed-a-boiler"
+
 	// *** Melee Attacks *** //
 	melee_damage = 17
 

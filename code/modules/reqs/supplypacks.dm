@@ -738,11 +738,6 @@ ARMOR
 	contains = list(/obj/item/clothing/mask/gas/swat)
 	cost = 50
 
-/datum/supply_packs/armor/imager_goggle
-	name = "Optical Imager Goggles"
-	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
-	cost = 50
-
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(
@@ -1176,8 +1171,8 @@ ENGINEERING
 
 /datum/supply_packs/engineering/floodlight
 	name = "Combat Grade Floodlight"
-	contains = list(/obj/machinery/floodlightcombat)
-	cost = 100
+	contains = list(/obj/machinery/floodlight/combat)
+	cost = 30
 
 /datum/supply_packs/engineering/advanced_generator
 	name = "Wireless power generator"
