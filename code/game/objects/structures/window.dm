@@ -460,6 +460,13 @@
 	basestate = "white_rwindow"
 	window_frame = /obj/structure/window_frame/mainship/white
 
+/obj/structure/window/framed/mainship/white/chemistry
+	name = "chemistry lab window"
+	desc = "Chemistry lab's own window."
+	max_integrity = 1000
+	deconstructable = FALSE
+	resistance_flags = PLASMACUTTER_IMMUNE | PROJECTILE_IMMUNE
+
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
 	smoothing_groups = SMOOTH_CANTERBURY
 

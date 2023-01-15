@@ -566,8 +566,8 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
 "abY" = (
-/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -10483,7 +10483,7 @@
 /area/sulaco/cargo/prep)
 "bwn" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -12887,7 +12887,7 @@
 /area/sulaco/hallway/central_hall)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -16294,7 +16294,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -17064,7 +17064,6 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "kzw" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
@@ -17075,6 +17074,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -23430,7 +23430,7 @@
 /area/sulaco/hangar)
 "sYa" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -24841,7 +24841,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo)
 "uPy" = (
-/obj/structure/window/framed/mainship/white,
+/obj/structure/window/framed/mainship/white/chemistry,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "uQi" = (
@@ -26148,7 +26148,7 @@
 /area/sulaco/cafeteria)
 "wKu" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/sulaco/hangar)
 "wKB" = (

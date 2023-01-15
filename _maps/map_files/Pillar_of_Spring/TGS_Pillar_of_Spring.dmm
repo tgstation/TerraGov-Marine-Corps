@@ -1,6 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aam" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "aat" = (
@@ -4205,6 +4208,7 @@
 /area/mainship/squads/general)
 "fol" = (
 /obj/effect/ai_node,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/command/corporateliaison)
 "fom" = (
@@ -5842,11 +5846,11 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "hGT" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
+/obj/structure/window/framed/mainship/white/chemistry,
 /turf/open/floor/plating/platebotc,
 /area/mainship/medical/chemistry)
 "hHH" = (
@@ -5886,7 +5890,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/structure/closet/bodybag,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engineering)
 "hJa" = (
@@ -6510,6 +6513,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "iDm" = (
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "iDs" = (
@@ -7876,6 +7880,9 @@
 /area/space)
 "kxN" = (
 /obj/machinery/light/mainship,
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 10
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "kxP" = (
@@ -8098,6 +8105,18 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"kJg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/corporateliaison)
 "kJX" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship_hull,
@@ -9501,10 +9520,6 @@
 	dir = 4
 	},
 /obj/structure/punching_bag,
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'I don't want to be a marine anymore.'";
-	dir = 4
-	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "mka" = (
@@ -13345,6 +13360,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "rdS" = (
@@ -13549,6 +13567,7 @@
 /obj/item/tool/kitchen/knife/ritual,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/rune,
+/obj/effect/landmark/corpsespawner/marine/regular,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/corporateliaison)
 "rrZ" = (
@@ -14179,15 +14198,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "soc" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'The gates of Hel are open when this armory is opened.'";
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/command/cic)
+/obj/effect/landmark/corpsespawner/syndicatecommando/regular,
+/turf/open/floor/mainship_hull,
+/area/space)
 "soK" = (
 /obj/item/stack/tile/plasteel,
 /turf/open/floor/plating/icefloor/warnplate,
@@ -15121,6 +15134,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -16102,12 +16118,25 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/cic)
+"uCu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/corporateliaison)
 "uCO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "uDd" = (
+/obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "uDj" = (
@@ -16142,7 +16171,7 @@
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
-/obj/structure/window/framed/mainship/white,
+/obj/structure/window/framed/mainship/white/chemistry,
 /turf/open/floor/plating/platebotc,
 /area/mainship/medical/chemistry)
 "uEU" = (
@@ -16536,10 +16565,6 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'Don't trust the marines.'";
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
 "vcN" = (
@@ -16845,6 +16870,9 @@
 	},
 /obj/structure/bed/chair/nometal{
 	dir = 8
+	},
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 9
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -17475,6 +17503,9 @@
 	dir = 5
 	},
 /obj/effect/ai_node,
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "wsm" = (
@@ -45439,7 +45470,7 @@ rWv
 boB
 vzF
 mNK
-glN
+uCu
 ges
 bmt
 wsb
@@ -45956,7 +45987,7 @@ leu
 sFt
 rrI
 leu
-wEo
+kJg
 tBh
 pfH
 qUT
@@ -49539,7 +49570,7 @@ pyV
 pgh
 pgh
 tBj
-xyS
+hGT
 hUf
 cNy
 hUf
@@ -50861,7 +50892,7 @@ wmH
 gsj
 yaz
 bLH
-soc
+fHu
 fHu
 jBi
 qjH
@@ -57228,7 +57259,7 @@ nWT
 nWT
 nWT
 nWT
-nWT
+soc
 nWT
 nWT
 esN

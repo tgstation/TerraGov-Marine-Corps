@@ -3618,13 +3618,12 @@
 /turf/open/floor/mainship/terragov/north,
 /area/space)
 "kh" = (
-/obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2;
-	name = "Chemistry"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "ki" = (
@@ -7146,14 +7145,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "vf" = (
-/obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2;
-	name = "Chemistry"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "vg" = (
@@ -9229,7 +9227,7 @@
 /area/mainship/living/pilotbunks)
 "AU" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -9250,7 +9248,7 @@
 /area/mainship/command/self_destruct)
 "AY" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -12308,7 +12306,7 @@
 /area/mainship/living/bridgebunks)
 "JZ" = (
 /turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "Ka" = (
@@ -12814,7 +12812,7 @@
 /area/mainship/living/numbertwobunks)
 "LB" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -14716,7 +14714,7 @@
 /area/mainship/engineering/engineering_workshop)
 "Rb" = (
 /turf/closed/shuttle/ert/engines/left{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "Rc" = (
@@ -14968,7 +14966,7 @@
 /area/mainship/living/tankerbunks)
 "RQ" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "RR" = (
@@ -14990,7 +14988,7 @@
 /area/mainship/living/grunt_rnr)
 "RU" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "RV" = (

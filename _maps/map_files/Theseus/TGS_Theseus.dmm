@@ -2008,8 +2008,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "aEX" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/window/framed/mainship/white/chemistry,
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "aFq" = (
@@ -4326,12 +4326,13 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bqV" = (
-/obj/machinery/door/airlock/multi_tile/mainship/research{
-	dir = 2;
-	name = "Research Chemical Lab"
-	},
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
+	dir = 1;
+	name = "Chemistry";
+	req_one_access = list(2,8,40)
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
@@ -5446,6 +5447,8 @@
 "bDQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/metal/large_stack,
+/obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "bDR" = (
@@ -8184,7 +8187,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -11996,7 +11999,7 @@
 /area/mainship/hallways/bow_hallway)
 "jjN" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -13188,7 +13191,7 @@
 "lto" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14167,7 +14170,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "Brig Lockdown";
-	name = "\improper Brig Lockdown Podlocks";
+	name = "\improper Brig Lockdown Podlocks"
 	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
@@ -15007,6 +15010,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
+"okX" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/engineering/lower_engineering)
 "olA" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -15892,7 +15904,7 @@
 "pTq" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17000,7 +17012,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
@@ -17982,6 +17994,13 @@
 /obj/machinery/computer/station_alert,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/lower_engine_monitoring)
+"tsP" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/structure/window/framed/mainship/white/chemistry,
+/turf/open/floor/plating,
+/area/mainship/medical/medical_science)
 "ttM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19848,7 +19867,7 @@
 /area/space)
 "wQl" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "wQK" = (
@@ -19895,7 +19914,7 @@
 /area/space)
 "wVm" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "wVv" = (
@@ -58210,7 +58229,7 @@ bpc
 bpd
 nCj
 bMw
-aEX
+tsP
 ruj
 bQv
 ruj
@@ -58467,7 +58486,7 @@ saZ
 ogn
 aDE
 bpj
-aEX
+tsP
 rbP
 rMd
 eeo
@@ -58724,7 +58743,7 @@ rvJ
 gRX
 jEn
 eRr
-aEX
+tsP
 ruj
 bQv
 ruj
@@ -71051,8 +71070,8 @@ baU
 fxK
 bzB
 bDP
-bDP
-bDP
+okX
+okX
 bEW
 bjs
 azj

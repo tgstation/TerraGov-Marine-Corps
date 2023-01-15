@@ -549,7 +549,7 @@
 
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry
 	name = "\improper Chemistry Laboratory"
-	req_access = list(ACCESS_MARINE_CHEMISTRY)
+	req_access = null
 
 /obj/machinery/door/airlock/mainship/medical/rebel/glass/chemistry
 	name = "\improper Chemistry Laboratory"
