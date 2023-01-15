@@ -223,14 +223,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
 
-/datum/hive_upgrade/building/spawner
-	name = "Spawner"
-	desc = "Constructs a spawner that generates ai xenos over time"
-	psypoint_cost = 600
-	icon = "spawner"
-	flags_upgrade = ABILITY_DISTRESS
-	building_type = /obj/structure/xeno/spawner
-
 /datum/hive_upgrade/defence
 	category = "Defences"
 
@@ -299,14 +291,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/xenos
 	category = "Xenos"
-
-/datum/hive_upgrade/xenos/smart_minions
-	name = GHOSTS_CAN_TAKE_MINIONS
-	desc = "Allow ghosts to take control of minions"
-	icon = "smartminions"
-	flags_gamemode = ABILITY_DISTRESS
-	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
-	psypoint_cost = 500
 
 /datum/hive_upgrade/primordial
 	category = "Xenos"
