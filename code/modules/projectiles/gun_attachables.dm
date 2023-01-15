@@ -422,11 +422,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed and reduces damage falloff."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
+	damage_falloff_mod = -0.2
 
 
 /obj/item/attachable/compensator
