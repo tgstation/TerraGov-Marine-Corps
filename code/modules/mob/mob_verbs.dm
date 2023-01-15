@@ -95,7 +95,6 @@
 /mob/proc/eord_respawn()
 	set name = "EORD Respawn"
 	set category = "OOC"
-
 	if(isliving(usr))
 		var/mob/living/liver = usr
 		if(liver.health >= liver.health_threshold_crit)
@@ -103,8 +102,49 @@
 			return
 
 	var/spawn_location = pick(GLOB.deathmatch)
-	var/mob/living/L = new /mob/living/carbon(spawn_location)
-	mind.transfer_to(L, TRUE)
+
+		var/job = pick(
+        /datum/job/clf/leader,
+        /datum/job/clf/standard,
+        /datum/job/freelancer/leader,
+        /datum/job/freelancer/grenadier,
+        /datum/job/freelancer/standard,
+        /datum/job/upp/leader,
+        /datum/job/upp/heavy,
+        /datum/job/upp/standard,
+        /datum/job/som/ert/leader,
+        /datum/job/som/ert/veteran,
+        /datum/job/som/ert/standard,
+        /datum/job/pmc/leader,
+        /datum/job/pmc/standard,
+		/mob/living/carbon/xenomorph/bull,
+		/mob/living/carbon/xenomorph/crusher,
+        /mob/living/carbon/xenomorph/carrier,
+		/mob/living/carbon/xenomorph/defender,
+		/mob/living/carbon/xenomorph/drone,
+		/mob/living/carbon/xenomorph/hivelord,
+		/mob/living/carbon/xenomorph/defiler,
+		/mob/living/carbon/xenomorph/gorger,
+		/mob/living/carbon/xenomorph/king,
+		/mob/living/carbon/xenomorph/sentinel,
+		/mob/living/carbon/xenomorph/runner,
+		/mob/living/carbon/xenomorph/hunter,
+		/mob/living/carbon/xenomorph/wraith,
+		/mob/living/carbon/xenomorph/warlock,
+		/mob/living/carbon/xenomorph/warrior,
+		/mob/living/carbon/xenomorph/spitter,
+		/mob/living/carbon/xenomorph/praetorian,
+		/mob/living/carbon/xenomorph/queen,
+		/mob/living/carbon/xenomorph/shrike,
+		/mob/living/carbon/xenomorph/widow,
+		/mob/living/carbon/xenomorph/ravager,
+		)
+
+	if(istype(job, /mob/living/carbon/xenomorph))
+		return
+
+		var/mob/living/L = new /mob/living/carbon/human(spawn_location)
+		mind.transfer_to(L, TRUE)
 	L.mind.bypass_ff = TRUE
 	L.revive()
 
@@ -117,51 +157,6 @@
 	var/mob/living/carbon/xenomorph/X = L
 
 	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
-
-	var/job = pick(
-		/datum/job/clf/leader,
-		/datum/job/clf/standard,
-		/datum/job/freelancer/leader,
-		/datum/job/freelancer/grenadier,
-		/datum/job/freelancer/standard,
-		/datum/job/upp/leader,
-		/datum/job/upp/heavy,
-		/datum/job/upp/standard,
-		/datum/job/som/ert/leader,
-		/datum/job/som/ert/veteran,
-		/datum/job/som/ert/standard,
-		/datum/job/pmc/leader,
-		/datum/job/pmc/standard,
-	)
-
-	var/xeno_caste = pick(
-		/datum/xeno_caste/bull/primordial,
-		/datum/xeno_caste/carrier/primordial,
-		/datum/xeno_caste/crusher/primordial,
-		/datum/xeno_caste/defender/primordial,
-		/datum/xeno_caste/defiler/primordial,
-		/datum/xeno_caste/drone/primordial,
-		/datum/xeno_caste/gorger/primordial,
-		/datum/xeno_caste/hivelord/primordial,
-		/datum/xeno_caste/hunter/primordial,
-		/datum/xeno_caste/king/primordial,
-		/datum/xeno_caste/larva/young,
-		/datum/xeno_caste/praetorian/primordial,
-		/datum/xeno_caste/queen/primordial,
-		/datum/xeno_caste/ravager/primordial,
-		/datum/xeno_caste/runner/primordial,
-		/datum/xeno_caste/sentinel/primordial,
-		/datum/xeno_caste/shrike/primordial,
-		/datum/xeno_caste/spitter/primordial,
-		/datum/xeno_caste/warlock/primordial,
-		/datum/xeno_caste/warrior/primordial,
-		/datum/xeno_caste/widow/primordial,
-		/datum/xeno_caste/wraith/primordial,
-	)
-
-	if(istype(job, /datum/xeno_caste))
-		return
-
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
