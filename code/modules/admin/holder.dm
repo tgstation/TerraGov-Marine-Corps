@@ -378,6 +378,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
+	/datum/admins/proc/rouny_all,
 	/datum/admins/proc/hive_status,
 	/datum/admins/proc/ai_report,
 	/datum/admins/proc/command_report,
