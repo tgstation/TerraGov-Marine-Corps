@@ -103,12 +103,21 @@
 			return
 
 	var/spawn_location = pick(GLOB.deathmatch)
-	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
+	var/mob/living/L = new /mob/living/carbon(spawn_location)
 	mind.transfer_to(L, TRUE)
 	L.mind.bypass_ff = TRUE
 	L.revive()
 
 	var/mob/living/carbon/human/H = L
+
+	var/datum/job/J = SSjob.GetJobType(job)
+	H.apply_assigned_role_to_spawn(J)
+	H.regenerate_icons()
+
+	var/mob/living/carbon/xenomorph/X = L
+
+	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
+
 	var/job = pick(
 		/datum/job/clf/leader,
 		/datum/job/clf/standard,
@@ -124,13 +133,8 @@
 		/datum/job/pmc/leader,
 		/datum/job/pmc/standard,
 	)
-	var/datum/job/J = SSjob.GetJobType(job)
-	H.apply_assigned_role_to_spawn(J)
-	H.regenerate_icons()
 
-	var/mob/living/carbon/xenomorph/X = L
 	var/xeno_caste = pick(
-		/datum/xeno_caste/boiler/primordial,
 		/datum/xeno_caste/bull/primordial,
 		/datum/xeno_caste/carrier/primordial,
 		/datum/xeno_caste/crusher/primordial,
@@ -155,7 +159,8 @@
 		/datum/xeno_caste/wraith/primordial,
 	)
 
-	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
+	if(istype(job, /datum/xeno_caste))
+		return
 
 
 /mob/verb/cancel_camera()
