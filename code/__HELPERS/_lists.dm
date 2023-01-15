@@ -197,7 +197,7 @@
 	var/item
 	for(item in list_to_pick)
 		if(!list_to_pick[item])
-			list_to_pick[item] = 0
+			list_to_pick[item] = 1
 		total += list_to_pick[item]
 
 	total = rand(1, total)
