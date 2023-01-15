@@ -166,7 +166,7 @@
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
 
-/datum/xeno_caste/carrier/primodial
+/datum/xeno_caste/carrier/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "It's literally crawling with 11 huggers."
 	upgrade = XENO_UPGRADE_FOUR
