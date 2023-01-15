@@ -186,3 +186,11 @@
   - imageadd: boiler gibbing with its own sprites
   tyeagg:
   - imageadd: new bullet sprites
+2023-01-15:
+  Lewdcifer:
+  - balance: Laser Pistol wielded slowdown reduced from 0.75 to 0.
+  - bugfix: CAS is no longer usable before shutters open, or before Tadpole launches.
+  Three333Digit:
+  - rscadd: Combat robots can speak machine
+  novaepee:
+  - rscadd: ADD BOXING RINGS TO ALL EORD ARENA

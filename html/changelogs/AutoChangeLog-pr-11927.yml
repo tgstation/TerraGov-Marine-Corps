@@ -1,4 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - bugfix: "CAS is no longer usable before shutters open, or before Tadpole launches."
