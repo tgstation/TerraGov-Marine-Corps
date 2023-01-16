@@ -125,7 +125,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/standard_minigun/nest
@@ -139,6 +139,8 @@
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+	
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
 //ATR-22 mounted heavy dualcannon
@@ -175,7 +177,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
