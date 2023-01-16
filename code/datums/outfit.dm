@@ -93,6 +93,8 @@
 					number = 1
 				for(var/i in 1 to number)
 					H.equip_to_slot_or_del(new path(H),SLOT_IN_BACKPACK, override_nodrop = TRUE)
+	if(isrobot(H))
+		H.equip_to_slot_or_del(new /obj/item/tool/surgery/solderingtool, SLOT_IN_BACKPACK)
 
 	post_equip(H, visualsOnly)
 

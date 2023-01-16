@@ -707,7 +707,6 @@
 		/obj/item/cell/high,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/apc,
-		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/effect/vendor_bundle/leader

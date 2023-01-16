@@ -1,6 +1,6 @@
 /obj/item/tool/surgery/solderingtool
 	name = "soldering tool"
-	desc = "A hand tool to fix combat robot's trauma. You do not need welding goggles for this and you need medical skills for this."
+	desc = "A hand tool to fix combat robot's trauma. You do not need welding goggles for this."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "solderingtool"
 	w_class = WEIGHT_CLASS_SMALL
