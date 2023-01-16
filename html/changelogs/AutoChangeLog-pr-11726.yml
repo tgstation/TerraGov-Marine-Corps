@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Added Delta station from TG"
-  - code_imp: "Ported TG's random spawner system"

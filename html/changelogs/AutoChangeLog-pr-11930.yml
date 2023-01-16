@@ -1,6 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - balance: "Combat Floodlights are no longer acidable, but can now be damaged by slashes."
-  - balance: "Combat Floodlights can now be repaired using welders. Examine the Floodlight to see its remaining integrity."
-  - balance: "Combat Floodlights have had their cost in requisitions reduced from 100 to 30."
