@@ -375,7 +375,7 @@
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
-	if(isxeno(A) && issamexenohive(A))
+	if(isxeno(A) && owner.issamexenohive(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't harm our sister!"))
 		return FALSE
