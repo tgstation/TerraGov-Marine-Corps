@@ -32,6 +32,7 @@
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,
 		/obj/item/tool/shovel/etool,
+		/obj/item/weapon/energy/sword,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -335,6 +336,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun,
+		/obj/item/weapon/energy/sword,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
