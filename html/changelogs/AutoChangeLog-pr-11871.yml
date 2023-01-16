@@ -1,0 +1,5 @@
+author: "Code: Lumi Sprites: Crow & Saro"
+delete-after: True
+changes:
+  - rscadd: "HvH: Added a blink drive and e-sword to the SOM arsenal"
+  - refactor: "Cleaned up some esword code"
