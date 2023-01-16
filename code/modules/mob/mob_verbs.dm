@@ -103,12 +103,7 @@
 			return
 
 	var/spawn_location = pick(GLOB.deathmatch)
-	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
-	mind.transfer_to(L, TRUE)
-	L.mind.bypass_ff = TRUE
-	L.revive()
 
-	var/mob/living/carbon/human/H = L
 	var/job = pick(
 		/datum/job/clf/leader,
 		/datum/job/clf/standard,
@@ -123,10 +118,33 @@
 		/datum/job/som/ert/standard,
 		/datum/job/pmc/leader,
 		/datum/job/pmc/standard,
+		/mob/living/carbon/xenomorph/defender,
+		/mob/living/carbon/xenomorph/crusher,
+		/mob/living/carbon/xenomorph/warrior,
+		/mob/living/carbon/xenomorph/runner,
+		/mob/living/carbon/xenomorph/ravager,
+		/mob/living/carbon/xenomorph/shrike,
+		/mob/living/carbon/xenomorph/queen,
+		/mob/living/carbon/xenomorph/king,
 	)
-	var/datum/job/J = SSjob.GetJobType(job)
-	H.apply_assigned_role_to_spawn(J)
-	H.regenerate_icons()
+	var/mob/living/L
+	if(ispath(job, /mob/living/carbon/xenomorph))
+		L = new job(spawn_location)
+		var/mob/living/carbon/xenomorph/X = L
+		X.upgrade_xeno(XENO_UPGRADE_THREE, TRUE)
+		X.remove_from_hive()
+	else
+		L = new /mob/living/carbon/human(spawn_location)
+		var/mob/living/carbon/human/H = L
+
+		var/datum/job/J = SSjob.GetJobType(job)
+		H.apply_assigned_role_to_spawn(J)
+		H.regenerate_icons()
+
+
+	mind.transfer_to(L, TRUE)
+	L.mind.bypass_ff = TRUE
+	L.revive()
 
 	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
 

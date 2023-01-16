@@ -1430,7 +1430,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	return hivenumber
 
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
-	return hivenumber
+	return hive ? hivenumber : FALSE
 
 /mob/illusion/xeno/get_xeno_hivenumber()
 	var/mob/living/carbon/xenomorph/original_xeno = original_mob

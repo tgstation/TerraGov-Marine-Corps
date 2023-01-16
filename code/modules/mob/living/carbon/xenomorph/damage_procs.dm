@@ -84,6 +84,7 @@
 		return
 
 	var/list/filter_list = list()
+	if(!hive) return damage
 	for(var/i in hive.get_all_xenos())
 
 		var/mob/living/carbon/xenomorph/X = i

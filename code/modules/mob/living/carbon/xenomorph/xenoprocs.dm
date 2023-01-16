@@ -89,7 +89,7 @@
 
 ///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
-	if(upgrade == XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE && hive)
 		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
@@ -224,7 +224,7 @@
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += 1 + (stored_larva/6) + hive?.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -239,13 +239,13 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(!hive.check_ruler() && caste_base_type != /mob/living/carbon/xenomorph/larva) // Larva can evolve without leaders at round start.
+	if(hive && !hive.check_ruler() && caste_base_type != /mob/living/carbon/xenomorph/larva) // Larva can evolve without leaders at round start.
 		return
 
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
+	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive?.get_evolution_boost() + spec_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)

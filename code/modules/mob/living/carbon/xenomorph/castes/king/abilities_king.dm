@@ -473,7 +473,7 @@
 	if(!.)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
-	if(length(X.hive.get_all_xenos()) <= 1)
+	if(!X.hive || length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
 			owner.balloon_alert(owner, "noone to call")
 		return FALSE

@@ -131,9 +131,10 @@
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber || nicknumber == "Undefined")
 		var/tempnumber = rand(1, 999)
-		var/list/xenolist = hive.get_all_xenos(FALSE)
-		while(tempnumber in xenolist)
-			tempnumber = rand(1, 999)
+		if(hive)
+			var/list/xenolist = hive.get_all_xenos(FALSE)
+			while(tempnumber in xenolist)
+				tempnumber = rand(1, 999)
 
 		nicknumber = tempnumber
 
@@ -141,7 +142,7 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	var/prefix = (hive?.prefix || xeno_caste.upgrade_name) ? "[hive ? hive.prefix : "Disowned "][xeno_caste.upgrade_name] " : ""
 	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
@@ -238,7 +239,7 @@
 
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		. += "It appears to belong to the [hive.prefix]hive"
+		. += hive ? "It appears to belong to the [hive.prefix]hive" : "It does not seem to belong to a hive"
 	return
 
 /mob/living/carbon/xenomorph/Destroy()
@@ -249,9 +250,10 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
-	var/datum/hive_status/hive_placeholder = hive
-	remove_from_hive()
-	hive_placeholder.update_tier_limits() //Update our tier limits.
+	if(hive)
+		var/datum/hive_status/hive_placeholder = hive
+		remove_from_hive()
+		hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
 	vis_contents -= fire_overlay
