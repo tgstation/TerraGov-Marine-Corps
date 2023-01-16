@@ -1255,7 +1255,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 
 /datum/ammo/bullet/dual_cannon/on_hit_turf(turf/T, obj/projectile/P)
-	P.proj_max_range -= 5
+	P.proj_max_range -= 20
 
 /datum/ammo/bullet/dual_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 15
