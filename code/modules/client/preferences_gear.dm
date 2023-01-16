@@ -219,3 +219,10 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/clothing/glasses/mgoggles/prescription
 	cost = 2
 	slot = SLOT_GLASSES
+
+/datum/gear/kotahi
+	display_name = "Kotahi deck"
+	path = /obj/item/toy/deck/kotahi
+	cost = 2
+	slot = SLOT_R_HAND
+

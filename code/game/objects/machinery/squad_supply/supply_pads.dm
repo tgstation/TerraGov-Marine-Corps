@@ -2,7 +2,7 @@
 /obj/structure/supply_drop
 	name = "Supply Drop Pad"
 	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
-	icon = 'icons/effects/warning_stripes.dmi'
+	icon = 'icons/turf/decals.dmi'
 	icon_state = "stripe_box_thick"
 	anchored = TRUE
 	density = FALSE
