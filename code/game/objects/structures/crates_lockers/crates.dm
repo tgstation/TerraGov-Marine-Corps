@@ -115,6 +115,18 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 
+/obj/structure/closet/crate/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //code that hopefully handles if crate drops metal when welded
+	if(!welder.isOn())
+		return FALSE
+
+	if(opened)
+		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
+			to_chat(user, span_notice("You need more welding fuel to complete this task."))
+			return TRUE
+		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
+		qdel(src)
+		return TRUE
+
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
 	desc = "A crate with alpha squad's symbol on it. "
