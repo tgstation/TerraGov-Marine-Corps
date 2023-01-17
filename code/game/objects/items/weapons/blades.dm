@@ -378,7 +378,7 @@
 ///Starts the user firing.
 /obj/item/stack/throwing_knife/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
-	if(living_user.hand && !istype(living_user.l_hand, /obj/item/stack/throwing_knife/) || !living_user.hand && !istype(living_user.r_hand, /obj/item/stack/throwing_knife/)) // If the object in our active hand is not a throwing knife, abort
+	if(living_user.get_active_held_item() != src) // If the object in our active hand is not a throwing knife, abort
 		return
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] || modifiers["ctrl"])
