@@ -3,6 +3,12 @@
 	icon_state = "green"
 	ceiling = CEILING_METAL
 
+/area/oscar_outpost/base
+	name = "Oscar Outpost Staging Area"
+	icon_state = "north"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	outside = FALSE
+
 /area/oscar_outpost/outside
 	name = "Unused"
 	icon_state = "green"
@@ -14,7 +20,6 @@
 	power_equip = FALSE
 	power_environ = FALSE
 	outside = TRUE
-
 
 /area/oscar_outpost/outside/north
 	name = "Oscar Outpost North"
@@ -43,12 +48,12 @@
 /area/oscar_outpost/outside/underground
 	name = "Oscar Outpost Underground"
 	icon_state = "south"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/oscar_outpost/outside/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/oscar_outpost/outside/road
 	name = "Oscar Outpost Roadway"
