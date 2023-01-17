@@ -1114,7 +1114,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_IFF
 	damage = 100
 	penetration = 35
-	sundering = 5
+	sundering = 0
 	damage_falloff = 0.3
 
 /*
@@ -1269,7 +1269,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 14
 	damage = 150
 	penetration = 100
-	sundering = 20
+	sundering = 0
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
