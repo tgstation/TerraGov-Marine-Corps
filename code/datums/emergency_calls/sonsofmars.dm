@@ -3,6 +3,8 @@
 	name = "Sons of Mars Squad"
 	base_probability = 26
 	alignement_factor = 0
+	///number of available special weapon dudes
+	var/max_specialists = 1
 
 
 /datum/emergency_call/som/print_backstory(mob/living/carbon/human/H)
@@ -42,8 +44,13 @@
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a Sons of Mars medic assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Keep your squad alive in this fight!")]</p>")
 		medics++
 		return
-
 	if(prob(65))
+		if(max_specialists > 0)
+			var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/specialist)
+			H.apply_assigned_role_to_spawn(J)
+			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars and are assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
+			max_specialists --
+			return
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/veteran)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars and are assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
