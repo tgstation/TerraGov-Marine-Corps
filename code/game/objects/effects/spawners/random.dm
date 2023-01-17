@@ -1158,6 +1158,44 @@
 		/obj/item/folder/grape = 5,
 	)
 
+/obj/effect/spawner/random/beer
+	name = "beer spawner"
+	icon_state = "random_beer"
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/ale,
+		/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+		/obj/item/reagent_containers/food/drinks/cans/aspen,
+		/obj/item/reagent_containers/food/drinks/bottle/gin,
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+		/obj/item/reagent_containers/food/drinks/bottle/tequila,
+		/obj/item/reagent_containers/food/drinks/bottle/vodka,
+		/obj/item/reagent_containers/food/drinks/bottle/vermouth,
+		/obj/item/reagent_containers/food/drinks/bottle/rum,
+		/obj/item/reagent_containers/food/drinks/bottle/wine,
+		/obj/item/reagent_containers/food/drinks/bottle/cognac,
+		/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+		/obj/item/reagent_containers/food/drinks/cans/tonic,
+		/obj/item/reagent_containers/food/drinks/cans/sodawater,
+		/obj/item/reagent_containers/food/drinks/flask/barflask,
+		/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+		/obj/item/reagent_containers/food/drinks/drinkingglass,
+		/obj/item/reagent_containers/food/drinks/ice,
+		/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
+		/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+		/obj/item/reagent_containers/food/drinks/bottle/grenadine,
+		/obj/item/reagent_containers/food/drinks/cans/aspen,
+		/obj/item/reagent_containers/food/drinks/bottle/davenport,
+		/obj/item/reagent_containers/food/drinks/tea,
+	)
+
+/obj/effect/spawner/random/beer/oscaroutpost
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/cans/beer = 95,
+		/obj/effect/spawner/random/beer = 5,
+	)
+
 /obj/effect/spawner/random/greytide
 	name = "greytide spawner"
 	icon_state = "random_greytide"

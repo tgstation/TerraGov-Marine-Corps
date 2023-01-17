@@ -195,6 +195,11 @@
 	dir = 5
 	},
 /area/oscar_outpost)
+"aW" = (
+/obj/structure/table/rusticwoodentable,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor,
+/area/oscar_outpost/village)
 "aX" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Storage"
@@ -671,6 +676,7 @@
 /area/oscar_outpost)
 "cQ" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "cR" = (
@@ -849,7 +855,7 @@
 	},
 /area/oscar_outpost)
 "dA" = (
-/obj/item/toy/plush/rouny,
+/obj/effect/spawner/random/plushie/fiftyfifty,
 /turf/open/floor,
 /area/oscar_outpost)
 "dC" = (
@@ -973,12 +979,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/oscar_outpost/outside/west)
 "ej" = (
-/obj/structure/closet/crate,
-/obj/item/weapon/gun/shotgun,
-/obj/item/weapon/gun/shotgun,
-/obj/item/weapon/gun/shotgun,
-/obj/item/weapon/gun/shotgun,
-/turf/open/floor/tile/dark,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
 /area/oscar_outpost)
 "el" = (
 /obj/structure/table/rusticwoodentable,
@@ -1348,6 +1352,12 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
+"fT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/oscar_outpost/village)
 "fU" = (
 /obj/machinery/light,
 /obj/effect/landmark/start/job/squadcorpsman,
@@ -1724,14 +1734,14 @@
 	},
 /area/oscar_outpost)
 "hs" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 7
 	},
@@ -1740,6 +1750,9 @@
 /area/oscar_outpost/village/east)
 "ht" = (
 /obj/structure/prop/tgbrokenvendor/engi,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor,
 /area/oscar_outpost/village)
 "hw" = (
@@ -2045,9 +2058,6 @@
 /obj/item/explosive/grenade/PMC,
 /obj/item/explosive/grenade/PMC,
 /obj/item/explosive/grenade/PMC,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "iN" = (
@@ -2099,10 +2109,10 @@
 /area/oscar_outpost/outside/road)
 "ja" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
+/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/metal,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "jb" = (
@@ -2374,6 +2384,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/tinted,
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "jU" = (
@@ -2744,12 +2755,13 @@
 	},
 /area/oscar_outpost/village/fairgrounds)
 "lH" = (
-/obj/structure/closet/crate,
+/obj/structure/bed,
+/obj/item/bedsheet/clown,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor,
-/area/oscar_outpost/village/south)
+/turf/open/floor/wood,
+/area/oscar_outpost/village)
 "lI" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
@@ -2918,6 +2930,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/outside/west)
 "ms" = (
@@ -4247,7 +4260,7 @@
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 19
 	},
@@ -4432,7 +4445,7 @@
 	},
 /obj/structure/closet/crate/freezer,
 /obj/machinery/camera/autoname/mainship{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor,
 /area/oscar_outpost)
@@ -4576,7 +4589,7 @@
 /area/oscar_outpost/village/south)
 "sW" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
@@ -4789,11 +4802,12 @@
 /turf/open/floor/prison,
 /area/oscar_outpost)
 "tG" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/structure/desertdam/decals/road{
+	pixel_y = 16
 	},
-/turf/open/floor/wood,
-/area/oscar_outpost/village)
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/outside/west)
 "tI" = (
 /obj/structure/bed/chair,
 /obj/machinery/camera/autoname/mainship{
@@ -4838,9 +4852,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8
-	},
+/turf/open/floor/tile/dark,
 /area/oscar_outpost/village/south)
 "tP" = (
 /obj/structure/closet/crate,
@@ -5068,6 +5080,12 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"uN" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor,
+/area/oscar_outpost/village)
 "uP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Backroom"
@@ -5587,51 +5605,51 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "wZ" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -5653,51 +5671,51 @@
 /area/oscar_outpost/outside/west)
 "xc" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -5890,51 +5908,51 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "xO" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -6124,51 +6142,51 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "yt" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -6215,6 +6233,13 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
+"yF" = (
+/obj/structure/closet/crate,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/oscar_outpost/village/south)
 "yG" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump,
@@ -6651,6 +6676,9 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Au" = (
@@ -6993,6 +7021,9 @@
 	pixel_y = 7
 	},
 /obj/structure/closet/crate,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor,
 /area/oscar_outpost/village)
 "BF" = (
@@ -7576,10 +7607,6 @@
 "Ef" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/obj/machinery/space_heater{
-	pixel_y = 24
-	},
-/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/carpet/edge2,
 /area/oscar_outpost/village)
 "Eh" = (
@@ -7728,6 +7755,9 @@
 /obj/item/ammo_magazine/pistol/c99,
 /obj/item/ammo_magazine/pistol/c99,
 /obj/item/ammo_magazine/pistol/c99,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor,
 /area/oscar_outpost/village)
 "EJ" = (
@@ -7761,6 +7791,9 @@
 /obj/structure/closet/crate,
 /obj/item/storage/toolbox/electrical,
 /obj/item/storage/toolbox/electrical,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor,
 /area/oscar_outpost/village)
 "ER" = (
@@ -8733,51 +8766,51 @@
 /area/oscar_outpost/village)
 "Iu" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -9029,51 +9062,51 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Jo" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -10185,6 +10218,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Oa" = (
@@ -10241,6 +10277,13 @@
 /obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Ok" = (
+/obj/structure/table/rusticwoodentable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/oscar_outpost/village)
 "Ol" = (
 /obj/structure/barricade/plasteel{
 	dir = 1
@@ -10400,6 +10443,9 @@
 "OK" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/tool/extinguisher,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor,
 /area/oscar_outpost/village)
 "OL" = (
@@ -10804,51 +10850,51 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Ql" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -11786,7 +11832,7 @@
 /obj/machinery/unboxer{
 	anchored = 1
 	},
-/turf/closed/mineral/smooth,
+/turf/open/floor/prison,
 /area/oscar_outpost)
 "TC" = (
 /obj/structure/barricade/sandbags{
@@ -12302,7 +12348,7 @@
 /area/oscar_outpost)
 "VI" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/cans/beer,
+/obj/effect/spawner/random/beer/oscaroutpost,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VM" = (
@@ -12635,14 +12681,14 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "Xi" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 7
 	},
@@ -12711,14 +12757,14 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Xw" = (
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/cans/beer{
+/obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -9;
 	pixel_y = 7
 	},
@@ -19659,7 +19705,7 @@ hQ
 hQ
 hQ
 eg
-Zn
+tG
 Ng
 Gp
 Ng
@@ -26350,7 +26396,7 @@ aw
 aT
 bf
 ca
-de
+ej
 ra
 de
 eP
@@ -27281,7 +27327,7 @@ OE
 wf
 eK
 lC
-ej
+DF
 OE
 bk
 nA
@@ -30498,7 +30544,7 @@ Jw
 qN
 qN
 qN
-QX
+fT
 QX
 QX
 fK
@@ -30745,7 +30791,7 @@ aO
 aO
 aO
 qN
-cy
+lH
 gq
 NB
 bh
@@ -31249,7 +31295,7 @@ aO
 aO
 aO
 qN
-cy
+lH
 gq
 NB
 bh
@@ -31506,7 +31552,7 @@ Jw
 qN
 qN
 qN
-QX
+fT
 QX
 QX
 fK
@@ -34783,7 +34829,7 @@ qM
 qM
 qN
 LP
-cY
+Ok
 MH
 fK
 AC
@@ -35283,7 +35329,7 @@ aO
 qN
 Jo
 QX
-QX
+uN
 QX
 qN
 LX
@@ -35790,7 +35836,7 @@ gq
 gq
 ac
 qN
-cY
+aW
 cY
 MH
 qN
@@ -36037,7 +36083,7 @@ aO
 aO
 aO
 qN
-tG
+uv
 gq
 qN
 qN
@@ -36071,7 +36117,7 @@ DP
 kx
 DP
 sV
-NS
+yF
 ux
 NS
 NS
@@ -36575,7 +36621,7 @@ ok
 kx
 kx
 sV
-lH
+NS
 NS
 DP
 NS
