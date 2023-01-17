@@ -13,7 +13,7 @@
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
-	outside = FALSE
+	outside = TRUE
 
 
 /area/oscar_outpost/outside/north
@@ -43,10 +43,12 @@
 /area/oscar_outpost/outside/underground
 	name = "Oscar Outpost Underground"
 	icon_state = "south"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/oscar_outpost/outside/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/oscar_outpost/outside/road
 	name = "Oscar Outpost Roadway"
