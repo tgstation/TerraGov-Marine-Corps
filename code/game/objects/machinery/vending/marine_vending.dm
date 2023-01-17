@@ -1450,8 +1450,8 @@
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/phosphorus = -1,
 			/obj/item/explosive/grenade/chem_grenade/metalfoam = -1,
-			/obj/item/explosive/grenade/smokebomb/neuro = -1
-			/obj/item/explosive/grenade/smokebomb/acid = -1
+			/obj/item/explosive/grenade/smokebomb/neuro = -1,
+			/obj/item/explosive/grenade/smokebomb/acid = -1,
 			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
 		),
 		"Equipment" = list(
