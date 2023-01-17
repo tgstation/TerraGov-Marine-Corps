@@ -33,7 +33,7 @@
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
