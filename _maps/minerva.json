@@ -2,6 +2,5 @@
     "map_name": "Minerva",
     "map_path": "map_files/Minerva",
     "map_file": "TGS_Minerva.dmm",
-    "traits": [{"Marine Main Ship": true}],
-    "squads": 4
+    "traits": [{"Marine Main Ship": true}]
 }
