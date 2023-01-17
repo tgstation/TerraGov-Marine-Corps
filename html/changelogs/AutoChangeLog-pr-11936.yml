@@ -1,4 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - bugfix: "Removed a stray admin message, left there by Sentinel debugging."
