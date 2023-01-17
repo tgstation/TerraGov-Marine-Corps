@@ -1479,7 +1479,21 @@
 			/obj/item/clothing/suit/storage/marine/riot = -1,
 			/obj/item/clothing/head/helmet/marine/riot = -1,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = -1,
-		)
+		),
+		"Reqtorio" = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = -1,
+			/obj/machinery/factory/heater = -1,
+			/obj/machinery/factory/flatter = -1,
+			/obj/machinery/factory/former = -1,
+			/obj/machinery/factory/reconstructor = -1,
+			/obj/machinery/unboxer = -1,
+			/obj/machinery/factory/driller = -1,
+			/obj/machinery/factory/galvanizer = -1,
+			/obj/machinery/factory/compressor = -1,
+			/obj/item/stack/conveyor/thirty = -1,
+			/obj/item/conveyor_switch_construct = -1,
+		),
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req
