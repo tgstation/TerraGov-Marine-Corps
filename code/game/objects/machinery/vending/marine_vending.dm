@@ -1541,6 +1541,8 @@
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
+			/obj/item/weapon/gun/shotgun/double = -1,
+			/obj/item/weapon/gun/shotgun/double/sawn = -1,
 		)
 	)
 
