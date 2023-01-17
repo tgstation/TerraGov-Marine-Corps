@@ -1457,6 +1457,7 @@
 			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
 		),
 		"Equipment" = list(
+			/obj/item/clothing/glasses/hud/xenohud = -1,
 			/obj/item/clothing/mask/gas/swat = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
 			/obj/item/clothing/suit/storage/marine/specialist = -1,
@@ -1566,7 +1567,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
 			/obj/item/cell/lasgun/volkite = -1,
-			/obj/item/cell/lasgun/volkite/powerpack =1,
+			/obj/item/cell/lasgun/volkite/powerpack = -1,
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
 			/obj/item/ammo_magazine/sniper/elite = -1,
 			/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc = -1,
