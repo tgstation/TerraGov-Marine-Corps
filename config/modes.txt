@@ -26,8 +26,10 @@ endmode
 
 mode Combat Patrol
 	requiredplayers 2
+	votable 0
 endmode
 
 mode Sensor Capture
 	requiredplayers 2
+	votable 0
 endmode
