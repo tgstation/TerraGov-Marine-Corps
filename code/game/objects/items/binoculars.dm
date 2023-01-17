@@ -11,7 +11,7 @@
 	throw_range = 15
 	throw_speed = 3
 	zoom_tile_offset = 11
-	zoom_viewsize = 12
+	zoom_viewsize = 15
 
 
 /obj/item/binoculars/attack_self(mob/user)

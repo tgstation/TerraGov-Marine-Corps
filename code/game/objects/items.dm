@@ -73,8 +73,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/zoom = FALSE
 	///how much tiles the zoom offsets to the direction it zooms to.
 	var/zoom_tile_offset = 6
-	///how much tiles the zoom zooms out, 7 is the default view.
-	var/zoom_viewsize = 7
+	///how much tiles the zoom zooms out, 5 is the default view.
+	var/zoom_viewsize = 5
 	///if you can move with the zoom on, only works if zoom_view_size is 7 otherwise CRASH() is called due to maptick performance reasons.
 	var/zoom_allow_movement = FALSE
 
