@@ -1408,6 +1408,8 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
+			/obj/item/ammo_magazine/railgun/smart = -1,
+			/obj/item/ammo_magazine/railgun/hvap = -1,
 			/obj/item/weapon/gun/rifle/tx8 = -1,
 			/obj/item/ammo_magazine/rifle/tx8 = -1,
 			/obj/item/ammo_magazine/rifle/tx8/impact = -1,
@@ -1436,6 +1438,7 @@
 			/obj/item/ammo_magazine/minigun_powerpack/smartgun = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
 			/obj/item/ammo_magazine/rocket/oneuse = -1,
+			/obj/item/ammo_magazine/rocket/oneuse = -1,
 			/obj/item/storage/belt/gun/mateba/full = -1,
 			/obj/item/ammo_magazine/revolver/mateba = -1,
 			/obj/item/ammo_magazine/packet/mateba = -1,
@@ -1444,6 +1447,12 @@
 			/obj/item/weapon/claymore/harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,
+			/obj/item/explosive/grenade/training = -1,
+			/obj/item/explosive/grenade/phosphorus = -1,
+			/obj/item/explosive/grenade/chem_grenade/metalfoam = -1,
+			/obj/item/explosive/grenade/smokebomb/neuro = -1
+			/obj/item/explosive/grenade/smokebomb/acid = -1
+			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
 		),
 		"Equipment" = list(
 			/obj/item/clothing/mask/gas/swat = -1,
@@ -1468,6 +1477,7 @@
 			/obj/item/storage/backpack/lightpack = -1,
 			/obj/item/clothing/suit/storage/marine/riot = -1,
 			/obj/item/clothing/head/helmet/marine/riot = -1,
+			/obj/item/clothing/suit/storage/marine/harness/boomvest = -1,
 		)
 	)
 
