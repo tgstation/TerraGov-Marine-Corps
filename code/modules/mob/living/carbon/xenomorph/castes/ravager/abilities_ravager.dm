@@ -351,6 +351,7 @@
 		var/datum/action/xeno_action/charge = X.actions_by_path[/datum/action/xeno_action/activable/charge]
 		var/datum/action/xeno_action/ravage = X.actions_by_path[/datum/action/xeno_action/activable/ravage]
 		var/datum/action/xeno_action/endure/endure_ability = X.actions_by_path[/datum/action/xeno_action/endure]
+		X.overlay_fullscreen("xeno_feast", /atom/movable/screen/fullscreen/bloodlust)
 
 		if(endure_ability.endure_duration) //Check if Endure is active
 			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -150
@@ -365,7 +366,7 @@
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
 
 	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
-		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
+		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius || X)) //We don't care about the dead
 			continue
 
 		shake_camera(L, 1 SECONDS, 1)
@@ -449,6 +450,7 @@
 	X.do_jitter_animation(1000)
 
 	X.remove_filter("ravager_rage_outline")
+	X.clear_fullscreen ("xeno_feast")
 	X.visible_message(span_warning("[X] seems to calm down."), \
 	span_highdanger("Our rage subsides and its power leaves our body, leaving us exhausted."))
 
