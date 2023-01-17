@@ -1414,6 +1414,7 @@
 			/obj/item/ammo_magazine/rifle/tx8 = -1,
 			/obj/item/ammo_magazine/rifle/tx8/impact = -1,
 			/obj/item/ammo_magazine/rifle/tx8/incendiary = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/xray = -1,
 			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = -1,
 			/obj/item/ammo_magazine/rocket/m57a4 = -1,
 			/obj/item/weapon/gun/launcher/rocket/sadar = -1,
