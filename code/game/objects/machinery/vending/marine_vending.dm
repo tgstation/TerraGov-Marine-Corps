@@ -1566,7 +1566,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
 			/obj/item/cell/lasgun/volkite = -1,
-			/obj/item/cell/lasgun/volkite/powerpack, - =1,
+			/obj/item/cell/lasgun/volkite/powerpack =1,
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
 			/obj/item/ammo_magazine/sniper/elite = -1,
 			/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc = -1,
