@@ -1439,7 +1439,6 @@
 			/obj/item/ammo_magazine/minigun_powerpack/smartgun = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
 			/obj/item/ammo_magazine/rocket/oneuse = -1,
-			/obj/item/ammo_magazine/rocket/oneuse = -1,
 			/obj/item/storage/belt/gun/mateba/full = -1,
 			/obj/item/ammo_magazine/revolver/mateba = -1,
 			/obj/item/ammo_magazine/packet/mateba = -1,
