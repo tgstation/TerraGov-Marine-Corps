@@ -1543,6 +1543,7 @@
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/shotgun/double = -1,
 			/obj/item/weapon/gun/shotgun/double/sawn = -1,
+			/obj/item/weapon/gun/rifle/sniper/svd = -1,
 		)
 	)
 
