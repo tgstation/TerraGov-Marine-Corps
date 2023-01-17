@@ -219,3 +219,7 @@
   Zar000:
   - imageadd: added roooouny
   - admin: ya can rounify all xenos with 1 simple click in Fun tab
+2023-01-17:
+  'Code: Lumi Sprites: Crow & Saro':
+  - rscadd: 'HvH: Added a blink drive and e-sword to the SOM arsenal'
+  - refactor: Cleaned up some esword code
