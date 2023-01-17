@@ -195,11 +195,6 @@
 	dir = 5
 	},
 /area/oscar_outpost)
-"aW" = (
-/obj/structure/table/rusticwoodentable,
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor,
-/area/oscar_outpost/village)
 "aX" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Storage"
@@ -1353,9 +1348,8 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "fT" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/table/rusticwoodentable,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "fU" = (
@@ -2088,7 +2082,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "iW" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -3154,7 +3148,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "nM" = (
 /obj/machinery/vending/nanomed/nopower,
@@ -4391,7 +4385,7 @@
 /obj/structure/platform,
 /obj/effect/forcefield,
 /obj/machinery/atmospherics/components/unary/outlet_injector,
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "sA" = (
 /obj/effect/ai_node,
@@ -4989,6 +4983,12 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
+"ut" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/oscar_outpost/village)
 "uu" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/lightred,
@@ -5029,6 +5029,13 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"uD" = (
+/obj/structure/closet/crate,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/oscar_outpost/village/south)
 "uE" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/road)
@@ -5080,12 +5087,6 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost/village/south)
-"uN" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor,
-/area/oscar_outpost/village)
 "uP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Backroom"
@@ -5194,7 +5195,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "vw" = (
 /obj/structure/table/rusticwoodentable,
@@ -5760,7 +5761,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "xj" = (
 /obj/effect/landmark/patrol_point{
@@ -6233,13 +6234,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"yF" = (
-/obj/structure/closet/crate,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "yG" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump,
@@ -6366,11 +6360,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"zh" = (
-/obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "zi" = (
 /obj/structure/barricade/sandbags{
 	dir = 8;
@@ -7099,6 +7088,13 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"BS" = (
+/obj/structure/table/rusticwoodentable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/oscar_outpost/village)
 "BU" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/west)
@@ -9413,7 +9409,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "KR" = (
 /obj/structure/table/mainship,
@@ -10083,7 +10079,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration,
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Nu" = (
 /obj/structure/barricade/sandbags{
@@ -10129,7 +10125,7 @@
 	dir = 1
 	},
 /obj/structure/platform,
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "NG" = (
 /obj/structure/platform,
@@ -10148,7 +10144,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "NH" = (
 /obj/structure/platform{
@@ -10166,7 +10162,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "NI" = (
 /obj/item/assembly/mousetrap/armed{
@@ -10277,13 +10273,6 @@
 /obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
-"Ok" = (
-/obj/structure/table/rusticwoodentable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor,
-/area/oscar_outpost/village)
 "Ol" = (
 /obj/structure/barricade/plasteel{
 	dir = 1
@@ -10430,7 +10419,7 @@
 "OH" = (
 /obj/structure/platform,
 /obj/effect/forcefield,
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "OI" = (
 /obj/structure/closet/crate,
@@ -10633,7 +10622,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Px" = (
 /obj/item/ammo_magazine/rifle/m16,
@@ -10720,7 +10709,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "PK" = (
 /obj/machinery/camera/autoname/mainship{
@@ -10972,16 +10961,16 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Qz" = (
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita{
+/obj/effect/spawner/random/outdoors_snacks{
 	pixel_y = 14
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza{
+/obj/effect/spawner/random/outdoors_snacks{
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza{
+/obj/effect/spawner/random/outdoors_snacks{
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
+/obj/effect/spawner/random/outdoors_snacks,
 /obj/structure/closet/crate,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
@@ -11234,7 +11223,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "RM" = (
 /obj/structure/platform{
@@ -11250,7 +11239,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "RN" = (
 /obj/structure/platform{
@@ -11262,7 +11251,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "RO" = (
 /obj/structure/platform{
@@ -11278,7 +11267,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "RP" = (
 /obj/machinery/landinglight/ds1/delayone,
@@ -11733,16 +11722,16 @@
 /area/oscar_outpost/outside/northeast)
 "Tg" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita{
+/obj/effect/spawner/random/outdoors_snacks{
 	pixel_y = 14
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza{
+/obj/effect/spawner/random/outdoors_snacks{
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza{
+/obj/effect/spawner/random/outdoors_snacks{
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
+/obj/effect/spawner/random/outdoors_snacks,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "Ti" = (
@@ -11919,7 +11908,7 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "TT" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -11932,6 +11921,12 @@
 "TV" = (
 /turf/open/floor/plating,
 /area/oscar_outpost)
+"TY" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor,
+/area/oscar_outpost/village)
 "TZ" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/tile/dark,
@@ -11978,7 +11973,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Uh" = (
 /turf/closed/wall,
@@ -12003,7 +11998,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Up" = (
 /obj/structure/platform{
@@ -12015,7 +12010,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Ut" = (
 /obj/structure/filingcabinet{
@@ -12050,7 +12045,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "UC" = (
 /obj/structure/platform{
@@ -12066,7 +12061,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "UF" = (
 /obj/machinery/light{
@@ -12105,7 +12100,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "UK" = (
 /obj/machinery/light{
@@ -12316,7 +12311,7 @@
 	dir = 8;
 	layer = 2.7
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "VC" = (
 /obj/structure/barricade/metal{
@@ -12439,7 +12434,7 @@
 /area/oscar_outpost)
 "Wg" = (
 /obj/effect/forcefield,
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Wi" = (
 /obj/machinery/camera/autoname/mainship{
@@ -12479,7 +12474,7 @@
 	dir = 8;
 	layer = 2.7
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Wr" = (
 /obj/structure/barricade/sandbags{
@@ -12810,7 +12805,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "XG" = (
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "XH" = (
 /obj/machinery/camera/autoname/mainship{
@@ -12869,7 +12864,7 @@
 /area/oscar_outpost/village/south)
 "XR" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
+/obj/effect/spawner/random/outdoors_snacks,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "XV" = (
@@ -13179,7 +13174,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Zh" = (
 /turf/closed/wall,
@@ -13302,7 +13297,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/turf/open/lavaland/lava,
 /area/oscar_outpost)
 "Zt" = (
 /obj/machinery/washing_machine,
@@ -30544,7 +30539,7 @@ Jw
 qN
 qN
 qN
-fT
+ut
 QX
 QX
 fK
@@ -31552,7 +31547,7 @@ Jw
 qN
 qN
 qN
-fT
+ut
 QX
 QX
 fK
@@ -34829,7 +34824,7 @@ qM
 qM
 qN
 LP
-Ok
+BS
 MH
 fK
 AC
@@ -35329,7 +35324,7 @@ aO
 qN
 Jo
 QX
-uN
+TY
 QX
 qN
 LX
@@ -35836,7 +35831,7 @@ gq
 gq
 ac
 qN
-aW
+fT
 cY
 MH
 qN
@@ -36117,7 +36112,7 @@ DP
 kx
 DP
 sV
-yF
+uD
 ux
 NS
 NS
@@ -43162,13 +43157,13 @@ YH
 os
 Vb
 VI
-zh
+XR
 VI
 ZP
 Ta
 Vb
 VI
-zh
+XR
 VI
 ZP
 lG
@@ -43403,7 +43398,7 @@ oM
 Iu
 Ta
 Vb
-zh
+XR
 Xa
 XR
 ZP
@@ -45167,7 +45162,7 @@ Ta
 Ta
 Ta
 Vb
-zh
+XR
 Xa
 XR
 ZP
@@ -45177,13 +45172,13 @@ lO
 jT
 YF
 YF
-zh
+XR
 Xa
 XR
 ZP
 Ta
 Vb
-zh
+XR
 Xa
 XR
 ZP
@@ -46943,13 +46938,13 @@ os
 Vb
 Xf
 Xa
-zh
+XR
 ZP
 Ta
 Vb
 Xf
 Xa
-zh
+XR
 ZP
 lG
 XH
@@ -47184,7 +47179,7 @@ Ta
 Ta
 Vb
 VI
-zh
+XR
 VI
 ZP
 Ta
