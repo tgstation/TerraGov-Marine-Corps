@@ -2,7 +2,7 @@
 /atom/movable/proc/supply_export(faction_selling)
 	return 0
 
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req/supply_export(faction_selling)
+/obj/item/reagent_containers/food/snacks/req_pizza/supply_export(faction_selling)
 	SSpoints.supply_points[faction_selling] += 10
 	return new /datum/export_report(10, name, faction_selling)
 
