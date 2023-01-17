@@ -2336,7 +2336,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "jN" = (
-/obj/structure/closet/crate,
+/obj/effect/spawner/random/structure/m42c/oscaroutpost,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "jO" = (
@@ -5002,6 +5002,10 @@
 /obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/wood,
 /area/oscar_outpost)
+"ux" = (
+/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/turf/open/floor,
+/area/oscar_outpost/village/south)
 "uz" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/ground/grass,
@@ -7576,7 +7580,7 @@
 	pixel_y = 24
 	},
 /obj/machinery/camera/autoname/mainship,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/edge2,
 /area/oscar_outpost/village)
 "Eh" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -7969,6 +7973,11 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"FM" = (
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/oscar_outpost/village)
 "FN" = (
 /obj/item/toy/beach_ball,
 /obj/item/toy/beach_ball,
@@ -8152,7 +8161,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/underground)
 "Gv" = (
-/turf/open/floor/carpet/side,
+/turf/open/floor/carpet/side{
+	dir = 10
+	},
 /area/oscar_outpost/village)
 "Gx" = (
 /obj/machinery/light{
@@ -8192,7 +8203,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/side,
 /area/oscar_outpost/village)
 "GD" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -8541,6 +8552,10 @@
 /obj/item/trash/buritto,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"HU" = (
+/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "HW" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -11030,6 +11045,12 @@
 "Rh" = (
 /turf/closed/wall/mainship/research,
 /area/oscar_outpost/outside/northeast)
+"Ri" = (
+/obj/effect/spawner/random/structure/m42c/oscaroutpost,
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/oscar_outpost)
 "Rk" = (
 /obj/structure/barricade/sandbags{
 	dir = 8;
@@ -15243,7 +15264,7 @@ bf
 ca
 de
 dt
-de
+Ri
 af
 af
 af
@@ -19192,7 +19213,7 @@ OE
 WZ
 Li
 WZ
-bk
+jN
 bk
 AB
 xe
@@ -26841,7 +26862,7 @@ af
 af
 af
 uz
-hg
+HU
 hg
 hg
 hg
@@ -36051,7 +36072,7 @@ kx
 DP
 sV
 NS
-NS
+ux
 NS
 NS
 sV
@@ -47608,7 +47629,7 @@ aO
 aO
 aO
 wm
-gq
+FM
 Gv
 Id
 gq

@@ -1449,6 +1449,18 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
+/obj/effect/spawner/random/structure/m42c
+	name = "m42c spawner"
+	icon_state = "random_m42c"
+	spawn_loot_chance = 1
+	loot = list(
+		/obj/item/storage/box/m42c_system = 9,
+		/obj/item/storage/box/m42c_system_Jungle = 1,
+	)
+
+/obj/effect/spawner/random/structure/m42c/oscaroutpost
+	spawn_loot_chance = 10
+
 /obj/effect/spawner/random/structure/random_piano
 	name = "random piano spawner"
 	icon_state = "random_piano"
