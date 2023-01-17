@@ -115,18 +115,6 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 
-/obj/structure/closet/crate/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //code that hopefully handles if crate drops metal when welded
-	if(!welder.isOn())
-		return FALSE
-
-	if(opened)
-		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
-			to_chat(user, span_notice("You need more welding fuel to complete this task."))
-			return TRUE
-		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
-		qdel(src)
-		return TRUE
-
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
 	desc = "A crate with alpha squad's symbol on it. "
@@ -343,3 +331,96 @@
 	icon_state = "closed_mcart_y"
 	icon_opened = "open_mcart_y"
 	icon_closed = "closed_mcart_y"
+
+/obj/structure/closet/crate/vendable_crates
+	name = "Mass Produced Crate"
+	desc = "A rectangular steel crate. Cannot be welded for metal."
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "closed_basic"
+	icon_opened = "open_basic"
+	icon_closed = "closed_basic"
+	anchored = FALSE
+	mob_storage_capacity = 0
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+
+/obj/structure/closet/crate/vendable_crates/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //code that hopefully handles if crate drops metal when welded
+	if(!welder.isOn())
+		return FALSE
+
+	if(opened)
+		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
+			to_chat(user, span_notice("You need more welding fuel to complete this task."))
+			return TRUE
+		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
+		qdel(src)
+		return TRUE
+
+/obj/structure/closet/crate/vendable_crates/alpha
+	name = "Mass Produced Alpha Squad Crate"
+	desc = "A crate with alpha squad's symbol on it. Cannot be welded for metal. "
+	icon_state = "closed_alpha"
+	icon_opened = "open_alpha"
+	icon_closed = "closed_alpha"
+
+/obj/structure/closet/crate/vendable_crates/ammo
+	name = "Mass Produced Ammunitions Crate"
+	desc = "A ammunitions crate. Cannot be welded for metal."
+	icon_state = "closed_ammo"
+	icon_opened = "open_ammo"
+	icon_closed = "closed_ammo"
+
+/obj/structure/closet/crate/vendable_crates/bravo
+	name = "Mass Produced Bravo Squad Crate"
+	desc = "A crate with bravo squad's symbol on it. Cannot be welded for metal."
+	icon_state = "closed_bravo"
+	icon_opened = "open_bravo"
+	icon_closed = "closed_bravo"
+
+/obj/structure/closet/crate/vendable_crates/charlie
+	name = "Mass Produced Charlie Squad Crate"
+	desc = "A crate with charlie squad's symbol on it. Cannot be welded for metal."
+	icon_state = "closed_charlie"
+	icon_opened = "open_charlie"
+	icon_closed = "closed_charlie"
+
+/obj/structure/closet/crate/vendable_crates/construction
+	name = "Mass Produced Construction Crate"
+	desc = "A construction crate. Cannot be welded for metal."
+	icon_state = "closed_construction"
+	icon_opened = "open_construction"
+	icon_closed = "closed_construction"
+
+/obj/structure/closet/crate/vendable_crates/delta
+	name = "Mass Produced Delta Squad Crate"
+	desc = "A crate with delta squad's symbol on it. Cannot be welded for metal. "
+	icon_state = "closed_delta"
+	icon_opened = "open_delta"
+	icon_closed = "closed_delta"
+
+/obj/structure/closet/crate/vendable_crates/explosives
+	name = "Mass Produced Explosives Crate"
+	desc = "A explosives crate. Cannot be welded for metal."
+	icon_state = "closed_explosives"
+	icon_opened = "open_explosives"
+	icon_closed = "closed_explosives"
+
+/obj/structure/closet/crate/vendable_crates/medical
+	name = "Mass Produced Medical Crate"
+	desc = "A medical crate. Cannot be welded for metal."
+	icon_state = "closed_medical"
+	icon_opened = "open_medical"
+	icon_closed = "closed_medical"
+
+/obj/structure/closet/crate/vendable_crates/supply
+	name = "Mass Produced Supply Crate"
+	desc = "A supply crate. Cannot be welded for metal."
+	icon_state = "closed_supply"
+	icon_opened = "open_supply"
+	icon_closed = "closed_supply"
+
+/obj/structure/closet/crate/vendable_crates/weapon
+	name = "Mass Produced Weapons Crate"
+	desc = "A weapons crate. Cannot be welded for metal."
+	icon_state = "closed_weapons"
+	icon_opened = "open_weapons"
+	icon_closed = "closed_weapons"
