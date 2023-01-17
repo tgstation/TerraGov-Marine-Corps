@@ -1,5 +1,5 @@
 /obj/effect/turf_decal/tile
-	icon = 'icons/turf/floors.dmi'
+	icon = 'icons/turf/decals.dmi'
 	icon_state = "whitedecal"
 
 /obj/effect/turf_decal/tile/ex_act(severity)
@@ -164,7 +164,6 @@
 	color = "#d3d3d3"
 
 /obj/effect/turf_decal/woodsiding
-	icon = 'icons/turf/floors.dmi'
 	icon_state = "wood_siding"
 
 /obj/effect/turf_decal/woodsiding/alt
@@ -176,7 +175,6 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_decal/siding
-	icon = 'icons/turf/floors.dmi'
 	icon_state = "siding"
 
 /obj/effect/turf_decal/siding/alt
@@ -188,7 +186,6 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_decal/symbol/corsat
-	icon = 'icons/effects/warning_stripes.dmi'
 	color = "#9c7f42"
 
 /obj/effect/turf_decal/symbol/corsat/symbol/omega

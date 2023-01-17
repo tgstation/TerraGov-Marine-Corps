@@ -1,3 +1,5 @@
+#define VENDOR_BROKEN "vendor_broken"
+#define VENDOR_BLANK "vendor_blank"
 //----- Marine ship machinery file -----//
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
@@ -63,6 +65,87 @@
 		icon_state = initial(icon_state)
 		icon_state += "0"
 
+
+/obj/machinery/prop/mainship/computer/aiupload
+	name = "\improper AI upload console"
+	desc = "Used to upload laws to the AI."
+
+	icon_state = "aiupload"
+
+/obj/machinery/prop/mainship/computer/dna
+	icon_state = "dna"
+
+/obj/structure/prop/mainship/massdiver
+	name = "mass driver"
+	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "mass_driver"
+
+/obj/structure/prop/mainship/shieldwall
+	name = "shield wall generator"
+	desc = "A shield generator."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "shield_wall_gen"
+
+/obj/structure/prop/mainship/dnascanner
+	name = "\improper DNA scanner"
+	desc = "It scans DNA structures."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "scanner"
+
+/obj/structure/prop/mainship/gateway
+	name = "gateway"
+	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	icon = 'icons/obj/gateway.dmi'
+	icon_state = "portal_frame"
+
+/obj/structure/prop/mainship/gravitygenerator
+	name = "gravitational generator"
+	desc = "A device which produces a graviton field when set up."
+	icon = 'icons/obj/gravity_generator.dmi'
+	icon_state = "on_8"
+
+/obj/structure/prop/mainship/holobarrier
+	name = "\improper Engineering holobarrier"
+	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely resistant to atmos loss and degradation by melee or ballistic damage. It's also made of space asbestos and is illegal under the new Geneva conventions."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "holosign_engi"
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/deadai
+	name = "\improper deactivated AI"
+	desc = "A standard silicon unit assigned to manage the research duties of NT stations. This one is completely deactivated."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "ai_dead"
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
+
+/obj/structure/prop/mainship/deadai/Initialize()
+	. = ..()
+	icon_state = pick(
+		"ai_dead",
+		"ai-alien_dead",
+		"ai-banned_dead",
+		"ai-clown_dead",
+		"ai-database_dead",
+		"ai-glitchman_dead",
+		"ai-goon_dead",
+		"ai-house_dead",
+		"ai-monochrome_dead",
+		"ai-red_dead",
+		"ai-red october_dead",
+		"ai-static_dead",
+		"ai-hades_dead",
+	)
+
+/obj/structure/prop/mainship/weapon_recharger
+	name = "recharger"
+	desc = "A charging dock for energy based weaponry, PDAs, and other devices. A small blinking light indicates that this recharger isn't functional."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "weapon_recharger"
+	density = FALSE
 
 //Nonpower using props
 
@@ -386,8 +469,72 @@
 /obj/structure/prop/mainship/protolathe/service
 	name = "Service Protolathe"
 
+/obj/structure/prop/mainship/protolathe/cargo
+	name = "Cargo Protolathe"
+
 /obj/structure/prop/mainship/cannon_cables/ex_act()
 	return
+
+/obj/structure/prop/mainship/research
+	icon = 'icons/obj/machines/research.dmi'
+
+/obj/structure/prop/mainship/research/circuit_imprinter
+	name = "Circuit Imprinter"
+	icon_state = "circuit_imprinter"
+
+/obj/structure/prop/mainship/research/mechafab
+	icon_state = "mechfab1"
+	name = "Exosuit Fabricator"
+	desc = "Nothing is being built."
+
+/obj/structure/prop/mainship/research/destructive_analyzer
+	name = "Destructive Analyzer"
+	icon_state = "d_analyzer"
+
+/obj/structure/prop/mainship/research/tdoppler
+	name = "tachyon-doppler array"
+	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array.\n"
+	icon_state = "tdoppler"
+
+/obj/structure/prop/mainship/research/explosivecompressor
+	name = "anomaly refinery"
+	desc = "An advanced machine capable of implosion-compressing raw anomaly cores into finished artifacts. Also equipped with state of the art bomb prediction software."
+	icon_state = "explosive_compressor"
+
+/obj/structure/prop/mainship/research/tankcompressor
+	name = "Tank Compressor"
+	desc = "Heavy duty shielded air compressor designed to pressurize tanks above the safe limit."
+	icon_state = "tank_compressor-open"
+
+/obj/structure/prop/mainship/generator
+	name = "field generator"
+	desc = "A large thermal battery that projects a high amount of energy when powered."
+	icon = 'icons/obj/machines/field_generator.dmi'
+	icon_state = "Field_Gen"
+	anchored = FALSE
+	density = TRUE
+	max_integrity = 500
+	//100% immune to lasers and energy projectiles since it absorbs their energy.
+	soft_armor = list(MELEE = 25, BULLET = 10, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 50, ACID = 70)
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/generator/shieldgen
+	name = "anti-breach shielding projector"
+	desc = "Used to seal minor hull breaches."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "shieldoff"
+
+/obj/structure/prop/mainship/generator/tesla_coil
+	name = "tesla coil"
+	desc = "For the union!"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "coil_open0"
+
+/obj/structure/prop/mainship/generator/ground_rod
+	name = "grounding rod"
+	desc = "Keeps an area from being fried by Edison's Bane, does not work against handheld Tesla cannons commonly issued by paramilitaries."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "grounding_rod_open0"
 
 /obj/structure/prop/mainship/cannon_cable_connector
 	name = "\improper Cannon cable connector"
@@ -396,15 +543,17 @@
 	icon_state = "cannon_cable_connector"
 	density = TRUE
 
+/obj/structure/prop/mainship/reflector
+	name = "\improper reflector"
+	desc = "An angled mirror for reflecting laser beams."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "reflector_prop"
+	density = TRUE
+	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
-
-/obj/structure/prop/mainship/propcarp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "carpprop"
-	density = TRUE
 
 /obj/structure/prop/mainship/prop_sec
 	name = "Security Officer"
@@ -452,6 +601,13 @@
 	icon_state = "silo"
 	density = TRUE
 
+/obj/structure/prop/mainship/propcarp
+	name = "space carp"
+	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "carpprop"
+	density = TRUE
+
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()
 	var/pickedrotate = pick(0,1,2,4,8,10)
@@ -493,15 +649,30 @@
 	name = "pneumatic tube"
 	desc = "A pneumatic tube commonly used for transportation on NanoTrasen research stations."
 	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "tubeprop"
+	icon_state = "tubepropstraight"
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_TURF_LAYER //so our fake prop can visually pass under glass panels
+	layer = ABOVE_OBJ_LAYER //so our fake prop can visually pass under glass panels
 
 /obj/structure/prop/mainship/tubeprop/decorative
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "decorative"
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/structure/prop/mainship/tubeprop/end
+	icon_state = "tubepropend"
+
+/obj/structure/prop/mainship/tubeprop/diagonal
+	icon_state = "tubepropdiagonal"
+
+/obj/structure/prop/mainship/tubeprop/decorativediagonal
+	icon_state = "decorative_diag"
+
+/obj/structure/prop/mainship/tubeprop/tubejunction
+	icon_state = "tubejunction"
+
+/obj/structure/prop/mainship/tubeprop/tubecurved
+	icon_state = "tubecurved"
 
 /obj/structure/prop/mainship/meterprop/
 	name = "meter"
@@ -611,6 +782,12 @@
 		MECH_GREY_R_ARM = MECH_VANGUARD,
 	)
 
+/obj/structure/prop/mainship/chimney
+	name = "fireplace"
+	desc = "A large stone brick fireplace."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	icon_state = "fireplace"
+
 //items props
 
 /obj/item/prop
@@ -688,6 +865,16 @@
 				"'H.O.G.A.N.' Core AI Module",
 	)
 
+/obj/item/prop/aicard
+	name = "intelliCard"
+	desc = "A storage device for AIs. Patent pending."
+	icon_state = "aicard"
+
+/obj/item/prop/aicard/Initialize()
+	. = ..()
+	if(prob(50))
+		icon_state = "aicard-404"
+
 /obj/item/prop/dogtag
 	name = "John Doe" //generic name
 	desc = "The remains of a marine long dead, you hope they found peace."
@@ -711,6 +898,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"
@@ -773,6 +961,12 @@
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/van/Initialize()
+	. = ..()
+	if(dir & (NORTH|SOUTH))
+		bound_height = 64
+		bound_width = 32
 
 /obj/structure/prop/vehicle/van/destructible
 	max_integrity = 200
@@ -1416,6 +1610,30 @@
 	QDEL_NULL(chatter_loop)
 	return ..()
 
+/obj/structure/prop/mainship/railing
+	name = "railing"
+	desc = "Basic railing meant to protect idiots like you from falling."
+	icon = 'icons/Marine/mainship_props.dmi'
+	density = FALSE
+	icon_state = "railing"
+
+/obj/structure/prop/mainship/railing/corner
+	name = "railing"
+	desc = "Basic railing meant to protect idiots like you from falling."
+	density = FALSE
+	icon_state = "railing_corner"
+
+/obj/structure/prop/mainship/solar
+	name = "Solar Array"
+	desc = "A solar panel. Generates electricity when in contact with sunlight."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "sp_base"
+
+/obj/structure/prop/mainship/solar/tracker
+	name = "solar tracker"
+	desc = "A solar directional tracker."
+	icon_state = "tracker_base"
+
 /obj/structure/prop/vehicle/som_mech
 	name = "Marauder assault mech"
 	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
@@ -1428,3 +1646,291 @@
 	pixel_y = -15
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/machine_frame3
+	name = "machine frame"
+	desc = "That's a constructable machine frame."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "box_2"
+
+/obj/structure/prop/keycardauth
+	name = "Keycard Authentication Device"
+	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
+	icon = 'icons/obj/monitors.dmi'
+	icon_state = "auth_off"
+
+//TG BROKEN VENDOR PROPS
+//USE THESE SPARINGLY OUTSIDE OF TG THEMED MAPS OR I'LL BREAK YOUR KNEECAPS
+
+/obj/structure/prop/tgbrokenvendor
+	name = "\improper Broken vendor"
+	icon = 'icons/obj/tg_vending_props.dmi'
+	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+	density = TRUE
+	///var to control vendor appearance, can be vendor_broken, vendor_working or vendor_blank
+	var/vendorstate = VENDOR_BROKEN
+
+/obj/structure/prop/tgbrokenvendor/Initialize()
+	. = ..()
+	vendorstate = pick(VENDOR_BROKEN, VENDOR_BLANK)
+	if(vendorstate == VENDOR_BROKEN)
+		icon_state += "-broken"
+	else
+		icon_state += "-off"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokebed
+	icon_state = "snack"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokeblue
+	icon_state = "snackblue"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokeorange
+	icon_state = "snackorange"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokegreen
+	icon_state = "snackgreen"
+
+/obj/structure/prop/tgbrokenvendor/snackbroketeal
+	icon_state = "snackteal"
+
+/obj/structure/prop/tgbrokenvendor/smartfridge
+	icon_state = "smartfridge"
+
+/obj/structure/prop/tgbrokenvendor/dinnerware
+	icon_state = "dinnerware"
+
+/obj/structure/prop/tgbrokenvendor/cigs
+	icon_state = "cigs"
+
+/obj/structure/prop/tgbrokenvendor/generic
+	icon_state = "generic"
+
+/obj/structure/prop/tgbrokenvendor/sec
+	icon_state = "sec"
+
+/obj/structure/prop/tgbrokenvendor/nutri
+	icon_state = "nutri"
+
+/obj/structure/prop/tgbrokenvendor/seeds
+	icon_state = "seeds"
+
+/obj/structure/prop/tgbrokenvendor/cola
+	icon_state = "cola-machine"
+
+/obj/structure/prop/tgbrokenvendor/colablack
+	icon_state = "cola_black"
+
+/obj/structure/prop/tgbrokenvendor/colared
+	icon_state = "cola_red"
+
+/obj/structure/prop/tgbrokenvendor/spaceup
+	icon_state = "space_up"
+
+/obj/structure/prop/tgbrokenvendor/pwrgame
+	icon_state = "starkist"
+
+/obj/structure/prop/tgbrokenvendor/starkist
+	icon_state = "pwr_game"
+
+/obj/structure/prop/tgbrokenvendor/soda
+	icon_state = "starkist"
+
+/obj/structure/prop/tgbrokenvendor/sovietsoda
+	icon_state = "sovietsoda"
+
+/obj/structure/prop/tgbrokenvendor/coffee
+	icon_state = "coffee"
+
+/obj/structure/prop/tgbrokenvendor/boozeomat
+	icon_state = "boozeomat"
+
+/obj/structure/prop/tgbrokenvendor/magivend
+	icon_state = "MagiVend"
+
+/obj/structure/prop/tgbrokenvendor/med
+	icon_state = "med"
+
+/obj/structure/prop/tgbrokenvendor/drug
+	icon_state = "drug"
+
+/obj/structure/prop/tgbrokenvendor/engi
+	icon_state = "engi"
+
+/obj/structure/prop/tgbrokenvendor/robotics
+	icon_state = "robotics"
+
+/obj/structure/prop/tgbrokenvendor/cart
+	icon_state = "cart"
+
+/obj/structure/prop/tgbrokenvendor/theater
+	icon_state = "theater"
+
+/obj/structure/prop/tgbrokenvendor/clothes
+	icon_state = "clothes"
+
+/obj/structure/prop/tgbrokenvendor/liberationstation
+	icon_state = "liberationstation"
+
+/obj/structure/prop/tgbrokenvendor/syndi
+	icon_state = "syndi"
+
+/obj/structure/prop/tgbrokenvendor/ntdonk
+	icon_state = "nt-donk"
+
+/obj/structure/prop/tgbrokenvendor/games
+	icon_state = "games"
+
+/obj/structure/prop/tgbrokenvendor/bardrobe
+	icon_state = "bardrobe"
+
+/obj/structure/prop/tgbrokenvendor/secdrobe
+	icon_state = "secdrobe"
+
+/obj/structure/prop/tgbrokenvendor/chefdrobe
+	icon_state = "chefdrobe"
+
+/obj/structure/prop/tgbrokenvendor/medidrobe
+	icon_state = "medidrobe"
+
+/obj/structure/prop/tgbrokenvendor/chemdrobe
+	icon_state = "chemdrobe"
+
+/obj/structure/prop/tgbrokenvendor/genedrobe
+	icon_state = "genedrobe"
+
+/obj/structure/prop/tgbrokenvendor/virodrobe
+	icon_state = "virodrobe"
+
+/obj/structure/prop/tgbrokenvendor/scidrobe
+	icon_state = "scidrobe"
+
+/obj/structure/prop/tgbrokenvendor/robodrobe
+	icon_state = "robodrobe"
+
+/obj/structure/prop/tgbrokenvendor/chapdrobe
+	icon_state = "chapdrobe"
+
+/obj/structure/prop/tgbrokenvendor/engidrobe
+	icon_state = "engidrobe"
+
+/obj/structure/prop/tgbrokenvendor/atmosdrobe
+	icon_state = "atmosdrobe"
+
+/obj/structure/prop/tgbrokenvendor/hydrodrobe
+	icon_state = "hydrobe"
+
+/obj/structure/prop/tgbrokenvendor/cargodrobe
+	icon_state = "cargodrobe"
+
+/obj/structure/prop/tgbrokenvendor/curadrobe
+	icon_state = "curadrobe"
+
+/obj/structure/prop/tgbrokenvendor/janidrobe
+	icon_state = "janidrobe"
+
+/obj/structure/prop/tgbrokenvendor/lawdrobe
+	icon_state = "lawdrobe"
+
+/obj/structure/prop/tgbrokenvendor/detdrobe
+	icon_state = "detdrobe"
+
+/obj/structure/prop/tgbrokenvendor/parts
+	icon_state = "parts"
+
+/obj/structure/prop/tgbrokenvendor/custom
+	icon_state = "custom"
+
+/obj/structure/prop/tgbrokenvendor/greed
+	icon_state = "greed"
+
+/obj/structure/prop/tgbrokenvendor/centdrobe
+	icon_state = "centdrobe"
+
+/obj/structure/prop/tgbrokenvendor/shamblersjuice
+	icon_state = "shamblers_juice"
+
+/obj/structure/prop/tgbrokenvendor/modularpc
+	icon_state = "modularpc"
+
+/obj/structure/prop/camera
+	name = "broken security camera"
+	desc = "It's used to monitor rooms."
+	icon = 'icons/obj/machines/monitors.dmi'
+	icon_state = "camera_icon"
+	layer = WALL_OBJ_LAYER
+	anchored = TRUE
+
+/obj/structure/prop/camera/Initialize(mapload, newDir)
+	. = ..()
+	icon_state = "camera1"
+
+/obj/structure/prop/computer/broken
+	name = "broken computer"
+	desc = "A busted PC, the internals look fried, there's no fixing this one."
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "broken_computer1"
+	resistance_flags = XENO_DAMAGEABLE
+	density = TRUE
+	max_integrity = 120
+
+/obj/structure/prop/computer/broken/two
+	icon_state = "broken_computer2"
+
+/obj/structure/prop/computer/broken/three
+	icon_state = "broken_computer3"
+
+/obj/structure/prop/computer/broken/four
+	icon_state = "broken_computer4"
+
+/obj/structure/prop/computer/broken/five
+	icon_state = "broken_computer5"
+
+/obj/structure/prop/computer/broken/six
+	icon_state = "broken_computer6"
+
+/obj/structure/prop/computer/broken/seven
+	icon_state = "broken_computer7"
+
+/obj/structure/prop/computer/broken/eight
+	icon_state = "broken_computer8"
+
+/obj/structure/prop/computer/broken/nine
+	icon_state = "broken_computer9"
+
+/obj/structure/prop/computer/broken/ten
+	icon_state = "broken_computer10"
+
+/obj/structure/prop/computer/broken/eleven
+	icon_state = "broken_computer11"
+
+/obj/structure/prop/computer/broken/twelve
+	icon_state = "broken_computer12"
+
+/obj/structure/prop/computer/broken/thirteen
+	icon_state = "broken_computer13"
+
+/obj/structure/prop/computer/broken/fourteen
+	icon_state = "broken_computer14"
+
+/obj/structure/prop/computer/broken/fifteen
+	icon_state = "broken_computer15"
+
+/obj/structure/prop/computer/broken/sixteen
+	icon_state = "broken_computer16"
+
+/obj/structure/prop/computer/broken/seventeen
+	icon_state = "broken_computer17"
+
+/obj/structure/prop/computer/broken/eighteen
+	icon_state = "broken_computer18"
+
+/obj/structure/prop/computer/broken/nineteen
+	icon_state = "broken_computer19"
+
+/obj/machinery/computer/solars
+	name = "Port Quarter Solar Control"
+	desc = "A controller for solar panel arrays."
+	icon_state = "solar"
+
+#undef VENDOR_BROKEN
+#undef VENDOR_BLANK
