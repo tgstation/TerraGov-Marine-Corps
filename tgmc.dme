@@ -581,6 +581,7 @@
 #include "code\game\objects\items\ashtray.dm"
 #include "code\game\objects\items\autopsy_scanner.dm"
 #include "code\game\objects\items\binoculars.dm"
+#include "code\game\objects\items\blink_drive.dm"
 #include "code\game\objects\items\blueprints.dm"
 #include "code\game\objects\items\bodybag.dm"
 #include "code\game\objects\items\cards_ids.dm"
