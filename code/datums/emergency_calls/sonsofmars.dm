@@ -16,7 +16,7 @@
 	to_chat(H, "<B>Eliminate the TGMC, take no prisoners. Get back what it was once lost.</B>")
 
 /datum/emergency_call/som/do_activate(announce = TRUE)
-	max_specialists = round(max_mob * 0.2)
+	max_specialists = round(mob_max * 0.2)
 	. = ..()
 
 /datum/emergency_call/som/create_member(datum/mind/M)
