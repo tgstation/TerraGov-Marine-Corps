@@ -1,0 +1,4 @@
+author: "GrayRachnid"
+delete-after: True
+changes:
+  - bugfix: "fixed mecha tactical smoke, now properly launches cloaking smoke."
