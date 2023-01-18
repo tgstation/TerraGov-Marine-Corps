@@ -216,6 +216,7 @@
 	icon_state = "roller_down"
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
+	status_flags = NONDRAGGABLE
 	drag_delay = 0 //Pulling something on wheels is easy
 	buckling_y = 6
 	foldabletype = /obj/item/roller
