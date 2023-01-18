@@ -205,7 +205,7 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
-	travelling_time =  6 SECONDS
+	travelling_time = 4 SECONDS
 	ammo_count = 200
 	max_ammo_count = 200
 	transferable_ammo = TRUE
@@ -266,7 +266,7 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
-	travelling_time = 3 SECONDS
+	travelling_time = 2 SECONDS
 	point_cost = 150
 
 
@@ -314,7 +314,7 @@
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons. Moving this will require some sort of lifter."
-	travelling_time = 1 SECONDS
+	travelling_time = 0.5 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
 	ammo_used_per_firing = 40
@@ -382,7 +382,7 @@
 	ammo_id = ""
 	bound_width = 64
 	bound_height = 32
-	travelling_time = 4 SECONDS
+	travelling_time = 2.5 SECONDS
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
@@ -395,7 +395,7 @@
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
-	travelling_time = 3 SECONDS //not powerful, but reaches target fast
+	travelling_time = 2 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
 	point_cost = 75
 	devastating_explosion_range = 2
@@ -510,7 +510,7 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 4 SECONDS
+	travelling_time = 2.5 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 100
 	ammo_type = CAS_MINI_ROCKET
