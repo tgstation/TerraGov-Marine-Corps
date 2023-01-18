@@ -223,3 +223,15 @@
   'Code: Lumi Sprites: Crow & Saro':
   - rscadd: 'HvH: Added a blink drive and e-sword to the SOM arsenal'
   - refactor: Cleaned up some esword code
+2023-01-18:
+  Lewdcifer:
+  - balance: All shoes now have the same armor unless specified otherwise.
+  Lumipharon:
+  - bugfix: 'Sensor Capture: Fixed an issue where the game could end unexpectedly'
+  Pariah919:
+  - balance: Mech Heavy Cannon and sniper no longer have sunder.
+  novaepee:
+  - rscadd: PFC Jim Pizza is now in busness replacing MRE pizza that reqtorio makes
+  - code_imp: replace MRE pizza for the frantise that is PFC Jim Pizza
+  novaepee, Al-1ce:
+  - spellcheck: 2023 tips update
