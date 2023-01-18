@@ -314,7 +314,7 @@
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons. Moving this will require some sort of lifter."
-	travelling_time = 0.5 SECONDS
+	travelling_time = 0.6 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
 	ammo_used_per_firing = 40
@@ -382,7 +382,7 @@
 	ammo_id = ""
 	bound_width = 64
 	bound_height = 32
-	travelling_time = 2.5 SECONDS
+	travelling_time = 2.6 SECONDS
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
@@ -510,7 +510,7 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 2.5 SECONDS
+	travelling_time = 2.6 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 100
 	ammo_type = CAS_MINI_ROCKET
