@@ -213,3 +213,6 @@ SUBSYSTEM_DEF(monitor)
 		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[xeno_caste_typepath][upgrade]
 			caste.melee_damage = initial(caste.melee_damage) * GLOB.xeno_stat_multiplicator_buff
+	priority_announce("Our sensors have picked up a spike in psionic energy coming from the hive. Our experts estimate that the xenomorphs will be [GLOB.xeno_stat_multiplicator_buff*100]% stronger.", "Priority Alert")
+	xeno_message("A rabid fervor of energy sweeps across the hive; we feel [GLOB.xeno_stat_multiplicator_buff*100]% more fierce. The Queen Mother has sent us her strength!", force = TRUE)
+	SEND_SOUND(GLOB.alive_xeno_list, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
