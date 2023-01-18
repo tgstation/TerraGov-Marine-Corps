@@ -63,6 +63,7 @@
 	name = "Oscar Outpost Northern Village"
 	icon_state = "green"
 	ceiling = CEILING_METAL
+	outside = TRUE
 
 /area/oscar_outpost/village/south
 	name = "Oscar Outpost Southern Village"
@@ -83,3 +84,9 @@
 	name = "Oscar Outpost Fairgrounds"
 	icon_state = "green"
 	ceiling = CEILING_NONE
+
+/area/oscar_outpost/village/abandonedbase
+	name = "Oscar Outpost Base Zeta"
+	icon_state = "green"
+	ceiling = CEILING_UNDERGROUND_METAL
+	outside = FALSE

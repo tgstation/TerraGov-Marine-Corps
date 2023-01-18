@@ -1141,6 +1141,20 @@
 	template_width = 29
 	template_height = 25
 
+/datum/map_template/modular/oscaroutposttopone
+	name = "Oscar outpost map top half"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar1.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
+/datum/map_template/modular/oscaroutposttoptwo
+	name = "Oscar outpost map top half"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar2.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
 /datum/map_template/modular/end_of_round/original
 	name = "Original EORG"
 	mappath = "_maps/modularmaps/EORG/original.dmm"

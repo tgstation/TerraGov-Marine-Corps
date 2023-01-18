@@ -180,6 +180,21 @@
 		/obj/item/assembly/signaler/receiver = 1,
 	)
 
+/obj/effect/spawner/random/structure/grenade
+	name = "grenade spawner"
+	icon_state = "random_grenade"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/explosive/grenade = 7,
+		/obj/item/explosive/grenade/incendiary = 2,
+		/obj/item/explosive/grenade/m15 = 1,
+	)
+
+/obj/effect/spawner/random/structure/grenade/multiplefour
+	icon_state = "random_grenade_multiple_four"
+	spawn_loot_chance = 75
+	spawn_loot_count = 4
+
 /obj/effect/spawner/random/structure/plastiqueexplosive/multiple
 	spawn_loot_chance = 20
 	icon_state = "random_plastiqueexplosive_multiple_two"

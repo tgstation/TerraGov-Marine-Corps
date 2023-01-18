@@ -234,6 +234,13 @@
 	spawner_width = 85
 	spawner_height = 38
 
+/************OSCAR OUTPOST**********/
+/obj/effect/spawner/modularmap/oscaroutposttophalf
+	mapid = "oscartop"
+	spawner_width = 150
+	spawner_height = 153
+
+
 /************EORG**********/
 /obj/effect/spawner/modularmap/admin/eorg
 	mapid = "EORG"
