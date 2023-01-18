@@ -29,20 +29,20 @@
 	return
 
 /atom/movable/screen/text/lobby/title
-	maptext = "<span class=menutitle>TERRAGOV MARINE CORPS</span>"
+	maptext = "<span class=menutitle>Welcome to TGMC</span>"
 
 /atom/movable/screen/text/lobby/title/Initialize()
 	. = ..()
-	maptext = "<span class=menutitle>TERRAGOV MARINE CORPS</span>"
+	maptext = "<span class=menutitle>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
 
 
 INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 /atom/movable/screen/text/lobby/year
-	maptext = "<span class=menutext>CURRENT YEAR: Loading...</span>"
+	maptext = "<span class=menutext>Current Year: Loading...</span>"
 
 /atom/movable/screen/text/lobby/year/Initialize()
 	. = ..()
-	maptext = "<span class=menutext>CURRENT YEAR: [GAME_YEAR]</span>"
+	maptext = "<span class=menutext>Current Year: [GAME_YEAR]</span>"
 
 
 /atom/movable/screen/text/lobby/owners_char
@@ -59,7 +59,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	set_text()
 
 /atom/movable/screen/text/lobby/owners_char/set_text()
-	maptext = "<span class=menutext>CURRENT CHARACTER: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
+	maptext = "<span class=menutext>Current character: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
 	if(!registered)
 		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
 		registered = TRUE
@@ -72,12 +72,16 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 /atom/movable/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	. = ..()
-	color = COLOR_ORANGE
+	color = COLOR_RED
+	var/matrix/M = matrix()
+	M.Scale(1.1, 1.1)
+	animate(src, transform = M, time = 1, easing = CUBIC_EASING)
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_click.ogg', 50)
 
 /atom/movable/screen/text/lobby/clickable/MouseExited(location, control, params)
 	. = ..()
+	animate(src, transform = null, time = 1, easing = CUBIC_EASING)
 	color = initial(color)
 
 /atom/movable/screen/text/lobby/clickable/Click()
@@ -86,8 +90,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/setup_character
-	maptext = "<span class=menutext>     SETUP CHARACTER</span>"
-	icon_state = "setup"
+	maptext = "<span class=menutext>Setup Character</span>"
 
 /atom/movable/screen/text/lobby/clickable/setup_character/Click()
 	. = ..()
@@ -95,8 +98,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/join_game
-	maptext = "<span class=menutext>     JOIN GAME</span>"
-	icon_state = "join"
+	maptext = "<span class=menutext>Join Game</span>"
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
 	. = ..()
@@ -106,8 +108,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 /atom/movable/screen/text/lobby/clickable/observe
 	screen_loc = "CENTER"
-	maptext = "<span class=menutext>     OBSERVE</span>"
-	icon_state = "observe"
+	maptext = "<span class=menutext>Observe</span>"
 
 /atom/movable/screen/text/lobby/clickable/observe/Click()
 	. = ..()
@@ -115,8 +116,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	player.try_to_observe()
 
 /atom/movable/screen/text/lobby/clickable/ready
-	maptext = "<span class=menutext>     YOU ARE: NOT READY</span>"
-	icon_state = "unready"
+	maptext = "<span class=menutext>You are: Not Ready</span>"
 
 /atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
 	. = ..()
@@ -127,18 +127,16 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 /atom/movable/screen/text/lobby/clickable/ready/set_text()
 	var/mob/new_player/player = hud.mymob
-	maptext = "<span class=menutext>     YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
+	maptext = "<span class=menutext>You are: [player.ready ? "" : "Not "]Ready</span>"
 
 /atom/movable/screen/text/lobby/clickable/ready/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.toggle_ready()
-	icon_state = player.ready ? "ready" : "unready"
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/manifest
-	maptext = "<span class=menutext>     VIEW MANIFEST</span>"
-	icon_state = "manifest"
+	maptext = "<span class=menutext>View Manifest</span>"
 
 /atom/movable/screen/text/lobby/clickable/manifest/Click()
 	. = ..()
@@ -146,8 +144,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	player.view_manifest()
 
 /atom/movable/screen/text/lobby/clickable/background
-	maptext = "<span class=menutext>     BACKGROUND</span>"
-	icon_state = "background"
+	maptext = "<span class=menutext>Background</span>"
 
 /atom/movable/screen/text/lobby/clickable/background/Click()
 	. = ..()
@@ -156,8 +153,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/changelog
-	maptext = "<span class=menutext>     CHANGELOG</span>"
-	icon_state = "changelog"
+	maptext = "<span class=menutext>Changelog</span>"
 
 /atom/movable/screen/text/lobby/clickable/changelog/Click()
 	. = ..()
@@ -165,8 +161,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/polls
-	maptext = "<span class=menutext>     POLLS</span>"
-	icon_state = "poll"
+	maptext = "<span class=menutext>Polls</span>"
 
 /atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
 	. = ..()
@@ -180,9 +175,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()
 	if(isnull(hasnewpolls))
-		maptext = "<span class=menutext>     NO DATABASE!</span>"
+		maptext = "<span class=menutext>No Database!</span>"
 		return
-	maptext = "<span class=menutext>     SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
+	maptext = "<span class=menutext>Show Polls[hasnewpolls ? " (NEW!)" : ""]</span>"
 
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
