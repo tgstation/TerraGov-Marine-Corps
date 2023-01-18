@@ -7991,7 +7991,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/structure/table/black,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "kEt" = (
