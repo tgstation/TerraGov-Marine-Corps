@@ -1,0 +1,4 @@
+author: "novaepee, jackie"
+delete-after: True
+changes:
+  - imageadd: "New mob and object sprite for vali weapons"
