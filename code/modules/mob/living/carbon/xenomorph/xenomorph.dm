@@ -268,7 +268,7 @@
 		return FALSE // We are already occupied with something.
 	if(!Adjacent(AM))
 		return FALSE // The target we're trying to pull must be adjacent and anchored.
-	if(AM.status_flags & NONDRAGGABLE)
+	if(AM.status_flags & CANNOTDRAG)
 		return FALSE // Objects that cannot be dragged shouldn't be dragged, y'know.
 	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL)
 		return FALSE // Incorporeal things can't grab or be grabbed.
