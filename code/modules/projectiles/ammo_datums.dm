@@ -225,7 +225,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.firer, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(target, main_proj.firer, source, range, speed, new_angle, TRUE)
 
 /// A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(target, main_proj.loc, source, range, speed, new_angle, TRUE)
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
