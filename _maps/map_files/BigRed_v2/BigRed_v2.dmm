@@ -6925,7 +6925,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -6968,7 +6968,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bys" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},

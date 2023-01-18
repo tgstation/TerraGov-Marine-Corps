@@ -186,3 +186,36 @@
   - imageadd: boiler gibbing with its own sprites
   tyeagg:
   - imageadd: new bullet sprites
+2023-01-15:
+  Lewdcifer:
+  - balance: Laser Pistol wielded slowdown reduced from 0.75 to 0.
+  - bugfix: CAS is no longer usable before shutters open, or before Tadpole launches.
+  Three333Digit:
+  - rscadd: Combat robots can speak machine
+  novaepee:
+  - rscadd: ADD BOXING RINGS TO ALL EORD ARENA
+2023-01-16:
+  Lewdcifer:
+  - rscadd: Flare guns can now be tactically reloaded with a flare pouch by right
+      clicking it.
+  - balance: Flare packs have had their inventory size reduced.
+  - balance: Flares have had their inventory size reduced.
+  - balance: Flare packs can now hold a maximum of 28 items.
+  - balance: Flare pouches can now hold a maximum of 28 items.
+  - balance: Combat Floodlights are no longer acidable, but can now be damaged by
+      slashes.
+  - balance: Combat Floodlights can now be repaired using welders. Examine the Floodlight
+      to see its remaining integrity.
+  - balance: Combat Floodlights have had their cost in requisitions reduced from 100
+      to 30.
+  - imageadd: Replaced the webbing vest sprites. They are now designed to mesh better
+      with other gear. Made by a Ghost.
+  - bugfix: Removed a stray admin message, left there by Sentinel debugging.
+  Lumipharon:
+  - balance: Barrel chargers reduce projectile damage falloff slightly
+  RipGrayson:
+  - rscadd: Added Delta station from TG
+  - code_imp: Ported TG's random spawner system
+  Zar000:
+  - imageadd: added roooouny
+  - admin: ya can rounify all xenos with 1 simple click in Fun tab

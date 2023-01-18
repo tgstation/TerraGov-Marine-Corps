@@ -7,6 +7,8 @@
 	max_game_time = 10 MINUTES
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
+
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()
@@ -20,6 +22,11 @@
 /datum/game_mode/combat_patrol/sensor_capture/setup_blockers()
 	. = ..()
 	addtimer(CALLBACK(src, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time) //game end timer will start ticking down on shutter drop
+
+/datum/game_mode/combat_patrol/sensor_capture/game_end_countdown()
+	if(game_timer == SENSOR_CAP_TIMER_PAUSED)
+		return "Timer paused, tower activation in progress"
+	return ..()
 
 /datum/game_mode/combat_patrol/sensor_capture/set_game_end()
 	if(timeleft(game_timer) > 0)
