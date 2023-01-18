@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Sensor Capture: Fixed an issue where the game could end unexpectedly"
