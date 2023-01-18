@@ -1937,6 +1937,7 @@
 "cra" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "crh" = (
