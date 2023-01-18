@@ -1300,7 +1300,6 @@
 			/obj/item/storage/pouch/document = -1,
 		),
 		"Headwear" = list(
-			/obj/item/clothing/head/ornamented_cap = -1,
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/head/headband/red = -1,
 			/obj/item/clothing/head/headband/rambo = -1,
