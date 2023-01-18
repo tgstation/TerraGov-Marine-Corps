@@ -166,13 +166,11 @@
 	parent.siemens_coefficient += siemens_coefficient_mod
 	parent.permeability_coefficient += permeability_coefficient_mod
 	parent.gas_transfer_coefficient += siemens_coefficient_mod
-	ADD_TRAIT(user, TRAIT_INTOXICATION_RESISTANT, ARMOR_TRAIT)
 
 /obj/item/armor_module/module/mimir_environment_protection/on_detach(obj/item/detaching_from, mob/user)
 	parent.siemens_coefficient -= siemens_coefficient_mod
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
-	REMOVE_TRAIT(user, TRAIT_INTOXICATION_RESISTANT, ARMOR_TRAIT)
 	return ..()
 
 /obj/item/armor_module/module/mimir_environment_protection/mark1
