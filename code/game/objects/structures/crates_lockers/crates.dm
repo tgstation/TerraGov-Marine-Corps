@@ -339,11 +339,7 @@
 	icon_state = "closed_basic"
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
-	anchored = FALSE
-	mob_storage_capacity = 0
 	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
-	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
-	density = TRUE
 	materials = list(/datum/material/metal = 200)
 
 /obj/structure/closet/crate/mass_produced_crate/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //code that hopefully handles if crate drops metal when welded
