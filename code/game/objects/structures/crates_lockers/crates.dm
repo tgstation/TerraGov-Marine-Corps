@@ -343,6 +343,7 @@
 	mob_storage_capacity = 0
 	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+	density = FALSE
 
 /obj/structure/closet/crate/vendable_crates/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //code that hopefully handles if crate drops metal when welded
 	if(!welder.isOn())
