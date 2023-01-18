@@ -641,6 +641,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 12.5
 	sundering = 1
+
+/datum/ammo/bullet/rifle/som_machinegun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 20, slowdown = 0.5)
 
 /datum/ammo/bullet/rifle/tx8

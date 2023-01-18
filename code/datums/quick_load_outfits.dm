@@ -1676,7 +1676,7 @@
 
 /datum/outfit/quick/som/veteran/breacher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
