@@ -1,0 +1,5 @@
+author: "Tupina"
+delete-after: True
+changes:
+  - imageadd: "New and updated AmmoHUD sprites"
+  - imagedel: "Unused ammoHUD sprites"
