@@ -115,7 +115,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 2 SECONDS
-
+	aim_fire_delay = 0.05 SECONDS
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102,)
