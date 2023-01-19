@@ -9,7 +9,7 @@
 #define RETURN_TO_LOBBY 2
 
 //Do not decrease this unless you know what you are doing. It can be safely increased
-#define CUSTOM_EMOTE_SLOTS 10
+#define CUSTOM_EMOTE_SLOTS 20
 
 #define JOBS_PRIORITY_HIGH 3
 #define JOBS_PRIORITY_MEDIUM 2
