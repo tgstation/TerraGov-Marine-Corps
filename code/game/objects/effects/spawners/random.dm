@@ -30,7 +30,7 @@
 	///does the spawned structure need to retain its direction on spawn?
 	var/spawn_with_original_direction = FALSE
 	///do we attempt to force a direction on spawn?
-	var/spawn_force_direction = SOUTH
+	var/spawn_force_direction = FALSE
 
 /obj/effect/spawner/random/Initialize(mapload)
 	. = ..()
