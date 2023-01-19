@@ -1937,8 +1937,9 @@
 "cra" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/space)
+/area/mainship/hull/lower_hull)
 "crh" = (
 /obj/machinery/autolathe,
 /turf/open/floor/mainship/green,
@@ -7823,9 +7824,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
-"kvB" = (
-/turf/closed/wall/mainship/outer,
-/area/space)
 "kwo" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -7993,7 +7991,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/structure/table/black,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "kEt" = (
@@ -17226,13 +17223,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/holodeck/source_boxingcourt)
-"wbW" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/space)
 "wcT" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical)
@@ -18607,9 +18597,6 @@
 "xLu" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
-"xLL" = (
-/turf/open/floor/mainship_hull,
-/area/mainship/hull/lower_hull)
 "xLV" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -58781,9 +58768,9 @@ nWT
 nWT
 nWT
 nWT
-kvB
-wbW
-lDs
+esN
+unX
+esN
 dct
 qSz
 nJG
@@ -59038,9 +59025,9 @@ qpC
 qpC
 nWT
 nWT
-kvB
-wbW
-lDs
+esN
+unX
+esN
 lDs
 lDs
 nJG
@@ -59295,7 +59282,7 @@ qVo
 qVo
 hRh
 nWT
-kvB
+esN
 cra
 hUz
 hUz
@@ -59552,8 +59539,8 @@ qVo
 qVo
 hRh
 nWT
-kvB
-kvB
+esN
+esN
 esN
 esN
 unX
@@ -59811,7 +59798,7 @@ hRh
 nWT
 nWT
 nWT
-xLL
+nWT
 esN
 unX
 nJG
@@ -60068,7 +60055,7 @@ hRh
 nWT
 nWT
 nWT
-xLL
+nWT
 esN
 unX
 nJG
@@ -60325,7 +60312,7 @@ hRh
 nWT
 nWT
 nWT
-xLL
+nWT
 esN
 ssm
 hUz
@@ -60582,7 +60569,7 @@ hRh
 nWT
 nWT
 nWT
-xLL
+nWT
 esN
 esN
 esN
