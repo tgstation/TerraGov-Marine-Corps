@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "space area in starboard maint"
+  - bugfix: "missing wire in starboard maint"
+  - bugfix: "remove black table next to alamo"
