@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Multi shot ammo such as buckshot or airburst rounds now properly target whatever you're clicking"
