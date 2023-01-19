@@ -20,6 +20,12 @@ tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
 
+#Configs
+config/maps.txt
+config/modes.txt
+config/dbconfig.txt
+config/config.txt
+
 #Visual studio stuff
 *.vscode/*
 !/.vscode/extensions.json
