@@ -1188,6 +1188,10 @@
 /obj/item/reagent_containers/food/condiment/saltshaker,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"fP" = (
+/obj/structure/closet,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "fR" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -1286,6 +1290,17 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
+"gk" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "gm" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -1501,6 +1516,11 @@
 	},
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
+"gQ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/oscar_outpost)
 "gS" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -1526,6 +1546,14 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"gW" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/obj/machinery/door/airlock/mainship/generic,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "gX" = (
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile/dark,
@@ -1535,6 +1563,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"hi" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "hj" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -1767,6 +1799,12 @@
 	},
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"il" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/folder,
+/obj/effect/spawner/random/powercell,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "im" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos{
@@ -1868,6 +1906,11 @@
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor,
 /area/oscar_outpost/village)
+"iI" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/oscar_outpost)
 "iK" = (
 /obj/structure/closet/crate,
 /obj/item/explosive/grenade/PMC,
@@ -2063,6 +2106,11 @@
 /obj/effect/spawner/random/ammo/rifle,
 /turf/open/floor,
 /area/oscar_outpost/village)
+"jB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "jE" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/ammo_magazine/rocket,
@@ -2866,6 +2914,10 @@
 /obj/effect/spawner/random/beaker,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"nz" = (
+/obj/effect/spawner/random/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "nA" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -2988,6 +3040,11 @@
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
+"ob" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "od" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -3215,6 +3272,12 @@
 /obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"pc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "pd" = (
 /obj/effect/spawner/random/structure/broken_ship_window,
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -3222,6 +3285,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"pg" = (
+/obj/machinery/power/port_gen/pacman/super,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "pi" = (
 /obj/structure/barricade/metal{
 	alpha = 0;
@@ -3275,10 +3342,6 @@
 /obj/item/stack/sheet/mineral/gold,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
-"pt" = (
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/underground)
 "pv" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -3751,6 +3814,13 @@
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
+"rs" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "rt" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/explosive/grenade{
@@ -4235,6 +4305,10 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"sQ" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "sR" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/color/orange,
@@ -4332,6 +4406,10 @@
 /obj/item/storage/belt/shotgun,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"td" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "te" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/corpsespawner/marine/regular,
@@ -4483,6 +4561,12 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"tL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 1
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "tM" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/glass/large_stack,
@@ -4849,6 +4933,10 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"uW" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "uY" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/ammo/rifle,
@@ -5131,6 +5219,9 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
+"wv" = (
+/turf/open/floor/plating/icefloor/warnplate/corner,
+/area/oscar_outpost)
 "wB" = (
 /obj/machinery/door/window/secure/req{
 	dir = 1
@@ -5290,6 +5381,12 @@
 /obj/effect/spawner/random/shard,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"xh" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "xi" = (
 /obj/structure/platform_decoration,
 /obj/structure/platform_decoration{
@@ -5343,6 +5440,11 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"xs" = (
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 1
+	},
+/area/oscar_outpost)
 "xu" = (
 /obj/structure/table/mainship,
 /obj/machinery/door_control/old{
@@ -5600,15 +5702,13 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
-"yB" = (
-/obj/structure/sign/poster{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/grayscale/black,
+"yA" = (
+/obj/effect/spawner/random/structure/table_or_rack,
+/turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
+"yB" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/storage/testroom)
 "yC" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/gun/rifles,
@@ -5745,6 +5845,10 @@
 /obj/item/mortal_shell/he,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"yW" = (
+/obj/effect/spawner/random/structure/broken_ship_window,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "za" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -5998,6 +6102,13 @@
 "zR" = (
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
+"zT" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "zU" = (
 /obj/structure/cable,
 /turf/open/ground/grass,
@@ -6277,6 +6388,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"AT" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/oscar_outpost)
 "AU" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -6312,6 +6428,13 @@
 /obj/item/toy/katana,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"AZ" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Ba" = (
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
@@ -6599,6 +6722,11 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/central)
+"BY" = (
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 4
+	},
+/area/oscar_outpost)
 "BZ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -6896,6 +7024,10 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Dc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/icefloor/warnplate/corner,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Dd" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -6935,6 +7067,9 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"Dn" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/oscar_outpost)
 "Dr" = (
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/grayscale/black,
@@ -7270,6 +7405,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
+"EG" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "EH" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -7353,6 +7492,11 @@
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor,
 /area/oscar_outpost/village)
+"ES" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "EX" = (
 /obj/structure/platform,
 /turf/open/floor/grayscale/black,
@@ -7422,6 +7566,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"Fk" = (
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/security/regular,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Fl" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/wood,
@@ -7539,10 +7689,10 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"FJ" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
+"FI" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "FK" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -7912,6 +8062,11 @@
 /obj/effect/spawner/random/ammo/sidearm,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"GX" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "GY" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -8081,6 +8236,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"HF" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/spawner/random/structure/chair_or_metal,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "HH" = (
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/tile/dark,
@@ -8593,6 +8754,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"Je" = (
+/obj/structure/sign/poster,
+/turf/closed/wall/mainship/outer,
+/area/oscar_outpost/village/abandonedbase)
 "Jf" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -8746,6 +8911,9 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"JI" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "JK" = (
 /obj/machinery/light,
 /obj/effect/ai_node,
@@ -9112,6 +9280,7 @@
 "Ls" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/spawner/random/metal,
+/obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Lt" = (
@@ -9217,6 +9386,7 @@
 "LJ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "LK" = (
@@ -9491,6 +9661,10 @@
 	},
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
+"Mw" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "Mz" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/tile/dark,
@@ -9631,6 +9805,11 @@
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Ne" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Nf" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -9642,6 +9821,12 @@
 "Ng" = (
 /turf/closed/wall,
 /area/oscar_outpost)
+"Nh" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Ni" = (
 /obj/machinery/door/airlock/mainship/command{
 	name = "\improper Command Bunks"
@@ -9666,6 +9851,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"No" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Np" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -9916,6 +10106,10 @@
 	dir = 8
 	},
 /area/oscar_outpost/village/abandonedbase)
+"Ok" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Ol" = (
 /obj/structure/barricade/plasteel{
 	dir = 1
@@ -10145,9 +10339,30 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"OO" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control/old{
+	id = "zetalockdown";
+	pixel_y = 5
+	},
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 50
+	},
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 50;
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "OP" = (
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"OQ" = (
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 8
+	},
+/area/oscar_outpost)
 "OR" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -10513,6 +10728,19 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village)
+"Qa" = (
+/obj/effect/landmark/corpsespawner/security/regular,
+/obj/effect/decal/cleanable/blood/humanimprint,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
+"Qb" = (
+/turf/closed/wall/mainship/outer,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
+"Qc" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/oscar_outpost)
 "Qe" = (
 /obj/structure/rack,
 /obj/item/explosive/grenade/smokebomb,
@@ -10753,6 +10981,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/oscar_outpost/outside/underground)
+"QK" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/mainship/outer,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "QL" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/tile/dark,
@@ -10872,6 +11104,10 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
+"Rn" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/asteroidfloor,
+/area/storage/testroom)
 "Rr" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/tool/wrench{
@@ -11511,6 +11747,11 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
+"Te" = (
+/obj/effect/spawner/random/structure/random_broken_computer/small/security,
+/obj/structure/table/mainship,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Tg" = (
 /obj/structure/table/rusticwoodentable,
 /obj/effect/spawner/random/outdoors_snacks{
@@ -11727,6 +11968,17 @@
 /obj/item/radio/headset/distress/commando,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
+"TQ" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "zetalockdown"
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "TR" = (
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
@@ -11838,6 +12090,12 @@
 	},
 /turf/open/lavaland/lava,
 /area/oscar_outpost)
+"Ul" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
 "Uo" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -11931,6 +12189,12 @@
 	},
 /turf/open/lavaland/lava,
 /area/oscar_outpost)
+"UE" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/structure/random_broken_computer/small/security,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "UF" = (
 /obj/machinery/light{
 	dir = 1
@@ -12007,12 +12271,22 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
+"UQ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "UR" = (
 /obj/machinery/computer/camera_advanced/overwatch{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"US" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/oscar_outpost)
 "UV" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -12282,8 +12556,8 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Wa" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/storage/testroom)
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Wc" = (
 /obj/item/ammo_magazine/heavy_rr,
 /obj/item/ammo_magazine/heavy_rr,
@@ -12785,6 +13059,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Yb" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
 "Yd" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/base)
@@ -13106,6 +13386,12 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/corner,
 /area/oscar_outpost/village/central)
+"Zk" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "Zl" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 8
@@ -14708,17 +14994,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
 Li
 Li
 Li
@@ -14960,17 +15246,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+TV
+wv
+Qc
+Qc
+Qc
+Qc
+Qc
+OQ
+OE
 Li
 Li
 Li
@@ -15212,17 +15498,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+wv
+gQ
+TV
+TV
+TV
+TV
+TV
+AT
+OE
 Li
 Li
 Li
@@ -15464,17 +15750,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+Dn
+TV
+TV
+TV
+TV
+TV
+TV
+AT
+OE
 Li
 Li
 Li
@@ -15716,17 +16002,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+Dn
+TV
+TV
+TV
+TV
+TV
+TV
+AT
+OE
 Li
 Li
 Li
@@ -15968,17 +16254,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+Dn
+TV
+TV
+TV
+TV
+TV
+TV
+AT
+OE
 Li
 Li
 Li
@@ -16220,17 +16506,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+xs
+iI
+TV
+TV
+TV
+TV
+TV
+AT
+OE
 Li
 Li
 Li
@@ -16472,17 +16758,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+TV
+TV
+xs
+US
+US
+US
+US
+US
+BY
+OE
 Li
 Li
 Li
@@ -16724,17 +17010,17 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
-Li
+OE
+OE
+OE
+OE
+Gp
+Gp
+OE
+OE
+OE
+OE
+OE
 Li
 Li
 Li
@@ -16979,9 +17265,9 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
+bk
+bk
+bk
 Li
 Li
 Li
@@ -17230,12 +17516,12 @@ Li
 Li
 Li
 Li
-Li
-Li
-Li
-Li
-Li
-Li
+bk
+bk
+bk
+bk
+bk
+bk
 Li
 Li
 Li
@@ -17487,8 +17773,8 @@ YO
 YO
 YO
 lk
-fE
 YO
+rs
 YO
 YO
 Li
@@ -27804,7 +28090,7 @@ oX
 ZQ
 OP
 Tx
-pt
+rz
 rz
 rz
 rz
@@ -46714,7 +47000,7 @@ Ds
 vM
 NO
 cq
-cq
+yy
 cq
 EX
 lW
@@ -46966,7 +47252,7 @@ aj
 aj
 NO
 cq
-cq
+yy
 cq
 OT
 xH
@@ -47470,7 +47756,7 @@ WZ
 WZ
 NO
 BB
-cq
+yy
 te
 vs
 hp
@@ -47722,7 +48008,7 @@ WZ
 DC
 NO
 cq
-cq
+yy
 cL
 dS
 hp
@@ -47968,11 +48254,11 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+NO
+NO
+NO
+NO
+NO
 cq
 LJ
 cq
@@ -48220,20 +48506,20 @@ WZ
 WZ
 WZ
 WZ
+NO
+Mw
+GX
+zR
+NO
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+sC
 Jb
 Jb
 HZ
 ei
-yB
+ei
 PS
-WZ
+NO
 WZ
 WZ
 WZ
@@ -48472,20 +48758,20 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+NO
+zR
+rw
+bB
+TQ
+sC
+ES
+zR
 NO
 NO
-NO
-NO
+Je
 NO
 WZ
+NO
 WZ
 WZ
 WZ
@@ -48724,20 +49010,20 @@ WZ
 WZ
 WZ
 WZ
+NO
+nz
+bB
+yA
+NO
+zR
+Jb
+zR
 WZ
 WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+NO
 WZ
 WZ
 WZ
@@ -48950,6 +49236,9 @@ WZ
 WZ
 WZ
 WZ
+yB
+yB
+yB
 WZ
 WZ
 WZ
@@ -48973,25 +49262,22 @@ WZ
 WZ
 WZ
 WZ
+NO
+NO
+gW
+NO
+NO
+NO
+Ul
+Yb
+Yb
 WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+NO
+Li
+Li
 WZ
 Li
 "}
@@ -49202,6 +49488,9 @@ WZ
 WZ
 WZ
 WZ
+yB
+Rn
+yB
 WZ
 WZ
 WZ
@@ -49225,25 +49514,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+zT
+td
+gk
+Qb
+uW
+Wa
+Dc
+UQ
+pc
+UQ
+UQ
+pc
+Qb
+Li
+Li
 WZ
 Li
 "}
@@ -49454,6 +49740,9 @@ WZ
 WZ
 WZ
 WZ
+yB
+yB
+yB
 WZ
 WZ
 WZ
@@ -49477,25 +49766,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+Qa
+ob
+il
+EG
+Wa
+Dc
+No
+Wa
+Wa
+Wa
+Wa
+Wa
+QK
+Li
+Li
 WZ
 Li
 "}
@@ -49732,22 +50018,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+Wa
+HF
+UE
+EG
+Wa
+hi
 Wa
 Wa
 Wa
-WZ
-WZ
+Wa
+Wa
+Wa
+Qb
+Li
+Li
 WZ
 Li
 "}
@@ -49984,22 +50270,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
 Wa
-FJ
+Ok
+fP
+yW
+uW
+JI
 Wa
-WZ
-WZ
+Wa
+Wa
+Wa
+Wa
+Wa
+Qb
+Li
+Li
 WZ
 Li
 "}
@@ -50236,22 +50522,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+sQ
+Ok
+Wa
+Qb
+Wa
+hi
 Wa
 Wa
 Wa
-WZ
-WZ
+Wa
+Wa
+Wa
+QK
+Li
+Li
 WZ
 Li
 "}
@@ -50488,22 +50774,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+Te
+Fk
+jB
+xh
+uW
+tL
+Zk
+Wa
+Wa
+Wa
+Wa
+Wa
+QK
+Li
+Li
 WZ
 Li
 "}
@@ -50740,22 +51026,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+AZ
+FI
+OO
+Qb
+pg
+Wa
+tL
+Ne
+Nh
+Ne
+Nh
+Ne
+Qb
+Li
+Li
 WZ
 Li
 "}
@@ -50992,22 +51278,22 @@ WZ
 WZ
 WZ
 WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Qb
+Li
+Li
 WZ
 Li
 "}

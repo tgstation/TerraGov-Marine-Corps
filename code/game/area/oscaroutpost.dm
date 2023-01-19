@@ -90,3 +90,9 @@
 	icon_state = "green"
 	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
+
+/area/oscar_outpost/village/abandonedbase/tadlandingzone
+	name = "Oscar Outpost Base Zeta Landing Zone"
+	icon_state = "green"
+	ceiling = CEILING_NONE
+	outside = TRUE
