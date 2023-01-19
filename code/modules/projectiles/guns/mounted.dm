@@ -106,13 +106,15 @@
 
 	scatter = 10
 	deployed_scatter_change = -8
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.10 SECONDS
 	windup_delay = 0.4 SECONDS
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 2 SECONDS
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
 
