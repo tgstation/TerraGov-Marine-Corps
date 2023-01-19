@@ -115,6 +115,7 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
+			.["screen_resolution"] = screen_resolution
 			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
 			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
 			.["scaling_method"] = scaling_method
@@ -698,7 +699,14 @@
 
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
-			user.client.view_size.set_default(get_screen_size(widescreenpref))
+			user.client.view_size.set_default(get_screen_size(widescreenpref, screen_resolution))
+
+		if("screen_resolution")
+			var/choice = tgui_input_list(ui.user, "Choose widescreen resolution", "Resolutions", WIDESCREEN_RESOLUTIONS)
+			if(choice)
+				screen_resolution = choice
+				if(widescreenpref)
+					user.client.view_size.set_default(get_screen_size(widescreenpref, screen_resolution))
 
 		if("radialmedicalpref")
 			toggles_gameplay ^= RADIAL_MEDICAL

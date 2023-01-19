@@ -162,7 +162,13 @@
 	set_view_radius_to(radius)
 
 ///gets the current screen size as defined in config
-/proc/get_screen_size(widescreen)
+/proc/get_screen_size(widescreen, resolution = "17x15")
 	if(widescreen)
-		return CONFIG_GET(string/default_view)
-	return CONFIG_GET(string/default_view_square)
+		if(resolution)
+			switch(resolution)
+				if("19x15")
+					return WIDESCREEN2
+				if("21x15")
+					return WIDESCREEN3
+		return WIDESCREEN1
+	return SQUARESCREEN

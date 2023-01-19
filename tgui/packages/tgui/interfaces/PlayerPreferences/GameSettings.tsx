@@ -215,6 +215,11 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <SelectFieldPreference
+                label={'Widescreen resolution'}
+                value={'screen_resolution'}
+                action={'screen_resolution'}
+              />
               <ToggleFieldPreference
                 label="Radial medical wheel"
                 value="radialmedicalpref"

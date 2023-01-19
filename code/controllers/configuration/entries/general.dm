@@ -385,8 +385,14 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/flag/check_randomizer
 
-/datum/config_entry/string/default_view
-	config_entry_value = "15x15"
+/datum/config_entry/string/default_view1
+	config_entry_value = "17x15"
+
+/datum/config_entry/string/default_view2
+	config_entry_value = "19x15"
+
+/datum/config_entry/string/default_view3
+	config_entry_value = "21x15"
 
 /datum/config_entry/string/default_view_square
 	config_entry_value = "15x15"

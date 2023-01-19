@@ -394,7 +394,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_warning("Another consciousness is in your body...It is resisting you."))
 		return FALSE
 
-	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
+	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref, client.prefs.screen_resolution))//Let's reset so people can't become allseeing gods
 	mind.transfer_to(old_mob, TRUE)
 	return TRUE
 
@@ -716,7 +716,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return
 
-	if(client.view != CONFIG_GET(string/default_view))
+	if(client.view_size.is_zooming())
 		client.view_size.reset_to_default()
 	else
 		client.view_size.set_view_radius_to(12)

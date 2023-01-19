@@ -136,6 +136,7 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
+	user.client.view_size.unsupress()
 	user.client.view_size.set_view_radius_to(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)

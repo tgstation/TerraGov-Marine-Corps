@@ -23,7 +23,7 @@
 	shuttleId = SHUTTLE_TADPOLE
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
-	view_range = "26x26"
+	view_range = "25x25"
 	x_offset = 0
 	y_offset = 0
 	open_prompt = FALSE
