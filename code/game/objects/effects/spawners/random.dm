@@ -29,6 +29,8 @@
 	var/spawn_random_offset = FALSE
 	///does the spawned structure need to retain its direction on spawn?
 	var/spawn_with_original_direction = FALSE
+	///do we attempt to force a direction on spawn?
+	var/spawn_force_direction = SOUTH
 
 /obj/effect/spawner/random/Initialize(mapload)
 	. = ..()
@@ -73,6 +75,9 @@
 		var/atom/movable/spawned_loot = new lootspawn(spawn_loc)
 		if(!spawn_with_original_direction)
 			spawned_loot.setDir(dir)
+
+		if(spawn_force_direction) //overrides direction if set
+			spawned_loot.setDir(spawn_force_direction)
 
 		if(spawn_loot_split && loot_spawned)
 			spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
@@ -2114,3 +2119,14 @@
 /obj/effect/spawner/random/decal/out_of_bounds/rangetwo
 	spawn_scatter_radius = 2
 	spawn_loot_count = 6
+
+/obj/effect/spawner/random/vehicle/motorbike
+	name = "random motorcycle spawner"
+	icon_state = "random_motorbike"
+	loot = list(
+		/obj/vehicle/ridden/motorbike,
+	)
+
+/obj/effect/spawner/random/vehicle/motorbike/west
+	spawn_loot_chance = 75
+	spawn_force_direction = WEST

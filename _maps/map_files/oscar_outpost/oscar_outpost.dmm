@@ -3275,6 +3275,10 @@
 /obj/item/stack/sheet/mineral/gold,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"pt" = (
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/underground)
 "pv" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -4712,9 +4716,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "uy" = (
-/obj/vehicle/ridden/motorbike{
-	dir = 8
-	},
+/obj/effect/spawner/random/vehicle/motorbike/west,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "uA" = (
@@ -6813,10 +6815,8 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "CK" = (
-/obj/vehicle/ridden/motorbike{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/effect/spawner/random/vehicle/motorbike/west,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "CL" = (
@@ -9554,10 +9554,8 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "MP" = (
-/obj/vehicle/ridden/motorbike{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/vehicle/motorbike/west,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "MR" = (
@@ -27806,7 +27804,7 @@ oX
 ZQ
 OP
 Tx
-rz
+pt
 rz
 rz
 rz
@@ -32088,7 +32086,7 @@ tW
 NO
 WZ
 WZ
-NO
+WZ
 WZ
 WZ
 rz
@@ -32342,7 +32340,7 @@ NO
 NO
 NO
 WZ
-NO
+WZ
 rz
 rz
 rz
