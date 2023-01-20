@@ -12,9 +12,8 @@
 
 //Reward tiers
 #define RES_TIER_POINTS "points"
-#define RES_TIER_ITEM "item"
-#define RES_TIER_ADVITEM "Advanced item"
-#define RES_TIER_RARE "rare"
+#define RES_TIER_ITEMS "item"
+#define RES_TIER_ADVITEMS "Advanced item"
 
 /obj/machinery/researchcomp
 	name = "research console"
@@ -41,6 +40,13 @@
 			RES_TIER_POINTS = list(
 				/obj/item/research_product/money/uncommon
 			),
+			RES_TIER_ITEMS = list(
+				/obj/item/implanter/blade,
+				/obj/item/implanter/chem/blood,
+			),
+			RES_TIER_ADVITEMS = list(
+				/obj/item/attachable/shoulder_mount
+			)
 		),
 		RES_XENO = list(
 			RES_TIER_POINTS = list(
@@ -48,26 +54,51 @@
 			),
 		),
 		RES_XENO1 = list(
-			RES_TIER_ITEM = list(
-            /obj/item/attachable/shoulder_mount
-			),
 			RES_TIER_POINTS = list(
-				/obj/item/research_product/money/basic
+				/obj/item/research_product/money/basic,
+			),
+			RES_TIER_ITEMS = list(
+				/obj/item/implanter/chem/blood,
+				/obj/item/implanter/cloak,
+			),
+			RES_TIER_ADVITEMS = list(
+				/obj/item/attachable/shoulder_mount,
 			),
 		),
 		RES_XENO2 = list(
 			RES_TIER_POINTS = list(
 				/obj/item/research_product/money/common
 			),
+			REST_TIER_ITEMS = list(
+				/obj/item/implanter/chem/blood,
+				/obj/item/implanter/cloak,
+			),
+			RES_TIER_ADVITEMS = list(
+				/obj/item/attachable/shoulder_mount,
+			),
 		),
 		RES_XENO3 = list(
 			RES_TIER_POINTS = list(
 				/obj/item/research_product/money/uncommon
 			),
+			RES_TIER_ITEMS = list(
+				/obj/item/implanter/chem/blood,
+				/obj/item/implanter/cloak,
+			),
+			RES_TIER_ADVITEMS = list(
+				/obj/item/attachable/shoulder_mount,
+			),
 		),
 		RES_XENO4 = list(
 			RES_TIER_POINTS = list(
 				/obj/item/research_product/money/rare
+			),
+			RES_TIER_ITEMS = list(
+				/obj/item/implanter/chem/blood,
+				/obj/item/implanter/cloak,
+			),
+			RES_TIER_ADVITEMS = list(
+				/obj/item/attachable/shoulder_mount,
 			),
 		),
 	)
@@ -239,10 +270,9 @@
 	desc = "Unidentified substance. The random data it provides could probably secure some funding."
 	research_type = RES_MONEY
 	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 30,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 5,
+		RES_TIER_POINTS = 100,
+		RES_TIER_ITEMS = 40,
+		RES_TIER_ADVITEMS = 35,
 	)
 
 /obj/item/research_resource/xeno
@@ -262,42 +292,60 @@
 	icon_state = "sample_0"
 	reward_probs = list(
 		RES_TIER_POINTS = 100,
-		RES_TIER_ITEM = 20,
+		RES_TIER_ITEMS = 20,
 	)
 
 /obj/item/research_resource/xeno1/Initialize()
 	. = ..()
 	icon_state = "sample_[rand(0, 11)]"
 
-/obj/item/research_resource/xeno/tier_two
+/obj/item/research_resource/xeno2
+	research_type = RES_XENO2
 	name = "Xenomorph research material - tier 2"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "sample_0"
 	color = "#d6e641"
 	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 40,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 6,
+		RES_TIER_POINTS = 100,
+		RES_TIER_ITEMS = 25,
+		RES_TIER_ADVITEMS = 20,
 	)
 
-/obj/item/research_resource/xeno/tier_three
+/obj/item/research_resource/xeno2/Initialize()
+	. = ..()
+	icon_state = "sample_[rand(0, 11)]"
+
+/obj/item/research_resource/xeno3
+	research_type = RES_XENO3
 	name = "Xenomorph research material - tier 3"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "sample_0"
 	color = "#e43939"
 	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 50,
-		RES_TIER_UNCOMMON = 40,
-		RES_TIER_RARE = 10,
+		RES_TIER_POINTS = 100,
+		RES_TIER_ITEMS = 40,
+		RES_TIER_ADVITEMS = 35,
 	)
 
-/obj/item/research_resource/xeno/tier_four
+/obj/item/research_resource/xeno2/Initialize()
+	. = ..()
+	icon_state = "sample_[rand(0, 11)]"
+
+/obj/item/research_resource/xeno4
+	research_type = RES_XENO4
 	name = "Xenomorph research material - tier 4"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "sample_0"
 	color = "#a800ad"
 	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 50,
-		RES_TIER_UNCOMMON = 40,
-		RES_TIER_RARE = 50,
+		RES_TIER_POINTS = 100,
+		RES_TIER_ITEMS = 60,
+		RES_TIER_ADVITEMS = 50,
 	)
+
+/obj/item/research_resource/xeno2/Initialize()
+	. = ..()
+	icon_state = "sample_[rand(0, 11)]"
 
 ///
 ///Items designed to be products of research
@@ -332,5 +380,5 @@
 	export_points = 250
 
 /obj/item/research_product/money/rare
-	name = "credits - 800"
-	export_points = 800
+	name = "credits - 600"
+	export_points = 600

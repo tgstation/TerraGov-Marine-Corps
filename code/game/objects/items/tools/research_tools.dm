@@ -21,13 +21,13 @@
 			/obj/item/research_resource/xeno1,
 		),
 		XENO_TIER_TWO = list(
-			/obj/item/research_resource/xeno/tier_two,
+			/obj/item/research_resource/xeno2
 		),
 		XENO_TIER_THREE = list(
-			/obj/item/research_resource/xeno/tier_three,
+			/obj/item/research_resource/xeno3
 		),
 		XENO_TIER_FOUR = list(
-			/obj/item/research_resource/xeno/tier_four,
+			/obj/item/research_resource/xeno4
 		),
 	)
 
