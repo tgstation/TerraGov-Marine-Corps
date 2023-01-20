@@ -5,11 +5,15 @@
 //Bucket names
 #define RES_MONEY "money"
 #define RES_XENO "xeno"
+#define RES_XENO1 "xeno1"
+#define RES_XENO2 "xeno2"
+#define RES_XENO3 "xeno3"
+#define RES_XENO4 "xeno4"
 
 //Reward tiers
-#define RES_TIER_BASIC "basic"
-#define RES_TIER_COMMON "common"
-#define RES_TIER_UNCOMMON "uncommon"
+#define RES_TIER_POINTS "points"
+#define RES_TIER_ITEM "item"
+#define RES_TIER_ADVITEM "Advanced item"
 #define RES_TIER_RARE "rare"
 
 /obj/machinery/researchcomp
@@ -28,48 +32,42 @@
 
 	///Research reward tiers
 	var/list/reward_tiers = list(
-		RES_TIER_BASIC,
-		RES_TIER_COMMON,
-		RES_TIER_UNCOMMON,
-		RES_TIER_RARE
+		RES_TIER_POINTS,
 		)
 
 	///List of rewards for each category
 	var/static/list/rewards_lists = list(
 		RES_MONEY = list(
-			RES_TIER_BASIC = list(
-				/obj/item/research_product/money/basic,
-				/obj/item/research_product/money/common,
-			),
-			RES_TIER_COMMON = list(
-				/obj/item/research_product/money/common,
-				/obj/item/research_product/money/uncommon,
-			),
-			RES_TIER_UNCOMMON = list(
-				/obj/item/research_product/money/uncommon,
-				/obj/item/implanter/blade,
-				/obj/item/attachable/shoulder_mount,
-			),
-			RES_TIER_RARE = list(
-				/obj/item/research_product/money/rare,
+			RES_TIER_POINTS = list(
+				/obj/item/research_product/money/uncommon
 			),
 		),
 		RES_XENO = list(
-			RES_TIER_BASIC = list(
+			RES_TIER_POINTS = list(
 				/obj/item/research_product/money/basic,
-				/obj/item/research_product/money/common,
 			),
-			RES_TIER_COMMON = list(
-				/obj/item/research_product/money/uncommon,
+		),
+		RES_XENO1 = list(
+			RES_TIER_ITEM = list(
+            /obj/item/attachable/shoulder_mount
 			),
-			RES_TIER_UNCOMMON = list(
-				/obj/item/research_product/money/uncommon,
-				/obj/item/implanter/chem/blood,
-				/obj/item/attachable/shoulder_mount,
+			RES_TIER_POINTS = list(
+				/obj/item/research_product/money/basic
 			),
-			RES_TIER_RARE = list(
-				/obj/item/research_product/money/rare,
-				/obj/item/implanter/cloak,
+		),
+		RES_XENO2 = list(
+			RES_TIER_POINTS = list(
+				/obj/item/research_product/money/common
+			),
+		),
+		RES_XENO3 = list(
+			RES_TIER_POINTS = list(
+				/obj/item/research_product/money/uncommon
+			),
+		),
+		RES_XENO4 = list(
+			RES_TIER_POINTS = list(
+				/obj/item/research_product/money/rare
 			),
 		),
 	)
@@ -256,15 +254,20 @@
 	. = ..()
 	icon_state = "sample_[rand(0, 11)]"
 
-/obj/item/research_resource/xeno/tier_one
+/obj/item/research_resource/xeno1
 	name = "Xenomorph research material - tier 1"
+	research_type = RES_XENO1
+	icon = 'icons/obj/alien_autopsy.dmi'
 	color = "#f0bee3"
+	icon_state = "sample_0"
 	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 15,
-		RES_TIER_UNCOMMON = 7,
-		RES_TIER_RARE = 1,
+		RES_TIER_POINTS = 100,
+		RES_TIER_ITEM = 20,
 	)
+
+/obj/item/research_resource/xeno1/Initialize()
+	. = ..()
+	icon_state = "sample_[rand(0, 11)]"
 
 /obj/item/research_resource/xeno/tier_two
 	name = "Xenomorph research material - tier 2"
@@ -317,8 +320,8 @@
 	. += span_notice("Rewards export points, as the name suggests.")
 
 /obj/item/research_product/money/basic
-	name = "credits - 50"
-	export_points = 50
+	name = "credits - 100"
+	export_points = 100
 
 /obj/item/research_product/money/common
 	name = "credits - 150"

@@ -15,10 +15,10 @@
 	///List of rewards for each xeno tier
 	var/static/list/xeno_tier_rewards = list(
 		XENO_TIER_ZERO = list(
-			/obj/item/research_resource/xeno/tier_one,
+			/obj/item/research_resource/xeno1,
 		),
 		XENO_TIER_ONE = list(
-			/obj/item/research_resource/xeno/tier_one,
+			/obj/item/research_resource/xeno1,
 		),
 		XENO_TIER_TWO = list(
 			/obj/item/research_resource/xeno/tier_two,
