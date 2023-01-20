@@ -15580,6 +15580,9 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"tWb" = (
+/turf/open/floor/mainship/empty/cargovoid,
+/area/mainship/squads/req)
 "tWq" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -51572,7 +51575,7 @@ gMb
 gMb
 gMb
 gMb
-gMb
+tWb
 hSb
 jWh
 iiU

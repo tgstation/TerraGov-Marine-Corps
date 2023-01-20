@@ -177,6 +177,9 @@
 /turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
+/turf/open/floor/mainship/empty/cargovoid
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "supply_elevator_lowered"
 
 //Others
 /turf/open/floor/mainship/terragov

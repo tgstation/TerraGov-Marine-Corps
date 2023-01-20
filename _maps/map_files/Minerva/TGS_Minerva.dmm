@@ -3443,6 +3443,9 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"jJ" = (
+/turf/open/floor/mainship/empty/cargovoid,
+/area/mainship/squads/req)
 "jK" = (
 /obj/effect/turf_decal/warning_stripes/engineer,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -9229,7 +9232,7 @@
 /area/mainship/living/pilotbunks)
 "AU" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -9250,7 +9253,7 @@
 /area/mainship/command/self_destruct)
 "AY" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -12308,7 +12311,7 @@
 /area/mainship/living/bridgebunks)
 "JZ" = (
 /turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "Ka" = (
@@ -12814,7 +12817,7 @@
 /area/mainship/living/numbertwobunks)
 "LB" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -14716,7 +14719,7 @@
 /area/mainship/engineering/engineering_workshop)
 "Rb" = (
 /turf/closed/shuttle/ert/engines/left{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "Rc" = (
@@ -14968,7 +14971,7 @@
 /area/mainship/living/tankerbunks)
 "RQ" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "RR" = (
@@ -14990,7 +14993,7 @@
 /area/mainship/living/grunt_rnr)
 "RU" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "RV" = (
@@ -26754,7 +26757,7 @@ vi
 vi
 vi
 vi
-vi
+jJ
 sV
 vg
 ob
