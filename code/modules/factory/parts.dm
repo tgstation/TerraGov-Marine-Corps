@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
-/obj/item/factory_part/AMR_magazine_incend
+/obj/item/factory_part/amr_magazine_incend
 	name = "IFF antimaterial Incendiary bullet box"
 	desc = "A box with unfinished antimaterial Incendiary rifle rounds inside"
 	result = /obj/item/ammo_magazine/sniper/incendiary
