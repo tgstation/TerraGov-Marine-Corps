@@ -443,10 +443,13 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
+	if(target.status_flags & GODMODE)
+		victim.balloon_alert(owner, "Cannot snatch")
+		return FALSE
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	var/mob/living/carbon/xenomorph/X = A
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A

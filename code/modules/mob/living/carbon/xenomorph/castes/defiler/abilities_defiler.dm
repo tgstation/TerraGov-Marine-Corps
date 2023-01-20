@@ -98,6 +98,9 @@
 /datum/action/xeno_action/activable/defile/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/living_target = A
+	if(living_target.status_flags & GODMODE)
+		victim.balloon_alert(owner, "Snatch failed")
+		return fail_activate()
 	X.face_atom(living_target)
 	if(!do_after(X, DEFILER_DEFILE_CHANNEL_TIME, TRUE, living_target, BUSY_ICON_HOSTILE))
 		add_cooldown(DEFILER_DEFILE_FAIL_COOLDOWN)
