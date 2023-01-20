@@ -341,18 +341,8 @@
 	icon_closed = "closed_basic"
 	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
 	materials = list(/datum/material/metal = 200)
+	drop_material = FALSE
 
-/obj/structure/closet/crate/mass_produced_crate/welder_act(mob/living/user, obj/item/tool/weldingtool/welder) //code that hopefully handles if crate drops metal when welded
-	if(!welder.isOn())
-		return FALSE
-
-	if(opened)
-		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
-			to_chat(user, span_notice("You need more welding fuel to complete this task."))
-			return TRUE
-		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
-		qdel(src)
-		return TRUE
 
 /obj/structure/closet/crate/mass_produced_crate/alpha
 	name = "Mass Produced Alpha Squad Crate"
