@@ -117,7 +117,7 @@
 			.["widescreenpref"] = widescreenpref
 			.["screen_resolution"] = screen_resolution
 			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
-			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
+			.["radialstackspref"] = (toggles_gameplay & RADIAL_STACKS) ? 1 : 0
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
