@@ -248,3 +248,17 @@
       whatever you're clicking
   novaepee, jackie:
   - imageadd: New mob and object sprite for vali weapons
+2023-01-20:
+  Naaanii:
+  - rscadd: Added stuff to valhalla.
+  Tupina:
+  - imageadd: New and updated AmmoHUD sprites
+  - imagedel: Unused ammoHUD sprites
+  chizzy376:
+  - bugfix: fixed reqtorio pamphlet's razor recipe
+  novaepee:
+  - bugfix: space area in starboard maint
+  - bugfix: missing wire in starboard maint
+  - bugfix: remove black table next to alamo
+  tyeagg:
+  - rscdel: Removed old cm gun actions
