@@ -240,6 +240,10 @@
 	spawner_width = 150
 	spawner_height = 153
 
+/obj/effect/spawner/modularmap/oscaroutpostbase
+	mapid = "oscarbase"
+	spawner_width = 79
+	spawner_height = 29
 
 /************EORG**********/
 /obj/effect/spawner/modularmap/admin/eorg
