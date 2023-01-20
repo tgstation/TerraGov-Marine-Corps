@@ -17,7 +17,7 @@
 
 /datum/emergency_call/som/do_activate(announce = TRUE)
 	max_specialists = round(mob_max * 0.2)
-	. = ..()
+	return ..()
 
 /datum/emergency_call/som/create_member(datum/mind/M)
 	. = ..()
