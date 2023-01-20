@@ -1654,6 +1654,12 @@
 		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
 	)
 
+/obj/effect/spawner/random/structure/random_broken_computer/small/emails
+	loot = list(
+		/obj/machinery/computer/emails = 80,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
 /obj/effect/spawner/random/structure/filingcabinet
 	name = "filing cabinet or metal spawner"
 	icon_state = "random_filingcabinet"
