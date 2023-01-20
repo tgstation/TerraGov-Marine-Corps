@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			continue
 		if(!M.client || !client) //client is so that ghosts don't have to listen to mice
 			continue
-		if(get_dist(M, src) > 7 || M.z != z) //they're out of range of normal hearing
+		if(player_mob.z != z || get_dist(player_mob, src) > 7) //they're out of range of normal hearing
 			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
 				continue
 		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M)) && !GLOB.cameranet.checkTurfVis(src))
@@ -249,12 +249,14 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mode)
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mode)
-	for(var/_AM in listening)
-		var/atom/movable/AM = _AM
-		if(eavesdrop_range && get_dist(source, AM) > eavesdrop_range && !(the_dead[AM]))
-			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mode)
+	for(var/atom/movable/listening_movable as anything in listening)
+		if(!listening_movable)
+			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
+			continue
+		if(eavesdrop_range && get_dist(source, listening_movable) > eavesdrop_range && !(the_dead[listening_movable]))
+			listening_movable.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mode)
 		else
-			AM.Hear(rendered, src, message_language, message, , spans, message_mode)
+			listening_movable.Hear(rendered, src, message_language, message, , spans, message_mode)
 
 
 /mob/living/GetVoice()
