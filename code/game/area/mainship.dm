@@ -445,3 +445,8 @@
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
+
+/area/mainship/arrow_of_artemis
+	name = "Arrow of Artemis"
+	icon_state = "req"
+	requires_power = FALSE

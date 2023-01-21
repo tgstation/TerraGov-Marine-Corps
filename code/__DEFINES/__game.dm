@@ -21,6 +21,7 @@
 #define MAP_MINERVA "Minerva"
 #define MAP_TWIN_PILLARS "Twin Pillars"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
+#define MAP_ARROW_OF_ARTEMIS "Arrow of Artemis"
 
 
 #define SEE_INVISIBLE_MINIMUM 5

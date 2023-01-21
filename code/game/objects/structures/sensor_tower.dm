@@ -30,7 +30,7 @@
 /obj/structure/sensor_tower/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return
-	if(!(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
+	if(!(SSticker.mode?.flags_round_type & MODE_TWO_FACTIONS))
 		to_chat(user, span_warning("There is nothing to do with [src]"))
 		return
 	var/mob/living/carbon/human/human_user = user
@@ -214,3 +214,6 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid][current_timer ? "_on" : "_off"]")
+
+/obj/structure/sensor_tower_patrol/psy
+	interaction_flags = INTERACT_CHECK_INCAPACITATED

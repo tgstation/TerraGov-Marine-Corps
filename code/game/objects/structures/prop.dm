@@ -211,6 +211,12 @@
 	bound_height = 96
 	resistance_flags = UNACIDABLE
 
+/obj/structure/prop/mainship/vls
+	name = "\improper Mk 47 VLS"
+	desc = "The MK 47 vertical launching system is the staple of ship to ship combat in the space age. Fitted on most TGS Ships, it can fire a variety of missile types fitted for its purpose and target type."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "vls"
+	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/ship_memorial
 	name = "slab of victory"

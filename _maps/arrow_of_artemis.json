@@ -1,0 +1,7 @@
+{
+    "map_name": "TGS Arrow of Artemis",
+    "map_path": "map_files/Arrow_of_Artemis",
+    "map_file": "artemis_arrow.dmm",
+    "traits": [{"Marine Main Ship": true}],
+    "squads": 2
+}

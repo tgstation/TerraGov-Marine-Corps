@@ -166,6 +166,10 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
+/obj/machinery/light/mainship/blue
+	brightness = 5
+	bulb_colour = COLOR_PULSE_BLUE
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -735,6 +739,10 @@
 	light_mask_type = /atom/movable/lighting_mask/rotating_conical
 	light_power = 6
 	light_range = 4
+
+/obj/machinery/floor_warn_light/orange
+	icon_state = "rotating_alarm_orange"
+	light_color = LIGHT_COLOR_ORANGE
 
 /obj/machinery/floor_warn_light/self_destruct
 	name = "self destruct alarm light"
