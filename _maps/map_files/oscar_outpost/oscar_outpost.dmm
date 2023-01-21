@@ -543,6 +543,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/oscar_outpost/outside/west)
+"eh" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
 "el" = (
 /obj/structure/table/rusticwoodentable,
 /obj/structure/prop/mainship/gelida/register,
@@ -1467,6 +1473,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"kJ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/oscar_outpost/village/central)
 "kK" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -1831,6 +1841,10 @@
 	},
 /turf/open/lavaland/lava,
 /area/oscar_outpost)
+"nM" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
 "nO" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -1879,6 +1893,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	id = "east_buildings"
 	},
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "ok" = (
@@ -2708,6 +2723,10 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/outside/west)
+"tI" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
 "tM" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/glass/large_stack,
@@ -3159,6 +3178,11 @@
 "xb" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/west)
+"xc" = (
+/obj/effect/ai_node,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/fairgrounds)
 "xd" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /obj/item/ammo_magazine/tl102/hsg_nest,
@@ -4452,6 +4476,10 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"Ds" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "Dv" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/uranium{
@@ -7347,6 +7375,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"PE" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/fairgrounds)
 "PG" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
@@ -12871,7 +12903,7 @@ ZL
 En
 DN
 hQ
-hQ
+tI
 hQ
 hQ
 Gy
@@ -15138,7 +15170,7 @@ ZL
 ZL
 En
 DN
-hQ
+tI
 hQ
 hQ
 hQ
@@ -20431,7 +20463,7 @@ ZL
 En
 DN
 hQ
-hQ
+tI
 hQ
 hQ
 Gy
@@ -21692,7 +21724,7 @@ En
 DN
 hQ
 hQ
-hQ
+tI
 hQ
 Gy
 QW
@@ -23963,7 +23995,7 @@ hQ
 hQ
 hQ
 Dh
-Vj
+eh
 UV
 Kp
 UV
@@ -24225,7 +24257,7 @@ DU
 DU
 DU
 DU
-DU
+nM
 DU
 DU
 DU
@@ -25247,7 +25279,7 @@ QR
 Nu
 qs
 DU
-DU
+nM
 DU
 GY
 Fi
@@ -26240,7 +26272,7 @@ QX
 qN
 AC
 DU
-DU
+nM
 DU
 Ws
 XK
@@ -26729,7 +26761,7 @@ ZL
 ZL
 ZL
 aO
-aO
+Ds
 aO
 aO
 qN
@@ -28760,7 +28792,7 @@ PK
 qN
 rU
 DU
-DU
+nM
 DU
 GY
 Ws
@@ -30515,7 +30547,7 @@ aO
 aO
 aO
 aO
-aO
+Ds
 aO
 aO
 aO
@@ -30791,7 +30823,7 @@ DU
 DU
 DU
 DU
-DU
+nM
 DU
 GY
 zI
@@ -32778,7 +32810,7 @@ ZL
 ZL
 aO
 aO
-aO
+Ds
 aO
 qN
 cy
@@ -33312,7 +33344,7 @@ Uh
 AC
 DU
 DU
-DU
+nM
 GY
 nU
 DP
@@ -33548,7 +33580,7 @@ Kv
 rY
 AC
 DU
-DU
+nM
 DU
 KF
 UV
@@ -34044,7 +34076,7 @@ aO
 aO
 xr
 aO
-aO
+Ds
 aO
 aO
 aO
@@ -36083,7 +36115,7 @@ Pa
 Uh
 AC
 DU
-DU
+nM
 DU
 GY
 zI
@@ -36329,7 +36361,7 @@ Ss
 Uh
 Uh
 Uh
-Pa
+kJ
 Pa
 Pa
 oe
@@ -38825,7 +38857,7 @@ ZL
 ZL
 ZL
 aO
-aO
+Ds
 aO
 aO
 qN
@@ -38841,7 +38873,7 @@ lx
 Ta
 Ta
 Ta
-Ta
+PE
 lG
 Uh
 Uh
@@ -39359,7 +39391,7 @@ VG
 VG
 VG
 Ta
-kD
+xc
 Ta
 VG
 VG
@@ -40856,7 +40888,7 @@ Qt
 oM
 Td
 Ta
-Ta
+PE
 Ta
 Ta
 Yw
@@ -41850,7 +41882,7 @@ ZL
 ZL
 aO
 aO
-aO
+Ds
 aO
 qN
 CH
@@ -42877,7 +42909,7 @@ VG
 VG
 VG
 Ta
-Ta
+PE
 Ta
 aE
 xd

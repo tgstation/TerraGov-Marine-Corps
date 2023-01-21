@@ -237,6 +237,10 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"bA" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "bI" = (
 /obj/structure/barricade/sandbags{
 	dir = 8;
@@ -397,6 +401,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"dL" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/oscar_outpost)
 "dN" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/east)
@@ -637,6 +645,10 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"fB" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
 "fK" = (
 /obj/machinery/bodyscanner{
@@ -1715,6 +1727,10 @@
 /obj/structure/stairs,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"sY" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "sZ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
@@ -1883,6 +1899,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
+"vT" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "vV" = (
 /obj/structure/platform,
 /obj/effect/ai_node,
@@ -2325,6 +2345,11 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"AX" = (
+/obj/effect/ai_node,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "Be" = (
 /obj/structure/stairs/seamless{
 	dir = 4
@@ -2412,6 +2437,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
+"CW" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
 "CX" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -3022,6 +3051,10 @@
 "IQ" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northwest)
+"IW" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/northeast)
 "IY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -3083,6 +3116,11 @@
 	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/north)
+"JL" = (
+/obj/effect/ai_node,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "JN" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
@@ -3786,6 +3824,10 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
+"QK" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost)
 "QM" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/dark,
@@ -3818,6 +3860,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"Rf" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/northwest)
 "Rh" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -4092,6 +4138,10 @@
 	dir = 4
 	},
 /area/oscar_outpost)
+"Vv" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "Vw" = (
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = 7;
@@ -4110,6 +4160,10 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
+"Vz" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "VE" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
@@ -4132,6 +4186,10 @@
 /obj/item/tool/plantspray/weeds,
 /turf/open/floor,
 /area/oscar_outpost)
+"VT" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
 "Wa" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
@@ -5597,7 +5655,7 @@ py
 py
 TT
 eC
-eC
+bA
 eC
 eC
 eC
@@ -5881,7 +5939,7 @@ xD
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -6200,7 +6258,7 @@ ZE
 ZE
 cy
 ZE
-ZE
+sY
 ZE
 ZE
 Ph
@@ -6278,7 +6336,7 @@ mD
 mD
 mD
 mD
-mD
+vT
 mD
 Eh
 SH
@@ -6389,7 +6447,7 @@ ZM
 wR
 eC
 eC
-eC
+bA
 eC
 eC
 aG
@@ -6420,7 +6478,7 @@ mD
 an
 mD
 mD
-mD
+vT
 mD
 Xa
 Wz
@@ -6836,7 +6894,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 eC
@@ -7067,7 +7125,7 @@ Pu
 mD
 mD
 Pu
-mD
+vT
 mD
 Pu
 mD
@@ -7181,7 +7239,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 IQ
 ZM
@@ -7386,7 +7444,7 @@ Pu
 mD
 mD
 XY
-mD
+vT
 mD
 XY
 gC
@@ -7550,7 +7608,7 @@ XY
 Wz
 Wz
 Pu
-mD
+vT
 mD
 Pu
 mD
@@ -7833,7 +7891,7 @@ mD
 gC
 SH
 mD
-mD
+vT
 mD
 mD
 mD
@@ -8093,7 +8151,7 @@ ZM
 ZM
 wR
 eC
-eC
+bA
 eC
 eC
 eC
@@ -8410,7 +8468,7 @@ NF
 LX
 eC
 eC
-eC
+bA
 eC
 aG
 Pl
@@ -8593,7 +8651,7 @@ Pu
 mD
 mD
 Pu
-Wz
+CW
 Wz
 Pu
 mD
@@ -8830,11 +8888,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 cy
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -8928,7 +8986,7 @@ Pv
 Pv
 eF
 Pv
-Pv
+dL
 gl
 Pv
 Df
@@ -9044,7 +9102,7 @@ ZM
 mO
 LX
 eC
-eC
+bA
 eC
 eC
 eC
@@ -9942,7 +10000,7 @@ LX
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 eC
@@ -9983,7 +10041,7 @@ cl
 mD
 mD
 mD
-mD
+vT
 mD
 mD
 mD
@@ -10250,7 +10308,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 eC
@@ -10426,7 +10484,7 @@ ZM
 Vx
 Yz
 tK
-eC
+bA
 eC
 eC
 eC
@@ -11096,7 +11154,7 @@ Pu
 mD
 Xa
 Wz
-Wz
+CW
 Wz
 OC
 mD
@@ -11184,7 +11242,7 @@ SB
 ZM
 ZM
 wR
-eC
+bA
 eC
 aX
 LX
@@ -11680,7 +11738,7 @@ aX
 LX
 eC
 eC
-eC
+bA
 eC
 eC
 Zc
@@ -11927,7 +11985,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -12290,7 +12348,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 eC
@@ -12417,7 +12475,7 @@ CE
 YZ
 ZM
 ZM
-ZM
+Rf
 ZM
 ZM
 ZM
@@ -12555,8 +12613,8 @@ ZE
 ZE
 ZE
 ZE
-ZE
-FR
+sY
+JL
 ZE
 Ph
 uq
@@ -12739,7 +12797,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 eC
@@ -13371,7 +13429,7 @@ ar
 Kw
 eC
 eC
-eC
+bA
 eC
 eC
 eC
@@ -13402,7 +13460,7 @@ Pr
 Pr
 Pr
 Pr
-Pr
+VT
 vJ
 Pr
 Pr
@@ -13433,7 +13491,7 @@ Pr
 Pr
 Pr
 Pr
-Pr
+VT
 Pr
 Pr
 Pr
@@ -13567,7 +13625,7 @@ Pr
 Pr
 Pr
 Pr
-Pr
+VT
 Pr
 Pr
 Pr
@@ -13732,7 +13790,7 @@ Pr
 Pr
 Pr
 Pr
-Pr
+VT
 Pr
 Pr
 Pr
@@ -13855,7 +13913,7 @@ mn
 Sl
 Sl
 Sl
-mn
+QK
 IA
 py
 ll
@@ -14463,7 +14521,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 aX
@@ -14662,7 +14720,7 @@ cT
 QE
 tT
 tT
-tT
+fB
 xI
 cT
 wD
@@ -14875,7 +14933,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 cy
@@ -14898,7 +14956,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 aX
@@ -14937,7 +14995,7 @@ eC
 py
 Vc
 mn
-mn
+QK
 mn
 mn
 mn
@@ -15387,7 +15445,7 @@ eC
 eC
 eC
 eC
-eC
+bA
 eC
 eC
 aG
@@ -15657,7 +15715,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -15872,7 +15930,7 @@ Pr
 Pr
 Pr
 Pr
-Pr
+VT
 Pr
 Pr
 Pr
@@ -16020,7 +16078,7 @@ vJ
 Pr
 Pr
 Pr
-Pr
+VT
 Pr
 Pr
 Pr
@@ -16056,7 +16114,7 @@ NL
 cT
 QE
 tT
-tT
+fB
 tT
 xI
 cT
@@ -16757,7 +16815,7 @@ RI
 RI
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -16772,7 +16830,7 @@ RI
 RI
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -17564,7 +17622,7 @@ RI
 RI
 RI
 RI
-RI
+Vv
 RI
 ay
 vk
@@ -17617,7 +17675,7 @@ tT
 tT
 tT
 tT
-CV
+AX
 tT
 tT
 tT
@@ -18149,7 +18207,7 @@ Up
 Ph
 RI
 RI
-RI
+Vv
 pM
 Ym
 zK
@@ -18204,7 +18262,7 @@ cT
 cT
 cT
 cT
-cT
+Vz
 cT
 cT
 cT
@@ -18290,7 +18348,7 @@ dF
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 Ph
@@ -18332,7 +18390,7 @@ vk
 RI
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -19082,7 +19140,7 @@ py
 py
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -19571,6 +19629,7 @@ Rb
 Gh
 RI
 RI
+Vv
 RI
 RI
 RI
@@ -19579,8 +19638,7 @@ RI
 RI
 RI
 RI
-RI
-RI
+Vv
 ay
 vk
 RI
@@ -20086,7 +20144,7 @@ yZ
 zq
 Ws
 dC
-Pv
+dL
 gl
 Pv
 Pv
@@ -20253,7 +20311,7 @@ JY
 Kh
 NL
 tT
-tT
+fB
 wD
 cT
 cT
@@ -20609,7 +20667,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -20849,7 +20907,7 @@ NL
 cT
 cT
 wD
-tT
+fB
 tT
 NL
 JY
@@ -21136,7 +21194,7 @@ vk
 RI
 RI
 RI
-RI
+Vv
 RI
 Fw
 cT
@@ -22256,7 +22314,7 @@ cT
 cT
 QE
 tT
-tT
+fB
 tT
 xI
 cT
@@ -22669,7 +22727,7 @@ RI
 RI
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -22939,7 +22997,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -23306,7 +23364,7 @@ vk
 RI
 RI
 RI
-RI
+Vv
 bn
 ol
 cT
@@ -23606,7 +23664,7 @@ RI
 RI
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -23652,7 +23710,7 @@ cT
 QE
 tT
 tT
-tT
+fB
 xI
 cT
 cT
@@ -24054,7 +24112,7 @@ RI
 ay
 vk
 zR
-zK
+IW
 zK
 IO
 HU
@@ -24104,7 +24162,7 @@ NL
 cT
 cT
 wD
-tT
+fB
 tT
 wD
 cT
@@ -24202,7 +24260,7 @@ im
 wH
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -24218,7 +24276,7 @@ oF
 xd
 RI
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -24483,7 +24541,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 ZE
@@ -24561,7 +24619,7 @@ cT
 cT
 wD
 cT
-cT
+Vz
 NL
 JY
 Kh
@@ -24802,7 +24860,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 cy
 ZE
@@ -25611,7 +25669,7 @@ bQ
 aq
 Gh
 RI
-RI
+Vv
 RI
 RI
 RI
@@ -26086,7 +26144,7 @@ RI
 zR
 zK
 Ru
-zK
+IW
 IO
 RI
 RI
@@ -26192,7 +26250,7 @@ FR
 ZE
 ZE
 ZE
-ZE
+sY
 ZE
 ZE
 FR
@@ -26866,7 +26924,7 @@ RI
 RI
 RI
 RI
-RI
+Vv
 RI
 RI
 RI

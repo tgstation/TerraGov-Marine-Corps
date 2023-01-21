@@ -460,6 +460,10 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/northeast)
+"cD" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "cL" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/ammo/shotgun,
@@ -845,6 +849,7 @@
 /obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -1186,6 +1191,10 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
+"gZ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "hc" = (
 /obj/structure/platform/trench{
 	dir = 1
@@ -1523,6 +1532,12 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"jH" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northeast)
 "jL" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -1550,6 +1565,10 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/oscar_outpost)
+"kt" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "kI" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -1943,6 +1962,15 @@
 	dir = 1
 	},
 /area/oscar_outpost)
+"ob" = (
+/obj/structure/platform/trench{
+	dir = 1
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "od" = (
 /obj/effect/ai_node,
 /obj/structure/platform/trench{
@@ -1994,6 +2022,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
+"on" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
 "op" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -2057,6 +2091,14 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"oF" = (
+/obj/structure/flora/ausbushes/grassybush{
+	color = "#F5F5DC";
+	name = "barley bush"
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "oI" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -2073,12 +2115,73 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"oP" = (
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
 "oT" = (
 /obj/structure/platform/trench{
 	name = "trench lining"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"oX" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "oY" = (
 /obj/item/reagent_containers/food/snacks/grown/wheat{
 	color = "#90EE90";
@@ -2165,6 +2268,10 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
+"pq" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
 "pu" = (
 /obj/structure/platform/trench{
 	dir = 8
@@ -2359,6 +2466,10 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northwest)
+"qL" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/northeast)
 "qN" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -2484,6 +2595,12 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"rr" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
 "ru" = (
 /obj/structure/platform/trench{
 	name = "trench lining"
@@ -2590,6 +2707,12 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "sk" = (
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost)
+"so" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/surgical_tray,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "sr" = (
@@ -2853,6 +2976,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
+"uP" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
 "uV" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -2975,6 +3102,18 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"vU" = (
+/obj/structure/flora/ausbushes/grassybush{
+	name = "wine bush"
+	},
+/obj/structure/flora/ausbushes/lavendergrass{
+	mouse_opacity = 0;
+	name = "wine grapes";
+	projectile_coverage = 25
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "vX" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_12";
@@ -3036,6 +3175,47 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"wH" = (
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat{
+	color = "#90EE90";
+	name = "barley";
+	plantname = "barley"
+	},
+/obj/structure/table/rusticwoodentable,
+/obj/item/tool/kitchen/utensil/knife,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
+/turf/open/floor,
+/area/oscar_outpost)
 "wL" = (
 /obj/structure/platform/trench{
 	dir = 1
@@ -3049,6 +3229,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
+/area/oscar_outpost/outside/northwest)
+"wS" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "wY" = (
 /obj/structure/table/mainship,
@@ -3244,6 +3428,15 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
+"yx" = (
+/obj/structure/platform/trench{
+	dir = 1
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
 "yA" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -3605,6 +3798,63 @@
 "Cv" = (
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"Cw" = (
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "Cz" = (
 /obj/structure/platform/trench{
 	dir = 8
@@ -3946,6 +4196,11 @@
 /obj/effect/spawner/random/cigarettes,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"DR" = (
+/obj/structure/platform/trench,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "DW" = (
 /obj/structure/platform/trench{
 	dir = 8
@@ -4025,6 +4280,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
+"EM" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "ER" = (
 /obj/structure/platform/trench{
 	dir = 1
@@ -4412,6 +4673,12 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/northeast)
+"HY" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northeast)
 "Ig" = (
 /obj/effect/ai_node,
 /obj/structure/barricade/sandbags{
@@ -4575,6 +4842,12 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northeast)
+"Jb" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northwest)
 "Jc" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
@@ -4662,6 +4935,63 @@
 /obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
 	pixel_y = -5
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
+"Kx" = (
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -4962,6 +5292,12 @@
 "MM" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/west)
+"MO" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northwest)
 "MU" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
@@ -5082,6 +5418,11 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
+"Ol" = (
+/obj/effect/ai_node,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
 "On" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC,
@@ -5644,6 +5985,10 @@
 	},
 /turf/closed/wall,
 /area/oscar_outpost)
+"Qd" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "Qi" = (
 /obj/structure/bed/chair,
 /turf/open/floor,
@@ -5774,6 +6119,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"QZ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/north)
 "Re" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
@@ -6038,6 +6387,10 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northwest)
+"Tg" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "Tn" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -6197,6 +6550,63 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"Uc" = (
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
 "Ug" = (
 /obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8;
@@ -6861,6 +7271,10 @@
 /obj/item/ammo_magazine/tl102,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
+"ZB" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
 "ZE" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
@@ -7602,7 +8016,7 @@ xW
 eC
 eC
 eC
-eC
+cD
 eC
 eC
 eC
@@ -7794,7 +8208,7 @@ qF
 dp
 dp
 XY
-dp
+gZ
 dp
 Pu
 dp
@@ -7962,7 +8376,7 @@ dp
 dp
 Pu
 dp
-dp
+gZ
 XY
 dp
 dp
@@ -8163,7 +8577,7 @@ ZO
 xD
 ZE
 ZE
-ZE
+Qd
 sV
 cy
 ZE
@@ -8238,7 +8652,7 @@ dp
 dp
 dp
 Pu
-dp
+gZ
 dp
 Pu
 Kb
@@ -8397,7 +8811,7 @@ dp
 dp
 Pu
 Kb
-Kb
+pq
 Pu
 dp
 dp
@@ -8510,7 +8924,7 @@ ai
 ai
 ai
 Yz
-Yz
+Jb
 Ym
 MU
 MU
@@ -9137,7 +9551,7 @@ MU
 wR
 eC
 eC
-eC
+cD
 eC
 eC
 eC
@@ -9257,7 +9671,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -9502,7 +9916,7 @@ XY
 dp
 dp
 Pu
-dp
+gZ
 dp
 Pu
 dp
@@ -9586,7 +10000,7 @@ qH
 qH
 qH
 qH
-qH
+MO
 qH
 qH
 qH
@@ -10537,7 +10951,7 @@ MU
 MU
 wR
 eC
-qw
+eC
 mP
 xu
 XP
@@ -10678,7 +11092,7 @@ wR
 qw
 mP
 Pn
-xu
+XP
 mP
 XP
 ex
@@ -10692,7 +11106,7 @@ AM
 MU
 wR
 eC
-qw
+eC
 tx
 xu
 xu
@@ -10721,7 +11135,7 @@ Pu
 dp
 dp
 Pu
-Kb
+pq
 Kb
 Pu
 dp
@@ -10754,7 +11168,7 @@ ce
 dp
 dp
 XY
-dp
+gZ
 dp
 mj
 cN
@@ -10799,7 +11213,7 @@ xD
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -10833,7 +11247,7 @@ Tt
 qw
 mP
 xu
-xu
+XP
 mP
 XP
 ex
@@ -10847,7 +11261,7 @@ MU
 iD
 Tt
 eC
-qw
+eC
 vg
 xu
 XP
@@ -10986,13 +11400,13 @@ eC
 gV
 gV
 yJ
-mP
-Zu
-xu
+yx
+oP
+rr
 xu
 XP
 ex
-MU
+wS
 MU
 wR
 eC
@@ -11019,7 +11433,7 @@ XP
 xW
 eC
 eC
-eC
+cD
 eC
 eC
 MM
@@ -11119,7 +11533,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -11140,7 +11554,7 @@ eC
 qw
 mP
 xu
-xu
+XP
 mP
 xu
 xu
@@ -11295,11 +11709,11 @@ eC
 qw
 mP
 xu
-xu
+XP
 mP
 xu
 xu
-xu
+ZB
 XP
 ex
 MU
@@ -11445,7 +11859,7 @@ MU
 AM
 MU
 wR
-eC
+cD
 eC
 qw
 tx
@@ -11605,7 +12019,7 @@ eC
 qw
 mP
 xu
-xu
+XP
 mP
 xu
 xu
@@ -11760,7 +12174,7 @@ eC
 qw
 mP
 xu
-xu
+XP
 mP
 xu
 kU
@@ -11801,7 +12215,7 @@ lO
 tI
 Kb
 Kb
-Kb
+pq
 Kb
 Kb
 Kb
@@ -11916,9 +12330,9 @@ eC
 jn
 jn
 Cz
-mP
-Zu
-xu
+rC
+Uc
+UC
 xu
 XP
 ex
@@ -11948,7 +12362,7 @@ xu
 XP
 xW
 eC
-eC
+cD
 eC
 eC
 eC
@@ -12073,7 +12487,7 @@ eC
 qw
 mP
 xu
-xu
+XP
 mP
 XP
 ex
@@ -12084,7 +12498,7 @@ eC
 eC
 eC
 eC
-eC
+cD
 eC
 eC
 qw
@@ -12228,7 +12642,7 @@ eC
 qw
 mP
 ll
-xu
+XP
 mP
 XP
 ex
@@ -12358,7 +12772,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -12689,7 +13103,7 @@ eC
 eC
 eC
 eC
-eC
+cD
 eC
 eC
 eC
@@ -12837,7 +13251,7 @@ Wi
 xU
 qH
 qH
-qH
+MO
 qH
 qH
 qH
@@ -13539,7 +13953,7 @@ Kb
 ej
 dp
 Pu
-Pu
+vU
 Pu
 Pu
 XY
@@ -13826,7 +14240,7 @@ Kb
 ej
 dp
 dp
-dp
+gZ
 dp
 dp
 zK
@@ -13996,7 +14410,7 @@ Pu
 Pu
 Pu
 Pu
-dp
+gZ
 tI
 Kb
 Kb
@@ -14707,7 +15121,7 @@ ik
 qH
 qH
 qH
-qH
+MO
 qH
 qH
 qH
@@ -15037,7 +15451,7 @@ eC
 Zi
 qH
 Uw
-eC
+cD
 eC
 eC
 gV
@@ -15293,7 +15707,7 @@ ZO
 xD
 ZE
 sV
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -15861,7 +16275,7 @@ SD
 SD
 SD
 SD
-SD
+uP
 SD
 Np
 SD
@@ -15963,7 +16377,7 @@ xu
 xu
 XP
 xW
-eC
+cD
 eC
 eC
 eC
@@ -15994,7 +16408,7 @@ SD
 SD
 SD
 SD
-SD
+uP
 Ei
 SD
 SD
@@ -16004,7 +16418,7 @@ SD
 SD
 SD
 SD
-SD
+uP
 SD
 SD
 SD
@@ -16298,7 +16712,7 @@ IA
 py
 lM
 SD
-SD
+uP
 SD
 SD
 Vx
@@ -16715,7 +17129,7 @@ MU
 MU
 MU
 wR
-eC
+cD
 eC
 eC
 eC
@@ -16910,7 +17324,7 @@ xW
 ut
 dx
 sk
-QM
+so
 st
 Vw
 Zg
@@ -17245,7 +17659,7 @@ wD
 tO
 tO
 wD
-Cv
+oX
 Cv
 wD
 Cv
@@ -17337,7 +17751,7 @@ MU
 wR
 eC
 eC
-eC
+cD
 qw
 tx
 xu
@@ -17388,7 +17802,7 @@ SD
 SD
 Dp
 cY
-Cv
+oX
 Cv
 Cv
 jL
@@ -17932,7 +18346,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -18253,7 +18667,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -18452,7 +18866,7 @@ SD
 SD
 SD
 SD
-Np
+Ol
 SD
 SD
 SD
@@ -18469,7 +18883,7 @@ SD
 SD
 SD
 SD
-SD
+uP
 SD
 Dp
 cY
@@ -18576,6 +18990,21 @@ SD
 SD
 SD
 SD
+uP
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+uP
 SD
 SD
 SD
@@ -18600,22 +19029,7 @@ SD
 SD
 SD
 SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
+uP
 SD
 SD
 SD
@@ -19013,7 +19427,7 @@ ZO
 xD
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -19351,7 +19765,7 @@ us
 us
 Vn
 Gt
-Gt
+kt
 Gt
 Gb
 Kp
@@ -19411,7 +19825,7 @@ bU
 Ci
 Cv
 Cv
-wD
+oF
 tO
 tO
 wD
@@ -19424,11 +19838,11 @@ wD
 Cv
 ny
 tO
-tO
+Tg
 tO
 iS
 Cv
-wD
+oF
 Cv
 Cv
 wD
@@ -19592,7 +20006,7 @@ Cv
 ny
 tO
 tO
-iS
+on
 Cv
 Cv
 Cv
@@ -19677,7 +20091,7 @@ cO
 cz
 LX
 Mz
-Gt
+kt
 Gt
 Gt
 Gt
@@ -20342,7 +20756,7 @@ Ci
 NL
 NL
 NL
-tO
+Tg
 tO
 NL
 qg
@@ -21565,7 +21979,7 @@ Fw
 Cv
 wD
 Cv
-Cv
+oX
 Cv
 Zc
 Zc
@@ -22167,7 +22581,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+kt
 Gt
 Gt
 Gt
@@ -22217,7 +22631,7 @@ gI
 xr
 rk
 Iw
-Lg
+wH
 QO
 gI
 MB
@@ -22579,7 +22993,7 @@ xD
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -22775,7 +23189,7 @@ Nm
 us
 us
 Vn
-Gt
+kt
 Gt
 Gt
 Gt
@@ -22798,7 +23212,7 @@ cO
 LX
 Mz
 Gt
-Gt
+kt
 Gt
 Gt
 Fw
@@ -23753,7 +24167,7 @@ Cv
 Cv
 ny
 tO
-tO
+Tg
 RY
 sc
 yP
@@ -24055,7 +24469,7 @@ tO
 tO
 hL
 iN
-bU
+DR
 LB
 xl
 tO
@@ -24628,7 +25042,7 @@ Gt
 Gb
 cO
 wf
-cz
+LX
 cO
 LX
 IZ
@@ -24672,7 +25086,7 @@ Cv
 Cv
 Cv
 Cv
-Cv
+oX
 Cv
 Cv
 jL
@@ -24766,7 +25180,7 @@ ZE
 tz
 bn
 th
-th
+QZ
 th
 Wi
 xU
@@ -24783,7 +25197,7 @@ Gt
 Gb
 cO
 cz
-cz
+LX
 cO
 LX
 IZ
@@ -24839,7 +25253,7 @@ Cv
 wD
 tO
 tO
-wD
+oF
 Cv
 Cv
 wD
@@ -24936,9 +25350,9 @@ Gt
 fa
 fa
 jh
-cO
-fP
-cz
+ER
+Kx
+ld
 cz
 LX
 IZ
@@ -25018,7 +25432,7 @@ wD
 tO
 tO
 wD
-Cv
+oX
 Cv
 wD
 Cv
@@ -25090,7 +25504,7 @@ Gt
 Gb
 cO
 cz
-cz
+LX
 cO
 cz
 cz
@@ -25215,7 +25629,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -25245,7 +25659,7 @@ Gt
 Gb
 cO
 uk
-cz
+LX
 cO
 cz
 cz
@@ -25268,7 +25682,7 @@ su
 su
 su
 su
-su
+HY
 su
 su
 su
@@ -25555,7 +25969,7 @@ Gt
 Gb
 cO
 cz
-cz
+LX
 cO
 cz
 cz
@@ -25629,7 +26043,7 @@ tO
 iS
 Cv
 wD
-Cv
+oX
 Cv
 wD
 Cv
@@ -25690,7 +26104,7 @@ ZE
 ZE
 ZE
 cy
-ZE
+Qd
 ZE
 ZE
 ZE
@@ -25710,7 +26124,7 @@ Gt
 Gb
 cO
 cz
-cz
+LX
 cO
 cz
 cz
@@ -25727,7 +26141,7 @@ Dz
 Dz
 Dz
 Dz
-Dz
+jH
 Dz
 Dz
 Dz
@@ -25789,7 +26203,7 @@ Cv
 wD
 Cv
 Cv
-wD
+oF
 tO
 tO
 wD
@@ -25866,9 +26280,9 @@ Gt
 vA
 vA
 yt
-cO
-fP
-cz
+ob
+Cw
+EM
 cz
 LX
 IZ
@@ -25898,7 +26312,7 @@ cO
 LX
 Mz
 Gt
-Gt
+kt
 Gt
 Gt
 ol
@@ -25910,7 +26324,7 @@ wD
 Cv
 Cv
 wD
-Cv
+oX
 Cv
 wD
 jL
@@ -26017,13 +26431,13 @@ LX
 Mz
 Gt
 Gt
-Gt
+kt
 Gt
 Gt
 Gb
 cO
 cz
-cz
+LX
 cO
 LX
 IZ
@@ -26178,7 +26592,7 @@ Gt
 Gb
 cO
 YM
-cz
+LX
 cO
 LX
 IZ
@@ -26554,7 +26968,7 @@ wD
 Cv
 ny
 tO
-tO
+Tg
 tO
 iS
 Cv
@@ -26948,7 +27362,7 @@ us
 us
 us
 us
-us
+qL
 us
 us
 us
@@ -27229,7 +27643,7 @@ xD
 ZE
 ZE
 ZE
-ZE
+Qd
 cy
 ZE
 ZE
@@ -27243,7 +27657,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Qd
 ZE
 tz
 Zl
@@ -27496,7 +27910,7 @@ Cv
 Cv
 wD
 tO
-tO
+Tg
 wD
 Cv
 Cv
@@ -27642,7 +28056,7 @@ tO
 tO
 tO
 iS
-Cv
+oX
 Cv
 Cv
 Cv

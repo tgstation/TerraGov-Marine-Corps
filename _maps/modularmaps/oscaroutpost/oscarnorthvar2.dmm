@@ -874,6 +874,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor,
 /area/oscar_outpost)
 "gU" = (
@@ -990,6 +991,10 @@
 /obj/structure/closet/crate/freezer,
 /turf/open/floor,
 /area/oscar_outpost)
+"ic" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "ik" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
@@ -1140,6 +1145,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"kT" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "kY" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -1214,6 +1223,12 @@
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
+"lZ" = (
+/obj/effect/spawner/random/plushie/nospawnninetynine,
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/oscar_outpost)
 "mf" = (
 /obj/effect/ai_node,
 /turf/open/ground/river,
@@ -1252,6 +1267,34 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"mI" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck{
+	pixel_y = 8
+	},
+/obj/item/toy/prize/deathripley{
+	pixel_x = -9;
+	pixel_y = 12
+	},
+/obj/item/toy/prize/durand{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/obj/item/toy/prize/honk{
+	pixel_y = 7
+	},
+/obj/item/toy/dice/d20{
+	pixel_x = 11;
+	pixel_y = -3
+	},
+/obj/item/paper{
+	desc = wait a minute, isn't project Berserker classified? and who made this?;
+	name = "Project Berserker Wargame";
+	pixel_x = -9
+	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
+/turf/open/floor,
+/area/oscar_outpost)
 "mO" = (
 /obj/structure/stairs,
 /turf/open/floor/plating/ground/dirt2,
@@ -1384,6 +1427,10 @@
 "ol" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/northeast)
+"on" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/road)
 "op" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -2129,6 +2176,12 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost)
+"uD" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northwest)
 "uG" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass,
@@ -2194,6 +2247,12 @@
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
+"vl" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 8
+	},
 /area/oscar_outpost/outside/northwest)
 "vt" = (
 /obj/structure/table/mainship,
@@ -2437,6 +2496,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/oscar_outpost)
+"xj" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "xr" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -2515,6 +2578,11 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"yl" = (
+/obj/effect/ai_node,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "ym" = (
 /turf/closed/wall/r_wall{
 	damage_cap = 25000;
@@ -2838,6 +2906,10 @@
 /obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"Cr" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "Cs" = (
 /obj/effect/ai_node,
 /turf/open/floor/engine/cult{
@@ -3412,6 +3484,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"GU" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "GY" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor,
@@ -3447,6 +3523,10 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
+"HC" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "HG" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -3907,6 +3987,10 @@
 "MU" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
+"MY" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/northwest)
 "Nb" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/launcher/rocket/oneuse{
@@ -4270,6 +4354,12 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"PE" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northwest)
 "PF" = (
 /obj/structure/table/mainship,
 /obj/item/ammo_magazine/tl102{
@@ -5643,6 +5733,12 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"ZZ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northwest)
 
 (1,1,1) = {"
 UV
@@ -6509,7 +6605,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 Zc
@@ -6614,7 +6710,7 @@ Mq
 JN
 ZE
 cy
-ZE
+HC
 ZE
 ZE
 Ph
@@ -7001,7 +7097,7 @@ Pu
 dp
 dp
 XY
-dp
+Cr
 dp
 XY
 cN
@@ -7162,7 +7258,7 @@ XY
 cN
 wx
 XY
-dp
+Cr
 dp
 XY
 dp
@@ -7174,7 +7270,7 @@ Pu
 dp
 dp
 Pu
-dp
+Cr
 dp
 Pu
 dp
@@ -7380,7 +7476,7 @@ xD
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -7451,7 +7547,7 @@ eC
 SM
 eC
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -7499,7 +7595,7 @@ rI
 wx
 Kb
 ej
-dp
+Cr
 dp
 dp
 dp
@@ -7701,7 +7797,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 Ph
 uq
 mu
@@ -7756,7 +7852,7 @@ Hz
 eC
 eC
 Hz
-eC
+kT
 eC
 SM
 eC
@@ -7888,7 +7984,7 @@ MU
 wR
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -7952,7 +8048,7 @@ Pu
 dp
 dp
 Pu
-dp
+Cr
 dp
 XY
 dp
@@ -8028,7 +8124,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -8256,7 +8352,7 @@ Pu
 dp
 dp
 Pu
-dp
+Cr
 dp
 Pu
 dp
@@ -8357,7 +8453,7 @@ cg
 IQ
 MU
 MU
-ik
+vl
 Uw
 eC
 eC
@@ -8585,7 +8681,7 @@ Kb
 Kb
 Pu
 dp
-dp
+Cr
 Pu
 dp
 "}
@@ -8800,7 +8896,7 @@ Yz
 Yz
 Yz
 Yz
-Yz
+PE
 Yz
 Yz
 Yz
@@ -8868,7 +8964,7 @@ cN
 wx
 XY
 dp
-dp
+Cr
 XY
 dp
 dp
@@ -9013,7 +9109,7 @@ ej
 dp
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -9160,7 +9256,7 @@ dp
 dp
 dp
 dp
-dp
+Cr
 tI
 Kb
 Kb
@@ -9407,7 +9503,7 @@ cy
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 bn
@@ -9606,7 +9702,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -9899,7 +9995,7 @@ xu
 XP
 IQ
 MU
-MU
+MY
 wR
 eC
 eC
@@ -9968,7 +10064,7 @@ rk
 rk
 rk
 dp
-dp
+Cr
 XY
 dp
 dp
@@ -10018,7 +10114,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 cy
@@ -10067,7 +10163,7 @@ qH
 qH
 qH
 qH
-qH
+uD
 qH
 qH
 qH
@@ -10080,7 +10176,7 @@ XP
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 lO
@@ -10527,7 +10623,7 @@ Yz
 Yz
 Yz
 Yz
-Yz
+PE
 Yz
 Yz
 Yz
@@ -10801,7 +10897,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -10816,7 +10912,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -10967,7 +11063,7 @@ ZE
 ZE
 eB
 eC
-eC
+kT
 eC
 eC
 eC
@@ -11326,7 +11422,7 @@ eC
 Zc
 dp
 dp
-dp
+Cr
 dp
 dp
 Zc
@@ -11443,7 +11539,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 mP
 XP
@@ -11465,7 +11561,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -11514,7 +11610,7 @@ Kb
 Kb
 ej
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -11531,7 +11627,7 @@ dp
 dp
 dp
 dp
-dp
+Cr
 dp
 "}
 (39,1,1) = {"
@@ -11762,7 +11858,7 @@ MU
 Nz
 wR
 eC
-eC
+kT
 Hz
 Ly
 Ym
@@ -11967,7 +12063,7 @@ wx
 dp
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -11980,7 +12076,7 @@ Kb
 ej
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -12030,7 +12126,7 @@ cX
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 hQ
 ZE
@@ -12112,7 +12208,7 @@ Kb
 ej
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -12456,7 +12552,7 @@ cN
 wx
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -12517,7 +12613,7 @@ ns
 ns
 EB
 eC
-eC
+kT
 eC
 eC
 IQ
@@ -12577,7 +12673,7 @@ Kb
 ej
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -12586,7 +12682,7 @@ cN
 wx
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -12602,7 +12698,7 @@ dp
 dp
 dp
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -12694,7 +12790,7 @@ wR
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -12915,7 +13011,7 @@ dp
 dp
 dp
 dp
-dp
+Cr
 dp
 cN
 rI
@@ -13064,7 +13160,7 @@ Kb
 Kb
 ej
 dp
-dp
+Cr
 dp
 dp
 dp
@@ -13170,7 +13266,7 @@ Rx
 eC
 tN
 Yz
-Tt
+ZZ
 eC
 eC
 mP
@@ -13179,7 +13275,7 @@ Hz
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 Hz
@@ -13425,7 +13521,7 @@ xD
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -14055,7 +14151,7 @@ ZE
 ZE
 ZE
 ZE
-sV
+yl
 ZE
 Ph
 uq
@@ -14081,7 +14177,7 @@ eC
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -14091,7 +14187,7 @@ mP
 XP
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -14592,16 +14688,7 @@ SD
 SD
 SD
 Ei
-SD
-SD
-SD
-SD
-Np
-SD
-SD
-SD
-SD
-SD
+on
 SD
 SD
 SD
@@ -14622,11 +14709,20 @@ SD
 SD
 SD
 SD
+SD
 Np
 SD
 SD
 SD
 SD
+SD
+SD
+SD
+Np
+SD
+SD
+SD
+on
 SD
 SD
 SD
@@ -14716,7 +14812,7 @@ XP
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -14753,6 +14849,17 @@ SD
 SD
 SD
 SD
+on
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+SD
+on
 SD
 SD
 SD
@@ -14764,18 +14871,7 @@ SD
 SD
 SD
 SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
-SD
+on
 SD
 SD
 SD
@@ -14843,7 +14939,7 @@ JN
 eB
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -15015,7 +15111,7 @@ XP
 eC
 eC
 eC
-eC
+kT
 eC
 eC
 eC
@@ -15291,7 +15387,7 @@ Up
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 cy
@@ -15858,16 +15954,16 @@ wD
 Cv
 Cv
 wD
-Cv
+xj
 Cv
 wD
 tO
 tO
 wD
-Cv
+xj
 Cv
 wD
-Cv
+xj
 Cv
 wD
 Cv
@@ -15904,7 +16000,7 @@ ZO
 xD
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -15926,12 +16022,12 @@ th
 th
 Wi
 eB
-eC
+kT
 IQ
 MU
 MU
 wR
-eC
+kT
 eC
 eC
 eC
@@ -16006,7 +16102,7 @@ Cv
 ny
 tO
 tO
-tO
+ic
 iS
 Cv
 wD
@@ -16253,7 +16349,7 @@ Qz
 xu
 XP
 eC
-eC
+kT
 eC
 Zi
 sC
@@ -16536,7 +16632,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -16546,7 +16642,7 @@ th
 th
 Wi
 eB
-eC
+kT
 IQ
 MU
 MU
@@ -17572,7 +17668,7 @@ NL
 Cv
 Cv
 NL
-Cv
+xj
 Cv
 NL
 sc
@@ -17611,7 +17707,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -17636,7 +17732,7 @@ Nm
 us
 us
 Vn
-Gt
+GU
 Gt
 Gt
 Gt
@@ -17651,7 +17747,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -18175,7 +18271,7 @@ wD
 Cv
 ny
 tO
-tO
+ic
 tO
 iS
 Cv
@@ -18275,7 +18371,7 @@ LX
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -18547,7 +18643,7 @@ sV
 cy
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -19508,7 +19604,7 @@ Gt
 cO
 LX
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -19934,7 +20030,7 @@ ZO
 xD
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -20278,7 +20374,7 @@ us
 Vn
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -20315,7 +20411,7 @@ Gt
 Fw
 Cv
 wD
-Cv
+xj
 Cv
 Cv
 Zc
@@ -20572,7 +20668,7 @@ uq
 nW
 ym
 cd
-Pv
+lZ
 Pv
 Pv
 gl
@@ -20618,7 +20714,7 @@ Gt
 cO
 LX
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -20630,7 +20726,7 @@ Zc
 Zc
 Zc
 Cv
-Cv
+xj
 Cv
 Cv
 wD
@@ -20713,7 +20809,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 QA
 YC
@@ -20827,7 +20923,7 @@ iS
 Cv
 Cv
 Cv
-Cv
+xj
 To
 Cv
 sc
@@ -20900,7 +20996,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Nm
 us
@@ -21271,7 +21367,7 @@ bU
 no
 rk
 GY
-yZ
+mI
 CK
 rk
 IB
@@ -21705,7 +21801,7 @@ LX
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Fw
 Cv
@@ -21804,7 +21900,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -21972,7 +22068,7 @@ th
 Wi
 eB
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -22184,7 +22280,7 @@ wD
 Cv
 Cv
 wD
-Cv
+xj
 Cv
 NL
 sc
@@ -22800,7 +22896,7 @@ Zc
 Zc
 tO
 tO
-tO
+ic
 tO
 tO
 tO
@@ -22879,7 +22975,7 @@ cy
 xD
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -23066,7 +23162,7 @@ LX
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -23097,7 +23193,7 @@ yt
 Az
 cz
 LX
-Gt
+GU
 Gt
 Gt
 Gt
@@ -23523,7 +23619,7 @@ DI
 eB
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -24127,7 +24223,7 @@ cy
 ZE
 ZE
 ZE
-sV
+yl
 ZE
 ZE
 ZE
@@ -24197,7 +24293,7 @@ Cv
 Cv
 wD
 To
-Cv
+xj
 wD
 Cv
 Cv
@@ -24206,13 +24302,13 @@ sc
 bU
 NL
 Cv
-Cv
+xj
 wD
 tO
 tO
 wD
 Cv
-Cv
+xj
 wD
 Cv
 Cv
@@ -24226,7 +24322,7 @@ iS
 Cv
 wD
 Cv
-Cv
+xj
 wD
 Cv
 Cv
@@ -24496,7 +24592,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+GU
 ol
 Cv
 wD
@@ -24632,14 +24728,14 @@ Ay
 Gt
 Gt
 Gt
+GU
 Gt
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -24922,7 +25018,7 @@ Xz
 vI
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -25391,7 +25487,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -25562,7 +25658,7 @@ qO
 YU
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -25616,7 +25712,7 @@ To
 ny
 tO
 tO
-tO
+ic
 iS
 Cv
 wD
@@ -25982,7 +26078,7 @@ ZE
 ZE
 ZE
 cy
-ZE
+HC
 ZE
 ZE
 ZE
@@ -26301,7 +26397,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -26315,7 +26411,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+GU
 Nm
 us
 us
@@ -26645,7 +26741,7 @@ PS
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Gt
@@ -26953,7 +27049,7 @@ us
 Vn
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 yt
@@ -26969,7 +27065,7 @@ Ij
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 Ij
@@ -27073,7 +27169,7 @@ th
 Wi
 ZE
 cy
-ZE
+HC
 ZE
 ZE
 ZE
@@ -27591,8 +27687,8 @@ Zc
 Zc
 Zc
 Gt
-Gt
-Gt
+GU
+GU
 Gt
 Zc
 Zc
@@ -27841,7 +27937,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+HC
 ZE
 ZE
 ZE
@@ -27890,7 +27986,7 @@ Gt
 Gt
 Gt
 Gt
-Gt
+GU
 Gt
 Gt
 yt
