@@ -262,3 +262,30 @@
   - bugfix: remove black table next to alamo
   tyeagg:
   - rscdel: Removed old cm gun actions
+2023-01-21:
+  GrayRachnid:
+  - balance: The CSE should not be having Captain/FC level leadership
+  Lewdcifer:
+  - rscadd: Introducing the Style line of equipment, designed to prioritize style
+      without compromising gameplay.
+  - rscadd: Includes modular armors that accept existing storage and armor modules,
+      available under their own category in standard armor vendors.
+  - rscadd: 'Three new armor modules have been added: the Equalizer modules. These
+      only work with the Style line, and will alter their stats to match those of
+      existing armor presets (light, medium, heavy).'
+  - rscadd: All options have existing variants, accessible by using green facepaint
+      on them.
+  - rscadd: A new armor addition to the game, the Duster, is part of this line of
+      equipment.
+  - refactor: The reinforced leather jacket and its webbing variant have been turned
+      into a single item and merged into the Style line. Its webbing variant can be
+      accessed by using green facepaint.
+  Lumipharon:
+  - rscadd: Added BR-64 loadouts to HvH
+  - balance: 'HvH: All loadouts now have advanced combat injectors instead of combat
+      injectors'
+  - balance: 'HvH: Buffed the V-41 damage and added slowdown on hit'
+  chizzy376:
+  - bugfix: No more violins from Reqtorio AMR incendiary rounds
+  novaepee:
+  - bugfix: reverse grip in vali sword on right hand

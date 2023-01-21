@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added BR-64 loadouts to HvH"
-  - balance: "HvH: All loadouts now have advanced combat injectors instead of combat injectors"
-  - balance: "HvH: Buffed the V-41 damage and added slowdown on hit"
