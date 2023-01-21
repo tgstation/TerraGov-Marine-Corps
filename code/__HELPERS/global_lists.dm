@@ -2,6 +2,8 @@
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
+#define ROBOT_TYPES list("Basic","Alpharii","Charlit","Deltad","Bravada")
+
 
 // Posters
 GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
