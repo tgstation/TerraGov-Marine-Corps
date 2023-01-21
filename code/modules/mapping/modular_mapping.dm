@@ -1155,6 +1155,18 @@
 	template_width = 150
 	template_height = 153
 
+/datum/map_template/modular/oscaroutposttopthree
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar3.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
+/datum/map_template/modular/oscaroutposttopfour
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar4.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
 /datum/map_template/modular/oscaroutzetabaseone
 	name = "Oscar outpost abandoned base"
 	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar1.dmm"

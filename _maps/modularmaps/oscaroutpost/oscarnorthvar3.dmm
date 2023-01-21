@@ -1,24 +1,42 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"ad" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northeast)
 "ai" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northwest)
+"aj" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
 "ao" = (
 /obj/effect/ai_node,
@@ -27,18 +45,11 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "aq" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 4
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "at" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -46,11 +57,14 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "aG" = (
-/obj/structure/platform{
-	dir = 4
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/ground/coast{
+	dir = 1
+	},
+/area/oscar_outpost/outside/north)
 "aI" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
@@ -79,33 +93,34 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "aN" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"aS" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "aT" = (
 /obj/structure/table/rusticwoodentable,
 /turf/open/floor,
 /area/oscar_outpost)
 "bb" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 2
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "be" = (
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -113,17 +128,49 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"bg" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "bi" = (
 /obj/item/mortar_kit/howitzer{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
-"bn" = (
+"bl" = (
+/obj/structure/flora/ausbushes/grassybush{
+	color = "#F5F5DC";
+	name = "barley bush"
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"bm" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"bn" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -158,76 +205,170 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "bu" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"bz" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"bD" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"bE" = (
-/obj/structure/platform{
+/obj/structure/platform/trench{
 	dir = 4
 	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"bU" = (
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/oscar_outpost/outside/northwest)
+"by" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"bY" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"bZ" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northwest)
+"bz" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/northeast)
+"bA" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"bD" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northwest)
+"bE" = (
+/obj/effect/ai_node,
+/obj/structure/platform{
+	dir = 4;
+	pixel_x = 5
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"bG" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
+"bH" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
+"bI" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/road)
+"bN" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"bU" = (
+/obj/structure/platform/trench,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"bY" = (
+/obj/structure/platform{
+	dir = 4;
+	pixel_x = 5
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/area/oscar_outpost/outside/east)
+"bZ" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/northwest)
 "cd" = (
 /obj/structure/table/mainship,
 /obj/item/phone,
@@ -241,16 +382,17 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "cg" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
+	dir = 4;
 	name = "trench lining";
-	pixel_y = -7
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
 /area/oscar_outpost/outside/northwest)
 "ck" = (
 /obj/effect/ai_node,
@@ -264,6 +406,16 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
+"cv" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
 /area/oscar_outpost/outside/northeast)
 "cy" = (
 /obj/structure/table/reinforced,
@@ -296,17 +448,18 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "cA" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
 	},
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 8;
-	name = "\improper T37 Medium Machinegun"
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/area/oscar_outpost/outside/northeast)
 "cL" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/ammo/shotgun,
@@ -328,18 +481,14 @@
 	},
 /area/oscar_outpost)
 "cN" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "cO" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -356,6 +505,19 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"cV" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
 "cX" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal{
@@ -396,6 +558,15 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"dc" = (
+/obj/structure/platform/trench{
+	name = "trench lining"
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "dd" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/tl102{
@@ -459,10 +630,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "di" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -509,13 +677,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"dD" = (
-/obj/structure/platform{
-	dir = 1;
-	pixel_y = 7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "dE" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/structure/grenade/multiplefour,
@@ -547,6 +708,25 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"dG" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "dT" = (
 /obj/structure/flora/ausbushes/grassybush{
 	name = "shrivelled wine bush"
@@ -572,14 +752,8 @@
 	},
 /area/oscar_outpost)
 "ed" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
@@ -593,17 +767,34 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "er" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northeast)
+"ex" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/northwest)
+"eA" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/west)
 "eB" = (
 /obj/structure/platform/rockcliff{
 	projectile_coverage = 0
@@ -659,10 +850,6 @@
 	},
 /area/oscar_outpost)
 "eM" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
-	},
 /obj/item/mortal_shell/incendiary,
 /obj/item/mortal_shell/incendiary,
 /obj/item/mortal_shell/incendiary,
@@ -705,6 +892,17 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"fa" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "fe" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/ammo/shotgun,
@@ -715,6 +913,13 @@
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
+/area/oscar_outpost)
+"fh" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/floor,
 /area/oscar_outpost)
 "fm" = (
 /obj/structure/table/mainship,
@@ -733,6 +938,44 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"fp" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
+"fr" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
+"fC" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "fD" = (
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -740,6 +983,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
+"fF" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
+/area/oscar_outpost/outside/northwest)
 "fL" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/west)
@@ -804,6 +1055,39 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"fT" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"gi" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/west)
 "gl" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -819,6 +1103,15 @@
 "gC" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/northeast)
+"gH" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/east)
 "gI" = (
 /turf/open/floor,
 /area/oscar_outpost)
@@ -882,11 +1175,20 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
-"hc" = (
+"gV" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"hc" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/weapon/gun/launcher/rocket/oneuse{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
@@ -894,30 +1196,21 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "hh" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 7
+	pixel_x = -17
 	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "hi" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/east)
 "hq" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/item/weapon/gun/launcher/rocket/oneuse{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
@@ -925,10 +1218,48 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "ht" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/oscar_outpost/outside/east)
+"hv" = (
+/obj/structure/flora/ausbushes/grassybush{
+	name = "shrivelled wine bush"
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"hy" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "hz" = (
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -936,6 +1267,13 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"hL" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "hP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/east)
@@ -995,6 +1333,17 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/northwest)
+"il" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "in" = (
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -1009,28 +1358,19 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "is" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "iv" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
@@ -1046,12 +1386,21 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "iM" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"iN" = (
+/obj/structure/platform/trench{
+	dir = 1
+	},
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "iP" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -1074,27 +1423,64 @@
 	},
 /area/oscar_outpost)
 "je" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/weapon/gun/launcher/rocket/oneuse{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
-"jn" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
+"jf" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 8;
-	name = "\improper T37 Medium Machinegun"
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
+"jh" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
+"jm" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"jn" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
 "jq" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -1102,11 +1488,50 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost)
-"jM" = (
+"ju" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
 	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"jA" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
+"jL" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
+"jM" = (
+/obj/structure/platform/trench,
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 8
@@ -1125,26 +1550,57 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/oscar_outpost)
+"kI" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/west)
+"kN" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/west)
 "kO" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost)
-"kP" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+"kS" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"kY" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
+"kU" = (
+/obj/effect/spawner/random/cigarettes,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northwest)
+"kY" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -1156,35 +1612,90 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"ll" = (
+"ld" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
+"li" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
+"lj" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"ll" = (
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"lt" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "lv" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/oscar_outpost/outside/east)
 "lz" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "lC" = (
 /obj/item/bedsheet,
 /obj/structure/bed,
@@ -1194,15 +1705,8 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "lH" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
@@ -1214,53 +1718,86 @@
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
+"lT" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "mf" = (
 /obj/effect/ai_node,
 /turf/open/ground/river,
 /area/oscar_outpost/outside/north)
+"mj" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "mk" = (
 /obj/structure/stairs,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"mq" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "mu" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
 	},
 /area/oscar_outpost)
-"mv" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "my" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"mz" = (
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+	name = "trench lining";
+	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/road)
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
 "mO" = (
 /obj/structure/stairs,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mP" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
@@ -1271,29 +1808,49 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
 "mW" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+/obj/structure/platform/trench{
+	dir = 4
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"na" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"nh" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
+"no" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/platform,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost)
-"no" = (
 /turf/open/ground/grass,
 /area/oscar_outpost)
+"nq" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
 "ns" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -1347,6 +1904,17 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"nx" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "ny" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/east)
@@ -1355,11 +1923,18 @@
 	dir = 9
 	},
 /area/oscar_outpost)
-"nI" = (
+"nT" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -17
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
@@ -1368,22 +1943,57 @@
 	dir = 1
 	},
 /area/oscar_outpost)
-"nZ" = (
+"od" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"of" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "ol" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/northeast)
+"om" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "op" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -1394,6 +2004,33 @@
 	dir = 1
 	},
 /area/oscar_outpost)
+"os" = (
+/obj/effect/spawner/random/cigarettes,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/north)
+"ou" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"ov" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "ow" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
@@ -1425,40 +2062,23 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/northeast)
 "oO" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
-	name = "trench lining"
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"oS" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "oT" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"oV" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "oY" = (
 /obj/item/reagent_containers/food/snacks/grown/wheat{
 	color = "#90EE90";
@@ -1511,19 +2131,6 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
-"pc" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "pi" = (
 /obj/machinery/light{
 	dir = 4
@@ -1540,9 +2147,8 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "po" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
 /obj/item/weapon/gun/launcher/rocket/oneuse{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
@@ -1551,10 +2157,25 @@
 /area/oscar_outpost/outside/northeast)
 "pp" = (
 /obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
+"pu" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "py" = (
 /turf/closed/wall/mainship/research,
 /area/oscar_outpost)
@@ -1586,6 +2207,14 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"pD" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "pE" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
@@ -1648,12 +2277,22 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"pT" = (
+"pK" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
 	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
+"pT" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "qa" = (
@@ -1664,51 +2303,87 @@
 "qb" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/northwest)
-"qz" = (
+"qg" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"qw" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"qz" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/explosive/plastique,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"qC" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+"qF" = (
+/obj/structure/flora/ausbushes/grassybush{
+	name = "shrivelled wine bush"
 	},
 /obj/structure/barricade/sandbags{
-	dir = 4;
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/area/oscar_outpost/outside/west)
+"qG" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "qH" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/oscar_outpost/outside/northwest)
 "qN" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
-	name = "trench lining"
+	name = "trench lining";
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
-"qO" = (
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"qO" = (
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
@@ -1722,22 +2397,48 @@
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
+"qV" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"ra" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northeast)
+"rb" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
 "rg" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
-/turf/open/floor/grayscale/black,
+/turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"ri" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "rk" = (
 /turf/closed/wall,
 /area/oscar_outpost)
@@ -1784,17 +2485,14 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "ru" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "rw" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -1847,24 +2545,18 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "ry" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/item/weapon/gun/launcher/rocket/oneuse{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "rC" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
@@ -1892,10 +2584,8 @@
 	},
 /area/oscar_outpost/outside/north)
 "sc" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
@@ -1921,35 +2611,15 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northeast)
-"sx" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "sy" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/road)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "sB" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -1964,14 +2634,6 @@
 /obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"sG" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
 "sT" = (
 /obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/dark,
@@ -1984,11 +2646,25 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor,
 /area/oscar_outpost)
-"tf" = (
+"sZ" = (
 /obj/structure/barricade/sandbags{
+	dir = 1;
 	name = "trench lining";
-	pixel_y = -7
+	pixel_y = 1
 	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/road)
+"te" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"tf" = (
+/obj/structure/platform/trench,
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 4
@@ -2003,36 +2679,48 @@
 "th" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
+"ti" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
 "tu" = (
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/road)
 "tx" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
-	name = "\improper T37 Medium Machinegun"
+	pixel_y = -5
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "tz" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 1;
-	pixel_y = 7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"tG" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
-	pixel_y = -13
+	pixel_y = -7
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"tB" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/closed/wall,
+/area/oscar_outpost/outside/west)
+"tG" = (
+/obj/structure/platform/trench{
 	name = "trench lining"
+	},
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
@@ -2088,16 +2776,17 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "tL" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
-	name = "trench lining"
+	name = "trench lining";
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
 /area/oscar_outpost/outside/northeast)
 "tM" = (
 /obj/item/bedsheet,
@@ -2113,6 +2802,23 @@
 "tO" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
+"tY" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/northwest)
+"uk" = (
+/obj/effect/spawner/random/cigarettes,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
 "uq" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -2127,11 +2833,21 @@
 /area/oscar_outpost/outside/northeast)
 "ut" = (
 /obj/structure/window/framed/mainship,
-/turf/open/floor/grayscale/black,
+/turf/open/floor/plating,
 /area/oscar_outpost)
 "uG" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"uK" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "uN" = (
 /obj/effect/ai_node,
@@ -2145,53 +2861,75 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
-"ve" = (
+"vb" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
 	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"ve" = (
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"vg" = (
+"vf" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/item/ammo_magazine/tl102{
-	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northwest)
+"vg" = (
+/obj/structure/platform/trench{
+	dir = 1
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
+	},
+/obj/item/ammo_magazine/tl102{
+	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
@@ -2202,30 +2940,21 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"vA" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "vG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northwest)
-"vH" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"vI" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "vJ" = (
 /obj/structure/table/mainship,
 /obj/item/binoculars,
@@ -2238,34 +2967,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"vP" = (
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "vQ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	color = "#F5F5DC";
@@ -2274,14 +2975,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"vV" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "vX" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_12";
@@ -2298,7 +2991,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "wf" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -2309,11 +3002,22 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northeast)
-"wx" = (
+"wj" = (
 /obj/structure/barricade/sandbags{
+	dir = 1;
 	name = "trench lining";
-	pixel_y = -7
+	pixel_y = 1
 	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"wq" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
+"wx" = (
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "wB" = (
@@ -2332,74 +3036,20 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"wJ" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"wK" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
 "wL" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/weapon/gun/launcher/rocket/oneuse{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"wM" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "wR" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
-"wV" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "wY" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher,
@@ -2425,9 +3075,8 @@
 /obj/structure/barricade/metal{
 	dir = 1
 	},
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 1;
-	name = "\improper T37 Medium Machinegun"
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+	dir = 1
 	},
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -2437,6 +3086,34 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/oscar_outpost)
+"xl" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
+"xq" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/east)
 "xr" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -2450,11 +3127,23 @@
 	},
 /area/oscar_outpost/outside/road)
 "xy" = (
+/obj/effect/ai_node,
 /obj/structure/platform{
+	dir = 8;
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"xB" = (
+/obj/structure/platform/trench{
 	dir = 8
 	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "xC" = (
 /obj/effect/landmark/sensor_tower_patrol,
@@ -2465,30 +3154,48 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/north)
-"xG" = (
+"xE" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
 	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
 /area/oscar_outpost/outside/northwest)
-"xK" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/stairs,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "xP" = (
 /obj/structure/platform{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"xT" = (
+/obj/effect/spawner/random/cigarettes,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"xU" = (
+/obj/structure/platform/rockcliff{
+	projectile_coverage = 0
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"xW" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "xX" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile,
@@ -2502,19 +3209,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"yc" = (
+"yf" = (
 /obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/oscar_outpost/outside/west)
 "ym" = (
 /turf/closed/wall/r_wall{
 	damage_cap = 25000;
@@ -2528,37 +3230,71 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "yt" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"yu" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
+"yA" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northwest)
+"yB" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
 /area/oscar_outpost/outside/northeast)
 "yG" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
+"yJ" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "yP" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
@@ -2571,6 +3307,17 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"yS" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "yZ" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck{
@@ -2605,15 +3352,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "zf" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
@@ -2623,67 +3362,21 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"zh" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
-"zm" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/stairs/seamless{
-	color = "#b29082";
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
 "zq" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"zs" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
 "zA" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
 	},
-/turf/open/floor/grayscale/black,
+/turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "zE" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 8
@@ -2702,12 +3395,18 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
-"zL" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
+"zK" = (
+/obj/structure/platform/trench{
+	dir = 4
 	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"zL" = (
 /obj/structure/platform,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost)
@@ -2715,37 +3414,53 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"zP" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
 "zV" = (
 /obj/machinery/camera/autoname/mainship,
-/turf/open/ground/grass,
-/area/oscar_outpost/outside/west)
-"Aa" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"Ad" = (
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"zZ" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"Ag" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/platform{
-	dir = 1
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "Ak" = (
 /obj/machinery/optable,
 /obj/machinery/camera/autoname/mainship{
@@ -2758,19 +3473,9 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/northeast)
-"Az" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "AF" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -2791,17 +3496,21 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/east)
+"AY" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/northwest)
 "AZ" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/oscar_outpost/outside/road)
 "Bc" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/structure/platform{
 	dir = 1
 	},
@@ -2815,7 +3524,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Bo" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2830,14 +3539,63 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"BD" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "BL" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"Cd" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/road)
+"Ci" = (
+/obj/structure/flora/ausbushes/grassybush{
+	name = "shrivelled barley bush"
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "Ck" = (
 /obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"Co" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/oscar_outpost/outside/west)
 "Cs" = (
 /obj/effect/ai_node,
 /turf/open/floor/engine/cult{
@@ -2847,6 +3605,21 @@
 "Cv" = (
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"Cz" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "CC" = (
 /obj/structure/sign/nosmoking_2{
 	dir = 1;
@@ -2863,14 +3636,30 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"CG" = (
+"CI" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "CK" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -2884,19 +3673,36 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"CT" = (
+"CS" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_y = -7
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"Dc" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/road)
 "Df" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
@@ -2922,9 +3728,12 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Dg" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
-	pixel_y = 7
+	pixel_y = -5
+	},
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
@@ -2984,10 +3793,8 @@
 /turf/open/floor/wood,
 /area/oscar_outpost)
 "Dk" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -3046,18 +3853,6 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"Dm" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 1;
-	pixel_y = 7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "Dn" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/structure/grenade/multiplefour,
@@ -3082,24 +3877,21 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/road)
-"Du" = (
-/obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/grayscale/black,
-/area/oscar_outpost)
-"Dw" = (
+"Dr" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
-	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_y = -7
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"Du" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/mainship/sterile,
+/area/oscar_outpost)
 "Dx" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -3108,61 +3900,87 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/northeast)
-"DE" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
+"DB" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"DI" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"DK" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
-	pixel_y = 7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"DS" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
+	pixel_y = -5
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"DW" = (
+"DF" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"DH" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
+"DL" = (
+/obj/structure/platform/trench,
+/obj/effect/spawner/random/cigarettes,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"DW" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/oscar_outpost/outside/northeast)
+"DZ" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/road)
+/area/oscar_outpost/outside/west)
+"Eg" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "Ei" = (
 /obj/structure/barricade/plasteel{
 	dir = 1
@@ -3183,11 +4001,6 @@
 	},
 /area/oscar_outpost)
 "Ew" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/structure/platform{
 	dir = 1
 	},
@@ -3212,37 +4025,67 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"EM" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
+"ER" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/area/oscar_outpost/outside/northeast)
 "Fd" = (
 /obj/machinery/optable,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/oscar_outpost)
+"Fe" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "Ff" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
+"Fk" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"Fm" = (
+/obj/structure/platform{
+	dir = 8;
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
 "Fn" = (
 /turf/closed/wall/r_wall,
 /area/oscar_outpost)
 "Fu" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -3290,15 +4133,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"FC" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/structure/stairs,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "FD" = (
 /obj/structure/fence{
 	cut = 1
@@ -3315,10 +4149,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "FK" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 8
@@ -3331,7 +4162,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "FM" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -3343,35 +4174,21 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northeast)
-"FY" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
+"Gb" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "Gf" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Gg" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
@@ -3384,11 +4201,36 @@
 	name = "trench lining";
 	pixel_y = 5
 	},
+/obj/structure/platform/trench,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"Gy" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"GA" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "GD" = (
 /obj/item/weapon/gun/launcher/rocket/oneuse{
@@ -3402,15 +4244,50 @@
 	dir = 4
 	},
 /area/oscar_outpost)
+"GI" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "GJ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northeast)
 "GR" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/structure/platform/trench{
+	dir = 1
+	},
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
-	pixel_y = 7
+	pixel_y = -5
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/road)
+"GW" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
 /area/oscar_outpost/outside/road)
 "GY" = (
 /obj/machinery/vending/cigarette,
@@ -3420,11 +4297,52 @@
 /obj/item/mortar_kit,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
+"Hc" = (
+/obj/structure/platform{
+	dir = 8;
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"Hn" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "Hr" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/oscar_outpost/outside/west)
+"Hs" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "Ht" = (
 /obj/structure/closet,
 /obj/item/clothing/gloves/green{
@@ -3447,68 +4365,74 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
+"HB" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/northwest)
 "HG" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 7
+	pixel_x = -17
 	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/northwest)
+"HO" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"HH" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"HP" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
-"Ie" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
-	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
+/area/oscar_outpost/outside/west)
+"HP" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
+/area/oscar_outpost/outside/northeast)
 "Ig" = (
-/obj/structure/flora/ausbushes/grassybush{
-	name = "shrivelled barley bush"
-	},
 /obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Ij" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
+"Ir" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "Iw" = (
 /obj/item/reagent_containers/food/snacks/grown/wheat{
 	color = "#90EE90";
@@ -3557,6 +4481,41 @@
 /obj/effect/spawner/random/structure/m42c,
 /turf/open/floor,
 /area/oscar_outpost)
+"IE" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
+"IH" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/west)
+"IL" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/oscar_outpost/outside/northwest)
 "IO" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -3573,10 +4532,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northwest)
 "IT" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -3607,40 +4564,32 @@
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
-"IY" = (
+"IZ" = (
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/platform,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/northeast)
 "Jc" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
 /area/oscar_outpost/outside/east)
 "Ji" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 2
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northeast)
 "Jl" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -3661,12 +4610,11 @@
 /area/oscar_outpost)
 "Jx" = (
 /obj/structure/barricade/sandbags{
-	dir = 8;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/northwest)
 "Jy" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher,
@@ -3675,24 +4623,10 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"JE" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
 "JF" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/road)
 "JK" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
@@ -3707,24 +4641,7 @@
 /obj/item/mortal_shell/howitzer/he,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"JN" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "JS" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /obj/structure/platform,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
@@ -3738,6 +4655,32 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"Kp" = (
+/obj/structure/platform/trench{
+	dir = 1
+	},
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
+"KB" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
 "KD" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
@@ -3754,6 +4697,14 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"KJ" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "Lg" = (
 /obj/item/reagent_containers/food/snacks/grown/wheat{
 	color = "#90EE90";
@@ -3803,6 +4754,43 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"Lm" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/oscar_outpost/outside/northwest)
+"Lt" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
+"Lw" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "Ly" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
@@ -3814,61 +4802,70 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
+"LB" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "LJ" = (
 /obj/structure/table/mainship,
 /obj/item/phone,
 /turf/open/floor,
 /area/oscar_outpost)
-"LV" = (
+"LX" = (
+/obj/structure/platform/trench,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/northeast)
+"LY" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"Md" = (
+/obj/effect/ai_node,
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
-"LX" = (
+"Mj" = (
+/obj/structure/platform/rockcliff{
+	climb_delay = 20;
+	dir = 8;
+	projectile_coverage = 0
+	},
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"LY" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
-"Mj" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 1;
-	pixel_y = 7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "Mk" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/oscar_outpost)
-"Mq" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "Mx" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -3877,9 +4874,42 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"Mz" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
+"MA" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost)
 "MB" = (
 /turf/open/floor/plating,
 /area/oscar_outpost)
+"MD" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/east)
 "ME" = (
 /obj/machinery/vending/nanomed{
 	pixel_y = 28
@@ -3888,19 +4918,47 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"MF" = (
+"MG" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
 	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"MJ" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "MM" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/west)
@@ -3975,10 +5033,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "NS" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 4
@@ -3990,28 +5045,40 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"Oe" = (
+"Oi" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
-"Oi" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost)
 "Oj" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
@@ -4020,17 +5087,30 @@
 /obj/machinery/prop/mainship/computer/PC,
 /turf/open/floor,
 /area/oscar_outpost)
+"Ot" = (
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northeast)
 "Ox" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
 "Oy" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
-	name = "trench lining"
+	name = "trench lining";
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/northwest)
 "OI" = (
 /obj/effect/spawner/random/beer/oscaroutpost{
 	pixel_x = -5;
@@ -4084,10 +5164,8 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "OM" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -4095,6 +5173,21 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"ON" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
 "OO" = (
 /obj/structure/table/rusticwoodentable,
 /obj/effect/spawner/random/beer/oscaroutpost{
@@ -4148,30 +5241,41 @@
 /turf/open/floor/wood,
 /area/oscar_outpost)
 "OP" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"OT" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
 	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northeast)
 "OU" = (
-/obj/structure/platform{
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"OW" = (
+/obj/structure/platform/trench{
 	dir = 8
 	},
-/turf/open/floor/plating/ground/dirt2,
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/west)
 "OY" = (
 /obj/structure/table/rusticwoodentable,
@@ -4228,6 +5332,41 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost)
+"Pb" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
+"Pd" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
 "Ph" = (
 /obj/structure/platform/rockcliff{
 	climb_delay = 20;
@@ -4235,13 +5374,41 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"Pi" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"Pj" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
 "Pm" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/oscar_outpost/outside/east)
 "Pn" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -4318,24 +5485,35 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"PL" = (
+"PJ" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
+"PK" = (
+/obj/structure/platform{
+	dir = 4;
+	pixel_x = 5
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"PM" = (
+/area/oscar_outpost/outside/west)
+"PL" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
 	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/northwest)
+"PM" = (
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
 	},
@@ -4402,24 +5580,70 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "PP" = (
-/obj/structure/flora/ausbushes/grassybush{
-	name = "shrivelled barley bush"
-	},
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"PR" = (
+/obj/structure/flora/ausbushes/grassybush{
+	name = "shrivelled wine bush"
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "PS" = (
 /turf/closed/wall/mainship/research,
 /area/oscar_outpost/outside/northeast)
-"Qc" = (
+"PU" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"PW" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/west)
+"Qb" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/oscar_outpost)
 "Qi" = (
 /obj/structure/bed/chair,
 /turf/open/floor,
@@ -4444,19 +5668,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
-"QA" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "QH" = (
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -4523,6 +5734,24 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"QP" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northeast)
+"QU" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
 "QW" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal{
@@ -4538,10 +5767,7 @@
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/north)
 "QX" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /obj/structure/stairs/seamless{
 	color = "#b29082";
 	dir = 4
@@ -4605,11 +5831,25 @@
 /obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"Rt" = (
+"Rq" = (
+/obj/effect/ai_node,
+/obj/structure/platform/trench{
+	dir = 8
+	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"Rt" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/mortal_shell/flare,
 /obj/item/mortal_shell/flare,
@@ -4640,30 +5880,16 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"Rx" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
 "RA" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining"
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
+	dir = 1;
+	pixel_y = -5
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/area/oscar_outpost/outside/north)
 "RB" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher,
@@ -4675,16 +5901,37 @@
 	},
 /area/oscar_outpost)
 "RD" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
-	name = "\improper T37 Medium Machinegun"
+/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/obj/structure/platform/trench,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
+"RL" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"Sd" = (
+"RY" = (
 /obj/structure/barricade/sandbags{
-	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
+"Sd" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -4719,12 +5966,20 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Sh" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
-	dir = 1;
-	pixel_y = 7
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "Sl" = (
 /obj/structure/bed/roller,
 /turf/open/floor/mainship/sterile/dark,
@@ -4740,33 +5995,32 @@
 /area/oscar_outpost)
 "Sp" = (
 /obj/structure/platform{
-	dir = 1;
-	pixel_y = 6
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
-"Sx" = (
+"St" = (
 /obj/structure/barricade/sandbags{
-	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
+"Sy" = (
+/obj/structure/platform/trench{
+	dir = 4
 	},
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"SC" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
 	},
-/obj/structure/stairs,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/area/oscar_outpost/outside/west)
 "SD" = (
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
@@ -4774,13 +6028,15 @@
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
-"Tj" = (
+"Ta" = (
 /obj/structure/barricade/sandbags{
-	dir = 4;
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 4
+	},
 /area/oscar_outpost/outside/northwest)
 "Tn" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -4791,11 +6047,32 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
-"Tr" = (
+"Tq" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	dir = 1;
+	dir = 4;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_x = -17
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"Tr" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -4808,29 +6085,46 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northwest)
-"Tv" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+"Tw" = (
+/obj/structure/platform/trench{
+	dir = 4
 	},
-/obj/structure/stairs,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
-"Tx" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
+	pixel_y = 1
 	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"Tx" = (
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/explosive/plastique,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"Ty" = (
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
+/area/oscar_outpost/outside/northeast)
+"TF" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/road)
 "TH" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -4841,11 +6135,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/east)
-"TP" = (
+"TL" = (
 /obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+	name = "trench lining";
+	pixel_y = -7
 	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/west)
+"TP" = (
 /obj/item/mortal_shell/incendiary,
 /obj/item/mortal_shell/incendiary,
 /obj/item/mortal_shell/incendiary,
@@ -4884,8 +6181,24 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
+"TY" = (
+/obj/structure/platform/trench{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
+	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "Ug" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8;
 	name = "\improper T37 Medium Machinegun"
 	},
@@ -4899,31 +6212,6 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/northeast)
-"Up" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"Us" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "Uw" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -4936,15 +6224,23 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "UC" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "UD" = (
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/rock)
+"UF" = (
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/northeast)
 "UK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -4958,18 +6254,22 @@
 "UV" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/oscar_outpost/outside/rock)
-"UW" = (
+"Vb" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1;
+	name = "trench lining";
+	pixel_y = 1
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 6
+	pixel_x = -6
 	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
 "Vc" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile,
@@ -4995,11 +6295,6 @@
 /obj/item/mortal_shell/he,
 /obj/item/mortal_shell/he,
 /obj/item/mortal_shell/he,
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Vi" = (
@@ -5034,22 +6329,27 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/road)
-"VH" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
 "VI" = (
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"VN" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 4
+	},
+/area/oscar_outpost/outside/east)
+"VZ" = (
+/obj/structure/platform/trench,
+/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/west)
 "Wa" = (
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
@@ -5057,91 +6357,113 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"Wd" = (
+/obj/structure/platform/rockcliff{
+	climb_delay = 20;
+	dir = 4;
+	projectile_coverage = 0
+	},
+/obj/structure/barricade/sandbags{
+	name = "trench lining";
+	pixel_y = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "Wf" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
 "Wi" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
-"Wv" = (
+"Wq" = (
+/obj/structure/platform/trench{
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
 	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "WB" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/west)
 "WC" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4;
 	name = "\improper T37 Medium Machinegun"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "WO" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+/obj/structure/platform/trench{
+	name = "trench lining"
 	},
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"Xc" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -13
+"WP" = (
+/obj/structure/platform/trench{
+	dir = 4
 	},
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
-"Xf" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
+"Xc" = (
+/obj/structure/platform/trench{
+	name = "trench lining"
+	},
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/turf/open/floor/plating/ground/dirt2,
+/area/oscar_outpost/outside/east)
+"Xi" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
-	pixel_y = -13
+	pixel_y = -7
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4;
+	name = "trench lining";
+	pixel_x = -17
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Xn" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/ammo_magazine/tl102{
 	name = "T37 MMG ammunition box (10x28mm tungsten rounds)"
@@ -5181,37 +6503,25 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
-"Xt" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
+"XJ" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"Xz" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
 	name = "trench lining";
-	pixel_y = 1
+	pixel_x = -17
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
 "XL" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
 /area/oscar_outpost/outside/northeast)
 "XM" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/item/mortal_shell/flare,
 /obj/item/mortal_shell/flare,
@@ -5236,10 +6546,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "XP" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "XS" = (
@@ -5252,24 +6559,15 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "XZ" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "Yc" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /obj/structure/stairs/seamless{
 	color = "#b29082";
@@ -5335,88 +6633,57 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"Yk" = (
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/east)
 "Ym" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/oscar_outpost/outside/northwest)
-"Yq" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 6
+"Yw" = (
+/obj/structure/platform/trench{
+	dir = 4
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
-"Yr" = (
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/northwest)
+"Yy" = (
+/obj/effect/ai_node,
 /obj/structure/barricade/sandbags{
-	dir = 8;
+	dir = 1;
 	name = "trench lining";
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
+/turf/open/ground/grass,
+/area/oscar_outpost/outside/east)
 "Yz" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/oscar_outpost/outside/northwest)
-"YC" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
 "YM" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "YO" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
-	pixel_y = 7
+	pixel_y = -5
+	},
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "YT" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
-	name = "\improper T37 Medium Machinegun"
-	},
+/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
-"YU" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
-	},
-/obj/structure/barricade/sandbags{
-	name = "trench lining";
-	pixel_y = -7
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "YV" = (
 /obj/structure/closet,
 /obj/item/clothing/gloves/green{
@@ -5446,17 +6713,15 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Zf" = (
-/obj/structure/barricade/sandbags{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+	pixel_y = -5
 	},
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining"
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
+/area/oscar_outpost/outside/northeast)
 "Zg" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
@@ -5465,10 +6730,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northwest)
 "Zl" = (
-/obj/structure/barricade/sandbags{
-	dir = 1;
-	name = "trench lining";
-	pixel_y = 10
+/obj/structure/platform/trench{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
@@ -5596,44 +6859,30 @@
 /obj/item/ammo_magazine/tl102,
 /obj/item/ammo_magazine/tl102,
 /obj/item/ammo_magazine/tl102,
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
-	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"ZD" = (
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_y = 1
+"ZE" = (
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"ZO" = (
+/turf/open/ground/river,
+/area/oscar_outpost/outside/north)
+"ZU" = (
+/obj/structure/platform/trench{
+	dir = 8
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
 	name = "trench lining";
-	pixel_y = 10
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
-"ZE" = (
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
-"ZN" = (
-/obj/structure/barricade/sandbags{
-	dir = 8;
-	name = "trench lining";
-	pixel_y = 6
+	pixel_y = 1
 	},
 /obj/structure/barricade/sandbags{
+	dir = 4;
 	name = "trench lining";
-	pixel_y = -7
+	pixel_x = -17
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/west)
-"ZO" = (
-/turf/open/ground/river,
-/area/oscar_outpost/outside/north)
+/area/oscar_outpost/outside/east)
 "ZW" = (
 /obj/machinery/vending/nanomed{
 	pixel_y = 28
@@ -6035,11 +7284,11 @@ Zi
 qH
 qH
 Uw
-eC
-nZ
-CG
-cg
-eC
+qw
+mP
+xu
+XP
+xW
 eC
 eC
 eC
@@ -6073,12 +7322,10 @@ dp
 dp
 dp
 dp
-dp
-VH
-ZN
-dp
-dp
-dp
+TL
+cN
+wx
+lt
 dp
 dp
 dp
@@ -6098,9 +7345,11 @@ dp
 dp
 dp
 dp
-mv
-DS
-WB
+dp
+TL
+cN
+wx
+yf
 Hr
 Hr
 pF
@@ -6164,37 +7413,37 @@ Fn
 Jy
 RB
 Fn
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
 eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+gV
+gV
+gV
+gV
+gV
+gV
+gV
 eC
 Zi
 sC
 MU
 MU
 wR
-eC
+qw
 mP
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -6228,10 +7477,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -6252,10 +7501,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -6319,37 +7568,37 @@ YZ
 Pv
 Pv
 YZ
-SC
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-cg
-eC
-nZ
-CG
-CG
-CG
-CG
-CG
-cg
-eC
+mO
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+XP
+bm
+mP
+xu
+xu
+xu
+xu
+xu
+XP
+xW
 IQ
 MU
 AM
 MU
 wR
-eC
-Oe
-Tj
-Rx
-eC
+qw
+mP
+xu
+XP
+xW
 eC
 eC
 eC
@@ -6383,10 +7632,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -6407,10 +7656,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -6454,9 +7703,9 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -6474,36 +7723,36 @@ Pv
 Pv
 Pv
 Pv
-Tv
-Tj
-Tj
-Tj
+mO
+xu
+xu
+xu
 hz
 hz
-Tj
-Tj
-Tj
-Tj
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+CS
 mP
 xu
-Tj
-Tj
-Tj
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 Ly
 Ym
 MU
 MU
 wR
 eC
-eC
-eC
-eC
+jn
+jn
+jn
 eC
 eC
 eC
@@ -6538,10 +7787,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -6562,10 +7811,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -6608,11 +7857,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 cy
 ZE
 ZE
@@ -6629,30 +7878,30 @@ Fn
 Fn
 Fn
 Fn
-eC
-eC
-eC
-IQ
+jn
+jn
+jn
+HG
 MU
 wR
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 xu
-CG
+xu
 xu
 XP
-eC
-eC
-eC
+KB
+jn
+Cz
 mP
 XP
-eC
-eC
-Ly
-Yz
+Gy
+gV
+bu
+ai
 Yz
 Tt
 eC
@@ -6693,10 +7942,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -6717,10 +7966,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -6763,11 +8012,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 ZE
 ZE
 ZE
@@ -6793,22 +8042,22 @@ wR
 eC
 eC
 eC
-eC
-ZD
-Tj
-qC
-Tj
-Rx
-eC
-eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-cg
+xu
+xu
+XP
+xW
 eC
+qw
+mP
+xu
+xu
+xu
+xu
+XP
+xW
 eC
 eC
 Zc
@@ -6848,10 +8097,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -6872,11 +8121,11 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
-Kb
+om
+Lt
 Kb
 Pu
 dp
@@ -6918,11 +8167,11 @@ ZE
 sV
 cy
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -6949,21 +8198,21 @@ qH
 qH
 qH
 qH
-qH
-qH
-qH
-qH
-qH
+xE
+xE
+xE
+xE
+xE
 qH
 Uw
-eC
-Oe
-Tj
-Tj
-Tj
+qw
+mP
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -7003,10 +8252,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -7027,12 +8276,12 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 rI
-Jx
-ZN
-Kb
+rI
+wx
+PJ
 Pu
 dp
 dp
@@ -7074,9 +8323,9 @@ ZE
 sV
 ZE
 ZE
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -7112,13 +8361,13 @@ MU
 MU
 wR
 eC
-eC
-eC
-eC
-Hz
+jn
+jn
+jn
+Rq
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -7131,9 +8380,9 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
+gV
+gV
+gV
 eC
 eC
 eC
@@ -7158,10 +8407,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -7182,12 +8431,12 @@ dp
 XY
 dp
 dp
-XY
-bZ
-ai
+mj
+cN
+rI
 rI
 wx
-Kb
+PJ
 Pu
 dp
 dp
@@ -7249,17 +8498,17 @@ Fn
 Pv
 Pv
 Fn
-Yz
-Yz
-Yz
-Ym
+ai
+ai
+ai
+bD
 MU
 iD
-Yz
-Yz
-Yz
-Yz
-Yz
+ai
+ai
+ai
+ai
+ai
 Yz
 Yz
 Ym
@@ -7270,13 +8519,13 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-eC
-eC
-eC
-eC
+Gy
+gV
+gV
+gV
 eC
 eC
 eC
@@ -7285,11 +8534,11 @@ Zc
 Zc
 eC
 eC
-eC
-nZ
-CG
-cg
-eC
+qw
+mP
+xu
+XP
+xW
 eC
 eC
 eC
@@ -7313,36 +8562,36 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
-dp
-dp
-XY
-dp
-dp
-Pu
-dp
-dp
-Pu
-dp
-dp
-Pu
-dp
-dp
-Pu
-dp
-dp
-XY
-dp
-dp
-XY
-dp
-dp
+om
+zK
+zK
+Pi
+zK
+zK
+Pi
+zK
+zK
+Pi
+zK
+zK
+Pi
+zK
+zK
+Pi
+zK
+zK
+Pi
+zK
+zK
+Pi
+Hn
+Tq
 cN
 wx
-Kb
+PJ
 Pu
 dp
 dp
@@ -7404,18 +8653,18 @@ Fn
 Qn
 So
 Fn
-CG
-CG
-CG
-CG
+xu
+xu
+xu
+xu
 in
 in
-CG
-CG
-CG
-CG
-cg
-eC
+xu
+xu
+xu
+xu
+XP
+xW
 eC
 IQ
 MU
@@ -7425,14 +8674,14 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-cg
-eC
+xu
+xu
+xu
+XP
+xW
 eC
 eC
 eC
@@ -7440,11 +8689,11 @@ Zc
 Zc
 eC
 eC
-eC
+qw
 mP
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -7467,37 +8716,37 @@ dp
 dp
 dp
 dp
-dp
-dp
+zK
+ON
 cN
 TV
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
-Jx
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
 rI
 wx
-Kb
+PJ
 ej
 dp
 dp
@@ -7559,18 +8808,18 @@ ym
 Fn
 Fn
 Fn
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 eC
 IQ
 MU
@@ -7580,13 +8829,14 @@ eC
 eC
 eC
 eC
-eC
-Oe
-Tj
-Tj
-Tj
+qw
+mP
+xu
+xu
+xu
 xu
 XP
+xW
 eC
 eC
 eC
@@ -7594,12 +8844,11 @@ eC
 eC
 eC
 eC
-eC
-eC
-Oe
-Tj
-Rx
-eC
+qw
+mP
+xu
+XP
+xW
 eC
 eC
 eC
@@ -7621,38 +8870,38 @@ dp
 dp
 dp
 uG
-dp
-VH
-Jx
+TL
+cN
 rI
 rI
-ai
-ai
+rI
+rI
+rI
 LY
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
 LY
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
 LY
 TV
 rI
-ai
-UW
-Kb
+rI
+wx
+PJ
 ej
 dp
 uG
@@ -7714,18 +8963,18 @@ GH
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 IQ
 MU
@@ -7736,13 +8985,13 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 XP
-Hz
+Ir
 eC
 eC
 eC
@@ -7751,9 +9000,9 @@ eC
 Hz
 eC
 eC
-eC
-Hz
-eC
+jn
+ou
+jn
 eC
 Hz
 eC
@@ -7776,37 +9025,37 @@ Pu
 dp
 dp
 XY
-dp
+TL
 cN
 rI
-ai
-UW
-XY
-dp
-dp
-XY
-dp
-dp
-Pu
-dp
-dp
-Pu
-dp
-dp
-Pu
-dp
-dp
-Pu
-dp
-dp
-XY
-dp
-dp
-XY
+rI
+wx
+DZ
+ov
+ov
+bA
+ov
+ov
+bA
+ov
+ov
+bA
+ov
+ov
+bA
+ov
+ov
+bA
+ov
+ov
+bA
+ov
+ov
+nT
 cN
 wx
-XY
-Kb
+DZ
+OW
 Kb
 Pu
 dp
@@ -7877,11 +9126,11 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-eC
-eC
+Yw
+aa
 IQ
 MU
 MU
@@ -7894,13 +9143,13 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-eC
-eC
-eC
-eC
+Gy
+gV
+gV
+gV
 eC
 eC
 eC
@@ -7931,11 +9180,11 @@ Pu
 dp
 dp
 XY
-dp
+TL
 cN
 wx
-dp
-dp
+CI
+Hn
 XY
 dp
 dp
@@ -7957,10 +9206,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8000,9 +9249,9 @@ xD
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -8016,11 +9265,11 @@ ZE
 uV
 uV
 uV
-uV
-LV
-Mq
-JN
-eB
+Mj
+Zl
+th
+Wi
+xU
 eC
 eC
 eC
@@ -8032,12 +9281,12 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 xu
-CG
-cg
-IQ
+xu
+XP
+ex
 MU
 MU
 wR
@@ -8049,14 +9298,14 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-cg
-eC
+xu
+xu
+xu
+XP
+xW
 Zi
 qH
 sC
@@ -8086,12 +9335,12 @@ Pu
 dp
 dp
 XY
-dp
+TL
 cN
 rI
-Jx
-ZN
-XY
+rI
+wx
+qF
 dp
 dp
 XY
@@ -8108,14 +9357,14 @@ dp
 dp
 Pu
 dp
+zK
+Pi
+zK
 dp
-XY
-dp
-dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8154,28 +9403,28 @@ ZO
 xD
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+Fk
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+tz
+Zl
+th
+Wi
+xU
 eC
 eC
 eC
@@ -8187,31 +9436,31 @@ eC
 eC
 eC
 eC
-eC
-RA
-Tj
+qw
+mP
+xu
 xu
 XP
-IQ
+ex
 MU
 MU
 wR
-eC
-eC
-eC
+gV
+gV
+gV
 Zi
 qH
 qH
 Uw
 eC
-eC
-Oe
-Tj
-Tj
-Tj
+qw
+mP
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 IQ
 MU
 AM
@@ -8241,12 +9490,12 @@ Pu
 dp
 dp
 XY
-dp
-pc
-ai
+TL
+cN
+rI
 rI
 wx
-XY
+qF
 dp
 dp
 XY
@@ -8262,15 +9511,15 @@ Pu
 dp
 dp
 Pu
-dp
-Zf
+TL
+cN
 eM
-HP
-dp
-XY
+ed
+Tw
+RL
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8309,10 +9558,11 @@ ZO
 xD
 ZE
 cy
-ZE
+tz
 Zl
 th
 Wi
+Fk
 ZE
 ZE
 ZE
@@ -8325,12 +9575,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 qH
 qH
 qH
@@ -8343,30 +9592,30 @@ qH
 qH
 qH
 qH
-qH
-qH
+xE
+vf
 Tr
 FK
-sC
+fF
 MU
 MU
-wR
-nZ
+HB
+mP
 JK
-cg
-IQ
+XP
+ex
 MU
 MU
 ik
 Uw
 eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
+xW
 Ly
 Ym
 MU
@@ -8397,11 +9646,11 @@ dp
 dp
 XY
 dp
-dp
-XY
+ov
+nT
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -8417,15 +9666,15 @@ Pu
 dp
 dp
 Pu
-dp
+TL
 XM
 Ha
 do
-oV
-oV
+rI
+rI
 rI
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8464,11 +9713,11 @@ ZO
 xD
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 cy
@@ -8482,7 +9731,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -8505,11 +9754,11 @@ MU
 MU
 MU
 Nz
-wR
+HB
 mP
 zg
 XP
-IQ
+ex
 MU
 MU
 AM
@@ -8518,13 +9767,13 @@ Uw
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-eC
-eC
-Ly
-Yz
+Gy
+gV
+bu
+ai
 Yz
 Tt
 eC
@@ -8553,10 +9802,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -8572,15 +9821,15 @@ Pu
 dp
 dp
 Pu
-dp
+TL
 qz
-vP
+do
 ed
-dp
-XY
+lj
+nT
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8620,9 +9869,9 @@ xD
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -8637,7 +9886,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -8661,10 +9910,10 @@ MU
 MU
 MU
 pp
-Oe
-Tj
-Rx
-Ly
+mP
+xu
+XP
+Lm
 Ym
 MU
 MU
@@ -8673,14 +9922,14 @@ wR
 eC
 eC
 eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-cg
-eC
+xu
+xu
+xu
+XP
+xW
 eC
 eC
 Zc
@@ -8708,10 +9957,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -8728,14 +9977,14 @@ dp
 dp
 Pu
 dp
+ov
+bA
+ov
 dp
-XY
-dp
-dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8790,12 +10039,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+bb
+OU
 Zl
 th
 Wi
-eB
+xU
 Yz
 Yz
 Yz
@@ -8809,16 +10058,16 @@ Yz
 Yz
 Yz
 Yz
-Yz
+AY
 OM
 QX
-Ym
+Ta
 MU
 MU
 wR
-Hz
-eC
-eC
+ou
+jn
+jn
 eC
 Ly
 Yz
@@ -8828,14 +10077,14 @@ Tt
 eC
 eC
 eC
-Hz
-Oe
-Tj
-Tj
-Tj
+mq
+mP
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 eC
 Hz
 eC
@@ -8863,10 +10112,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 dp
 dp
 XY
@@ -8887,10 +10136,10 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -8944,13 +10193,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-aq
-vV
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 eC
 eC
 eC
@@ -8964,10 +10213,10 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -8984,13 +10233,13 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -9018,9 +10267,10 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
+lt
 dp
 dp
 dp
@@ -9041,11 +10291,10 @@ dp
 dp
 dp
 dp
-dp
-dp
+TL
 cN
 wx
-tI
+eA
 Kb
 Kb
 ej
@@ -9099,18 +10348,18 @@ ZE
 ZE
 cy
 ZE
-ZE
+tz
 Zl
 th
-Aa
-Aa
-Up
-eB
+th
+th
+Wi
+xU
 eC
 eC
-eC
-eC
-eC
+gV
+gV
+gV
 Zi
 qH
 qH
@@ -9119,10 +10368,10 @@ Uw
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -9134,19 +10383,19 @@ qH
 Uw
 eC
 eC
+gV
+gV
+gV
 eC
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+qw
 mP
 XP
-eC
-eC
+Gy
+gV
 eC
 eC
 eC
@@ -9172,11 +10421,11 @@ dp
 dp
 uG
 dp
-dp
-dp
+zK
+ON
 cN
 wx
-dp
+lt
 dp
 dp
 rk
@@ -9197,10 +10446,10 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-tI
+eA
 Kb
 Kb
 ej
@@ -9254,30 +10503,30 @@ ZE
 ZE
 ZE
 ZE
-ZE
-YO
+tz
+RA
 Wi
-ZE
-ZE
-ZE
-eB
+qN
+zZ
+zZ
+xU
 eC
-eC
-nZ
-CG
-cg
-IQ
+qw
+mP
+xu
+XP
+ex
 MU
 AM
 MU
 wR
 eC
-eC
-eC
-eC
+gV
+gV
+yJ
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -9288,21 +10537,21 @@ MU
 MU
 wR
 eC
-eC
-nZ
-CG
-cg
-eC
-eC
-eC
-eC
-eC
-eC
+qw
 mP
 xu
-CG
-cg
-eC
+XP
+Gy
+gV
+gV
+gV
+gV
+yJ
+mP
+xu
+xu
+XP
+xW
 eC
 eC
 eC
@@ -9326,12 +10575,12 @@ Pu
 dp
 dp
 XY
-dp
-VH
-Jx
+TL
+cN
+rI
 rI
 wx
-dp
+lt
 dp
 dp
 rk
@@ -9352,11 +10601,11 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 wx
-XY
-Kb
+om
+Lt
 Kb
 Pu
 dp
@@ -9409,30 +10658,30 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 bn
 th
-vV
-vV
-DI
-eB
+th
+th
+Wi
+xU
 eC
-eC
+qw
 mP
 xu
 XP
-Ly
+Lm
 Ym
 MU
 MU
 wR
-eC
-bb
-jn
-CG
+qw
+mP
+Pn
+xu
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -9443,21 +10692,21 @@ AM
 MU
 wR
 eC
-eC
-Mj
+qw
+tx
 xu
 xu
-wK
-wK
-wK
-wK
-wK
-wK
-Tj
-Tj
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
 Qz
 XP
-eC
+xW
 eC
 eC
 eC
@@ -9481,12 +10730,12 @@ Pu
 dp
 dp
 XY
-dp
+TL
 Xn
 rI
-ai
-UW
-dp
+rI
+wx
+lt
 dp
 dp
 ce
@@ -9507,12 +10756,12 @@ dp
 XY
 dp
 dp
-XY
+mj
 cN
 rI
-Jx
-ZN
-Kb
+rI
+wx
+PJ
 Pu
 dp
 dp
@@ -9564,30 +10813,30 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 eC
-eC
-Oe
-Tj
-Rx
-eC
+qw
+mP
+xu
+XP
+xW
 Ly
 Yz
 Yz
 Tt
-eC
+qw
 mP
 xu
 xu
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -9598,21 +10847,21 @@ MU
 iD
 Tt
 eC
-eC
+qw
 vg
-sG
-Rx
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+xu
+XP
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -9636,11 +10885,11 @@ Pu
 dp
 dp
 XY
-dp
-Sh
+TL
+DB
 wx
-dp
-dp
+CI
+Hn
 dp
 dp
 dp
@@ -9662,12 +10911,12 @@ dp
 XY
 dp
 dp
-XY
-bZ
-ai
+mj
+cN
+rI
 rI
 wx
-Kb
+PJ
 Pu
 dp
 dp
@@ -9720,29 +10969,29 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+hh
+Sh
 Zl
 th
 Wi
-eB
+xU
+eC
+eC
+jn
+jn
+jn
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+gV
+gV
+yJ
 mP
 Zu
 xu
 xu
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -9754,6 +11003,9 @@ Tt
 eC
 eC
 eC
+jn
+jn
+jn
 eC
 eC
 eC
@@ -9761,13 +11013,10 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+qw
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -9791,12 +11040,12 @@ Pu
 dp
 dp
 XY
-dp
+TL
 cN
 rI
-Jx
-ZN
-dp
+rI
+wx
+lt
 dp
 dp
 rk
@@ -9817,12 +11066,12 @@ dp
 XY
 dp
 dp
-XY
-dp
-dp
+rI
+Hn
+Tq
 Fu
 RD
-Kb
+PJ
 Pu
 dp
 dp
@@ -9876,11 +11125,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Zi
 qH
 qH
@@ -9888,16 +11137,16 @@ qH
 Uw
 eC
 eC
-eC
-nZ
-CG
-CG
-rC
-UC
-UC
+qw
+mP
+xu
+xu
+mP
+xu
+xu
 xu
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -9919,10 +11168,10 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -9946,13 +11195,13 @@ Pu
 dp
 dp
 XY
-dp
-pc
-ai
+TL
+cN
+rI
 rI
 wx
-dp
-dp
+Tw
+zK
 yG
 rk
 rk
@@ -9972,12 +11221,12 @@ dp
 XY
 dp
 dp
-XY
-VH
-Jx
+mj
+cN
+rI
 rI
 wx
-Kb
+PJ
 Pu
 dp
 dp
@@ -10043,7 +11292,7 @@ MU
 wR
 eC
 eC
-eC
+qw
 mP
 xu
 xu
@@ -10052,7 +11301,7 @@ xu
 xu
 xu
 XP
-IQ
+ex
 MU
 MU
 ik
@@ -10074,10 +11323,10 @@ qH
 qH
 qH
 qH
-qH
+yA
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -10102,13 +11351,13 @@ dp
 dp
 XY
 dp
-dp
-XY
+ov
+nT
 cN
 TV
-Jx
-Jx
-IY
+rI
+rI
+JS
 MB
 Jn
 gI
@@ -10123,16 +11372,16 @@ gI
 aI
 rk
 zV
+zK
+zK
 dp
 dp
-dp
-dp
-XY
+mj
 cN
 rI
-ai
-UW
-Kb
+rI
+wx
+PJ
 Pu
 dp
 dp
@@ -10198,8 +11447,8 @@ MU
 wR
 eC
 eC
-eC
-Mj
+qw
+tx
 xu
 Zu
 xu
@@ -10207,7 +11456,7 @@ xu
 Qz
 xu
 XP
-IQ
+ex
 MU
 MU
 MU
@@ -10232,7 +11481,7 @@ MU
 MU
 mO
 XP
-eC
+xW
 eC
 eC
 eC
@@ -10258,11 +11507,11 @@ dp
 dT
 dp
 dp
-XY
+mj
 cN
 rI
-ai
-ai
+rI
+rI
 JS
 Jn
 gI
@@ -10277,16 +11526,16 @@ rk
 NJ
 MB
 MB
-Ad
-Jx
-ZN
+Ew
+rI
+wx
+lt
 dp
-dp
-dT
+pD
 cN
 wx
-XY
-Kb
+DZ
+OW
 Kb
 Pu
 uG
@@ -10322,6 +11571,9 @@ ZO
 ZO
 ZO
 xD
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -10338,14 +11590,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Ly
 UK
 MU
@@ -10353,7 +11602,7 @@ iD
 Tt
 eC
 eC
-eC
+qw
 mP
 xu
 xu
@@ -10362,7 +11611,7 @@ xu
 xu
 xu
 XP
-IQ
+ex
 MU
 MU
 MU
@@ -10387,7 +11636,7 @@ MU
 MU
 mO
 XP
-eC
+xW
 eC
 eC
 eC
@@ -10412,13 +11661,13 @@ Hr
 Hr
 XY
 Hr
-Hr
-XY
+Sy
+RL
 cN
 wx
-Hr
-Hr
-pF
+Pb
+IE
+Co
 ce
 pE
 No
@@ -10435,12 +11684,12 @@ MB
 Ew
 rI
 wx
-dp
-dp
-XY
+Tw
+zK
+RL
 cN
 wx
-XY
+qF
 Kb
 Kb
 Pu
@@ -10476,11 +11725,11 @@ ZO
 ZO
 ZO
 ZO
-xD
-LV
-Mq
-JN
-ZE
+aG
+Zl
+th
+Wi
+Fk
 cy
 ZE
 ZE
@@ -10495,12 +11744,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+bb
+OU
 Zl
 th
 Wi
-eB
+xU
 eC
 Ly
 Yz
@@ -10508,16 +11757,16 @@ Tt
 eC
 eC
 eC
-eC
-Oe
-Tj
-Tj
-RA
-qN
-qN
+qw
+mP
+xu
+xu
+mP
+xu
+kU
 xu
 XP
-IQ
+ex
 MU
 MU
 iD
@@ -10529,20 +11778,20 @@ Yz
 Yz
 Yz
 Yz
+ai
+ai
+ai
 Yz
 Yz
 Yz
 Yz
 Yz
 Yz
-Yz
-Yz
-Yz
-Yz
-Yz
+ai
+by
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -10566,12 +11815,12 @@ Kb
 Kb
 Kb
 Kb
-Kb
-VH
-Jx
+fr
+cN
+rI
 rI
 wx
-Kb
+PJ
 Kb
 ej
 rk
@@ -10587,15 +11836,15 @@ rk
 Df
 aI
 rk
-dp
+vb
 cN
 rI
-Jx
-Jx
-Jx
+rI
+rI
+rI
 rI
 wx
-XY
+qF
 Kb
 Kb
 ej
@@ -10631,11 +11880,11 @@ ZO
 ZO
 ZO
 ZO
-xD
+aG
 Zl
 th
 Wi
-ZE
+Fk
 ZE
 ZE
 ZE
@@ -10649,13 +11898,13 @@ cy
 ZE
 ZE
 ZE
-ZE
-aq
-vV
+tz
+Zl
 th
 th
+os
 Wi
-eB
+xU
 eC
 eC
 eC
@@ -10664,15 +11913,15 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
+jn
+jn
+Cz
 mP
 Zu
 xu
 xu
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -10683,21 +11932,21 @@ eC
 eC
 eC
 eC
-eC
-nZ
-CG
-cg
-eC
-eC
-eC
-eC
-eC
-eC
-nZ
-CG
+qw
+mP
 xu
 XP
-eC
+Gy
+gV
+gV
+gV
+gV
+yJ
+mP
+xu
+xu
+XP
+xW
 eC
 eC
 eC
@@ -10721,12 +11970,12 @@ Kb
 Kb
 Kb
 Kb
-Kb
+fr
 cN
 TV
-ai
-UW
-Kb
+rI
+wx
+PJ
 Kb
 ej
 rk
@@ -10742,15 +11991,15 @@ rk
 rk
 rk
 rk
-dp
-Us
+TL
+cN
 FM
-nI
-nI
+rI
+rI
 rI
 TV
-UW
-XY
+wx
+qF
 Kb
 Kb
 ej
@@ -10786,31 +12035,31 @@ ZO
 cy
 ZO
 ZO
-xD
-QA
-YC
-Up
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
+aG
 Zl
 th
-Aa
-Aa
-Up
-eB
+Wi
+Fk
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+tz
+Zl
+th
+th
+th
+Wi
+xU
 eC
 eC
 eC
@@ -10821,13 +12070,13 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 xu
 xu
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -10838,21 +12087,21 @@ eC
 eC
 eC
 eC
-eC
-Mj
+qw
+tx
 xu
 xu
-wK
-wK
-wK
-wK
-wK
-wK
 xu
 xu
-Tj
-Rx
-eC
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+XP
+xW
 eC
 eC
 eC
@@ -10876,35 +12125,35 @@ Pu
 XY
 XY
 XY
-XY
+mj
 cN
 wx
-XY
-XY
+DZ
+bA
 Kb
 Kb
 tg
 Hr
 Hr
-Hr
+St
 cN
 wx
-dp
+Tw
 dp
 Oj
 cN
 wx
+wj
 Pu
 Pu
 Pu
-Pu
-Hr
-Hr
-Hr
-Hr
+IE
+IE
+IE
+Pj
 cN
 wx
-fL
+HO
 Kb
 Kb
 Kb
@@ -10942,9 +12191,9 @@ ZO
 ZO
 ZO
 xD
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -10959,13 +12208,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 YO
 Wi
-ZE
-ZE
-ZE
-eB
+qN
+zZ
+zZ
+xU
 eC
 eC
 eC
@@ -10976,13 +12225,13 @@ eC
 eC
 eC
 eC
-eC
-Oe
+qw
+mP
 ll
-Tj
+xu
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -10993,20 +12242,20 @@ eC
 eC
 eC
 eC
-eC
+qw
 vg
-Tj
-Rx
-eC
-eC
-eC
-eC
-eC
-eC
+xu
+XP
+KB
+jn
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
-eC
+lz
+GI
 eC
 eC
 eC
@@ -11030,36 +12279,36 @@ dp
 dp
 dp
 dp
-dp
-dp
+zK
+ON
 cN
 wx
-dp
+lt
 tI
 Kb
 Kb
 Kb
 Kb
 Kb
-Kb
+fr
 cN
 rI
-Jx
-OU
-Jx
+rI
+Hc
+rI
 rI
 wx
+PJ
 Kb
 Kb
 Kb
 Kb
 Kb
 Kb
-Kb
-Kb
+fr
 cN
 wx
-Kb
+PJ
 Kb
 Kb
 Kb
@@ -11114,13 +12363,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 bn
 th
-vV
-vV
-DI
-eB
+th
+th
+Wi
+xU
 eC
 eC
 eC
@@ -11132,12 +12381,12 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
+jn
+jn
+Cz
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -11149,20 +12398,20 @@ eC
 eC
 eC
 eC
+jn
+jn
+jn
 eC
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+qw
 mP
 xu
-CG
-cg
-eC
+xu
+XP
+xW
 eC
 eC
 eC
@@ -11184,38 +12433,38 @@ dp
 dp
 dp
 dp
-dp
-VH
-Jx
+TL
+cN
+rI
 rI
 wx
-dp
+lt
 tI
 Kb
 Kb
 Kb
 Kb
 Kb
-Kb
-pc
+fr
+cN
 Bo
 Zz
-aG
+PK
 Zz
 Bo
-UW
+wx
+PJ
 Kb
 Kb
 Kb
 Kb
 Kb
 Kb
-Kb
-Kb
+fr
 cN
 wx
-Kb
-Kb
+PW
+Lt
 Kb
 Kb
 ej
@@ -11269,13 +12518,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 eC
 Hz
 eC
@@ -11289,10 +12538,10 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -11312,12 +12561,12 @@ eC
 eC
 eC
 eC
-eC
-Oe
-Tj
+qw
+mP
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -11339,12 +12588,12 @@ Pu
 Pu
 Pu
 XY
-XY
+mj
 cN
 rI
-ai
-UW
-XY
+rI
+wx
+qF
 XY
 XY
 XY
@@ -11352,13 +12601,13 @@ Pu
 Pu
 Pu
 Pu
-dp
-tI
+ov
+IH
+OW
 Kb
-Kb
-Kb
-ej
-dp
+OW
+gi
+ov
 Pu
 Pu
 Pu
@@ -11366,12 +12615,12 @@ Pu
 XY
 XY
 XY
-XY
+mj
 cN
 rI
-Jx
-ZN
 rI
+wx
+wj
 XY
 xZ
 Pu
@@ -11425,12 +12674,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+hh
+Sh
 Zl
 th
 Wi
-eB
+xU
 eC
 eC
 eC
@@ -11444,10 +12693,10 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
-IQ
+ex
 MU
 MU
 wR
@@ -11468,11 +12717,11 @@ eC
 eC
 eC
 eC
-eC
-eC
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -11494,11 +12743,11 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-dp
-dp
+CI
+Hn
 dp
 dp
 dp
@@ -11521,12 +12770,12 @@ dp
 dp
 dp
 dp
-dp
-bZ
-ai
+TL
+cN
+xT
 rI
 wx
-dp
+lt
 dp
 dp
 dp
@@ -11581,11 +12830,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 qH
 qH
 qH
@@ -11599,10 +12848,10 @@ qH
 qH
 qH
 qH
-qH
+yA
 Tr
 FK
-sC
+fF
 MU
 MU
 wR
@@ -11619,15 +12868,15 @@ wR
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
-eC
+gV
+gV
+gV
+gV
+gV
+yJ
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -11649,12 +12898,12 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 rI
-Jx
-ZN
-dp
+rI
+wx
+lt
 dp
 dp
 dp
@@ -11677,11 +12926,11 @@ dp
 dp
 dp
 dp
-dp
-dp
+Hn
+Tq
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -11737,7 +12986,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -11773,16 +13022,16 @@ ao
 Tt
 eC
 eC
-eC
-nZ
-CG
-CG
-Qc
-CG
-CG
+qw
+mP
+xu
+xu
+ow
+xu
+xu
 xu
 XP
-eC
+xW
 Hz
 eC
 eC
@@ -11804,12 +13053,12 @@ Pu
 Pu
 Pu
 XY
-XY
-pc
-ai
+mj
+cN
+rI
 rI
 wx
-XY
+qF
 XY
 XY
 XY
@@ -11831,12 +13080,12 @@ Pu
 XY
 XY
 XY
-XY
-VH
-Jx
+mj
+cN
+rI
 rI
 wx
-rI
+wj
 XY
 Pu
 Pu
@@ -11892,7 +13141,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -11915,9 +13164,9 @@ MU
 MU
 MU
 MU
-wR
-eC
-eC
+tY
+gV
+gV
 eC
 eC
 Ly
@@ -11928,16 +13177,16 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 xu
-Tj
-Tj
-Tj
-Tj
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -11960,11 +13209,11 @@ dp
 dp
 dp
 dp
-dp
-dp
+ov
+vb
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -11986,12 +13235,12 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 rI
-ai
-UW
-dp
+rI
+wx
+lt
 dp
 dp
 dp
@@ -12046,11 +13295,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Yz
 Yz
 Yz
@@ -12063,16 +13312,17 @@ Yz
 Yz
 Yz
 Yz
-Yz
-Yz
+ai
+by
 OM
 QX
-Ym
+Ta
 MU
-MU
-nZ
+Jx
+mP
 JK
-cg
+XP
+xW
 eC
 eC
 eC
@@ -12082,17 +13332,16 @@ eC
 eC
 eC
 eC
-eC
-eC
+qw
 mP
 XP
-eC
-eC
-eC
-eC
+KB
+jn
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 Zc
 Zc
@@ -12116,10 +13365,10 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -12141,11 +13390,11 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-dp
-dp
+lj
+ov
 dp
 dp
 dp
@@ -12201,11 +13450,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 eC
 eC
 eC
@@ -12217,37 +13466,37 @@ qH
 qH
 Uw
 eC
-eC
-nZ
-CG
+qw
+mP
+xu
 xu
 XP
-IQ
+ex
 MU
-MU
+Jx
 mP
 zg
 XP
+xW
 eC
 eC
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
+aa
+aa
+aa
+PU
 mP
 XP
+xW
 eC
 eC
-eC
-eC
+qw
 mP
 XP
-eC
+xW
 eC
 Zc
 Zc
@@ -12271,10 +13520,10 @@ Pu
 XY
 XY
 XY
-XY
+mj
 cN
 wx
-XY
+qF
 XY
 XY
 XY
@@ -12296,10 +13545,10 @@ Pu
 XY
 XY
 XY
-XY
+mj
 cN
 wx
-XY
+qF
 XY
 XY
 XY
@@ -12343,9 +13592,9 @@ ZE
 ZE
 ZE
 ZE
-ZE
-IP
-ZE
+bb
+mW
+bb
 ZE
 ZE
 ZE
@@ -12356,11 +13605,11 @@ ZE
 wa
 wa
 wa
-wa
-QA
-YC
-er
-eB
+Wd
+Zl
+th
+Wi
+xU
 eC
 eC
 eC
@@ -12372,37 +13621,37 @@ MU
 MU
 wR
 eC
-eC
+qw
 mP
 xu
-Tj
-Rx
-IQ
-MU
-MU
-Oe
-Tj
-Rx
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-nZ
-CG
-CG
-CG
 xu
 XP
+ex
+MU
+Jx
+mP
+xu
+XP
+xW
 eC
 eC
 eC
 eC
+eC
+qw
+mP
+xu
+xu
+xu
+xu
+XP
+xW
+eC
+eC
+qw
 mP
 XP
-eC
+xW
 eC
 eC
 Zc
@@ -12426,10 +13675,10 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -12451,10 +13700,10 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -12497,11 +13746,11 @@ ZE
 ZE
 ZE
 cy
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -12527,37 +13776,37 @@ MU
 iD
 Tt
 eC
-eC
+qw
 mP
 XP
-eC
-eC
+KB
+jn
 IQ
 MU
 MU
-wR
+PL
+jn
+jn
 eC
 eC
 eC
 eC
 eC
 eC
-eC
-eC
-eC
+qw
 mP
 xu
-Tj
-Tj
-Tj
-Rx
+xu
+xu
+xu
+XP
+xW
 eC
 eC
-eC
-eC
+qw
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -12580,11 +13829,11 @@ dp
 dp
 dp
 dp
-dp
-dp
+zK
+ON
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -12606,10 +13855,10 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 wx
-dp
+lt
 dp
 dp
 dp
@@ -12652,11 +13901,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 ZE
 ZE
 ZE
@@ -12674,18 +13923,18 @@ qa
 eC
 eC
 eC
-eC
-Ly
-Yz
-Yz
-Yz
-Tt
-eC
-eC
-eC
+gV
+bu
+ai
+ai
+ai
+cg
+gV
+gV
+yJ
 mP
 XP
-eC
+xW
 eC
 IQ
 MU
@@ -12699,20 +13948,20 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
+KB
+jn
+jn
+jn
 eC
 eC
-eC
-eC
-eC
-eC
-eC
-eC
+gV
+yJ
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -12734,12 +13983,12 @@ Pu
 Pu
 Pu
 XY
-XY
-VH
-Jx
+mj
+cN
+rI
 rI
 wx
-XY
+qF
 XY
 XY
 XY
@@ -12761,11 +14010,11 @@ Pu
 XY
 XY
 XY
-XY
+mj
 cN
 wx
-XY
-XY
+om
+PR
 XY
 XY
 Pu
@@ -12807,11 +14056,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 cy
 ZE
 ZE
@@ -12829,18 +14078,18 @@ ym
 Fn
 Fn
 Fn
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 eC
 IQ
 MU
@@ -12851,23 +14100,23 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+aa
+aa
+aa
+PU
 mP
 XP
-eC
+xW
 Zi
 qH
 Uw
 eC
-eC
-nZ
-CG
+qw
+mP
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -12889,12 +14138,12 @@ dp
 dp
 dp
 dp
-dp
+TL
 Xn
 rI
-ai
-UW
-dp
+rI
+wx
+lt
 dp
 dp
 dp
@@ -12916,12 +14165,12 @@ dp
 dp
 dp
 dp
-dp
+TL
 cN
 rI
-Jx
-ZN
-dp
+rI
+wx
+lt
 dp
 dp
 dp
@@ -12963,9 +14212,9 @@ ZE
 ZE
 ZE
 ZE
-sV
-ZE
-ZE
+my
+hh
+hh
 ZE
 ZE
 ZE
@@ -12984,18 +14233,18 @@ gl
 Pv
 Li
 gl
-Tv
-Tj
-Tj
-Tj
+mO
+xu
+xu
+xu
 hz
 hz
-Tj
-Tj
-Tj
-Tj
+xu
+xu
+xu
+xu
 zf
-eC
+xW
 eC
 IQ
 Nz
@@ -13005,24 +14254,24 @@ eC
 eC
 eC
 eC
-Hz
-nZ
-CG
-CG
-CG
+mq
+mP
+xu
+xu
+xu
 xu
 XP
-Hz
+Ir
 IQ
 AM
 wR
 eC
-eC
+qw
 mP
 xu
-Tj
-Rx
-eC
+xu
+XP
+xW
 eC
 eC
 eC
@@ -13044,11 +14293,11 @@ dp
 dp
 dp
 dp
-dp
-Sh
+TL
+DB
 wx
-dp
-dp
+CI
+Hn
 dp
 dp
 dp
@@ -13071,12 +14320,12 @@ dp
 dp
 dp
 dp
-dp
-bZ
-ai
+TL
+cN
+rI
 rI
 wx
-dp
+lt
 dp
 dp
 dp
@@ -13139,44 +14388,44 @@ Fn
 wY
 iX
 Fn
-eC
+jn
+jn
+jn
+HG
+Oy
+PL
+jn
+jn
+jn
+jn
+jn
 eC
 eC
 IQ
+MU
 MU
 wR
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-IQ
-MU
-MU
-wR
-eC
-eC
-eC
-eC
-eC
+qw
 mP
 xu
-Tj
-Tj
-Tj
-Rx
-eC
+xu
+xu
+xu
+XP
+xW
 tN
 Yz
 Tt
 eC
-eC
+qw
 mP
 XP
-Hz
-eC
+bN
+GI
 eC
 eC
 eC
@@ -13199,12 +14448,12 @@ Pu
 Pu
 Pu
 XY
-XY
+mj
 cN
 rI
-Jx
-ZN
-XY
+rI
+wx
+qF
 XY
 XY
 XY
@@ -13226,12 +14475,12 @@ XY
 XY
 XY
 XY
-XY
-dp
-dp
+rI
+Hn
+Tq
 Dk
-RD
-XY
+VZ
+qF
 XY
 Pu
 Pu
@@ -13315,24 +14564,24 @@ eC
 eC
 eC
 eC
-eC
+qw
 mP
 XP
+KB
+jn
+jn
+jn
 eC
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
+qw
 mP
 Qz
-CG
-cg
-eC
+xu
+XP
+xW
 Hz
 eC
 eC
@@ -13354,17 +14603,17 @@ dp
 dp
 uG
 dp
-dp
-pc
-ai
+TL
+cN
+rI
 rI
 wx
-dp
-dp
-dp
-dp
-uG
-dp
+lt
+zK
+zK
+zK
+od
+zK
 dp
 dp
 dp
@@ -13375,18 +14624,18 @@ Kb
 ej
 dp
 dp
-uG
+od
+zK
+zK
+zK
+zK
 dp
-dp
-dp
-dp
-dp
-dp
-VH
-Jx
+TL
+cN
+rI
 rI
 wx
-uG
+te
 dp
 dp
 dp
@@ -13467,12 +14716,13 @@ MU
 MU
 wR
 eC
-eC
-eC
-eC
-eC
+gV
+gV
+gV
+yJ
 mP
 XP
+xW
 eC
 eC
 eC
@@ -13481,13 +14731,12 @@ eC
 eC
 eC
 eC
-eC
-eC
-Oe
-Tj
+qw
+mP
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -13510,17 +14759,17 @@ dp
 dp
 dp
 dp
-dp
-dp
+ov
+vb
 cN
 wx
-dp
-sx
-Jx
-Jx
-Jx
-DS
-dp
+aj
+cN
+rI
+rI
+rI
+wx
+lt
 dp
 dp
 tI
@@ -13529,19 +14778,19 @@ Kb
 Kb
 ej
 dp
-dp
-VH
-Jx
-Jx
-Jx
-ZN
-dp
-dp
+TL
 cN
 rI
-ai
-UW
-dp
+rI
+rI
+wx
+lt
+TL
+cN
+rI
+rI
+wx
+lt
 dp
 dp
 dp
@@ -13621,13 +14870,14 @@ MU
 MU
 Nz
 wR
-eC
-nZ
-CG
-CG
-CG
+qw
+mP
+xu
+xu
+xu
 xu
 XP
+xW
 eC
 eC
 eC
@@ -13637,12 +14887,11 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -13661,41 +14910,41 @@ Kb
 Kb
 ej
 dp
-dp
-dp
-dp
-dp
-dp
-dp
+zK
+zK
+zK
+zK
+zK
+ON
 cN
 wx
-XY
+fT
 cN
 rI
-ai
+rI
 rI
 wx
-XY
-XY
-dp
-tI
+om
+Pi
+zK
+kI
 Kb
 Kb
 Kb
-ej
-dp
-XY
+kN
+zK
+RL
 cN
 rI
-ai
+rI
 rI
 wx
-XY
-XY
+il
+uK
 cN
 wx
-XY
-XY
+DZ
+hv
 XY
 XY
 Pu
@@ -13775,15 +15024,15 @@ Yz
 Yz
 Yz
 Yz
-eC
-eC
+Tt
+qw
 mP
 xu
-Tj
-Tj
-Tj
-Rx
-eC
+xu
+xu
+xu
+XP
+xW
 eC
 Zi
 qH
@@ -13791,13 +15040,13 @@ Uw
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+gV
+gV
+gV
+qw
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -13815,41 +15064,41 @@ tI
 Kb
 Kb
 ej
-dp
-Dm
-Jx
-Jx
-Jx
-Jx
-Jx
+TL
+DB
+rI
+rI
+rI
+rI
+rI
 rI
 TV
-Jx
+rI
 rI
 wx
-dp
+of
 cN
 rI
-Jx
-Jx
-Jx
-oS
-OU
-OU
-OU
-Jx
-Jx
-Jx
+rI
+rI
+rI
+rI
+Hc
+Hc
+Hc
+rI
+rI
+rI
 rI
 wx
-dp
+of
 cN
 rI
-Jx
-Jx
+rI
+rI
 TV
 wx
-dp
+lt
 dp
 dp
 dp
@@ -13931,13 +15180,13 @@ eC
 eC
 eC
 eC
-eC
+qw
 wL
 XP
-eC
-eC
-eC
-eC
+KB
+jn
+jn
+jn
 eC
 eC
 IQ
@@ -13945,14 +15194,14 @@ MU
 ik
 Uw
 eC
-eC
-nZ
-CG
-cg
-eC
+qw
+mP
+xu
+XP
+ju
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -13970,41 +15219,41 @@ MM
 MM
 Kb
 ej
-dp
+TL
 Xn
 rI
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-hh
-dp
-bZ
-ai
-ai
-ai
-ai
-nI
-aG
-aG
-aG
-ai
-ai
-ai
-ai
-UW
-dp
-bZ
-ai
-ai
-ai
-ai
-UW
-dp
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+rI
+wx
+aj
+cN
+rI
+rI
+rI
+rI
+rI
+PK
+PK
+PK
+rI
+rI
+rI
+rI
+wx
+aj
+cN
+rI
+rI
+rI
+rI
+wx
+lt
 dp
 dp
 dp
@@ -14069,27 +15318,27 @@ Fn
 Pv
 Qn
 Fn
-eC
-eC
-eC
-IQ
+gV
+gV
+gV
+bZ
 MU
 wR
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+yJ
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -14100,14 +15349,14 @@ AM
 MU
 wR
 eC
-eC
-Mj
+qw
+tx
 xu
 xu
-zh
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -14125,36 +15374,36 @@ dp
 MM
 MM
 MM
-dp
+TL
 Xn
 wx
-MM
-MM
-MM
-MM
+tB
+tB
+tB
+tB
 lO
 lO
 lO
 lO
+tB
 MM
-MM
-MM
+tB
 lO
 lO
 lO
 lO
-MM
+tB
 Kb
 Kb
 Kb
-MM
+tB
 lO
 lO
 lO
 lO
 MM
-MM
-MM
+tB
+tB
 lO
 lO
 lO
@@ -14224,27 +15473,27 @@ gl
 Pv
 pi
 gl
-SC
-CG
-CG
-CG
+mO
+xu
+xu
+xu
 in
 in
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -14255,14 +15504,14 @@ MU
 MU
 wR
 eC
-eC
+qw
 vg
-Tj
-Rx
-eC
+xu
+XP
+DF
 mP
 XP
-eC
+xW
 eC
 eC
 eC
@@ -14280,10 +15529,10 @@ Hr
 Hr
 Hr
 Hr
-Hr
-Sh
+St
+DB
 wx
-Hr
+ti
 Hr
 Hr
 Hr
@@ -14379,30 +15628,30 @@ ym
 Fn
 Fn
 Fn
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
 xu
 xu
-Tj
-Tj
-Tj
-Tj
-Tj
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
 xu
 XP
-eC
-eC
-eC
-eC
+Gy
+gV
+gV
+gV
 eC
 eC
 Ly
@@ -14411,13 +15660,13 @@ Yz
 Tt
 eC
 eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+qw
 mP
 XP
-eC
+xW
 py
 py
 ut
@@ -14534,30 +15783,31 @@ GH
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
-eC
-eC
-eC
-eC
+KB
+jn
+jn
+jn
+Cz
 mP
 xu
-CG
-CG
-CG
-cg
+xu
+xu
+xu
+XP
+xW
 eC
 eC
 eC
@@ -14568,11 +15818,10 @@ eC
 eC
 eC
 eC
-eC
-eC
+qw
 mP
 XP
-eC
+xW
 ut
 CC
 VI
@@ -14699,20 +15948,21 @@ qH
 Uw
 eC
 eC
-eC
+qw
 mP
 XP
+xW
 eC
 eC
 eC
-eC
-eC
-Oe
-Tj
-Tj
-Tj
+qw
+mP
+xu
+xu
+xu
 xu
 XP
+xW
 eC
 eC
 eC
@@ -14722,12 +15972,11 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
+gV
+yJ
 mP
 XP
-eC
+xW
 ut
 Ck
 sk
@@ -14820,9 +16069,9 @@ xD
 cy
 ZE
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -14836,11 +16085,11 @@ ZE
 uV
 uV
 uV
-uV
-LV
-Mq
-JN
-eB
+Mj
+Zl
+th
+Wi
+xU
 eC
 eC
 eC
@@ -14854,20 +16103,21 @@ MU
 ik
 Uw
 eC
-eC
+qw
 mP
 XP
+xW
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 XP
+xW
 eC
 eC
 eC
@@ -14876,13 +16126,12 @@ eC
 eC
 eC
 eC
-eC
-eC
-nZ
-CG
+qw
+mP
+xu
 xu
 XP
-eC
+xW
 py
 Vc
 sk
@@ -14974,11 +16223,11 @@ ZO
 xD
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 cy
 ZE
@@ -14991,11 +16240,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 eC
 eC
 eC
@@ -15009,9 +16258,10 @@ AM
 MU
 wR
 eC
-eC
+qw
 mP
 XP
+xW
 eC
 eC
 eC
@@ -15019,25 +16269,24 @@ eC
 eC
 eC
 eC
-eC
-eC
+qw
 mP
 XP
+Gy
+gV
+gV
+gV
 eC
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
+qw
 mP
 xu
-Tj
-Rx
-eC
+xu
+XP
+xW
 ut
 dg
 sk
@@ -15055,10 +16304,10 @@ SD
 Vx
 AZ
 AZ
-AZ
+Cd
 GR
 ve
-AZ
+bI
 AZ
 AZ
 AZ
@@ -15129,11 +16378,11 @@ ZO
 xD
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 ZE
 ZE
 ZE
@@ -15146,11 +16395,11 @@ cy
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 qH
 qH
 qH
@@ -15164,9 +16413,10 @@ MU
 iD
 Tt
 eC
-eC
+qw
 mP
 XP
+xW
 eC
 eC
 eC
@@ -15174,24 +16424,23 @@ eC
 eC
 eC
 eC
-eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-cg
-eC
+xu
+xu
+xu
+XP
+xW
 eC
 Zi
 qH
 Uw
-eC
+qw
 mP
 XP
-eC
-eC
+lz
+GI
 eC
 py
 Rv
@@ -15210,7 +16459,7 @@ SD
 Dp
 cY
 cY
-Cv
+jL
 hc
 bU
 FD
@@ -15284,11 +16533,11 @@ ZO
 xD
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -15302,7 +16551,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 FL
 be
@@ -15319,35 +16568,35 @@ Yz
 Tt
 eC
 eC
-eC
+qw
 mP
 XP
-eC
+xW
 eC
 Hz
+gV
+gV
+gV
 eC
 eC
-eC
-eC
-eC
-eC
-Oe
-Tj
-Tj
-xG
+qw
+mP
+xu
+xu
+ow
 xu
 XP
-eC
+xW
 eC
 vG
 AM
 wR
-eC
+qw
 mP
 xu
-CG
-cg
-eC
+xu
+XP
+xW
 ut
 dx
 sk
@@ -15365,12 +16614,12 @@ SD
 Dp
 cY
 Cv
-Cv
+jL
 Sd
 yP
-vH
+yP
 Gv
-Cv
+KJ
 Cv
 hi
 Pm
@@ -15440,6 +16689,9 @@ xD
 ZE
 ZE
 ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -15454,10 +16706,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
-dD
+Sp
 th
 el
 be
@@ -15470,39 +16719,39 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
-eC
+gV
+gV
+gV
+gV
+yJ
 mP
 XP
+xW
+eC
+qw
+mP
+xu
+XP
+xW
 eC
 eC
-eC
-nZ
-CG
-cg
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 XP
-eC
+xW
 eC
 Ly
 ao
 Tt
-eC
-Oe
-Tj
+qw
+mP
+xu
 xu
 XP
-eC
+xW
 ut
 dx
 EF
@@ -15520,12 +16769,12 @@ SD
 Dp
 gp
 Cv
-Cv
-DK
-Wv
+jL
+iN
+yP
 yP
 bU
-Cv
+KJ
 Cv
 wD
 tO
@@ -15611,11 +16860,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Yz
 Ym
 MU
@@ -15624,40 +16873,40 @@ wR
 eC
 eC
 eC
-eC
-nZ
-CG
-CG
+qw
+mP
+xu
+xu
 Pn
-CG
+xu
 xu
 XP
+xW
 eC
-eC
-eC
+qw
 mP
 xu
 XP
+xW
 eC
 eC
 eC
 eC
 eC
-eC
-eC
+qw
 mP
 XP
-eC
-eC
-eC
-eC
+Gy
+gV
+gV
+gV
 Hz
 eC
-eC
-eC
+jn
+Cz
 mP
 XP
-eC
+xW
 ut
 dx
 sk
@@ -15676,11 +16925,11 @@ Dp
 gp
 Cv
 Cv
-Cv
-Cv
+wq
+nh
 sc
 bU
-Cv
+KJ
 Cv
 wD
 tO
@@ -15765,12 +17014,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+bb
+OU
 Zl
 th
 Wi
-eB
+xU
 eC
 IQ
 MU
@@ -15779,7 +17028,7 @@ wR
 eC
 eC
 eC
-eC
+qw
 mP
 xu
 xu
@@ -15787,32 +17036,32 @@ Zu
 xu
 xu
 XP
+xW
 eC
-eC
-eC
-Oe
-Tj
-Rx
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-cg
+XP
+xW
 eC
 eC
 eC
 eC
+eC
+qw
+mP
+xu
+xu
+xu
+xu
+XP
+xW
+eC
+eC
+qw
 mP
 XP
-eC
+Gy
 py
 Rv
 sk
@@ -15832,10 +17081,10 @@ gp
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
+KJ
 Cv
 wD
 tO
@@ -15919,13 +17168,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-aq
-vV
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 eC
 IQ
 MU
@@ -15934,7 +17183,7 @@ wR
 eC
 eC
 eC
-eC
+qw
 mP
 Zu
 xu
@@ -15942,32 +17191,32 @@ xu
 xu
 xu
 XP
+xW
 eC
 eC
-eC
-eC
-Zi
-qH
+jn
+IL
+xE
 qH
 Uw
 eC
 eC
 eC
 eC
-eC
-Oe
-Tj
-Tj
-Tj
+qw
+mP
+xu
+xu
+xu
 xu
 XP
-Hz
+Ir
 eC
 eC
-eC
+qw
 mP
 ow
-zm
+zq
 zA
 VI
 sk
@@ -15987,10 +17236,10 @@ gp
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
+KJ
 Cv
 wD
 tO
@@ -16074,13 +17323,13 @@ ZE
 ZE
 sV
 ZE
-ZE
+tz
 Zl
 th
-Aa
-Aa
+th
+th
 iv
-eB
+xU
 eC
 IQ
 MU
@@ -16089,15 +17338,15 @@ wR
 eC
 eC
 eC
-eC
-Mj
+qw
+tx
 xu
 rC
 UC
 tG
 xu
 XP
-eC
+xW
 eC
 eC
 eC
@@ -16110,16 +17359,16 @@ eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+jn
+jn
+jn
+Cz
 mP
 XP
+xW
 eC
 eC
-eC
-eC
+qw
 mP
 xu
 zq
@@ -16142,10 +17391,10 @@ cY
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
+KJ
 Cv
 NL
 tO
@@ -16229,13 +17478,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 YO
 Wi
-ZE
-ZE
-ZE
-eB
+qN
+zZ
+zZ
+xU
 eC
 IQ
 MU
@@ -16244,7 +17493,7 @@ wR
 eC
 eC
 eC
-eC
+qw
 mP
 xu
 Qz
@@ -16252,7 +17501,7 @@ Qz
 Qz
 xu
 XP
-eC
+xW
 eC
 eC
 Zi
@@ -16261,23 +17510,23 @@ AM
 MU
 wR
 eC
+gV
+gV
+gV
 eC
 eC
 eC
 eC
-eC
-eC
-eC
-eC
+qw
 mP
 XP
-eC
-eC
-eC
-eC
+Gy
+gV
+gV
+yJ
 mP
 XP
-eC
+KB
 ut
 sD
 sk
@@ -16297,42 +17546,42 @@ cY
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
+KJ
+Wq
+jm
+qG
+qG
+jm
 Cv
 Cv
 NL
-tO
-tO
-NL
-Cv
-Cv
-NL
-Cv
-Cv
-NL
-Cv
-ny
+Wq
+Wq
+jm
+Wq
+nq
 tO
 tO
 tO
 iS
 Cv
-NL
-Cv
-Cv
-NL
-Cv
+jm
+Wq
+Wq
+jm
+Wq
 Cv
 NL
 tO
 tO
-NL
-Cv
-Cv
-NL
-Cv
+jm
+Wq
+Wq
+jm
+Wq
 Cv
 NL
 Cv
@@ -16384,13 +17633,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 bn
 th
-vV
-vV
-DI
-eB
+th
+th
+Wi
+xU
 eC
 IQ
 MU
@@ -16399,7 +17648,7 @@ wR
 Zi
 qH
 Uw
-eC
+qw
 mP
 xu
 mP
@@ -16407,7 +17656,7 @@ xu
 oT
 xu
 XP
-eC
+xW
 eC
 eC
 IQ
@@ -16415,24 +17664,24 @@ MU
 MU
 MU
 wR
-eC
-nZ
-CG
-cg
-eC
-eC
-eC
-eC
-eC
+qw
 mP
 xu
-CG
-CG
-CG
-CG
+XP
+Gy
+gV
+gV
+gV
+yJ
+mP
+xu
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 ut
 zG
 VI
@@ -16452,43 +17701,43 @@ cY
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
+GA
+sc
+yP
+yP
+yP
+bU
+KJ
 Cv
-bD
-vH
-vH
-vH
-HH
-Cv
-Cv
-NL
-bD
-vH
-cA
-vH
-HH
-tO
+bg
+sc
+yP
+Ug
+yP
+bU
+Eg
 tO
 tO
 iS
-Cv
-bD
-vH
-cA
-vH
-HH
-Cv
+jL
+sc
+yP
+Ug
+yP
+bU
+KJ
 NL
 tO
-tO
-bD
-vH
-vH
-vH
-HH
-Cv
+hL
+sc
+yP
+yP
+yP
+bU
+KJ
 NL
 Cv
 Cv
@@ -16539,13 +17788,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 eC
 IQ
 MU
@@ -16554,15 +17803,15 @@ wR
 IQ
 AM
 wR
-eC
+qw
 mP
 xu
 mP
 xu
-xu
+oT
 xu
 XP
-eC
+xW
 eC
 eC
 IQ
@@ -16570,24 +17819,24 @@ MU
 iD
 Yz
 Tt
-eC
+qw
 tx
 xu
 xu
-wK
-wK
-wK
-wK
-wK
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
 xu
 XP
-eC
+xW
 py
 py
 ut
@@ -16607,46 +17856,46 @@ gp
 Cv
 Cv
 Cv
-Cv
+fC
 sc
 bU
-Cv
+jA
 sc
 yP
-Wv
+yP
 yP
 bU
-Cv
-Cv
-NL
-sc
-yP
-PM
-yP
-bU
-tO
-tO
-tO
-iS
-Cv
+Ag
+Wq
+qg
 sc
 yP
 PM
 yP
 bU
-Cv
-NL
+Eg
 tO
 tO
+cV
+fC
 sc
 yP
-Wv
+PM
 yP
 bU
-Cv
-NL
-Cv
-Cv
+Ag
+jm
+qG
+pK
+sc
+yP
+yP
+yP
+bU
+Ag
+jm
+Wq
+Wq
 cY
 "}
 (72,1,1) = {"
@@ -16695,12 +17944,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+hh
+Sh
 Zl
 th
 Wi
-eB
+xU
 eC
 IQ
 MU
@@ -16709,7 +17958,7 @@ wR
 Ly
 Yz
 Tt
-eC
+qw
 mP
 xu
 Qz
@@ -16717,7 +17966,7 @@ Qz
 Qz
 xu
 XP
-eC
+xW
 eC
 eC
 Ly
@@ -16725,24 +17974,24 @@ Yz
 Tt
 eC
 eC
-eC
+qw
 vg
-Tj
-Rx
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
-eC
+xu
+XP
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+Cz
 mP
 XP
-tu
+sZ
 tu
 tu
 tu
@@ -16761,48 +18010,48 @@ Dp
 gp
 Cv
 Cv
-Cv
-lz
-yP
-yP
-vH
-yP
-bU
-Cv
+jL
 sc
 yP
-vH
-vH
-vH
+yP
+yP
 yP
 bU
-Cv
+bG
 sc
 yP
-xP
-xP
-xP
-vH
-vH
+yP
+yP
+yP
 yP
 bU
-Cv
+bG
 sc
 yP
-vH
-vH
-vH
-vH
+Fm
+Fm
+Fm
+yP
+yP
 yP
 bU
-Cv
+bG
 sc
 yP
-vH
-vH
-vH
-vH
-vH
+yP
+yP
+yP
+yP
+yP
+bU
+bG
+sc
+yP
+yP
+yP
+yP
+yP
+yP
 "}
 (73,1,1) = {"
 UV
@@ -16851,11 +18100,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
-DE
-eB
+tz
+Zl
+th
+Wi
+xU
 Ff
 XS
 SD
@@ -16864,7 +18113,7 @@ dt
 Ff
 Ff
 Ff
-Ff
+TF
 lH
 fO
 lH
@@ -16872,6 +18121,18 @@ pT
 Gf
 pT
 jM
+Dc
+Ff
+Ff
+Ff
+Ff
+Ff
+Ff
+Ff
+Ff
+GW
+GW
+GW
 Ff
 Ff
 Ff
@@ -16882,22 +18143,10 @@ Ff
 Ff
 Ff
 Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
-Ff
+TF
 kY
 jM
-Ff
+Dc
 Ff
 Ff
 Ff
@@ -16916,48 +18165,48 @@ Dp
 gp
 Cv
 Cv
-Cv
+jL
 sc
 yP
-Wv
-Wv
-Wv
-HG
-Cv
-MF
-Wv
-Wv
-Wv
-Wv
-Wv
-HG
-Cv
-MF
-Wv
-bY
-bY
-bY
-Wv
-Wv
-Wv
-HG
-Cv
-MF
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-HG
-Cv
-MF
-Wv
-Wv
-Wv
 yP
 yP
-Wv
+yP
+bU
+GA
+sc
+yP
+yP
+yP
+yP
+yP
+bU
+GA
+sc
+yP
+bY
+bY
+bY
+yP
+yP
+yP
+bU
+GA
+sc
+yP
+yP
+yP
+yP
+yP
+yP
+bU
+GA
+sc
+yP
+yP
+yP
+yP
+yP
+yP
 "}
 (74,1,1) = {"
 UV
@@ -17071,45 +18320,45 @@ Dp
 gp
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
-Cv
-Cv
-NL
+ZU
+xB
+xB
+yS
+tO
+pu
+yS
+xB
+xB
+yS
+xB
+xB
+yP
+xB
+XJ
 tO
 tO
-NL
-Cv
-Cv
-NL
-Cv
-Cv
-NL
-Cv
-ny
 tO
-tO
-tO
-iS
+bH
+xB
+yS
+xB
 Cv
-NL
+yS
+xB
+xB
+yS
+pu
+pu
+yS
+xB
 Cv
-Cv
-NL
-Cv
-Cv
-NL
-tO
-tO
-NL
-Cv
-Cv
-NL
-Cv
-Cv
-NL
+yS
+xB
+xB
+Xi
 sc
 bU
 gp
@@ -17150,9 +18399,9 @@ ZE
 ZE
 ZE
 ZE
-ZE
-sV
-ZE
+bb
+oO
+bb
 ZE
 ZE
 ZE
@@ -17226,10 +18475,10 @@ Dp
 cY
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 NL
@@ -17264,7 +18513,7 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -17304,11 +18553,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 cy
 ZE
 ZE
@@ -17381,10 +18630,10 @@ Dp
 cY
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 NL
@@ -17419,7 +18668,7 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -17459,10 +18708,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
+Fk
 ZE
 ZE
 ZE
@@ -17470,12 +18720,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-LV
-Mq
-DI
-eB
+tz
+Zl
+th
+Wi
+xU
 AZ
 NV
 SD
@@ -17484,14 +18733,15 @@ Vx
 AZ
 AZ
 AZ
-AZ
-my
+Cd
+lH
 fD
-my
-DW
-sy
-DW
+lH
+pT
+Gf
+pT
 NS
+bI
 AZ
 AZ
 AZ
@@ -17513,11 +18763,10 @@ AZ
 AZ
 AZ
 AZ
-AZ
-AZ
+Cd
 Yc
 NS
-AZ
+bI
 AZ
 AZ
 AZ
@@ -17536,10 +18785,10 @@ xw
 cY
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 NL
@@ -17574,7 +18823,7 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -17614,23 +18863,23 @@ ZE
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+Fk
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+bb
+OU
+Zl
+th
+Wi
+xU
 Gt
 Nm
 us
@@ -17639,7 +18888,7 @@ Vn
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 yq
@@ -17647,7 +18896,7 @@ yq
 po
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -17664,15 +18913,15 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -17691,10 +18940,10 @@ cY
 cY
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -17729,7 +18978,7 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -17770,22 +19019,22 @@ ZE
 ZE
 cy
 ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
-ZE
-aq
-vV
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 Gt
 Nm
 us
@@ -17794,7 +19043,7 @@ Vn
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 cO
@@ -17802,7 +19051,7 @@ cz
 iM
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -17818,16 +19067,16 @@ Gt
 Gt
 Gt
 Gt
-Gt
-wV
-Az
-Az
-Az
-Az
-Az
+Gb
+cO
+cz
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -17846,10 +19095,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -17883,8 +19132,8 @@ Cv
 Cv
 NL
 Cv
-Cv
-NL
+Wq
+qg
 sc
 bU
 gp
@@ -17934,13 +19183,13 @@ ZE
 cy
 ZE
 ZE
-ZE
+tz
 Zl
 th
-Aa
-Aa
-Up
-eB
+th
+th
+Wi
+xU
 Gt
 Nm
 us
@@ -17949,7 +19198,7 @@ Vn
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 fP
 cO
@@ -17957,11 +19206,11 @@ cz
 cz
 cz
 LX
+Mz
 Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
 Gt
 Gt
 Gt
@@ -17973,16 +19222,16 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
-Xz
-Xz
-Xz
-Xz
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -18001,10 +19250,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -18037,9 +19286,9 @@ wD
 Cv
 Cv
 NL
-Cv
-lz
-vH
+jL
+sc
+yP
 yP
 bU
 cY
@@ -18089,13 +19338,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 YO
 Wi
-ZE
-ZE
-ZE
-eB
+qN
+zZ
+zZ
+xU
 Gt
 Nm
 us
@@ -18104,40 +19353,40 @@ Vn
 Gt
 Gt
 Gt
-Gt
-tz
+Gb
+Kp
 cz
 je
 yq
 po
 cz
 LX
+Mz
+Gb
+cO
+cz
+LX
+Mz
 Gt
 Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+fa
+fa
+fa
+jh
+cO
+LX
+BD
+vA
+vA
 yt
-Az
-YU
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
 cO
 LX
-Gt
-Gt
-Gt
-Gt
-cO
-LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -18156,10 +19405,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -18192,11 +19441,11 @@ wD
 Cv
 Cv
 NL
-Cv
+jL
 sc
 yP
-Wv
-FY
+yP
+bU
 cY
 "}
 (82,1,1) = {"
@@ -18244,13 +19493,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 bn
 th
-vV
-vV
-DI
-eB
+th
+th
+Wi
+xU
 Gt
 Nm
 us
@@ -18259,40 +19508,40 @@ Vn
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
-aa
-Xz
-bu
+ER
+ld
+dc
 cz
 LX
-Gt
-Gt
+Mz
+Gb
 cO
 cz
 LX
+Mz
 Gt
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-yt
-Az
-Az
-Az
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
+Mz
 Gt
-Gt
-Gt
-Gt
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -18310,26 +19559,14 @@ Cv
 Cv
 Cv
 Cv
-Cv
-Cv
+Wq
+fC
 sc
 bU
-Cv
-Cv
-Cv
-ny
-tO
-tO
-iS
-Cv
-Cv
-Cv
-Cv
-Cv
+KJ
 Cv
 Cv
 ny
-tO
 tO
 tO
 iS
@@ -18343,15 +19580,27 @@ Cv
 ny
 tO
 tO
+tO
 iS
 Cv
 Cv
 Cv
 Cv
+Cv
+Cv
+Cv
+ny
+tO
+tO
+iS
+Cv
+Cv
+Cv
+jL
 sc
 bU
-Cv
-Cv
+LB
+xl
 cY
 "}
 (83,1,1) = {"
@@ -18399,13 +19648,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 Gt
 Nm
 us
@@ -18414,7 +19663,7 @@ Vn
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 cz
@@ -18422,32 +19671,32 @@ fP
 cz
 cz
 LX
-Gt
-Gt
-aa
-Xz
-vI
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Mz
+Gb
 cO
 cz
-Xz
-Xz
-Xz
-vI
+LX
+Mz
 Gt
 Gt
-yt
-Az
+Gt
+Gt
+Gt
+Gt
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
+Gb
+cO
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -18464,49 +19713,49 @@ Cv
 Cv
 Cv
 Cv
-Cv
-CT
-zP
-yP
-bU
-Cv
-Cv
-Cv
-ny
-tO
-tO
-iS
-Cv
-Cv
-Cv
-Cv
-Cv
-Cv
-Cv
-ny
-tO
-tO
-tO
-iS
-Cv
-Cv
-Cv
-Cv
-Cv
-Cv
-Cv
-ny
-tO
-tO
-iS
-Cv
-Cv
-Cv
-Cv
+jL
 sc
 yP
-vH
-EM
+yP
+bU
+KJ
+Cv
+Cv
+ny
+tO
+tO
+iS
+Cv
+Cv
+Cv
+Cv
+Cv
+Cv
+Cv
+ny
+tO
+tO
+tO
+iS
+Cv
+Cv
+Cv
+Cv
+Cv
+Cv
+Cv
+ny
+tO
+tO
+iS
+Cv
+Cv
+Cv
+jL
+sc
+yP
+yP
+bU
 gp
 "}
 (84,1,1) = {"
@@ -18555,12 +19804,12 @@ ZE
 sV
 ZE
 ZE
-ZE
-ZE
+hh
+Sh
 Zl
 th
 Wi
-eB
+xU
 su
 oI
 us
@@ -18569,14 +19818,19 @@ Vn
 Gt
 Gt
 Gt
-Gt
-aa
-Xz
-Xz
+Gb
+cO
+cz
+cz
 YM
-Xz
+cz
 cz
 LX
+Mz
+Gt
+vA
+vA
+vA
 Gt
 Gt
 Gt
@@ -18584,25 +19838,20 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
+BD
+vA
+vA
+vA
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 cz
-Xz
-vI
-Gt
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -18619,12 +19868,12 @@ wD
 wD
 wD
 Pm
-Pm
+xq
 sc
 yP
-Dw
-Yk
-NL
+yP
+bU
+Ci
 NL
 NL
 NL
@@ -18657,9 +19906,9 @@ wD
 wD
 wD
 NL
-NL
-zs
-Wv
+bg
+sc
+yP
 yP
 bU
 gp
@@ -18694,9 +19943,9 @@ ZO
 xD
 ZE
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -18712,7 +19961,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -18725,14 +19974,14 @@ Gt
 Gt
 Gt
 Ij
-Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
+vA
+yt
 cO
 LX
-Gt
+Mz
 Ij
 Gt
 GJ
@@ -18741,22 +19990,22 @@ su
 Ay
 Gt
 Gt
-Ij
-Gt
-Gt
-Gt
+is
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Ij
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Gt
-Ij
+li
+Fe
 Gt
 Gt
 Gt
@@ -18774,11 +20023,36 @@ tO
 tO
 tO
 tO
-tO
-Dg
+hL
+iN
 bU
-Cv
-ny
+LB
+xl
+tO
+tO
+tO
+tO
+tO
+tO
+tO
+tO
+qG
+qG
+qG
+qG
+qG
+tO
+tO
+tO
+tO
+tO
+tO
+tO
+qG
+qG
+qG
+qG
+qG
 tO
 tO
 tO
@@ -18788,33 +20062,8 @@ tO
 tO
 tO
 tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
-Ox
+pu
+fp
 sc
 bU
 gp
@@ -18848,11 +20097,11 @@ ZO
 ZO
 xD
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -18867,7 +20116,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -18875,19 +20124,19 @@ us
 us
 us
 us
-Vn
-Gt
-Gt
+bz
+fa
+fa
 Gt
 GJ
 su
 su
 su
 Ay
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Nm
@@ -18895,24 +20144,24 @@ us
 us
 eI
 Ay
-Gt
-yt
-Az
-Az
-Az
-cz
-LX
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 cz
-Az
-YU
+cz
+cz
+cz
+LX
+Mz
 Gt
+Gt
+Gt
+Gt
+Gb
+cO
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -18929,47 +20178,47 @@ tO
 tO
 tO
 tO
-tO
+hL
 Sd
 yP
-zP
-EM
+yP
+bU
+Eg
 tO
 tO
 tO
 tO
 tO
 tO
-tO
-tO
-CT
-zP
+hL
+sc
+yP
 Ug
-zP
-HH
+yP
+bU
+Eg
 tO
 tO
 tO
 tO
 tO
-tO
-tO
-CT
-zP
+hL
+sc
+yP
 Ug
-zP
-HH
+yP
+bU
+Eg
 tO
 tO
+qG
+qG
+qG
+qG
+qG
 tO
 tO
-tO
-tO
-tO
-tO
-tO
-tO
-tO
+hL
 sc
 bU
 gp
@@ -19003,11 +20252,11 @@ ZO
 ZO
 xD
 cy
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 ZE
 ZE
 ZE
@@ -19021,28 +20270,28 @@ cy
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Dz
 Dz
 Dz
-Dz
-yt
-Az
-YU
-GJ
+ra
+cO
+cz
+LX
+ad
 gC
 us
 us
 us
 Vn
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Nm
@@ -19050,24 +20299,24 @@ us
 Ze
 us
 Vn
-Gt
+Gb
 cO
 cz
-Xz
-Xz
-Xz
-vI
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-aa
-Xz
+cz
+cz
 cz
 LX
+Mz
 Gt
+Gt
+Gt
+Gt
+Gb
+cO
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Zc
@@ -19084,47 +20333,47 @@ wD
 wD
 wD
 AX
-AX
-is
-Dw
+gH
+sc
+yP
 yP
 bU
-NL
+Ci
 NL
 NL
 NL
 tO
 tO
 NL
-NL
+qg
 sc
 yP
 PM
 yP
 bU
-NL
-Jl
+qV
+VN
 tO
 tO
 tO
-lv
-NL
+WP
+qg
 sc
 yP
 PM
 yP
 bU
-NL
+qV
 Jl
-tO
-bD
-vH
-vH
-vH
-HH
+hL
+sc
+yP
+yP
+yP
+bU
+Ci
 NL
-NL
-NL
+bg
 sc
 bU
 gp
@@ -19158,11 +20407,11 @@ ZO
 ZO
 xD
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 sr
 ZE
@@ -19176,28 +20425,28 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 LX
-Nm
+IZ
 us
 us
 Ze
 us
 Vn
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 XL
@@ -19205,24 +20454,24 @@ wh
 us
 Re
 tK
-Gt
+Gb
 cO
 LX
+BD
+vA
+vA
+vA
 Gt
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+vA
+yt
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Zc
@@ -19240,46 +20489,46 @@ Cv
 Cv
 To
 Cv
-Cv
-Cv
+xB
+Hs
 sc
 bU
-Cv
+KJ
 Cv
 Cv
 TI
 tO
 tO
-iS
-Ie
+RY
+hc
 yP
 Gg
-Cv
+bG
 sc
 yP
-vH
-zP
-xP
-xP
+yP
+yP
+Fm
+Fm
 xy
-vH
-vH
+yP
+yP
 yP
 bU
-Cv
+bG
 sc
 yP
 hq
-ny
-tO
+Vb
+pK
 sc
 yP
-Wv
+yP
 yP
 bU
-Cv
-Cv
-Cv
+Ag
+Wq
+fC
 sc
 bU
 gp
@@ -19314,9 +20563,9 @@ ZO
 xD
 ZE
 ZE
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -19331,38 +20580,39 @@ ZE
 wa
 wa
 wa
-wa
-QA
-YC
-Up
-eB
+Wd
+Zl
+th
+Wi
+xU
 Gt
 Gt
 Gt
-Gt
-aa
-Xz
-vI
-XL
+Gb
+cO
+cz
+LX
+cv
 wh
 us
 us
 Re
 tK
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
 XL
-Dz
-tK
-Gt
-Gt
+cA
+er
+fa
+jh
 cO
 LX
+Mz
 Gt
 Gt
 Gt
@@ -19373,11 +20623,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -19396,45 +20645,45 @@ Cv
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
+KJ
 Cv
 Cv
 ny
 tO
 tO
-iS
+RY
 sc
-yP
-HG
-Cv
-MF
-Wv
-yP
-Dw
-bY
-bY
-bY
-Wv
-Wv
-Wv
-HG
-Cv
-MF
-yP
-yP
-JE
-vH
 yP
 bU
-Cv
+GA
 sc
 yP
-vH
-vH
-JE
+yP
+yP
+bY
+bY
+bY
+yP
+yP
+yP
+bU
+GA
+sc
+yP
+yP
+Fz
+yP
+yP
+bU
+bG
+sc
+yP
+yP
+yP
+Fz
 yP
 bU
 cY
@@ -19495,29 +20744,30 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
 Gt
 XL
 Dz
 Dz
 tK
 Gt
-Gt
+Gb
 cO
 LX
+Mz
 Gt
 Gt
 Gt
-Gt
-Gt
-yt
-Az
-Az
-Az
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
+Mz
 Gt
 Gt
 Gt
@@ -19528,11 +20778,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -19551,45 +20800,45 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
 tO
-tO
-iS
+qG
+mz
 sc
 bU
+TY
 Cv
-Cv
-Cv
-Cv
+xB
+Hs
 WO
-ny
+kS
 tO
 tO
 tO
-iS
+bH
+xB
+yS
+xB
 Cv
-NL
-Cv
-Cv
-NL
+Dr
 sc
 yP
-Wv
-Wv
-Wv
-FY
-Cv
-MF
-Wv
-Wv
-Wv
-Wv
+yP
+yP
+yP
+bU
+GA
+sc
+yP
+yP
+yP
+yP
 yP
 bU
 cY
@@ -19649,30 +20898,31 @@ qa
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+fa
+fa
+fa
+fa
+fa
+fa
+fa
+jh
 cO
 LX
-Gt
-Gt
-Gt
-Gt
-Gt
+DH
+fa
+fa
+fa
+jh
 cO
 cz
-Xz
-Xz
-Xz
-vI
+cz
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -19683,11 +20933,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -19706,24 +20955,24 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
-tO
-Sx
-zP
+hL
+sc
+yP
 yP
 bU
+KJ
 Cv
-Cv
-Cv
-Cv
+Wq
+fC
 WO
-ny
+QU
 tO
 tO
 tO
@@ -19732,19 +20981,19 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
-tO
-tO
-wD
+ZU
+pu
+pu
+yS
 Cv
-Cv
-NL
-Cv
-Cv
-NL
+xB
+yS
+xB
+xB
+Xi
 sc
 bU
 cY
@@ -19804,45 +21053,45 @@ ym
 Fn
 Fn
 Fn
-Az
-Az
-Az
-Az
-Az
-Az
-Az
-Az
-Az
-Az
-Az
 cz
 cz
-Az
-Az
-Az
-Az
-Az
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
 cz
 LX
+BD
+vA
+vA
+vA
 Gt
 Gt
 Gt
 Gt
 Gt
 Gt
+fa
+fa
+fa
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -19861,24 +21110,24 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
-tO
+hL
 sc
 yP
-Dw
-Yk
-Cv
-Cv
-mW
+yP
+bU
+KJ
+jL
+sc
 TP
 ru
-ny
+QU
 tO
 tO
 tO
@@ -19887,11 +21136,11 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
-tO
+qV
+qG
 tO
 wD
 Cv
@@ -19899,7 +21148,7 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -19959,27 +21208,27 @@ gl
 Pv
 xc
 gl
-xK
-Xz
+mk
+cz
 Dx
-Xz
-Xz
+cz
+cz
 Kk
 Kk
-Xz
-Xz
+cz
+cz
 Dx
-Xz
-Xz
-Xz
-Xz
-Xz
-Xz
-oO
-Oy
+cz
+cz
+cz
+cz
+cz
+cz
+Dx
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 GJ
@@ -19988,16 +21237,16 @@ su
 Ay
 Gt
 Gt
-Gt
-yt
-ri
-YU
-Gt
-Gt
-Gt
+Gb
+cO
+Dx
+LX
+DH
+fa
+jh
 cO
 LX
-Gt
+Mz
 Ij
 Gt
 Gt
@@ -20016,24 +21265,24 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
-tO
+hL
 Dg
 bU
+LB
+xl
 Cv
-Cv
-Cv
-Cv
+jL
 Rt
 TT
 Xc
-ny
+QU
 tO
 tO
 tO
@@ -20042,19 +21291,19 @@ Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 yP
-vH
-EM
-tO
+yP
+bU
+Eg
 wD
 Cv
 Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -20114,27 +21363,27 @@ Fn
 Jy
 vt
 Fn
-Gt
-Gt
-Gt
-Gt
-Nm
+vA
+vA
+vA
+vA
+OP
 us
 Vn
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+yt
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Nm
@@ -20143,16 +21392,16 @@ us
 eI
 Ay
 Gt
-Gt
-tz
+Gb
+Zf
 cz
 cz
-yu
-yu
-yu
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -20171,24 +21420,24 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
-tO
+hL
 Sd
 yP
-zP
-EM
-Cv
-Cv
+yP
+bU
+KJ
+jL
 Tx
 Ve
-Xf
-ny
+ru
+QU
 tO
 tO
 tO
@@ -20197,19 +21446,19 @@ Cv
 wD
 Cv
 Cv
-NL
-MF
-Wv
+bg
+sc
+yP
 yP
 bU
-tO
+Eg
 wD
 Cv
 Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -20250,9 +21499,9 @@ ZE
 ZE
 cy
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -20286,10 +21535,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Nm
@@ -20298,16 +21547,16 @@ Ze
 us
 Vn
 Gt
-Gt
+Gb
 IT
-Xz
-vI
-Gt
-Gt
-Gt
+uk
+LX
+BD
+vA
+yt
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -20325,24 +21574,24 @@ Cv
 Cv
 wD
 Cv
-Cv
-NL
+Wq
+qg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
-tO
-is
-Dw
+hL
+sc
+yP
 yP
 bU
+KJ
 Cv
-Cv
-Cv
-wD
-Cv
+xB
+bl
+xB
 ny
 gU
 tO
@@ -20352,19 +21601,19 @@ Cv
 wD
 Cv
 Cv
-NL
-Cv
-Cv
+yP
+xl
+MG
 sc
 bU
-tO
+Eg
 wD
 Cv
 Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -20404,11 +21653,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -20441,10 +21690,10 @@ su
 su
 su
 Ay
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 XL
@@ -20454,15 +21703,15 @@ us
 Vn
 Gt
 Gt
+vA
+vA
+vA
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -20479,18 +21728,18 @@ Cv
 Cv
 Cv
 wD
-Cv
-lz
-vH
+jL
+sc
+yP
 yP
 bU
-NL
+Ci
 Cv
 Cv
 wD
 tO
-tO
-iS
+pu
+Pd
 sc
 bU
 no
@@ -20507,19 +21756,19 @@ rk
 ce
 ce
 rk
-NL
-lz
-vH
+bg
+sc
+yP
 yP
 bU
-tO
+Eg
 wD
 Cv
 Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -20559,11 +21808,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 cy
 ZE
 ZE
@@ -20596,13 +21845,13 @@ us
 us
 us
 Vn
-Gt
+Gb
 cO
 LX
-Gt
-Gt
-Gt
-Gt
+DH
+fa
+fa
+fa
 XL
 Dz
 Dz
@@ -20613,11 +21862,11 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -20634,21 +21883,21 @@ Cv
 Cv
 Cv
 wD
-Cv
+jL
 sc
 yP
-Wv
-FY
-NL
+yP
+bU
+Ci
 Cv
 Cv
 wD
 tO
 tO
-iS
+RY
 sc
 bU
-no
+MA
 rk
 oY
 Zp
@@ -20662,19 +21911,19 @@ Lg
 Iw
 pk
 rk
-NL
+qg
 sc
 yP
-Wv
-FY
-tO
+yP
+bU
+Eg
 wD
 Cv
 Cv
 NL
 Cv
 Cv
-NL
+bg
 sc
 bU
 gp
@@ -20714,11 +21963,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -20751,28 +22000,28 @@ wh
 us
 us
 Vn
-Gt
+Gb
 cO
 cz
-Az
-Az
-Az
-YU
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-yt
-Az
+cz
+cz
 cz
 LX
+Mz
 Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+Gb
+cO
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -20789,18 +22038,18 @@ Cv
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
-Cv
+LB
+xl
 Cv
 Cv
 To
 ny
 tO
 tO
-iS
+RY
 sc
 yP
 zL
@@ -20820,8 +22069,8 @@ xi
 Bc
 yP
 bU
-ny
-tO
+kS
+pu
 Ox
 iS
 Cv
@@ -20829,10 +22078,10 @@ Cv
 Cv
 Cv
 To
-Cv
+jL
 sc
 Fz
-vH
+yP
 "}
 (99,1,1) = {"
 UV
@@ -20870,9 +22119,9 @@ cy
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -20906,28 +22155,28 @@ Nm
 us
 us
 Vn
-Gt
-aa
-Xz
-Xz
-Xz
-cz
-LX
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 cz
-Xz
-vI
+cz
+cz
+cz
+LX
+Mz
 Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+Gb
+cO
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -20944,21 +22193,21 @@ Cv
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 yP
-vH
-EM
-Cv
+yP
+bU
+KJ
 Cv
 Cv
 ny
 tO
 tO
-iS
+RY
 sc
 yP
-na
+zL
 MB
 MB
 QO
@@ -20972,10 +22221,10 @@ Lg
 QO
 gI
 MB
-kP
+Bc
 yP
 bU
-ny
+QU
 tO
 tO
 iS
@@ -20984,10 +22233,10 @@ Cv
 Cv
 Cv
 Cv
-Cv
-zs
-Wv
-Wv
+jL
+sc
+yP
+yP
 "}
 (100,1,1) = {"
 UV
@@ -21044,30 +22293,31 @@ Fn
 Pv
 Qn
 Fn
-Gt
-Gt
+fa
+fa
+fa
+fa
+Ji
+us
+Vn
+fa
+fa
+fa
+fa
 Gt
 Gt
 Nm
 us
-Vn
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Nm
-us
 us
 Vn
 Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
+yt
 cO
 LX
+Mz
 Gt
 Gt
 Gt
@@ -21076,12 +22326,11 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
+li
+li
 Gt
 Gt
 Gt
@@ -21099,18 +22348,18 @@ wD
 Cv
 Cv
 wD
-Cv
-zs
-Wv
+jL
+sc
+yP
 yP
 bU
-NL
+Ci
 Cv
 Cv
 wD
 tO
 tO
-iS
+RY
 sc
 bU
 Oi
@@ -21130,7 +22379,7 @@ rk
 PP
 sc
 bU
-NL
+Ci
 tO
 tO
 wD
@@ -21140,8 +22389,8 @@ NL
 Cv
 Cv
 NL
-Cv
-Cv
+xB
+xB
 cY
 "}
 (101,1,1) = {"
@@ -21199,18 +22448,18 @@ gl
 Pv
 pi
 gl
-FC
-Az
-Az
-ri
-Az
+mk
+cz
+cz
+Dx
+cz
 co
 co
-Az
-Az
-Az
-Xt
-Gt
+cz
+cz
+cz
+di
+Mz
 Gt
 Nm
 us
@@ -21220,24 +22469,24 @@ Ij
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 di
-Gt
-Gt
-Gt
-Gt
+DH
+fa
+fa
+fa
 Gt
 Ij
 GJ
 su
 Ay
-Gt
+Gb
 cO
 cz
-Az
-YU
-Ij
+cz
+LX
+Ot
 Gt
 Gt
 Gt
@@ -21255,17 +22504,17 @@ Cv
 To
 wD
 Cv
-Cv
-NL
+xB
+Xi
 sc
 bU
-NL
+Ci
 Cv
 To
 wD
 tO
 tO
-iS
+RY
 sc
 bU
 no
@@ -21282,11 +22531,11 @@ gI
 UB
 tM
 ce
-NL
+bg
 sc
 bU
-NL
-tO
+qV
+qG
 tO
 wD
 Cv
@@ -21354,18 +22603,18 @@ ym
 Fn
 Fn
 Fn
-Xz
-Xz
-Xz
-Xz
-Xz
-Xz
-Xz
-Xz
-Xz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Nm
 us
@@ -21375,24 +22624,24 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
-Az
-Az
-Az
-YU
-Gt
+cz
+cz
+cz
+LX
+Mz
 Gt
 Nm
 Ze
 Vn
-Gt
-aa
-Xz
+Gb
+cO
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -21411,16 +22660,16 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
-Cv
-Cv
-wD
-tO
-tO
-iS
+qV
+Wq
+Wq
+jm
+qG
+qG
+mz
 sc
 bU
 no
@@ -21437,12 +22686,12 @@ lC
 rk
 YV
 ce
-NL
+bg
 sc
 yP
-vH
-EM
-tO
+yP
+bU
+Eg
 wD
 Cv
 Cv
@@ -21509,18 +22758,18 @@ GH
 Gt
 Gt
 Gt
-Gt
-Gt
-GJ
-su
-su
-su
-Ay
-Gt
-Gt
+vA
+vA
+DW
+tL
+tL
+tL
+yB
+vA
+yt
 cO
 LX
-Gt
+Mz
 Gt
 Nm
 us
@@ -21530,24 +22779,24 @@ Gt
 Gt
 Gt
 Gt
-Gt
-aa
-Xz
-Xz
-Xz
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 XL
 Dz
 tK
 Gt
-Gt
-Gt
+vA
+yt
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -21566,16 +22815,16 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 yP
-vH
-vH
-vH
-vH
-vH
-vH
-vH
+yP
+yP
+yP
+yP
+yP
+yP
+yP
 yP
 bU
 no
@@ -21592,12 +22841,12 @@ rk
 rk
 rk
 rk
-NL
-MF
-Wv
+bg
+sc
+yP
 yP
 bU
-tO
+Eg
 wD
 Cv
 Cv
@@ -21672,11 +22921,11 @@ us
 us
 Vn
 Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
+nx
+aq
 Nm
 us
 us
@@ -21686,23 +22935,23 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
+yt
 cO
 LX
+Mz
 Gt
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -21721,16 +22970,16 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 yP
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
-Wv
+yP
+yP
+yP
+yP
+yP
+yP
+yP
 yP
 bU
 no
@@ -21747,12 +22996,12 @@ OI
 OI
 OI
 ce
-NL
-Cv
-Cv
+bg
+xl
+MG
 rw
 YT
-tO
+Eg
 wD
 Cv
 Cv
@@ -21811,11 +23060,11 @@ ZE
 uV
 uV
 uV
-uV
-LV
-Mq
-JN
-eB
+Mj
+Zl
+th
+Wi
+xU
 Gt
 Gt
 Gt
@@ -21827,12 +23076,12 @@ Ze
 us
 Vn
 Gt
-Gt
+Gb
 cO
 cz
-Az
-YU
-Nm
+cz
+LX
+IZ
 us
 us
 Vn
@@ -21844,20 +23093,20 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
+DH
+fa
+fa
+fa
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -21876,16 +23125,16 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
-Cv
-Cv
-wD
-tO
-tO
-iS
+ZU
+xB
+xB
+yS
+pu
+pu
+Pd
 sc
 Gg
 no
@@ -21902,12 +23151,12 @@ gI
 gI
 gI
 ce
-NL
-lz
-vH
+bg
+sc
+yP
 yP
 bU
-tO
+Eg
 wD
 Cv
 Cv
@@ -21966,11 +23215,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
@@ -21982,12 +23231,12 @@ us
 Re
 tK
 Gt
-Gt
-tL
-Xz
+Gb
+cO
+cz
 cz
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -21999,20 +23248,20 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
-Az
-Az
-Az
-YU
+cz
+cz
+cz
+LX
+Mz
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22031,16 +23280,16 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
 tO
 tO
-iS
+RY
 sc
 bU
 no
@@ -22057,12 +23306,12 @@ OY
 OO
 OO
 rk
-NL
+bg
 sc
 yP
-Wv
-FY
-tO
+yP
+bU
+Eg
 wD
 Cv
 Cv
@@ -22121,11 +23370,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
@@ -22138,11 +23387,11 @@ tK
 Gt
 Gt
 Gt
-Gt
-Gt
+vA
+yt
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -22150,24 +23399,24 @@ Gt
 Gt
 Gt
 Gt
+fa
+fa
+fa
 Gt
-Gt
-Gt
-Gt
-Gt
-aa
-Xz
-Xz
-Xz
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
+Mz
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 ry
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22186,37 +23435,37 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
 tO
 tO
-iS
+RY
 sc
 bU
 no
 rk
 ce
 ce
-rk
-rk
-rk
+Qb
+Qb
+Qb
 oA
-rk
-rk
-rk
+Qb
+Qb
+Qb
+fh
 ce
-ce
 rk
-NL
+qg
 sc
 bU
-NL
-tO
+ZU
+pu
 tO
 wD
 Cv
@@ -22264,6 +23513,9 @@ ZE
 ZE
 ZE
 ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -22273,14 +23525,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 su
 su
 su
@@ -22294,35 +23543,35 @@ su
 su
 su
 su
-su
+UF
 AF
 zE
-gC
+Ty
 us
 us
 Vn
 Gt
 Gt
 Gt
-Gt
-yt
+Gb
+cO
 qO
-YU
-Gt
+LX
+Mz
 GJ
-Ay
-Gt
-Gt
-Gt
+yB
+vA
+vA
+yt
 cO
 LX
+Mz
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22340,37 +23589,37 @@ To
 Cv
 Cv
 Cv
-Cv
-Cv
+Wq
+fC
 sc
 bU
-To
+Yy
 Cv
 Cv
 ny
 tO
 tO
-iS
+RY
 sc
 GD
-vH
-vH
-EM
-Cv
-lz
-vH
+yP
+yP
+bU
+GA
+sc
+yP
 aN
 xP
-vH
-vH
-vH
-EM
-Cv
-lz
-vH
+yP
+yP
+yP
+bU
+GA
+sc
+yP
 zb
 bU
-ny
+QU
 tO
 tO
 iS
@@ -22418,13 +23667,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
-ZE
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -22432,7 +23679,9 @@ ZE
 ZE
 ZE
 ZE
-dD
+ZE
+ZE
+Sp
 th
 el
 be
@@ -22459,25 +23708,25 @@ Vn
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 bi
 LX
-GJ
+ad
 gC
 eI
 Ay
 Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
-Gt
-Gt
+DH
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22494,38 +23743,38 @@ Cv
 Cv
 Cv
 Cv
-Cv
-Sx
-zP
+jL
+sc
+yP
 yP
 bU
-Cv
+KJ
 Cv
 Cv
 ny
 tO
 tO
-iS
-zs
-Wv
-Wv
+RY
+sc
+yP
+yP
 yP
 bU
-Cv
+jA
 sc
 yP
 bY
 bE
 bY
-Wv
+yP
 yP
 bU
-Cv
+jA
 sc
 yP
-Wv
-FY
-ny
+yP
+bU
+QU
 tO
 Ox
 iS
@@ -22573,11 +23822,11 @@ ZE
 ZE
 ZE
 cy
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 sV
 ZE
 ZE
@@ -22587,7 +23836,7 @@ ZE
 ZE
 sV
 ZE
-dD
+Sp
 th
 el
 be
@@ -22614,25 +23863,25 @@ Vn
 Gt
 Gt
 Gt
-Gt
-aa
-Xz
-vI
-Nm
+Gb
+cO
+cz
+LX
+IZ
 us
 Ze
 eI
 Ay
-Gt
+Gb
 cO
 cz
-Az
-Az
-Az
-Az
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22649,37 +23898,37 @@ wD
 wD
 wD
 Pm
-Pm
+xq
 sc
 yP
-Dw
-Yk
-NL
+yP
+DL
+Ci
 NL
 NL
 NL
 tO
 tO
 NL
-NL
-NL
-NL
+yS
+yS
+Xi
 sc
 yP
-vH
+yP
 Yh
 bU
-Ox
+MD
 tO
 tO
 ht
 sc
 yP
-vH
+yP
 Yh
 bU
-NL
-NL
+ZU
+yS
 NL
 tO
 tO
@@ -22728,41 +23977,41 @@ ZE
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
-cy
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+Fk
+cy
+ZE
+bb
+bb
+bb
+ZE
+ZE
+ZE
+tz
+Zl
+th
+Wi
+xU
+Dz
+Dz
+Dz
+Dz
+cA
+cA
+cA
 Dz
 Dz
 Dz
 Dz
 Dz
 Dz
-Dz
-Dz
-Dz
-Dz
-Dz
-Dz
-Dz
-Dz
+ra
 sB
 tf
-wh
+QP
 us
 us
 io
@@ -22770,24 +24019,24 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Ij
+vA
+vA
+hy
 Nm
 us
 us
 us
 Vn
-Gt
+Gb
 XZ
-Xz
-Xz
-Xz
-Xz
-Xz
+cz
+cz
+cz
+cz
+cz
 cz
 di
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22804,11 +24053,11 @@ tO
 tO
 tO
 tO
-tO
-Dg
+hL
+iN
 bU
-Cv
-ny
+LB
+xl
 tO
 tO
 tO
@@ -22818,22 +24067,22 @@ tO
 tO
 tO
 tO
-tO
-MF
-Wv
+hL
+sc
+yP
 WC
-Wv
-FY
+yP
+bU
+Eg
 tO
 tO
-tO
-tO
-MF
-Wv
+hL
+sc
+yP
 WC
-Wv
-FY
-tO
+yP
+bU
+Eg
 tO
 tO
 tO
@@ -22884,40 +24133,40 @@ ZE
 ZE
 ZE
 ZE
+hh
+hh
+hh
 ZE
 ZE
-ZE
-ZE
-ZE
-ZE
-LV
-Mq
-JN
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+Fk
+ZE
+bb
+OU
+Zl
+th
+Wi
+xU
+Gt
+Gt
+Gt
+Gb
+cO
+cz
+LX
+Mz
 Gt
 Gt
 Gt
 Gt
-yt
-Az
-YU
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -22934,15 +24183,15 @@ Dz
 Dz
 tK
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
+vA
+jf
+MJ
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -22959,11 +24208,12 @@ tO
 tO
 tO
 tO
-tO
+hL
 Sd
 yP
-zP
-EM
+yP
+bU
+Eg
 tO
 tO
 tO
@@ -22973,21 +24223,20 @@ tO
 tO
 tO
 tO
-tO
-tO
-tO
-tO
-tO
-tO
+pu
+pu
+pu
+pu
+pu
 tO
 xC
 tO
 tO
-tO
-tO
-tO
-tO
-tO
+pu
+pu
+pu
+pu
+pu
 tO
 tO
 tO
@@ -23044,35 +24293,35 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
-ZE
-aq
-vV
+Fk
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 LX
+Mz
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -23084,20 +24333,20 @@ Ay
 Gt
 Gt
 Gt
+fa
+fa
+fa
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-yt
-Az
+Gb
+cO
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -23114,12 +24363,12 @@ wD
 wD
 wD
 AX
-AX
-is
-Dw
+gH
+sc
+yP
 yP
 bU
-NL
+Ci
 NL
 NL
 NL
@@ -23199,60 +24448,60 @@ ZE
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
-ZE
+tz
 Zl
 th
-Aa
-Aa
-Up
-eB
+Wi
+Fk
+tz
+Zl
+th
+th
+th
+Wi
+xU
 Gt
 Gt
 Gt
-Gt
-aa
-Xz
-vI
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-cO
-LX
-Nm
-us
-us
-Vn
-Nm
-us
-us
-us
-Vn
-Gt
-Gt
-Gt
-yt
-Az
-YU
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 cz
-Xz
-vI
+LX
+Mz
 Gt
+Gt
+Gt
+fa
+fa
+jh
+cO
+LX
+IZ
+us
+us
+Vn
+Nm
+us
+us
+us
+Vn
+Gt
+Gt
+Gb
+cO
+cz
+LX
+DH
+fa
+fa
+fa
+fa
+jh
+cO
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -23270,11 +24519,11 @@ Cv
 Cv
 Cv
 Cv
-Cv
-Cv
+xB
+Hs
 sc
 bU
-Cv
+KJ
 Cv
 Cv
 ny
@@ -23355,34 +24604,34 @@ ZE
 ZE
 ZE
 ZE
+hh
+hh
+hh
 ZE
-ZE
-ZE
-ZE
-ZE
+tz
 YO
 Wi
-ZE
-ZE
-ZE
-eB
+qN
+zZ
+zZ
+xU
 Gt
 Gt
 Gt
 Gt
+vA
+vA
+vA
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Ji
+Gb
+cO
 wf
-Az
+cz
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -23393,20 +24642,20 @@ us
 Vn
 Gt
 Gt
-Gt
-tz
+Gb
+Kp
 cz
 cz
-wM
-wM
-wM
-wM
-wM
-wM
+cz
+cz
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
-Gt
+dG
+dG
 Gt
 Gt
 Gt
@@ -23426,10 +24675,10 @@ Cv
 Cv
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
+KJ
 Cv
 Cv
 ny
@@ -23514,13 +24763,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 bn
 th
-vV
-vV
-DI
-eB
+th
+th
+Wi
+xU
 Gt
 Gt
 Gt
@@ -23531,13 +24780,13 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 cz
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -23548,21 +24797,21 @@ us
 Vn
 Gt
 Gt
-Gt
+Gb
 IT
-Xz
-vI
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+cz
+LX
+vA
+vA
+vA
+vA
+vA
+yt
 cO
 cz
-Az
-YU
-Gt
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -23581,10 +24830,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -23669,13 +24918,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 Gt
 GJ
 su
@@ -23684,15 +24933,15 @@ su
 Ay
 Gt
 Gt
-Gt
-Gt
-Gt
+fa
+fa
+jh
 cO
 fP
 cz
 cz
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -23704,20 +24953,20 @@ tK
 Gt
 Gt
 Gt
+vA
+vA
+vA
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-aa
-Xz
+Gb
+cO
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -23736,10 +24985,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -23825,12 +25074,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+hh
+Sh
 Zl
 th
 Wi
-eB
+xU
 Gt
 Nm
 us
@@ -23838,16 +25087,16 @@ us
 us
 Vn
 Gt
-Gt
-yt
-Az
-Az
-PL
-OP
-OP
+Gb
+cO
+cz
+cz
+cO
+cz
+cz
 cz
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -23868,11 +25117,11 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+sy
+rb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -23891,10 +25140,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -23982,7 +25231,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -23993,16 +25242,16 @@ Ze
 Re
 tK
 Gt
-Gt
+Gb
 cO
-cz
+uk
 cz
 cO
 cz
 cz
 cz
 LX
-Nm
+IZ
 us
 us
 eI
@@ -24024,10 +25273,10 @@ su
 su
 su
 su
-su
+UF
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24046,10 +25295,10 @@ Cv
 wD
 To
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 To
 wD
@@ -24137,7 +25386,7 @@ ZE
 ZE
 sV
 ZE
-dD
+Sp
 th
 el
 be
@@ -24148,8 +25397,8 @@ uN
 Vn
 Gt
 Gt
-Gt
-tz
+Gb
+Kp
 cz
 QH
 cz
@@ -24157,7 +25406,7 @@ cz
 yq
 cz
 LX
-Nm
+IZ
 uN
 us
 us
@@ -24182,7 +25431,7 @@ us
 uN
 mk
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24201,10 +25450,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -24272,6 +25521,9 @@ ZO
 ZO
 ZO
 xD
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -24288,14 +25540,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Gt
 XL
 Dz
@@ -24303,7 +25552,7 @@ Dz
 tK
 Gt
 Gt
-Gt
+Gb
 cO
 cz
 cz
@@ -24312,7 +25561,7 @@ cz
 cz
 cz
 LX
-Nm
+IZ
 us
 us
 us
@@ -24337,7 +25586,7 @@ us
 us
 mk
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24355,11 +25604,11 @@ Cv
 Cv
 wD
 Cv
-Cv
-NL
+Wq
+qg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -24426,11 +25675,11 @@ ZO
 ZO
 ZO
 ZO
-xD
-LV
-Mq
-JN
-ZE
+aG
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -24445,29 +25694,29 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+bb
+OU
 Zl
 th
 Wi
-eB
+xU
+Gt
+fa
+fa
+fa
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-aa
-Xz
-Xz
-tL
-Oy
-Oy
+Gb
+cO
+cz
+cz
+cO
+cz
+cz
 cz
 LX
-Nm
+IZ
 us
 us
 Re
@@ -24489,10 +25738,10 @@ Dz
 Dz
 Dz
 Dz
-Dz
+ra
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24509,12 +25758,12 @@ wD
 Cv
 Cv
 wD
-Cv
-lz
-vH
+jL
+sc
+yP
 yP
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -24581,11 +25830,11 @@ ZO
 ZO
 ZO
 ZO
-xD
+aG
 Zl
 th
 Wi
-ZE
+Fk
 cy
 ZE
 ZE
@@ -24599,30 +25848,30 @@ ZE
 ZE
 ZE
 ZE
-ZE
-aq
-vV
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
+Gb
+cO
+cz
+LX
+Mz
 Gt
+Gt
+Gt
+vA
+vA
 yt
-Az
-YU
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
 cO
 fP
 cz
 cz
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -24644,10 +25893,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24664,12 +25913,12 @@ wD
 Cv
 Cv
 wD
-Cv
+jL
 sc
 yP
-Wv
-FY
-NL
+yP
+bU
+Ci
 Cv
 Cv
 wD
@@ -24736,11 +25985,11 @@ ZO
 ZO
 ZO
 ZO
-xD
-QA
-YC
-Up
-ZE
+aG
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -24754,30 +26003,30 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
-Aa
-Aa
-Up
-eB
-Gt
+th
+th
+Wi
+xU
+Gb
 cO
 cz
 LX
+Mz
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 cz
 cz
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -24789,6 +26038,9 @@ Gt
 Gt
 Gt
 Gt
+fa
+fa
+fa
 Gt
 Gt
 Gt
@@ -24796,13 +26048,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24819,11 +26068,11 @@ Zc
 Zc
 Cv
 Cv
-Cv
+jL
 sc
 bU
-Cv
-Cv
+LB
+xl
 Cv
 Cv
 Cv
@@ -24892,6 +26141,9 @@ ZO
 cy
 ZO
 xD
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -24906,33 +26158,30 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
-ZE
+tz
 YO
 Wi
-ZE
-ZE
-ZE
+qN
+zZ
+zZ
 eB
-Gt
-aa
-Xz
-vI
-Gt
-Gt
-Gt
+Gb
+cO
+cz
+LX
+Mz
 Gt
 Gt
 Gt
 Gt
-aa
+Gt
+Gb
+cO
 YM
-Xz
+cz
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -24943,21 +26192,21 @@ Vn
 Gt
 Gt
 Gt
-Gt
-yt
-Az
-YU
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
+cO
+cz
+LX
+lT
+fa
+fa
+fa
+fa
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -24974,12 +26223,12 @@ Zc
 Zc
 Cv
 Cv
-Cv
+jL
 sc
 yP
-vH
-EM
-Cv
+yP
+bU
+KJ
 Cv
 Cv
 ny
@@ -25064,13 +26313,17 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 bn
 th
-vV
-vV
-DI
-eB
+th
+th
+Wi
+xU
+Gt
+vA
+vA
+vA
 Gt
 Gt
 Gt
@@ -25078,16 +26331,12 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+yt
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -25098,21 +26347,21 @@ Vn
 Gt
 Gt
 Gt
-Gt
-tz
+Gb
+Kp
 yq
 cz
-wM
-wM
-wM
-wM
-yc
-yc
-Az
-Az
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -25129,12 +26378,12 @@ Zc
 Cv
 Cv
 wD
-Cv
-zs
-Wv
+jL
+sc
+yP
 yP
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -25219,13 +26468,13 @@ ZE
 ZE
 ZE
 ZE
-ZE
-bz
-Aa
+tz
+Zl
+th
 th
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
@@ -25239,10 +26488,10 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -25253,21 +26502,21 @@ aM
 Gt
 Gt
 Gt
-Gt
+Gb
 IT
-Xz
-vI
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+cz
+LX
+Lw
+vA
+vA
+vA
+vA
+yt
 cO
 cz
-Xz
-vI
-Gt
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -25285,11 +26534,11 @@ Cv
 Cv
 wD
 Cv
-Cv
-NL
+xB
+Xi
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -25375,12 +26624,12 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
+hh
+Sh
 Zl
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
@@ -25394,34 +26643,34 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
 Gt
+fa
+fa
+fa
+Gt
+Gt
+Gt
+Gt
+vA
+vA
+vA
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
+BD
+vA
 Ij
 Gt
 Gt
@@ -25441,10 +26690,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -25531,11 +26780,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 su
 su
 su
@@ -25549,17 +26798,18 @@ su
 su
 su
 su
-su
+UF
 AF
 zE
-gC
+Ty
 us
 us
 Vn
-Gt
-yt
+Gb
+cO
 qO
-YU
+LX
+Mz
 Gt
 Gt
 Gt
@@ -25568,14 +26818,13 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -25599,7 +26848,7 @@ Cv
 Ig
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -25687,7 +26936,7 @@ ZE
 ZE
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -25711,10 +26960,11 @@ us
 us
 us
 Vn
-Gt
+Gb
 cO
 bi
 LX
+Mz
 Gt
 Gt
 Gt
@@ -25722,15 +26972,14 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-yt
-Az
-Az
-Az
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -25751,10 +27000,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -25842,7 +27091,7 @@ ZE
 sV
 ZE
 ZE
-dD
+Sp
 th
 el
 be
@@ -25866,30 +27115,30 @@ us
 us
 uN
 Vn
-Gt
-aa
-Xz
-vI
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+Gb
 cO
 cz
-Xz
-Xz
-Yq
-vI
+LX
+Mz
 Gt
 Gt
 Gt
 Gt
 Gt
+Gt
+Gt
+Gb
+cO
+cz
+cz
+cz
+cz
+LX
+Mz
+Gt
+fa
+fa
+fa
 Gt
 Gt
 ol
@@ -25906,10 +27155,10 @@ Cv
 wD
 Cv
 Cv
-NL
+bg
 sc
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -25996,11 +27245,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Dz
 Dz
 Dz
@@ -26014,38 +27263,38 @@ Dz
 Dz
 Dz
 Dz
-Dz
+ra
 sB
 tf
-wh
+QP
 us
 us
 io
 Gt
-Gt
-Gt
-Gt
-Gt
-Ij
-Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
 Gt
 Ij
+Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+aS
 cO
 LX
+BD
+vA
+vA
+vA
 Gt
-Gt
-Gt
-Gt
-Gt
-Ij
-yt
-Az
-YU
-Gt
+aS
+cO
+cz
+LX
+Mz
 Gt
 Fw
 Cv
@@ -26060,11 +27309,11 @@ Cv
 To
 wD
 Cv
-Cv
-NL
+Wq
+qg
 sc
 bU
-NL
+Ci
 To
 Cv
 wD
@@ -26151,11 +27400,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
@@ -26168,11 +27417,11 @@ Ay
 Gt
 Gt
 Gt
-Gt
-Gt
+fa
+jh
 cO
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -26185,22 +27434,22 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+jh
 cO
 LX
+Mz
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 cz
 LX
-Gt
+Mz
 Gt
 Fw
 Cv
@@ -26214,12 +27463,12 @@ wD
 Cv
 Cv
 wD
-Cv
-lz
-vH
+jL
+sc
+yP
 yP
 bU
-NL
+Ci
 Cv
 Cv
 wD
@@ -26306,11 +27555,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-eB
+xU
 Gt
 Gt
 Gt
@@ -26322,12 +27571,12 @@ us
 eI
 Ay
 Gt
-Gt
-yt
-Az
+Gb
+cO
+cz
 cz
 LX
-Nm
+IZ
 us
 us
 Vn
@@ -26339,23 +27588,23 @@ Gt
 Gt
 Gt
 Gt
-Gt
-yt
-Az
-Az
-Az
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
+Mz
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-aa
-Xz
-vI
-Gt
+Gb
+cO
+cz
+LX
+Mz
 Gt
 Fw
 Cv
@@ -26369,12 +27618,12 @@ To
 Cv
 Cv
 Cv
-Cv
+jL
 Sd
 yP
-Wv
-FY
-Cv
+yP
+bU
+KJ
 Cv
 To
 ny
@@ -26461,11 +27710,11 @@ ZE
 wa
 wa
 wa
-wa
-QA
-YC
-er
-eB
+Wd
+Zl
+th
+Wi
+xU
 Gt
 Gt
 Gt
@@ -26477,12 +27726,12 @@ Ze
 us
 Vn
 Gt
-Gt
+Gb
 cO
 cz
-Xz
-vI
-Nm
+cz
+LX
+IZ
 us
 us
 Vn
@@ -26494,22 +27743,22 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
-Xz
-Xz
-Yq
-vI
+cz
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
+vA
+vA
+vA
 Gt
 Gt
 Fw
@@ -26524,11 +27773,11 @@ Cv
 Cv
 Cv
 Cv
-Cv
-Dg
+jL
+iN
 bU
-Cv
-Cv
+LB
+xl
 Cv
 Cv
 Cv
@@ -26632,11 +27881,11 @@ Dz
 Dz
 tK
 Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
+BD
+vA
 Nm
 us
 us
@@ -26649,13 +27898,13 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
-Gt
-Gt
+BD
+vA
+vA
+vA
 Gt
 Gt
 Gt
@@ -26679,12 +27928,12 @@ wD
 wD
 wD
 Cv
-Cv
+jL
 sc
 yP
-vH
-EM
-NL
+yP
+bU
+Ci
 NL
 NL
 NL
@@ -26758,9 +28007,9 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 ZE
 ZE
@@ -26779,18 +28028,18 @@ qa
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+fa
+fa
+fa
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Nm
 us
@@ -26801,13 +28050,13 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -26834,12 +28083,12 @@ Cv
 Cv
 Cv
 Cv
-Cv
-zs
-Wv
+jL
+sc
+yP
 yP
 bU
-Cv
+KJ
 Cv
 Cv
 ny
@@ -26912,11 +28161,11 @@ ZE
 cy
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 ZE
 ZE
 ZE
@@ -26934,18 +28183,18 @@ ym
 Fn
 Fn
 Fn
-Az
-Az
-Az
-Az
-Az
-Az
-Az
-Az
-Az
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Nm
 us
@@ -26955,24 +28204,24 @@ Gt
 Gt
 Gt
 Gt
-Gt
-yt
-ri
-Az
-Az
+Gb
+cO
+Dx
+cz
+cz
 cz
 LX
+Mz
+Gt
+Gt
+Ij
+Gt
+Gt
+Gt
 Gt
 Gt
 Gt
 Ij
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Ij
 Zc
 Zc
 Zc
@@ -26990,11 +28239,11 @@ Cv
 Cv
 Cv
 Cv
-Cv
-Cv
+xB
+Hs
 sc
 bU
-Cv
+KJ
 Cv
 Cv
 ny
@@ -27067,11 +28316,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 cy
 ZE
 ZE
@@ -27089,18 +28338,18 @@ Fn
 dE
 RB
 Fn
-Xz
-Xz
-Xz
-Xz
+cz
+cz
+cz
+cz
 co
 co
-Xz
-Xz
-Xz
-Xz
-vI
-Gt
+cz
+cz
+cz
+cz
+LX
+Mz
 Gt
 Nm
 us
@@ -27110,14 +28359,14 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 cz
-Xz
-Xz
-Xz
-vI
-Gt
+cz
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
@@ -27146,10 +28395,10 @@ wD
 Cv
 Cv
 NL
-NL
-is
-FY
-NL
+bg
+sc
+bU
+Ci
 NL
 NL
 NL
@@ -27222,11 +28471,11 @@ sV
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-sV
+tz
+Zl
+th
+Wi
+Md
 ZE
 ZE
 ZE
@@ -27244,17 +28493,17 @@ Fn
 Mk
 Pv
 Fn
-su
-su
-su
-gC
+tL
+tL
+tL
+HP
 us
 eI
-su
-su
-su
-su
-su
+tL
+tL
+tL
+tL
+tL
 su
 su
 gC
@@ -27265,13 +28514,13 @@ Gt
 Gt
 Gt
 Gt
-Gt
+Gb
 cO
 LX
-Gt
-Gt
-Gt
-Gt
+BD
+vA
+vA
+vA
 Gt
 Gt
 Zc
@@ -27302,8 +28551,8 @@ Cv
 Cv
 Cv
 Cv
-Cv
-Cv
+xB
+xB
 Cv
 Cv
 Cv
@@ -27378,9 +28627,9 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 ZE
 ZE
@@ -27417,13 +28666,13 @@ uN
 us
 Vn
 Gt
-Gt
-Gt
-Ij
-Gt
+fa
+fa
+is
+jh
 cO
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -27538,9 +28787,9 @@ ZE
 ZE
 ZE
 ZE
-ZE
-ZE
-ZE
+bb
+bb
+bb
 ZE
 Ph
 uq
@@ -27564,21 +28813,21 @@ Dz
 Dz
 Dz
 Dz
-Dz
-Dz
-Dz
-Dz
-Dz
+cA
+cA
+cA
+cA
+cA
 Dz
 tK
-Gt
-yt
-Az
-Az
-Az
+Gb
+cO
+cz
+cz
+cz
 cz
 LX
-Gt
+Mz
 Gt
 Gt
 Gt
@@ -27692,11 +28941,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-LV
-Mq
-JN
-ZE
+tz
+Zl
+th
+Wi
+Fk
 Ph
 uq
 nW
@@ -27718,28 +28967,28 @@ Vn
 Gt
 Gt
 Gt
-Gt
-yt
-Az
-Az
-Az
-YU
-Gt
-Gt
-Gt
+Gb
 cO
 cz
-Xz
-Xz
-Xz
-vI
+cz
+cz
+LX
+Mz
+Gt
+Gb
+cO
+cz
+cz
+cz
+cz
+LX
+Mz
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
+fa
+fa
 Zc
 Zc
 Zc
@@ -27847,11 +29096,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
+tz
 Zl
 th
 Wi
-ZE
+Fk
 Ph
 uq
 nW
@@ -27864,38 +29113,38 @@ Fn
 ZW
 Nb
 Fn
-Gt
-Gt
-Gt
-Nm
+fa
+fa
+fa
+Ji
 us
 Vn
-Gt
-Gt
-Gt
-Gt
+fa
+fa
+fa
+jh
 cO
 cz
-Xz
+cz
 cz
 LX
-Gt
-Gt
-Gt
+DH
+fa
+jh
 cO
 LX
+BD
+vA
+vA
+vA
 Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-yt
-Az
-YU
+Gb
+cO
+cz
+LX
 Zc
 Zc
 Zc
@@ -28002,11 +29251,11 @@ ZE
 ZE
 ZE
 ZE
-ZE
-QA
-YC
-Up
-ZE
+tz
+Zl
+th
+Wi
+Fk
 Ph
 uq
 nW
@@ -28019,26 +29268,27 @@ YZ
 Pv
 Pv
 YZ
-FC
-Yr
-Az
-Az
+mk
+cz
+cz
+cz
 Kk
 Kk
-Az
-Az
-Az
-Az
+cz
+cz
+cz
+cz
 cz
 LX
-Gt
+BD
 cO
 cz
-Az
-Az
-Az
+cz
+cz
+cz
 cz
 LX
+Mz
 Gt
 Gt
 Gt
@@ -28046,12 +29296,11 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
+Gb
 cO
 cz
 LX
-Gt
+Mz
 Zc
 Zc
 Gt
@@ -28158,9 +29407,9 @@ ZE
 ZE
 cy
 ZE
-ZE
-ZE
-ZE
+hh
+hh
+hh
 ZE
 Ph
 uq
@@ -28174,27 +29423,27 @@ Cs
 Pv
 Pv
 Pv
-xK
-Xz
-Xz
-Xz
-Xz
+mk
+cz
+cz
+cz
+cz
 Dx
-Xz
-Xz
-Xz
-Xz
-Xz
-wJ
-Gt
-OT
-Xz
-Xz
-Xz
+cz
+cz
+cz
+cz
+cz
+di
+Mz
+cO
+cz
+cz
+cz
 Dx
-Xz
-vI
-Gt
+cz
+LX
+Mz
 Gt
 Gt
 Ij
@@ -28202,11 +29451,11 @@ Gt
 Gt
 Gt
 Gt
-Gt
-aa
-Xz
-vI
-Gt
+Gb
+cO
+cz
+LX
+Mz
 Gt
 Zc
 Gt
@@ -28329,6 +29578,26 @@ Fn
 pI
 So
 Fn
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+vA
+Gt
+vA
+vA
+vA
+vA
+vA
+vA
+vA
 Gt
 Gt
 Gt
@@ -28338,29 +29607,9 @@ Gt
 Gt
 Gt
 Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Gt
-Ij
-Gt
-Gt
+hy
+vA
+vA
 Gt
 Gt
 Gt

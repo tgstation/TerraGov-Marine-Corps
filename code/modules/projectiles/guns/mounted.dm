@@ -86,6 +86,9 @@
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
+/obj/item/weapon/gun/tl102/hsg_nest/sandless
+	icon_state = "entrenched_sandless"
+
 //-------------------------------------------------------
 //MG-2005 mounted minigun
 

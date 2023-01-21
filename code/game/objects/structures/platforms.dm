@@ -119,6 +119,8 @@
 	icon_state = "platformtrench"
 	name = "trench wall"
 	desc = "A group of roughly cut planks forming the side of a dug in trench."
+	obj_integrity = 400
+	max_integrity = 400
 
 /obj/structure/fakeplatform
 	name = "platform"
