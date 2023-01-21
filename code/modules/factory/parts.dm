@@ -417,7 +417,7 @@ GLOBAL_LIST_INIT(module, list(
 	. = ..()
 	recipe = GLOB.module
 
-/obj/item/factory_part/surt
+/obj/item/factory_part/module_surt
 	name = "Surt Pyrotechnical Insulation System"
 	desc = "An unfinished Surt Pyrotechnical Insulation System module"
 	result = /obj/item/armor_module/module/fire_proof
