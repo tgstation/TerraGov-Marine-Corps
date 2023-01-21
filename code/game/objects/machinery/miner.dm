@@ -12,6 +12,8 @@
 
 #define PHORON_CRATE_SELL_AMOUNT 150
 #define PLATINUM_CRATE_SELL_AMOUNT 300
+#define PHORON_DROPSHIP_BONUS_AMOUNT 15
+#define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
@@ -35,7 +37,7 @@
 	///The mineral type that's produced
 	var/mineral_value = PHORON_CRATE_SELL_AMOUNT
 	///Bonus points for the dropship for each sale
-	var/dropship_bonus = mineral_value * 0.1
+	var/dropship_bonus = PHORON_DROPSHIP_BONUS_AMOUNT
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -53,6 +55,7 @@
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
+	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
 
 /obj/machinery/miner/Initialize()
 	. = ..()
