@@ -891,7 +891,7 @@
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run. Moving this will require some sort of lifter."
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
-	point_cost = 400
+	point_cost = 150
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_30MM
 
@@ -919,7 +919,7 @@
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
 	firing_sound = 'sound/weapons/gunship_rocket.ogg'
 	firing_delay = 5
-	point_cost = 600
+	point_cost = 200
 	ammo_type_used = CAS_MISSILE
 
 /obj/structure/dropship_equipment/weapon/rocket_pod/deplete_ammo()
@@ -943,7 +943,7 @@
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 10 //1 seconds
-	point_cost = 600
+	point_cost = 200
 	ammo_type_used = CAS_MINI_ROCKET
 
 /obj/structure/dropship_equipment/weapon/minirocket_pod/update_icon()
@@ -967,7 +967,7 @@
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
-	point_cost = 600
+	point_cost = 300
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 

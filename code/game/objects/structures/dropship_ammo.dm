@@ -267,7 +267,7 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	travelling_time = 3 SECONDS
-	point_cost = 150
+	point_cost = 100
 
 
 //railgun
@@ -323,7 +323,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 85
+	point_cost = 100
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
@@ -393,7 +393,7 @@
 //this one is air-to-air only
 /obj/structure/ship_ammo/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
-	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
+	desc = "The AIM-224 was originally designed for air to air combat, but manages to be effective during ground bombardments due to the rocket's high velocity and large explosive radius. Nicknamed the 'Widowmaker' due to the AIM-224's exceptionally high kill count. Moving this will require some sort of lifter."
 	icon_state = "single"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
@@ -411,10 +411,10 @@
 
 /obj/structure/ship_ammo/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
-	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
+	desc = "The AGM-227 is a common air-to-surface missile in the TGMC fleet that is incredibly effective at clearing large areas thanks to its large explosive radius and the fire it leaves in its wake. It has earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 150
+	point_cost = 100
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
@@ -429,10 +429,10 @@
 
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
-	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
+	desc = "The GBU-67 'Keeper II' is a powerful anti-armor missile designed to devastate slow, heavily armored ground targets. It earned the nickname 'Keeper' as shortand for 'Peacekeeper' which was inspired by the name of the missile's development program and its use during many peacekeeping conflicts. Moving this will require some sort of lifter."
 	icon_state = "keeper"
 	ammo_id = "k"
-	point_cost = 300
+	point_cost = 150
 	devastating_explosion_range = 4
 	heavy_explosion_range = 4
 	light_explosion_range = 5
@@ -445,10 +445,10 @@
 
 /obj/structure/ship_ammo/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
+	desc = "The SM-17 'Fatty' is one of the most devastating, area clearing rockets in the TGMC's arsenal. Results in a small but devastating explosion on initial impact, causing a chain cluster detonation of 8 more explosives in an area around the initial impact. Due to the rockets poor misleading initial impact and large coverage, it is recommended that pilots utilize signal flares or CAS lasers for 'Fatty' support, and give a warning before firing. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 250
+	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -478,10 +478,10 @@
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
-	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time. Moving this will require some sort of lifter."
+	desc = "The XN-99 'Napalm' is a powerful incendiary rocket designed to provide long duration area denial with the sticky flames it produces. Produces a small but powerful explosion on initial impact. Moving this will require some sort of lifter."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 200
+	point_cost = 150
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -512,7 +512,7 @@
 	ammo_name = "minirocket"
 	travelling_time = 4 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 100
+	point_cost = 75
 	ammo_type = CAS_MINI_ROCKET
 	devastating_explosion_range = 0
 	heavy_explosion_range = 2
@@ -548,7 +548,7 @@
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
-	point_cost = 200
+	point_cost = 100
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
@@ -581,7 +581,7 @@
 	name = "Tanglefoot mini rocket stack"
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
-	point_cost = 150
+	point_cost = 100
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2
