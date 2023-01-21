@@ -1400,6 +1400,7 @@
 			/obj/item/clothing/under/service = -1,
 			/obj/item/clothing/head/garrisoncap = -1,
 			/obj/item/clothing/head/servicecap = -1,
+			/obj/item/clothing/under/marine/black_suit = -1,
 		),
 	)
 
