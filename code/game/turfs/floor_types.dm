@@ -421,6 +421,12 @@
 /turf/open/floor/scorched/two
 	icon_state = "floorscorched2"
 
+/turf/open/floor/foamplating
+	icon_state = "foam_plating"
+
+/turf/open/floor/rustyplating
+	icon_state = "plating_rust"
+
 /turf/open/floor/bcircuit
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bcircuit"

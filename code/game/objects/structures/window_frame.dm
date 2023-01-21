@@ -130,6 +130,9 @@
 	reinforced = TRUE
 	max_integrity = 300
 
+/obj/structure/window_frame/colony/reinforced/weakened
+	max_integrity = 150
+
 /obj/structure/window_frame/chigusa
 	icon_state = "chig_window0_frame"
 	basestate = "chig_window"

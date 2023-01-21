@@ -4603,7 +4603,7 @@
 	},
 /area/outpost/cargo)
 "vm" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/tile/dark/purple2{
 	dir = 5
 	},
@@ -9053,7 +9053,7 @@
 	},
 /obj/structure/paper_bin,
 /obj/effect/spawner/random/plushie{
-	
+
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -10822,7 +10822,7 @@
 	},
 /area/outpost/brig)
 "Xv" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},

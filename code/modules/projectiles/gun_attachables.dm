@@ -422,11 +422,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed and reduces damage falloff."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
+	damage_falloff_mod = -0.2
 
 
 /obj/item/attachable/compensator
@@ -577,20 +578,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
+
 	if(!toggle_on && light_on)
 		icon_state = initial(icon_state)
-		master_gun.set_light_range(0)
-		master_gun.set_light_power(0)
-		master_gun.set_light_on(FALSE)
 		light_on = FALSE
-		REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
+		master_gun.set_light_range(master_gun.light_range - light_mod)
+		master_gun.set_light_power(master_gun.light_power - (light_mod * 0.5))
+		if(master_gun.light_range <= 0) //does the gun have another light source
+			master_gun.set_light_on(FALSE)
+			REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else if(toggle_on & !light_on)
 		icon_state = initial(icon_state) +"_on"
-		master_gun.set_light_range(light_mod)
-		master_gun.set_light_power(3)
-		master_gun.set_light_on(TRUE)
 		light_on = TRUE
-		ADD_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
+		master_gun.set_light_range(master_gun.light_range + light_mod)
+		master_gun.set_light_power(master_gun.light_power + (light_mod * 0.5))
+		if(!HAS_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON))
+			master_gun.set_light_on(TRUE)
+			ADD_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else
 		return
 

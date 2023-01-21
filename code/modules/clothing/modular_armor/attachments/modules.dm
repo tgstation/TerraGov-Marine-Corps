@@ -425,6 +425,38 @@
 	affected.remove_filter("eshield")
 	affected.add_filter("eshield", 1, outline_filter(1, new_color))
 
+/obj/item/armor_module/module/style
+	name = "\improper Armor Equalizer"
+	desc = "Designed for mounting on conventional clothing, this grants it a level of reinforcement against attacks."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_armor"
+	slot = ATTACHMENT_SLOT_CHESTPLATE
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/style = "")
+
+	var/codex_info = {"<BR>This item is part of the <b>Style Line.</b><BR>
+	<BR>The <b>Style Line</b> is a line of equipment designed to provide as much style as possible without compromising the user's protection.
+	This line of equipment accepts <b>Equalizer modules</b>, which allow the user to alter any given piece of equipment's protection according to their preferences.<BR>
+	<BR>This is an <b>Equalizer module</b>. Equalizer modules create an invisible mesh over the user's body that grants protection against many dangers, adjusting itself in such a way that their movements remain unimpeded."}
+
+/obj/item/armor_module/module/style/get_mechanics_info()
+	. = ..()
+	. += jointext(codex_info, "<br>")
+
+/obj/item/armor_module/module/style/light_armor
+	name = "\improper Light Armor Equalizer"
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	slowdown = 0.3
+
+/obj/item/armor_module/module/style/medium_armor
+	name = "\improper Medium Armor Equalizer"
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	slowdown = 0.5
+
+/obj/item/armor_module/module/style/heavy_armor
+	name = "\improper Heavy Armor Equalizer"
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	slowdown = 0.7
+
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
 	name = "Aegis Energy Dispersion Module"
