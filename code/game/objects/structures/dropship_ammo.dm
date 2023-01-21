@@ -267,7 +267,7 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	travelling_time = 3 SECONDS
-	point_cost = 100
+	point_cost = 150
 
 
 //railgun
@@ -323,7 +323,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 100
+	point_cost = 85
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
@@ -414,7 +414,7 @@
 	desc = "The AGM-227 is a common air-to-surface missile in the TGMC fleet that is incredibly effective at clearing large areas thanks to its large explosive radius and the fire it leaves in its wake. It has earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 100
+	point_cost = 150
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
@@ -432,7 +432,7 @@
 	desc = "The GBU-67 'Keeper II' is a powerful anti-armor missile designed to devastate slow, heavily armored ground targets. It earned the nickname 'Keeper' as shortand for 'Peacekeeper' which was inspired by the name of the missile's development program and its use during many peacekeeping conflicts. Moving this will require some sort of lifter."
 	icon_state = "keeper"
 	ammo_id = "k"
-	point_cost = 150
+	point_cost = 175
 	devastating_explosion_range = 4
 	heavy_explosion_range = 4
 	light_explosion_range = 5
@@ -448,7 +448,7 @@
 	desc = "The SM-17 'Fatty' is one of the most devastating, area clearing rockets in the TGMC's arsenal. Results in a small but devastating explosion on initial impact, causing a chain cluster detonation of 8 more explosives in an area around the initial impact. Due to the rockets poor misleading initial impact and large coverage, it is recommended that pilots utilize signal flares or CAS lasers for 'Fatty' support, and give a warning before firing. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 225
+	point_cost = 250
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -512,7 +512,7 @@
 	ammo_name = "minirocket"
 	travelling_time = 4 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 75
+	point_cost = 100
 	ammo_type = CAS_MINI_ROCKET
 	devastating_explosion_range = 0
 	heavy_explosion_range = 2
@@ -548,7 +548,7 @@
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
-	point_cost = 100
+	point_cost = 125
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
@@ -581,7 +581,7 @@
 	name = "Tanglefoot mini rocket stack"
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
-	point_cost = 100
+	point_cost = 150
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2

@@ -34,6 +34,8 @@
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
 	var/mineral_value = PHORON_CRATE_SELL_AMOUNT
+	///Bonus points for the dropship for each sale
+	var/dropship_bonus = mineral_value * 0.1
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -97,6 +99,7 @@
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
+				SSpoints.dropship_points += dropship_bonus * stored_mineral
 				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -257,6 +260,7 @@
 		return
 
 	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	SSpoints.dropship_points += dropship_bonus * stored_mineral
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -276,6 +280,7 @@
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
 				SSpoints.supply_points[faction] += mineral_value
+				SSpoints.dropship_points += dropship_bonus
 				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
