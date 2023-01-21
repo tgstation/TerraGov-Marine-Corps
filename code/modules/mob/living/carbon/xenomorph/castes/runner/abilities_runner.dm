@@ -444,7 +444,8 @@
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
 	if(target.status_flags & GODMODE)
-		owner.balloon_alert(owner, "Cannot snatch")
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
