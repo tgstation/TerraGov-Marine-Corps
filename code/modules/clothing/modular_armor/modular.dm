@@ -434,6 +434,7 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 
 	attachments_by_slot = list(
+		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_HEAD_MODULE,
 		ATTACHMENT_SLOT_BADGE,
@@ -634,9 +635,17 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/armor/visor/marine,
+		/obj/item/armor_module/armor/visor/marine/skirmisher,
+		/obj/item/armor_module/armor/visor/marine/scout,
+		/obj/item/armor_module/armor/visor/marine/eva,
+		/obj/item/armor_module/armor/visor/marine/eva/skull,
+		/obj/item/armor_module/armor/visor/marine/gungnir,
+		/obj/item/armor_module/armor/visor/marine/eod,
+		/obj/item/armor_module/armor/visor/marine/assault,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
 
 	icon_state_variants = list(
 		"green",
@@ -652,125 +661,47 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
 	item_state = "eva_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA 'Skull' Helmet"
 	icon_state = "eva_skull_helmet"
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva/skull, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 	item_state = "skirmisher_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
 	item_state = "scout_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/gungnir
 	name = "Jaeger Pattern Gungnir Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Gungnir markings"
 	icon_state = "gungnir_helmet"
 	item_state = "gungnir_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
 	item_state = "assault_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
 	item_state = "eod_helmet"
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/m10x
 	name = "\improper M10X pattern marine helmet"
@@ -780,18 +711,6 @@
 	item_state = "helmet"
 	item_state_worn = TRUE
 	item_state_slots = null
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	visorless_offset_x = 0
 	visorless_offset_y = 0
