@@ -55,3 +55,15 @@
 /mob/living/carbon/human/species/robot
 	race = "Combat Robot"
 	bubble_icon = "robot"
+
+/mob/living/carbon/human/species/robot/alpharii
+	race = "Alpharii Combat Robot"
+
+/mob/living/carbon/human/species/robot/charlit
+	race = "Charlit Combat Robot"
+
+/mob/living/carbon/human/species/robot/deltad
+	race = "Deltad Combat Robot"
+
+/mob/living/carbon/human/species/robot/bravada
+	race = "Bravada Combat Robot"

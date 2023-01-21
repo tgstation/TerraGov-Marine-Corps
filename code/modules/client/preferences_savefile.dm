@@ -364,6 +364,7 @@
 
 	READ_FILE(S["synthetic_name"], synthetic_name)
 	READ_FILE(S["synthetic_type"], synthetic_type)
+	READ_FILE(S["robot_type"], robot_type)
 	READ_FILE(S["xeno_name"], xeno_name)
 	READ_FILE(S["ai_name"], ai_name)
 
@@ -420,6 +421,7 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
+	robot_type = sanitize_inlist(robot_type, ROBOT_TYPES, initial(robot_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
@@ -503,6 +505,7 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
+	robot_type = sanitize_inlist(robot_type, ROBOT_TYPES, initial(robot_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
@@ -560,6 +563,7 @@
 
 	WRITE_FILE(S["synthetic_name"], synthetic_name)
 	WRITE_FILE(S["synthetic_type"], synthetic_type)
+	WRITE_FILE(S["robot_type"], robot_type)
 	WRITE_FILE(S["xeno_name"], xeno_name)
 	WRITE_FILE(S["ai_name"], ai_name)
 

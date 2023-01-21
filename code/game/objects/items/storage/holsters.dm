@@ -90,7 +90,12 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Bravada Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Charlit Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Alpharii Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Deltad Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	max_w_class = 3 //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
@@ -130,7 +135,12 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Bravada Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Charlit Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Alpharii Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Deltad Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
 
 /obj/item/storage/holster/backholster/rpg/full/Initialize()
 	. = ..()
