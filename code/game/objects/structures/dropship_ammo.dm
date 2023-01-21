@@ -548,7 +548,7 @@
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
-	point_cost = 125
+	point_cost = 150
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
