@@ -112,6 +112,9 @@
 			balloon_alert(user, "You begin to stop the activation process!")
 			if(!do_after(user, deactivate_time, TRUE, src))
 				return
+			if(activated)
+				balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+				return
 			balloon_alert(user, "You stop the activation process!")
 			deactivate()
 		else if(activated)
