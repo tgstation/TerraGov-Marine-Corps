@@ -623,7 +623,6 @@
 	)
 	icon_override = null
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
-	accuracy_mod = 0
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
