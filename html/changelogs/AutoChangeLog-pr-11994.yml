@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed a timer bug with sensor towers."
+  - bugfix: "eswords no longer block almost all incoming damage"
