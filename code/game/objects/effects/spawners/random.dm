@@ -89,7 +89,7 @@
 /obj/effect/spawner/random/proc/get_spawn_locations(radius)
 	var/list/scatter_locations = list()
 
-	for(var/turf/turf_in_view in view(radius, get_turf(src)))
+	for(var/turf/turf_in_view in range(radius, get_turf(src)))
 		if(!turf_in_view.density)
 			scatter_locations += turf_in_view
 
