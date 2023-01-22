@@ -746,6 +746,7 @@
 			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = new_eye
+			else
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
 		else if(isturf(new_eye))

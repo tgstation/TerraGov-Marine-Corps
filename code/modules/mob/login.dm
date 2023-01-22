@@ -29,11 +29,18 @@
 	// For us, (1,1,1) is a space tile. This means roughly 200,000! calls to Move()
 	// You do not want this
 
-	reload_huds()
+	if(!client)
+		return
 
-	reload_fullscreens()
+	clear_important_client_contents(client)
+	enable_client_mobs_in_contents(client)
 
+	if(key != client.key)
+		key = client.key
 	reset_perspective(loc)
+
+	reload_huds()
+	reload_fullscreens()
 
 	add_click_catcher()
 
@@ -53,9 +60,6 @@
 			if(SSvote.question)
 				vote.name = "Vote: [SSvote.question]"
 			vote.give_action(src)
-
-	clear_important_client_contents(client)
-	enable_client_mobs_in_contents(client)
 
 	update_movespeed()
 	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
