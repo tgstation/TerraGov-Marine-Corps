@@ -957,7 +957,7 @@
 /obj/structure/closet/wardrobe/mixed,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/item/clothing/mask/fakemoustache,
-/obj/item/clothing/suit/storage/marine/cowboy,
+/obj/item/clothing/suit/modular/style/leather_jacket,
 /obj/item/clothing/shoes/cowboy,
 /obj/item/clothing/shoes/slippers,
 /turf/open/floor/tile/dark2,
@@ -4112,7 +4112,6 @@
 /area/centcom/valhalla/secondary/entry)
 "frZ" = (
 /obj/structure/rack,
-/obj/item/clothing/glasses/night/imager_goggles,
 /obj/item/clothing/glasses/night/m56_goggles,
 /obj/item/clothing/mask/gas/swat,
 /obj/item/weapon/gun/pistol/auto9,

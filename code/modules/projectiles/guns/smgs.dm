@@ -86,8 +86,8 @@
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
 
-/obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
-	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
+/obj/item/weapon/gun/smg/standard_machinepistol/vgrip
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/verticalgrip)
 
 /obj/item/weapon/gun/smg/standard_machinepistol/scanner
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)

@@ -395,11 +395,11 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	var/obj/item/attachable = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	if(!attachable || !istype(attachable, /obj/item/attachable))
-		return
-	var/obj/item/attachable/attachable_attachment = attachable
-	attachable_attachment.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
+	for(var/attachment_slot in attachments_by_slot)
+		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+		if(!istype(lit_flashlight))
+			continue
+		lit_flashlight.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -825,67 +825,67 @@
 		switch(firing_angle)
 			if(0, 360)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(1 to 44)
 				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(45)
-				muzzle_flash.pixel_x = 4
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(46 to 89)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = round(4 * ((90 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(90)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(91 to 134)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = round(-3 * ((firing_angle - 90) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(135)
-				muzzle_flash.pixel_x = 4
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(136 to 179)
 				muzzle_flash.pixel_x = round(4 * ((180 - firing_angle) / 45))
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(180)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(181 to 224)
-				muzzle_flash.pixel_x = round(-3 * ((firing_angle - 180) / 45))
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = round(-6 * ((firing_angle - 180) / 45))
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(225)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(226 to 269)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = round(-3 * ((270 - firing_angle) / 45))
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = round(-6 * ((270 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(270)
-				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_x = -6
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(271 to 314)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = round(4 * ((firing_angle - 270) / 45))
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = round(8 * ((firing_angle - 270) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(315)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(316 to 359)
-				muzzle_flash.pixel_x = round(-3 * ((360 - firing_angle) / 45))
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = round(-6 * ((360 - firing_angle) / 45))
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 
 		muzzle_flash.transform = null
@@ -1594,7 +1594,7 @@
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.sundering *= damage_mult
-	projectile_to_fire.damage_falloff *= damage_falloff_mult
+	projectile_to_fire.damage_falloff *= max(0, damage_falloff_mult)
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) || projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
@@ -1764,11 +1764,11 @@
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
 		return
-	var/obj/item/attachment = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	if(!istype(attachment, /obj/item/attachable))
-		return
-	var/obj/item/attachable/attachable = attachment
-	attachable.turn_light(null, FALSE)
+	for(var/attachment_slot in attachments_by_slot)
+		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+		if(!istype(lit_flashlight))
+			continue
+		lit_flashlight.turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )

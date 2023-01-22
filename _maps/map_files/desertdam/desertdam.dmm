@@ -4085,7 +4085,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avL" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avM" = (
@@ -4174,7 +4174,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "awe" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "awg" = (
@@ -36458,7 +36458,9 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/virology_wing)
 "hrR" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "hrS" = (
@@ -36496,7 +36498,9 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "hsI" = (
 /obj/structure/desertdam/decals/road,
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "hsN" = (

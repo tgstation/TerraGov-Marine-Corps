@@ -53,6 +53,25 @@
 	icon_state = "grey"
 	gas_type = GAS_TYPE_AIR
 
+/obj/machinery/portable_atmospherics/canister/phoron
+	name = "phoron canister"
+	desc = "Toxic phoron in gas form."
+	icon_state = "orange"
+	gas_type = GAS_TYPE_PHORON
+
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide
+	name = "nitrous oxide canister"
+	desc = "Compressed nitrous oxide."
+	icon_state = "redws"
+	gas_type = GAS_TYPE_N2O
+
+/obj/machinery/portable_atmospherics/canister/co2
+	name = "carbon dioxide canister"
+	desc = "Carbon dioxide, commonly used for increasing the power generation of exotic engine types."
+	icon_state = "black"
+	gas_type = GAS_TYPE_CO2
+
+
 /obj/machinery/portable_atmospherics/canister/empty
 
 
