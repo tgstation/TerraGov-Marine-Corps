@@ -11,14 +11,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	///if FALSE, broadcasting and listening dont matter and this radio shouldnt do anything
-	VAR_PRIVATE/on = TRUE
+	var/on = TRUE
 	///the "default" radio frequency this radio is set to, listens and transmits to this frequency by default. wont work if the channel is encrypted
-	VAR_PRIVATE/frequency = FREQ_COMMON
+	var/frequency = FREQ_COMMON
 
 	/// Whether the radio will transmit dialogue it hears nearby into its radio channel.
-	VAR_PRIVATE/broadcasting = FALSE
+	var/broadcasting = FALSE
 	/// Whether the radio is currently receiving radio messages from its radio frequencies.
-	VAR_PRIVATE/listening = TRUE
+	var/listening = TRUE
 
 	//the below three vars are used to track listening and broadcasting should they be forced off for whatever reason but "supposed" to be active
 	//eg player sets the radio to listening, but an emp or whatever turns it off, its still supposed to be activated but was forced off,
@@ -34,8 +34,6 @@
 	/// Tracks the number of EMPs currently stacked.
 	var/emped = 0
 
-	/// If true, the transmit wire starts cut.
-	var/prison_radio = FALSE
 	/// Whether wires are accessible. Toggleable by screwdrivering.
 	var/unscrewed = FALSE
 	/// If true, the radio has access to the full spectrum.
@@ -65,8 +63,6 @@
 
 /obj/item/radio/Initialize(mapload)
 	wires = new /datum/wires/radio(src)
-	if(prison_radio)
-		wires.cut(WIRE_TX) // OH GOD WHY
 	secure_radio_connections = list()
 	. = ..()
 
@@ -240,7 +236,7 @@
 	if(!spans)
 		spans = list(talking_movable.speech_span)
 	if(!language)
-		language = talking_movable.get_selected_language()
+		language = talking_movable.get_default_language()
 	INVOKE_ASYNC(src, .proc/talk_into_impl, talking_movable, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 

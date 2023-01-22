@@ -41,12 +41,12 @@
 	var/ringing = FALSE
 	var/offset = FALSE
 	var/on_network = TRUE
+	///bitfield. used to turn on and off hearing sensitivity depending on if we can act on Hear() at all - meant for lowering the number of unessesary hearable atoms
+	var/can_hear_flags = NONE
 
 
 /obj/machinery/holopad/Initialize()
 	. = ..()
-	///bitfield. used to turn on and off hearing sensitivity depending on if we can act on Hear() at all - meant for lowering the number of unessesary hearable atoms
-	var/can_hear_flags = NONE
 	if(on_network)
 		holopads += src
 

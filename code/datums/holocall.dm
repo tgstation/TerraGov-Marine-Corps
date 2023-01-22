@@ -17,7 +17,7 @@
 	var/list/dialed_holopads
 
 	///user's eye, once connected
-	var/mob/camera/ai_eye/remote/holo/eye
+	var/mob/camera/aiEye/remote/holo/eye
 	///user's hologram, once connected
 	var/obj/effect/overlay/holo_pad_hologram/hologram
 	///hangup action
@@ -33,8 +33,8 @@
 	calling_holopad = calling_pad
 	dialed_holopads = list()
 
-	for(var/obj/machinery/holopad/connected_holopad AS anything in callees)
-		if(!QDELETED(connected_holopad) && connected_holopad.is_operational)
+	for(var/obj/machinery/holopad/connected_holopad AS in callees)
+		if(!QDELETED(connected_holopad) && connected_holopad.is_operational())
 			dialed_holopads += connected_holopad
 			connected_holopad.say("Incoming call.")
 			connected_holopad.set_holocall(src)
@@ -62,7 +62,7 @@
 		hologram.HC = null
 		QDEL_NULL(hologram)
 
-	for(var/obj/machinery/holopad/dialed_holopad AS anything in dialed_holopads)
+	for(var/obj/machinery/holopad/dialed_holopad AS in dialed_holopads)
 		dialed_holopad.set_holocall(src, FALSE)
 	dialed_holopads.Cut()
 
@@ -152,8 +152,8 @@
 
 //Checks the validity of a holocall and qdels itself if it's not. Returns TRUE if valid, FALSE otherwise
 /datum/holocall/proc/Check()
-	for(var/obj/machinery/holopad/dialed_holopad AS anything in dialed_holopads)
-		if(!dialed_holopad.is_operational)
+	for(var/obj/machinery/holopad/dialed_holopad AS in dialed_holopads)
+		if(!dialed_holopad.is_operational())
 			ConnectionFailure(dialed_holopad)
 
 	if(QDELETED(src))

@@ -229,18 +229,18 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
 	var/list/the_dead = list()
 	for(var/_M in GLOB.player_list)
-		var/mob/M = _M
-		if(M.stat != DEAD) //not dead, not important
+		var/mob/player_mob = _M
+		if(player_mob.stat != DEAD) //not dead, not important
 			continue
-		if(!M.client || !client) //client is so that ghosts don't have to listen to mice
+		if(!player_mob.client || !client) //client is so that ghosts don't have to listen to mice
 			continue
 		if(player_mob.z != z || get_dist(player_mob, src) > 7) //they're out of range of normal hearing
-			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
+			if(!(player_mob.client.prefs.toggles_chat & CHAT_GHOSTEARS))
 				continue
-		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M)) && !GLOB.cameranet.checkTurfVis(src))
+		if((istype(player_mob.remote_control, /mob/camera/aiEye) || isAI(player_mob)) && !GLOB.cameranet.checkTurfVis(src))
 			continue // AI can't hear what they can't see
-		listening |= M
-		the_dead[M] = TRUE
+		listening |= player_mob
+		the_dead[player_mob] = TRUE
 
 	var/eavesdropping
 	var/eavesrendered
