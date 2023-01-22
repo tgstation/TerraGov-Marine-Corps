@@ -299,8 +299,8 @@
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 18)
 	windup_delay = 0.5 SECONDS
-//	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
-//	fire_sound = 'sound/weapons/guns/fire/t76.ogg'
+	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t76.ogg'
 //	dry_fire_sound = 'sound/weapons/guns/fire/t76_empty.ogg'
 	fire_delay = 0.75 SECONDS
 	akimbo_additional_delay = 0.6
