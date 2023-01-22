@@ -9,10 +9,10 @@
 	opacity = TRUE
 	anchored = TRUE
 	layer = FLY_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/amount = 3
-	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
+	///time in decisecond for a smoke to spread one tile.
 	var/expansion_speed = 1
 	var/smoke_traits = NONE
 	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
@@ -262,7 +262,6 @@
 /obj/effect/particle_effect/smoke/satrapine
 	color = "#b02828"
 	lifetime = 6
-	spread_speed = 7
 	expansion_speed = 3
 	strength = 1.5
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
@@ -274,7 +273,6 @@
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno
 	lifetime = 6
-	spread_speed = 7
 	expansion_speed = 3
 	smoke_traits = SMOKE_XENO
 

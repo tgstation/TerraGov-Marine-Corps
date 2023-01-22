@@ -31,6 +31,8 @@
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,
+		/obj/item/tool/shovel/etool,
+		/obj/item/weapon/energy/sword,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -271,6 +273,9 @@
 /obj/item/clothing/suit/modular/xenonauten/mimir
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
 
+/obj/item/clothing/suit/modular/xenonauten/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield)
+
 /obj/item/clothing/suit/modular/xenonauten/rownin
 	name = "\improper Rownin Skeleton"
 	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -311,6 +316,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun,
+		/obj/item/weapon/energy/sword,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
@@ -343,6 +349,9 @@
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	starting_attachments = list(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/storage/general)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield)
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -535,6 +544,12 @@
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
+
+///When vended, limits the paintable colors based on the vending machine's faction
+/obj/item/clothing/head/modular/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	. = ..()
+	if(faction)
+		limit_colorable_colors(faction)
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
@@ -791,6 +806,89 @@
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
 
+// ***************************************
+// *********** Modular Style Line
+// ***************************************
+/obj/item/clothing/suit/modular/style
+	name = "\improper Drip"
+	desc = "They got that drip, doe."
+	flags_item_map_variant = NONE
+	allowed_uniform_type = /obj/item/clothing/under
+	icon = 'icons/obj/clothing/cm_suits.dmi'
+	attachments_allowed = list(
+// Armor Modules
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+// Storage Modules
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+// Equalizer Modules
+		/obj/item/armor_module/module/style/light_armor,
+		/obj/item/armor_module/module/style/medium_armor,
+		/obj/item/armor_module/module/style/heavy_armor,
+	)
+
+	var/codex_info = {"<BR>This item is part of the <b>Style Line.</b><BR>
+	<BR>The <b>Style Line</b> is a line of equipment designed to provide as much style as possible without compromising the user's protection.
+	This line of equipment accepts <b>Equalizer modules</b>, which allow the user to alter any given piece of equipment's protection according to their preferences.<BR>"}
+
+/obj/item/clothing/suit/modular/style/get_mechanics_info()
+	. = ..()
+	. += jointext(codex_info, "<br>")
+
+/obj/item/clothing/suit/modular/style/leather_jacket
+	name = "\improper leather jacket"
+	desc = "A fashionable jacket. Get them with style."
+	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon_state = "leather_jacket"
+	item_state = "leather_jacket"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	icon_state_variants = list(
+		"normal",
+		"webbing",
+	)
+	current_variant = "normal"
+
+/obj/item/clothing/suit/modular/style/duster
+	name = "\improper duster"
+	desc = "A light, loose-fitting colorable long coat, for those that want to have more style."
+	icon_state = "duster"
+	item_state = "duster"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+	)
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+	current_variant = "black"
+
 //SOM modular armour
 
 /obj/item/clothing/suit/modular/som
@@ -830,6 +928,9 @@
 /obj/item/clothing/suit/modular/som/engineer
 	starting_attachments = list(/obj/item/armor_module/storage/engineering)
 
+/obj/item/clothing/suit/modular/som/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
 	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -861,6 +962,9 @@
 
 /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/som)
+
+/obj/item/clothing/suit/modular/som/heavy/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
 
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"

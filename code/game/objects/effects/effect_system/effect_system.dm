@@ -104,7 +104,7 @@ steam.start() -- spawns the effect
 	name = "sparks"
 	icon_state = "sparks"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	light_on = TRUE
 	light_power = 1
 	light_range = 1

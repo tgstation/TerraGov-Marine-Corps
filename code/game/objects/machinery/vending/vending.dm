@@ -581,15 +581,9 @@
 			src.last_reply = world.time
 
 	var/obj/item/new_item = release_item(R, vend_delay)
-	if(faction)
-		if(ismodulararmorarmorpiece(new_item))
-			var/obj/item/armor_module/armor/armorpiece = new_item
-			armorpiece.limit_colorable_colors(faction)
-		if(ismodularhelmet(new_item))
-			var/obj/item/clothing/head/modular/helmet = new_item
-			helmet.limit_colorable_colors(faction)
-	if(istype(new_item) && user.put_in_any_hand_if_possible(new_item, warning = FALSE))
-		new_item.pickup(user)
+
+	if(istype(new_item))
+		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
 	updateUsrDialog()
 

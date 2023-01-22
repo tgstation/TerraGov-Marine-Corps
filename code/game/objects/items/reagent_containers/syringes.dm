@@ -265,9 +265,6 @@
 /obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
-	icon = 'icons/obj/items/syringe.dmi'
-	item_state = "syringe_0"
-	icon_state = "0"
 	amount_per_transfer_from_this = 50
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 50
@@ -332,22 +329,6 @@
 				if (reagents.total_volume >= reagents.maximum_volume && mode==SYRINGE_INJECT)
 					mode = SYRINGE_DRAW
 					update_icon()
-
-
-/obj/item/reagent_containers/syringe/ld50_syringe/update_icon()
-	var/rounded_vol = round(reagents.total_volume,50)
-	if(ismob(loc))
-		var/mode_t
-		switch(mode)
-			if (SYRINGE_DRAW)
-				mode_t = "d"
-			if (SYRINGE_INJECT)
-				mode_t = "i"
-		icon_state = "[mode_t][rounded_vol]"
-	else
-		icon_state = "[rounded_vol]"
-	item_state = "syringe_[rounded_vol]"
-
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes. END

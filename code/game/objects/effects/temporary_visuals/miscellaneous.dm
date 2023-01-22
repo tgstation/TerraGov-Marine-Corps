@@ -94,8 +94,12 @@
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
 	icon = 'icons/effects/heavyimpact.dmi'
-	icon_state = "heavyimpact"
+	icon_state = ""
 	duration = 13
+
+/obj/effect/temp_visual/heavyimpact/Initialize()
+	. = ..()
+	flick("heavyimpact", src)
 
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
@@ -220,6 +224,20 @@
 /obj/effect/temp_visual/wraith_warp/Initialize()
 	. = ..()
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
+
+/obj/effect/temp_visual/blink_drive
+	icon = 'icons/effects/light_overlays/light_128.dmi'
+	icon_state = "light"
+	plane = GRAVITY_PULSE_PLANE
+	duration = 8
+
+/obj/effect/temp_visual/blink_drive/Initialize()
+	. = ..()
+	var/image/I = image(icon, src, icon_state, 10, pixel_x = -48, pixel_y = -48)
+	overlays += I //we use an overlay so the icon and light source are both in the correct location
+	icon_state = null
+	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
+	set_light(2, 2, LIGHT_COLOR_DARK_BLUE)
 
 /obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'

@@ -414,13 +414,16 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bJ" = (
-/obj/structure/closet/crate,
-/obj/machinery/light,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
 /turf/open/floor,
 /area/deathmatch)
 "bK" = (
-/obj/structure/coatrack,
-/turf/open/floor,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
 /area/deathmatch)
 "bL" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -433,18 +436,20 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bN" = (
-/obj/item/multitool,
+/obj/structure/barricade/guardrail,
 /turf/open/floor,
 /area/deathmatch)
 "bO" = (
 /obj/structure/closet/fireaxecabinet{
 	pixel_y = 32
 	},
+/obj/structure/barricade/guardrail,
 /turf/open/floor,
 /area/deathmatch)
 "bP" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
 /area/deathmatch)
 "bQ" = (
 /obj/structure/grille/smoothing,
@@ -456,11 +461,9 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "bS" = (
-/obj/machinery/light{
-	dir = 8
+/turf/open/floor/mainship/orange{
+	dir = 1
 	},
-/obj/structure/table,
-/turf/open/floor,
 /area/deathmatch)
 "bT" = (
 /turf/open/floor,
@@ -477,21 +480,9 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bW" = (
-/obj/structure/rack,
-/turf/open/floor,
-/area/deathmatch)
-"bX" = (
-/obj/structure/rack,
-/obj/item/storage/belt/champion,
-/turf/open/floor,
-/area/deathmatch)
-"bY" = (
-/obj/structure/rack,
-/obj/item/storage/box/MRE,
-/obj/item/storage/box/MRE,
-/obj/item/storage/box/MRE,
-/obj/item/storage/box/MRE,
-/turf/open/floor,
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
 /area/deathmatch)
 "bZ" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -502,25 +493,13 @@
 	},
 /turf/open/shuttle/brig,
 /area/deathmatch)
-"ca" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor,
-/area/deathmatch)
-"cb" = (
-/obj/structure/rack,
-/obj/item/storage/box/quickclot,
-/turf/open/floor,
-/area/deathmatch)
 "cc" = (
-/obj/structure/rack,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
 /area/deathmatch)
 "cd" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor,
+/turf/open/floor/mainship/sterile/plain,
 /area/deathmatch)
 "ce" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -530,14 +509,13 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "cf" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
 /area/deathmatch)
 "cg" = (
-/obj/structure/rack,
-/obj/item/storage/belt/utility/full,
-/turf/open/floor,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "ch" = (
 /obj/structure/closet/walllocker/hydrant/full{
@@ -575,9 +553,10 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "co" = (
-/obj/structure/largecrate/guns,
-/obj/item/tool/crowbar,
-/turf/open/ground/grass,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/orange{
+	dir = 5
+	},
 /area/deathmatch)
 "cs" = (
 /obj/structure/flora/tree/jungle,
@@ -598,6 +577,20 @@
 "fY" = (
 /turf/closed/wall/sulaco,
 /area/deathmatch)
+"kU" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor,
+/area/deathmatch)
+"my" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/deathmatch)
+"mE" = (
+/turf/open/floor/mainship/blue,
+/area/deathmatch)
 "qa" = (
 /obj/structure/lattice,
 /obj/effect/ai_node,
@@ -608,10 +601,46 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/deathmatch)
+"uq" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/emerald{
+	dir = 6
+	},
+/area/deathmatch)
+"vt" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/floor,
+/area/deathmatch)
+"ya" = (
+/obj/structure/largecrate/guns,
+/obj/item/tool/crowbar,
+/turf/open/ground/grass,
+/area/deathmatch)
 "Ab" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/effect/spawner/random/plushie/nospawnninetyfive,
+/turf/open/floor,
+/area/deathmatch)
+"BR" = (
+/turf/open/floor/mainship/emerald{
+	dir = 4
+	},
+/area/deathmatch)
+"Ci" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"Fu" = (
+/turf/open/floor/mainship/emerald,
+/area/deathmatch)
+"PC" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
 /turf/open/floor,
 /area/deathmatch)
 "PJ" = (
@@ -711,7 +740,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -757,9 +786,9 @@ bu
 bu
 bu
 bu
-co
+bu
+ya
 ab
-aa
 aa
 aa
 aa
@@ -806,8 +835,8 @@ bu
 au
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -841,21 +870,21 @@ bu
 ah
 bu
 bu
+as
+as
+as
+as
+as
+be
+as
+be
+as
+as
 bu
-as
-as
-as
-as
-be
-as
-be
-as
-as
 bu
 bu
 bu
 ab
-aa
 aa
 aa
 aa
@@ -890,20 +919,20 @@ bv
 bv
 bv
 as
-as
-aS
-bS
-bT
+bg
 bT
 bi
 bT
 bT
+bi
+bT
+bg
 as
 as
 ak
+ak
 bu
 ab
-aa
 aa
 aa
 aa
@@ -937,21 +966,21 @@ bw
 bB
 bE
 bF
-bT
 bq
 bT
 bT
+bJ
+bJ
 bT
-bT
-bT
-bT
+vt
+vt
 bT
 cj
 as
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -987,19 +1016,19 @@ bT
 bT
 bT
 bT
-bT
-bg
+bN
+bK
 bW
-ca
+cg
 cc
 cf
-bT
+kU
 aS
 as
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -1033,21 +1062,21 @@ bT
 bC
 bT
 bT
-bJ
 as
+bT
 bN
-bT
-bX
-bT
-bT
-bW
-bT
+bP
+cd
+cd
+cd
+mE
+kU
 ck
 as
 bu
+bu
 ah
 ab
-aa
 aa
 aa
 aa
@@ -1081,21 +1110,21 @@ bT
 bT
 bg
 bT
-bK
 as
+bT
 bO
-bT
-bW
-PJ
-bg
 cg
-bT
+cd
+Ci
+cd
+cg
+kU
 cl
 as
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -1129,21 +1158,21 @@ bx
 bT
 bx
 bT
-bT
 bq
 bT
-bT
-bY
-cb
+bN
+bS
 cd
 cd
-bT
+cd
+Fu
+kU
 aS
 as
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -1179,19 +1208,19 @@ by
 bG
 bT
 bT
-bT
-ba
-bT
-bT
-bT
-bT
-bT
+bN
+co
+my
+cg
+BR
+uq
+kU
 cj
 as
 bu
+bu
 ak
 ab
-aa
 aa
 aa
 aa
@@ -1226,20 +1255,20 @@ bv
 bv
 bv
 as
+bT
+bT
+PC
+PC
+bT
+PC
+PC
+bT
+bT
 as
-bP
-bj
-bT
-bT
-bj
-bT
-bT
-as
-as
+bu
 bu
 bu
 ab
-aa
 aa
 aa
 aa
@@ -1273,21 +1302,21 @@ bu
 bu
 bu
 bu
+as
+bg
+bT
+bj
+bT
+bT
+bj
+bT
+bg
+as
 bu
-as
-as
-as
-as
-be
-as
-be
-as
-as
 bu
 bu
 bu
 ab
-aa
 aa
 aa
 aa
@@ -1321,21 +1350,21 @@ ah
 br
 bu
 bu
-bu
-bu
-bu
-bu
-ak
-bu
-bu
-bu
-bu
+as
+as
+as
+as
+as
+be
+as
+be
+as
+as
 bu
 bu
 bu
 bu
 ab
-aa
 aa
 aa
 aa
@@ -1382,8 +1411,8 @@ bu
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -1430,8 +1459,8 @@ ae
 ae
 ae
 ae
+ae
 ab
-aa
 aa
 aa
 aa
@@ -1478,8 +1507,8 @@ dw
 dw
 dw
 dw
+dw
 ab
-aa
 aa
 aa
 aa
@@ -1526,8 +1555,8 @@ ad
 ad
 ad
 ad
+ad
 ab
-aa
 aa
 aa
 aa
@@ -1574,8 +1603,8 @@ aA
 aA
 aA
 aA
+aA
 ab
-aa
 aa
 aa
 aa
@@ -1622,8 +1651,8 @@ bo
 bo
 bo
 bo
+bo
 ab
-aa
 aa
 aa
 aa
@@ -1670,8 +1699,8 @@ bo
 cn
 bo
 bo
+bo
 ab
-aa
 aa
 aa
 aa
@@ -1718,8 +1747,8 @@ bo
 bo
 al
 bo
+bo
 ab
-aa
 aa
 aa
 aa
@@ -1766,8 +1795,8 @@ aj
 aj
 aj
 aj
+aj
 ab
-aa
 aa
 aa
 aa
@@ -1814,8 +1843,8 @@ ad
 ad
 ad
 ad
+ad
 ab
-aa
 aa
 aa
 aa
@@ -1862,8 +1891,8 @@ aU
 aU
 aU
 aU
+aU
 ab
-aa
 aa
 aa
 aa
@@ -1910,8 +1939,8 @@ ae
 ae
 ae
 ae
+ae
 ab
-aa
 aa
 aa
 aa
@@ -1958,8 +1987,8 @@ bu
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2006,8 +2035,8 @@ bu
 bu
 bR
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2054,8 +2083,8 @@ bu
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2102,8 +2131,8 @@ bu
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2150,8 +2179,8 @@ bu
 ak
 ai
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2198,8 +2227,8 @@ bu
 bu
 au
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2246,8 +2275,8 @@ fY
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2294,8 +2323,8 @@ fY
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2342,8 +2371,8 @@ at
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2390,8 +2419,8 @@ fY
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2438,8 +2467,8 @@ cm
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2486,8 +2515,8 @@ fY
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2534,8 +2563,8 @@ fY
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2581,9 +2610,9 @@ fY
 bu
 bu
 bu
+bu
 bR
 ab
-aa
 aa
 aa
 aa
@@ -2630,8 +2659,8 @@ bu
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2678,8 +2707,8 @@ bu
 bu
 ai
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2726,8 +2755,8 @@ bu
 bu
 bu
 bu
+bu
 ab
-aa
 aa
 aa
 aa
@@ -2773,9 +2802,9 @@ bu
 bu
 bu
 bu
-co
+bu
+ya
 ab
-aa
 aa
 aa
 aa
@@ -2823,7 +2852,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa

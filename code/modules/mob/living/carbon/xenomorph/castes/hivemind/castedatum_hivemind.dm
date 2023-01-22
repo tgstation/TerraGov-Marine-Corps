@@ -37,6 +37,9 @@
 	aura_strength = 0
 
 	// *** Abilities *** //
+
+	resin_max_range = 4 //Hivemind can place resin structures from 4 tiles away
+
 	actions = list(
 		/datum/action/xeno_action/watch_xeno/hivemind,
 		/datum/action/xeno_action/change_form,
@@ -50,7 +53,7 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
-		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
+		/datum/action/xeno_action/activable/secrete_resin/hivemind,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)

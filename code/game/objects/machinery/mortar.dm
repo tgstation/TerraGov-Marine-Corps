@@ -326,16 +326,14 @@
 		user.balloon_alert(user, "The gun needs to be aimed first.")
 		return
 
-	var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-	if(get_dist(loc, selfown) < minimum_range)
+	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_y"], z)
+	if(get_dist(loc, target) < minimum_range)
 		user.balloon_alert(user, "The target is too close to the gun.")
 		return
-
-	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
-	setDir(get_dir(src, target))
 	if(!isturf(target))
 		user.balloon_alert(user, "You cannot fire the gun to this target.")
 		return
+	setDir(get_dir(src, target))
 
 	var/area/A = get_area(target)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)

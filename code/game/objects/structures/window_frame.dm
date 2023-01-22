@@ -6,7 +6,6 @@
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
-	throwpass = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
@@ -131,6 +130,9 @@
 	reinforced = TRUE
 	max_integrity = 300
 
+/obj/structure/window_frame/colony/reinforced/weakened
+	max_integrity = 150
+
 /obj/structure/window_frame/chigusa
 	icon_state = "chig_window0_frame"
 	basestate = "chig_window"
@@ -149,6 +151,6 @@
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE
-	throwpass = FALSE
+	flags_pass = NONE
 	reinforced = TRUE
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE

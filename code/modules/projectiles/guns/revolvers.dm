@@ -26,9 +26,9 @@
 	movement_acc_penalty_mult = 3
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
-	scatter_unwielded = 25
-	recoil = 2
-	recoil_unwielded = 3
+	scatter_unwielded = 15
+	recoil = 0
+	recoil_unwielded = 1
 
 	placed_overlay_iconstate = "revolver"
 
@@ -85,9 +85,7 @@
 	akimbo_additional_delay = 0.6 // Ends up as 0.249, so it'll get moved up to 0.25.
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
-	scatter_unwielded = 15
 	scatter = -1
-	recoil = 0
 	recoil_unwielded = 0.75
 
 /obj/item/weapon/gun/revolver/standard_revolver/Initialize(mapload, spawn_empty)
@@ -121,7 +119,7 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 	damage_mult = 1.05
-	recoil = 0
+	scatter_unwielded = 12
 	recoil_unwielded = 0
 
 
@@ -151,8 +149,6 @@
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-	scatter_unwielded = 20
-	recoil = 0
 	recoil_unwielded = 0
 
 
@@ -184,14 +180,13 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	attachable_offset = list("muzzle_x" = 20, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
-	recoil = 0
-	accuracy_mult = 1.1
+	accuracy_mult = 1.15
 	scatter = 0
-	accuracy_mult_unwielded = 0.6
+	accuracy_mult_unwielded = 0.8
 	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
@@ -231,9 +226,9 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
 	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 12
 	burst_amount = 3
 	burst_delay = 0.1 SECONDS
-	scatter_unwielded = 20
 	damage_mult = 1.05
 
 //-------------------------------------------------------
@@ -261,7 +256,6 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
@@ -270,7 +264,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 	fire_delay = 0.35 SECONDS
-	recoil = 0
 	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
@@ -312,7 +305,6 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
@@ -321,3 +313,4 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 	fire_delay = 0.15 SECONDS
+	damage_mult = 1.1

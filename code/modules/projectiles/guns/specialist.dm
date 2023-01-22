@@ -50,7 +50,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
@@ -245,7 +245,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
@@ -293,7 +293,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/slavic,
 	)
@@ -344,7 +344,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,

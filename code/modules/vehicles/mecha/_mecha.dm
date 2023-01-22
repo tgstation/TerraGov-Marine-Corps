@@ -23,7 +23,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_OVERPOWERING
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
@@ -218,7 +218,7 @@
 	radio = new(src)
 	radio.name = "[src] radio"
 
-
+	GLOB.nightfall_toggleable_lights += src
 	add_cell()
 	add_scanmod()
 	add_capacitor()
@@ -250,6 +250,8 @@
 	for(var/ejectee in occupants)
 		mob_exit(ejectee, TRUE, TRUE)
 
+	GLOB.nightfall_toggleable_lights -= src
+
 	if(LAZYLEN(flat_equipment))
 		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
 			equip.detach(loc)
@@ -276,7 +278,7 @@
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(isAI(occupant))
 			unlucky_ais = occupant
 			occupant.gib() //No wreck, no AI to recover
@@ -399,7 +401,7 @@
 			. += "It's falling apart."
 	if(LAZYLEN(flat_equipment))
 		. += "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/ME AS in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return

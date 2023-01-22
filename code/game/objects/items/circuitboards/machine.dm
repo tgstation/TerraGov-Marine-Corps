@@ -13,7 +13,7 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/destructive_analyzer
 	name = "Circuit board (Destructive Analyzer)"
-	build_path = /obj/machinery/r_n_d/destructive_analyzer
+	build_path = /obj/structure/prop/mainship/research/destructive_analyzer
 	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 1,
@@ -44,7 +44,7 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/circuit_imprinter
 	name = "Circuit board (Circuit Imprinter)"
-	build_path = /obj/machinery/r_n_d/circuit_imprinter
+	build_path = /obj/structure/prop/mainship/research/circuit_imprinter
 	frame_desc = "Requires 1 Matter Bin, 1 Micro Manipulator, and 2 Beakers."
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
@@ -84,7 +84,7 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/mechfab
 	name = "Circuit board (Exosuit Fabricator)"
-	build_path = /obj/machinery/mecha_part_fabricator
+	build_path = /obj/structure/prop/mainship/research/mechafab
 	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,

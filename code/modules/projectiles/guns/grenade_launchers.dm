@@ -76,7 +76,7 @@ The Grenade Launchers
 	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
 	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
 	play_fire_sound(loc)
-	grenade_to_launch.det_time = min(10, grenade_to_launch.det_time)
+	grenade_to_launch.launched_det_time()
 	grenade_to_launch.launched = TRUE
 	grenade_to_launch.activate(gun_user)
 	grenade_to_launch.throwforce += grenade_to_launch.launchforce
@@ -165,6 +165,14 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
 
+/obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
+	name = "\improper BR-64 underslung grenade launcher"
+	desc = "A weapon-mounted, reloadable, two-shot grenade launcher designed to fit the BR-64."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "t64_grenade"
+	pixel_shift_x = 21
+	pixel_shift_y = 15
+
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
@@ -201,7 +209,7 @@ The Grenade Launchers
 	item_state = "gun"
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 	flags_gun_features = NONE
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS

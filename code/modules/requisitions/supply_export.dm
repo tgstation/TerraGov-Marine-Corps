@@ -2,30 +2,30 @@
 /atom/movable/proc/supply_export(faction_selling)
 	return 0
 
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req/supply_export(faction_selling)
-	SSpoints.supply_points[faction_selling] += 1
-	return new /datum/export_report(1, name, faction_selling)
+/obj/item/reagent_containers/food/snacks/req_pizza/supply_export(faction_selling)
+	SSpoints.supply_points[faction_selling] += 10
+	return new /datum/export_report(10, name, faction_selling)
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = 5
-		if(XENO_TIER_ZERO)
-			. = 15
-		if(XENO_TIER_ONE)
-			. = 30
-		if(XENO_TIER_TWO)
-			. = 40
-		if(XENO_TIER_THREE)
 			. = 50
+		if(XENO_TIER_ZERO)
+			. = 150
+		if(XENO_TIER_ONE)
+			. = 300
+		if(XENO_TIER_TWO)
+			. = 400
+		if(XENO_TIER_THREE)
+			. = 500
 		if(XENO_TIER_FOUR)
-			. = 100
+			. = 1000
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 
 /mob/living/carbon/xenomorph/shrike/supply_export(faction_selling)
-	SSpoints.supply_points[faction_selling] += 50
-	return new /datum/export_report(50, name, faction_selling)
+	SSpoints.supply_points[faction_selling] += 500
+	return new /datum/export_report(500, name, faction_selling)
 
 
 /mob/living/carbon/human/supply_export(faction_selling)
@@ -33,13 +33,13 @@
 		return new /datum/export_report(0, name, faction_selling)
 	switch(job.job_category)
 		if(JOB_CAT_ENGINEERING, JOB_CAT_MEDICAL, JOB_CAT_REQUISITIONS)
-			. = 20
+			. = 200
 		if(JOB_CAT_MARINE)
-			. = 30
+			. = 300
 		if(JOB_CAT_SILICON)
-			. = 80
+			. = 800
 		if(JOB_CAT_COMMAND)
-			. = 100
+			. = 1000
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 

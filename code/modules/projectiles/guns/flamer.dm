@@ -160,7 +160,7 @@
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
-			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
+			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, bypass_xeno = TRUE, air_pass = TRUE)
 			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
@@ -181,7 +181,7 @@
 	var/turf/turf_to_check = get_turf(src)
 	if(iteration > 1)
 		turf_to_check = path_to_target[iteration - 1]
-	if(LinkBlocked(turf_to_check, path_to_target[iteration], projectile = TRUE, bypass_xeno = TRUE)) //checks if it's actually possible to get to the next tile in the line
+	if(LinkBlocked(turf_to_check, path_to_target[iteration], bypass_xeno = TRUE, air_pass = TRUE)) //checks if it's actually possible to get to the next tile in the line
 		return
 	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
 		walls_penetrated -= 1
@@ -448,7 +448,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	name = "fire"
 	desc = "Ouch!"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
