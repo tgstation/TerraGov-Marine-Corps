@@ -60,7 +60,7 @@
 		return
 
 	var/loot_spawned = 0
-	while((spawn_loot_count < loot_spawned) && loot.len)
+	while((spawn_loot_count > loot_spawned) && loot.len)
 		var/lootspawn = pick_weight_recursive(loot)
 		if(!spawn_loot_double)
 			loot.Remove(lootspawn)
