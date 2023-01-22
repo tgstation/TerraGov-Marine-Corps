@@ -80,7 +80,7 @@
 		if(!isliving(xenotorouny))
 			return
 		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
-
+		xenotorouny.update_icons()
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
