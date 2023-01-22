@@ -26,13 +26,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/Initialize()
-	. = ..()
 	if(keyslot)
 		keyslot = new keyslot(src)
 	if(keyslot2)
 		keyslot2 = new keyslot2(src)
-	set_listening(TRUE)
-	recalculateChannels()
+	. = ..()
+	//set_listening(TRUE)
+	//recalculateChannels()
 	possibly_deactivate_in_loc()
 
 /obj/item/radio/headset/proc/possibly_deactivate_in_loc()
