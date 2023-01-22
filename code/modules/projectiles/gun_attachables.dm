@@ -1035,6 +1035,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A specialized stock for the BR-64."
 	icon_state = "t64stock"
 
+//You can remove the stock on the Magnum. So it has stats and is removeable.
+
+/obj/item/attachable/stock/t76
+	name = "T-76 Magnum Stock"
+	desc = "A R-76 magnum stock. Makes about all your handling better outside of making it harder to wield. Recommended to be kept on the R-76 at all times if you value your shoulder."
+	icon_state = "t76stock"
+	flags_attach_features = ATTACH_REMOVABLE
+	melee_mod = 5
+	size_mod = 2
+	recoil_mod = -2
+	pixel_shift_x = 30
+	pixel_shift_y = 14
+
 //Underbarrel
 
 /obj/item/attachable/verticalgrip
