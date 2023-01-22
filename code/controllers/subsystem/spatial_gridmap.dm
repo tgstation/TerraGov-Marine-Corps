@@ -500,7 +500,6 @@ SUBSYSTEM_DEF(spatial_grid)
 
 	if(insert_clients)
 		var/list/turfs
-		var/level = SSmapping.get_level(z)
 
 		turfs = block(locate(1,1,z), locate(world.maxx, world.maxy, z))
 
