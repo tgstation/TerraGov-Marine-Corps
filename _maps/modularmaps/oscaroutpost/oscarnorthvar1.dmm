@@ -69,6 +69,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"aP" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/west)
 "aT" = (
 /obj/structure/table/rusticwoodentable,
 /obj/machinery/light,
@@ -615,6 +619,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"fz" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
 "fA" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /obj/item/ammo_magazine/tl102/hsg_nest,
@@ -1072,6 +1082,12 @@
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
+"mc" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/road)
 "mj" = (
 /obj/structure/platform{
 	dir = 4
@@ -1266,11 +1282,7 @@
 /turf/closed/wall,
 /area/oscar_outpost/outside/northeast)
 "om" = (
-/obj/structure/table/mainship{
-	alpha = 0;
-	breakable = 0;
-	mouse_opacity = 0
-	},
+/obj/structure/table/mainship,
 /turf/closed/wall/mainship/outer,
 /area/oscar_outpost)
 "or" = (
@@ -1417,6 +1429,10 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/oscar_outpost)
+"pm" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
 "po" = (
 /obj/machinery/light{
 	dir = 1
@@ -1573,6 +1589,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"qU" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/road)
 "ra" = (
 /obj/structure/barricade/metal{
 	alpha = 0;
@@ -1696,6 +1718,12 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"sz" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/west)
 "sD" = (
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
@@ -1895,6 +1923,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
+"vu" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
 "vJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -2747,6 +2781,10 @@
 	dir = 8
 	},
 /area/oscar_outpost/outside/west)
+"Ez" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/road)
 "EB" = (
 /obj/structure/platform{
 	dir = 4
@@ -3064,6 +3102,12 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
+"Jh" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/road)
 "Jn" = (
 /obj/structure/table/rusticwoodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
@@ -3921,7 +3965,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Ru" = (
-/obj/machinery/floodlight/outpost,
+/obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Rv" = (
@@ -3981,7 +4025,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
 "SB" = (
-/obj/machinery/floodlight/outpost,
+/obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "SC" = (
@@ -11152,11 +11196,11 @@ Pu
 Pu
 Pu
 mD
-Xa
+aP
 Wz
 CW
 Wz
-OC
+sz
 mD
 Pu
 Pu
@@ -13155,7 +13199,7 @@ Ai
 Ai
 Ai
 Yi
-Ai
+vu
 Ai
 Ai
 Ai
@@ -13180,6 +13224,7 @@ Ai
 Ai
 Yi
 Ai
+vu
 Ai
 Ai
 Ai
@@ -13189,8 +13234,7 @@ Ai
 Ai
 Ai
 Ai
-Ai
-Ai
+vu
 Ai
 "}
 (57,1,1) = {"
@@ -13930,7 +13974,7 @@ pL
 pL
 pL
 pL
-pL
+qU
 pL
 pL
 pL
@@ -13955,6 +13999,7 @@ pL
 pL
 pL
 pL
+qU
 pL
 pL
 pL
@@ -13964,8 +14009,7 @@ pL
 pL
 pL
 pL
-pL
-pL
+qU
 wK
 "}
 (62,1,1) = {"
@@ -15002,11 +15046,11 @@ mn
 xX
 py
 am
-rs
+Ez
 Pr
 vJ
 Pr
-LQ
+mc
 kq
 cT
 cT
@@ -15730,7 +15774,7 @@ QH
 QH
 QH
 QH
-QH
+Jh
 QH
 QH
 QH
@@ -15748,7 +15792,7 @@ QH
 QH
 QH
 QH
-QH
+Jh
 QH
 QH
 QH
@@ -15767,7 +15811,7 @@ sZ
 kP
 Tg
 QH
-QH
+Jh
 QH
 QH
 QH
@@ -16350,7 +16394,7 @@ pL
 pL
 pL
 pL
-pL
+qU
 pL
 pL
 pL
@@ -16368,7 +16412,7 @@ pL
 pL
 pL
 pL
-pL
+qU
 pL
 pL
 pL
@@ -16387,7 +16431,7 @@ pL
 Va
 ZF
 pL
-pL
+qU
 pL
 pL
 pL
@@ -16887,11 +16931,11 @@ cT
 cT
 wD
 cT
-QE
+pm
 tT
 tT
 tT
-xI
+fz
 cT
 wD
 cT
@@ -18902,11 +18946,11 @@ cT
 cT
 NL
 cT
-QE
+pm
 tT
 tT
 tT
-xI
+fz
 cT
 NL
 cT

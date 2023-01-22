@@ -242,12 +242,8 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
+/obj/structure/bed,
 /obj/structure/bed{
-	can_buckle = 0
-	},
-/obj/structure/bed{
-	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/rainbow{
@@ -1084,7 +1080,6 @@
 	name = "Req Line Shutters";
 	pixel_x = 7;
 	pixel_y = 1;
-	req_one_access_txt = "1;21"
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1145,12 +1140,8 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
+/obj/structure/bed,
 /obj/structure/bed{
-	can_buckle = 0
-	},
-/obj/structure/bed{
-	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/rainbow{
@@ -1922,7 +1913,6 @@
 	name = "Req Line Shutters";
 	pixel_x = 7;
 	pixel_y = -2;
-	req_one_access_txt = "1;21"
 	},
 /obj/structure/table/mainship,
 /obj/machinery/door_control/old{
@@ -1930,7 +1920,6 @@
 	name = "Req Line Shutters";
 	pixel_x = -7;
 	pixel_y = -2;
-	req_one_access_txt = "1;21"
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -2039,12 +2028,8 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
+/obj/structure/bed,
 /obj/structure/bed{
-	can_buckle = 0
-	},
-/obj/structure/bed{
-	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/rainbow{
@@ -2871,12 +2856,8 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
+/obj/structure/bed,
 /obj/structure/bed{
-	can_buckle = 0
-	},
-/obj/structure/bed{
-	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/rainbow{
@@ -2920,12 +2901,8 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
+/obj/structure/bed,
 /obj/structure/bed{
-	can_buckle = 0
-	},
-/obj/structure/bed{
-	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/rainbow{

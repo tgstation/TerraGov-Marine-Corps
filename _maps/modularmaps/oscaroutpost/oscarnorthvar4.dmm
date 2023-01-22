@@ -23,6 +23,12 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
+"ao" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/road)
 "aq" = (
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
@@ -285,6 +291,12 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor,
 /area/oscar_outpost)
+"cj" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/east)
 "cl" = (
 /turf/closed/wall,
 /area/oscar_outpost/outside/west)
@@ -604,6 +616,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"ff" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/road)
 "fj" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -941,6 +959,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"ir" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/west)
 "iC" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -1397,11 +1419,7 @@
 /turf/closed/wall,
 /area/oscar_outpost/outside/northeast)
 "om" = (
-/obj/structure/table/mainship{
-	alpha = 0;
-	breakable = 0;
-	mouse_opacity = 0
-	},
+/obj/structure/table/mainship,
 /turf/closed/wall/mainship/outer,
 /area/oscar_outpost)
 "or" = (
@@ -2120,6 +2138,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"uC" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/road)
 "uF" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -3250,6 +3272,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"FP" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/road)
 "FR" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -3844,6 +3872,12 @@
 /obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
+"LV" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
 "Mc" = (
 /obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
@@ -4460,7 +4494,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Ru" = (
-/obj/machinery/floodlight/outpost,
+/obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Rv" = (
@@ -4540,6 +4574,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/east)
+"RW" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/west)
 "RZ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	name = "shrivelled barley bush"
@@ -4610,7 +4650,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "SB" = (
-/obj/machinery/floodlight/outpost,
+/obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "SF" = (
@@ -4866,6 +4906,10 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/northwest)
+"Vz" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/east)
 "VE" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
@@ -11965,11 +12009,11 @@ Pu
 Pu
 Pu
 mD
-Xa
+ir
 Wz
 Wz
 Wz
-OC
+RW
 mD
 Pu
 Pu
@@ -13966,7 +14010,7 @@ Ai
 Ai
 Ai
 Ai
-Ai
+LV
 Yi
 Ai
 Ai
@@ -13977,7 +14021,7 @@ Ai
 Ai
 Ai
 Ai
-Ai
+LV
 Ai
 Ai
 oG
@@ -13990,7 +14034,7 @@ Ai
 Ai
 Ai
 Ai
-Ai
+LV
 Yi
 Ai
 Ai
@@ -14002,7 +14046,7 @@ Ai
 Ai
 Ai
 Ai
-Ai
+LV
 Ai
 Ai
 "}
@@ -14741,7 +14785,7 @@ pL
 pL
 pL
 pL
-pL
+FP
 pL
 pL
 pL
@@ -14752,7 +14796,7 @@ pL
 pL
 wK
 pL
-pL
+FP
 pL
 pL
 mr
@@ -14765,6 +14809,7 @@ pL
 pL
 pL
 pL
+FP
 pL
 pL
 pL
@@ -14776,8 +14821,7 @@ pL
 pL
 pL
 pL
-pL
-pL
+FP
 pL
 wK
 "}
@@ -15660,11 +15704,11 @@ mn
 sD
 ut
 am
-rs
+uC
 Pr
 Pr
 Pr
-LQ
+ff
 lX
 cT
 cT
@@ -16544,7 +16588,7 @@ QH
 QH
 QH
 QH
-QH
+ao
 QH
 lF
 HT
@@ -16560,6 +16604,7 @@ QH
 QH
 QH
 QH
+ao
 QH
 QH
 QH
@@ -16568,8 +16613,7 @@ QH
 QH
 QH
 QH
-QH
-QH
+ao
 QH
 QH
 QH
@@ -16581,7 +16625,7 @@ Tg
 Tg
 as
 QH
-QH
+ao
 QH
 QH
 SV
@@ -16589,7 +16633,7 @@ Pr
 Pr
 sZ
 QH
-QH
+ao
 SV
 Pr
 Pr
@@ -16925,11 +16969,11 @@ cT
 cT
 NL
 cT
-QE
+Vz
 tT
 tT
 tT
-xI
+cj
 cT
 NL
 cT
@@ -17164,7 +17208,7 @@ pL
 pL
 pL
 pL
-pL
+FP
 pL
 np
 HT
@@ -17180,6 +17224,7 @@ pL
 pL
 pL
 pL
+FP
 pL
 pL
 pL
@@ -17188,8 +17233,7 @@ pL
 pL
 pL
 pL
-pL
-pL
+FP
 pL
 pL
 pL
@@ -17201,6 +17245,7 @@ ZF
 ZF
 ZB
 pL
+FP
 pL
 pL
 pL
@@ -17208,8 +17253,7 @@ pL
 pL
 pL
 pL
-pL
-pL
+FP
 pL
 pL
 pL
@@ -19715,11 +19759,11 @@ cT
 cT
 NL
 cT
-QE
+Vz
 tT
 tT
 tT
-xI
+cj
 cT
 NL
 cT

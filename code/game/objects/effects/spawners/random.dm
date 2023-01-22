@@ -45,9 +45,6 @@
 	var/list/spawn_locations = get_spawn_locations(spawn_scatter_radius)
 	var/spawn_loot_count = lootcount_override ? lootcount_override : src.spawn_loot_count
 
-	if(!spawn_locations.len)
-		return
-
 	if(spawn_all_loot)
 		spawn_loot_count = INFINITY
 		spawn_loot_double = FALSE
@@ -62,7 +59,7 @@
 		return
 
 	var/loot_spawned = 0
-	while((spawn_loot_count < loot_spawned) && loot.len)
+	while((spawn_loot_count-loot_spawned) && loot.len)
 		var/lootspawn = pick_weight_recursive(loot)
 		if(!spawn_loot_double)
 			loot.Remove(lootspawn)
@@ -94,9 +91,10 @@
 /obj/effect/spawner/random/proc/get_spawn_locations(radius)
 	var/list/scatter_locations = list()
 
-	for(var/turf/turf_in_view in view(radius, get_turf(src)))
-		if(!turf_in_view.density)
-			scatter_locations += turf_in_view
+	if(radius >= 0)
+		for(var/turf/turf_in_view in view(radius, get_turf(src)))
+			if(!turf_in_view.density)
+				scatter_locations += turf_in_view
 
 	return scatter_locations
 

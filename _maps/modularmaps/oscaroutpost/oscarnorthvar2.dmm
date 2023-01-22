@@ -157,6 +157,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
+"bo" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/road)
 "bu" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -267,29 +273,10 @@
 /area/oscar_outpost/outside/northeast)
 "cy" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.5;
-	burn_multiplier = 0.1;
-	dir = 1;
-	explosive_multiplier = 0.1
-	},
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.05;
-	burn_multiplier = 0.1;
-	dir = 8;
-	explosive_multiplier = 0.1
-	},
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.05;
-	burn_multiplier = 0.1;
-	dir = 4;
-	explosive_multiplier = 0.1
-	},
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.05;
-	burn_multiplier = 0.1;
-	explosive_multiplier = 0.1
-	},
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/north)
 "cz" = (
@@ -358,29 +345,10 @@
 /area/oscar_outpost)
 "cX" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.5;
-	burn_multiplier = 0.1;
-	dir = 1;
-	explosive_multiplier = 0.1
-	},
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.05;
-	burn_multiplier = 0.1;
-	dir = 8;
-	explosive_multiplier = 0.1
-	},
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.05;
-	burn_multiplier = 0.1;
-	dir = 4;
-	explosive_multiplier = 0.1
-	},
-/obj/structure/barricade/metal{
-	brute_multiplier = 0.05;
-	burn_multiplier = 0.1;
-	explosive_multiplier = 0.1
-	},
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
 /turf/open/ground/coast{
 	dir = 1
 	},
@@ -603,12 +571,6 @@
 	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"eB" = (
-/obj/structure/platform/rockcliff{
-	projectile_coverage = 0
-	},
-/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "eC" = (
 /turf/open/ground/grass,
@@ -1339,9 +1301,7 @@
 /area/oscar_outpost)
 "ns" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	dir = 4;
-	projectile_coverage = 0
+	dir = 4
 	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
@@ -1432,10 +1392,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "op" = (
-/obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	projectile_coverage = 0
-	},
+/obj/structure/platform/rockcliff,
 /obj/effect/ai_node,
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
@@ -2161,10 +2118,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/east)
 "uq" = (
-/obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	projectile_coverage = 0
-	},
+/obj/structure/platform/rockcliff,
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
@@ -2192,9 +2146,7 @@
 /area/oscar_outpost/outside/northeast)
 "uV" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	dir = 8;
-	projectile_coverage = 0
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
@@ -2350,9 +2302,7 @@
 /area/oscar_outpost/outside/north)
 "wa" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	dir = 4;
-	projectile_coverage = 0
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
@@ -2585,7 +2535,6 @@
 /area/oscar_outpost/outside/north)
 "ym" = (
 /turf/closed/wall/r_wall{
-	damage_cap = 25000;
 	name = "reinforced bunker wall"
 	},
 /area/oscar_outpost)
@@ -2621,6 +2570,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"yD" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/oscar_outpost/outside/road)
 "yG" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2847,13 +2802,17 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "AM" = (
-/obj/machinery/floodlight/outpost,
+/obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "AO" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
+"AS" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/oscar_outpost/outside/road)
 "AX" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -3242,13 +3201,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "Es" = (
+/obj/structure/platform/rockcliff,
 /obj/structure/platform/rockcliff{
-	projectile_coverage = 0
-	},
-/obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	dir = 8;
-	projectile_coverage = 0
+	dir = 8
 	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -3267,13 +3222,9 @@
 /area/oscar_outpost/outside/west)
 "EB" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	dir = 4;
-	projectile_coverage = 0
+	dir = 4
 	},
-/obj/structure/platform/rockcliff{
-	projectile_coverage = 0
-	},
+/obj/structure/platform/rockcliff,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -3709,6 +3660,12 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/east)
+"Jg" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/oscar_outpost/outside/west)
 "Ji" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -3834,6 +3791,12 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
+"KL" = (
+/obj/machinery/floodlight/outpost/oscar,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/oscar_outpost/outside/road)
 "Lg" = (
 /obj/item/reagent_containers/food/snacks/grown/wheat{
 	color = "#90EE90";
@@ -3950,10 +3913,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "Mx" = (
-/obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	projectile_coverage = 0
-	},
+/obj/structure/platform/rockcliff,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
@@ -4313,10 +4273,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost)
 "Ph" = (
-/obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	projectile_coverage = 0
-	},
+/obj/structure/platform/rockcliff,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Pm" = (
@@ -4343,9 +4300,7 @@
 	name = "wine bush"
 	},
 /obj/structure/flora/ausbushes/lavendergrass{
-	mouse_opacity = 0;
-	name = "wine grapes";
-	projectile_coverage = 25
+	name = "wine grapes"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
@@ -5094,9 +5049,7 @@
 /area/oscar_outpost/outside/east)
 "Vi" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
-	dir = 8;
-	projectile_coverage = 0
+	dir = 8
 	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -5532,7 +5485,7 @@
 /turf/closed/mineral/smooth,
 /area/oscar_outpost/outside/rock)
 "Ze" = (
-/obj/machinery/floodlight/outpost,
+/obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Zf" = (
@@ -8116,7 +8069,7 @@ uV
 LV
 Mq
 JN
-eB
+Ph
 eC
 eC
 eC
@@ -8271,7 +8224,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -8426,7 +8379,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 qH
 qH
 qH
@@ -8891,7 +8844,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Yz
 Yz
 Yz
@@ -9046,7 +8999,7 @@ vV
 th
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -9201,7 +9154,7 @@ th
 Aa
 Aa
 Up
-eB
+Ph
 eC
 eC
 eC
@@ -9356,7 +9309,7 @@ Wi
 ZE
 ZE
 ZE
-eB
+Ph
 eC
 eC
 nZ
@@ -9511,7 +9464,7 @@ th
 vV
 vV
 DI
-eB
+Ph
 eC
 eC
 mP
@@ -9666,7 +9619,7 @@ Aa
 th
 th
 Wi
-eB
+Ph
 eC
 eC
 Oe
@@ -9821,7 +9774,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -9976,7 +9929,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Zi
 qH
 qH
@@ -10441,7 +10394,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Ly
 UK
 MU
@@ -10596,7 +10549,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 Ly
 Yz
@@ -10751,7 +10704,7 @@ vV
 th
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -10906,7 +10859,7 @@ th
 Aa
 Aa
 Up
-eB
+Ph
 eC
 eC
 eC
@@ -11061,7 +11014,7 @@ Wi
 ZE
 ZE
 ZE
-eB
+Ph
 eC
 kT
 eC
@@ -11216,7 +11169,7 @@ th
 vV
 vV
 DI
-eB
+Ph
 eC
 eC
 eC
@@ -11371,7 +11324,7 @@ Aa
 th
 th
 Wi
-eB
+Ph
 eC
 Hz
 eC
@@ -11526,7 +11479,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -11681,7 +11634,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 qH
 qH
 qH
@@ -12146,7 +12099,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Yz
 Yz
 Yz
@@ -12301,7 +12254,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -12456,7 +12409,7 @@ wa
 QA
 YC
 er
-eB
+Ph
 eC
 eC
 eC
@@ -14380,6 +14333,7 @@ Hr
 Sh
 wx
 Hr
+Jg
 Hr
 Hr
 Hr
@@ -14392,13 +14346,13 @@ Hr
 Hr
 Hr
 Hr
-Hr
-Hr
+Jg
 fL
 Kb
 Kb
 Kb
 tg
+Jg
 Hr
 Hr
 Hr
@@ -14416,8 +14370,7 @@ Hr
 Hr
 Hr
 Hr
-Hr
-Hr
+Jg
 Hr
 "}
 (57,1,1) = {"
@@ -14936,7 +14889,7 @@ uV
 LV
 Mq
 JN
-eB
+Ph
 eC
 eC
 kT
@@ -15091,7 +15044,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 eC
 eC
@@ -15155,6 +15108,7 @@ AZ
 GR
 ve
 AZ
+yD
 AZ
 AZ
 AZ
@@ -15167,13 +15121,13 @@ AZ
 AZ
 AZ
 AZ
-AZ
-AZ
+yD
 NV
 SD
 SD
 SD
 Vx
+yD
 AZ
 AZ
 AZ
@@ -15191,8 +15145,7 @@ AZ
 AZ
 AZ
 AZ
-AZ
-AZ
+yD
 AZ
 "}
 (62,1,1) = {"
@@ -15246,7 +15199,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 qH
 qH
 qH
@@ -15711,7 +15664,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Yz
 Ym
 MU
@@ -15866,7 +15819,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 IQ
 MU
@@ -16021,7 +15974,7 @@ vV
 th
 th
 Wi
-eB
+Ph
 kT
 IQ
 MU
@@ -16074,11 +16027,11 @@ Zg
 VI
 ut
 tu
-JF
+AS
 SD
 SD
 SD
-Dp
+KL
 gp
 Cv
 Cv
@@ -16176,7 +16129,7 @@ th
 Aa
 Aa
 iv
-eB
+Ph
 eC
 IQ
 MU
@@ -16331,7 +16284,7 @@ Wi
 ZE
 ZE
 ZE
-eB
+Ph
 eC
 IQ
 MU
@@ -16486,7 +16439,7 @@ th
 vV
 vV
 DI
-eB
+Ph
 eC
 IQ
 MU
@@ -16641,7 +16594,7 @@ Aa
 th
 th
 Wi
-eB
+Ph
 kT
 IQ
 MU
@@ -16796,7 +16749,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 eC
 IQ
 MU
@@ -16951,7 +16904,7 @@ ZE
 bz
 Aa
 DE
-eB
+Ph
 Ff
 XS
 SD
@@ -16983,7 +16936,7 @@ Ff
 Ff
 Ff
 Ff
-Ff
+bo
 Ff
 Ff
 Ff
@@ -17002,7 +16955,7 @@ XS
 SD
 SD
 dt
-Ff
+bo
 Ff
 XS
 SD
@@ -17571,7 +17524,7 @@ ZE
 LV
 Mq
 DI
-eB
+Ph
 AZ
 NV
 SD
@@ -17603,7 +17556,7 @@ AZ
 AZ
 AZ
 AZ
-AZ
+yD
 AZ
 AZ
 AZ
@@ -17622,7 +17575,7 @@ AZ
 AZ
 AZ
 AZ
-AZ
+yD
 AZ
 AZ
 AZ
@@ -17726,7 +17679,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Nm
 us
@@ -17881,7 +17834,7 @@ vV
 th
 th
 Wi
-eB
+Ph
 Gt
 Nm
 us
@@ -18036,7 +17989,7 @@ th
 Aa
 Aa
 Up
-eB
+Ph
 Gt
 Nm
 us
@@ -18191,7 +18144,7 @@ Wi
 ZE
 ZE
 ZE
-eB
+Ph
 Gt
 Nm
 us
@@ -18346,7 +18299,7 @@ th
 vV
 vV
 DI
-eB
+Ph
 Gt
 Nm
 us
@@ -18501,7 +18454,7 @@ Aa
 th
 th
 Wi
-eB
+Ph
 Gt
 Nm
 us
@@ -18656,7 +18609,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 su
 oI
 us
@@ -19121,7 +19074,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Dz
 Dz
 Dz
@@ -19276,7 +19229,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -19431,7 +19384,7 @@ wa
 QA
 YC
 Up
-eB
+Ph
 Gt
 Gt
 Gt
@@ -21911,7 +21864,7 @@ uV
 LV
 Mq
 JN
-eB
+Ph
 Gt
 Gt
 Gt
@@ -22066,7 +22019,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 GU
 Gt
@@ -22221,7 +22174,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -22376,7 +22329,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 su
 su
 su
@@ -22841,7 +22794,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Dz
 Dz
 Dz
@@ -22996,7 +22949,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -23151,7 +23104,7 @@ vV
 th
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -23306,7 +23259,7 @@ th
 Aa
 Aa
 Up
-eB
+Ph
 Gt
 Gt
 Gt
@@ -23461,7 +23414,7 @@ Wi
 ZE
 ZE
 ZE
-eB
+Ph
 Gt
 Gt
 Gt
@@ -23616,7 +23569,7 @@ th
 vV
 vV
 DI
-eB
+Ph
 Gt
 Gt
 GU
@@ -23771,7 +23724,7 @@ Aa
 th
 th
 Wi
-eB
+Ph
 Gt
 GJ
 su
@@ -23926,7 +23879,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Nm
 us
@@ -24391,7 +24344,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 XL
 Dz
@@ -24546,7 +24499,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -24701,7 +24654,7 @@ vV
 th
 th
 Wi
-eB
+Ph
 Gt
 yt
 Az
@@ -24856,7 +24809,7 @@ th
 Aa
 Aa
 Up
-eB
+Ph
 Gt
 cO
 cz
@@ -25011,7 +24964,7 @@ Wi
 ZE
 ZE
 ZE
-eB
+Ph
 Gt
 aa
 Xz
@@ -25166,7 +25119,7 @@ th
 vV
 vV
 DI
-eB
+Ph
 Gt
 Gt
 Gt
@@ -25321,7 +25274,7 @@ Aa
 th
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -25476,7 +25429,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -25631,7 +25584,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 su
 su
 su
@@ -26096,7 +26049,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Dz
 Dz
 Dz
@@ -26251,7 +26204,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -26406,7 +26359,7 @@ ZE
 Zl
 th
 Wi
-eB
+Ph
 Gt
 Gt
 Gt
@@ -26561,7 +26514,7 @@ wa
 QA
 YC
 er
-eB
+Ph
 Gt
 Gt
 Gt
