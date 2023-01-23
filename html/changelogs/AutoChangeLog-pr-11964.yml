@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Added some more loadouts to SOM ERTs"
+  - bugfix: "Fixed a bug with mimir traits"
