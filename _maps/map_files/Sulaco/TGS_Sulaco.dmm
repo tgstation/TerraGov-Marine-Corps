@@ -7085,6 +7085,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"aIN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floodlight/combat,
+/turf/open/floor/prison,
+/area/sulaco/hallway/dropshipprep)
 "aIP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -10483,7 +10488,7 @@
 /area/sulaco/cargo/prep)
 "bwn" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -12887,7 +12892,7 @@
 /area/sulaco/hallway/central_hall)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -13964,6 +13969,7 @@
 "gtb" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/floodlight/combat,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "gtk" = (
@@ -15521,6 +15527,7 @@
 "iyo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/floodlight/combat,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "iyJ" = (
@@ -16294,7 +16301,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -23430,7 +23437,7 @@
 /area/sulaco/hangar)
 "sYa" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -26148,7 +26155,7 @@
 /area/sulaco/cafeteria)
 "wKu" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/sulaco/hangar)
 "wKB" = (
@@ -59390,7 +59397,7 @@ aVY
 kYl
 hID
 gtb
-cIs
+aIN
 aWg
 aQw
 wLH
