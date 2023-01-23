@@ -49,6 +49,14 @@
 	storage_slots = 8
 	max_storage_space = 8
 
+/obj/item/storage/pill_bottle/packet/isotonic
+	name = "Isotonic pill packet"
+	icon_state = "iso_packet"
+	desc = "This packet contains isotonic pills. Used to recover blood. Once you take them out they don't go back in."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	storage_slots = 8
+	max_storage_space = 8
+
 /obj/item/storage/pill_bottle/packet/paracetamol
 	name = "Paracematol pill packet"
 	desc = "This packet contains paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
