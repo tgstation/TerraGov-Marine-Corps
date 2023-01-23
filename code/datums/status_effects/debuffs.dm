@@ -10,7 +10,8 @@
 
 /datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE)
-		return qdel(src)
+		qdel(src)
+		return
 	if(isnum(set_duration))
 		duration = set_duration
 	return ..()
@@ -439,7 +440,8 @@
 
 /datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
 	if(new_owner.status_flags & GODMODE)
-		return qdel(src)
+		qdel(src)
+		return
 	. = ..()
 	debuff_owner = new_owner
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, .proc/call_resist_debuff)
