@@ -2,6 +2,13 @@
 "ac" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"ad" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "ag" = (
 /obj/structure/prop/mainship/name_stencil,
 /turf/open/floor/mainship_hull/dir{
@@ -22,6 +29,14 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"at" = (
+/obj/machinery/landinglight/on{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "au" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -30,10 +45,6 @@
 	dir = 4
 	},
 /area/mainship/patrol_base)
-"az" = (
-/obj/structure/platform_decoration/metalplatform_deco,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
 "aE" = (
 /obj/structure/sink,
 /turf/open/floor/freezer,
@@ -41,11 +52,31 @@
 "aH" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/arrow_of_artemis)
+"aI" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	pixel_x = -23;
+	dir = 1;
+	pixel_y = -14
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "aL" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 10
 	},
 /area/mainship/patrol_base)
+"aO" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/mainship_hull,
+/area/space)
 "aQ" = (
 /obj/machinery/vending/marineFood{
 	pixel_y = 16;
@@ -81,6 +112,13 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/arrow_of_artemis)
+"aS" = (
+/obj/structure/largecrate,
+/obj/structure/largecrate{
+	pixel_y = 15
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "aU" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/orange{
@@ -104,6 +142,15 @@
 /obj/structure/platform/metalplatform,
 /obj/structure/platform/metalplatform{
 	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"bb" = (
+/obj/machinery/light/mainship/blue{
+	dir = 8
+	},
+/obj/machinery/landinglight/on{
+	pixel_y = 13
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
@@ -157,17 +204,20 @@
 	dir = 8
 	},
 /area/space)
+"cb" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "ch" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
 /area/mainship/patrol_base)
-"cu" = (
-/obj/structure/platform/metalplatform,
+"ct" = (
+/obj/structure/prop/mainship/prop_tech,
 /turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
-"cw" = (
-/turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/arrow_of_artemis)
 "cA" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
@@ -184,6 +234,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
+"cL" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
 "cN" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/right{
 	pixel_y = 32;
@@ -198,6 +256,23 @@
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"cP" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"cS" = (
+/obj/structure/patrol_point{
+	id = "TGMC_12"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "cT" = (
 /obj/structure/prop/mainship/prop_tech{
 	dir = 8
@@ -205,6 +280,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"de" = (
+/obj/machinery/landinglight/on{
+	dir = 8
+	},
+/obj/machinery/landinglight/on,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/mainship/arrow_of_artemis)
 "dk" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -230,11 +314,18 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"dC" = (
-/obj/effect/turf_decal/warning_stripes/box/small{
-	dir = 1
+"dB" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
 	},
-/turf/open/floor/mainship/sterile,
+/area/mainship/arrow_of_artemis)
+"dD" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/blue,
 /area/mainship/arrow_of_artemis)
 "dG" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -242,6 +333,11 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"dJ" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "dM" = (
 /obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/mainship/black{
@@ -280,26 +376,40 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"ek" = (
+/obj/effect/turf_decal/warning_stripes/engineer{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/purple,
+/area/mainship/arrow_of_artemis)
 "em" = (
 /obj/structure/prop/mainship/vls,
 /turf/open/floor/mainship_hull,
 /area/space)
+"ey" = (
+/obj/effect/turf_decal/warning_stripes/leader{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
+"eG" = (
+/obj/structure/prop/mainship/gelida/lightstick,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "eH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
-"eM" = (
-/obj/effect/turf_decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile,
-/area/mainship/arrow_of_artemis)
-"eS" = (
+"eL" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/structure/prop/mainship/gelida/lightstick,
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "eT" = (
@@ -309,6 +419,17 @@
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/arrow_of_artemis)
+"fk" = (
+/obj/machinery/landinglight/on{
+	dir = 1
+	},
+/obj/machinery/landinglight/on{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/mainship/arrow_of_artemis)
 "fp" = (
 /obj/machinery/elevator_strut/bottom,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -316,11 +437,30 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"fy" = (
-/obj/structure/platform/metalplatform{
+"fu" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
+"fz" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
+"fF" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
 /area/mainship/arrow_of_artemis)
 "fM" = (
 /obj/machinery/telecomms/server/presets/alpha,
@@ -331,11 +471,6 @@
 	dir = 10
 	},
 /area/space)
-"fS" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 1
-	},
-/area/mainship/arrow_of_artemis)
 "fT" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship,
@@ -360,20 +495,20 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"gg" = (
+/obj/machinery/quick_vendor,
+/obj/machinery/camera/autoname/mainship{
+	dir = 6
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "gk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"gl" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/arrow_of_artemis)
-"go" = (
-/obj/machinery/quick_vendor,
-/turf/open/space/basic,
-/area/mainship/arrow_of_artemis)
 "gp" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/belt/utility/full,
@@ -405,15 +540,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
-"gw" = (
-/turf/open/floor/mainship/terragov/north,
-/area/mainship/arrow_of_artemis)
-"gx" = (
-/obj/structure/platform/metalplatform{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/arrow_of_artemis)
 "gA" = (
 /obj/structure/bed/chair/nometal{
@@ -489,6 +615,13 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/arrow_of_artemis)
+"hF" = (
+/obj/structure/largecrate,
+/obj/structure/largecrate{
+	pixel_y = 15
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "hT" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/arrow_of_artemis)
@@ -498,6 +631,20 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"ia" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/on{
+	dir = 1
+	},
+/obj/machinery/landinglight/on{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
 /area/mainship/arrow_of_artemis)
 "ib" = (
 /obj/structure/table/black,
@@ -520,17 +667,31 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
-"ig" = (
-/obj/structure/patrol_point{
-	id = "TGMC_14"
+"ie" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/mainship_hull,
+/area/space)
 "il" = (
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
 /area/mainship/patrol_base)
+"im" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
+"iq" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "it" = (
 /obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull/dir{
@@ -558,6 +719,16 @@
 	dir = 4
 	},
 /area/mainship/arrow_of_artemis)
+"iX" = (
+/obj/machinery/quick_vendor,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "jb" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	pixel_x = 23;
@@ -575,6 +746,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"jm" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "jp" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/mainship/patrol_base)
@@ -608,12 +785,42 @@
 /obj/structure/prop/mainship/prop_sec,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"jN" = (
+/obj/machinery/floor_warn_light/orange{
+	pixel_y = -15
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "jW" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"jZ" = (
+/obj/machinery/door/poddoor/mainship/indestructible,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
+"kc" = (
+/obj/structure/table/black,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"kf" = (
+/obj/structure/patrol_point{
+	id = "TGMC_23"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "kl" = (
 /obj/structure/dropship_piece/tadpole/cockpit/window{
 	icon_state = "106";
@@ -624,11 +831,12 @@
 "kA" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"kC" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 8
-	},
-/turf/open/floor/mainship/purple,
+"kE" = (
+/turf/open/space/basic,
+/area/mainship/arrow_of_artemis)
+"kF" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/turf/open/floor/mainship/blue/full,
 /area/mainship/arrow_of_artemis)
 "kH" = (
 /obj/structure/dropship_piece/tadpole/rearleft{
@@ -659,10 +867,24 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"kZ" = (
+/obj/machinery/light/mainship/blue{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
 "lf" = (
 /obj/structure/catwalk,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/sterile/dark,
+/area/mainship/arrow_of_artemis)
+"lh" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "lm" = (
 /obj/machinery/photocopier,
@@ -701,6 +923,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
+"lH" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
 "lM" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/ground/concrete,
@@ -710,6 +938,14 @@
 	dir = 9
 	},
 /area/mainship/patrol_base)
+"lR" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "lS" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -724,6 +960,16 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
+"mb" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
+"me" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "mg" = (
 /obj/structure/bed/chair/nometal,
 /turf/open/floor/mainship/mono,
@@ -736,16 +982,27 @@
 	dir = 4
 	},
 /area/mainship/arrow_of_artemis)
+"mm" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/structure/prop/mainship/gelida/lightstick,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "mt" = (
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
-"mI" = (
-/obj/structure/patrol_point{
-	id = "TGMC_13"
+"mx" = (
+/obj/machinery/gear,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"mD" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/arrow_of_artemis)
 "mL" = (
 /obj/structure/patrol_point{
@@ -767,6 +1024,17 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"ng" = (
+/obj/machinery/landinglight/on{
+	dir = 4
+	},
+/obj/machinery/landinglight/on{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/mainship/arrow_of_artemis)
 "nm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -775,12 +1043,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
-"nq" = (
-/obj/structure/patrol_point{
-	id = "TGMC_22"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
 "nz" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 1
@@ -819,10 +1081,28 @@
 	dir = 4
 	},
 /area/mainship/patrol_base)
+"nW" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/terragov/north,
+/area/mainship/arrow_of_artemis)
+"nY" = (
+/obj/machinery/light/mainship/blue{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "nZ" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
+/area/mainship/arrow_of_artemis)
+"of" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/prop/mainship/gelida/lightstick,
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "oj" = (
 /obj/structure/bed/chair/nometal,
@@ -833,6 +1113,11 @@
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
+"oo" = (
+/obj/structure/table/black,
+/obj/machinery/computer3/laptop,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "oq" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/mono,
@@ -841,6 +1126,17 @@
 /obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
+"oE" = (
+/obj/structure/cargo_container/nt{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/arrow_of_artemis)
+"oJ" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
+	},
+/area/mainship/arrow_of_artemis)
 "oK" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -864,16 +1160,58 @@
 	dir = 5
 	},
 /area/mainship/patrol_base)
+"pe" = (
+/obj/structure/patrol_point{
+	id = "TGMC_21"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "pg" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
 /area/space)
+"pj" = (
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/arrow_of_artemis)
 "pk" = (
 /turf/open/floor/mainship/black/corner,
 /area/mainship/patrol_base)
+"pm" = (
+/obj/structure/platform_decoration/metalplatform_deco,
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"px" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
+"pD" = (
+/obj/structure/platform/metalplatform,
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "pK" = (
-/turf/open/floor/plating,
+/obj/machinery/landinglight/on{
+	dir = 4
+	},
+/obj/machinery/landinglight/on,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
+	},
 /area/mainship/arrow_of_artemis)
 "pS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -917,19 +1255,46 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/arrow_of_artemis)
-"qs" = (
-/turf/open/floor/mainship/blue{
-	dir = 1
+"qH" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/arrow_of_artemis)
+"qI" = (
+/obj/structure/largecrate/random/barrel/blue,
+/obj/structure/largecrate/random/barrel/yellow{
+	pixel_x = 16
+	},
+/obj/structure/largecrate/random/barrel/red{
+	pixel_x = 17;
+	pixel_y = 17
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
 "qL" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qO" = (
+/obj/structure/patrol_point{
+	id = "TGMC_14"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "qP" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 9
 	},
+/area/mainship/arrow_of_artemis)
+"qV" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "qY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -958,12 +1323,28 @@
 	dir = 6
 	},
 /area/mainship/patrol_base)
+"ri" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
+"rj" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/purple{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "rk" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
 /area/mainship/patrol_base)
+"rm" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
 "rn" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -1026,6 +1407,21 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
+"rP" = (
+/obj/structure/prop/vehicle/apc{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/dualcannonzero{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/wheelszero{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/decoration/frontturretzero{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/arrow_of_artemis)
 "rR" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -1042,6 +1438,21 @@
 "rW" = (
 /obj/structure/platform/metalplatform,
 /obj/structure/platform/metalplatform{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"rY" = (
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"sd" = (
+/obj/structure/table/black,
+/obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -1093,9 +1504,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"sJ" = (
+"sI" = (
+/obj/effect/turf_decal/warning_stripes/smartgunner{
+	pixel_y = 11
+	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/purple{
+	dir = 1
+	},
 /area/mainship/arrow_of_artemis)
 "sM" = (
 /obj/structure/prop/mainship/name_stencil,
@@ -1118,6 +1534,13 @@
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
+"sY" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/mainship/arrow_of_artemis)
 "sZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -1133,6 +1556,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"te" = (
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/arrow_of_artemis)
 "tp" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
@@ -1161,6 +1588,25 @@
 	dir = 1
 	},
 /area/mainship/arrow_of_artemis)
+"tF" = (
+/obj/effect/turf_decal/warning_stripes/smartgunner{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
+"tI" = (
+/obj/structure/patrol_point{
+	id = "TGMC_22"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "tK" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
 	pixel_y = 32;
@@ -1184,6 +1630,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"tW" = (
+/obj/machinery/light/mainship/blue{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/mainship/arrow_of_artemis)
 "ua" = (
 /obj/structure/prop/vehicle/apc{
 	dir = 4
@@ -1211,6 +1665,14 @@
 	dir = 6
 	},
 /area/mainship/patrol_base)
+"ue" = (
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/sterile,
+/area/mainship/arrow_of_artemis)
 "ug" = (
 /obj/structure/table/black,
 /obj/machinery/light/mainship,
@@ -1235,11 +1697,9 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/arrow_of_artemis)
-"ut" = (
-/obj/structure/patrol_point{
-	id = "TGMC_21"
-	},
-/turf/open/floor/plating/plating_catwalk,
+"ux" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/arrow_of_artemis)
 "uy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -1279,6 +1739,11 @@
 /obj/item/attachable/magnetic_harness,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"ve" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "vf" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
@@ -1309,14 +1774,38 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/arrow_of_artemis)
+"vj" = (
+/obj/structure/cargo_container/gorg,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "vo" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"vH" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile,
+/area/mainship/arrow_of_artemis)
+"vI" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
 /area/mainship/arrow_of_artemis)
 "vL" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"vR" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "we" = (
 /turf/open/floor/mainship/terragov/north,
 /area/mainship/patrol_base)
@@ -1339,22 +1828,36 @@
 "wz" = (
 /turf/open/floor/plating,
 /area/mainship/patrol_base)
+"wB" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/on{
+	dir = 8
+	},
+/obj/machinery/landinglight/on{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/mainship/arrow_of_artemis)
 "wC" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/arrow_of_artemis)
+"wJ" = (
+/obj/effect/turf_decal/warning_stripes/medical{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/blue,
+/area/mainship/arrow_of_artemis)
 "xe" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"xi" = (
-/obj/structure/patrol_point{
-	id = "TGMC_24"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
 "xk" = (
 /obj/structure/prop/mainship/prop_tech{
 	dir = 4
@@ -1409,18 +1912,6 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"xG" = (
-/obj/structure/platform/metalplatform{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
-"xL" = (
-/obj/structure/patrol_point{
-	id = "TGMC_23"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
 "xO" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -1433,6 +1924,20 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"xX" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"ya" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/white,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "yf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1449,6 +1954,10 @@
 "yp" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/patrol_base)
+"yu" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "yx" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/plating/plating_catwalk,
@@ -1466,6 +1975,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"yC" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "yG" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/floor/mainship/mono,
@@ -1476,13 +1993,6 @@
 /area/mainship/patrol_base)
 "yI" = (
 /obj/structure/bed/chair/nometal{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
-"yN" = (
-/obj/machinery/quick_vendor,
-/obj/machinery/light/mainship{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -1500,6 +2010,20 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
+"zg" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/arrow_of_artemis)
+"zj" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/light/mainship/blue,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "zo" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base,
 /turf/open/floor/plating/ground/concrete,
@@ -1514,10 +2038,22 @@
 	dir = 5
 	},
 /area/mainship/arrow_of_artemis)
-"zx" = (
-/obj/effect/turf_decal/warning_stripes/box/small,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/plating/plating_catwalk,
+"zt" = (
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/sterile,
+/area/mainship/arrow_of_artemis)
+"zw" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/mainship/arrow_of_artemis)
+"zK" = (
+/obj/machinery/landinglight/on,
+/turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/arrow_of_artemis)
 "zV" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -1528,12 +2064,43 @@
 /obj/structure/prop/mainship/prop_tech,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
+"Aa" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	pixel_x = 23;
+	dir = 1;
+	pixel_y = -14
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Ad" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Al" = (
+/obj/structure/prop/catapult{
+	dir = 8;
+	pixel_y = 23
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
+"Ar" = (
+/obj/effect/turf_decal/warning_stripes/engineer{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/orange,
+/area/mainship/arrow_of_artemis)
+"Av" = (
+/obj/machinery/gear{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Ay" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -1554,6 +2121,32 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"AM" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
+"AY" = (
+/obj/machinery/door/poddoor/mainship/indestructible,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Bk" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/on,
+/obj/machinery/landinglight/on{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
+	},
+/area/mainship/arrow_of_artemis)
 "Bl" = (
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/mainship/mono,
@@ -1564,6 +2157,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Bp" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/arrow_of_artemis)
 "Br" = (
 /obj/structure/sink,
@@ -1587,6 +2186,9 @@
 	dir = 5
 	},
 /area/mainship/patrol_base)
+"BE" = (
+/turf/open/floor/mainship_hull,
+/area/mainship/arrow_of_artemis)
 "BF" = (
 /turf/open/floor/mainship/orange,
 /area/mainship/arrow_of_artemis)
@@ -1606,6 +2208,9 @@
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
+"BW" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "BZ" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/concrete,
@@ -1624,12 +2229,6 @@
 	dir = 10
 	},
 /area/mainship/patrol_base)
-"Ck" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 4
-	},
-/turf/open/floor/mainship/blue,
-/area/mainship/arrow_of_artemis)
 "Co" = (
 /obj/machinery/computer/cryopod{
 	pixel_x = 8
@@ -1639,12 +2238,8 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/arrow_of_artemis)
-"CF" = (
-/obj/effect/turf_decal/warning_stripes/box/small,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
+"Cx" = (
+/turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/arrow_of_artemis)
 "CH" = (
 /obj/structure/prop/mainship/gelida/propserver,
@@ -1656,15 +2251,45 @@
 	dir = 1
 	},
 /area/mainship/arrow_of_artemis)
+"CN" = (
+/obj/structure/largecrate{
+	pixel_x = -9
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
+"CQ" = (
+/obj/structure/prop/mainship/sensor_computer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "CR" = (
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"CZ" = (
-/obj/structure/dropship_piece/tadpole/rearleft{
-	dir = 1
+"CW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/machinery/landinglight/on{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
+"Da" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"Dd" = (
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "Dl" = (
 /turf/open/floor/mainship/black{
@@ -1675,6 +2300,13 @@
 /turf/open/floor/mainship/terragov/north{
 	dir = 6
 	},
+/area/mainship/arrow_of_artemis)
+"Dr" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/prop/mainship/gelida/lightstick,
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "DK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -1693,6 +2325,12 @@
 /obj/structure/stairs,
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
+"Ec" = (
+/obj/effect/turf_decal/warning_stripes/engineer{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/blue,
+/area/mainship/arrow_of_artemis)
 "Ee" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -1710,21 +2348,63 @@
 	dir = 4
 	},
 /area/mainship/patrol_base)
+"Em" = (
+/obj/effect/turf_decal/warning_stripes/engineer{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/red,
+/area/mainship/arrow_of_artemis)
+"En" = (
+/obj/effect/turf_decal/warning_stripes/leader{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "Eo" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"Ev" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Ez" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/on,
+/obj/machinery/landinglight/on{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/mainship/arrow_of_artemis)
 "EE" = (
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
-"EM" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 8
+"EH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/machinery/gear,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"EQ" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/blue,
 /area/mainship/arrow_of_artemis)
 "EU" = (
 /obj/structure/bed/chair/nometal{
@@ -1755,13 +2435,8 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
-"Fj" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/box/arrow{
-	dir = 1
-	},
+"Fi" = (
+/obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "Fk" = (
@@ -1774,6 +2449,13 @@
 /obj/structure/prop/mainship/prop_tech,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Fp" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "Fw" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
@@ -1781,6 +2463,25 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"FA" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/terragov{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
+"FC" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "FL" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
@@ -1799,10 +2500,36 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
+"Gf" = (
+/obj/effect/turf_decal/warning_stripes/medical{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/purple,
+/area/mainship/arrow_of_artemis)
+"Gq" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Gx" = (
+/obj/machinery/light/mainship/blue,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "GL" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
+"GM" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow,
+/turf/open/floor/mainship_hull,
+/area/space)
 "GQ" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/mainship/mono,
@@ -1811,6 +2538,13 @@
 /turf/open/floor/mainship/terragov/north{
 	dir = 5
 	},
+/area/mainship/arrow_of_artemis)
+"He" = (
+/obj/machinery/gear{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "Ho" = (
 /turf/open/floor/mainship/black{
@@ -1824,6 +2558,20 @@
 /area/mainship/patrol_base)
 "HA" = (
 /turf/open/floor/mainship/purple/full,
+/area/mainship/arrow_of_artemis)
+"HB" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"HC" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "HE" = (
 /obj/machinery/computer/cryopod{
@@ -1841,10 +2589,42 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"HI" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "HK" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
 	},
+/area/mainship/arrow_of_artemis)
+"HN" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"HP" = (
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"HV" = (
+/obj/structure/prop/vehicle/crane{
+	dir = 8;
+	layer = 5
+	},
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/arrow_of_artemis)
 "Ic" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
@@ -1869,16 +2649,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"In" = (
-/obj/structure/platform_decoration/metalplatform_deco,
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/mainship/arrow_of_artemis)
 "Iu" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"Iv" = (
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "IC" = (
 /obj/structure/largecrate/supply,
 /turf/open/floor/mainship/mono,
@@ -1887,12 +2667,6 @@
 /obj/structure/bed/chair/nometal,
 /turf/open/floor/freezer,
 /area/mainship/arrow_of_artemis)
-"IH" = (
-/obj/structure/patrol_point{
-	id = "TGMC_12"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
 "IJ" = (
 /obj/structure/dropship_piece/tadpole/cockpit/window{
 	icon_state = "105";
@@ -1900,13 +2674,18 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/arrow_of_artemis)
-"IR" = (
+"IV" = (
 /obj/structure/platform_decoration/metalplatform_deco{
-	dir = 1
+	dir = 4
 	},
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"Ja" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/purple,
 /area/mainship/arrow_of_artemis)
 "Jb" = (
 /obj/machinery/vending/marineFood,
@@ -1975,6 +2754,10 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"Jz" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "JB" = (
 /obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
@@ -2011,6 +2794,14 @@
 /obj/structure/prop/mainship/doorblocker/patrol_base,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Kv" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/structure/prop/catapult{
+	dir = 8;
+	pixel_y = 23
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "Kz" = (
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/patrol_base)
@@ -2086,17 +2877,40 @@
 /obj/structure/sign/double/map/left,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
+"Ls" = (
+/obj/machinery/landinglight/on{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
+"Lt" = (
+/obj/machinery/floor_warn_light/orange{
+	pixel_y = -15
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
+"Lw" = (
+/obj/effect/turf_decal/warning_stripes/smartgunner{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "LH" = (
 /obj/structure/prop/mainship/prop_tech{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
-"LO" = (
-/obj/machinery/newscaster{
-	dir = 8
-	},
-/turf/closed/wall/mainship/outer/reinforced,
+"LJ" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/turf/open/floor/mainship/red/full,
 /area/mainship/arrow_of_artemis)
 "LP" = (
 /obj/machinery/cryopod/right{
@@ -2136,17 +2950,24 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"Mt" = (
+/obj/structure/prop/vehicle/fighter{
+	dir = 8;
+	pixel_y = -6;
+	pixel_x = -10
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "Mv" = (
 /turf/open/floor/mainship/blue/full,
 /area/mainship/arrow_of_artemis)
 "My" = (
-/obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
-	dir = 1;
-	pixel_y = -14
+/obj/structure/patrol_point{
+	id = "TGMC_24"
 	},
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
@@ -2164,6 +2985,12 @@
 /turf/open/floor/mainship/purple{
 	dir = 4
 	},
+/area/mainship/arrow_of_artemis)
+"MK" = (
+/obj/effect/turf_decal/warning_stripes/medical{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/orange,
 /area/mainship/arrow_of_artemis)
 "MP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -2188,6 +3015,13 @@
 	dir = 4
 	},
 /area/mainship/arrow_of_artemis)
+"MW" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/terragov/north{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "MX" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -2197,22 +3031,40 @@
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
+"MY" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/turf/open/floor/mainship/purple/full,
+/area/mainship/arrow_of_artemis)
 "Ns" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
 /area/mainship/patrol_base)
-"Nv" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
 "NF" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"NJ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
+"NK" = (
+/obj/effect/turf_decal/warning_stripes/leader{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/purple{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "NU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -2235,11 +3087,6 @@
 /obj/item/attachable/magnetic_harness,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"NV" = (
-/turf/open/floor/mainship/purple{
-	dir = 1
-	},
-/area/mainship/arrow_of_artemis)
 "NW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -2251,6 +3098,19 @@
 "NZ" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"Oa" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Od" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
 "Oe" = (
 /obj/structure/table/black,
 /obj/structure/window/reinforced/toughened{
@@ -2268,6 +3128,20 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"Or" = (
+/obj/structure/prop/vehicle/crane{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
+"Ou" = (
+/obj/machinery/landinglight/on{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
 "Ow" = (
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
@@ -2281,6 +3155,14 @@
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"OD" = (
+/obj/structure/platform_decoration/metalplatform_deco,
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "OF" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
@@ -2292,12 +3174,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"ON" = (
-/obj/structure/patrol_point{
-	id = "TGMC_11"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
 "OY" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/red{
@@ -2335,6 +3211,12 @@
 	dir = 4
 	},
 /area/mainship/patrol_base)
+"Pw" = (
+/obj/machinery/landinglight/on{
+	pixel_y = 13
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Py" = (
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -2345,15 +3227,16 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
+"PE" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/ntlogo/nt2,
+/area/mainship/arrow_of_artemis)
 "PK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
-"PP" = (
-/obj/machinery/floor_warn_light/orange,
-/turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/arrow_of_artemis)
 "PQ" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base,
@@ -2376,11 +3259,14 @@
 	dir = 1
 	},
 /area/mainship/arrow_of_artemis)
-"Qa" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+"Qj" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/turf/open/floor/mainship/orange/full,
+/area/mainship/arrow_of_artemis)
+"Qm" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 1
 	},
-/turf/open/floor/plating,
 /area/mainship/arrow_of_artemis)
 "Qr" = (
 /turf/open/floor/mainship/blue,
@@ -2418,6 +3304,35 @@
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
+"QZ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/gear,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Rc" = (
+/obj/structure/table/black,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Rf" = (
+/obj/structure/platform/metalplatform{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Rn" = (
+/obj/machinery/gear{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Rr" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
@@ -2443,6 +3358,23 @@
 "RC" = (
 /turf/open/floor/mainship/sterile,
 /area/mainship/arrow_of_artemis)
+"RI" = (
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"RJ" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/machinery/landinglight/on{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "RM" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -2451,6 +3383,19 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
+"RQ" = (
+/obj/structure/dispenser,
+/obj/machinery/light/mainship/blue{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"RS" = (
+/obj/effect/turf_decal/warning_stripes/medical{
+	pixel_y = -11
+	},
+/turf/open/floor/mainship/red,
+/area/mainship/arrow_of_artemis)
 "RT" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -2498,17 +3443,6 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
-"St" = (
-/obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
-	dir = 1;
-	pixel_y = -14
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
 "Sw" = (
 /turf/open/space/basic,
 /area/space)
@@ -2521,12 +3455,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/arrow_of_artemis)
-"SN" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
 "SO" = (
 /turf/open/floor/mainship/red/full,
 /area/mainship/arrow_of_artemis)
@@ -2538,13 +3466,6 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
-"SR" = (
-/obj/machinery/elevator_strut/bottom,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/arrow_of_artemis)
 "SS" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -2560,16 +3481,33 @@
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"SX" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "SY" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
 /area/space)
-"Tn" = (
-/obj/machinery/light/mainship{
+"Ta" = (
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/effect/turf_decal/warning_stripes/box/arrow,
+/turf/open/floor/mainship_hull,
+/area/space)
+"Tk" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/purple,
 /area/mainship/arrow_of_artemis)
 "Tq" = (
 /obj/structure/platform/metalplatform{
@@ -2612,6 +3550,11 @@
 "TO" = (
 /turf/open/floor/mainship/ntlogo/nt3,
 /area/mainship/patrol_base)
+"TX" = (
+/obj/structure/table/black,
+/obj/item/storage/toolbox,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Ua" = (
 /obj/structure/prop/vehicle/tank/east/turret/complete{
 	pixel_x = -129;
@@ -2625,12 +3568,33 @@
 /obj/structure/prop/mainship/prop_tech,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"Um" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
+"Ut" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
 "Uw" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "UC" = (
 /turf/open/floor/mainship/red,
+/area/mainship/arrow_of_artemis)
+"UD" = (
+/obj/effect/turf_decal/warning_stripes/smartgunner{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
 /area/mainship/arrow_of_artemis)
 "UL" = (
 /obj/machinery/quick_vendor,
@@ -2660,18 +3624,6 @@
 	dir = 6
 	},
 /area/mainship/patrol_base)
-"Vh" = (
-/turf/open/floor/mainship/terragov{
-	dir = 1
-	},
-/area/mainship/arrow_of_artemis)
-"Vj" = (
-/obj/effect/turf_decal/warning_stripes/box/small,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/mainship/arrow_of_artemis)
 "Vq" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
@@ -2680,6 +3632,14 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"Vs" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer1,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer2,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Vu" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -2691,6 +3651,20 @@
 	dir = 8
 	},
 /area/space)
+"Vz" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/arrow_of_artemis)
+"VB" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/prop/mainship/gelida/lightstick,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"VG" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "VH" = (
 /obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -2703,14 +3677,13 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/arrow_of_artemis)
-"VL" = (
-/obj/structure/platform_decoration/metalplatform_deco{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/arrow_of_artemis)
 "VM" = (
 /turf/open/floor/mainship/ntlogo/nt3,
+/area/mainship/arrow_of_artemis)
+"Wc" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 4
+	},
 /area/mainship/arrow_of_artemis)
 "Wf" = (
 /obj/structure/bed/chair/nometal{
@@ -2753,9 +3726,38 @@
 /obj/item/attachable/magnetic_harness,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"WQ" = (
-/obj/machinery/elevator_strut/bottom,
-/turf/open/floor/plating,
+"WB" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/space)
+"WI" = (
+/obj/structure/patrol_point{
+	id = "TGMC_13"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
+"WU" = (
+/obj/structure/prop/mainship/prop_sec,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
+"WV" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/prop/mainship/gelida/lightstick,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"WW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "WX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2770,9 +3772,24 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Xi" = (
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/arrow_of_artemis)
 "Xr" = (
 /turf/open/floor/mainship/research,
 /area/mainship/patrol_base)
+"Xs" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 10
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Xt" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/marinemainship_network,
@@ -2783,17 +3800,49 @@
 	dir = 8
 	},
 /area/mainship/arrow_of_artemis)
+"XB" = (
+/obj/machinery/disposal{
+	pixel_x = -10
+	},
+/obj/machinery/disposal{
+	pixel_x = 8
+	},
+/turf/open/floor/freezer,
+/area/mainship/arrow_of_artemis)
 "XE" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
 	},
 /area/mainship/patrol_base)
+"XF" = (
+/obj/structure/largecrate/random/barrel/blue,
+/obj/structure/largecrate/random/barrel/yellow{
+	pixel_x = 16
+	},
+/obj/structure/largecrate/random/barrel/red{
+	pixel_x = 17;
+	pixel_y = 17
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "XJ" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"XL" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "XU" = (
 /obj/structure/bed/chair/nometal,
 /turf/open/floor/mainship/mono,
@@ -2811,6 +3860,14 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/mainship_hull,
 /area/space)
+"Ye" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/light/mainship/blue{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Yf" = (
 /obj/structure/table/black,
 /obj/structure/window/reinforced/toughened{
@@ -2847,6 +3904,14 @@
 	dir = 9
 	},
 /area/mainship/arrow_of_artemis)
+"YD" = (
+/obj/structure/table/black,
+/obj/machinery/light/mainship,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "YF" = (
 /obj/structure/bed/chair/nometal,
 /obj/machinery/light/mainship{
@@ -2856,11 +3921,9 @@
 	dir = 4
 	},
 /area/mainship/arrow_of_artemis)
-"YH" = (
-/obj/effect/turf_decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/side,
+"YI" = (
+/obj/machinery/floor_warn_light/orange,
+/turf/open/floor/mainship/mono,
 /area/mainship/arrow_of_artemis)
 "YT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -2872,10 +3935,31 @@
 "YY" = (
 /turf/open/floor/mainship/ntlogo,
 /area/mainship/arrow_of_artemis)
+"YZ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/on{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
 "Zf" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Zi" = (
+/obj/structure/patrol_point{
+	id = "TGMC_11"
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	layer = 2;
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/arrow_of_artemis)
 "Zk" = (
 /obj/structure/bed/chair/nometal,
 /obj/machinery/light/mainship{
@@ -2887,10 +3971,51 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship_hull,
 /area/space)
+"Zq" = (
+/obj/structure/largecrate{
+	pixel_x = -9
+	},
+/obj/machinery/light/mainship/blue{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"Zv" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
 "Zw" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
+"ZB" = (
+/obj/structure/bed/chair/nometal,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"ZC" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/arrow_of_artemis)
+"ZF" = (
+/obj/effect/turf_decal/warning_stripes/leader{
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/arrow_of_artemis)
 "ZN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -2899,6 +4024,19 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"ZS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/arrow_of_artemis)
+"ZV" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/mainship/arrow_of_artemis)
 "ZX" = (
 /turf/open/floor/mainship/terragov{
 	dir = 1
@@ -2928,6 +4066,21 @@ Sw
 Sw
 Sw
 Sw
+hT
+AY
+jZ
+jZ
+jZ
+jZ
+AY
+hT
+AY
+jZ
+jZ
+jZ
+jZ
+AY
+hT
 Sw
 Sw
 Sw
@@ -2935,33 +4088,18 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
 Sw
 Sw
 Sw
@@ -2990,6 +4128,21 @@ Sw
 Sw
 Sw
 Sw
+hT
+me
+zw
+Um
+Kv
+ZV
+Ay
+bb
+me
+zw
+Um
+Kv
+ZV
+Ay
+hT
 Sw
 Sw
 Sw
@@ -2997,33 +4150,18 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+bg
+fM
+jG
+qb
+qL
+wg
+BI
+Fz
+Ic
+KF
+Mq
+bg
 Sw
 Sw
 Sw
@@ -3052,40 +4190,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+hT
+me
+BW
+BW
+BW
+BW
+Ay
+Pw
+me
+BW
+BW
+BW
+BW
+Ay
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+bg
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
 Sw
 Sw
 Sw
@@ -3114,40 +4252,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+hT
+me
+BW
+BW
+Al
+BW
+Ay
+Pw
+me
+BW
+BW
+Al
+BW
+Ay
+hT
+iu
+iu
+ri
+BW
+Cx
+iu
+hT
+bg
+xt
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
 Sw
 Sw
 Sw
@@ -3176,40 +4314,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+hT
+Ye
+BW
+BW
+BW
+BW
+Ay
+Pw
+dJ
+BW
+BW
+BW
+BW
+zj
+hT
+iu
+iu
+ri
+BW
+Cx
+iu
+hT
+bg
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
 Sw
 Sw
 Sw
@@ -3238,40 +4376,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+hT
+me
+BW
+BW
+BW
+BW
+Ay
+Pw
+me
+BW
+BW
+BW
+BW
+Ay
+hT
+iu
+iu
+ri
+BW
+Cx
+iu
+hT
+bg
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
 Sw
 Sw
 Sw
@@ -3300,418 +4438,28 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(8,1,1) = {"
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(9,1,1) = {"
-bg
-fM
-jG
-qb
-qL
-wg
-BI
-Fz
-Ic
-KF
-Mq
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(10,1,1) = {"
-bg
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(11,1,1) = {"
-bg
-xt
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(12,1,1) = {"
-bg
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(13,1,1) = {"
-bg
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-MB
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(14,1,1) = {"
+hT
+me
+BW
+BW
+BW
+BW
+Ay
+Pw
+me
+BW
+BW
+BW
+BW
+Ay
+hT
+iu
+iu
+ri
+BW
+Cx
+iu
+hT
 bg
 fT
 lu
@@ -3728,454 +4476,8 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 "}
-(15,1,1) = {"
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(16,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(17,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(18,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(19,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(20,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(21,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+(8,1,1) = {"
 Sw
 Sw
 Sw
@@ -4199,6 +4501,160 @@ Sw
 Sw
 Sw
 hT
+VB
+dB
+Um
+Um
+oJ
+Ay
+Pw
+me
+dB
+Um
+Um
+oJ
+of
+hT
+iu
+iu
+ri
+BW
+Cx
+iu
+hT
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+Sw
+Sw
+Sw
+Sw
+"}
+(9,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
+WW
+FC
+ya
+ya
+FC
+eH
+iu
+WW
+FC
+ya
+ya
+FC
+Ev
+hT
+iu
+iu
+ri
+BW
+Cx
+iu
+hT
+hT
+hT
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(10,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
+hT
+hT
+hT
+hT
+hT
+He
+zw
+Vz
+Vz
+ZV
+Av
+iu
+He
+zw
+Vz
+Vz
+ZV
+Rn
+tW
+Vz
+qI
+Qm
+BW
+im
+Vz
+Vz
+ZV
+hT
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
 hT
 hT
 hT
@@ -4207,7 +4663,7 @@ hT
 hT
 Sw
 "}
-(22,1,1) = {"
+(11,1,1) = {"
 Sw
 Sw
 Sw
@@ -4225,35 +4681,35 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+hT
+VG
+RQ
+oo
+oZ
+dl
+me
+ri
+BW
+Mt
+Cx
+iu
+YI
+me
+ri
+BW
+Mt
+Cx
+Ay
+ri
+BW
+ux
+BW
+BW
+BW
+hF
+BW
+Cx
+hT
 Sw
 Sw
 Sw
@@ -4269,7 +4725,7 @@ Wv
 hT
 hT
 "}
-(23,1,1) = {"
+(12,1,1) = {"
 Sw
 Sw
 Sw
@@ -4287,40 +4743,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+hT
+yu
+iu
+ct
+HC
+dl
+me
+ri
+BW
+BW
+Cx
+iu
+iu
+me
+ri
+BW
+BW
+Cx
+Ay
+ri
+WU
+BW
+BW
+BW
+BW
+CN
+BW
+oE
+hT
+hT
+hT
+hT
+hT
+hT
 hT
 us
 lf
@@ -4331,12 +4787,11 @@ lf
 us
 hT
 "}
-(24,1,1) = {"
+(13,1,1) = {"
 Sw
 Sw
 Sw
-Sw
-Sw
+hT
 hT
 hT
 hT
@@ -4350,41 +4805,42 @@ hT
 hT
 hT
 hT
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 hT
-aH
+aS
+iu
+iu
+iu
+dl
+He
+dB
+kZ
+rm
+oJ
+Av
+iu
+He
+dB
+kZ
+rm
+oJ
+Rn
+ri
+BW
+Or
+HV
+BW
+BW
+vj
+BW
+zg
+hT
+iu
+iu
+iu
+iu
+iu
+hT
+te
 SD
 mU
 mU
@@ -4393,58 +4849,58 @@ mU
 mU
 hT
 "}
-(25,1,1) = {"
-Sw
-Sw
+(14,1,1) = {"
 Sw
 Sw
 Sw
 hT
-SR
+nY
+iu
+WV
+EH
 kM
 kM
 kM
 kM
+EH
 kM
-kM
-SR
-eS
+eL
+iu
+Gx
+hT
+Zq
+iu
+Jz
+oZ
+hT
+hT
+hT
+hT
+gE
+gE
+hT
+hT
+gE
+gE
+hT
+hT
+hT
+hT
+dB
+rm
+rm
+rm
+rm
+rm
+Ut
+rm
+mD
+hT
 iu
 iu
-hT
-Sw
-Sw
-Sw
-Sw
-Sw
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+iu
+iu
+iu
 hT
 Fk
 SD
@@ -4455,58 +4911,58 @@ lf
 lf
 hT
 "}
-(26,1,1) = {"
-Sw
-Sw
+(15,1,1) = {"
 Sw
 Sw
 Sw
 hT
-gl
-pK
-pK
-pK
-pK
-pK
-pK
-pK
-Ay
+iu
+iu
+fk
+Ou
+Ou
+Ou
+Ou
+Ou
+Ou
+de
+cP
 iu
 iu
 hT
-Sw
-Sw
-Sw
-Sw
-Sw
+Fi
+iu
+TX
+Rc
+hT
 hT
 hV
 FL
 ak
-Lf
-Lf
-SN
-Lf
-Lf
+ve
+ve
+lR
+ve
+ve
 JR
 FL
 bv
 hT
-Sw
+iu
 hT
 hT
+gE
+gE
+hT
+gE
+gE
 hT
 hT
-hT
-hT
-hT
-hT
-hT
-Sw
-Sw
-Sw
-Sw
-Sw
+iu
+iu
+iu
+iu
+iu
 hT
 aQ
 cA
@@ -4517,52 +4973,52 @@ Wv
 Wv
 hT
 "}
-(27,1,1) = {"
-Sw
-Sw
+(16,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
-pK
+iu
+iu
+at
+BW
 vf
+Zv
 US
-US
-My
-CZ
-pK
+aI
+Xi
+zK
 Ay
 iu
 iu
 hT
-Sw
-Sw
-Sw
+CQ
+Gq
+XF
 hT
 hT
 hT
 mg
 oZ
 ak
-Lf
+ve
 hc
 hc
 hc
-Lf
+ve
 JR
 oZ
 bD
 hT
 hT
 hT
-UL
-tz
-BF
-yN
-ak
-UC
-UL
+HN
+En
+Ar
+iX
+ey
+Em
+HN
 hT
 hT
 hT
@@ -4579,52 +5035,52 @@ hT
 hT
 hT
 "}
-(28,1,1) = {"
-Sw
-Sw
+(17,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
+iu
+iu
+RJ
 rG
 IJ
-iu
-ON
-IH
+HP
+Zi
+cS
 dl
-pK
+zK
 Ay
-iu
+Oa
 iu
 hT
-Sw
-Sw
-Sw
+qV
+iu
+xX
 hT
 SO
 SO
 SO
 SO
 ak
-Lf
+ve
 oZ
 FL
 oZ
-Lf
+ve
 JR
 HA
 HA
 HA
 HA
 hT
-go
-tz
-BF
-go
-ak
-UC
-go
+sY
+tF
+MK
+sY
+Lw
+RS
+sY
 hT
 Yu
 Sb
@@ -4633,7 +5089,7 @@ sS
 LW
 hT
 aQ
-SD
+qH
 Ld
 Wv
 LP
@@ -4641,52 +5097,52 @@ Wv
 Wv
 hT
 "}
-(29,1,1) = {"
-Sw
-Sw
+(18,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
+iu
+iu
+RJ
 gR
 vo
 tO
 If
 Lf
 BH
-pK
-Fj
+zK
+ZC
+Oa
 iu
 iu
-hT
-Sw
-Sw
-Sw
+iu
+iu
+Gx
 hT
 mg
 oZ
 mg
 iu
 ak
-Lf
+ve
 hc
 hc
 hc
-Lf
+ve
 JR
 iu
 bD
 oZ
 bD
 hT
-UL
-tz
+HN
+jm
 BF
-UL
-ak
+HN
+mb
 UC
-UL
+HN
 hT
 CH
 iu
@@ -4695,7 +5151,7 @@ iu
 UC
 hT
 Fk
-SD
+qH
 aH
 lf
 lf
@@ -4703,52 +5159,52 @@ lf
 lf
 hT
 "}
-(30,1,1) = {"
-Sw
-Sw
+(19,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
+iu
+iu
+RJ
 cN
 ln
-iu
-mI
-ig
+Dd
+WI
+qO
 dl
-pK
+zK
 Ay
+Oa
+iu
+iu
+iu
 iu
 iu
 hT
-Sw
-Sw
-Sw
-hT
-mg
+ZB
 FL
 mg
 iu
-ak
-az
-xG
-Lf
-xG
-EM
-JR
+Fp
+pm
+rY
+ve
+rY
+HB
+Ja
 iu
 bD
 FL
-bD
+Xs
 hT
-UL
-tz
+HN
+jm
 BF
-UL
-ak
+HN
+mb
 UC
-UL
+HN
 hT
 zp
 rn
@@ -4757,33 +5213,33 @@ Tw
 RA
 hT
 aQ
-SD
+qH
 RC
 RC
 RC
 RC
-RC
+vH
 hT
 "}
-(31,1,1) = {"
-Sw
-Sw
+(20,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
-pK
+iu
+iu
+at
+BW
 PX
+Zv
 US
-US
-St
-VI
-pK
+Aa
+Iv
+zK
 Ay
-iu
-iu
-PP
+Oa
+jN
+hT
 hT
 gE
 gE
@@ -4792,34 +5248,34 @@ YF
 OY
 iV
 rn
-In
+OD
 rW
 hp
 vi
 qZ
 Tq
-kC
+Tk
 Ji
 JF
 MU
 MJ
 hT
 aX
-al
-al
+Qj
+Qj
 oZ
-SO
-SO
+LJ
+LJ
 ug
-PP
+hT
 hs
-LO
+hT
 gE
 gE
 rM
 hT
 pT
-SD
+qH
 aH
 lf
 lf
@@ -4827,23 +5283,23 @@ lf
 lf
 hT
 "}
-(32,1,1) = {"
-Sw
-Sw
+(21,1,1) = {"
 Sw
 Sw
 Sw
 hT
-gl
-gl
-gl
-gl
-gl
-gl
-gl
-gl
-Ay
 iu
+iu
+ia
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+Bk
+cP
+Oa
 iu
 iu
 EE
@@ -4854,13 +5310,13 @@ iu
 qP
 si
 Jm
-cu
+pD
 FX
 Bm
 wC
 FL
 KR
-fy
+Rf
 YY
 mt
 mt
@@ -4872,16 +5328,16 @@ mt
 mt
 mt
 mt
-CF
-nZ
-mt
-mt
-mt
-mt
-dr
-nZ
+lH
+XL
+cL
+NJ
+cL
+cL
+cL
+XL
 SG
-YH
+pj
 Ld
 Wv
 JY
@@ -4889,61 +5345,61 @@ Wv
 Wv
 hT
 "}
-(33,1,1) = {"
-Sw
-Sw
+(22,1,1) = {"
 Sw
 Sw
 Sw
 hT
 iu
 iu
+eG
+mx
 iu
 iu
 iu
 iu
+mx
 iu
-iu
-iu
-iu
-iu
-iu
-EE
-EE
-EE
-Lf
-Lf
-fS
-Vh
-gw
-Lf
+eG
+Oa
+Oa
+Oa
+Vs
+Vs
+Vs
+ve
+ve
+MW
+FA
+nW
+ve
 gr
 iu
 Lf
 iu
 DY
-Lf
-cw
-Lf
-Lf
-Lf
-sJ
-nZ
-Lf
-Lf
-Lf
-Lf
-Lf
-zx
-nZ
-Lf
-Lf
-Lf
-Lf
-sJ
-nZ
-dC
-eM
+ve
+PE
+ve
+ve
+ve
+Bp
+ad
+ve
+ve
+ve
+ve
+ve
+ve
+HI
+ve
+ve
+ve
+ve
+ve
+HI
+ue
+zt
 Ld
 hT
 hT
@@ -4951,23 +5407,23 @@ hT
 hT
 hT
 "}
-(34,1,1) = {"
-Sw
-Sw
+(23,1,1) = {"
 Sw
 Sw
 Sw
 hT
-Qa
-Qa
-Qa
-Qa
-Qa
-Qa
-Qa
-Qa
-Ay
 iu
+iu
+wB
+CW
+CW
+CW
+CW
+CW
+CW
+Ez
+cP
+Oa
 iu
 iu
 EE
@@ -4978,13 +5434,13 @@ iu
 Hc
 HK
 Dq
-cu
+pD
 Yf
 Ym
 fg
 lx
 xr
-fy
+Rf
 VM
 Rz
 Rz
@@ -4996,16 +5452,16 @@ Rz
 Rz
 Rz
 Rz
-Vj
-nZ
-Rz
-Rz
-Rz
-Rz
-aV
-nZ
+px
+fF
+ZS
+ZS
+ZS
+ZS
+ZS
+fF
 SG
-YH
+pj
 Ld
 Wv
 LP
@@ -5013,25 +5469,25 @@ Wv
 Wv
 hT
 "}
-(35,1,1) = {"
-Sw
-Sw
+(24,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
-pK
+iu
+iu
+at
+BW
 vf
+Zv
 US
-US
-My
-CZ
-pK
+aI
+Xi
+zK
 Ay
+Oa
 iu
-iu
-PP
+hT
 hT
 gE
 gE
@@ -5040,26 +5496,26 @@ oj
 aU
 QU
 KV
-IR
+AM
 ba
 Oe
 lp
 bs
 yZ
-Ck
+dD
 BT
 RT
 OA
 MX
 hT
-aX
-Mv
-Mv
-oZ
-HA
-HA
-ug
-PP
+kc
+kF
+kF
+sd
+MY
+MY
+YD
+hT
 hj
 MF
 MF
@@ -5067,7 +5523,7 @@ MF
 MF
 hT
 pT
-SD
+qH
 aH
 lf
 lf
@@ -5075,52 +5531,52 @@ lf
 lf
 hT
 "}
-(36,1,1) = {"
-Sw
-Sw
+(25,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
+iu
+iu
+RJ
 rG
 IJ
-iu
-ut
-nq
+HP
+pe
+tI
 dl
-pK
+zK
 Ay
-iu
-iu
-hT
-Sw
-Sw
-Sw
+zw
+Lt
+fz
+Vz
+Vz
+ZV
 hT
 mg
 FL
 mg
 iu
-tz
-VL
-gx
-Lf
-gx
-Nv
-nA
+iq
+SX
+RI
+ve
+RI
+IV
+EQ
 iu
 bD
 FL
 bD
 hT
-UL
-qs
+gg
+cb
 nA
-UL
-NV
+HN
+rj
 JR
-UL
+HN
 hT
 hj
 IE
@@ -5129,60 +5585,60 @@ ib
 IE
 hT
 aQ
-SD
+qH
 RC
 RC
 RC
 RC
-RC
+vH
 hT
 "}
-(37,1,1) = {"
-Sw
-Sw
+(26,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
+iu
+iu
+RJ
 gR
 vo
 tO
 If
 Lf
 BH
-pK
-Fj
-iu
-iu
-hT
-Sw
-Sw
-Sw
+zK
+ZC
+ri
+BW
+vR
+BW
+BW
+Cx
 hT
 mg
 oZ
 mg
 iu
 tz
-Lf
+ve
 yI
 yI
 yI
-Lf
+ve
 nA
 iu
 bD
 oZ
 bD
 hT
-UL
-qs
+HN
+cb
 nA
-UL
-NV
+HN
+rj
 JR
-UL
+HN
 hT
 Br
 IE
@@ -5191,7 +5647,7 @@ ib
 hg
 hT
 Fk
-SD
+qH
 aH
 lf
 lf
@@ -5199,52 +5655,52 @@ lf
 lf
 hT
 "}
-(38,1,1) = {"
-Sw
-Sw
+(27,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
+iu
+iu
+RJ
 cN
 ln
-iu
-xL
-xi
+Dd
+kf
+My
 dl
-pK
+zK
 Ay
-iu
-iu
-hT
-Sw
-Sw
-Sw
+ri
+BW
+vR
+BW
+BW
+Cx
 hT
 al
 al
 al
 al
 tz
-Lf
+ve
 oZ
 FL
 oZ
-Lf
+ve
 nA
 Mv
 Mv
 Mv
 Mv
 hT
-go
-qs
-nA
-go
-NV
-JR
-go
+sY
+ZF
+Ec
+sY
+NK
+ek
+sY
 hT
 aE
 IE
@@ -5253,7 +5709,7 @@ ib
 IE
 hT
 aQ
-SD
+qH
 Ld
 Wv
 JY
@@ -5261,39 +5717,39 @@ Wv
 Wv
 hT
 "}
-(39,1,1) = {"
-Sw
-Sw
+(28,1,1) = {"
 Sw
 Sw
 Sw
 hT
-pK
-pK
+iu
+iu
+at
+BW
 PX
+Zv
 US
-US
-St
+Aa
 VI
-pK
+zK
 Ay
-iu
-iu
-hT
-Sw
-Sw
-Sw
+dB
+rm
+Od
+Wc
+BW
+Cx
 hT
 hT
 hT
 mg
 oZ
 tz
-Lf
+ve
 yI
 yI
 yI
-Lf
+ve
 nA
 oZ
 bD
@@ -5301,11 +5757,11 @@ hT
 hT
 hT
 UL
-qs
-nA
+UD
+wJ
 DQ
-NV
-JR
+sI
+Gf
 UL
 hT
 uS
@@ -5323,39 +5779,39 @@ hT
 hT
 hT
 "}
-(40,1,1) = {"
-Sw
-Sw
+(29,1,1) = {"
 Sw
 Sw
 Sw
 hT
-WQ
+iu
+iu
+ng
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 pK
-pK
-pK
-pK
-pK
-pK
-WQ
-Ay
+cP
 iu
 iu
 hT
-Sw
-Sw
-Sw
-Sw
-Sw
+ri
+BW
+rP
+hT
+iu
 hT
 Zk
 FL
 tz
-Lf
-Lf
-Tn
-Lf
-Lf
+ve
+Da
+yC
+ve
+ve
 nA
 FL
 gA
@@ -5363,18 +5819,18 @@ hT
 pZ
 hT
 hT
+gE
+gE
 hT
-hT
-hT
-hT
-hT
+gE
+gE
 hT
 hT
 ib
 SS
 MF
-IE
-ib
+MF
+XB
 hT
 aQ
 Jf
@@ -5385,39 +5841,39 @@ Wv
 Wv
 hT
 "}
-(41,1,1) = {"
-Sw
-Sw
+(30,1,1) = {"
 Sw
 Sw
 Sw
 hT
-PK
-PK
-PK
-PK
-PK
-PK
-PK
-PK
-eH
+nY
 iu
+Dr
+QZ
+PK
+PK
+PK
+PK
+QZ
+PK
+mm
 iu
+Gx
 hT
-Sw
-Sw
-Sw
-Sw
-Sw
-hT
+ri
+BW
+Cx
 hT
 hT
 hT
 hT
 hT
+gE
+gE
 hT
 hT
-hT
+gE
+gE
 hT
 hT
 hT
@@ -5447,12 +5903,10 @@ lf
 lf
 hT
 "}
-(42,1,1) = {"
+(31,1,1) = {"
 Sw
 Sw
 Sw
-Sw
-Sw
 hT
 hT
 hT
@@ -5466,24 +5920,26 @@ hT
 hT
 hT
 hT
-Sw
-Sw
-Sw
-Sw
-Sw
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
+hT
+hT
+vI
+BW
+Cx
+iu
+iu
+hT
+oZ
+oZ
+oZ
+iu
+oZ
+oZ
+iu
+oZ
+oZ
+oZ
+hT
+BE
 pZ
 oP
 oP
@@ -5497,10 +5953,10 @@ hT
 hT
 Yk
 ib
+ib
 Tv
 hT
-hT
-aH
+te
 SD
 jF
 jF
@@ -5509,7 +5965,7 @@ jF
 jF
 hT
 "}
-(43,1,1) = {"
+(32,1,1) = {"
 Sw
 Sw
 Sw
@@ -5527,25 +5983,25 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
+hT
+ri
+BW
+Cx
+iu
+iu
+hT
+oZ
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+oZ
+hT
+BE
 pZ
 oP
 oP
@@ -5571,6 +6027,688 @@ lf
 qo
 hT
 "}
+(33,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
+ri
+BW
+Cx
+iu
+iu
+hT
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+hT
+BE
+pZ
+oP
+oP
+oP
+oP
+oP
+oP
+pZ
+oP
+Jy
+sZ
+ie
+Yd
+Ta
+bw
+hT
+hT
+Wv
+Wv
+hT
+Wv
+Wv
+hT
+hT
+"}
+(34,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
+ri
+BW
+Cx
+iu
+iu
+hT
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+iu
+hT
+fu
+pZ
+iT
+iT
+iT
+iT
+iT
+oP
+pZ
+oP
+Zn
+em
+em
+em
+em
+dG
+oP
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+oP
+"}
+(35,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
+vI
+BW
+Cx
+iu
+lh
+hT
+iu
+lh
+iu
+iu
+lh
+iu
+iu
+iu
+iu
+iu
+hT
+kE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+pZ
+oP
+Zn
+em
+em
+em
+em
+dG
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+"}
+(36,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+hT
+jZ
+jZ
+jZ
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+kE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+pZ
+oP
+jE
+nf
+aO
+YT
+GM
+Pa
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+"}
+(37,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+WB
+WB
+WB
+WB
+WB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Pe
+pZ
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+iT
+"}
+(38,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(39,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(40,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(41,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(42,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(43,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
 (44,1,1) = {"
 Sw
 Sw
@@ -5595,43 +6733,43 @@ Sw
 Sw
 Sw
 Sw
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-pZ
-oP
-oP
-oP
-oP
-oP
-oP
-pZ
-oP
-Jy
-sZ
-Yd
-Yd
-sZ
-bw
-hT
-hT
-Wv
-Wv
-hT
-Wv
-Wv
-hT
-hT
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (45,1,1) = {"
 Sw
@@ -5657,43 +6795,43 @@ Sw
 Sw
 Sw
 Sw
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-pZ
-iT
-iT
-iT
-iT
-iT
-oP
-pZ
-oP
-Zn
-em
-em
-em
-em
-dG
-oP
-hT
-hT
-hT
-hT
-hT
-hT
-hT
-oP
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (46,1,1) = {"
 Sw
@@ -5738,24 +6876,24 @@ Sw
 Sw
 Sw
 Sw
-SY
-pZ
-oP
-Zn
-em
-em
-em
-em
-dG
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (47,1,1) = {"
 Sw
@@ -5800,24 +6938,24 @@ Sw
 Sw
 Sw
 Sw
-SY
-pZ
-oP
-jE
-nf
-YT
-YT
-nf
-Pa
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (48,1,1) = {"
 Sw
@@ -5862,24 +7000,24 @@ Sw
 Sw
 Sw
 Sw
-Pe
-pZ
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (49,1,1) = {"
 Sw

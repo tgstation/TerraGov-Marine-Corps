@@ -678,6 +678,7 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	resistance_flags = RESIST_ALL
+	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/landinglight/Initialize()
 	. = ..()
@@ -686,6 +687,10 @@
 /obj/machinery/landinglight/proc/turn_off()
 	icon_state = "landingstripe"
 	set_light(0)
+
+/obj/machinery/landinglight/on/Initialize()
+	. = ..()
+	turn_on()
 
 /obj/machinery/landinglight/ds1
 
@@ -703,7 +708,7 @@
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"
-	set_light(2,2)
+	set_light(2,1)
 
 /obj/machinery/landinglight/ds1/delayone/turn_on()
 	icon_state = "landingstripe1"

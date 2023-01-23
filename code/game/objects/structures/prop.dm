@@ -1453,6 +1453,12 @@
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
 
+/obj/structure/prop/vehicle/fighter
+	name = "Falkaan multirole jet"
+	desc = "The falkaan is a small and nimble jet primarly used by the TGN for a variety of missions usually deployed with larger vessels."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "fark"
+
 /obj/structure/prop/mainship/gelida/propplaceholder
 	name = "prop placeholder"
 	desc = "Somebody fucked up, ping the map creator on Discord with the location of this object."
@@ -1937,6 +1943,11 @@
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
 	icon_state = "solar"
+
+/obj/structure/prop/catapult
+	density = FALSE
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "launcher"
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK
