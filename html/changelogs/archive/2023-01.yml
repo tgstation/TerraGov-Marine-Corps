@@ -295,3 +295,16 @@
       vendor! Sprites courtesy of _a Ghost_
 
       \:cl:'
+2023-01-23:
+  Lumipharon:
+  - imageadd: added some bald hairstyles
+  - bugfix: fixed a timer bug with sensor towers.
+  - bugfix: eswords no longer block almost all incoming damage
+  - bugfix: fixed a bug with King's summon
+  - bugfix: fixed a minor MG-42 sprite issue
+  RipGrayson:
+  - bugfix: Removed some misplaced hull windows on Big Red.
+  - bugfix: Fixed an oversight with podding on Chigusa.
+  chizzy376:
+  - bugfix: Creating surt modules through reqtorio should no longer disappoint you
+      with 10 violins
