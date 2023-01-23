@@ -369,6 +369,7 @@
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
+
 /obj/item/weapon/gun/standard_mmg/machinegunner
 	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/mini)
 //-------------------------------------------------------
@@ -446,4 +447,45 @@
 			take_damage(rand(150, 200))
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 50))
+
+//AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
+
+/obj/item/weapon/gun/standard_agls
+	name = "\improper AGLS-37 Kauser automatic grenade launcher"
+	desc = "The AGLS-37 automatic grenade launching IFF capable system, it's too heavy to be wielded or operated without the tripod. On the back, it reads: \"The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. It CANNOT be turned once deployed, due to a lack of swivels, pick it up to move your cone of fire. Can be repaired with a blowtorch once deployed."
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	caliber = CALIBER_40MM
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags"
+	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_agls
+	scatter = 0
+	fire_delay = 1 SECONDS
+	burst_amount = 0
+	accuracy_mult = 1.2 //it's got a bipod
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/standard_agls,
+		/obj/item/ammo_magazine/standard_agls/fragmentation,
+	)
+
+	deploy_time = 6 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 500
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 75, "bio" = 100, "fire" = 0, "acid" = 0)
 

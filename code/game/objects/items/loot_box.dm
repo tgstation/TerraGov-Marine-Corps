@@ -406,6 +406,7 @@
 		/obj/item/storage/box/loot/mortar_pack,
 		/obj/item/storage/box/loot/howitzer_pack,
 		/obj/item/storage/box/loot/sentry_pack,
+		/obj/item/storage/box/loot/agl_pack,
 	)
 	uncommon_list = list(
 		/obj/item/storage/box/loot/materials_pack,
@@ -587,6 +588,18 @@
 	. = ..()
 	new /obj/item/storage/box/tl102(src)
 	new /obj/item/storage/box/tl102(src)
+
+/obj/item/storage/box/loot/agl_pack/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
 
 /obj/item/storage/box/loot/sentry_pack/Initialize()
 	. = ..()
