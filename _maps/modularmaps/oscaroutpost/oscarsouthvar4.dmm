@@ -340,7 +340,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "fV" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "fX" = (
@@ -774,8 +774,8 @@
 /area/oscar_outpost/village/abandonedbase)
 "pr" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "pv" = (
@@ -1018,7 +1018,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "wI" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
 "wK" = (
@@ -1436,7 +1436,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "HK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "HL" = (
@@ -1552,7 +1552,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "KL" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc{
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -1986,9 +1986,9 @@
 /area/oscar_outpost/village/abandonedbase)
 "Wi" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "Wk" = (

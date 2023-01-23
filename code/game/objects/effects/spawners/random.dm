@@ -182,21 +182,6 @@
 		/obj/item/assembly/signaler/receiver = 1,
 	)
 
-/obj/effect/spawner/random/structure/grenade
-	name = "grenade spawner"
-	icon_state = "random_grenade"
-	spawn_loot_chance = 90
-	loot = list(
-		/obj/item/explosive/grenade = 7,
-		/obj/item/explosive/grenade/incendiary = 2,
-		/obj/item/explosive/grenade/m15 = 1,
-	)
-
-/obj/effect/spawner/random/structure/grenade/multiplefour
-	icon_state = "random_grenade_multiple_four"
-	spawn_loot_chance = 75
-	spawn_loot_count = 4
-
 /obj/effect/spawner/random/structure/plastiqueexplosive/multiple
 	spawn_loot_chance = 20
 	icon_state = "random_plastiqueexplosive_multiple_two"
@@ -207,6 +192,27 @@
 	icon_state = "random_plastiqueexplosive_multiple_four"
 	spawn_loot_count = 4
 
+/obj/effect/spawner/random/structure/grenade
+	name = "grenade spawner"
+	icon_state = "random_grenade"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/explosive/grenade = 7,
+		/obj/item/explosive/grenade/incendiary = 2,
+		/obj/item/explosive/grenade/m15 = 1,
+	)
+
+/obj/effect/spawner/random/structure/grenade/incendiaryweighted
+	loot = list(
+		/obj/item/explosive/grenade/incendiary = 7,
+		/obj/item/explosive/grenade = 2,
+		/obj/item/explosive/grenade/m15 = 1,
+	)
+/obj/effect/spawner/random/structure/grenade/multiplefour
+	icon_state = "random_grenade_multiple_four"
+	spawn_loot_chance = 75
+	spawn_loot_count = 4
+
 /obj/effect/spawner/random/structure/handcuffs
 	name = "handcuff spawner"
 	icon_state = "random_handcuffs"
@@ -215,6 +221,27 @@
 	loot = list(
 		/obj/item/restraints/handcuffs = 15,
 		/obj/item/restraints/handcuffs/cable = 1,
+	)
+
+/obj/effect/spawner/random/structure/gascan
+	name = "gascan spawner"
+	icon_state = "random_gascan"
+	spawn_loot_chance = 85
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/reagent_containers/jerrycan,
+	)
+
+
+/obj/effect/spawner/random/structure/rocketlauncher
+	name = "rocket launcher spawner"
+	icon_state = "random_rocketlauncher"
+	spawn_loot_chance = 95
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/weapon/gun/launcher/rocket/oneuse = 15,
+		/obj/item/weapon/gun/launcher/rocket = 5,
+		/obj/item/weapon/gun/launcher/rocket/sadar = 2,
 	)
 
 /obj/effect/spawner/random/structure/hand_labeler
@@ -1213,6 +1240,13 @@
 		/obj/effect/spawner/random/beer = 5,
 	)
 
+/obj/effect/spawner/random/wine
+	icon_state = "random_winebottle"
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/bottle/wine = 95,
+		/obj/effect/spawner/random/beer = 5,
+	)
+
 /obj/effect/spawner/random/greytide
 	name = "greytide spawner"
 	icon_state = "random_greytide"
@@ -1657,6 +1691,13 @@
 		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
 	)
 
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc
+	loot = list(
+		/obj/machinery/prop/mainship/computer/PC = 95,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+
 /obj/effect/spawner/random/structure/filingcabinet
 	name = "filing cabinet or metal spawner"
 	icon_state = "random_filingcabinet"
@@ -1691,6 +1732,15 @@
 		/obj/machinery/power/port_gen/pacman/mrs = 1,
 	)
 
+/obj/effect/spawner/random/structure/powergenerator/superweighted
+	spawn_loot_chance = 90
+	icon_state = "random_generator_super"
+	loot = list(
+		/obj/machinery/power/port_gen/pacman/super = 9,
+		/obj/effect/spawner/random/structure/powergenerator = 1,
+	)
+
+
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"
@@ -1719,6 +1769,20 @@
 		/obj/structure/closet/crate/solar,
 		/obj/structure/closet/crate/trashcart,
 	)
+
+/obj/effect/spawner/random/structure/crate/medsupplies
+	name = "medical supplies spawner"
+	icon_state = "random_medsupplies"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/structure/largecrate/supply/medicine/medkits = 6,
+		/obj/structure/largecrate/supply/medicine/blood = 2,
+		/obj/structure/largecrate/supply/medicine/iv = 2,
+		/obj/structure/largecrate/supply/medicine/medivend = 1,
+	)
+
+/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns
+	spawn_loot_chance = 100
 
 /obj/effect/spawner/random/structure/canister
 	name = "air canister spawner"

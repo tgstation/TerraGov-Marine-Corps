@@ -466,7 +466,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "dx" = (
-/obj/structure/largecrate/supply/medicine/medkits,
+/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "dC" = (
@@ -851,7 +851,7 @@
 	name = "trench lining";
 	pixel_y = 10
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -881,7 +881,7 @@
 	name = "trench lining";
 	pixel_y = -7
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /obj/effect/ai_node,
@@ -1046,11 +1046,16 @@
 	name = "trench lining";
 	pixel_y = 10
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"jm" = (
+/obj/machinery/iv_drip,
+/obj/effect/spawner/random/bloodpack,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost)
 "jn" = (
 /obj/structure/barricade/sandbags{
 	dir = 8;
@@ -1309,39 +1314,39 @@
 /area/oscar_outpost)
 "nv" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -1548,7 +1553,7 @@
 	name = "trench lining";
 	pixel_y = -13
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1624,7 +1629,7 @@
 	pixel_x = 10;
 	pixel_y = 20
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 10;
 	pixel_y = 23
 	},
@@ -1639,13 +1644,13 @@
 /obj/structure/table/mainship,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/engine/cult{
@@ -1679,7 +1684,7 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/item/explosive/plastique,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "qC" = (
@@ -1855,7 +1860,7 @@
 	name = "trench lining";
 	pixel_y = -7
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2373,7 +2378,7 @@
 	name = "trench lining";
 	pixel_y = 10
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2496,6 +2501,12 @@
 /obj/structure/stairs,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
+"xL" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/surgical_tray,
+/obj/effect/spawner/random/bloodpack,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost)
 "xP" = (
 /obj/structure/platform{
 	dir = 8
@@ -2539,7 +2550,7 @@
 	},
 /area/oscar_outpost)
 "yq" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2622,7 +2633,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "zb" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2696,6 +2707,11 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
+"zx" = (
+/obj/effect/ai_node,
+/obj/machinery/iv_drip,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost)
 "zA" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -3414,7 +3430,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "GD" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /obj/effect/ai_node,
@@ -3524,7 +3540,7 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3582,6 +3598,7 @@
 "IA" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/phone,
+/obj/effect/spawner/random/bloodpack,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "IB" = (
@@ -3784,8 +3801,8 @@
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
-/obj/item/tool/kitchen/knife,
-/obj/item/tool/kitchen/utensil/spoon,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -3834,7 +3851,7 @@
 	plantname = "barley"
 	},
 /obj/structure/table/rusticwoodentable,
-/obj/item/tool/kitchen/utensil/knife,
+/obj/effect/spawner/random/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
 "Li" = (
@@ -3953,15 +3970,15 @@
 /area/oscar_outpost/outside/northwest)
 "Nb" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher";
 	pixel_y = 12
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher";
 	pixel_y = 6
 	},
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/engine/cult{
@@ -4061,7 +4078,7 @@
 /area/oscar_outpost/outside/west)
 "On" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc,
 /turf/open/floor,
 /area/oscar_outpost)
 "Ox" = (
@@ -4484,7 +4501,7 @@
 	},
 /area/oscar_outpost)
 "Qz" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -4679,7 +4696,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Rv" = (
-/obj/structure/largecrate/supply/medicine/iv,
+/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4771,7 +4788,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "Sl" = (
-/obj/structure/bed/roller,
+/obj/effect/spawner/random/structure/rollerbed,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "So" = (
@@ -4873,7 +4890,7 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/item/explosive/plastique,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "TH" = (
@@ -4924,7 +4941,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "TV" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse{
+/obj/effect/spawner/random/structure/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -5061,11 +5078,11 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Vw" = (
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
+/obj/effect/spawner/random/beaker/regularweighted{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
+/obj/effect/spawner/random/beaker/regularweighted{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -5095,7 +5112,7 @@
 /area/oscar_outpost)
 "Wa" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc{
 	dir = 1
 	},
 /turf/open/floor,
@@ -5322,39 +5339,39 @@
 /area/oscar_outpost/outside/road)
 "Ye" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -15403,7 +15420,7 @@ sk
 QM
 Ak
 Vw
-sk
+jm
 VI
 py
 tu
@@ -15710,10 +15727,10 @@ eC
 ut
 dx
 sk
-QM
+xL
 st
 Vw
-Zg
+zx
 VI
 ut
 tu

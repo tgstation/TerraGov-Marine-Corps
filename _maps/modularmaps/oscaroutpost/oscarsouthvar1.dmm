@@ -1312,16 +1312,16 @@
 /area/oscar_outpost/village/abandonedbase)
 "pB" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "pF" = (
@@ -1876,7 +1876,7 @@
 /area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "wI" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
 "wK" = (
@@ -2137,7 +2137,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "AE" = (
-/obj/machinery/power/port_gen/pacman/super,
+/obj/effect/spawner/random/structure/powergenerator/superweighted,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "AI" = (
@@ -2276,7 +2276,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "BN" = (
-/obj/machinery/power/port_gen/pacman/super{
+/obj/effect/spawner/random/structure/powergenerator/superweighted{
 	power_gen = 25000
 	},
 /turf/open/floor/tile/dark,
@@ -2433,52 +2433,52 @@
 /area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "EM" = (
 /obj/structure/rack,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "EP" = (
@@ -2603,7 +2603,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "HK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "HL" = (
@@ -2851,7 +2851,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "KL" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc{
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -2895,10 +2895,10 @@
 /area/oscar_outpost/outside/underground)
 "LG" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "LM" = (
@@ -3277,7 +3277,7 @@
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
 "Rx" = (
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "Ry" = (
@@ -3604,9 +3604,9 @@
 /area/oscar_outpost/village/abandonedbase)
 "Wi" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "Wk" = (

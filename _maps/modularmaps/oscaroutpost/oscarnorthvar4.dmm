@@ -169,6 +169,11 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
+"bh" = (
+/obj/machinery/iv_drip,
+/obj/effect/spawner/random/bloodpack,
+/turf/open/floor/mainship/sterile,
+/area/oscar_outpost)
 "bj" = (
 /obj/structure/platform{
 	dir = 8
@@ -305,7 +310,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "cu" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "cy" = (
@@ -414,7 +419,9 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "dx" = (
-/obj/structure/largecrate/supply/medicine/medkits,
+/obj/item/storage/belt/lifesaver/full,
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/bloodpack,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "dB" = (
@@ -1112,7 +1119,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
 "lm" = (
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "lp" = (
@@ -1657,7 +1664,7 @@
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 10;
 	pixel_y = 23
 	},
@@ -1901,7 +1908,7 @@
 /turf/closed/wall/mainship/outer,
 /area/oscar_outpost)
 "rC" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "rG" = (
@@ -2398,7 +2405,7 @@
 	},
 /area/oscar_outpost)
 "xj" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /obj/structure/platform/trench{
 	dir = 1
 	},
@@ -2978,8 +2985,8 @@
 /area/oscar_outpost)
 "DP" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "DV" = (
@@ -3408,7 +3415,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "HI" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
@@ -3681,8 +3688,8 @@
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
-/obj/item/tool/kitchen/knife,
-/obj/item/tool/kitchen/utensil/spoon,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
 "KJ" = (
@@ -3746,7 +3753,7 @@
 	plantname = "barley"
 	},
 /obj/structure/table/rusticwoodentable,
-/obj/item/tool/kitchen/utensil/knife,
+/obj/effect/spawner/random/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
 "Li" = (
@@ -3870,6 +3877,7 @@
 /obj/item/storage/surgical_tray,
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/bloodpack,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "LV" = (
@@ -4135,7 +4143,7 @@
 /area/oscar_outpost/outside/northeast)
 "On" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc,
 /turf/open/floor,
 /area/oscar_outpost)
 "Oo" = (
@@ -4441,7 +4449,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "Qz" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "QE" = (
@@ -4498,7 +4506,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northeast)
 "Rv" = (
-/obj/structure/largecrate/supply/medicine/iv,
+/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Rw" = (
@@ -4615,7 +4623,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northeast)
 "Sl" = (
-/obj/structure/bed/roller,
+/obj/effect/spawner/random/structure/rollerbed,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "So" = (
@@ -4629,7 +4637,7 @@
 	},
 /area/oscar_outpost)
 "Ss" = (
-/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/effect/spawner/random/structure/rocketlauncher,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "St" = (
@@ -4889,11 +4897,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Vw" = (
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
+/obj/effect/spawner/random/beaker/regularweighted{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
+/obj/effect/spawner/random/beaker/regularweighted{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -4953,7 +4961,7 @@
 /area/oscar_outpost/outside/west)
 "Wa" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc{
 	dir = 1
 	},
 /turf/open/floor,
@@ -5117,39 +5125,39 @@
 /area/oscar_outpost/outside/northwest)
 "Ye" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -15075,7 +15083,7 @@ bs
 Nw
 ou
 ut
-dx
+Rv
 mn
 QM
 gM
@@ -15230,7 +15238,7 @@ bs
 Nw
 ou
 ut
-dx
+Rv
 EF
 py
 py
@@ -15385,7 +15393,7 @@ bs
 Nw
 ou
 ut
-dx
+Rv
 mn
 LU
 Ak
@@ -15695,7 +15703,7 @@ bs
 Nw
 ou
 ut
-dg
+dx
 mn
 Sl
 Sl
@@ -16005,7 +16013,7 @@ EZ
 Nw
 ou
 ut
-sD
+bh
 mn
 mn
 mn
@@ -16160,7 +16168,7 @@ NF
 Nw
 ou
 ut
-sD
+bh
 sD
 sD
 sD
