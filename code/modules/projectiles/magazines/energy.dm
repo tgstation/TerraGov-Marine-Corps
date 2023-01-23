@@ -53,6 +53,7 @@
 	icon_state = "te"
 	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
