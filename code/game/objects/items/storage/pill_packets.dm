@@ -50,7 +50,7 @@
 	max_storage_space = 8
 
 /obj/item/storage/pill_bottle/packet/isotonic
-	name = "Isotonic pill packet"
+	name = "\improper Isotonic pill packet"
 	icon_state = "iso_packet"
 	desc = "This packet contains isotonic pills. Used to recover blood. Once you take them out they don't go back in."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
