@@ -61,9 +61,9 @@ const PreDeploy = (props, context) => {
             onClick={() => act('launch')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Exit Drop pod">
+        <LabeledList.Item label="Pod door">
           <Button
-            content="Exit Pod"
+            content="Eject occupant"
             color="green"
             onClick={() => act('exitpod')}
           />

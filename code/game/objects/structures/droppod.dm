@@ -73,9 +73,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 				return
 			target_y = clamp(new_y, 1, world.maxy)
 		if("check_droppoint")
-			checklanding(occupant)
+			checklanding(ui.user)
 		if("launch")
-			launchpod(occupant)
+			launchpod(ui.user)
 		if("exitpod")
 			exitpod()
 
@@ -99,29 +99,65 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ui.open()
 
 /obj/structure/droppod/attack_hand(mob/living/user)
-	if(occupant)
-		to_chat(user, span_notice("The droppod is already occupied!"))
-		return
-
 	if(drop_state != DROPPOD_READY)
 		to_chat(user, span_notice("The droppod has already landed!"))
 		return
 
-	if(!do_after(user, entertime, TRUE, src))
+	if(occupant != null)
+		ui_interact(user)
+		if(occupant != user)
+			to_chat(user, span_notice("The droppod is already occupied!"))
 		return
 
-	if(occupant)
-		to_chat(user, span_warning("Someone was faster than you!"))
+	put_mob(user, user)
+	ui_interact(user)
+
+/obj/structure/droppod/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	var/obj/item/grab/G = I
+
+	if(ismob(G.grabbed_thing))
+		var/mob/M = G.grabbed_thing
+		put_mob(M, user)
+
+/obj/structure/droppod/verb/eject()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Eject occupant"
+	exitpod()
+
+/obj/structure/droppod/MouseDrop_T(mob/M, mob/user)
+	put_mob(M, user)
+
+/obj/structure/droppod/proc/put_mob(mob/M, mob/living/user)
+	if(drop_state != DROPPOD_READY)
+		to_chat(user, span_notice("The droppod has already landed!"))
 		return
 
-	occupant = user
-	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/exitpod)
-	user.forceMove(src)
-	userimg = image(user)
+	if(occupant != null)
+		to_chat(user, span_notice("The droppod is already occupied!"))
+		return
+
+	if(!ishuman(M))
+		to_chat(user, span_warning("There is no way [src] will accept [M]!"))
+		return
+
+	if(!do_after(user, entertime, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	occupant = M
+	RegisterSignal(M, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/exitpod)
+	M.forceMove(src)
+	userimg = image(M)
 	userimg.layer = DOOR_CLOSED_LAYER
 	userimg.pixel_y = 5
 	add_overlay(userimg)
-	ui_interact(user)
+
+/obj/structure/droppod/relaymove(mob/user)
+	if(user.incapacitated(TRUE) || drop_state != DROPPOD_READY)
+		return
+	exitpod()
 
 /obj/structure/droppod/proc/checklanding(mob/user)
 	var/turf/target = locate(target_x, target_y, 2)
@@ -149,13 +185,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	to_chat(user, span_notice("Valid area confirmed!"))
 	return TRUE
 
-/obj/structure/droppod/verb/openui()
-	set category = "Drop pod"
-	set name = "Open drop pod UI"
-	set desc = "Opens the drop pod UI"
-	set src in view(0)
-	ui_interact(usr)
-
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
@@ -176,7 +205,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
-		to_chat(AI, span_notice("[user] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
+		to_chat(AI, span_notice("[occupant] has launched [src] by [user] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
@@ -184,7 +213,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	cut_overlays()
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, .proc/finish_drop, user), launch_time)
+	addtimer(CALLBACK(src, .proc/finish_drop, occupant), launch_time)
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 
