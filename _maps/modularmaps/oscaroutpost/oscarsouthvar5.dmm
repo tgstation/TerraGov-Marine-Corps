@@ -2927,16 +2927,16 @@
 /area/oscar_outpost/village/abandonedbase)
 "OZ" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "Pa" = (

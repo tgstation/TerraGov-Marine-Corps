@@ -962,9 +962,9 @@
 "gD" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/underground)
 "gE" = (
@@ -1013,10 +1013,10 @@
 "hl" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
+/obj/effect/spawner/random/structure/gascan,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/underground)
 "hm" = (
@@ -2111,9 +2111,9 @@
 /area/oscar_outpost/base)
 "pp" = (
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/effect/spawner/random/beaker/bluespace,
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/effect/spawner/random/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side,
 /area/oscar_outpost/village/central)
 "pq" = (
@@ -4089,12 +4089,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost/village)
-"Bf" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor,
-/area/oscar_outpost/village)
 "Bh" = (
 /obj/machinery/landinglight/ds1{
 	dir = 1
@@ -4270,7 +4264,7 @@
 /area/oscar_outpost)
 "BR" = (
 /obj/machinery/chem_dispenser,
-/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/effect/spawner/random/beaker/bluespace,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
@@ -6145,16 +6139,16 @@
 /area/oscar_outpost/village/central)
 "JL" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "JN" = (
@@ -8091,18 +8085,18 @@
 /area/oscar_outpost/village/south)
 "Sb" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
+/obj/effect/spawner/random/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "Se" = (
@@ -9780,8 +9774,8 @@
 "Zj" = (
 /obj/item/storage/box/syringes,
 /obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
+/obj/effect/spawner/random/beaker/largeweighted,
+/obj/effect/spawner/random/beaker/largeweighted,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/corner,
 /area/oscar_outpost/village/central)
@@ -29416,7 +29410,7 @@ aO
 aO
 aO
 qN
-Bf
+GI
 EQ
 GI
 II

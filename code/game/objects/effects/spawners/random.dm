@@ -584,6 +584,32 @@
 		/obj/item/reagent_containers/glass/beaker/large,
 	)
 
+/obj/effect/spawner/random/beaker/bluespace
+	name = "Random bluespace beaker spawner"
+	icon_state = "random_bluespace_beaker"
+	loot = list(
+		/obj/item/reagent_containers/glass/beaker/bluespace = 8,
+		/obj/effect/spawner/random/beaker = 2,
+	)
+
+/obj/effect/spawner/random/fuelcell
+	name = "Random fuel cell spawner"
+	icon_state = "random_fuelcell"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/fuelCell/random,
+		/obj/item/fuelCell/medium,
+		/obj/item/fuelCell/low,
+		/obj/item/fuelCell/high,
+		/obj/item/fuelCell/full,
+	)
+
+/obj/effect/spawner/random/fuelcell/fullweighted
+	loot = list(
+		/obj/item/fuelCell/full = 9,
+		/obj/effect/spawner/random/fuelcell = 1,
+	)
+
 /obj/effect/spawner/random/beaker/regularweighted
 	loot = list(
 		/obj/item/reagent_containers/glass/beaker = 8,
