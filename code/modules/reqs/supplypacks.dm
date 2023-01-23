@@ -209,6 +209,21 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/dual_cannon)
 	cost = 40
 
+/datum/supply_packs/weapons/ags_emplacement
+	name = "AGLS-37 Mounted Automated Grenade Launcher"
+	contains = list(/obj/item/weapon/gun/standard_agls)
+	cost = 700
+
+/datum/supply_packs/weapons/ags_highexplo
+	name = "AGLS-37 AGL High Explosive Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls)
+	cost = 40
+
+/datum/supply_packs/weapons/ags_frag
+	name = "AGLS-37 AGL Fragmentation Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
+	cost = 40
+
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
@@ -444,7 +459,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 650
+	cost = 775
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
@@ -756,11 +771,6 @@ ARMOR
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
 	contains = list(/obj/item/clothing/mask/gas/swat)
-	cost = 50
-
-/datum/supply_packs/armor/imager_goggle
-	name = "Optical Imager Goggles"
-	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 50
 
 /datum/supply_packs/armor/riot
@@ -1196,8 +1206,8 @@ ENGINEERING
 
 /datum/supply_packs/engineering/floodlight
 	name = "Combat Grade Floodlight"
-	contains = list(/obj/machinery/floodlightcombat)
-	cost = 100
+	contains = list(/obj/machinery/floodlight/combat)
+	cost = 30
 
 /datum/supply_packs/engineering/advanced_generator
 	name = "Wireless power generator"

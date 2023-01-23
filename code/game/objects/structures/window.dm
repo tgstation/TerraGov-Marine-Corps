@@ -309,6 +309,15 @@
 	///are we tinted or not
 	var/tinted = FALSE
 
+/obj/structure/window/reinforced/north
+	dir = NORTH
+
+/obj/structure/window/reinforced/west
+	dir = WEST
+
+/obj/structure/window/reinforced/east
+	dir = EAST
+
 /obj/structure/window/reinforced/Initialize(mapload)
 	. = ..()
 	if(dir == NORTH)
@@ -420,6 +429,9 @@
 
 /obj/structure/window/framed/mainship/escapeshuttle
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+
+/obj/structure/window/framed/mainship/escapeshuttle/prison
+	resistance_flags = RESIST_ALL
 
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"

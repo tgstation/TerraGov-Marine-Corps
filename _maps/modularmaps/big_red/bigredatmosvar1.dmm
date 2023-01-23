@@ -14,7 +14,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "bN" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/s)
 "cY" = (
@@ -533,7 +533,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
 "XX" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/se)
 "Yd" = (

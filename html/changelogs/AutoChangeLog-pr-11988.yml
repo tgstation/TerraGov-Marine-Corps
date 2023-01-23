@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "4 floodlights to all shipside maps"
+  - balance: "xenomorphs will have a harder time engaging marine fixed positions due to more lights"

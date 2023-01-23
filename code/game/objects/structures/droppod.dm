@@ -138,6 +138,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!targetarea.outside)
 		to_chat(user, span_warning("Cannot launch pod at a roofed area."))
 		return FALSE
+	if(targetarea.ceiling > CEILING_METAL)
+		to_chat(user, span_warning("Target location is deep underground. Invalid area."))
+		return FALSE
 	for(var/x in target.contents)
 		var/atom/object = x
 		if(object.density)

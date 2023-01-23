@@ -83,7 +83,7 @@
 /area/bigredv2/caves/lambda_lab)
 "X" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating/dmg2,

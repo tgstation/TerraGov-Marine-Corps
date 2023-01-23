@@ -23,10 +23,9 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-///When vended, tries to equip itself. Else, fallback to parent behavior.
-/obj/item/storage/belt/on_vend(mob/user, faction)
-	if (!user.equip_to_appropriate_slot(src))
-		return ..()
+/obj/item/storage/belt/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 /obj/item/storage/belt/champion
 	name = "championship belt"
@@ -403,6 +402,15 @@
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
+
+/obj/item/storage/belt/marine/standard_battlerifle/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
 
 /obj/item/storage/belt/marine/t90/Initialize()
 	. = ..()

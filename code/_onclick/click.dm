@@ -105,10 +105,6 @@
 	if(!modifiers["catcher"] && A.IsObscured())
 		return
 
-	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/N = loc
-		N.click_action(A, src, params)
-		return
 
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)

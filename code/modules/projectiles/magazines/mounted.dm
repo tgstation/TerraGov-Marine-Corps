@@ -50,6 +50,24 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
 
+/obj/item/ammo_magazine/standard_agls
+	name = "AGLS-37 box magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless HE grenades for the AGLS-37 automatic grenade launcher."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_40MM
+	max_rounds = 30
+	default_ammo = /datum/ammo/grenade_container/ags_grenade
+	reload_delay = 2 SECONDS
+
+/obj/item/ammo_magazine/standard_agls/fragmentation
+	name = "AGLS-37 box magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Fragmentation grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_frag"
+	default_ammo = /datum/ammo/ags_shrapnel
+
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."

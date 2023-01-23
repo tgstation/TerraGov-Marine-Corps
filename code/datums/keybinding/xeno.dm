@@ -718,16 +718,39 @@
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 
 /datum/keybinding/xeno/nightfall
+	hotkey_keys = list("F")
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"
 	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
 
-/datum/keybinding/xeno/gravity_crush
-	name = "gravity_crush"
-	full_name = "King: Gravity Crush"
-	description = "Increases the localized gravity in an area and crushes everything in it."
-	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+/datum/keybinding/xeno/petrify
+	hotkey_keys = list("E")
+	name = "petrify"
+	full_name = "King: Petrify"
+	description = "Petrifies all humans within view. While petrified humans can neither be damaged or take any actions."
+	keybind_signal = COMSIG_XENOABILITY_PETRIFY
+
+/datum/keybinding/xeno/off_guard
+	hotkey_keys = list("Q")
+	name = "off_guard"
+	full_name = "King: Off-guard"
+	description = "Muddles the mind of an enemy, increasing their scatter for a while."
+	keybind_signal = COMSIG_XENOABILITY_OFFGUARD
+
+/datum/keybinding/xeno/shattering_roar
+	hotkey_keys = list("R")
+	name = "shattering_roar"
+	full_name = "King: Shattering roar"
+	description = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+	keybind_signal = COMSIG_XENOABILITY_SHATTERING_ROAR
+
+/datum/keybinding/xeno/zero_form_beam
+	hotkey_keys = list("R")
+	name = "zero_form_beam"
+	full_name = "King: Zero-form beam"
+	description = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
+	keybind_signal = COMSIG_XENOABILITY_ZEROFORMBEAM
 
 /datum/keybinding/xeno/psychic_summon
 	name = "psychic_summon"
