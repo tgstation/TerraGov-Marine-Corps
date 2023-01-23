@@ -341,7 +341,7 @@
 	icon_closed = "closed_basic"
 	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
 	materials = list(/datum/material/metal = 200)
-	drop_material = FALSE
+	drop_material = null
 
 
 /obj/structure/closet/crate/mass_produced_crate/alpha
