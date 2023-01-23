@@ -1796,7 +1796,6 @@
 		/obj/effect/spawner/random/structure/powergenerator = 1,
 	)
 
-
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"
@@ -1805,6 +1804,20 @@
 		/obj/structure/girder = 3,
 		/obj/structure/girder/displaced = 7,
 		/obj/structure/girder/reinforced = 1,
+	)
+
+/obj/effect/spawner/random/structure/table_parts
+	name = "table parts spawner"
+	icon_state = "random_tableparts"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/frame/table = 15,
+		/obj/item/frame/table/nometal = 10,
+		/obj/item/frame/table/reinforced = 10,
+		/obj/item/frame/table/wood = 5,
+		/obj/item/frame/table/fancywood = 5,
+		/obj/item/frame/table/rusticwood = 5,
+		/obj/item/frame/table/gambling = 1,
 	)
 
 /obj/effect/spawner/random/structure/crate
@@ -1856,6 +1869,17 @@
 		/obj/structure/prop/mainship/suit_storage_prop = 9,
 		/obj/effect/spawner/random/metal = 1,
 	)
+
+/obj/effect/spawner/random/structure/showcase
+	name = "robotic showcase spawner"
+	icon_state = "random_showcase"
+	loot = list(
+		/obj/structure/showcase = 30,
+		/obj/structure/showcase/six = 30,
+		/obj/structure/showcase/three = 5,
+		/obj/structure/showcase/two = 5,
+	)
+
 
 /obj/effect/spawner/random/structure/tank_dispenser
 	name = "tank dispenser spawner"
