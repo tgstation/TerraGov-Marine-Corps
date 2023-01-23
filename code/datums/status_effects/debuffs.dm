@@ -443,7 +443,7 @@
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
-	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT))
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) >= 65))
 		stack_decay = 2
 
 /datum/status_effect/stacking/intoxicated/on_remove()
@@ -456,7 +456,7 @@
 	. = ..()
 	if(!debuff_owner)
 		return
-	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT)) // In the event that TRAIT_INTOXICATION_RESISTANT is added while the status already exists
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) > 65))
 		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
