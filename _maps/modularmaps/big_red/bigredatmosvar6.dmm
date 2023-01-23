@@ -253,7 +253,7 @@
 	},
 /area/bigredv2/outside/se)
 "qK" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/se)
 "rd" = (
@@ -697,7 +697,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Zk" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/s)
 "Zu" = (
