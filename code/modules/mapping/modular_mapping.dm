@@ -1211,7 +1211,7 @@
 
 /datum/map_template/modular/oscaroutzetabaseseven
 	name = "Oscar outpost abandoned base"
-	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar6.dmm"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar7.dmm"
 	modular_id = "oscarbase"
 	template_width = 79
 	template_height = 29

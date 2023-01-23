@@ -4167,39 +4167,39 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "BE" = (
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 7
 	},
@@ -7706,39 +7706,39 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Qt" = (
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 7
 	},
@@ -8164,24 +8164,24 @@
 /area/oscar_outpost)
 "So" = (
 /obj/structure/closet/crate,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -8399,39 +8399,39 @@
 /area/oscar_outpost/base)
 "Td" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 18
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 8;
 	pixel_y = 7
 	},
@@ -9094,15 +9094,15 @@
 /area/oscar_outpost)
 "Wn" = (
 /obj/structure/rack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Wo" = (
@@ -9262,7 +9262,7 @@
 /area/oscar_outpost/base)
 "Xf" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/obj/effect/spawner/random/wine{
 	pixel_x = 1;
 	pixel_y = 7
 	},
@@ -9340,20 +9340,20 @@
 /area/oscar_outpost/village/east)
 "Xv" = (
 /obj/structure/closet/crate,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Xw" = (
@@ -9450,7 +9450,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "XM" = (
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
 "XN" = (
@@ -10002,14 +10002,14 @@
 /area/oscar_outpost/village/central)
 "ZH" = (
 /obj/structure/rack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "ZK" = (

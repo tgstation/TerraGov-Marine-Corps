@@ -334,13 +334,13 @@
 /area/oscar_outpost/village/abandonedbase)
 "hM" = (
 /obj/structure/table,
-/obj/item/folder,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
+/obj/effect/spawner/random/folder,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "hP" = (
@@ -580,12 +580,10 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "mB" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 1
 	},
+/obj/effect/spawner/random/structure/chair_or_metal/east,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "mH" = (
@@ -823,10 +821,10 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "rY" = (
-/obj/structure/filingcabinet/filingcabinet,
 /obj/effect/turf_decal/tile/corsatcorner/white{
 	dir = 4
 	},
+/obj/effect/spawner/random/structure/filingcabinet,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "sc" = (
@@ -913,7 +911,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "uf" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /obj/effect/turf_decal/tile/corsatsemi/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -933,7 +931,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "uF" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -958,7 +956,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "uY" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1266,10 +1264,8 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Ej" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/corsatsemi/white,
+/obj/effect/spawner/random/structure/chair_or_metal/east,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Ek" = (
@@ -1292,12 +1288,10 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "EC" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 8
 	},
+/obj/effect/spawner/random/structure/chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "EG" = (
@@ -1351,7 +1345,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Fx" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "FB" = (
@@ -1430,11 +1424,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/oscar_outpost/village/abandonedbase)
-"Hk" = (
-/obj/structure/table,
-/obj/item/folder,
-/turf/open/floor/tile/bar,
-/area/oscar_outpost/village/abandonedbase)
 "HO" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/turf_decal/tile/corsatcorner/white,
@@ -1477,11 +1466,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/bar,
-/area/oscar_outpost/village/abandonedbase)
-"Ip" = (
-/obj/structure/table,
-/obj/item/folder/black,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Is" = (
@@ -1548,11 +1532,11 @@
 /area/oscar_outpost/village/abandonedbase)
 "Jp" = (
 /obj/structure/table,
-/obj/item/folder,
 /obj/structure/platform{
 	dir = 4;
 	layer = 2
 	},
+/obj/effect/spawner/random/folder,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Jt" = (
@@ -1685,13 +1669,11 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "MW" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/structure/chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "MY" = (
@@ -1822,12 +1804,10 @@
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "PW" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 4
 	},
+/obj/effect/spawner/random/structure/chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Qa" = (
@@ -1903,7 +1883,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Rm" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
 	},
@@ -1963,7 +1943,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Sy" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -2295,7 +2275,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "XW" = (
 /obj/structure/table,
-/obj/item/book,
+/obj/effect/spawner/random/book,
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -3221,7 +3201,7 @@ Fx
 hu
 Qv
 QS
-Hk
+ft
 Wa
 Fx
 MJ
@@ -3279,11 +3259,11 @@ kP
 NL
 Bg
 XP
-Hk
+ft
 QS
 Qv
 QS
-Ip
+ft
 Jv
 SJ
 JK

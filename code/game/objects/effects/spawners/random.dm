@@ -694,6 +694,29 @@
 		/obj/item/stack/nanopaste,
 	)
 
+/obj/effect/spawner/random/heal_pack
+	name = "Random bruise pack spawner"
+	icon_state = "random_healpack"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+	)
+
+/obj/effect/spawner/random/heal_pack/bruteweighted
+	icon_state = "random_brutekit"
+	loot = list(
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 8,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 2,
+	)
+
+/obj/effect/spawner/random/heal_pack/burnweighted
+	icon_state = "random_burnkit"
+	loot = list(
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 8,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 2,
+	)
+
 /obj/effect/spawner/random/organ
 	name = "Random surgical organ spawner"
 	icon_state = "random_organ"
@@ -761,6 +784,13 @@
 	icon_state = "random_ccircuit"
 	spawn_loot_chance = 75
 	loot_subtype_path = /obj/item/circuitboard/computer
+	loot = list()
+
+/obj/effect/spawner/random/book
+	name = "Random book spawner"
+	icon_state = "random_book"
+	spawn_loot_chance = 90
+	loot_subtype_path = /obj/item/book/manual
 	loot = list()
 
 /obj/effect/spawner/random/cigarettes
