@@ -738,6 +738,7 @@
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
 		/obj/item/beacon/supply_beacon,
+		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
