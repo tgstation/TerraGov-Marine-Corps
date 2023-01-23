@@ -426,10 +426,16 @@
 "cy" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/turf/open/floor/plating,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/turf/open/ground/river,
 /area/oscar_outpost/outside/north)
 "cz" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -512,9 +518,15 @@
 "cX" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/ground/coast{
 	dir = 1
 	},
@@ -5492,11 +5504,6 @@
 /obj/structure/platform/trench{
 	dir = 8
 	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_x = -17
-	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "OI" = (
@@ -7122,15 +7129,13 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "YO" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
-	dir = 1;
-	pixel_y = -5
-	},
 /obj/structure/platform/trench{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
+/area/oscar_outpost/outside/northwest)
 "YT" = (
 /obj/item/weapon/gun/tl102/hsg_nest/sandless,
 /obj/structure/platform/trench,
@@ -7163,16 +7168,6 @@
 "Ze" = (
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/northeast)
-"Zf" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
-	dir = 1;
-	pixel_y = -5
-	},
-/obj/structure/platform/trench{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "Zg" = (
 /obj/effect/ai_node,
@@ -12350,7 +12345,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -12665,7 +12660,7 @@ ZE
 ZE
 ZE
 tz
-YO
+RA
 Wi
 qN
 zZ
@@ -12802,7 +12797,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Bm
 ZE
 ZE
 ZE
@@ -14201,7 +14196,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 tz
 Zl
 th
@@ -14849,7 +14844,7 @@ jn
 jn
 HG
 Oy
-PL
+YO
 jn
 jn
 jn
@@ -14977,7 +14972,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -15438,7 +15433,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -16061,7 +16056,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -16522,7 +16517,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Bm
 ZE
 ZE
 bb
@@ -17935,7 +17930,7 @@ ZE
 ZE
 ZE
 tz
-YO
+RA
 Wi
 qN
 zZ
@@ -19795,7 +19790,7 @@ ZE
 ZE
 ZE
 tz
-YO
+RA
 Wi
 qN
 zZ
@@ -20707,7 +20702,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Bm
 tz
 Zl
 th
@@ -21176,7 +21171,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -21492,7 +21487,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -21651,7 +21646,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 Ph
 uq
 nW
@@ -21793,7 +21788,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Bm
 ZE
 ZE
 sV
@@ -21849,7 +21844,7 @@ eI
 Ay
 Gt
 Gb
-Zf
+Kp
 cz
 cz
 cz
@@ -21953,7 +21948,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 bb
 bb
@@ -22269,7 +22264,7 @@ Zl
 th
 Wi
 Fk
-cy
+Bm
 ZE
 ZE
 Ph
@@ -22571,7 +22566,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -22877,7 +22872,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Bm
 ZE
 ZE
 ZE
@@ -23039,7 +23034,7 @@ Qd
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -23198,7 +23193,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -23346,7 +23341,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -23815,7 +23810,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -23963,7 +23958,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -24277,7 +24272,7 @@ sV
 ZE
 ZE
 ZE
-cy
+Bm
 tz
 Zl
 th
@@ -24438,7 +24433,7 @@ Zl
 th
 Wi
 Fk
-cy
+Bm
 ZE
 bb
 bb
@@ -24899,7 +24894,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -25065,7 +25060,7 @@ hh
 hh
 ZE
 tz
-YO
+RA
 Wi
 qN
 zZ
@@ -25204,7 +25199,7 @@ ZO
 xD
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -25367,7 +25362,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -25828,7 +25823,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -26145,7 +26140,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 Qd
 ZE
 ZE
@@ -26291,7 +26286,7 @@ Zl
 th
 Wi
 Fk
-cy
+Bm
 ZE
 ZE
 ZE
@@ -26451,7 +26446,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -26615,7 +26610,7 @@ ZE
 ZE
 ZE
 tz
-YO
+RA
 Wi
 qN
 zZ
@@ -26912,7 +26907,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -27062,7 +27057,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Bm
 ZE
 ZE
 ZE
@@ -27229,7 +27224,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -27381,7 +27376,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -27686,7 +27681,7 @@ ZE
 ZE
 ZE
 Qd
-cy
+Bm
 ZE
 ZE
 ZE
@@ -27847,7 +27842,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -27992,7 +27987,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Bm
 ZE
 ZE
 ZE
@@ -28310,7 +28305,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -28614,7 +28609,7 @@ ZO
 xD
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 tz
@@ -28777,7 +28772,7 @@ Zl
 th
 Wi
 Fk
-cy
+Bm
 ZE
 ZE
 ZE
@@ -29392,7 +29387,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -29698,7 +29693,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Bm
 ZE
 ZE
 ZE
@@ -29861,7 +29856,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Bm
 ZE
 hh
 hh

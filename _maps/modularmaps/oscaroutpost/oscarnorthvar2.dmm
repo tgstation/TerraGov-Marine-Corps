@@ -346,9 +346,15 @@
 "cX" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/ground/coast{
 	dir = 1
 	},
@@ -1138,7 +1144,7 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2858,7 +2864,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Bo" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3444,6 +3450,20 @@
 "GJ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northeast)
+"GQ" = (
+/obj/structure/table/reinforced,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/turf/open/ground/river,
+/area/oscar_outpost/outside/north)
 "GR" = (
 /obj/item/weapon/gun/tl102/hsg_nest{
 	dir = 1;
@@ -3991,6 +4011,20 @@
 	name = "SOM exit point 24"
 	},
 /turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
+"Nh" = (
+/obj/structure/table/reinforced,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/oscar_outpost/outside/north)
 "Nm" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -5447,7 +5481,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "YM" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -6051,7 +6085,7 @@ xD
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -6198,7 +6232,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -6364,7 +6398,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -6514,7 +6548,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -6679,7 +6713,7 @@ LV
 Mq
 JN
 ZE
-cy
+Nh
 HC
 ZE
 ZE
@@ -6821,7 +6855,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 xD
 ZE
 ZE
@@ -6982,7 +7016,7 @@ ZE
 ZE
 ZE
 sV
-cy
+Nh
 ZE
 ZE
 QA
@@ -7295,7 +7329,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -7453,7 +7487,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -7599,7 +7633,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -7749,7 +7783,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD
@@ -7914,7 +7948,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -8374,7 +8408,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 Zl
 th
@@ -8537,10 +8571,10 @@ Up
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 sV
@@ -8677,7 +8711,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -8836,7 +8870,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 xD
 ZE
 ZE
@@ -8998,7 +9032,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -9163,7 +9197,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 Zl
@@ -9304,7 +9338,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -9469,7 +9503,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -9610,7 +9644,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 xD
 ZE
@@ -9772,7 +9806,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -9917,7 +9951,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -10087,7 +10121,7 @@ ZE
 HC
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -10547,7 +10581,7 @@ LV
 Mq
 JN
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -10711,7 +10745,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -10849,7 +10883,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD
@@ -11015,7 +11049,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -11163,7 +11197,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Nh
 ZE
 ZE
 ZE
@@ -11313,7 +11347,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -11484,7 +11518,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -11632,7 +11666,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -11798,7 +11832,7 @@ ZE
 ZE
 ZE
 sV
-cy
+Nh
 ZE
 ZE
 ZE
@@ -12260,7 +12294,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -12398,7 +12432,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -12562,7 +12596,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 LV
 Mq
@@ -12878,7 +12912,7 @@ QA
 YC
 Up
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -13338,7 +13372,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -13500,7 +13534,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 Ph
@@ -13651,7 +13685,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -13799,7 +13833,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -13950,7 +13984,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 xD
 ZE
@@ -14116,7 +14150,7 @@ ZE
 ZE
 ZE
 sV
-cy
+Nh
 ZE
 ZE
 ZE
@@ -14422,7 +14456,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -14584,7 +14618,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -14883,7 +14917,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Nh
 ZE
 ZE
 ZE
@@ -15046,7 +15080,7 @@ Mq
 JN
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -15189,7 +15223,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD
@@ -15208,7 +15242,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -15360,7 +15394,7 @@ ZE
 HC
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -15664,7 +15698,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -15815,7 +15849,7 @@ ZO
 xD
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -16133,7 +16167,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -16276,7 +16310,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 xD
 ZE
 ZE
@@ -16593,7 +16627,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -16738,7 +16772,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -16756,7 +16790,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -16907,7 +16941,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -17054,7 +17088,7 @@ ZO
 ZO
 xD
 sV
-cy
+Nh
 ZE
 ZE
 ZE
@@ -17375,7 +17409,7 @@ LV
 Mq
 JN
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -17514,7 +17548,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD
@@ -17834,7 +17868,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -17997,7 +18031,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -18149,7 +18183,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -18451,7 +18485,7 @@ xD
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -18610,7 +18644,7 @@ ZE
 ZE
 ZE
 sV
-cy
+Nh
 ZE
 ZE
 HC
@@ -18754,7 +18788,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD
@@ -18772,7 +18806,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -19068,7 +19102,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Nh
 ZE
 Zl
 th
@@ -19083,7 +19117,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -19537,7 +19571,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -19685,7 +19719,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 xD
 ZE
@@ -19853,7 +19887,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -20012,7 +20046,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 Ph
 uq
 nW
@@ -20154,7 +20188,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 sV
@@ -20314,7 +20348,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -20771,7 +20805,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 xD
 ZE
 ZE
@@ -20932,7 +20966,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -21238,7 +21272,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Nh
 ZE
 ZE
 ZE
@@ -21400,7 +21434,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -21559,7 +21593,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -21707,7 +21741,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -21854,7 +21888,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD
@@ -22176,7 +22210,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -22324,7 +22358,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -22638,7 +22672,7 @@ sV
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 Zl
 th
@@ -22799,7 +22833,7 @@ QA
 YC
 Up
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -22941,7 +22975,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 xD
 ZE
 ZE
@@ -23260,7 +23294,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -23403,7 +23437,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -23565,7 +23599,7 @@ ZO
 xD
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -23728,7 +23762,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -24189,7 +24223,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -24506,7 +24540,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -24652,7 +24686,7 @@ Zl
 th
 Wi
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -24812,7 +24846,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -24955,7 +24989,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 xD
 ZE
@@ -25273,7 +25307,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -25423,7 +25457,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Nh
 ZE
 ZE
 ZE
@@ -25590,7 +25624,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -25742,7 +25776,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -25884,7 +25918,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 rR
@@ -26047,7 +26081,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 HC
 ZE
 ZE
@@ -26208,7 +26242,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -26353,7 +26387,7 @@ ZO
 ZO
 ZO
 xD
-cy
+Nh
 ZE
 ZE
 ZE
@@ -26502,7 +26536,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -26671,7 +26705,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -26975,7 +27009,7 @@ ZO
 xD
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -27138,7 +27172,7 @@ Zl
 th
 Wi
 ZE
-cy
+Nh
 HC
 ZE
 ZE
@@ -27281,7 +27315,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 xD
 ZE
 sV
@@ -27588,7 +27622,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 ZO
@@ -27753,7 +27787,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -28059,7 +28093,7 @@ ZO
 ZO
 xD
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -28222,7 +28256,7 @@ ZE
 ZE
 ZE
 ZE
-cy
+Nh
 ZE
 ZE
 ZE
@@ -28364,7 +28398,7 @@ ZO
 ZO
 ZO
 ZO
-cy
+GQ
 ZO
 ZO
 xD

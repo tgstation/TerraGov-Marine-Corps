@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ad" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1140,15 +1140,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northeast)
-"lB" = (
-/obj/item/weapon/gun/heavy_laser{
-	dir = 1
-	},
-/obj/structure/platform/trench{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
 "lF" = (
 /obj/structure/barricade/sandbags{
 	name = "trench lining";
@@ -1707,7 +1698,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "pU" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2042,7 +2033,8 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "tl" = (
-/obj/item/weapon/gun/tl102/hsg_nest,
+/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "tm" = (
@@ -2167,7 +2159,7 @@
 	},
 /area/oscar_outpost)
 "uN" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /obj/structure/barricade/metal{
@@ -2311,7 +2303,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
 "wr" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8
 	},
 /obj/structure/barricade/metal{
@@ -2573,7 +2565,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "zF" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2626,11 +2618,10 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "AE" = (
-/obj/item/weapon/gun/tl102/hsg_nest/sandless{
-	dir = 8
-	},
+/obj/item/weapon/gun/tl102/hsg_nest/sandless,
+/obj/structure/platform/trench,
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northwest)
+/area/oscar_outpost/outside/west)
 "AG" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -3290,7 +3281,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "FW" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3317,16 +3308,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/west)
-"Gj" = (
-/obj/item/weapon/gun/heavy_laser{
-	dir = 1;
-	pixel_y = 7
-	},
-/obj/structure/platform/trench{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "Gp" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -3657,7 +3638,7 @@
 	},
 /area/oscar_outpost)
 "Kj" = (
-/obj/item/weapon/gun/tl102/hsg_nest{
+/obj/item/weapon/gun/tl102/hsg_nest/sandless{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3764,7 +3745,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Lj" = (
-/obj/item/weapon/gun/tl102/hsg_nest,
+/obj/item/weapon/gun/tl102/hsg_nest/sandless,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "Lk" = (
@@ -6453,7 +6434,7 @@ mD
 mD
 sw
 gB
-Lj
+AE
 NR
 Wz
 Wz
@@ -9162,7 +9143,7 @@ Yz
 Yz
 sh
 bs
-AE
+FW
 Nw
 bs
 Nw
@@ -9553,7 +9534,7 @@ mD
 mD
 sw
 gB
-Lj
+AE
 NR
 Wz
 Wz
@@ -11257,7 +11238,7 @@ mD
 mD
 wo
 gB
-Lj
+AE
 ux
 mD
 mD
@@ -12962,7 +12943,7 @@ XY
 XY
 sw
 gB
-Lj
+AE
 NR
 XY
 XY
@@ -16288,8 +16269,8 @@ ou
 eC
 eC
 eC
-Po
-lB
+eC
+RN
 Ie
 NF
 NF
@@ -17373,8 +17354,8 @@ RI
 RI
 RI
 RI
-Om
-Gj
+RI
+AJ
 mx
 rC
 rC
