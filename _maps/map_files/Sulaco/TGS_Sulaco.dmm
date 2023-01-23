@@ -7085,6 +7085,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"aIN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floodlight/combat,
+/turf/open/floor/prison,
+/area/sulaco/hallway/dropshipprep)
 "aIP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -13964,6 +13969,7 @@
 "gtb" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/floodlight/combat,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "gtk" = (
@@ -15521,6 +15527,7 @@
 "iyo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/floodlight/combat,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "iyJ" = (
@@ -59391,7 +59398,7 @@ aVY
 kYl
 hID
 gtb
-cIs
+aIN
 aWg
 aQw
 wLH
