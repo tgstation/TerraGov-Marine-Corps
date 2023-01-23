@@ -2374,13 +2374,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 15
+	damage = 20
 	penetration = 15
 
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
 	hud_state = "laser_efficiency"
-	damage = 8.5
+	damage = 10
+	penetration = 5
 	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/autolaser/swarm
@@ -2396,11 +2397,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
 	hud_state = "laser_sniper"
-	damage = 60
-	penetration = 30
+	damage = 65
+	penetration = 45
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
-	sundering = 4
+	sundering = 5
 	max_range = 40
 	damage_falloff = 0
 	hitscan_effect_icon = "beam_heavy"
@@ -2411,11 +2412,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_heat"
 	shell_speed = 2.5
 	damage = 40
-	penetration = 0
+	penetration = 30
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
+
+/datum/ammo/energy/lasgun/marine/sniper_overcharge
+	name = "sniper overcharge bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_heat"
+	shell_speed = 2.5
+	damage = 125
+	penetration = 60
+	accurate_range_min = 7
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	sundering = 10
+	hitscan_effect_icon = "u_laser_beam" //change
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
@@ -2427,10 +2440,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "disabler bolt"
 	icon_state = "disablershot"
 	hud_state = "laser_disabler"
-	damage = 70
 	penetration = 0
+	sundering = 0
+	damage = 70
 	damage_type = STAMINA
+	armor_type = "bio"
 	hitscan_effect_icon = "stun"
+	var/drain_multiplier = 0.05
+	/// Flat plasma to drain, unaffected by caste plasma amount.
+	var/plasma_drain = 16
+
+/datum/ammo/energy/lasgun/marine/pistol/disabler/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/X = victim
+		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+		X.use_plasma(plasma_drain)
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
