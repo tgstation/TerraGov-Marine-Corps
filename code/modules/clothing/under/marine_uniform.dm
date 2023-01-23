@@ -113,7 +113,12 @@
 	icon_state = "marine_striped"
 	item_state = "marine_striped"
 	adjustment_variants = list()
-
+/obj/item/clothing/under/marine/black_suit
+	name = "\improper marine black suit"
+	desc = "A easy fitting black suit, somehow exactly your size."
+	icon_state = "marine_suit"
+	item_state = "marine_suit"
+	adjustment_variants = list()
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."

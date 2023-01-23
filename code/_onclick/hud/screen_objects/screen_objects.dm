@@ -568,65 +568,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 
-/atom/movable/screen/firearms
-
-/atom/movable/screen/firearms/Click()
-	return get_active_firearm(usr)
-
-/atom/movable/screen/firearms/attachment
-	name = "Activate weapon attachment"
-	icon_state = "gun_attach"
-	screen_loc = ui_gun_attachment
-
-/atom/movable/screen/firearms/attachment/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.activate_attachment_verb()
-
-/atom/movable/screen/firearms/flashlight
-	name = "Toggle Rail Flashlight"
-	icon_state = "gun_raillight"
-	screen_loc = ui_gun_railtoggle
-
-/atom/movable/screen/firearms/flashlight/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	if(!G)
-		return
-	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
-	if(F?.activate(usr))
-		playsound(usr, F.activation_sound, 15, 1)
-
-/atom/movable/screen/firearms/magazine
-	name = "Eject magazine"
-	icon_state = "gun_loaded"
-	screen_loc = ui_gun_eject
-
-/atom/movable/screen/firearms/magazine/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.empty_mag()
-
-/atom/movable/screen/firearms/firemode
-	name = "Toggle fire mode"
-	icon_state = "gun_burst"
-	screen_loc = ui_gun_burst
-
-/atom/movable/screen/firearms/firemode/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.toggle_firemode()
-
-/atom/movable/screen/firearms/unique
-	name = "Use unique action"
-	icon_state = "gun_unique"
-	screen_loc = ui_gun_unique
-
-/atom/movable/screen/firearms/unique/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.use_unique_action()
-
 /atom/movable/screen/drop
 	name = "drop"
 	icon = 'icons/mob/screen/midnight.dmi'
