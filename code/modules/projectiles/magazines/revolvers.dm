@@ -78,7 +78,7 @@
 	caliber = CALIBER_45L
 	icon_state = "h_m44"
 
-/obj/item/ammo_magazine/revolver/standard_marinemagnum
+/obj/item/ammo_magazine/revolver/standard_magnum
 	name = "\improper R-76 speed loader (12.7mm)"
 	desc = "A revolver speed loader for the R-76 Magnum, mind your shoulder, will probably stagger anything it hits."
 	default_ammo = /datum/ammo/bullet/revolver/t76
