@@ -308,3 +308,15 @@
   chizzy376:
   - bugfix: Creating surt modules through reqtorio should no longer disappoint you
       with 10 violins
+2023-01-24:
+  Lumipharon:
+  - balance: Added some more loadouts to SOM ERTs
+  - bugfix: Fixed a bug with mimir traits
+  - balance: Melee stuns now respect armour when calculating probability
+  - bugfix: fixed random map spawners
+  Pariah919:
+  - rscadd: Added new AGLS mounted grenade launcher.
+  novaepee:
+  - rscadd: 4 floodlights to all shipside maps
+  - balance: xenomorphs will have a harder time engaging marine fixed positions due
+      to more lights
