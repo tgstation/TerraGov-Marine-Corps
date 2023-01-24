@@ -128,11 +128,15 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	exitpod()
 
 /obj/structure/droppod/MouseDrop_T(mob/M, mob/user)
-	put_mob(M, user)
+	if(isliving(user) && isliving(M))
+		put_mob(M, user)
 
 /obj/structure/droppod/proc/put_mob(mob/M, mob/living/user)
 	if(drop_state != DROPPOD_READY)
 		to_chat(user, span_notice("The droppod has already landed!"))
+		return
+
+	if(!do_after(M, entertime, TRUE, src))
 		return
 
 	if(occupant != null)
@@ -141,9 +145,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	if(!ishuman(M))
 		to_chat(user, span_warning("There is no way [src] will accept [M]!"))
-		return
-
-	if(!do_after(user, entertime, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 	occupant = M
