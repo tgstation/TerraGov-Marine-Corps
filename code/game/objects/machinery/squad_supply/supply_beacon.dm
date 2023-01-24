@@ -44,6 +44,7 @@
 	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
+	GLOB.active_orbital_beacons += src
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
@@ -77,6 +78,7 @@
 	span_notice("You start removing [src] from the ground, deactivating it."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
+	GLOB.active_orbital_beacons -= src
 	QDEL_NULL(beacon_cam)
 	activated = FALSE
 	anchored = FALSE
@@ -93,6 +95,7 @@
 	return TRUE
 
 /obj/item/beacon/Destroy()
+	GLOB.active_orbital_beacons -= src
 	if(beacon_cam)
 		qdel(beacon_cam)
 		beacon_cam = null
@@ -103,6 +106,7 @@
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
 	icon_state = "motion4"
 	icon_activated = "motion1"
+	underground_signal = FALSE
 	///The squad this OB beacon belongs to
 	var/datum/squad/squad = null
 
