@@ -10,6 +10,8 @@
 	var/obj/machinery/camera/beacon_cam = null
 	///Can work underground
 	var/underground_signal = FALSE
+	///Beacon minimap icon
+	var/beacon_mini_icon = null
 
 /obj/item/beacon/update_icon_state()
 	icon_state = activated ? icon_activated : initial(icon_state)
@@ -44,7 +46,6 @@
 	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
-	GLOB.active_orbital_beacons += src
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
@@ -67,7 +68,7 @@
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
 		marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, z, marker_flags, "supply")
+	SSminimaps.add_marker(src, z, marker_flags, beacon_mini_icon)
 	update_icon()
 	return TRUE
 
@@ -78,7 +79,6 @@
 	span_notice("You start removing [src] from the ground, deactivating it."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
-	GLOB.active_orbital_beacons -= src
 	QDEL_NULL(beacon_cam)
 	activated = FALSE
 	anchored = FALSE
@@ -95,7 +95,6 @@
 	return TRUE
 
 /obj/item/beacon/Destroy()
-	GLOB.active_orbital_beacons -= src
 	if(beacon_cam)
 		qdel(beacon_cam)
 		beacon_cam = null
@@ -107,6 +106,7 @@
 	icon_state = "motion4"
 	icon_activated = "motion1"
 	underground_signal = FALSE
+	beacon_mini_icon = "ob_beacon"
 	///The squad this OB beacon belongs to
 	var/datum/squad/squad = null
 
@@ -122,6 +122,7 @@
 		return
 	else	//So we can just get a goshdarn name.
 		name += " ([H])"
+	GLOB.active_orbital_beacons += src
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
@@ -129,10 +130,12 @@
 		return
 	squad?.squad_orbital_beacons -= src
 	squad = null
+	GLOB.active_orbital_beacons -= src
 
 /obj/item/beacon/orbital_bombardment_beacon/Destroy()
 	squad?.squad_orbital_beacons -= src
 	squad = null
+	GLOB.active_orbital_beacons -= src
 	return ..()
 
 /obj/item/beacon/supply_beacon
@@ -142,6 +145,7 @@
 	icon_activated = "motion2"
 	activation_time = 60
 	underground_signal = TRUE
+	beacon_mini_icon = "supply"
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
