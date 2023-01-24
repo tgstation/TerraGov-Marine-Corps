@@ -704,9 +704,9 @@
 	rounds_per_shot = 200
 	fire_delay = 3 SECONDS
 	windup_delay = 1.75 SECONDS
-	windup_sound = 'sound/weapons/guns/fire/Laser_Sniper_Overcharge_Charge.ogg' //get this working
+	windup_sound = 'sound/weapons/guns/fire/Laser Sniper Overcharge Charge.ogg' //get this working
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_overcharge
-	fire_sound = 'sound/weapons/guns/fire/Laser_Sniper_Overcharge_Fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Overcharge Fire.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "ter"
