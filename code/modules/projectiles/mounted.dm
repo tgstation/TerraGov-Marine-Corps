@@ -7,7 +7,6 @@
 	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	flags_atom = ON_BORDER
 	flags_pass = PASSABLE
 	///Store user old pixel x
 	var/user_old_x = 0
