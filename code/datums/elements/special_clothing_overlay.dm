@@ -72,21 +72,18 @@
 	UnregisterSignal(equipper, list(COMSIG_HUMAN_APPLY_OVERLAY, COMSIG_HUMAN_REMOVE_OVERLAY))
 
 /**
- * Adds an emissive overlay to the wearer as the helmets visor, supports greyscale
+ * Adds an emissive overlay to the wearer as the helmets visor
  */
 /datum/element/special_clothing_overlay/modular_helmet_visor
-	///Icon we fetch to make worn icon with
-	var/icon/special_icon
+	///Icon to use for the emissive
+	var/visor_icon
+	///Icon_state to use for the emissive
+	var/visor_icon_state
 
-/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, icon, icon_state, greyscale_type, color_string)
-	if(!special_icon)
-		if(icon && icon_state)
-			special_icon = new/icon("icon" = icon, "icon_state" = icon_state)
-		else if(greyscale_type && color_string)
-			special_icon = SSgreyscale.GetColoredIconByType(greyscale_type, list(color_string))
-		else
-			CRASH("No icon or greyscale details")
+/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, icon, icon_state)
+	visor_icon = icon
+	visor_icon_state = icon_state
 	return ..()
 
 /datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon()
-	return emissive_appearance(special_icon, "")
+	return emissive_appearance(visor_icon, visor_icon_state)
