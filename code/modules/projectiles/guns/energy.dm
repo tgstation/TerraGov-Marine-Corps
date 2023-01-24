@@ -670,6 +670,7 @@
 	wield_delay = 0.7 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
+	recoil_unwielded = 3
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
@@ -702,10 +703,10 @@
 /datum/lasrifle/base/energy_sniper_mode/overcharge
 	rounds_per_shot = 200
 	fire_delay = 3 SECONDS
-	windup_delay = 2 SECONDS
-	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg' //change
+	windup_delay = 1.75 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/Laser_Sniper_Overcharge_Charge.ogg' //get this working
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_overcharge
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg' //change
+	fire_sound = 'sound/weapons/guns/fire/Laser_Sniper_Overcharge_Fire.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "ter"
