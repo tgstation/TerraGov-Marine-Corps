@@ -2289,17 +2289,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
-"bLU" = (
-/obj/structure/window/framed/mainship/canterbury{
-	name = "empty space";
-	icon_state = "null";
-	hit_sound = null;
-	icon = null
-	},
-/turf/open/floor/prison/rampbottom{
-	dir = 1
-	},
-/area/mainship/hallways/bow_hallway)
 "bLY" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -13449,15 +13438,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"kEw" = (
-/obj/structure/window/framed/mainship/canterbury{
-	name = "empty space";
-	icon_state = "null";
-	hit_sound = null;
-	icon = null
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway)
 "kEP" = (
 /turf/open/floor/mainship/blue{
 	dir = 8
@@ -14787,6 +14767,15 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
+"lzz" = (
+/obj/structure/window/framed/mainship/hull/canterbury{
+	name = "empty space";
+	icon = null;
+	icon_state = null;
+	hit_sound = null
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "lzB" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -17123,6 +17112,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship_hull/dir,
 /area/space)
+"ngt" = (
+/obj/structure/window/framed/mainship/hull/canterbury{
+	name = "empty space";
+	icon = null;
+	icon_state = null;
+	hit_sound = null
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway)
 "ngX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -18238,6 +18236,12 @@
 /turf/open/floor/prison/darkbrown,
 /area/mainship/hallways/starboard_hallway)
 "nUR" = (
+/obj/structure/window/framed/mainship/hull/canterbury{
+	name = "empty space";
+	icon = null;
+	icon_state = null;
+	hit_sound = null
+	},
 /turf/open/floor/prison/rampbottom,
 /area/mainship/hull/port_hull)
 "nUV" = (
@@ -19792,16 +19796,6 @@
 "pdB" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/hallways/aft_hallway)
-"pec" = (
-/obj/effect/ai_node,
-/obj/structure/window/framed/mainship/canterbury{
-	name = "empty space";
-	icon_state = "null";
-	hit_sound = null;
-	icon = null
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/port_hull)
 "ped" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/prison/marked,
@@ -25353,15 +25347,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/bow_hallway)
-"tre" = (
-/obj/structure/window/framed/mainship/canterbury{
-	name = "empty space";
-	icon_state = "null";
-	hit_sound = null;
-	icon = null
-	},
-/turf/open/floor/prison/rampbottom,
-/area/mainship/hull/port_hull)
 "trf" = (
 /turf/open/floor/prison/red{
 	dir = 8
@@ -29119,15 +29104,6 @@
 	dir = 6
 	},
 /area/mainship/hallways/hangar)
-"wtp" = (
-/obj/structure/window/framed/mainship/canterbury{
-	name = "empty space";
-	icon_state = "null";
-	hit_sound = null;
-	icon = null
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/port_hull)
 "wtx" = (
 /obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet,
@@ -29493,6 +29469,16 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
+"wNm" = (
+/obj/effect/ai_node,
+/obj/structure/window/framed/mainship/hull/canterbury{
+	name = "empty space";
+	icon = null;
+	icon_state = null;
+	hit_sound = null
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway)
 "wNn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -29738,16 +29724,6 @@
 "wVZ" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/squads/req)
-"wWa" = (
-/obj/effect/ai_node,
-/obj/structure/window/framed/mainship/canterbury{
-	name = "empty space";
-	icon_state = "null";
-	hit_sound = null;
-	icon = null
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway)
 "wWb" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/marine_card,
@@ -30985,6 +30961,12 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/ex_firing_range)
 "xWl" = (
+/obj/structure/window/framed/mainship/hull/canterbury{
+	name = "empty space";
+	icon = null;
+	icon_state = null;
+	hit_sound = null
+	},
 /turf/open/floor/prison/rampbottom{
 	dir = 1
 	},
@@ -31146,6 +31128,16 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/bow_hallway)
+"ybg" = (
+/obj/effect/ai_node,
+/obj/structure/window/framed/mainship/hull/canterbury{
+	name = "empty space";
+	icon = null;
+	icon_state = null;
+	hit_sound = null
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "ybF" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -63435,7 +63427,7 @@ xWl
 xWl
 xWl
 xWl
-bLU
+xWl
 qPx
 rIP
 kUr
@@ -63693,8 +63685,8 @@ xWl
 xWl
 xWl
 xWl
-kEw
-wWa
+ngt
+wNm
 kUr
 xGL
 iPj
@@ -64611,8 +64603,8 @@ nUR
 nUR
 nUR
 nUR
-wtp
-pec
+lzz
+ybg
 xFv
 pCj
 qwP
@@ -64867,7 +64859,7 @@ nUR
 nUR
 nUR
 nUR
-tre
+nUR
 xfz
 wRr
 xFv
