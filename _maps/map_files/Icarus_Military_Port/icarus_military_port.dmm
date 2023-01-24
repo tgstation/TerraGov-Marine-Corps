@@ -390,6 +390,13 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/swcaves)
+"awB" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/shuttle/dropship/floor,
+/area/icarus/interior/shipbayone)
 "axd" = (
 /turf/closed/shuttle/ert{
 	icon_state = "rightengine_1";
@@ -424,8 +431,7 @@
 /area/icarus/interior/lztwo)
 "aAj" = (
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "aAm" = (
@@ -764,6 +770,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholding)
+"aWF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/engineering)
 "aWX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -917,8 +930,7 @@
 "beL" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "bfH" = (
@@ -1383,8 +1395,7 @@
 /area/icarus/interior/lzone)
 "bIY" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "bJl" = (
@@ -1543,9 +1554,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/secaves)
 "bUC" = (
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "bUE" = (
 /obj/machinery/vending/cola,
@@ -1619,8 +1628,7 @@
 /area/icarus/exterior/northcaves)
 "bYn" = (
 /turf/open/floor/carpet/side{
-	dir = 6;
-
+	dir = 6
 	},
 /area/icarus/interior/library)
 "bYp" = (
@@ -1628,8 +1636,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "bYD" = (
@@ -1673,8 +1680,7 @@
 /obj/item/tool/lighter,
 /obj/item/portable_vendor/corporate,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "ceV" = (
@@ -2013,9 +2019,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "cCK" = (
 /obj/structure/caspart/internalengine/right,
@@ -2912,8 +2916,7 @@
 "dTt" = (
 /obj/structure/bookcase,
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/dorms)
 "dTz" = (
@@ -3024,8 +3027,7 @@
 /area/icarus/interior/research)
 "edG" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/telecomms)
 "eei" = (
@@ -3035,9 +3037,6 @@
 	},
 /area/icarus/exterior/northeastcaves)
 "eeT" = (
-/obj/effect/decal/siding{
-	dir = 6
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 6
 	},
@@ -3164,8 +3163,7 @@
 /area/icarus/interior/lzone)
 "eqk" = (
 /turf/open/floor/carpet/side{
-	dir = 6;
-
+	dir = 6
 	},
 /area/icarus/interior/dorms)
 "eqm" = (
@@ -3309,6 +3307,10 @@
 /obj/item/tool/weldingtool,
 /turf/open/floor/plating,
 /area/icarus/interior/unloading)
+"eAD" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/medbay)
 "eBb" = (
 /turf/open/ground/river,
 /area/icarus/exterior/secaves)
@@ -3771,8 +3773,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "fgO" = (
@@ -3941,9 +3942,6 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "fnP" = (
-/obj/effect/decal/siding{
-	dir = 1
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 1
 	},
@@ -4065,9 +4063,6 @@
 	},
 /area/icarus/interior/lzone)
 "fvc" = (
-/obj/effect/decal/siding{
-	dir = 10
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 10
 	},
@@ -4151,8 +4146,7 @@
 "fBJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "fBV" = (
@@ -4195,8 +4189,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/dorms)
 "fEk" = (
@@ -4254,8 +4247,7 @@
 /area/icarus/interior/atmospherics)
 "fHV" = (
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "fIk" = (
@@ -4505,8 +4497,7 @@
 	on = 1
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "fZm" = (
@@ -4733,6 +4724,13 @@
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/hangartwo)
+"gsS" = (
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/wood,
+/area/icarus/interior/telecomms)
 "gsU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -4851,10 +4849,14 @@
 /area/icarus/interior/telecomms)
 "gCL" = (
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/telecomms)
+"gDn" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/shuttle/dropship/floor/alt,
+/area/icarus/interior/shipbaytwo)
 "gDC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5197,9 +5199,7 @@
 /area/icarus/interior/cargo)
 "hbU" = (
 /obj/machinery/light,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "hbX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -5471,8 +5471,7 @@
 "huo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/telecomms)
 "huq" = (
@@ -5697,8 +5696,7 @@
 /area/icarus/interior/lztwo)
 "hGR" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
-
+	dir = 5
 	},
 /area/icarus/interior/telecomms)
 "hHd" = (
@@ -5976,8 +5974,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/telecomms)
 "hXo" = (
@@ -5996,8 +5993,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/telecomms)
 "hXP" = (
@@ -6319,8 +6315,7 @@
 "irk" = (
 /obj/structure/table,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/telecomms)
 "irt" = (
@@ -6661,8 +6656,7 @@
 "iMg" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "iMO" = (
@@ -6719,8 +6713,7 @@
 "iQQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/telecomms)
 "iRy" = (
@@ -7158,8 +7151,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/dorms)
 "jsW" = (
@@ -7290,8 +7282,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/telecomms)
 "jDm" = (
@@ -7544,9 +7535,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/engine{
-
-	},
+/turf/open/floor/engine,
 /area/icarus/interior/engineering)
 "jRZ" = (
 /obj/machinery/door/poddoor/two_tile_ver,
@@ -7730,8 +7719,7 @@
 /area/icarus/interior/security)
 "kcx" = (
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/library)
 "kcB" = (
@@ -8086,17 +8074,15 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/telecomms)
 "kyf" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal6,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/telecomms)
 "kyv" = (
 /turf/open/floor/mainship/stripesquare,
@@ -8104,8 +8090,7 @@
 "kyF" = (
 /obj/structure/table,
 /turf/open/floor/carpet/side{
-	dir = 6;
-
+	dir = 6
 	},
 /area/icarus/interior/telecomms)
 "kzu" = (
@@ -8133,8 +8118,7 @@
 "kAX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/library)
 "kBh" = (
@@ -8253,8 +8237,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/dorms)
 "kHK" = (
@@ -8558,8 +8541,7 @@
 "kYi" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "kYm" = (
@@ -8620,9 +8602,6 @@
 /turf/open/floor/wood,
 /area/icarus/interior/telecomms)
 "lbi" = (
-/obj/effect/decal/siding{
-	dir = 5
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 5
 	},
@@ -8686,8 +8665,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "lfQ" = (
@@ -8939,8 +8917,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "lzk" = (
@@ -9093,6 +9070,16 @@
 	dir = 8
 	},
 /area/icarus/interior/shipbaytwo)
+"lGx" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/icarus/interior/telecomms)
 "lGR" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/prison/darkred,
@@ -9131,9 +9118,7 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "lHB" = (
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "lIm" = (
 /obj/structure/monorail,
@@ -9258,8 +9243,7 @@
 "lSa" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "lSc" = (
@@ -9456,9 +9440,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "mfu" = (
 /obj/structure/sign/directions/science,
@@ -9551,8 +9533,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/dorms)
 "mkH" = (
@@ -9781,8 +9762,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "mzx" = (
@@ -10269,8 +10249,7 @@
 "ngz" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/carpet/side{
-	dir = 6;
-
+	dir = 6
 	},
 /area/icarus/interior/dorms)
 "ngC" = (
@@ -10666,8 +10645,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "nLn" = (
@@ -10691,8 +10669,7 @@
 "nLz" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/library)
 "nLL" = (
@@ -10779,6 +10756,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
+"nSe" = (
+/obj/machinery/light,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/wood,
+/area/icarus/interior/dorms)
 "nSo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10806,9 +10788,7 @@
 /area/icarus/interior/shipbayone)
 "nUQ" = (
 /obj/structure/bed/chair/comfy,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "nVo" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -11133,6 +11113,10 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/atmospherics)
+"opN" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship,
+/area/icarus/interior/cargo)
 "opX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11544,8 +11528,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "oUo" = (
@@ -11574,6 +11557,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
+"oWG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/wood,
+/area/icarus/interior/dorms)
 "oXm" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -11662,6 +11652,13 @@
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
+"pcm" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/shuttle/dropship/floor,
+/area/icarus/interior/shipbayone)
 "pcs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -11835,8 +11832,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "pmO" = (
@@ -11908,8 +11904,7 @@
 	on = 1
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "ppT" = (
@@ -12267,9 +12262,7 @@
 "pLa" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "pLJ" = (
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -12304,8 +12297,7 @@
 "pPC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/library)
 "pPX" = (
@@ -12679,9 +12671,6 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "qtc" = (
-/obj/effect/decal/siding{
-	dir = 8
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 8
 	},
@@ -13197,9 +13186,6 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "raG" = (
-/obj/effect/decal/siding{
-	dir = 4
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 4
 	},
@@ -13427,8 +13413,7 @@
 /area/icarus/interior/hangarone)
 "rmT" = (
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/library)
 "rna" = (
@@ -13613,14 +13598,11 @@
 /obj/effect/landmark/corpsespawner,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "rwY" = (
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/telecomms)
 "rwZ" = (
 /obj/machinery/light{
@@ -13637,8 +13619,7 @@
 /obj/structure/bed/chair/sofa,
 /obj/item/book,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "rxx" = (
@@ -13819,8 +13800,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "rHs" = (
@@ -13931,8 +13911,7 @@
 /area/icarus/interior/swcaveslz)
 "rME" = (
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/library)
 "rMN" = (
@@ -14187,15 +14166,13 @@
 "saS" = (
 /obj/machinery/photocopier,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/library)
 "sce" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/carpet/side{
-	dir = 5;
-
+	dir = 5
 	},
 /area/icarus/interior/library)
 "scI" = (
@@ -14217,7 +14194,6 @@
 /turf/open/floor/mainship_hull,
 /area/icarus/exterior/northcaves)
 "sdq" = (
-/obj/effect/decal/siding,
 /turf/open/floor/mainship/terragov/west,
 /area/space)
 "sds" = (
@@ -14663,8 +14639,7 @@
 "sIM" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "sIO" = (
@@ -14686,15 +14661,13 @@
 "sJA" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "sKi" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "sKI" = (
@@ -14809,8 +14782,7 @@
 /area/icarus/interior/monitoring)
 "sQq" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
-
+	dir = 5
 	},
 /area/icarus/interior/dorms)
 "sQu" = (
@@ -14830,9 +14802,6 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/bigredv2/caves/southwest)
 "sRJ" = (
-/obj/effect/decal/siding{
-	dir = 9
-	},
 /turf/open/floor/mainship/terragov/west{
 	dir = 9
 	},
@@ -14911,8 +14880,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/computer/emails,
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "sXN" = (
@@ -15084,9 +15052,7 @@
 /area/space)
 "tmy" = (
 /obj/effect/ai_node,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "tnh" = (
 /obj/structure/barricade/guardrail{
@@ -15398,8 +15364,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "tIJ" = (
@@ -15503,8 +15468,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/library)
 "tNY" = (
@@ -15533,8 +15497,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "tPp" = (
@@ -15619,8 +15582,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/library)
 "tUJ" = (
@@ -15934,8 +15896,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 4;
-
+	dir = 4
 	},
 /area/icarus/interior/dorms)
 "uqu" = (
@@ -16070,6 +16031,10 @@
 	dir = 8
 	},
 /area/icarus/interior/swcaveslz)
+"uzF" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/plating_catwalk,
+/area/icarus/interior/library)
 "uAw" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
@@ -16150,22 +16115,17 @@
 /area/icarus/exterior/northeastcaves)
 "uGw" = (
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/dorms)
 "uGD" = (
 /obj/structure/table/woodentable,
 /obj/machinery/faxmachine,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "uGH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "uGI" = (
 /obj/structure/caspart/caschair,
@@ -16192,9 +16152,7 @@
 /area/icarus/interior/research)
 "uHQ" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "uHU" = (
 /obj/structure/window/reinforced,
@@ -16217,9 +16175,7 @@
 "uIS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/library)
 "uIU" = (
 /turf/closed/mineral/smooth/indestructible,
@@ -16272,6 +16228,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "uPB" = (
@@ -16380,17 +16337,13 @@
 /area/icarus/interior/library)
 "uVZ" = (
 /obj/structure/table/gamblingtable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "uWV" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "uXs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -16588,8 +16541,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "vki" = (
@@ -16801,8 +16753,7 @@
 /area/icarus/interior/engineering)
 "vxm" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
-
+	dir = 5
 	},
 /area/icarus/interior/library)
 "vxo" = (
@@ -16974,8 +16925,7 @@
 "vLP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/library)
 "vLT" = (
@@ -17254,15 +17204,13 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/dorms)
 "wko" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "wlk" = (
@@ -17302,8 +17250,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/dorms)
 "wpv" = (
@@ -17321,8 +17268,7 @@
 /area/icarus/interior/shipbayone)
 "wqS" = (
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/dorms)
 "wqY" = (
@@ -17399,8 +17345,7 @@
 /area/icarus/interior/swcaveslz)
 "wsU" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "wte" = (
@@ -17459,8 +17404,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "wvs" = (
@@ -17604,8 +17548,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/icarus/interior/dorms)
 "wDO" = (
@@ -17700,8 +17643,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "wJd" = (
@@ -18086,9 +18028,7 @@
 /area/space)
 "xgS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "xgU" = (
 /obj/effect/landmark/weed_node,
@@ -18345,9 +18285,7 @@
 /area/icarus/interior/medbay)
 "xuS" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "xuY" = (
 /obj/effect/landmark/weed_node,
@@ -18381,8 +18319,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "xxx" = (
@@ -18464,8 +18401,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/icarus/interior/dorms)
 "xAf" = (
@@ -18474,8 +18410,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 5;
-
+	dir = 5
 	},
 /area/icarus/interior/dorms)
 "xBH" = (
@@ -18488,9 +18423,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "xCu" = (
 /turf/open/floor/tile/dark/yellow2,
@@ -18637,9 +18570,7 @@
 /area/icarus/interior/cargoholding)
 "xIW" = (
 /obj/structure/cryofeed,
-/turf/open/floor/engine{
-
-	},
+/turf/open/floor/engine,
 /area/icarus/interior/engineering)
 "xJs" = (
 /turf/open/floor/mainship_hull/dir{
@@ -19022,8 +18953,7 @@
 /area/icarus/interior/hangarone)
 "ygw" = (
 /turf/open/floor/carpet/side{
-	dir = 8;
-
+	dir = 8
 	},
 /area/icarus/interior/dorms)
 "yhe" = (
@@ -19061,8 +18991,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/icarus/interior/dorms)
 "yhY" = (
@@ -19072,9 +19001,7 @@
 /obj/machinery/light,
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/icarus/interior/dorms)
 "yit" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -28604,7 +28531,7 @@ fXV
 gBt
 hgV
 huo
-hXk
+lGx
 hXk
 iQQ
 hXk
@@ -29424,7 +29351,7 @@ hZP
 iru
 hOC
 hZP
-hZP
+gsS
 hOC
 hZP
 iru
@@ -33766,7 +33693,7 @@ xDH
 gnn
 cWr
 hGo
-wZo
+aWF
 sEA
 sIO
 mhS
@@ -34113,7 +34040,7 @@ wqB
 tWW
 orS
 xTb
-orS
+pcm
 xTb
 orS
 xTb
@@ -36971,7 +36898,7 @@ qYN
 xTb
 qYN
 xTb
-qYN
+awB
 xTb
 qYN
 uUz
@@ -39007,7 +38934,7 @@ xnS
 tRf
 svz
 hlW
-qYN
+awB
 xTb
 qYN
 xTb
@@ -39671,7 +39598,7 @@ xSu
 bDG
 xSu
 jME
-ups
+uzF
 aLL
 xSu
 oio
@@ -39890,7 +39817,7 @@ weN
 huQ
 hpJ
 jed
-huQ
+opN
 huQ
 jAb
 wxI
@@ -49436,7 +49363,7 @@ rPz
 wlk
 rLs
 xGv
-vSC
+oWG
 yaF
 yaF
 yaF
@@ -50059,7 +49986,7 @@ qHZ
 yaF
 yaF
 yaF
-twM
+nSe
 xGv
 vSC
 rIP
@@ -50276,7 +50203,7 @@ xGv
 yaF
 yaF
 yaF
-twM
+nSe
 xGv
 wlk
 rPz
@@ -50842,7 +50769,7 @@ wDO
 wDO
 wqY
 qdE
-vVL
+gDn
 qdE
 qdE
 cSr
@@ -56586,7 +56513,7 @@ rdY
 rdY
 rdY
 meO
-xfr
+eAD
 xfr
 xfr
 meO
