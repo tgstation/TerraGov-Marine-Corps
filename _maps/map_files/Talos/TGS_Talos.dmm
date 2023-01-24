@@ -2165,14 +2165,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
-"bIm" = (
-/obj/machinery/computer/mech_builder{
-	dir = 2
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 9
-	},
-/area/mainship/hallways/hangar)
 "bIr" = (
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -3014,6 +3006,9 @@
 "chD" = (
 /obj/machinery/light/mainship{
 	dir = 1
+	},
+/obj/machinery/computer/mech_builder{
+	dir = 2
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -17836,9 +17831,6 @@
 /area/mainship/medical/upper_medical)
 "nIv" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/computer/mech_builder{
-	dir = 2
-	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
@@ -64308,7 +64300,7 @@ fqu
 cuk
 eQV
 iwc
-bIm
+wjJ
 gFd
 hoJ
 aHf
