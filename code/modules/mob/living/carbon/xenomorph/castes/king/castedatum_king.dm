@@ -9,7 +9,7 @@
 	wound_type = "king" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 24
 
 	// *** Speed *** //
 	speed = 0.1
@@ -67,7 +67,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	melee_damage = 23
 
 	// *** Speed *** //
 	speed = 0.1
@@ -119,7 +118,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.1
@@ -146,7 +145,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.1
