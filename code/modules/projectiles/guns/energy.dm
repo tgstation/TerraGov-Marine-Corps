@@ -637,7 +637,7 @@
 	icon_state = "tes"
 	item_state = "tes"
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 12 //codex stuff
+	max_shots = 10 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
 	rounds_per_shot = 60
@@ -669,7 +669,7 @@
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
-	scatter_unwielded = 10
+	scatter_unwielded = 15
 	recoil_unwielded = 3
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.2
@@ -772,6 +772,7 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.11 SECONDS
+	scatter = 4
 	rounds_per_shot = 2
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
 	radial_icon_state = "laser_disabler"
