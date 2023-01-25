@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Removed some misplaced hull windows on Big Red."
-  - bugfix: "Fixed an oversight with podding on Chigusa."
