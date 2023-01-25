@@ -320,3 +320,8 @@
   - rscadd: 4 floodlights to all shipside maps
   - balance: xenomorphs will have a harder time engaging marine fixed positions due
       to more lights
+2023-01-25:
+  Lumipharon:
+  - bugfix: fixed an exploit with mounted weapons
+  - balance: Beanbag slugs no longer has a comically long stun duration
+  - bugfix: Added god mode checks to debuff status effects, snatch and defile
