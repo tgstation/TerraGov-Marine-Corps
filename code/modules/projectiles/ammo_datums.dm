@@ -2382,7 +2382,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_efficiency"
 	damage = 10
 	penetration = 5
-	hitscan_effect_icon = "beam_particle"
+	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/autolaser/swarm
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
@@ -2416,7 +2416,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
-	hitscan_effect_icon = "u_laser_beam"
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/sniper_overcharge
 	name = "sniper overcharge bolt"
@@ -2428,13 +2428,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 7
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 10
-	hitscan_effect_icon = "u_laser_beam" //change
+	hitscan_effect_icon = "plasmacutter"
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
 	damage = 20
 	penetration = 5
-	hitscan_effect_icon = "beam_particle"
+	hitscan_effect_icon = "beam_grass"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -2445,7 +2445,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	damage_type = STAMINA
 	armor_type = "bio"
-	hitscan_effect_icon = "stun"
+	hitscan_effect_icon = "beam_particle"
 	var/drain_multiplier = 0.05
 	/// Flat plasma to drain, unaffected by caste plasma amount.
 	var/plasma_drain = 16
