@@ -2416,7 +2416,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
-	hitscan_effect_icon = "pu_laser"
+	hitscan_effect_icon = "beam_incen"
 
 /datum/ammo/energy/lasgun/marine/sniper_overcharge
 	name = "sniper overcharge bolt"
@@ -2428,7 +2428,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 7
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 10
-	hitscan_effect_icon = "plasmacutter"
+	hitscan_effect_icon = "beam_heavy_charge"
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
