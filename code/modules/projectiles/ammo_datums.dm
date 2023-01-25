@@ -2460,7 +2460,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "microwave heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	damage = 20
+	damage = 10
 	shell_speed = 2.5
 	penetration = 10
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
