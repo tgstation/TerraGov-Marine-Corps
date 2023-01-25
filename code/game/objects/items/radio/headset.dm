@@ -31,8 +31,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(keyslot2)
 		keyslot2 = new keyslot2(src)
 	. = ..()
-	//set_listening(TRUE)
-	//recalculateChannels()
 	possibly_deactivate_in_loc()
 
 /obj/item/radio/headset/proc/possibly_deactivate_in_loc()
@@ -143,8 +141,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
 
 /obj/item/radio/headset/vendor_equip(mob/user)
-	..()
-	return user.equip_to_appropriate_slot(src)
+	. = ..()
+	. = user.equip_to_appropriate_slot(src)
+	possibly_deactivate_in_loc()
 
 /obj/item/radio/headset/survivor
 	freqlock = TRUE
