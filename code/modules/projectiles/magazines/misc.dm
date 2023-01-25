@@ -156,3 +156,13 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 50
 	max_rounds = 50
+
+/obj/item/ammo_magazine/packet/pepperball
+	name = "packet of SAN Balls"
+	desc = "A box containing 1000 SAN Balls."
+	caliber = CALIBER_PEPPERBALL
+	icon_state = "box_pepperball"
+	default_ammo = /datum/ammo/bullet/pepperball
+	w_class = WEIGHT_CLASS_NORMAL
+	current_rounds = 1000
+	max_rounds = 1000
