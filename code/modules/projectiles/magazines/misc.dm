@@ -158,7 +158,7 @@
 	max_rounds = 50
 
 /obj/item/ammo_magazine/packet/pepperball
-	name = "packet of SAN Balls"
+	name = "box of SAN Balls"
 	desc = "A box containing 1000 SAN Balls."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "box_pepperball"
