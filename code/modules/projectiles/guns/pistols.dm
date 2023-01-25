@@ -297,7 +297,7 @@
 
 /obj/item/weapon/gun/pistol/heavy
 	name = "\improper Desert Eagle pistol"
-	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is engraved, <i>\"Peace through superior firepower\"</i>."
+	desc = "A magnum chambered in .50AE, the kick on followup shots will be hell, shoot with care to your shoulder. This one is engraved, <i>\"Peace through superior firepower\"</i>."
 	icon_state = "deagle"
 	item_state = "deagle"
 	caliber = CALIBER_50AE //codex
@@ -314,11 +314,9 @@
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/compensator,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
@@ -328,20 +326,35 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
-	fire_delay = 0.7 SECONDS
+	fire_delay = 0.25 SECONDS
+	damage_mult = 2
+	recoil = 0
+	recoil_unwielded = 3
+
+	scatter = 0
+	min_scatter = 0
+	scatter_increase = 15
 	scatter_unwielded = 25
-	recoil = 1
-	recoil_unwielded = 2
-	scatter = 4
-	scatter_unwielded = 7
+	scatter_decay = 3
+	scatter_decay_unwielded = 2
+
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.7
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
-	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings."
+	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings and an internal barrel charger. It will kick like hell. Better hit."
 	icon_state = "g_deagle"
 	item_state = "g_deagle"
+
+	damage_mult = 4
+	recoil = 1
+	recoil_unwielded = 3
+
+	scatter_increase = 30
+	scatter_unwielded = 50
+	scatter_decay = 4
+
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
