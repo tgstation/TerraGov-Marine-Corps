@@ -814,15 +814,16 @@
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 21,"rail_x" = 6, "rail_y" = 23, "under_x" = 26, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
-	aim_speed_modifier = 3.8
+	aim_speed_modifier = 5.3
 
 	fire_delay = 0.15 SECONDS
 	damage_falloff_mult = 0.5
 	burst_amount = 1
+	accuracy_mult = 0.85
 	accuracy_mult_unwielded = 0.4
 	scatter = 7
 	scatter_unwielded = 45
-	movement_acc_penalty_mult = 6
+	movement_acc_penalty_mult = 7.25
 
 	placed_overlay_iconstate = "lmg"
 
