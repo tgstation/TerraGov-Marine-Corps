@@ -482,7 +482,8 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = null
 	rounds_per_shot = 25
-	gun_firemode = GUN_FIREMODE_AUTOBURST
+	gun_firemode = GUN_FIREMODE_BURSTFIRE
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -502,7 +503,7 @@
 	scatter = 2
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
-	burst_delay = 0.12 SECONDS
+	burst_delay = 0.15 SECONDS
 	burst_amount = 4
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
@@ -520,11 +521,11 @@
 /datum/lasrifle/base/energy_pistol_mode/standard
 	rounds_per_shot = 25
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
-	fire_delay = 0.12 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOBURST
+	fire_mode = GUN_FIREMODE_BURSTFIRE
 	icon_state = "tep"
 
 /datum/lasrifle/base/energy_pistol_mode/disabler
@@ -561,8 +562,8 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 15
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_AUTOBURST
+	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -589,13 +590,13 @@
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
+	burst_amount = 4
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
-	movement_acc_penalty_mult = 4
+	movement_acc_penalty_mult = 3
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
-		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 	)
 
@@ -611,10 +612,6 @@
 	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
 	fire_mode = GUN_FIREMODE_AUTOBURST
 	icon_state = "tec"
-
-/datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic
-	message_to_user = "You set the laser carbine's charge mode to standard automatic fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
 	rounds_per_shot = 60
@@ -748,12 +745,13 @@
 
 	aim_slowdown = 1
 	wield_delay = 1.5 SECONDS
-	scatter = 2
+	scatter = 3
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
+	movement_acc_penalty_mult = 45
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
 		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
