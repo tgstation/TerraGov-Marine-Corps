@@ -213,7 +213,7 @@
 
 /obj/structure/prop/mainship/vls
 	name = "\improper Mk 47 VLS"
-	desc = "The MK 47 vertical launching system is the staple of ship to ship combat in the space age. Fitted on most TGS Ships, it can fire a variety of missile types fitted for its purpose and target type."
+	desc = "The MK 47 vertical launching system is the staple of ship to ship combat in the space age. Fitted on most TGN Ships, it can fire a variety of missile types fitted for its purpose and target type."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "vls"
 	resistance_flags = RESIST_ALL
@@ -1454,10 +1454,10 @@
 	icon_state = "emptyfuelcell"
 
 /obj/structure/prop/vehicle/fighter
-	name = "Falkaan multirole jet"
-	desc = "The falkaan is a small and nimble jet primarly used by the TGN for a variety of missions usually deployed with larger vessels."
+	name = "Falkaan aerospace fighter"
+	desc = "Named after the falkaan bird from the first exoplanet colony of TerraGov, the falkaan is a small and nimble jet primarly used by the TGN for a variety of missions usually deployed with larger vessels."
 	icon = 'icons/Marine/mainship_props96.dmi'
-	icon_state = "fark"
+	icon_state = "fighter"
 
 /obj/structure/prop/mainship/gelida/propplaceholder
 	name = "prop placeholder"
