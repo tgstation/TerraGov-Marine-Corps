@@ -772,8 +772,7 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.11 SECONDS
-	scatter = 4
-	rounds_per_shot = 2
+	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
 	radial_icon_state = "laser_disabler"
 
