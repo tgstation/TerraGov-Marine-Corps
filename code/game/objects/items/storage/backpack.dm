@@ -385,8 +385,7 @@
 	storage_slots = null
 	max_storage_space = 15
 	access_delay = 0
-	var/obj/item/cell/apc/cell
-	var/icon_skin
+	cell = /obj/item/cell/apc
 
 /obj/item/storage/backpack/marine/satchel/tech
 	name = "\improper TGMC technician satchel"
