@@ -325,3 +325,10 @@
   - bugfix: fixed an exploit with mounted weapons
   - balance: Beanbag slugs no longer has a comically long stun duration
   - bugfix: Added god mode checks to debuff status effects, snatch and defile
+2023-01-26:
+  Pariah919:
+  - balance: GPMG has been buffed. It now deals 27.5 damage and .75 sunder on its
+      bullet, from 20 damage and .75 sunder. Its total damage profile is now 27.5
+      damage, 10 penetration (Unchanged) and .75 sunder.
+  - balance: MMG now can attach underbarrel flashlight, and has halved damage falloff
+      to .5 falloff per tile rather than 1.

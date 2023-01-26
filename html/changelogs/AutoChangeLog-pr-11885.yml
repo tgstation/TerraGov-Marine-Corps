@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "GPMG has been buffed. It now deals 27.5 damage and .75 sunder on its bullet, from 20 damage and .75 sunder. Its total damage profile is now 27.5 damage, 10 penetration (Unchanged) and .75 sunder."
-  - balance: "MMG now can attach underbarrel flashlight, and has halved damage falloff to .5 falloff per tile rather than 1."
