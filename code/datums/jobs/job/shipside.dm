@@ -1122,7 +1122,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
+To grab some gear, head to your special vendor typically located near the Combat Information Center or Engineering on some ships."})
 
 
 /datum/outfit/job/civilian/synthetic
@@ -1130,14 +1131,11 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	jobtype = /datum/job/terragov/silicon/synthetic
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/utility/full
+	// belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/yellow
-	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/general/medium
-	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/civilian/synthetic/rebel
 	jobtype = /datum/job/terragov/silicon/synthetic/rebel
