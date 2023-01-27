@@ -703,6 +703,33 @@
 	icon_state = "wall0"
 	plane = GAME_PLANE
 
+/turf/closed/shuttle/escapepod/wallone
+	icon_state = "wall1"
+
+/turf/closed/shuttle/escapepod/walltwo
+	icon_state = "wall2"
+
+/turf/closed/shuttle/escapepod/wallthree
+	icon_state = "wall3"
+
+/turf/closed/shuttle/escapepod/wallfour
+	icon_state = "wall4"
+
+/turf/closed/shuttle/escapepod/wallfive
+	icon_state = "wall5"
+
+/turf/closed/shuttle/escapepod/walleleven
+	icon_state = "wall11"
+
+/turf/closed/shuttle/escapepod/walltwelve
+	icon_state = "wall12"
+
+/turf/closed/shuttle/escapepod/cornerone
+	icon_state = "corner1"
+
+/turf/closed/shuttle/escapepod/cornertwo
+	icon_state = "corner2"
+
 /turf/closed/shuttle/escapeshuttle
 	icon_state = "swall0"
 	smoothing_behavior = CARDINAL_SMOOTHING

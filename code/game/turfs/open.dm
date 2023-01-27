@@ -303,33 +303,6 @@
 /turf/open/shuttle/escapepod/twelve
 	icon_state = "floor12"
 
-/turf/open/shuttle/escapepod/wallone
-	icon_state = "wall1"
-
-/turf/open/shuttle/escapepod/walltwo
-	icon_state = "wall2"
-
-/turf/open/shuttle/escapepod/wallthree
-	icon_state = "wall3"
-
-/turf/open/shuttle/escapepod/wallfour
-	icon_state = "wall4"
-
-/turf/open/shuttle/escapepod/wallfive
-	icon_state = "wall5"
-
-/turf/open/shuttle/escapepod/walleleven
-	icon_state = "wall11"
-
-/turf/open/shuttle/escapepod/walltwelve
-	icon_state = "wall12"
-
-/turf/open/shuttle/escapepod/cornerone
-	icon_state = "corner1"
-
-/turf/open/shuttle/escapepod/cornertwo
-	icon_state = "corner2"
-
 // Elevator floors
 /turf/open/shuttle/elevator
 	icon = 'icons/turf/elevator.dmi'
