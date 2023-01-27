@@ -13753,9 +13753,7 @@
 	},
 /area/sulaco/bridge)
 "gfj" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "gfl" = (
 /obj/structure/cable,
@@ -18589,9 +18587,7 @@
 /turf/closed/wall/mainship/gray,
 /area/mainship/living/basketball)
 "mFc" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "mGX" = (
 /obj/machinery/door/window{
@@ -24427,9 +24423,7 @@
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "uiW" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
-	},
+/turf/open/floor/plating/icefloor/warnplate/corner,
 /area/sulaco/hangar)
 "ujq" = (
 /obj/machinery/light/mainship{

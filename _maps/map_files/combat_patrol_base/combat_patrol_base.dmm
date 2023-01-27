@@ -83,11 +83,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
-"aX" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan25"
-	},
-/area/mainship/patrol_base/som)
 "ba" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -349,9 +344,7 @@
 /obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan25"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/mainship/patrol_base/som)
 "fp" = (
 /obj/machinery/elevator_strut/bottom,
@@ -489,8 +482,8 @@
 /area/mainship/patrol_base/som)
 "hk" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/right{
-	pixel_y = 32;
-	dir = 1
+	dir = 1;
+	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
@@ -547,15 +540,15 @@
 	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
-	dir = 1
+	dir = 1;
+	pixel_x = -23
 	},
 /obj/effect/attach_point/weapon/minidropship{
 	equipment_offset_y = 25
 	},
 /turf/closed/shuttle/tadpole{
-	icon_state = "103";
-	dir = 1
+	dir = 1;
+	icon_state = "103"
 	},
 /area/mainship/patrol_base)
 "ig" = (
@@ -605,8 +598,8 @@
 /area/mainship/patrol_base/som)
 "jb" = (
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
 	dir = 1;
+	pixel_x = 23;
 	pixel_y = -14
 	},
 /obj/machinery/light,
@@ -685,8 +678,8 @@
 /area/mainship/patrol_base/som)
 "kl" = (
 /obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "106";
-	dir = 1
+	dir = 1;
+	icon_state = "106"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
@@ -905,8 +898,8 @@
 /area/mainship/patrol_base/som)
 "nF" = (
 /obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "105";
-	dir = 1
+	dir = 1;
+	icon_state = "105"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
@@ -1139,9 +1132,7 @@
 	},
 /area/mainship/patrol_base)
 "rn" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan21"
-	},
+/turf/closed/shuttle/dropship_regular/backwall,
 /area/mainship/patrol_base/som)
 "rq" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -1162,12 +1153,12 @@
 	equipment_offset_y = 25
 	},
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
-	dir = 1
+	dir = 1;
+	pixel_x = 23
 	},
 /turf/closed/shuttle/tadpole{
-	icon_state = "104";
-	dir = 1
+	dir = 1;
+	icon_state = "104"
 	},
 /area/mainship/patrol_base)
 "rF" = (
@@ -1377,8 +1368,8 @@
 /area/mainship/patrol_base/telecomms)
 "tK" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
-	pixel_y = 32;
-	dir = 1
+	dir = 1;
+	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
@@ -1756,9 +1747,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "yT" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan22"
-	},
+/turf/closed/shuttle/dropship_regular/interior_corner,
 /area/mainship/patrol_base/som)
 "zj" = (
 /obj/item/mortal_shell/howitzer/he,
@@ -2059,8 +2048,8 @@
 	},
 /area/mainship/patrol_base/som)
 "EO" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan9"
+/turf/closed/shuttle/dropship_regular/top_corner{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "EU" = (
@@ -2448,11 +2437,6 @@
 "Kz" = (
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/patrol_base)
-"KB" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan2"
-	},
-/area/mainship/patrol_base/som)
 "KC" = (
 /obj/structure/somcas{
 	icon_state = "16"
@@ -2461,8 +2445,8 @@
 /area/mainship/patrol_base/som)
 "KE" = (
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
 	dir = 1;
+	pixel_x = -23;
 	pixel_y = -14
 	},
 /obj/machinery/light,
@@ -2849,8 +2833,8 @@
 /turf/open/space/basic,
 /area/space)
 "Pr" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan23"
+/turf/closed/shuttle/dropship_regular/interior_corner{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "Ps" = (
@@ -3003,8 +2987,8 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "RA" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan3"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "RC" = (
@@ -3104,8 +3088,8 @@
 	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "109";
-	dir = 1
+	dir = 1;
+	icon_state = "109"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
@@ -3163,8 +3147,8 @@
 /obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan3"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 4
 	},
 /area/mainship/patrol_base/som)
 "SN" = (
@@ -3265,9 +3249,7 @@
 	},
 /area/mainship/patrol_base)
 "TI" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan1"
-	},
+/turf/closed/shuttle/dropship_regular/backhatch,
 /area/mainship/patrol_base/som)
 "TK" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
@@ -3288,9 +3270,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/mainship/patrol_base/som)
 "TT" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan8"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner,
 /area/mainship/patrol_base/som)
 "TW" = (
 /obj/structure/bed/chair,
@@ -3551,8 +3531,8 @@
 	},
 /area/mainship/patrol_base/som)
 "Xn" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan20"
+/turf/closed/shuttle/dropship_regular/top_corner/alt{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "Xr" = (
@@ -4171,7 +4151,7 @@ ZW
 Qx
 YY
 ah
-KB
+RA
 zO
 zO
 rn
@@ -4179,7 +4159,7 @@ ZW
 EF
 ig
 ah
-KB
+RA
 fz
 LN
 JJ
@@ -4294,7 +4274,7 @@ wT
 rn
 kb
 rN
-KB
+RA
 wT
 dr
 dr
@@ -4302,7 +4282,7 @@ wT
 rn
 kb
 rN
-KB
+RA
 wT
 fz
 LN
@@ -4353,7 +4333,7 @@ EL
 LN
 My
 Fk
-aX
+rn
 aP
 aP
 RA
@@ -4361,7 +4341,7 @@ Fk
 dr
 dr
 Fk
-aX
+rn
 aP
 aP
 RA
@@ -4760,8 +4740,8 @@ us
 Qn
 Qn
 Qn
-Qn
 CT
+SD
 SD
 HN
 IH

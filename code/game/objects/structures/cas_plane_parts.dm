@@ -187,3 +187,69 @@
 /obj/structure/caspart/internalengine/left
 	icon_state = "54"
 	x_offset = 11
+
+//damn plane is a jigsaw puzzle, naming reflects this
+/obj/structure/caspart/one
+	icon_state = "cas_plane_trim_one"
+/obj/structure/caspart/two
+	icon_state = "cas_plane_trim_two"
+
+/obj/structure/caspart/three
+	icon_state = "cas_plane_engine_trim_one"
+
+/obj/structure/caspart/four
+	icon_state = "cas_plane_wing_engine_one"
+
+/obj/structure/caspart/five
+	icon_state = "cas_plane_wing_engine_two"
+
+/obj/structure/caspart/six
+	icon_state = "cas_plane_wing_engine_two"
+
+/obj/structure/caspart/seven
+	icon_state = "cas_plane_engine_misc"
+
+/obj/structure/caspart/eight
+	icon_state = "cas_plane_wing_one"
+
+/obj/structure/caspart/nine
+	icon_state = "cas_plane_wing_two"
+
+/obj/structure/caspart/ten
+	icon_state = "cas_plane_wing_three"
+
+/obj/structure/caspart/eleven
+	icon_state = "cas_plane_wing_four"
+
+/obj/structure/caspart/twelve
+	icon_state = "cas_plane_wing_five"
+
+/obj/structure/caspart/thirteen
+	icon_state = "cas_plane_wing_six"
+
+/obj/structure/caspart/fourteen
+	icon_state = "cas_plane_engine_misc_two"
+
+/obj/structure/caspart/fifteen
+	icon_state = "cas_plane_engine_misc_five"
+
+/obj/structure/caspart/sixteen
+	icon_state = "cas_plane_wing_engine_three"
+
+/obj/structure/caspart/seventeen
+	icon_state = "cas_plane_engine_misc_three"
+
+/obj/structure/caspart/eighteen
+	icon_state = "cas_plane_engine_misc_four"
+
+/obj/structure/caspart/nineteen
+	icon_state = "cas_plane_engine_backtrim"
+
+/obj/structure/caspart/twenty
+	icon_state = "nose"
+
+/obj/structure/caspart/twentyone
+	icon_state = "cas_plane_cockpit_piece_two"
+
+/obj/structure/caspart/twentytwo
+	icon_state = "cas_plane_backpiece"

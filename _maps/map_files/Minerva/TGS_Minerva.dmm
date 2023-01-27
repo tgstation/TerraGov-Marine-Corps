@@ -6763,6 +6763,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"ub" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/airoom)
 "uc" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
@@ -9645,9 +9649,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "Cf" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
-	},
+/turf/open/floor/plating/icefloor/warnplate/corner,
 /area/mainship/hallways/hangar)
 "Cg" = (
 /turf/closed/wall/mainship,
@@ -15112,13 +15114,12 @@
 /area/mainship/command/airoom)
 "So" = (
 /obj/vehicle/unmanned/droid,
-/obj/machinery/mech_bay_recharge_port{
-	icon_state = "recharge_floor"
-	},
-/turf/open/floor/light,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/airoom)
 "Sp" = (
-/obj/machinery/computer/mech_bay_power_console,
+/obj/machinery/mech_bay_recharge_port{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/airoom)
 "Sq" = (
@@ -15138,10 +15139,7 @@
 /area/mainship/hallways/hangar)
 "St" = (
 /obj/vehicle/unmanned/droid/scout,
-/obj/machinery/mech_bay_recharge_port{
-	icon_state = "recharge_floor"
-	},
-/turf/open/floor/light,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/airoom)
 "Su" = (
 /obj/structure/cable,
@@ -15669,6 +15667,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "TO" = (
@@ -29925,7 +29924,7 @@ NO
 Pn
 Qk
 Eb
-Sp
+ub
 TZ
 VR
 WQ
