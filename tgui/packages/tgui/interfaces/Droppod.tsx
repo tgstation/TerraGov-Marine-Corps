@@ -35,6 +35,13 @@ const PreDeploy = (props, context) => {
   return (
     <Section title={`Welcome, ${occupant}`}>
       <LabeledList>
+        <LabeledList.Item label="Choose destination">
+          <Button
+            content="Camera mode"
+            color="blue"
+            onClick={() => act('camera_mode')}
+          />
+        </LabeledList.Item>
         <LabeledList.Item label="X Coordinate">
           <NumberInput
             value={target_x}
