@@ -1130,6 +1130,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	jobtype = /datum/job/terragov/silicon/synthetic
 
 	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
