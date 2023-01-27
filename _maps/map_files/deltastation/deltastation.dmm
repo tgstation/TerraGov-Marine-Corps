@@ -7666,9 +7666,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/plaque{
-	icon_state = "L13"
-	},
+/obj/effect/turf_decal/plaque/four,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "bAS" = (
@@ -12373,10 +12371,10 @@
 /turf/open/floor/iron,
 /area/deltastation/science/auxlab/firing_range)
 "cCK" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L7"
-	},
 /obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/turf_decal/plaque/two{
+	dir = 4
+	},
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
 "cCL" = (
@@ -17601,10 +17599,8 @@
 /turf/open/floor/iron/checker,
 /area/deltastation/service/hydroponics/garden/abandoned)
 "dFz" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L13"
-	},
 /obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/plaque/four,
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
 "dFA" = (
@@ -30000,8 +29996,8 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "fZa" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L10"
+/obj/effect/turf_decal/plaque/three{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -35131,8 +35127,8 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/science/robotics/lab)
 "haP" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L6"
+/obj/effect/turf_decal/plaque/two{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -35323,13 +35319,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/plaque{
-	icon_state = "L7"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
 /obj/effect/ai_node,
+/obj/effect/turf_decal/plaque/two{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "hbE" = (
@@ -44323,14 +44319,14 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "iWl" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/plaque/one{
+	dir = 1
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -45290,11 +45286,11 @@
 	dir = 1;
 	name = "hallway camera"
 	},
-/obj/effect/turf_decal/plaque{
-	icon_state = "L12"
-	},
 /obj/item/radio/intercom{
 	dir = 1
+	},
+/obj/effect/turf_decal/plaque/three{
+	dir = 8
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -50981,14 +50977,14 @@
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "ksN" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L14"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/plaque/four{
+	dir = 1
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -55510,9 +55506,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/drone_bay)
 "loS" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L9"
-	},
+/obj/effect/turf_decal/plaque/three,
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
 "loT" = (
@@ -57190,9 +57184,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/navbeacon,
-/obj/effect/turf_decal/plaque{
-	icon_state = "L5"
-	},
+/obj/effect/turf_decal/plaque/two,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "lFx" = (
@@ -57312,14 +57304,14 @@
 	},
 /area/deltastation/maintenance/department/electrical)
 "lGE" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L6"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/plaque/two{
+	dir = 1
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -60374,8 +60366,8 @@
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "mma" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L11"
+/obj/effect/turf_decal/plaque/three{
+	dir = 4
 	},
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
@@ -66975,8 +66967,8 @@
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
 "nIp" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L2"
+/obj/effect/turf_decal/plaque/one{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -68925,13 +68917,11 @@
 /area/deltastation/engineering/atmos)
 "odF" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/plaque{
-	icon_state = "L9"
-	},
 /obj/machinery/navbeacon,
 /obj/structure/disposalpipe/junction/yjunc{
 	dir = 1
 	},
+/obj/effect/turf_decal/plaque/three,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "odJ" = (
@@ -71254,9 +71244,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/plaque{
-	icon_state = "L1"
-	},
+/obj/effect/turf_decal/plaque/one,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "oBv" = (
@@ -71313,14 +71301,14 @@
 /turf/open/floor/plating,
 /area/deltastation/security/execution/transfer)
 "oBN" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L12"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/plaque/three{
+	dir = 8
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -74690,8 +74678,8 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "pmb" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L3"
+/obj/effect/turf_decal/plaque/one{
+	dir = 4
 	},
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
@@ -74886,9 +74874,7 @@
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "poc" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L1"
-	},
+/obj/effect/turf_decal/plaque/one,
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
 "poe" = (
@@ -76902,8 +76888,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/plaque{
-	icon_state = "L11"
+/obj/effect/turf_decal/plaque/three{
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -77530,8 +77516,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/turf_decal/plaque{
-	icon_state = "L3"
+/obj/effect/turf_decal/plaque/one{
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -83238,14 +83224,14 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/gravity_generator)
 "qRL" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/plaque/one{
+	dir = 8
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -86601,14 +86587,14 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
 "rDx" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L10"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/plaque/three{
+	dir = 1
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -90292,9 +90278,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "sqo" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L5"
-	},
+/obj/effect/turf_decal/plaque/two,
 /turf/open/floor/iron/edge,
 /area/deltastation/hallway/primary/central/aft)
 "sqM" = (
@@ -101171,8 +101155,8 @@
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
 "uya" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L8"
+/obj/effect/turf_decal/plaque/two{
+	dir = 8
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -105535,10 +105519,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/science/research)
-"vqR" = (
-/obj/item/shard,
-/turf/open/floor/plating,
-/area/deltastation/asteroidcaves/derelictsatellite)
 "vqS" = (
 /obj/structure/table,
 /obj/machinery/door/firedoor/border_only{
@@ -112656,8 +112636,8 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
 "wJX" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L14"
+/obj/effect/turf_decal/plaque/four{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
@@ -115631,14 +115611,14 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel/funeral)
 "xpS" = (
-/obj/effect/turf_decal/plaque{
-	icon_state = "L8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
+	},
+/obj/effect/turf_decal/plaque/two{
+	dir = 8
 	},
 /turf/open/floor/iron/edge{
 	dir = 1
@@ -116452,13 +116432,13 @@
 /area/deltastation/cargo/sorting)
 "xyG" = (
 /obj/machinery/light/small,
-/obj/effect/turf_decal/plaque{
-	icon_state = "L4"
-	},
 /obj/machinery/firealarm{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/plaque/one{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "xyJ" = (
@@ -146131,7 +146111,7 @@ aBo
 vQq
 vQq
 aBo
-vqR
+wFa
 wxm
 wxm
 xEK

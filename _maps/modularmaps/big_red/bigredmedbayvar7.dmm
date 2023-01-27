@@ -8,12 +8,10 @@
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "aD" = (
-/obj/effect/decal/cleanable/blood{
-	icon_state = "gib6"
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic"
 	},
+/obj/effect/decal/cleanable/blood/six,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},

@@ -9,6 +9,71 @@
 	opacity = FALSE
 	resistance_flags = PLASMACUTTER_IMMUNE
 
+/turf/closed/shuttle/cas/one
+	icon_state = "cas_plane_trim_one"
+/turf/closed/shuttle/cas/two
+	icon_state = "cas_plane_trim_two"
+
+/turf/closed/shuttle/cas/three
+	icon_state = "cas_plane_engine_trim_one"
+
+/turf/closed/shuttle/cas/four
+	icon_state = "cas_plane_wing_engine_one"
+
+/turf/closed/shuttle/cas/five
+	icon_state = "cas_plane_wing_engine_two"
+
+/turf/closed/shuttle/cas/six
+	icon_state = "cas_plane_wing_engine_two"
+
+/turf/closed/shuttle/cas/seven
+	icon_state = "cas_plane_engine_misc"
+
+/turf/closed/shuttle/cas/eight
+	icon_state = "cas_plane_wing_one"
+
+/turf/closed/shuttle/cas/nine
+	icon_state = "cas_plane_wing_two"
+
+/turf/closed/shuttle/cas/ten
+	icon_state = "cas_plane_wing_three"
+
+/turf/closed/shuttle/cas/eleven
+	icon_state = "cas_plane_wing_four"
+
+/turf/closed/shuttle/cas/twelve
+	icon_state = "cas_plane_wing_five"
+
+/turf/closed/shuttle/cas/thirteen
+	icon_state = "cas_plane_wing_six"
+
+/turf/closed/shuttle/cas/fourteen
+	icon_state = "cas_plane_engine_misc_two"
+
+/turf/closed/shuttle/cas/fifteen
+	icon_state = "cas_plane_engine_misc_five"
+
+/turf/closed/shuttle/cas/sixteen
+	icon_state = "cas_plane_wing_engine_three"
+
+/turf/closed/shuttle/cas/seventeen
+	icon_state = "cas_plane_engine_misc_three"
+
+/turf/closed/shuttle/cas/eighteen
+	icon_state = "cas_plane_engine_misc_four"
+
+/turf/closed/shuttle/cas/nineteen
+	icon_state = "cas_plane_engine_backtrim"
+
+/turf/closed/shuttle/cas/twenty
+	icon_state = "nose"
+
+/turf/closed/shuttle/cas/twentyone
+	icon_state = "cas_plane_cockpit_piece_two"
+
+/turf/closed/shuttle/cas/twentytwo
+	icon_state = "cas_plane_backpiece"
+
 /turf/closed/shuttle/cas/computer
 	name = "Condor piloting computer"
 	desc = "Does not support Pinball."
