@@ -114,7 +114,6 @@
 /area/magmoor/cargo/processing/south)
 "ads" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -10396,7 +10395,6 @@
 /area/magmoor/compound/south)
 "hje" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -26597,7 +26595,6 @@
 /area/magmoor/civilian/mosque)
 "szQ" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -29902,7 +29899,6 @@
 /area/magmoor/cargo/storage/south)
 "uNJ" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,

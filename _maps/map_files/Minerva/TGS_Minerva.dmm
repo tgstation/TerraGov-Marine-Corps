@@ -8425,10 +8425,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "yK" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms{
-	layer = 2.5;
-	open_layer = 2.5
-	},
+/obj/machinery/door/airlock/mainship/secure/tcomms,
 /obj/machinery/door/poddoor/mainship{
 	id = "tcomms"
 	},

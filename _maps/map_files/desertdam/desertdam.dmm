@@ -7884,8 +7884,7 @@
 /area/desert_dam/building/administration/office)
 "aWr" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
-	layer = 3.25
+	dir = 4
 	},
 /turf/open/floor/carpet/side{
 	dir = 8
@@ -12744,17 +12743,13 @@
 /area/desert_dam/interior/dam_interior/control_room)
 "byG" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_room)
 "byJ" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable,
 /turf/open/floor/bcircuit,
 /area/desert_dam/interior/dam_interior/engine_room)
@@ -15345,9 +15340,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/dam_interior/workshop)
 "bNZ" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
@@ -17601,9 +17594,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_medical)
 "caj" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/lobby)
 "cak" = (
@@ -23993,8 +23984,7 @@
 /area/desert_dam/building/dorms/restroom)
 "cLc" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
-	layer = 3.25
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25257,9 +25247,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "cTf" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -26636,9 +26624,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/warehouse/loading)
 "dfL" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
@@ -28653,9 +28639,7 @@
 /obj/item/weapon/baseballbat/metal{
 	pixel_x = 5
 	},
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -29473,9 +29457,7 @@
 /area/desert_dam/building/dorms/pool)
 "dIQ" = (
 /obj/item/clothing/under/shorts/red,
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -29538,9 +29520,7 @@
 /area/desert_dam/building/dorms/hallway_westwing)
 "dJm" = (
 /obj/item/tool/mop,
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -29579,9 +29559,7 @@
 /turf/open/ground/river/desertdam/clean/shallow,
 /area/desert_dam/exterior/river/riverside_east)
 "dJX" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -30991,9 +30969,7 @@
 	},
 /area/desert_dam/interior/dam_interior/CE_office)
 "ekf" = (
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable,
 /obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
@@ -33518,9 +33494,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "fHe" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /turf/open/floor/prison/darkyellow{
@@ -35985,8 +35959,7 @@
 /area/desert_dam/building/medical/chemistry)
 "heK" = (
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.7
+	dir = 8
 	},
 /obj/structure/platform,
 /obj/effect/landmark/weed_node,
@@ -36038,9 +36011,7 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "hfY" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/overseer_office)
@@ -36933,9 +36904,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_labs)
 "hDV" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -39985,9 +39954,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "jqk" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
@@ -41645,9 +41612,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "kjC" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -44868,9 +44833,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "mak" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
@@ -49071,9 +49034,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "oxC" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /turf/open/floor/prison/darkyellow,
@@ -51340,9 +51301,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/dorms/restroom)
 "pEU" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /turf/open/floor/prison/darkyellow{
@@ -51536,9 +51495,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "pJx" = (
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable,
 /obj/structure/prop/mainship/brokengen,
 /turf/open/floor/bcircuit,
@@ -53287,9 +53244,7 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "qGJ" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -53884,9 +53839,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "qYG" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
@@ -55772,9 +55725,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "rZJ" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -56439,9 +56390,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "sqC" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -57468,9 +57417,7 @@
 	},
 /area/desert_dam/interior/dam_interior/break_room)
 "taQ" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /turf/open/floor/tile/dark/yellow2{
@@ -58088,9 +58035,7 @@
 /obj/machinery/conveyor{
 	id = "anomalybelt"
 	},
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
@@ -58298,9 +58243,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "tvZ" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /obj/machinery/light{
@@ -60208,9 +60151,7 @@
 	},
 /area/desert_dam/exterior/valley/south_valley_dam)
 "uyn" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "uyJ" = (
@@ -61307,9 +61248,7 @@
 	},
 /area/desert_dam/interior/dam_interior/workshop)
 "vfH" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /turf/open/floor/prison/darkyellow{
@@ -62462,9 +62401,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "vMh" = (
-/obj/structure/rack{
-	layer = 2.5
-	},
+/obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkyellow,

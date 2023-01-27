@@ -31254,13 +31254,11 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/door_control{
 	id = "cargounload";
-	layer = 4;
 	name = "Loading Doors";
 	pixel_y = 6
 	},
 /obj/machinery/door_control{
 	id = "cargoload";
-	layer = 4;
 	name = "Loading Doors";
 	pixel_y = -6
 	},
@@ -37337,7 +37335,6 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the Engine.";
 	dir = 4;
-	layer = 4;
 	name = "Engine Monitor";
 	pixel_x = -24
 	},
@@ -71200,15 +71197,11 @@
 	pixel_y = -3
 	},
 /obj/item/clothing/head/helmet{
-	layer = 3.00001;
 	pixel_x = -3;
 	pixel_y = 3
 	},
+/obj/item/clothing/head/helmet,
 /obj/item/clothing/head/helmet{
-	layer = 3.00001
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -77754,8 +77747,7 @@
 /obj/effect/spawner/random/structure/directional_window/west,
 /obj/effect/spawner/random/structure/directional_window/north,
 /obj/machinery/door/window{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/iron,
@@ -79351,8 +79343,7 @@
 /area/deltastation/service/janitor)
 "qeO" = (
 /obj/structure/rack{
-	dir = 8;
-	layer = 2.9
+	dir = 8
 	},
 /obj/item/tool/pickaxe,
 /obj/effect/decal/cleanable/dirt,

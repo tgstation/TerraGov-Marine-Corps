@@ -4315,7 +4315,6 @@
 "fvg" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -4330,7 +4329,6 @@
 	pixel_y = 2
 	},
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},

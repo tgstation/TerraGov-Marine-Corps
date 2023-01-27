@@ -251,9 +251,7 @@
 /area/space)
 "LD" = (
 /obj/structure/cable,
-/obj/machinery/nuclearbomb{
-	layer = 2
-	},
+/obj/machinery/nuclearbomb,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)

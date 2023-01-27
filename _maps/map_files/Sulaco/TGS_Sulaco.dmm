@@ -445,7 +445,6 @@
 "abB" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -3715,7 +3714,6 @@
 "asT" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "bar";
-	layer = 3.1;
 	name = "Briefing Shutters"
 	},
 /obj/machinery/door/firedoor/mainship,
@@ -4018,7 +4016,6 @@
 "atX" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "bar";
-	layer = 3.1;
 	name = "Briefing Shutters"
 	},
 /obj/structure/cable,
@@ -4044,7 +4041,6 @@
 /obj/machinery/flasher{
 	id = "brief";
 	last_flash = 100;
-	layer = 2.1;
 	name = "Mounted Flash Brief";
 	range = 3
 	},
@@ -4065,7 +4061,6 @@
 /obj/machinery/flasher{
 	id = "brief";
 	last_flash = 100;
-	layer = 2.1;
 	name = "Mounted Flash Brief";
 	range = 3
 	},
@@ -4105,7 +4100,6 @@
 /obj/machinery/flasher{
 	id = "brief";
 	last_flash = 100;
-	layer = 2.1;
 	name = "Mounted Flash Brief";
 	range = 3
 	},
@@ -4144,7 +4138,6 @@
 /obj/machinery/flasher{
 	id = "brief";
 	last_flash = 100;
-	layer = 2.1;
 	name = "Mounted Flash Brief";
 	range = 3
 	},
@@ -4662,7 +4655,6 @@
 /obj/machinery/door/poddoor/shutters{
 	dir = 8;
 	id = "bar";
-	layer = 3.9;
 	name = "Briefing Shutters"
 	},
 /obj/machinery/door/firedoor/mainship,
@@ -8913,7 +8905,6 @@
 /obj/item/storage/firstaid/adv,
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -24441,7 +24432,6 @@
 "ukn" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "bar";
-	layer = 3.9;
 	name = "Briefing Shutters"
 	},
 /obj/machinery/door/firedoor/mainship,
@@ -25751,9 +25741,7 @@
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "wfi" = (
-/obj/structure/table/reinforced{
-	layer = 2.1
-	},
+/obj/structure/table/reinforced,
 /obj/machinery/door/window/secure/req{
 	dir = 8
 	},
