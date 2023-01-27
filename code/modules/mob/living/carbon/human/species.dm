@@ -463,26 +463,26 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		clear_fullscreen("robotlow")
 
 /datum/species/robot/alpharii
-	name = "Alpharii Combat Robot"
-	name_plural = "Alpharii Combat Robots"
+	name = "Hammerhead Combat Robot"
+	name_plural = "Hammerhead Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_alpharii.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/robot/charlit
-	name = "Charlit Combat Robot"
-	name_plural = "Charlit Combat Robots"
+	name = "Chilvaris Combat Robot"
+	name_plural = "Chilvaris Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_charlit.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/robot/deltad
-	name = "Deltad Combat Robot"
-	name_plural = "Deltad Combat Robots"
+	name = "Ratcher Combat Robot"
+	name_plural = "Ratcher Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_deltad.dmi'
 	joinable_roundstart = FALSE
 
 /datum/species/robot/bravada
-	name = "Bravada Combat Robot"
-	name_plural = "Bravada Combat Robots"
+	name = "Sterling Combat Robot"
+	name_plural = "Sterling Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot_bravada.dmi'
 	joinable_roundstart = FALSE
 

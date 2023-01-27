@@ -10,10 +10,10 @@
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
-		"Bravada Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
-		"Charlit Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
-		"Alpharii Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
-		"Deltad Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
 	darkness_view = 2
@@ -47,10 +47,10 @@
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
-		"Bravada Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
-		"Charlit Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
-		"Alpharii Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
-		"Deltad Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 

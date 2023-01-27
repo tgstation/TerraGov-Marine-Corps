@@ -7,10 +7,10 @@
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
-		"Bravada Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
-		"Charlit Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
-		"Alpharii Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
-		"Deltad Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 7
@@ -79,10 +79,10 @@
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
-		"Bravada Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
-		"Charlit Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
-		"Alpharii Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
-		"Deltad Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
 

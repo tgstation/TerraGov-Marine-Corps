@@ -57,13 +57,13 @@
 	bubble_icon = "robot"
 
 /mob/living/carbon/human/species/robot/alpharii
-	race = "Alpharii Combat Robot"
+	race = "Hammerhead Combat Robot"
 
 /mob/living/carbon/human/species/robot/charlit
-	race = "Charlit Combat Robot"
+	race = "Chilvaris Combat Robot"
 
 /mob/living/carbon/human/species/robot/deltad
-	race = "Deltad Combat Robot"
+	race = "Ratcher Combat Robot"
 
 /mob/living/carbon/human/species/robot/bravada
-	race = "Bravada Combat Robot"
+	race = "Sterling Combat Robot"

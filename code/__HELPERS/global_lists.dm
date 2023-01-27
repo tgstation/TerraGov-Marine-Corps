@@ -2,7 +2,7 @@
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
-#define ROBOT_TYPES list("Basic","Alpharii","Charlit","Deltad","Bravada")
+#define ROBOT_TYPES list("Basic","Hammerhead","Chilvaris","Ratcher","Sterling")
 
 
 // Posters

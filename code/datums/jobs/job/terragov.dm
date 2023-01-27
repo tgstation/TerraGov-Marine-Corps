@@ -21,16 +21,16 @@
 			if(prefs && prefs.robot_type == "Basic")
 				if(GLOB.join_as_robot_allowed)
 					return /mob/living/carbon/human/species/robot
-			if(prefs && prefs.robot_type == "Alpharii")
+			if(prefs && prefs.robot_type == "Hammerhead")
 				if(GLOB.join_as_robot_allowed)
 					return /mob/living/carbon/human/species/robot/alpharii
-			if(prefs && prefs.robot_type == "Charlit")
+			if(prefs && prefs.robot_type == "Chilvaris")
 				if(GLOB.join_as_robot_allowed)
 					return /mob/living/carbon/human/species/robot/charlit
-			if(prefs && prefs.robot_type == "Deltad")
+			if(prefs && prefs.robot_type == "Ratcher")
 				if(GLOB.join_as_robot_allowed)
 					return /mob/living/carbon/human/species/robot/deltad
-			if(prefs && prefs.robot_type == "Bravada")
+			if(prefs && prefs.robot_type == "Sterling")
 				if(GLOB.join_as_robot_allowed)
 					return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
