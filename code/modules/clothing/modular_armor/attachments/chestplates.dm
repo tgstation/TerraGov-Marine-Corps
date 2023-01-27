@@ -13,7 +13,7 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_chest"
 	soft_armor = list(MELEE = 25, BULLET = 45, LASER = 45, ENERGY = 35, BOMB = 30, BIO = 30, FIRE = 30, ACID = 35)
-	slowdown = 0.3
+	slowdown = 0.2
 	greyscale_config = /datum/greyscale_config/modularchest
 
 /obj/item/armor_module/armor/chest/marine/skirmisher
@@ -35,7 +35,7 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_chest"
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 30, BIO = 30, FIRE = 30, ACID = 40)
-	slowdown = 0.5
+	slowdown = 0.3
 	greyscale_config = /datum/greyscale_config/modularchest/assault
 
 /obj/item/armor_module/armor/chest/marine/eva //Medium armor alt look

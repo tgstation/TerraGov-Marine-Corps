@@ -21,7 +21,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
-	slowdown = 0.5
+	slowdown = 0.4
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/instrument,
@@ -202,7 +202,7 @@
 	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
-	slowdown = 0.5
+	slowdown = 0.4
 	flags_item_map_variant = NONE
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -282,7 +282,7 @@
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "2"
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
-	slowdown = 0.5 //a bit less
+	slowdown = 0.4 //a bit less
 	light_range = 6
 
 /obj/item/clothing/suit/storage/marine/riot
@@ -893,7 +893,7 @@
 	species_exception = list(/datum/species/robot)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
-	slowdown = 0.5
+	slowdown = 0.4
 
 /obj/item/clothing/suit/storage/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
 	. = ..()
@@ -915,4 +915,4 @@
 	icon_state = "robot_armor_heavy"
 	item_state = "robot_armor_heavy"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
-	slowdown = 0.7
+	slowdown = 0.5
