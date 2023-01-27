@@ -55,7 +55,7 @@
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
-		if(obj_integrity > (max_integrity - integrity_failure) * 0.2)
+		if(obj_integrity > integrity_failure)
 			return
 
 		if(metal_sheets.get_amount() < 1)
@@ -75,53 +75,10 @@
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		return FALSE
+	. = welder_repair_act(user, I, max_integrity * 0.15, 4 SECONDS, integrity_failure / max_integrity, SKILL_ENGINEER_METAL)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
+		balloon_alert(user, "Too damaged. Use metal sheets.")
 
-	var/obj/item/tool/weldingtool/WT = I
-
-	if(!WT.isOn())
-		return FALSE
-
-	if(current_acid)
-		to_chat(user, "<span class='warning'>You can't get near that, it's melting!<span>")
-		return TRUE
-
-	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs additional metal for repairs."))
-		return TRUE
-
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_warning("[src] doesn't need repairs."))
-		return TRUE
-
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
-		span_notice("You fumble around figuring out how to repair [src]."))
-		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
-
-	user.visible_message(span_notice("[user] begins repairing [src]."),
-	span_notice("You begin repairing [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-
-	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		return TRUE
-
-	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
-		return TRUE
-
-	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the repairs."))
-		return TRUE
-
-	user.visible_message(span_notice("[user] finishes repairing [src]."),
-	span_notice("You finish repairing [src]."))
-	repair_damage((max_integrity-integrity_failure) * 0.2)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	return TRUE
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon) && world.time >= cooldown)

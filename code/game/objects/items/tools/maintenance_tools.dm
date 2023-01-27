@@ -160,11 +160,11 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		to_chat(user, span_warning("[src] has to be on to complete this task!"))
+		balloon_alert(user, "[src] not on")
 		return FALSE
 
 	if(get_fuel() < amount)
-		to_chat(user, span_warning("You need more welding fuel to complete this task!"))
+		balloon_alert(user, "low fuel")
 		return FALSE
 
 	return TRUE

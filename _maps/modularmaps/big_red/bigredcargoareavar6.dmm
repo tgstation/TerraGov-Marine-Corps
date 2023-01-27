@@ -8,7 +8,7 @@
 	},
 /area/bigredv2/outside/nw)
 "aj" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
@@ -153,7 +153,7 @@
 	},
 /area/bigredv2/caves/northwest)
 "mK" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -448,7 +448,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "DB" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /obj/structure/fence,
@@ -623,7 +623,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Po" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "PU" = (

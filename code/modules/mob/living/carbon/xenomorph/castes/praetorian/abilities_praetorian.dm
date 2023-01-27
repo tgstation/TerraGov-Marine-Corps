@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/spray_acid/cone
 	name = "Spray Acid Cone"
 	action_icon_state = "spray_acid"
-	mechanics_text = "Spray a cone of dangerous acid at your target."
+	desc = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
 	plasma_cost = 300
 	cooldown_timer = 40 SECONDS
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if(((A.density && !A.throwpass && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
+		if(((A.density && !(A.flags_pass & PASSPROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/xeno_action/activable/acid_dash
 	name = "Acid Dash"
 	action_icon_state = "charge"
-	mechanics_text = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
+	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
 	ability_name = "acid dash"
 	plasma_cost = 250
 	cooldown_timer = 30 SECONDS

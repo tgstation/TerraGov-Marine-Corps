@@ -4,7 +4,6 @@
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
 	density = TRUE
-	throwpass = TRUE //So people and xenos can shoot through!
 	anchored = TRUE //We can not be moved.
 	coverage = 5
 	layer = WINDOW_LAYER

@@ -45,7 +45,7 @@
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], 1, del_on_fail = 0))
+		if (equip_to_slot_if_possible(W, slot, ignore_delay = TRUE, warning = FALSE))
 			return slot
 	if (del_on_fail)
 		qdel(W)
