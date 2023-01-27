@@ -2,9 +2,6 @@
 Contains most of the procs that are called when a xeno is attacked by something
 */
 
-/mob/living/carbon/xenomorph/screech_act(mob/living/carbon/xenomorph/queen/Q)
-	return
-
 /mob/living/carbon/xenomorph/has_smoke_protection()
 	return TRUE
 

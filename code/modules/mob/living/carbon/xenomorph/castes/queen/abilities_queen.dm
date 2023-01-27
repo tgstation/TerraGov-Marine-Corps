@@ -61,13 +61,18 @@
 // ***************************************
 // *********** Screech
 // ***************************************
+
+#define SCREECH_RANGE 7
+#define SCREECH_ANGLE 90
+#define SCREECH_SPEED 0.5 //Simulates soundwave propagation, looks cool
+#define SCREECH_DAMAGE 140
 /datum/action/xeno_action/activable/screech
 	name = "Screech"
 	action_icon_state = "screech"
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
-	plasma_cost = 250
-	cooldown_timer = 100 SECONDS
+	plasma_cost = 5 //TEST VALUE
+	cooldown_timer = 5 SECONDS //TEST VALUE PLEASE REMEMBER TO BALANCE AFTER CODE WORKS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
@@ -77,22 +82,11 @@
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
-/datum/action/xeno_action/activable/screech/use_ability(atom/A)
+/datum/action/xeno_action/activable/screech/use_ability(atom/target)
+	if(!target)
+		return
+	owner.dir = get_cardinal_dir(owner, target)
 	var/mob/living/carbon/xenomorph/queen/X = owner
-
-	//screech is so powerful it kills huggers in our hands
-	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	succeed_activate()
-	add_cooldown()
 
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message(span_xenohighdanger("\The [X] emits an ear-splitting guttural roar!"))
@@ -101,15 +95,55 @@
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	var/list/nearby_living = list()
-	for(var/mob/living/L in hearers(WORLD_VIEW, X))
-		nearby_living.Add(L)
+	var/source = get_turf(owner)
+	var/dir_to_target = Get_Angle(source, target)
+	var/list/turf/turfs_to_screech = generate_true_cone(source, SCREECH_RANGE, 1, SCREECH_ANGLE, dir_to_target, bypass_xeno = TRUE, air_pass = TRUE)
+	execute_attack(1, turfs_to_screech, SCREECH_DAMAGE, target, source)
 
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
-		if(get_dist(L, X) > WORLD_VIEW_NUM)
-			continue
-		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/activable/screech/proc/execute_attack(iteration, list/turf/turfs_to_screech, range, target, turf/source)
+	if(iteration > range)
+		return
+
+	for(var/turf/turf AS in turfs_to_screech)
+		if(get_dist(turf, source) == iteration)
+			attack_turf(turf, LERP(1, 0.4, iteration / SCREECH_RANGE)) //Severity decreases by 10% per tile away from adjacency.
+
+	iteration++
+	addtimer(CALLBACK(src, .proc/execute_attack, iteration, turfs_to_screech, range, target, source), SCREECH_SPEED)
+
+/datum/action/xeno_action/activable/screech/proc/attack_turf(turf/turf_victim, severity)
+	new /obj/effect/temp_visual/screech(turf_victim)
+	for(var/victim in turf_victim)
+		if(iscarbon(victim))
+			var/mob/living/carbon/carbon_victim = victim
+			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
+				continue
+			//Hearing damage check
+			if(ishuman(carbon_victim))
+				var/mob/living/carbon/human/H = carbon_victim
+				if(!istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
+					carbon_victim.adjust_ear_damage(10 * severity, 10 * severity)
+			carbon_victim.apply_damage(SCREECH_DAMAGE * severity, STAMINA)
+			carbon_victim.adjust_stagger(15 * severity)
+			carbon_victim.add_slowdown(15 * severity)
+			shake_camera(carbon_victim, 3 SECONDS * severity, 3 * severity)
+		//Screech is so loud it breaks glass
+		else if(istype(victim, /obj/structure/window))
+			var/obj/structure/window/window_victim = victim
+			if(window_victim.damageable)
+				window_victim.ex_act(EXPLODE_DEVASTATE)
+
+/obj/effect/temp_visual/screech //Placeholder
+	name = "shattering_roar"
+	icon = 'icons/effects/effects.dmi'
+	duration = 4
+
+/obj/effect/temp_visual/screech/Initialize()  //Placeholder
+	. = ..()
+	flick("smash", src)
 
 /datum/action/xeno_action/activable/screech/ai_should_start_consider()
 	return TRUE
@@ -377,7 +411,7 @@
 /datum/action/xeno_action/activable/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
-	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
+	desc = "Give plasma to a target Xenomorph"
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybinding_signals = list(
