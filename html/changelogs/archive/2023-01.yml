@@ -332,3 +332,13 @@
       damage, 10 penetration (Unchanged) and .75 sunder.
   - balance: MMG now can attach underbarrel flashlight, and has halved damage falloff
       to .5 falloff per tile rather than 1.
+2023-01-27:
+  Calyxman:
+  - rscadd: Added 7 new male preburst scream sounds from VA The God Of Clowns
+  - rscadd: Added 3 new male pain scream sounds from VA The God Of Clowns
+  - rscadd: Added 2 new male scream sounds from VA The God Of Clowns
+  - rscadd: Added 1 new male gored gurgle sound from VA The God Of Clowns
+  FosterGrime-Heymynameslouie:
+  - rscadd: infinite crates via op vendor in req
+  - rscdel: removed welding crates for 1 metal sheet on crates from op vendor
+  - qol: made req supply chain easier
