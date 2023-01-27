@@ -28,8 +28,6 @@ SUBSYSTEM_DEF(resinshaping)
 	..()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/toggle_off)
 
-
-
 /// Retrieves a mob's building points using their ckey. Only works for mobs with clients.
 /datum/controller/subsystem/resinshaping/proc/get_building_points(mob/the_builder)
 	var/player_key = "[the_builder.client?.ckey]"
