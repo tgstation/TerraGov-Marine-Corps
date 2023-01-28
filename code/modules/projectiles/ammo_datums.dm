@@ -2423,9 +2423,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "overchargedlaser"
 	hud_state = "laser_heat"
 	shell_speed = 2.5
-	damage = 125
+	damage = 130
 	penetration = 60
-	accurate_range_min = 7
+	accurate_range_min = 6
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 10
 	hitscan_effect_icon = "beam_heavy_charge"
