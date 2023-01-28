@@ -814,7 +814,7 @@ ARMOR
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/binoculars/artemis_mk2
+		/obj/item/armor_module/module/binoculars/artemis_mk2,
 	)
 	cost = 400
 
