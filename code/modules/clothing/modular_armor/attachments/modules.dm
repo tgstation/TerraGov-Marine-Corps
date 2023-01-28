@@ -480,6 +480,11 @@
 /obj/item/armor_module/module/welding/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.AddComponent(/datum/component/clothing_tint, TINT_5, active)
+	RegisterSignal(user, COMSIG_KB_HELMETMODULE, .proc/activate)
+
+/obj/item/armor_module/module/welding/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(user, COMSIG_KB_HELMETMODULE)
+	return ..()
 
 /obj/item/armor_module/module/welding/on_detach(obj/item/detaching_from, mob/user)
 	parent.GetComponent(/datum/component/clothing_tint)
@@ -537,6 +542,14 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
 
+/obj/item/armor_module/module/binoculars/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_KB_HELMETMODULE, .proc/activate)
+
+/obj/item/armor_module/module/binoculars/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(user, COMSIG_KB_HELMETMODULE)
+	return ..()
+
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
 	if(active == zoom) //Zooming failed for some reason and didn't change
@@ -570,6 +583,14 @@
 	prefered_slot = SLOT_HEAD
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
+
+/obj/item/armor_module/module/antenna/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_KB_HELMETMODULE, .proc/activate)
+
+/obj/item/armor_module/module/antenna/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(user, COMSIG_KB_HELMETMODULE)
+	return ..()
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	var/turf/location = get_turf(src)
