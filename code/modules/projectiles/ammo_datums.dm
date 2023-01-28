@@ -2423,7 +2423,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "overchargedlaser"
 	hud_state = "laser_heat"
 	shell_speed = 2.5
-	damage = 130
+	damage = 135
 	penetration = 60
 	accurate_range_min = 6
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
@@ -2442,7 +2442,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_disabler"
 	penetration = 0
 	sundering = 0
-	damage = 70
+	damage = 50
 	damage_type = STAMINA
 	armor_type = "bio"
 	hitscan_effect_icon = "beam_particle"
