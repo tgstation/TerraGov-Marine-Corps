@@ -498,7 +498,7 @@
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
 	scatter = 2
-	scatter_unwielded = 4
+	scatter_unwielded = 3
 	fire_delay = 0.15 SECONDS
 	burst_delay = 0.15 SECONDS
 	burst_amount = 4
