@@ -125,7 +125,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 475
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -158,7 +158,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 550
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
