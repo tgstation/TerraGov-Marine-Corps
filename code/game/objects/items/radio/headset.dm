@@ -141,9 +141,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
 
 /obj/item/radio/headset/vendor_equip(mob/user)
-	. = ..()
-	. = user.equip_to_appropriate_slot(src)
-	possibly_deactivate_in_loc()
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 /obj/item/radio/headset/survivor
 	freqlock = TRUE
@@ -177,7 +176,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
-
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		if(GLOB.faction_to_data_hud[user.faction] != hud_type && user.faction != FACTION_NEUTRAL)
@@ -192,6 +190,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.c_tag = user.name
 		if(user.assigned_squad)
 			camera.network |= lowertext(user.assigned_squad.name)
+	possibly_deactivate_in_loc()
 	return ..()
 
 /// Make the headset lose its keysloy
