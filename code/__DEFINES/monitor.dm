@@ -49,8 +49,10 @@
 //Minimum proportion of burrowed larvas compared to live xenos for the unbalance join detector to show up
 #define TOO_MUCH_BURROWED_PROPORTION 0.2
 
-///How much xeno stats (health, damage and recov) are buffed
+///How much xeno stats (armor, speed, and recov) are buffed
 GLOBAL_VAR_INIT(xeno_stat_multiplicator_buff, 1)
+///Holds previous stat buff values for reversion
+GLOBAL_VAR_INIT(xeno_stat_multiplicator_buff_last, 1)
 
 ///50% is the maximum buff that xeno can receive
 #define  MAXIMUM_XENO_BUFF_POSSIBLE 1.5

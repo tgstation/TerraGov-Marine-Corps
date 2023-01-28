@@ -208,8 +208,5 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/apply_balance_changes()
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
-		xeno.apply_health_stat_buff()
-	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
-		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])
-			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[xeno_caste_typepath][upgrade]
-			caste.melee_damage = initial(caste.melee_damage) * GLOB.xeno_stat_multiplicator_buff
+		xeno.apply_armor_stat_buff()
+		xeno.apply_speed_stat_buff()

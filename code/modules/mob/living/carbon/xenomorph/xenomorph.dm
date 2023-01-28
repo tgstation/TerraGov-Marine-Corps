@@ -92,7 +92,7 @@
 		CRASH("error with caste datum")
 	xeno_caste = X
 	xeno_caste.on_caste_applied(src)
-	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
+	maxHealth = xeno_caste.max_health
 	if(restore_health_and_plasma)
 		// xenos that manage plasma through special means shouldn't gain it for free on aging
 		plasma_stored = max(plasma_stored, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
@@ -101,27 +101,23 @@
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+	//If balance buffs are active, apply them.
+	apply_speed_stat_buff()
+	apply_armor_stat_buff()
 
-///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
-/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
-	var/new_max_health = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
-	var/needed_healing = 0
+///Will multiply the base armor of this xeno by GLOB.xeno_stat_multiplicator_buff.
+/mob/living/carbon/xenomorph/proc/apply_armor_stat_buff()
+	soft_armor = soft_armor.modifyAllRatings(-(GLOB.xeno_stat_multiplicator_buff_last - 1) * 25)
+	GLOB.xeno_stat_multiplicator_buff_last = GLOB.xeno_stat_multiplicator_buff
+	if(GLOB.xeno_stat_multiplicator_buff != 1)
+		soft_armor = soft_armor.modifyAllRatings((GLOB.xeno_stat_multiplicator_buff - 1) * 25)
 
-	if(health < 0) //In crit. Death threshold below 0 doesn't change with stat buff, so we can just apply damage equal to the max health change
-		needed_healing = maxHealth - new_max_health //Positive means our max health is going down, so heal to keep parity
+///Will multiply the base speed of this xeno by GLOB.xeno_stat_multiplicator_buff.
+/mob/living/carbon/xenomorph/proc/apply_speed_stat_buff()
+	if(GLOB.xeno_stat_multiplicator_buff == 1)
+		remove_movespeed_modifier(MOVESPEED_ID_SPEED_STAT_BUFF) //Removes balance modifier
 	else
-		var/current_health_percent = health / maxHealth //We want to keep this fixed so that applying the scalar doesn't heal or harm, relatively.
-		var/new_health = current_health_percent * new_max_health //What we're aiming for
-		var/new_total_damage = new_max_health - new_health
-		var/current_total_damage = maxHealth - health
-		needed_healing = current_total_damage - new_total_damage
-
-	var/brute_healing = min(getBruteLoss(), needed_healing)
-	adjustBruteLoss(-brute_healing)
-	adjustFireLoss(-(needed_healing - brute_healing))
-
-	maxHealth = new_max_health
-	updatehealth()
+		add_movespeed_modifier(MOVESPEED_ID_SPEED_STAT_BUFF, TRUE, 0, NONE, TRUE, 0.6 * (1 - GLOB.xeno_stat_multiplicator_buff))
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
