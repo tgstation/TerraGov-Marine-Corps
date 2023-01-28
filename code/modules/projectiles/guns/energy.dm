@@ -665,7 +665,7 @@
 	wield_delay = 0.7 SECONDS
 	scatter = 0
 	scatter_unwielded = 15
-	recoil_unwielded = 3
+	recoil_unwielded = 2
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
