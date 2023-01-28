@@ -677,7 +677,7 @@
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
-	rounds_per_shot = 60
+	rounds_per_shot = 75
 	fire_delay = 1.25 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
