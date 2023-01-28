@@ -296,10 +296,6 @@
 	var/radial_icon_state = "laser"
 	///Delay for the gun winding up before firing.
 	var/windup_delay = 0
-	///Sound played during windup.
-	var/windup_sound
-	///Used if a weapon need windup before firing
-	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
@@ -322,6 +318,7 @@
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
+	windup_delay = initial(choice.windup_delay)
 	rounds_per_shot = initial(choice.rounds_per_shot)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
@@ -631,6 +628,7 @@
 	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal, heat, and overcharge settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	windup_sound = 'sound/weapons/guns/fire/Laser Sniper Overcharge Charge.ogg'
 	icon_state = "tes"
 	item_state = "tes"
 	w_class = WEIGHT_CLASS_BULKY
@@ -700,13 +698,12 @@
 /datum/lasrifle/base/energy_sniper_mode/overcharge
 	rounds_per_shot = 200
 	fire_delay = 3 SECONDS
-	windup_delay = 1.75 SECONDS
-	windup_sound = 'sound/weapons/guns/fire/Laser Sniper Overcharge Charge.ogg' //get this working
+	windup_delay = 1.5 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_overcharge
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Overcharge Fire.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "ter"
+	icon_state = "tes"
 	radial_icon_state = "laser_overcharge"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
