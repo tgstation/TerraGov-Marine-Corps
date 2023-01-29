@@ -427,9 +427,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "VQ" = (
-/obj/structure/cargo_container/ch_red{
-	layer = 5
-	},
+/obj/structure/cargo_container/ch_red,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "VU" = (

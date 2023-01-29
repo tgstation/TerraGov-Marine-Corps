@@ -7161,9 +7161,7 @@
 /area/mainship/hull/lower_hull)
 "gAr" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct/rebel)
 "gAB" = (
 /obj/structure/closet/cabinet,
@@ -8762,9 +8760,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
 "hVl" = (
-/obj/structure/prop/mainship/missile_tube{
-	icon_state = "missiletubesouth"
-	},
+/obj/structure/prop/mainship/missile_tube/south,
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
@@ -10893,9 +10889,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct/rebel)
 "jVD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16459,9 +16453,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/rebel)
 "oNG" = (
-/obj/structure/prop/mainship/missile_tube{
-	icon_state = "missiletubesouth"
-	},
+/obj/structure/prop/mainship/missile_tube/south,
 /turf/open/floor/mainship_hull,
 /area/space)
 "oNH" = (
@@ -20307,9 +20299,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "seg" = (
-/obj/structure/prop/mainship/missile_tube{
-	icon_state = "missiletubesouth"
-	},
+/obj/structure/prop/mainship/missile_tube/south,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -23059,9 +23049,7 @@
 /area/mainship/medical/lower_medical/rebel)
 "usq" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "usG" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
@@ -24958,9 +24946,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "wia" = (
 /obj/machinery/door/firedoor/mainship{
