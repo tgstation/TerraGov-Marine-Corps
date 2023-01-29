@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "King HP scaling changed from 450->500->600->700 to 575->600->625->650."
