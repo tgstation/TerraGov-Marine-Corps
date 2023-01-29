@@ -482,12 +482,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"
 	handful_amount = 5
-	damage = 75
+	damage = 100
 	penetration = 40
 	sundering = 0.5
 
 /datum/ammo/bullet/revolver/t76/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 0, knockback = 1)
+	staggerstun(M, P, weaken = 1, slowdown = 0, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
