@@ -638,10 +638,10 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 10 //codex stuff
+	max_shots = 8 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
-	rounds_per_shot = 60
+	rounds_per_shot = 75
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
