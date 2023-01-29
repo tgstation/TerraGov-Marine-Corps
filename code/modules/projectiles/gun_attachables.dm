@@ -1038,7 +1038,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 //You can remove the stock on the Magnum. So it has stats and is removeable.
 
 /obj/item/attachable/stock/t76
-	name = "T-76 Magnum Stock"
+	name = "T-76 magnum stock"
 	desc = "A R-76 magnum stock. Makes about all your handling better outside of making it harder to wield. Recommended to be kept on the R-76 at all times if you value your shoulder."
 	icon_state = "t76stock"
 	flags_attach_features = ATTACH_REMOVABLE
