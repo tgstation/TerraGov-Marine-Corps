@@ -2,7 +2,6 @@
 "aaa" = (
 /obj/structure/cargo_container/gorg,
 /obj/item/clothing/head/flatcap{
-	layer = 3.1;
 	pixel_y = 16
 	},
 /turf/open/floor/prison,
@@ -209,9 +208,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/structure/largecrate/random/barrel{
-	layer = 2.9
-	},
+/obj/structure/largecrate/random/barrel,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aeh" = (
@@ -440,8 +437,7 @@
 /area/gelida/indoors/c_block/mining)
 "aof" = (
 /obj/structure/prop/vehicle/truck/destructible{
-	dir = 8;
-	layer = 3.2
+	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -526,9 +522,7 @@
 	},
 /area/gelida/indoors/c_block/mining)
 "arf" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /turf/open/floor/prison/plate,
 /area/gelida/landing_zone_2)
 "arA" = (
@@ -594,12 +588,10 @@
 /area/gelida/outdoors/rock)
 "atx" = (
 /obj/item/fuelCell{
-	layer = 3.1;
 	pixel_x = 3;
 	pixel_y = 15
 	},
 /obj/item/fuelCell{
-	layer = 3.1;
 	pixel_x = -10;
 	pixel_y = 18
 	},
@@ -684,7 +676,6 @@
 	pixel_x = 9
 	},
 /obj/item/tool/kitchen/tray{
-	layer = 2.9;
 	pixel_y = 3
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -902,9 +893,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /obj/structure/platform_decoration{
 	dir = 9
 	},
@@ -1055,9 +1044,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "aIW" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/structure/fakeplatform{
 	dir = 8
 	},
@@ -1257,7 +1244,6 @@
 	pixel_y = -5
 	},
 /obj/structure/reagent_dispensers/beerkeg{
-	layer = 3.1;
 	pixel_x = -3;
 	pixel_y = 12
 	},
@@ -1346,7 +1332,6 @@
 "aQU" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 17
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -1496,9 +1481,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "aWS" = (
-/obj/structure/prop/vehicle/van/destructible{
-	layer = 3.1
-	},
+/obj/structure/prop/vehicle/van/destructible,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "aWU" = (
@@ -1519,8 +1502,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "aXl" = (
 /obj/structure/barricade/wooden{
-	dir = 4;
-	layer = 5.3
+	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -1888,7 +1870,6 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -1936,9 +1917,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "bji" = (
-/obj/structure/flora/ausbushes/grassybush{
-	layer = 2.9
-	},
+/obj/structure/flora/ausbushes/grassybush,
 /obj/structure/platform/gelida{
 	dir = 4
 	},
@@ -1993,9 +1972,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "bkX" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "blf" = (
@@ -2082,7 +2059,6 @@
 "bok" = (
 /obj/structure/largecrate/random,
 /obj/structure/largecrate/random{
-	layer = 3.1;
 	pixel_x = 13;
 	pixel_y = 18
 	},
@@ -2402,7 +2378,6 @@
 "bAb" = (
 /obj/machinery/computer/security/wooden_tv{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
-	layer = 3.2;
 	name = "Television set";
 	network = null;
 	pixel_x = -3;
@@ -2450,9 +2425,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/corpo)
 "bCa" = (
-/obj/structure/flora/ausbushes/ywflowers{
-	layer = 3
-	},
+/obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/prop/mainship/gelida/planterboxsoil{
 	dir = 9
 	},
@@ -2574,7 +2547,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_x = -2;
 	pixel_y = 16
@@ -2616,7 +2588,6 @@
 	pixel_y = 15
 	},
 /obj/machinery/washing_machine{
-	layer = 3.5;
 	pixel_y = 29
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -3253,9 +3224,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/bridge)
 "ccm" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "cco" = (
@@ -3293,7 +3262,6 @@
 /area/gelida/outdoors/colony_streets/south_street)
 "cek" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -3456,9 +3424,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "ckh" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "ckC" = (
@@ -3585,8 +3551,7 @@
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "cqo" = (
 /obj/structure/cargo_container{
-	dir = 4;
-	layer = 3.1
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
@@ -3696,17 +3661,14 @@
 "cuc" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/reagent_containers/food/drinks/flask/marine{
-	layer = 3.1;
 	pixel_x = -6;
 	pixel_y = -11
 	},
 /obj/item/reagent_containers/food/drinks/flask/marine{
-	layer = 3.1;
 	pixel_x = -6;
 	pixel_y = 13
 	},
 /obj/item/reagent_containers/food/drinks/flask/marine{
-	layer = 3.1;
 	pixel_x = -2;
 	pixel_y = 7
 	},
@@ -3803,9 +3765,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/gelida/indoors/lone_buildings/engineering)
 "cxg" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_street)
 "cxq" = (
@@ -3899,7 +3859,6 @@
 /area/gelida/indoors/a_block/kitchen)
 "czH" = (
 /obj/structure/largecrate/random/barrel{
-	layer = 2.9;
 	pixel_x = -9;
 	pixel_y = -2
 	},
@@ -4031,9 +3990,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/casino)
 "cCC" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -4058,11 +4015,9 @@
 /area/gelida/indoors/b_block/bridge)
 "cDN" = (
 /obj/structure/bed{
-	layer = 2.7;
 	pixel_y = -8
 	},
 /obj/structure/bed{
-	layer = 2.6;
 	pixel_y = 5
 	},
 /obj/effect/decal/cleanable/blood{
@@ -4131,7 +4086,6 @@
 "cFS" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/golden_cup{
-	layer = 3.5;
 	pixel_y = 10
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -4160,9 +4114,7 @@
 /area/gelida/indoors/c_block/cargo)
 "cGD" = (
 /obj/structure/bed,
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
@@ -5491,9 +5443,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/medical)
 "dtN" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "dtS" = (
@@ -5648,8 +5598,7 @@
 	dir = 4
 	},
 /obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
+	dir = 6
 	},
 /turf/open/ground/river,
 /area/gelida/indoors/a_block/fitness)
@@ -5684,7 +5633,6 @@
 "dAQ" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/flashlight/lamp/green{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 13
 	},
@@ -5801,7 +5749,6 @@
 	pixel_y = -12
 	},
 /obj/item/newspaper{
-	layer = 3.1;
 	pixel_x = -2;
 	pixel_y = 8
 	},
@@ -5942,8 +5889,7 @@
 /area/gelida/indoors/a_block/admin)
 "dII" = (
 /obj/structure/cargo_container{
-	dir = 4;
-	layer = 3.1
+	dir = 4
 	},
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/spaceport)
@@ -6248,11 +6194,8 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	layer = 3.1
-	},
+/obj/item/reagent_containers/food/condiment/saltshaker,
 /obj/item/tool/kitchen/tray{
-	layer = 2.9;
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/snacks/tofubreadslice{
@@ -6400,7 +6343,6 @@
 "dXF" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 17
 	},
 /obj/effect/landmark/weed_node,
@@ -6452,16 +6394,13 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "dZe" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -6478,9 +6417,7 @@
 /area/gelida/indoors/a_block/admin)
 "dZo" = (
 /obj/structure/bed,
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/effect/spawner/random/plushie,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
@@ -6522,7 +6459,6 @@
 "eax" = (
 /obj/structure/table/mainship,
 /obj/item/newspaper{
-	layer = 3.1;
 	pixel_x = -7
 	},
 /obj/item/toy/dice/d20{
@@ -6553,15 +6489,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
-"ebE" = (
-/obj/item/clothing/mask/facehugger/dead{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	layer = 3;
-	name = "????";
-	stat = 2
-	},
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/landing_zone_2)
 "ebK" = (
 /obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -7000,9 +6927,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -7072,7 +6997,6 @@
 	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
-	layer = 3.1;
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -7202,7 +7126,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
 	dir = 4;
-	layer = 3.1;
 	pixel_y = 1
 	},
 /obj/machinery/light{
@@ -7411,15 +7334,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -7467,7 +7387,6 @@
 /area/gelida/landing_zone_1)
 "eFc" = (
 /obj/item/clothing/head/flatcap{
-	layer = 3.1;
 	pixel_y = 16
 	},
 /turf/open/floor/prison/plate,
@@ -7561,7 +7480,6 @@
 	name = "brat 2 disk"
 	},
 /obj/machinery/recharger{
-	layer = 2.9;
 	pixel_x = 5;
 	pixel_y = -13
 	},
@@ -7626,15 +7544,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/effect/landmark/corpsespawner/chef,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -7907,7 +7822,6 @@
 "eRY" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 12
 	},
 /turf/open/floor/plating/ground/fakesnow,
@@ -8013,9 +7927,7 @@
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
 "eVp" = (
-/obj/structure/prop/vehicle/truck/destructible{
-	layer = 3.1
-	},
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -8082,8 +7994,7 @@
 	},
 /obj/structure/fakeplatform,
 /obj/structure/platform_decoration{
-	dir = 10;
-	layer = 3.51
+	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
@@ -8566,9 +8477,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "fqQ" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -8757,12 +8666,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
-"fyb" = (
-/obj/structure/cargo_container{
-	dir = 4
-	},
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/mining)
 "fyp" = (
 /obj/machinery/light{
 	dir = 8
@@ -9019,7 +8922,6 @@
 /area/gelida/landing_zone_1)
 "fJM" = (
 /obj/structure/largecrate/random{
-	layer = 3.1;
 	pixel_x = 10;
 	pixel_y = -7
 	},
@@ -9925,9 +9827,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -10021,15 +9921,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/c_block/mining)
 "gpA" = (
@@ -10450,7 +10347,6 @@
 "gEm" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 17
 	},
 /turf/open/floor/prison/blue/plate{
@@ -10494,9 +10390,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "gGi" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -10636,12 +10530,9 @@
 "gJM" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 17
 	},
-/obj/machinery/vending/cola{
-	layer = 3.1
-	},
+/obj/machinery/vending/cola,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -10735,9 +10626,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/spaceport)
 "gLM" = (
-/obj/structure/cargo_container{
-	layer = 3.1
-	},
+/obj/structure/cargo_container,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "gMe" = (
@@ -10861,7 +10750,6 @@
 "gPL" = (
 /obj/structure/table/mainship,
 /obj/item/radio/off{
-	layer = 3.1;
 	pixel_x = -5;
 	pixel_y = 14
 	},
@@ -11278,8 +11166,7 @@
 "hfD" = (
 /obj/item/stack/sheet/metal,
 /obj/structure/prop/vehicle/truck/destructible{
-	dir = 8;
-	layer = 3.2
+	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
@@ -11288,7 +11175,6 @@
 "hfL" = (
 /obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
-	layer = 3.1;
 	pixel_x = 6;
 	pixel_y = 6
 	},
@@ -11297,8 +11183,7 @@
 	},
 /obj/structure/platform/gelida,
 /obj/structure/platform_decoration{
-	dir = 10;
-	layer = 3.51
+	dir = 10
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
@@ -11488,7 +11373,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
@@ -11503,12 +11387,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
-"hlj" = (
-/obj/structure/cargo_container{
-	layer = 2.9
-	},
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/mining)
 "hln" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -11698,9 +11576,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/spaceport)
 "hsx" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "hsH" = (
@@ -11710,12 +11586,6 @@
 	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/lone_buildings/spaceport)
-"hsR" = (
-/obj/structure/cargo_container{
-	layer = 3.1
-	},
-/turf/open/floor/prison/darkbrown/full,
-/area/gelida/indoors/c_block/mining)
 "hsS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11778,7 +11648,6 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/tray{
-	layer = 2.9;
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker,
@@ -11870,7 +11739,6 @@
 /obj/item/ore/diamond,
 /obj/item/ore/diamond,
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -11882,12 +11750,10 @@
 /area/gelida/indoors/a_block/kitchen)
 "hzP" = (
 /obj/item/fuelCell{
-	layer = 3.1;
 	pixel_x = -8;
 	pixel_y = 16
 	},
 /obj/item/fuelCell{
-	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 16
 	},
@@ -12164,9 +12030,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "hLj" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -12206,11 +12070,9 @@
 /area/gelida/outdoors/colony_streets/north_street)
 "hMN" = (
 /obj/structure/bed{
-	layer = 2.7;
 	pixel_y = 12
 	},
 /obj/structure/bed{
-	layer = 2.6;
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12327,7 +12189,6 @@
 /area/gelida/indoors/a_block/medical)
 "hQm" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -12463,15 +12324,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/machinery/light,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -13344,7 +13202,6 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "mining_secure_blast_3";
-	layer = 3.3;
 	name = "\improper Secure Blast Door"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -13360,9 +13217,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "iuu" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -13470,7 +13325,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
@@ -13480,7 +13334,6 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "mining_secure_blast_1";
-	layer = 3.3;
 	name = "\improper Secure Blast Door"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -13605,7 +13458,6 @@
 "iBR" = (
 /obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
-	layer = 3.1;
 	pixel_x = 5;
 	pixel_y = 7
 	},
@@ -13614,8 +13466,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration{
-	dir = 10;
-	layer = 3.51
+	dir = 10
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
@@ -13646,7 +13497,6 @@
 /area/gelida/indoors/a_block/admin)
 "iCS" = (
 /obj/effect/landmark/dropship_console_spawn_lz1{
-	layer = 3.2;
 	pixel_y = -6
 	},
 /obj/structure/table/mainship,
@@ -13739,9 +13589,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHe" = (
 /obj/structure/fakeplatform,
-/obj/structure/reagent_dispensers/fueltank{
-	layer = 2.9
-	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHf" = (
@@ -14047,9 +13895,7 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "iPj" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -14067,7 +13913,6 @@
 /area/gelida/indoors/a_block/dorms)
 "iQL" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -14162,9 +14007,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/kitchen)
 "iVJ" = (
-/obj/structure/prop/vehicle/truck/destructible{
-	layer = 3.1
-	},
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "iVU" = (
@@ -14512,7 +14355,6 @@
 "jhc" = (
 /obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
-	layer = 3.1;
 	pixel_x = 6;
 	pixel_y = 6
 	},
@@ -14698,7 +14540,6 @@
 	pixel_x = 3
 	},
 /obj/item/tool/kitchen/tray{
-	layer = 2.9;
 	pixel_y = 3
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -14839,7 +14680,6 @@
 /area/gelida/indoors/a_block/kitchen)
 "jum" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -15007,7 +14847,6 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
 	dir = 8;
-	layer = 3.2;
 	name = "Television set";
 	network = list("military");
 	pixel_x = 3;
@@ -15044,7 +14883,6 @@
 /area/gelida/landing_zone_2)
 "jCt" = (
 /obj/effect/landmark/dropship_console_spawn_lz1{
-	layer = 3.1;
 	pixel_y = -9
 	},
 /obj/structure/table/mainship,
@@ -15207,11 +15045,9 @@
 /area/gelida/outdoors/w_rockies)
 "jKu" = (
 /obj/structure/bed{
-	layer = 2.7;
 	pixel_y = 12
 	},
 /obj/structure/bed{
-	layer = 2.6;
 	pixel_y = 25
 	},
 /obj/item/clothing/mask/facehugger/dead{
@@ -15295,8 +15131,7 @@
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "jMq" = (
 /obj/structure/prop/vehicle/truck/destructible{
-	dir = 8;
-	layer = 3.1
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -15317,9 +15152,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "jMX" = (
-/obj/structure/cargo_container{
-	layer = 3.1
-	},
+/obj/structure/cargo_container,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "jMY" = (
@@ -15972,7 +15805,6 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
 	dir = 4;
-	layer = 3.2;
 	name = "Television set";
 	network = null;
 	pixel_y = 4
@@ -16234,9 +16066,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/lone_buildings/spaceport)
 "krK" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
@@ -16410,15 +16240,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/c_block/cargo)
-"kyt" = (
-/obj/structure/table/mainship,
-/obj/structure/foamedmetal{
-	layer = 3.1
-	},
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
-/area/gelida/indoors/a_block/dorms)
 "kyO" = (
 /obj/structure/closet/bombcloset,
 /obj/machinery/door_control{
@@ -16451,7 +16272,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
 	dir = 4;
-	layer = 3.1;
 	pixel_y = 2
 	},
 /obj/machinery/light{
@@ -16492,7 +16312,6 @@
 /area/gelida/indoors/a_block/corpo)
 "kCY" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /obj/effect/turf_decal/warning_stripes/stripedsquare/tile/border,
@@ -16637,9 +16456,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/structure/prop/vehicle/truck/destructible{
-	layer = 3.1
-	},
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "kHt" = (
@@ -17146,7 +16963,6 @@
 "kYJ" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 17
 	},
 /obj/item/shard,
@@ -17305,7 +17121,6 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
 	dir = 4;
-	layer = 3.2;
 	name = "Television set";
 	network = null;
 	pixel_y = 3
@@ -17413,8 +17228,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "lgV" = (
 /obj/item/pipe{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -17727,7 +17541,6 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = 7;
 	pixel_y = 17
 	},
@@ -17767,7 +17580,6 @@
 /area/gelida/indoors/a_block/dorms)
 "lsR" = (
 /obj/machinery/portable_atmospherics/canister/empty{
-	layer = 3.1;
 	pixel_y = 18
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -17933,12 +17745,10 @@
 /area/gelida/indoors/c_block/cargo)
 "lzg" = (
 /obj/machinery/portable_atmospherics/canister/empty{
-	layer = 3.1;
 	pixel_x = -1;
 	pixel_y = 25
 	},
 /obj/machinery/portable_atmospherics/canister/empty{
-	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 15
 	},
@@ -18211,15 +18021,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -18422,8 +18229,7 @@
 /area/gelida/landing_zone_1)
 "lPd" = (
 /obj/structure/cargo_container{
-	dir = 4;
-	layer = 3.1
+	dir = 4
 	},
 /turf/open/floor/plating/platebot,
 /area/gelida/indoors/c_block/cargo)
@@ -18695,17 +18501,6 @@
 	dir = 10
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
-"lYt" = (
-/obj/structure/fakeplatform,
-/obj/structure/fakeplatform{
-	dir = 4
-	},
-/obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/gelida/outdoors/colony_streets/east_central_street)
 "lYx" = (
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
@@ -19046,8 +18841,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "mju" = (
 /obj/structure/cargo_container{
-	dir = 4;
-	layer = 3.1
+	dir = 4
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
@@ -19062,8 +18856,7 @@
 "mjD" = (
 /obj/structure/barricade/wooden{
 	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	layer = 2.9
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -19092,7 +18885,6 @@
 	pixel_x = 5
 	},
 /obj/structure/largecrate/random{
-	layer = 3.1;
 	pixel_x = 19;
 	pixel_y = 18
 	},
@@ -19141,7 +18933,6 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 27
 	},
@@ -19214,9 +19005,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "mmH" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -19643,9 +19432,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "mBa" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_street)
 "mBv" = (
@@ -19679,9 +19466,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 5
 	},
@@ -19714,7 +19499,6 @@
 "mET" = (
 /obj/structure/table/mainship,
 /obj/item/tool/weldpack{
-	layer = 3.1;
 	pixel_x = -4;
 	pixel_y = 12
 	},
@@ -20411,8 +20195,7 @@
 "neg" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/barricade/wooden{
-	dir = 4;
-	layer = 5.3
+	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -20515,15 +20298,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
 	},
@@ -20800,9 +20580,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "nrX" = (
-/obj/structure/prop/vehicle/truck/destructible{
-	layer = 3.2
-	},
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "nsm" = (
@@ -21253,8 +21031,7 @@
 /area/gelida/outdoors/rock)
 "nGB" = (
 /obj/structure/cargo_container{
-	dir = 4;
-	layer = 3.1
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -21262,9 +21039,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "nGK" = (
@@ -22088,12 +21863,10 @@
 "ohb" = (
 /obj/structure/fakeplatform,
 /obj/structure/fakeplatform{
-	dir = 4;
-	layer = 2.7
+	dir = 4
 	},
 /obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
+	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
@@ -22691,7 +22464,6 @@
 /obj/item/reagent_containers/jerrycan{
 	desc = "A jerry can. In space! Or maybe a colony.";
 	item_state = "caution";
-	layer = 3.1;
 	name = "fuel can";
 	pixel_x = 4;
 	pixel_y = 16
@@ -22864,9 +22636,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "oIG" = (
@@ -23015,7 +22785,6 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "oNa" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -23221,7 +22990,6 @@
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = 7;
 	pixel_y = 17
 	},
@@ -23322,7 +23090,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
@@ -23368,9 +23135,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "oYC" = (
-/obj/structure/flora/ausbushes/ywflowers{
-	layer = 3
-	},
+/obj/structure/flora/ausbushes/ywflowers,
 /obj/machinery/light,
 /obj/structure/prop/mainship/gelida/planterboxsoil{
 	dir = 9
@@ -23787,9 +23552,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
@@ -23941,9 +23704,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "pqh" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/structure/fakeplatform{
 	dir = 4
 	},
@@ -24148,8 +23909,7 @@
 /area/gelida/indoors/c_block/mining)
 "pxf" = (
 /obj/structure/barricade/wooden{
-	dir = 4;
-	layer = 5.3
+	dir = 4
 	},
 /obj/structure/fakeplatform{
 	dir = 1
@@ -24196,7 +23956,6 @@
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "pyY" = (
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 27
 	},
@@ -24308,9 +24067,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "pCd" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "pCC" = (
@@ -24413,7 +24170,6 @@
 	},
 /obj/item/reagent_containers/food/snacks/wishsoup,
 /obj/item/tool/kitchen/utensil/spoon{
-	layer = 2.9;
 	pixel_x = 10;
 	pixel_y = 5
 	},
@@ -24764,7 +24520,6 @@
 /area/gelida/landing_zone_2)
 "pPQ" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -24785,7 +24540,6 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = 7;
 	pixel_y = 17
 	},
@@ -24908,7 +24662,6 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "pTe" = (
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = 7;
 	pixel_y = 17
 	},
@@ -25049,7 +24802,6 @@
 /obj/structure/cargo_container/gorg,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 28
 	},
@@ -25087,9 +24839,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "pZH" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
@@ -25205,7 +24955,6 @@
 "qdK" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	layer = 3;
 	name = "????";
 	stat = 2
 	},
@@ -25640,7 +25389,6 @@
 /area/gelida/indoors/a_block/garden)
 "qtB" = (
 /obj/structure/filingcabinet{
-	layer = 3.1;
 	pixel_x = 8;
 	pixel_y = 18
 	},
@@ -25759,9 +25507,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "qxh" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 9
 	},
@@ -25832,12 +25578,10 @@
 	pixel_y = 4
 	},
 /obj/item/toy/prize/deathripley{
-	layer = 3.1;
 	pixel_x = 9;
 	pixel_y = 19
 	},
 /obj/item/toy/prize/seraph{
-	layer = 3.1;
 	pixel_y = 8
 	},
 /turf/open/floor/prison,
@@ -25915,7 +25659,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 6
 	},
 /turf/open/floor/prison/blue/plate{
@@ -26102,8 +25845,7 @@
 /area/gelida/landing_zone_1)
 "qJo" = (
 /obj/structure/cargo_container{
-	dir = 4;
-	layer = 3.1
+	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -26232,7 +25974,6 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "mining_secure_blast_1";
-	layer = 3.3;
 	name = "\improper Secure Blast Door"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -26431,7 +26172,6 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "qRu" = (
 /obj/machinery/portable_atmospherics/canister/empty{
-	layer = 3.1;
 	pixel_y = 18
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26666,8 +26406,7 @@
 /area/gelida/indoors/c_block/casino)
 "qYn" = (
 /obj/structure/platform_decoration{
-	dir = 10;
-	layer = 3.51
+	dir = 10
 	},
 /obj/structure/stairs/cornerdark/seamless{
 	dir = 4
@@ -26683,7 +26422,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
@@ -26809,15 +26547,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -26935,13 +26670,10 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
-/obj/structure/foamedmetal{
-	layer = 3.1
-	},
+/obj/structure/foamedmetal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -27047,7 +26779,6 @@
 "riC" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	layer = 3;
 	name = "????";
 	stat = 2
 	},
@@ -27386,7 +27117,6 @@
 /area/gelida/indoors/a_block/hallway)
 "rtW" = (
 /obj/item/clothing/head/collectable/tophat{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 5
 	},
@@ -27462,7 +27192,6 @@
 /area/gelida/indoors/a_block/bridges/corpo_fitness)
 "rxg" = (
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 27
 	},
@@ -27610,7 +27339,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/prop/mainship/computer/PC{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 6
 	},
 /turf/open/floor/prison,
@@ -28070,9 +27798,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "rQU" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rRg" = (
@@ -28092,9 +27818,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/hallway)
 "rSi" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 9
 	},
@@ -28402,7 +28126,6 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/lightstick{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 27
 	},
@@ -28479,7 +28202,6 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "shA" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -28615,15 +28337,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "slZ" = (
@@ -28717,9 +28436,7 @@
 /obj/structure/fakeplatform{
 	dir = 8
 	},
-/obj/structure/flora/ausbushes/ywflowers{
-	layer = 3
-	},
+/obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/prop/mainship/gelida/planterboxsoil{
 	dir = 9
 	},
@@ -28790,7 +28507,6 @@
 "srs" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	layer = 3;
 	name = "????";
 	stat = 2
 	},
@@ -29392,9 +29108,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "sHG" = (
-/obj/structure/reagent_dispensers/fueltank{
-	layer = 2.9
-	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sIj" = (
@@ -29486,9 +29200,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "sKj" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 8
@@ -29673,9 +29385,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
 "sQp" = (
@@ -30419,8 +30129,7 @@
 	},
 /obj/structure/fakeplatform,
 /obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
+	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_street)
@@ -30459,8 +30168,7 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "tpP" = (
 /obj/structure/prop/vehicle/truck/destructible{
-	dir = 8;
-	layer = 3.1
+	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
@@ -30598,7 +30306,6 @@
 /area/gelida/indoors/b_block/bar)
 "tvG" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -30886,8 +30593,7 @@
 	dir = 4
 	},
 /obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
+	dir = 6
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
@@ -30952,9 +30658,7 @@
 /area/gelida/indoors/a_block/admin)
 "tIi" = (
 /obj/structure/bed,
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -31048,7 +30752,6 @@
 "tMb" = (
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	layer = 3;
 	name = "????";
 	stat = 2
 	},
@@ -31374,7 +31077,6 @@
 /area/gelida/outdoors/nw_rockies)
 "tWP" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/black/full,
@@ -31412,7 +31114,6 @@
 /obj/item/ore/diamond,
 /obj/item/ore/diamond,
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -31559,7 +31260,6 @@
 /area/gelida/caves/west_caves)
 "udI" = (
 /obj/machinery/vending/snack{
-	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 16
 	},
@@ -31795,8 +31495,7 @@
 /area/gelida/indoors/a_block/admin)
 "ulW" = (
 /obj/structure/prop/vehicle/truck/destructible{
-	dir = 8;
-	layer = 3.2
+	dir = 8
 	},
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -32437,15 +32136,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -32877,9 +32573,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "uZC" = (
-/obj/structure/prop/vehicle/truck/destructible{
-	layer = 3.1
-	},
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "uZP" = (
@@ -33902,8 +33596,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration{
-	dir = 10;
-	layer = 3.51
+	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -33938,7 +33631,6 @@
 /area/gelida/indoors/c_block/casino)
 "vFU" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -33960,8 +33652,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "vGC" = (
 /obj/structure/fakeplatform{
-	dir = 8;
-	layer = 5.2
+	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -34013,9 +33704,7 @@
 /area/gelida/indoors/b_block/hydro)
 "vJb" = (
 /obj/structure/platform_decoration,
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 9
 	},
@@ -34264,7 +33953,6 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "vSV" = (
 /obj/item/trash/kepler{
-	layer = 3.1;
 	pixel_y = 15
 	},
 /turf/open/floor/prison/blue/plate{
@@ -34277,7 +33965,6 @@
 /area/gelida/landing_zone_1)
 "vUe" = (
 /obj/structure/flora/ausbushes/sunnybush{
-	layer = 4.3;
 	pixel_y = 13
 	},
 /obj/structure/prop/mainship/gelida/planterboxsoil{
@@ -34477,9 +34164,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "vZi" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -34667,9 +34352,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "wfe" = (
-/obj/structure/prop/vehicle/truck/destructible{
-	layer = 3.1
-	},
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "wfV" = (
@@ -34682,9 +34365,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "wgZ" = (
@@ -34881,7 +34562,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_x = -2;
 	pixel_y = 10
@@ -35145,7 +34825,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/wooden_tv{
 	dir = 8;
-	layer = 3;
 	pixel_x = 5;
 	pixel_y = 4
 	},
@@ -35291,9 +34970,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "wAW" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 5
 	},
@@ -35472,9 +35149,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 5
 	},
@@ -35536,9 +35211,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/nw_rockies)
 "wKm" = (
-/obj/structure/fence{
-	layer = 2.9
-	},
+/obj/structure/fence,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -35583,9 +35256,7 @@
 /area/gelida/landing_zone_1)
 "wLx" = (
 /obj/structure/bed,
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/item/clothing/under/suit_jacket,
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
@@ -35768,11 +35439,9 @@
 /area/gelida/indoors/c_block/cargo)
 "wRA" = (
 /obj/structure/bed{
-	layer = 2.7;
 	pixel_y = 12
 	},
 /obj/structure/bed{
-	layer = 2.6;
 	pixel_y = 25
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -36132,15 +35801,13 @@
 "xjG" = (
 /obj/structure/fakeplatform,
 /obj/structure/fakeplatform{
-	dir = 4;
-	layer = 2.9
+	dir = 4
 	},
 /obj/machinery/power/port_gen/pacman{
 	pixel_x = -6
 	},
 /obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
+	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -36154,8 +35821,7 @@
 	},
 /obj/structure/fakeplatform,
 /obj/structure/platform_decoration{
-	dir = 6;
-	layer = 3.51
+	dir = 6
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
@@ -36209,7 +35875,6 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "xmh" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 16
 	},
 /obj/structure/fakeplatform,
@@ -36265,8 +35930,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration{
-	dir = 10;
-	layer = 3.51
+	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
@@ -36757,8 +36421,7 @@
 /area/gelida/indoors/a_block/corpo)
 "xEF" = (
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 3
+	dir = 1
 	},
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/podhatch/floor,
@@ -36827,7 +36490,6 @@
 "xHa" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/tray{
-	layer = 2.9;
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita{
@@ -36945,15 +36607,12 @@
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
-	layer = 3.5;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
 	pixel_y = 13
 	},
-/obj/item/bedsheet/brown{
-	layer = 3.1
-	},
+/obj/item/bedsheet/brown,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/c_block/mining)
@@ -37066,7 +36725,6 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "xMV" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -37261,7 +36919,6 @@
 	pixel_x = -4
 	},
 /obj/structure/ore_box{
-	layer = 3.2;
 	pixel_x = -11;
 	pixel_y = 23
 	},
@@ -37299,9 +36956,7 @@
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "xTh" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -37325,7 +36980,6 @@
 /obj/structure/table/mainship,
 /obj/structure/flora/pottedplant{
 	desc = "It is made of Fiberbush(tm). It contains asbestos. Studies say that greenery calms the mind due to some sort evolved mechanism in the brain. This plant is not calming.";
-	layer = 3.1;
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
@@ -37352,7 +37006,6 @@
 /area/gelida/outdoors/colony_streets/south_street)
 "xUw" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -37723,9 +37376,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "yij" = (
-/obj/machinery/floodlight/colony{
-	layer = 4.3
-	},
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 5
 	},
@@ -47032,7 +46683,7 @@ oCf
 sUT
 oCf
 oCf
-kyt
+pzg
 rfv
 yfp
 yfp
@@ -60012,7 +59663,7 @@ aWU
 xEZ
 xEZ
 dKZ
-fyb
+mju
 pPX
 pYw
 wTw
@@ -62886,7 +62537,7 @@ eWY
 eWY
 ebK
 pPX
-hlj
+iBO
 cqo
 xEZ
 ezR
@@ -63990,7 +63641,7 @@ wfe
 wJs
 fWH
 fWH
-hsR
+iBO
 tXT
 aXD
 npZ
@@ -71041,7 +70692,7 @@ lkT
 lkT
 lkT
 lkT
-lYt
+ohb
 lAq
 sxT
 ijt
@@ -71051,7 +70702,7 @@ euX
 lkT
 lkT
 lkT
-lYt
+ohb
 xcj
 xcj
 lAW
@@ -71553,7 +71204,7 @@ mWd
 bHK
 mWd
 gCK
-ebE
+hZT
 gCK
 xBY
 usW

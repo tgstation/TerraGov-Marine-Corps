@@ -97,6 +97,15 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
+/obj/effect/attach_point/weapon/cas/left
+	icon_state = "30"
+
+/obj/effect/attach_point/weapon/cas/left/alt
+	icon_state = "31"
+
+/obj/effect/attach_point/weapon/cas/right
+	icon_state = "16"
+
 /obj/effect/attach_point/weapon/minidropship
 	ship_tag = SHUTTLE_TADPOLE
 	pixel_y = 32
