@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Created a lint to guard against icon_state varedits being introduced to our maps."
+  - code_imp: "Purged all icon_state varedits from our maps."
+  - bugfix: "Fixed an oversight where the escape pod walls were not solid."
