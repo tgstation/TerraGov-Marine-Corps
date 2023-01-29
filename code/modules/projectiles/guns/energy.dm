@@ -631,6 +631,12 @@
 	windup_sound = 'sound/weapons/guns/fire/Laser Sniper Overcharge Charge.ogg'
 	icon_state = "tes"
 	item_state = "tes"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 10 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
@@ -703,7 +709,7 @@
 	message_to_user = "You set the sniper rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
-	radial_icon_state = "laser_overcharge"
+	radial_icon_state = "laser_sniper_overcharge"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
