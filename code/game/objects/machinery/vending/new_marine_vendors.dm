@@ -760,6 +760,7 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
 		/obj/item/tool/surgery/solderingtool,
+		/obj/item/tool/pickaxe/plasmacutter,
 	)
 
 /obj/effect/vendor_bundle/white_dress
