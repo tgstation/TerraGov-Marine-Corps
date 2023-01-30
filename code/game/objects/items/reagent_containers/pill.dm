@@ -159,8 +159,8 @@
 	pill_id = 7
 
 /obj/item/reagent_containers/pill/isotonic
-	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/iron = 6, /datum/reagent/consumable/sugar = 3)
+	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration. Do not take more then 4."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 7.5, /datum/reagent/iron = 7.5)
 	pill_id = 4
 
 /obj/item/reagent_containers/pill/inaprovaline

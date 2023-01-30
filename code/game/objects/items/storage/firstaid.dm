@@ -352,7 +352,7 @@
 
 /obj/item/storage/pill_bottle/isotonic
 	name = "isotonic pill bottle"
-	desc = "Contains pills that stimulate the regeneration of lost blood."
+	desc = "Contains pills that stimulate the regeneration of lost blood. Do not take more then 4."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
 	greyscale_colors = "#5c0e0e#ffffff"
 	description_overlay = "Is"
