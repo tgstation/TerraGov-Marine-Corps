@@ -261,7 +261,7 @@
 
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist) or someone who didn't enter their body in time.
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected. Please try again."))
-		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 30, 0)
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
 	//At this point, the defibrillator is ready to work
@@ -274,11 +274,11 @@
 
 	if(H.health <= H.get_death_threshold())
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again."))
-		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 30, 0)
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful."))
-	playsound(get_turf(src), 'sound/items/defib_success.ogg', 30, 0)
+	playsound(get_turf(src), 'sound/items/defib_success.ogg', 35, 0)
 	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
 	H.chestburst = 0 //reset our chestburst state
