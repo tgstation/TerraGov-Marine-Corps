@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "Mech Rocket launcher no longer has heavy explosion, it now has 1 more tile of light explosive range."
