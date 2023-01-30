@@ -61,20 +61,20 @@
 		limb?.detach(src)
 	return ..()
 
-/obj/vehicle/sealed/after_add_occupant(mob/M)
+/obj/vehicle/sealed/mecha/combat/greyscale/after_add_occupant(mob/M)
 	var/mob/living/carbon/human/pilot = M
 	var/obj/item/radio/headset/mainship/headset = pilot.wear_ear
 	if(istype(headset))
 		headset.remove_minimap()
-	update_minimap_icon()
+	src.update_minimap_icon()
 	return ..()
 
-/obj/vehicle/sealed/after_remove_occupant(mob/M)
+/obj/vehicle/sealed/mecha/combat/greyscale/after_remove_occupant(mob/M)
 	var/mob/living/carbon/human/pilot = M
 	var/obj/item/radio/headset/mainship/headset = pilot.wear_ear
 	if(istype(headset))
 		headset.add_minimap()
-	update_minimap_icon()
+	src.update_minimap_icon()
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
