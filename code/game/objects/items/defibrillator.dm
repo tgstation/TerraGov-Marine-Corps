@@ -103,6 +103,11 @@
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
+	if(ready)
+		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 25, 0)
+	else
+		w_class = initial(w_class)
+		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 25, 0)
 	update_icon()
 
 
@@ -255,7 +260,8 @@
 		return
 
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected. Please try again."))
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 30, 0)
 		return
 
 	//At this point, the defibrillator is ready to work
@@ -268,9 +274,11 @@
 
 	if(H.health <= H.get_death_threshold())
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again."))
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 30, 0)
 		return
 
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful."))
+	playsound(get_turf(src), 'sound/items/defib_success.ogg', 30, 0)
 	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
 	H.chestburst = 0 //reset our chestburst state
