@@ -104,10 +104,10 @@
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
 	if(ready)
-		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 25, 0)
+		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
 	else
 		w_class = initial(w_class)
-		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 25, 0)
+		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 30, 0)
 	update_icon()
 
 
@@ -259,7 +259,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
 		return
 
-	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
+	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist) or someone who didn't enter their body in time.
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected. Please try again."))
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 30, 0)
 		return
