@@ -1,5 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - code_imp: "Added new vendor tags and categories for synthetic vendor items."
-  - qol: "Items in the synthetic vendor are labelled properly with tags like Cosmetic, Provides Armor, etc"

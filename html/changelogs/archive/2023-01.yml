@@ -356,3 +356,18 @@
       legs)
   - balance: Reduces mech vanguard part health from 550 hp -> 340 hp (1800 total including
       legs)
+2023-01-30:
+  Neocloudy:
+  - code_imp: Added new vendor tags and categories for synthetic vendor items.
+  - qol: Items in the synthetic vendor are labelled properly with tags like Cosmetic,
+      Provides Armor, etc
+  QualityVan:
+  - balance: Surgery tool cost reduced by 99% to prevent quick infinite free metal
+      by vending pouches.
+  RipGrayson:
+  - rscadd: Created a lint to guard against icon_state varedits being introduced to
+      our maps.
+  - code_imp: Purged all icon_state varedits from our maps.
+  - bugfix: Fixed an oversight where the escape pod walls were not solid.
+  chizzy376:
+  - bugfix: added a missing "is" to clone vat's error message when removing a beaker
