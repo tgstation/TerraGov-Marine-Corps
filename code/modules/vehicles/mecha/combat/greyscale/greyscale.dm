@@ -61,6 +61,21 @@
 		limb?.detach(src)
 	return ..()
 
+/obj/vehicle/sealed/after_add_occupant(mob/M)
+	var/mob/living/carbon/human/pilot = M
+	var/obj/item/radio/headset/mainship/headset = pilot.wear_ear
+	if(istype(headset))
+		headset.remove_minimap()
+	update_minimap_icon()
+	return ..()
+
+/obj/vehicle/sealed/after_remove_occupant(mob/M)
+	var/mob/living/carbon/human/pilot = M
+	var/obj/item/radio/headset/mainship/headset = pilot.wear_ear
+	if(istype(headset))
+		headset.add_minimap()
+	update_minimap_icon()
+	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
 	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
@@ -130,6 +145,10 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
 	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
+
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "mecha[occupants ? "_occd" : "_unoccd"]")
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
