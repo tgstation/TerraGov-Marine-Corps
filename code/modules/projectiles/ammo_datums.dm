@@ -1713,7 +1713,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 2, 4, 5)
+	explosion(T, 0, 0, 5, 5)
 
 /datum/ammo/rocket/heavy_rr
 	name = "75mm round"
