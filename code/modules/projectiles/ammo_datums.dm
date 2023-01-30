@@ -2374,7 +2374,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 16
+	damage = 15
 	penetration = 22.5
 
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
@@ -2382,6 +2382,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_efficiency"
 	damage = 12.5
 	penetration = 5
+	sundering = 0.5
 	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/autolaser/swarm
@@ -2397,7 +2398,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
 	hud_state = "laser_sniper"
-	damage = 65
+	damage = 70
 	penetration = 45
 	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
