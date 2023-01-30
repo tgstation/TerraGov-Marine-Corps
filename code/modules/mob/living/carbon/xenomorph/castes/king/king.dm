@@ -43,3 +43,6 @@
 /mob/living/carbon/xenomorph/king/on_death()
 	. = ..()
 	SSmonitor.stats.king--
+
+/mob/living/carbon/xenomorph/queen/death_cry()
+	playsound(loc, 'sound/voice/alien_king_died.ogg', 75, 0)
