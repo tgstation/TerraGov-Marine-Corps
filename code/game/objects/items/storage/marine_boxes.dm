@@ -916,3 +916,49 @@
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+// SL kits
+
+/obj/item/storage/box/sl
+	name = "\improper Squad Leader Equipment box"
+	desc = "A large case containing a set of equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sl_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 8
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+/obj/item/storage/box/sl/tx8/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+
+/obj/item/storage/box/sl/standard_autosniper/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+
+/obj/item/storage/box/sl/mateba/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/storage/belt/gun/mateba/full(src)
+	new /obj/item/ammo_magazine/packet/mateba(src)
+	new /obj/item/ammo_magazine/packet/mateba(src)
+
+/obj/item/storage/box/sl/thermobaric/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
