@@ -4128,7 +4128,6 @@
 	},
 /area/mainship/hallways/hangar/droppod)
 "fgU" = (
-/obj/machinery/floodlight/combat,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -13531,9 +13530,7 @@
 /area/mainship/squads/general)
 "rrj" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
-/obj/machinery/computer/mech_builder{
-	dir = 8
-	},
+/obj/structure/prop/computer/broken,
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
 "rrt" = (
@@ -15606,7 +15603,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "tWV" = (
-/obj/machinery/floodlight/combat,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "tXl" = (
@@ -18903,7 +18899,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "yaL" = (
-/obj/machinery/floodlight/combat,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
