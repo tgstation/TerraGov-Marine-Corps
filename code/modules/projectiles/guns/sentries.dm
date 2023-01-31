@@ -7,7 +7,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smartgun_unload.ogg'
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, "rad" = 0, FIRE = 80, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
 	fire_delay = 0.6 SECONDS
 	extra_delay = 0.6 SECONDS
@@ -95,14 +95,14 @@
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
 	sentry_iff_signal = SON_OF_MARS_IFF
 
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, "rad" = 0, FIRE = 80, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
 	ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_item = IS_DEPLOYABLE|TWOHANDED

@@ -38,7 +38,10 @@
 /turf/closed/wall/r_wall/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
-
+/turf/closed/wall/r_wall/unmeltable/regular //looks like a regular wall, behaves like an invincible wall
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "metal"
+	walltype = "metal"
 
 
 

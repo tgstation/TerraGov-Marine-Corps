@@ -18,7 +18,7 @@
 	flags_armor_protection = NONE
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"

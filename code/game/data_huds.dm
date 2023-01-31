@@ -96,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, XENO_DEBUFF_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -189,11 +189,15 @@
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
 	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', icon_state = "sanguinal")
 	var/static/image/ozelomelyn_image = image('icons/mob/hud.dmi', icon_state = "ozelomelyn")
+	var/static/image/intoxicated_image = image('icons/mob/hud.dmi', icon_state = "intoxicated")
+	var/static/image/intoxicated_amount_image = image('icons/mob/hud.dmi', icon_state = "intoxicated_amount0")
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
 	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
+	var/static/image/intoxicated_high_image = image('icons/mob/hud.dmi', icon_state = "intoxicated_high")
+	var/static/image/hive_target_image = image('icons/mob/hud.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -236,11 +240,33 @@
 		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
 
+	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
+		xeno_debuff.overlays += hive_target_image
+
+	if(has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+		var/intoxicated_amount = debuff.stacks
+		xeno_debuff.overlays += intoxicated_amount_image
+		intoxicated_amount_image.icon_state = "intoxicated_amount[intoxicated_amount]"
+		if(intoxicated_amount > 15)
+			xeno_debuff.overlays += intoxicated_high_image
+		else if(intoxicated_amount > 0)
+			xeno_debuff.overlays += intoxicated_image
+
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
-		status_hud.icon_state = "hudsynth"
+		if(stat != DEAD)
+			status_hud.icon_state = "hudsynth"
+		else
+			if(!client)
+				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
+				if(!G)
+					status_hud.icon_state = "hudsynthdnr"
+				else
+					status_hud.icon_state = "hudsynthdead"
+			return
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
@@ -253,7 +279,10 @@
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
-			infection_hud.icon_state = "infected[E.stage]"
+			if(E.boost_timer)
+				infection_hud.icon_state = "infectedmodifier[E.stage]"
+			else
+				infection_hud.icon_state = "infected[E.stage]"
 		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
 			infection_hud.icon_state = "infected6"
 		else

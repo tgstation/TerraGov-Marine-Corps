@@ -136,7 +136,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
 	flags_armor_features = ARMOR_NO_DECAP
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, "rad" = 0, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, FIRE = 50, ACID = 50)
 	var/mob/living/simple_animal/cat/cat
 
 /obj/item/clothing/head/cat/Destroy()

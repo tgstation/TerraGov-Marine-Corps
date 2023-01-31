@@ -16,6 +16,8 @@
 
 	default_ammo = /datum/ammo/flamethrower
 
+	var/dispenser_type = /obj/structure/reagent_dispensers/fueltank
+
 /obj/item/ammo_magazine/flamer_tank/mini
 	name = "mini incinerator tank"
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."
@@ -28,29 +30,29 @@
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
-	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-		if(default_ammo != /datum/ammo/flamethrower)
-			to_chat(user, span_warning("Not the right kind of fuel!"))
-			return ..()
-		if(current_rounds >= max_rounds)
-			to_chat(user, span_warning("[src] is already full."))
-			return ..()
-		var/obj/structure/reagent_dispensers/fueltank/FT = target
-		if(FT.reagents.total_volume == 0)
-			to_chat(user, span_warning("Out of fuel!"))
-			return..()
+	if(!istype(target, /obj/structure/reagent_dispensers) || get_dist(user, target) > 1)
+		return ..()
+	if(!dispenser_type)
+		to_chat(user, span_warning("This isn't refillable!"))
+		return ..()
+	if(!istype(target, dispenser_type))
+		to_chat(user, span_warning("Not the right kind of tank!"))
+		return ..()
+	if(current_rounds >= max_rounds)
+		to_chat(user, span_warning("[src] is already full."))
+		return ..()
+	var/obj/structure/reagent_dispensers/dispenser = target
+	if(dispenser.reagents.total_volume == 0)
+		to_chat(user, span_warning("This tank is empty!"))
+		return..()
 
-		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
-		var/fuel_transfer_amount = min(FT.reagents.total_volume, (max_rounds - current_rounds))
-		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		caliber = CALIBER_FUEL
-		to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
-		update_icon()
-
-	else
-		..()
+	//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
+	var/liquid_transfer_amount = min(dispenser.reagents.total_volume, (max_rounds - current_rounds))
+	dispenser.reagents.remove_any(liquid_transfer_amount)
+	current_rounds += liquid_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
+	update_icon()
 
 /obj/item/ammo_magazine/flamer_tank/update_icon()
 	return
@@ -79,6 +81,7 @@
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
+	dispenser_type = null
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
@@ -99,3 +102,19 @@
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue
+	dispenser_type = null
+
+/obj/item/ammo_magazine/flamer_tank/water
+	name = "pressurized water tank"
+	desc = "A cannister of water for use with the FL-84's underslung extinguisher. Can be refilled by hand."
+	icon_state = "watertank"
+	max_rounds = 200
+	current_rounds = 200
+	reload_delay = 0 SECONDS
+	w_class = WEIGHT_CLASS_NORMAL
+	caliber = CALIBER_WATER //Deep lore
+	flags_magazine = NONE
+	icon_state_mini = "tank_blue_mini"
+
+	default_ammo = /datum/ammo/water
+	dispenser_type = /obj/structure/reagent_dispensers/watertank

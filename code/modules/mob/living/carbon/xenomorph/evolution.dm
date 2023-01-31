@@ -211,6 +211,31 @@
 		if(!T.check_alien_construction(src))
 			return
 
+	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
+		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen) // copies queen requirements
+		if(xenojob.required_playtime_remaining(client))
+			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role."))
+			return
+
+		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
+			to_chat(src, span_warning("You are jobbanned from Queen-like roles."))
+			return
+
+		if(hive.can_hive_have_a_king())
+			to_chat(src, span_warning("The hivemind is too weak to sustain a King. Gather more xenos. [hive.xenos_per_king] are required."))
+			return FALSE
+
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
+			to_chat(src, span_warning("There already is a living King. The hive cannot support more than one psychic energy repository at once."))
+			return
+
+		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_king_timer)
+			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_king_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
+			return
+
+		if(isxenoresearcharea(get_area(src)))
+			to_chat(src, span_warning("Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!"))
+			return
 
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
@@ -259,6 +284,10 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
+	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
+			to_chat(src, span_warning("There cannot be two kings at once."))
+			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
 		if(tier == XENO_TIER_ONE && no_room_tier_two)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
@@ -281,10 +310,9 @@
 		if(new_xeno)
 			qdel(new_xeno)
 		return
-	if(tier != XENO_TIER_ONE || !regression )
-		new_xeno.upgrade_xeno(upgrade, TRUE)
-	if(!regression && upgrade != XENO_UPGRADE_INVALID)
-		new_xeno.upgrade_xeno(new_xeno.upgrade_prev(), TRUE)
+	new_xeno.upgrade_stored = upgrade_stored
+	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold && new_xeno.upgrade_possible())
+		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 
@@ -346,7 +374,7 @@
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
-	var/obj/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
+	var/atom/movable/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)

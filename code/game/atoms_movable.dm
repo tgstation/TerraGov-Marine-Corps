@@ -420,7 +420,7 @@
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
 //called when src is thrown into hit_atom
-/atom/movable/proc/throw_impact(atom/hit_atom, speed)
+/atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.hitby(src, speed)
@@ -435,8 +435,9 @@
 		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
-			spawn(2)
-				step(src, turn(dir, 180))
+			if(bounce)
+				spawn(2)
+					step(src, turn(dir, 180))
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
@@ -456,19 +457,22 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || L.throwpass) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if((!L.density || (L.flags_pass & PASSPROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.flags_pass & PASSPROJECTILE) || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	set waitfor = FALSE
 	if(!target || !src)
+		return FALSE
+
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
 
 	if(spin)
@@ -520,7 +524,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 			else
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
@@ -535,7 +539,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
 		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
@@ -554,7 +558,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 			else
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
@@ -569,7 +573,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
@@ -682,7 +686,7 @@
 	if(!I)
 		return
 
-	flick_overlay(I, GLOB.clients, 0.5 SECONDS)
+	flick_overlay_view(I, A, 0.5 SECONDS)
 
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
@@ -696,6 +700,7 @@
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
+	.["Edit Particles"] = "?_src_=vars;[HrefToken()];modify_particles=[REF(src)]"
 
 
 /atom/movable/proc/get_language_holder(shadow = TRUE)
@@ -1097,5 +1102,5 @@
 /atom/movable/proc/on_hearing_sensitive_trait_loss()
 	SIGNAL_HANDLER
 	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE))
-	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+	for(var/atom/movable/location AS in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)

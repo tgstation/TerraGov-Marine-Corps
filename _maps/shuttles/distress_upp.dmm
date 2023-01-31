@@ -3,42 +3,29 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp20"
+/turf/closed/shuttle/dropship_dark/top_corner/alt{
+	dir = 8
 	},
 /area/shuttle/ert/upp)
 "c" = (
 /obj/docking_port/mobile/ert,
-/turf/closed/shuttle/ert{
-	icon_state = "upp27"
-	},
+/turf/closed/shuttle/dropship_dark/cockpit_window,
 /area/shuttle/ert/upp)
 "d" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp25"
-	},
+/turf/closed/shuttle/dropship_dark/top_corner/alt,
 /area/shuttle/ert/upp)
 "e" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp21"
-	},
+/turf/closed/shuttle/dropship_dark/backwall,
 /area/shuttle/ert/upp)
 "f" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp22"
-	},
+/turf/closed/shuttle/dropship_dark/interior_corner,
 /area/shuttle/ert/upp)
 "g" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "h" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp23"
-	},
-/area/shuttle/ert/upp)
-"i" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp4"
+/turf/closed/shuttle/dropship_dark/interior_corner{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "j" = (
@@ -52,14 +39,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/shuttle/ert/upp)
 "l" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/dropship/five,
 /area/shuttle/ert/upp)
 "m" = (
 /obj/machinery/light{
@@ -74,8 +57,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "o" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp5"
+/turf/closed/shuttle/dropship_dark/interior_wall{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "p" = (
@@ -93,9 +76,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "s" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp16"
-	},
+/turf/closed/shuttle/dropship_dark/logo_wall,
 /area/shuttle/ert/upp)
 "t" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -112,9 +93,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "v" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/shuttle/ert/upp)
 "w" = (
 /turf/open/shuttle/dropship/eight,
@@ -137,22 +116,18 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert/upp)
 "A" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp_leftengine"
-	},
+/turf/closed/shuttle/dropship_dark/engine_corner,
 /area/shuttle/ert/upp)
 "B" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp8"
-	},
+/turf/closed/shuttle/dropship_dark/top_corner,
 /area/shuttle/ert/upp)
 "C" = (
 /obj/machinery/computer/shuttle/ert,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "D" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp9"
+/turf/closed/shuttle/dropship_dark/top_corner{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "E" = (
@@ -162,8 +137,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "F" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp_rightengine"
+/turf/closed/shuttle/dropship_dark/engine_corner{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "G" = (
@@ -182,67 +157,58 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "K" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp1"
-	},
+/turf/closed/shuttle/dropship_dark/backhatch,
 /area/shuttle/ert/upp)
 "L" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp2"
+/turf/closed/shuttle/dropship_dark/backhatch{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "M" = (
-/turf/closed/shuttle/ert{
-	icon_state = "upp3"
+/turf/closed/shuttle/dropship_dark/backhatch{
+	dir = 4
 	},
 /area/shuttle/ert/upp)
 "N" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 "Q" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_3";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 4
 	},
 /area/shuttle/ert/upp)
 "U" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/shuttle/ert/upp)
 "V" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_3";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 4
 	},
+/area/shuttle/ert/upp)
+"W" = (
+/turf/closed/shuttle/dropship_dark/interior_wall,
 /area/shuttle/ert/upp)
 "X" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/shuttle/ert/upp)
 "Z" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
 	},
 /area/shuttle/ert/upp)
 
 (1,1,1) = {"
 a
 b
-i
+s
 p
 s
-i
-i
+W
+W
 p
-i
+W
 A
 Q
 N
@@ -259,8 +225,8 @@ t
 g
 x
 B
-i
-i
+W
+W
 K
 "}
 (3,1,1) = {"

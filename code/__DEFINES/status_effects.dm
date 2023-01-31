@@ -17,6 +17,12 @@
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF /datum/status_effect/stacking/gun_skill/scatter/buff // Increases the scatter of the mob
 
+#define STATUS_EFFECT_XENO_ESSENCE_LINK /datum/status_effect/stacking/essence_link
+
+#define STATUS_EFFECT_XENO_SALVE_REGEN /datum/status_effect/salve_regen
+
+#define STATUS_EFFECT_XENO_ENHANCEMENT /datum/status_effect/drone_enhancement
+
 #define STATUS_EFFECT_XENO_REJUVENATE /datum/status_effect/xeno_rejuvenate
 
 #define STATUS_EFFECT_XENO_PSYCHIC_LINK /datum/status_effect/xeno_psychic_link
@@ -30,6 +36,8 @@
 #define STATUS_EFFECT_PLASMA_SURGE /datum/status_effect/plasma_surge
 
 #define STATUS_EFFECT_HEALING_INFUSION /datum/status_effect/healing_infusion
+
+#define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
 /////////////
 // DEBUFFS //
@@ -57,7 +65,9 @@
 
 #define STATUS_EFFECT_MUTED /datum/status_effect/mute //Mutes the affected mob
 
-#define STATUS_EFFECT_IRRADIATED /datum/status_effect/irradiated //the affected has been irradiated, harming them over time
+#define STATUS_EFFECT_IRRADIATED /datum/status_effect/incapacitating/irradiated //the affected has been irradiated, harming them over time
+
+#define STATUS_EFFECT_INTOXICATED /datum/status_effect/stacking/intoxicated //Damage over time
 
 #define STATUS_EFFECT_DRAGONFIRE /datum/status_effect/dragon_fire // The affected mob has been set on fire by a dragon, acts like fire, but with a few differences
 

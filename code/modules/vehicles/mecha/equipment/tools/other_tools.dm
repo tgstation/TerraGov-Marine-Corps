@@ -204,5 +204,5 @@
 	var/use_fuel = fuelrate_idle
 	if(cur_charge < chassis.cell.maxcharge)
 		use_fuel = fuelrate_active
-		chassis.give_power(rechargerate * delta_time/10)
-	fuel.amount -= min(delta_time/10 * use_fuel / MINERAL_MATERIAL_AMOUNT, fuel.amount)
+		chassis.give_power(rechargerate * delta_time)
+	fuel.amount -= min(delta_time * use_fuel / MINERAL_MATERIAL_AMOUNT, fuel.amount)

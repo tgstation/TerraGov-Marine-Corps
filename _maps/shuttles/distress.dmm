@@ -3,41 +3,33 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan20"
+/turf/closed/shuttle/dropship_regular/top_corner/alt{
+	dir = 1
 	},
 /area/shuttle/ert)
 "c" = (
 /obj/docking_port/mobile/ert,
-/turf/closed/shuttle/ert{
-	icon_state = "stan27"
-	},
+/turf/closed/shuttle/dropship_regular/cockpit_window,
 /area/shuttle/ert)
 "d" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan25"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/shuttle/ert)
 "e" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan21"
-	},
+/turf/closed/shuttle/dropship_regular/backwall,
 /area/shuttle/ert)
 "f" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan22"
-	},
+/turf/closed/shuttle/dropship_regular/interior_corner,
 /area/shuttle/ert)
 "g" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "h" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan23"
+/turf/closed/shuttle/dropship_regular/interior_corner{
+	dir = 1
 	},
 /area/shuttle/ert)
 "i" = (
-/turf/closed/shuttle/ert,
+/turf/closed/shuttle/dropship_regular/interior_wall,
 /area/shuttle/ert)
 "j" = (
 /obj/structure/rack,
@@ -50,14 +42,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/shuttle/ert)
 "l" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/dropship/five,
 /area/shuttle/ert)
 "m" = (
 /obj/machinery/light{
@@ -72,8 +60,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "o" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan5"
+/turf/closed/shuttle/dropship_regular/interior_wall{
+	dir = 1
 	},
 /area/shuttle/ert)
 "p" = (
@@ -112,34 +100,28 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "v" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/shuttle/ert)
 "w" = (
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/ert)
 "x" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan_leftengine"
-	},
+/turf/closed/shuttle/dropship_regular/engine_corner,
 /area/shuttle/ert)
 "y" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan8"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner,
 /area/shuttle/ert)
 "z" = (
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert)
 "A" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan9"
+/turf/closed/shuttle/dropship_regular/top_corner{
+	dir = 1
 	},
 /area/shuttle/ert)
 "B" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan_rightengine"
+/turf/closed/shuttle/dropship_regular/engine_corner{
+	dir = 1
 	},
 /area/shuttle/ert)
 "C" = (
@@ -159,15 +141,12 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "G" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_3";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 4
 	},
 /area/shuttle/ert)
 "H" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan1"
-	},
+/turf/closed/shuttle/dropship_regular/backhatch,
 /area/shuttle/ert)
 "I" = (
 /obj/machinery/door/poddoor/shutters/transit/open{
@@ -179,43 +158,34 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "J" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan2"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 1
 	},
 /area/shuttle/ert)
 "K" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan3"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 4
 	},
 /area/shuttle/ert)
 "N" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_3";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 4
 	},
 /area/shuttle/ert)
 "O" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
 	},
 /area/shuttle/ert)
 "Q" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/shuttle/ert)
 "R" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/shuttle/ert)
 "S" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
 	},
 /area/shuttle/ert)
 

@@ -59,6 +59,7 @@
 
 	deltimer(current_timer)
 	current_timer = null
+	update_minimap_icon()
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 	return PROCESS_KILL
 

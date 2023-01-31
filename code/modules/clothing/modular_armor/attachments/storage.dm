@@ -11,6 +11,7 @@
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
 	w_class = WEIGHT_CLASS_BULKY
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/style = "")
 	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
 	///If TRUE it will add extra overlays for the items within.
@@ -31,6 +32,7 @@
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, .proc/open_storage)	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
 	storage.master_item = parent
 
@@ -288,18 +290,3 @@
 	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
-
-/obj/item/armor_module/storage/helmet/som_leader/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-
-/obj/item/armor_module/storage/helmet/som_vet/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(storage)
-
-/obj/item/armor_module/storage/helmet/som/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(storage)

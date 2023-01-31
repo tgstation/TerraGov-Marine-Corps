@@ -127,7 +127,7 @@
 		else
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			cut_overlay(GLOB.welding_sparks)
-			return TRUE	
+			return TRUE
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
@@ -180,6 +180,10 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/layer3
 	piping_layer = 3
+	icon_state = "vent_map-3"
+
+/obj/machinery/atmospherics/components/unary/vent_pump/layer4
+	piping_layer = 4
 	icon_state = "vent_map-3"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/on

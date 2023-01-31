@@ -64,14 +64,13 @@
 	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
 		return TRUE
 
-obj/structure/platform_decoration
+/obj/structure/platform_decoration
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform_deco"
 	anchored = TRUE
 	density = FALSE
-	throwpass = TRUE
 	layer = 3.5
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
@@ -124,7 +123,7 @@ obj/structure/platform_decoration
 	anchored = TRUE
 	density = FALSE //no density these platforms are for looks not for climbing
 	coverage = 0
-	layer = OBJ_LAYER
+	layer = LATTICE_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
 	obj_integrity = 50	//Ditto
@@ -144,3 +143,7 @@ obj/structure/platform_decoration
 		if(WEST)
 			I.pixel_x = -16
 	overlays += I
+
+/obj/structure/fakeplatform/magmoor
+	icon_state = "metalplatform"
+	layer = LATTICE_LAYER

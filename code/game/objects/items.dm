@@ -129,7 +129,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-
 /obj/item/Initialize()
 
 	if(species_exception)
@@ -330,12 +329,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
-/obj/item/proc/do_quick_equip()
+/obj/item/proc/do_quick_equip(mob/user)
 	var/obj/item/found = locate(/obj/item/storage) in contents
 	if(!found)
 		found = locate(/obj/item/armor_module/storage) in contents
 	if(found)
-		return found.do_quick_equip()
+		return found.do_quick_equip(user)
 	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -733,7 +732,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_view(pickup_animation, src, 4)
 	var/matrix/animation_matrix = new(pickup_animation.transform)
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)
@@ -1002,29 +1001,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 3
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 2
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 1
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 0
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 
 	var/turf/T = get_turf(target)
@@ -1072,7 +1071,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 								C.die()
 				if(W.loc == my_target)
 					break
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(W)
 
 	if(isspaceturf(user.loc))
@@ -1265,3 +1264,112 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///applies any accessory the item may have, called by make_worn_icon().
 /obj/item/proc/apply_accessories(mutable_appearance/standing)
 	return standing
+
+//fancy tricks
+
+///Checks to see if you successfully perform a trick, and what kind
+/obj/item/proc/do_trick(mob/living/carbon/human/user)
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_TRICK))
+		return FALSE
+	if(!istype(user))
+		return FALSE
+	var/chance = -5
+	chance = user.health < 6 ? 0 : user.health - 5
+
+	var/obj/item/double = user.get_inactive_held_item()
+	if(prob(chance))
+		switch(rand(1,7))
+			if(1)
+				basic_spin_trick(user, -1)
+			if(2)
+				basic_spin_trick(user, 1)
+			if(3)
+				throw_catch_trick(user)
+			if(4)
+				basic_spin_trick(user, 1)
+			if(5)
+				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
+				basic_spin_trick(arglist(arguments))
+			if(6)
+				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
+				basic_spin_trick(arglist(arguments))
+			if(7)
+				if(istype(double))
+					spawn(0)
+						double.throw_catch_trick(user)
+					throw_catch_trick(user)
+				else
+					throw_catch_trick(user)
+	else
+		if(prob(10))
+			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
+		else
+			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
+
+	TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_TRICK, 6)
+
+	return TRUE
+
+///The basic spin trick
+/obj/item/proc/basic_spin_trick(mob/living/carbon/human/user, direction = 1, obj/item/double)
+	set waitfor = 0
+	playsound(user, 'sound/effects/spin.ogg', 25, 1)
+	if(double)
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		animation_wrist_flick(double, 1)
+	else
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+	animation_wrist_flick(src, direction)
+	sleep(0.3 SECONDS)
+	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
+
+///The fancy trick. Woah.
+/obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
+	set waitfor = 0
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	var/img_layer = MOB_LAYER+0.1
+	var/image/trick = image(icon,user,icon_state,img_layer)
+	switch(pick(1,2))
+		if(1) animation_toss_snatch(trick)
+		if(2) animation_toss_flick(trick, pick(1,-1))
+
+	invisibility = 100
+	for(var/mob/M in viewers(user))
+		SEND_IMAGE(M, trick)
+	sleep(0.5 SECONDS)
+	trick.loc = null
+	if(!loc || !user)
+		return
+	invisibility = 0
+	playsound(user, 'sound/effects/thud.ogg', 25, 1)
+
+	if(user.get_active_held_item() != src)
+		return
+
+	if(user.get_inactive_held_item())
+		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		return
+	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.temporarilyRemoveItemFromInventory(src)
+	user.put_in_inactive_hand(src)
+	user.swap_hand()
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
+
+///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
+/obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	//Put item into player's currently open storage
+	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+		user.s_active.handle_item_insertion(src, FALSE, user)
+		return
+	//Equip item onto player
+	if (auto_equip && vendor_equip(user))
+		return
+	//Otherwise fall back to putting item in player's hand
+	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
+		pickup(user)
+
+///Controls how vendors will try to equip this item. Returns whether item was sucessfully equipped
+/obj/item/proc/vendor_equip(mob/user)
+	return FALSE
+

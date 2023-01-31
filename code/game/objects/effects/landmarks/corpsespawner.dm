@@ -78,12 +78,11 @@
 			victim.update_burst()
 		if(COCOONED_DEATH) //Just cocooned
 			new /obj/structure/cocoon/opened_cocoon(loc)
-		if(HEADBITE_DEATH) //Headbite but left there
+		if(HEADBITE_DEATH) //removed brain
 			var/datum/internal_organ/brain
 			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
 			victim.internal_organs_by_name -= "brain"
 			victim.internal_organs -= brain
-			victim.headbitten = TRUE
 			victim.update_headbite()
 	qdel(src)
 
@@ -529,6 +528,21 @@
 	death_type = CHESTBURST_DEATH
 
 /obj/effect/landmark/corpsespawner/marine/corpsman/regular
+	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/assistant
+	name = "Assistant"
+	corpseuniform = /obj/item/clothing/under/color/grey
+	corpseback = /obj/item/storage/backpack
+	corpsemask = /obj/item/clothing/mask/gas
+	corpseglasses = /obj/item/clothing/glasses/welding
+	corpsehelmet = /obj/item/clothing/head/soft/grey
+	corpsegloves = /obj/item/clothing/gloves/fyellow
+	corpseshoes = /obj/item/clothing/shoes/black
+	corpsepocket1 = /obj/item/tool/soap/nanotrasen
+	corpsepocket2 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/assistant/regular
 	death_type = REGULAR_DEATH
 
 #undef REGULAR_DEATH

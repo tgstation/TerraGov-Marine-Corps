@@ -15,7 +15,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "ak" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "al" = (
@@ -43,7 +43,7 @@
 	},
 /area/mainship/patrol_base)
 "ax" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 6
 	},
 /turf/open/floor/mainship/som/sw,
@@ -65,7 +65,9 @@
 	},
 /area/mainship/patrol_base)
 "aN" = (
-/obj/structure/somcas/wingtip/wing7,
+/obj/structure/somcas/seven{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "aP" = (
@@ -78,15 +80,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
 "aV" = (
-/obj/structure/somcas{
-	icon_state = "28"
+/obj/structure/somcas/two{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
-"aX" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan25"
-	},
 /area/mainship/patrol_base/som)
 "ba" = (
 /obj/structure/flora/tree/pine,
@@ -118,9 +115,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "bX" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -178,13 +173,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "cU" = (
-/obj/structure/somcas/wingtip/wing2,
+/obj/structure/somcas/two{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
 /area/mainship/patrol_base/som)
 "dk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -198,7 +195,7 @@
 	},
 /area/mainship/patrol_base)
 "dr" = (
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -232,7 +229,7 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /area/mainship/patrol_base/som)
 "dI" = (
-/obj/effect/decal/siding,
+/obj/effect/turf_decal/siding,
 /turf/open/floor/mainship/som/s,
 /area/mainship/patrol_base/som)
 "dM" = (
@@ -263,11 +260,13 @@
 	},
 /area/mainship/patrol_base/som)
 "dX" = (
-/obj/structure/somcas/wingtip/wing13,
+/obj/structure/somcas/four{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "ec" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -316,8 +315,8 @@
 	},
 /area/mainship/patrol_base/som)
 "ep" = (
-/obj/structure/somcas{
-	icon_state = "9"
+/obj/structure/somcas/one{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -331,7 +330,7 @@
 /area/mainship/patrol_base/som)
 "eS" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black,
@@ -340,7 +339,7 @@
 /turf/open/floor/mainship/ntlogo,
 /area/mainship/patrol_base)
 "eX" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/red{
@@ -351,13 +350,11 @@
 /obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan25"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/mainship/patrol_base/som)
 "fp" = (
 /obj/machinery/elevator_strut/bottom,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -413,7 +410,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black{
@@ -461,9 +458,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "gL" = (
-/obj/structure/somcas/wingtip/wing12,
 /obj/structure/prop/mainship/prop_tech{
 	dir = 8
+	},
+/obj/structure/somcas/four{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -491,8 +490,8 @@
 /area/mainship/patrol_base/som)
 "hk" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/right{
-	pixel_y = 32;
-	dir = 1
+	dir = 1;
+	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
@@ -525,9 +524,7 @@
 /turf/open/floor/mainship/silver,
 /area/mainship/patrol_base/som)
 "hT" = (
-/obj/structure/somcas{
-	icon_state = "5"
-	},
+/obj/structure/somcas/five,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "hV" = (
@@ -538,9 +535,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "ib" = (
-/obj/structure/somcas{
-	icon_state = "23"
-	},
+/obj/structure/somcas/four,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "ic" = (
@@ -549,14 +544,13 @@
 	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
-	dir = 1
+	dir = 1;
+	pixel_x = -23
 	},
 /obj/effect/attach_point/weapon/minidropship{
 	equipment_offset_y = 25
 	},
-/turf/closed/shuttle/tadpole{
-	icon_state = "103";
+/turf/closed/shuttle/dropship2/rearcorner/alt{
 	dir = 1
 	},
 /area/mainship/patrol_base)
@@ -579,9 +573,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "it" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -609,8 +601,8 @@
 /area/mainship/patrol_base/som)
 "jb" = (
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
 	dir = 1;
+	pixel_x = 23;
 	pixel_y = -14
 	},
 /obj/machinery/light,
@@ -688,11 +680,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "kl" = (
-/obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "106";
+/turf/closed/shuttle/dropship2/glasstwo{
 	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "ko" = (
 /turf/open/floor/mainship/blue{
@@ -718,10 +708,13 @@
 /obj/structure/dropship_piece/tadpole/rearleft{
 	dir = 1
 	},
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mainship/patrol_base)
 "kM" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 1
 	},
 /turf/open/floor/mainship/som,
@@ -739,7 +732,7 @@
 /area/mainship/patrol_base)
 "kQ" = (
 /obj/structure/somcas{
-	icon_state = "26"
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -773,14 +766,14 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "ln" = (
-/obj/effect/decal/warning_stripes/stripedsquare,
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "lq" = (
-/obj/structure/somcas/wingtip/wing10,
+/obj/structure/somcas/three,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "lu" = (
@@ -840,7 +833,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "mg" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/office,
@@ -880,9 +873,7 @@
 	},
 /area/mainship/patrol_base/som)
 "ni" = (
-/obj/structure/somcas{
-	icon_state = "24"
-	},
+/obj/structure/somcas/two,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "nk" = (
@@ -891,7 +882,7 @@
 	},
 /area/mainship/patrol_base/som)
 "nm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -908,11 +899,9 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "nF" = (
-/obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "105";
+/turf/closed/shuttle/dropship2/glassone{
 	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "nH" = (
 /obj/structure/sign/double/map/right,
@@ -968,7 +957,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "oK" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "oO" = (
@@ -1017,7 +1006,7 @@
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/som)
 "pK" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -1098,7 +1087,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "qK" = (
-/obj/effect/decal/warning_stripes/box/arrow,
+/obj/effect/turf_decal/warning_stripes/box/arrow,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "qL" = (
@@ -1143,9 +1132,7 @@
 	},
 /area/mainship/patrol_base)
 "rn" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan21"
-	},
+/turf/closed/shuttle/dropship_regular/backwall,
 /area/mainship/patrol_base/som)
 "rq" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -1166,11 +1153,10 @@
 	equipment_offset_y = 25
 	},
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
-	dir = 1
+	dir = 1;
+	pixel_x = 23
 	},
-/turf/closed/shuttle/tadpole{
-	icon_state = "104";
+/turf/closed/shuttle/dropship2/rearcorner{
 	dir = 1
 	},
 /area/mainship/patrol_base)
@@ -1185,7 +1171,7 @@
 	},
 /area/mainship/patrol_base)
 "rM" = (
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "rN" = (
@@ -1238,8 +1224,8 @@
 	},
 /area/mainship/patrol_base)
 "sh" = (
-/obj/structure/somcas{
-	icon_state = "13"
+/obj/structure/somcas/six{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -1270,7 +1256,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "st" = (
-/obj/structure/somcas/wingtip/wing11,
+/obj/structure/somcas/three{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "sv" = (
@@ -1316,8 +1304,8 @@
 	},
 /area/mainship/patrol_base/som)
 "sM" = (
-/obj/structure/somcas{
-	icon_state = "12"
+/obj/structure/somcas/one{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -1347,7 +1335,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "tp" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/corner,
@@ -1381,8 +1369,8 @@
 /area/mainship/patrol_base/telecomms)
 "tK" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
-	pixel_y = 32;
-	dir = 1
+	dir = 1;
+	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
@@ -1390,7 +1378,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "tU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -1423,7 +1411,9 @@
 	},
 /area/mainship/patrol_base)
 "ug" = (
-/obj/structure/somcas/wingtip/wing8,
+/obj/structure/somcas/three{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "up" = (
@@ -1459,7 +1449,9 @@
 	},
 /area/mainship/patrol_base)
 "uS" = (
-/obj/structure/somcas/wingtip/wing9,
+/obj/structure/somcas/three{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "uT" = (
@@ -1526,7 +1518,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "vU" = (
-/obj/structure/somcas/wingtip/wing4,
+/obj/structure/somcas/five{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "vW" = (
@@ -1556,7 +1550,9 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base)
 "wB" = (
-/obj/structure/somcas/wingtip,
+/obj/structure/somcas/two{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "wC" = (
@@ -1646,9 +1642,7 @@
 	},
 /area/mainship/patrol_base/som)
 "xz" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -1762,9 +1756,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "yT" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan22"
-	},
+/turf/closed/shuttle/dropship_regular/interior_corner,
 /area/mainship/patrol_base/som)
 "zj" = (
 /obj/item/mortal_shell/howitzer/he,
@@ -1875,6 +1867,9 @@
 /obj/structure/dropship_piece/tadpole/rearright{
 	dir = 1
 	},
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mainship/patrol_base)
 "BD" = (
@@ -1946,7 +1941,7 @@
 /area/mainship/patrol_base/som)
 "Cs" = (
 /obj/structure/somcas{
-	icon_state = "32"
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -1983,7 +1978,7 @@
 	},
 /area/mainship/patrol_base)
 "DK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -2016,14 +2011,14 @@
 	},
 /area/mainship/patrol_base)
 "El" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Eo" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "Eq" = (
@@ -2065,8 +2060,8 @@
 	},
 /area/mainship/patrol_base/som)
 "EO" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan9"
+/turf/closed/shuttle/dropship_regular/top_corner{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "EU" = (
@@ -2095,7 +2090,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Fc" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -2164,8 +2159,8 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Gn" = (
-/obj/structure/somcas{
-	icon_state = "21"
+/obj/structure/somcas/eight{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -2255,7 +2250,7 @@
 	},
 /area/mainship/patrol_base/som)
 "HZ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /obj/machinery/light,
@@ -2291,8 +2286,8 @@
 	},
 /area/mainship/patrol_base/som)
 "Im" = (
-/obj/structure/somcas{
-	icon_state = "17"
+/obj/structure/somcas/four{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -2342,7 +2337,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2446,7 +2441,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Ks" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 9
 	},
 /turf/open/floor/mainship/som/ne,
@@ -2454,21 +2449,14 @@
 "Kz" = (
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/patrol_base)
-"KB" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan2"
-	},
-/area/mainship/patrol_base/som)
 "KC" = (
-/obj/structure/somcas{
-	icon_state = "16"
-	},
+/obj/structure/somcas/one,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "KE" = (
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
 	dir = 1;
+	pixel_x = -23;
 	pixel_y = -14
 	},
 /obj/machinery/light,
@@ -2585,7 +2573,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Me" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black,
@@ -2611,21 +2599,23 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "MF" = (
-/obj/effect/decal/warning_stripes/stripedsquare,
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "MM" = (
-/obj/structure/somcas/wingtip/wing3,
+/obj/structure/somcas/five{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "MP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "MS" = (
@@ -2639,7 +2629,7 @@
 	},
 /area/mainship/patrol_base)
 "MU" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/red{
@@ -2685,7 +2675,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "NP" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
@@ -2720,7 +2710,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/mainship/patrol_base/som)
 "NW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship/black{
@@ -2741,13 +2731,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "Oa" = (
-/obj/structure/somcas{
-	icon_state = "6"
+/obj/structure/somcas/one{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Oe" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 5
 	},
 /turf/open/floor/mainship/som/nw,
@@ -2786,7 +2776,7 @@
 	},
 /area/mainship/patrol_base/som)
 "OB" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2798,7 +2788,7 @@
 	},
 /area/space)
 "OG" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 10
 	},
 /turf/open/floor/mainship/som/se,
@@ -2855,12 +2845,12 @@
 /turf/open/space/basic,
 /area/space)
 "Pr" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan23"
+/turf/closed/shuttle/dropship_regular/interior_corner{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "Ps" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/corner{
@@ -2891,7 +2881,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -2916,7 +2906,7 @@
 /area/mainship/patrol_base/som)
 "Qd" = (
 /obj/structure/somcas{
-	icon_state = "2"
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -3009,8 +2999,8 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "RA" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan3"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "RC" = (
@@ -3064,10 +3054,10 @@
 	},
 /area/mainship/patrol_base/som)
 "RW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -3079,7 +3069,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "Sd" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/corner{
@@ -3099,9 +3089,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base)
 "Sm" = (
-/obj/structure/somcas{
-	icon_state = "27"
-	},
+/obj/structure/somcas/eight,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Sn" = (
@@ -3109,11 +3097,9 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "109";
+/turf/closed/shuttle/dropship2/singlewindow{
 	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "Sq" = (
 /obj/structure/cargo_container{
@@ -3169,8 +3155,8 @@
 /obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan3"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 4
 	},
 /area/mainship/patrol_base/som)
 "SN" = (
@@ -3209,7 +3195,7 @@
 	},
 /area/mainship/patrol_base)
 "SU" = (
-/obj/effect/decal/warning_stripes/stripedsquare,
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "SX" = (
@@ -3223,8 +3209,8 @@
 	},
 /area/space)
 "Ta" = (
-/obj/structure/somcas{
-	icon_state = "15"
+/obj/structure/somcas/five{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -3271,9 +3257,7 @@
 	},
 /area/mainship/patrol_base)
 "TI" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan1"
-	},
+/turf/closed/shuttle/dropship_regular/backhatch,
 /area/mainship/patrol_base/som)
 "TK" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
@@ -3294,9 +3278,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/mainship/patrol_base/som)
 "TT" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan8"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner,
 /area/mainship/patrol_base/som)
 "TW" = (
 /obj/structure/bed/chair,
@@ -3318,7 +3300,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Ud" = (
-/obj/structure/somcas/wingtip/wing6,
+/obj/structure/somcas/seven,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Uf" = (
@@ -3386,14 +3368,14 @@
 	},
 /area/mainship/patrol_base)
 "Vh" = (
-/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Vq" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black{
@@ -3453,8 +3435,8 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/mainship/patrol_base/som)
 "We" = (
-/obj/structure/somcas{
-	icon_state = "11"
+/obj/structure/somcas/six{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
@@ -3518,7 +3500,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "WT" = (
@@ -3542,14 +3524,14 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "Xe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Xh" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/corner{
@@ -3557,8 +3539,8 @@
 	},
 /area/mainship/patrol_base/som)
 "Xn" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan20"
+/turf/closed/shuttle/dropship_regular/top_corner/alt{
+	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "Xr" = (
@@ -3651,7 +3633,7 @@
 /turf/open/floor/mainship/green/full,
 /area/mainship/patrol_base/som)
 "Zl" = (
-/obj/effect/decal/warning_stripes/box,
+/obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "Zw" = (
@@ -3663,7 +3645,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "ZN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/black{
@@ -4177,7 +4159,7 @@ ZW
 Qx
 YY
 ah
-KB
+RA
 zO
 zO
 rn
@@ -4185,7 +4167,7 @@ ZW
 EF
 ig
 ah
-KB
+RA
 fz
 LN
 JJ
@@ -4300,7 +4282,7 @@ wT
 rn
 kb
 rN
-KB
+RA
 wT
 dr
 dr
@@ -4308,7 +4290,7 @@ wT
 rn
 kb
 rN
-KB
+RA
 wT
 fz
 LN
@@ -4359,7 +4341,7 @@ EL
 LN
 My
 Fk
-aX
+rn
 aP
 aP
 RA
@@ -4367,7 +4349,7 @@ Fk
 dr
 dr
 Fk
-aX
+rn
 aP
 aP
 RA
@@ -4766,8 +4748,8 @@ us
 Qn
 Qn
 Qn
-Qn
 CT
+SD
 SD
 HN
 IH

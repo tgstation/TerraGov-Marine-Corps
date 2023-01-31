@@ -96,6 +96,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	icon_state = "overwatch_req"
 	name = "Requisition Overwatch Console"
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
+	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
@@ -117,10 +118,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/rebel/delta
 	name = "Delta Overwatch Console"
-
-
-/obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
-	return
 
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
@@ -820,6 +817,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /datum/action/skill/issue_order
 	name = "Issue Order"
 	skill_name = "leadership"
+	action_icon = 'icons/mob/order_icons.dmi'
 	skill_min = SKILL_LEAD_TRAINED
 	var/order_type = null
 
@@ -832,9 +830,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/mob/living/carbon/human/human = owner
 	if(!istype(human))
 		return
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
+	action_icon_state = "[order_type]"
+	return ..()
 
+/datum/action/skill/issue_order/handle_button_status_visuals()
+	var/mob/living/carbon/human/human = owner
+	if(!istype(human))
+		return
 	if(human.command_aura_cooldown)
 		button.color = rgb(255,0,0,255)
 	else
@@ -843,18 +845,23 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
 	order_type = AURA_HUMAN_MOVE
-	keybind_signal = COMSIG_KB_MOVEORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_MOVEORDER,
+	)
 
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = AURA_HUMAN_HOLD
-	keybind_signal = COMSIG_KB_HOLDORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_HOLDORDER,
+	)
 
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
 	order_type = AURA_HUMAN_FOCUS
-	keybind_signal = COMSIG_KB_FOCUSORDER
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_FOCUSORDER,
+	)
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"

@@ -120,6 +120,10 @@
 	///The damage acid spray causes to structure.
 	var/acid_spray_structure_damage = 0
 
+	// *** Secrete resin *** //
+	///The maximum number of tiles to where a xeno can build.
+	var/resin_max_range = 0
+
 	// *** Pheromones *** //
 	///The strength of our aura. Zero means we can't emit any.
 	var/aura_strength = 0
@@ -198,6 +202,18 @@
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0
 
+	// *** Warlock Abilities ***
+	///The integrity of psychic shields made by the xeno
+	var/shield_strength = 350
+	///The strength of psychic crush's effects
+	var/crush_strength = 35
+	///The strength of psychic blast's  AOE effects
+	var/blast_strength = 25
+
+	// *** Sentinel Abilities ***
+	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
+	var/additional_stacks = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -214,6 +230,10 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
+	///how much water slows down this caste
+	var/water_slowdown = 1.3
+	///how much snow slows down this caste
+	var/snow_slowdown = 0.25
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)

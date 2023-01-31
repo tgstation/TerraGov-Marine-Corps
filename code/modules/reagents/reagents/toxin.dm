@@ -481,7 +481,7 @@
 		L.adjustOxyLoss(stamina_excess_damage * 0.5)
 		L.Losebreath(2) //So the oxy loss actually means something.
 
-	L.stuttering = max(L.stuttering, 1)
+	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()
@@ -602,6 +602,12 @@
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	if(L.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = L.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		if(debuff.stacks > 0)
+			debuff.stacks = debuff.stacks + SENTINEL_INTOXICATED_SANGUINAL_INCREASE
+			L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
 	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE)
 

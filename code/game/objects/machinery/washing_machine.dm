@@ -39,7 +39,7 @@
 	else
 		state = 5
 	update_icon()
-	sleep(200)
+	sleep(20 SECONDS)
 	for(var/atom/A in contents)
 		A.clean_blood()
 
@@ -62,7 +62,7 @@
 	set category = "Object"
 	set src in usr.loc
 
-	sleep(20)
+	sleep(2 SECONDS)
 	if(state in list(1,3,6) )
 		usr.loc = src.loc
 

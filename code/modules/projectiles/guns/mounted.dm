@@ -63,7 +63,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
@@ -84,7 +84,7 @@
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //MG-2005 mounted minigun
@@ -125,7 +125,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //ATR-22 mounted heavy dualcannon
@@ -162,7 +162,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
@@ -200,7 +200,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 400
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
@@ -243,7 +243,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
@@ -269,7 +269,6 @@
 /obj/item/weapon/gun/heavymachinegun
 	name = "\improper HMG-08 heavy machinegun"
 	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer with a wheeling kit included. Considering the mish mash of parts for the wheeling kit, you think its from another model of the gun. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x28mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed. Alt Right click to unanchor and reanchor it."
-
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -280,7 +279,7 @@
 	caliber = CALIBER_10X28
 
 	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun, /obj/item/ammo_magazine/heavymachinegun/small)
 
 	scatter = 10
 	deployed_scatter_change = -8
@@ -306,7 +305,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 
 
@@ -338,16 +337,17 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/stock/irremoveable/t27,
+		/obj/item/attachable/stock/t27,
 	)
 
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -356,7 +356,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 5
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 
 	scatter = 30 // you're not firing this standing.
@@ -367,11 +367,13 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
+	damage_falloff_mult = 0.5
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
+
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27, /obj/item/attachable/scope/mini)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/mini)
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 
@@ -403,7 +405,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 6 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
-	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 0)
 
 	scatter = 0
 	recoil = 3
@@ -416,6 +418,7 @@
 /obj/machinery/deployable/mounted/moveable/atgun
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	coverage = 75 //has a shield
 
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
@@ -446,4 +449,45 @@
 			take_damage(rand(150, 200))
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 50))
+
+//AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
+
+/obj/item/weapon/gun/standard_agls
+	name = "\improper AGLS-37 Kauser automatic grenade launcher"
+	desc = "The AGLS-37 automatic grenade launching IFF capable system, it's too heavy to be wielded or operated without the tripod. On the back, it reads: \"The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. It CANNOT be turned once deployed, due to a lack of swivels, pick it up to move your cone of fire. Can be repaired with a blowtorch once deployed."
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	caliber = CALIBER_40MM
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags"
+	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_agls
+	scatter = 0
+	fire_delay = 1 SECONDS
+	burst_amount = 0
+	accuracy_mult = 1.2 //it's got a bipod
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/standard_agls,
+		/obj/item/ammo_magazine/standard_agls/fragmentation,
+	)
+
+	deploy_time = 6 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 500
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 75, "bio" = 100, "fire" = 0, "acid" = 0)
 

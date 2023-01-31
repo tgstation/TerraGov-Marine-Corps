@@ -323,6 +323,31 @@
 	icon_state = "wood-broken1"
 	burnt = TRUE
 
+/turf/open/floor/wood/broken/two
+	icon_state = "wood-broken2"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/three
+	icon_state = "wood-broken3"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/four
+	icon_state = "wood-broken4"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/five
+	icon_state = "wood-broken5"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/six
+	icon_state = "wood-broken6"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/seven
+	icon_state = "wood-broken7"
+	burnt = TRUE
+
+
 /turf/open/floor/vault
 	icon_state = "rockvault"
 
@@ -396,6 +421,12 @@
 /turf/open/floor/scorched/two
 	icon_state = "floorscorched2"
 
+/turf/open/floor/foamplating
+	icon_state = "foam_plating"
+
+/turf/open/floor/rustyplating
+	icon_state = "plating_rust"
+
 /turf/open/floor/bcircuit
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bcircuit"
@@ -455,6 +486,9 @@
 
 /turf/open/floor/tile/damaged/panel
 	icon_state = "panelscorched"
+
+/turf/open/floor/tile/damaged/thermite
+	icon_state = "wall_thermite"
 
 /turf/open/floor/tile/damaged/three
 	icon_state = "damaged3"

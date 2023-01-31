@@ -7,12 +7,12 @@
 	desc = "A glorious singular entity."
 
 	icon_state = "hivemind_marker"
+	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
+	flags_pass = PASSABLE|PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
-	throwpass = TRUE
 
 	a_intent = INTENT_HELP
 
@@ -42,6 +42,7 @@
 	core.parent = src
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
+	ADD_TRAIT(src, TRAIT_INTANGIBLE, XENO_TRAIT)
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
@@ -72,17 +73,19 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return
-	if(status_flags & INCORPOREAL || loc_weeds_type)
-		if(health < minimum_health + maxHealth)
-			setBruteLoss(0)
-			setFireLoss(-minimum_health)
-		if((health >= maxHealth)) //can't regenerate.
-			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
-			return
-		heal_wounds(XENO_RESTING_HEAL)
-		updatehealth()
+	// If manifested and off weeds, lets deal some damage.
+	if(!(status_flags & INCORPOREAL) && !loc_weeds_type)
+		adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 		return
-	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
+	// If not manifested
+	if(health < minimum_health + maxHealth)
+		setBruteLoss(0)
+		setFireLoss(-minimum_health)
+	if(health >= maxHealth) //can't regenerate.
+		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+		return
+	heal_wounds(XENO_RESTING_HEAL)
+	updatehealth()
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
@@ -120,8 +123,13 @@
 
 /mob/living/carbon/xenomorph/hivemind/toggle_intangibility()
 	. = ..()
+	hive.xenos_by_upgrade[upgrade] -= src
+	LAZYCLEARLIST(movespeed_modification)
+	update_movespeed()
 	toggle_upgrading()
 	set_datum(FALSE)
+	hive.xenos_by_upgrade[upgrade] += src
+	upgrade = status_flags & INCORPOREAL ? XENO_UPGRADE_BASETYPE : XENO_UPGRADE_MANIFESTATION
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))
@@ -290,7 +298,7 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
-	xeno_structure_flags = CRITICAL_STRUCTURE
+	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core
 	COOLDOWN_DECLARE(hivemind_proxy_alert_cooldown)
 	///The hive this core belongs to

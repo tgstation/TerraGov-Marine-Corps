@@ -24,7 +24,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/pistol/mech
-	obj_integrity = 500
+	max_integrity = 500
 	projectiles = 20
 	projectiles_cache = 400
 	projectiles_cache_max = 400
@@ -49,10 +49,10 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,8), "E" = list(52,28), "W" = list(-20,8)),
 	)
 	ammotype = /datum/ammo/bullet/pistol/mech/burst
-	obj_integrity = 450
+	max_integrity = 450
 	projectiles = 42
-	projectiles_cache = 820
-	projectiles_cache_max = 820
+	projectiles_cache = 840
+	projectiles_cache_max = 840
 	variance = 15
 	slowdown = 0.1
 	projectile_delay = 0.6 SECONDS
@@ -76,10 +76,10 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,12), "E" = list(52,34), "W" = list(-22,14)),
 	)
 	ammotype = /datum/ammo/bullet/smg/mech
-	obj_integrity = 400
+	max_integrity = 400
 	projectiles = 60
-	projectiles_cache = 420
-	projectiles_cache_max = 420
+	projectiles_cache = 900
+	projectiles_cache_max = 900
 	variance = 20
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0.15
@@ -100,10 +100,10 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(63,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/burst
-	obj_integrity = 400
+	max_integrity = 400
 	projectiles = 72
-	projectiles_cache = 360
-	projectiles_cache_max = 360
+	projectiles_cache = 720
+	projectiles_cache_max = 720
 	variance = 15
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
@@ -126,10 +126,10 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
-	obj_integrity = 400
-	projectiles = 50
-	projectiles_cache = 300
-	projectiles_cache_max = 300
+	max_integrity = 400
+	projectiles = 80
+	projectiles_cache = 960
+	projectiles_cache_max = 960
 	variance = 15
 	projectile_delay = 0.2 SECONDS
 	slowdown = 0.2
@@ -150,12 +150,12 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
-	obj_integrity = 350
+	max_integrity = 350
 	projectiles = 10
-	projectiles_cache = 50
-	projectiles_cache_max = 50
+	projectiles_cache = 120
+	projectiles_cache_max = 120
 	variance = 6
-	projectile_delay = 1.5 SECONDS
+	projectile_delay = 2.0 SECONDS
 	slowdown = 0.3
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SHOTGUN
@@ -174,10 +174,10 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/lmg
-	obj_integrity = 400
-	projectiles = 80
-	projectiles_cache = 400
-	projectiles_cache_max = 400
+	max_integrity = 400
+	projectiles = 120
+	projectiles_cache = 1200
+	projectiles_cache_max = 1200
 	variance = 25
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0.3
@@ -198,7 +198,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-15), "E" = list(80,24), "W" = list(-50,4)),
 	)
 	ammotype = /datum/ammo/tx54/mech
-	obj_integrity = 400
+	max_integrity = 400
 	projectiles = 30
 	projectiles_cache = 300
 	projectiles_cache_max = 300
@@ -222,7 +222,7 @@
 		MECHA_L_ARM = list("N" = list(0,68), "S" = list(32,-6), "E" = list(80,33), "W" = list(-50,13)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech
-	obj_integrity = 400
+	max_integrity = 400
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.4 SECONDS
@@ -242,8 +242,8 @@
 		MECHA_L_ARM = list("N" = list(0,52), "S" = list(32,-6), "E" = list(75,31), "W" = list(-45,11)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
-	obj_integrity = 400
-	energy_drain = 10
+	max_integrity = 400
+	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
@@ -264,7 +264,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
-	obj_integrity = 400
+	max_integrity = 400
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.2 SECONDS
@@ -284,10 +284,10 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/apfsds
-	obj_integrity = 400
+	max_integrity = 400
 	projectiles = 1
-	projectiles_cache = 10
-	projectiles_cache_max = 10
+	projectiles_cache = 15
+	projectiles_cache_max = 15
 	variance = 0
 	projectile_delay = 1 SECONDS
 	slowdown = 1.2
@@ -309,10 +309,10 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/minigun/mech
-	obj_integrity = 400
+	max_integrity = 400
 	projectiles = 200
-	projectiles_cache = 600
-	projectiles_cache_max = 600
+	projectiles_cache = 800
+	projectiles_cache_max = 800
 	variance = 35
 	projectile_delay = 1.5
 	slowdown = 0.7
@@ -334,10 +334,10 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/sniper/mech
-	obj_integrity = 200
+	max_integrity = 200
 	projectiles = 15
-	projectiles_cache = 60
-	projectiles_cache_max = 60
+	projectiles_cache = 90
+	projectiles_cache_max = 90
 	variance = -15
 	projectile_delay = 1 SECONDS
 	slowdown = 0.6
@@ -354,10 +354,10 @@
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /obj/item/explosive/grenade
-	obj_integrity = 350
+	max_integrity = 350
 	projectiles = 10
-	projectiles_cache = 20
-	projectiles_cache_max = 20
+	projectiles_cache = 40
+	projectiles_cache_max = 40
 	projectile_delay = 1.5 SECONDS
 	missile_speed = 1.5
 	equip_cooldown = 2 SECONDS
@@ -386,7 +386,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
-	obj_integrity = 250
+	max_integrity = 250
 	projectiles = 20
 	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
 	projectiles_cache_max = 20
@@ -410,7 +410,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/rocket/mech
-	obj_integrity = 400
+	max_integrity = 400
 	projectiles = 1
 	projectiles_cache = 1
 	projectiles_cache_max = 1
@@ -421,3 +421,95 @@
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+
+//////////////////////////
+//NON GUNS BEYOND HERE
+//////////////////////////
+
+#define LASER_DASH_RANGE_NORMAL 3
+#define LASER_DASH_RANGE_ENHANCED 5
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword
+	name = "\improper Moonlight particle cutter"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. Heavy, but it is the top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	icon_state = "moonlight"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	max_integrity = 400
+	slowdown = 0
+	harmful = TRUE
+	equip_cooldown = 3 SECONDS
+	energy_drain = 100
+	range = MECHA_MELEE|MECHA_RANGED
+	force = 150
+	/// holder var for the mob that is attacking right now
+	var/mob/cutter
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword/action_checks(atom/target, ignore_cooldown)
+	. = ..()
+	if(!.)
+		return
+	if(chassis.zoom_mode)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Unable to dash while in zoom mode!")]")
+		return FALSE
+	if(cutter)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Already in use!")]")
+		return FALSE
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword/action(mob/source, atom/target, list/modifiers)
+	if(!action_checks(target))
+		return
+	//melee swipe, no need to dash
+	if(chassis.Adjacent(target))
+		execute_melee(source, modifiers)
+		return ..()
+
+	//try dash to target
+	var/laser_dash_range = HAS_TRAIT(chassis, TRAIT_MELEE_CORE) ? LASER_DASH_RANGE_ENHANCED : LASER_DASH_RANGE_NORMAL
+
+	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
+	icon_state += "_on"
+	chassis.update_icon()
+	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, .proc/end_dash)
+	cutter = source
+	chassis.flags_atom |= DIRLOCK
+	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, .proc/drop_afterimage)
+	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
+	return ..()
+
+///signal handler, drops afterimage every move executed while dashing
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
+	SIGNAL_HANDLER
+	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+
+///Ends dash and executes attack
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	chassis.remove_filter("dash_blur")
+	icon_state = initial(icon_state)
+	chassis.update_icon()
+	execute_melee(cutter)
+	cutter = null
+	chassis.flags_atom &= ~DIRLOCK
+
+///executes a melee attack in the direction that the mech is facing
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
+	var/list/turf/targets
+	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
+		targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
+	else
+		targets = list(get_step(chassis, chassis.dir))
+	if(!targets[1])
+		return
+	playsound(chassis, 'sound/mecha/weapons/laser_sword.ogg', 30)
+
+	var/old_intent = source.a_intent
+	source.a_intent = INTENT_HARM
+	for(var/turf/target AS in targets)
+		chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
+		for(var/atom/movable/slashed AS in target)
+			slashed.attackby(src, source, list2params(modifiers))
+	source.a_intent = old_intent
+

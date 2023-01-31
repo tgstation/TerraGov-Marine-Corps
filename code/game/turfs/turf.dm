@@ -56,7 +56,6 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
-
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
@@ -276,7 +275,7 @@
 	if(old_signal_procs)
 		LAZYOR(W.signal_procs, old_signal_procs)
 
-	for(var/datum/callback/callback as anything in post_change_callbacks)
+	for(var/datum/callback/callback AS in post_change_callbacks)
 		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
@@ -316,6 +315,15 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
+	if(!W.smoothing_behavior == NO_SMOOTHING)
+		return W
+	else
+		for(var/dirn in GLOB.alldirs)
+			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
+			D.smooth_self()
+			D.smooth_neighbors()
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
@@ -510,6 +518,9 @@
 /turf/proc/is_weedable()
 	return !density
 
+/turf/closed/wall/is_weedable()
+	return TRUE
+
 /turf/open/space/is_weedable()
 	return FALSE
 
@@ -636,7 +647,8 @@
 /turf/open/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 
-
+/turf/open/lavaland/basalt/can_dig_xeno_tunnel()
+	return TRUE
 
 
 
@@ -933,3 +945,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	// Balloon alerts occuring on turf objects result in mass spam of alerts.
 	// Thus, no more balloon alerts for turfs.
 	return
+
+///cleans any cleanable decals from the turf
+/turf/proc/clean_turf()
+	for(var/obj/effect/decal/cleanable/filth in src)
+		qdel(filth) //dirty, filthy floor

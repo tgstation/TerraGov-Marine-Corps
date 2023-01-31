@@ -186,7 +186,7 @@ SUBSYSTEM_DEF(job)
 
 		if(LAZYLEN(occupations_reroll)) //Jobs that were scaled up due to the assignment of other jobs.
 			for(var/reroll_level = JOBS_PRIORITY_HIGH; reroll_level >= level; reroll_level--)
-				assign_players_to_occupations(level, occupations_reroll)
+				assign_players_to_occupations(reroll_level, occupations_reroll)
 			occupations_reroll = null
 
 	JobDebug("DO, Handling unassigned.")
@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Recover()
 	set waitfor = FALSE
 	var/oldjobs = SSjob.occupations
-	sleep(20)
+	sleep(2 SECONDS)
 	for(var/datum/job/J in oldjobs)
 		INVOKE_ASYNC(src, .proc/RecoverJob, J)
 

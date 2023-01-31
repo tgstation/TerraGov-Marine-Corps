@@ -6,19 +6,20 @@ import { Window } from '../layouts';
 export const SmartVend = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window
-      width={440}
-      height={550}>
+    <Window width={440} height={550}>
       <Window.Content scrollable>
         <Section
           title="Storage"
-          buttons={!!data.isdryer && (
-            <Button
-              icon={data.drying ? "stop" : "tint"}
-              onClick={() => act('Dry')}>
-              {data.drying ? "Stop drying" : "Dry"}
-            </Button>
-          )} />
+          buttons={
+            !!data.isdryer && (
+              <Button
+                icon={data.drying ? 'stop' : 'tint'}
+                onClick={() => act('Dry')}>
+                {data.drying ? 'Stop drying' : 'Dry'}
+              </Button>
+            )
+          }
+        />
         <Section>
           {data.contents.length === 0 ? (
             <NoticeBox>Unfortunately, this {data.name} is empty.</NoticeBox>
@@ -27,26 +28,24 @@ export const SmartVend = (props, context) => {
               <Table.Row>
                 <Table.Cell>Item</Table.Cell>
                 <Table.Cell>Quantity</Table.Cell>
-                <Table.Cell>{data.verb ? data.verb : "Dispense"}</Table.Cell>
+                <Table.Cell>{data.verb ? data.verb : 'Dispense'}</Table.Cell>
               </Table.Row>
               {map((value, key) => {
                 return (
                   <Table.Row key={key}>
-                    <Table.Cell>{value.name}</Table.Cell>
-                    <Table.Cell>{value.amount}</Table.Cell>
+                    <Table.Cell>{key}</Table.Cell>
+                    <Table.Cell>{value}</Table.Cell>
                     <Table.Cell>
                       <Button
-                        disabled={value.amount < 1}
-                        onClick={() => act(
-                          'Release',
-                          { name: value.name, amount: 1 })}>
+                        disabled={value < 1}
+                        onClick={() =>
+                          act('Release', { name: key, amount: 1 })
+                        }>
                         One
                       </Button>
                       <Button
-                        disabled={value.amount <= 1}
-                        onClick={() => act(
-                          'Release',
-                          { name: value.name })}>
+                        disabled={value <= 1}
+                        onClick={() => act('Release', { name: key })}>
                         Many
                       </Button>
                     </Table.Cell>

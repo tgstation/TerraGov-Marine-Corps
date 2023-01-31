@@ -398,7 +398,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "by" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "bz" = (
@@ -2009,7 +2009,7 @@
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "kk" = (
-/obj/item/attachable/hydro_cannon,
+/obj/item/weapon/gun/flamer/hydro_cannon,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "kl" = (
@@ -2265,7 +2265,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "lJ" = (
-/obj/item/attachable/hydro_cannon,
+/obj/item/weapon/gun/flamer/hydro_cannon,
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "lK" = (
@@ -2325,7 +2325,7 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "mf" = (
-/obj/item/attachable/hydro_cannon,
+/obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2487,7 +2487,7 @@
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/south_compound)
 "nc" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/structure/prop/mainship/research/mechafab,
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/research)
@@ -2871,7 +2871,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "pD" = (
-/obj/item/attachable/hydro_cannon,
+/obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2992,7 +2992,7 @@
 /area/lv624/lazarus/canteen)
 "qm" = (
 /obj/structure/window/reinforced,
-/obj/item/attachable/hydro_cannon,
+/obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/tool/kitchen/tray,
 /turf/open/floor/carpet,
@@ -3573,7 +3573,7 @@
 	},
 /area/lv624/lazarus/comms)
 "sC" = (
-/obj/item/attachable/hydro_cannon,
+/obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -5033,7 +5033,7 @@
 /area/vapor_processing/caves/se)
 "Ma" = (
 /obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "Mg" = (
@@ -5220,7 +5220,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 30
 	},
-/obj/effect/decal/warning_stripes{
+/obj/effect/turf_decal/warning_stripes{
 	pixel_y = 30
 	},
 /turf/open/floor/tile/dark,

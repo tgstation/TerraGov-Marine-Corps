@@ -503,14 +503,14 @@
 		var/old_eye_blind = eye_blind
 		eye_blind = max(eye_blind, amount)
 		if(!old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 
 /mob/living/proc/adjust_blindness(amount)
 	if(amount>0)
 		var/old_eye_blind = eye_blind
 		eye_blind += amount
 		if(!old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
@@ -528,7 +528,7 @@
 		var/old_eye_blind = eye_blind
 		eye_blind = amount
 		if(client && !old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(!eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
@@ -560,8 +560,8 @@
 /mob/living/proc/update_eye_blur()
 	if(!client)
 		return
-	var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in client.screen
-	var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in client.screen
+	var/atom/movable/screen/plane_master/floor/OT = locate(/atom/movable/screen/plane_master/floor) in client.screen
+	var/atom/movable/screen/plane_master/game_world/GW = locate(/atom/movable/screen/plane_master/game_world) in client.screen
 	GW.backdrop(src)
 	OT.backdrop(src)
 
@@ -580,7 +580,7 @@
 /mob/living/proc/adjust_drugginess(amount)
 	druggy = max(druggy + amount, 0)
 	if(druggy)
-		overlay_fullscreen("high", /obj/screen/fullscreen/high)
+		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
 	else
 		clear_fullscreen("high")
 
@@ -588,7 +588,7 @@
 /mob/living/proc/set_drugginess(amount)
 	druggy = max(amount, 0)
 	if(druggy)
-		overlay_fullscreen("high", /obj/screen/fullscreen/high)
+		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
 	else
 		clear_fullscreen("high")
 
@@ -754,7 +754,7 @@
 
 ///How many deciseconds remain in our irradiated status effect
 /mob/living/proc/amount_irradiated()
-	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(irradiated)
 		return irradiated.duration - world.time
 	return 0
@@ -763,7 +763,7 @@
 /mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(irradiated)
 		irradiated.duration = max(world.time + amount, irradiated.duration)
 	else if(amount > 0)
@@ -774,7 +774,7 @@
 /mob/living/proc/set_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(amount <= 0)
 		if(irradiated)
 			qdel(irradiated)
@@ -789,7 +789,7 @@
 /mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
 	if(irradiated)
 		irradiated.duration += amount
 	else if(amount > 0)

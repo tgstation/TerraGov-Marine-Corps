@@ -1,0 +1,4 @@
+author: "novaepee, Jack(ie) Burgdorf"
+delete-after: True
+changes:
+  - imageadd: "update sprites for vali activation"

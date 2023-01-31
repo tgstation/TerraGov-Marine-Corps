@@ -44,7 +44,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
 
-/obj/item/flashlight/update_icon()
+/obj/item/flashlight/update_icon_state()
 	. = ..()
 	if(light_on)
 		icon_state = "[initial(icon_state)]-on"
@@ -185,7 +185,7 @@
 /obj/item/flashlight/flare
 	name = "flare"
 	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	light_power = 6 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"

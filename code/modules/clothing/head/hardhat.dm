@@ -3,7 +3,7 @@
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
-	soft_armor = list(MELEE = 30, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, "rad" = 20, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 30, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, FIRE = 10, ACID = 10)
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
@@ -75,4 +75,4 @@
 /obj/item/clothing/head/hardhat/rugged
 	name = "rugged hard hat"
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight. Looks rather robust."
-	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, "rad" = 0, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)

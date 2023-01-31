@@ -14,7 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
-	throwpass = FALSE
+	flags_pass = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -79,7 +79,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -110,7 +110,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -155,7 +155,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(6)
+	sleep(0.6 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -230,7 +230,6 @@
 	icon_state = "cannon_tray"
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
@@ -325,7 +324,6 @@
 	name = "theoretical ob ammo"
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = XENO_DAMAGEABLE
@@ -410,7 +408,7 @@
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
 		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
 	name = "\improper Plasma draining orbital warhead"

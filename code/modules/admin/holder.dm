@@ -13,6 +13,8 @@
 
 	///Reference to filteriffic tgui holder datum
 	var/datum/filter_editor/filteriffic
+	///Reference to particle editor tgui holder datum
+	var/datum/particle_editor/particle_test
 
 	///Whether this admin is currently deadminned or not
 	var/deadmined = FALSE
@@ -376,6 +378,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
+	/datum/admins/proc/rouny_all,
 	/datum/admins/proc/hive_status,
 	/datum/admins/proc/ai_report,
 	/datum/admins/proc/command_report,
@@ -676,6 +679,15 @@ GLOBAL_PROTECT(admin_verbs_log)
 	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
 		return FALSE
 	if(!user.client.holder.ghost_interact)
+		return FALSE
+	return TRUE
+
+/proc/isadmin(mob/user)
+	if(!isobserver(user))
+		return FALSE
+	if(!user.client)
+		return FALSE
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
 		return FALSE
 	return TRUE
 

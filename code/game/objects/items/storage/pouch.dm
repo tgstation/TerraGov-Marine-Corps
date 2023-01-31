@@ -31,6 +31,9 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+/obj/item/storage/pouch/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 
 
@@ -458,11 +461,22 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
+/obj/item/storage/pouch/medical_injectors/medic/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+
 /obj/item/storage/pouch/medical_injectors/som
 	desc = "A specialized medical pouch that can only hold auto-injectors. This one looks to be made out of traditional SOM leather."
 	icon_state = "firstaid_injector_som"
 
-/obj/item/storage/pouch/medical_injectors/som/Initialize()
+/obj/item/storage/pouch/medical_injectors/som/firstaid/Initialize()
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -473,7 +487,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
-/obj/item/storage/pouch/medical_injectors/medic/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
+/obj/item/storage/pouch/medical_injectors/som/medic/Initialize()
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
@@ -538,18 +552,23 @@
 /obj/item/storage/pouch/flare
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
-	max_w_class = 2
-	storage_slots = 7
-	draw_mode = 1
+	max_w_class = 1
+	storage_slots = 28
+	max_storage_space = 28
 	icon_state = "flare"
 	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
-
+	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
+	fill_type = /obj/item/explosive/grenade/flare
 	can_hold = list(
 		/obj/item/flashlight/flare,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
 	)
 
+/obj/item/storage/pouch/flare/full/Initialize()
+	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	fill_number = max_storage_space - flare_gun.w_class
+	return ..()
 
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/m94))
@@ -579,9 +598,14 @@
 	else
 		return ..()
 
-/obj/item/storage/pouch/flare/full
-	fill_type = /obj/item/explosive/grenade/flare
-	fill_number = 7
+/obj/item/storage/pouch/flare/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
+		return ..()
+	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
+	for(var/obj/item/flare in contents)
+		flare_gun.reload(flare, user)
+		orient2hud()
+		return
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"

@@ -7,7 +7,7 @@
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	blood_sprite_state = "uniformblood"
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
@@ -139,10 +139,10 @@
 			. += "Its vital tracker and tracking beacon appear to be enabled."
 
 //we only want to quick equip from actual 'holster' type webbings
-/obj/item/clothing/under/do_quick_equip()
+/obj/item/clothing/under/do_quick_equip(mob/user)
 	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
 	if(found)
-		return found.do_quick_equip()
+		return found.do_quick_equip(user)
 	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)

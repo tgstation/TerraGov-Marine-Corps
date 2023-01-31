@@ -7,6 +7,11 @@
 #define PASSSMALLSTRUCT (1<<5)
 #define PASSFIRE (1<<6)
 #define PASSXENO (1<<7)
+#define PASSTHROW (1<<8) //you can throw past
+#define PASSPROJECTILE (1<<9) //projectiles can pass
+#define PASSAIR (1<<10) //non-airtight, gas/fire can pass
+#define PASSLASER (1<<11) //lasers and the like can pass unobstructed
+#define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
 #define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 
 //==========================================================================================
@@ -343,15 +348,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
 
 #define SLOT_EQUIP_ORDER list(\
-	SLOT_IN_BOOT,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH,\
-	SLOT_IN_HEAD,\
-	SLOT_IN_ACCESSORY,\
-	SLOT_IN_HOLSTER,\
-	SLOT_IN_S_HOLSTER,\
-	SLOT_IN_B_HOLSTER,\
-	SLOT_BACK,\
 	SLOT_WEAR_ID,\
 	SLOT_GLASSES,\
 	SLOT_W_UNIFORM,\
@@ -363,13 +359,22 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_GLOVES,\
 	SLOT_EARS,\
 	SLOT_BELT,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_HEAD,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
 	SLOT_S_STORE,\
 	SLOT_L_STORE,\
 	SLOT_R_STORE,\
 	SLOT_IN_STORAGE,\
 	SLOT_IN_SUIT,\
-	SLOT_IN_BACKPACK,\
-	SLOT_IN_BELT\
+	SLOT_IN_BELT,\
+	SLOT_IN_BACKPACK\
 	)
 
 #define SLOT_DRAW_ORDER list(\

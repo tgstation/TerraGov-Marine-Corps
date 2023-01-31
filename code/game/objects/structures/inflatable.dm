@@ -20,11 +20,12 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_door"
 
-	attack_self(mob/user)
-		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		to_chat(user, span_notice("You inflate [src]."))
-		new /obj/structure/inflatable/door(user.loc)
-		qdel(src)
+/obj/item/inflatable/door/attack_self(mob/user)
+	. = ..()
+	playsound(loc, 'sound/items/zip.ogg', 25, 1)
+	to_chat(user, span_notice("You inflate [src]."))
+	new /obj/structure/inflatable/door(user.loc)
+	qdel(src)
 
 
 
@@ -36,7 +37,7 @@
 	density = TRUE
 	anchored = TRUE
 	opacity = FALSE
-	throwpass = FALSE
+	flags_pass = NONE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
@@ -80,7 +81,7 @@
 	if(violent)
 		visible_message("[src] rapidly deflates!")
 		flick("wall_popping", src)
-		sleep(10)
+		sleep(1 SECONDS)
 		new /obj/structure/inflatable/popped(loc)
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 		qdel(src)
@@ -184,7 +185,7 @@
 	isSwitchingStates = 1
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = 1
@@ -195,7 +196,7 @@
 	isSwitchingStates = 1
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_closing",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = TRUE
 	opacity = FALSE
 	state = 0
@@ -214,7 +215,7 @@
 	if(violent)
 		visible_message("[src] rapidly deflates!")
 		flick("door_popping",src)
-		sleep(10)
+		sleep(1 SECONDS)
 		new /obj/structure/inflatable/popped/door(loc)
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 		qdel(src)
@@ -238,12 +239,12 @@
 	item_state = "syringe_kit"
 	max_storage_space = 21
 
-	New()
-		..()
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
+/obj/item/storage/briefcase/inflatable/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/inflatable/door(src)
+	new /obj/item/inflatable/door(src)
+	new /obj/item/inflatable/door(src)
+	new /obj/item/inflatable(src)
+	new /obj/item/inflatable(src)
+	new /obj/item/inflatable(src)
+	new /obj/item/inflatable(src)

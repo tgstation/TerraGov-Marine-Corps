@@ -165,7 +165,7 @@
 		if(M.id == id)
 			M.open()
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
@@ -246,7 +246,8 @@
 
 /obj/machinery/door_control/mainship/mech
 	name = "Mech Shutter"
-	id = "mech_shutter"
+	id = "mech_shutters"
+	req_one_access = list(ACCESS_MARINE_MECH)
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"

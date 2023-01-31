@@ -4,6 +4,7 @@
 	desc = "A gross, oozing alien of some kind."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Spitter Walking"
+	bubble_icon = "alienroyal"
 	health = 180
 	maxHealth = 180
 	plasma_stored = 150

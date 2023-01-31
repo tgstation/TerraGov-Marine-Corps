@@ -64,7 +64,7 @@
 
 	traumatic_shock += reagent_shock_modifier
 
-	if(slurring)
+	if(has_status_effect(/datum/status_effect/speech/slurring/drunk))
 		traumatic_shock -= 10
 	if(analgesic)
 		traumatic_shock = 0

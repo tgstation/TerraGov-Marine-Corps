@@ -68,9 +68,9 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 	///Skill required to bypass the fumble time.
-	var/skill_threshold = SKILL_MEDICAL_PRACTICED
+	var/skill_threshold = SKILL_MEDICAL_NOVICE
 	///Skill required to have the scanner auto refresh
-	var/upper_skill_threshold = SKILL_MEDICAL_PRACTICED
+	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
 	///Current mob being tracked by the scanner
 	var/mob/living/carbon/patient
 	///Current user of the scanner
@@ -163,23 +163,25 @@ REAGENT SCANNER
 	if(ishuman(patient))
 		var/mob/living/carbon/human/human_patient = patient
 		var/infection_message
-		var/infected = 0
 		var/internal_bleeding
 
 		var/unknown_implants = 0
 		for(var/datum/limb/limb AS in human_patient.limbs)
+			var/infected = FALSE
+			var/necrotized = FALSE
+
 			if(!internal_bleeding)
 				for(var/datum/wound/wound in limb.wounds)
 					if(!istype(wound, /datum/wound/internal_bleeding))
 						continue
 					internal_bleeding = TRUE
 					break
-			if(infected < 2 && limb.limb_status & LIMB_NECROTIZED)
-				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
-				infected = 2
-			if(infected < 1 && limb.germ_level > INFECTION_LEVEL_ONE)
+			if(limb.germ_level > INFECTION_LEVEL_ONE)
 				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
-				infected = 1
+				infected = TRUE
+			if(limb.limb_status & LIMB_NECROTIZED)
+				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+				necrotized = TRUE
 
 			if(limb.hidden)
 				unknown_implants++
@@ -191,7 +193,7 @@ REAGENT SCANNER
 					unknown_implants++
 					implant = TRUE
 
-			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !implant)
+			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implant && !infected )
 				continue
 			var/list/current_list = list(
 				"name" = limb.display_name,
@@ -203,6 +205,7 @@ REAGENT SCANNER
 				"limb_status" = null,
 				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
 				"open_incision" = limb.surgery_open_stage,
+				"necrotized" = necrotized,
 				"infected" = infected,
 				"implant" = implant
 			)

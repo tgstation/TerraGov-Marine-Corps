@@ -82,7 +82,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, "rad" = 10, FIRE = 30, ACID = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
 	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
 
@@ -108,6 +108,19 @@
 	icon_state = "medglasses"
 	item_state = "medglasses"
 	deactive_state = "degoggles_medglasses"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	prescription = TRUE
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/hud/medsunglasses
+	name = "\improper HealthMate sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with an internal HealthMate HUD projector."
+	icon_state = "medsunglasses"
+	item_state = "medsunglasses"
+	deactive_state = "degoggles_medsunglasses"
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
 	prescription = TRUE

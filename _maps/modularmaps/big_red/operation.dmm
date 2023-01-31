@@ -59,12 +59,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
-"dN" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
 "dQ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -393,12 +387,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
-"pA" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
 "pR" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -522,12 +510,6 @@
 	dir = 6
 	},
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"uX" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "vo" = (
@@ -655,10 +637,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"yp" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "yG" = (
 /obj/machinery/computer/atmos_alert,
@@ -844,7 +822,7 @@
 /obj/machinery/computer/security,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
-	dir = 5
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "Ds" = (
@@ -869,6 +847,16 @@
 	},
 /area/bigredv2/outside/admin_building)
 "EV" = (
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake,
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/admin_building)
 "Ft" = (
@@ -1151,7 +1139,6 @@
 "NT" = (
 /obj/structure/bed/chair,
 /obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor,
@@ -1344,9 +1331,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "darkbluecorners2"
-	},
+/turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
 "US" = (
 /obj/effect/landmark/weed_node,
@@ -1390,7 +1375,6 @@
 /area/bigredv2/outside/admin_building)
 "Wp" = (
 /obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/tile/dark/red2{
@@ -1722,7 +1706,7 @@ sT
 Gq
 fO
 Ds
-dN
+fO
 xH
 ng
 fO
@@ -1747,9 +1731,9 @@ sT
 sT
 UY
 fO
-yp
+fO
 EV
-pA
+fO
 ZU
 Nv
 kg
@@ -1774,7 +1758,7 @@ jM
 Gr
 wh
 PN
-uX
+fO
 fO
 UW
 sT

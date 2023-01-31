@@ -535,6 +535,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	default_ammo = /datum/ammo/bullet/smg
 	bullet_amount = 4500
 	max_bullet_amount = 4500
+	caliber = CALIBER_10X20_CASELESS
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"

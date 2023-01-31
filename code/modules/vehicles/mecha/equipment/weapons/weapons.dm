@@ -41,12 +41,22 @@
 	var/burst_amount = 0
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_AUTOMATIC
+	///how many seconds automatic rearming takes
+	var/rearm_time = 2 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
+	. = ..()
+	if(!.)
+		return
+	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
+		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -162,6 +172,7 @@
 	playsound(chassis, fire_sound, 25, TRUE)
 	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
+	chassis.use_power(energy_drain)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	if(!muzzle_flash || muzzle_flash.applied)
@@ -230,9 +241,9 @@
 		occupant.hud_used.add_ammo_hud(src, hud_icons, projectiles)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/detach(atom/moveto)
-	. = ..()
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action_checks(target)
 	if(!..())
@@ -244,6 +255,9 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "reload")
+		var/mob/occupant = usr
+		if(occupant && !do_after(occupant, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+			return FALSE
 		rearm()
 		return TRUE
 
@@ -277,6 +291,11 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
+		return
+	if(!do_after(current_firer, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+		return
+	rearm()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"

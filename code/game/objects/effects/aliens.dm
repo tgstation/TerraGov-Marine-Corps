@@ -41,7 +41,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
@@ -94,7 +94,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
+		INVOKE_ASYNC(src, .proc/take_overall_damage, acid_damage, BURN, ACID, FALSE, FALSE, TRUE)
 		to_chat(src, span_danger("You are scalded by the burning acid!"))
 		return
 	to_chat(src, span_danger("Your feet scald and burn! Argh!"))
@@ -133,21 +133,21 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 0.004 //base speed, normal
+	var/acid_strength = 0.04 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.0016 //40% of base speed
+	acid_strength = 0.016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.01 //250% normal speed
+	acid_strength = 0.1 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
@@ -189,7 +189,7 @@
 
 		else
 			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/M in acid_t.contents)
+				for(var/atom/movable/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			qdel(acid_t)
 			acid_t = null

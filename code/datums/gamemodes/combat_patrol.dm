@@ -6,6 +6,7 @@
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	time_between_round = 0 HOURS
+	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
@@ -19,6 +20,8 @@
 		/datum/job/som/squad/standard = -1,
 	)
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
+	blacklist_ship_maps = null
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
@@ -31,6 +34,8 @@
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
+	///Delay from shutter drop until game timer starts
+	var/game_timer_delay = 5 MINUTES
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -80,7 +85,7 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
@@ -91,9 +96,9 @@
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/picture/tdf)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/picture/shokk)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
 
 ///round timer
 /datum/game_mode/combat_patrol/proc/set_game_timer()
@@ -197,11 +202,11 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
-		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /obj/screen/text/screen_text/command_order)
+		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /atom/movable/screen/text/screen_text/command_order)
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
-/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
+/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags)
 	var/list/som_alive = list()
 	var/list/som_dead = list()
 	var/list/tgmc_alive = list()
