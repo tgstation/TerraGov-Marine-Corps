@@ -88,6 +88,8 @@
 	var/static/already_activated = FALSE
 	///How long is left in the game end timer. Recorded as a var to pause the timer while tower is activating
 	var/remaining_game_time
+	///The faction that owns this tower, and considered the defender
+	var/faction = FACTION_SOM
 
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
@@ -107,41 +109,56 @@
 	if(user.do_actions)
 		user.balloon_alert(user, "You are already doing something!")
 		return
-	if(user.faction != FACTION_TERRAGOV)
-		if(current_timer)
-			balloon_alert(user, "You begin to stop the activation process!")
-			if(!do_after(user, deactivate_time, TRUE, src))
-				return
-			if(activated)
-				balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
-				return
-			balloon_alert(user, "You stop the activation process!")
-			deactivate()
-		else if(activated)
-			balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
-		else
-			balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
+	if(user.faction == faction)
+		defender_interaction(user)
+	else
+		attacker_interaction(user)
+
+///Handles defender interactions with the tower
+/obj/structure/sensor_tower_patrol/proc/defender_interaction(mob/living/user)
+	if(!activated && !current_timer)
+		balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated!")
+		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
 		return
-	if(current_timer)
-		balloon_alert(user, "This sensor tower is currently activating!")
+
+	balloon_alert(user, "You begin to stop the activation process!")
+	if(!do_after(user, deactivate_time, TRUE, src))
 		return
-	if(already_activated)
-		balloon_alert(user, "There's already a sensor tower being activated!")
+	if(activated)
+		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		return
+	if(!current_timer)
+		balloon_alert(user, "This sensor tower is not currently activated")
+		return
+	balloon_alert(user, "You stop the activation process!")
+	deactivate()
+
+///Handles attacker interactions with the tower
+/obj/structure/sensor_tower_patrol/proc/attacker_interaction(mob/living/user)
+	if(!attacker_state_check(user))
 		return
 	balloon_alert_to_viewers("Activating sensor tower...")
 	if(!do_after(user, activate_time, TRUE, src))
 		return
-	if(already_activated)
-		balloon_alert(user, "There's already a sensor tower being activated!")
-		return
-	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated!")
+	if(!attacker_state_check(user))
 		return
 	balloon_alert_to_viewers("Sensor tower activated!")
 	begin_activation()
+
+///Checks whether an attack can currently activate this tower
+/obj/structure/sensor_tower_patrol/proc/attacker_state_check(mob/living/user)
+	if(activated)
+		balloon_alert(user, "This sensor tower is already fully activated!")
+		return FALSE
+	if(current_timer)
+		balloon_alert(user, "This sensor tower is currently activating!")
+		return FALSE
+	if(already_activated)
+		balloon_alert(user, "There's already a sensor tower being activated!")
+		return FALSE
+	return TRUE
 
 ///Starts timer and sends an alert
 /obj/structure/sensor_tower_patrol/proc/begin_activation()
@@ -216,6 +233,7 @@
 
 ///Update minimap icon of tower if its deactivated, activated , and fully activated
 /obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
+	SSminimaps.remove_marker(src)
 	if(activated)
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
 	else
