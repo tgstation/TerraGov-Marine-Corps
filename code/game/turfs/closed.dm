@@ -59,6 +59,22 @@
 /turf/closed/mineral/smooth/snowrock/indestructible
 	resistance_flags = RESIST_ALL
 
+/turf/closed/mineral/smooth/darkfrostwall
+	icon = 'icons/turf/walls/darkfrostwall.dmi'
+	icon_state = "darkfrostwall-0-0-0-0"
+	walltype = "darkfrostwall"
+
+/turf/closed/mineral/smooth/darkfrostwall/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/frostwall
+	icon = 'icons/turf/walls/frostwall.dmi'
+	icon_state = "frostwall-0-0-0-0"
+	walltype = "frostwall"
+
+/turf/closed/mineral/smooth/frostwall/indestructible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0-0-0-0"
