@@ -53,10 +53,6 @@
 	icon_state = "CL"
 	job = /datum/job/terragov/civilian/liaison
 
-/obj/effect/landmark/start/job/crash/synthetic
-	icon_state = "Synth"
-	job = /datum/job/terragov/silicon/synthetic
-
 /obj/effect/landmark/start/job/crash/squadmarine
 	icon_state = "PFC"
 	job = /datum/job/terragov/squad/standard

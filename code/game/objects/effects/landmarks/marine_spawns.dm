@@ -54,10 +54,6 @@
 	icon_state = "CL"
 	job = /datum/job/terragov/civilian/liaison
 
-/obj/effect/landmark/start/job/synthetic
-	icon_state = "Synth"
-	job = /datum/job/terragov/silicon/synthetic
-
 /obj/effect/landmark/start/job/squadmarine
 	icon_state = "PFC"
 	job = /datum/job/terragov/squad/standard
@@ -115,9 +111,6 @@
 
 /obj/effect/landmark/start/job/researcher/rebel
 	job = /datum/job/terragov/medical/researcher/rebel
-
-/obj/effect/landmark/start/job/synthetic/rebel
-	job = /datum/job/terragov/silicon/synthetic/rebel
 
 /obj/effect/landmark/start/job/squadmarine/rebel
 	job = /datum/job/terragov/squad/standard/rebel

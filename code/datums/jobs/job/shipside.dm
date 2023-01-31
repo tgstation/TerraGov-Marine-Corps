@@ -25,7 +25,6 @@
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -46,7 +45,6 @@
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/captain/radio_help_message(mob/M)
@@ -114,7 +112,6 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -135,7 +132,6 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
@@ -206,7 +202,6 @@ Make the TGMC proud!"})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -228,7 +223,6 @@ Make the TGMC proud!"})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
@@ -286,7 +280,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -307,7 +300,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -448,7 +440,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -469,7 +460,6 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -538,7 +528,6 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -559,7 +548,6 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -632,7 +620,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -653,7 +640,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -726,7 +712,6 @@ A happy ship is a well-functioning ship."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -747,7 +732,6 @@ A happy ship is a well-functioning ship."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -814,7 +798,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -835,7 +818,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -901,7 +883,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -922,7 +903,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -993,7 +973,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -1048,102 +1027,6 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	job_category = JOB_CAT_SILICON
 	selection_color = "#aaee55"
 
-
-//Synthetic
-/datum/job/terragov/silicon/synthetic
-	title = SYNTHETIC
-	req_admin_notify = TRUE
-	comm_title = "Syn"
-	paygrade = "Mk.I"
-	supervisors = "the acting captain"
-	total_positions = 1
-	skills_type = /datum/skills/synthetic
-	access = ALL_ACCESS
-	minimal_access = ALL_ACCESS
-	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
-	outfit = /datum/outfit/job/civilian/synthetic
-	exp_requirements = XP_REQ_EXPERIENCED
-	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-	job_points_needed = 40
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-	)
-	html_description = {"
-		<b>Difficulty</b>: Soul Crushing<br /><br />
-		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
-	"}
-	minimap_icon = "synth"
-
-/datum/job/terragov/silicon/synthetic/rebel
-	title = REBEL_SYNTHETIC
-	faction = FACTION_TERRAGOV_REBEL
-	outfit = /datum/outfit/job/civilian/synthetic/rebel
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-	)
-
-
-/datum/job/terragov/silicon/synthetic/get_special_name(client/preference_source)
-	return preference_source.prefs.synthetic_name
-
-/datum/job/terragov/silicon/synthetic/return_spawn_type(datum/preferences/prefs)
-	if(prefs && prefs.synthetic_type == "Early Synthetic")
-		return /mob/living/carbon/human/species/early_synthetic
-	return /mob/living/carbon/human/species/synthetic
-
-/datum/job/terragov/silicon/synthetic/return_skills_type(datum/preferences/prefs)
-	if(prefs && prefs.synthetic_type == "Early Synthetic")
-		return /datum/skills/early_synthetic
-	return ..()
-
-/datum/job/terragov/silicon/synthetic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	. = ..()
-	if(!ishuman(new_mob))
-		return
-	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
-		return
-	switch(playtime_mins)
-		if(0 to 600) //up to 10 hours
-			new_human.wear_id.paygrade = "Mk.I"
-		if(601 to 3000) // 10 to 50 hrs
-			new_human.wear_id.paygrade = "Mk.II"
-		if(3001 to INFINITY) // more than 50 hrs
-			new_human.wear_id.paygrade = "Mk.III"
-
-/datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
-
-
-/datum/outfit/job/civilian/synthetic
-	name = SYNTHETIC
-	jobtype = /datum/job/terragov/silicon/synthetic
-
-	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/rank/synthetic
-	shoes = /obj/item/clothing/shoes/white
-	gloves = /obj/item/clothing/gloves/yellow
-	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/general/medium
-	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/civilian/synthetic/rebel
-	jobtype = /datum/job/terragov/silicon/synthetic/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
-
-
 /datum/job/terragov/silicon/ai
 	title = SILICON_AI
 	job_category = JOB_CAT_SILICON
@@ -1161,7 +1044,6 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
@@ -1178,7 +1060,6 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 
