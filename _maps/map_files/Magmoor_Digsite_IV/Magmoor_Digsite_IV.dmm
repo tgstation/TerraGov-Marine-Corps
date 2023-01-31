@@ -114,7 +114,6 @@
 /area/magmoor/cargo/processing/south)
 "ads" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -7474,9 +7473,7 @@
 	},
 /area/magmoor/compound/north)
 "fcp" = (
-/obj/machinery/computer/crew{
-	icon_state = "ai-fixer"
-	},
+/obj/machinery/computer/aifixer,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining)
 "fcs" = (
@@ -7604,15 +7601,6 @@
 	dir = 4
 	},
 /area/magmoor/landing)
-"fgi" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/magmoor/landing/two)
 "fgq" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -9944,9 +9932,7 @@
 	},
 /area/magmoor/compound/north)
 "gMC" = (
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
+/obj/item/shard/phoron,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/magmoor/research/containment)
@@ -10409,7 +10395,6 @@
 /area/magmoor/compound/south)
 "hje" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -11354,9 +11339,7 @@
 	},
 /area/magmoor/compound/east)
 "hVl" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "hVo" = (
@@ -13001,8 +12984,7 @@
 /area/magmoor/command/conference)
 "jeO" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 1;
-	icon_state = "wooden_chair_wings"
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/gambling)
@@ -13563,9 +13545,7 @@
 /area/magmoor/command/commandroom)
 "jtd" = (
 /obj/machinery/light,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "jto" = (
@@ -14426,10 +14406,7 @@
 /area/magmoor/cave/northeast)
 "jZC" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
-	pixel_y = 10
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/purple,
 /area/magmoor/research/rnd/lobby)
 "jZD" = (
@@ -15233,9 +15210,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "kEL" = (
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
+/obj/item/shard/phoron,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -15286,9 +15261,7 @@
 	},
 /area/magmoor/compound/south)
 "kFU" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/effect/spawner/random/plant,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -16909,10 +16882,7 @@
 /area/magmoor/cave/north)
 "lRX" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
-	pixel_y = 10
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
 "lSA" = (
@@ -18432,10 +18402,7 @@
 /area/magmoor/research/serverroom)
 "mVN" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
-	pixel_y = 10
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -18487,9 +18454,7 @@
 	},
 /area/magmoor/medical/treatment)
 "mYd" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/effect/spawner/random/plant,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -19492,7 +19457,7 @@
 	},
 /area/magmoor/engi/power)
 "nGp" = (
-/obj/structure/flora/pottedplant,
+/obj/effect/spawner/random/plant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -25717,7 +25682,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "rSQ" = (
-/obj/structure/flora/pottedplant,
+/obj/effect/spawner/random/plant,
 /obj/machinery/alarm,
 /turf/open/floor/mainship/silver{
 	dir = 1
@@ -26029,9 +25994,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "sfI" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/effect/spawner/random/plant,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
@@ -26352,9 +26315,7 @@
 /obj/structure/window/phoronreinforced{
 	dir = 4
 	},
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
+/obj/item/shard/phoron,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -26634,7 +26595,6 @@
 /area/magmoor/civilian/mosque)
 "szQ" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -28064,7 +28024,7 @@
 	},
 /area/magmoor/civilian/arrival/east)
 "tzI" = (
-/obj/structure/flora/pottedplant,
+/obj/effect/spawner/random/plant,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "tzN" = (
@@ -28391,13 +28351,11 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
 "tKD" = (
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
 /obj/structure/xenoautopsy/tank/escaped,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/item/shard/phoron,
 /obj/item/shard/phoron,
 /turf/open/floor/plating/platebotc,
 /area/magmoor/research/containment)
@@ -29260,15 +29218,6 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/concrete,
 /area/magmoor/compound/east)
-"unf" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/magmoor/landing)
 "unF" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -29950,7 +29899,6 @@
 /area/magmoor/cargo/storage/south)
 "uNJ" = (
 /obj/machinery/floodlight/colony{
-	layer = 4.3;
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -32503,9 +32451,7 @@
 /area/magmoor/engi/atmos)
 "wEa" = (
 /obj/machinery/door/window/secure,
-/obj/item/shard/phoron{
-	icon_state = "phoronsmall"
-	},
+/obj/item/shard/phoron,
 /turf/open/floor/plating,
 /area/magmoor/research/containment)
 "wEn" = (
@@ -33052,7 +32998,7 @@
 	},
 /area/magmoor/compound/north)
 "wVe" = (
-/obj/structure/flora/pottedplant,
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -33103,10 +33049,7 @@
 /area/magmoor/research/lab)
 "wXI" = (
 /obj/structure/table/reinforced,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
-	pixel_y = 10
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "wXM" = (
@@ -34065,10 +34008,7 @@
 /area/magmoor/civilian/jani)
 "xAG" = (
 /obj/structure/table/reinforced,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
-	pixel_y = 10
-	},
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby)
 "xAV" = (
@@ -35152,7 +35092,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/engi/thermal)
 "ylX" = (
-/obj/structure/flora/pottedplant,
+/obj/effect/spawner/random/plant,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -45390,7 +45330,7 @@ rsT
 rsT
 rsT
 rsT
-unf
+rsT
 rsT
 rsT
 xnH
@@ -72826,7 +72766,7 @@ xku
 xku
 xku
 xku
-fgi
+xku
 xku
 xku
 ahN

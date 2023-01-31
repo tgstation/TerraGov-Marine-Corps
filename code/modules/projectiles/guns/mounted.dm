@@ -340,6 +340,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -369,6 +370,7 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
+	damage_falloff_mult = 0.5
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
