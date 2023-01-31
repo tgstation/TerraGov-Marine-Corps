@@ -812,6 +812,9 @@
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 	play_fire_sound(loc)
+	if(gun_user)
+		gun_user.last_gun = gun_user.get_active_held_item()
+		gun_user.last_gun_delay = world.time + max(fire_delay, extra_delay)
 
 	if(muzzle_flash && !muzzle_flash.applied)
 		var/atom/movable/flash_loc = (master_gun || !istype(loc, /obj/machinery/deployable/mounted)) ? gun_user : loc
@@ -1571,7 +1574,7 @@
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
 
-	if(world.time >= delay)
+	if(world.time >= delay && (!gun_user || world.time >= gun_user.last_gun_delay || gun_user.last_gun == gun_user.get_active_held_item() || gun_user.last_gun == gun_user.get_inactive_held_item() || (max(fire_delay, extra_delay) < 1 SECONDS)))
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
