@@ -747,32 +747,37 @@
 		return
 
 	if(dragger.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
+		dragger.visible_message(span_notice("[dragger] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(dragger, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
-	span_notice("You start climbing into \the [src]."))
-	if(do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
-		if(occupant)
-			to_chat(dragger, span_notice("[src] is already occupied!"))
-			return
-		dropped.stop_pulling()
-		dropped.forceMove(src)
-		occupant = dropped
-		icon_state = "autodoc_closed"
-		var/implants = list(/obj/item/implant/neurostim)
-		var/mob/living/carbon/human/H = occupant
-		var/doc_dat
-		med_scan(H, doc_dat, implants, TRUE)
-		start_processing()
-		for(var/obj/O in src)
-			qdel(O)
-		if(automaticmode)
-			say("Automatic mode engaged, initialising procedures.")
-			addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+	if(dragger == dropped)
+		dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
+		span_notice("You start climbing into \the [src]."))
+	else
+		dragger.visible_message("[dragger] starts putting [dropped] into \the [src].")
+
+	if(dragger.do_actions || dropped.do_actions || !do_after(dragger, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+		return
+	if(occupant)
+		to_chat(dragger, span_notice("[src] is already occupied!"))
+		return
+	dropped.stop_pulling()
+	dropped.forceMove(src)
+	occupant = dropped
+	icon_state = "autodoc_closed"
+	var/implants = list(/obj/item/implant/neurostim)
+	var/mob/living/carbon/human/H = occupant
+	var/doc_dat
+	med_scan(H, doc_dat, implants, TRUE)
+	start_processing()
+	for(var/obj/O in src)
+		qdel(O)
+	if(automaticmode)
+		say("Automatic mode engaged, initialising procedures.")
+		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
 
 ///Callback to start auto mode on someone entering
 /obj/machinery/autodoc/proc/auto_start()
@@ -884,45 +889,9 @@
 	if(!M)
 		return
 
-	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in. // MONKEEY IS FREE
-		to_chat(user, span_notice("[src] is compatible with humanoid anatomies only!"))
+	if(!isliving(M) || !ishuman(user))
 		return
-
-	else if(M.abiotic())
-		to_chat(user, span_warning("Subject cannot have abiotic items on."))
-		return
-
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
-		span_notice("You fumble around figuring out how to put [M] into [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
-			return
-
-	visible_message("[user] starts putting [M] into [src].", 3)
-
-	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
-		return
-
-	if(occupant)
-		to_chat(user, span_notice("[src] is already occupied!"))
-		return
-
-	if(!M || !G)
-		return
-
-	M.forceMove(src)
-	occupant = M
-	icon_state = "autodoc_closed"
-	var/implants = list(/obj/item/implant/neurostim)
-	var/mob/living/carbon/human/H = occupant
-	med_scan(H, null, implants, TRUE)
-	start_processing()
-
-	if(automaticmode)
-		say("Automatic mode engaged, initialising procedures.")
-		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
-
+	move_inside_wrapper(M, user)
 
 /////////////////////////////////////////////////////////////
 
@@ -982,204 +951,141 @@
 
 	return TRUE
 
+/obj/machinery/autodoc_console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
+	if(!ui)
+		ui = new(user, src, "Autodoc", name)
+		ui.open()
 
-/obj/machinery/autodoc_console/interact(mob/user)
+/obj/machinery/autodoc_console/ui_data(mob/user)
+	var/list/data = list()
+
+	data["locked"] = locked
+	data["notice"] = release_notice
+	data["auto"] = connected.automaticmode
+	data["surgery"] = connected.surgery
+	data["hasOccupant"] = connected.occupant ? TRUE : FALSE
+	data["occupant"] = list()
+
+	if(connected.occupant)
+		var/mob/living/mob_occupant = connected.occupant
+		data["occupant"]["name"] = mob_occupant.name
+		switch(mob_occupant.stat)
+			if(CONSCIOUS)
+				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["statstate"] = "good"
+			if(UNCONSCIOUS)
+				data["occupant"]["stat"] = "Unconscious"
+				data["occupant"]["statstate"] = "average"
+			if(DEAD)
+				data["occupant"]["stat"] = "Dead"
+				data["occupant"]["statstate"] = "bad"
+		data["occupant"]["health"] = round(mob_occupant.health, 1)
+		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
+		data["occupant"]["minHealth"] = mob_occupant.health_threshold_dead
+		data["occupant"]["bruteLoss"] = round(mob_occupant.getBruteLoss(), 1)
+		data["occupant"]["oxyLoss"] = round(mob_occupant.getOxyLoss(), 1)
+		data["occupant"]["toxLoss"] = round(mob_occupant.getToxLoss(), 1)
+		data["occupant"]["fireLoss"] = round(mob_occupant.getFireLoss(), 1)
+
+		var/list/surgeryqueue = list()
+		var/datum/data/record/N = null
+		for(var/datum/data/record/R in GLOB.datacore.medical)
+			if (R.fields["name"] == connected.occupant.real_name)
+				N = R
+
+		if(!connected.automaticmode)
+			if(!isnull(N.fields["autodoc_manual"]))
+				for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
+					switch(A.type_of_surgery)
+						if(EXTERNAL_SURGERY)
+							switch(A.surgery_procedure)
+								if(ADSURGERY_BRUTE)
+									surgeryqueue.Add("Surgical Brute Damage Treatment")
+								if(ADSURGERY_BURN)
+									surgeryqueue.Add("Surgical Burn Damage Treatment")
+								if(ADSURGERY_TOXIN)
+									surgeryqueue.Add("Toxin Damage Chelation")
+								if(ADSURGERY_DIALYSIS)
+									surgeryqueue.Add("Dialysis")
+								if(ADSURGERY_BLOOD)
+									surgeryqueue.Add("Blood Transfer")
+						if(ORGAN_SURGERY)
+							switch(A.surgery_procedure)
+								if(ADSURGERY_GERMS)
+									surgeryqueue.Add("Organ Infection Treatment")
+								if(ADSURGERY_DAMAGE)
+									surgeryqueue.Add("Surgical Organ Damage Treatment")
+								if(ADSURGERY_EYES)
+									surgeryqueue.Add("Corrective Eye Surgery")
+						if(LIMB_SURGERY)
+							switch(A.surgery_procedure)
+								if(ADSURGERY_INTERNAL)
+									surgeryqueue.Add("Internal Bleeding Surgery")
+								if(ADSURGERY_BROKEN)
+									surgeryqueue.Add("Broken Bone Surgery")
+								if(ADSURGERY_MISSING)
+									surgeryqueue.Add("Limb Replacement Surgery")
+								if(ADSURGERY_NECRO)
+									surgeryqueue.Add("Necrosis Removal Surgery")
+								if(ADSURGERY_SHRAPNEL)
+									surgeryqueue.Add("Foreign Body Removal Surgery")
+								if(ADSURGERY_GERM)
+									surgeryqueue.Add("Limb Disinfection Procedure")
+								if(ADSURGERY_FACIAL)
+									surgeryqueue.Add("Facial Reconstruction Surgery")
+								if(ADSURGERY_OPEN)
+									surgeryqueue.Add("Close Open Incision")
+
+		data["queue"] = surgeryqueue
+
+	return data
+
+/obj/machinery/autodoc_console/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
+	switch(action)
+		if("locktoggle")
+			if(allowed(usr))
+				locked = !locked
+				connected.locked = !connected.locked
+			else
+				to_chat(usr, span_warning("Access denied."))
+				playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+		if("noticetoggle")
+			if(allowed(usr))
+				release_notice = !release_notice
+			else
+				to_chat(usr, span_warning("Access denied."))
+				playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+		if("automatictoggle")
+			connected.automaticmode = !connected.automaticmode
+		if("surgery")
+			if(connected.occupant)
+				connected.surgery_op()
+		if("clear")
+			clear_queue()
+		if("eject")
+			connected.eject()
+		if("add_surgery")
+			add_surgery(params["surgeryname"])
 
-	var/dat = ""
-
-	if(locked)
-		dat += "<hr>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a><BR>"
-	else
-		dat += "<hr><a href='?src=\ref[src];locktoggle=1'>Lock Console</a> | Unlock Console<BR>"
-
-	if(release_notice)
-		dat += "<hr>Notifications On</span> | <a href='?src=\ref[src];noticetoggle=1'>Notifications Off</a><BR>"
-	else
-		dat += "<hr><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
-
-	if(connected.automaticmode)
-		dat += "<hr>[span_notice("Automatic Mode")] | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
-	else
-		dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
-
-	dat += "<hr><font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
-	if(!connected.occupant)
-		dat += "No occupant detected."
-		var/datum/browser/popup = new(user, "autodoc", "<div align='center'>Autodoc Console</div>", 600, 600)
-		popup.set_content(dat)
-		popup.open()
-		return
-
-	var/t1
-	switch(connected.occupant.stat)
-		if(CONSCIOUS)
-			t1 = "Conscious"
-		if(UNCONSCIOUS)
-			t1 = "<font color='#487553'>Unconscious</font>"
-		if(DEAD)
-			t1 = "<font color='#b54646'>*Dead*</font>"
-	var/operating
-	switch(connected.surgery)
-		if(0)
-			operating = "Not in surgery"
-		if(1)
-			operating = "<font color='#b54646'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
-	dat += text("[]\tHealth %: [] ([])</FONT><BR>", (connected.occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), round(connected.occupant.health), t1)
-	var/pulse = connected.occupant.handle_pulse()
-	dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), connected.occupant.get_pulse(GETPULSE_TOOL))
-	dat += text("[]\t-Brute Damage %: []</FONT><BR>", (connected.occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getBruteLoss())
-	dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (connected.occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getOxyLoss())
-	dat += text("[]\t-Toxin Content %: []</FONT><BR>", (connected.occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getToxLoss())
-	dat += text("[]\t-Burn Severity %: []</FONT><BR>", (connected.occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getFireLoss())
-
-	dat += "<hr> Surgery Queue:<br>"
-
-	var/list/surgeryqueue = list()
-
+/obj/machinery/autodoc_console/proc/clear_queue()
 	var/datum/data/record/N = null
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (R.fields["name"] == connected.occupant.real_name)
+
+	for(var/i in GLOB.datacore.medical)
+		var/datum/data/record/R = i
+		if(R.fields["name"] == connected.occupant.real_name)
 			N = R
-	if(isnull(N))
-		N = create_medical_record(connected.occupant)
 
-	if(connected.automaticmode)
-		var/list/autosurgeries = N.fields["autodoc_data"]
-		if(length_char(autosurgeries))
-			dat += "[span_danger("Automatic Mode Ready.")]<br>"
-		else
+		if(isnull(N))
+			N = create_medical_record(connected.occupant)
 
-			dat += "[span_danger("Automatic Mode Unavaliable, Scan Patient First.")]<br>"
-	else
-		if(!isnull(N.fields["autodoc_manual"]))
-			for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
-				switch(A.type_of_surgery)
-					if(EXTERNAL_SURGERY)
-						switch(A.surgery_procedure)
-							if(ADSURGERY_BRUTE)
-								surgeryqueue["brute"] = 1
-								dat += "Surgical Brute Damage Treatment"
-							if(ADSURGERY_BURN)
-								surgeryqueue["burn"] = 1
-								dat += "Surgical Burn Damage Treatment"
-							if(ADSURGERY_TOXIN)
-								surgeryqueue["toxin"] = 1
-								dat += "Toxin Damage Chelation"
-							if(ADSURGERY_DIALYSIS)
-								surgeryqueue["dialysis"] = 1
-								dat += "Dialysis"
-							if(ADSURGERY_BLOOD)
-								surgeryqueue["blood"] = 1
-								dat += "Blood Transfer"
-					if(ORGAN_SURGERY)
-						switch(A.surgery_procedure)
-							if(ADSURGERY_GERMS)
-								surgeryqueue["organgerms"] = 1
-								dat += "Organ Infection Treatment"
-							if(ADSURGERY_DAMAGE)
-								surgeryqueue["organdamage"] = 1
-								dat += "Surgical Organ Damage Treatment"
-							if(ADSURGERY_EYES)
-								surgeryqueue["eyes"] = 1
-								dat += "Corrective Eye Surgery"
-					if(LIMB_SURGERY)
-						switch(A.surgery_procedure)
-							if(ADSURGERY_INTERNAL)
-								surgeryqueue["internal"] = 1
-								dat += "Internal Bleeding Surgery"
-							if(ADSURGERY_BROKEN)
-								surgeryqueue["broken"] = 1
-								dat += "Broken Bone Surgery"
-							if(ADSURGERY_MISSING)
-								surgeryqueue["missing"] = 1
-								dat += "Limb Replacement Surgery"
-							if(ADSURGERY_NECRO)
-								surgeryqueue["necro"] = 1
-								dat += "Necrosis Removal Surgery"
-							if(ADSURGERY_SHRAPNEL)
-								surgeryqueue["shrapnel"] = 1
-								dat += "Foreign Body Removal Surgery"
-							if(ADSURGERY_GERM)
-								surgeryqueue["limbgerm"] = 1
-								dat += "Limb Disinfection Procedure"
-							if(ADSURGERY_FACIAL)
-								surgeryqueue["facial"] = 1
-								dat += "Facial Reconstruction Surgery"
-							if(ADSURGERY_OPEN)
-								surgeryqueue["open"] = 1
-								dat += "Close Open Incision"
-				dat += "<br>"
+	N.fields["autodoc_manual"] = list()
 
-	dat += "<hr> Med-Pod Status: [operating] "
-	dat += "<hr><a href='?src=\ref[src];clear=1'>Clear Surgery Queue</a>"
-	dat += "<hr><a href='?src=\ref[src];refresh=1'>Refresh Menu</a>"
-	dat += "<hr><a href='?src=\ref[src];surgery=1'>Begin Surgery Queue</a>"
-	dat += "<hr><a href='?src=\ref[src];ejectify=1'>Eject Patient</a>"
-	if(!connected.surgery)
-		if(connected.automaticmode)
-			dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
-		else
-			dat += "<hr>Manual Surgery Interface<hr>"
-			dat += "<b>Trauma Surgeries</b>"
-			dat += "<br>"
-			if(isnull(surgeryqueue["brute"]))
-				dat += "<a href='?src=\ref[src];brute=1'>Surgical Brute Damage Treatment</a><br>"
-			if(isnull(surgeryqueue["burn"]))
-				dat += "<a href='?src=\ref[src];burn=1'>Surgical Burn Damage Treatment</a><br>"
-			dat += "<b>Orthopedic Surgeries</b>"
-			dat += "<br>"
-			if(isnull(surgeryqueue["broken"]))
-				dat += "<a href='?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
-			if(isnull(surgeryqueue["internal"]))
-				dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
-			if(isnull(surgeryqueue["shrapnel"]))
-				dat += "<a href='?src=\ref[src];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
-			if(isnull(surgeryqueue["missing"]))
-				dat += "<a href='?src=\ref[src];missing=1'>Limb Replacement Surgery</a><br>"
-			dat += "<b>Organ Surgeries</b>"
-			dat += "<br>"
-			if(isnull(surgeryqueue["organdamage"]))
-				dat += "<a href='?src=\ref[src];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
-			if(isnull(surgeryqueue["organgerms"]))
-				dat += "<a href='?src=\ref[src];organgerms=1'>Organ Infection Treatment</a><br>"
-			if(isnull(surgeryqueue["eyes"]))
-				dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
-			dat += "<b>Hematology Treatments</b>"
-			dat += "<br>"
-			if(isnull(surgeryqueue["blood"]))
-				dat += "<a href='?src=\ref[src];blood=1'>Blood Transfer</a><br>"
-			if(isnull(surgeryqueue["toxin"]))
-				dat += "<a href='?src=\ref[src];toxin=1'>Toxin Damage Chelation</a><br>"
-			if(isnull(surgeryqueue["dialysis"]))
-				dat += "<a href='?src=\ref[src];dialysis=1'>Dialysis</a><br>"
-			if(isnull(surgeryqueue["necro"]))
-				dat += "<a href='?src=\ref[src];necro=1'>Necrosis Removal Surgery</a><br>"
-			if(isnull(surgeryqueue["limbgerm"]))
-				dat += "<a href='?src=\ref[src];limbgerm=1'>Limb Disinfection Procedure</a><br>"
-			dat += "<b>Special Surgeries</b>"
-			dat += "<br>"
-			if(isnull(surgeryqueue["facial"]))
-				dat += "<a href='?src=\ref[src];facial=1'>Facial Reconstruction Surgery</a><br>"
-			if(isnull(surgeryqueue["open"]))
-				dat += "<a href='?src=\ref[src];open=1'>Close Open Incision</a><br>"
-
-	var/datum/browser/popup = new(user, "autodoc", "<div align='center'>Autodoc Console</div>", 600, 600)
-	popup.set_content(dat)
-	popup.open()
-
-
-/obj/machinery/autodoc_console/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(!connected)
-		return
-
+/obj/machinery/autodoc_console/proc/add_surgery(name)
 	if(ishuman(connected.occupant))
 		// manual surgery handling
 		var/datum/data/record/N = null
@@ -1192,151 +1098,125 @@
 			N = create_medical_record(connected.occupant)
 
 		var/needed = 0 // this is to stop someone just choosing everything
-		if(href_list["brute"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
+		switch(name)
+			if("brute")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
 
-		if(href_list["burn"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BURN)
+			if("burn")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BURN)
 
-		if(href_list["toxin"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_TOXIN)
+			if("toxin")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_TOXIN)
 
-		if(href_list["dialysis"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_DIALYSIS)
+			if("dialysis")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_DIALYSIS)
 
-		if(href_list["blood"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BLOOD)
+			if("blood")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BLOOD)
 
-		if(href_list["organgerms"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_GERMS)
+			if("organgerms")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_GERMS)
 
-		if(href_list["eyes"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
+			if("eyes")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
 
-		if(href_list["organdamage"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				for(var/x in L.internal_organs)
-					var/datum/internal_organ/I = x
-					if(I.robotic == ORGAN_ASSISTED || I.robotic == ORGAN_ROBOT)
-						continue
-					if(I.damage > 0)
-						N.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_DAMAGE,0,I)
+			if("organdamage")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					for(var/x in L.internal_organs)
+						var/datum/internal_organ/I = x
+						if(I.robotic == ORGAN_ASSISTED || I.robotic == ORGAN_ROBOT)
+							continue
+						if(I.damage > 0)
+							N.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_DAMAGE,0,I)
+							needed++
+				if(!needed)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_DAMAGE,1)
+
+			if("internal")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					if(L.wounds.len)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 						needed++
-			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_DAMAGE,1)
+				if(!needed)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
 
-		if(href_list["internal"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				if(L.wounds.len)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
-					needed++
-			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
+			if("broken")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					if(L.limb_status & LIMB_BROKEN)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
+						needed++
+				if(!needed)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_BROKEN,1)
 
-		if(href_list["broken"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				if(L.limb_status & LIMB_BROKEN)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
-					needed++
-			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_BROKEN,1)
+			if("missing")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					if(L.limb_status & LIMB_DESTROYED && !(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
+						needed++
+				if(!needed)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_MISSING,1)
 
-		if(href_list["missing"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				if(L.limb_status & LIMB_DESTROYED && !(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
-					needed++
-			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_MISSING,1)
-
-		if(href_list["necro"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				if(L.limb_status & LIMB_NECROTIZED)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
-					needed++
-			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_NECRO,1)
+			if("necro")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					if(L.limb_status & LIMB_NECROTIZED)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
+						needed++
+				if(!needed)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_NECRO,1)
 
 
-		if(href_list["shrapnel"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				var/skip_embryo_check = FALSE
-				var/obj/item/alien_embryo/A = locate() in connected.occupant
-				for(var/I in L.implants)
-					if(is_type_in_list(I, GLOB.known_implants))
+			if("shrapnel")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					var/skip_embryo_check = FALSE
+					var/obj/item/alien_embryo/A = locate() in connected.occupant
+					for(var/I in L.implants)
+						if(is_type_in_list(I, GLOB.known_implants))
+							continue
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+						needed++
+						if(L.body_part == CHEST)
+							skip_embryo_check = TRUE
+					if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery of the chest proceed.
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+						needed++
+
+				if(!needed)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null, LIMB_SURGERY,ADSURGERY_SHRAPNEL, 1)
+
+			if("limbgerm")
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null, LIMB_SURGERY,ADSURGERY_GERM)
+
+			if("facial")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					if(!istype(L, /datum/limb/head))
 						continue
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
-					needed++
-					if(L.body_part == CHEST)
-						skip_embryo_check = TRUE
-				if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery of the chest proceed.
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
-					needed++
+					var/datum/limb/head/J = L
+					if(J.disfigured || J.face_surgery_stage)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_FACIAL)
+					else
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_FACIAL, 1)
+					break
 
-			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null, LIMB_SURGERY,ADSURGERY_SHRAPNEL, 1)
-
-		if(href_list["limbgerm"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null, LIMB_SURGERY,ADSURGERY_GERM)
-
-		if(href_list["facial"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				if(!istype(L, /datum/limb/head))
-					continue
-				var/datum/limb/head/J = L
-				if(J.disfigured || J.face_surgery_stage)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_FACIAL)
-				else
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_FACIAL, 1)
-				break
-
-		if(href_list["open"])
-			for(var/i in connected.occupant.limbs)
-				var/datum/limb/L = i
-				if(L.surgery_open_stage)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
-					needed++
-			if(href_list["open"])
+			if("open")
+				for(var/i in connected.occupant.limbs)
+					var/datum/limb/L = i
+					if(L.surgery_open_stage)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
+						needed++
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_OPEN,1)
 
-		// The rest
-		if(href_list["clear"])
-			N.fields["autodoc_manual"] = list()
-
-	if(href_list["locktoggle"]) //Toggle the autodoc lock on/off if we have authorization.
-		if(allowed(usr))
-			locked = !locked
-			connected.locked = !connected.locked
-		else
-			to_chat(usr, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
-
-	if(href_list["noticetoggle"]) //Toggle notifications on/off if we have authorization.
-		if(allowed(usr))
-			release_notice = !release_notice
-		else
-			to_chat(usr, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
-
-	if(href_list["automatictoggle"])
-		connected.automaticmode = !connected.automaticmode
-
-	if(href_list["surgery"])
-		if(connected.occupant)
-			connected.surgery_op()
-
-	if(href_list["ejectify"])
-		connected.eject()
-
-	updateUsrDialog()
-
+/obj/machinery/autodoc_console/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+	ui_interact(user)
 
 /obj/machinery/autodoc/event
 	event = 1
