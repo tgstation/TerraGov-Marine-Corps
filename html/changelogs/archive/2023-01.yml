@@ -371,3 +371,10 @@
   - bugfix: Fixed an oversight where the escape pod walls were not solid.
   chizzy376:
   - bugfix: added a missing "is" to clone vat's error message when removing a beaker
+2023-01-31:
+  Pariah919:
+  - balance: Mech Rocket launcher no longer has heavy explosion, it now has 1 more
+      tile of light explosive range.
+  XSlayer300:
+  - soundadd: Replaced most mech-related sounds with new ones.
+  - sounddel: Removed most of the unused sounds that were from the original mech PR.
