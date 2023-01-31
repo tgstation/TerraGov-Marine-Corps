@@ -169,10 +169,10 @@
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
-		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, get ready to defend it team!", /atom/movable/screen/text/screen_text/picture/potrait)
-		else
+		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, deactivate it!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+		else
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, get ready to defend it team!", /atom/movable/screen/text/screen_text/picture/potrait)
 
 ///When timer ends add a point to the point pool in sensor capture, increase game timer, and send an alert
 /obj/structure/sensor_tower_patrol/proc/finish_activation()
@@ -195,10 +195,10 @@
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
-		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, timer increased by [SENSOR_CAP_ADDITION_TIME_BONUS / 600] minutes.", /atom/movable/screen/text/screen_text/picture/potrait)
-		else
+		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, stop further towers from being activated!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+		else
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, timer increased by [SENSOR_CAP_ADDITION_TIME_BONUS / 600] minutes.", /atom/movable/screen/text/screen_text/picture/potrait)
 
 ///Stops timer if activating and sends an alert
 /obj/structure/sensor_tower_patrol/proc/deactivate()
@@ -208,10 +208,10 @@
 	update_icon()
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped<br>" + ",rally up and get it together team!", /atom/movable/screen/text/screen_text/picture/potrait)
-		else
+		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped, glory to Mars!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+		else
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped<br>" + ",rally up and get it together team!", /atom/movable/screen/text/screen_text/picture/potrait)
 
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 
