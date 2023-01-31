@@ -449,25 +449,29 @@
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
 
-#define PIXELS_TO_DISSAPPEAR 200
-#define FLAP_DELAY 2 SECONDS
-#define LANDING_DELAY 4 SECONDS
 /datum/status_effect/xeno/dragon_flight
-	id = "Flight"
+	id = "flight"
 	alert_type = null
+	var/plasma_to_sustain = 5
 	var/takeoff_flaps = 10
-	// var/taking_off = TRUE
+	var/landing_delay = 10 SECONDS
+	var/flap_delay = 2 SECONDS
+	var/hover_transition = FALSE
+	var/flight_pixel_height = 200
 	var/obj/effect/shadow
 	var/plasma_to_sustain = 10
 
 /datum/status_effect/xeno/dragon_flight/on_apply()
 	. = ..()
+	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, "dragon_flight")
 	take_off()
 
 /datum/status_effect/xeno/dragon_flight/on_remove()
 	if(owner.status_flags & INCORPOREAL)
 		owner_xeno.toggle_intangibility()
-	land()
+	if(!hover_transition)
+		land()
+	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, "dragon_flight")
 	owner.layer = initial(owner.layer)
 	. = ..()
 
@@ -486,14 +490,15 @@
 	//Queues up flaps, because sleeps are bad
 	for(var/step in 1 to takeoff_flaps)
 		// Give give both the current step and the amount left as args, and delay it so it happens nicely after eachother
-		addtimer(CALLBACK(src, .proc/flap, step, takeoff_flaps), step * FLAP_DELAY)
+		addtimer(CALLBACK(src, .proc/flap, step, takeoff_flaps), step * flap_delay)
+
 
 /datum/status_effect/xeno/dragon_flight/proc/flap(current_step, total_steps)
 	// We want to reach out of the view screen within the steps left
-	var/pixel_change = PIXELS_TO_DISSAPPEAR * (current_step / total_steps)
+	var/pixel_change = flight_pixel_height * (current_step / total_steps)
 	playsound(owner, 'sound/effects/woosh_swoosh.ogg', 100, vary = TRUE, sound_range = 14)
-	addtimer(CALLBACK(src, .proc/dissapear, FLAP_DELAY * 4), FLAP_DELAY * 2)
-	animate(owner, FLAP_DELAY, pixel_y = pixel_change, flags = ANIMATION_RELATIVE, easing = BACK_EASING)
+	addtimer(CALLBACK(src, .proc/dissapear, flap_delay * 4), flap_delay * 2)
+	animate(owner, flap_delay, pixel_y = pixel_change, flags = ANIMATION_RELATIVE, easing = BACK_EASING)
 
 	if (current_step >= total_steps)
 		finish_take_off()
@@ -508,11 +513,11 @@
 	owner_xeno.toggle_intangibility()
 
 /datum/status_effect/xeno/dragon_flight/proc/land()
-	owner.Immobilize(LANDING_DELAY)
-	animate(owner, LANDING_DELAY, pixel_y = initial(owner.pixel_y), easing = BACK_EASING)
-	animate(owner, LANDING_DELAY, alpha = initial(owner.alpha))
+	owner.Immobilize(landing_delay)
+	animate(owner, landing_delay, pixel_y = initial(owner.pixel_y), easing = BACK_EASING)
+	animate(owner, landing_delay, alpha = initial(owner.alpha))
 	if(shadow)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, shadow), LANDING_DELAY)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, shadow), landing_delay)
 
 /datum/status_effect/xeno/dragon_flight/proc/create_shadow()
 	shadow = new /obj/effect/following_shadow(get_turf(owner), owner)
@@ -520,6 +525,27 @@
 	shadow.glide_size = owner.glide_size
 	animate(shadow, 10 SECONDS, alpha = 150)
 
-#undef PIXELS_TO_DISSAPPEAR
-#undef FLAP_DELAY
-#undef LANDING_DELAY
+/datum/status_effect/xeno/dragon_flight/proc/transition_to_hover()
+	var/datum/status_effect/xeno/dragon_flight/hover/hover = owner.apply_status_effect(STATUS_EFFECT_HOVER)
+	hover.shadow = shadow
+	shadow = null
+	hover_transition = TRUE
+	hover.hover_transition = TRUE
+	qdel(src)
+
+/datum/status_effect/xeno/dragon_flight/hover
+	id = "hover"
+	plasma_to_sustain = 10
+	takeoff_flaps = 2
+	landing_delay = 1 SECONDS
+	flight_pixel_height = 70
+
+/datum/status_effect/xeno/dragon_flight/hover/take_off()
+	// Ensure we only lower the height when transition from flight to hover, not land and then takeoff again.
+	if(hover_transition)
+		animate(owner, landing_delay * 3, easing = BACK_EASING, pixel_y = flight_pixel_height)
+		return
+	. = ..()
+
+/datum/status_effect/xeno/dragon_flight/hover/finish_take_off()
+	. = ..()

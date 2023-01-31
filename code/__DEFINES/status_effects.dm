@@ -62,6 +62,8 @@
 #define STATUS_EFFECT_DRAGONFIRE /datum/status_effect/dragon_fire // The affected mob has been set on fire by a dragon, acts like fire, but with a few differences
 
 #define STATUS_EFFECT_FLIGHT /datum/status_effect/xeno/dragon_flight // The affected mob starts bobbing upwards and then become intangible for as long as the status effect exists
+
+#define STATUS_EFFECT_HOVER /datum/status_effect/xeno/dragon_flight/hover // Lets others walk under the mob and moves it a bit higher, while making it unable to unarmed attack
 /////////////
 // NEUTRAL //
 /////////////
