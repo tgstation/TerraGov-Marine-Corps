@@ -662,6 +662,10 @@
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
 
+/turf/closed/shuttle/dropship2/singlewindow/tadpole
+	icon_state = "shuttle_single_window"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/interiormisc
 	icon_state = "shuttle_interior_threeside"
 
@@ -686,8 +690,16 @@
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
 
+/turf/closed/shuttle/dropship2/glassone/tadpole
+	icon_state = "shuttle_glass1"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+
+/turf/closed/shuttle/dropship2/glasstwo/tadpole
+	icon_state = "shuttle_glass2"
+	resistance_flags = NONE
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"
@@ -701,8 +713,16 @@
 /turf/closed/shuttle/dropship2/glasssix
 	icon_state = "shuttle_glass6"
 
+/turf/closed/shuttle/dropship2/rearcorner/tadpole
+	icon_state = "shuttle_rearcorner"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/rearcorner/alt
 	icon_state = "shuttle_rearcorner_alt"
+
+/turf/closed/shuttle/dropship2/rearcorner/alt/tadpole
+	icon_state = "shuttle_rearcorner_alt"
+	resistance_flags = NONE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
