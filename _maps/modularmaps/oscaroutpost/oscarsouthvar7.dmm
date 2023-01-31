@@ -1818,10 +1818,8 @@
 /area/oscar_outpost/village/abandonedbase)
 "QG" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/structure/platform{
-	density = 0;
-	dir = 4;
-	icon_state = "platform_deco"
+/obj/structure/platform_decoration{
+	dir = 4
 	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
