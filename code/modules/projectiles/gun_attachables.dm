@@ -1043,7 +1043,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t76stock"
 	flags_attach_features = ATTACH_REMOVABLE
 	melee_mod = 5
+	scatter_mod = -1
 	size_mod = 2
+	aim_speed_mod = 0.05
 	recoil_mod = -2
 	pixel_shift_x = 30
 	pixel_shift_y = 14
