@@ -14,6 +14,7 @@
 #define CAT_MAS "MASKS"
 #define CAT_MOD "JAEGER STORAGE MODULES"
 #define CAT_ARMMOD "JAEGER ARMOR MODULES"
+#define CAT_KIT "KITS"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -43,6 +44,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_GLA = 1,
 		CAT_MAS = 1,
 		CAT_ESS = 1,
+		CAT_KIT = 1,
 		CAT_POU = 2,
 	))
 
@@ -110,6 +112,10 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/vendor_bundle/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
+		/obj/item/storage/box/sl/tx8 = list(CAT_KIT, "BR-8 Battle Rifle Kit", 0, "black"),
+		/obj/item/storage/box/sl/mateba = list(CAT_KIT, "Mateba R-24 Kit", 0, "black"),
+		/obj/item/storage/box/sl/standard_autosniper = list(CAT_KIT, "SR-81 Autosniper Kit", 0, "black"),
+		/obj/item/storage/box/sl/thermobaric = list(CAT_KIT, "RL-57 Thermobaric Kit", 0, "black"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
 		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
