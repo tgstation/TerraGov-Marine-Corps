@@ -68,7 +68,7 @@
 		return FALSE
 	return TRUE
 
-/obj/alien/egg/flamer_fire_act(burnlevel, burnflags)
+/obj/alien/egg/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))
 		return
 	burst(TRUE)

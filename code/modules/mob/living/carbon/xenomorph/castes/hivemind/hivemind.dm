@@ -123,7 +123,7 @@
 	toggle_upgrading()
 	set_datum(FALSE)
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel, burnflags)
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))
 		return
 	return_to_core()

@@ -3108,7 +3108,7 @@ datum/ammo/bullet/revolver/tp44
 	var/fire_color = "red"
 	var/burntime = 17
 	var/burnlevel = 31
-	var/burn_flags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS
+	var/burn_flags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_ENVIRONMENT|IGNITES_MOBS
 	var/fire_type = /obj/flamer_fire
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
@@ -3158,7 +3158,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/flamethrower/dragon_fire
 	name = "resin firebolt"
-	burn_flags =  BURN_HUMANS|BURN_SNOW
+	burn_flags =  BURN_HUMANS|BURN_ENVIRONMENT
 	max_range = 10
 	shell_speed = 0.2
 	damage = 10
@@ -3174,6 +3174,7 @@ datum/ammo/bullet/revolver/tp44
 	fire_type = /obj/flamer_fire/smoothed/resin
 	var/added_spit_delay = 0
 	var/spit_cost = 150
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /datum/ammo/flamethrower/dragon_fire/on_hit_mob(mob/M, obj/projectile/P)
 	. = ..()

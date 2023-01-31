@@ -31,7 +31,7 @@
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
-/obj/structure/xeno/flamer_fire_act(burnlevel, burnflags)
+/obj/structure/xeno/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOBUILDINGS))
 		return
 	take_damage(burnlevel / 3, BURN, "fire")
@@ -139,7 +139,7 @@
 		else
 			. += "It's empty."
 
-/obj/structure/xeno/trap/flamer_fire_act(burnlevel, burnflags)
+/obj/structure/xeno/trap/flamer_fire_act(burnlevel, burnflags, firesource)
 	hugger?.kill_hugger()
 	trigger_trap()
 	set_trap_type(null)
@@ -512,7 +512,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/xeno/acidwell/flamer_fire_act(burnlevel, burnflags) //Removes a charge of acid, but fire is extinguished
+/obj/structure/xeno/acidwell/flamer_fire_act(burnlevel, burnflags, firesource) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
 
 /obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
@@ -948,7 +948,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
-/obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel, burnflags)
+/obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel, burnflags, firesource)
 	take_damage(burnlevel * 2, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 

@@ -245,7 +245,7 @@
 		return
 
 
-/obj/effect/plantsegment/flamer_fire_act(burnlevel, burnflags)
+/obj/effect/plantsegment/flamer_fire_act(burnlevel, burnflags, firesource)
 	qdel(src)
 
 /obj/effect/plant_controller

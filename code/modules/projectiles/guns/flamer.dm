@@ -517,7 +517,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
-	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS // Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire
+	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_ENVIRONMENT|IGNITES_MOBS // Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire
 	var/light_intensity = 3
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, burn_flags)
@@ -631,7 +631,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel, burnflags)
+	T.flamer_fire_act(burnlevel, burnflags, src)
 
 	var/iteration = 0
 	for(var/thing in T)
@@ -641,13 +641,13 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		var/atom/A = thing
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel, burnflags)
+		A.flamer_fire_act(burnlevel, burnflags, src)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
 
 // override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel, burnflags)
+/mob/living/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!burnlevel)
 		return
 	var/fire_mod = get_fire_resist()
@@ -692,7 +692,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	icon_state = "[initial(icon_state)][junction]"
 
 /obj/flamer_fire/smoothed/resin
-	burnflags = BURN_HUMANS|BURN_SNOW
+	burnflags = BURN_HUMANS|BURN_ENVIRONMENT
 	color = COLOR_PURPLE
 	firelevel = 24
 

@@ -165,10 +165,10 @@
 	return ..()
 
 //Fire act; fire now melts snow as it should; fire beats ice
-/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, burnflags)
+/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return
-	if(!CHECK_BITFIELD(burnflags, BURN_SNOW))
+	if(!CHECK_BITFIELD(burnflags, BURN_ENVIRONMENT))
 		return
 
 	switch(burnlevel)

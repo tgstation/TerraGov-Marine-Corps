@@ -652,7 +652,7 @@
 	if(exposed_temperature > 300)
 		kill_hugger()
 
-/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel, burnflags)
+/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))
 		return
 	kill_hugger()

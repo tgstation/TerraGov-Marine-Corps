@@ -16,7 +16,7 @@
 	throw_range = initial(throw_range)
 
 
-/obj/item/explosive/grenade/training/flamer_fire_act(burnlevel, burnflags)
+/obj/item/explosive/grenade/training/flamer_fire_act(burnlevel, burnflags, firesource)
 	return
 
 
@@ -302,7 +302,7 @@
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/explosive/grenade/flare/flamer_fire_act(burnlevel, burnflags)
+/obj/item/explosive/grenade/flare/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!fuel) //it's out of fuel, an empty shell.
 		return
 	if(!active)

@@ -281,7 +281,7 @@
 /obj/vehicle/unmanned/proc/delete_muzzle_flash()
 	vis_contents -= flash
 
-/obj/vehicle/unmanned/flamer_fire_act(burnlevel, burnflags)
+/obj/vehicle/unmanned/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_HUMANS))
 		return
 	take_damage(burnlevel / 2, BURN, "fire")

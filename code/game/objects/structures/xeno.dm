@@ -34,7 +34,7 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-/obj/alien/flamer_fire_act(burnlevel, burnflags)
+/obj/alien/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOBUILDINGS))
 		return
 	take_damage(burnlevel * 2, BURN, "fire")
@@ -184,7 +184,7 @@
 		src.balloon_alert(X, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel, burnflags)
+/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOBUILDINGS))
 		return
 	take_damage(burnlevel * 2, BURN, "fire")

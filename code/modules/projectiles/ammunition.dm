@@ -206,7 +206,7 @@
 	default_ammo = source.default_ammo
 
 //~Art interjecting here for explosion when using flamer procs.
-/obj/item/ammo_magazine/flamer_fire_act(burnlevel, burnflags)
+/obj/item/ammo_magazine/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!current_rounds)
 		return
 	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
@@ -413,7 +413,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				qdel(AM)
 
 //explosion when using flamer procs.
-/obj/item/big_ammo_box/flamer_fire_act(burnlevel, burnflags)
+/obj/item/big_ammo_box/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!bullet_amount)
 		return
 	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
