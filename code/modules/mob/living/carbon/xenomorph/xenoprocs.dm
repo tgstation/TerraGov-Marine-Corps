@@ -584,7 +584,6 @@
 		resistance_flags = initial(resistance_flags)
 		flags_pass = initial(flags_pass)
 		density = initial(density)
-		throwpass = initial(throwpass)
 		upgrade = initial(upgrade)
 		REMOVE_TRAIT(src, TRAIT_INTANGIBLE, "xeno_toggled")
 	else
@@ -595,7 +594,6 @@
 		resistance_flags = BANISH_IMMUNE
 		flags_pass = PASSTABLE|PASSMOB|PASSXENO
 		density = FALSE
-		throwpass = FALSE
 		upgrade = XENO_UPGRADE_BASETYPE
 	
 	update_wounds()

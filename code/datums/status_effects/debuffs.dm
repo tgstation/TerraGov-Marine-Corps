@@ -419,11 +419,11 @@
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"
 
-<<<<<<< HEAD
+
 // TODO: Turn actual fire into status effects?
 /datum/status_effect/dragon_fire
 	id = "dragon_fire"
-	alert_type = /obj/screen/alert/status_effect/fire
+	alert_type = /atom/movable/screen/alert/fire
 	var/mob/living/carbon/human/person
 	var/mutable_appearance/fire_effect
 
@@ -450,8 +450,8 @@
 	// Consuming all the fire stacks will make it impossible for normal fire to stick around
 	set_duration(person.fire_stacks + duration)
 	person.fire_stacks = 0
-	person.take_overall_damage_armored(5, BURN, "burn")
-
+	person.take_overall_damage(5, BURN, FIRE)
+b
 /datum/status_effect/dragon_fire/proc/set_duration(amount)
 	duration = clamp(amount, 0, 40)
 
@@ -486,7 +486,7 @@
 /datum/status_effect/dragon_fire/proc/disable_extinguish_message()
 	SIGNAL_HANDLER
 	return COMSIG_EXTINGUISH_NO_MESSAGE
-=======
+
 // ***************************************
 // *********** Intoxicated
 // ***************************************
@@ -555,4 +555,4 @@
 	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
 	debuff_owner.balloon_alert("Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
->>>>>>> ca08dc6dc92dbf0ee672da55d91d213a7d593b9c
+

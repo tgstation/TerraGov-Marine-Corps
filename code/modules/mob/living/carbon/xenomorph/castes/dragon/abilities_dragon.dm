@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/tail_stab
 	name = "Tail Stab"
 	// action_icon_state = "todo"
-	mechanics_text = "Stab a human with your tail, immobilizing it, and setting it on fire after a moment."
+	desc = "Stab a human with your tail, immobilizing it, and setting it on fire after a moment."
 	use_state_flags = XACT_USE_STAGGERED
 	plasma_cost = 100
 	cooldown_timer = 7 SECONDS
@@ -63,7 +63,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/fireball
 	name = "Spit a fireball"
-	mechanics_text = "Belch a fiery fireball at your foes."
+	desc = "Belch a fiery fireball at your foes."
 
 /datum/action/xeno_action/activable/xeno_spit/fireball/get_spit_type()
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -88,7 +88,7 @@
 
 /datum/action/xeno_action/flight
 	name = "Skycall"
-	mechanics_text = "Take flight and rain hell upon your enemies! Right click the action button to descend, and left click to ascend."
+	desc = "Take flight and rain hell upon your enemies! Right click the action button to descend, and left click to ascend."
 	cooldown_timer = 3 MINUTES
 	var/list/blacklisted_areas = list(
 		/area/shuttle/dropship,

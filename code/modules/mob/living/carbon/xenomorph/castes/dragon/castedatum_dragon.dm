@@ -26,7 +26,7 @@
 	deevolves_to = list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/praetorian)
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_BE_GIVEN_PLASMA
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 45, FIRE = 60, ACID = 45)
