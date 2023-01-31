@@ -851,3 +851,15 @@
 	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/tearing_tail
+	name = "Tearing Tail"
+	full_name = "Panther: Tearing Tail"
+	description = "Hit all adjacent units around you, poisoning them toxin for their mind."
+	keybind_signal = COMSIG_XENOABILITY_TEARING_TAIL
+
+/datum/keybinding/xeno/adrenaline_jump
+	name = "Adrenaline Jump"
+	full_name = "Panther: Adrenaline Jump"
+	description = "Jump from some distance to target, knocking them down."
+	keybind_signal = COMSIG_XENOABILITY_ADRENALINE_JUMP

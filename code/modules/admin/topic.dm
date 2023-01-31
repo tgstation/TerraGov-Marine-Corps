@@ -412,6 +412,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/bull, location, null, delmob)
 			if("hunter")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hunter, location, null, delmob)
+			if("panther")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/panther, location, null, delmob)
 			if("carrier")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/carrier, location, null, delmob)
 			if("hivelord")

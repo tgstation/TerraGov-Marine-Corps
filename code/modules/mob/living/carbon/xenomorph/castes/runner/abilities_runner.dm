@@ -83,6 +83,7 @@
 	var/victim_paralyze_time = 2 SECONDS
 	///For how long will we freeze upon hitting our target
 	var/freeze_on_hit_time = 0.5 SECONDS
+	var/pantherplasmaheal = 0
 
 // TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
@@ -129,6 +130,7 @@
 			X.balloon_alert(X, "Cannot savage, not ready")
 
 	playsound(X.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
+	X.plasma_stored += pantherplasmaheal
 
 	pounce_complete()
 
