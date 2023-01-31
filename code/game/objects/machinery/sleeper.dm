@@ -17,8 +17,6 @@
 /obj/machinery/sleep_console/process()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	updateUsrDialog()
-
 
 /obj/machinery/sleep_console/ex_act(severity)
 	switch(severity)
@@ -56,82 +54,92 @@
 	. = ..()
 	if(.)
 		return
-	var/dat = ""
 	if (!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
-		dat += "This console is not connected to a sleeper or the sleeper is non-functional."
+		to_chat(user, span_notice("This console is not connected to a sleeper or the sleeper is non-functional."))
 	else
-		var/mob/living/occupant = connected.occupant
-		dat += "<font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
-		if(occupant)
-			var/t1
-			dat += text("<B>Name: [occupant.name]</B><BR>")
-			switch(occupant.stat)
-				if(0)
-					t1 = "Conscious"
-				if(1)
-					t1 = "<font color='#487553'>Unconscious</font>"
-				if(2)
-					t1 = "<font color='#b54646'>*dead*</font>"
-				else
-			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.health, t1)
-			if(ishuman(occupant))
-				if(connected.filtering)
-					dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
-				else
-					dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
-				if(connected.stasis)
-					dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
-				else
-					dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
-			else
-				dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
-				var/mob/living/carbon/human/patient = occupant
-				var/pulse = patient.handle_pulse()
-				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), patient.get_pulse(GETPULSE_TOOL))
-			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getBruteLoss())
-			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getOxyLoss())
-			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
-			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getFireLoss())
-			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.AmountUnconscious(), round(occupant.AmountUnconscious() * 0.1))
-			for(var/chemical in connected.available_chemicals)
-				dat += "<label style='width:180px; display: inline-block'>[connected.available_chemicals[chemical]] ([round(occupant.reagents.get_reagent_amount(chemical), 0.01)] units)</label> Inject:"
-				for(var/amount in connected.amounts)
-					dat += " <a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a>"
-				dat += "<br>"
-			dat += "<A href='?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
-			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
+		ui_interact(user)
+
+/obj/machinery/sleep_console/ui_data(mob/user)
+	var/list/data = list()
+	data["hasOccupant"] = connected.occupant ? TRUE : FALSE
+
+	data["occupant"] = list()
+	if(connected.occupant)
+		var/mob/living/mob_occupant = connected.occupant
+		data["occupant"]["name"] = mob_occupant.name
+		switch(mob_occupant.stat)
+			if(CONSCIOUS)
+				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["statstate"] = "good"
+			if(UNCONSCIOUS)
+				data["occupant"]["stat"] = "Unconscious"
+				data["occupant"]["statstate"] = "average"
+			if(DEAD)
+				data["occupant"]["stat"] = "Dead"
+				data["occupant"]["statstate"] = "bad"
+		data["occupant"]["health"] = round(mob_occupant.health, 1)
+		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
+		data["occupant"]["minHealth"] = mob_occupant.health_threshold_dead
+		data["occupant"]["bruteLoss"] = round(mob_occupant.getBruteLoss(), 1)
+		data["occupant"]["oxyLoss"] = round(mob_occupant.getOxyLoss(), 1)
+		data["occupant"]["toxLoss"] = round(mob_occupant.getToxLoss(), 1)
+		data["occupant"]["fireLoss"] = round(mob_occupant.getFireLoss(), 1)
+		data["occupant"]["bodyTemperature"] = round(mob_occupant.bodytemperature, 1)
+		if(abs(mob_occupant.bodytemperature - 310) <= 20)
+			data["occupant"]["temperaturestatus"] = "good"
+		else if(abs(mob_occupant.bodytemperature - 310) <= 50)
+			data["occupant"]["temperaturestatus"] = "average"
 		else
-			dat += "The sleeper is empty."
-	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
-	popup.set_content(dat)
-	popup.open()
+			data["occupant"]["temperaturestatus"] = "bad"
 
+		var/list/chemicals = list()
+		for(var/chemical in connected.available_chemicals)
+			var/datum/reagent/temp = GLOB.chemical_reagents_list[chemical]
+			var/reagent_amount = 0
 
-/obj/machinery/sleep_console/Topic(href, href_list)
+			if(mob_occupant.reagents)
+				reagent_amount = round(mob_occupant.reagents.get_reagent_amount(chemical), 0.01)
+
+			chemicals.Add(list(list("title" = connected.available_chemicals[chemical], "path" = chemical, "amount" = reagent_amount, "threshold" = temp.overdose_threshold)))
+
+		data["chemicals"] = chemicals
+		data["amounts"] = connected.amounts
+		data["stasis"] = connected.stasis
+		data["filter"] = connected.filtering
+
+	return data
+
+/obj/machinery/sleep_console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "Sleeper", name)
+		ui.open()
+
+/obj/machinery/sleep_console/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
 
-	if(href_list["chemical"] && connected && connected.occupant)
-		var/datum/reagent/R = text2path(href_list["chemical"])
-		if(connected.occupant.stat == DEAD)
-			to_chat(usr, span_warning("This person has no life for to preserve anymore."))
-		else if(ismonkey(connected.occupant))
-			to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))	
-		else if(!(R in connected.available_chemicals))
-			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
-		else
-			var/amount = text2num(href_list["amount"])
-			if(amount == 5 || amount == 10)
-				connected.inject_chemical(usr, R, amount)
-	if (href_list["togglefilter"])
-		connected.toggle_filter()
-	if (href_list["togglestasis"])
-		connected.toggle_stasis()
-	if (href_list["ejectify"])
-		connected.eject()
-
-	updateUsrDialog()
+	switch(action)
+		if("inject")
+			if(connected && connected.occupant)
+				var/datum/reagent/R = text2path(params["chempath"])
+				if(connected.occupant.stat == DEAD)
+					to_chat(usr, span_warning("This person has no life for to preserve anymore."))
+				else if(ismonkey(connected.occupant))
+					to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))
+				else if(!(R in connected.available_chemicals))
+					message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
+				else
+					var/amount = text2num(params["amount"])
+					if(amount == 5 || amount == 10)
+						connected.inject_chemical(usr, R, amount)
+		if("toggle_filter")
+			connected.toggle_filter()
+		if("toggle_stasis")
+			connected.toggle_stasis()
+		if("eject")
+			connected.go_out()
 
 
 
@@ -154,7 +162,7 @@
 	density = TRUE
 	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/carbon/human/occupant
 	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/filtering = FALSE
@@ -227,29 +235,6 @@
 			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a>")
 		break
 
-/obj/machinery/sleeper/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if (!href_list["scanreport"])
-		return
-	if(!hasHUD(usr,"medical"))
-		return
-	if(get_dist(usr, src) > 7)
-		to_chat(usr, span_warning("[src] is too far away."))
-		return
-	if(!ishuman(occupant))
-		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-			popup.set_content(R.fields["last_scan_result"])
-			popup.open(FALSE)
-		break
-
 /obj/machinery/sleeper/process()
 	if (machine_stat & (NOPOWER|BROKEN))
 		if(occupant)
@@ -294,19 +279,7 @@
 		return
 
 	var/mob/M = G.grabbed_thing
-	if(!M.forceMove(src))
-		return
-
-	visible_message("[user] puts [M] into the sleeper.", 3)
-	occupant = M
-	start_processing()
-	connected.start_processing()
-
-	if(orient == "RIGHT")
-		icon_state = "sleeper_1-r"
-	else
-		icon_state = "sleeper_1"
-
+	move_inside_wrapper(M, user)
 
 /obj/machinery/sleeper/ex_act(severity)
 	if(filtering)
@@ -384,30 +357,6 @@
 			return
 	to_chat(user, span_warning("There's no occupant in the sleeper or the subject has too many chemicals!"))
 
-
-/obj/machinery/sleeper/proc/check(mob/living/user)
-	if(occupant)
-		to_chat(user, span_boldnotice("Occupant ([occupant]) Statistics:"))
-		var/t1
-		switch(occupant.stat)
-			if(0)
-				t1 = "Conscious"
-			if(1)
-				t1 = "Unconscious"
-			if(2)
-				t1 = "*dead*"
-			else
-		to_chat(user, text("[]\t Health %: [] ([])</font>", (occupant.health > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.health, t1))
-		to_chat(user, text("[]\t -Core Temperature: []&deg;C ([]&deg;F)</FONT><BR>", (occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.bodytemperature-T0C, occupant.bodytemperature*1.8-459.67))
-		to_chat(user, text("[]\t -Brute Damage %: []</font>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'> " : "<font class='#b54646'> "), occupant.getBruteLoss()))
-		to_chat(user, text("[]\t -Respiratory Damage %: []</font>", (occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "), occupant.getOxyLoss()))
-		to_chat(user, text("[]\t -Toxin Content %: []</font>", (occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getToxLoss()))
-		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
-		to_chat(user, span_notice("Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)"))
-		to_chat(user, span_notice("\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)"))
-	else
-		to_chat(user, span_notice("There is no one inside!"))
-
 /obj/machinery/sleeper/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!occupant)
 		to_chat(X, span_xenowarning("There is nothing of interest in there."))
@@ -437,7 +386,7 @@
 	go_out()
 
 /obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(M.stat != CONSCIOUS || !ishuman(M))
+	if(M.stat == DEAD || !ishuman(M))
 		return
 
 	if(occupant)
@@ -452,7 +401,11 @@
 	if(!M.forceMove(src))
 		return
 
-	visible_message("[M] climbs into the sleeper.", null, null, 3)
+	if(user != M)
+		visible_message("[user] puts [M] into the sleeper.", 3)
+	else
+		visible_message("[M] climbs into the sleeper.", 3)
+
 	occupant = M
 
 	start_processing()
