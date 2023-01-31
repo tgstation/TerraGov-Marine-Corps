@@ -176,6 +176,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/hud_type = DATA_HUD_SQUAD_TERRAGOV
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	///Whether the wearer's minimap icon is temporarily hidden
+	var/minimap_icon_hidden = FALSE
 
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
@@ -221,6 +223,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		if(user.assigned_squad)
 			camera.network -= lowertext(user.assigned_squad.name)
 	UnregisterSignal(user, list(COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE))
+	minimap_icon_hidden = FALSE
 	return ..()
 
 
@@ -271,7 +274,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
 	SSminimaps.remove_marker(wearer)
-	if(!wearer.job || !wearer.job.minimap_icon)
+	if(minimap_icon_hidden || !wearer.job || !wearer.job.minimap_icon)
 		return
 	var/marker_flags = initial(minimap_type.marker_flags)
 	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP || wearer.stat == DEAD) //We show to all marines if we have this flag, separated by faction
@@ -296,7 +299,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/set_dead_on_minimap()
 	SIGNAL_HANDLER
 	SSminimaps.remove_marker(wearer)
-	if(!wearer.job || !wearer.job.minimap_icon)
+	if(minimap_icon_hidden || !wearer.job || !wearer.job.minimap_icon)
 		return
 	var/marker_flags
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
@@ -311,7 +314,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/set_undefibbable_on_minimap()
 	SIGNAL_HANDLER
 	SSminimaps.remove_marker(wearer)
-	if(!wearer.job || !wearer.job.minimap_icon)
+	if(minimap_icon_hidden || !wearer.job || !wearer.job.minimap_icon)
 		return
 	var/marker_flags
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
