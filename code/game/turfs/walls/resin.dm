@@ -12,7 +12,7 @@
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	smoothing_groups = SMOOTH_GROUP_XENO_STRUCTURES
 	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
@@ -51,7 +51,7 @@
 	opacity = FALSE
 	alpha = 180
 	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	smoothing_groups = SMOOTH_GROUP_XENO_STRUCTURES
 
 
 /turf/closed/wall/resin/membrane/thicken()

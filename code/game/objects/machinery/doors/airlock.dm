@@ -523,7 +523,7 @@
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()
-	smooth_neighbors()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)

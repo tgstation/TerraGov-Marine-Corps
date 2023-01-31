@@ -28,7 +28,7 @@
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
 	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	smoothing_groups = SMOOTH_GROUP_GENERAL_STRUCTURES
 
 	//Multi-tile doors
 	dir = EAST

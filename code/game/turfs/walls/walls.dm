@@ -10,7 +10,7 @@
 	explosion_block = 2
 
 	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
+	smoothing_groups = SMOOTH_GROUP_GENERAL_STRUCTURES|SMOOTH_GROUP_XENO_STRUCTURES
 	walltype = "metal"
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
@@ -31,7 +31,6 @@
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
-
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
@@ -58,8 +57,8 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(T.smoothing_behavior)
-				T.smooth_self()
+			if(smoothing_flags)
+				QUEUE_SMOOTH(T)
 
 			//nearby glowshrooms updated
 			for(var/obj/structure/glowshroom/shroom in T)

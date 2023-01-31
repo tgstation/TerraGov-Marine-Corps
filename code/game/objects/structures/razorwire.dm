@@ -3,7 +3,7 @@
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under (literal) pain of entanglement and injury. A classic fortification since the 1900s."
 	icon = 'icons/obj/structures/barbedwire.dmi'
 	icon_state = "barbedwire_x"
-	var/base_icon_state = "barbedwire_x"
+	base_icon_state = "barbedwire_x"
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER

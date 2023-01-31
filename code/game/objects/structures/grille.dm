@@ -147,7 +147,7 @@
 /obj/structure/grille/smoothing
 	icon_state = "grille0"
 	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	smoothing_groups = SMOOTH_GROUP_GENERAL_STRUCTURES
 
 /obj/structure/grille/smoothing/update_icon()
-	smooth_self()
+	QUEUE_SMOOTH(src)
