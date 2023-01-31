@@ -1,5 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes:
-  - soundadd: "Replaced most mech-related sounds with new ones."
-  - sounddel: "Removed most of the unused sounds that were from the original mech PR."
