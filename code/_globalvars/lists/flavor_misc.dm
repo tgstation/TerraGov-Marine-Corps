@@ -110,6 +110,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"delta_private",
 	"delta_smartgunner",
 	"drone",
+	"facehugger",
 	"fieldcommander",
 	"gorger",
 	"hivelord",

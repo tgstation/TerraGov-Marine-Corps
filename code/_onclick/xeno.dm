@@ -30,7 +30,16 @@
 /atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)
 	return
 
+/mob/living/carbon/xenomorph/facehugger/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(lying_angle)
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return FALSE
 
+	A.attack_facehugger(src)
+
+/atom/proc/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F)
+	return
 
 /mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))

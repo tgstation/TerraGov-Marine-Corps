@@ -23,6 +23,7 @@
 	var/list/list/xenos_by_upgrade = list()
 	var/list/dead_xenos = list() // xenos that are still assigned to this hive but are dead.
 	var/list/list/xenos_by_zlevel = list()
+	var/list/mob/living/carbon/xenomorph/facehugger/facehuggers = list()
 	///list of evo towers
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	///list of upgrade towers
@@ -325,6 +326,24 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	. += stored_larva
+
+/datum/hive_status/proc/can_spawn_as_hugger(mob/dead/observer/user)
+
+	if(!user.client?.prefs || !(user.client.prefs.be_special & (BE_ALIEN)) || is_banned_from(user.ckey, ROLE_XENOMORPH))
+		return FALSE
+
+	if(GLOB.key_to_time_of_death[user.key] + TIME_BEFORE_TAKING_FACEHUGGER > world.time && !user.started_as_observer)
+		to_chat(user, span_warning("You died too recently to be able to take a new facehugger."))
+		return FALSE
+
+	if(alert("Are you sure you want to be a Facehugger?", "Become a part of the Horde", "Yes", "No") != "Yes")
+		return FALSE
+
+	if(length_char(facehuggers) >= MAX_FACEHUGGERS)
+		to_chat(user, span_warning("The Hive cannot support more facehuggers! Limit: <b>[length_char(facehuggers)]/[MAX_FACEHUGGERS]</b>."))
+		return FALSE
+
+	return TRUE
 
 // ***************************************
 // *********** List getters
