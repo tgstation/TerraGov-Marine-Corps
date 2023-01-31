@@ -3694,10 +3694,6 @@
 	dir = 8
 	},
 /area/icy_caves/caves/cavesbrig)
-"tw" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/icy_caves/caves/northern)
 "tx" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -20737,7 +20733,7 @@ ZP
 ZP
 ZP
 yh
-bS
+ZP
 im
 SR
 SR
@@ -27598,7 +27594,7 @@ SR
 ZI
 PI
 PI
-bS
+ZP
 PI
 PI
 ZP
@@ -28231,12 +28227,12 @@ ZP
 ZI
 ZI
 Sb
-BM
+Sb
 yh
 jo
 yh
 yh
-BM
+Sb
 ZI
 ZI
 ZI
@@ -28548,7 +28544,7 @@ ZI
 ZI
 PI
 PI
-tw
+Mr
 ZP
 ZP
 ZP
