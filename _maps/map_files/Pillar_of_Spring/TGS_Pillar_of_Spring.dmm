@@ -1125,11 +1125,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
-"bss" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
-	},
-/area/mainship/hallways/hangar)
 "bsG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -4320,7 +4315,6 @@
 "fvg" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -4335,7 +4329,6 @@
 	pixel_y = 2
 	},
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -51826,7 +51819,7 @@ kDx
 kDx
 plN
 kDx
-bss
+tHk
 csW
 csW
 csW

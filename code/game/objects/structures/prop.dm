@@ -211,6 +211,8 @@
 	bound_height = 96
 	resistance_flags = UNACIDABLE
 
+/obj/structure/prop/mainship/missile_tube/south
+	icon_state = "missiletubesouth"
 
 /obj/structure/prop/mainship/ship_memorial
 	name = "slab of victory"

@@ -40887,11 +40887,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
-"cEC" = (
-/turf/open/floor{
-	icon_state = "asteroid"
-	},
-/area/prison/residential/central)
 "cFh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -56140,7 +56135,7 @@ gZL
 bkL
 xwG
 xwG
-cEC
+xwG
 xwG
 bkL
 cSJ

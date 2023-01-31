@@ -11028,8 +11028,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bbn" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt20"
+/turf/closed/shuttle/dropship_white/top_corner/alt{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bbo" = (
@@ -11045,9 +11045,7 @@
 	},
 /area/ice_colony/exterior/surface/taxiway)
 "bbr" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt27"
-	},
+/turf/closed/shuttle/dropship_white/cockpit_window,
 /area/ice_colony/underground/responsehangar)
 "bbs" = (
 /turf/closed/ice/thin/straight,
@@ -11073,9 +11071,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "bbB" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt25"
-	},
+/turf/closed/shuttle/dropship_white/top_corner/alt,
 /area/ice_colony/underground/responsehangar)
 "bbC" = (
 /obj/structure/fence,
@@ -11877,9 +11873,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bfh" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt22"
-	},
+/turf/closed/shuttle/dropship_white/interior_corner,
 /area/ice_colony/underground/responsehangar)
 "bfi" = (
 /turf/closed/ice/corner{
@@ -12313,8 +12307,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
 "bgW" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt23"
+/turf/closed/shuttle/dropship_white/interior_corner{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bgX" = (
@@ -18658,9 +18652,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "bFQ" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt4"
-	},
+/turf/closed/shuttle/dropship_white/interior_wall,
 /area/ice_colony/underground/responsehangar)
 "bFR" = (
 /obj/machinery/alarm{
@@ -19968,8 +19960,8 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bKd" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt5"
+/turf/closed/shuttle/dropship_white/interior_wall{
+	dir = 8
 	},
 /area/ice_colony/underground/responsehangar)
 "bKe" = (
@@ -21034,8 +21026,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bNY" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt_leftengine"
+/turf/closed/shuttle/dropship_white/engine_corner{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bNZ" = (
@@ -21226,13 +21218,11 @@
 	},
 /area/ice_colony/underground/security/armory)
 "bOA" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt8"
-	},
+/turf/closed/shuttle/dropship_white/top_corner,
 /area/ice_colony/underground/responsehangar)
 "bOB" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt9"
+/turf/closed/shuttle/dropship_white/top_corner{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bOC" = (
@@ -21298,9 +21288,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/lavatory)
 "bOM" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt_rightengine"
-	},
+/turf/closed/shuttle/dropship_white/engine_corner,
 /area/ice_colony/underground/responsehangar)
 "bON" = (
 /obj/item/trash/semki,
@@ -21818,9 +21806,7 @@
 /turf/closed/shuttle/ert/engines/left,
 /area/ice_colony/underground/responsehangar)
 "bQO" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt1"
-	},
+/turf/closed/shuttle/dropship_white/backhatch,
 /area/ice_colony/underground/responsehangar)
 "bQP" = (
 /obj/structure/sink{
@@ -21851,13 +21837,13 @@
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bQT" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt2"
+/turf/closed/shuttle/dropship_white/backhatch{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQU" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt3"
+/turf/closed/shuttle/dropship_white/backhatch{
+	dir = 4
 	},
 /area/ice_colony/underground/responsehangar)
 "bQV" = (
