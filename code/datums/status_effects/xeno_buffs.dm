@@ -452,14 +452,13 @@
 /datum/status_effect/xeno/dragon_flight
 	id = "flight"
 	alert_type = null
-	var/plasma_to_sustain = 5
-	var/takeoff_flaps = 10
 	var/landing_delay = 10 SECONDS
 	var/flap_delay = 2 SECONDS
-	var/hover_transition = FALSE
+	var/takeoff_flaps = 10
 	var/flight_pixel_height = 200
+	var/plasma_to_sustain = 20
+	var/hover_transition = FALSE
 	var/obj/effect/shadow
-	var/plasma_to_sustain = 10
 
 /datum/status_effect/xeno/dragon_flight/on_apply()
 	. = ..()
@@ -539,6 +538,16 @@
 	takeoff_flaps = 2
 	landing_delay = 1 SECONDS
 	flight_pixel_height = 70
+	var/datum/component/slidey_movement/slide_comp
+
+/datum/status_effect/xeno/dragon_flight/hover/on_apply()
+	. = ..()
+	slide_comp = AddComponent(/datum/component/slidey_movement)
+
+/datum/status_effect/xeno/dragon_flight/hover/on_remove()
+	. = ..()
+	slide_comp.RemoveComponent()
+	slide_comp = null
 
 /datum/status_effect/xeno/dragon_flight/hover/take_off()
 	// Ensure we only lower the height when transition from flight to hover, not land and then takeoff again.
@@ -548,4 +557,4 @@
 	. = ..()
 
 /datum/status_effect/xeno/dragon_flight/hover/finish_take_off()
-	. = ..()
+	return
