@@ -321,7 +321,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholding)
 "asz" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
 /area/icarus/interior/library)
 "asR" = (
@@ -658,7 +658,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "aPt" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "aPD" = (
@@ -785,7 +785,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "aWY" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/lztwo)
 "aXi" = (
@@ -962,7 +962,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/biodome)
 "biE" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/biodome)
 "biI" = (
@@ -1490,7 +1490,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/medbay)
 "bQq" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "bQs" = (
@@ -1684,7 +1684,7 @@
 	},
 /area/icarus/interior/library)
 "ceV" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "cff" = (
@@ -1849,7 +1849,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/scrapyardone)
 "cpx" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayconnector)
 "cpz" = (
@@ -2583,7 +2583,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "dwh" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/unloading)
 "dwM" = (
@@ -2634,7 +2634,7 @@
 /area/icarus/interior/scrapyardone)
 "dAF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "dBi" = (
@@ -2656,13 +2656,11 @@
 "dCy" = (
 /obj/docking_port/mobile/crashmode/bigbury,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "dDG" = (
 /obj/machinery/light,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
+/obj/machinery/door/airlock/hatch,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "dDX" = (
@@ -3185,7 +3183,7 @@
 /area/icarus/interior/scrapyardone)
 "esb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "esm" = (
@@ -3252,7 +3250,7 @@
 /area/icarus/interior/lzone)
 "evD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "evH" = (
@@ -3912,7 +3910,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/library)
 "fmA" = (
-/obj/structure/dropship_piece/two/front/left,
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
 /obj/structure/lattice,
 /obj/structure/monorail{
 	dir = 9
@@ -3923,12 +3923,16 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "fmK" = (
-/obj/structure/dropship_piece/two/front,
+/obj/structure/dropship_piece/two/front{
+	dir = 1
+	},
 /obj/structure/monorail,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "fmN" = (
-/obj/structure/dropship_piece/two/front/right,
+/obj/structure/dropship_piece/two/front/right{
+	dir = 1
+	},
 /obj/structure/lattice,
 /obj/structure/monorail{
 	dir = 5
@@ -3976,7 +3980,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/cargo)
 "fpr" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/icarus/interior/bridge)
 "fpy" = (
@@ -4107,11 +4111,11 @@
 /turf/open/floor/mainship/cargo,
 /area/icarus/interior/cargo)
 "fxo" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship_hull,
 /area/icarus/interior/shipbayone)
 "fxr" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
@@ -4153,11 +4157,13 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/shipbaytwo)
 "fBW" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/shipbaytwo)
 "fCh" = (
-/obj/structure/dropship_piece/two/cockpit/left,
+/obj/structure/dropship_piece/two/cockpit/left{
+	dir = 1
+	},
 /obj/structure/lattice,
 /obj/structure/monorail{
 	dir = 9
@@ -4166,7 +4172,8 @@
 /area/icarus/interior/shipbaytwo)
 "fCC" = (
 /turf/closed/shuttle/dropship2/transparent{
-	icon_state = "109"
+	icon_state = "109";
+	dir = 1
 	},
 /area/icarus/interior/shipbaytwo)
 "fCN" = (
@@ -4186,14 +4193,13 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/cargo)
 "fDH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/carpet/side{
-	dir = 9
-	},
-/area/icarus/interior/dorms)
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
+/turf/open/floor/mainship/stripesquare,
+/area/icarus/interior/shipbayone)
 "fEk" = (
-/obj/structure/dropship_piece/two/cockpit/right,
+/obj/structure/dropship_piece/two/cockpit/right{
+	dir = 1
+	},
 /obj/structure/lattice,
 /obj/structure/monorail{
 	dir = 5
@@ -4212,7 +4218,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "fGn" = (
@@ -4251,7 +4257,7 @@
 	},
 /area/icarus/interior/library)
 "fIk" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/security)
 "fJD" = (
@@ -4379,7 +4385,7 @@
 /turf/open/ground/river,
 /area/icarus/exterior/northeastcaves)
 "fTt" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "fTM" = (
@@ -4520,6 +4526,10 @@
 	dir = 1
 	},
 /area/icarus/interior/shipbaytwo)
+"gaT" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/dorms)
 "gbb" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -4550,7 +4560,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "gdm" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
 "gdC" = (
@@ -4764,7 +4774,9 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "gxg" = (
-/obj/structure/dropship_piece/two/front/left,
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
 /obj/structure/dropship_equipment/weapon/laser_beam_gun,
 /turf/open/floor/mainship_hull,
 /area/icarus/interior/shipbaytwo)
@@ -4801,13 +4813,17 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "gxX" = (
-/obj/structure/dropship_piece/two/front,
+/obj/structure/dropship_piece/two/front{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship2{
 	icon_state = "54"
 	},
 /area/icarus/interior/shipbaytwo)
 "gzi" = (
-/obj/structure/dropship_piece/two/front/right,
+/obj/structure/dropship_piece/two/front/right{
+	dir = 1
+	},
 /obj/structure/dropship_equipment/weapon/laser_beam_gun,
 /turf/open/floor/mainship_hull,
 /area/icarus/interior/shipbaytwo)
@@ -4966,7 +4982,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "gKP" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayconnector)
 "gKS" = (
@@ -5148,7 +5164,8 @@
 /area/icarus/interior/bridge)
 "gYh" = (
 /turf/closed/shuttle/dropship2{
-	icon_state = "104"
+	icon_state = "104";
+	dir = 1
 	},
 /area/icarus/interior/shipbaytwo)
 "gYp" = (
@@ -6206,9 +6223,9 @@
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "iiz" = (
-/obj/structure/dropship_piece/two/front,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/shipbaytwo)
+/obj/machinery/door/airlock/dropship_hatch,
+/turf/open/floor/mainship/stripesquare,
+/area/icarus/interior/shipbayone)
 "iiD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6217,7 +6234,9 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "ijr" = (
-/obj/structure/dropship_piece/two/front/right,
+/obj/structure/dropship_piece/two/front/right{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "ikt" = (
@@ -6239,8 +6258,12 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/exterior/northcaves)
 "imE" = (
-/obj/structure/dropship_piece/two/front/left,
-/obj/structure/dropship_piece/two/front,
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
+/obj/structure/dropship_piece/two/front{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "inE" = (
@@ -6584,8 +6607,9 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "iEh" = (
-/obj/structure/dropship_piece/two/corner/rearleft,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship2/interiormisc{
+	dir = 4
+	},
 /area/icarus/interior/shipbaytwo)
 "iEz" = (
 /obj/structure/cargo_container/ch_green,
@@ -6611,8 +6635,9 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "iHR" = (
-/obj/structure/dropship_piece/two/corner/rearright,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship2/interiormisc{
+	dir = 8
+	},
 /area/icarus/interior/shipbaytwo)
 "iIb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6851,7 +6876,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayconnector)
 "iXP" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayconnector)
 "iZw" = (
@@ -7136,6 +7161,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "jrE" = (
@@ -7236,7 +7262,7 @@
 /turf/open/space/basic,
 /area/space)
 "jzE" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/telecomms)
 "jAb" = (
@@ -7334,7 +7360,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/shipbayone)
 "jFG" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating/mainship,
 /area/icarus/exterior/secaves)
 "jFR" = (
@@ -7564,8 +7590,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "jSY" = (
-/obj/structure/dropship_piece/two/corner/rearleft,
-/turf/open/shuttle/dropship/five,
+/turf/closed/shuttle/dropship2/edge,
 /area/icarus/interior/shipbaytwo)
 "jTB" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7596,16 +7621,15 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
 "jVq" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
 "jVN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/light{
-	dir = 8
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/icarus/interior/dorms)
+/turf/open/shuttle/dropship/floor/alt,
+/area/icarus/interior/shipbaytwo)
 "jVS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -7626,8 +7650,10 @@
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "jWz" = (
-/obj/structure/dropship_piece/two/corner/rearright,
-/turf/open/shuttle/dropship/five,
+/turf/closed/shuttle/dropship2{
+	icon_state = "54";
+	dir = 1
+	},
 /area/icarus/interior/shipbaytwo)
 "jWY" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -7750,9 +7776,8 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "kei" = (
-/obj/structure/dropship_piece/two/corner/rearright,
-/turf/closed/shuttle/dropship2{
-	icon_state = "52"
+/turf/closed/shuttle/dropship2/wallthree{
+	dir = 1
 	},
 /area/icarus/interior/shipbaytwo)
 "kex" = (
@@ -7882,7 +7907,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "klG" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/space)
 "klL" = (
@@ -8122,7 +8147,7 @@
 	},
 /area/icarus/interior/library)
 "kBh" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/closed/wall/mainship,
 /area/icarus/interior/shipbayone)
 "kBX" = (
@@ -8431,7 +8456,7 @@
 "kSK" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
-/area/icarus/interior/swcaveslz)
+/area/icarus/interior/monitoring)
 "kSW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -8518,7 +8543,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/biodome)
 "kXy" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "kXA" = (
@@ -8811,7 +8836,9 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/cargo)
 "lqt" = (
-/obj/structure/dropship_piece/two/corner/rearleft,
+/obj/structure/dropship_piece/two/corner/rearleft{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "lrb" = (
@@ -8839,7 +8866,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northcaves)
 "ltb" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "ltx" = (
@@ -8870,7 +8897,7 @@
 /area/icarus/interior/cargo)
 "lwh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/shipbaytwo)
 "lwx" = (
@@ -8969,17 +8996,18 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "lBo" = (
-/obj/structure/dropship_piece/two/corner/rearleft,
-/turf/closed/shuttle/dropship2{
-	icon_state = "54"
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/area/icarus/interior/shipbaytwo)
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating/plating_catwalk,
+/area/icarus/interior/dorms)
 "lBw" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "lBK" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayconnector)
 "lCa" = (
@@ -9138,7 +9166,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "lJX" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/wood,
 /area/icarus/interior/telecomms)
 "lKB" = (
@@ -9300,11 +9328,12 @@
 /turf/open/shuttle/dropship/three,
 /area/icarus/interior/scrapyardone)
 "lVZ" = (
+/obj/structure/dropship_equipment/sentry_holder,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "lXa" = (
 /obj/structure/lattice,
@@ -9693,7 +9722,7 @@
 /turf/open/floor/carpet,
 /area/icarus/interior/dorms)
 "mur" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/atmospherics)
 "muP" = (
@@ -9775,7 +9804,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/bridge)
 "mAt" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/cargo/arrow,
 /area/icarus/interior/shipbayone)
 "mCk" = (
@@ -10296,8 +10325,8 @@
 /area/icarus/interior/swcaveslz)
 "niN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "nlO" = (
@@ -10572,7 +10601,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
 "nHm" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbayone)
 "nIp" = (
@@ -10876,6 +10905,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/colony/engineering,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/shipbaytwo)
 "oal" = (
@@ -11649,7 +11679,7 @@
 	},
 /area/icarus/interior/hangarone)
 "pcg" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
 "pcm" = (
@@ -11705,11 +11735,11 @@
 /turf/open/floor/plating,
 /area/icarus/interior/lzone)
 "pdq" = (
-/obj/machinery/door/airlock/mainship/maint{
+/turf/closed/shuttle/dropship2{
+	icon_state = "52";
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/swcaveslz)
+/area/icarus/interior/shipbaytwo)
 "pdX" = (
 /obj/machinery/light{
 	dir = 4
@@ -12256,7 +12286,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/library)
 "pKf" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/library)
 "pLa" = (
@@ -12280,7 +12310,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "pMK" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "pNm" = (
@@ -12652,7 +12682,9 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "qqb" = (
-/obj/structure/dropship_piece/two/front,
+/obj/structure/dropship_piece/two/front{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship2{
 	icon_state = "52"
 	},
@@ -13459,7 +13491,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/icarus/interior/atmospherics)
 "roT" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "rpe" = (
@@ -13478,7 +13510,7 @@
 /area/icarus/interior/atmospherics)
 "rqN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "rrn" = (
@@ -13810,9 +13842,7 @@
 /area/icarus/interior/dorms)
 "rHN" = (
 /obj/effect/turf_overlay/shuttle/heater,
-/turf/closed/shuttle/dropship2{
-	icon_state = "114"
-	},
+/turf/closed/shuttle/dropship2/edge,
 /area/icarus/interior/shipbaytwo)
 "rHQ" = (
 /obj/structure/table/mainship,
@@ -14041,7 +14071,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholdingtwo)
 "rSZ" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/closed/wall/mainship,
 /area/icarus/interior/library)
 "rTK" = (
@@ -14083,8 +14113,9 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangarone)
 "rVZ" = (
-/obj/structure/dropship_piece/two/front/right,
-/obj/structure/dropship_piece/two/front,
+/obj/structure/dropship_piece/two/front{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "rWg" = (
@@ -14284,8 +14315,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/dropship_piece/two/corner/rearright,
-/turf/open/shuttle/dropship/floor/alt,
+/turf/closed/shuttle/dropship2{
+	icon_state = "52";
+	dir = 1
+	},
 /area/icarus/interior/shipbaytwo)
 "sle" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -14398,7 +14431,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/medbay)
 "sti" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/disposals)
 "stn" = (
@@ -14629,11 +14662,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "sHS" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
 "sIE" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "sIM" = (
@@ -15072,7 +15105,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "tqc" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
 "tqw" = (
@@ -15237,7 +15270,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/lzone)
 "tyy" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/mainship,
 /area/space)
@@ -15488,7 +15521,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "tOm" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "tOQ" = (
@@ -15815,7 +15848,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "ukx" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/icarus/interior/engineering)
 "ukN" = (
@@ -16279,7 +16312,7 @@
 	dir = 8;
 	welded = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "uSA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16323,7 +16356,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargoholding)
 "uVy" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
 "uVL" = (
@@ -16397,7 +16430,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "vbg" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "vbU" = (
@@ -16499,7 +16532,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "viP" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbaytwo)
 "vjq" = (
@@ -16520,7 +16553,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/biodome)
 "vjt" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/orange,
 /area/icarus/interior/library)
 "vjA" = (
@@ -16533,7 +16566,8 @@
 /area/icarus/interior/library)
 "vjO" = (
 /turf/closed/shuttle/dropship2{
-	icon_state = "103"
+	icon_state = "103";
+	dir = 1
 	},
 /area/icarus/interior/shipbaytwo)
 "vka" = (
@@ -16555,7 +16589,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/library)
 "vkS" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargoholding)
 "vlc" = (
@@ -16588,7 +16622,7 @@
 /turf/closed/wall/mainship/outer,
 /area/bigredv2/outside/c)
 "vnL" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/space/basic,
 /area/space)
 "vnR" = (
@@ -16645,7 +16679,9 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "vpj" = (
-/obj/structure/dropship_piece/two/corner/rearright,
+/obj/structure/dropship_piece/two/corner/rearright{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "vpm" = (
@@ -17059,7 +17095,7 @@
 /turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "vWd" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "vWk" = (
@@ -17272,7 +17308,9 @@
 	},
 /area/icarus/interior/dorms)
 "wqY" = (
-/obj/structure/dropship_piece/two/front/left,
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "wrb" = (
@@ -17614,7 +17652,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/swcaveslz)
 "wGO" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "wHP" = (
@@ -17805,7 +17843,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/medbay)
 "wRR" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "wRS" = (
@@ -17870,7 +17908,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/icarus/interior/shipbayone)
 "wVF" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/cargoholding)
 "wWB" = (
@@ -17931,7 +17969,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/engineering)
 "xaD" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargoholding)
 "xaG" = (
@@ -18023,7 +18061,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "xgq" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/space)
 "xgS" = (
@@ -18337,7 +18375,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/library)
 "xyg" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "xys" = (
@@ -18396,22 +18434,14 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/lzone)
 "xzQ" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/carpet/side{
-	dir = 9
-	},
-/area/icarus/interior/dorms)
-"xAf" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
+/turf/open/floor/plating/plating_catwalk,
+/area/icarus/interior/shipbaytwo)
+"xAf" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "xBH" = (
 /obj/effect/ai_node,
@@ -18445,7 +18475,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
 "xDm" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
 "xDo" = (
@@ -18503,7 +18533,7 @@
 /turf/open/floor/mainship/sterile,
 /area/icarus/interior/medbay)
 "xEW" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/space)
 "xEY" = (
@@ -18834,11 +18864,11 @@
 	},
 /area/space)
 "xZQ" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/door/airlock/hatch{
+	dir = 2
 	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/dorms)
+/turf/open/floor/plating/plating_catwalk,
+/area/icarus/interior/shipbaytwo)
 "xZX" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/bridge)
@@ -18854,7 +18884,7 @@
 /turf/open/space/basic,
 /area/space)
 "yaB" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/shipbayconnector)
 "yaF" = (
@@ -18942,7 +18972,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/lzone)
 "ygn" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "ygs" = (
@@ -18988,12 +19018,10 @@
 /turf/closed/shuttle/cas/leftwingmid,
 /area/icarus/interior/hangartwo)
 "yhV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/carpet/side{
-	dir = 10
+/turf/closed/shuttle/dropship2/cornersalt2{
+	dir = 1
 	},
-/area/icarus/interior/dorms)
+/area/icarus/interior/shipbaytwo)
 "yhY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -19051,7 +19079,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/dorms)
 "ylw" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/closed/wall/mainship,
 /area/icarus/interior/shipbaytwo)
 "ylB" = (
@@ -33833,7 +33861,7 @@ xbb
 xys
 neL
 gGV
-xTb
+iiz
 wEr
 wEr
 wEr
@@ -34249,7 +34277,7 @@ xZA
 wVg
 xZA
 xZA
-wqB
+fDH
 xTb
 vAd
 xys
@@ -34657,7 +34685,7 @@ xZA
 hzS
 xZA
 xZA
-wqB
+xTb
 xTb
 vAd
 xys
@@ -35057,7 +35085,7 @@ xbb
 xys
 neL
 gIC
-xTb
+iiz
 tWp
 tWp
 tWp
@@ -35873,7 +35901,7 @@ xbb
 xys
 neL
 gGV
-xTb
+iiz
 wEr
 wEr
 wEr
@@ -36289,7 +36317,7 @@ xZA
 wVg
 xZA
 xZA
-wqB
+fDH
 xTb
 vAd
 lAD
@@ -36697,7 +36725,7 @@ xZA
 hzS
 xZA
 xZA
-wqB
+xTb
 xTb
 vAd
 xys
@@ -37097,12 +37125,12 @@ xbb
 xys
 neL
 gIC
+iiz
+tWp
+tWp
+tWp
+tWp
 xTb
-tWp
-tWp
-tWp
-tWp
-tWp
 tWp
 tWp
 esL
@@ -37913,7 +37941,7 @@ xbb
 xys
 neL
 gGV
-xTb
+iiz
 wEr
 wEr
 wEr
@@ -38329,7 +38357,7 @@ xZA
 wVg
 xZA
 xZA
-wqB
+fDH
 xTb
 vAd
 xys
@@ -38737,7 +38765,7 @@ xZA
 hzS
 xZA
 xZA
-wqB
+xTb
 xTb
 vAd
 xys
@@ -39137,7 +39165,7 @@ xbb
 xys
 neL
 gIC
-xTb
+iiz
 tWp
 tWp
 tWp
@@ -41451,8 +41479,8 @@ sHS
 qpM
 qpM
 qpM
-ugP
-ugP
+gjw
+gjw
 opX
 vlc
 vlc
@@ -41655,8 +41683,8 @@ uZO
 uZO
 uZO
 vrO
-wAu
-ugP
+uZO
+gjw
 opX
 vlc
 vlc
@@ -41860,7 +41888,7 @@ gSp
 gSp
 gSp
 kSK
-ugP
+gjw
 opX
 vlc
 iSh
@@ -42063,8 +42091,8 @@ kQq
 kQq
 gSp
 gSp
-dtS
-pdq
+gSp
+iJs
 opX
 nLg
 krO
@@ -42267,8 +42295,8 @@ qpM
 qpM
 qpM
 gjw
-ugP
-ugP
+gjw
+gjw
 opX
 vlc
 vqh
@@ -46503,24 +46531,24 @@ gSt
 voD
 toT
 kZU
-tWI
+bzt
 bzt
 rJH
 bzt
-tWI
-tWI
-tWI
+bzt
+bzt
+bzt
 uSl
 ylo
 cRZ
 xvq
-tWI
-wlk
+bzt
+uIC
 uIC
 vuR
 uIC
-wlk
-wlk
+uIC
+uIC
 wlk
 tIx
 mgm
@@ -46707,24 +46735,24 @@ gSt
 voD
 viP
 kZU
-tWI
+bzt
 dds
 wlk
 eaG
-wlk
-wlk
-wlk
+uIC
+uIC
+uIC
 uSy
 eaG
 wlk
 bla
-tWI
-xZQ
+bzt
+eaG
 uIC
 wlk
 eaG
-wlk
-uiy
+uIC
+dds
 wlk
 tIx
 wvs
@@ -46927,8 +46955,8 @@ xGv
 xGv
 xGv
 xGv
-wlk
-wlk
+uIC
+uIC
 wlk
 tIx
 jhG
@@ -47147,7 +47175,7 @@ myN
 myN
 myN
 ozv
-lVZ
+myN
 wVi
 qDS
 bEE
@@ -47351,7 +47379,7 @@ sjc
 kJW
 kJW
 sgz
-kAD
+lVZ
 aKO
 lPw
 raj
@@ -48157,12 +48185,12 @@ yaF
 yaF
 ygn
 wlk
-xGv
+xep
 wlk
 hWH
 aPj
 aPj
-xGv
+xep
 wlk
 ygn
 wlk
@@ -48359,14 +48387,14 @@ yaF
 rRY
 yaF
 yaF
-vuR
+gaT
 wlk
-xep
+wlk
 wlk
 fgZ
 iIb
 iIb
-jVN
+iIb
 iIb
 dAF
 igG
@@ -48544,7 +48572,7 @@ odH
 viP
 kZU
 bla
-wlk
+uIC
 uIC
 vuR
 yaF
@@ -49135,12 +49163,12 @@ yhq
 bcB
 wDO
 wDO
-iiz
+rVZ
 vjO
 suK
 sEU
-gYh
-kei
+vos
+vos
 suK
 sEU
 lqt
@@ -49344,7 +49372,7 @@ qdE
 tWf
 uxM
 xFw
-qdE
+jSY
 lwT
 iTG
 iGD
@@ -49369,8 +49397,8 @@ yaF
 yaF
 xGv
 iMg
-xzQ
-yhV
+xoh
+oTL
 oTL
 oTL
 oTL
@@ -49380,8 +49408,8 @@ oTL
 oTL
 oTL
 rwP
-fDH
-yhV
+oTL
+gNm
 yhY
 xGv
 yaF
@@ -49389,7 +49417,7 @@ yaF
 yaF
 twM
 xGv
-wlk
+uIC
 qLc
 rgz
 arb
@@ -49573,7 +49601,7 @@ yaF
 yaF
 qHZ
 wsU
-xAf
+xBX
 xGv
 xGv
 xGv
@@ -49585,7 +49613,7 @@ xGv
 xGv
 xGv
 xGv
-eqk
+wsU
 xuS
 qHZ
 yaF
@@ -49593,9 +49621,9 @@ yaF
 yaF
 gBc
 xGv
-ygn
-rPz
-qyh
+xAf
+lBo
+xAf
 arb
 ykY
 qcL
@@ -49747,7 +49775,7 @@ gxg
 vjO
 vos
 hLu
-kzu
+jWz
 iHR
 jck
 xFw
@@ -49755,7 +49783,7 @@ xFw
 gYh
 skW
 oaj
-gYh
+kei
 kei
 suK
 sEU
@@ -49797,9 +49825,9 @@ xGv
 xGv
 xGv
 xGv
-wlk
+uIC
 rPz
-wlk
+uIC
 arb
 ykY
 qcL
@@ -50563,16 +50591,16 @@ gzi
 gYh
 kzu
 hLu
-vos
+pdq
 iEh
 vVL
-vjO
+jVN
 jSY
 auA
 uxM
 nBp
-vjO
-lBo
+kzu
+kzu
 npE
 kDn
 kzu
@@ -50613,7 +50641,7 @@ xGv
 xGv
 xGv
 xGv
-xGv
+wlk
 qLc
 hqV
 evD
@@ -50770,8 +50798,8 @@ wDO
 wqY
 qdE
 gDn
-qdE
-qdE
+jVN
+jSY
 cSr
 tXx
 nBp
@@ -50817,7 +50845,7 @@ yaF
 fjz
 kFa
 xGv
-xGv
+wlk
 rPz
 iLM
 qcL
@@ -50974,8 +51002,8 @@ hMx
 imE
 qdE
 vVL
-gYh
-jWz
+jVN
+jSY
 keC
 uxM
 xFw
@@ -51175,12 +51203,12 @@ yhq
 bcB
 wDO
 hNq
-iiz
+rVZ
 gYh
 npE
 kDn
-vjO
-lBo
+yhV
+kzu
 npE
 kDn
 vpj
@@ -51633,9 +51661,9 @@ yaF
 fjz
 wzM
 xGv
-wlk
+uIC
 rPz
-wlk
+uIC
 arb
 qcL
 qcL
@@ -51837,7 +51865,7 @@ yaF
 yaF
 twM
 xGv
-ygn
+xAf
 jrB
 dDG
 arb
@@ -52041,9 +52069,9 @@ yaF
 yaF
 dgp
 xGv
-wlk
+uIC
 rPz
-wlk
+uIC
 arb
 qcL
 qcL
@@ -52406,19 +52434,19 @@ tvZ
 qgS
 wMV
 wMV
+voD
+xZQ
+voD
 wMV
-viP
+wMV
+wMV
+wte
 wMV
 wMV
 wMV
 voD
-xKB
-wMV
-wMV
-wMV
-wMV
-viP
-kZU
+xZQ
+uIC
 oeT
 wlk
 kZU
@@ -52814,19 +52842,19 @@ wMV
 wMV
 wMV
 wMV
+voD
+xZQ
+xzQ
+wMV
+wMV
+wMV
+wMV
 wMV
 wMV
 gUA
-wMV
-wMV
-wMV
-wMV
-wMV
-wMV
-gUA
-wMV
-wMV
-kZU
+voD
+xZQ
+uIC
 kZU
 kZU
 kZU
