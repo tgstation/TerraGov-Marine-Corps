@@ -59,6 +59,16 @@
 /turf/closed/mineral/smooth/snowrock/indestructible
 	resistance_flags = RESIST_ALL
 
+/turf/closed/mineral/smooth/bluefrostwall
+	icon = 'icons/turf/walls/bluefrostwall.dmi'
+	icon_state = "bluefrostwall-0-0-0-0"
+	walltype = "bluefrostwall"
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES_ICE
+
+/turf/closed/mineral/smooth/bluefrostwall/indestructible
+	resistance_flags = RESIST_ALL
+
+
 /turf/closed/mineral/smooth/darkfrostwall
 	icon = 'icons/turf/walls/darkfrostwall.dmi'
 	icon_state = "darkfrostwall-0-0-0-0"
