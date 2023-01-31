@@ -317,10 +317,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/synthetic
 	name = SYNTHETIC
-	engineer = SKILL_ENGINEER_MASTER
-	construction = SKILL_CONSTRUCTION_MASTER
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
 	firearms = SKILL_FIREARMS_UNTRAINED
-	medical = SKILL_MEDICAL_EXPERT
+	medical = SKILL_MEDICAL_MASTER
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
