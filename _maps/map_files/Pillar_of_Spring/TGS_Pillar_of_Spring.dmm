@@ -16336,10 +16336,6 @@
 "uSe" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/lower_hull)
-"uSf" = (
-/obj/machinery/light/mainship,
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
 "uSh" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -43137,7 +43133,7 @@ rKn
 rKn
 rKn
 rKn
-uSf
+rKn
 rKn
 rKn
 rKn
