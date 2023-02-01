@@ -575,7 +575,7 @@
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
 			if(source?.mind && isxenofacehugger(source)) //If hugger sentient he will get an advantage for becoming a larva
-				embryo.s_mind = source.mind
+				embryo.source = source.ckey
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			sterile = TRUE
