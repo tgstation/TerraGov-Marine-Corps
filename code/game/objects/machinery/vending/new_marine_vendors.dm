@@ -792,35 +792,35 @@
 	)
 
 /obj/effect/vendor_bundle/jaeger_infantry
-	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	desc = "A set of medium Infantry pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine,
 		/obj/item/clothing/suit/modular/jaeger,
 	)
 
 /obj/effect/vendor_bundle/jaeger_eva
-	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	desc = "A set of medium EVA pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/eva,
 		/obj/item/clothing/suit/modular/jaeger/eva,
 	)
 
 /obj/effect/vendor_bundle/jaeger_gungnir
-	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	desc = "A set of Heavy Gungnir pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/gungnir,
 		/obj/item/clothing/suit/modular/jaeger/heavy,
 	)
 
 /obj/effect/vendor_bundle/jaeger_assault
-	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	desc = "A set of heavy Assault pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/assault,
 		/obj/item/clothing/suit/modular/jaeger/heavy/assault,
 	)
 
 /obj/effect/vendor_bundle/jaeger_eod
-	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	desc = "A set of heavy EOD pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/eod,
 		/obj/item/clothing/suit/modular/jaeger/heavy/eod,
