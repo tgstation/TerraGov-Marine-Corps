@@ -779,6 +779,7 @@
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
+#define COMSIG_XENOABILITY_SPIDERLING_MARK "xenoability_spiderling_mark"
 
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
