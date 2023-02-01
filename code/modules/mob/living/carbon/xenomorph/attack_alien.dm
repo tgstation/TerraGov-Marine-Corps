@@ -222,7 +222,7 @@
 		if(INTENT_HELP, INTENT_GRAB) //Try to hug target if this is a human
 			if(ishuman(src))
 				F.visible_message(null, span_notice("We're starting to climb on [src]"), null, 5)
-				if(!do_after(F, 4 SECONDS, TRUE, src, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+				if(!do_after(F, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
 					F.balloon_alert(F, "Climbing interrupted")
 					return FALSE
 				F.try_attach(src)
