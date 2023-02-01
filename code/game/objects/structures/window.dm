@@ -508,14 +508,16 @@
 
 /obj/structure/window/framed/colony
 	name = "window"
-	icon_state = "col_window0"
-	basestate = "col_window"
+	icon = 'icons/obj/smooth_objects/col_window.dmi'
+	icon_state = "col_window-0"
+	base_icon_state = "col_window"
 	window_frame = /obj/structure/window_frame/colony
 
 /obj/structure/window/framed/colony/reinforced
 	name = "reinforced window"
-	icon_state = "col_rwindow0"
-	basestate = "col_rwindow"
+	icon = 'icons/obj/smooth_objects/col_rwindow.dmi'
+	icon_state = "col_rwindow-0"
+	base_icon_state = "col_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = 1
