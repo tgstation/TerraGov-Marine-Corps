@@ -328,9 +328,10 @@
 
 /turf/closed/wall/prison
 	name = "metal wall"
-	icon = 'icons/turf/walls/prison.dmi'
-	icon_state = "metal0"
+	icon = 'icons/turf/walls/gorg_prison_wall_two.dmi'
+	icon_state = "metal-0"
 	walltype = "metal"
+	base_icon_state = "metal"
 
 
 
