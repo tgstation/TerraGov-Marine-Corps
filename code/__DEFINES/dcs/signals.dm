@@ -789,6 +789,7 @@
 
 #define COMSIG_XENOABILITY_TEARING_TAIL "xenoability_tearing_tail"
 #define COMSIG_XENOABILITY_ADRENALINE_JUMP "xenoability_adrenaline_jump"
+#define COMSIG_XENOABILITY_ADRENALINE_RUSH "xenoability_adrenaline_rush"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

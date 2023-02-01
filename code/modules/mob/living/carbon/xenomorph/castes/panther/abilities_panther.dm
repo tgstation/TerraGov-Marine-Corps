@@ -187,3 +187,79 @@
 			return
 
 	lunge_target.ParalyzeNoChain(1 SECONDS)
+
+///////////////////////////////////
+// ***************************************
+// *********** Adrenaline rush
+// ***************************************
+
+/datum/action/xeno_action/adrenaline_rush
+	name = "Adrenaline rush"
+	action_icon_state = "adrenaline_rush"
+	desc = "Move faster."
+	plasma_cost = 10
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADRENALINE_RUSH,
+	)
+	use_state_flags = XACT_USE_LYING
+	action_type = ACTION_TOGGLE
+	var/speed_activated = FALSE
+	var/speed_bonus_active = FALSE
+
+/datum/action/xeno_action/adrenaline_rush/remove_action()
+	resinwalk_off(TRUE) // Ensure we remove the movespeed
+	return ..()
+
+/datum/action/xeno_action/adrenaline_rush/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(speed_activated)
+		return TRUE
+
+/datum/action/xeno_action/adrenaline_rush/action_activate()
+	if(speed_activated)
+		resinwalk_off()
+		return fail_activate()
+	resinwalk_on()
+	succeed_activate()
+
+
+/datum/action/xeno_action/adrenaline_rush/proc/resinwalk_on(silent = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	speed_activated = TRUE
+	if(!silent)
+		owner.balloon_alert(owner, "It's time to run")
+	if(walker.loc_weeds_type)
+		speed_bonus_active = TRUE
+		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+	set_toggle(TRUE)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
+
+
+/datum/action/xeno_action/adrenaline_rush/proc/resinwalk_off(silent = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	if(!silent)
+		owner.balloon_alert(owner, "Adrenaline rush is over")
+	if(speed_bonus_active)
+		walker.remove_movespeed_modifier(type)
+		speed_bonus_active = FALSE
+	speed_activated = FALSE
+	set_toggle(FALSE)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+
+/datum/action/xeno_action/adrenaline_rush/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/walker = owner
+	if(!isturf(walker.loc) || walker.plasma_stored < 3)
+		owner.balloon_alert(owner, "We are too tired to run so fast")
+		resinwalk_off(TRUE)
+		return
+	if(!speed_bonus_active)
+		speed_bonus_active = TRUE
+		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+	walker.use_plasma(3)
+	return
+	if(!speed_bonus_active)
+		return
+	speed_bonus_active = FALSE
+	walker.remove_movespeed_modifier(type)

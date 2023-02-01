@@ -863,3 +863,9 @@
 	full_name = "Panther: Adrenaline Jump"
 	description = "Jump from some distance to target, knocking them down."
 	keybind_signal = COMSIG_XENOABILITY_ADRENALINE_JUMP
+
+/datum/keybinding/xeno/adrenaline_rush
+	name = "Adrenaline Rush"
+	full_name = "Panther: Adrenaline Rush"
+	description = "Run faster."
+	keybind_signal = COMSIG_XENOABILITY_ADRENALINE_RUSH
