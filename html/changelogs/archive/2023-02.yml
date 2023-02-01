@@ -1,0 +1,6 @@
+2023-02-01:
+  Neocloudy:
+  - rscadd: Ports CM defib sounds. These play when toggling the defib, failing to
+      revive someone or succeeding to revive someone.
+  novaepee, Jack(ie) Burgdorf:
+  - imageadd: update sprites for vali activation
