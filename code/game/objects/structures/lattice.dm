@@ -71,11 +71,14 @@
 		return
 
 /obj/structure/catwalk
-	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "catwalk0"
+	icon = 'icons/obj/smooth_objects/catwalk.dmi'
+	icon_state = "catwalk-0"
 	var/shoefootstep = FOOTSTEP_CATWALK
 	var/barefootstep = FOOTSTEP_CATWALK
 	var/mediumxenofootstep = FOOTSTEP_CATWALK
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
+	canSmoothWith = list(SMOOTH_GROUP_LATTICE)
 
 /obj/structure/catwalk/Initialize()
 	. = ..()

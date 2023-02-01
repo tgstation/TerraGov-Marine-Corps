@@ -459,7 +459,8 @@
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
-	smoothing_groups = SMOOTH_GROUP_CANTERBURY
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
@@ -475,7 +476,8 @@
 
 
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
-	smoothing_groups = SMOOTH_GROUP_CANTERBURY
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
 
 /obj/structure/window/framed/mainship/gray
 	icon_state = "gray_window0"
@@ -500,7 +502,7 @@
 
 /obj/structure/window/framed/mainship/white/toughened/hull
 	name = "hull window"
-	icon_state = "white_rwindow0"
+	icon_state = "white_rwindow-0"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
@@ -581,7 +583,9 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = TRUE
-	icon_state = "prison_rwindow0"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "prison_rwindow-0"
+	base_icon_state = "prison_rwindow"
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
 

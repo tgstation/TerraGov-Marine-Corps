@@ -2,7 +2,7 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon = 'icons/turf/walls/rwall.dmi'
-	icon_state = "rwall"
+	icon_state = "rwall-0"
 	base_icon_state = "rwall"
 	opacity = TRUE
 	density = TRUE
@@ -37,7 +37,7 @@
 /turf/closed/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
-	icon_state = "rwall"
+	icon_state = "rwall-0"
 	walltype = "rwall"
 	resistance_flags = RESIST_ALL
 
@@ -45,9 +45,10 @@
 	return
 
 /turf/closed/wall/r_wall/unmeltable/regular //looks like a regular wall, behaves like an invincible wall
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "metal"
+	icon = 'icons/turf/walls/regular_wall.dmi'
+	icon_state = "metal-0"
 	walltype = "metal"
+	base_icon_state = "metal"
 
 
 

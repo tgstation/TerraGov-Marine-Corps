@@ -3,7 +3,7 @@
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
 	icon = 'icons/turf/walls/testwall.dmi'
-	icon_state = "testwall0"
+	icon_state = "testwall-0"
 	walltype = "testwall"
 
 	max_integrity = 3000 //Wall will break down to girders if damage reaches this point
@@ -14,7 +14,6 @@
 	density = TRUE
 
 	base_icon_state = "testwall"
-	icon_state = "testwall0"
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -27,17 +26,19 @@
 	name = "reinforced hull"
 
 /turf/closed/wall/mainship/outer/canterbury
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
 
 /turf/closed/wall/mainship/white
 	icon = 'icons/turf/walls/wwall.dmi'
 	base_icon_state = "wwall"
-	icon_state = "wwall0"
+	icon_state = "wwall-0"
 
 /turf/closed/wall/mainship/gray
 	walltype = "gwall"
 	icon = 'icons/turf/walls/gwall.dmi'
 	base_icon_state = "gwall"
-	icon_state = "gwall0"
+	icon_state = "gwall-0"
 
 /turf/closed/wall/mainship/gray/outer
 	name = "outer hull"
@@ -50,7 +51,7 @@
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	icon_state = "wwall0"
+	icon_state = "wwall-0"
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
@@ -139,8 +140,9 @@
 /turf/closed/wall/sulaco
 	name = "hull"
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "sulaco0"
+	icon = 'icons/turf/walls/sulaco.dmi'
+	icon_state = "sulaco-0"
+	base_icon_state = "sulaco"
 	color = "#616161"
 
 	max_integrity = 3000
@@ -190,6 +192,7 @@
 	icon_state = "riveted"
 	opacity = TRUE
 	resistance_flags = RESIST_ALL
+	smoothing_flags = NONE
 
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
@@ -301,8 +304,9 @@
 	name = "wall"
 	desc = "The patterns engraved on the wall seem to shift as you try to focus on them. You feel sick"
 	icon = 'icons/turf/walls/cult.dmi'
-	icon_state = "cult_wall-0-0-0-0"
-	walltype = "cult_wall"
+	icon_state = "cult-0"
+	walltype = "cult"
+	base_icon_state = "cult"
 	color = "#88574b"
 
 /turf/closed/wall/clock

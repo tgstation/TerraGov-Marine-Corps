@@ -16,6 +16,9 @@
 	var/junction = 0
 	var/reinforced = FALSE
 	coverage = 50
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -105,26 +108,36 @@
 
 
 /obj/structure/window_frame/mainship
-	icon_state = "ship_window0_frame"
-	basestate = "ship_window"
+	icon = 'icons/obj/smooth_objects/ship_window_frame.dmi'
+	icon_state = "ship_window_frame-0"
+	basestate = "ship_window_frame"
+	base_icon_state = "ship_window_frame"
 
 /obj/structure/window_frame/mainship/white
-	icon_state = "white_window0_frame"
-	basestate = "white_window"
+	icon = 'icons/obj/smooth_objects/white_window_frame.dmi'
+	icon_state = "white_window_frame-0"
+	basestate = "white_window_frame"
+	base_icon_state = "white_window_frame"
 	window_type = /obj/structure/window/framed/mainship/white
 
 /obj/structure/window_frame/mainship/gray
-	icon_state = "gray_window0_frame"
-	basestate = "gray_window"
+	icon = 'icons/obj/smooth_objects/gray_window_frame.dmi'
+	icon_state = "gray_window_frame-0"
+	basestate = "gray_window_frame"
+	base_icon_state = "gray_window_frame"
 	window_type = /obj/structure/window/framed/mainship/gray
 
 /obj/structure/window_frame/colony
-	icon_state = "col_window0_frame"
-	basestate = "col_window"
+	icon = 'icons/obj/smooth_objects/col_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
 
 /obj/structure/window_frame/colony/reinforced
-	icon_state = "col_rwindow0_frame"
-	basestate = "col_rwindow"
+	icon = 'icons/obj/smooth_objects/col_rwindow_frame.dmi'
+	icon_state = "col_rwindow_frame-0"
+	basestate = "col_rwindow_frame"
+	base_icon_state = "col_rwindow_frame"
 	reinforced = TRUE
 	max_integrity = 300
 

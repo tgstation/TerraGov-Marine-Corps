@@ -97,8 +97,9 @@
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
-	icon_state = "jungle-0-0-0-0"
+	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
+	base_icon_state = "junglewall"
 	walltype = "jungle"
 	open_turf_type = /turf/open/ground/jungle/clear
 
@@ -613,6 +614,8 @@
 /turf/closed/shuttle/escapeshuttle
 	icon_state = "swall0"
 	walltype = "swall"
+	smoothing_groups = list(SMOOTH_GROUP_ESCAPESHUTTLE)
+	canSmoothWith = list(SMOOTH_GROUP_ESCAPESHUTTLE)
 
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL

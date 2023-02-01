@@ -141,8 +141,10 @@
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GROUP_XENO_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
+
 	var/close_delay = 10 SECONDS
 
 /obj/structure/mineral_door/resin/Initialize()
