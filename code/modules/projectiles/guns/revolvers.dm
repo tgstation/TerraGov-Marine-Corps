@@ -25,6 +25,7 @@
 
 	movement_acc_penalty_mult = 3
 	fire_delay = 2
+	extra_delay = 2 SECONDS
 	accuracy_mult_unwielded = 0.85
 	scatter_unwielded = 15
 	recoil = 0
