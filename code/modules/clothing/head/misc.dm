@@ -272,3 +272,10 @@
 	item_state = "tp_hood"
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
+
+/obj/item/clothing/head/rabbitears
+	name = "rabbit ears"
+	desc = "Wearing these makes you looks like a bunny, and only good for your sex appeal."
+	icon_state = "bunny"
+	flags_armor_protection = HEAD|FACE|EYES
+	anti_hug = 10

@@ -81,6 +81,14 @@
 	allowed = list(/obj/item/storage/fancy/cigarettes,/obj/item/spacecash)
 	flags_inv_hide = HIDEJUMPSUIT
 
+/obj/item/clothing/suit/maid
+	name = "Maid dress"
+	desc = "A dress for janitors with a bit more class."
+	icon_state = "maid"
+	item_state = "maid"
+	flags_armor_features = CHEST|GROIN
+
+
 /obj/item/clothing/suit/wcoat
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."
