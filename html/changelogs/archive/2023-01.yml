@@ -308,3 +308,73 @@
   chizzy376:
   - bugfix: Creating surt modules through reqtorio should no longer disappoint you
       with 10 violins
+2023-01-24:
+  Lumipharon:
+  - balance: Added some more loadouts to SOM ERTs
+  - bugfix: Fixed a bug with mimir traits
+  - balance: Melee stuns now respect armour when calculating probability
+  - bugfix: fixed random map spawners
+  Pariah919:
+  - rscadd: Added new AGLS mounted grenade launcher.
+  novaepee:
+  - rscadd: 4 floodlights to all shipside maps
+  - balance: xenomorphs will have a harder time engaging marine fixed positions due
+      to more lights
+2023-01-25:
+  Lumipharon:
+  - bugfix: fixed an exploit with mounted weapons
+  - balance: Beanbag slugs no longer has a comically long stun duration
+  - bugfix: Added god mode checks to debuff status effects, snatch and defile
+2023-01-26:
+  Pariah919:
+  - balance: GPMG has been buffed. It now deals 27.5 damage and .75 sunder on its
+      bullet, from 20 damage and .75 sunder. Its total damage profile is now 27.5
+      damage, 10 penetration (Unchanged) and .75 sunder.
+  - balance: MMG now can attach underbarrel flashlight, and has halved damage falloff
+      to .5 falloff per tile rather than 1.
+2023-01-27:
+  Calyxman:
+  - rscadd: Added 7 new male preburst scream sounds from VA The God Of Clowns
+  - rscadd: Added 3 new male pain scream sounds from VA The God Of Clowns
+  - rscadd: Added 2 new male scream sounds from VA The God Of Clowns
+  - rscadd: Added 1 new male gored gurgle sound from VA The God Of Clowns
+  FosterGrime-Heymynameslouie:
+  - rscadd: infinite crates via op vendor in req
+  - rscdel: removed welding crates for 1 metal sheet on crates from op vendor
+  - qol: made req supply chain easier
+2023-01-29:
+  Lumipharon:
+  - imageadd: Updated some pistol belt sprites
+  Pariah919:
+  - balance: King HP scaling changed from 450->500->600->700 to 575->600->625->650.
+  Tupina:
+  - balance: Reduces mech assault leg health from 500 hp -> 310 hp
+  - balance: Reduces mech vanguard leg health from 700 hp -> 440 hp
+  - balance: Reduces mech recon part health from 200 hp -> 180 hp (900 total including
+      legs)
+  - balance: Reduces mech assault part health from 350 hp -> 260 hp (1350 total including
+      legs)
+  - balance: Reduces mech vanguard part health from 550 hp -> 340 hp (1800 total including
+      legs)
+2023-01-30:
+  Neocloudy:
+  - code_imp: Added new vendor tags and categories for synthetic vendor items.
+  - qol: Items in the synthetic vendor are labelled properly with tags like Cosmetic,
+      Provides Armor, etc
+  QualityVan:
+  - balance: Surgery tool cost reduced by 99% to prevent quick infinite free metal
+      by vending pouches.
+  RipGrayson:
+  - rscadd: Created a lint to guard against icon_state varedits being introduced to
+      our maps.
+  - code_imp: Purged all icon_state varedits from our maps.
+  - bugfix: Fixed an oversight where the escape pod walls were not solid.
+  chizzy376:
+  - bugfix: added a missing "is" to clone vat's error message when removing a beaker
+2023-01-31:
+  Pariah919:
+  - balance: Mech Rocket launcher no longer has heavy explosion, it now has 1 more
+      tile of light explosive range.
+  XSlayer300:
+  - soundadd: Replaced most mech-related sounds with new ones.
+  - sounddel: Removed most of the unused sounds that were from the original mech PR.
