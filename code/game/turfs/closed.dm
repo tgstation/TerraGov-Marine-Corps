@@ -38,8 +38,12 @@
 /turf/closed/mineral/smooth
 	name = "rock"
 	icon = 'icons/turf/walls/lvwall.dmi'
-	icon_state = "lvwall-0-0-0-0"
+	base_icon_state = "lvwall"
+	icon_state = "lvwall-0"
 	walltype = "lvwall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
 
 /turf/closed/mineral/smooth/outdoor
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
@@ -82,8 +86,7 @@
 /turf/closed/mineral/bigred
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "redrock"
-	smoothing_behavior = NO_SMOOTHING //big red does not currently have its own 3/4ths cave tileset, so it uses the old one without smoothing
+	icon_state = "redrock" //big red does not currently have its own 3/4ths cave tileset, so it uses the old one without smoothing
 
 /turf/closed/mineral/indestructible
 	name = "impenetrable rock"
@@ -96,7 +99,6 @@
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "jungle-0-0-0-0"
 	desc = "Some thick jungle."
-	smoothing_groups = SMOOTH_GROUP_FLORA
 	walltype = "jungle"
 	open_turf_type = /turf/open/ground/jungle/clear
 
@@ -122,7 +124,6 @@
 	icon_state = "cave_wall-0-0-0-0"
 	color = "#c9a37b"
 	walltype = "cave_wall"
-	smoothing_groups = SMOOTH_GROUP_GENERAL_STRUCTURES
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/desertdamrockwall/invincible
@@ -611,7 +612,6 @@
 
 /turf/closed/shuttle/escapeshuttle
 	icon_state = "swall0"
-	smoothing_groups = SMOOTH_GROUP_ESCAPESHUTTLE
 	walltype = "swall"
 
 /turf/closed/shuttle/escapeshuttle/prison

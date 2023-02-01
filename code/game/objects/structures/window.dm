@@ -394,8 +394,9 @@
 	static_frame = TRUE
 	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GROUP_GENERAL_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
 
@@ -426,10 +427,8 @@
 	window_frame = /obj/structure/window_frame/mainship
 
 /obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
-	smoothing_groups = SMOOTH_GROUP_CANTERBURY
 
 /obj/structure/window/framed/mainship/escapeshuttle
-	smoothing_groups = SMOOTH_GROUP_ESCAPESHUTTLE
 
 /obj/structure/window/framed/mainship/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
@@ -469,9 +468,11 @@
 	deconstructable = FALSE
 
 /obj/structure/window/framed/mainship/white
-	icon_state = "white_rwindow0"
-	basestate = "white_rwindow"
+	icon = 'icons/obj/smooth_objects/wwindow.dmi'
+	icon_state = "white_rwindow-0"
+	base_icon_state = "white_rwindow"
 	window_frame = /obj/structure/window_frame/mainship/white
+
 
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
 	smoothing_groups = SMOOTH_GROUP_CANTERBURY

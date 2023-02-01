@@ -12,6 +12,15 @@
 #define SOUTHWEST_JUNCTION	(1<<6)
 #define NORTHWEST_JUNCTION	(1<<7)
 
+#define N_NORTH		NORTH //(1<<0)
+#define N_SOUTH		SOUTH //(1<<1)
+#define N_EAST		EAST  //(1<<2)
+#define N_WEST		WEST  //(1<<3)
+#define N_NORTHEAST	(1<<4)
+#define N_SOUTHEAST	(1<<5)
+#define N_SOUTHWEST	(1<<6)
+#define N_NORTHWEST	(1<<7)
+
 //Corner types
 #define CONVEX 0
 #define CONCAVE 1

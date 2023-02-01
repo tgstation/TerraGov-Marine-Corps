@@ -58,14 +58,12 @@
 #define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(30)	///turf/closed/wall/mineral/titanium/survival
 #define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS_TWO S_TURF(31)	///turf/closed/wall/mineral/titanium/survival
 
-#define SMOOTH_GROUP_GENERAL_STRUCTURES S_TURF(32) //Walls, doors, windows, girders, you name it.
-#define SMOOTH_GROUP_XENO_STRUCTURES S_TURF(33) //Resin structures.
 #define SMOOTH_GROUP_CANTERBURY S_TURF(34) //TGS Canterbury
 #define SMOOTH_GROUP_FLORA S_TURF(35) //Vegetation walls
 #define SMOOTH_GROUP_MINERAL_STRUCTURES S_TURF(36) //Caves
 #define SMOOTH_GROUP_ESCAPESHUTTLE S_TURF(37) //Mainship escape shuttles
 
-#define MAX_S_TURF SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS //Always match this value with the one above it.
+#define MAX_S_TURF SMOOTH_GROUP_ESCAPESHUTTLE //Always match this value with the one above it.
 
 
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)
@@ -94,7 +92,11 @@
 #define SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM S_OBJ(23)	///turf/closed/indestructible/opsglass, /obj/structure/window/plasma/reinforced/plastitanium
 #define SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE S_OBJ(24)	///obj/structure/window/shuttle
 
-#define SMOOTH_GROUP_LATTICE  S_OBJ(30)					///obj/structure/lattice
+#define SMOOTH_GROUP_LATTICE  S_OBJ(30)
+
+#define SMOOTH_GROUP_AIRLOCK  S_OBJ(40)							///obj/structure/lattice
+#define SMOOTH_GROUP_GRILLE  S_OBJ(41)
+
 
 #define SMOOTH_GROUP_WOOD_TABLES S_OBJ(51)				///obj/structure/table/wood
 #define SMOOTH_GROUP_FANCY_WOOD_TABLES S_OBJ(52)		///obj/structure/table/wood/fancy
@@ -115,3 +117,6 @@
 #define SMOOTH_GROUP_SHUTTLE_PARTS S_OBJ(66)			///obj/structure/window/shuttle, /obj/structure/shuttle/engine/heater
 
 #define SMOOTH_GROUP_CLEANABLE_DIRT	S_OBJ(67)			///obj/effect/decal/cleanable/dirt
+
+#define SMOOTH_GROUP_GENERAL_STRUCTURES S_OBJ(68) //Walls, doors, windows, girders, you name it.
+#define SMOOTH_GROUP_XENO_STRUCTURES S_OBJ(69) //Resin structures.

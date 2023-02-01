@@ -10,8 +10,6 @@
 	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
@@ -40,10 +38,10 @@
 
 
 /obj/structure/window_frame/proc/update_nearby_icons()
-	smooth_neighbors()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/window_frame/update_icon()
-	smooth_self()
+	QUEUE_SMOOTH(src)
 
 /obj/structure/window_frame/Destroy()
 	density = FALSE

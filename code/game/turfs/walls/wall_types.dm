@@ -2,7 +2,7 @@
 /turf/closed/wall/mainship
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
-	icon = 'icons/turf/mainshipwalls.dmi'
+	icon = 'icons/turf/walls/testwall.dmi'
 	icon_state = "testwall0"
 	walltype = "testwall"
 
@@ -12,6 +12,9 @@
 
 	opacity = TRUE
 	density = TRUE
+
+	base_icon_state = "testwall"
+	icon_state = "testwall0"
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -24,14 +27,16 @@
 	name = "reinforced hull"
 
 /turf/closed/wall/mainship/outer/canterbury
-	smoothing_groups = SMOOTH_GROUP_CANTERBURY
 
 /turf/closed/wall/mainship/white
-	walltype = "wwall"
+	icon = 'icons/turf/walls/wwall.dmi'
+	base_icon_state = "wwall"
 	icon_state = "wwall0"
 
 /turf/closed/wall/mainship/gray
 	walltype = "gwall"
+	icon = 'icons/turf/walls/gwall.dmi'
+	base_icon_state = "gwall"
 	icon_state = "gwall0"
 
 /turf/closed/wall/mainship/gray/outer
@@ -41,7 +46,6 @@
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
-	smoothing_groups = SMOOTH_GROUP_CANTERBURY
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
@@ -186,7 +190,6 @@
 	icon_state = "riveted"
 	opacity = TRUE
 	resistance_flags = RESIST_ALL
-	smoothing_behavior = NO_SMOOTHING
 
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
@@ -301,8 +304,6 @@
 	icon_state = "cult_wall-0-0-0-0"
 	walltype = "cult_wall"
 	color = "#88574b"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_GROUP_GENERAL_STRUCTURES
 
 /turf/closed/wall/clock
 	name = "brass wall"
@@ -311,7 +312,6 @@
 
 /turf/closed/wall/vault
 	icon_state = "rockvault"
-	smoothing_behavior = NO_SMOOTHING
 
 /turf/closed/wall/vault/New(location,type)
 	..()
