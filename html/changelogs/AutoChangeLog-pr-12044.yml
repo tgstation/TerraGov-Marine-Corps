@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - rscadd: "Ports CM defib sounds. These play when toggling the defib, failing to revive someone or succeeding to revive someone."
