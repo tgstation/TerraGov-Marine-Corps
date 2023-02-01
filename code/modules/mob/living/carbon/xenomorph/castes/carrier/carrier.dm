@@ -34,9 +34,11 @@
 
 /mob/living/carbon/xenomorph/carrier/update_icons()
 	. = ..()
-	update_hugger_overlays()
+	update_overlays()
 
-/mob/living/carbon/xenomorph/carrier/proc/update_hugger_overlays()
+/mob/living/carbon/xenomorph/carrier/update_overlays()
+	. = ..()
+
 	if(!hugger_overlays_icon)
 		return
 
@@ -61,5 +63,3 @@
 			hugger_overlays_icon.overlays +=mutable_appearance(icon, "clinger_[i]")
 
 	overlays += hugger_overlays_icon
-
-
