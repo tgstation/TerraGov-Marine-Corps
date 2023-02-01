@@ -777,13 +777,55 @@
 		/obj/item/clothing/shoes/marine/full,
 	)
 
-
-/obj/effect/vendor_bundle/xenonauten_light
-	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
+/obj/effect/vendor_bundle/jaeger_light
+	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x,
-		/obj/item/clothing/suit/modular/xenonauten/light,
+		/obj/item/clothing/head/modular/marine/scout,
+		/obj/item/clothing/suit/modular/jaeger/light,
 	)
+
+/obj/effect/vendor_bundle/jaeger_skirmish
+	desc = "A set of light skirmisher pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/skirmisher,
+		/obj/item/clothing/suit/modular/jaeger/light/skirmisher,
+	)
+
+/obj/effect/vendor_bundle/jaeger_infantry
+	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine,
+		/obj/item/clothing/suit/modular/jaeger,
+	)
+
+/obj/effect/vendor_bundle/jaeger_eva
+	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/eva,
+		/obj/item/clothing/suit/modular/jaeger/eva,
+	)
+
+/obj/effect/vendor_bundle/jaeger_gungnir
+	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/gungnir,
+		/obj/item/clothing/suit/modular/jaeger/heavy,
+	)
+
+/obj/effect/vendor_bundle/jaeger_assault
+	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/assault,
+		/obj/item/clothing/suit/modular/jaeger/heavy/assault,
+	)
+
+/obj/effect/vendor_bundle/jaeger_eod
+	desc = "A set of light scout pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/eod,
+		/obj/item/clothing/suit/modular/jaeger/heavy/eod,
+	)
+
 
 /obj/effect/vendor_bundle/xenonauten_medium
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
