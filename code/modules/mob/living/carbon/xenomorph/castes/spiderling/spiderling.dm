@@ -37,6 +37,11 @@
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/apply_spiderling_jelly)
+
+/datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
+	var/mob/living/carbon/xenomorph/spiderling/beno_to_coat = mob_parent
+	beno_to_coat.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
