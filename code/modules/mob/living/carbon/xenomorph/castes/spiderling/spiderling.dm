@@ -39,7 +39,9 @@
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/apply_spiderling_jelly)
 
+/// Signal handler to apply resin jelly to the spiderling whenever widow gets it
 /datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/spiderling/beno_to_coat = mob_parent
 	beno_to_coat.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
