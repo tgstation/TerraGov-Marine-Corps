@@ -86,7 +86,7 @@
 
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
-	update_icon() //Update for greyscale.
+	update_icon()
 
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
@@ -192,13 +192,17 @@
 
 /obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
+
 	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
 		return
+
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
-	paint.uses--
+
 	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
 	if(!variant)
@@ -208,6 +212,7 @@
 		return
 
 	current_variant = variant
+	paint.uses--
 	update_icon()
 
 // Jaeger suits
@@ -470,10 +475,6 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
-	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors = ARMOR_PALETTES_LIST
-	///Some defines to determin if the armor piece is allowed to be recolored.
-	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
@@ -485,7 +486,7 @@
 
 /obj/item/clothing/head/modular/Initialize()
 	. = ..()
-	update_icon() //Update for greyscale.
+	update_icon()
 
 /obj/item/clothing/head/modular/update_icon()
 	. = ..()
@@ -517,39 +518,12 @@
 	. = ..()
 	update_icon()
 
-/obj/item/clothing/head/modular/update_greyscale(list/colors, update)
-	. = ..()
-	if(!greyscale_config)
-		return
-	item_icons = list(slot_head_str = icon)
-
-///Will force faction colors on this helmet
-/obj/item/clothing/head/modular/proc/limit_colorable_colors(faction)
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			set_greyscale_colors("#2A4FB7")
-			colorable_colors = list(
-				"blue" = "#2A4FB7",
-				"aqua" = "#2098A0",
-				"purple" = "#871F8F",
-			)
-		if(FACTION_TERRAGOV_REBEL)
-			set_greyscale_colors("#CC2C32")
-			colorable_colors = list(
-				"red" = "#CC2C32",
-				"orange" = "#BC4D25",
-				"yellow" = "#B7B21F",
-			)
-
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
-		return
-
-	if(!istype(I, /obj/item/facepaint))
+	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
 		return
 
 	var/obj/item/facepaint/paint = I
@@ -557,56 +531,15 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	if(!greyscale_config && length(icon_state_variants))
-		paint.uses--
-		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-		if(!variant)
-			return
-
-		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-			return
-
-		current_variant = variant
-		update_icon()
+	if(!variant)
 		return
 
-	var/selection
-
-	switch(colorable_allowed)
-		if(COLOR_WHEEL_ONLY)
-			selection = "Color Wheel"
-		if(COLOR_WHEEL_ALLOWED)
-			selection = list("Color Wheel", "Preset Colors")
-			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
-		if(COLOR_WHEEL_NOT_ALLOWED)
-			selection = "Preset Colors"
-
-	if(!selection)
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
-	var/new_color
-	switch(selection)
-		if("Preset Colors")
-			var/color_selection
-			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
-			if(!color_selection)
-				return
-			if(islist(colorable_colors[color_selection]))
-				var/old_list = colorable_colors[color_selection]
-				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
-				if(!color_selection)
-					return
-				new_color = old_list[color_selection]
-			else
-				new_color = colorable_colors[color_selection]
-		if("Color Wheel")
-			new_color = input(user, "Pick a color", "Pick color") as null|color
-
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
-	set_greyscale_colors(new_color)
+	current_variant = variant
 	paint.uses--
 	update_icon()
 
@@ -638,12 +571,6 @@
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
-///When vended, limits the paintable colors based on the vending machine's faction
-/obj/item/clothing/head/modular/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
-	. = ..()
-	if(faction)
-		limit_colorable_colors(faction)
-
 /obj/item/clothing/head/modular/m10x
 	name = "\improper M10X pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
@@ -658,8 +585,6 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
-	greyscale_colors = null
-	greyscale_config = null
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
@@ -1018,8 +943,6 @@
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	greyscale_config = null
-	greyscale_colors = null
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
 	attachments_allowed = list(
