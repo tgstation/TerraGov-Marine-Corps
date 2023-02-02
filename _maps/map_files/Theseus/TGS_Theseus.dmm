@@ -1682,9 +1682,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "avY" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "avZ" = (
 /obj/machinery/light/mainship{
@@ -4059,9 +4057,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
 "bou" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
-	},
+/turf/open/floor/plating/icefloor/warnplate/corner,
 /area/mainship/hallways/hangar)
 "boH" = (
 /obj/structure/cable,
@@ -15828,9 +15824,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "pNG" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "pOi" = (
 /obj/machinery/camera/autoname/mainship,

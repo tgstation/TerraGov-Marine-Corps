@@ -1,0 +1,22 @@
+2023-02-01:
+  Neocloudy:
+  - rscadd: Ports CM defib sounds. These play when toggling the defib, failing to
+      revive someone or succeeding to revive someone.
+  novaepee, Jack(ie) Burgdorf:
+  - imageadd: update sprites for vali activation
+2023-02-02:
+  Lumipharon:
+  - bugfix: fixed a couple of sensor tower bugs
+  - code_imp: Updated sensor tower code, are no longer coded to the TGMC faction specifically.
+  - code_imp: Fixed some harddel failures
+  - bugfix: fixed the King death timer
+  Pariah919:
+  - spellcheck: P-14 no longer lies to you in the description about the mag size.
+  RipGrayson:
+  - imageadd: Created new 3/4ths perspective ice walls for our ice themed maps.
+  novaepee:
+  - bugfix: Fix camo fatigues not having half sleeve
+  - rscadd: new FC and SO dorms
+  - bugfix: extra tcomm in Sulaco, which annihilate comm issues in Sulaco
+  novaepee, Billy Bob / Huggy:
+  - soundadd: King Death Cry

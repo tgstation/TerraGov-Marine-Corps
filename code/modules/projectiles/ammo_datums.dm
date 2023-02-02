@@ -642,9 +642,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/rifle/machinegun
 	name = "machinegun bullet"
-	hud_state = "rifle"
-	damage = 20
+	hud_state = "rifle_heavy"
+	damage = 27.5
 	penetration = 10
+	sundering = 0.75
 
 /datum/ammo/bullet/rifle/som_machinegun
 	name = "machinegun bullet"
@@ -1722,7 +1723,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 2, 4, 5)
+	explosion(T, 0, 0, 5, 5)
 
 /datum/ammo/rocket/heavy_rr
 	name = "75mm round"

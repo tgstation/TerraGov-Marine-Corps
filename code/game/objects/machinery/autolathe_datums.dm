@@ -263,3 +263,59 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	name = "Conveyor Switch"
 	path = /obj/item/conveyor_switch_construct
 	category = "Devices and Components"
+
+/datum/autolathe/recipe/mass_produced_crate
+	name = "Mass Produced Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced__alpha_crate
+	name = "Mass Produced Alpha Squad Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/alpha
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_bravo_crate
+	name = "Mass Produced Bravo Squad Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/bravo
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_charlie_crate
+	name = "Mass Produced Charlie Squad Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/charlie
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_delta_crate
+	name = "Mass Produced Delta Squad Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/delta
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_ammo_crate
+	name = "Mass Produced Ammo Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/ammo
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_construction_crate
+	name = "Mass Produced Construction Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/construction
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_explosives_crate
+	name = "Mass Produced Explosives Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/explosives
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_medical_crate
+	name = "Mass Produced Medical Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/medical
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_supply_crate
+	name = "Mass Produced Supply Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/supply
+	category = "Mass Produced Crates"
+
+/datum/autolathe/recipe/mass_produced_weapon_crate
+	name = "Mass Produced Weapon Crate"
+	path = /obj/structure/closet/crate/mass_produced_crate/weapon
+	category = "Mass Produced Crates"
+

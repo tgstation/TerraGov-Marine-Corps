@@ -86,6 +86,9 @@
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
+/obj/item/weapon/gun/tl102/hsg_nest/sandless
+	icon_state = "entrenched_sandless"
+
 //-------------------------------------------------------
 //MG-2005 mounted minigun
 
@@ -337,6 +340,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -366,6 +370,7 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
+	damage_falloff_mult = 0.5
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
