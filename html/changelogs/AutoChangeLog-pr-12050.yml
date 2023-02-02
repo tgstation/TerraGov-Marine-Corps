@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "new FC and SO dorms"
-  - bugfix: "extra tcomm in Sulaco, which annihilate comm issues in Sulaco"

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a couple of sensor tower bugs"
-  - code_imp: "Updated sensor tower code, are no longer coded to the TGMC faction specifically."
