@@ -95,7 +95,8 @@
 		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
-		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 	max_w_class = 3 //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
