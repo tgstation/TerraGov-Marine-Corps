@@ -594,6 +594,13 @@ SUBSYSTEM_DEF(ru_items)
 	item_icons = list(
 		slot_head_str = 'icons/mob/squadhb.dmi')
 
+/obj/item/clothing/head/tgmcberet/vdv
+	name = "\improper Airborne beret"
+	desc = "Blue badged beret that smells like ethanol and fountain water for some reason."
+	icon_state = "russobluecamohat"
+	icon = 'icons/obj/clothing/squad_hb.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/squadhb.dmi')
 
 /obj/item/clothing/head/tgmcberet/medical
 	name = "\improper Medical beret"

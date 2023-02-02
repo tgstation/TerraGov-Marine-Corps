@@ -1351,6 +1351,7 @@
 			/obj/item/clothing/head/beret/marine = -1,
 			/obj/item/clothing/head/tgmcberet = -1,
 			/obj/item/clothing/head/tgmcberet/commando = -1,
+			/obj/item/clothing/head/tgmcberet/vdv = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
