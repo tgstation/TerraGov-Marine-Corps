@@ -19,7 +19,7 @@ type InputPack = {
   hive_orphan_max: number;
   hive_minion_count: number;
   hive_primos: PrimoUpgrades[];
-  hive_queen_remaining: number;
+  hive_death_timers: DeathTimer[];
   hive_queen_max: number;
   hive_structures: StructureData[];
   // ----- Per xeno info ------
@@ -78,6 +78,12 @@ type PrimoUpgrades = {
   tier: number;
   purchased: boolean;
 };
+
+type DeathTimer = {
+  "caste": string,
+  "time": number,
+  "max_time": number,
+}
 
 export const HiveStatus = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
@@ -192,10 +198,9 @@ const GeneralInfo = (_props, context) => {
     hive_psy_points,
     hive_silo_collapse,
     hive_orphan_collapse,
-    hive_queen_remaining,
+    hive_death_timers,
     hive_silo_max,
     hive_orphan_max,
-    hive_queen_max,
   } = data;
 
   return (
@@ -232,17 +237,7 @@ const GeneralInfo = (_props, context) => {
         <Flex.Item>
           <EvolutionBar />
         </Flex.Item>
-        {(hive_silo_collapse > 0 ||
-          hive_orphan_collapse > 0 ||
-          hive_queen_remaining > 0) && <Divider />}
-        <Flex.Item>
-          <XenoCountdownBar
-            time={hive_queen_remaining}
-            max={hive_queen_max}
-            tooltip="When new queen can evolve."
-            left_side="Next Queen:"
-          />
-        </Flex.Item>
+        {DeadXenoTimerCountdowns(hive_death_timers)}
         <Flex.Item>
           <XenoCountdownBar
             time={hive_silo_collapse}
@@ -261,6 +256,25 @@ const GeneralInfo = (_props, context) => {
         </Flex.Item>
       </Flex>
     </Box>
+  );
+};
+
+const DeadXenoTimerCountdowns = (hive_death_timers: DeathTimer[]) => {
+  if (hive_death_timers.length === 0) {
+    return null;
+  }
+  return (
+    <Flex.Item>
+      {hive_death_timers.map((timer, i) => (
+        <XenoCountdownBar
+          key={i}
+          time={timer.time}
+          max={timer.max_time}
+          tooltip={`Time until ${timer.caste} can evolve.`}
+          left_side={`Next ${timer.caste}:`}
+        />
+      ))}
+    </Flex.Item>
   );
 };
 
