@@ -246,7 +246,7 @@
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
 		to_chat(src, span_userdanger("Your version of byond is blacklisted."))
-		to_chat(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
+		to_chat(src, span_danger("Ваша версия бйонда [byond_build] ([byond_version].[byond_build]) находится в чёрном списке, по причине: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
