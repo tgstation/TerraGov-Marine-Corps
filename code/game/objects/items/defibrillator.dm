@@ -189,8 +189,8 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has permanently expired. No remedy possible."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE, DETACHABLE_HEAD)) || H.suiciding)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's central power system is drained. Reboot impossible."))
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && HAS_TRAIT(H, DETACHABLE_HEAD)) || H.suiciding)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's neural systems have degenerated past reboot threshold. Reboot impossible."))
 		return
 
 	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
