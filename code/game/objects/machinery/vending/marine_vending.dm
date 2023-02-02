@@ -141,6 +141,8 @@
 			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
 			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
 			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+			/obj/item/mortar_kit/baby = 2,
+			/obj/item/mortal_shell/baby = 40,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -497,6 +499,8 @@
 			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
 			/obj/item/storage/holster/backholster/rpg/full = -1,
+			/obj/item/mortar_kit/baby = -1,
+			/obj/item/mortal_shell/baby = -1,
 			/obj/item/jetpack_marine = -1,
 		),
 		"Heavy Weapons" = list(
@@ -1286,6 +1290,7 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
+			/obj/item/storage/belt/mortar_belt = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,

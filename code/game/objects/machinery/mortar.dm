@@ -423,6 +423,29 @@
 	max_rounds = 4
 	fire_delay = 0.5 SECONDS
 
+// Baby mortar
+
+/obj/item/mortar_kit/baby
+	name = "\improper TA-10 knee mortar"
+	desc = "A manual, crew-operated mortar system intended to rain down 50mm goodness on anything it's aimed at. Needs to be set down first to fire. This one has a light payload, but an extremely high rate of fire."
+	icon_state = "baby_mortar"
+	max_integrity = 250
+	w_class = WEIGHT_CLASS_NORMAL
+	deployable_item = /obj/machinery/deployable/mortar/baby
+
+/obj/machinery/deployable/mortar/baby
+	offset_per_turfs = 12
+	minimum_range = 5
+	allowed_shells = list(
+		/obj/item/mortal_shell/baby,
+		/obj/item/mortal_shell/flare,
+	)
+
+	tally_type = TALLY_MORTAR
+	reload_time = 0.5 SECONDS
+	fire_delay = 0.5 SECONDS
+	max_spread = 6
+
 // The big boy, the Howtizer.
 
 /obj/item/mortar_kit/howitzer
@@ -598,6 +621,15 @@
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
 	icon_state = "howitzer_ammo_wp"
 	ammo_type = /datum/ammo/mortar/smoke/howi/wp
+
+/obj/item/mortal_shell/baby
+	name = "\improper 50mm high explosive mortar shell"
+	desc = "An 50mm mortar shell, loaded with a high explosive charge."
+	icon_state = "baby_mortar_ammo_he"
+	w_class = WEIGHT_CLASS_TINY
+	ammo_type = /datum/ammo/mortar/baby
+
+// Rocket Arty
 
 /obj/item/mortal_shell/rocket
 	ammo_type = /datum/ammo/mortar/rocket

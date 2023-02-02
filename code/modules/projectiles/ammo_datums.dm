@@ -2119,6 +2119,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(10, T, 11)
 	smoke.start()
 
+/datum/ammo/mortar/baby
+	name = "50mm shell"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/baby/drop_nade(turf/T)
+	explosion(T, 0, 2, 4, 2)
+
+/datum/ammo/mortar/baby/frag
+	name = "50mm shell"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/baby/drop_nade(turf/T)
+	explosion(T, 0, 1, 4, 2)
+
+
 /datum/ammo/mortar/rocket
 	name = "rocket"
 	icon_state = "rocket"
