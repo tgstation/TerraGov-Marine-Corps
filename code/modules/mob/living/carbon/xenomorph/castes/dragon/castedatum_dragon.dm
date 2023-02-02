@@ -45,7 +45,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/tail_stab,
 		/datum/action/xeno_action/flight,
-		/datum/action/xeno_action/activable/xeno_spit/fireball
+		/datum/action/xeno_action/activable/xeno_spit/fireball,
 	)
 
 /datum/xeno_caste/dragon/young
@@ -58,7 +58,7 @@
 	// caste_desc = "todo"
 	upgrade = XENO_UPGRADE_ONE
 
-    // *** Melee Attacks *** //
+	// *** Melee Attacks *** //
 	melee_damage = 30
 
 	// *** Speed *** //
@@ -133,7 +133,7 @@
 	// primordial_message = "TODO"
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 35
 
 	// *** Speed *** //
 	speed = 0.1
