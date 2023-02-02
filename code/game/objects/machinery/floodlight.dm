@@ -56,6 +56,9 @@
 	use_power = FALSE
 	brightness_on = 10
 
+/obj/machinery/floodlight/outpost/oscar
+	brightness_on = 30
+
 /obj/machinery/floodlight/outpost/Initialize()
 	. = ..()
 	set_light(brightness_on)

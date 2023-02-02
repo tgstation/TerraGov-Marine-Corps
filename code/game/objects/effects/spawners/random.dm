@@ -29,6 +29,8 @@
 	var/spawn_random_offset = FALSE
 	///does the spawned structure need to retain its direction on spawn?
 	var/spawn_with_original_direction = FALSE
+	///do we attempt to force a direction on spawn?
+	var/spawn_force_direction = FALSE
 
 /obj/effect/spawner/random/Initialize(mapload)
 	. = ..()
@@ -73,6 +75,9 @@
 		var/atom/movable/spawned_loot = new lootspawn(spawn_loc)
 		if(!spawn_with_original_direction)
 			spawned_loot.setDir(dir)
+
+		if(spawn_force_direction) //overrides direction if set
+			spawned_loot.setDir(spawn_force_direction)
 
 		if(spawn_loot_split && loot_spawned)
 			spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
@@ -190,6 +195,27 @@
 	icon_state = "random_plastiqueexplosive_multiple_four"
 	spawn_loot_count = 4
 
+/obj/effect/spawner/random/structure/grenade
+	name = "grenade spawner"
+	icon_state = "random_grenade"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/explosive/grenade = 7,
+		/obj/item/explosive/grenade/incendiary = 2,
+		/obj/item/explosive/grenade/m15 = 1,
+	)
+
+/obj/effect/spawner/random/structure/grenade/incendiaryweighted
+	loot = list(
+		/obj/item/explosive/grenade/incendiary = 7,
+		/obj/item/explosive/grenade = 2,
+		/obj/item/explosive/grenade/m15 = 1,
+	)
+/obj/effect/spawner/random/structure/grenade/multiplefour
+	icon_state = "random_grenade_multiple_four"
+	spawn_loot_chance = 75
+	spawn_loot_count = 4
+
 /obj/effect/spawner/random/structure/handcuffs
 	name = "handcuff spawner"
 	icon_state = "random_handcuffs"
@@ -198,6 +224,27 @@
 	loot = list(
 		/obj/item/restraints/handcuffs = 15,
 		/obj/item/restraints/handcuffs/cable = 1,
+	)
+
+/obj/effect/spawner/random/structure/gascan
+	name = "gascan spawner"
+	icon_state = "random_gascan"
+	spawn_loot_chance = 85
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/reagent_containers/jerrycan,
+	)
+
+
+/obj/effect/spawner/random/structure/rocketlauncher
+	name = "rocket launcher spawner"
+	icon_state = "random_rocketlauncher"
+	spawn_loot_chance = 95
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/weapon/gun/launcher/rocket/oneuse = 15,
+		/obj/item/weapon/gun/launcher/rocket = 5,
+		/obj/item/weapon/gun/launcher/rocket/sadar = 2,
 	)
 
 /obj/effect/spawner/random/structure/hand_labeler
@@ -540,6 +587,32 @@
 		/obj/item/reagent_containers/glass/beaker/large,
 	)
 
+/obj/effect/spawner/random/beaker/bluespace
+	name = "Random bluespace beaker spawner"
+	icon_state = "random_bluespace_beaker"
+	loot = list(
+		/obj/item/reagent_containers/glass/beaker/bluespace = 8,
+		/obj/effect/spawner/random/beaker = 2,
+	)
+
+/obj/effect/spawner/random/fuelcell
+	name = "Random fuel cell spawner"
+	icon_state = "random_fuelcell"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/fuelCell/random,
+		/obj/item/fuelCell/medium,
+		/obj/item/fuelCell/low,
+		/obj/item/fuelCell/high,
+		/obj/item/fuelCell/full,
+	)
+
+/obj/effect/spawner/random/fuelcell/fullweighted
+	loot = list(
+		/obj/item/fuelCell/full = 9,
+		/obj/effect/spawner/random/fuelcell = 1,
+	)
+
 /obj/effect/spawner/random/beaker/regularweighted
 	loot = list(
 		/obj/item/reagent_containers/glass/beaker = 8,
@@ -624,6 +697,29 @@
 		/obj/item/stack/nanopaste,
 	)
 
+/obj/effect/spawner/random/heal_pack
+	name = "Random bruise pack spawner"
+	icon_state = "random_healpack"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+	)
+
+/obj/effect/spawner/random/heal_pack/bruteweighted
+	icon_state = "random_brutekit"
+	loot = list(
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 8,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 2,
+	)
+
+/obj/effect/spawner/random/heal_pack/burnweighted
+	icon_state = "random_burnkit"
+	loot = list(
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 8,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 2,
+	)
+
 /obj/effect/spawner/random/organ
 	name = "Random surgical organ spawner"
 	icon_state = "random_organ"
@@ -691,6 +787,13 @@
 	icon_state = "random_ccircuit"
 	spawn_loot_chance = 75
 	loot_subtype_path = /obj/item/circuitboard/computer
+	loot = list()
+
+/obj/effect/spawner/random/book
+	name = "Random book spawner"
+	icon_state = "random_book"
+	spawn_loot_chance = 90
+	loot_subtype_path = /obj/item/book/manual
 	loot = list()
 
 /obj/effect/spawner/random/cigarettes
@@ -1158,6 +1261,51 @@
 		/obj/item/folder/grape = 5,
 	)
 
+/obj/effect/spawner/random/beer
+	name = "beer spawner"
+	icon_state = "random_beer"
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/ale,
+		/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+		/obj/item/reagent_containers/food/drinks/cans/aspen,
+		/obj/item/reagent_containers/food/drinks/bottle/gin,
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+		/obj/item/reagent_containers/food/drinks/bottle/tequila,
+		/obj/item/reagent_containers/food/drinks/bottle/vodka,
+		/obj/item/reagent_containers/food/drinks/bottle/vermouth,
+		/obj/item/reagent_containers/food/drinks/bottle/rum,
+		/obj/item/reagent_containers/food/drinks/bottle/wine,
+		/obj/item/reagent_containers/food/drinks/bottle/cognac,
+		/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+		/obj/item/reagent_containers/food/drinks/cans/tonic,
+		/obj/item/reagent_containers/food/drinks/cans/sodawater,
+		/obj/item/reagent_containers/food/drinks/flask/barflask,
+		/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+		/obj/item/reagent_containers/food/drinks/drinkingglass,
+		/obj/item/reagent_containers/food/drinks/ice,
+		/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
+		/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+		/obj/item/reagent_containers/food/drinks/bottle/grenadine,
+		/obj/item/reagent_containers/food/drinks/cans/aspen,
+		/obj/item/reagent_containers/food/drinks/bottle/davenport,
+		/obj/item/reagent_containers/food/drinks/tea,
+	)
+
+/obj/effect/spawner/random/beer/oscaroutpost
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/cans/beer = 95,
+		/obj/effect/spawner/random/beer = 5,
+	)
+
+/obj/effect/spawner/random/wine
+	icon_state = "random_winebottle"
+	loot = list(
+		/obj/item/reagent_containers/food/drinks/bottle/wine = 95,
+		/obj/effect/spawner/random/beer = 5,
+	)
+
 /obj/effect/spawner/random/greytide
 	name = "greytide spawner"
 	icon_state = "random_greytide"
@@ -1449,6 +1597,18 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
+/obj/effect/spawner/random/structure/m42c
+	name = "m42c spawner"
+	icon_state = "random_m42c"
+	spawn_loot_chance = 1
+	loot = list(
+		/obj/item/storage/box/m42c_system = 9,
+		/obj/item/storage/box/m42c_system_Jungle = 1,
+	)
+
+/obj/effect/spawner/random/structure/m42c/oscaroutpost
+	spawn_loot_chance = 10
+
 /obj/effect/spawner/random/structure/random_piano
 	name = "random piano spawner"
 	icon_state = "random_piano"
@@ -1584,6 +1744,19 @@
 		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
 	)
 
+/obj/effect/spawner/random/structure/random_broken_computer/small/emails
+	loot = list(
+		/obj/machinery/computer/emails = 80,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/pc
+	loot = list(
+		/obj/machinery/prop/mainship/computer/PC = 95,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+
 /obj/effect/spawner/random/structure/filingcabinet
 	name = "filing cabinet or metal spawner"
 	icon_state = "random_filingcabinet"
@@ -1618,6 +1791,14 @@
 		/obj/machinery/power/port_gen/pacman/mrs = 1,
 	)
 
+/obj/effect/spawner/random/structure/powergenerator/superweighted
+	spawn_loot_chance = 90
+	icon_state = "random_generator_super"
+	loot = list(
+		/obj/machinery/power/port_gen/pacman/super = 9,
+		/obj/effect/spawner/random/structure/powergenerator = 1,
+	)
+
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"
@@ -1626,6 +1807,20 @@
 		/obj/structure/girder = 3,
 		/obj/structure/girder/displaced = 7,
 		/obj/structure/girder/reinforced = 1,
+	)
+
+/obj/effect/spawner/random/structure/table_parts
+	name = "table parts spawner"
+	icon_state = "random_tableparts"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/frame/table = 15,
+		/obj/item/frame/table/nometal = 10,
+		/obj/item/frame/table/reinforced = 10,
+		/obj/item/frame/table/wood = 5,
+		/obj/item/frame/table/fancywood = 5,
+		/obj/item/frame/table/rusticwood = 5,
+		/obj/item/frame/table/gambling = 1,
 	)
 
 /obj/effect/spawner/random/structure/crate
@@ -1647,6 +1842,20 @@
 		/obj/structure/closet/crate/trashcart,
 	)
 
+/obj/effect/spawner/random/structure/crate/medsupplies
+	name = "medical supplies spawner"
+	icon_state = "random_medsupplies"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/structure/largecrate/supply/medicine/medkits = 6,
+		/obj/structure/largecrate/supply/medicine/blood = 2,
+		/obj/structure/largecrate/supply/medicine/iv = 2,
+		/obj/structure/largecrate/supply/medicine/medivend = 1,
+	)
+
+/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns
+	spawn_loot_chance = 100
+
 /obj/effect/spawner/random/structure/canister
 	name = "air canister spawner"
 	icon_state = "random_canister"
@@ -1663,6 +1872,17 @@
 		/obj/structure/prop/mainship/suit_storage_prop = 9,
 		/obj/effect/spawner/random/metal = 1,
 	)
+
+/obj/effect/spawner/random/structure/showcase
+	name = "robotic showcase spawner"
+	icon_state = "random_showcase"
+	loot = list(
+		/obj/structure/showcase = 30,
+		/obj/structure/showcase/six = 30,
+		/obj/structure/showcase/three = 5,
+		/obj/structure/showcase/two = 5,
+	)
+
 
 /obj/effect/spawner/random/structure/tank_dispenser
 	name = "tank dispenser spawner"
@@ -2049,3 +2269,14 @@
 /obj/effect/spawner/random/decal/out_of_bounds/rangetwo
 	spawn_scatter_radius = 2
 	spawn_loot_count = 6
+
+/obj/effect/spawner/random/vehicle/motorbike
+	name = "random motorcycle spawner"
+	icon_state = "random_motorbike"
+	loot = list(
+		/obj/vehicle/ridden/motorbike,
+	)
+
+/obj/effect/spawner/random/vehicle/motorbike/west
+	spawn_loot_chance = 75
+	spawn_force_direction = WEST
