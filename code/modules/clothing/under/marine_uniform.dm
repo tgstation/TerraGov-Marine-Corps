@@ -23,9 +23,6 @@
 /obj/item/clothing/under/marine/camo
 	name = "\improper TGMC camo fatigues (jungle)"
 	icon_state = "m_marine_jumpsuit"
-	adjustment_variants = list(
-		"Down" = "_d",
-	)
 
 /obj/item/clothing/under/marine/camo/snow
 	name = "\improper TGMC camo fatigues (snow)"

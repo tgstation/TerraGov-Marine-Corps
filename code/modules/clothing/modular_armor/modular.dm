@@ -95,6 +95,21 @@
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
 
+/obj/item/clothing/suit/modular/update_item_sprites()
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				current_variant = "jungle"
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				current_variant = "snow"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				current_variant = "prison"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				current_variant = "desert"
+
 /obj/item/clothing/suit/modular/on_pocket_insertion()
 	. = ..()
 	update_icon()
@@ -321,9 +336,10 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	icon_state_variants = list(
-		"drab",
 		"black",
+		"jungle",
 		"desert",
 		"snow",
 	)
@@ -478,6 +494,21 @@
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
 
+/obj/item/clothing/head/modular/update_item_sprites()
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				current_variant = "jungle"
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				current_variant = "snow"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				current_variant = "prison"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				current_variant = "desert"
+
 /obj/item/clothing/head/modular/on_pocket_insertion()
 	. = ..()
 	update_icon()
@@ -613,6 +644,69 @@
 	if(faction)
 		limit_colorable_colors(faction)
 
+/obj/item/clothing/head/modular/m10x
+	name = "\improper M10X pattern marine helmet"
+	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	icon = 'icons/mob/modular/m10.dmi'
+	icon_state = "helmet_icon"
+	icon_override = null
+	item_state = "helmet"
+	item_state_worn = TRUE
+	item_state_slots = null
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	greyscale_colors = null
+	greyscale_config = null
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	visorless_offset_x = 0
+	visorless_offset_y = 0
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+
+	icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/m10x/welding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/m10x/mimir
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
+
+/obj/item/clothing/head/modular/m10x/tyr
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/m10x/heavy
+	name = "\improper M10XE pattern marine helmet"
+	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
+	icon_state = "heavyhelmet_icon"
+	item_state = "heavyhelmet"
+
+/obj/item/clothing/head/modular/m10x/leader
+	name = "\improper M11X pattern leader helmet"
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
+
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
@@ -626,6 +720,8 @@
 	)
 	icon_override = null
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+
+
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
@@ -645,15 +741,18 @@
 		/obj/item/armor_module/armor/visor/marine/gungnir,
 		/obj/item/armor_module/armor/visor/marine/eod,
 		/obj/item/armor_module/armor/visor/marine/assault,
+		/obj/item/armor_module/armor/visor/marine/helljumper,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
 
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+
 	icon_state_variants = list(
-		"green",
 		"black",
-		"brown",
-		"white",
+		"jungle",
+		"desert",
+		"snow",
 	)
 
 	current_variant = "black"
@@ -705,37 +804,12 @@
 	item_state = "eod_helmet"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
 
-/obj/item/clothing/head/modular/marine/m10x
-	name = "\improper M10X pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	icon_state = "helmet_icon"
-	icon_override = null
-	item_state = "helmet"
-	item_state_worn = TRUE
-	item_state_slots = null
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-	visorless_offset_x = 0
-	visorless_offset_y = 0
-
-/obj/item/clothing/head/modular/marine/m10x/welding
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
-
-/obj/item/clothing/head/modular/marine/m10x/mimir
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
-
-/obj/item/clothing/head/modular/marine/m10x/tyr
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
-
-/obj/item/clothing/head/modular/marine/m10x/heavy
-	name = "\improper M10XE pattern marine helmet"
-	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
-	icon_state = "heavyhelmet_icon"
-	item_state = "heavyhelmet"
-
-/obj/item/clothing/head/modular/marine/m10x/leader
-	name = "\improper M11X pattern leader helmet"
-	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
+/obj/item/clothing/head/modular/marine/helljumper //to populate
+	name = "Jaeger Pattern Helljumper Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
+	icon_state = "helljumper_helmet"
+	item_state = "helljumper_helmet"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
 
 // ***************************************
 // *********** Modular Style Line
