@@ -419,8 +419,10 @@
 /obj/structure/window/framed/mainship
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	icon_state = "ship_rwindow0"
-	basestate = "ship_rwindow"
+	icon = 'icons/obj/smooth_objects/ship_window.dmi'
+	icon_state = "ship_window-0"
+	basestate = "ship_window"
+	base_icon_state = "ship_window"
 	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
@@ -480,8 +482,10 @@
 	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
 
 /obj/structure/window/framed/mainship/gray
-	icon_state = "gray_window0"
-	basestate = "gray_window"
+	icon = 'icons/obj/smooth_objects/ship_gray_window.dmi'
+	icon_state = "ship_gray_window-0"
+	basestate = "ship_gray_window"
+	base_icon_state = "ship_gray_window"
 	window_frame = /obj/structure/window_frame/mainship/gray
 	reinf = FALSE
 
@@ -490,8 +494,8 @@
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
 	max_integrity = 300
 	reinf = TRUE
-	icon_state = "gray_rwindow0"
-	basestate = "gray_rwindow"
+	icon_state = "ship_gray_window-0"
+	basestate = "ship_gray_window"
 
 /obj/structure/window/framed/mainship/gray/toughened/hull
 	name = "hull window"
@@ -545,8 +549,10 @@
 
 /obj/structure/window/framed/chigusa
 	name = "reinforced window"
-	icon_state = "chig_rwindow0"
-	basestate = "chig_rwindow"
+	icon = 'icons/obj/smooth_objects/chigusa_window.dmi'
+	icon_state = "chigusa_wall-0"
+	basestate = "chigusa_wall"
+	base_icon_state = "chigusa_wall"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = TRUE
@@ -556,8 +562,10 @@
 
 /obj/structure/window/framed/wood
 	name = "window"
-	icon_state = "wood_window0"
-	basestate = "wood_window"
+	icon = 'icons/obj/smooth_objects/wood_regular.dmi'
+	icon_state = "wood_regular-0"
+	basestate = "wood_regular"
+	base_icon_state = "wood_regular"
 	window_frame = /obj/structure/window_frame/wood
 
 /obj/structure/window/framed/wood/reinforced
@@ -565,8 +573,10 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = TRUE
-	icon_state = "wood_rwindow0"
-	basestate = "wood_rwindow"
+	icon = 'icons/obj/smooth_objects/wood_reinforced.dmi'
+	icon_state = "wood_reinforced-0"
+	basestate = "wood_reinforced"
+	base_icon_state = "wood_reinforced"
 	window_frame = /obj/structure/window_frame/wood
 
 //Prison windows
@@ -574,8 +584,10 @@
 
 /obj/structure/window/framed/prison
 	name = "window"
-	icon_state = "wood_window0"
-	basestate = "wood_window"
+	icon = 'icons/obj/smooth_objects/wood_reinforced.dmi'
+	icon_state = "wood_reinforced-0"
+	basestate = "wood_reinforced"
+	base_icon_state = "wood_reinforced"
 	window_frame = /obj/structure/window_frame/prison
 
 /obj/structure/window/framed/prison/reinforced

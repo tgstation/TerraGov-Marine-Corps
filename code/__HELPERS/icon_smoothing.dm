@@ -435,15 +435,6 @@
 		else
 			return NONE
 
-//Example smooth wall
-/turf/closed/wall/smooth
-	icon = 'icons/turf/smooth_wall.dmi'
-	icon_state = "icedmetal_wall-0"
-	base_icon_state = "icedmetal_wall"
-	desc = "A wall covered in a thick sheet of ice."
-	smoothing_flags = SMOOTH_BITMASK
-	canSmoothWith = null
-
 #undef NO_ADJ_FOUND
 #undef ADJ_FOUND
 #undef NULLTURF_BORDER
