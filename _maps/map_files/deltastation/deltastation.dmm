@@ -119235,6 +119235,7 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/flasher{
 	id = "hopflash";
+	pixel_x = 1
 	pixel_y = 26
 	},
 /turf/open/floor/iron/dark,
