@@ -699,6 +699,19 @@ EXPLOSIVES
 	cost = 10
 	available_against_xeno_only = TRUE
 
+
+/datum/supply_packs/explosives/baby_mortar
+	name = "T-10K Knee Mortar"
+	contains = list(/obj/item/mortar_kit/baby)
+	cost = 125
+
+/datum/supply_packs/explosives/baby_mortar_ammo
+	name = "TA-10K knee mortar HE shell"
+	contains = list(/obj/item/mortal_shell/baby, /obj/item/mortal_shell/baby)
+	cost = 5
+	available_against_xeno_only = TRUE
+
+
 /datum/supply_packs/explosives/mlrs
 	name = "TA-40L Multiple Rocket System"
 	contains = list(/obj/item/mortar_kit/mlrs)

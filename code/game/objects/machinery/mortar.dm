@@ -427,7 +427,7 @@
 
 /obj/item/mortar_kit/baby
 	name = "\improper TA-10 knee mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 50mm goodness on anything it's aimed at. Needs to be set down first to fire. This one has a light payload, but an extremely high rate of fire."
+	desc = "A manual, crew-operated mortar system intended to rain down 50mm shells on anything it's aimed at, typically best known as a 'Knee' mortar. Cannot be actually fired from your kneecaps, so it needs to be set down first to fire. Has a light payload, but an extremely high rate of fire."
 	icon_state = "baby_mortar"
 	max_integrity = 250
 	w_class = WEIGHT_CLASS_NORMAL
@@ -435,6 +435,8 @@
 
 /obj/machinery/deployable/mortar/baby
 	offset_per_turfs = 12
+	fire_sound = 'sound/weapons/guns/fire/babymortar_fire.ogg'
+	fall_sound = 'sound/weapons/guns/misc/babymortar_whistle.ogg'
 	minimum_range = 5
 	allowed_shells = list(
 		/obj/item/mortal_shell/baby,
