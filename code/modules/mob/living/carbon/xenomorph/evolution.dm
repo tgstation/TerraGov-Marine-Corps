@@ -101,7 +101,6 @@
 		return
 
 	var/new_mob_type
-	var/datum/xeno_caste/new_caste_type
 	var/castepick
 	if(caste_type)
 		new_mob_type = caste_type
@@ -118,7 +117,6 @@
 		for(var/type in xeno_caste.evolves_to)
 			var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			if(castepick == XC.caste_name)
-				new_caste_type = XC
 				new_mob_type = type
 				break
 
@@ -147,7 +145,7 @@
 	// used below
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
-
+	var/datum/xeno_caste/new_caste_type = GLOB.xeno_caste_datums[new_mob_type][XENO_UPGRADE_BASETYPE]
 	// Initial can access uninitialized vars, which is why it's used here.
 	var/new_caste_flags = initial(new_caste_type.caste_flags)
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
@@ -161,7 +159,7 @@
 
 	var/min_xenos = initial(new_caste_type.evolve_min_xenos)
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
-		to_chat(src, span_warning("We need at least [min_xenos] xenos to become [initial(new_caste_type.display_name)]."))
+		to_chat(src, span_warning("We need at least [min_xenos] xenos to become a [initial(new_caste_type.display_name)]."))
 		return
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
