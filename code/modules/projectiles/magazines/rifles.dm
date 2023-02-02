@@ -381,7 +381,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "v31_ap"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/ap
+	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 50
 	icon_state_mini = "mag_rifle_big_green"
 

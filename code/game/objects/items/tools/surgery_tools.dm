@@ -4,7 +4,7 @@
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
-	materials = list(/datum/material/metal = 5000, /datum/material/glass = 2500)
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 25)
 
 /*
 * Retractor

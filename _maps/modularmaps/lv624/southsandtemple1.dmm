@@ -55,7 +55,7 @@
 /obj/structure/platform_decoration,
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
-/obj/effect/turf_turf_decal/grassdecal{
+/obj/effect/turf_decal/grassdecal{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -110,7 +110,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/sandytile,
-/obj/effect/turf_turf_decal/grassdecal{
+/obj/effect/turf_decal/grassdecal{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -334,7 +334,7 @@
 /area/lv624/lazarus/sandtemple)
 "CB" = (
 /obj/effect/turf_decal/sandytile,
-/obj/effect/turf_turf_decal/grassdecal{
+/obj/effect/turf_decal/grassdecal{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
