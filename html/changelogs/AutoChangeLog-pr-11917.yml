@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Sunder is now taken into account when calculating xeno bomb immunity and devastating explosion gib thresholds"
+  - balance: "Crusher and defender fortify bomb armour increased slightly"
