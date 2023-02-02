@@ -19,15 +19,15 @@ const EvolveProgress = (props) => (
 const CasteView = (props) => {
   // These are removed since every caste has them and its just clutter.
   const filteredAbilities = ['Rest', 'Regurgitate'];
-  const abilites = Object.values(props.abilites).filter(
+  const abilities = Object.values(props.abilities).filter(
     (ability) => filteredAbilities.indexOf(ability.name) === -1
   );
-  const lastItem = Object.keys(props.abilites).slice(-1)[0];
+  const lastItem = Object.keys(props.abilities).slice(-1)[0];
 
   return (
     <Section title={`${props.name} - Abilities`}>
-      {props.abilites
-        ? abilites.map((ability) => (
+      {props.abilities
+        ? abilities.map((ability) => (
           <Button
             fluid={1}
             key={ability.name}
@@ -37,7 +37,7 @@ const CasteView = (props) => {
             content={ability.name}
           />
         ))
-        : 'This caste has no abilites'}
+        : 'This caste has no abilities'}
     </Section>
   );
 };
@@ -48,7 +48,7 @@ export const HiveEvolveScreen = (props, context) => {
   const { name, evolution, abilities, evolves_to, can_evolve } = data;
 
   const canEvolve = can_evolve && evolution.current >= evolution.max;
-  // Most checks are skipped for shrike and queeen so we except them below.
+  // Most checks are skipped for shrike and queen so we except them below.
   const instantEvolveTypes = ['Shrike', 'Queen'];
   const evolvesInto = Object.values(evolves_to);
 
@@ -56,7 +56,7 @@ export const HiveEvolveScreen = (props, context) => {
     <Window theme="xeno" title="Xenomorph Evolution" width={400} height={750}>
       <Window.Content scrollable>
         <Section title="Current Evolution">
-          <CasteView act={act} current name={name} abilites={abilities} />
+          <CasteView act={act} current name={name} abilities={abilities} />
           <EvolveProgress current={evolution.current} max={evolution.max} />
         </Section>
         <Section title="Available Evolutions">
@@ -75,7 +75,7 @@ export const HiveEvolveScreen = (props, context) => {
               }>
               <CasteView
                 name={evolve.name}
-                abilites={evolve.abilities}
+                abilities={evolve.abilities}
                 canEvolve={canEvolve}
               />
             </Collapsible>
