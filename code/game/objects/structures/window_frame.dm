@@ -1,7 +1,7 @@
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
-	icon = 'icons/obj/structures/smooth_objects/regular_window_frame.dmi'
+	icon = 'icons/obj/smooth_objects/regular_window_frame.dmi'
 	icon_state = "white_window_frame-0"
 	base_icon_state = "white_window_frame"
 	interaction_flags = INTERACT_CHECK_INCAPACITATED

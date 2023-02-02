@@ -775,8 +775,8 @@
 
 /turf/closed/shuttle/escapeshuttle
 	icon_state = "swall0"
-	smoothing_groups = list(SMOOTH_ESCAPESHUTTLE)
-	canSmoothWith = list(SMOOTH_ESCAPESHUTTLE)
+	smoothing_groups = list(SMOOTH_GROUP_ESCAPESHUTTLE)
+	canSmoothWith = list(SMOOTH_GROUP_ESCAPESHUTTLE)
 	walltype = "swall"
 
 /turf/closed/shuttle/escapeshuttle/prison
