@@ -53,39 +53,44 @@
 
 /turf/closed/mineral/smooth/snowrock
 	icon = 'icons/turf/walls/snowwall.dmi'
-	icon_state = "snowwall-0-0-0-0"
+	icon_state = "snowwall-0"
 	walltype = "snowwall"
+	base_icon_state = "snowwall"
 
 /turf/closed/mineral/smooth/snowrock/indestructible
 	resistance_flags = RESIST_ALL
 
 /turf/closed/mineral/smooth/frostwall
 	icon = 'icons/turf/walls/frostwall.dmi'
-	icon_state = "frostwall-0-0-0-0"
+	icon_state = "frostwall-0"
 	walltype = "frostwall"
+	base_icon_state = "frostwall"
 
 /turf/closed/mineral/smooth/frostwall/indestructible
 	resistance_flags = RESIST_ALL
 
 /turf/closed/mineral/smooth/darkfrostwall
 	icon = 'icons/turf/walls/darkfrostwall.dmi'
-	icon_state = "darkfrostwall-0-0-0-0"
+	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
+	base_icon_state = "darkfrostwall"
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	resistance_flags = RESIST_ALL
 
 /turf/closed/mineral/smooth/bluefrostwall
 	icon = 'icons/turf/walls/bluefrostwall.dmi'
-	icon_state = "bluefrostwall-0-0-0-0"
+	icon_state = "bluefrostwall-0"
 	walltype = "bluefrostwall"
-	smoothing_groups = SMOOTH_MINERAL_STRUCTURES_ICE
+	base_icon_state = "darkfrostwall"
+
 /turf/closed/mineral/smooth/bluefrostwall/indestructible
 	resistance_flags = RESIST_ALL
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
-	icon_state = "red_wall-0-0-0-0"
+	icon_state = "red_wall-0"
 	walltype = "red_wall"
+	base_icon_state = "red_wall"
 
 /turf/closed/mineral/smooth/bigred/indestructible
 	resistance_flags = RESIST_ALL
@@ -770,8 +775,8 @@
 
 /turf/closed/shuttle/escapeshuttle
 	icon_state = "swall0"
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+	smoothing_groups = list(SMOOTH_ESCAPESHUTTLE)
+	canSmoothWith = list(SMOOTH_ESCAPESHUTTLE)
 	walltype = "swall"
 
 /turf/closed/shuttle/escapeshuttle/prison
