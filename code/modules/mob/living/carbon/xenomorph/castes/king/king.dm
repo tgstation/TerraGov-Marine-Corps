@@ -20,7 +20,6 @@
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
-	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_king_death)
 	SSmonitor.stats.king++
 
 /mob/living/carbon/xenomorph/king/generate_name()

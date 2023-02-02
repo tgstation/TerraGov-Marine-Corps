@@ -100,7 +100,7 @@
 		to_chat(src, span_warning("We cannot evolve with a belly full."))
 		return
 
-	var/new_caste_type
+	var/datum/xeno_caste/new_caste_type
 	var/castepick
 	if(caste_type)
 		new_caste_type = caste_type
@@ -146,32 +146,33 @@
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 
-	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
+	// Initial can access uninitialized vars, which is why it's used here.
+	var/new_caste_flags = initial(new_caste_type.caste_flags)
+	if(new_caste_flags & CASTE_LEADER_TYPE)
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, span_warning("You are jobbanned from the Queen role."))
+			to_chat(src, span_warning("You are jobbanned from the Queen-like roles."))
 			return
-
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))
-			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role."))
+			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
 			return
 
-		if(hive.living_xeno_queen)
-			to_chat(src, span_warning("There already is a living Queen."))
-			return
+	var/min_xenos = initial(new_caste_type.evolve_min_xenos)
+	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
+		to_chat(src, span_warning("We need at least [min_xenos] xenos to become [initial(new_caste_type.display_name)]."))
+		return
+	if(new_caste_flags & CASTE_CANNOT_EVOLVE_IN_CAPTIVITY && isxenoresearcharea(get_area(src)))
+		to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
+		return
+	if(new_caste_flags & CASTE_NO_DUPLICATES && hive.xenos_by_typepath[new_caste_type])
+		to_chat(src, span_warning("There is already a [initial(new_caste_type.display_name)] in the hive. We must wait for it to die."))
+		return
+	var/turf/T = get_turf(src)
+	if(new_caste_flags & CASTE_REQUIRES_FREE_TILE && T.check_alien_construction(src))
+		to_chat(src, span_warning("We need a empty tile to evolve."))
+		return
 
-		if(hive.can_hive_have_a_queen())
-			to_chat(src, span_warning("The hivemind is too weak to sustain a Queen. Gather more xenos. [hive.xenos_per_queen] are required."))
-			return FALSE
-
-		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
-			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_queen_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
-			return
-
-		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
-			return
-
+	if(istype(new_caste_type, /datum/xeno_caste/queen))
 		switch(hivenumber) // because it causes issues otherwise
 			if(XENO_HIVE_CORRUPTED)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Corrupted
@@ -183,59 +184,6 @@
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Zeta
 			if(XENO_HIVE_ADMEME)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/admeme
-
-	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike) //Special case for dealing with shrikes
-		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, span_warning("You are jobbanned from Queen-like roles."))
-			return
-
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
-			to_chat(src, span_warning("There already is a living Shrike. The hive cannot contain more than one psychic energy repository."))
-			return
-
-		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, span_warning("Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!"))
-			return
-
-	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
-			return
-
-		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, span_warning("Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!"))
-			return
-
-		var/turf/T = get_turf(src)
-
-		if(!T.check_alien_construction(src))
-			return
-
-	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
-		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen) // copies queen requirements
-		if(xenojob.required_playtime_remaining(client))
-			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role."))
-			return
-
-		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, span_warning("You are jobbanned from Queen-like roles."))
-			return
-
-		if(hive.can_hive_have_a_king())
-			to_chat(src, span_warning("The hivemind is too weak to sustain a King. Gather more xenos. [hive.xenos_per_king] are required."))
-			return FALSE
-
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
-			to_chat(src, span_warning("There already is a living King. The hive cannot support more than one psychic energy repository at once."))
-			return
-
-		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_king_timer)
-			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_king_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
-			return
-
-		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, span_warning("Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!"))
-			return
 
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
@@ -272,22 +220,6 @@
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
 		return
 
-	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
-		if(hive.living_xeno_queen) //Do another check after the tick.
-			to_chat(src, span_warning("There already is a Queen."))
-			return
-	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
-			to_chat(src, span_warning("There already is a Shrike."))
-			return
-	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
-			return
-	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
-			to_chat(src, span_warning("There cannot be two kings at once."))
-			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
 		if(tier == XENO_TIER_ONE && no_room_tier_two)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))

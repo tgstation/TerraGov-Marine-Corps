@@ -7,13 +7,12 @@
 	///Current king, there can only be one
 	var/mob/living/carbon/xenomorph/king/living_xeno_king
 	///Timer for queen evolution after the last one dying
-	var/xeno_queen_timer
+	var/list/caste_death_timers = list()
 	///Timer for king evolution after the last one dying
-	var/xeno_king_timer
-	/// minimum amount of xenos needed to support a queen
-	var/xenos_per_queen = 8
-	/// minimum amount of xenos needed to support a king
-	var/xenos_per_king = 12
+	// /// minimum amount of xenos needed to support a queen
+	// var/xenos_per_queen = 8
+	// /// minimum amount of xenos needed to support a king
+	// var/xenos_per_king = 12
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
@@ -90,6 +89,13 @@
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
 	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
+	// Show all the death timers in milliseconds
+	.["hive_death_timers"] = list()
+	for (var/caste in caste_death_timers)
+		.["hive_death_timers"] += list(
+			"caste" = caste,
+			"timer" = timeleft(caste_death_timers[caste]) MILLISECONDS
+		)
 	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? timeleft(xeno_queen_timer) MILLISECONDS : 0
 
 	.["hive_primos"] = list()
@@ -179,7 +185,7 @@
 	.["hive_name"] = name
 	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
 	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
-	.["hive_queen_max"] = QUEEN_DEATH_TIMER MILLISECONDS
+	// .["hive_queen_max"] = QUEEN_DEATH_TIMER MILLISECONDS
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_threshold"] = xeno_job.job_points_needed
@@ -301,21 +307,21 @@
 	add_to_hive(HS)
 
 
-/datum/hive_status/proc/can_hive_have_a_queen()
-	return (get_total_xeno_number() < xenos_per_queen)
+/datum/hive_status/proc/total_xenos_for_evolving()
+	return get_total_xeno_number()
 
-/datum/hive_status/normal/can_hive_have_a_queen()
+/datum/hive_status/normal/total_xenos_for_evolving()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+	return get_total_xeno_number() + stored_larva
 
-/datum/hive_status/proc/can_hive_have_a_king()
-	return (get_total_xeno_number() < xenos_per_king)
+// /datum/hive_status/proc/can_hive_have_a_king()
+// 	return (get_total_xeno_number() < xenos_per_king)
 
-/datum/hive_status/normal/can_hive_have_a_king()
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	return ((get_total_xeno_number() + stored_larva) < xenos_per_king)
+// /datum/hive_status/normal/can_hive_have_a_king()
+// 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+// 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+// 	return ((get_total_xeno_number() + stored_larva) < xenos_per_king)
 
 /datum/hive_status/proc/get_total_tier_zeros()
 	return length(xenos_by_tier[XENO_TIER_ZERO])
@@ -578,8 +584,15 @@
 
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)
-
-	return TRUE
+	var/datum/xeno_caste/caste = X?.xeno_caste
+	if(X in xenos_by_typepath && caste.death_evolution_delay > 0)
+		return
+	if(!caste_death_timers[caste.type]) 
+		caste_death_timers[caste.type] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
+	///If it's the queen, update leader pheromones
+	if(istype(X, /mob/living/carbon/xenomorph/queen))
+		living_xeno_queen = null
+		update_leader_pheromones()
 
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
@@ -591,6 +604,17 @@
 // ***************************************
 // *********** Ruler
 // ***************************************
+
+// Which xeno, if it dies, severs the hivemind chat, change this to ruler once you are ready to make balance changes
+/datum/hive_status/proc/hivemind_conduit_typepath()
+	return /mob/living/carbon/xenomorph/queen
+
+/datum/hive_status/proc/get_hivemind_conduit_death_timer()
+	return caste_death_timers[hivemind_conduit_typepath()]
+
+/datum/hive_status/proc/get_total_hivemind_conduit_time()
+	var/datum/xeno_caste/caste = xenos_by_typepath[hivemind_conduit_typepath()]
+	return initial(caste.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
 	if(living_xeno_ruler == ruler)
@@ -657,15 +681,10 @@
 	return
 
 
-///Allows a new queen to evolve. Safe for use by gamemode code, this allows per hive overrides
-/datum/hive_status/proc/end_queen_death_timer()
-	xeno_message("The Hive is ready for a new ruler to evolve.", "xenoannounce", 6, TRUE)
-	xeno_queen_timer = null
-
-///Allows a new king to evolve. Safe for use by gamemode code, this allows per hive overrides
-/datum/hive_status/proc/end_king_death_timer()
-	xeno_message("The Hive is ready for a new king to evolve.", "xenoannounce", 6, TRUE)
-	xeno_king_timer = null
+///Allows death delay caste to evolve. Safe for use by gamemode code, this allows per hive overrides
+/datum/hive_status/proc/end_caste_death_timer(datum/xeno_caste/caste)
+	xeno_message("The Hive is ready for a new [caste.caste_name] to evolve.", "xenoannounce", 6, TRUE)
+	caste_death_timers[caste.type] = null
 
 /datum/hive_status/proc/check_ruler()
 	return TRUE
@@ -680,25 +699,6 @@
 // ***************************************
 // *********** Queen
 // ***************************************
-
-// These are defined for per-hive behaviour
-/datum/hive_status/proc/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
-	SIGNAL_HANDLER
-	if(living_xeno_queen != Q)
-		return FALSE
-	living_xeno_queen = null
-	if(!xeno_queen_timer)
-		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
-	update_leader_pheromones()
-
-// These are defined for per-hive behaviour
-/datum/hive_status/proc/on_king_death(mob/living/carbon/xenomorph/king/xeno_king)
-	SIGNAL_HANDLER
-	if(living_xeno_king != xeno_king)
-		return FALSE
-	living_xeno_king = null
-	if(!xeno_king_timer)
-		xeno_king_timer = addtimer(CALLBACK(src, .proc/end_king_death_timer), KING_DEATH_TIMER, TIMER_STOPPABLE)
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
