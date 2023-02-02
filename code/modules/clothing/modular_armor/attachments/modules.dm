@@ -590,3 +590,19 @@
 	SIGNAL_HANDLER
 	beacon_datum = null
 
+/obj/item/armor_module/module/bs_recall
+	name = "\improper Ares Bluespace recall system"
+	desc = "Designed for mounting on modular armor. Utilizes bluespace technology to recall a linked weapon to the users hands at will."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_recall"
+	item_state = "mod_recall_a"
+	slot = ATTACHMENT_SLOT_MODULE
+
+/obj/item/armor_module/module/bs_recall/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	parent.AddComponent(/datum/component/bs_recall)
+
+/obj/item/armor_module/module/bs_recall/on_detach(obj/item/detaching_from, mob/user)
+	var/datum/component/bs_recall/C = parent.GetComponent(/datum/component/bs_recall)
+	C.RemoveComponent()
+	return ..()
