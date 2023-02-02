@@ -2,8 +2,8 @@
 	caste_name = "Dragon"
 	display_name = "Dragon"
 	caste_desc = "A xenomorph with wings and a tail, and a fiery breath."
-	caste_type_path = /mob/living/carbon/xenomorph/dragon
-	evolve_min_xenos = 14
+	caste_type_path = /mob/living/carbon/xenomorph/dragon\
+	// evolve_min_xenos = 14
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "dragon"
