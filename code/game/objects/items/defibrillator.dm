@@ -185,11 +185,11 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) && !isartificial || H.suiciding) // Combat Robots will have a special message, so we want to exclude them. Synthetics also won't go perma.
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) && !isartificial(H) || H.suiciding) // Combat Robots will have a special message, so we want to exclude them. Synthetics also won't go perma.
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has permanently expired. No remedy possible."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && !isrobot)) || H.suiciding)
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) && !isrobot(H)) || H.suiciding) // Robot special message
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's neural systems have degenerated past reboot threshold. Reboot impossible."))
 		return
 
