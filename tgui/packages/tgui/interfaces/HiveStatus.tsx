@@ -413,14 +413,14 @@ const PopulationPyramid = (_props, context) => {
   // and then generating equality from unique keys.
   // From there, we record the lengths of those lists
   // to find number of counts per caste.
-  // But all these keys are numbers. And this is a lot simplier.
+  // But all these keys are numbers. And this is a lot simpler.
 
   hive_primos.map((entry) => {
     primos[entry.tier] = entry.purchased;
   });
 
   static_info.map((static_entry, index) => {
-    // Inititalizing arrays.
+    // Initializing arrays.
     if (pyramid_data[static_entry.tier] === undefined) {
       pyramid_data[static_entry.tier] = {
         caste: [],
@@ -477,15 +477,15 @@ const PopulationPyramid = (_props, context) => {
     );
   };
 
-  const compact_disp = user_xeno ? user_show_compact : showCompact;
-  const empty_disp = user_xeno ? user_show_empty : showEmpty;
+  const compact_display = user_xeno ? user_show_compact : showCompact;
+  const empty_display = user_xeno ? user_show_empty : showEmpty;
 
   return (
     <Section
       title={`Total Living Sisters: ${hive_total}`}
-      align={compact_disp ? 'left' : 'center'}
+      align={compact_display ? 'left' : 'center'}
       buttons={<ShowButtons />}>
-      <Flex direction="column-reverse" align={compact_disp ? 'left' : 'center'}>
+      <Flex direction="column-reverse" align={compact_display ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
           const max_slots =
@@ -514,7 +514,7 @@ const PopulationPyramid = (_props, context) => {
           ) : (
             ''
           );
-          if (compact_disp) {
+          if (compact_display) {
             // Display less busy compact mode
             if (tier === 0) {
               return (
@@ -535,11 +535,11 @@ const PopulationPyramid = (_props, context) => {
                 {tier === 2 || tier === 3
                   ? ` (${tier_info.total}/${max_slots || 0}) `
                   : ` ${tier_info.total} `}
-                Sisters {!empty_disp && tier_info.total === 0 ? '' : '| '}
+                Sisters {!empty_display && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index
                   .map((value, idx) => {
                     const count = tier_info.caste[idx];
-                    if (!empty_disp && count === 0) {
+                    if (!empty_display && count === 0) {
                       return null;
                     }
                     const static_entry = static_info[value];
@@ -561,7 +561,7 @@ const PopulationPyramid = (_props, context) => {
               <Flex className="Section__content">
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
-                  if (!empty_disp && count === 0) {
+                  if (!empty_display && count === 0) {
                     return <Box />;
                   }
                   const static_entry = static_info[value];
@@ -586,7 +586,7 @@ const PopulationPyramid = (_props, context) => {
               </Flex>
               <Flex>
                 {tier_info.caste.map((count, idx) => {
-                  if (!empty_disp && count === 0) {
+                  if (!empty_display && count === 0) {
                     return <Box />;
                   }
                   const static_entry = static_info[tier_info.index[idx]];
@@ -709,7 +709,7 @@ const XenoList = (_props, context) => {
     : Number.MIN_SAFE_INTEGER;
 
   if (sortingBy.category === location) {
-    // Sorting value inversed because direction is inversed.
+    // Sorting value inverted because direction is inverted.
     xeno_info.sort((a, b) => -a.location.localeCompare(b.location));
   }
 
@@ -966,7 +966,7 @@ const StructureList = (_props, context) => {
   const track_width = '100px';
   const name_width = '33%'; // Matches xeno list name width.
   const integrity_width = '60px';
-  const max_integ_width = '60px';
+  const max_integer_width = '60px';
 
   hive_structures.sort((a, b) => a.name.localeCompare(b.name));
   hive_structures.sort((a, b) => {
@@ -993,7 +993,7 @@ const StructureList = (_props, context) => {
               {/* Integrity */}
               Health
             </Flex.Item>
-            <Flex.Item width={max_integ_width}>
+            <Flex.Item width={max_integer_width}>
               {' '}
               {/* Max integrity */}
               Max
@@ -1042,7 +1042,7 @@ const StructureList = (_props, context) => {
                     <Box textColor="good">{entry.integrity}</Box>
                   )}
                 </Flex.Item>
-                <Flex.Item width={max_integ_width}>
+                <Flex.Item width={max_integer_width}>
                   {entry.max_integrity}
                 </Flex.Item>
                 <Flex.Item
