@@ -20,9 +20,8 @@ const CasteView = (props) => {
   // These are removed since every caste has them and its just clutter.
   const filteredAbilities = ['Rest', 'Regurgitate'];
   const abilities = Object.values(props.abilities).filter(
-    (ability) => filteredAbilities.indexOf(ability.name) === -1
-  );
-  const lastItem = Object.keys(props.abilities).slice(-1)[0];
+    (ability: XenoAbility) => filteredAbilities.indexOf(ability.name) === -1
+  ) as XenoAbility[];
 
   return (
     <Section title={`${props.name} - Abilities`}>
@@ -45,11 +44,11 @@ const CasteView = (props) => {
 export const HiveEvolveScreen = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { name, evolution, abilities, evolves_to, can_evolve } = data;
+  const { name, evolution, abilities, evolves_to, can_evolve } =
+    data as ByondData;
 
   const canEvolve = can_evolve && evolution.current >= evolution.max;
   // Most checks are skipped for shrike and queen so we except them below.
-  const instantEvolveTypes = ['Shrike', 'Queen'];
   const evolvesInto = Object.values(evolves_to);
 
   return (
@@ -66,9 +65,7 @@ export const HiveEvolveScreen = (props, context) => {
               title={`${evolve.name} (click for details)`}
               buttons={
                 <Button
-                  disabled={
-                    !canEvolve && !instantEvolveTypes.includes(evolve.name)
-                  }
+                  disabled={!canEvolve && !evolve.instant_evolve}
                   onClick={() => act('evolve', { path: evolve.type_path })}>
                   Evolve
                 </Button>
@@ -84,4 +81,33 @@ export const HiveEvolveScreen = (props, context) => {
       </Window.Content>
     </Window>
   );
+};
+
+type ByondData = {
+  name: string;
+  evolution: {
+    current: number;
+    max: number;
+  };
+  abilities: XenoAbility[];
+  evolves_to: EvolveCaste[];
+  can_evolve: boolean;
+};
+
+// type EvolveTo = {
+//   name: string;
+//   abilities: XenoAbility[];
+
+// }
+
+type EvolveCaste = {
+  type_path: string;
+  name: string;
+  abilities: XenoAbility[];
+  instant_evolve: boolean;
+};
+
+type XenoAbility = {
+  name: string;
+  desc: string;
 };
