@@ -140,7 +140,8 @@
 		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
-		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 
 /obj/item/storage/holster/backholster/rpg/full/Initialize()
 	. = ..()
