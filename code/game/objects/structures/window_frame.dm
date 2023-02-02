@@ -1,8 +1,9 @@
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
-	icon = 'icons/obj/structures/window_frames.dmi'
-	icon_state = "window0_frame"
+	icon = 'icons/obj/structures/smooth_objects/regular_window_frame.dmi'
+	icon_state = "white_window_frame-0"
+	base_icon_state = "white_window_frame"
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
@@ -145,16 +146,22 @@
 	max_integrity = 150
 
 /obj/structure/window_frame/chigusa
-	icon_state = "chig_window0_frame"
-	basestate = "chig_window"
+	icon = 'icons/obj/smooth_objects/chigusa_window_frame.dmi'
+	icon_state = "chigusa_window_frame-0"
+	basestate = "chigusa_window_frame"
+	base_icon_state = "chigusa_window_frame"
 
 /obj/structure/window_frame/wood
-	icon_state = "wood_window0_frame"
-	basestate = "wood_window"
+	icon = 'icons/obj/smooth_objects/wood_window_frame.dmi'
+	icon_state = "wood_window_frame-0"
+	basestate = "wood_window_frame"
+	base_icon_state = "wood_window_frame"
 
 /obj/structure/window_frame/prison
-	icon_state = "prison_rwindow0_frame"
-	basestate = "prison_rwindow"
+	icon = 'icons/obj/smooth_objects/prison_rwindow_frame.dmi'
+	icon_state = "col_rwindow_frame-0"
+	basestate = "col_rwindow_frame"
+	base_icon_state = "col_rwindow_frame"
 
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE

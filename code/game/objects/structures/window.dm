@@ -444,8 +444,8 @@
 	name = "cockpit window"
 	desc = "A very tough looking glass window with a special rod matrice, made to be space worthy."
 	max_integrity = 500
-	icon_state = "gray_window0_frame"
-	basestate = "gray_window"
+	icon_state = "ship_window-0"
+	basestate = "ship_window"
 
 /obj/structure/window/framed/mainship/spaceworthy/Initialize()
 	. = ..()
@@ -633,8 +633,10 @@
 
 /obj/structure/window/framed/prison/cell
 	name = "cell window"
-	icon_state = "prison_cellwindow0"
-	basestate = "prison_cellwindow"
+	icon = 'icons/obj/smooth_objects/cell_rwindow.dmi'
+	icon_state = "prison_rwindow-0"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. Has no reachable screws to prevent enterprising prisoners from deconstructing it."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE
