@@ -91,12 +91,12 @@
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
-	for (var/caste in caste_death_timers)
+	for (var/datum/xeno_caste/caste in caste_death_timers)
 		.["hive_death_timers"] += list(
 			"caste" = caste,
-			"timer" = timeleft(caste_death_timers[caste]) MILLISECONDS
+			"time" = timeleft(caste_death_timers[caste]) MILLISECONDS,
+			"max" = initial(caste.death_evolution_delay) MILLISECONDS,
 		)
-	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? timeleft(xeno_queen_timer) MILLISECONDS : 0
 
 	.["hive_primos"] = list()
 	for(var/tier in GLOB.tier_to_primo_upgrade)
@@ -185,7 +185,6 @@
 	.["hive_name"] = name
 	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
 	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
-	// .["hive_queen_max"] = QUEEN_DEATH_TIMER MILLISECONDS
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_threshold"] = xeno_job.job_points_needed
