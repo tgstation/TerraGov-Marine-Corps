@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_NO_DUPLICATES (1<<17) //Whether we can have more than one of this caste in the same hive
 #define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<18) //Whether we cannot evolve in the research lab
 #define CASTE_REQUIRES_FREE_TILE (1<<19) //Whether we require a free tile to evolve
-#define CASTE_INSTANT_EVOLUTION (1<<20) //Whether we require no evolution progress to evolve
+#define CASTE_INSTANT_EVOLUTION (1<<20) //Whether we require no evolution progress to evolve to this caste
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
