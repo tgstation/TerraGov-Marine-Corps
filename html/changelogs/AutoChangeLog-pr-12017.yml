@@ -1,0 +1,4 @@
+author: "Tanker"
+delete-after: True
+changes:
+  - rscadd: "Marine job-specific satchels now have sprites and extra functionality."
