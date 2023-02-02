@@ -13,10 +13,6 @@
 	walltype = "rwall"
 	explosion_block = 4
 
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
-
 /turf/closed/wall/r_wall/can_be_dissolved()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return 0

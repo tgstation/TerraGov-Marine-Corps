@@ -73,6 +73,7 @@
 /obj/structure/catwalk
 	icon = 'icons/obj/smooth_objects/catwalk.dmi'
 	icon_state = "catwalk-0"
+	base_icon_state = "catwalk"
 	var/shoefootstep = FOOTSTEP_CATWALK
 	var/barefootstep = FOOTSTEP_CATWALK
 	var/mediumxenofootstep = FOOTSTEP_CATWALK
@@ -82,6 +83,7 @@
 
 /obj/structure/catwalk/Initialize()
 	. = ..()
+	layer = CATWALK_LAYER
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open))
 		var/turf/open/O = T
@@ -89,5 +91,3 @@
 		if(R)
 			qdel(R)
 		O.has_catwalk = TRUE
-		O.overlays += image(icon, T, icon_state, CATWALK_LAYER)
-	return INITIALIZE_HINT_QDEL

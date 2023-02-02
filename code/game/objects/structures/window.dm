@@ -396,7 +396,7 @@
 	explosion_block = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_ESCAPESHUTTLE)
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
 
@@ -479,7 +479,7 @@
 
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
-	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/window/framed/mainship/gray
 	icon = 'icons/obj/smooth_objects/ship_gray_window.dmi'
@@ -488,6 +488,7 @@
 	base_icon_state = "ship_gray_window"
 	window_frame = /obj/structure/window_frame/mainship/gray
 	reinf = FALSE
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_ESCAPESHUTTLE, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 
 /obj/structure/window/framed/mainship/gray/toughened
 	name = "safety glass"

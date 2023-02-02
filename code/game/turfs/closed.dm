@@ -82,7 +82,7 @@
 	icon = 'icons/turf/walls/bluefrostwall.dmi'
 	icon_state = "bluefrostwall-0"
 	walltype = "bluefrostwall"
-	base_icon_state = "darkfrostwall"
+	base_icon_state = "bluefrostwall"
 
 /turf/closed/mineral/smooth/bluefrostwall/indestructible
 	resistance_flags = RESIST_ALL
@@ -111,10 +111,11 @@
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "jungle-0"
 	desc = "Some thick jungle."
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLORA)
 	canSmoothWith = list(SMOOTH_GROUP_FLORA)
 	base_icon_state = "junglewall"
-	walltype = "jungle"
+	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
 
 /turf/closed/gm/tree
@@ -774,10 +775,13 @@
 	icon_state = "corner2"
 
 /turf/closed/shuttle/escapeshuttle
-	icon_state = "swall0"
+	icon = 'icons/turf/walls/sulaco.dmi'
+	icon_state = "sulaco-0"
+	base_icon_state = "sulaco"
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_ESCAPESHUTTLE)
-	canSmoothWith = list(SMOOTH_GROUP_ESCAPESHUTTLE)
-	walltype = "swall"
+	canSmoothWith = list(SMOOTH_GROUP_ESCAPESHUTTLE, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE)
+	walltype = "sulaco"
 
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
