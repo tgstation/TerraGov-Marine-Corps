@@ -1,8 +1,9 @@
 /datum/xeno_caste/dragon
 	caste_name = "Dragon"
 	display_name = "Dragon"
-	// caste_desc = "todo"
+	caste_desc = "A xenomorph with wings and a tail, and a fiery breath."
 	caste_type_path = /mob/living/carbon/xenomorph/dragon
+	evolve_min_xenos = 14
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "dragon"
@@ -55,9 +56,9 @@
 
 /datum/xeno_caste/dragon/mature
 	upgrade_name = "Mature"
-	// caste_desc = "todo"
+	caste_desc = ""
 	upgrade = XENO_UPGRADE_ONE
-
+	caste_desc = "A draconic xenomorph. It looks a little more dangerous."
 	// *** Melee Attacks *** //
 	melee_damage = 30
 
@@ -76,10 +77,10 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 50, FIRE = 65, ACID = 50)
-/datum/action/xeno_action/activable/tail_stab
+
 /datum/xeno_caste/dragon/elder
 	upgrade_name = "Elder"
-	// caste_desc = "todo"
+	caste_desc = "A draconic xenomorph. It looks a bit more dangerous."
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
@@ -103,7 +104,7 @@
 
 /datum/xeno_caste/dragon/ancient
 	upgrade_name = "Ancient"
-	// caste_desc = "todo"
+	caste_desc = ""
 	upgrade = XENO_UPGRADE_THREE
 	// ancient_message = "todo"
 
@@ -128,9 +129,9 @@
 
 /datum/xeno_caste/dragon/primordial
 	upgrade_name = "Primordial"
-	// caste_desc = "ODO"
+	caste_desc = ""
 	upgrade = XENO_UPGRADE_FOUR
-	// primordial_message = "TODO"
+	primordial_message = "The skies shall be blotted out by your fiery breath, and the earth shall tremble at your approach. You are the dragon, and you are primordial."
 
 	// *** Melee Attacks *** //
 	melee_damage = 35

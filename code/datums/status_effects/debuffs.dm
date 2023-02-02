@@ -451,7 +451,7 @@
 	set_duration(person.fire_stacks + duration)
 	person.fire_stacks = 0
 	person.take_overall_damage(5, BURN, FIRE)
-b
+
 /datum/status_effect/dragon_fire/proc/set_duration(amount)
 	duration = clamp(amount, 0, 40)
 
@@ -470,7 +470,6 @@ b
 	set_duration(duration + 5)
 	return COMSIG_IGNITE_CANCEL
 
-// Let's not be on fire anymore
 /datum/status_effect/dragon_fire/proc/extinguish()
 	SIGNAL_HANDLER
 	set_duration(-5)
