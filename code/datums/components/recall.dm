@@ -1,6 +1,7 @@
 
-#define RECALL_DO_COOLDOWN 30 SECONDS
+#define RECALL_DO_COOLDOWN 40 SECONDS
 #define RECALL_LINK_COOLDOWN 90 SECONDS
+#define RECALL_DO_DELAY 9 SECONDS
 
 //Bluespace recall system
 //For returning a weapon to your hand at will like some RPG protagonist.
@@ -103,10 +104,10 @@
 		wearer.balloon_alert(wearer, "Item on different Z-level")
 		return
 
-	if(!do_after(wearer, 3 SECONDS, TRUE, FALSE, BUSY_ICON_FRIENDLY, null, PROGRESS_GENERIC))
+	if(!do_after(wearer, RECALL_DO_DELAY, TRUE, FALSE, BUSY_ICON_FRIENDLY, null, PROGRESS_GENERIC))
+		wearer.balloon_alert(wearer, "Interrupted")
 		return
 
-	do_sparks(5, TRUE, linked_item)
 	playsound(linked_item, 'sound/effects/phasein.ogg', 50, FALSE)
 	linked_item.visible_message("\The [src] suddenly disappears in a flash of light!")
 	// |
@@ -172,9 +173,9 @@
 
 
 /datum/action/bs_recall/do_recall
-	name = "bs_recall"
-	action_icon = 'icons/mob/actions.dmi'
-	action_icon_state = "bs_recall"
+	name = "Recall"
+	action_icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	action_icon_state = "mod_recall"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_HEAL, //Okay maybe I copypasted a bit
 	)
@@ -186,3 +187,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT, //These keybinds fit though
 	)
+
+#undef RECALL_DO_COOLDOWN
+#undef RECALL_LINK_COOLDOWN
+#undef RECALL_DO_DELAY
