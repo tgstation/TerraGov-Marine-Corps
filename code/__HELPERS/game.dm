@@ -41,36 +41,6 @@
 		return ERROR_NO_SUPPORT
 	return NO_ERROR
 
-
-/proc/get_adjacent_open_turfs(atom/center)
-	. = list()
-	for(var/i in GLOB.cardinals)
-		var/turf/open/T = get_step(center, i)
-		if(!istype(T))
-			continue
-		. += T
-
-/**
- * Get a bounding box of a list of atoms.
- *
- * Arguments:
- * - atoms - List of atoms. Can accept output of view() and range() procs.
- *
- * Returns: list(x1, y1, x2, y2)
- */
-/proc/get_bbox_of_atoms(list/atoms)
-	var/list/list_x = list()
-	var/list/list_y = list()
-	for(var/atom/a AS in atoms)
-		list_x += a.x
-		list_y += a.y
-	return list(
-		min(list_x),
-		min(list_y),
-		max(list_x),
-		max(list_y))
-
-
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
 		return
