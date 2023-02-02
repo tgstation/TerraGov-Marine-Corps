@@ -251,6 +251,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/incend,
 		/obj/item/ammo_magazine/standard_atgun/incend,
 		/obj/item/ammo_magazine/standard_atgun/incend,
+	)
 	cost = 20
 
 /datum/supply_packs/weapons/tesla
