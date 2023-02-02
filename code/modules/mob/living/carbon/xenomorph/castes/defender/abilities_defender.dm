@@ -282,7 +282,7 @@
 	if(X.fortify)
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 100)
+		X.soft_armor = X.soft_armor.setRating(bomb = 130)
 		last_fortify_bonus = fortifyAB
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
