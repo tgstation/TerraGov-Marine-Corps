@@ -185,7 +185,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) || H.suiciding)
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) && !isartificial || H.suiciding) // Combat Robots and Synthetics will have a special message
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has permanently expired. No remedy possible."))
 		return
 

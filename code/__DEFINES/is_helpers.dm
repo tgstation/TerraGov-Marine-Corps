@@ -52,6 +52,7 @@
 //Human sub-species
 #define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
+#define isartificial(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic) || is_species(H, /datum/species/robot))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
