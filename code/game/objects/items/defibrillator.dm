@@ -185,8 +185,12 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) || H.suiciding) //synthetic species will expire
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) || H.suiciding)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has permanently expired. No remedy possible."))
+		return
+
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE, DETACHABLE_HEAD)) || H.suiciding)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's central power system is drained. Reboot impossible."))
 		return
 
 	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
@@ -194,7 +198,7 @@
 		return
 
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interfering."))
 		return
 
 	var/mob/dead/observer/G = H.get_ghost()
@@ -232,7 +236,7 @@
 	if(!issynth(H) && !isrobot(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) || H.suiciding)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
