@@ -158,11 +158,14 @@
 		owner_xeno.balloon_alert_to_viewers("unfolds it's wings and flies low")
 		status_effect_to_add = STATUS_EFFECT_HOVER
 		owner_xeno.remove_status_effect(flight)
+
 	else if(is_hovering)
 		owner_xeno.visible_message("<span class='warning'>[owner_xeno] begins to ascend to the skies!</span>")
 		status_effect_to_add = STATUS_EFFECT_FLIGHT
+
 	if(!status_effect_to_add)
 		return FALSE
+
 	flight = owner_xeno.apply_status_effect(status_effect_to_add)
 	var/takeoff_time = initial(flight.takeoff_flaps) * initial(flight.flap_delay) + 1 SECONDS
 	owner_xeno.AdjustImmobilized(takeoff_time)
