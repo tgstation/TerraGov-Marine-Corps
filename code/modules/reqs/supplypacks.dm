@@ -851,6 +851,11 @@ ARMOR
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
+/datum/supply_packs/armor/modular/attachments/bs_recall
+	name = "Jaeger Ares Bluespace recall system"
+	contains = list(/obj/item/armor_module/module/bs_recall)
+	cost = 120
+
 /*******************************************************************************
 CLOTHING
 *******************************************************************************/
