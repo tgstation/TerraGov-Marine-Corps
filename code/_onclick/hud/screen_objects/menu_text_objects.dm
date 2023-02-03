@@ -14,7 +14,6 @@
 	maptext_width = 480
 	maptext_x = 24
 	maptext_y = 10
-	mouse_opacity = MOUSE_OPACITY_ICON
 
 /**
  * What the hell is this proc? you might be asking
