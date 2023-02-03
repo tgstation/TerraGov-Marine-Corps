@@ -76,6 +76,7 @@
 #define DEPLOYED_NO_PICKUP  (1<<16) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
 #define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define NO_RECALL (1<<19) //Cannot be linked to the Bluespace recall module (or already is)
 
 //==========================================================================================
 

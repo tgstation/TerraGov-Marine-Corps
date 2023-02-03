@@ -132,7 +132,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	icon_state = "offhand"
 	name = "offhand"
-	flags_item = DELONDROP|TWOHANDED|WIELDED
+	flags_item = DELONDROP|TWOHANDED|WIELDED|NO_RECALL
 	resistance_flags = RESIST_ALL
 
 
