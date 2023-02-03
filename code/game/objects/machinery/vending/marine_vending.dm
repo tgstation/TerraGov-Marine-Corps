@@ -1258,6 +1258,7 @@
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
+			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
 			/obj/item/armor_module/armor/badge = -1,
 			/obj/item/armor_module/armor/cape = -1,
