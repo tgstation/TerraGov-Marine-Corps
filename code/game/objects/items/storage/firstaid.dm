@@ -275,6 +275,33 @@
 	/// Short description in overlay
 	var/description_overlay = ""
 
+/obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/pill_bottle/packet))
+		var/obj/item/storage/pill_bottle/packet/M = I
+		if(!length(M.contents))
+			to_chat(user, span_warning("[M] is empty."))
+			return
+
+		if(length(contents) >= max_storage_space)
+			to_chat(user, span_warning("[src] is full."))
+			return
+
+		to_chat(user, span_notice("You start refilling [src] with [M]."))
+
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/obj/item/IM in M)
+			if(length(contents) >= max_storage_space)
+				break
+
+			M.remove_from_storage(IM)
+			handle_item_insertion(IM, TRUE, user)
+
+		playsound(user.loc, "rustle", 15, 1, 6)
+		return TRUE
+	else
+		return ..()
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
 	. = ..()
