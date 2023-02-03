@@ -104,17 +104,10 @@
 		wearer.balloon_alert(wearer, "Item on different Z-level")
 		return
 
-<<<<<<< HEAD
 	if(!do_after(wearer, RECALL_DO_DELAY, TRUE, FALSE, BUSY_ICON_FRIENDLY, null, PROGRESS_GENERIC))
 		wearer.balloon_alert(wearer, "Interrupted")
 		return
 
-=======
-	if(!do_after(wearer, 3 SECONDS, TRUE, FALSE, BUSY_ICON_FRIENDLY, null, PROGRESS_GENERIC))
-		return
-
-	do_sparks(5, TRUE, linked_item)
->>>>>>> aea35e0e0 (bluespace recall armor module)
 	playsound(linked_item, 'sound/effects/phasein.ogg', 50, FALSE)
 	linked_item.visible_message("\The [src] suddenly disappears in a flash of light!")
 	// |
@@ -180,15 +173,9 @@
 
 
 /datum/action/bs_recall/do_recall
-<<<<<<< HEAD
 	name = "Recall"
 	action_icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	action_icon_state = "mod_recall"
-=======
-	name = "bs_recall"
-	action_icon = 'icons/mob/actions.dmi'
-	action_icon_state = "bs_recall"
->>>>>>> aea35e0e0 (bluespace recall armor module)
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_HEAL, //Okay maybe I copypasted a bit
 	)
@@ -200,10 +187,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT, //These keybinds fit though
 	)
-<<<<<<< HEAD
 
 #undef RECALL_DO_COOLDOWN
 #undef RECALL_LINK_COOLDOWN
 #undef RECALL_DO_DELAY
-=======
->>>>>>> aea35e0e0 (bluespace recall armor module)
