@@ -87,7 +87,8 @@
 
 
 /obj/structure/mineral_door/update_icon()
-	if(mineralType == "resin")
+	if(state && mineralType == "resin")
+		icon_state = "[icon_state]-open"
 		return
 	if(state)
 		icon_state = "[mineralType]open"
