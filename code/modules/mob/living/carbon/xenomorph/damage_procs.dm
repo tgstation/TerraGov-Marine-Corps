@@ -17,11 +17,11 @@
 	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
 	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
-	if(bomb_effective_armor >= 100)
+	if(bomb_effective_armor >= 1)
 		return //immune
 
 
-	if(severity == EXPLODE_DEVASTATE && bomb_effective_armor <= XENO_EXPLOSION_GIB_THRESHOLD)
+	if((severity == EXPLODE_DEVASTATE) && ((bomb_effective_armor * 100) <= XENO_EXPLOSION_GIB_THRESHOLD))
 		return gib() //Gibs unprotected benos
 
 	//Slowdown and stagger
