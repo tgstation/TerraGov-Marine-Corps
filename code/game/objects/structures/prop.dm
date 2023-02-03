@@ -1661,6 +1661,14 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 
+/obj/structure/prop/turbine
+	name = "power turbine"
+	desc = "A gigantic turbine that runs on who knows what. It could probably be turned on by someone with the correct know-how."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "biomass_turbine"
+	density = TRUE
+
+
 //TG BROKEN VENDOR PROPS
 //USE THESE SPARINGLY OUTSIDE OF TG THEMED MAPS OR I'LL BREAK YOUR KNEECAPS
 
