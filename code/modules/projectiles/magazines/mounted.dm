@@ -51,7 +51,7 @@
 	reload_delay = 1 SECONDS
 
 /obj/item/ammo_magazine/standard_agls
-	name = "AGLS-37 box magazine (40mm Caseless)"
+	name = "AGLS-37 HE magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless HE grenades for the AGLS-37 automatic grenade launcher."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -63,10 +63,16 @@
 	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/standard_agls/fragmentation
-	name = "AGLS-37 box magazine (40mm Caseless)"
+	name = "AGLS-37 Frag magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Fragmentation grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_mag_frag"
 	default_ammo = /datum/ammo/ags_shrapnel
+
+/obj/item/ammo_magazine/standard_agls/incendiary
+	name = "AGLS-37 WP magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless White Phosphorous grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_incend"
+	default_ammo = /datum/ammo/ags_shrapnel/incendiary
 
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
