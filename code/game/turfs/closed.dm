@@ -59,6 +59,32 @@
 /turf/closed/mineral/smooth/snowrock/indestructible
 	resistance_flags = RESIST_ALL
 
+/turf/closed/mineral/smooth/bluefrostwall
+	icon = 'icons/turf/walls/bluefrostwall.dmi'
+	icon_state = "bluefrostwall-0-0-0-0"
+	walltype = "bluefrostwall"
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES_ICE
+
+/turf/closed/mineral/smooth/bluefrostwall/indestructible
+	resistance_flags = RESIST_ALL
+
+
+/turf/closed/mineral/smooth/darkfrostwall
+	icon = 'icons/turf/walls/darkfrostwall.dmi'
+	icon_state = "darkfrostwall-0-0-0-0"
+	walltype = "darkfrostwall"
+
+/turf/closed/mineral/smooth/darkfrostwall/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/frostwall
+	icon = 'icons/turf/walls/frostwall.dmi'
+	icon_state = "frostwall-0-0-0-0"
+	walltype = "frostwall"
+
+/turf/closed/mineral/smooth/frostwall/indestructible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0-0-0-0"
@@ -454,6 +480,106 @@
 /turf/closed/shuttle/dropship1/finback
 	icon_state = "shuttle_exterior_finback"
 
+/turf/closed/shuttle/dropship_white
+	name = "wall"
+	icon = 'icons/turf/ert_shuttle.dmi'
+
+/turf/closed/shuttle/dropship_white/engine_corner
+	icon_state = "white_shuttle_back"
+
+/turf/closed/shuttle/dropship_white/top_corner
+	icon_state = "white_shuttle_topcorner"
+
+/turf/closed/shuttle/dropship_white/top_corner/alt
+	icon_state = "white_shuttle_topcorner_alt"
+
+/turf/closed/shuttle/dropship_white/backhatch
+	icon_state = "white_shuttle_backhatch"
+
+/turf/closed/shuttle/dropship_white/interior_corner
+	icon_state = "white_shuttle_interior_corner"
+
+/turf/closed/shuttle/dropship_white/interior_wall
+	icon_state = "white_shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship_white/logo_wall
+	icon_state = "white_shuttle_logo_wall_one"
+
+/turf/closed/shuttle/dropship_white/logo_wall/two
+	icon_state = "white_shuttle_logo_wall_two"
+
+/turf/closed/shuttle/dropship_white/logo_wall/three
+	icon_state = "white_shuttle_logo_wall_three"
+
+/turf/closed/shuttle/dropship_white/logo_wall/four
+	icon_state = "white_shuttle_logo_wall_four"
+
+/turf/closed/shuttle/dropship_white/backwall
+	icon_state = "white_shuttle_back_wall"
+
+/turf/closed/shuttle/dropship_white/cockpit_window
+	icon_state = "white_shuttle_cockpit_window"
+
+
+/turf/closed/shuttle/dropship_dark
+	name = "wall"
+	icon = 'icons/turf/ert_shuttle.dmi'
+
+/turf/closed/shuttle/dropship_dark/engine_corner
+	icon_state = "dark_shuttle_back"
+
+/turf/closed/shuttle/dropship_dark/top_corner
+	icon_state = "dark_shuttle_topcorner"
+
+/turf/closed/shuttle/dropship_dark/top_corner/alt
+	icon_state = "dark_shuttle_topcorner_alt"
+
+/turf/closed/shuttle/dropship_dark/backhatch
+	icon_state = "dark_shuttle_backhatch"
+
+/turf/closed/shuttle/dropship_dark/interior_corner
+	icon_state = "dark_shuttle_interior_corner"
+
+/turf/closed/shuttle/dropship_dark/interior_wall
+	icon_state = "dark_shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship_dark/logo_wall
+	icon_state = "dark_shuttle_logo_wall_one"
+
+/turf/closed/shuttle/dropship_dark/backwall
+	icon_state = "dark_shuttle_back_wall"
+
+/turf/closed/shuttle/dropship_dark/cockpit_window
+	icon_state = "dark_shuttle_cockpit_window"
+
+
+/turf/closed/shuttle/dropship_regular
+	name = "wall"
+	icon = 'icons/turf/ert_shuttle.dmi'
+
+/turf/closed/shuttle/dropship_regular/engine_corner
+	icon_state = "regular_shuttle_back"
+
+/turf/closed/shuttle/dropship_regular/top_corner
+	icon_state = "regular_shuttle_topcorner"
+
+/turf/closed/shuttle/dropship_regular/top_corner/alt
+	icon_state = "regular_shuttle_topcorner_alt"
+
+/turf/closed/shuttle/dropship_regular/backhatch
+	icon_state = "regular_shuttle_backhatch"
+
+/turf/closed/shuttle/dropship_regular/interior_corner
+	icon_state = "regular_shuttle_interior_corner"
+
+/turf/closed/shuttle/dropship_regular/interior_wall
+	icon_state = "regular_shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship_regular/backwall
+	icon_state = "regular_shuttle_back_wall"
+
+/turf/closed/shuttle/dropship_regular/cockpit_window
+	icon_state = "regular_shuttle_cockpit_window"
 
 /turf/closed/shuttle/dropship3
 	name = "\improper Triumph"
@@ -546,6 +672,10 @@
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
 
+/turf/closed/shuttle/dropship2/singlewindow/tadpole
+	icon_state = "shuttle_single_window"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/interiormisc
 	icon_state = "shuttle_interior_threeside"
 
@@ -570,8 +700,16 @@
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
 
+/turf/closed/shuttle/dropship2/glassone/tadpole
+	icon_state = "shuttle_glass1"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+
+/turf/closed/shuttle/dropship2/glasstwo/tadpole
+	icon_state = "shuttle_glass2"
+	resistance_flags = NONE
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"
@@ -585,8 +723,16 @@
 /turf/closed/shuttle/dropship2/glasssix
 	icon_state = "shuttle_glass6"
 
+/turf/closed/shuttle/dropship2/rearcorner/tadpole
+	icon_state = "shuttle_rearcorner"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/rearcorner/alt
 	icon_state = "shuttle_rearcorner_alt"
+
+/turf/closed/shuttle/dropship2/rearcorner/alt/tadpole
+	icon_state = "shuttle_rearcorner_alt"
+	resistance_flags = NONE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
@@ -603,11 +749,41 @@
 	icon_state = "wall0"
 	plane = GAME_PLANE
 
+/turf/closed/shuttle/escapepod/wallone
+	icon_state = "wall1"
+
+/turf/closed/shuttle/escapepod/walltwo
+	icon_state = "wall2"
+
+/turf/closed/shuttle/escapepod/wallthree
+	icon_state = "wall3"
+
+/turf/closed/shuttle/escapepod/wallfour
+	icon_state = "wall4"
+
+/turf/closed/shuttle/escapepod/wallfive
+	icon_state = "wall5"
+
+/turf/closed/shuttle/escapepod/walleleven
+	icon_state = "wall11"
+
+/turf/closed/shuttle/escapepod/walltwelve
+	icon_state = "wall12"
+
+/turf/closed/shuttle/escapepod/cornerone
+	icon_state = "corner1"
+
+/turf/closed/shuttle/escapepod/cornertwo
+	icon_state = "corner2"
+
 /turf/closed/shuttle/escapeshuttle
 	icon_state = "swall0"
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 	walltype = "swall"
+
+/turf/closed/shuttle/escapeshuttle/prison
+	resistance_flags = RESIST_ALL
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE

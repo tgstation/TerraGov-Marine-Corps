@@ -115,6 +115,13 @@
 /obj/structure/platform_decoration/platform2_deco
 	icon_state = "platform2_deco"
 
+/obj/structure/platform/trench
+	icon_state = "platformtrench"
+	name = "trench wall"
+	desc = "A group of roughly cut planks forming the side of a dug in trench."
+	obj_integrity = 400
+	max_integrity = 400
+
 /obj/structure/fakeplatform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."

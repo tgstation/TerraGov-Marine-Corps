@@ -24,6 +24,8 @@
 #define VREF_IMAGE_XENO_CLOCK "VREF_ACTION_CLOCK"
 // extra reference for ravager leech
 #define VREF_MUTABLE_RAV_LEECH "VREF_RAV_LEECH"
+// a reference for the  build counter of a xeno
+#define VREF_MUTABLE_BUILDING_COUNTER "VREF_BUILD_COUNTER"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"

@@ -12,6 +12,36 @@
 	return format_text ? format_text(A.name) : A.name
 
 
+/// Checks all conditions if a spot is valid for construction , will return TRUE
+/proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, mob/builder)
+
+	if(!target || !istype(target))
+		return ERROR_JUST_NO
+	var/obj/alien/weeds/alien_weeds = locate() in target
+	if(!target.check_disallow_alien_fortification(null, TRUE))
+		return ERROR_NOT_ALLOWED
+	if(!alien_weeds)
+		return ERROR_NO_WEED
+	if(!target.is_weedable())
+		return ERROR_CANT_WEED
+	for(var/obj/effect/forcefield/fog/F in range(1, target))
+		return ERROR_FOG
+	for(var/mob/living/carbon/xenomorph/blocker in target)
+		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
+			return ERROR_BLOCKER
+	if(!target.check_alien_construction(null, TRUE))
+		return ERROR_CONSTRUCT
+	if(needs_support)
+		for(var/D in GLOB.cardinals)
+			var/turf/TS = get_step(target,D)
+			if(!TS)
+				continue
+			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
+				return NO_ERROR
+		return ERROR_NO_SUPPORT
+	return NO_ERROR
+
+
 /proc/get_adjacent_open_turfs(atom/center)
 	. = list()
 	for(var/i in GLOB.cardinals)

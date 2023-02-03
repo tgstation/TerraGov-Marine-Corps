@@ -403,6 +403,15 @@
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_skirmishrifle(src)
 
+/obj/item/storage/belt/marine/standard_battlerifle/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+	new /obj/item/ammo_magazine/rifle/standard_br(src)
+
 /obj/item/storage/belt/marine/t90/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/smg/standard_smg(src)

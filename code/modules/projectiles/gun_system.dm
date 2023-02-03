@@ -395,11 +395,11 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	var/obj/item/attachable = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	if(!attachable || !istype(attachable, /obj/item/attachable))
-		return
-	var/obj/item/attachable/attachable_attachment = attachable
-	attachable_attachment.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
+	for(var/attachment_slot in attachments_by_slot)
+		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+		if(!istype(lit_flashlight))
+			continue
+		lit_flashlight.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -1594,7 +1594,7 @@
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.sundering *= damage_mult
-	projectile_to_fire.damage_falloff *= damage_falloff_mult
+	projectile_to_fire.damage_falloff *= max(0, damage_falloff_mult)
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) || projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
@@ -1764,11 +1764,11 @@
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
 		return
-	var/obj/item/attachment = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	if(!istype(attachment, /obj/item/attachable))
-		return
-	var/obj/item/attachable/attachable = attachment
-	attachable.turn_light(null, FALSE)
+	for(var/attachment_slot in attachments_by_slot)
+		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+		if(!istype(lit_flashlight))
+			continue
+		lit_flashlight.turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
