@@ -135,6 +135,12 @@
 	if(!xenoowner.plasma_stored)
 		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
+	//Held facehuggers change alpha for balance reason
+	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
+		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+
+	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
+		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
 
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
