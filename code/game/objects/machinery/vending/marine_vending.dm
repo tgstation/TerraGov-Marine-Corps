@@ -90,8 +90,6 @@
 			/obj/item/ammo_magazine/pistol/standard_heavypistol = -1,
 			/obj/item/weapon/gun/revolver/standard_revolver = -1,
 			/obj/item/ammo_magazine/revolver/standard_revolver = -1,
-			/obj/item/weapon/gun/revolver/standard_magnum = -1,
-			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 			/obj/item/weapon/gun/pistol/standard_pocketpistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = -1,
 			/obj/item/weapon/gun/pistol/vp70 = -1,
@@ -100,6 +98,7 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 			/obj/item/weapon/gun/shotgun/double/derringer = 10,
 			/obj/item/ammo_magazine/pistol/derringer = 15,
+			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,

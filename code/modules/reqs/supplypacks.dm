@@ -560,6 +560,13 @@ WEAPONS
 	cost = 120
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/magnum
+	name = "R-76 Magnum"
+	contains = list(/obj/item/storage/belt/gun/mateba/full)
+	notes = "Ammo is contained within normal marine vendors."
+	cost = 75
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/standard_ammo
 	name = "Surplus Standard Ammo Crate"
 	notes = "Contains 22 ammo boxes of a wide variety which come prefilled. You lazy bum."
