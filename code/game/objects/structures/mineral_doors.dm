@@ -87,14 +87,14 @@
 
 
 /obj/structure/mineral_door/update_icon()
+	if(mineralType == "resin")
+		return
 	if(state)
 		icon_state = "[mineralType]open"
 	else
 		icon_state = mineralType
-		if(mineralType == "resin")
-			icon_state = base_icon_state
-			QUEUE_SMOOTH(src)
-		return
+
+
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	var/is_resin = istype(src, /obj/structure/mineral_door/resin)

@@ -209,12 +209,14 @@
 	if(state || !loc)
 		return //already open
 	playsound(loc, "alien_resin_move", 25)
-	flick("[mineralType]opening",src)
+	flick("[icon_state]-opening",src)
 	density = FALSE
 	set_opacity(FALSE)
 	state = 1
 	update_icon()
 	addtimer(CALLBACK(src, .proc/Close), close_delay)
+	icon_state = base_icon_state
+	QUEUE_SMOOTH(src)
 
 /obj/structure/mineral_door/resin/Close()
 	if(!state || !loc ||isSwitchingStates)
@@ -226,8 +228,10 @@
 			return
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
-	flick("[mineralType]closing",src)
+	flick("[icon_state]-closing",src)
 	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
+	icon_state = base_icon_state
+	QUEUE_SMOOTH(src)
 
 /// Change the icon and density of the door
 /obj/structure/mineral_door/resin/proc/do_close()
