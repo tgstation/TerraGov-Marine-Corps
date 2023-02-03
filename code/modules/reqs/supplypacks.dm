@@ -814,7 +814,7 @@ ARMOR
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/binoculars/artemis_mk2,
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
 	cost = 400
 
@@ -852,10 +852,10 @@ ARMOR
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
-/datum/supply_packs/armor/modular/attachments/artemis_mk2
+/datum/supply_packs/armor/modular/attachments/artemis_mark_two
 	name = "Artemis Mark 2 helmet module"
 	contains = list(
-		/obj/item/armor_module/module/binoculars/artemis_mk2,
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
 	cost = 40
 

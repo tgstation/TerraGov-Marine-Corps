@@ -1,7 +1,7 @@
 /datum/component/blur_protection
 	var/mob/living/protected_mob
 
-/datum/component/blur_protection/Initialize(tint, tint_state)
+/datum/component/blur_protection/Initialize()
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
