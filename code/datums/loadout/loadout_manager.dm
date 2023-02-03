@@ -21,7 +21,6 @@
 	loadouts_data = new_loadouts_data
 	user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
 
-
 ///Add the name and the job of a datum/loadout into the list of all loadout data
 /datum/loadout_manager/proc/add_loadout(datum/loadout/next_loadout)
 	loadouts_data += list(list(next_loadout.job, next_loadout.name))
@@ -69,13 +68,23 @@
 	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 	switch(action)
 		if("saveLoadout")
+
 			if(length_char(loadouts_data) >= MAXIMUM_LOADOUT * 2)
 				to_chat(ui.user, span_warning("You've reached the maximum number of loadouts saved, please delete some before saving new ones"))
 				return
+
 			var/loadout_name = params["loadout_name"]
+
 			if(isnull(loadout_name))
 				return
+
 			var/loadout_job = params["loadout_job"]
+
+			for(var/loadout_data in loadouts_data)
+				if(loadout_data[1] == loadout_job && loadout_data[2] == loadout_name)
+					to_chat(ui.user, span_warning("Loadout [loadout_name] for [loadout_job] already exists. Try another name"))
+					return
+
 			var/datum/loadout/loadout = create_empty_loadout(loadout_name, loadout_job)
 			loadout.save_mob_loadout(ui.user)
 			ui.user.client.prefs.save_loadout(loadout)
