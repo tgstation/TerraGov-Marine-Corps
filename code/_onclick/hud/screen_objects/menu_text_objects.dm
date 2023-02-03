@@ -12,9 +12,9 @@
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
-	maptext_x = 5
-	maptext_y = 7
-	maptext = "If you see this yell at coders"
+	maptext_x = 24
+	maptext_y = 10
+	mouse_opacity = MOUSE_OPACITY_ICON
 
 /**
  * What the hell is this proc? you might be asking
@@ -29,40 +29,8 @@
 	return
 
 /atom/movable/screen/text/lobby/title
-	maptext = "<span class=menutitle>TERRAGOV MARINE CORPS</span>"
-
-/atom/movable/screen/text/lobby/title/Initialize()
-	. = ..()
-	maptext = "<span class=menutitle>TERRAGOV MARINE CORPS</span>"
-
-
-INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
-/atom/movable/screen/text/lobby/year
-	maptext = "<span class=menutext>CURRENT YEAR: Loading...</span>"
-
-/atom/movable/screen/text/lobby/year/Initialize()
-	. = ..()
-	maptext = "<span class=menutext>CURRENT YEAR: [GAME_YEAR]</span>"
-
-
-/atom/movable/screen/text/lobby/owners_char
-	screen_loc = "CENTER-7,CENTER-7"
-	maptext = "<span class=menutext>Loading...</span>"
-	///Bool, whether we registered to listen for charachter updates already
-	var/registered = FALSE
-
-/atom/movable/screen/text/lobby/owners_char/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
-		return
-	set_text()
-
-/atom/movable/screen/text/lobby/owners_char/set_text()
-	maptext = "<span class=menutext>CURRENT CHARACTER: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
-	if(!registered)
-		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
-		registered = TRUE
+	icon = 'icons/UI_Icons/lobbytext.dmi'
+	icon_state = "tgmc"
 
 ///Clickable UI lobby objects which do stuff on Click() when pressed
 /atom/movable/screen/text/lobby/clickable
@@ -86,16 +54,30 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/setup_character
-	maptext = "<span class=menutext>     SETUP CHARACTER</span>"
+	maptext = "<span class='maptext' style=font-size:24px>CHARACTER</span>"
 	icon_state = "setup"
+	///Bool, whether we registered to listen for charachter updates already
+	var/registered = FALSE
+
+/atom/movable/screen/text/lobby/clickable/setup_character/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
+		return
+	set_text()
 
 /atom/movable/screen/text/lobby/clickable/setup_character/Click()
 	. = ..()
 	hud.mymob.client?.prefs.ShowChoices(hud.mymob)
 
+/atom/movable/screen/text/lobby/clickable/setup_character/set_text()
+	maptext = "<span class='maptext' style=font-size:24px>CHARACTER: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
+	if(!registered)
+		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
+		registered = TRUE
 
 /atom/movable/screen/text/lobby/clickable/join_game
-	maptext = "<span class=menutext>     JOIN GAME</span>"
+	maptext = "<span class='maptext' style=font-size:24px>JOIN GAME</span>"
 	icon_state = "join"
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
@@ -105,8 +87,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/observe
-	screen_loc = "CENTER"
-	maptext = "<span class=menutext>     OBSERVE</span>"
+	maptext = "<span class='maptext' style=font-size:24px>OBSERVE</span>"
 	icon_state = "observe"
 
 /atom/movable/screen/text/lobby/clickable/observe/Click()
@@ -115,7 +96,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	player.try_to_observe()
 
 /atom/movable/screen/text/lobby/clickable/ready
-	maptext = "<span class=menutext>     YOU ARE: NOT READY</span>"
+	maptext = "<span class='maptext' style=font-size:24px>YOU ARE: NOT READY</span>"
 	icon_state = "unready"
 
 /atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
@@ -127,7 +108,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 /atom/movable/screen/text/lobby/clickable/ready/set_text()
 	var/mob/new_player/player = hud.mymob
-	maptext = "<span class=menutext>     YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
+	maptext = "<span class='maptext' style=font-size:24px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
 
 /atom/movable/screen/text/lobby/clickable/ready/Click()
 	. = ..()
@@ -137,7 +118,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/manifest
-	maptext = "<span class=menutext>     VIEW MANIFEST</span>"
+	maptext = "<span class='maptext' style=font-size:24px>VIEW MANIFEST</span>"
 	icon_state = "manifest"
 
 /atom/movable/screen/text/lobby/clickable/manifest/Click()
@@ -146,7 +127,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	player.view_manifest()
 
 /atom/movable/screen/text/lobby/clickable/background
-	maptext = "<span class=menutext>     BACKGROUND</span>"
+	maptext = "<span class='maptext' style=font-size:24px>BACKGROUND</span>"
 	icon_state = "background"
 
 /atom/movable/screen/text/lobby/clickable/background/Click()
@@ -156,7 +137,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/changelog
-	maptext = "<span class=menutext>     CHANGELOG</span>"
+	maptext = "<span class='maptext' style=font-size:24px>CHANGELOG</span>"
 	icon_state = "changelog"
 
 /atom/movable/screen/text/lobby/clickable/changelog/Click()
@@ -165,7 +146,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 
 /atom/movable/screen/text/lobby/clickable/polls
-	maptext = "<span class=menutext>     POLLS</span>"
+	maptext = "<span class='maptext' style=font-size:24px>POLLS</span>"
 	icon_state = "poll"
 
 /atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
@@ -180,9 +161,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()
 	if(isnull(hasnewpolls))
-		maptext = "<span class=menutext>     NO DATABASE!</span>"
+		maptext = "<span class='maptext' style=font-size:24px>NO DATABASE!</span>"
 		return
-	maptext = "<span class=menutext>     SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
+	maptext = "<span class='maptext' style=font-size:24px>SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
 
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
