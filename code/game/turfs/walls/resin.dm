@@ -6,9 +6,10 @@
 /turf/closed/wall/resin
 	name = RESIN_WALL
 	desc = "Weird slime solidified into a wall."
-	icon = 'icons/Xeno/structures.dmi'
-	icon_state = "resin0"
-	walltype = "resin"
+	icon = 'icons/obj/smooth_objects/resin-wall.dmi'
+	icon_state = "resin-wall-0"
+	walltype = "resin-wall"
+	base_icon_state = "resin-wall"
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	smoothing_flags = SMOOTH_BITMASK

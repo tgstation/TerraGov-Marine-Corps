@@ -137,7 +137,9 @@
 /obj/structure/mineral_door/resin
 	name = RESIN_DOOR
 	mineralType = "resin"
-	icon = 'icons/Xeno/Effects.dmi'
+	icon = 'icons/obj/smooth_objects/resin-door.dmi'
+	icon_state = "resin-door-1"
+	base_icon_state = "resin-door"
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100

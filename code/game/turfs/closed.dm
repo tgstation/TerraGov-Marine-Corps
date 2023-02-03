@@ -338,7 +338,6 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
-	smoothing_behavior = NO_SMOOTHING
 	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/re_corner/notdense

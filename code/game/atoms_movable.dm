@@ -115,7 +115,7 @@
 
 	moveToNullspace()
 
-	if(smoothing_behavior && isturf(old_loc))
+	if(smoothing_flags && isturf(old_loc))
 		QUEUE_SMOOTH_NEIGHBORS(old_loc)
 
 	invisibility = INVISIBILITY_ABSTRACT
