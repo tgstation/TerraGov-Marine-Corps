@@ -217,9 +217,6 @@
 
 
 //Mobs on Fire end
-// When they are affected by a queens screech
-/mob/living/proc/screech_act(mob/living/carbon/xenomorph/queen/Q)
-	shake_camera(src, 3 SECONDS, 1)
 
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

@@ -378,27 +378,6 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(access_tag in C.access)
 			return TRUE
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
-	var/dist_pct = get_dist(src, Q) / screech_range
-
-	// Intensity is reduced by a 80% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
-	var/reduce_within_sight = within_sight ? 1 : 0.2
-	var/reduce_prot_aura = protection_aura * 0.1
-
-	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
-
-	to_chat(src, span_danger("An ear-splitting guttural roar tears through your mind and makes your world convulse!"))
-	Stun(stun_duration)
-	Paralyze(stun_duration)
-	//15 Next to queen , 3 at max distance.
-	adjust_stagger(LERP(7, 3, dist_pct) * reduction)
-	//Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
-	apply_damage(LERP(140, 70, dist_pct) * reduction, STAMINA, updating_health = TRUE)
-	if(!ear_deaf)
-		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
-	//Perception distorting effects of the psychic scream*
-
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
 	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
 		return ..()

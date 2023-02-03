@@ -495,6 +495,7 @@
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
+#define COMSIG_XENOMORPH_PSYCHIC_BARRIER_REGEN "xenomorph_psychic_barrier_regen"
 #define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"
 
 #define COMSIG_XENOMORPH_REST "xenomorph_rest"
@@ -724,6 +725,9 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
 #define COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE "xenoability_queen_hive_message"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
+#define COMSIG_XENOABILITY_TOGGLE_PSYCHIC_BARRIER "xenoability_toggle_psychic_barrier"
+#define COMSIG_XENOABILITY_PSYCHIC_DISCHARGE "xenoability_nova_blast"
+#define COMSIG_XENOABILITY_PSYCHIC_DISCHARGE_SELECT "xenoability_nova_blast_select"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"

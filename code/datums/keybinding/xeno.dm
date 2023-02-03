@@ -543,6 +543,23 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
 
+/datum/keybinding/xeno/toggle_psychic_barrier
+	name = "toggle_psychic_barrier"
+	full_name = "Queen: Toggle Psychic Barrier"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_PSYCHIC_BARRIER
+
+/datum/keybinding/xeno/psychic_discharge
+	name = "psychic_discharge"
+	full_name = "Queen: Psychic Blast"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_DISCHARGE
+/datum/keybinding/xeno/psychic_discharge_select
+	name = "psychic_discharge_select"
+	full_name = "Queen: Select Psychic Blast"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_DISCHARGE_SELECT
+
 /datum/keybinding/xeno/ravager_charge
 	name = "ravager_charge"
 	full_name = "Ravager: Eviscerating Charge"
