@@ -2056,25 +2056,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(M))
 	bonus_projectiles_amount = 10
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/O, obj/projectile/proj)
 	bonus_projectiles_amount = 10
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 10
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 10
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 2, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/incend
