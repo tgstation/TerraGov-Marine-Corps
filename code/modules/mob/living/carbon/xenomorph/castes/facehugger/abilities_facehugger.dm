@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/pounce_hugger
 	name = "Pounce"
 	action_icon_state = "pounce"
-	desc = "Leap at your target, knock down and hug them."
+	desc = "Leap at your target and knock them down, if you jump close you will hug the target."
 	ability_name = "pounce"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 25

@@ -71,7 +71,7 @@
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/X)
 	return attack_hand(X)
 
-/obj/structure/ladder/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F)
+/obj/structure/ladder/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	return attack_hand(F)
 
 /obj/structure/ladder/attack_hivemind(mob/living/carbon/xenomorph/hivemind/M)

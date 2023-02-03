@@ -254,7 +254,7 @@
 	span_warning("You squeeze and scuttle underneath \the [src]."), null, 5)
 	M.forceMove(loc)
 
-/obj/machinery/door/airlock/attack_facehugger(mob/living/carbon/xenomorph/facehugger/M)
+/obj/machinery/door/airlock/attack_facehugger(mob/living/carbon/xenomorph/facehugger/M, isrightclick = FALSE)
 	for(var/atom/movable/AM in get_turf(src))
 		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
 			to_chat(M, span_warning("\The [AM] prevents you from squeezing under \the [src]!"))

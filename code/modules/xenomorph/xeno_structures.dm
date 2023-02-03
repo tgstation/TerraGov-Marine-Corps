@@ -251,7 +251,7 @@
 	balloon_alert(user, "Inserted facehugger")
 
 //Sentient facehugger can get in the trap
-/obj/structure/xeno/trap/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F)
+/obj/structure/xeno/trap/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	. = ..()
 
 	if(alert("Do you want to get into the trap?", "Get inside the trap", "Yes", "No") != "Yes")
@@ -392,7 +392,7 @@ TUNNEL
 /obj/structure/xeno/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
 	attack_alien(L)
 
-/obj/structure/xeno/tunnel/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F)
+/obj/structure/xeno/tunnel/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	attack_alien(F)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.

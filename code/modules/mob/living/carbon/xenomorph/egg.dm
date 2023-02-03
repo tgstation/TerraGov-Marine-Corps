@@ -171,7 +171,7 @@
 	return TRUE
 
 //Sentient facehugger can get in the egg
-/obj/alien/egg/hugger/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F)
+/obj/alien/egg/hugger/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	. = ..()
 
 	if(alert("Do you want to get into the egg?", "Get inside the egg", "Yes", "No") != "Yes")
