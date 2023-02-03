@@ -86,7 +86,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This lighter version is often used for bulk carrying of medical supplies by marines."
 	icon_state = "medicalbelt_small"
 	item_state = "medicbag"
-	storage_slots = 13
+	storage_slots = 15
 	max_storage_space = 30
 	max_w_class = 3
 	can_hold = list(
