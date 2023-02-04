@@ -1217,7 +1217,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
-	damage = 25
+	damage = 40
 	penetration = 100
 	sundering = 7
 	max_range = 30
@@ -1229,7 +1229,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	P.proj_max_range -= 15
 
 /datum/ammo/bullet/dual_cannon/on_hit_obj(obj/O, obj/projectile/P)
-	P.proj_max_range -= 10
+	P.proj_max_range -= 5
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"

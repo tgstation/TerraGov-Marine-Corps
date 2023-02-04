@@ -544,7 +544,7 @@
 	. = ..()
 	if(deployed_minigun)
 		return
-	var/obj/item/weapon/gun/minigun_nest/new_gun = new(src)
+	var/obj/item/weapon/gun/standard_minigun/nest/new_gun = new(src)
 	deployed_minigun = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_minigun. Therefore new_gun.loc = deployed_minigun.
 
 /obj/structure/dropship_equipment/minigun_holder/examine(mob/user)
@@ -570,47 +570,6 @@
 /obj/structure/dropship_equipment/minigun_holder/Destroy()
 	if(deployed_minigun)
 		QDEL_NULL(deployed_minigun)
-	return ..()
-
-/obj/structure/dropship_equipment/dualcannon_holder
-	name = "dualcannon deployment system"
-	desc = "A box that deploys a modified ATR-22 crewserved dualcannon. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
-	icon_state = "ac_system"
-	point_cost = 0 //this removes it from the fabricator
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mounted/deployed_dualcannon
-
-/obj/structure/dropship_equipment/dualcannon_holder/Initialize()
-	. = ..()
-	if(deployed_dualcannon)
-		return
-	var/obj/item/weapon/gun/dual_cannon/new_gun = new(src)
-	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_dualcannon. Therefore new_gun.loc = deployed_dualcannon.
-
-/obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_dualcannon)
-		. += "Its dualcannon is missing."
-
-/obj/structure/dropship_equipment/dualcannon_holder/update_equipment()
-	if(!deployed_dualcannon)
-		return
-	if(ship_base)
-		deployed_dualcannon.loc = loc
-	else
-		deployed_dualcannon.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/dualcannon_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "ac_system"
-
-/obj/structure/dropship_equipment/dualcannon_holder/Destroy()
-	if(deployed_dualcannon)
-		QDEL_NULL(deployed_dualcannon)
 	return ..()
 
 /obj/structure/dropship_equipment/heavylaser_holder
