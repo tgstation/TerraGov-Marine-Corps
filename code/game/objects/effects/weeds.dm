@@ -191,8 +191,10 @@
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
 	var/obj/structure/window/framed/F = locate() in loc
-	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
@@ -205,7 +207,10 @@
 
 /obj/alien/weeds/weedwall/frame/update_icon_state()
 	var/obj/structure/window_frame/WF = locate() in loc
-	icon_state += color_variant
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
