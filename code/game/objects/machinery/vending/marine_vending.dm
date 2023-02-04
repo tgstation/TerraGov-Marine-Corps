@@ -1286,7 +1286,7 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
-			/obj/item/storage/belt/medical_small = -1
+			/obj/item/storage/belt/medical_small = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,

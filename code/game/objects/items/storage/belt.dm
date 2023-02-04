@@ -101,7 +101,7 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/tool/surgery/solderingtool,
-		/obj/item/reagent_containers/dropper
+		/obj/item/reagent_containers/dropper,
 	)
 
 /obj/item/storage/belt/lifesaver
