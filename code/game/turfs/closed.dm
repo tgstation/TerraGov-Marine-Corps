@@ -137,9 +137,10 @@
 /turf/closed/desertdamrockwall
 	name = "rockwall"
 	icon = 'icons/turf/walls/cave.dmi'
-	icon_state = "cave_wall-0-0-0-0"
+	icon_state = "cave-0"
 	color = "#c9a37b"
-	walltype = "cave_wall"
+	walltype = "cave"
+	base_icon_state = "cave"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/desertdamrockwall/invincible
