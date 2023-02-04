@@ -404,7 +404,7 @@
 	var/target_zone = check_zone(X.zone_selected)
 
 	if(X.empower())
-		damage *= 1.5
+		damage *= 1.25
 	if(!A.punch_act(X, damage, target_zone))
 		return fail_activate()
 
@@ -490,7 +490,7 @@
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 1.5
+		damage *= 1.1
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
@@ -578,7 +578,6 @@
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
 	if(X.empower())
-		target.blind_eyes(3)
 		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
 		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
