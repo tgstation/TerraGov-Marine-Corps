@@ -202,7 +202,7 @@
 /turf/open/floor/plating/ground/concrete
 	name = "concrete"
 	icon = 'icons/turf/concrete.dmi'
-	icon_state = "concrete0"
+	icon_state = "concrete"
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
