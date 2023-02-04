@@ -343,7 +343,8 @@
 
 /turf/closed/wall/wood
 	name = "wood wall"
-	icon = 'icons/turf/wood.dmi'
-	icon_state = "wood0"
-	walltype = "wood"
+	icon = 'icons/turf/walls/woodwall.dmi'
+	icon_state = "woodwall-0"
+	base_icon_state = "woodwall"
+	walltype = "woodwall"
 	explosion_block = 1

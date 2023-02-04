@@ -190,7 +190,6 @@
 	layer = ABOVE_TABLE_LAYER
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
-	var/obj/structure/window/framed/F = locate() in loc
 	if(color_variant == STICKY_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
 	if(color_variant == RESTING_COLOR)
@@ -206,7 +205,6 @@
 	layer = ABOVE_TABLE_LAYER
 
 /obj/alien/weeds/weedwall/frame/update_icon_state()
-	var/obj/structure/window_frame/WF = locate() in loc
 	if(color_variant == STICKY_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
 	if(color_variant == RESTING_COLOR)
