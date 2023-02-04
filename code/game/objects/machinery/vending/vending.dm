@@ -74,7 +74,7 @@
 	///If the vendor is ready to vend.
 	var/vend_ready = TRUE
 	///How long it takes to vend an item, vend_ready is false during that.
-	var/vend_delay = 10
+	var/vend_delay = 0
 	///Vending flags to determine the behaviour of the machine
 	var/vending_flags = NONE
 	/// A /datum/vending_product instance of what we're paying for right now.
