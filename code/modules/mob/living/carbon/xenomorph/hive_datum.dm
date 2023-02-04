@@ -6,7 +6,7 @@
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	///Current king, there can only be one
 	var/mob/living/carbon/xenomorph/king/living_xeno_king
-	///Timer for queen evolution after the last one dying
+	///Timer for caste evolution after the last one died
 	var/list/caste_death_timers = list()
 	///Timer for king evolution after the last one dying
 	// /// minimum amount of xenos needed to support a queen
@@ -91,9 +91,10 @@
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
-	for (var/datum/xeno_caste/caste in caste_death_timers)
+	for (var/mob in caste_death_timers)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[mob][XENO_UPGRADE_BASETYPE]
 		.["hive_death_timers"] += list(
-			"caste" = caste,
+			"caste" = caste.caste_name,
 			"time" = timeleft(caste_death_timers[caste]) MILLISECONDS,
 			"max" = initial(caste.death_evolution_delay) MILLISECONDS,
 		)
@@ -584,15 +585,10 @@
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)
 	var/datum/xeno_caste/caste = X?.xeno_caste
-	if(X in xenos_by_typepath && caste.death_evolution_delay > 0)
+	if(X in xenos_by_typepath[X.caste_base_type] && caste.death_evolution_delay > 0)
 		return
-	if(!caste_death_timers[caste.type]) 
-		caste_death_timers[caste.type] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
-	///If it's the queen, update leader pheromones
-	if(istype(X, /mob/living/carbon/xenomorph/queen))
-		living_xeno_queen = null
-		update_leader_pheromones()
-
+	if(!caste_death_timers[caste.caste_type_path]) 
+		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
@@ -612,7 +608,8 @@
 	return caste_death_timers[hivemind_conduit_typepath()]
 
 /datum/hive_status/proc/get_total_hivemind_conduit_time()
-	var/datum/xeno_caste/caste = xenos_by_typepath[hivemind_conduit_typepath()]
+	var/mob/living/carbon/xenomorph/xeno = GLOB.xeno_caste_datums[hivemind_conduit_typepath()]
+	var/datum/xeno_caste/caste = xeno.xeno_caste
 	return initial(caste.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
@@ -683,7 +680,7 @@
 ///Allows death delay caste to evolve. Safe for use by gamemode code, this allows per hive overrides
 /datum/hive_status/proc/end_caste_death_timer(datum/xeno_caste/caste)
 	xeno_message("The Hive is ready for a new [caste.caste_name] to evolve.", "xenoannounce", 6, TRUE)
-	caste_death_timers[caste.type] = null
+	caste_death_timers[caste.caste_type_path] = null
 
 /datum/hive_status/proc/check_ruler()
 	return TRUE
@@ -698,6 +695,10 @@
 // ***************************************
 // *********** Queen
 // ***************************************
+
+/datum/hive_status/proc/on_queen_death()
+	living_xeno_queen = null
+	update_leader_pheromones()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)

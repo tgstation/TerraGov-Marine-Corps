@@ -265,7 +265,7 @@ const DeadXenoTimerCountdowns = (hive_death_timers: DeathTimer[]) => {
   }
   return (
     <Flex.Item>
-      {hive_death_timers.map((timer, i) => (
+      {Object.keys(hive_death_timers).map((timer, i) => (
         <XenoCountdownBar
           key={i}
           time={timer.time}
