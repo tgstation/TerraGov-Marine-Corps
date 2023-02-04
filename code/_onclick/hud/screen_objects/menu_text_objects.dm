@@ -53,7 +53,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/setup_character
-	maptext = "<span class='maptext' style=font-size:6px>CHARACTER</span>"
+	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: ...</span>"
 	icon_state = "setup"
 	///Bool, whether we registered to listen for charachter updates already
 	var/registered = FALSE
@@ -76,7 +76,7 @@
 		registered = TRUE
 
 /atom/movable/screen/text/lobby/clickable/join_game
-	maptext = "<span class='maptext' style=font-size:6px>JOIN GAME</span>"
+	maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
 	icon_state = "join"
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
@@ -86,7 +86,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/observe
-	maptext = "<span class='maptext' style=font-size:6px>OBSERVE</span>"
+	maptext = "<span class='maptext' style=font-size:8px>OBSERVE</span>"
 	icon_state = "observe"
 
 /atom/movable/screen/text/lobby/clickable/observe/Click()
@@ -95,7 +95,7 @@
 	player.try_to_observe()
 
 /atom/movable/screen/text/lobby/clickable/ready
-	maptext = "<span class='maptext' style=font-size:6px>YOU ARE: NOT READY</span>"
+	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: NOT READY</span>"
 	icon_state = "unready"
 
 /atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
@@ -107,7 +107,7 @@
 
 /atom/movable/screen/text/lobby/clickable/ready/set_text()
 	var/mob/new_player/player = hud.mymob
-	maptext = "<span class='maptext' style=font-size:6px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
+	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
 
 /atom/movable/screen/text/lobby/clickable/ready/Click()
 	. = ..()
@@ -117,7 +117,7 @@
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/manifest
-	maptext = "<span class='maptext' style=font-size:6px>VIEW MANIFEST</span>"
+	maptext = "<span class='maptext' style=font-size:8px>VIEW MANIFEST</span>"
 	icon_state = "manifest"
 
 /atom/movable/screen/text/lobby/clickable/manifest/Click()
@@ -126,7 +126,7 @@
 	player.view_manifest()
 
 /atom/movable/screen/text/lobby/clickable/background
-	maptext = "<span class='maptext' style=font-size:6px>BACKGROUND</span>"
+	maptext = "<span class='maptext' style=font-size:8px>BACKGROUND</span>"
 	icon_state = "background"
 
 /atom/movable/screen/text/lobby/clickable/background/Click()
@@ -136,7 +136,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/changelog
-	maptext = "<span class='maptext' style=font-size:6px>CHANGELOG</span>"
+	maptext = "<span class='maptext' style=font-size:8px>CHANGELOG</span>"
 	icon_state = "changelog"
 
 /atom/movable/screen/text/lobby/clickable/changelog/Click()
@@ -145,7 +145,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/polls
-	maptext = "<span class='maptext' style=font-size:6px>POLLS</span>"
+	maptext = "<span class='maptext' style=font-size:8px>POLLS</span>"
 	icon_state = "poll"
 
 /atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
@@ -160,9 +160,9 @@
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()
 	if(isnull(hasnewpolls))
-		maptext = "<span class='maptext' style=font-size:6px>NO DATABASE!</span>"
+		maptext = "<span class='maptext' style=font-size:8px>NO DATABASE!</span>"
 		return
-	maptext = "<span class='maptext' style=font-size:6px>SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
+	maptext = "<span class='maptext' style=font-size:8px>SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
 
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
