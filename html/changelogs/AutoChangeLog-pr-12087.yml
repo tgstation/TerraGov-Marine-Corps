@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Vatborn have been given permission to take off their training weights."

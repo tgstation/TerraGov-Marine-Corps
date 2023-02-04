@@ -1,0 +1,8 @@
+author: "maikilangiolo"
+delete-after: True
+changes:
+  - rscadd: "added the mounted minigun and mounted dual cannon to normal marine use"
+  - balance: "rebalanced cost of HSG ammo between marine and tadpole version"
+  - balance: "rebalanced cost of mounted guns according to a sensible hierarchy of power vs availability"
+  - balance: "tweaked the dual cannon performance"
+  - balance: "tweaked the heavy minigun performance"
