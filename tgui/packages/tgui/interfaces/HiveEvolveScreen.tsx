@@ -11,7 +11,7 @@ const EvolveProgress = (props) => (
         good: [0.75, Infinity],
         average: [-Infinity, 0.75],
       }}
-      value={props.current / props.max}
+      value={props.current ? props.current / props.max : 0}
     />
   </Section>
 );
