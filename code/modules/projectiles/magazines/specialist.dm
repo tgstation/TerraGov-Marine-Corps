@@ -235,7 +235,7 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad
-	reload_delay = 200
+	reload_delay = 5 SECONDS
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
 	name = "\improper 84mm thermobaric rocket array"
