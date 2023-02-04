@@ -41,29 +41,8 @@
 
 //Capes and cape higlights
 /datum/greyscale_config/cape
-	icon_file = 'icons/mob/modular/capes/full.dmi'
+	icon_file = 'icons/mob/modular/capes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape.json'
-
-/datum/greyscale_config/cape/half
-	icon_file = 'icons/mob/modular/capes/half.dmi'
-	json_config = 'code/datums/greyscale/json_configs/cape_no_hood.json'
-
-/datum/greyscale_config/cape/scarf
-	icon_file = 'icons/mob/modular/capes/scarf.dmi'
-
-/datum/greyscale_config/cape/short
-	icon_file = 'icons/mob/modular/capes/short.dmi'
-
-/datum/greyscale_config/cape_highlight
-	icon_file = 'icons/mob/modular/capes/full.dmi'
-	json_config = 'code/datums/greyscale/json_configs/cape_highlight.json'
-
-/datum/greyscale_config/cape_highlight/half
-	icon_file = 'icons/mob/modular/capes/half.dmi'
-	json_config = 'code/datums/greyscale/json_configs/cape_highlight_no_hood.json'
-
-/datum/greyscale_config/cape_highlight/scarf
-	icon_file = 'icons/mob/modular/capes/scarf.dmi'
 
 /*
  * COLORABLE BADGES

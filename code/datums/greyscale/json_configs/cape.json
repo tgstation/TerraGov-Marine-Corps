@@ -2,70 +2,97 @@
 	"cape": [
 		{
 			"type": "icon_state",
-			"icon_state": "color_1",
+			"icon_state": "full_color1",
 			"blend_mode": "overlay",
 			"color_ids": [1]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "color_2",
-			"blend_mode": "overlay",
-			"color_ids": [2]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "color_3",
-			"blend_mode": "overlay",
-			"color_ids": [3]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "color_4",
-			"blend_mode": "overlay",
-			"color_ids": [4]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "color_5",
-			"blend_mode": "overlay",
-			"color_ids": [5]
 		}
 	],
-	"cape_h": [
+	"cape_hood": [
 		{
 			"type": "icon_state",
-			"icon_state": "hooded_color_1",
+			"icon_state": "full_hood_color1",
 			"blend_mode": "overlay",
 			"color_ids": [1]
-		},
+		}
+	],
+	"cape_highlight": [
 		{
 			"type": "icon_state",
-			"icon_state": "hooded_color_2",
+			"icon_state": "full_color2",
 			"blend_mode": "overlay",
-			"color_ids": [2]
-		},
+			"color_ids": [1]
+		}
+	],
+	"cape_half": [
 		{
 			"type": "icon_state",
-			"icon_state": "hooded_color_3",
+			"icon_state": "half_color1",
 			"blend_mode": "overlay",
-			"color_ids": [3]
-		},
+			"color_ids": [1]
+		}
+	],
+	"cape_half_hood": [
 		{
 			"type": "icon_state",
-			"icon_state": "hooded_color_4",
+			"icon_state": "half_hood_color1",
 			"blend_mode": "overlay",
-			"color_ids": [4]
-		},
+			"color_ids": [1]
+		}
+	],
+	"cape_half_highlight": [
 		{
 			"type": "icon_state",
-			"icon_state": "hooded_color_5",
+			"icon_state": "half_color2",
 			"blend_mode": "overlay",
-			"color_ids": [5]
-		},
+			"color_ids": [1]
+		}
+	],
+	"cape_short": [
 		{
 			"type": "icon_state",
-			"icon_state": "no_color",
-			"blend_mode": "overlay"
+			"icon_state": "short_color1",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"cape_short_hood": [
+		{
+			"type": "icon_state",
+			"icon_state": "short_hood_color1",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"cape_short_highlight": [
+		{
+			"type": "icon_state",
+			"icon_state": "short_color2",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"scarf": [
+		{
+			"type": "icon_state",
+			"icon_state": "scarf_color1",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"scarf_hood": [
+		{
+			"type": "icon_state",
+			"icon_state": "scarf_hood_color1",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"scarf_highlight": [
+		{
+			"type": "icon_state",
+			"icon_state": "scarf_color2",
+			"blend_mode": "overlay",
+			"color_ids": [1]
 		}
 	]
 }

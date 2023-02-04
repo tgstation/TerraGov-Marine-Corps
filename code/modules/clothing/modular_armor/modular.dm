@@ -995,7 +995,6 @@
 		"black",
 	)
 	current_variant = "black"
-	colorable_colors = list()
 
 /obj/item/clothing/head/modular/som/welder
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)

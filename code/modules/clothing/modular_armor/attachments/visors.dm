@@ -87,3 +87,8 @@
 	name = "\improper Jaeger Pattern Gungnir visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Gungnir class of helmet."
 	icon_state = "gungnir_visor"
+
+/obj/item/armor_module/armor/visor/marine/helljumper //tomake
+	name = "\improper Jaeger Pattern hell Jumper visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Hell Jumper class of helmet."
+	icon_state = "helljumper_visor"
