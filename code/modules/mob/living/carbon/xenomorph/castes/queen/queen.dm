@@ -91,7 +91,7 @@
 		if(XENO_UPGRADE_THREE)
 			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
 		if(XENO_UPGRADE_FOUR)
-			name = "[hive.prefix]Primordial Empress ([nicknumber])"
+			name = "[hive.prefix]Primordial Goddess ([nicknumber])"
 
 	real_name = name
 	if(mind)

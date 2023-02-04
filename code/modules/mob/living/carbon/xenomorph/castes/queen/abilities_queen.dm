@@ -336,10 +336,10 @@
 // *********** Queen Acidic Salve
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal
-	name = "Heal"
-	action_icon_state = "heal_xeno"
-	desc = "Apply a minor heal to the target."
-	cooldown_timer = 5 SECONDS
+	name = "Acidic Salve"
+	action_icon_state = "queen_heal"
+	desc = "Apply a minor heal to the target. Can carry up to 3 uses at a time."
+	cooldown_timer = 0 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
@@ -347,7 +347,13 @@
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
+	//How many uses remain, and the regeneration of those uses.
+	var/heal_charges = 0
+	var/time_to_charge
+
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+	if(heal_charges < 1)
+		return FALSE
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -358,8 +364,26 @@
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()
 	owner.changeNext_move(CLICK_CD_RANGE)
+	heal_charges -= 1
+	time_to_charge = addtimer(CALLBACK(src, .proc/increase_stacks), QUEEN_HEAL_COOLDOWN, TIMER_UNIQUE)
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/proc/increase_stacks()
+	heal_charges += 1
+	update_button_icon()
+	//if we aren't full, loop until we are.
+	if(heal_charges < 3)
+		time_to_charge = addtimer(CALLBACK(src, .proc/increase_stacks), QUEEN_HEAL_COOLDOWN, TIMER_UNIQUE) //TODO: Make a define
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/give_action(mob/living/L)
+	. = ..()
+	//Start timer upon initialization.
+	time_to_charge = addtimer(CALLBACK(src, .proc/increase_stacks), QUEEN_HEAL_COOLDOWN, TIMER_UNIQUE) //TODO: Make a define
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/update_button_icon()
+	action_icon_state = "queen_heal_[heal_charges]"
+	return ..()
 
 /// Heals the target.
 /mob/living/carbon/xenomorph/proc/salve_healing()
@@ -376,15 +400,19 @@
 // ***************************************
 /datum/action/xeno_action/activable/queen_give_plasma
 	name = "Give Plasma"
-	action_icon_state = "queen_give_plasma"
+	action_icon_state = "queen_plasma"
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 150
-	cooldown_timer = 8 SECONDS
+	cooldown_timer = 0 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
 	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
+
+	//How many uses remain, and the regeneration of those uses.
+	var/plasma_charges = 0
+	var/plasma_recharge_time
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -410,11 +438,17 @@
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
+	if(plasma_charges < 1)
+		if(!silent)
+			receiver.balloon_alert(owner, "Cannot give plasma, insufficient charges.")
+		return FALSE
 
 
 /datum/action/xeno_action/activable/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, .proc/try_use_ability)
+	//Start timer upon initialization.
+	plasma_recharge_time = addtimer(CALLBACK(src, .proc/increase_plasma_stacks), QUEEN_GIVE_PLASMA_COOLDOWN, TIMER_UNIQUE) //TODO: Make a define
 
 /datum/action/xeno_action/activable/queen_give_plasma/remove_action(mob/living/L)
 	. = ..()
@@ -429,6 +463,8 @@
 
 /datum/action/xeno_action/activable/queen_give_plasma/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/receiver = target
+	plasma_recharge_time = addtimer(CALLBACK(src, .proc/increase_plasma_stacks), QUEEN_GIVE_PLASMA_COOLDOWN, TIMER_UNIQUE) //TODO: Make a define
+	plasma_charges -= 1
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
@@ -436,6 +472,17 @@
 	if (get_dist(owner, receiver) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
+
+/datum/action/xeno_action/activable/queen_give_plasma/proc/increase_plasma_stacks()
+	plasma_charges += 1
+	//if we aren't full, loop until we are.
+	update_button_icon()
+	if(plasma_charges < 3)
+		plasma_recharge_time = addtimer(CALLBACK(src, .proc/increase_plasma_stacks), QUEEN_GIVE_PLASMA_COOLDOWN, TIMER_UNIQUE) //TODO: Make a define
+
+/datum/action/xeno_action/activable/queen_give_plasma/update_button_icon()
+	action_icon_state = "queen_plasma_[plasma_charges]"
+	return ..()
 
 // ***************************************
 // *********** Queen deevolve

@@ -2,7 +2,7 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	caste_desc = "The leader of the xenomorph hive, and the strongest source of pheromones."
 	job_type = /datum/job/xenomorph/queen
 
 	tier = XENO_TIER_FOUR
@@ -52,6 +52,7 @@
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/blessing_menu,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
@@ -80,7 +81,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/queen/mature
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
+	caste_desc = "The leader of the xenomorph hive, and the strongest source of pheromones."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -110,7 +111,7 @@
 	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/elder
-	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
+	caste_desc = "The leader of the xenomorph hive, and the strongest source of pheromones. The Empress controls multiple hives and planets."
 
 	upgrade = XENO_UPGRADE_TWO
 
@@ -143,7 +144,7 @@
 	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/ancient
-	caste_desc = "The most perfect Xeno form imaginable."
+	caste_desc = "The leader of the xenomorph hive, and the strongest source of pheromones. It nears alien perfection."
 	ancient_message = "We are the Alpha and the Omega. The beginning and the end."
 	upgrade = XENO_UPGRADE_THREE
 
@@ -212,6 +213,7 @@
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/blessing_menu,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
