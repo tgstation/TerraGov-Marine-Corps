@@ -13,7 +13,7 @@
 	maptext_height = 480
 	maptext_width = 480
 	maptext_x = 24
-	maptext_y = 12
+	maptext_y = 9
 
 /**
  * What the hell is this proc? you might be asking
@@ -57,6 +57,7 @@
 	icon_state = "setup"
 	///Bool, whether we registered to listen for charachter updates already
 	var/registered = FALSE
+	maptext_y = 11
 
 /atom/movable/screen/text/lobby/clickable/setup_character/Initialize(mapload)
 	. = ..()
