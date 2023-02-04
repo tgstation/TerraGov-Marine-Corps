@@ -80,10 +80,10 @@ type PrimoUpgrades = {
 };
 
 type DeathTimer = {
-  "caste": string,
-  "time": number,
-  "max_time": number,
-}
+  'caste': string;
+  'time': number;
+  'max_time': number;
+};
 
 export const HiveStatus = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
@@ -260,20 +260,23 @@ const GeneralInfo = (_props, context) => {
 };
 
 const DeadXenoTimerCountdowns = (hive_death_timers: DeathTimer[]) => {
-  if (hive_death_timers.length === 0) {
+  if (Object.keys(hive_death_timers).length === 0) {
     return null;
   }
   return (
     <Flex.Item>
-      {Object.keys(hive_death_timers).map((timer, i) => (
-        <XenoCountdownBar
-          key={i}
-          time={timer.time}
-          max={timer.max_time}
-          tooltip={`Time until ${timer.caste} can evolve.`}
-          left_side={`Next ${timer.caste}:`}
-        />
-      ))}
+      {Object.keys(hive_death_timers).map((key, i) => {
+        const timer = hive_death_timers[key];
+        return (
+          <XenoCountdownBar
+            key={i}
+            time={timer.time}
+            max={timer.max_time}
+            tooltip={`Time until ${timer.caste} can evolve.`}
+            left_side={`Next ${timer.caste}:`}
+          />
+        );
+      })}
     </Flex.Item>
   );
 };
@@ -499,7 +502,9 @@ const PopulationPyramid = (_props, context) => {
       title={`Total Living Sisters: ${hive_total}`}
       align={compact_display ? 'left' : 'center'}
       buttons={<ShowButtons />}>
-      <Flex direction="column-reverse" align={compact_display ? 'left' : 'center'}>
+      <Flex
+        direction="column-reverse"
+        align={compact_display ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
           const max_slots =
