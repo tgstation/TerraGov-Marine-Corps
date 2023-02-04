@@ -868,6 +868,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	skill_name = "leadership"
 	skill_min = SKILL_LEAD_TRAINED
 	var/orders_visible = TRUE
+	action_icon_state = "hide_order"
 
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
@@ -875,11 +876,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	if(orders_visible)
 		orders_visible = FALSE
+		action_icon_state = "show_order"
 		for(var/datum/action/skill/path in owner.actions)
 			if(istype(path, /datum/action/skill/issue_order))
 				path.remove_action(H)
 	else
 		orders_visible = TRUE
+		action_icon_state = "hide_order"
 		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
 		for(var/path in subtypeactions)
 			var/datum/action/skill/issue_order/A = new path()

@@ -119,7 +119,7 @@
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/tool/shovel/etool(src)
-	new /obj/item/clothing/head/modular/marine/m10x(src)
+	new /obj/item/clothing/head/modular/m10x(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/suit/storage/snow_suit(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
