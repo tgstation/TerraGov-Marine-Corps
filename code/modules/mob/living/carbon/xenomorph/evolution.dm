@@ -147,7 +147,7 @@
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 	var/datum/xeno_caste/new_caste_type = GLOB.xeno_caste_datums[new_mob_type][XENO_UPGRADE_BASETYPE]
 	// Initial can access uninitialized vars, which is why it's used here.
-	var/new_caste_flags = initial(new_caste_type.caste_flags)
+	var/new_caste_flags = new_caste_type.caste_flags
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			to_chat(src, span_warning("You are jobbanned from the Queen-like roles."))
@@ -157,14 +157,15 @@
 			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
 			return
 
-	var/min_xenos = initial(new_caste_type.evolve_min_xenos)
+	var/min_xenos = new_caste_type.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
 		to_chat(src, span_warning("We need at least [min_xenos] xenos to become a [initial(new_caste_type.display_name)]."))
 		return
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
 		return
-	if(CHECK_BITFIELD(new_caste_flags, CASTE_NO_DUPLICATES) && hive.xenos_by_typepath[new_mob_type])
+	var/maximum_active_caste = new_caste_type.maximum_active_caste
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= hive.xenos_by_typepath[new_mob_type].len)
 		to_chat(src, span_warning("There is already a [initial(new_caste_type.display_name)] in the hive. We must wait for it to die."))
 		return
 	var/turf/T = get_turf(src)
@@ -172,7 +173,7 @@
 		to_chat(src, span_warning("We need a empty tile to evolve."))
 		return
 
-	if(istype(new_mob_type, /datum/xeno_caste/queen))
+	if(istype(new_mob_type, /mob/living/carbon/xenomorph/queen))
 		switch(hivenumber) // because it causes issues otherwise
 			if(XENO_HIVE_CORRUPTED)
 				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted
@@ -185,29 +186,26 @@
 			if(XENO_HIVE_ADMEME)
 				new_mob_type = /mob/living/carbon/xenomorph/queen/admeme
 
-	else
-		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
-		if(regression)
-			//Nothing, go on as normal.
-		else if(tier == XENO_TIER_ONE && no_room_tier_two)
+	if(!regression)
+		if(tier == XENO_TIER_ONE && no_room_tier_two)
 			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
 			return
-		else if(tier == XENO_TIER_TWO && no_room_tier_three)
+		if(tier == XENO_TIER_TWO && no_room_tier_three)
 			to_chat(src, span_warning("The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die."))
 			return
-		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
+		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
+		if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_mob_type != /mob/living/carbon/xenomorph/drone)
 				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
 				return
 			else if(isxenodrone(src) && new_mob_type != /mob/living/carbon/xenomorph/shrike)
 				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
 				return
-		else if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
+		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return
-		else
-			to_chat(src, span_xenonotice("It looks like the hive can support our evolution to <span style='font-weight: bold'>[castepick]!</span>"))
+	to_chat(src, span_xenonotice("It looks like the hive can support our evolution to <span style='font-weight: bold'>[castepick]!</span>"))
 
 	if(isnull(new_mob_type))
 		CRASH("[src] tried to evolve but their castepick was null")
