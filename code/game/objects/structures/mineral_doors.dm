@@ -10,7 +10,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	flags_pass = NONE
-
+	var/formericon
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 	resistance_flags = DROPSHIP_IMMUNE
@@ -88,7 +88,10 @@
 
 /obj/structure/mineral_door/update_icon()
 	if(state && mineralType == "resin")
+		formericon = icon_state
 		icon_state = "[icon_state]-open"
+		return
+	if(!state && mineralType == "resin")
 		return
 	if(state)
 		icon_state = "[mineralType]open"
