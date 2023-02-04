@@ -349,7 +349,7 @@
 	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
-	slowdown = 1.05
+	slowdown = 0.05
 	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
@@ -368,7 +368,7 @@
 	name_plural = "Early Vat-Grown Humans"
 	brute_mod = 1.3
 	burn_mod = 1.3
-	slowdown = 1.3
+	slowdown = 0.3
 
 	var/timerid
 
