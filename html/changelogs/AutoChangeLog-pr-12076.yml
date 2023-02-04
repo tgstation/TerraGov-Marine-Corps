@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed xenos getting gibbed by devestating explosions when they shouldn't have"
