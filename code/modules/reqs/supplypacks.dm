@@ -562,7 +562,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/magnum
 	name = "R-76 Magnum"
-	contains = list(/obj/item/storage/belt/gun/mateba/full)
+	contains = list(/obj/item/weapon/gun/revolver/standard_magnum)
 	notes = "Ammo is contained within normal marine vendors."
 	cost = 75
 	available_against_xeno_only = TRUE
