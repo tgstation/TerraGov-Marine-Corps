@@ -302,7 +302,7 @@
 	aim_slowdown = 0.1
 	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
 	fire_sound = 'sound/weapons/guns/fire/t76.ogg'
-	fire_delay = 0.9 SECONDS
+	fire_delay = 0.75 SECONDS
 	akimbo_additional_delay = 0.6
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
