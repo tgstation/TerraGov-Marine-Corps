@@ -34,7 +34,7 @@
 	. = ..()
 	if(stat)
 		return
-	plasma_stored = min(xeno_caste.plasma_max, plasma_stored + 50)
+	gain_plasma(50)
 	if(prob(15))
 		emote("roar")
 		to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
