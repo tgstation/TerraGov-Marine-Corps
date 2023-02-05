@@ -41,3 +41,28 @@
       icon
   - bugfix: autodoc not showing that its activated, join larva queue not showing that
       its activated and empowered ability not disappearing
+2023-02-04:
+  Lumipharon:
+  - bugfix: fixed xenos getting gibbed by devestating explosions when they shouldn't
+      have
+2023-02-05:
+  Dgeen:
+  - bugfix: Larva and hunter now crawl into the ventilation faster (as it should have
+      been for like a year and a half)
+  Lumipharon:
+  - balance: All deployable guns standardised to 50 bomb armour
+  - bugfix: Fixed deployable item explosion interactions ignoring bomb armour and
+      rng qdeling
+  QualityVan:
+  - bugfix: Vatborn have been given permission to take off their training weights.
+  Zar000:
+  - qol: spiderlings get coated in jelly too :)
+  maikilangiolo:
+  - rscadd: added the mounted minigun and mounted dual cannon to normal marine use
+  - balance: rebalanced cost of HSG ammo between marine and tadpole version
+  - balance: rebalanced cost of mounted guns according to a sensible hierarchy of
+      power vs availability
+  - balance: tweaked the dual cannon performance
+  - balance: tweaked the heavy minigun performance
+  tyeagg:
+  - imageadd: new menu ui icons

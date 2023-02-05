@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Ravagers now gain rage every tick when on fire, instead of refilling rage entirely when on a flame turf"

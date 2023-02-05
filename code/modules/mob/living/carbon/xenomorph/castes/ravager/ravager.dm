@@ -30,6 +30,14 @@
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
 	H.Paralyze(2 SECONDS)
 
+/mob/living/carbon/xenomorph/ravager/fire_act()
+	. = ..()
+	if(stat)
+		return
+	gain_plasma(50)
+	if(prob(15))
+		emote("roar")
+		to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 
 // ***************************************
 // *********** Ability related
