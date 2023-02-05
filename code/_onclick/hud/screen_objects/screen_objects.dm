@@ -705,6 +705,8 @@
 	var/atom/target
 	///The duration of the effect
 	var/duration
+	///holder for the deletation timer
+	var/del_timer
 
 /atom/movable/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
@@ -721,12 +723,14 @@
 ///Stop the arrow to avoid runtime and hard del
 /atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
+	tracker.client.screen -= src
+	deltimer(del_timer)
 	qdel(src)
 
 /atom/movable/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration)
+	del_timer = addtimer(CALLBACK(src, .proc/kill_arrow), duration, TIMER_STOPPABLE)
 
 /atom/movable/screen/arrow/process() //We ping the target, revealing its direction with an arrow
 	if(!target || !tracker)

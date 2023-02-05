@@ -1,0 +1,68 @@
+2023-02-01:
+  Neocloudy:
+  - rscadd: Ports CM defib sounds. These play when toggling the defib, failing to
+      revive someone or succeeding to revive someone.
+  novaepee, Jack(ie) Burgdorf:
+  - imageadd: update sprites for vali activation
+2023-02-02:
+  Lumipharon:
+  - bugfix: fixed a couple of sensor tower bugs
+  - code_imp: Updated sensor tower code, are no longer coded to the TGMC faction specifically.
+  - code_imp: Fixed some harddel failures
+  - bugfix: fixed the King death timer
+  Pariah919:
+  - spellcheck: P-14 no longer lies to you in the description about the mag size.
+  RipGrayson:
+  - imageadd: Created new 3/4ths perspective ice walls for our ice themed maps.
+  novaepee:
+  - bugfix: Fix camo fatigues not having half sleeve
+  - rscadd: new FC and SO dorms
+  - bugfix: extra tcomm in Sulaco, which annihilate comm issues in Sulaco
+  novaepee, Billy Bob / Huggy:
+  - soundadd: King Death Cry
+2023-02-03:
+  Lumipharon:
+  - rscadd: Xenonauten armour spawns with map appropriate colours where applicable
+  - balance: Sunder is now taken into account when calculating xeno bomb immunity
+      and devastating explosion gib thresholds
+  - balance: Crusher and defender fortify bomb armour increased slightly
+  MLGTASTICa:
+  - balance: Added Resin-Building ability for xenos , a ability that is active pre-shutters
+      and removed on shutters opening , which is resin-shaping with no cost and which
+      can be done anywhere.
+  RipGrayson:
+  - rscadd: Added a new alternate map to WO, Oscar outpost.
+  Tanker:
+  - rscadd: Marine job-specific satchels now have sprites and extra functionality.
+  novaepee, Billy Bob / Huggy:
+  - soundadd: Warlock has new screech sound for psychic barrier
+  tyeagg:
+  - imageadd: new action frames, show/hide order option icons, and minimap action
+      icon
+  - bugfix: autodoc not showing that its activated, join larva queue not showing that
+      its activated and empowered ability not disappearing
+2023-02-04:
+  Lumipharon:
+  - bugfix: fixed xenos getting gibbed by devestating explosions when they shouldn't
+      have
+2023-02-05:
+  Dgeen:
+  - bugfix: Larva and hunter now crawl into the ventilation faster (as it should have
+      been for like a year and a half)
+  Lumipharon:
+  - balance: All deployable guns standardised to 50 bomb armour
+  - bugfix: Fixed deployable item explosion interactions ignoring bomb armour and
+      rng qdeling
+  QualityVan:
+  - bugfix: Vatborn have been given permission to take off their training weights.
+  Zar000:
+  - qol: spiderlings get coated in jelly too :)
+  maikilangiolo:
+  - rscadd: added the mounted minigun and mounted dual cannon to normal marine use
+  - balance: rebalanced cost of HSG ammo between marine and tadpole version
+  - balance: rebalanced cost of mounted guns according to a sensible hierarchy of
+      power vs availability
+  - balance: tweaked the dual cannon performance
+  - balance: tweaked the heavy minigun performance
+  tyeagg:
+  - imageadd: new menu ui icons

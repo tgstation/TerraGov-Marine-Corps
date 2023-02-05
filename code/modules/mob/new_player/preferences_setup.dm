@@ -2,6 +2,7 @@
 	gender = pick(MALE, FEMALE)
 	species = pick(get_playable_species())
 	synthetic_type = pick(SYNTH_TYPES)
+	robot_type = pick(ROBOT_TYPES)
 	ethnicity = random_ethnicity()
 
 	h_style = random_hair_style(gender, species)

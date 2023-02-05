@@ -115,7 +115,7 @@
 				cut_overlay(GLOB.welding_sparks)
 				return TRUE
 			else
-				cut_overlay(GLOB.welding_sparks)	
+				cut_overlay(GLOB.welding_sparks)
 		else
 			to_chat(user, span_warning("[WT] needs to be on to start this task."))
 			cut_overlay(GLOB.welding_sparks)
@@ -150,6 +150,10 @@
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/AltClick(mob/user)
 	if(!isliving(user))
+		return
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		xeno_user.handle_ventcrawl(src, xeno_user.xeno_caste.vent_enter_speed, xeno_user.xeno_caste.silent_vent_crawl)
 		return
 	var/mob/living/living_user = user
 	living_user.handle_ventcrawl(src)

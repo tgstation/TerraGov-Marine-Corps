@@ -998,7 +998,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "eD" = (
-/obj/item/weapon/gun/minigun_nest,
+/obj/item/weapon/gun/standard_minigun/nest,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "eE" = (
@@ -1758,7 +1758,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "iv" = (
-/obj/item/weapon/gun/minigun_nest,
+/obj/item/weapon/gun/standard_minigun/nest,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/west)
 "iw" = (
@@ -3760,7 +3760,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "ry" = (
-/obj/item/weapon/gun/minigun_nest,
+/obj/item/weapon/gun/standard_minigun/nest,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
 "rA" = (
@@ -6511,7 +6511,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "JO" = (
-/obj/item/weapon/gun/minigun_nest,
+/obj/item/weapon/gun/standard_minigun/nest,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/east)
 "JP" = (
@@ -7604,7 +7604,7 @@
 /turf/closed/shuttle/dropship1/aisle,
 /area/whiskey_outpost/outside/east)
 "Sc" = (
-/obj/item/weapon/gun/minigun_nest,
+/obj/item/weapon/gun/standard_minigun/nest,
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "Sd" = (

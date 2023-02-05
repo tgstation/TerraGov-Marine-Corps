@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscdel: "Remove Mosin from Icy Cave due to HvH balance"
