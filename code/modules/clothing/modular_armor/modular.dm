@@ -345,8 +345,8 @@
 	name = "\improper Xenonauten-M pattern armored vest"
 	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
-	icon_state = "medium"
-	item_state = "medium"
+	icon_state = "xenonauten_medium"
+	item_state = "xenonauten_medium"
 	slowdown = 0.5
 
 	attachments_allowed = list(
@@ -440,8 +440,8 @@
 	name = "\improper Xenonauten-L pattern armored vest"
 	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	icon_state = "light"
-	item_state = "light"
+	icon_state = "xenonauten_light"
+	item_state = "xenonauten_light"
 	slowdown = 0.3
 
 /obj/item/clothing/suit/modular/xenonauten/light/shield
@@ -451,8 +451,8 @@
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
-	icon_state = "heavy"
-	item_state = "heavy"
+	icon_state = "xenonauten_heavy"
+	item_state = "xenonauten_heavy"
 	slowdown = 0.7
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
@@ -469,6 +469,70 @@
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	starting_attachments = list(/obj/item/armor_module/module/eshield)
+
+//Robot armour
+/obj/item/clothing/suit/modular/robot
+	name = "XR-1 armor plating"
+	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_medium"
+	item_state = "robot_medium"
+	species_exception = list(/datum/species/robot)
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	slowdown = 0.5
+
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/eshield,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	allowed_uniform_type = /obj/item/clothing/under/marine/robotic
+
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/suit/modular/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+
+/obj/item/clothing/suit/modular/robot/light
+	name = "XR-1-L armor plating"
+	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_light"
+	item_state = "robot_light"
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/robot/heavy
+	name = "XR-1-H armor plating"
+	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_heavy"
+	item_state = "robot_heavy"
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	slowdown = 0.7
+
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -607,10 +671,8 @@
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "helmet_icon"
-	icon_override = null
 	item_state = "helmet"
 	item_state_worn = TRUE
-	item_state_slots = null
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -663,12 +725,66 @@
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
 
+//robot hats
+/obj/item/clothing/head/modular/robot
+	name = "XN-1 upper armor plating"
+	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_medium"
+	item_state = "robot_medium"
+	species_exception = list(/datum/species/robot)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/visor/robot,
+		/obj/item/armor_module/greyscale/visor/robot/light,
+		/obj/item/armor_module/greyscale/visor/robot/heavy,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/greyscale/visor/robot)
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+
+	icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+
+/obj/item/clothing/head/modular/robot/light
+	name = "XN-1-L upper armor plating"
+	desc = "Light armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_light"
+	item_state = "robot_light"
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/greyscale/visor/robot/light)
+
+/obj/item/clothing/head/modular/robot/heavy
+	name = "XN-1-H upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_heavy"
+	item_state = "robot_heavy"
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/greyscale/visor/robot/heavy)
+
+//jaeger
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon = 'icons/mob/modular/m10.dmi'
-	icon_state = "infantry_helmet"
-	item_state = "infantry_helmet"
+	icon_state = "infantry"
+	item_state = "infantry"
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -689,18 +805,18 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
-		/obj/item/armor_module/armor/visor/marine,
-		/obj/item/armor_module/armor/visor/marine/skirmisher,
-		/obj/item/armor_module/armor/visor/marine/scout,
-		/obj/item/armor_module/armor/visor/marine/eva,
-		/obj/item/armor_module/armor/visor/marine/eva/skull,
-		/obj/item/armor_module/armor/visor/marine/gungnir,
-		/obj/item/armor_module/armor/visor/marine/eod,
-		/obj/item/armor_module/armor/visor/marine/assault,
-		/obj/item/armor_module/armor/visor/marine/helljumper,
+		/obj/item/armor_module/greyscale/visor/marine,
+		/obj/item/armor_module/greyscale/visor/marine/skirmisher,
+		/obj/item/armor_module/greyscale/visor/marine/scout,
+		/obj/item/armor_module/greyscale/visor/marine/eva,
+		/obj/item/armor_module/greyscale/visor/marine/eva/skull,
+		/obj/item/armor_module/greyscale/visor/marine/gungnir,
+		/obj/item/armor_module/greyscale/visor/marine/eod,
+		/obj/item/armor_module/greyscale/visor/marine/assault,
+		/obj/item/armor_module/greyscale/visor/marine/helljumper,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine, /obj/item/armor_module/storage/helmet)
 
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
@@ -716,56 +832,55 @@
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
-	icon_state = "eva_helmet"
-	item_state = "eva_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
+	icon_state = "eva"
+	item_state = "eva"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/eva, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA 'Skull' Helmet"
-	icon_state = "eva_skull_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva/skull, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/eva/skull, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
-	icon_state = "skirmisher_helmet"
-	item_state = "skirmisher_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
+	icon_state = "skirmisher"
+	item_state = "skirmisher"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
-	icon_state = "scout_helmet"
-	item_state = "scout_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
+	icon_state = "scout"
+	item_state = "scout"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/scout, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/gungnir
 	name = "Jaeger Pattern Gungnir Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Gungnir markings"
-	icon_state = "gungnir_helmet"
-	item_state = "gungnir_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/gungnir, /obj/item/armor_module/storage/helmet)
+	icon_state = "gungnir"
+	item_state = "gungnir"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/gungnir, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
-	icon_state = "assault_helmet"
-	item_state = "assault_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault, /obj/item/armor_module/storage/helmet)
+	icon_state = "assault"
+	item_state = "assault"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/assault, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
-	icon_state = "eod_helmet"
-	item_state = "eod_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
+	icon_state = "eod"
+	item_state = "eod"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/eod, /obj/item/armor_module/storage/helmet)
 
-/obj/item/clothing/head/modular/marine/helljumper //to populate
+/obj/item/clothing/head/modular/marine/helljumper
 	name = "Jaeger Pattern Helljumper Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
-	icon_state = "helljumper_helmet"
-	item_state = "helljumper_helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
+	icon_state = "helljumper"
+	item_state = "helljumper"
+	starting_attachments = list(/obj/item/armor_module/greyscale/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
 
 // ***************************************
 // *********** Modular Style Line

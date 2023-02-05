@@ -39,6 +39,11 @@
 	icon_file = 'icons/obj/items/grenade.dmi'
 	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'
 
+//jaeger visors
+/datum/greyscale_config/visors
+	icon_file = 'icons/mob/modular/m10.dmi'
+	json_config = 'code/datums/greyscale/json_configs/visors.json'
+
 //Capes and cape higlights
 /datum/greyscale_config/cape
 	icon_file = 'icons/mob/modular/capes.dmi'

@@ -72,18 +72,16 @@
 	UnregisterSignal(equipper, list(COMSIG_HUMAN_APPLY_OVERLAY, COMSIG_HUMAN_REMOVE_OVERLAY))
 
 /**
- * Adds an emissive overlay to the wearer as the helmets visor
+ * Adds an emissive greyscale overlay to the wearer as the helmets visor
  */
 /datum/element/special_clothing_overlay/modular_helmet_visor
-	///Icon to use for the emissive
-	var/visor_icon
-	///Icon_state to use for the emissive
-	var/visor_icon_state
+	///greyscale icon we fetch to make worn icon with
+	var/icon/special_icon
 
-/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, icon, icon_state)
-	visor_icon = icon
-	visor_icon_state = icon_state
+/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, obj/visor)
+	if(!special_icon)
+		special_icon = visor.appearance
 	return ..()
 
 /datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon()
-	return emissive_appearance(visor_icon, visor_icon_state)
+	return emissive_appearance(special_icon, "")
