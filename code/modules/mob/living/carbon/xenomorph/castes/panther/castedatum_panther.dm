@@ -25,7 +25,7 @@
 	plasma_icon_state = "panther"
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 220
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -78,7 +78,7 @@
 	plasma_max = 120
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
@@ -105,7 +105,7 @@
 	plasma_max = 135
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 260
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
@@ -132,7 +132,7 @@
 	plasma_max = 150
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
@@ -159,7 +159,7 @@
 	plasma_max = 150
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 280
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 19, LASER = 19, ENERGY = 19, BOMB = 0, BIO = 7, FIRE = 19, ACID = 7)
