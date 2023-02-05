@@ -615,17 +615,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
 	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
-	if(stat)
-		return
-	plasma_stored = xeno_caste.plasma_max
-	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
-	if(charge)
-		charge.clear_cooldown() //Reset charge cooldown
-	to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
-	if(prob(70))
-		emote("roar")
-
 /obj/item/weapon/gun/flamer/hydro_cannon
 	name = "underslung hydrocannon"
 	desc = "For the quenching of unfortunate mistakes."
