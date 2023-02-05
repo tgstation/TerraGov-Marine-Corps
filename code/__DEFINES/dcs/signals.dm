@@ -13,6 +13,7 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
+#define COMSIG_GLOB_DROPPOD_LANDED "!pod_landed"
 #define COMSIG_GLOB_EVACUATION_STARTED "!evacuation_started"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
@@ -764,7 +765,10 @@
 #define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
 
 #define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
-#define COMSIG_XENOABILITY_GRAVITY_CRUSH "xenoability_gravity_crush"
+#define COMSIG_XENOABILITY_PETRIFY "xenoability_petrify"
+#define COMSIG_XENOABILITY_OFFGUARD "xenoability_offguard"
+#define COMSIG_XENOABILITY_SHATTERING_ROAR "xenoability_shattering_roar"
+#define COMSIG_XENOABILITY_ZEROFORMBEAM "xenoability_zeroformbeam"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"

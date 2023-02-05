@@ -103,6 +103,9 @@
 		clean_refs()
 	return ..()
 
+/obj/item/explosive/grenade/sticky/launched_det_time()
+	det_time -= 1 SECONDS
+
 ///Cleans references to prevent hard deletes.
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
 	SIGNAL_HANDLER
@@ -155,6 +158,15 @@
 	flame_radius(2, get_turf(src))
 	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
 	qdel(src)
+
+/obj/item/explosive/grenade/ags
+	name = "\improper AGLS-37 HEDP grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	w_class = WEIGHT_CLASS_SMALL
+	icon = 'icons/obj/items/grenade.dmi'
+	icon_state = "ags_grenade"
+	item_state = "ags_grenade"
+	det_time = 20
 
 
 /obj/item/explosive/grenade/smokebomb
@@ -291,7 +303,7 @@
 	det_time = 0
 	throwforce = 1
 	dangerous = FALSE
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	hud_state = "grenade_frag"
 	light_system = MOVABLE_LIGHT
 	light_range = 6

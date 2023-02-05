@@ -13,19 +13,16 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	var/bomb_armor = soft_armor.getRating("bomb")
-	if(bomb_armor >= 100)
-		return //immune
-
-	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_effective_armor = (soft_armor.getRating("bomb")/100)*get_sunder()
 	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
 	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
-	//lowered to account for new armor values but keep old gibs
-	//probs needs to be a define somewhere
-	var/gib_min_armor = 10
-	if(severity == EXPLODE_DEVASTATE && bomb_armor < gib_min_armor)
-		return gib()    //Gibs unprotected benos
+	if(bomb_effective_armor >= 1)
+		return //immune
+
+
+	if((severity == EXPLODE_DEVASTATE) && ((bomb_effective_armor * 100) <= XENO_EXPLOSION_GIB_THRESHOLD))
+		return gib() //Gibs unprotected benos
 
 	//Slowdown and stagger
 	var/ex_slowdown = (2 + (4 - severity)) * bomb_slow_multiplier
@@ -72,6 +69,10 @@
 		updatehealth()
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
+
+	if(isobj(pulling))
+		stop_pulling()
+
 
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
@@ -160,19 +161,12 @@
 
 		if(!(xeno_caste.caste_flags & CASTE_ACID_BLOOD))
 			return
-		var/splash_chance = 40 //Base chance of getting splashed. Decreases with # of victims.
-		var/distance = 0 //Distance, decreases splash chance.
-		var/i = 0 //Tally up our victims.
+		var/splash_chance
 		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
-			distance = get_dist(src,victim)
-
-			splash_chance = 80 - (i * 5)
-			if(victim.loc == loc)
-				splash_chance += 30 //Same tile? BURN
-			splash_chance += distance * -15
-			i++
-			victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
-			span_danger("You are splattered with sizzling blood! IT BURNS!"))
-			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
-				victim.emote("scream") //Topkek
-			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.
+			splash_chance = (chance * 2) - (get_dist(src,victim) * 20)
+			if(prob(splash_chance))
+				victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
+				span_danger("You are splattered with sizzling blood! IT BURNS!"))
+				if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
+					victim.emote("scream")
+				victim.take_overall_damage(rand(15, 30), BURN, ACID, updating_health = TRUE)

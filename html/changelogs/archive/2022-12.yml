@@ -477,3 +477,24 @@
   - bugfix: fixed some exploits
   Waselon:
   - balance: reduced sunder heal for drone, queen and hivelord abilities.
+2022-12-28:
+  Lumipharon:
+  - bugfix: fixed XOOC and MOOC binds incorrectly opening LOOC
+  Three333Digit:
+  - qol: soldering tool repairs the next damaged limb
+2022-12-29:
+  KuzyXD:
+  - bugfix: Admin can't play music via the Play-Internet-Sound verb
+  Lumipharon:
+  - bugfix: fixed some mech guns not being properly reloadable
+  QualityVan:
+  - balance: Shovels fit in suit storage
+2022-12-30:
+  Waselon:
+  - bugfix: fixed inability to reload mech via UI
+  XElectricX:
+  - qol: Spears look like actual spears when thrown and no longer spin. No longer
+      bounce when hitting turfs.
+2022-12-31:
+  novaepee:
+  - bugfix: the wack reinforced window frame orietation in PoS prep

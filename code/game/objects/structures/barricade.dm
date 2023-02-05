@@ -551,55 +551,9 @@
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	if(LAZYACCESS(user.do_actions, src))
-		return FALSE
-
-	var/obj/item/tool/weldingtool/WT = I
-
-	if(!WT.isOn())
-		return FALSE
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting")
-			return TRUE
-
-	if(obj_integrity <= max_integrity * 0.3)
+	. = welder_repair_act(user, I, repair_threshold = 0.3, skill_required = SKILL_ENGINEER_METAL)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
-		return TRUE
-
-	if(obj_integrity == max_integrity)
-		balloon_alert(user, "already repaired")
-		return TRUE
-
-	balloon_alert_to_viewers("starting repair...")
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
-
-	add_overlay(GLOB.welding_sparks)
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
-
-	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
-
-	if(!WT.remove_fuel(2, user))
-		balloon_alert(user, "not enough fuel")
-		cut_overlay(GLOB.welding_sparks)
-		return TRUE
-
-	balloon_alert_to_viewers("repaired")
-	cut_overlay(GLOB.welding_sparks)
-	repair_damage(150)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	return TRUE
 
 
 /obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
@@ -818,7 +772,141 @@
 		if(BARRICADE_PLASTEEL_LOOSE)
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
-/// todo use welder_act and friends instead
+/obj/structure/barricade/plasteel/welder_act(mob/living/user, obj/item/I)
+	. = welder_repair_act(user, I, repair_threshold = 0.3, skill_required = SKILL_ENGINEER_PLASTEEL)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
+		balloon_alert(user, "Too damaged. Use plasteel sheets.")
+
+/obj/structure/barricade/plasteel/screwdriver_act(mob/living/user, obj/item/I)
+	if(!isscrewdriver(I))
+		return
+
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	if(LAZYACCESS(user.do_actions, src))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
+	switch(build_state)
+		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+
+			for(var/obj/structure/barricade/B in loc)
+				if(B != src && B.dir == dir)
+					balloon_alert(user, "already a barricade here")
+					return
+
+			if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			balloon_alert_to_viewers("bolt protection panel removed")
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			build_state = BARRICADE_PLASTEEL_ANCHORED
+		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("bolt protection panel replaced")
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			build_state = BARRICADE_PLASTEEL_FIRM
+
+/obj/structure/barricade/plasteel/crowbar_act(mob/living/user, obj/item/I)
+	if(!iscrowbar(I))
+		return
+
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	if(LAZYACCESS(user.do_actions, src))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
+	switch(build_state)
+		if(BARRICADE_PLASTEEL_FIRM)
+			balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
+			linked = !linked
+			for(var/direction in GLOB.cardinals)
+				for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+					cade.update_icon()
+			update_icon()
+		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("disassembling")
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			busy = TRUE
+
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+				busy = FALSE
+				return
+
+			busy = FALSE
+			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
+			span_notice("You take [src]'s panels apart."))
+			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+			var/deconstructed = TRUE
+			for(var/obj/effect/xenomorph/acid/A in loc)
+				if(A.acid_t != src)
+					continue
+				deconstructed = FALSE
+				break
+			deconstruct(deconstructed)
+
+/obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
+	if(!iswrench(I))
+		return
+
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	if(LAZYACCESS(user.do_actions, src))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
+	switch(build_state)
+		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("anchor bolts loosened")
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			anchored = FALSE
+			modify_max_integrity(initial(max_integrity) * 0.5)
+			build_state = BARRICADE_PLASTEEL_LOOSE
+			update_icon() //unanchored changes layer
+		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
+			var/turf/mystery_turf = get_turf(src)
+			if(!isopenturf(mystery_turf))
+				balloon_alert(user, "can't anchor here")
+				return
+
+			var/turf/open/T = mystery_turf
+			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+				balloon_alert(user, "can't anchor here")
+				return
+
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("secured bolts")
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			anchored = TRUE
+			modify_max_integrity(initial(max_integrity))
+			build_state = BARRICADE_PLASTEEL_ANCHORED
+			update_icon() //unanchored changes layer
+
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -841,150 +929,6 @@
 
 		repair_damage(max_integrity * 0.3)
 		balloon_alert_to_viewers("base repaired")
-		return
-
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
-		return
-
-	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
-
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
-				return
-
-		if(obj_integrity <= max_integrity * 0.3)
-			balloon_alert(user, "Too damaged. Use plasteel sheets.")
-			return
-
-		if(obj_integrity == max_integrity)
-			balloon_alert(user, "already repaired")
-			return
-
-		balloon_alert_to_viewers("starting repair...")
-		add_overlay(GLOB.welding_sparks)
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		busy = TRUE
-
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-			cut_overlay(GLOB.welding_sparks)
-			busy = FALSE
-			return
-		busy = FALSE
-
-		if(!WT.remove_fuel(2, user))
-			balloon_alert(user, "not enough fuel")
-			cut_overlay(GLOB.welding_sparks)
-			return TRUE
-
-		balloon_alert_to_viewers("repaired")
-		cut_overlay(GLOB.welding_sparks)
-		repair_damage(150)
-		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-
-	if(user.do_actions) // you can only build one cade at once but repair multiple at once
-		return
-
-	switch(build_state)
-		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(isscrewdriver(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-
-				for(var/obj/structure/barricade/B in loc)
-					if(B != src && B.dir == dir)
-						balloon_alert(user, "already a barricade here")
-						return
-
-				if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
-					return
-
-				balloon_alert_to_viewers("bolt protection panel removed")
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				build_state = BARRICADE_PLASTEEL_ANCHORED
-			else if(iscrowbar(I))
-				balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
-				linked = !linked
-				for(var/direction in GLOB.cardinals)
-					for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
-						cade.update_icon()
-				update_icon()
-		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(isscrewdriver(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				balloon_alert_to_viewers("bolt protection panel replaced")
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				build_state = BARRICADE_PLASTEEL_FIRM
-
-			else if(iswrench(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				balloon_alert_to_viewers("anchor bolts loosened")
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				anchored = FALSE
-				modify_max_integrity(initial(max_integrity) * 0.5)
-				build_state = BARRICADE_PLASTEEL_LOOSE
-				update_icon() //unanchored changes layer
-		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
-			if(iswrench(I))
-
-				var/turf/mystery_turf = get_turf(src)
-				if(!isopenturf(mystery_turf))
-					balloon_alert(user, "can't anchor here")
-					return
-
-				var/turf/open/T = mystery_turf
-				if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-					balloon_alert(user, "can't anchor here")
-					return
-
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				balloon_alert_to_viewers("secured bolts")
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				anchored = TRUE
-				modify_max_integrity(initial(max_integrity))
-				build_state = BARRICADE_PLASTEEL_ANCHORED
-				update_icon() //unanchored changes layer
-
-			else if(iscrowbar(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				balloon_alert_to_viewers("disassembling")
-				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-				busy = TRUE
-
-				if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
-					busy = FALSE
-					return
-
-				busy = FALSE
-				user.visible_message(span_notice("[user] takes [src]'s panels apart."),
-				span_notice("You take [src]'s panels apart."))
-				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				var/deconstructed = TRUE
-				for(var/obj/effect/xenomorph/acid/A in loc)
-					if(A.acid_t != src)
-						continue
-					deconstructed = FALSE
-					break
-				deconstruct(deconstructed)
-
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()

@@ -288,32 +288,7 @@
 	take_damage(20, BURN, "fire")
 
 /obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		balloon_alert(user, "You're already busy!")
-		return FALSE
-	if(obj_integrity >= max_integrity)
-		balloon_alert(user, "This doesn't need repairing")
-		return TRUE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		balloon_alert_to_viewers("[user] tries to repair the [name]" , ignored_mobs = user)
-		balloon_alert(user, "You try to repair the [name]")
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
-			return FALSE
-	balloon_alert_to_viewers("[user] begins repairing the vehicle", ignored_mobs = user)
-	balloon_alert(user, "You begin repairing the [name]")
-	if(!do_after(user, 2 SECONDS, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
-		balloon_alert_to_viewers("[user] stops repairing the [name]")
-		return
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	repair_damage(35)
-	if(obj_integrity == max_integrity)
-		balloon_alert_to_viewers("Fully repaired!")
-	else
-		balloon_alert_to_viewers("[user] repairs the [name]", ignored_mobs = user)
-		balloon_alert(user, "You finish repairing the [name]")
-	return TRUE
+	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
 
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"

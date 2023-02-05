@@ -15,7 +15,7 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 60
+	var/supply_reward = 600
 	///How much dropship points you get for completing the terminal
 	var/dropship_reward = 60
 

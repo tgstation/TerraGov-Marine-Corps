@@ -54,6 +54,9 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	return ..()
 
+/obj/item/clothing/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -234,7 +237,7 @@
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
-
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 
 /obj/item/clothing/shoes/update_clothing_icon()
 	if (ismob(src.loc))

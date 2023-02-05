@@ -188,6 +188,9 @@
 	icon_state = "mining_living"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
+/area/ice_colony/exterior/underground/caves/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
 
 /*
 *  ---------------------

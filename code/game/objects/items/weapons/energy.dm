@@ -46,7 +46,7 @@
 /obj/item/weapon/energy/sword
 	name = "energy sword"
 	desc = "May the force be within you."
-	icon_state = "sword0"
+	icon_state = "sword"
 	force = 10
 	throwforce = 12
 	throw_speed = 1
@@ -56,58 +56,58 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	var/base_sword_icon = "sword"
+	flags_equip_slot = ITEM_SLOT_BELT
+	///Sword color, if applicable
 	var/sword_color
-
+	///Force of the weapon when activated
+	var/active_force = 40
 
 /obj/item/weapon/energy/sword/Initialize()
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
-	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 
+/obj/item/weapon/energy/sword/attack_self(mob/living/user)
+	switch_state()
 
-/obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	H.update_inv_l_hand()
+	H.update_inv_r_hand()
+
+///Handles all the state switch stuff
+/obj/item/weapon/energy/sword/proc/switch_state()
+	SIGNAL_HANDLER
 	toggle_active()
-	if (active)
-		force = 30
+	if(active)
+		force = active_force
+		throwforce = active_force
+		penetration = 30
 		heat = 3500
-		if(base_sword_icon != "sword")
-			icon_state = "[base_sword_icon]1"
-		else
-			icon_state = "sword[sword_color]"
+		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
-		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, span_notice("[src] is now active."))
-
+		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
+		RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT), .proc/switch_state)
 	else
-		force = 3
+		force = initial(force)
+		throwforce = initial(throwforce)
+		penetration = 0
 		heat = 0
-		icon_state = "[base_sword_icon]0"
+		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
-		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, span_notice("[src] can now be concealed."))
-
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand(0)
-		H.update_inv_r_hand()
-
-
+		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
+		UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT))
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"
 	desc = "Arrrr matey."
-	icon_state = "cutlass0"
-	base_sword_icon = "cutlass"
+	icon_state = "cutlass"
+	sword_color = "on"
 
 /obj/item/weapon/energy/sword/green
 	sword_color = "green"
-
-
-/obj/item/weapon/energy/sword/green/attack_self()
-	..()
-	force = active ? 80 : 3
 
 /obj/item/weapon/energy/sword/red
 	sword_color = "red"
@@ -115,5 +115,21 @@
 /obj/item/weapon/energy/sword/blue
 	sword_color = "blue"
 
+/obj/item/weapon/energy/sword/som
+	icon_state = "som_sword"
+	desc = "A SOM energy sword. Designed to cut through armored plate."
+	active_force = 50
+	sword_color = "on"
 
+/obj/item/weapon/energy/sword/som/Initialize()
+	. = ..()
+	set_light_range_power_color(2, 1, COLOR_ORANGE)
 
+/obj/item/weapon/energy/sword/som/switch_state()
+	. = ..()
+	if(active)
+		flick("som_sword_open", src)
+		set_light_on(TRUE)
+	else
+		flick("som_sword_close", src)
+		set_light_on(FALSE)

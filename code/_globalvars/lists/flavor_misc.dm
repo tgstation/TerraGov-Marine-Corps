@@ -130,6 +130,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"staffofficer",
 	"synth",
 	"warrior",
+	"warlock",
 	"whiskey_engi",
 	"whiskey_leader",
 	"whiskey_medic",

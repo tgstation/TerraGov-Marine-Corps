@@ -23,7 +23,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_OVERPOWERING
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
@@ -218,7 +218,7 @@
 	radio = new(src)
 	radio.name = "[src] radio"
 
-
+	GLOB.nightfall_toggleable_lights += src
 	add_cell()
 	add_scanmod()
 	add_capacitor()
@@ -249,6 +249,8 @@
 /obj/vehicle/sealed/mecha/Destroy()
 	for(var/ejectee in occupants)
 		mob_exit(ejectee, TRUE, TRUE)
+
+	GLOB.nightfall_toggleable_lights -= src
 
 	if(LAZYLEN(flat_equipment))
 		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)

@@ -7,7 +7,13 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
 	item_state = "backpack"
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
@@ -40,6 +46,10 @@
 /obj/item/storage/backpack/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
 	..()
+
+/obj/item/storage/backpack/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 /*
 * Backpack Types
@@ -373,15 +383,30 @@
 	icon_state = "marinesat_green"
 
 
-/obj/item/storage/backpack/marine/satchel/corpsman
+/obj/item/storage/backpack/marine/corpsman/satchel
 	name = "\improper TGMC corpsman satchel"
-	desc = "A heavy-duty satchel carried by some TGMC corpsmen."
+	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinesatm"
+	item_state = "marinesatm"
+	storage_slots = null
+	max_storage_space = 15
+	access_delay = 0
+	cell = /obj/item/cell/apc
 
 /obj/item/storage/backpack/marine/satchel/tech
 	name = "\improper TGMC technician satchel"
-	desc = "A heavy-duty satchel carried by some TGMC technicians."
+	desc = "A heavy-duty satchel carried by some TGMC technicians. Can hold the ST-580 point defense sentry and ammo."
 	icon_state = "marinesatt"
+	item_state = "marinesatt"
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/sentry/mini,
+		/obj/item/ammo_magazine/tl102,
+		/obj/item/ammo_magazine/sentry,
+		/obj/item/ammo_magazine/minisentry,
+		/obj/item/mortal_shell,
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sandbags,
+	)
 
 /obj/item/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"

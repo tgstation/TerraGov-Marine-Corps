@@ -15,7 +15,7 @@
 /datum/action/xeno_action/activable/essence_link
 	name = "Essence Link"
 	action_icon_state = "healing_infusion"
-	mechanics_text = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
+	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -89,7 +89,7 @@
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve
 	name = "Acidic Salve"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
+	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
@@ -136,7 +136,7 @@
 /datum/action/xeno_action/enhancement
 	name = "Enhancement"
 	action_icon_state = "enhancement"
-	mechanics_text = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
+	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
 	cooldown_timer = 120 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(

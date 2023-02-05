@@ -126,6 +126,7 @@
 		/obj/effect/supply_drop/culverin,
 		/obj/effect/supply_drop/caliver,
 		/obj/effect/supply_drop/som_shotgun_burst,
+		/obj/effect/supply_drop/blink_kit,
 	)
 	uncommon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
@@ -232,7 +233,7 @@
 /obj/effect/supply_drop/armor_upgrades/Initialize()
 	. = ..()
 	new /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two(loc)
-	new /obj/item/clothing/head/modular/marine/m10x/tyr(loc)
+	new /obj/item/clothing/head/modular/m10x/tyr(loc)
 	new /obj/item/weapon/shield/riot/marine(loc)
 	return INITIALIZE_HINT_QDEL
 
@@ -380,6 +381,11 @@
 	new /obj/item/cell/lasgun/volkite/powerpack(loc)
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/supply_drop/blink_kit/Initialize()
+	. = ..()
+	new /obj/item/blink_drive(loc)
+	new /obj/item/weapon/energy/sword/som(loc)
+	return INITIALIZE_HINT_QDEL
 
 // 150 to 200 points of value packs, spend 100 points get 150 to 200 in value, basically. Ideally, commons are variety packs, uncommons maybe shake up the round a bit, rares a bit more. Legendaries make the round go wacko. You get a crate of stuff dropped on spawn.
 /obj/item/loot_box/tgmclootbox
@@ -400,6 +406,7 @@
 		/obj/item/storage/box/loot/mortar_pack,
 		/obj/item/storage/box/loot/howitzer_pack,
 		/obj/item/storage/box/loot/sentry_pack,
+		/obj/item/storage/box/loot/agl_pack,
 	)
 	uncommon_list = list(
 		/obj/item/storage/box/loot/materials_pack,
@@ -581,6 +588,18 @@
 	. = ..()
 	new /obj/item/storage/box/tl102(src)
 	new /obj/item/storage/box/tl102(src)
+
+/obj/item/storage/box/loot/agl_pack/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
+	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
 
 /obj/item/storage/box/loot/sentry_pack/Initialize()
 	. = ..()

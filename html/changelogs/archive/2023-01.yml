@@ -1,0 +1,380 @@
+2023-01-01:
+  Blundir:
+  - rscadd: added new bubble icons to ai, combat droids and majoriy of xeno castes
+  Jalopkomit18:
+  - balance: Tricordazine and Dylovene pill packet capacity changed from 6->8
+  grinkgo:
+  - qol: A revolutionary heat-dispelling steel alloy now allow combat robots and those
+      with prosthetic limbs to remove powered light bulbs without fear of burning
+      their hands!
+  novaepee:
+  - imageadd: Port embryo sprite from CM
+2023-01-02:
+  Lumipharon:
+  - bugfix: fixes MOOC for real
+  Pariah919:
+  - balance: harness and unarmored leather jackets have 6 light range.
+  - rscadd: Underbarreled flashlight attachment.
+  Waselon:
+  - rscadd: bioprinter can print biotic limbs, biotic limbs can be attached via surgery
+2023-01-03:
+  Lumipharon:
+  - qol: Warlock action buttons should reliably update immediately on state change
+  - bugfix: SL's no longer lose leadership skill from the trauma of demotion
+  Naaanii:
+  - bugfix: Mech can't be plasmacut
+  SuperSlayer0:
+  - qol: Adds descriptions for buttons used by xeno abilities
+  collinlunn:
+  - qol: The Automated Closet now auto-equips certain items when vended.
+2023-01-04:
+  Blundir:
+  - rscadd: tons of deny and vend icon states for vendors
+  - bugfix: fixed some incorrect vendor sprites and typos
+  - imageadd: a lot of retouched vendor sprites and its states
+  QualityVan:
+  - bugfix: Dragging equipped storage into an occupied hand won't leave the storage
+      stuck unavailable
+  - balance: Cryo bone juice takes about ten seconds to heal a fracture, up from two
+  Three333Digit:
+  - bugfix: long range solder and cable
+  Waselon:
+  - balance: damage_mult applies to sunder
+  lbnesquik:
+  - qol: Created the possibility to link 2 engineer teleporters
+  - qol: Removed 'The the' issues on engineer teleporters
+  - qol: Made examining engineer teleporters with no cell tell you that fact
+  - qol: 'Engineer teleporters now have unique #123 names.'
+  - bugfix: Made engineer teleporters properly unlink when one is destroyed
+  novaepee, Shinji Nomura:
+  - imageadd: 'New Title Painting: MP is Depressed'
+  psykzz:
+  - code_imp: removed an extraneous signal
+  - refactor: hide xeno wounds when they have nothing to show
+2023-01-05:
+  Naaanii:
+  - rscadd: Xenos now stop drag channel when taking damage.
+  - rscadd: Xenos now stop dragging objects when taking damage.
+  Waselon:
+  - rscadd: added new striped fatigues
+  iLikeMemes:
+  - spellcheck: Fixed a typo in hivemind's change form ability description
+  - code_imp: Cleaned up some secrete resin code related to hivelord and hivemind
+  - refactor: Refactored secrete resin code
+  novaepee:
+  - rscdel: Remove suicide vest in Magmoor's mosque
+  - imageadd: Add vending animation to marinemed and lasgun charger
+2023-01-06:
+  Lumipharon:
+  - bugfix: fixed warlock lance not hitting targetted objects
+2023-01-07:
+  Blundir:
+  - rscadd: vending icon states for many vendors
+  - bugfix: fixed icon_deny and icon_vend not being used for some vendor with existing
+      sprites
+  carlarctg:
+  - rscadd: You now spin while stop drop rolling.
+  novaepee:
+  - rscadd: POS' medbay got remodeled to use more of the empty space, direct traffic,
+      and expanded!
+  - rscadd: PoS' Boxing ring is near Alamo now.
+  - rscadd: Some addition in PoS prep in light of medbay remodeling.
+2023-01-08:
+  Losenis:
+  - balance: Combat injectors now have tricordrazine in replacement of dylovene.
+  Lumipharon:
+  - balance: eshields no longer have -5 bullet armour
+  - balance: 'HvH: eshields added as default modules for roles other than engie and
+      medic, where another module is not present'
+  - balance: Sticky grenades detonate after four seconds instead of one second, when
+      fired from a grenade launcher
+  - balance: Repairs with a welder will now chain repair, fumble is only done once
+      per chain
+  - refactor: refactored welding repair code
+  - refactor: refactored plasteel tool interactions
+  - balance: Reduced Ravager vampirism healing by 50%.
+  - bugfix: fixed Ravager vampirism healing more than it should
+  - balance: Reduced sentinel grenade radius and duration by 1 tile and 1 second respectively
+  - balance: 'HvH: You have 10 seconds of spawn protection when deploying groundside'
+  Pariah919:
+  - balance: AMR is 775 points rather than 650 now.
+  RipGrayson:
+  - imageadd: Adjusted the cave walls on Big Red to be slightly less blocky
+  - bugfix: Corrects some improper hydro trays in Big Red marshals
+  Waselon:
+  - bugfix: mech weapons dont detach from taking damage. fixed a few related runtime
+      errors.
+  novaepee:
+  - bugfix: Pizza profit margin has been fixed for RO Papa John to feed marines more
+      pizza
+2023-01-09:
+  Jalopkomit18:
+  - balance: SL able to use medscanner without fumbling
+  Losenis:
+  - rscadd: Boot camp apologizes for never training marines in what they're expected
+      to know, and have sent a manual or two to be dispensed in their automated vendor
+      as they gear up.
+  RipGrayson:
+  - bugfix: Fixed a bug where a hijack on the PoS could breach into space
+  - code_imp: Reorganized decals
+2023-01-11:
+  Blundir:
+  - imageadd: new hypospray sprites
+  - code_imp: removed some completely redundant syringe code and sprites
+  - code_imp: changed hypospray code to fill the needs of the new sprites
+  - bugfix: fixes incorrect morgue sprite when something is inside of it
+  - bugfix: fixed db holster using error placeholder sprite in some situations
+  'Code: Lumi, Sprites: Ocelot & Lumi':
+  - rscadd: Added folding stocks for the MP-19, SH_35 and Skorpion
+  - rscadd: BR-64 comes with a custom UGL. No actual balance change
+  - balance: MP-19 now has fuller auto instead of burst fire, improving the performance
+      of a single gun but nerfing akimbo
+  - bugfix: fixed a couple of minor gun bugs
+  - imageadd: Resprited a variety of guns and attachments
+  - imagedel: deleted a bunch of unused old icons
+  'Code: Tivi & Lumi Sprites: Ghost':
+  - rscadd: 'reworked king: removed grav crush, added 4 new abilities and made it
+      available through evo instead of blessings'
+  - bugfix: Godmode prevents being hugged, stung, or breathing in smoke
+  Lumipharon:
+  - rscadd: Primo spitter now leaves acid pools on hit with autospit, and has acid
+      blood
+  - balance: Reduced primo spitter damage falloff so it's less garbage
+  - bugfix: acid pools from projectiles will no longer bypass barricades or other
+      solid objects
+  - bugfix: acid blood ignoring acid armour and splatter chance not working
+  QualityVan:
+  - bugfix: Vended reagent bottles can be taken back out of the chem smartfridge
+  SuperSlayer0:
+  - qol: Returning to your corpse while being in larva queue will require a confirmation,
+      so you wouldn't accidentally loose your place.
+  Waselon:
+  - balance: mech pilot cant enter the mech while wearing jetpack, and will drop items
+      in hands on entering the mech.
+  collinlunn:
+  - qol: Vendors will try to insert vended items into the player's currently opened
+      storage. Does not affect Automated Closet.
+  novaepee:
+  - imageadd: new valk sprite overlay for xenonauten
+  - rscadd: more soul to POS medbay break room.
+  - bugfix: Allow POS chemists to reach to fridge.
+  - rscdel: Remove funny dropship landing on POS medbay that allow xenomorphs to fling
+      marines to space.
+  - bugfix: Add back the crew monitoring computer back in PoS
+  - bugfix: Shrike req points 50->500
+  - balance: Shrike req points 50->500
+2023-01-12:
+  Lewdcifer:
+  - code_imp: Bump attacks will now respect attack speed/delay if applicable.
+2023-01-14:
+  Blundir:
+  - rscadd: added synth hud for dead and dnr/no client/no ghost situations
+  - bugfix: fixed synth having no damage overlay icon
+  - bugfix: fixed warlock having no icon in some interfaces
+  Lewdcifer:
+  - rscdel: Removed Optical Imager Goggles from the code and the game.
+  - imageadd: Added a visual effect to the Ravager's Ravage ability.
+  Lumipharon:
+  - bugfix: fixed loadout vendors not vending weapons with certain default attachments
+  - code_imp: Some minor ammo code cleanup
+  - balance: Standard flechette now has consistant AP and falloff between the main
+      and addition flechette projectiles
+  - balance: Masterkey no longer doubles projectile damage falloff
+  Tupina:
+  - imageadd: New minimap icons.
+  novaepee:
+  - imageadd: boiler gibbing with its own sprites
+  tyeagg:
+  - imageadd: new bullet sprites
+2023-01-15:
+  Lewdcifer:
+  - balance: Laser Pistol wielded slowdown reduced from 0.75 to 0.
+  - bugfix: CAS is no longer usable before shutters open, or before Tadpole launches.
+  Three333Digit:
+  - rscadd: Combat robots can speak machine
+  novaepee:
+  - rscadd: ADD BOXING RINGS TO ALL EORD ARENA
+2023-01-16:
+  Lewdcifer:
+  - rscadd: Flare guns can now be tactically reloaded with a flare pouch by right
+      clicking it.
+  - balance: Flare packs have had their inventory size reduced.
+  - balance: Flares have had their inventory size reduced.
+  - balance: Flare packs can now hold a maximum of 28 items.
+  - balance: Flare pouches can now hold a maximum of 28 items.
+  - balance: Combat Floodlights are no longer acidable, but can now be damaged by
+      slashes.
+  - balance: Combat Floodlights can now be repaired using welders. Examine the Floodlight
+      to see its remaining integrity.
+  - balance: Combat Floodlights have had their cost in requisitions reduced from 100
+      to 30.
+  - imageadd: Replaced the webbing vest sprites. They are now designed to mesh better
+      with other gear. Made by a Ghost.
+  - bugfix: Removed a stray admin message, left there by Sentinel debugging.
+  Lumipharon:
+  - balance: Barrel chargers reduce projectile damage falloff slightly
+  RipGrayson:
+  - rscadd: Added Delta station from TG
+  - code_imp: Ported TG's random spawner system
+  Zar000:
+  - imageadd: added roooouny
+  - admin: ya can rounify all xenos with 1 simple click in Fun tab
+2023-01-17:
+  'Code: Lumi Sprites: Crow & Saro':
+  - rscadd: 'HvH: Added a blink drive and e-sword to the SOM arsenal'
+  - refactor: Cleaned up some esword code
+2023-01-18:
+  Lewdcifer:
+  - balance: All shoes now have the same armor unless specified otherwise.
+  Lumipharon:
+  - bugfix: 'Sensor Capture: Fixed an issue where the game could end unexpectedly'
+  Pariah919:
+  - balance: Mech Heavy Cannon and sniper no longer have sunder.
+  novaepee:
+  - rscadd: PFC Jim Pizza is now in busness replacing MRE pizza that reqtorio makes
+  - code_imp: replace MRE pizza for the frantise that is PFC Jim Pizza
+  novaepee, Al-1ce:
+  - spellcheck: 2023 tips update
+2023-01-19:
+  GrayRachnid:
+  - bugfix: fixed mecha tactical smoke, now properly launches cloaking smoke.
+  Lewdcifer:
+  - rscadd: Added the ornamented cap.
+  Lumipharon:
+  - balance: Increased mech repair and fumble time to 4 seconds
+  - bugfix: fixed mortar offsets
+  - bugfix: fixed some gun light bugs
+  - balance: Multi shot ammo such as buckshot or airburst rounds now properly target
+      whatever you're clicking
+  novaepee, jackie:
+  - imageadd: New mob and object sprite for vali weapons
+2023-01-20:
+  Naaanii:
+  - rscadd: Added stuff to valhalla.
+  Tupina:
+  - imageadd: New and updated AmmoHUD sprites
+  - imagedel: Unused ammoHUD sprites
+  chizzy376:
+  - bugfix: fixed reqtorio pamphlet's razor recipe
+  novaepee:
+  - bugfix: space area in starboard maint
+  - bugfix: missing wire in starboard maint
+  - bugfix: remove black table next to alamo
+  tyeagg:
+  - rscdel: Removed old cm gun actions
+2023-01-21:
+  GrayRachnid:
+  - balance: The CSE should not be having Captain/FC level leadership
+  Lewdcifer:
+  - rscadd: Introducing the Style line of equipment, designed to prioritize style
+      without compromising gameplay.
+  - rscadd: Includes modular armors that accept existing storage and armor modules,
+      available under their own category in standard armor vendors.
+  - rscadd: 'Three new armor modules have been added: the Equalizer modules. These
+      only work with the Style line, and will alter their stats to match those of
+      existing armor presets (light, medium, heavy).'
+  - rscadd: All options have existing variants, accessible by using green facepaint
+      on them.
+  - rscadd: A new armor addition to the game, the Duster, is part of this line of
+      equipment.
+  - refactor: The reinforced leather jacket and its webbing variant have been turned
+      into a single item and merged into the Style line. Its webbing variant can be
+      accessed by using green facepaint.
+  Lumipharon:
+  - rscadd: Added BR-64 loadouts to HvH
+  - balance: 'HvH: All loadouts now have advanced combat injectors instead of combat
+      injectors'
+  - balance: 'HvH: Buffed the V-41 damage and added slowdown on hit'
+  chizzy376:
+  - bugfix: No more violins from Reqtorio AMR incendiary rounds
+  novaepee:
+  - bugfix: reverse grip in vali sword on right hand
+2023-01-22:
+  David-Stormwell:
+  - rscadd: 'A Marine full-piece suit has been added to the dress tab of the clothing
+      vendor! Sprites courtesy of _a Ghost_
+
+      \:cl:'
+2023-01-23:
+  Lumipharon:
+  - imageadd: added some bald hairstyles
+  - bugfix: fixed a timer bug with sensor towers.
+  - bugfix: eswords no longer block almost all incoming damage
+  - bugfix: fixed a bug with King's summon
+  - bugfix: fixed a minor MG-42 sprite issue
+  RipGrayson:
+  - bugfix: Removed some misplaced hull windows on Big Red.
+  - bugfix: Fixed an oversight with podding on Chigusa.
+  chizzy376:
+  - bugfix: Creating surt modules through reqtorio should no longer disappoint you
+      with 10 violins
+2023-01-24:
+  Lumipharon:
+  - balance: Added some more loadouts to SOM ERTs
+  - bugfix: Fixed a bug with mimir traits
+  - balance: Melee stuns now respect armour when calculating probability
+  - bugfix: fixed random map spawners
+  Pariah919:
+  - rscadd: Added new AGLS mounted grenade launcher.
+  novaepee:
+  - rscadd: 4 floodlights to all shipside maps
+  - balance: xenomorphs will have a harder time engaging marine fixed positions due
+      to more lights
+2023-01-25:
+  Lumipharon:
+  - bugfix: fixed an exploit with mounted weapons
+  - balance: Beanbag slugs no longer has a comically long stun duration
+  - bugfix: Added god mode checks to debuff status effects, snatch and defile
+2023-01-26:
+  Pariah919:
+  - balance: GPMG has been buffed. It now deals 27.5 damage and .75 sunder on its
+      bullet, from 20 damage and .75 sunder. Its total damage profile is now 27.5
+      damage, 10 penetration (Unchanged) and .75 sunder.
+  - balance: MMG now can attach underbarrel flashlight, and has halved damage falloff
+      to .5 falloff per tile rather than 1.
+2023-01-27:
+  Calyxman:
+  - rscadd: Added 7 new male preburst scream sounds from VA The God Of Clowns
+  - rscadd: Added 3 new male pain scream sounds from VA The God Of Clowns
+  - rscadd: Added 2 new male scream sounds from VA The God Of Clowns
+  - rscadd: Added 1 new male gored gurgle sound from VA The God Of Clowns
+  FosterGrime-Heymynameslouie:
+  - rscadd: infinite crates via op vendor in req
+  - rscdel: removed welding crates for 1 metal sheet on crates from op vendor
+  - qol: made req supply chain easier
+2023-01-29:
+  Lumipharon:
+  - imageadd: Updated some pistol belt sprites
+  Pariah919:
+  - balance: King HP scaling changed from 450->500->600->700 to 575->600->625->650.
+  Tupina:
+  - balance: Reduces mech assault leg health from 500 hp -> 310 hp
+  - balance: Reduces mech vanguard leg health from 700 hp -> 440 hp
+  - balance: Reduces mech recon part health from 200 hp -> 180 hp (900 total including
+      legs)
+  - balance: Reduces mech assault part health from 350 hp -> 260 hp (1350 total including
+      legs)
+  - balance: Reduces mech vanguard part health from 550 hp -> 340 hp (1800 total including
+      legs)
+2023-01-30:
+  Neocloudy:
+  - code_imp: Added new vendor tags and categories for synthetic vendor items.
+  - qol: Items in the synthetic vendor are labelled properly with tags like Cosmetic,
+      Provides Armor, etc
+  QualityVan:
+  - balance: Surgery tool cost reduced by 99% to prevent quick infinite free metal
+      by vending pouches.
+  RipGrayson:
+  - rscadd: Created a lint to guard against icon_state varedits being introduced to
+      our maps.
+  - code_imp: Purged all icon_state varedits from our maps.
+  - bugfix: Fixed an oversight where the escape pod walls were not solid.
+  chizzy376:
+  - bugfix: added a missing "is" to clone vat's error message when removing a beaker
+2023-01-31:
+  Pariah919:
+  - balance: Mech Rocket launcher no longer has heavy explosion, it now has 1 more
+      tile of light explosive range.
+  XSlayer300:
+  - soundadd: Replaced most mech-related sounds with new ones.
+  - sounddel: Removed most of the unused sounds that were from the original mech PR.

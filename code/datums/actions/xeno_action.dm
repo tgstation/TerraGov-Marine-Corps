@@ -1,7 +1,7 @@
 
 /datum/action/xeno_action
+	desc = "This ability can not be found in codex." // If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/plasma_cost = 0
-	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
 	var/last_use
 	var/cooldown_timer
@@ -42,10 +42,10 @@
 
 ///Adds an outline around the ability button
 /datum/action/xeno_action/proc/add_empowered_frame()
-	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/proc/remove_empowered_frame()
-	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner

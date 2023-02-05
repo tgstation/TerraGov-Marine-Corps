@@ -157,15 +157,16 @@
 						to_chat(usr, span_warning("You can't buy things from this category anymore."))
 						return
 
-			var/obj/item/vended_item
+			var/list/vended_items = list()
 
-			if(faction && ispath(idx, /obj/effect/modular_set))
-				vended_item = new idx(loc, faction)
+			if (ispath(idx, /obj/effect/vendor_bundle))
+				var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
+				vended_items += bundle.spawned_gear
+				qdel(bundle)
 			else
-				vended_item = new idx(loc)
+				vended_items += new idx(loc)
 
-			if(istype(vended_item) && usr.put_in_any_hand_if_possible(vended_item, warning = FALSE))
-				vended_item.pickup(usr)
+			playsound(src, "vending", 25, 0)
 
 			if(icon_vend)
 				flick(icon_vend, src)
@@ -176,11 +177,14 @@
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
-					new headset_type(loc, H.assigned_squad, vendor_role)
+					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
 					if(!istype(H.job, /datum/job/terragov/squad/engineer))
-						new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+						vended_items += new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
-						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+
+			for (var/obj/item/vended_item in vended_items)
+				vended_item.on_vend(usr, faction, auto_equip = TRUE)
 
 			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
@@ -192,6 +196,8 @@
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
+	icon_vend = "marineuniform-vend"
+	icon_deny = "marineuniform-deny"
 	vendor_role = /datum/job/terragov/squad/standard
 	use_points = TRUE
 	categories = list(
@@ -404,18 +410,18 @@
 /obj/machinery/marine_selector/clothes/commander/Initialize()
 	. = ..()
 	listed_products = list(
-		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
-		/obj/effect/essentials_set/jaeger_commander = list(CAT_STD, "Jaeger Commander kit ", 0, "white"),
-		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
-		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
-		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
-		/obj/effect/modular_set/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "black"),
-		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
-		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
-		/obj/effect/essentials_set/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
-		/obj/effect/essentials_set/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
+		/obj/effect/vendor_bundle/jaeger_commander = list(CAT_STD, "Jaeger Commander kit ", 0, "white"),
+		/obj/effect/vendor_bundle/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/vendor_bundle/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
+		/obj/effect/vendor_bundle/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
+		/obj/effect/vendor_bundle/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/vendor_bundle/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "black"),
+		/obj/effect/vendor_bundle/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
+		/obj/effect/vendor_bundle/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
+		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -451,11 +457,11 @@
 		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
-		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
 		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
-		/obj/effect/essentials_set/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
+		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
-		/obj/effect/essentials_set/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
+		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Arrowhead Energy Shield System", 0 , "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
@@ -499,6 +505,8 @@
 	name = "NEXUS Automated Medical Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
+	icon_vend = "medic-vend"
+	icon_deny = "medic-deny"
 	vendor_role = /datum/job/terragov/squad/corpsman
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
@@ -518,6 +526,8 @@
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
 	icon_state = "engineer"
+	icon_vend = "engineer-vend"
+	icon_deny = "engineer-deny"
 	vendor_role = /datum/job/terragov/squad/engineer
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
@@ -537,6 +547,8 @@
 	name = "NEXUS Automated Smartgunner Equipment Rack"
 	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
 	icon_state = "smartgunner"
+	icon_vend = "smartgunner-vend"
+	icon_deny = "smartgunner-deny"
 	vendor_role = /datum/job/terragov/squad/smartgunner
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
@@ -556,6 +568,8 @@
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
 	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
 	vendor_role = /datum/job/terragov/squad/leader
 	req_access = list(ACCESS_MARINE_LEADER)
 
@@ -571,29 +585,51 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
+/obj/effect/vendor_bundle
+	///The set of typepaths to spawn
+	var/list/gear_to_spawn
+	///Records the gear objects that have been spawned, so vendors can see what they just vended
+	var/list/spawned_gear
 
-/obj/effect/essentials_set
-	var/list/spawned_gear_list
-
-/obj/effect/essentials_set/Initialize()
+///Spawns the gear from this vendor_bundle. Deletes itself after spawning gear; can be disabled to check what has been spawned (must then delete the bundle yourself)
+/obj/effect/vendor_bundle/Initialize(mapload, autodelete = TRUE)
 	. = ..()
-	for(var/typepath in spawned_gear_list)
-		if(spawned_gear_list[typepath])
-			new typepath(loc, spawned_gear_list[typepath])
-		else
-			new typepath(loc)
-	qdel(src)
+	LAZYINITLIST(gear_to_spawn)
+	for(var/typepath in gear_to_spawn)
+		LAZYADD(spawned_gear, new typepath(loc))
+	if (autodelete)
+		qdel(src)
 
+/obj/effect/vendor_bundle/basic
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/paper/tutorial/medical,
+		/obj/item/paper/tutorial/mechanics,
+	)
 
-/obj/effect/essentials_set/basic
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_jaeger
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+		/obj/item/paper/tutorial/medical,
+		/obj/item/paper/tutorial/mechanics,
+	)
+
+/obj/effect/vendor_bundle/basic_smartgunner
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_jaeger
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_jaeger_smartgunner
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
@@ -601,15 +637,15 @@
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/basic_smartgunner
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_squadleader
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_jaeger_smartgunner
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_jaeger_squadleader
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
@@ -617,31 +653,15 @@
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/basic_squadleader
-	spawned_gear_list = list(
-		/obj/item/clothing/under/marine,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
-	)
-
-/obj/effect/essentials_set/basic_jaeger_squadleader
-	spawned_gear_list = list(
-		/obj/item/clothing/under/marine/jaeger,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
-	)
-
-/obj/effect/essentials_set/basic_medic
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_medic
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/corpsman,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_jaeger_medic
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_jaeger_medic
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
@@ -649,15 +669,15 @@
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/basic_engineer
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_engineer
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/engineer,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_jaeger_engineer
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/basic_jaeger_engineer
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
@@ -665,8 +685,8 @@
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/medic
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/medic
+	gear_to_spawn = list(
 		/obj/item/bodybag/cryobag,
 		/obj/item/defibrillator,
 		/obj/item/healthanalyzer,
@@ -679,8 +699,8 @@
 		/obj/item/clothing/glasses/hud/health,
 	)
 
-/obj/effect/essentials_set/engi
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/engi
+	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
 		/obj/item/clothing/gloves/marine/insulated,
@@ -690,8 +710,8 @@
 		/obj/item/tool/surgery/solderingtool,
 	)
 
-/obj/effect/essentials_set/leader
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/leader
+	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/beacon/supply_beacon,
@@ -702,8 +722,8 @@
 		/obj/item/clothing/glasses/hud/health,
 	)
 
-/obj/effect/essentials_set/commander
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/commander
+	gear_to_spawn = list(
 		/obj/item/beacon/supply_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
@@ -712,8 +732,8 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/jaeger_commander
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/jaeger_commander
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
 		/obj/item/beacon/supply_beacon,
@@ -725,8 +745,8 @@
 		/obj/item/facepaint/green,
 	)
 
-/obj/effect/essentials_set/synth
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/synth
+	gear_to_spawn = list(
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/tool/weldingtool/hugetank,
@@ -742,10 +762,10 @@
 		/obj/item/tool/surgery/solderingtool,
 	)
 
-/obj/effect/essentials_set/white_dress
+/obj/effect/vendor_bundle/white_dress
 	name = "Full set of TGMC white dress uniform"
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/under/whites,
 		/obj/item/clothing/suit/white_dress_jacket,
 		/obj/item/clothing/head/white_dress,
@@ -753,10 +773,10 @@
 		/obj/item/clothing/gloves/white,
 	)
 
-/obj/effect/essentials_set/service_uniform
+/obj/effect/vendor_bundle/service_uniform
 	name = "Full set of TGMC service uniform"
 	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/under/service,
 		/obj/item/clothing/head/garrisoncap,
 		/obj/item/clothing/head/servicecap,
@@ -764,71 +784,51 @@
 	)
 
 
-/obj/effect/essentials_set/xenonauten_light
+/obj/effect/vendor_bundle/xenonauten_light
 	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
-	spawned_gear_list = list(
-		/obj/item/clothing/head/modular/marine/m10x,
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
-/obj/effect/essentials_set/xenonauten_medium
+/obj/effect/vendor_bundle/xenonauten_medium
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
-	spawned_gear_list = list(
-		/obj/item/clothing/head/modular/marine/m10x,
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
-/obj/effect/essentials_set/xenonauten_heavy
+/obj/effect/vendor_bundle/xenonauten_heavy
 	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and helmet."
-	spawned_gear_list = list(
-		/obj/item/clothing/head/modular/marine/m10x,
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 
-/obj/effect/essentials_set/xenonauten_light/leader
+/obj/effect/vendor_bundle/xenonauten_light/leader
 	desc = "A set of light Xenonauten pattern armor, including an armor suit and a fancier helmet."
-	spawned_gear_list = list(
-		/obj/item/clothing/head/modular/marine/m10x/leader,
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
-/obj/effect/essentials_set/xenonauten_medium/leader
+/obj/effect/vendor_bundle/xenonauten_medium/leader
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and a fancier helmet."
-	spawned_gear_list = list(
-		/obj/item/clothing/head/modular/marine/m10x/leader,
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
-/obj/effect/essentials_set/xenonauten_heavy/leader
+/obj/effect/vendor_bundle/xenonauten_heavy/leader
 	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and a fancier helmet."
-	spawned_gear_list = list(
-		/obj/item/clothing/head/modular/marine/m10x/leader,
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 
-/obj/effect/modular_set
-	///List of all gear to spawn
-	var/list/spawned_gear_list = list()
-
-/obj/effect/modular_set/Initialize(mapload, faction)
-	. = ..()
-	for(var/typepath in spawned_gear_list)
-		var/item = new typepath(loc)
-		if(!faction)
-			continue
-		if(ismodulararmorarmorpiece(item))
-			var/obj/item/armor_module/armor/armorpiece = item
-			armorpiece.limit_colorable_colors(faction)
-			continue
-		if(ismodularhelmet(item))
-			var/obj/item/clothing/head/modular/helmet = item
-			helmet.limit_colorable_colors(faction)
-	qdel(src)
-
-
-/obj/effect/modular_set/infantry
+/obj/effect/vendor_bundle/infantry
 	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine,
 		/obj/item/clothing/head/modular/marine/infantry,
 		/obj/item/armor_module/armor/chest/marine,
@@ -836,85 +836,85 @@
 		/obj/item/armor_module/armor/legs/marine,
 	)
 
-/obj/effect/modular_set/eva
+/obj/effect/vendor_bundle/eva
 	desc = "A set of medium EVA pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/eva,
 		/obj/item/armor_module/armor/chest/marine/eva,
 		/obj/item/armor_module/armor/arms/marine/eva,
 		/obj/item/armor_module/armor/legs/marine/eva,
 	)
 
-/obj/effect/modular_set/skirmisher
+/obj/effect/vendor_bundle/skirmisher
 	desc = "A set of light Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/skirmisher,
 		/obj/item/armor_module/armor/chest/marine/skirmisher,
 		/obj/item/armor_module/armor/arms/marine/skirmisher,
 		/obj/item/armor_module/armor/legs/marine/skirmisher,
 	)
 
-/obj/effect/modular_set/scout
+/obj/effect/vendor_bundle/scout
 	desc = "A set of light Scout pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/scout,
 		/obj/item/armor_module/armor/chest/marine/skirmisher/scout,
 		/obj/item/armor_module/armor/arms/marine/scout,
 		/obj/item/armor_module/armor/legs/marine/scout,
 	)
 
-/obj/effect/modular_set/assault
+/obj/effect/vendor_bundle/assault
 	desc = "A set of heavy Assault pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/assault,
 		/obj/item/armor_module/armor/chest/marine/assault,
 		/obj/item/armor_module/armor/arms/marine/assault,
 		/obj/item/armor_module/armor/legs/marine/assault,
 	)
 
-/obj/effect/modular_set/eod
+/obj/effect/vendor_bundle/eod
 	desc = "A set of heavy EOD pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/eod,
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 		/obj/item/armor_module/armor/legs/marine/eod,
 	)
 
-/obj/effect/modular_set/helljumper
+/obj/effect/vendor_bundle/helljumper
 	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/clothing/head/modular/marine/helljumper,
 		/obj/item/armor_module/armor/chest/marine/helljumper,
 		/obj/item/armor_module/armor/arms/marine/helljumper,
 		/obj/item/armor_module/armor/legs/marine/helljumper,
 	)
 
-/obj/effect/essentials_set/mimir
+/obj/effect/vendor_bundle/mimir
 	desc = "A set of anti-gas gear setup to protect one from gas threats."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/clothing/mask/gas/tactical,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 	)
 
-/obj/effect/essentials_set/vali
+/obj/effect/vendor_bundle/vali
 	desc = "A set of specialized gear for close-quarters combat and enhanced chemical effectiveness."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/storage/holster/blade/machete/full_harvester,
 		/obj/item/paper/chemsystem,
 	)
 
-/obj/effect/essentials_set/tyr
+/obj/effect/vendor_bundle/tyr
 	desc = "A set of specialized gear for improved close-quarters combat longevitiy."
-	spawned_gear_list = list(
+	gear_to_spawn = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 	)
 
-/obj/effect/essentials_set/robot
-	spawned_gear_list = list(
+/obj/effect/vendor_bundle/robot
+	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/robotic,
 		/obj/item/tool/weldingtool,
 		/obj/item/stack/cable_coil/twentyfive,

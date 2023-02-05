@@ -4,7 +4,7 @@
 /datum/action/xeno_action/toggle_savage
 	name = "Toggle Savage"
 	action_icon_state = "savage_on"
-	mechanics_text = "Toggle on to add a vicious attack to your pounce."
+	desc = "Toggle on to add a vicious attack to your pounce."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
 	)
@@ -70,7 +70,7 @@
 /datum/action/xeno_action/activable/pounce
 	name = "Pounce"
 	action_icon_state = "pounce"
-	mechanics_text = "Leap at your target, tackling and disarming them."
+	desc = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
 	plasma_cost = 10
 	keybinding_signals = list(
@@ -208,7 +208,7 @@
 /datum/action/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion"
-	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
+	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
 	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
@@ -403,7 +403,7 @@
 /datum/action/xeno_action/activable/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
-	mechanics_text = "Take an item equipped by your target in your mouth, and carry it away."
+	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	plasma_cost = 75
 	cooldown_timer = 60 SECONDS
 	keybinding_signals = list(
@@ -443,10 +443,14 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
+	if(target.status_flags & GODMODE)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot snatch")
+		return FALSE
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	var/mob/living/carbon/xenomorph/X = A
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A

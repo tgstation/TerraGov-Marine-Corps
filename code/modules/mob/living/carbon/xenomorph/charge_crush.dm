@@ -15,7 +15,7 @@
 /datum/action/xeno_action/ready_charge
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
-	mechanics_text = "Toggles the movement-based charge on and off."
+	desc = "Toggles the movement-based charge on and off."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE,
 	)

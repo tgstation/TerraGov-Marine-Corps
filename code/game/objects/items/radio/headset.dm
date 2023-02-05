@@ -149,6 +149,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
 	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
 
+/obj/item/radio/headset/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 /obj/item/radio/headset/survivor
 	freqlock = TRUE

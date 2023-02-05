@@ -137,7 +137,7 @@
 	if(secondary_unarmed_type)
 		secondary_unarmed = new secondary_unarmed_type()
 	if(species_flags & GREYSCALE_BLOOD)
-		brute_damage_icon_state = "greyscale"
+		brute_damage_icon_state = "grayscale"
 
 /datum/species/proc/create_organs(mob/living/carbon/human/organless_human) //Handles creation of mob organs and limbs.
 
@@ -349,7 +349,7 @@
 	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
-	slowdown = 1.05
+	slowdown = 0.05
 	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
@@ -368,7 +368,7 @@
 	name_plural = "Early Vat-Grown Humans"
 	brute_mod = 1.3
 	burn_mod = 1.3
-	slowdown = 1.3
+	slowdown = 0.3
 
 	var/timerid
 
@@ -398,6 +398,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
+	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
@@ -461,6 +462,29 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
 
+/datum/species/robot/alpharii
+	name = "Hammerhead Combat Robot"
+	name_plural = "Hammerhead Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_alpharii.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/charlit
+	name = "Chilvaris Combat Robot"
+	name_plural = "Chilvaris Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_charlit.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/deltad
+	name = "Ratcher Combat Robot"
+	name_plural = "Ratcher Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_deltad.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/bravada
+	name = "Sterling Combat Robot"
+	name_plural = "Sterling Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_bravada.dmi'
+	joinable_roundstart = FALSE
 
 /datum/species/synthetic
 	name = "Synthetic"

@@ -12,20 +12,21 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 575
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, FIRE = 100, ACID = 45)
@@ -43,7 +44,9 @@
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
-		/datum/action/xeno_action/activable/gravity_crush,
+		/datum/action/xeno_action/petrify,
+		/datum/action/xeno_action/activable/off_guard,
+		/datum/action/xeno_action/activable/shattering_roar,
 		/datum/action/xeno_action/psychic_summon,
 		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/pheromones/emit_recovery,
@@ -52,6 +55,7 @@
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/blessing_menu,
 	)
 
 
@@ -63,15 +67,17 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
+	melee_damage = 23
+
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 600
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -86,17 +92,17 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 1100
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 625
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -116,14 +122,14 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1200
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 650
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -131,8 +137,52 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
-	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
+	// *** Pheromones *** //
+	aura_strength = 6
+
+/datum/xeno_caste/king/primordial
+	caste_desc = "An avatar of death. Running won't help you now."
+	primordial_message = "Death cannot create, but you definitely know how to destroy."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 30
+
+	// *** Speed *** //
+	speed = -0.1
+
+	// *** Plasma *** //
+	plasma_max = 1200
+	plasma_gain = 70
+
+	// *** Health *** //
+	max_health = 650
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
 	// *** Pheromones *** //
 	aura_strength = 6
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/activable/nightfall,
+		/datum/action/xeno_action/petrify,
+		/datum/action/xeno_action/activable/off_guard,
+		/datum/action/xeno_action/activable/shattering_roar,
+		/datum/action/xeno_action/zero_form_beam,
+		/datum/action/xeno_action/psychic_summon,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/blessing_menu,
+	)

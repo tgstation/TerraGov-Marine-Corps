@@ -261,3 +261,41 @@
 	anchored = TRUE
 	coverage = 15
 	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/tankholder
+	name = "tank holder"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "holder"
+	desc = "A metallic frame that can hold tanks and extinguishers."
+	density = TRUE
+	anchored = TRUE
+	coverage = 15
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/tankholder/oxygen
+	icon_state = "holder_oxygen"
+
+/obj/structure/tankholder/oxygentwo
+	icon_state = "holder_oxygen_f"
+
+/obj/structure/tankholder/oxygenthree
+	icon_state = "holder_oxygen_fr"
+
+/obj/structure/tankholder/generic
+	icon_state = "holder_generic"
+
+/obj/structure/tankholder/extinguisher
+	icon_state = "holder_extinguisher"
+
+/obj/structure/tankholder/foamextinguisher
+	icon_state = "holder_foam_extinguisher"
+
+/obj/structure/tankholder/anesthetic
+	icon_state = "holder_anesthetic"
+
+/obj/structure/tankholder/emergencyoxygen
+	icon_state = "holder_anesthetic"
+
+/obj/structure/tankholder/emergencyoxygentwo
+	icon_state = "holder_emergency_engi"
+

@@ -77,7 +77,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/outside/space_port)
 "bG" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
@@ -627,7 +627,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "qm" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -828,7 +828,7 @@
 /area/bigredv2/outside/marshal_office)
 "wc" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "wl" = (
@@ -1313,7 +1313,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "IB" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1436,7 +1436,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Ms" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
