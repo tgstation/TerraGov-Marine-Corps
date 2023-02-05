@@ -94,12 +94,6 @@ type ByondData = {
   can_evolve: boolean;
 };
 
-// type EvolveTo = {
-//   name: string;
-//   abilities: XenoAbility[];
-
-// }
-
 type EvolveCaste = {
   type_path: string;
   name: string;
