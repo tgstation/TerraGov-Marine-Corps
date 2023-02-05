@@ -18,13 +18,18 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		/mob/living/carbon/xenomorph/proc/toggle_playable_facehugger,
 	)
+	///Facehuggers overlay
+	var/mutable_appearance/hugger_overlays_icon
 
 // ***************************************
 // *********** Life overrides
 // ***************************************
+/mob/living/carbon/xenomorph/carrier/Initialize(mapload)
+	. = ..()
+	hugger_overlays_icon = mutable_appearance('icons/Xeno/2x2_Xenos.dmi',"empty")
+
 /mob/living/carbon/xenomorph/carrier/Stat()
 	. = ..()
-
 	if(statpanel("Game"))
 		stat("Stored Huggers:", "[huggers] / [xeno_caste.huggers_max]")
 
@@ -66,3 +71,31 @@
 	F.ghostize(FALSE)
 	F.death(deathmessage = "climb on the carrier", silent = TRUE)
 	qdel(F)
+
+/mob/living/carbon/xenomorph/carrier/update_icons()
+	. = ..()
+
+	if(!hugger_overlays_icon)
+		return
+
+	overlays -= hugger_overlays_icon
+	hugger_overlays_icon.overlays.Cut()
+
+	if(!huggers)
+		return
+
+	///Dispayed number of huggers
+	var/displayed = round(( huggers / xeno_caste.huggers_max ) * 3.999) + 1
+
+	for(var/i = 1; i <= displayed; i++)
+		if(stat == DEAD)
+			hugger_overlays_icon.overlays += mutable_appearance(icon, "clinger_[i] Knocked Down")
+		else if(lying_angle)
+			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
+				hugger_overlays_icon.overlays += mutable_appearance(icon, "clinger_[i] Sleeping")
+			else
+				hugger_overlays_icon.overlays +=mutable_appearance(icon, "clinger_[i] Knocked Down")
+		else
+			hugger_overlays_icon.overlays +=mutable_appearance(icon, "clinger_[i]")
+
+	overlays += hugger_overlays_icon
