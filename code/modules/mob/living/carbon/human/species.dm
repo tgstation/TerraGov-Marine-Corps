@@ -320,7 +320,7 @@
 	name = "Human"
 	name_plural = "Humans"
 	unarmed_type = /datum/unarmed_attack/punch
-	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
+	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR|DETACHABLE_HEAD
 	count_human = TRUE
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")

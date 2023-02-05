@@ -3,7 +3,6 @@
 /datum/surgery_step/head
 	priority = 1
 	can_infect = 0
-	allowed_species = list("Synthetic", "Early Synthetic", "Combat Robot")
 	var/reattach_step
 
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
@@ -151,7 +150,7 @@
 
 
 /datum/surgery_step/head/attach
-	allowed_tools = list(/obj/item/limb/head/synth = 100, /obj/item/limb/head/robotic = 100)
+	allowed_tools = list(/obj/item/limb/head/synth = 100, /obj/item/limb/head/robotic = 100, /obj/item/limb/head = 100)
 	can_infect = 0
 	min_duration = 60
 	max_duration = 80
@@ -178,7 +177,10 @@
 
 	var/obj/item/limb/head/B = tool
 
-	affected.robotize()
+	if(istype(tool, /obj/item/limb/head/synth || /obj/item/limb/head/robotic))
+		affected.robotize()
+	else
+		affected.biotize()
 	target.updatehealth()
 	target.update_body()
 	target.UpdateDamageIcon()

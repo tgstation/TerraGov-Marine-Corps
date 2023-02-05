@@ -70,7 +70,7 @@
 	resistance_flags = UNACIDABLE
 	var/mob/living/brain/brainmob
 	var/brain_item_type = /obj/item/organ/brain
-	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)
+	var/braindeath_on_decap = 0 //whether the brainmob dies when head is decapitated (used by synthetics)
 
 /obj/item/limb/head/Initialize(mapload, mob/living/carbon/human/H)
 	. = ..()
