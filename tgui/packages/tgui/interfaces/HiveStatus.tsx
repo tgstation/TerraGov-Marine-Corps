@@ -80,9 +80,9 @@ type PrimoUpgrades = {
 };
 
 type DeathTimer = {
-  'caste': string;
-  'time': number;
-  'max_time': number;
+  caste: string;
+  time_left: number;
+  end_time: number;
 };
 
 export const HiveStatus = (_props, context) => {
@@ -237,7 +237,7 @@ const GeneralInfo = (_props, context) => {
         <Flex.Item>
           <EvolutionBar />
         </Flex.Item>
-        {DeadXenoTimerCountdowns(hive_death_timers)}
+        <DeadXenoTimerCountdowns hive_death_timers={hive_death_timers} />
         <Flex.Item>
           <XenoCountdownBar
             time={hive_silo_collapse}
@@ -259,20 +259,22 @@ const GeneralInfo = (_props, context) => {
   );
 };
 
-const DeadXenoTimerCountdowns = (hive_death_timers: DeathTimer[]) => {
-  if (Object.keys(hive_death_timers).length === 0) {
+const DeadXenoTimerCountdowns = (props: {
+  hive_death_timers: DeathTimer[];
+}) => {
+  const hive_death_timers = props.hive_death_timers;
+  if (!hive_death_timers.length) {
     return null;
   }
   return (
     <Flex.Item>
-      {Object.keys(hive_death_timers).map((key, i) => {
-        const timer = hive_death_timers[key];
+      {hive_death_timers.map((timer, i) => {
         return (
           <XenoCountdownBar
             key={i}
-            time={timer.time}
-            max={timer.max_time}
-            tooltip={`Time until ${timer.caste} can evolve.`}
+            time={timer.time_left}
+            max={timer.end_time}
+            tooltip={`Time until a ${timer.caste} can evolve.`}
             left_side={`Next ${timer.caste}:`}
           />
         );

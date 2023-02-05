@@ -4,15 +4,8 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
-	///Current king, there can only be one
-	var/mob/living/carbon/xenomorph/king/living_xeno_king
 	///Timer for caste evolution after the last one died
 	var/list/caste_death_timers = list()
-	///Timer for king evolution after the last one dying
-	// /// minimum amount of xenos needed to support a queen
-	// var/xenos_per_queen = 8
-	// /// minimum amount of xenos needed to support a king
-	// var/xenos_per_king = 12
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
@@ -91,13 +84,15 @@
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
+	// The key for caste_death_timer is the mob's type
 	for (var/mob in caste_death_timers)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[mob][XENO_UPGRADE_BASETYPE]
-		.["hive_death_timers"] += list(
+		var/timeleft = timeleft(caste_death_timers[caste.caste_type_path])
+		.["hive_death_timers"] += list(list(
 			"caste" = caste.caste_name,
-			"time" = timeleft(caste_death_timers[caste]) MILLISECONDS,
-			"max" = initial(caste.death_evolution_delay) MILLISECONDS,
-		)
+			"time_left" = round(timeleft MILLISECONDS),
+			"end_time" = caste.death_evolution_delay MILLISECONDS,
+		))
 
 	.["hive_primos"] = list()
 	for(var/tier in GLOB.tier_to_primo_upgrade)
