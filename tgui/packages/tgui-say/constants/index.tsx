@@ -7,6 +7,7 @@ export const CHANNELS = [
   'LOOC',
   'XOOC',
   'MOOC',
+  'Admin',
 ] as const;
 
 /** Window sizes in pixels */
