@@ -439,13 +439,6 @@
 		return
 	HS.update_ruler()
 
-/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
-	. = ..()
-
-	if(HS.living_xeno_king)
-		return
-	HS.living_xeno_king = src
-
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
