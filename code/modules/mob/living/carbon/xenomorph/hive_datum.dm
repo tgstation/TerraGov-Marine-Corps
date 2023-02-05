@@ -310,14 +310,6 @@
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	return get_total_xeno_number() + stored_larva
 
-// /datum/hive_status/proc/can_hive_have_a_king()
-// 	return (get_total_xeno_number() < xenos_per_king)
-
-// /datum/hive_status/normal/can_hive_have_a_king()
-// 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-// 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-// 	return ((get_total_xeno_number() + stored_larva) < xenos_per_king)
-
 /datum/hive_status/proc/get_total_tier_zeros()
 	return length(xenos_by_tier[XENO_TIER_ZERO])
 
@@ -579,7 +571,7 @@
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)
 	var/datum/xeno_caste/caste = X?.xeno_caste
-	if(X in xenos_by_typepath[X.caste_base_type] && caste.death_evolution_delay > 0)
+	if(caste.death_evolution_delay <= 0)
 		return
 	if(!caste_death_timers[caste.caste_type_path]) 
 		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
