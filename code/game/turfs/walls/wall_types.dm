@@ -58,6 +58,7 @@
 	return FALSE
 
 /turf/closed/wall/mainship/research/containment/wall
+	icon = "icons/turf/mainshipwalls.dmi"
 	name = "cell wall"
 	walltype = null
 

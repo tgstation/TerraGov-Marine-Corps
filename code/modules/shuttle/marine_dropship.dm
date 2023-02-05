@@ -970,6 +970,28 @@
 /obj/structure/dropship_piece/tadpole/rearright
 	icon_state = "blue_rear_rc"
 
+/obj/structure/dropship_piece/glassone
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass1"
+
+/obj/structure/dropship_piece/glassone/tadpole
+	icon_state = "shuttle_glass1"
+	resistance_flags = NONE
+
+/obj/structure/dropship_piece/glasstwo
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass2"
+
+/obj/structure/dropship_piece/glasstwo/tadpole
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass2"
+	resistance_flags = NONE
+
+/obj/structure/dropship_piece/singlewindow/tadpole
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_single_window"
+	resistance_flags = NONE
+
 /obj/structure/dropship_piece/tadpole/cockpit
 	desc = "The nose part of the tadpole, able to be destroyed."
 	max_integrity = 500
