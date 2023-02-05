@@ -658,14 +658,11 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/toggle_wielded(user, new_value)
-	switch(new_value)
-		if(null)
-			flags_item ^= WIELDED
-		if(FALSE)
-			flags_item &= ~(WIELDED|FULLY_WIELDED)
-		if(TRUE)
-			flags_item |= WIELDED
+/obj/item/weapon/gun/toggle_wielded(user, wielded)
+	if(wielded)
+		flags_item |= WIELDED
+	else
+		flags_item &= ~(WIELDED|FULLY_WIELDED)
 
 //----------------------------------------------------------
 			//							    \\
