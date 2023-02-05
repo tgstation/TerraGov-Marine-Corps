@@ -5,8 +5,11 @@
 	config_tag = "Sensor Capture"
 	wave_timer_length = 2 MINUTES
 	max_game_time = 10 MINUTES
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
+	game_timer_delay = 0
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()
@@ -17,14 +20,10 @@
 	to_chat(world, "<b>The current game mode is - Sensor Capture!</b>")
 	to_chat(world, "<b>The SOM have launched an invasion to this sector. TerraGov and SOM forces fight over the sensor towers around the sector.</b>")
 
-/datum/game_mode/combat_patrol/sensor_capture/setup_blockers()
-	. = ..()
-	addtimer(CALLBACK(src, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time) //game end timer will start ticking down on shutter drop
-
-/datum/game_mode/combat_patrol/sensor_capture/set_game_end()
-	if(timeleft(game_timer) > 0)
-		return
-	max_time_reached = TRUE
+/datum/game_mode/combat_patrol/sensor_capture/game_end_countdown()
+	if(game_timer == SENSOR_CAP_TIMER_PAUSED)
+		return "Timer paused, tower activation in progress"
+	return ..()
 
 //End game checks
 /datum/game_mode/combat_patrol/sensor_capture/check_finished()

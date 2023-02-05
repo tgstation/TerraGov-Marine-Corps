@@ -148,6 +148,31 @@ const ItemLine = (props, context) => {
               Recommended
             </Box>
           )}
+          {prod_color === 'synth-cosmetic' && (
+            <Box inline mr="6px" ml="6px" color="blue">
+              Cosmetic
+            </Box>
+          )}
+          {prod_color === 'synth-armor' && (
+            <Box inline mr="6px" ml="6px" color="red">
+              Provides Armor
+            </Box>
+          )}
+          {prod_color === 'synth-rcmarmor' && (
+            <Box inline mr="6px" ml="6px" color="orange">
+              Recommended - Provides Armor
+            </Box>
+          )}
+          {prod_color === 'synth-rcmarmstorage' && (
+            <Box inline mr="6px" ml="6px" color="green">
+              Recommended - Provides Armor and Storage
+            </Box>
+          )}
+          {prod_color === 'synth-attachable' && (
+            <Box inline mr="6px" ml="6px" color="green">
+              Recommended - Can be attached to flak jacket
+            </Box>
+          )}
           {prod_cost > 0 && (
             <Box inline width="75px" mr="6px" ml="6px">
               {prod_cost} points

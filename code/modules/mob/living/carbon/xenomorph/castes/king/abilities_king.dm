@@ -216,8 +216,8 @@
 
 	finish_charging()
 	playsound(owner, 'sound/voice/xenos_roaring.ogg', 90, sound_range = 30)
-	for(var/mob/living/carbon/human/human_victim AS in GLOB.alive_human_list)
-		if((human_victim.z != owner.z) || (get_dist(human_victim, owner) > 9))
+	for(var/mob/living/carbon/human/human_victim AS in GLOB.humans_by_zlevel["[owner.z]"])
+		if(get_dist(human_victim, owner) > 9)
 			continue
 		shake_camera(human_victim, 2 SECONDS, 1)
 
@@ -229,6 +229,7 @@
 	add_cooldown()
 	succeed_activate()
 
+///Carries out the attack iteratively based on distance from source
 /datum/action/xeno_action/activable/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
 	if(iteration > range)
 		return
@@ -240,6 +241,7 @@
 	iteration++
 	addtimer(CALLBACK(src, .proc/execute_attack, iteration, turfs_to_attack, range, target, source), SHATTERING_ROAR_SPEED)
 
+///Applies attack effects to everything relevant on a given turf
 /datum/action/xeno_action/activable/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
 	new /obj/effect/temp_visual/shattering_roar(turf_victim)
 	for(var/victim in turf_victim)
@@ -491,6 +493,7 @@
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
+	allxenos = X.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
 		sister.forceMove(get_turf(X))

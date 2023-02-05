@@ -9,10 +9,12 @@
 	alert_type = null
 
 /datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
 	if(isnum(set_duration))
 		duration = set_duration
 	return ..()
-
 
 //STUN
 /datum/status_effect/incapacitating/stun
@@ -377,7 +379,7 @@
 	owner.adjustFireLoss(40)
 
 ///irradiated mob
-/datum/status_effect/irradiated
+/datum/status_effect/incapacitating/irradiated
 	id = "irradiated"
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 20
@@ -385,19 +387,17 @@
 	///Some effects only apply to carbons
 	var/mob/living/carbon/carbon_owner
 
-/datum/status_effect/irradiated/on_creation(mob/living/new_owner, set_duration)
-	if(isnum(set_duration))
-		duration = set_duration
+/datum/status_effect/incapacitating/irradiated/on_creation(mob/living/new_owner, set_duration)
 	. = ..()
 	if(.)
 		if(iscarbon(owner))
 			carbon_owner = owner
 
-/datum/status_effect/irradiated/Destroy()
+/datum/status_effect/incapacitating/irradiated/Destroy()
 	carbon_owner = null
 	return ..()
 
-/datum/status_effect/irradiated/tick()
+/datum/status_effect/incapacitating/irradiated/tick()
 	var/mob/living/living_owner = owner
 	//Roulette of bad things
 	if(prob(15))
@@ -433,7 +433,15 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
+/datum/status_effect/stacking/intoxicated/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
 /datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
 	. = ..()
 	debuff_owner = new_owner
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, .proc/call_resist_debuff)
@@ -443,7 +451,7 @@
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
-	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT))
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) >= 65))
 		stack_decay = 2
 
 /datum/status_effect/stacking/intoxicated/on_remove()
@@ -456,7 +464,7 @@
 	. = ..()
 	if(!debuff_owner)
 		return
-	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT)) // In the event that TRAIT_INTOXICATION_RESISTANT is added while the status already exists
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) > 65))
 		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)

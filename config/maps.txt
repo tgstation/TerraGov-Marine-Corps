@@ -48,6 +48,9 @@ endmap
 map whiskey_outpost_v2
 endmap
 
+map oscar_outpost
+endmap
+
 map magmoor_digsite_iv
 	minplayers 20
 endmap
@@ -58,4 +61,8 @@ endmap
 
 map gelida_iv
 	minplayers 50
+endmap
+
+map deltastation
+	minplayers 60
 endmap
