@@ -69,7 +69,7 @@
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	icon_state = "cape_highlight"
 	greyscale_config = /datum/greyscale_config/cape
-	greyscale_colors = "#ff2a2a"
+	greyscale_colors = "#a51c1c"
 	secondary_color = TRUE
 
 /obj/item/armor_module/greyscale/cape_highlight/half
