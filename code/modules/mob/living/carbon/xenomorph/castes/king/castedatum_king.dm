@@ -2,7 +2,6 @@
 	caste_name = "King"
 	display_name = "King"
 	caste_type_path = /mob/living/carbon/xenomorph/king
-	evolve_min_xenos = 12
 	caste_desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 
 	tier = XENO_TIER_FOUR
@@ -25,6 +24,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 	maximum_active_caste = 1
+	evolve_min_xenos = 12
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR

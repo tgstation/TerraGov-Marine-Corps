@@ -2,7 +2,6 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
-	evolve_min_xenos = 9
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	job_type = /datum/job/xenomorph/queen
 
@@ -25,6 +24,7 @@
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
+	evolve_min_xenos = 9
 	maximum_active_caste = 1
 
 	// *** Flags *** //
