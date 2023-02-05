@@ -13,6 +13,11 @@
 			"icon_state": "full_hood_color1",
 			"blend_mode": "overlay",
 			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hood_shadow",
+			"blend_mode": "overlay"
 		}
 	],
 	"cape_highlight": [
@@ -37,6 +42,11 @@
 			"icon_state": "half_hood_color1",
 			"blend_mode": "overlay",
 			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hood_shadow",
+			"blend_mode": "overlay"
 		}
 	],
 	"cape_half_highlight": [
@@ -61,6 +71,11 @@
 			"icon_state": "short_hood_color1",
 			"blend_mode": "overlay",
 			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hood_shadow",
+			"blend_mode": "overlay"
 		}
 	],
 	"cape_short_highlight": [
@@ -85,6 +100,11 @@
 			"icon_state": "scarf_hood_color1",
 			"blend_mode": "overlay",
 			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hood_shadow",
+			"blend_mode": "overlay"
 		}
 	],
 	"scarf_highlight": [
