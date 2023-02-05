@@ -1,4 +1,0 @@
-author: "Dgeen"
-delete-after: True
-changes:
-  - bugfix: "Larva and hunter now crawl into the ventilation faster (as it should have been for like a year and a half)"

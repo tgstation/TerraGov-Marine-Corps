@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "All deployable guns standardised to 50 bomb armour"
-  - bugfix: "Fixed deployable item explosion interactions ignoring bomb armour and rng qdeling"
