@@ -417,9 +417,6 @@
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc
-	action_icon = 'icons/mob/screen_alert.dmi'
-
 /datum/action/suit_autodoc/can_use_action()
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE

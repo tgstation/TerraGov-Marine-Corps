@@ -752,7 +752,6 @@
 		Best cigarettes since 2150.;\
 		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
 		Professionals. Better cigarettes for better people. Yes, better people."
-	vend_delay = 14
 	icon_state = "cigs"
 	icon_vend = "cigs-vend"
 	icon_deny = "cigs-deny"
@@ -982,7 +981,6 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
-	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
@@ -1153,8 +1151,8 @@
 			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
 		),
 		"Helmets" = list(
-			/obj/item/clothing/head/modular/marine/m10x = -1,
-			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
+			/obj/item/clothing/head/modular/m10x = -1,
+			/obj/item/clothing/head/modular/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,
@@ -1258,6 +1256,7 @@
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
+			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
 			/obj/item/armor_module/armor/badge = -1,
 			/obj/item/armor_module/armor/cape = -1,
