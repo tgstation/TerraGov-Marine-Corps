@@ -397,13 +397,13 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
-		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 	canSmoothWith = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
-		SMOOTH_GROUP_ESCAPESHUTTLE
+		SMOOTH_GROUP_ESCAPESHUTTLE,
 	)
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
