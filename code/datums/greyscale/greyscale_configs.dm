@@ -42,11 +42,11 @@
 //jaeger visors
 /datum/greyscale_config/visors
 	icon_file = 'icons/mob/modular/m10.dmi'
-	json_config = 'code/datums/greyscale/json_configs/old_visors.json'
+	json_config = 'code/datums/greyscale/json_configs/visors.json'
 
 /datum/greyscale_config/visors/old
 	icon_file = 'icons/mob/modular/old_jaeger/helmets.dmi'
-	json_config = 'code/datums/greyscale/json_configs/visors.json'
+	json_config = 'code/datums/greyscale/json_configs/old_visors.json'
 
 //Capes and cape higlights
 /datum/greyscale_config/cape
