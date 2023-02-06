@@ -21,12 +21,12 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/toggle_emissive)
 	if(visor_emissive_on)
-		parent.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, src)
+		parent.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, icon_state, greyscale_config, greyscale_colors)
 	update_icon()
 
 /obj/item/armor_module/greyscale/visor/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE)
-	parent.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, src)
+	parent.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, icon_state, greyscale_config, greyscale_colors)
 	update_icon()
 	return ..()
 
@@ -37,9 +37,9 @@
 		return
 	visor_emissive_on = !visor_emissive_on
 	if(visor_emissive_on)
-		parent?.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, src)
+		parent?.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, icon_state, greyscale_config, greyscale_colors)
 	else
-		parent?.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, src)
+		parent?.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, icon_state, greyscale_config, greyscale_colors)
 	to_chat(user, span_notice("You turn [ visor_emissive_on ? "on" : "off" ] \the [src]'s internal lighting."))
 	update_icon()
 	parent.update_icon()
@@ -114,8 +114,8 @@
 /obj/item/armor_module/greyscale/visor/marine/old
 	name = "\improper Jaeger Pattern Infantry visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Infantry class of helmet."
+	greyscale_config = /datum/greyscale_config/visors/old
 	icon_state = "infantry_visor"
-	icon = 'icons/mob/modular/old_jaeger/helmets.dmi'
 
 /obj/item/armor_module/greyscale/visor/marine/old/skirmisher
 	name = "\improper Jaeger Pattern Skirmisher visor"
