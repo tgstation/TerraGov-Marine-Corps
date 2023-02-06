@@ -1,5 +1,0 @@
-author: "Dgeen"
-delete-after: True
-changes:
-  - rscadd: "ported carrier hugger overlay"
-  - imageadd: "added hugger images for carrier"
