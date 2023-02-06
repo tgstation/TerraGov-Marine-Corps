@@ -1,5 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - imageadd: "new action frames, show/hide order option icons, and minimap action icon"
-  - bugfix: "autodoc not showing that its activated, join larva queue not showing that its activated and empowered ability not disappearing"

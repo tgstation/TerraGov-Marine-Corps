@@ -175,7 +175,9 @@
 	action_icon_state = RESIN_WALL
 	desc = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
+	target_flags = XABB_TURF_TARGET
 	plasma_cost = 75
+	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_RESIN,
 	)
@@ -189,11 +191,72 @@
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		)
+	/// Used for the dragging functionality of pre-shuttter building
+	var/dragging = FALSE
+
+
+/// Helper for handling the start of mouse-down and to begin the drag-building
+/datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	if(toggled)
+		dragging = TRUE
+		preshutter_build_resin(get_turf(object))
+
+/// Helper for ending drag-building , activated on mose-up
+/datum/action/xeno_action/activable/secrete_resin/proc/stop_resin_drag()
+	SIGNAL_HANDLER
+	dragging = FALSE
+
+/// Handles removing the dragging functionality from the action all-togheter on round-start (shutter open)
+/datum/action/xeno_action/activable/secrete_resin/proc/end_resin_drag()
+	SIGNAL_HANDLER
+	dragging = FALSE
+	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
+
+/// Extra handling for adding the action for draggin functionality (for instant building)
+/datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
+	..()
+	if(!(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
+		return
+	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, .proc/start_resin_drag)
+	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, .proc/preshutter_resin_drag)
+	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, .proc/stop_resin_drag)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), .proc/end_resin_drag)
+
+/// Extra handling to remove the stuff needed for dragging
+/datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
+	..()
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+		return
+	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
+
+
+/datum/action/xeno_action/activable/secrete_resin/New(Target)
+	. = ..()
+	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD)))
+		return
+	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	build_maptext.pixel_x = 12
+	build_maptext.pixel_y = -5
+	build_maptext.maptext = MAPTEXT(SSresinshaping.get_building_points(owner))
+	visual_references[VREF_MUTABLE_BUILDING_COUNTER] = build_maptext
+
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	action_icon_state = initial(A.name)
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
+		var/mutable_appearance/number = visual_references[VREF_MUTABLE_BUILDING_COUNTER]
+		number.maptext = MAPTEXT("[SSresinshaping.get_building_points(owner)]")
+		visual_references[VREF_MUTABLE_BUILDING_COUNTER] = number
+		button.add_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
+	else if(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
+		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
+		visual_references[VREF_MUTABLE_BUILDING_COUNTER] = null
 	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
@@ -227,7 +290,9 @@
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+		preshutter_build_resin(A)
+	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
 		build_resin(get_turf(A))
@@ -245,90 +310,37 @@
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
-/datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
+/// A version of build_resin with the plasma drain and distance checks removed.
+/datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
+	if(!SSresinshaping.get_building_points(owner))
+		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
+		return
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/xenomorph/blocker = locate() in T
-	if(blocker && blocker != X && blocker.stat != DEAD)
-		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
-		return fail_activate()
-
-	if(!T.is_weedable())
-		to_chat(X, span_warning("We can't do that here."))
-		return fail_activate()
-
-	if(!line_of_sight(owner, T))
-		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
-		return fail_activate()
-
-	var/obj/alien/weeds/alien_weeds = locate() in T
-
-	for(var/obj/effect/forcefield/fog/F in range(1, X))
-		to_chat(X, span_warning("We can't build so close to the fog!"))
-		return fail_activate()
-
-	if(!alien_weeds)
-		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
-		return fail_activate()
-
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
-		return fail_activate()
-
-	if(X.selected_resin == /obj/structure/mineral_door/resin)
-		var/wall_support = FALSE
-		for(var/D in GLOB.cardinals)
-			var/turf/TS = get_step(T,D)
-			if(TS)
-				if(TS.density)
-					wall_support = TRUE
-					break
-				else if(locate(/obj/structure/mineral_door/resin) in TS)
-					wall_support = TRUE
-					break
-		if(!wall_support)
-			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
-			return fail_activate()
-
-	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
-		return fail_activate()
-
-	blocker = locate() in T
-	if(blocker && blocker != X && blocker.stat != DEAD)
-		return fail_activate()
-
-	if(!can_use_ability(T))
-		return fail_activate()
-
-	if(!T.is_weedable())
-		return fail_activate()
-
-	alien_weeds = locate() in T
-	if(!alien_weeds)
-		return fail_activate()
-
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
-		return fail_activate()
-
-	if(X.selected_resin == /obj/structure/mineral_door/resin)
-		var/wall_support = FALSE
-		for(var/D in GLOB.cardinals)
-			var/turf/TS = get_step(T,D)
-			if(TS)
-				if(TS.density)
-					wall_support = TRUE
-					break
-				else if(locate(/obj/structure/mineral_door/resin) in TS)
-					wall_support = TRUE
-					break
-		if(!wall_support)
-			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
-			return fail_activate()
-	var/atom/AM = X.selected_resin
-	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
-	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
-	playsound(owner.loc, "alien_resin_build", 25)
-
+	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
+		if(ERROR_CANT_WEED)
+			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
+			return
+		if(ERROR_NO_WEED)
+			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			return
+		if(ERROR_NO_SUPPORT)
+			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
+			return
+		if(ERROR_NOT_ALLOWED)
+			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
+			return
+		if(ERROR_BLOCKER)
+			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
+			return
+		if(ERROR_FOG)
+			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			return
+		// it fails a lot here when dragging , so its to prevent spam
+		if(ERROR_CONSTRUCT)
+			return
+		if(ERROR_JUST_NO)
+			return
 	var/atom/new_resin
-
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
 		baseturfs |= T.type
@@ -336,15 +348,88 @@
 		new_resin = T
 	else
 		new_resin = new X.selected_resin(T)
+	if(new_resin)
+		SSresinshaping.increment_build_counter(owner)
 
+
+/datum/action/xeno_action/activable/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	if(dragging)
+		preshutter_build_resin(get_turf(over_object))
+
+/datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
+	var/mob/living/carbon/xenomorph/X = owner
+	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
+		if(ERROR_CANT_WEED)
+			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
+			return
+		if(ERROR_NO_WEED)
+			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			return
+		if(ERROR_NO_SUPPORT)
+			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
+			return
+		if(ERROR_NOT_ALLOWED)
+			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
+			return
+		if(ERROR_BLOCKER)
+			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
+			return
+		if(ERROR_FOG)
+			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			return
+		// it fails a lot here when dragging , so its to prevent spam
+		if(ERROR_CONSTRUCT)
+			return
+		if(TRUE)
+			return
+	if(!line_of_sight(owner, T))
+		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
+		return fail_activate()
+	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
+		return fail_activate()
+	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
+		if(ERROR_CANT_WEED)
+			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
+			return
+		if(ERROR_NO_WEED)
+			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			return
+		if(ERROR_NO_SUPPORT)
+			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
+			return
+		if(ERROR_NOT_ALLOWED)
+			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
+			return
+		if(ERROR_BLOCKER)
+			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
+			return
+		if(ERROR_FOG)
+			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			return
+		// it fails a lot here when dragging , so its to prevent spam
+		if(ERROR_CONSTRUCT)
+			return
+		if(TRUE)
+			return
+	var/atom/AM = X.selected_resin
+	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
+	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
+	playsound(owner.loc, "alien_resin_build", 25)
+	var/atom/new_resin
+	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
+		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
+		baseturfs |= T.type
+		T.ChangeTurf(X.selected_resin, baseturfs)
+		new_resin = T
+	else
+		new_resin = new X.selected_resin(T)
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
-
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
 		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
-
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
 /datum/action/xeno_action/pheromones

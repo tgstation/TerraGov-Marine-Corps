@@ -7,7 +7,13 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
 	item_state = "backpack"
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
