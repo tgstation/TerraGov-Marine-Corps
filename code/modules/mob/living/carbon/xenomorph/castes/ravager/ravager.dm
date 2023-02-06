@@ -29,6 +29,7 @@
 	target_turf =  get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
 	H.Paralyze(0.2 SECONDS)
+	H.adjust_stagger(2)
 
 /mob/living/carbon/xenomorph/ravager/fire_act()
 	. = ..()
