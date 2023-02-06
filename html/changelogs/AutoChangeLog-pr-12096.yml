@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Fire turfs now have consistant behavior between walking through them and standing in them"
