@@ -805,6 +805,13 @@
 		/obj/item/clothing/suit/modular/jaeger/eva,
 	)
 
+/obj/effect/vendor_bundle/jaeger_hell_jumper
+	desc = "A set of medium Hell Jumper pattern jaeger armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/marine/helljumper,
+		/obj/item/clothing/suit/modular/jaeger/helljumper,
+	)
+
 /obj/effect/vendor_bundle/jaeger_gungnir
 	desc = "A set of Heavy Gungnir pattern jaeger armor, including an armor suit and helmet."
 	gear_to_spawn = list(

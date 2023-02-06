@@ -109,3 +109,39 @@
 	name = "\improper XN-1-H upper armor plating visor"
 	desc = "The visor attachment of the XN-1-H upper armor plating."
 	icon_state = "robot_heavy_visor"
+
+//old jaeger
+/obj/item/armor_module/greyscale/visor/marine/old
+	name = "\improper Jaeger Pattern Infantry visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Infantry class of helmet."
+	icon_state = "infantry_visor"
+	icon = 'icons/mob/modular/old_jaeger/helmets.dmi'
+
+/obj/item/armor_module/greyscale/visor/marine/old/skirmisher
+	name = "\improper Jaeger Pattern Skirmisher visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Skirmisher class of helmet."
+	icon_state = "skirmisher_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/old/scout
+	name = "\improper Jaeger Pattern Scout visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Scout class of helmet."
+	icon_state = "scout_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/old/eva
+	name = "\improper Jaeger Pattern EVA visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."
+	icon_state = "eva_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/old/eva/skull
+	name = "\improper Jaeger Pattern EVA Skull visor"
+	icon_state = "eva_skull_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/old/assault
+	name = "\improper Jaeger Pattern Assault visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Assault class of helmet."
+	icon_state = "assault_visor"
+
+/obj/item/armor_module/greyscale/visor/marine/old/eod
+	name = "\improper Jaeger Pattern EOD visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
+	icon_state = "eod_visor"
