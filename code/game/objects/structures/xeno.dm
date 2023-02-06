@@ -145,7 +145,7 @@
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
-	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_MINERAL_STRUCTURES)
 
 	var/close_delay = 10 SECONDS
 
