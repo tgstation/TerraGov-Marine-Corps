@@ -805,6 +805,7 @@
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon = 'icons/turf/floors/carpet.dmi'
+	base_icon_state = "carpet"
 	icon_state = "carpet-0"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CARPET)
