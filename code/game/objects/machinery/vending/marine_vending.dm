@@ -752,7 +752,6 @@
 		Best cigarettes since 2150.;\
 		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
 		Professionals. Better cigarettes for better people. Yes, better people."
-	vend_delay = 14
 	icon_state = "cigs"
 	icon_vend = "cigs-vend"
 	icon_deny = "cigs-deny"
@@ -982,7 +981,6 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
-	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
