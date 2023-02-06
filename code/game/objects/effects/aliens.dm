@@ -136,6 +136,8 @@
 	var/acid_strength = 0.04 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
+	var/flare_strength_multiplier = 2 // how much faster we melt flares compared to other obj's. 2x by default
+	var/flare_strength_max_melt_rate = 0.2 //maximum speed at which a flare will melt
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
@@ -168,7 +170,10 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	ticks += delta_time * acid_strength
+	if(istype(acid_t, /obj/item/flashlight/flare))
+		ticks += delta_time * min((acid_strength * flare_strength_multiplier), flare_strength_max_melt_rate) // we dont wanna make it possible to melt flares too fast
+	else
+		ticks += delta_time * acid_strength
 	if(ticks >= strength_t)
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, "acid_hit", 25)
