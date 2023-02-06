@@ -61,6 +61,7 @@
 	icon = 'icons/turf/mainshipwalls.dmi'
 	name = "cell wall"
 	walltype = null
+	smoothing_flags = NONE
 
 /turf/closed/wall/mainship/research/containment/wall/corner
 	icon_state = "containment_wall_corner"
