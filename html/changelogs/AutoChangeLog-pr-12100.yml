@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Warlock shield hotkey not selects the ability instead of casting it"
