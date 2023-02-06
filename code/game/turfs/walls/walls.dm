@@ -32,8 +32,16 @@
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
 
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_WINDOW_FULLTILE)
+	smoothing_groups = list(
+		SMOOTH_GROUP_CLOSED_TURFS,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS
+	)
+	canSmoothWith = list(
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE
+	)
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()

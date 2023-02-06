@@ -780,7 +780,11 @@
 	base_icon_state = "sulaco"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_ESCAPESHUTTLE)
-	canSmoothWith = list(SMOOTH_GROUP_ESCAPESHUTTLE, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(
+		SMOOTH_GROUP_ESCAPESHUTTLE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FULLTILE
+	)
 	walltype = "sulaco"
 
 /turf/closed/shuttle/escapeshuttle/prison

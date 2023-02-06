@@ -19,7 +19,11 @@
 	coverage = 50
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FRAME)
+	canSmoothWith = list(
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME
+	)
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
