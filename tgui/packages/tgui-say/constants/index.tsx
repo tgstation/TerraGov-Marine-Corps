@@ -74,4 +74,48 @@ export const RADIO_PREFIXES = {
     id: 'delta',
     label: 'delta',
   },
+  ':ф ': {
+    id: 'hive',
+    label: 'Hive',
+  },
+  ':м ': {
+    id: 'command',
+    label: 'Cmd',
+  },
+  ':у ': {
+    id: 'engi',
+    label: 'Engi',
+  },
+  ':ь ': {
+    id: 'medical',
+    label: 'Med',
+  },
+  ':щ ': {
+    id: 'ai',
+    label: 'AI',
+  },
+  ':ы ': {
+    id: 'firesupport',
+    label: 'CAS',
+  },
+  ':г ': {
+    id: 'requisitions',
+    label: 'Req',
+  },
+  ':й ': {
+    id: 'alpha',
+    label: 'alpha',
+  },
+  ':и ': {
+    id: 'bravo',
+    label: 'bravo',
+  },
+  ':с ': {
+    id: 'charlie',
+    label: 'charlie',
+  },
+  ':в ': {
+    id: 'delta',
+    label: 'delta',
+  },
 } as const;
