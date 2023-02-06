@@ -173,13 +173,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	if(!istype(target, /mob/living))
 		return
-	var/effective_damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //we want to take falloff into account
-	if(!effective_damage)
-		return
+
 	var/mob/living/victim = target
-	var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
-	var/deflagrate_chance = (effective_damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
+	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
+		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
 		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
 		fire_burst(target, proj)
 
@@ -194,7 +192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE) //Placeholder damage, will be a ammo var
+		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
 
 		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5)
 		victim.adjust_fire_stacks(5)

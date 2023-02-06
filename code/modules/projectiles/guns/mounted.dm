@@ -364,6 +364,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,
 	)
 
@@ -394,7 +395,8 @@
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/mini)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)
+
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 

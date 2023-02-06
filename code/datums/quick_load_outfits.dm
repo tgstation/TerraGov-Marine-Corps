@@ -364,7 +364,7 @@
 
 	belt = /obj/item/storage/belt/shotgun
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
-	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/pointman
+	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/standard
 	belt = /obj/item/storage/belt/shotgun/mixed
 
 /datum/outfit/quick/tgmc/marine/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1171,7 +1171,7 @@
 
 	belt = /obj/item/storage/belt/shotgun/som/mixed
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
-	suit_store = /obj/item/weapon/gun/shotgun/som/pointman
+	suit_store = /obj/item/weapon/gun/shotgun/som/standard
 
 /datum/outfit/quick/som/marine/shotgunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
