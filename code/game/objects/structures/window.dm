@@ -489,7 +489,7 @@
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
 	canSmoothWith = list(
 		SMOOTH_GROUP_CANTERBURY,
-		SMOOTH_GROUP_AIRLOCK
+		SMOOTH_GROUP_AIRLOCK,
 	)
 
 /obj/structure/window/framed/mainship/gray
@@ -504,7 +504,7 @@
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_ESCAPESHUTTLE,
-		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 
 /obj/structure/window/framed/mainship/gray/toughened
