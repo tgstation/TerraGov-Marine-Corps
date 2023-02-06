@@ -90,8 +90,10 @@
 
 /turf/open/space/Exited(atom/movable/leaver, direction)
 	if(isliving(leaver))
-		var/mob/living/spaceman = leaver
-		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
+		var/step = get_step(src, direction)
+		if(!istype(step, /turf/open/space))
+			var/mob/living/spaceman = leaver
+			spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
 
 
 /turf/open/space/sea //used on prison for flavor
