@@ -110,9 +110,10 @@
 
 /turf/closed/wall/desert
 	name = "wall"
-	icon = 'icons/turf/chigusa.dmi'
-	icon_state = "chigusa0"
+	icon = 'icons/turf/walls/chigusa.dmi'
+	icon_state = "chigusa-0"
 	walltype = "chigusa"
+	base_icon_state = "chigusa"
 
 /turf/closed/wall/desert/invincible
 	resistance_flags = RESIST_ALL
