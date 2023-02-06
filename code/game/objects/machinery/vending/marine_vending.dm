@@ -169,7 +169,6 @@
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/attachable/flamer_nozzle = -1,
-			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
 		),
 		"Boxes" = list(
