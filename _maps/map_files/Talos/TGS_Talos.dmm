@@ -2493,6 +2493,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"bSB" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "cic_lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
+	},
+/turf/open/floor/plating,
+/area/mainship/command/cic)
 "bSK" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/mainship,
@@ -24028,11 +24039,11 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 1;
 	icon_state = "pdoor0";
-	id = "CIC Lockdown";
+	id = "cic_lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+	opacity = 0;
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/mainship/command/cic)
@@ -55165,7 +55176,7 @@ ffi
 xWR
 pzQ
 xxO
-yde
+bSB
 xEn
 oTo
 xWR
