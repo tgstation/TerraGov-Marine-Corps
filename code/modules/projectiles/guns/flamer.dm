@@ -458,10 +458,13 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
-	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
-	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
+	//Tracks how much "fire" there is. Basically the timer of how long the fire burns
+	var/firelevel = 12
+	//Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
+	var/burnlevel = 10
 	var/flame_color = "red"
-	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_ENVIRONMENT|IGNITES_MOBS // Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire
+	// Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire
+	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_ENVIRONMENT|IGNITES_MOBS 
 	var/light_intensity = 3
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, burn_flags)

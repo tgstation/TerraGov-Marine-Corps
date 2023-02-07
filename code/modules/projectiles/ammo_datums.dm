@@ -3407,7 +3407,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_NAVY
 
 /datum/ammo/flamethrower/dragon_fire
-	name = "resin firebolt"
+	name = "resin fireball"
 	burn_flags =  BURN_HUMANS|BURN_ENVIRONMENT
 	max_range = 10
 	shell_speed = 0.2
@@ -3433,8 +3433,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		human.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
 
 /datum/ammo/flamethrower/dragon_fire/flying
-	name = "resin fireball"
-	shell_speed = 0.3
 	ignite_range = 1
 	damage = 20
 

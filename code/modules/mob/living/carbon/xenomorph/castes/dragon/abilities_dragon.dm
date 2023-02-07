@@ -1,6 +1,4 @@
 
-#define DRAGON_TAIL_STAB_DELAY 1.5 SECONDS
-#define DRAGON_TAIL_STAB_RANGE 2
 /datum/action/xeno_action/activable/tail_stab
 	name = "Tail Stab"
 	// action_icon_state = "todo"
@@ -8,20 +6,20 @@
 	use_state_flags = XACT_USE_STAGGERED
 	plasma_cost = 100
 	cooldown_timer = 7 SECONDS
+	var/tail_stab_range = 2
+	var/tail_stab_delay = 1.5 SECONDS
 
 /datum/action/xeno_action/activable/tail_stab/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
-	if(!.)
+	if(!. || owner.do_actions)
 		return FALSE
-	if(owner.do_actions)
-		return FALSE
-	var/mob/living/carbon/human/target_human = target
-	if(!ishuman(target) || target_human.stat == DEAD)
+	var/mob/living/target_living = target
+	if(!isliving(target) || target_living.stat == DEAD)
 		if(!silent)
 			owner.balloon_alert("We can't tail stab that!")
 		return FALSE
 	// TODO, replace this with something that deals with densities, not sight
-	if(!line_of_sight(owner, target, DRAGON_TAIL_STAB_RANGE))
+	if(!line_of_sight(owner, target, tail_stab_delay))
 		if(!silent)
 			owner.balloon_alert("You can't reach the target from here!")
 		return FALSE
@@ -34,14 +32,14 @@
 	log_combat(owner_xeno, target, "fire tailkstabbed")
 	owner_xeno.balloon_alert_to_viewers("has tail-stabbed [target]")
 	owner_xeno.face_atom(target)
-	target.Immobilize(DRAGON_TAIL_STAB_DELAY)
+	target.Immobilize(tail_stab_delay)
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
 	var/tail_stab_start_time = world.time
 
-	if(!do_after(owner_xeno, DRAGON_TAIL_STAB_DELAY))
+	if(!do_after(owner_xeno, tail_stab_delay))
 		owner_xeno.balloon_alert(owner_xeno, "You give up on lighting [target] on fire!")
 		// Remove the remaining stun that's left
-		target.AdjustImmobilized(world.time - tail_stab_start_time - DRAGON_TAIL_STAB_DELAY)
+		target.AdjustImmobilized(world.time - tail_stab_start_time - tail_stab_delay)
 		add_cooldown(cooldown_timer * 0.5)
 		return succeed_activate() 
 
@@ -50,41 +48,61 @@
 	add_cooldown()
 	return succeed_activate()
 
-/datum/action/xeno_action/activable/xeno_spit/fireball/modify_spit(obj/projectile/proj)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/datum/ammo/flamethrower/dragon_fire/spit
-	if(!istype(proj, spit) && xeno_owner.hive)
-		return
-	spit = proj
-	spit.hivenumber = xeno_owner.hivenumber
-
-#undef DRAGON_TAIL_STAB_RANGE
-#undef DRAGON_TAIL_STAB_DELAY
-
 /datum/action/xeno_action/activable/xeno_spit/fireball
 	name = "Spit a fireball"
 	desc = "Belch a fiery fireball at your foes."
+	var/flying_spit_delay = 1.5 SECONDS
+	var/flying_spit_type = /datum/ammo/flamethrower/dragon_fire/flying
 
-/datum/action/xeno_action/activable/xeno_spit/fireball/get_spit_type()
-	var/mob/living/carbon/xenomorph/xeno = owner
-	if(xeno.has_status_effect(STATUS_EFFECT_FLIGHT))
-		xeno.ammo = /datum/ammo/flamethrower/dragon_fire/flying
+/datum/action/xeno_action/activable/xeno_spit/fireball/alternate_fire_at(obj/projectile/newspit, mob/living/carbon/xenomorph/spitter_xeno)
+	if(istype(newspit, /datum/ammo/flamethrower/dragon_fire))
+		var/datum/ammo/flamethrower/dragon_fire/dragon_spit = newspit
+		dragon_spit.hivenumber = spitter_xeno.hivenumber
+
+	if(spitter_xeno.has_status_effect(STATUS_EFFECT_FLIGHT))
+		return flight_spit()
+	// Hover spit uses normal spit, but with a different animation
+	else if(spitter_xeno.has_status_effect(STATUS_EFFECT_HOVER))
+		return hover_spit()
 	else
-		xeno.ammo = /datum/ammo/flamethrower/dragon_fire
+		// False will make it spit normally
+		return FALSE
 
-/datum/action/xeno_action/activable/xeno_spit/fireball/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
-	. = ..()
-	if(!isliving(owner))
-		return
-	var/mob/living/living_owner = owner
-	if(!living_owner.has_status_effect(STATUS_EFFECT_FLIGHT) || !living_owner.has_status_effect(STATUS_EFFECT_HOVER))
-		return
-	var/turf/turf = get_turf(current_target)
-	var/obj/effect/effect = new /obj/effect(turf)
+// The flight spit drops down from above, as the dragon is invisible while flying
+/datum/action/xeno_action/activable/xeno_spit/fireball/proc/flight_spit(obj/projectile/newspit, mob/living/carbon/xenomorph/spitter_xeno)
+	var/turf/target_turf = get_turf(target)
+	var/obj/effect/effect = new /obj/effect(target_turf)
 	effect.icon = 'icons/misc/mark.dmi'
 	effect.icon_state = "X"
 	effect.color = "purple"
 	QDEL_IN(effect, 3 SECONDS)
+	
+	newspit.transform = turn(newspit.transform, 180)
+	animate(newspit, pixel_y = 0, time = flying_spit_delay, easing = LINEAR_EASING)
+	addtimer(CALLBACK(src, .proc/flight_spit_drop, newspit, target_turf), flying_spit_delay)
+	return continue_autospit()
+
+/datum/action/xeno_action/activable/xeno_spit/fireball/proc/flight_spit_drop(obj/projectile/newspit, turf/target_turf)
+	// Make a list of all the mobs in the turf
+	var/list/mobs_in_turf = list()
+	if(!current_target || !isliving(current_target))
+		for(var/mob/living/mob_in_turf in target_turf)
+			mobs_in_turf += mob_in_turf
+	else
+		mobs_in_turf += current_target
+	// We don't want to run this multiple times, because this causes fire to be spawned, and that causes damage
+	var/mob/living/mob_to_hurt = pick(mobs_in_turf) 
+	mob_to_hurt.do_projectile_hit(newspit)
+
+	qdel(newspit)
+
+// The hover spit should account for the dragon's offset
+/datum/action/xeno_action/activable/xeno_spit/fireball/proc/hover_spit(obj/projectile/newspit, mob/living/carbon/xenomorph/spitter_xeno)
+	ENABLE_BITFIELD(newspit.ammo?.flags_ammo_behavior, AMMO_PASS_THROUGH_MOVABLE)
+	newspit.pixel_y = spitter_xeno.pixel_y
+	animate(newspit, pixel_y = 0, time = flying_spit_delay, easing = LINEAR_EASING)
+	// False will make it spit normally
+	return FALSE
 
 /datum/action/xeno_action/flight
 	name = "Skycall"

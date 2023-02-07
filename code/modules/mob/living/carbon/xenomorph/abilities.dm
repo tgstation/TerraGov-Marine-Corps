@@ -728,6 +728,7 @@
 	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
 	target_flags = XABB_MOB_TARGET
+	var/list/spit_sounds = list('sound/voice/alien_spitacid.ogg', 'sound/voice/alien_spitacid2.ogg')
 	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 
@@ -820,26 +821,33 @@
 /datum/action/xeno_action/activable/xeno_spit/proc/fire()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/current_turf = get_turf(owner)
-	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
-	playsound(X.loc, sound_to_play, 25, 1)
+	play_spit_sound()
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
 	if(X.ammo?.spit_cost)
 		plasma_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
+	// Let other ability subtypes spit differently
+	var/alternate_fire_at = alternate_fire_at(newspit, owner, current_target)
+	if(alternate_fire_at)
+		return alternate_fire_at
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
-	modify_spit(newspit)
 
-	if(can_use_ability(current_target) && X.client) //X.client to make sure autospit doesn't continue for non player mobs.
+	return continue_autospit(X)
+
+/datum/action/xeno_action/activable/xeno_spit/proc/continue_autospit(mob/living/carbon/xenomorph/spitter_xeno)
+	if(can_use_ability(current_target) && spitter_xeno.client)
 		succeed_activate()
 		return AUTOFIRE_CONTINUE
 	fail_activate()
-	return NONE
+	return TRUE
 
-// Modify the spit projectile in subtypes
-/datum/action/xeno_action/activable/xeno_spit/proc/modify_spit(obj/projectile/proj)
-	return
+/datum/action/xeno_action/activable/xeno_spit/proc/play_spit_sound()
+	playsound(owner.loc, pick(spit_sounds), 25, TRUE)
+
+/datum/action/xeno_action/activable/xeno_spit/proc/alternate_fire_at(obj/projectile/newspit, mob/living/carbon/xenomorph/spitter_xeno)
+	return FALSE
 
 ///Resets the autofire component.
 /datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()

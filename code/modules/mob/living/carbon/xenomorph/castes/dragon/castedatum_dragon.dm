@@ -2,7 +2,7 @@
 	caste_name = "Dragon"
 	display_name = "Dragon"
 	caste_desc = "A xenomorph with wings and a tail, and a fiery breath."
-	caste_type_path = /mob/living/carbon/xenomorph/dragon\
+	caste_type_path = /mob/living/carbon/xenomorph/dragon
 	// evolve_min_xenos = 14
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -34,7 +34,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 5 SECONDS
-	spit_types = list(/datum/ammo/flamethrower/dragon_fire, /datum/ammo/flamethrower/dragon_fire/flying)
+	spit_types = list(/datum/ammo/flamethrower/dragon_fire)
 
 	// *** Minimap Icon *** //
 	// minimap_icon = "todo"
@@ -56,9 +56,8 @@
 
 /datum/xeno_caste/dragon/mature
 	upgrade_name = "Mature"
-	caste_desc = ""
-	upgrade = XENO_UPGRADE_ONE
 	caste_desc = "A draconic xenomorph. It looks a little more dangerous."
+	upgrade = XENO_UPGRADE_ONE
 	// *** Melee Attacks *** //
 	melee_damage = 30
 
@@ -104,9 +103,9 @@
 
 /datum/xeno_caste/dragon/ancient
 	upgrade_name = "Ancient"
-	caste_desc = ""
+	caste_desc = "You can feel heat radiating from this xenomorph, best watch the skies, or be lit aflame."
+	ancient_message = "The ground shall be charred by your fiery breath, and the skies shall be darkened by your shadow."
 	upgrade = XENO_UPGRADE_THREE
-	// ancient_message = "todo"
 
 	// *** Melee Attacks *** //
 	melee_damage = 35
@@ -129,7 +128,7 @@
 
 /datum/xeno_caste/dragon/primordial
 	upgrade_name = "Primordial"
-	caste_desc = ""
+	caste_desc = "You can feel heat radiating from this xenomorph, best watch the skies, or be lit aflame."
 	upgrade = XENO_UPGRADE_FOUR
 	primordial_message = "The skies shall be blotted out by your fiery breath, and the earth shall tremble at your approach. You are the dragon, and you are primordial."
 
