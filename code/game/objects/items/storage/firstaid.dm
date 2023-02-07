@@ -469,7 +469,7 @@
 	desc = "Contains pills capable of suppressing extreme amounts of pain."
 	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/oxycodone
-	greyscale_colors = "#f8f8f8#ffffff"
+	greyscale_colors = "#e5e5e5#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	description_overlay = "Ti"
 
