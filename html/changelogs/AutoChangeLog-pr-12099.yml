@@ -1,8 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "HvH: SH-35 and V-51 loadouts no longer have tac sensors"
-  - balance: "HvH: Removed the damage malus from the V-51B burst shotgun"
-  - balance: "HvH: Improved damage falloff for volkite weapons slightly"
-  - balance: "HvH: MG-27 scope cannot be removed"
-  - code_imp: "cleaned up deflagrate code a little and added a small visual effect"

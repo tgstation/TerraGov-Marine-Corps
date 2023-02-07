@@ -79,3 +79,18 @@
   - rscdel: Remove Mosin from Icy Cave due to HvH balance
   tyeagg:
   - rscdel: removed supply manifest from orders
+2023-02-07:
+  Blundir:
+  - rscadd: Marine combat boots is now actually black
+  - rscadd: adds brown marine combat boots
+  Lumipharon:
+  - balance: 'HvH: SH-35 and V-51 loadouts no longer have tac sensors'
+  - balance: 'HvH: Removed the damage malus from the V-51B burst shotgun'
+  - balance: 'HvH: Improved damage falloff for volkite weapons slightly'
+  - balance: 'HvH: MG-27 scope cannot be removed'
+  - code_imp: cleaned up deflagrate code a little and added a small visual effect
+  - balance: Fire turfs now have consistant behavior between walking through them
+      and standing in them
+  - qol: Warlock shield hotkey not selects the ability instead of casting it
+  carlarctg:
+  - qol: Removes vending delay from marine vendors
