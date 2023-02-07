@@ -159,7 +159,7 @@
 	pill_id = 7
 
 /obj/item/reagent_containers/pill/oxycodone
-	pill_desc = "A tramadol pill. A powerful painkiller."
+	pill_desc = "A oxycodone pill. A powerful painkiller."
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 10)
 	pill_id = 9
 
