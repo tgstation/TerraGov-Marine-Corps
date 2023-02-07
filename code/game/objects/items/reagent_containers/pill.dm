@@ -158,6 +158,11 @@
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
 
+/obj/item/reagent_containers/pill/oxycodone
+	pill_desc = "A tramadol pill. A powerful painkiller."
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 10)
+	pill_id = 9
+
 /obj/item/reagent_containers/pill/isotonic
 	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/iron = 6, /datum/reagent/consumable/sugar = 3)
