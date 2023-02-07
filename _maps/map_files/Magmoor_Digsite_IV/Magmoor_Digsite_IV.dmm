@@ -11820,7 +11820,6 @@
 /area/magmoor/compound)
 "ilf" = (
 /obj/structure/table/mainship,
-/obj/item/tool/surgery/solderingtool,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -30050,7 +30049,6 @@
 /area/magmoor/security/infocenter)
 "uTu" = (
 /obj/structure/table/mainship,
-/obj/item/tool/surgery/solderingtool,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/power)
 "uTx" = (
