@@ -529,7 +529,7 @@
 		eye_blind = amount
 		if(client && !old_eye_blind)
 			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
-	else if(!eye_blind)
+	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
 			blind_minimum = 1
@@ -540,9 +540,6 @@
 		eye_blind = blind_minimum
 		if(!eye_blind)
 			clear_fullscreen("blind")
-	else
-		eye_blind = max(eye_blind, 0)
-		clear_fullscreen("blind")
 
 /mob/living/proc/blur_eyes(amount)
 	if(amount>0)
