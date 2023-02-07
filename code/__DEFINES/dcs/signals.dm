@@ -53,6 +53,8 @@
 //Signals for shuttle
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
 
+/// sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)
+#define COMSIG_GLOB_EXPANDED_WORLD_BOUNDS "!expanded_world_bounds"
 
 //////////////////////////////////////////////////////////////////
 
@@ -885,3 +887,10 @@
 
 /// From reequip components
 #define COMSIG_REEQUIP_FAILURE "reequip failure"
+
+//spatial grid signals
+
+///Called from base of /datum/controller/subsystem/spatial_grid/proc/enter_cell: (/atom/movable)
+#define SPATIAL_GRID_CELL_ENTERED(contents_type) "spatial_grid_cell_entered_[contents_type]"
+///Called from base of /datum/controller/subsystem/spatial_grid/proc/exit_cell: (/atom/movable)
+#define SPATIAL_GRID_CELL_EXITED(contents_type) "spatial_grid_cell_exited_[contents_type]"

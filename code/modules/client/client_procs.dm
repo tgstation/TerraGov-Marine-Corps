@@ -391,8 +391,7 @@
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	if(movingmob != null)
-		movingmob.client_mobs_in_contents -= mob
-		UNSETEMPTY(movingmob.client_mobs_in_contents)
+		LAZYREMOVE(movingmob.client_mobs_in_contents, mob)
 		movingmob = null
 	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
