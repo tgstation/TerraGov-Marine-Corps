@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				continue
 			if(!firstpack.containertype)
 				break
-			var/atom/B2 = new typepath(A)
+			new typepath(A)
 
 		SSpoints.shoppinglist[faction] -= "[SO.id]"
 		SSpoints.shopping_history += SO
