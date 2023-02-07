@@ -444,6 +444,7 @@
 	)
 
 	tally_type = TALLY_MORTAR
+	cool_off_time = 4 SECONDS
 	reload_time = 0.5 SECONDS
 	fire_delay = 0.5 SECONDS
 	max_spread = 6
