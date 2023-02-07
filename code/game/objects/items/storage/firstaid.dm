@@ -276,6 +276,7 @@
 	var/description_overlay = ""
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(istype(I, /obj/item/storage/pill_bottle/packet))
 		var/obj/item/storage/pill_bottle/packet/M = I
 		if(!length(M.contents))
