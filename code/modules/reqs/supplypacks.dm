@@ -256,6 +256,24 @@ WEAPONS
 	)
 	cost = 20
 
+/datum/supply_packs/weapons/antitankgunammo/beehive
+	name = "AT-36 Beehive Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/incendiary
+	name = "AT-36 Napalm Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
+	)
+	cost = 20
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)

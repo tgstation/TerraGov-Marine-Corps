@@ -1615,7 +1615,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
-/datum/ammo/ags_shrapnel/do_at_max_range(obj/projectile/proj)
+/datum/ammo/ags_shrapnel/do_at_max_range(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 20
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
@@ -2022,7 +2022,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	P.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
-	name = "high velocity high explosive shell"
+	name = "low velocity high explosive shell"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	damage = 50
@@ -2034,6 +2034,83 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/rocket/atgun_shell/beehive
+	name = "beehive shell"
+	hud_state = "shell_beehive"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	shell_speed = 3
+	damage = 30
+	penetration = 30
+	sundering = 5
+	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread
+	bonus_projectiles_scatter = 8
+
+/datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/T)
+	explosion(T, 0, 0, 0, 1)
+
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, stagger = 0, slowdown = 0.2, knockback = 1)
+	drop_nade(get_turf(M))
+	bonus_projectiles_amount = 10
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, M) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/O, obj/projectile/proj)
+	bonus_projectiles_amount = 10
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, O) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/T, obj/projectile/proj)
+	bonus_projectiles_amount = 10
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, T) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/T, obj/projectile/proj)
+	bonus_projectiles_amount = 10
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/rocket/atgun_shell/beehive/incend
+	name = "napalm shell"
+	hud_state = "shell_incend"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	shell_speed = 3
+	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
+
+/datum/ammo/bullet/atgun_spread
+	name = "Shrapnel"
+	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	accuracy_var_low = 15
+	accuracy_var_high = 5
+	max_range = 6
+	damage = 30
+	penetration = 20
+	sundering = 3
+	damage_falloff = 0
+
+/datum/ammo/bullet/atgun_spread/incendiary
+	name = "incendiary flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	damage = 20
+	penetration = 10
+	sundering = 1.5
+
+/datum/ammo/bullet/atgun_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	return
+
+/datum/ammo/bullet/atgun_spread/incendiary/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(5, 10)
+
+/datum/ammo/bullet/atgun_spread/incendiary/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
+	drop_flame(T)
 
 /datum/ammo/mortar
 	name = "80mm shell"
