@@ -58,7 +58,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_BUSY
 	///The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
