@@ -2123,7 +2123,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 1000
 	max_range = 1000
 	ping = null
-	bullet_color = COLOR_WHITE
+	bullet_color = COLOR_VERY_SOFT_YELLOW
 
 /datum/ammo/mortar/drop_nade(turf/T)
 	explosion(T, 1, 2, 5, 3)
