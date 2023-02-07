@@ -471,7 +471,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/oxycodone
 	greyscale_colors = "#e5e5e5#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
-	description_overlay = "Ti"
+	description_overlay = "Ox"
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
