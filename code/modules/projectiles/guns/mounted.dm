@@ -513,7 +513,7 @@
 
 
 	max_integrity = 300
-	soft_armor = list("MELEE" = 0, "BULLET" = 50, "LASER" = 0, "ENERGY" = 0, "BOMB" = 80, "BIO" = 100, "FIRE" = 0, "ACID" = 20)
+	soft_armor = list(MELEE = 0, BULLET"= 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 
 
