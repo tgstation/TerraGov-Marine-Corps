@@ -116,7 +116,7 @@
 ///Colors the armor when the parent is right clicked with facepaint.
 /obj/item/armor_module/proc/handle_color(datum/source, obj/I, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
+	INVOKE_ASYNC(src, /atom.proc/attackby, I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
@@ -219,8 +219,7 @@
 /obj/item/armor_module/greyscale
 	name = "modular armor - armor module"
 	icon = 'icons/mob/modular/modular_armor.dmi'
-	//greyscale_config = /datum/greyscale_config/modularchest
-	greyscale_colors = ARMOR_PALETTE_DESERT
+	greyscale_colors = "#ffffff"
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
