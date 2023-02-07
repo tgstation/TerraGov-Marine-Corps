@@ -346,7 +346,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#669900"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/hyronalin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -514,9 +514,11 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/dylovene)
+	purge_rate = 2
 
 /datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-effect_str)
+	L.adjustToxLoss(-0.25*effect_str)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
