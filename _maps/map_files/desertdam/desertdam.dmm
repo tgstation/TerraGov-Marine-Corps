@@ -51534,6 +51534,13 @@
 /obj/machinery/power/smes/preset,
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
+"pLd" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/desert_dam/building/dorms/pool)
 "pLm" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
@@ -64235,10 +64242,6 @@
 /turf/closed/shuttle/escapeshuttle,
 /area/shuttle/tri_trans1/alpha)
 "wNu" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/dorms/pool)
@@ -114289,7 +114292,7 @@ ony
 sgD
 dIk
 dIK
-uHv
+pLd
 dJG
 dZN
 dZM
@@ -114523,7 +114526,7 @@ dBy
 dCf
 dIk
 dIT
-uHv
+dIr
 dJG
 dZO
 dZL
