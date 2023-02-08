@@ -6,8 +6,10 @@
 /datum/status_effect/gun_skill/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
+	. = ..()
+	if(!.)
+		return
 	particles = new(owner, particles)
-	return ..()
 
 /datum/status_effect/gun_skill/Destroy()
 	if(particles)
