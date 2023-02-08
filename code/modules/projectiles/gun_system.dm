@@ -868,6 +868,7 @@
 				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult))
 
 	projectile_to_fire.accuracy += gun_accuracy_mod //additive added after move delay mult
+	projectile_to_fire.scatter = max(projectile_to_fire.scatter, 0)
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
