@@ -85,7 +85,7 @@
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
 	// The key for caste_death_timer is the mob's type
-	for (var/mob in caste_death_timers)
+	for(var/mob in caste_death_timers)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[mob][XENO_UPGRADE_BASETYPE]
 		var/timeleft = timeleft(caste_death_timers[caste.caste_type_path])
 		.["hive_death_timers"] += list(list(
@@ -301,7 +301,8 @@
 
 	add_to_hive(HS)
 
-
+// The total amount of xenomorphs that are considered for evolving purposes,
+//  subtypes also consider stored larva, not just the current amount of living xenos
 /datum/hive_status/proc/total_xenos_for_evolving()
 	return get_total_xeno_number()
 
@@ -586,13 +587,13 @@
 // *********** Ruler
 // ***************************************
 
-// Which xeno, if it dies, severs the hivemind chat, change this to ruler once you are ready to make balance changes
-/datum/hive_status/proc/hivemind_conduit_typepath()
-	return /mob/living/carbon/xenomorph/queen
+// The hivemind conduit is the xeno that on death severs the connection to the hivemind for xenos for half the time the death timer exists for..
 
+// Gets the hivemind conduit's death timer, AKA, the time before a replacement can evolve
 /datum/hive_status/proc/get_hivemind_conduit_death_timer()
-	return caste_death_timers[hivemind_conduit_typepath()]
+	return caste_death_timers[/mob/living/carbon/xenomorph/queen]
 
+// Gets the total time that the death timer for the hivemind conduit will last
 /datum/hive_status/proc/get_total_hivemind_conduit_time()
 	var/mob/living/carbon/xenomorph/xeno = GLOB.xeno_caste_datums[hivemind_conduit_typepath()]
 	var/datum/xeno_caste/caste = xeno.xeno_caste
@@ -682,6 +683,7 @@
 // *********** Queen
 // ***************************************
 
+// If the queen dies, update the hive's queen, and the leader pheromones
 /datum/hive_status/proc/on_queen_death()
 	living_xeno_queen = null
 	update_leader_pheromones()

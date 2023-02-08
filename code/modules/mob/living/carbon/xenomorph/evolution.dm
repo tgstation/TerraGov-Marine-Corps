@@ -150,7 +150,7 @@
 	var/new_caste_flags = new_caste_type.caste_flags
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, span_warning("You are jobbanned from the Queen-like roles."))
+			to_chat(src, span_warning("You are jobbanned from xenomorph leader roles."))
 			return
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))

@@ -39,13 +39,13 @@
 			"type_path" = caste.caste_type_path,
 			"name" = caste.display_name,
 			"abilities" = list(),
-			"instant_evolve" = CHECK_BITFIELD(CASTE_INSTANT_EVOLUTION, caste.caste_flags) ? TRUE : FALSE,
+			"instant_evolve" = (caste.caste_flags & CASTE_INSTANT_EVOLUTION),
 		)
 		for(var/ability in caste.actions)
 			var/datum/action/xeno_action/xeno_ability = ability
 			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
 				continue
-			caste_data["abilities"]["[ability]"] = list(
+			caste_data["abilities"/]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.desc),
 				"cost" = initial(xeno_ability.plasma_cost),
