@@ -23,6 +23,7 @@
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)

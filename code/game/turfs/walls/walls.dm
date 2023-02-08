@@ -41,6 +41,7 @@
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
 	)
 
 /turf/closed/wall/Initialize(mapload, ...)

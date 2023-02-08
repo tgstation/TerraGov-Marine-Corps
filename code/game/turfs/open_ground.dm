@@ -30,6 +30,9 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 	minimap_color = MINIMAP_WATER
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+	)
 
 /turf/open/ground/river/autosmooth
 	icon = 'icons/turf/floors/river.dmi'
@@ -37,20 +40,19 @@
 	base_icon_state = "river"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_RIVER)
-	canSmoothWith = list(SMOOTH_GROUP_RIVER)
+	canSmoothWith = list(
+		SMOOTH_GROUP_RIVER,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_LATTICE,
+		SMOOTH_GROUP_GRILLE,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+	)
 
 /obj/effect/river_overlay
 	name = "river_overlay"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = RIVER_OVERLAY_LAYER
 	plane = FLOOR_PLANE
-
-
-/turf/open/ground/river/Initialize()
-	. = ..()
-	if(!has_catwalk)
-		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 
 /turf/open/ground/river/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -92,6 +94,9 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+	)
 
 /turf/open/ground/coast/corner
 	icon_state = "beachcorner"

@@ -9,6 +9,7 @@
 	closed_layer = PODDOOR_CLOSED_LAYER
 	obj_flags = NONE
 	explosion_block = 6
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS)
 
 /obj/machinery/door/poddoor/Initialize()
 	. = ..()

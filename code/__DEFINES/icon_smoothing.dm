@@ -94,6 +94,7 @@
 #define SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM S_OBJ(23)	///turf/closed/indestructible/opsglass, /obj/structure/window/plasma/reinforced/plastitanium
 #define SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE S_OBJ(24)	///obj/structure/window/shuttle
 #define SMOOTH_GROUP_WINDOW_FRAME S_OBJ(25)
+#define SMOOTH_GROUP_SHUTTERS S_OBJ(26)
 
 #define SMOOTH_GROUP_LATTICE  S_OBJ(30)
 
