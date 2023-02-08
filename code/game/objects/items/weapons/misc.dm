@@ -46,10 +46,18 @@
 	///the higher the power level the harder it hits
 	var/setting = 1
 
+/obj/item/weapon/powerfist/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/weapon/powerfist/Destroy()
 	if(cell)
 		QDEL_NULL(cell)
 	return ..()
+
+/obj/item/weapon/powerfist/update_icon_state()
+	. = ..()
+	icon_state = cell ? "powerfist" : "powerfist_e"
 
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
@@ -84,7 +92,7 @@
 
 
 
-/obj/item/weapon/powerfist/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!cell)
 		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
 		return
@@ -121,6 +129,7 @@
 		unload(user)
 	user.transferItemToLoc(I,src)
 	cell = I
+	update_icon()
 	to_chat(user, span_notice("You insert the [I] into the [src]."))
 
 /obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
@@ -137,4 +146,5 @@
 /obj/item/weapon/powerfist/proc/unload(mob/user)
 	user.dropItemToGround(cell)
 	cell = null
+	update_icon()
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
