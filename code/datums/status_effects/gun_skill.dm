@@ -3,11 +3,11 @@
 	///reference to particle effect holder is present for this stack, initially a reference to the type to use
 	var/obj/effect/abstract/particle_holder/particles = /particles/gun_skill
 
-/datum/status_effect/gun_skill/on_creation(mob/living/new_owner, stacks_to_apply)
-	. = ..()
-	if(!.)
-		return
+/datum/status_effect/gun_skill/on_creation(mob/living/new_owner, set_duration)
+	if(isnum(set_duration))
+		duration = set_duration
 	particles = new(owner, particles)
+	return ..()
 
 /datum/status_effect/gun_skill/Destroy()
 	if(particles)
