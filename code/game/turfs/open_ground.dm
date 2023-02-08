@@ -31,6 +31,14 @@
 	heavyxenofootstep = FOOTSTEP_WATER
 	minimap_color = MINIMAP_WATER
 
+/turf/open/ground/river/autosmooth
+	icon = 'icons/turf/floors/river.dmi'
+	icon_state = "river-icon"
+	base_icon_state = "river"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_RIVER)
+	canSmoothWith = list(SMOOTH_GROUP_RIVER)
+
 /obj/effect/river_overlay
 	name = "river_overlay"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

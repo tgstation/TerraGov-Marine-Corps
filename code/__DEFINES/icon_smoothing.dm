@@ -63,8 +63,9 @@
 #define SMOOTH_GROUP_MINERAL_STRUCTURES S_TURF(36) //Caves
 #define SMOOTH_GROUP_ESCAPESHUTTLE S_TURF(37) //Mainship escape shuttles
 #define SMOOTH_GROUP_BASALT S_TURF(38)
+#define SMOOTH_GROUP_RIVER S_TURF(39)
 
-#define MAX_S_TURF SMOOTH_GROUP_BASALT //Always match this value with the one above it.
+#define MAX_S_TURF SMOOTH_GROUP_RIVER //Always match this value with the one above it.
 
 
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)
