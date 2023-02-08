@@ -514,7 +514,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 			span_warning("You patch some wires in \the [H]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(0, 15, robo_repair = TRUE, updating_health = TRUE))
 			H.UpdateDamageIcon()
-		if(amount < 1) // is this check really needed since we check use()
+		if(amount < 1)
 			return TRUE
 		if(!affecting.burn_dam)
 			var/previous_limb = affecting
