@@ -717,3 +717,18 @@
 	icon_state = "robot_helmet_heavy"
 	item_state = "robot_helmet_heavy"
 
+// ICC. Their helmets have higher bomb resist.//
+
+/obj/item/clothing/head/helmet/marine/icc
+	name = "\improper Modelle/20 combat helmet"
+	desc = "A regular ICCAF helmet, used by all branches of its forces. It is made to fit in both a utility and combat role with noticeably high resistance to explosions and bullets. "
+	icon_state = "icc"
+	item_state = "icc"
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 50, FIRE = 50, ACID = 40)
+
+/obj/item/clothing/head/helmet/marine/icc/guard
+	name = "\improper Modelle/21 combat helmet"
+	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets."
+	icon_state = "icc_guard"
+	item_state = "icc_guard"
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 65, BOMB = 80, BIO = 50, FIRE = 60, ACID = 45)
