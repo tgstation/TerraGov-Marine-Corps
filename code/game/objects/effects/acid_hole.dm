@@ -24,9 +24,9 @@
 		W.acided_hole = src
 		holed_wall = W
 		holed_wall.opacity = FALSE
-		if(W.junctiontype & (NORTH|SOUTH))
+		if(W.smoothing_junction & (NORTH_JUNCTION|SOUTH_JUNCTION))
 			setDir(EAST)
-		if(W.junctiontype & (EAST|WEST))
+		if(W.smoothing_junction & (EAST_JUNCTION|WEST_JUNCTION))
 			setDir(SOUTH)
 
 
