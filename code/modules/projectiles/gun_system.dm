@@ -1604,7 +1604,7 @@
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
-		if(!master_gun && (flags_item & FULLY_WIELDED))
+		if(!master_gun && !(flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
 		if(master_gun && !(master_gun.flags_item & FULLY_WIELDED))
