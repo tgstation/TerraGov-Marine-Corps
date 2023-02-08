@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/item/clothing/suit/storage/marine/robot/light = list(CAT_AMR, "Combat robot light armor plating", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/robot = list(CAT_AMR, "Combat robot medium armor plating", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/robot/heavy = list(CAT_AMR, "Combat robot heavy armor plating", 0, "black"),
-		/obj/item/storage/backpack/marine/satchel/corpsman = list(CAT_BAK, "Satchel", 0, "orange"),
+		/obj/item/storage/backpack/marine/corpsman/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/armor_module/storage/uniform/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
@@ -694,7 +694,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
-		/obj/item/clothing/head/modular/marine/m10x/leader = 1,
+		/obj/item/clothing/head/modular/m10x/leader = 1,
 	)
 ))
 

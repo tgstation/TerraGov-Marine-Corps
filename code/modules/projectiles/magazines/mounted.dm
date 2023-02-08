@@ -60,7 +60,7 @@
 	caliber = CALIBER_40MM
 	max_rounds = 30
 	default_ammo = /datum/ammo/grenade_container/ags_grenade
-	reload_delay = 2 SECONDS
+	reload_delay = 4 SECONDS
 
 /obj/item/ammo_magazine/standard_agls/fragmentation
 	name = "AGLS-37 box magazine (40mm Caseless)"
@@ -99,6 +99,20 @@
 	item_state = "tat36_he"
 	default_ammo = /datum/ammo/rocket/atgun_shell/he
 
+/obj/item/ammo_magazine/standard_atgun/beehive
+	name = "AT-36 Beehive (37mm Shell)"
+	desc = "A 37mm shell for light anti tank guns made to mince infantry, the light payload gives it moderate speed. Turns anyone into swiss cheese."
+	icon_state = "tat36_shell_beehive"
+	item_state = "tat36_beehive"
+	default_ammo = /datum/ammo/rocket/atgun_shell/beehive
+
+/obj/item/ammo_magazine/standard_atgun/incend
+	name = "AT-36 Napalm (37mm Shell)"
+	desc = "A 37mm shell for light anti tank guns made to set the battlefield ablaze, the light payload gives it a moderate speed. Will cook any target flambé."
+	icon_state = "tat36_shell_incend"
+	item_state = "tat36_incend"
+	default_ammo = /datum/ammo/rocket/atgun_shell/beehive/incend
+
 /obj/item/ammo_magazine/heavy_minigun
 	name = "MG-2005 box magazine (7.62x51mm)"
 	desc = "A box of 1000 rounds for the MG-2005 mounted minigun."
@@ -114,14 +128,14 @@
 /obj/item/ammo_magazine/dual_cannon
 	name = "dualcannon IFF Magazine(20mm)"
 	desc = "A box of 150 20mm rounds for the ATR-22 mounted dualcannon."
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ac_mag"
 	flags_magazine = NONE
 	caliber = CALIBER_20
-	max_rounds = 150
+	max_rounds = 80
 	default_ammo = /datum/ammo/bullet/dual_cannon
-	reload_delay = 5 SECONDS
+	reload_delay = 4 SECONDS
 
 /obj/item/ammo_magazine/heavy_laser
 	name = "heavy-duty weapon laser cell"

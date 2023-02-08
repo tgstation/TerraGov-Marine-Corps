@@ -1,4 +1,4 @@
-//SUPPLY PACKS
+//SUPPLY PACKS//SUPPLY PACKS
 //NOTE: only secure crate types use the access var (and are lockable)
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
@@ -182,12 +182,32 @@ WEAPONS
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "HSG-102 Mounted Heavy Smartgun"
 	contains = list(/obj/item/storage/box/tl102)
-	cost = 800
+	cost = 600
 
 /datum/supply_packs/weapons/m56d
 	name = "HSG-102 mounted heavy smartgun ammo"
 	contains = list(/obj/item/ammo_magazine/tl102)
-	cost = 100
+	cost = 30
+
+/datum/supply_packs/weapons/minigun_emplacement
+	name = "Mounted Automatic Minigun"
+	contains = list(/obj/item/weapon/gun/standard_minigun)
+	cost = 600
+
+/datum/supply_packs/weapons/minigun_ammo
+	name = "Mounted Minigun ammo"
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
+	cost = 30
+
+/datum/supply_packs/weapons/dualcannon_emplacement
+	name = "Mounted Dualcannon"
+	contains = list(/obj/item/weapon/gun/standard_dual_cannon)
+	cost = 700
+
+/datum/supply_packs/weapons/dc_ammo
+	name = "Mounted Dualcannon ammo"
+	contains = list(/obj/item/ammo_magazine/dual_cannon)
+	cost = 40
 
 /datum/supply_packs/weapons/ags_emplacement
 	name = "AGLS-37 Mounted Automated Grenade Launcher"
@@ -207,7 +227,7 @@ WEAPONS
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
-	cost = 600
+	cost = 800
 
 /datum/supply_packs/weapons/antitankgunammo
 	name = "AT-36 AP-HE Shell (x3)"
@@ -233,6 +253,24 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/beehive
+	name = "AT-36 Beehive Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/incendiary
+	name = "AT-36 Napalm Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
 	cost = 20
 
@@ -478,7 +516,7 @@ WEAPONS
 /datum/supply_packs/weapons/hmg
 	name = "HMG-08 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
-	cost = 300
+	cost = 400
 
 /datum/supply_packs/weapons/hmg_ammo
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
@@ -1594,20 +1632,10 @@ VEHICLES
 	contains = list(/obj/structure/dropship_equipment/mg_holder)
 	cost = 500
 
-/datum/supply_packs/vehicles/mounted_dualcannon
-	name = "Mounted Dualcannon"
-	contains = list(/obj/structure/dropship_equipment/dualcannon_holder)
-	cost = 600
-
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
 	contains = list(/obj/structure/dropship_equipment/heavylaser_holder)
 	cost = 900
-
-/datum/supply_packs/vehicles/mounted_minigun
-	name = "Mounted Automatic Minigun"
-	contains = list(/obj/structure/dropship_equipment/minigun_holder)
-	cost = 750
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
@@ -1617,19 +1645,7 @@ VEHICLES
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
 	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
-	cost = 300
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/vehicles/dc_ammo
-	name = "Mounted Dualcannon ammo"
-	contains = list(/obj/item/ammo_magazine/dual_cannon)
-	cost = 30
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/vehicles/minigun_ammo
-	name = "Mounted Minigun ammo"
-	contains = list(/obj/item/ammo_magazine/heavy_minigun)
-	cost = 30
+	cost = 100
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo

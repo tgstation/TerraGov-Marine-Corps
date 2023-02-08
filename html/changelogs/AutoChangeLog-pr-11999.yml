@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Ports the spatial grid SS to reduce tidi in high pop and long rounds"
