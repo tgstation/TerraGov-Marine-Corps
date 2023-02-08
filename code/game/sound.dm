@@ -11,7 +11,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0)
 	var/turf/turf_source = get_turf(source)
 
-	if (!turf_source)
+	if(!turf_source)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
