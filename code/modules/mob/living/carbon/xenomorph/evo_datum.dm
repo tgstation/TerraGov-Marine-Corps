@@ -45,7 +45,7 @@
 			var/datum/action/xeno_action/xeno_ability = ability
 			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
 				continue
-			caste_data["abilities"/]["[ability]"] = list(
+			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.desc),
 				"cost" = initial(xeno_ability.plasma_cost),

@@ -300,9 +300,10 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
-
-// The total amount of xenomorphs that are considered for evolving purposes,
-//  subtypes also consider stored larva, not just the current amount of living xenos
+/**
+ * The total amount of xenomorphs that are considered for evolving purposes,
+ * subtypes also consider stored larva, not just the current amount of living xenos
+ */
 /datum/hive_status/proc/total_xenos_for_evolving()
 	return get_total_xeno_number()
 
@@ -587,15 +588,15 @@
 // *********** Ruler
 // ***************************************
 
-// The hivemind conduit is the xeno that on death severs the connection to the hivemind for xenos for half the time the death timer exists for..
+// The hivemind conduit is the xeno that on death severs the connection to the hivemind for xenos for half the time the death timer exists for.
 
-// Gets the hivemind conduit's death timer, AKA, the time before a replacement can evolve
+/// Gets the hivemind conduit's death timer, AKA, the time before a replacement can evolve
 /datum/hive_status/proc/get_hivemind_conduit_death_timer()
 	return caste_death_timers[/mob/living/carbon/xenomorph/queen]
 
-// Gets the total time that the death timer for the hivemind conduit will last
+/// Gets the total time that the death timer for the hivemind conduit will last
 /datum/hive_status/proc/get_total_hivemind_conduit_time()
-	var/mob/living/carbon/xenomorph/xeno = GLOB.xeno_caste_datums[hivemind_conduit_typepath()]
+	var/mob/living/carbon/xenomorph/xeno = GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/queen]
 	var/datum/xeno_caste/caste = xeno.xeno_caste
 	return initial(caste.death_evolution_delay)
 
