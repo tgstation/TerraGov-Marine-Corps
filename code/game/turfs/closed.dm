@@ -109,7 +109,7 @@
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
-	icon_state = "jungle-0"
+	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLORA)

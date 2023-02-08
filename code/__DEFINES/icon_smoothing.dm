@@ -99,6 +99,8 @@
 #define SMOOTH_GROUP_AIRLOCK  S_OBJ(40)							///obj/structure/lattice
 #define SMOOTH_GROUP_GRILLE  S_OBJ(41)
 #define SMOOTH_GROUP_ACID_HOLE  S_OBJ(42)
+#define SMOOTH_GROUP_DECAL  S_OBJ(43)
+#define SMOOTH_GROUP_DECAL_WARNING_STRIPE  S_OBJ(44)
 
 
 #define SMOOTH_GROUP_WOOD_TABLES S_OBJ(51)				///obj/structure/table/wood

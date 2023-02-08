@@ -72,7 +72,7 @@
 
 /obj/structure/catwalk
 	icon = 'icons/obj/smooth_objects/catwalk.dmi'
-	icon_state = "catwalk-0"
+	icon_state = "catwalk-icon"
 	base_icon_state = "catwalk"
 	var/shoefootstep = FOOTSTEP_CATWALK
 	var/barefootstep = FOOTSTEP_CATWALK
