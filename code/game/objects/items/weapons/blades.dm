@@ -320,7 +320,7 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 45
+	throwforce = 25
 	throw_speed = 5
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
@@ -331,11 +331,15 @@
 	amount = 5
 	///Delay between throwing.
 	var/throw_delay = 0.2 SECONDS
-	COOLDOWN_DECLARE(last_thrown)
+	///Current Target that knives are being thrown at. This is for aiming
+	var/current_target
+	///The person throwing knives
+	var/mob/living/living_user
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/post_throw)
+	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, .proc/stop_fire), _callback_fire = CALLBACK(src, .proc/throw_knife))
 
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
@@ -344,39 +348,71 @@
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
 	. = ..()
-	if(!isliving(user))
+	if(user.get_active_held_item() != src && user.get_inactive_held_item() != src)
 		return
-	var/mob/living/living_user = user
-	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
-		return
-	RegisterSignal(user, COMSIG_MOB_ITEM_AFTERATTACK, .proc/throw_knife)
+	living_user = user
+	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()
+	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon) // Force resets the mouse pointer to default so it defaults when the last knife is thrown
 	UnregisterSignal(unequipper, COMSIG_MOB_ITEM_AFTERATTACK)
+	UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
+	living_user = null
+
+///Changes the current target.
+/obj/item/stack/throwing_knife/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	set_target(get_turf_on_clickcatcher(over_object, source, params))
+	living_user.face_atom(current_target)
+
+///Stops the Autofire component and resets the current cursor.
+/obj/item/stack/throwing_knife/proc/stop_fire()
+	SIGNAL_HANDLER
+	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon)
+	set_target(null)
+	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+
+///Starts the user firing.
+/obj/item/stack/throwing_knife/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	if(living_user.get_active_held_item() != src) // If the object in our active hand is not a throwing knife, abort
+		return
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] || modifiers["ctrl"])
+		return
+	set_target(get_turf_on_clickcatcher(object, living_user, params))
+	if(!current_target)
+		return
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+	living_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 ///Throws a knife from the stack, or, if the stack is one, throws the stack.
-/obj/item/stack/throwing_knife/proc/throw_knife(datum/source, atom/target, params)
+/obj/item/stack/throwing_knife/proc/throw_knife()
 	SIGNAL_HANDLER
-	var/mob/living/user = source
-	if(user.Adjacent(target) || user.get_active_held_item() != src || !COOLDOWN_CHECK(src, last_thrown))
+	if(living_user.get_active_held_item() != src)
 		return
+	if(living_user.Adjacent(current_target))
+		return AUTOFIRE_CONTINUE
 	var/thrown_thing = src
 	if(amount == 1)
-		user.temporarilyRemoveItemFromInventory(src)
+		living_user.temporarilyRemoveItemFromInventory(src)
 		forceMove(get_turf(src))
-		throw_at(target, throw_range, throw_speed, user, TRUE)
+		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
+		current_target = null
 	else
 		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
-		knife_to_throw.throw_at(target, throw_range, throw_speed, user, TRUE)
+		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		amount--
 		thrown_thing = knife_to_throw
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
-	visible_message(span_warning("[user] expertly throws [thrown_thing]."), null, null, 5)
+	visible_message(span_warning("[living_user] expertly throws [thrown_thing]."), null, null, 5)
 	update_icon()
-	COOLDOWN_START(src, last_thrown, throw_delay)
+	return AUTOFIRE_CONTINUE
 
 ///Fills any stacks currently in the tile that this object is thrown to.
 /obj/item/stack/throwing_knife/proc/post_throw()
@@ -391,6 +427,13 @@
 			continue
 		break
 
+///Sets the current target and registers for qdel to prevent hardels
+/obj/item/stack/throwing_knife/proc/set_target(atom/object)
+	if(object == current_target || object == living_user)
+		return
+	if(current_target)
+		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+	current_target = object
 
 /obj/item/weapon/chainsword
 	name = "chainsword"

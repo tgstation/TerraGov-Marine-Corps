@@ -157,14 +157,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if(firstpack.containertype)
 			A.name = "Order #[SO.id] for [SO.orderer]"
 
-		//supply manifest generation begin
-
-		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(A)
-		slip.info = "<h3>Automatic Storage Retrieval Manifest</h3><hr><br>"
-		slip.info +="Order #[SO.id]<br>"
-		slip.info +="[length(SO.pack)] PACKAGES IN THIS SHIPMENT<br>"
-		slip.info +="CONTENTS:<br><ul>"
-		slip.update_icon()
 
 		var/list/contains = list()
 		//spawn the stuff, finish generating the manifest while you're at it
@@ -187,12 +179,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				continue
 			if(!firstpack.containertype)
 				break
-			var/atom/B2 = new typepath(A)
-			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
-
-		//manifest finalisation
-		slip.info += "</ul><br>"
-		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+			new typepath(A)
 
 		SSpoints.shoppinglist[faction] -= "[SO.id]"
 		SSpoints.shopping_history += SO

@@ -167,6 +167,7 @@
 	icon_state = "ags_grenade"
 	item_state = "ags_grenade"
 	det_time = 20
+	light_impact_range = 3
 
 
 /obj/item/explosive/grenade/smokebomb

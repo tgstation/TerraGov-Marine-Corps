@@ -712,7 +712,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
-
 /obj/item/attachable/scope/unremovable/flaregun
 	name = "long range ironsights"
 	desc = "An unremovable set of long range ironsights for a flaregun."
@@ -729,21 +728,29 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/unremovable/heavymachinegun
 	name = "HMG-08 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
 	icon_state = "sniperscope_invisible"
-	flags_attach_features = ATTACH_ACTIVATION
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
+
+/obj/item/attachable/scope/unremovable/mmg
+	name = "MG-27 rail scope"
+	icon_state = "miniscope"
+	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	wield_delay_mod = 0.2 SECONDS
+	aim_speed_mod = 0.2
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
+	zoom_slowdown = 0.3
+	zoom_tile_offset = 5
+	zoom_viewsize = 0
 
 /obj/item/attachable/scope/unremovable/standard_atgun
 	name = "AT-36 long range scope"
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
-	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 
@@ -757,7 +764,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 //all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
-	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 	zoom_viewsize = 2

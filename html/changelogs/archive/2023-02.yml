@@ -66,3 +66,51 @@
   - balance: tweaked the heavy minigun performance
   tyeagg:
   - imageadd: new menu ui icons
+2023-02-06:
+  Blundir:
+  - rscadd: Added 4 new cosmetic robot types
+  Dgeen:
+  - rscadd: ported carrier hugger overlay
+  - imageadd: added hugger images for carrier
+  Lumipharon:
+  - balance: Ravagers now gain rage every tick when on fire, instead of refilling
+      rage entirely when on a flame turf
+  novaepee:
+  - rscdel: Remove Mosin from Icy Cave due to HvH balance
+  tyeagg:
+  - rscdel: removed supply manifest from orders
+2023-02-07:
+  Blundir:
+  - rscadd: Marine combat boots is now actually black
+  - rscadd: adds brown marine combat boots
+  Lumipharon:
+  - balance: 'HvH: SH-35 and V-51 loadouts no longer have tac sensors'
+  - balance: 'HvH: Removed the damage malus from the V-51B burst shotgun'
+  - balance: 'HvH: Improved damage falloff for volkite weapons slightly'
+  - balance: 'HvH: MG-27 scope cannot be removed'
+  - code_imp: cleaned up deflagrate code a little and added a small visual effect
+  - balance: Fire turfs now have consistant behavior between walking through them
+      and standing in them
+  - qol: Warlock shield hotkey not selects the ability instead of casting it
+  carlarctg:
+  - qol: Removes vending delay from marine vendors
+2023-02-08:
+  Lumipharon:
+  - code_imp: Ports the spatial grid SS to reduce tidi in high pop and long rounds
+  - balance: Reduced throwing knife throwforce to 25 from 45
+  - balance: Reduced MG-60 damage to 25 from 27.5, and reduced magazine capacity to
+      200 from 250
+  Pariah919:
+  - balance: MG-42 now has AR-12 burst fire. As in completely the same.
+  - balance: MG-42 now has BFA and tactical sensor.
+  - balance: Both Marine and DS Thermobarics have a 10 second reload time.
+  Xander3359:
+  - qol: You can hold click to throw knives at a constant rate.
+  ivanmixo:
+  - qol: Only humans spin when stop drop and rolling
+  maikilangiolo:
+  - rscadd: added Napalm and Beehive AT36 shells
+  - balance: AGLS reload 2 seconds --> 4 seconds
+  - balance: AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20
+  - bugfix: fixed AT36 HE ammo being described as "high velocity" when its actually
+      very slow

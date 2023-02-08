@@ -224,6 +224,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
 	cost = 40
 
+/datum/supply_packs/weapons/ags_frag
+	name = "AGLS-37 AGL White Phosphorous Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/incendiary)
+	cost = 40
+
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
@@ -253,6 +258,24 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/beehive
+	name = "AT-36 Beehive Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/incendiary
+	name = "AT-36 Napalm Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
 	cost = 20
 
