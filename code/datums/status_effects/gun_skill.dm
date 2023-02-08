@@ -64,12 +64,12 @@
 
 /datum/status_effect/gun_skill/scatter/buff
 	id = "gun_skill_scatter_buff"
-	scatter_modifier = 20
+	scatter_modifier = -20
 	particles = /particles/gun_skill/scatter/buff
 
 /datum/status_effect/gun_skill/scatter/debuff
 	id = "gun_skill_scatter_debuff"
-	scatter_modifier = -20
+	scatter_modifier = 20
 	particles = /particles/gun_skill/scatter/debuff
 
 
