@@ -1,7 +1,0 @@
-author: "maikilangiolo"
-delete-after: True
-changes:
-  - rscadd: "added Napalm and Beehive AT36 shells"
-  - balance: "AGLS reload 2 seconds --> 4 seconds"
-  - balance: "AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20"
-  - bugfix: "fixed AT36 HE ammo being described as \"high velocity\" when its actually very slow"

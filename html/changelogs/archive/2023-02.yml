@@ -94,3 +94,23 @@
   - qol: Warlock shield hotkey not selects the ability instead of casting it
   carlarctg:
   - qol: Removes vending delay from marine vendors
+2023-02-08:
+  Lumipharon:
+  - code_imp: Ports the spatial grid SS to reduce tidi in high pop and long rounds
+  - balance: Reduced throwing knife throwforce to 25 from 45
+  - balance: Reduced MG-60 damage to 25 from 27.5, and reduced magazine capacity to
+      200 from 250
+  Pariah919:
+  - balance: MG-42 now has AR-12 burst fire. As in completely the same.
+  - balance: MG-42 now has BFA and tactical sensor.
+  - balance: Both Marine and DS Thermobarics have a 10 second reload time.
+  Xander3359:
+  - qol: You can hold click to throw knives at a constant rate.
+  ivanmixo:
+  - qol: Only humans spin when stop drop and rolling
+  maikilangiolo:
+  - rscadd: added Napalm and Beehive AT36 shells
+  - balance: AGLS reload 2 seconds --> 4 seconds
+  - balance: AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20
+  - bugfix: fixed AT36 HE ammo being described as "high velocity" when its actually
+      very slow
