@@ -343,6 +343,11 @@ Contains most of the procs that are called when a mob is attacked by something
 			msg_admin_ff("[ADMIN_TPMONTY(living_thrower)] hit [ADMIN_TPMONTY(src)] with \the [thrown_item] (thrown) in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 
 
+/mob/living/carbon/human/resist_fire(datum/source)
+	spin(30, 1.5)
+	return ..()
+
+
 /mob/living/carbon/human/proc/bloody_hands(mob/living/source, amount = 2)
 	if (istype(gloves))
 		gloves.add_mob_blood(source)
