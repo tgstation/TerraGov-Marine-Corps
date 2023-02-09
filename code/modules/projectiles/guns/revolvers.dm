@@ -289,8 +289,6 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
