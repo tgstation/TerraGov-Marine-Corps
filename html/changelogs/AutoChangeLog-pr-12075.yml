@@ -1,0 +1,5 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - rscadd: "You can now reload pill bottles from pill packets."
+  - code_imp: "do_refill is on object level, so now it's easy to add tactical reload functionality to containers using refill_types and refill_sound."
