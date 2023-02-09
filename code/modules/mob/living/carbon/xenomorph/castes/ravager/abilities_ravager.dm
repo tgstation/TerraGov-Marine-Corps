@@ -365,7 +365,7 @@
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
 
 	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
-		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
+		if(L == X || L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
 			continue
 
 		shake_camera(L, 1 SECONDS, 1)
