@@ -363,6 +363,17 @@
 	greyscale_colors = "#fa7923"
 
 //-------------------------------------------------------
+//Garand
+/obj/item/ammo_magazine/rifle/garand
+	name = "C1 Garand enbloc clip"
+	desc = "A enbloc clip filled with 8.6x70mm rifle rounds for the C1 Garand."
+	caliber = CALIBER_86X70
+	icon_state = "garand"
+	default_ammo = /datum/ammo/bullet/sniper/pfc
+	max_rounds = 8
+	icon_state_mini = "mag_sniper"
+
+//-------------------------------------------------------
 //V-31 SOM rifle
 
 /obj/item/ammo_magazine/rifle/som
