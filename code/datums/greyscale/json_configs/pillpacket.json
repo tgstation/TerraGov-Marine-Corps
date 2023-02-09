@@ -1,0 +1,114 @@
+{
+	"pills_8": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister8",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_7": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister7",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_6": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister6",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_5": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister5",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_4": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister4",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_3": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister3",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_2": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister2",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	],
+	"pills_1": [
+		{
+			"type": "icon_state",
+			"icon_state": "packet_canister",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+				"icon_state": "packet_canister1",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+		}
+	]
+}
