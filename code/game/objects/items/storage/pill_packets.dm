@@ -9,6 +9,8 @@
 	storage_slots = 4
 	max_w_class = 0
 	max_storage_space = 4
+	refill_types = null
+	refill_sound = null
 
 /obj/item/storage/pill_bottle/packet/bicaridine
 	name = "Bicaridine pill packet"
