@@ -128,9 +128,6 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
-/turf/open/ground/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return
-
 //shallow water
 /turf/open/ground/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
