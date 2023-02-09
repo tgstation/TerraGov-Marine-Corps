@@ -1449,6 +1449,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/mkh)
 	cost = 10
 
+/datum/supply_packs/imports/garand
+	name = "CAU C1 Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/garand)
+	cost = 50
+
+/datum/supply_packs/imports/garand/ammo
+	name = "CAU C1 Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/garand)
+	cost = 10
+
 /datum/supply_packs/imports/judge
 	name = "Judge Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/judge)
