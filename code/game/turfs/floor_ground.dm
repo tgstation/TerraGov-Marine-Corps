@@ -82,12 +82,29 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2
 	icon_state = "grassdirt2_corner2"
 
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth
+	icon = 'icons/turf/floors/jungle-border.dmi'
+	icon_state = "jungle-border-icon"
+	base_icon_state = "jungle-border"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	canSmoothWith = list(
+		SMOOTH_GROUP_JUNGLE_FLOOR,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_FLORA,
+	)
+
+
 /turf/open/ground/grass
 	name = "grass"
 	icon_state = "grass1"
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/ground/grasspatch
 	name = "grass"
