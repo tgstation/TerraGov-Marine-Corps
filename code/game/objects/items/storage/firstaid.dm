@@ -274,7 +274,8 @@
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 	/// Short description in overlay
 	var/description_overlay = ""
-
+	refill_types = list(/obj/item/storage/pill_bottle)
+	refill_sound = 'sound/items/pills.ogg'
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
 	. = ..()
