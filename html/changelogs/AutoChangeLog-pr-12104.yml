@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Getting hit by something being thrown at you (like knives) now plays a sound."
