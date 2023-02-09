@@ -524,9 +524,9 @@
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(length(refill_types)) //Can anything be emptied into this object
+	if(length(refill_types))
 		for(var/typepath in refill_types)
-			if(istype(I, typepath)) //Is I the right type to refill this object
+			if(istype(I, typepath))
 				return do_refill(I, user)
 
 	if(!can_be_inserted(I))
@@ -539,7 +539,7 @@
 		user.balloon_alert(user, "[refiller] is empty.")
 		return
 
-	if(length(contents) >= max_storage_space)
+	if(!can_be_inserted(refiller.contents[1]))
 		user.balloon_alert(user, "[src] is full.")
 		return
 
@@ -550,7 +550,7 @@
 
 	playsound(user.loc, refill_sound, 15, 1, 6)
 	for(var/obj/item/IM in refiller)
-		if(length(contents) >= max_storage_space)
+		if(!can_be_inserted(refiller.contents[1]))
 			break
 
 		refiller.remove_from_storage(IM)
