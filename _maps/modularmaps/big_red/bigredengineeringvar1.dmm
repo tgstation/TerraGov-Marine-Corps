@@ -277,7 +277,7 @@
 /area/bigredv2/outside/engineering)
 "qu" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -508,7 +508,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
 "BP" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
@@ -629,7 +629,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "HL" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
