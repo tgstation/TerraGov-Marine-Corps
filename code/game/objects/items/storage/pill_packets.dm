@@ -14,6 +14,8 @@
 	var/trash_item = /obj/item/trash/pillpacket
 	///Amount of pills removed from the packet
 	var/pills_removed = 0
+	refill_types = null
+	refill_sound = null
 
 /obj/item/storage/pill_bottle/packet/update_icon()
 	icon_state = "pills_[8-pills_removed]"
@@ -26,8 +28,6 @@
 		var/turf/T = get_turf(src)
 		new trash_item(T)
 		qdel(src)
-	refill_types = null
-	refill_sound = null
 
 /obj/item/storage/pill_bottle/packet/bicaridine
 	name = "Bicaridine pill packet"
