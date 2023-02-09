@@ -224,7 +224,7 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
 	cost = 40
 
-/datum/supply_packs/weapons/ags_frag
+/datum/supply_packs/weapons/ags_incend
 	name = "AGLS-37 AGL White Phosphorous Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/incendiary)
 	cost = 40
