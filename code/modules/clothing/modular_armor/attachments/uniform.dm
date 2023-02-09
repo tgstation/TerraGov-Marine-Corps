@@ -130,7 +130,7 @@
 	new /obj/item/weapon/gun/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
-	storage_slots = 1
+	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
