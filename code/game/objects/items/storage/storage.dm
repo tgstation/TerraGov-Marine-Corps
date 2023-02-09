@@ -536,25 +536,25 @@
 ///Refills the storage from the refill_types item
 /obj/item/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
 	if(!length(refiller.contents))
-		to_chat(user, span_warning("[refiller] is empty."))
+		user.balloon_alert(user, "[refiller] is empty.")
 		return
 
 	if(length(contents) >= max_storage_space)
-		to_chat(user, span_warning("[src] is full."))
+		user.balloon_alert(user, "[src] is full.")
 		return
 
-	to_chat(user, span_notice("You start refilling [src] with [refiller]."))
+	user.balloon_alert(user, "You start refilling [src] with [refiller].")
 
 	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
+	playsound(user.loc, refill_sound, 15, 1, 6)
 	for(var/obj/item/IM in refiller)
 		if(length(contents) >= max_storage_space)
 			break
 
 		refiller.remove_from_storage(IM)
 		handle_item_insertion(IM, TRUE, user)
-		playsound(user.loc, refill_sound, 15, 1, 6)
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
