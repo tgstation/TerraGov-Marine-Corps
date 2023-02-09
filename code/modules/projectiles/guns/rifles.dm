@@ -1685,7 +1685,7 @@
 
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-//	fire_sound = 'sound/weapons/guns/fire/garand.ogg'
+	fire_sound = 'sound/weapons/guns/fire/garand.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/garand_ping.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -1712,7 +1712,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 1 SECONDS
+	aim_fire_delay = 1.25 SECONDS
 
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/garand,
