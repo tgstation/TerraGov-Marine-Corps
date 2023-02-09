@@ -425,6 +425,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
+/datum/skills/crafter
+	name = "Craftier Private"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
+
 /datum/skills/special_forces_standard
 	name = "Special Force Standard"
 	construction = SKILL_CONSTRUCTION_METAL
