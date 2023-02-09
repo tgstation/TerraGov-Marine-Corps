@@ -58,6 +58,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/floor/plating/ground/dirtgrassborder/corner
 	icon_state = "grassdirt_corner"
@@ -75,6 +76,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner
 	icon_state = "grassdirt2_corner"
@@ -95,6 +97,7 @@
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_FLORA,
+		SMOOTH_GROUP_WINDOW_FRAME,
 	)
 
 
@@ -206,6 +209,7 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_ASPHALT,
 	)
 
