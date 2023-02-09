@@ -160,6 +160,9 @@
 	. = ..()
 	set_opacity(initial_opacity)
 
+/obj/effect/opacifier/Destroy()
+	. = ..()
+	QUEUE_SMOOTH_NEIGHBORS(loc)
 
 /obj/effect/supplypod_selector
 	icon_state = "supplypod_selector"
