@@ -63,7 +63,7 @@
 	name = "Paracematol pill packet"
 	desc = "This packet contains paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
-	greyscale_colors = "#EAEAEA#2DA54B"
+	greyscale_colors = "#EAEAEA#65B4B1"
 
 /obj/item/storage/pill_bottle/packet/leporazine
 	name = "Leporazine pill packet"
@@ -81,4 +81,4 @@
 	name = "Ryetalyn pill packet"
 	desc = "This packet contains Ryetalyn pills. Used to provide a shield against bloodstream toxins. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/ryetalyn
-	greyscale_colors = "#EAEAEA#A667AC"
+	greyscale_colors = "#EAEAEA#AC6D32"
