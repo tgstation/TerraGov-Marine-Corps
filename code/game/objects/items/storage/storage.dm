@@ -49,6 +49,11 @@
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 	///How long does it take to put items into or out of this, in ticks
 	var/access_delay = 0
+	///What item do you use to tactical refill this
+	var/list/obj/item/storage/refill_types
+	///What sound gets played when the item is tactical refilled
+	var/refill_sound = null
+
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -519,11 +524,37 @@
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(length(refill_types)) //Can anything be emptied into this object
+		for(var/typepath in refill_types)
+			if(istype(I, typepath)) //Is I the right type to refill this object
+				return do_refill(I, user)
+
 	if(!can_be_inserted(I))
 		return
-
 	return handle_item_insertion(I, FALSE, user)
 
+///Refills the storage from the refill_types item
+/obj/item/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
+	if(!length(refiller.contents))
+		to_chat(user, span_warning("[refiller] is empty."))
+		return
+
+	if(length(contents) >= max_storage_space)
+		to_chat(user, span_warning("[src] is full."))
+		return
+
+	to_chat(user, span_notice("You start refilling [src] with [refiller]."))
+
+	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	for(var/obj/item/IM in refiller)
+		if(length(contents) >= max_storage_space)
+			break
+
+		refiller.remove_from_storage(IM)
+		handle_item_insertion(IM, TRUE, user)
+		playsound(user.loc, refill_sound, 15, 1, 6)
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
