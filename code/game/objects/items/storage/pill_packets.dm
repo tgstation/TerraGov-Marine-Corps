@@ -26,6 +26,8 @@
 		var/turf/T = get_turf(src)
 		new trash_item(T)
 		qdel(src)
+	refill_types = null
+	refill_sound = null
 
 /obj/item/storage/pill_bottle/packet/bicaridine
 	name = "Bicaridine pill packet"
