@@ -543,7 +543,7 @@
 		user.balloon_alert(user, "[src] is full.")
 		return
 
-	user.balloon_alert(user, "You start refilling [src] with [refiller].")
+	user.balloon_alert(user, "Refilling.")
 
 	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 		return
