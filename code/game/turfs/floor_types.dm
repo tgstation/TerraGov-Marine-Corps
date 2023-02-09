@@ -281,12 +281,14 @@
 
 /turf/open/floor/marking/asteroidwarning
 	icon_state = "asteroidwarning"
+	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
 /turf/open/floor/grimy
 	icon_state = "grimy"
 
 /turf/open/floor/asteroidfloor
 	icon_state = "asteroidfloor"
+	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
 
 

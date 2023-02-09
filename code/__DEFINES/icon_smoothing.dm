@@ -49,6 +49,10 @@
 #define SMOOTH_GROUP_CARPET_ROYAL_BLACK S_TURF(18)		///turf/open/floor/carpet/royalblack
 #define SMOOTH_GROUP_CARPET_ROYAL_BLUE S_TURF(19)		///turf/open/floor/carpet/royalblue
 
+#define SMOOTH_GROUP_RED_DIRT S_TURF(20)
+#define SMOOTH_GROUP_ASTEROID_WARNING S_TURF(21)
+#define SMOOTH_GROUP_ASPHALT S_TURF(22)
+
 #define SMOOTH_GROUP_CLOSED_TURFS S_TURF(24)			///turf/closed
 #define SMOOTH_GROUP_MATERIAL_WALLS S_TURF(25)			///turf/closed/wall/material
 #define SMOOTH_GROUP_SYNDICATE_WALLS S_TURF(26)			///turf/closed/wall/r_wall/syndicate
@@ -64,8 +68,9 @@
 #define SMOOTH_GROUP_ESCAPESHUTTLE S_TURF(37) //Mainship escape shuttles
 #define SMOOTH_GROUP_BASALT S_TURF(38)
 #define SMOOTH_GROUP_RIVER S_TURF(39)
+#define SMOOTH_GROUP_ICE_WALL S_TURF(40)
 
-#define MAX_S_TURF SMOOTH_GROUP_RIVER //Always match this value with the one above it.
+#define MAX_S_TURF SMOOTH_GROUP_ICE_WALL //Always match this value with the one above it.
 
 
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)

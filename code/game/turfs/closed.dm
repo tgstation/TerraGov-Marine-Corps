@@ -83,6 +83,8 @@
 	icon_state = "bluefrostwall-0"
 	walltype = "bluefrostwall"
 	base_icon_state = "bluefrostwall"
+	smoothing_groups = list(SMOOTH_GROUP_ICE_WALL)
+	canSmoothWith = list(SMOOTH_GROUP_ICE_WALL)
 
 /turf/closed/mineral/smooth/bluefrostwall/indestructible
 	resistance_flags = RESIST_ALL

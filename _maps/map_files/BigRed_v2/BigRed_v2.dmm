@@ -5194,7 +5194,7 @@
 "aUS" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 6
+	dir = 4
 	},
 /area/bigredv2/outside/c)
 "aVp" = (
@@ -15282,12 +15282,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
-"xJA" = (
-/obj/effect/turf_decal/warning_stripes/linethick{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/e)
 "xJI" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/dark,
@@ -40171,8 +40165,8 @@ aGI
 aEO
 aqT
 eBA
-lKw
-oxP
+aLd
+oFg
 aMc
 eBA
 aaa
@@ -47335,7 +47329,7 @@ tdC
 aTn
 kGT
 gga
-xJA
+gga
 gga
 gga
 gga

@@ -154,6 +154,7 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
 
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)
 	. = ..()
