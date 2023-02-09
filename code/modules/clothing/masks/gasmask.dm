@@ -5,7 +5,7 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT
+	flags_inventory = COVERMOUTH | COVEREYES | BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -59,7 +59,7 @@
 	icon_state = "pmc_mask"
 	item_state = "helmet"
 	anti_hug = 3
-	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT
+	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
 
