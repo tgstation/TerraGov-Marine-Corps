@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Ported the 8-bit bitmasking smoothing system used by TG."
+  - imageadd: "Converted most smoothing icons to the new smoothing system."
