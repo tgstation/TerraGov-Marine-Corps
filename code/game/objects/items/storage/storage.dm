@@ -551,7 +551,7 @@
 	playsound(user.loc, refill_sound, 15, 1, 6)
 	for(var/obj/item/IM in refiller)
 		if(!can_be_inserted(refiller.contents[1]))
-			break
+			return
 
 		refiller.remove_from_storage(IM)
 		handle_item_insertion(IM, TRUE, user)
