@@ -512,6 +512,7 @@
 
 
 /obj/machinery/door/airlock/Destroy()
+	QUEUE_SMOOTH_NEIGHBORS(loc)
 	QDEL_NULL(wires)
 	return ..()
 
