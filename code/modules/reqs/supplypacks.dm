@@ -1731,22 +1731,22 @@ FACTORY
 	cost = 300
 
 /datum/supply_packs/factory/heat_recoilless_refill
-	name = "Recoilless light missile assembly refill"
+	name = "Recoilless heat missile assembly refill"
 	contains = list(/obj/item/factory_refill/heat_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/smoke_recoilless_refill
-	name = "Recoilless light missile assembly refill"
+	name = "Recoilless smoke missile assembly refill"
 	contains = list(/obj/item/factory_refill/smoke_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/cloak_recoilless_refill
-	name = "Recoilless light missile assembly refill"
+	name = "Recoilless cloak missile assembly refill"
 	contains = list(/obj/item/factory_refill/cloak_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/tfoot_recoilless_refill
-	name = "Recoilless light missile assembly refill"
+	name = "Recoilless tfoot missile assembly refill"
 	contains = list(/obj/item/factory_refill/tfoot_rr_missile_refill)
 	cost = 300
 

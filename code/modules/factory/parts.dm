@@ -530,7 +530,6 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 /obj/item/factory_part/thermobaric_wp/Initialize()
 	. = ..()
 	recipe = GLOB.thermobaric_wp_recipe
-	list()
 
 GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
