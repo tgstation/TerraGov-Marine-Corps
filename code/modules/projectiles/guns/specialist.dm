@@ -219,7 +219,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
-	UnregisterSignal(user, COMSIG_ITEM_UNZOOM)
+	if(user)
+		UnregisterSignal(user, COMSIG_ITEM_UNZOOM)
 	if(user?.client)
 		user.client.click_intercept = null
 		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))
