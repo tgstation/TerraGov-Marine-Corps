@@ -264,8 +264,28 @@ SUBSYSTEM_DEF(minimaps)
 	SIGNAL_HANDLER
 	if(!source.z)
 		return //this can happen legitimately when you go into pipes, it shouldnt but thats how it is
+	var/newloc = source.loc
+	if(newloc == oldloc)
+		return
+	if(ismovableatom(newloc))
+		if(!images_by_source[source])
+			RegisterSignal(newloc, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_EXITED), .proc/update_contents_blip)
 	images_by_source[source].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + minimaps_by_z["[source.z]"].x_offset
 	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
+	update_contents_blip(source)
+
+/**
+ * updates overlay position of content atoms
+ */
+/datum/controller/subsystem/minimaps/proc/update_contents_blip(atom/movable/source, oldloc)
+	SIGNAL_HANDLER
+	if(!source.contents)
+		if(!images_by_source[source])
+			UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_EXITED))
+	for(var/AM AS in source.contents)
+		if(images_by_source[AM])
+			images_by_source[AM].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + minimaps_by_z["[source.z]"].x_offset
+			images_by_source[AM].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
 
 /**
  * Removes an atom and it's blip from the subsystem
@@ -305,7 +325,7 @@ SUBSYSTEM_DEF(minimaps)
 	name = "Minimap"
 	icon = null
 	icon_state = ""
-	layer = ABOVE_HUD_LAYER
+	layer = MINIMAP_LAYER
 	screen_loc = "1,1"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 

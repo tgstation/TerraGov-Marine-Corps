@@ -62,18 +62,10 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/after_add_occupant(mob/M)
-	var/mob/living/carbon/human/pilot = M
-	var/obj/item/radio/headset/mainship/headset = pilot.wear_ear
-	if(istype(headset))
-		headset.minimap_icon_hidden = TRUE
 	update_minimap_icon()
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/after_remove_occupant(mob/M)
-	var/mob/living/carbon/human/pilot = M
-	var/obj/item/radio/headset/mainship/headset = pilot.wear_ear
-	if(istype(headset))
-		headset.minimap_icon_hidden = FALSE
 	update_minimap_icon()
 	return ..()
 
