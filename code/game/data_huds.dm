@@ -275,6 +275,12 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
+	if(species.species_flags & ROBOTIC_LIMBS)
+		simple_status_hud.icon_state = ""
+		status_hud.icon_state = "hudrobot"
+		infection_hud.icon_state = "hudrobot" //Xenos can feel synths are not human.
+		return TRUE
+
 	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
 		status_hud.icon_state = "huddead"
 		infection_hud.icon_state = ""
@@ -367,7 +373,7 @@
 
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
-	if(species?.species_flags & IS_SYNTHETIC)
+	if(species?.species_flags & IS_SYNTHETIC || ROBOTIC_LIMBS)
 		return FALSE
 
 	var/image/holder = hud_list[PAIN_HUD]
