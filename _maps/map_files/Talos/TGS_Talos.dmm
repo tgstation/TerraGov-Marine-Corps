@@ -3310,6 +3310,10 @@
 	dir = 4
 	},
 /area/mainship/engineering/engine_core)
+"cwP" = (
+/obj/machinery/vending/lasgun,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "cxe" = (
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -62024,7 +62028,7 @@ aKq
 jSi
 mml
 jSi
-jSi
+cwP
 iwc
 ekG
 oVx
