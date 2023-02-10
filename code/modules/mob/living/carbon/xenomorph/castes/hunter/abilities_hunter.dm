@@ -138,9 +138,11 @@
 	//Held facehuggers change alpha for balance reason
 	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
-
 	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+    //Actions change alpha for balance reason (Pu-pu-pu)
+	if(owner.do_actions)
+		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
