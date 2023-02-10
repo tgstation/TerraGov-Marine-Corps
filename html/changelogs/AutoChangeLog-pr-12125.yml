@@ -1,5 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscdel: "Removed gasmask action"
-  - imagedel: "Removed gasmask action icon"
