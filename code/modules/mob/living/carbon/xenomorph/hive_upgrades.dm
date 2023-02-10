@@ -234,6 +234,43 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/defence
 	category = "Defences"
 
+/datum/hive_upgrade/defence/oblivion
+    name = "Oblivion"
+    desc = "Destroy the bodies beneath you "
+    icon = "smartminions"
+    psypoint_cost = 1000
+    flags_gamemode = ABILITY_DISTRESS
+
+/datum/hive_upgrade/defence/oblivion/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+	var/turf/T = get_turf(buyer)
+	var/mob/living/carbon/human/H = locate() in T
+	var/mob/living/carbon/human/species/synthetic = locate() in T
+	if(!H || H.stat != DEAD || synthetic)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot destroy nothing or alive"))
+		return FALSE
+
+	return TRUE
+
+/datum/hive_upgrade/defence/oblivion/on_buy(mob/living/carbon/xenomorph/buyer)
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	var/turf/T = get_turf(buyer)
+	var/mob/living/carbon/human/H = locate() in T
+	xeno_message("[buyer] sent [H] into oblivion!", "xenoannounce", 5, buyer.hivenumber)
+	to_chat(buyer, span_xenowarning("WE HAVE SENT THE [H] INTO OBLIVION"))
+	H.gib()
+
+	log_game("[buyer] sent [H] into oblivion, spending [psypoint_cost] psy points in the process")
+
+
+	return ..()
+
 /datum/hive_upgrade/defence/turret
 	name = "Acid turret"
 	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
