@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Added new Marine Magnum. It has a windup to fire, staggers on hit, and deals solid damage."
