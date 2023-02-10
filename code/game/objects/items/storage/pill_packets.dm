@@ -11,7 +11,7 @@
 	greyscale_config = /datum/greyscale_config/pillpacket
 	greyscale_colors = "#EAEAEA#0066ff" //default colors
 	///the item left behind when this is used up
-	var/trash_item = /obj/item/trash/pillpacket
+	var/trash_item = /obj/item/reagent_containers/food/snacks/pillpacket
 	///Amount of pills removed from the packet
 	var/pills_removed = 0
 	refill_types = null
