@@ -286,7 +286,7 @@
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
-		to_chat(user, span_warning("You need an empty hand to take out a pill."))
+		user.balloon_alert(user, "Need an empty hand")
 		return
 	if(contents.len)
 		var/obj/item/I = contents[1]
@@ -303,7 +303,19 @@
 			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
 	else
-		to_chat(user, span_warning("\The [src] is empty."))
+		user.balloon_alert(user, "Empty")
+		return
+
+/obj/item/storage/pill_bottle/attack_hand_alternate(mob/living/user) //Most of the time you are just taking pills out with right click which skips the sound being played.
+	if(contents.len)
+		var/obj/item/I = contents[1]
+		if(!remove_from_storage(I,user,user))
+			return
+		if(user.put_in_hands(I))
+			to_chat(user, span_notice("You take a pill out of \the [src]."))
+			playsound(user, 'sound/items/pills.ogg', 15, 1)
+	else
+		user.balloon_alert(user, "Empty")
 		return
 
 /obj/item/storage/pill_bottle/update_overlays()
