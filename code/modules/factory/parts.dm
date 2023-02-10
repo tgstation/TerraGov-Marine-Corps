@@ -522,11 +522,6 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 	. = ..()
 	recipe = GLOB.mlrs_rocket
 
-/obj/item/factory_part/thermobaric_wp
-	name = "RL-57 Thermobaric WP rocket array"
-	desc = "An unfinished Thermobaric WP rocket array"
-	result = /obj/item/ammo_magazine/rocket/m57a4
-
 /obj/item/factory_part/thermobaric_wp/Initialize()
 	. = ..()
 	recipe = GLOB.thermobaric_wp_recipe
@@ -538,3 +533,8 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
 	))
+
+/obj/item/factory_part/thermobaric_wp
+	name = "RL-57 Thermobaric WP rocket array"
+	desc = "An unfinished Thermobaric WP rocket array"
+	result = /obj/item/ammo_magazine/rocket/m57a4
