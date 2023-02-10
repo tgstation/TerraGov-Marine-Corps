@@ -1,19 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "at" = (
 /obj/effect/landmark/weed_node,
-/turf/open/ground/coast/corner,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "aC" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "cp" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
-"cK" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "dD" = (
 /obj/effect/ai_node,
@@ -27,11 +22,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
-"ez" = (
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
 "eA" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -60,23 +50,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"jk" = (
-/obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
-"jw" = (
-/obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/lv624/ground/caves/central2)
-"jF" = (
-/turf/open/ground/coast{
-	dir = 10
-	},
-/area/lv624/ground/caves/central2)
 "jU" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal{
@@ -99,11 +72,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"mK" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/lv624/ground/caves/central2)
 "nH" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe,
@@ -111,11 +79,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"nQ" = (
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "oe" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
@@ -134,23 +97,9 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"sZ" = (
-/obj/effect/ai_node,
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
-"ul" = (
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/caves/central2)
 "vn" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"xw" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
 "yC" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
@@ -158,11 +107,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"zF" = (
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/lv624/ground/caves/central2)
 "zK" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
@@ -172,15 +116,9 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"Ah" = (
-/obj/effect/ai_node,
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
 "AS" = (
 /obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 5
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Bx" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -189,9 +127,6 @@
 "BH" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"Cv" = (
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
 "CN" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
@@ -255,19 +190,6 @@
 "IU" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
-"JX" = (
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
-"Kb" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/lv624/ground/caves/central2)
-"MQ" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "MS" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/silver{
@@ -298,14 +220,14 @@
 /area/lv624/ground/caves/central1)
 "QB" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Rk" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Sl" = (
-/turf/open/ground/coast/corner,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "SW" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -562,7 +484,7 @@ Gw
 Gw
 Gw
 Sl
-MQ
+Sl
 GV
 GV
 GV
@@ -596,9 +518,9 @@ Gw
 Gw
 FI
 Sl
-Kb
+Sl
 Rk
-JX
+Sl
 GV
 IU
 IU
@@ -629,11 +551,11 @@ GV
 GV
 Gw
 Sl
-MQ
-Kb
-JX
+Sl
+Sl
+Sl
 QB
-JX
+Sl
 GV
 IU
 IU
@@ -663,11 +585,11 @@ GV
 GV
 Gw
 Sl
-Kb
-JX
-JX
-zF
-mK
+Sl
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 IU
@@ -697,11 +619,11 @@ SW
 SW
 SW
 Gw
-Cv
-JX
+Sl
+Sl
 QB
-zF
-nQ
+Sl
+Sl
 Gw
 GV
 GV
@@ -732,10 +654,10 @@ Gw
 Gw
 Gw
 Sl
-jw
-JX
+AS
+Sl
 Rk
-jk
+AS
 Gw
 Gw
 GV
@@ -766,11 +688,11 @@ FI
 Gw
 Gw
 Sl
-Kb
-JX
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
+Sl
 Gw
 FI
 GV
@@ -800,12 +722,12 @@ Gw
 Gw
 Gw
 Sl
-Kb
-JX
-JX
-JX
+Sl
+Sl
+Sl
+Sl
 cp
-xw
+Sl
 Gw
 GV
 GV
@@ -834,13 +756,13 @@ Gw
 Gw
 Gw
 Sl
-Kb
-JX
-JX
-zF
-mK
-mK
-nQ
+Sl
+Sl
+Sl
+Sl
+Sl
+Sl
+Sl
 FI
 GV
 GV
@@ -868,11 +790,11 @@ Gw
 FI
 Gw
 Gw
-Cv
-JX
+Sl
+Sl
 QB
-zF
-nQ
+Sl
+Sl
 qN
 Gw
 Gw
@@ -903,9 +825,9 @@ Gw
 Gw
 GV
 GV
-Cv
-JX
-JX
+Sl
+Sl
+Sl
 GV
 GV
 Gw
@@ -938,9 +860,9 @@ GV
 GV
 GV
 GV
-Cv
-JX
-JX
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -973,10 +895,10 @@ GV
 GV
 GV
 GV
-Cv
-JX
+Sl
+Sl
 cp
-xw
+Sl
 GV
 GV
 Gw
@@ -1008,10 +930,10 @@ GV
 GV
 GV
 Sl
-Kb
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
 Gw
 Gw
 Gw
@@ -1042,11 +964,11 @@ GV
 GV
 GV
 Sl
-Kb
+Sl
 QB
-JX
-zF
-nQ
+Sl
+Sl
+Sl
 Gw
 Gw
 Gw
@@ -1076,11 +998,11 @@ ZW
 Gw
 Gw
 Sl
-Kb
-JX
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
+Sl
 Gw
 FI
 ZW
@@ -1110,12 +1032,12 @@ Gw
 Gw
 Gw
 Sl
-Kb
-JX
+Sl
+Sl
 Rk
-zF
-mK
-nQ
+Sl
+Sl
+Sl
 Gw
 Gw
 FI
@@ -1144,11 +1066,11 @@ GV
 Gw
 Gw
 at
-Kb
-JX
-JX
-zF
-nQ
+Sl
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 SW
@@ -1178,11 +1100,11 @@ GV
 GV
 Gw
 Gw
-Cv
-JX
-JX
-zF
-nQ
+Sl
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1213,10 +1135,10 @@ Gw
 Gw
 Gw
 Gw
-Cv
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1248,9 +1170,9 @@ Gw
 qN
 FI
 Gw
-Cv
+Sl
 QB
-JX
+Sl
 GV
 GV
 GV
@@ -1283,9 +1205,9 @@ Gw
 Gw
 ZW
 Gw
-Cv
-JX
-JX
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1318,10 +1240,10 @@ Gw
 ZW
 GV
 GV
-Cv
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1353,10 +1275,10 @@ Gw
 Gw
 GV
 GV
-ez
-jF
+Sl
+Sl
 cp
-cK
+Sl
 Gw
 GV
 GV
@@ -1389,10 +1311,10 @@ Gw
 GV
 GV
 Gw
-Cv
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
 eA
 Gw
 Gw
@@ -1424,10 +1346,10 @@ ZW
 GV
 GV
 GV
-Cv
-JX
-Ah
-xw
+Sl
+Sl
+AS
+Sl
 eA
 Gw
 FI
@@ -1459,10 +1381,10 @@ Gw
 SW
 GV
 GV
-Cv
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
 eA
 Gw
 Gw
@@ -1495,8 +1417,8 @@ SW
 GV
 GV
 GV
-JX
-JX
+Sl
+Sl
 GV
 GV
 SW
@@ -1530,8 +1452,8 @@ Gw
 Gw
 GV
 GV
-jF
-JX
+Sl
+Sl
 GV
 GV
 GV
@@ -1565,9 +1487,9 @@ FI
 Gw
 eA
 Gw
-Cv
-JX
-JX
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1600,9 +1522,9 @@ Gw
 Gw
 eA
 Gw
-Cv
-Ah
-JX
+Sl
+AS
+Sl
 GV
 GV
 GV
@@ -1635,9 +1557,9 @@ Gw
 qN
 eA
 Gw
-ez
-jF
-JX
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1671,9 +1593,9 @@ SW
 GV
 GV
 Gw
-Cv
+Sl
 QB
-JX
+Sl
 GV
 GV
 GV
@@ -1706,10 +1628,10 @@ SW
 GV
 GV
 GV
-sZ
-JX
-JX
-Ah
+AS
+Sl
+Sl
+AS
 GV
 GV
 Gw
@@ -1742,12 +1664,12 @@ SW
 GV
 GV
 GV
-jF
-JX
-JX
-JX
-cK
-ul
+Sl
+Sl
+Sl
+Sl
+Sl
+Sl
 FI
 Gw
 Gw
@@ -1777,12 +1699,12 @@ SW
 SW
 GV
 GV
-ez
-jF
-Ah
-JX
-JX
-jk
+Sl
+Sl
+AS
+Sl
+Sl
+AS
 Gw
 Gw
 FI
@@ -1813,12 +1735,12 @@ SW
 GV
 GV
 Gw
-ez
-jF
-JX
-JX
-cK
-ul
+Sl
+Sl
+Sl
+Sl
+Sl
+Sl
 qN
 Gw
 eA
@@ -1849,11 +1771,11 @@ GV
 GV
 GV
 Gw
-Cv
+Sl
 cp
-JX
+Sl
 QB
-xw
+Sl
 Gw
 GV
 GV
@@ -1884,11 +1806,11 @@ GV
 GV
 GV
 GV
-ez
-jF
-JX
-JX
-cK
+Sl
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1920,10 +1842,10 @@ GV
 GV
 GV
 Gw
-ez
-jF
-JX
-JX
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -1956,11 +1878,11 @@ GV
 Gw
 FI
 Gw
-Cv
-JX
-JX
-JX
-JX
+Sl
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 Gw
@@ -1992,10 +1914,10 @@ Gw
 Gw
 GV
 GV
-jF
-JX
+Sl
+Sl
 Rk
-JX
+Sl
 GV
 GV
 GV
@@ -2028,9 +1950,9 @@ Gw
 GV
 GV
 GV
-jF
-JX
-JX
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -2064,9 +1986,9 @@ SW
 GV
 GV
 GV
-JX
-JX
-xw
+Sl
+Sl
+Sl
 GV
 GV
 Gw
@@ -2099,9 +2021,9 @@ ZW
 SW
 GV
 GV
-JX
-JX
-xw
+Sl
+Sl
+Sl
 Gw
 eA
 Gw
@@ -2133,10 +2055,10 @@ Gw
 Gw
 ZW
 Sl
-Kb
-JX
+Sl
+Sl
 QB
-xw
+Sl
 qN
 eA
 FI
@@ -2167,11 +2089,11 @@ GV
 GV
 Gw
 Sl
-Kb
-JX
+Sl
+Sl
 cp
-JX
-xw
+Sl
+Sl
 Gw
 eA
 Gw
@@ -2201,12 +2123,12 @@ SW
 GV
 GV
 GV
-Kb
-JX
-JX
-JX
-zF
-nQ
+Sl
+Sl
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 Gw
@@ -2236,9 +2158,9 @@ Gw
 SW
 GV
 GV
-JX
+Sl
 cp
-JX
+Sl
 GV
 GV
 GV
@@ -2270,10 +2192,10 @@ Gw
 Gw
 eA
 Gw
-Cv
-JX
-JX
-zF
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -2305,9 +2227,9 @@ Gw
 Gw
 eA
 Gw
-Cv
-Ah
-JX
+Sl
+AS
+Sl
 GV
 GV
 GV
@@ -2340,10 +2262,10 @@ Gw
 Gw
 GV
 Gw
-ez
-jF
-JX
-JX
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 GV
@@ -2376,11 +2298,11 @@ GV
 GV
 GV
 Gw
-Cv
-JX
+Sl
+Sl
 Rk
-JX
-xw
+Sl
+Sl
 Gw
 eA
 Gw
@@ -2411,11 +2333,11 @@ GV
 GV
 GV
 Gw
-ez
-jF
-JX
-JX
-xw
+Sl
+Sl
+Sl
+Sl
+Sl
 FI
 eA
 Gw
@@ -2447,10 +2369,10 @@ GV
 Gw
 Gw
 FI
-Cv
+Sl
 cp
-JX
-xw
+Sl
+Sl
 Gw
 GV
 GV
@@ -2482,9 +2404,9 @@ GV
 Gw
 qN
 Gw
-Cv
+Sl
 QB
-JX
+Sl
 GV
 GV
 GV
@@ -2517,14 +2439,14 @@ eA
 Gw
 FI
 Gw
-Cv
-JX
-JX
+Sl
+Sl
+Sl
 GV
 GV
 Sl
-MQ
-MQ
+Sl
+Sl
 GV
 GV
 GV
@@ -2552,14 +2474,14 @@ eA
 Gw
 Gw
 ZW
-ez
-jF
-JX
+Sl
+Sl
+Sl
 AS
-MQ
-Kb
-JX
-Ah
+Sl
+Sl
+Sl
+AS
 GV
 GV
 GV
@@ -2588,13 +2510,13 @@ Gw
 GV
 GV
 Gw
-Cv
-JX
-JX
-JX
-JX
+Sl
+Sl
+Sl
+Sl
+Sl
 QB
-JX
+Sl
 GV
 GV
 GV
@@ -2623,13 +2545,13 @@ GV
 GV
 GV
 GV
-Cv
-JX
+Sl
+Sl
 cp
-JX
-JX
-JX
-JX
+Sl
+Sl
+Sl
+Sl
 GV
 GV
 IU
@@ -2658,13 +2580,13 @@ GV
 GV
 GV
 GV
-ez
-mK
-mK
+Sl
+Sl
+Sl
 GV
 GV
 GV
-mK
+Sl
 GV
 GV
 IU

@@ -114,3 +114,24 @@
   - balance: AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20
   - bugfix: fixed AT36 HE ammo being described as "high velocity" when its actually
       very slow
+2023-02-09:
+  Blundir:
+  - imageadd: resprited xenohealth, plasma, leader star, active phero/buff status,
+      larva huds
+  Guidesa:
+  - imageadd: powerfists now display if they have a power cell in them
+  KillerOrcaCora:
+  - imageadd: New rouny sprites for warlock
+  Lumipharon:
+  - balance: Oxycodone OD now causes stam loss and confusion
+  TiviPlus:
+  - balance: power fist uses a little less power and pushes large xenos a little further
+      away
+  Xander3359:
+  - rscadd: Getting hit by something being thrown at you (like knives) now plays a
+      sound.
+  maikilangiolo:
+  - rscadd: added WP shrapnel AGLS ammo
+  - balance: rebalanced AGLS frag to be better
+  - balance: rebalanced AGLS AOEs to be less oppressive for both sides
+  - qol: recolored AGLS ammo to be easier to distinguish
