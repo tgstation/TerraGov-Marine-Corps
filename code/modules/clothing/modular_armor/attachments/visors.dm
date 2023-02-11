@@ -10,7 +10,7 @@
 	slot = ATTACHMENT_SLOT_VISOR
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	greyscale_config = /datum/greyscale_config/visors
-	greyscale_colors = "#ffffff"
+	greyscale_colors = COLOR_VERY_LIGHT_GRAY
 	secondary_color = TRUE
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE

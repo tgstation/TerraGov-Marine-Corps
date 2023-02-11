@@ -114,15 +114,15 @@
 	return
 
 ///Colors the armor when the parent is right clicked with facepaint.
-/obj/item/armor_module/proc/handle_color(datum/source, obj/I, mob/user)
+/obj/item/armor_module/proc/handle_color(datum/source, obj/paint, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom.proc/attackby, I, user)
+	INVOKE_ASYNC(src, /atom.proc/attackby, paint, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/proc/extra_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "Right click the [parent] with paint to color the [src]"
+	examine_list += "Right click [parent] with paint to color [src]"
 
 
 /**
@@ -147,10 +147,6 @@
 	var/list/icon_state_variants = list()
 	///Current varient selected.
 	var/current_variant
-
-/obj/item/armor_module/armor/Initialize()
-	. = ..()
-	update_icon()
 
 /obj/item/armor_module/armor/update_icon()
 	. = ..()
@@ -219,13 +215,9 @@
 /obj/item/armor_module/greyscale
 	name = "modular armor - armor module"
 	icon = 'icons/mob/modular/modular_armor.dmi'
-	greyscale_colors = "#ffffff"
+	greyscale_colors = COLOR_VERY_LIGHT_GRAY
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
-
-/obj/item/armor_module/greyscale/Initialize()
-	. = ..()
-	update_icon()
 
 /obj/item/armor_module/greyscale/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -248,7 +240,7 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
+		balloon_alert(user, "[paint] is out of color!")
 		return
 
 	var/new_color = input(user, "Pick a color", "Pick color") as null|color

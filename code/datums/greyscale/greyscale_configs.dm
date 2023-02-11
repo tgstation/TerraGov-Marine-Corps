@@ -53,6 +53,15 @@
 	icon_file = 'icons/mob/modular/capes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cape.json'
 
+/datum/greyscale_config/cape/half
+	json_config = 'code/datums/greyscale/json_configs/cape_medium.json'
+
+/datum/greyscale_config/cape/short
+	json_config = 'code/datums/greyscale/json_configs/cape_short.json'
+
+/datum/greyscale_config/cape/scarf
+	json_config = 'code/datums/greyscale/json_configs/scarf.json'
+
 /*
  * COLORABLE BADGES
  */
