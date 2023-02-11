@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	))
 
 /obj/item/factory_part/smartgunner_minigun_box
-	name = "IFF bullet box"
+	name = "\improper IFF bullet box"
 	desc = "A box with unfinished smart-rounds inside."
 	result = /obj/item/ammo_magazine/packet/smart_minigun
 
@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	recipe = GLOB.IFF_ammo
 
 /obj/item/factory_part/smartgunner_machinegun_magazine
-	name = "IFF drums box"
+	name = "\improper IFF drums box"
 	desc = "A box with unfinished smart-rounds inside and empty drums inside."
 	result = /obj/item/ammo_magazine/standard_smartmachinegun
 
@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	recipe = GLOB.IFF_ammo
 
 /obj/item/factory_part/auto_sniper_magazine
-	name = "IFF high caliber bullet box"
+	name = "\improper IFF high caliber bullet box"
 	desc = "A box with unfinished high caliber smart-rounds inside."
 	result = /obj/item/ammo_magazine/rifle/autosniper
 
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	recipe = GLOB.IFF_ammo
 
 /obj/item/factory_part/scout_rifle_magazine
-	name = "IFF high velocity bullet box"
+	name = "\improper IFF high velocity bullet box"
 	desc = "A box with unfinished high velocity smart-rounds inside."
 	result = /obj/item/ammo_magazine/rifle/tx8
 
@@ -233,7 +233,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	recipe = GLOB.IFF_ammo
 
 /obj/item/factory_part/amr_magazine
-	name = "IFF antimaterial bullet box"
+	name = "\improper IFF antimaterial bullet box"
 	desc = "A box with unfinished antimaterial rifle rounds inside."
 	result = /obj/item/ammo_magazine/sniper
 
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	recipe = GLOB.IFF_ammo
 
 /obj/item/factory_part/amr_magazine_incend
-	name = "IFF antimaterial incendiary bullet box"
+	name = "\improper IFF antimaterial incendiary bullet box"
 	desc = "A box with unfinished antimaterial Incendiary rifle rounds inside."
 	result = /obj/item/ammo_magazine/sniper/incendiary
 
@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	recipe = GLOB.IFF_ammo
 
 /obj/item/factory_part/amr_magazine_flak
-	name = "IFF antimaterial Flak bullet box"
+	name = "\improper IFF antimaterial Flak bullet box"
 	desc = "A box with unfinished antimaterial rifle Flak rounds inside."
 	result = /obj/item/ammo_magazine/sniper/flak
 
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(swat_mask, list(
 	))
 
 /obj/item/factory_part/swat_mask
-	name = "SWAT mask"
+	name = "\improper SWAT mask"
 	desc = "An unfinished SWAT mask assembly."
 	result = /obj/item/clothing/mask/gas/swat
 
@@ -415,7 +415,7 @@ GLOBAL_LIST_INIT(module, list(
 	))
 
 /obj/item/factory_part/module_valk
-	name = "Valkyrie automedical armor system"
+	name = "\improper Valkyrie automedical armor system"
 	desc = "An unfinished Valkyrie automedical armor system module."
 	result = /obj/item/armor_module/module/valkyrie_autodoc
 
@@ -424,7 +424,7 @@ GLOBAL_LIST_INIT(module, list(
 	recipe = GLOB.module
 
 /obj/item/factory_part/module_mimir2
-	name = "Mark 2 Mimir environmental resistance system"
+	name = "\improper Mark 2 Mimir environmental resistance system"
 	desc = "An unfinished Mark 2 Mimir environmental resistance system module."
 	result = list(
 		/obj/item/armor_module/module/mimir_environment_protection,
@@ -445,7 +445,7 @@ GLOBAL_LIST_INIT(module, list(
 	recipe = GLOB.module
 
 /obj/item/factory_part/module_hlin
-	name = "Hlin explosive compensation module"
+	name = "\improper Hlin explosive compensation module"
 	desc = "An unfinished hlin explosive compensation ."
 	result = /obj/item/armor_module/module/hlin_explosive_armor
 
@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(module, list(
 	recipe = GLOB.module
 
 /obj/item/factory_part/module_surt
-	name = "Surt pyrotechnical insulation system"
+	name = "\improper Surt pyrotechnical insulation system"
 	desc = "An unfinished Surt pyrotechnical insulation system module."
 	result = /obj/item/armor_module/module/fire_proof
 
