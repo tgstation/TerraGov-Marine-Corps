@@ -2119,9 +2119,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "BN" = (
-/obj/effect/spawner/random/structure/powergenerator/superweighted{
-	power_gen = 25000
-	},
+/obj/effect/spawner/random/structure/powergenerator/superweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "Ce" = (
