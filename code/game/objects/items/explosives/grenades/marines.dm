@@ -25,7 +25,6 @@
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_pmc"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	icon_state_mini = "grenade_red_white"
 	light_impact_range = 5
@@ -35,7 +34,6 @@
 	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	icon_state_mini = "grenade_yellow"
 	light_impact_range = 5
@@ -45,24 +43,25 @@
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
 	item_state = "grenade_stick"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
-	throw_speed = 2
-	throw_range = 7
 
 /obj/item/explosive/grenade/upp
 	name = "\improper Type 5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
 	item_state = "grenade_upp"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
 
+/obj/item/explosive/grenade/som
+	name = "\improper S30 HE grenade"
+	desc = "A reliable high explosive grenade utilised by SOM forces. Designed for hand or grenade launcher use."
+	icon_state = "grenade_som"
+	item_state = "grenade_som"
 
 /obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
@@ -124,7 +123,7 @@
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 35, TRUE, 4)
+	playsound(loc, 'sound/effects/incendiary_explode.ogg', 35, TRUE, 9)
 	qdel(src)
 
 
@@ -141,6 +140,11 @@
 		var/turf/turf_to_flame = t
 		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
+/obj/item/explosive/grenade/incendiary/som
+	name = "\improper S31 incendiary grenade"
+	desc = "A reliable incendiary grenade utilised by SOM forces. Designed for hand or grenade launcher use."
+	icon_state = "grenade_fire_som"
+	item_state = "grenade_fire_som"
 
 /obj/item/explosive/grenade/incendiary/molotov
 	name = "\improper improvised firebomb"
