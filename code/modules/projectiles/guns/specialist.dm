@@ -203,7 +203,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
-	RegisterSignal(user, COMSIG_ITEM_UNZOOM, .proc/laser_off, user)
+	RegisterSignal(user, COMSIG_ITEM_UNZOOM, .proc/laser_off)
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
