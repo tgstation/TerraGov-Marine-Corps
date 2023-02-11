@@ -224,7 +224,7 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
 	cost = 40
 
-/datum/supply_packs/weapons/ags_frag
+/datum/supply_packs/weapons/ags_incendiary
 	name = "AGLS-37 AGL White Phosphorous Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/incendiary)
 	cost = 40
@@ -601,6 +601,13 @@ WEAPONS
 	name = "Mateba packet"
 	contains = list(/obj/item/ammo_magazine/packet/mateba)
 	cost = 120
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/magnum
+	name = "R-76 Magnum"
+	contains = list(/obj/item/weapon/gun/revolver/standard_magnum)
+	notes = "Ammo is contained within normal marine vendors."
+	cost = 75
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/standard_ammo
@@ -1763,6 +1770,26 @@ FACTORY
 	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
 	cost = 300
 
+/datum/supply_packs/factory/heat_recoilless_refill
+	name = "Recoilless heat missile assembly refill"
+	contains = list(/obj/item/factory_refill/heat_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/smoke_recoilless_refill
+	name = "Recoilless smoke missile assembly refill"
+	contains = list(/obj/item/factory_refill/smoke_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/cloak_recoilless_refill
+	name = "Recoilless cloak missile assembly refill"
+	contains = list(/obj/item/factory_refill/cloak_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/tfoot_recoilless_refill
+	name = "Recoilless tfoot missile assembly refill"
+	contains = list(/obj/item/factory_refill/tfoot_rr_missile_refill)
+	cost = 300
+
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza_refill)
@@ -1907,3 +1934,8 @@ FACTORY
 	name = "MLRS High Explosive rocket assembly refill"
 	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
 	cost = 240
+
+/datum/supply_packs/factory/thermobaric_wp_refill
+	name = "RL-57 Thermobaric WP rocket array assembly refill"
+	contains = list(/obj/item/factory_refill/thermobaric_wp_refill)
+	cost = 500

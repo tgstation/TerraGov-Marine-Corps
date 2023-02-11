@@ -115,6 +115,7 @@
 /obj/machinery/computer/dropship_weapons/dropship1
 	name = "\improper 'Alamo' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	opacity = FALSE
 
 /obj/machinery/computer/dropship_weapons/dropship1/Initialize()
 	. = ..()
