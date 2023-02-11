@@ -136,8 +136,6 @@
 	var/acid_strength = 0.04 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
-	var/flare_strength_multiplier = 2 // how much faster we melt flares compared to other obj's. 2x by default
-	var/flare_strength_max_melt_rate = 0.2 //maximum speed at which a flare will melt
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
