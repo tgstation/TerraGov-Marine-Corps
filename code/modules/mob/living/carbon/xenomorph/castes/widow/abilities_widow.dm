@@ -200,7 +200,7 @@
 		var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
 		spiderling_behavior.go_to_target(target = victim)
 		spiderling_behavior.escorted_atom = null
-		spiderling_behavior.triggered_spiderling_rage(find_target = FALSE)
+		spiderling_behavior.triggered_spiderling_rage()
 	succeed_activate()
 
 // ***************************************
