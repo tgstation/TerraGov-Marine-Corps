@@ -1,4 +1,0 @@
-author: "Dikozda"
-delete-after: True
-changes:
-  - bugfix: "Plasma OB will now hit the lased position instead of going off in the OB room"

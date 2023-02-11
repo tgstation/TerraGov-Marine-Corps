@@ -153,3 +153,14 @@
       functionality to containers using refill_types and refill_sound.
   maikilangiolo:
   - bugfix: fixed AGLS WP magazine in req console
+2023-02-11:
+  Dikozda:
+  - bugfix: Plasma OB will now hit the lased position instead of going off in the
+      OB room
+  Lumipharon:
+  - bugfix: fixed Rownin and flak vests being invisible in some cases
+  Naaanii:
+  - rscadd: Added heat, smoke, cloak and Tfoot rrshells to reqtorio
+  - rscadd: Added thermobaric rockets to reqtorio
+  Xander3359:
+  - bugfix: Fixes a dark spot on the pillar of spring.
