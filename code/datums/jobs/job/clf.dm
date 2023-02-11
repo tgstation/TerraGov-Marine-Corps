@@ -166,7 +166,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/garand
 
 
-/datum/outfit/job/clf/standard/mpi_km/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/clf/standard/garand/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)

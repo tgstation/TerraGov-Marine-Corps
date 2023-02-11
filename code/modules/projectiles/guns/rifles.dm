@@ -1673,8 +1673,8 @@
 //A true classic, the Garand. Ping.
 
 /obj/item/weapon/gun/rifle/garand
-	name = "\improper CAU C1 Garand rifle"
-	desc = "The Crowford-1 is a remastered classic made by Crowford Armories, made to fit in the modern day. Most of the noticeable differences are a rechambering to a modern round, other than that. It is a faithful recreation with the trademark ping sound and all. Uses 8.6×70mm enbloc clips."
+	name = "\improper CAU C1 Garand self loading rifle"
+	desc = "The Crowford-1 is a remastered classic made by Crowford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications, other than that. It is a faithful recreation with the trademark ping sound and all. Uses .30-06 enbloc clips."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "garand"
 	item_state = "garand"
@@ -1689,7 +1689,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/garand_ping.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = CALIBER_86X70 //codex
+	caliber = CALIBER_3006 //codex
 	max_shells = 8 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/garand
 	allowed_ammo_types = list(
@@ -1697,6 +1697,7 @@
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/stock/garand,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
@@ -1710,7 +1711,7 @@
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS|AMMO_RECIEVER_AUTO_EJECT
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 22, "under_x" = 33, "under_y" = 16, "stock_x" = 0, "stock_y" = 11)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 1.25 SECONDS
 
@@ -1719,15 +1720,14 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 1.1 SECONDS
-	damage_mult = 0.85
-	accuracy_mult = 1.6
+	fire_delay = 0.8 SECONDS
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
 	scatter = 0
 	scatter_unwielded = 25
 	recoil = 0
 	recoil_unwielded = 4
-	aim_slowdown = 0.8
+	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	movement_acc_penalty_mult = 6
 
