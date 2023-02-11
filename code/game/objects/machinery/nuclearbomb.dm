@@ -16,6 +16,7 @@
 	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
+	interaction_flags = INTERACT_OBJ_UI
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -224,17 +225,25 @@
 	. = ..()
 	if(.)
 		return
-	if(!has_auth)
-		return
 	var/mob/user = usr
 	switch(action)
 		if("toggle_timer")
+			if(!has_auth)
+				return
 			toggle_timer(user)
 		if("change_time")
+			if(!has_auth)
+				return
+			if(!isnum(params["seconds"]))
+				CRASH("non-number passed")
 			change_time(params["seconds"])
 		if("toggle_safety")
+			if(!has_auth)
+				return
 			toggle_safety()
 		if("toggle_anchor")
+			if(!has_auth)
+				return
 			toggle_anchor(user)
 		if("toggle_disk")
 			toggle_disk(user, params["disktype"])
@@ -244,16 +253,19 @@
 	if(exploded)
 		return
 	if(safety)
-		to_chat(user, span_warning("The safety is still on."))
+		balloon_alert(user, "safety is still on")
 		return
 	if(!anchored)
-		to_chat(user, span_warning("The anchors are not set."))
+		balloon_alert(user, "anchors not set")
 		return
 
 	timer_enabled = !timer_enabled
 
 	if(timer_enabled)
 		start_processing()
+		balloon_alert(user, "timer started")
+	else
+		balloon_alert(user, "timer stopped")
 
 	if(!lighthack)
 		icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
@@ -270,7 +282,10 @@
 	safety = !safety
 	if(safety)
 		timer_enabled = FALSE
+		balloon_alert(user, "safety enabled")
 		stop_processing()
+	else
+		balloon_alert(user, "safety disabled")
 
 ///Toggles the anchor bolts on or off
 /obj/machinery/nuclearbomb/proc/toggle_anchor(mob/user)
@@ -279,13 +294,15 @@
 		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		return
 	if(istype(get_area(loc), /area/shuttle))
-		to_chat(user, span_warning("This doesn't look like a good spot to anchor the nuke."))
+		balloon_alert(user, "unsuitable location")
 		return
 
 	anchored = !anchored
 	if(anchored)
+		balloon_alert(user, "[src] anchored")
 		visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 	else
+		balloon_alert(user, "[src] unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 		timer_enabled = FALSE
 		stop_processing()
@@ -333,12 +350,6 @@
 				b_auth = I
 		if(r_auth && g_auth && b_auth)
 			has_auth = TRUE
-
-/obj/machinery/nuclearbomb/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	ui_interact(user)
 
 ///Returns time left on the nuke
 /obj/machinery/nuclearbomb/proc/get_time_left()
