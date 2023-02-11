@@ -341,6 +341,12 @@
 			return
 		if(ERROR_JUST_NO)
 			return
+
+	if(X.selected_resin == /obj/structure/bed/nest)
+		for(var/obj/structure/bed/nest/xeno_nest in range (2,T))
+			to_chat(X, span_warning("Another nest is too close!"))
+			return fail_activate()
+
 	var/atom/new_resin
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
