@@ -1,0 +1,4 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - bugfix: "adjusts RR heat shell price to match its counterparts."
