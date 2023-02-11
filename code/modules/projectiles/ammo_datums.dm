@@ -1189,8 +1189,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/dual_cannon
-	name = "dualcannon bullet"
+/datum/ammo/bullet/auto_cannon
+	name = "autocannon high-velocity bullet"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
@@ -1200,16 +1200,43 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 100
 	sundering = 7
-	max_range = 30
+	max_range = 35
 
-/datum/ammo/bullet/dual_cannon/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
 
-/datum/ammo/bullet/dual_cannon/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 15
+	staggerstun(M, P, max_range = 20, slowdown = 1)
 
-/datum/ammo/bullet/dual_cannon/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/auto_cannon/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
+
+/datum/ammo/bullet/auto_cannon/incendiary
+	name = "autocannon incendiary bullet"
+	hud_state = "sniper_fire"
+	hud_state_empty = "smartgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_INCENDIARY|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 25
+	penetration = 100
+	sundering = 2
+	max_range = 30
+
+/datum/ammo/bullet/auto_cannon/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, max_range = 20, slowdown = 0)
+
+/datum/ammo/bullet/auto_cannon/flak
+	name = "autocannon smart-detonating bullet"
+	hud_state = "sniper_flak"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	damage = 60
+	penetration = 50
+	sundering = 10
+	max_range = 30
+	airburst_multiplier	= 0.7
+
+/datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
@@ -2057,7 +2084,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/atgun_shell/beehive
 	name = "beehive shell"
-	hud_state = "shell_beehive"
+	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	shell_speed = 3
 	damage = 30
@@ -2097,7 +2124,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/atgun_shell/beehive/incend
 	name = "napalm shell"
-	hud_state = "shell_incend"
+	hud_state = "shell_heat"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
