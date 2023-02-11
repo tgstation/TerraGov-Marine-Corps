@@ -807,7 +807,6 @@
 "em" = (
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/gyro,
-/obj/item/attachable/scope,
 /obj/item/attachable/compensator,
 /obj/item/attachable/burstfire_assembly,
 /obj/item/attachable/lasersight,
