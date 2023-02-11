@@ -179,7 +179,7 @@
 		/obj/item/ammo_magazine/auto_cannon,
 		/obj/item/ammo_magazine/auto_cannon/incendiary,
 		/obj/item/ammo_magazine/auto_cannon/flak,
-		)
+	)
 
 	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
