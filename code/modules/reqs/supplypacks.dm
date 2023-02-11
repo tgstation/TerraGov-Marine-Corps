@@ -332,7 +332,7 @@ WEAPONS
 /datum/supply_packs/weapons/shell_heat
 	name = "RL-160 HEAT shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/heat)
-	cost = 3
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/shell_smoke
