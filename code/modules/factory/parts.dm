@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(phosnade_recipe, list(
 
 /obj/item/factory_part/phosnade
 	name = "phosphorus grenade assembly"
-	desc = "a incomplete phosphorus grenade assembly"
+	desc = "A incomplete phosphorus grenade assembly"
 	result = /obj/item/explosive/grenade/phosphorus
 
 /obj/item/factory_part/phosnade/Initialize()
@@ -62,7 +62,7 @@ GLOBAL_LIST_INIT(bignade_recipe,  list(
 
 /obj/item/factory_part/bignade
 	name = "M15 grenade assembly"
-	desc = "an incomplete M15 grenade"
+	desc = "An incomplete M15 grenade."
 	result = /obj/item/explosive/grenade/m15
 
 /obj/item/factory_part/bignade/Initialize()
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(pizza_recipe,  list(
 
 /obj/item/factory_part/pizza
 	name = "unfinished pizza"
-	desc = "wait I dont think thats how you make pizza..."
+	desc = "Wait, I dont think thats how you make pizza..."
 	result = /obj/item/reagent_containers/food/snacks/req_pizza
 
 /obj/item/factory_part/pizza/Initialize()
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 
 /obj/item/factory_part/sadar_wp
 	name = "SADAR WP missile asssembly"
-	desc = "an unfinished white phosphorus missile."
+	desc = "An unfinished white phosphorus missile."
 	result = /obj/item/ammo_magazine/rocket/sadar/wp
 
 /obj/item/factory_part/sadar_wp/Initialize()
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 
 /obj/item/factory_part/sadar_ap
 	name = "SADAR AP missile asssembly"
-	desc = "an unfinished sleek missile with an AP warhead."
+	desc = "An unfinished sleek missile with an AP warhead."
 	result = /obj/item/ammo_magazine/rocket/sadar/ap
 
 /obj/item/factory_part/sadar_ap/Initialize()
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 
 /obj/item/factory_part/sadar_he
 	name = "SADAR HE missile asssembly"
-	desc = "an unfinished squat missile."
+	desc = "An unfinished squat missile."
 	result = /obj/item/ammo_magazine/rocket/sadar
 
 /obj/item/factory_part/sadar_he/Initialize()
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/light_rr_missile
 	name = "light recoilless ammo assembly"
-	desc = "an unfinished recoilless ammo. It has a particularily large booster."
+	desc = "An unfinished recoilless ammo. It has a particularily large booster."
 	result = /obj/item/ammo_magazine/rocket/recoilless/light
 
 /obj/item/factory_part/light_rr_missile/Initialize()
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/normal_rr_missile
 	name = "standard recoilless ammo assembly"
-	desc = "an unfinished squat missile. It has a particularily large warhead."
+	desc = "An unfinished squat missile. It has a particularily large warhead."
 	result = /obj/item/ammo_magazine/rocket/recoilless
 
 /obj/item/factory_part/normal_rr_missile/Initialize()
@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/heat_rr_missile
 	name = "standard recoilless ammo assembly"
-	desc = "an unfinished squat missile. It has a particularily large warhead."
+	desc = "An unfinished squat missile. It has a particularily large warhead."
 	result = /obj/item/ammo_magazine/rocket/recoilless/heat
 
 /obj/item/factory_part/heat_rr_missile/Initialize()
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/smoke_rr_missile
 	name = "standard recoilless ammo assembly"
-	desc = "an unfinished squat missile. It has a particularily large warhead."
+	desc = "An unfinished squat missile. It has a particularily large warhead."
 	result = /obj/item/ammo_magazine/rocket/recoilless/smoke
 
 /obj/item/factory_part/smoke_rr_missile/Initialize()
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/cloak_rr_missile
 	name = "standard recoilless ammo assembly"
-	desc = "an unfinished squat missile. It has a particularily large warhead."
+	desc = "ASn unfinished squat missile. It has a particularily large warhead."
 	result = /obj/item/ammo_magazine/rocket/recoilless/cloak
 
 /obj/item/factory_part/cloak_rr_missile/Initialize()
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/tfoot_rr_missile
 	name = "standard recoilless ammo assembly"
-	desc = "an unfinished squat missile. It has a particularily large warhead."
+	desc = "An unfinished squat missile. It has a particularily large warhead."
 	result = /obj/item/ammo_magazine/rocket/recoilless/plasmaloss
 
 /obj/item/factory_part/tfoot_rr_missile/Initialize()
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(claymore_recipe, list(
 
 /obj/item/factory_part/claymore
 	name = "claymore assembly"
-	desc = "an unfinished claymore"
+	desc = "An unfinished claymore."
 	result = /obj/item/explosive/mine
 
 /obj/item/factory_part/claymore/Initialize()
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/smartgunner_minigun_box
 	name = "IFF bullet box"
-	desc = "a box with unfinished smart-rounds inside"
+	desc = "A box with unfinished smart-rounds inside."
 	result = /obj/item/ammo_magazine/packet/smart_minigun
 
 /obj/item/factory_part/smartgunner_minigun_box/Initialize()
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/smartgunner_machinegun_magazine
 	name = "IFF drums box"
-	desc = "a box with unfinished smart-rounds inside and empty drums inside"
+	desc = "A box with unfinished smart-rounds inside and empty drums inside."
 	result = /obj/item/ammo_magazine/standard_smartmachinegun
 
 /obj/item/factory_part/smartgunner_machinegun_magazine/Initialize()
@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/auto_sniper_magazine
 	name = "IFF high caliber bullet box"
-	desc = "a box with unfinished high caliber smart-rounds inside"
+	desc = "A box with unfinished high caliber smart-rounds inside."
 	result = /obj/item/ammo_magazine/rifle/autosniper
 
 /obj/item/factory_part/auto_sniper_magazine/Initialize()
@@ -225,7 +225,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/scout_rifle_magazine
 	name = "IFF high velocity bullet box"
-	desc = "a box with unfinished high velocity smart-rounds inside"
+	desc = "A box with unfinished high velocity smart-rounds inside."
 	result = /obj/item/ammo_magazine/rifle/tx8
 
 /obj/item/factory_part/scout_rifle_magazine/Initialize()
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/amr_magazine
 	name = "IFF antimaterial bullet box"
-	desc = "a box with unfinished antimaterial rifle rounds inside"
+	desc = "A box with unfinished antimaterial rifle rounds inside."
 	result = /obj/item/ammo_magazine/sniper
 
 /obj/item/factory_part/amr_magazine/Initialize()
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/amr_magazine_incend
 	name = "IFF antimaterial incendiary bullet box"
-	desc = "a box with unfinished antimaterial Incendiary rifle rounds inside"
+	desc = "A box with unfinished antimaterial Incendiary rifle rounds inside."
 	result = /obj/item/ammo_magazine/sniper/incendiary
 
 /obj/item/factory_part/amr_magazine_incend/Initialize()
@@ -252,7 +252,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 
 /obj/item/factory_part/amr_magazine_flak
 	name = "IFF antimaterial Flak bullet box"
-	desc = "a box with unfinished antimaterial rifle Flak rounds inside"
+	desc = "A box with unfinished antimaterial rifle Flak rounds inside."
 	result = /obj/item/ammo_magazine/sniper/flak
 
 /obj/item/factory_part/amr_magazine_flak/Initialize()
@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(mateba_speedloader, list(
 
 /obj/item/factory_part/mateba_speedloader
 	name = "\improper Mateba speed loader (.454)"
-	desc = "a speedloader with unfinished hand cannon rounds inside"
+	desc = "A speedloader with unfinished hand cannon rounds inside."
 	result = /obj/item/ammo_magazine/revolver/mateba
 
 /obj/item/factory_part/mateba_speedloader/Initialize()
@@ -281,7 +281,7 @@ GLOBAL_LIST_INIT(railgun_magazine, list(
 
 /obj/item/factory_part/railgun_magazine
 	name = "railgun round"
-	desc = "an unfinished magnetically propelled steel rod"
+	desc = "An unfinished magnetically propelled steel rod."
 	result = /obj/item/ammo_magazine/railgun
 
 /obj/item/factory_part/railgun_magazine/Initialize()
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(minigun_powerpack, list(
 	))
 /obj/item/factory_part/minigun_powerpack
 	name = "minigun powerpack"
-	desc = "a powerpack with unfinished minigun rounds inside"
+	desc = "A powerpack with unfinished minigun rounds inside."
 	result = /obj/item/ammo_magazine/minigun_powerpack
 
 /obj/item/factory_part/minigun_powerpack/Initialize()
@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(razornade, list(
 	))
 /obj/item/factory_part/razornade
 	name = "razorfoam grenade"
-	desc = "An unfinished Razorfoam grenade casing"
+	desc = "An unfinished Razorfoam grenade casing."
 	result = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 
 /obj/item/factory_part/razornade/Initialize()
@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 	))
 /obj/item/factory_part/howitzer_shell_he
 	name = "howitzer shell"
-	desc = "an unfinished high explosive howitzer shell"
+	desc = "An unfinished high explosive howitzer shell."
 	result = /obj/item/mortal_shell/howitzer/he
 
 /obj/item/factory_part/howitzer_shell_he/Initialize()
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 
 /obj/item/factory_part/howitzer_shell_incen
 	name = "howitzer shell"
-	desc = "an unfinished incendiary howitzer shell"
+	desc = "An unfinished incendiary howitzer shell."
 	result = /obj/item/mortal_shell/howitzer/incendiary
 
 /obj/item/factory_part/howitzer_shell_incen/Initialize()
@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 
 /obj/item/factory_part/howitzer_shell_wp
 	name = "howitzer shell"
-	desc = "an unfinished white phosphorus Howitzer shell"
+	desc = "An unfinished white phosphorus Howitzer shell."
 	result = /obj/item/mortal_shell/howitzer/white_phos
 
 /obj/item/factory_part/howitzer_shell_wp/Initialize()
@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 
 /obj/item/factory_part/howitzer_shell_tfoot
 	name = "howitzer shell"
-	desc = "an unfinished high explosive howitzer shell"
+	desc = "An unfinished high explosive howitzer shell."
 	result = /obj/item/mortal_shell/howitzer/plasmaloss
 
 /obj/item/factory_part/howitzer_shell_tfoot/Initialize()
@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(swat_mask, list(
 
 /obj/item/factory_part/swat_mask
 	name = "SWAT mask"
-	desc = "an unfinished SWAT mask assembly"
+	desc = "An unfinished SWAT mask assembly."
 	result = /obj/item/clothing/mask/gas/swat
 
 /obj/item/factory_part/swat_mask/Initialize()
@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(meds, list(
 
 /obj/item/factory_part/med_advpack
 	name = "advanced first-aid kit"
-	desc = "an unfinished advanced first-aid kit"
+	desc = "An unfinished advanced first-aid ."
 	result = list(
 		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
@@ -416,7 +416,7 @@ GLOBAL_LIST_INIT(module, list(
 
 /obj/item/factory_part/module_valk
 	name = "Valkyrie automedical armor system"
-	desc = "an unfinished Valkyrie automedical armor system module"
+	desc = "An unfinished Valkyrie automedical armor system module."
 	result = /obj/item/armor_module/module/valkyrie_autodoc
 
 /obj/item/factory_part/module_valk/Initialize()
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(module, list(
 
 /obj/item/factory_part/module_mimir2
 	name = "Mark 2 Mimir environmental resistance system"
-	desc = "an unfinished Mark 2 Mimir environmental resistance system module"
+	desc = "An unfinished Mark 2 Mimir environmental resistance system module."
 	result = list(
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -437,7 +437,7 @@ GLOBAL_LIST_INIT(module, list(
 
 /obj/item/factory_part/module_tyr2
 	name = "Mark 2 Tyr armor reinforcement"
-	desc = "an unfinished Mark 2 Tyr armor reinforcement module"
+	desc = "An unfinished Mark 2 Tyr armor reinforcement module."
 	result = /obj/item/armor_module/module/tyr_extra_armor
 
 /obj/item/factory_part/module_tyr2/Initialize()
@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(module, list(
 
 /obj/item/factory_part/module_hlin
 	name = "Hlin explosive compensation module"
-	desc = "an unfinished hlin explosive compensation module"
+	desc = "An unfinished hlin explosive compensation ."
 	result = /obj/item/armor_module/module/hlin_explosive_armor
 
 /obj/item/factory_part/module_hlin/Initialize()
@@ -455,12 +455,13 @@ GLOBAL_LIST_INIT(module, list(
 
 /obj/item/factory_part/module_surt
 	name = "Surt pyrotechnical insulation system"
-	desc = "an unfinished Surt pyrotechnical insulation system module"
+	desc = "An unfinished Surt pyrotechnical insulation system module."
 	result = /obj/item/armor_module/module/fire_proof
 
 /obj/item/factory_part/module_surt/Initialize()
 	. = ..()
 	recipe = GLOB.module
+
 GLOBAL_LIST_INIT(mortar_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
@@ -471,7 +472,7 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 
 /obj/item/factory_part/mortar_shell_he
 	name = "mortar shell"
-	desc = "an unfinished high explosive mortar shell"
+	desc = "An unfinished high explosive mortar shell."
 	result = /obj/item/mortal_shell/he
 
 /obj/item/factory_part/mortar_shell_he/Initialize()
@@ -480,7 +481,7 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 
 /obj/item/factory_part/mortar_shell_incen
 	name = "mortar shell"
-	desc = "an unfinished incendiary mortar shell"
+	desc = "An unfinished incendiary mortar shell."
 	result = /obj/item/mortal_shell/incendiary
 
 /obj/item/factory_part/mortar_shell_incen/Initialize()
@@ -489,7 +490,7 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 
 /obj/item/factory_part/mortar_shell_flare
 	name = "mortar shell"
-	desc = "an unfinished flare mortar shell"
+	desc = "An unfinished flare mortar shell."
 	result = /obj/item/mortal_shell/flare
 
 /obj/item/factory_part/mortar_shell_flare/Initialize()
@@ -498,7 +499,7 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 
 /obj/item/factory_part/mortar_shell_tfoot
 	name = "mortar shell"
-	desc = "an unfinished flare mortar shell"
+	desc = "An unfinished flare mortar shell."
 	result = /obj/item/mortal_shell/plasmaloss
 
 /obj/item/factory_part/mortar_shell_tfoot/Initialize()
@@ -515,7 +516,7 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 
 /obj/item/factory_part/mlrs_rocket
 	name = "MLRS rocket"
-	desc = "an unfinished high explosive rocket"
+	desc = "An unfinished high explosive rocket."
 	result = /obj/item/storage/box/mlrs_rockets
 
 /obj/item/factory_part/mlrs_rockets/Initialize()
@@ -532,7 +533,7 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 
 /obj/item/factory_part/thermobaric_wp
 	name = "RL-57 Thermobaric WP rocket array"
-	desc = "an unfinished rhermobaric WP rocket array"
+	desc = "An unfinished rhermobaric WP rocket array."
 	result = /obj/item/ammo_magazine/rocket/m57a4
 
 /obj/item/factory_part/thermobaric_wp/Initialize()
