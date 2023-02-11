@@ -240,7 +240,7 @@
 		if("toggle_safety")
 			if(!has_auth)
 				return
-			toggle_safety()
+			toggle_safety(user)
 		if("toggle_anchor")
 			if(!has_auth)
 				return
@@ -278,7 +278,7 @@
 		timeleft = timemax
 
 ///Toggles the safety on or off
-/obj/machinery/nuclearbomb/proc/toggle_safety()
+/obj/machinery/nuclearbomb/proc/toggle_safety(mob/user)
 	safety = !safety
 	if(safety)
 		timer_enabled = FALSE
@@ -299,10 +299,10 @@
 
 	anchored = !anchored
 	if(anchored)
-		balloon_alert(user, "[src] anchored")
+		balloon_alert(user, "anchored")
 		visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 	else
-		balloon_alert(user, "[src] unanchored")
+		balloon_alert(user, "unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 		timer_enabled = FALSE
 		stop_processing()
