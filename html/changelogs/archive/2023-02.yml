@@ -79,3 +79,88 @@
   - rscdel: Remove Mosin from Icy Cave due to HvH balance
   tyeagg:
   - rscdel: removed supply manifest from orders
+2023-02-07:
+  Blundir:
+  - rscadd: Marine combat boots is now actually black
+  - rscadd: adds brown marine combat boots
+  Lumipharon:
+  - balance: 'HvH: SH-35 and V-51 loadouts no longer have tac sensors'
+  - balance: 'HvH: Removed the damage malus from the V-51B burst shotgun'
+  - balance: 'HvH: Improved damage falloff for volkite weapons slightly'
+  - balance: 'HvH: MG-27 scope cannot be removed'
+  - code_imp: cleaned up deflagrate code a little and added a small visual effect
+  - balance: Fire turfs now have consistant behavior between walking through them
+      and standing in them
+  - qol: Warlock shield hotkey not selects the ability instead of casting it
+  carlarctg:
+  - qol: Removes vending delay from marine vendors
+2023-02-08:
+  Lumipharon:
+  - code_imp: Ports the spatial grid SS to reduce tidi in high pop and long rounds
+  - balance: Reduced throwing knife throwforce to 25 from 45
+  - balance: Reduced MG-60 damage to 25 from 27.5, and reduced magazine capacity to
+      200 from 250
+  Pariah919:
+  - balance: MG-42 now has AR-12 burst fire. As in completely the same.
+  - balance: MG-42 now has BFA and tactical sensor.
+  - balance: Both Marine and DS Thermobarics have a 10 second reload time.
+  Xander3359:
+  - qol: You can hold click to throw knives at a constant rate.
+  ivanmixo:
+  - qol: Only humans spin when stop drop and rolling
+  maikilangiolo:
+  - rscadd: added Napalm and Beehive AT36 shells
+  - balance: AGLS reload 2 seconds --> 4 seconds
+  - balance: AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20
+  - bugfix: fixed AT36 HE ammo being described as "high velocity" when its actually
+      very slow
+2023-02-09:
+  Blundir:
+  - imageadd: resprited xenohealth, plasma, leader star, active phero/buff status,
+      larva huds
+  Guidesa:
+  - imageadd: powerfists now display if they have a power cell in them
+  KillerOrcaCora:
+  - imageadd: New rouny sprites for warlock
+  Lumipharon:
+  - balance: Oxycodone OD now causes stam loss and confusion
+  TiviPlus:
+  - balance: power fist uses a little less power and pushes large xenos a little further
+      away
+  Xander3359:
+  - rscadd: Getting hit by something being thrown at you (like knives) now plays a
+      sound.
+  maikilangiolo:
+  - rscadd: added WP shrapnel AGLS ammo
+  - balance: rebalanced AGLS frag to be better
+  - balance: rebalanced AGLS AOEs to be less oppressive for both sides
+  - qol: recolored AGLS ammo to be easier to distinguish
+2023-02-10:
+  Blundir:
+  - rscdel: Removed gasmask action
+  - imagedel: Removed gasmask action icon
+  Pariah919:
+  - rscadd: Added new Marine Magnum. It has a windup to fire, staggers on hit, and
+      deals solid damage.
+  QualityVan:
+  - balance: The bible is no longer in and of itself a miracle
+  RipGrayson:
+  - rscadd: Ported the 8-bit bitmasking smoothing system used by TG.
+  - imageadd: Converted most smoothing icons to the new smoothing system.
+  Xander3359:
+  - rscadd: You can now reload pill bottles from pill packets.
+  - code_imp: do_refill is on object level, so now it's easy to add tactical reload
+      functionality to containers using refill_types and refill_sound.
+  maikilangiolo:
+  - bugfix: fixed AGLS WP magazine in req console
+2023-02-11:
+  Dikozda:
+  - bugfix: Plasma OB will now hit the lased position instead of going off in the
+      OB room
+  Lumipharon:
+  - bugfix: fixed Rownin and flak vests being invisible in some cases
+  Naaanii:
+  - rscadd: Added heat, smoke, cloak and Tfoot rrshells to reqtorio
+  - rscadd: Added thermobaric rockets to reqtorio
+  Xander3359:
+  - bugfix: Fixes a dark spot on the pillar of spring.

@@ -878,6 +878,7 @@
 	recoil_unwielded = 0
 	movement_acc_penalty_mult = 2
 	aim_slowdown = 0.1
+	wield_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper VX-32 Charger"
@@ -904,6 +905,7 @@
 	scatter_unwielded = 8
 	recoil_unwielded = 1
 	movement_acc_penalty_mult = 3
+	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -954,7 +956,7 @@
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 13,"rail_x" = 9, "rail_y" = 24, "under_x" = 45, "under_y" = 11, "stock_x" = 22, "stock_y" = 12)
 	accuracy_mult = 1.1
 	aim_slowdown = 0.65
-	damage_falloff_mult = 0.6
+	damage_falloff_mult = 0.4
 	wield_delay	= 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
@@ -1000,7 +1002,7 @@
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.4
 	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness

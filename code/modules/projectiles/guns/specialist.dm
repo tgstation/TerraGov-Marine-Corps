@@ -203,6 +203,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
+	RegisterSignal(user, COMSIG_ITEM_UNZOOM, .proc/laser_off)
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
@@ -211,13 +212,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_off(mob/user)
-	if(targetmarker_on)
-		if(laser_target)
-			deactivate_laser_target()
+	SIGNAL_HANDLER
+	if(laser_target)
+		deactivate_laser_target()
 		accuracy_mult -= 0.50 //We lose a big accuracy bonus vs the now unlasered target
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
+	if(user)
+		UnregisterSignal(user, COMSIG_ITEM_UNZOOM)
 	if(user?.client)
 		user.client.click_intercept = null
 		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))

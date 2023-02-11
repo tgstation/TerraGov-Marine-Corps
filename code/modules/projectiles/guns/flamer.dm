@@ -499,18 +499,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 
 /obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
-		M.flamer_fire_crossed(burnlevel, firelevel)
-
-// override this proc to give different walking-over-fire effects
-/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(status_flags & (INCORPOREAL|GODMODE))
-		return FALSE
-	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
-		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-		IgniteMob()
-	fire_mod *= get_fire_resist()
-	take_overall_damage(round(burnlevel*0.5)* fire_mod, BURN, updating_health = TRUE)
-	to_chat(src, span_danger("You are burned!"))
+		M.flamer_fire_act(burnlevel)
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -521,21 +510,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	updateicon()
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
 		qdel(src)
-
-/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(hard_armor.getRating(FIRE) >= 100)
-		take_overall_damage(round(burnlevel * 0.2) * fire_mod, BURN, FIRE, updating_health = TRUE)
-		return
-	. = ..()
-	if(isxeno(pulledby))
-		var/mob/living/carbon/xenomorph/X = pulledby
-		X.flamer_fire_crossed(burnlevel, firelevel)
-
-/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	return ..()
-
 
 /obj/flamer_fire/proc/updateicon()
 	var/light_color = "LIGHT_COLOR_LAVA"
@@ -585,35 +559,31 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
-
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
-	var/fire_mod = get_fire_resist()
-	if(fire_mod <= 0)
-		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
-	if(hard_armor.getRating("fire") >= 100)
-		to_chat(src, span_warning("Your suit protects you from most of the flames."))
-		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("Your suit protects you from the flames."))
 		return
-	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-	burnlevel *= fire_mod //Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
-	IgniteMob()
-	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
+
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
 	to_chat(src, span_warning("You are burned!"))
 
+	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+		return
+
+	adjust_fire_stacks(burnlevel)
+	IgniteMob()
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
+	if(get_fire_resist() <= 0)
+		return
 	. = ..()
-	updatehealth()
-
-/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
-	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
 /obj/item/weapon/gun/flamer/hydro_cannon
 	name = "underslung hydrocannon"

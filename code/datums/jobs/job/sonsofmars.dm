@@ -332,7 +332,7 @@ You are also in charge of communicating with command and letting them know about
 	back = /obj/item/storage/backpack/satchel/som
 	belt = /obj/item/storage/belt/shotgun/som/mixed
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
-	suit_store = /obj/item/weapon/gun/shotgun/som/support
+	suit_store = /obj/item/weapon/gun/shotgun/som/standard
 
 /datum/outfit/job/som/ert/standard/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

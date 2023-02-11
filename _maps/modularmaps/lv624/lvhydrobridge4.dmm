@@ -3,12 +3,6 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
-"b" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -30,12 +24,6 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
-/area/lv624/ground/river2)
-"h" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
 /area/lv624/ground/river2)
 "k" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -116,15 +104,9 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"I" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "J" = (
 /obj/structure/grille/smoothing,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/river2)
 "K" = (
 /obj/effect/landmark/weed_node,
@@ -142,10 +124,6 @@
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
-/area/lv624/ground/river2)
-"T" = (
-/obj/structure/grille/broken,
-/turf/open/floor/plating/dmg3,
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
@@ -183,8 +161,8 @@ P
 P
 V
 a
-h
-b
+a
+a
 "}
 (2,1,1) = {"
 D
@@ -250,7 +228,7 @@ n
 t
 W
 W
-T
+V
 P
 P
 P
@@ -268,5 +246,5 @@ V
 a
 a
 a
-I
+a
 "}
