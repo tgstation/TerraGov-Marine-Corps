@@ -402,11 +402,12 @@
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
-	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
-	if(F)
-		qdel(F)
-
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	var/obj/flamer_fire/old_fire = locate(/obj/flamer_fire) in src
+	var/obj/flamer_fire/new_fire = new(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	if(old_fire) //we combine their stats, but limited to x2 so you can't stack it to absurd levels
+		new_fire.firelevel = min(new_fire.firelevel + old_fire.firelevel, new_fire.firelevel * 2)
+		new_fire.burnlevel = min(new_fire.burnlevel + old_fire.burnlevel, new_fire.burnlevel * 2)
+		qdel(old_fire)
 
 	for(var/obj/structure/jungle/vines/vines in src)
 		QDEL_NULL(vines)
