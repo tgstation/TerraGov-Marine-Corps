@@ -28,7 +28,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
@@ -145,7 +145,7 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	visorless_offset_x = 0

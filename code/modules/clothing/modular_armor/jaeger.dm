@@ -29,7 +29,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 	icon_state_variants = list(
@@ -123,7 +123,7 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 		/obj/item/armor_module/greyscale/visor/marine,
 		/obj/item/armor_module/greyscale/visor/marine/skirmisher,
 		/obj/item/armor_module/greyscale/visor/marine/scout,

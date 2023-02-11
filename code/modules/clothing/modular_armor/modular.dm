@@ -100,7 +100,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 	light_range = 5
 
@@ -268,7 +268,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 /** Core helmet module */
@@ -304,7 +304,7 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.

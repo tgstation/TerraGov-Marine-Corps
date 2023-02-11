@@ -30,7 +30,7 @@
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
 		/obj/item/armor_module/storage/uniform/holster/highpower,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 		/obj/item/armor_module/greyscale/cape,
 		/obj/item/armor_module/greyscale/cape/half,
 		/obj/item/armor_module/greyscale/cape/short,

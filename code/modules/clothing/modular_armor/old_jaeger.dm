@@ -21,7 +21,7 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 		/obj/item/armor_module/greyscale/visor/marine/old,
 		/obj/item/armor_module/greyscale/visor/marine/old/skirmisher,
 		/obj/item/armor_module/greyscale/visor/marine/old/scout,
