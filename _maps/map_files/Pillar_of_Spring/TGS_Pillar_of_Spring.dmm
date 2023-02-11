@@ -9237,9 +9237,7 @@
 /area/mainship/medical/upper_medical)
 "lQe" = (
 /obj/item/clothing/head/warning_cone,
-/turf/open/floor/light{
-	icon_state = "plating"
-	},
+/turf/open/floor/light/plating,
 /area/mainship/hallways/hangar)
 "lQN" = (
 /obj/machinery/sleeper,
