@@ -170,8 +170,9 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	if(istype(acid_t, /obj/item/flashlight/flare))
-		ticks += delta_time * min((acid_strength * flare_strength_multiplier), flare_strength_max_melt_rate) // we dont wanna make it possible to melt flares too fast
+	if(istype(acid_t, /obj)) // objs have a multiplier for being melted
+		var/obj/acid_o = acid_t
+		ticks += delta_time * (acid_strength * acid_o.acid_melt_multiplier)
 	else
 		ticks += delta_time * acid_strength
 	if(ticks >= strength_t)

@@ -308,6 +308,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
+	acid_melt_multiplier = 2
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
