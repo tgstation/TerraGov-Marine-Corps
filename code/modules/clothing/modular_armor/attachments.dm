@@ -155,8 +155,8 @@
 /obj/item/armor_module/armor/update_icon()
 	. = ..()
 	if(current_variant)
-		icon_state = initial(icon_state) + "_[current_variant]"
-		item_state = initial(item_state) + "_[current_variant]"
+		icon_state = initial(icon_state) + "_" + current_variant
+		item_state = initial(item_state) + "_" + current_variant
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
