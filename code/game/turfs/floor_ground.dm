@@ -58,6 +58,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/floor/plating/ground/dirtgrassborder/corner
 	icon_state = "grassdirt_corner"
@@ -75,6 +76,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner
 	icon_state = "grassdirt2_corner"
@@ -82,12 +84,30 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2
 	icon_state = "grassdirt2_corner2"
 
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth
+	icon = 'icons/turf/floors/jungle-border.dmi'
+	icon_state = "jungle-border-icon"
+	base_icon_state = "jungle-border"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	canSmoothWith = list(
+		SMOOTH_GROUP_JUNGLE_FLOOR,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_FLORA,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
+
 /turf/open/ground/grass
 	name = "grass"
 	icon_state = "grass1"
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
+	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/ground/grasspatch
 	name = "grass"
@@ -157,6 +177,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt
 	name = "dirt"
 	icon_state = "mars_dirt"
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
 
 /turf/open/floor/plating/ground/mars/random/sand
 	name = "sand"
@@ -169,9 +190,28 @@
 /turf/open/floor/plating/ground/mars/dirttosand
 	name = "sand"
 	icon_state = "mars_dirt_to_sand"
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
+
 /turf/open/floor/plating/ground/mars/cavetodirt
 	name = "cave"
 	icon_state = "mars_cave_to_dirt"
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
+
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth
+	icon = 'icons/turf/floors/red-dirt.dmi'
+	icon_state = "red-dirt-icon"
+	base_icon_state = "red-dirt"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_RED_DIRT,
+		SMOOTH_GROUP_ASTEROID_WARNING,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_ASPHALT,
+	)
 
 /turf/open/floor/plating/ground/mars/alt
 	icon = 'icons/turf/floors.dmi'
@@ -250,6 +290,7 @@
 	shoefootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	mediumxenofootstep = FOOTSTEP_CONCRETE
+	smoothing_groups = list(SMOOTH_GROUP_ASPHALT)
 
 /turf/open/floor/plating/ground/desertdam/asphalt/cement
 	name = "concrete"
