@@ -527,7 +527,7 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 	desc = "An unfinished high explosive rocket"
 	result = /obj/item/storage/box/mlrs_rockets
 
-/obj/item/factory_part/mlrs_rockets/Initialize()
+/obj/item/factory_part/mlrs_rocket/Initialize()
 	. = ..()
 	recipe = GLOB.mlrs_rocket
 
