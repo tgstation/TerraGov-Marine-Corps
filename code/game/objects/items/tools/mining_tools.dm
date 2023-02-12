@@ -5,7 +5,7 @@
 
 /obj/item/tool/pickaxe
 	name = "pickaxe"
-	desc =  "Don't give the homeless pickaxes and adderal and tell them there's gold undearneath our most important road systems."
+	desc =  "Don't give the homeless pickaxes and adderall and tell them there's gold undearneath our most important road systems."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
