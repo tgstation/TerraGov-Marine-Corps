@@ -313,15 +313,6 @@
 	sentry_alert(SENTRY_ALERT_DAMAGE)
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			take_damage(rand(90, 150))
-		if(EXPLODE_HEAVY)
-			take_damage(rand(50, 150))
-		if(EXPLODE_LIGHT)
-			take_damage(rand(30, 100))
-
 //----------------------------------------------------------------------------
 // Sentry Functions
 

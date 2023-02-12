@@ -390,8 +390,8 @@
 	new /obj/item/explosive/grenade/smokebomb(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
-	new /obj/item/explosive/grenade/stick(src)
-	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -564,39 +564,13 @@
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
 	)
+	refill_types = list(/obj/item/storage/box/m94)
+	refill_sound = "rustle"
 
 /obj/item/storage/pouch/flare/full/Initialize()
 	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
 	fill_number = max_storage_space - flare_gun.w_class
 	return ..()
-
-/obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/storage/box/m94))
-		var/obj/item/storage/box/m94/M = I
-		if(!length(M.contents))
-			to_chat(user, span_warning("[M] is empty."))
-			return
-
-		if(length(contents) >= storage_slots)
-			to_chat(user, span_warning("[src] is full."))
-			return
-
-		to_chat(user, span_notice("You start refilling [src] with [M]."))
-
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-			return
-
-		for(var/obj/item/IM in M)
-			if(length(contents) >= storage_slots)
-				break
-
-			M.remove_from_storage(IM)
-			handle_item_insertion(IM, TRUE, user)
-
-		playsound(user.loc, "rustle", 15, 1, 6)
-		return TRUE
-	else
-		return ..()
 
 /obj/item/storage/pouch/flare/attackby_alternate(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))

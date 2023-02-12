@@ -13,7 +13,7 @@
 	icon_state_mini = "grenade_red"
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
-	var/det_time =  40
+	var/det_time =  4 SECONDS
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 	var/hud_state = "grenade_he"
@@ -24,7 +24,7 @@
 
 /obj/item/explosive/grenade/Initialize()
 	. = ..()
-	det_time = rand(det_time - 10, det_time + 10)
+	det_time = rand(det_time - 1 SECONDS, det_time + 1 SECONDS)
 
 /obj/item/explosive/grenade/attack_self(mob/user)
 	if(active)

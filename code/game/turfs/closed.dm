@@ -16,8 +16,6 @@
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	smoothing_behavior = NONE
-	smoothing_groups = NONE
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/mineral/Initialize(mapload)
@@ -40,10 +38,12 @@
 /turf/closed/mineral/smooth
 	name = "rock"
 	icon = 'icons/turf/walls/lvwall.dmi'
-	icon_state = "lvwall-0-0-0-0"
+	base_icon_state = "lvwall"
+	icon_state = "lvwall-0"
 	walltype = "lvwall"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
 
 /turf/closed/mineral/smooth/outdoor
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
@@ -53,16 +53,46 @@
 
 /turf/closed/mineral/smooth/snowrock
 	icon = 'icons/turf/walls/snowwall.dmi'
-	icon_state = "snowwall-0-0-0-0"
+	icon_state = "snowwall-0"
 	walltype = "snowwall"
+	base_icon_state = "snowwall"
 
 /turf/closed/mineral/smooth/snowrock/indestructible
 	resistance_flags = RESIST_ALL
 
+/turf/closed/mineral/smooth/frostwall
+	icon = 'icons/turf/walls/frostwall.dmi'
+	icon_state = "frostwall-0"
+	walltype = "frostwall"
+	base_icon_state = "frostwall"
+
+/turf/closed/mineral/smooth/frostwall/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/darkfrostwall
+	icon = 'icons/turf/walls/darkfrostwall.dmi'
+	icon_state = "darkfrostwall-0"
+	walltype = "darkfrostwall"
+	base_icon_state = "darkfrostwall"
+
+/turf/closed/mineral/smooth/darkfrostwall/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/bluefrostwall
+	icon = 'icons/turf/walls/bluefrostwall.dmi'
+	icon_state = "bluefrostwall-0"
+	walltype = "bluefrostwall"
+	base_icon_state = "bluefrostwall"
+	smoothing_groups = list(SMOOTH_GROUP_ICE_WALL)
+	canSmoothWith = list(SMOOTH_GROUP_ICE_WALL)
+
+/turf/closed/mineral/smooth/bluefrostwall/indestructible
+	resistance_flags = RESIST_ALL
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
-	icon_state = "red_wall-0-0-0-0"
+	icon_state = "red_wall-0"
 	walltype = "red_wall"
+	base_icon_state = "red_wall"
 
 /turf/closed/mineral/smooth/bigred/indestructible
 	resistance_flags = RESIST_ALL
@@ -70,26 +100,24 @@
 /turf/closed/mineral/bigred
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "redrock"
-	smoothing_behavior = NO_SMOOTHING //big red does not currently have its own 3/4ths cave tileset, so it uses the old one without smoothing
-	smoothing_groups = NONE
+	icon_state = "redrock" //big red does not currently have its own 3/4ths cave tileset, so it uses the old one without smoothing
 
 /turf/closed/mineral/indestructible
 	name = "impenetrable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock_dark"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 	resistance_flags = RESIST_ALL
 
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'
-	icon_state = "jungle-0-0-0-0"
+	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_FLORA
-	walltype = "jungle"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_FLORA)
+	canSmoothWith = list(SMOOTH_GROUP_FLORA)
+	base_icon_state = "junglewall"
+	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
 
 /turf/closed/gm/tree
@@ -111,11 +139,10 @@
 /turf/closed/desertdamrockwall
 	name = "rockwall"
 	icon = 'icons/turf/walls/cave.dmi'
-	icon_state = "cave_wall-0-0-0-0"
+	icon_state = "cave-0"
 	color = "#c9a37b"
-	walltype = "cave_wall"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	walltype = "cave"
+	base_icon_state = "cave"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/desertdamrockwall/invincible
@@ -314,7 +341,6 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
-	smoothing_behavior = NO_SMOOTHING
 	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/re_corner/notdense
@@ -435,6 +461,7 @@
 
 /turf/closed/shuttle/dropship1/interiorwindow
 	icon_state = "shuttle_interior_inwards"
+	opacity = FALSE
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -646,6 +673,10 @@
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
 
+/turf/closed/shuttle/dropship2/singlewindow/tadpole
+	icon_state = "shuttle_single_window"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/interiormisc
 	icon_state = "shuttle_interior_threeside"
 
@@ -670,8 +701,17 @@
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
 
+/turf/closed/shuttle/dropship2/glassone/tadpole
+	icon_state = "shuttle_glass1"
+	resistance_flags = NONE
+	opacity = FALSE
+
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+
+/turf/closed/shuttle/dropship2/glasstwo/tadpole
+	icon_state = "shuttle_glass2"
+	resistance_flags = NONE
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"
@@ -685,8 +725,16 @@
 /turf/closed/shuttle/dropship2/glasssix
 	icon_state = "shuttle_glass6"
 
+/turf/closed/shuttle/dropship2/rearcorner/tadpole
+	icon_state = "shuttle_rearcorner"
+	resistance_flags = NONE
+
 /turf/closed/shuttle/dropship2/rearcorner/alt
 	icon_state = "shuttle_rearcorner_alt"
+
+/turf/closed/shuttle/dropship2/rearcorner/alt/tadpole
+	icon_state = "shuttle_rearcorner_alt"
+	resistance_flags = NONE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
@@ -731,10 +779,17 @@
 	icon_state = "corner2"
 
 /turf/closed/shuttle/escapeshuttle
-	icon_state = "swall0"
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_ESCAPESHUTTLE
-	walltype = "swall"
+	icon = 'icons/turf/walls/sulaco.dmi'
+	icon_state = "sulaco-0"
+	base_icon_state = "sulaco"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ESCAPESHUTTLE)
+	canSmoothWith = list(
+		SMOOTH_GROUP_ESCAPESHUTTLE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+	)
+	walltype = "sulaco"
 
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
