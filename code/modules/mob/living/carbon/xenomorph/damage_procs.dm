@@ -8,7 +8,7 @@
 		return
 	if(get_fire_resist() <= 0)
 		return
-	. = ..()
+	return ..()
 
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
 	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
