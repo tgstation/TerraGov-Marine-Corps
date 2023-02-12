@@ -202,6 +202,8 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/smg/ppsh = -1,
 		/obj/item/ammo_magazine/smg/ppsh = -1,
 		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+		/obj/item/weapon/gun/rifle/garand = -1,
+		/obj/item/ammo_magazine/rifle/garand = -1,
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_two

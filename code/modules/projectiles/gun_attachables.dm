@@ -973,6 +973,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/garand
+	name = "\improper C1 stock"
+	desc = "A irremovable C1 stock."
+	icon_state = "garandstock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
 	desc = "A specialized stock for the SH-35."
