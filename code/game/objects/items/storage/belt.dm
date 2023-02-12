@@ -1230,7 +1230,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(
 		/obj/item/mortar_kit/baby = 1,
-		/obj/item/binoculars/tactical/range = 1,
+		/obj/item/binoculars = 1,
 		/obj/item/compass = 1,
 	)
 	storage_slots = 24
@@ -1241,7 +1241,7 @@
 		/obj/item/mortar_kit/baby,
 		/obj/item/mortal_shell/baby,
 		/obj/item/compass,
-		/obj/item/binoculars/tactical/range,
+		/obj/item/binoculars,
 	)
 
 /obj/item/storage/belt/mortar_belt/full/Initialize()
