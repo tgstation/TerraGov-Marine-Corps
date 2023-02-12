@@ -2,8 +2,8 @@
 /turf/closed/wall/mainship
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
-	icon = 'icons/turf/mainshipwalls.dmi'
-	icon_state = "testwall0"
+	icon = 'icons/turf/walls/testwall.dmi'
+	icon_state = "testwall-0"
 	walltype = "testwall"
 
 	max_integrity = 3000 //Wall will break down to girders if damage reaches this point
@@ -13,21 +13,7 @@
 	opacity = TRUE
 	density = TRUE
 
-/turf/closed/wall/mainship/handle_icon_junction(junction)
-	if (!walltype)
-		return
-	//lets make some detailed randomized shit happen.
-	var/r1 = rand(0,10) //Make a random chance for this to happen
-	var/r2 = rand(0,3) // Which wall if we do choose it
-	if(junction == 12)
-		switch(r1)
-			if(0 to 8)
-				icon_state = "[walltype]12"
-			if(9 to 10)
-				icon_state = "mainship_deco_wall[r2]"
-	else
-		icon_state = "[walltype][junction]"
-	junctiontype = junction
+	base_icon_state = "testwall"
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
@@ -40,19 +26,19 @@
 	name = "reinforced hull"
 
 /turf/closed/wall/mainship/outer/canterbury
-	smoothing_groups = SMOOTH_CANTERBURY
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
 
 /turf/closed/wall/mainship/white
-	walltype = "wwall"
-	icon_state = "wwall0"
-
-/turf/closed/wall/mainship/white/handle_icon_junction(junction)
-	icon_state = "[walltype][junction]"
-	junctiontype = junction
+	icon = 'icons/turf/walls/wwall.dmi'
+	base_icon_state = "wwall"
+	icon_state = "wwall-0"
 
 /turf/closed/wall/mainship/gray
 	walltype = "gwall"
-	icon_state = "gwall0"
+	icon = 'icons/turf/walls/gwall.dmi'
+	base_icon_state = "gwall"
+	icon_state = "gwall-0"
 
 /turf/closed/wall/mainship/gray/outer
 	name = "outer hull"
@@ -60,40 +46,22 @@
 	walltype = "gwall"
 	resistance_flags = RESIST_ALL
 
-
-/turf/closed/wall/mainship/gray/handle_icon_junction(junction)
-	if (!walltype)
-		return
-	//lets make some detailed randomized shit happen.
-	var/r1 = rand(0,10) //Make a random chance for this to happen
-	var/r2 = rand(0,3) // Which wall if we do choose it
-	if(junction == 12)
-		switch(r1)
-			if(0 to 8)
-				icon_state = "[walltype]12"
-			if(9 to 10)
-				icon_state = "gmainship_deco_wall[r2]"
-	else
-		icon_state = "[walltype][junction]"
-	junctiontype = junction
-
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
-	smoothing_groups = SMOOTH_CANTERBURY
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	icon_state = "wwall0"
+	icon_state = "wwall-0"
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
 	return FALSE
 
 /turf/closed/wall/mainship/research/containment/wall
+	icon = 'icons/turf/mainshipwalls.dmi'
 	name = "cell wall"
-	smoothing_behavior = NO_SMOOTHING
-	smoothing_groups = NONE
 	walltype = null
+	smoothing_flags = NONE
 
 /turf/closed/wall/mainship/research/containment/wall/corner
 	icon_state = "containment_wall_corner"
@@ -142,27 +110,13 @@
 
 /turf/closed/wall/desert
 	name = "wall"
-	icon = 'icons/turf/chigusa.dmi'
-	icon_state = "chigusa0"
+	icon = 'icons/turf/walls/chigusa.dmi'
+	icon_state = "chigusa-0"
 	walltype = "chigusa"
+	base_icon_state = "chigusa"
 
 /turf/closed/wall/desert/invincible
 	resistance_flags = RESIST_ALL
-
-/turf/closed/wall/desert/handle_icon_junction(junction)
-	if (!walltype)
-		return
-	//lets make some detailed randomized shit happen.
-	var/r1 = rand(0,10) //Make a random chance for this to happen
-	var/r2 = rand(0,2) // Which wall if we do choose it
-	if(junction == 12)
-		switch(r1)
-			if(0 to 8)
-				icon_state = "[walltype]12"
-			if(9 to 10)
-				icon_state = "deco_wall[r2]"
-	else
-		icon_state = "[walltype][junction]"
 
 //tyson
 /turf/closed/wall/tyson
@@ -189,8 +143,9 @@
 /turf/closed/wall/sulaco
 	name = "hull"
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "sulaco0"
+	icon = 'icons/turf/walls/sulaco.dmi'
+	icon_state = "sulaco-0"
+	base_icon_state = "sulaco"
 	color = "#616161"
 
 	max_integrity = 3000
@@ -240,7 +195,7 @@
 	icon_state = "riveted"
 	opacity = TRUE
 	resistance_flags = RESIST_ALL
-	smoothing_behavior = NO_SMOOTHING
+	smoothing_flags = NONE
 
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
@@ -352,11 +307,10 @@
 	name = "wall"
 	desc = "The patterns engraved on the wall seem to shift as you try to focus on them. You feel sick"
 	icon = 'icons/turf/walls/cult.dmi'
-	icon_state = "cult_wall-0-0-0-0"
-	walltype = "cult_wall"
+	icon_state = "cult-0"
+	walltype = "cult"
+	base_icon_state = "cult"
 	color = "#88574b"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 /turf/closed/wall/clock
 	name = "brass wall"
@@ -365,7 +319,6 @@
 
 /turf/closed/wall/vault
 	icon_state = "rockvault"
-	smoothing_behavior = NO_SMOOTHING
 
 /turf/closed/wall/vault/New(location,type)
 	..()
@@ -382,9 +335,10 @@
 
 /turf/closed/wall/prison
 	name = "metal wall"
-	icon = 'icons/turf/walls/prison.dmi'
-	icon_state = "metal0"
+	icon = 'icons/turf/walls/gorg_prison_wall_two.dmi'
+	icon_state = "metal-0"
 	walltype = "metal"
+	base_icon_state = "metal"
 
 
 
@@ -392,21 +346,8 @@
 
 /turf/closed/wall/wood
 	name = "wood wall"
-	icon = 'icons/turf/wood.dmi'
-	icon_state = "wood0"
-	walltype = "wood"
+	icon = 'icons/turf/walls/woodwall.dmi'
+	icon_state = "woodwall-0"
+	base_icon_state = "woodwall"
+	walltype = "woodwall"
 	explosion_block = 1
-
-/turf/closed/wall/wood/handle_icon_junction(junction)
-	if (!walltype)
-		return
-
-	var/r1 = rand(0,10) //Make a random chance for this to happen
-	if(junction == 12)
-		switch(r1)
-			if(0 to 8)
-				icon_state = "[walltype]12"
-			if(9 to 10)
-				icon_state = "wood_variant"
-	else
-		icon_state = "[walltype][junction]"

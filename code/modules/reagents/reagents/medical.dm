@@ -156,9 +156,10 @@
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 3)
+	L.adjustStaminaLoss(5*effect_str)
 	L.set_drugginess(10)
 	L.jitter(3)
+	L.AdjustConfused(6)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)

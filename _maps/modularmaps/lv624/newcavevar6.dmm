@@ -2,11 +2,6 @@
 "aa" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
-"aq" = (
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
 "aI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
@@ -97,11 +92,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"gz" = (
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "gA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/item/ammo_casing/bullet,
@@ -128,18 +118,10 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"ik" = (
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
 "ip" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/dark2,
-/area/lv624/ground/caves/central2)
-"ir" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
 /area/lv624/ground/caves/central2)
 "iL" = (
 /obj/effect/landmark/corpsespawner/security,
@@ -213,14 +195,6 @@
 /obj/effect/spawner/random/ammo/machinegun,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"qh" = (
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
-"qv" = (
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/caves/central2)
 "qz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -256,11 +230,6 @@
 "st" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/lv624/ground/caves/central2)
-"tE" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
 /area/lv624/ground/caves/central2)
 "ui" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -391,7 +360,7 @@
 /area/lv624/ground/caves/central2)
 "Au" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "AF" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -444,7 +413,7 @@
 /area/lv624/ground/caves/central2)
 "Dr" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "DE" = (
 /obj/effect/turf_decal/tile/full/black,
@@ -561,11 +530,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
-"MC" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/lv624/ground/caves/central2)
 "MF" = (
 /obj/effect/spawner/random/clothing,
 /obj/effect/ai_node,
@@ -587,9 +551,6 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
-/area/lv624/ground/caves/central2)
-"OG" = (
-/turf/open/ground/coast/corner,
 /area/lv624/ground/caves/central2)
 "OX" = (
 /obj/effect/ai_node,
@@ -691,9 +652,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "Un" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Uy" = (
 /obj/structure/window_frame/colony,
@@ -2616,9 +2575,9 @@ lx
 iL
 lx
 bD
-OG
-tE
-qv
+Un
+Un
+Un
 MN
 aa
 "}
@@ -2650,10 +2609,10 @@ Xv
 mR
 lx
 lx
-OG
-MC
-ik
-ir
+Un
+Un
+Un
+Un
 lx
 aa
 "}
@@ -2684,11 +2643,11 @@ MN
 lx
 lx
 lx
-OG
-MC
+Un
+Un
 Au
 Dr
-ir
+Un
 lx
 aa
 "}
@@ -2718,12 +2677,12 @@ KP
 lx
 lx
 jf
-OG
-MC
-ik
-ik
-ik
-ir
+Un
+Un
+Un
+Un
+Un
+Un
 lx
 aa
 "}
@@ -2752,13 +2711,13 @@ MN
 KP
 lx
 Pl
-OG
-MC
-ik
-ik
-ik
+Un
+Un
+Un
+Un
+Un
 Au
-ir
+Un
 VH
 aa
 "}
@@ -2787,13 +2746,13 @@ lx
 KP
 VH
 Cp
-qh
-ik
-ik
+Un
+Un
+Un
 Dr
-ik
+Un
 Qn
-gz
+Un
 lx
 aa
 "}
@@ -2822,12 +2781,12 @@ lx
 KP
 Xb
 lx
-qh
+Un
 Au
-ik
-ik
+Un
+Un
 Qn
-gz
+Un
 lx
 aa
 aa
@@ -2857,11 +2816,11 @@ KP
 KP
 lx
 MN
-aq
 Un
 Un
 Un
-gz
+Un
+Un
 lx
 aa
 aa

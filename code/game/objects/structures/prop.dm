@@ -211,12 +211,8 @@
 	bound_height = 96
 	resistance_flags = UNACIDABLE
 
-/obj/structure/prop/mainship/vls
-	name = "\improper Mk 47 VLS"
-	desc = "The MK 47 vertical launching system is the staple of ship to ship combat in the space age. Fitted on most TGN Ships, it can fire a variety of missile types fitted for its purpose and target type."
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "vls"
-	resistance_flags = RESIST_ALL
+/obj/structure/prop/mainship/missile_tube/south
+	icon_state = "missiletubesouth"
 
 /obj/structure/prop/mainship/ship_memorial
 	name = "slab of victory"
@@ -1670,6 +1666,14 @@
 	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
+
+/obj/structure/prop/turbine
+	name = "power turbine"
+	desc = "A gigantic turbine that runs on who knows what. It could probably be turned on by someone with the correct know-how."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "biomass_turbine"
+	density = TRUE
+
 
 //TG BROKEN VENDOR PROPS
 //USE THESE SPARINGLY OUTSIDE OF TG THEMED MAPS OR I'LL BREAK YOUR KNEECAPS

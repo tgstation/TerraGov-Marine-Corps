@@ -101,7 +101,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "ke" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
@@ -109,7 +109,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
 "kv" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/s)
 "kX" = (
@@ -164,7 +164,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
 "nm" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
@@ -245,7 +245,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "wQ" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -297,7 +297,9 @@
 /obj/machinery/door/poddoor/two_tile_hor{
 	name = "\improper Eta Lab Lockdown"
 	},
-/turf/open/floor/plating/ground/mars/random/sand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
+	dir = 1
+	},
 /area/bigredv2/outside/s)
 "Bd" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
@@ -370,7 +372,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "JH" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -494,7 +496,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "TB" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/se)
 "Uj" = (
@@ -716,7 +718,7 @@ mw
 Xt
 Va
 wQ
-tk
+wQ
 RV
 Qo
 Qq
@@ -904,7 +906,7 @@ mw
 mw
 ep
 tk
-RV
+wQ
 Me
 ii
 Qq
@@ -931,7 +933,7 @@ JM
 mw
 ep
 Va
-RV
+wQ
 Me
 ii
 nf

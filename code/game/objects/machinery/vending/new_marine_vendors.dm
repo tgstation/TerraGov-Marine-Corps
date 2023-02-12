@@ -787,42 +787,42 @@
 /obj/effect/vendor_bundle/xenonauten_light
 	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x,
+		/obj/item/clothing/head/modular/m10x,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
 /obj/effect/vendor_bundle/xenonauten_medium
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x,
+		/obj/item/clothing/head/modular/m10x,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
 /obj/effect/vendor_bundle/xenonauten_heavy
 	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x,
+		/obj/item/clothing/head/modular/m10x,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 
 /obj/effect/vendor_bundle/xenonauten_light/leader
 	desc = "A set of light Xenonauten pattern armor, including an armor suit and a fancier helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x/leader,
+		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
 /obj/effect/vendor_bundle/xenonauten_medium/leader
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and a fancier helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x/leader,
+		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
 /obj/effect/vendor_bundle/xenonauten_heavy/leader
 	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and a fancier helmet."
 	gear_to_spawn = list(
-		/obj/item/clothing/head/modular/marine/m10x/leader,
+		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 

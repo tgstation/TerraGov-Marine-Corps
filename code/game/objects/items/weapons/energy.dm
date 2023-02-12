@@ -66,7 +66,7 @@
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
-	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	switch_state()

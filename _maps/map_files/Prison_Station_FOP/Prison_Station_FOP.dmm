@@ -27994,8 +27994,8 @@
 /area/prison/security/checkpoint/medsec)
 "bIQ" = (
 /obj/item/stack/rods,
-/obj/structure/window_frame/colony/reinforced,
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/structure/window_frame/prison,
 /turf/open/floor/plating,
 /area/prison/security/monitoring/lowsec/sw)
 "bIR" = (
@@ -31739,7 +31739,7 @@
 /obj/machinery/door/poddoor/two_tile_hor/secure{
 	name = "Monorail Passage Door"
 	},
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/access/south)
 "bVz" = (
 /obj/structure/monorail,
@@ -31747,7 +31747,7 @@
 	dir = 2;
 	name = "Monorail Passage Door"
 	},
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/access/south)
 "bVA" = (
 /obj/structure/cable,
@@ -33295,7 +33295,7 @@
 	dir = 2;
 	name = "Monorail Passage Door"
 	},
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/access/south)
 "caV" = (
 /obj/structure/table/reinforced,
@@ -40887,11 +40887,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
-"cEC" = (
-/turf/open/floor{
-	icon_state = "asteroid"
-	},
-/area/prison/residential/central)
 "cFh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -56140,7 +56135,7 @@ gZL
 bkL
 xwG
 xwG
-cEC
+xwG
 xwG
 bkL
 cSJ
@@ -64397,11 +64392,11 @@ adO
 adO
 adO
 adO
-oxt
+bSk
 bWK
 aSR
 bZD
-oxt
+bSk
 bHd
 bHd
 adO
@@ -65168,11 +65163,11 @@ aab
 aab
 adO
 aab
-oxt
+bSk
 bWK
 bUl
 bZD
-oxt
+bSk
 aab
 adO
 aab

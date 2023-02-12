@@ -159,6 +159,16 @@
 	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
 	qdel(src)
 
+/obj/item/explosive/grenade/ags
+	name = "\improper AGLS-37 HEDP grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	w_class = WEIGHT_CLASS_SMALL
+	icon = 'icons/obj/items/grenade.dmi'
+	icon_state = "ags_grenade"
+	item_state = "ags_grenade"
+	det_time = 20
+	light_impact_range = 3
+
 
 /obj/item/explosive/grenade/smokebomb
 	name = "\improper M40 HSDP smoke grenade"

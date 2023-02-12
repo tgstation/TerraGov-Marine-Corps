@@ -322,13 +322,15 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
-	autoburst_delay = 0.60 SECONDS
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.25 SECONDS
 	accuracy_mult = 0.9
 	scatter = 0
+
+/obj/item/weapon/gun/rifle/standard_br/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/t64stock, /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
 //PR-412 Pulse Rifle
@@ -721,6 +723,7 @@
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -732,6 +735,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -740,7 +744,7 @@
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 14, "stock_x" = 0, "stock_y" = 13)
@@ -749,7 +753,8 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 0.2 SECONDS
-	burst_amount = 1
+	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.5
 	scatter = 2
@@ -773,7 +778,7 @@
 	inhand_y_dimension = 32
 
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 250 //codex
+	max_shells = 200 //codex
 	force = 35
 	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
@@ -811,16 +816,17 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 21,"rail_x" = 6, "rail_y" = 23, "under_x" = 26, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 6
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 5.3
 
 	fire_delay = 0.15 SECONDS
 	damage_falloff_mult = 0.5
 	burst_amount = 1
+	accuracy_mult = 0.85
 	accuracy_mult_unwielded = 0.4
 	scatter = 7
 	scatter_unwielded = 45
-	movement_acc_penalty_mult = 6
+	movement_acc_penalty_mult = 7.25
 
 	placed_overlay_iconstate = "lmg"
 
@@ -1064,7 +1070,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun/plasma_pistol
-	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/pistol/plasma_pistol)
+	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/pistol/plasma_pistol)
 
 //-------------------------------------------------------
 //SG-29 Smart Machine Gun (It's more of a rifle than the SG.)

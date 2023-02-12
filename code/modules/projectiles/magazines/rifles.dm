@@ -168,7 +168,7 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 250
+	max_rounds = 200
 	reload_delay = 3 SECONDS
 	icon_state_mini = "mag_gpmg"
 
@@ -381,7 +381,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "v31_ap"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/ap
+	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 50
 	icon_state_mini = "mag_rifle_big_green"
 

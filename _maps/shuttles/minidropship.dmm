@@ -6,8 +6,8 @@
 	name = "outer door-control"
 	},
 /obj/structure/dropship_piece/tadpole/tadpole_nose/right{
-	pixel_y = 32;
-	dir = 1
+	dir = 1;
+	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
@@ -20,14 +20,13 @@
 	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
-	dir = 1
+	dir = 1;
+	pixel_x = -23
 	},
 /obj/effect/attach_point/weapon/minidropship{
 	equipment_offset_y = 25
 	},
-/turf/closed/shuttle/tadpole{
-	icon_state = "103";
+/turf/closed/shuttle/dropship2/rearcorner/alt/tadpole{
 	dir = 1
 	},
 /area/shuttle/minidropship)
@@ -40,11 +39,10 @@
 	equipment_offset_y = 25
 	},
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
-	dir = 1
+	dir = 1;
+	pixel_x = 23
 	},
-/turf/closed/shuttle/tadpole{
-	icon_state = "104";
+/turf/closed/shuttle/dropship2/rearcorner/tadpole{
 	dir = 1
 	},
 /area/shuttle/minidropship)
@@ -60,8 +58,7 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "109";
+/obj/structure/dropship_piece/singlewindow/tadpole{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -114,10 +111,16 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"A" = (
+/obj/structure/dropship_piece/glassone/tadpole{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "B" = (
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = -23;
 	dir = 1;
+	pixel_x = -23;
 	pixel_y = -14
 	},
 /obj/structure/barricade/plasteel{
@@ -132,8 +135,8 @@
 /area/shuttle/minidropship)
 "C" = (
 /obj/structure/dropship_piece/tadpole/engine{
-	pixel_x = 23;
 	dir = 1;
+	pixel_x = 23;
 	pixel_y = -14
 	},
 /obj/structure/barricade/plasteel{
@@ -146,13 +149,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"D" = (
-/obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "106";
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
 "E" = (
 /turf/template_noop,
 /area/space)
@@ -163,18 +159,17 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
-"K" = (
-/obj/structure/dropship_piece/tadpole/cockpit/window{
-	icon_state = "105";
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
 "L" = (
 /obj/structure/dropship_piece/tadpole/rearleft{
 	dir = 1
 	},
 /turf/template_noop,
+/area/shuttle/minidropship)
+"N" = (
+/obj/structure/dropship_piece/glasstwo/tadpole{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "O" = (
 /obj/structure/barricade/plasteel{
@@ -202,8 +197,8 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
-	pixel_y = 32;
-	dir = 1
+	dir = 1;
+	pixel_y = 32
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
@@ -264,7 +259,7 @@ E
 E
 E
 S
-K
+A
 q
 s
 V
@@ -286,7 +281,7 @@ E
 E
 E
 a
-D
+N
 j
 s
 V

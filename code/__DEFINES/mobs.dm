@@ -472,6 +472,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define KING_DEATH_TIMER 7 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER 0.25 //multiplies top level explosive damage by this amount.
+#define XENO_EXPLOSION_GIB_THRESHOLD 5 //under this level of bomb armour, devestating explosion will gib xenos
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
 

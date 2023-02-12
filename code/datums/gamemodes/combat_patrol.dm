@@ -21,7 +21,7 @@
 	)
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
@@ -36,6 +36,7 @@
 	var/bioscan_interval = 3 MINUTES
 	///Delay from shutter drop until game timer starts
 	var/game_timer_delay = 5 MINUTES
+
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
