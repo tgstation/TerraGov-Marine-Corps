@@ -373,7 +373,10 @@
 
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
-	if(species?.species_flags & IS_SYNTHETIC || ROBOTIC_LIMBS)
+	if(species?.species_flags & IS_SYNTHETIC)
+		return FALSE
+
+	if(species?.species_flags & ROBOTIC_LIMBS)
 		return FALSE
 
 	var/image/holder = hud_list[PAIN_HUD]
