@@ -1674,7 +1674,7 @@
 
 /obj/item/weapon/gun/rifle/garand
 	name = "\improper CAU C1 Garand self loading rifle"
-	desc = "The Crowford-1 is a remastered classic made by Crowford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications, other than that. It is a faithful recreation with the trademark ping sound and all. Uses .30-06 enbloc clips."
+	desc = "The Carlford-1 is a remastered classic made by Carlford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications, other than that. It is a faithful recreation with the trademark ping sound and all. Uses .30-06 enbloc clips."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "garand"
 	item_state = "garand"
