@@ -12,17 +12,14 @@
 	greyscale_colors = "#EAEAEA#0066ff" //default colors
 	///the item left behind when this is used up
 	var/trash_item = /obj/item/reagent_containers/food/snacks/pillpacket
-	///Amount of pills removed from the packet
-	var/pills_removed = 0
 	refill_types = null
 	refill_sound = null
 
 /obj/item/storage/pill_bottle/packet/update_icon()
-	icon_state = "pills_[8-pills_removed]"
+	icon_state = "pills_[contents.len]"
 
 /obj/item/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	pills_removed += 1
 	update_icon()
 	if(. && !contents.len && !gc_destroyed)
 		var/turf/T = get_turf(src)
