@@ -2146,14 +2146,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "80mm shell"
 	icon_state = "mortar"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 1.10
+	shell_speed = 0.75
 	damage = 0
 	penetration = 0
 	sundering = 0
 	accuracy = 1000
 	max_range = 1000
 	ping = null
-	bullet_color = COLOR_WHITE
+	bullet_color = COLOR_VERY_SOFT_YELLOW
 
 /datum/ammo/mortar/drop_nade(turf/T)
 	explosion(T, 1, 2, 5, 3)
@@ -2187,7 +2187,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/howi
 	name = "150mm shell"
 	icon_state = "howi"
-	shell_speed = 1.25
 
 /datum/ammo/mortar/howi/drop_nade(turf/T)
 	explosion(T, 1, 6, 7, 12)
@@ -2200,7 +2199,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/smoke/howi
 	name = "150mm shell"
 	icon_state = "howi"
-	shell_speed = 1.25
 
 /datum/ammo/mortar/smoke/howi/wp
 	smoketype = /datum/effect_system/smoke_spread/phosphorus
