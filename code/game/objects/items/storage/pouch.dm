@@ -390,8 +390,8 @@
 	new /obj/item/explosive/grenade/smokebomb(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
-	new /obj/item/explosive/grenade/som(src)
-	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"

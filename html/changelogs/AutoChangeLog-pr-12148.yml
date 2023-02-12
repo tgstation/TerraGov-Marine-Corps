@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added SOM HE and incendiary grenades, replacing all instances of other HE/incendiary equivalents"
-  - qol: "Incendiary grenades can now be heard from more than 4 tiles away when detonating"

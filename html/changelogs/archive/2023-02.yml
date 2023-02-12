@@ -164,9 +164,3 @@
   - rscadd: Added thermobaric rockets to reqtorio
   Xander3359:
   - bugfix: Fixes a dark spot on the pillar of spring.
-2023-02-12:
-  Lumipharon:
-  - bugfix: fixed an exploit with the AMR
-  - bugfix: fixed AMR lase overlays getting stuck sometimes
-  Naaanii:
-  - bugfix: adjusts RR heat shell price to match its counterparts.
