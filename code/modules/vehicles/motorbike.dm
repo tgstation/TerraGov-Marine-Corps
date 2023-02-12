@@ -16,7 +16,7 @@
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	///Internal motorbick storage object
 	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
-	///Mutable appearance overlay that covers up the mob with th e bike as needed
+	///Mutable appearance overlay that covers up the mob with the bike as needed
 	var/mutable_appearance/motorbike_cover
 	///Fuel count, fuel usage is one per tile moved
 	var/fuel_count = 0
@@ -25,6 +25,27 @@
 	///reference to the attached sidecar, if present
 	var/obj/item/sidecar/attached_sidecar
 	COOLDOWN_DECLARE(enginesound_cooldown)
+
+	///reference to the attached mounted gun, if present
+	var/obj/item/motorbikegun/attached_motorbikegun
+	/**
+	 * Relevant stats for when you upgrade the motorbike with the cannon mount
+	 */
+	max_shells = 1 //codex
+	caliber = CALIBER_67MM //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rocket/recoilless,
+		/obj/item/ammo_magazine/rocket/recoilless/light,
+		/obj/item/ammo_magazine/rocket/recoilless/low_impact,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss,
+		/obj/item/ammo_magazine/rocket/recoilless/heat,
+	)
+
 
 /obj/vehicle/ridden/motorbike/Initialize()
 	. = ..()
@@ -101,9 +122,12 @@
 		if(user.do_actions)
 			balloon_alert(user, "Already busy!")
 			return FALSE
+		if(attached_sidecar || attached_motorbikegun)
+			balloon_alert(user, "Already Upgraded!")
+			return FALSE
 		if(LAZYLEN(buckled_mobs))
-			balloon_alert("There is a rider already!")
-			return TRUE
+			balloon_alert(user, "Vehicle Occupied!")
+			return FALSE
 		balloon_alert(user, "You start attaching the sidecar...")
 		if(!do_after(user, 3 SECONDS, TRUE, src))
 			return TRUE
@@ -122,6 +146,26 @@
 		max_buckled_mobs = 2
 		max_occupants = 2
 		return TRUE
+	if(istype(I, /obj/item/motorbikegun))
+		if(user.do_actions)
+			balloon_alert(user, "Already busy!")
+			return FALSE
+		if(attached_motorbikegun || attached_sidecar)
+			balloon_alert(user, "Already Upgraded!")
+			return FALSE
+		if(LAZYLEN(buckled_mobs))
+			balloon_alert(user, "Vehicle Occupied!")
+			return FALSE
+		balloon_alert(user, "You start attaching the cannon...")
+		if(!do_after(user, 3 SECONDS, TRUE, src))
+			return TRUE
+		attached_motorbikegun = I
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(src)
+		pixel_x = -7
+		motorbike_cover.pixel_x = 7
+		icon = 'icons/obj/ATM.dmi'
+		icon_state = "ATM"
 	if(user.a_intent != INTENT_HARM)
 		return motor_pack.attackby(I, user, params)
 
@@ -136,12 +180,12 @@
 			pixel_x = 0
 
 /obj/vehicle/ridden/motorbike/wrench_act(mob/living/user, obj/item/I)
-	if(!attached_sidecar)
-		balloon_alert(user, "No sidecar attached!")
-		return TRUE
+	if(!attached_sidecar || !attached_motorbikegun)
+		balloon_alert(user, "No upgrade attached!")
+		return FALSE
 	if(LAZYLEN(buckled_mobs))
 		balloon_alert(user, "Someone is riding this!")
-		return TRUE
+		return FALSE
 	if(user.do_actions)
 		balloon_alert(user, "Already busy!")
 		return FALSE
@@ -149,6 +193,8 @@
 		return TRUE
 	attached_sidecar.forceMove(get_turf(src))
 	attached_sidecar = null
+	attached_motorbikegun.forceMove(get_turf(src))
+	attached_motorbikegun = null
 	RemoveElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike/sidecar)
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 	max_buckled_mobs = 1
@@ -160,7 +206,7 @@
 	pixel_x = initial(pixel_x)
 	add_overlay(motorbike_cover)
 	UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
-	balloon_alert(user, "You dettach the sidecar!")
+	balloon_alert(user, "Upgrade removed!")
 	return TRUE
 
 /obj/vehicle/ridden/motorbike/obj_break()
@@ -216,3 +262,21 @@
 
 #undef FUEL_PER_CAN_POUR
 #undef LOW_FUEL_LEFT_MESSAGE
+
+/**
+ * Sidecar upgrade that when attached lets you shoot
+ */
+
+/obj/item/motorbikegun
+	name = "motorbike mounted gun"
+	desc = "A gun upgrade for TGMC motorbikes. Allows you to fire a powerful cannon while retaining motorbike speed."
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "sidecar" //icon_state = "motorbikegun" Placeholder because no sprite yet
+
+/obj/vehicle/ridden/motorbike/unique_action
+	if(!attached_motorbikegun)
+		return
+
+	if(!do_after(user, 3 SECONDS, TRUE, src))
+		return TRUE
+
