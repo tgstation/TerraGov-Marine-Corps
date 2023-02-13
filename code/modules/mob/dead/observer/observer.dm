@@ -916,6 +916,59 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	mind.transfer_to(new_fallen, TRUE)
 	valhalla_job.after_spawn(new_fallen)
 
+/mob/dead/observer/verb/find_facehugger_spawn()
+	set category = "Ghost"
+	set name = "Spawn as Facehugger"
+
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY > world.time && !started_as_observer)
+		to_chat(usr, span_warning("You died too recently to be able to take a new mob."))
+		return
+
+	var/list/spawn_point = list()
+	var/list/area_names = list()
+	var/list/area_namecounts = list()
+	var/name
+
+	for(var/mob/living/carbon/xenomorph/potential_xeno AS in GLOB.alive_xeno_list)
+		if(is_centcom_level(potential_xeno.z))
+			continue
+		if(!isxenocarrier(potential_xeno) || !potential_xeno.sentient_huggers)
+			continue
+
+		var/mob/living/carbon/xenomorph/carrier/selected_carrier = potential_xeno
+		name = selected_carrier.name + " [selected_carrier.huggers]/[selected_carrier.xeno_caste.huggers_max]"
+		spawn_point[name] = potential_xeno
+
+	for(var/obj/alien/egg/hugger/potential_egg AS in GLOB.xeno_egg_hugger)
+		if(is_centcom_level(potential_egg.z))
+			continue
+		if(potential_egg.maturity_stage != potential_egg.stage_ready_to_burst)
+			continue
+		if(!potential_egg.hugger_type)
+			continue
+
+		var/area_egg = get_area(potential_egg)
+		if(area_egg in area_names)
+			area_namecounts[area_egg]++
+			name = "[potential_egg.name] at [area_egg] ([area_namecounts[area_egg]])"
+		else
+			area_names.Add(area_egg)
+			area_namecounts[area_egg] = 1
+			name = "[potential_egg.name] at [get_area(potential_egg)]"
+
+		spawn_point[name] = potential_egg
+
+	if(!length_char(spawn_point))
+		to_chat(usr, span_warning("There are no spawn points for hagger at the moment."))
+		return
+
+	var/selected = tgui_input_list(usr, "Please select a spawn point:", "Spawn as Facehugger", spawn_point)
+	if(!selected)
+		return
+
+	var/target = spawn_point[selected]
+	abstract_move(get_turf(target))
+
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()
 	. = ..()

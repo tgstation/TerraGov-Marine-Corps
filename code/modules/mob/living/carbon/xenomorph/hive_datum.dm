@@ -329,7 +329,7 @@
 
 /datum/hive_status/proc/can_spawn_as_hugger(mob/dead/observer/user)
 
-	if(!user.client?.prefs || !(user.client.prefs.be_special & (BE_ALIEN)) || is_banned_from(user.ckey, ROLE_XENOMORPH))
+	if(!user.client?.prefs || is_banned_from(user.ckey, ROLE_XENOMORPH))
 		return FALSE
 
 	if(GLOB.key_to_time_of_death[user.key] + TIME_BEFORE_TAKING_BODY > world.time && !user.started_as_observer)

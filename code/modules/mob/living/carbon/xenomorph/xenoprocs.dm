@@ -452,7 +452,7 @@
 		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
 
 /mob/living/carbon/xenomorph/proc/toggle_playable_facehugger()
-	set name = "Toggle playable facehugger"
+	set name = "Toggle Playable Facehugger"
 	set desc = "Enable/disable the ability for ghosts to take our facehuggers."
 	set category = "Alien"
 

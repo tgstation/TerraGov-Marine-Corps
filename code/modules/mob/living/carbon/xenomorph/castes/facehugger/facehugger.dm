@@ -15,7 +15,7 @@
 	old_y = -3
 
 	tier = XENO_TIER_MINION
-	upgrade = XENO_UPGRADE_BASETYPE
+	upgrade = XENO_UPGRADE_INVALID
 	mob_size = MOB_SIZE_SMALL
 	pull_speed = -2
 	flags_pass = PASSXENO | PASSTABLE | PASSMOB
@@ -40,6 +40,9 @@
 	if(!loc_weeds_type && !is_ventcrawling && !(lying_angle || resting))
 		adjustBruteLoss(2, TRUE)
 		return
+
+/mob/living/carbon/xenomorph/facehugger/update_progression()
+	return
 
 /mob/living/carbon/xenomorph/facehugger/on_death()
 	///We QDEL them as cleanup and preventing them from being sold

@@ -91,6 +91,14 @@
 	///What type of hugger are produced here
 	var/hugger_type = /obj/item/clothing/mask/facehugger
 
+/obj/alien/egg/hugger/Initialize(mapload, hivenumber)
+	. = ..()
+	GLOB.xeno_egg_hugger += src
+
+/obj/alien/egg/hugger/Destroy()
+	GLOB.xeno_egg_hugger -= src
+	return ..()
+
 /obj/alien/egg/hugger/update_icon_state()
 	. = ..()
 	overlays.Cut()
@@ -150,7 +158,6 @@
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(!hive.can_spawn_as_hugger(user))
 		return FALSE
-
 	if(maturity_stage != stage_ready_to_burst)
 		to_chat(user, span_warning("The egg is not ready."))
 		return FALSE
@@ -182,7 +189,7 @@
 		return
 
 	F.visible_message(span_xenowarning("[F] slides back into [src]."),span_xenonotice("You slides back into [src]."))
-	F.ghostize(FALSE)
+	F.ghostize()
 	F.death(deathmessage = "get inside the egg", silent = TRUE)
 	qdel(F)
 

@@ -68,7 +68,7 @@
 
 	huggers++
 	F.visible_message(span_xenowarning("[F] climb on the [src]."),span_xenonotice("You climb on the [src]."))
-	F.ghostize(FALSE)
+	F.ghostize()
 	F.death(deathmessage = "climb on the carrier", silent = TRUE)
 	qdel(F)
 

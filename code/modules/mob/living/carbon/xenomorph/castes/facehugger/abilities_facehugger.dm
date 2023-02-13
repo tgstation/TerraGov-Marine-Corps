@@ -6,7 +6,7 @@
 	action_icon_state = "pounce"
 	desc = "Leap at your target and knock them down, if you jump close you will hug the target."
 	ability_name = "pounce"
-	cooldown_timer = 10 SECONDS
+	cooldown_timer = 5 SECONDS
 	plasma_cost = 25
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_POUNCE,

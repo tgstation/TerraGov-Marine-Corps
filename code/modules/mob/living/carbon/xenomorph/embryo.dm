@@ -143,7 +143,7 @@
 	if(source) //If the larva appeared because of a sentient facehugger, he gets an advantage.
 		var/mob/first_picked = get_mob_by_ckey(source)
 		if(first_picked)
-			if(first_picked.client?.prefs && isobserver(first_picked) && !(first_picked.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5))
+			if(first_picked.client?.prefs && (first_picked.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) && isobserver(first_picked) && !(first_picked.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5))
 				picked = first_picked
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
 	if(!picked)

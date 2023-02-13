@@ -267,7 +267,7 @@
 	set_trap_type(TRAP_HUGGER)
 
 	F.visible_message(span_xenowarning("[F] slides back into [src]."),span_xenonotice("You slides back into [src]."))
-	F.ghostize(FALSE)
+	F.ghostize()
 	F.death(deathmessage = "get inside the trap", silent = TRUE)
 	qdel(F)
 
