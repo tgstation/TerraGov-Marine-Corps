@@ -9,9 +9,12 @@
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
-	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	///List of objects which this item can store (if set, it can't store anything else)
+	var/list/can_hold = list()
+	///List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/cant_hold = list()
+	///a list of objects which this item can store despite not passing the w_class limit
+	var/list/bypass_w_limit = list()
 	/**
 	 * Associated list of types and their max count, formatted as
 	 * 	storage_type_limits = list(
@@ -24,9 +27,12 @@
 	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
-	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
-	var/storage_slots = 7 //The number of storage slots in this container.
+	///Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_w_class = 2
+	///The sum of the storage costs of all the items in this storage item.
+	var/max_storage_space = 14
+	///The number of storage slots in this container.
+	var/storage_slots = 7
 	var/atom/movable/screen/storage/boxes = null
 	var/atom/movable/screen/storage/storage_start = null //storage UI
 	var/atom/movable/screen/storage/storage_continue = null
@@ -35,17 +41,27 @@
 	var/atom/movable/screen/storage/stored_continue = null
 	var/atom/movable/screen/storage/stored_end = null
 	var/atom/movable/screen/close/closer = null
-	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
-	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/allow_drawing_method //whether this object can change its drawing method (pouches)
+	///whether our storage box on hud changes color when full.
+	var/show_storage_fullness = TRUE
+	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/use_to_pickup
+	///Set this to make the storage item group contents of the same type and display them as a number.
+	var/display_contents_with_number
+	///Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_empty
+	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/allow_quick_gather
+	///whether this object can change its drawing method (pouches)
+	var/allow_drawing_method
 	var/draw_mode = 0
-	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
-	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
-	var/use_sound = "rustle"	//sound played when used. null for no sound.
-	var/opened = 0 //Has it been opened before?
+	///0 = pick one at a time, 1 = pick all on tile
+	var/collection_mode = 1;
+	/// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/foldable = null
+	///sound played when used. null for no sound.
+	var/use_sound = "rustle"
+	///Has it been opened before?
+	var/opened = 0
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 	///How long does it take to put items into or out of this, in ticks
 	var/access_delay = 0

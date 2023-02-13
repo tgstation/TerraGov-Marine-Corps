@@ -1579,9 +1579,9 @@ VEHICLES
 	contains = list(/obj/item/sidecar)
 
 /datum/supply_packs/vehicles/motorbikegun
-	name = "Mounted gun motorbike upgrade"
-	cost = 200
-	contains = list(/obj/item/motorbikegun)
+	name = "Cannon-mounted All-Terrain Motorbike"
+	cost = 400 //Subject to change
+	contains = list(/obj/vehicle/ridden/motorbike/cannon_mounted)
 
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"
