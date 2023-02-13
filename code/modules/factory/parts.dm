@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(bignade_recipe,  list(
 	))
 
 /obj/item/factory_part/bignade
-	name = "M15 grenade assembly"
+	name = "\improper M15 grenade assembly"
 	desc = "An incomplete M15 grenade."
 	result = /obj/item/explosive/grenade/m15
 
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 
 /obj/item/factory_part/cloak_rr_missile
 	name = "standard recoilless ammo assembly"
-	desc = "ASn unfinished squat missile. It has a particularily large warhead."
+	desc = "An unfinished squat missile. It has a particularily large warhead."
 	result = /obj/item/ammo_magazine/rocket/recoilless/cloak
 
 /obj/item/factory_part/cloak_rr_missile/Initialize()
@@ -436,7 +436,7 @@ GLOBAL_LIST_INIT(module, list(
 	recipe = GLOB.module
 
 /obj/item/factory_part/module_tyr2
-	name = "Mark 2 Tyr armor reinforcement"
+	name = "\improper Mark 2 Tyr armor reinforcement"
 	desc = "An unfinished Mark 2 Tyr armor reinforcement module."
 	result = /obj/item/armor_module/module/tyr_extra_armor
 
@@ -515,7 +515,7 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 	))
 
 /obj/item/factory_part/mlrs_rocket
-	name = "MLRS rocket"
+	name = "\improper MLRS rocket"
 	desc = "An unfinished high explosive rocket."
 	result = /obj/item/storage/box/mlrs_rockets
 
@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	))
 
 /obj/item/factory_part/thermobaric_wp
-	name = "RL-57 Thermobaric WP rocket array"
+	name = "\improper RL-57 Thermobaric WP rocket array"
 	desc = "An unfinished rhermobaric WP rocket array."
 	result = /obj/item/ammo_magazine/rocket/m57a4
 
