@@ -31,7 +31,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "bl" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -224,7 +224,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "jx" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/ne)
 "jQ" = (
 /obj/structure/rack,
@@ -376,7 +376,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "qY" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/ne)
@@ -400,7 +400,7 @@
 /area/bigredv2/outside/general_offices)
 "sl" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/ne)
 "sm" = (
 /obj/structure/rack,

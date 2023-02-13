@@ -114,3 +114,77 @@
   - balance: AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20
   - bugfix: fixed AT36 HE ammo being described as "high velocity" when its actually
       very slow
+2023-02-09:
+  Blundir:
+  - imageadd: resprited xenohealth, plasma, leader star, active phero/buff status,
+      larva huds
+  Guidesa:
+  - imageadd: powerfists now display if they have a power cell in them
+  KillerOrcaCora:
+  - imageadd: New rouny sprites for warlock
+  Lumipharon:
+  - balance: Oxycodone OD now causes stam loss and confusion
+  TiviPlus:
+  - balance: power fist uses a little less power and pushes large xenos a little further
+      away
+  Xander3359:
+  - rscadd: Getting hit by something being thrown at you (like knives) now plays a
+      sound.
+  maikilangiolo:
+  - rscadd: added WP shrapnel AGLS ammo
+  - balance: rebalanced AGLS frag to be better
+  - balance: rebalanced AGLS AOEs to be less oppressive for both sides
+  - qol: recolored AGLS ammo to be easier to distinguish
+2023-02-10:
+  Blundir:
+  - rscdel: Removed gasmask action
+  - imagedel: Removed gasmask action icon
+  Pariah919:
+  - rscadd: Added new Marine Magnum. It has a windup to fire, staggers on hit, and
+      deals solid damage.
+  QualityVan:
+  - balance: The bible is no longer in and of itself a miracle
+  RipGrayson:
+  - rscadd: Ported the 8-bit bitmasking smoothing system used by TG.
+  - imageadd: Converted most smoothing icons to the new smoothing system.
+  Xander3359:
+  - rscadd: You can now reload pill bottles from pill packets.
+  - code_imp: do_refill is on object level, so now it's easy to add tactical reload
+      functionality to containers using refill_types and refill_sound.
+  maikilangiolo:
+  - bugfix: fixed AGLS WP magazine in req console
+2023-02-11:
+  Dikozda:
+  - bugfix: Plasma OB will now hit the lased position instead of going off in the
+      OB room
+  Lumipharon:
+  - bugfix: fixed Rownin and flak vests being invisible in some cases
+  Naaanii:
+  - rscadd: Added heat, smoke, cloak and Tfoot rrshells to reqtorio
+  - rscadd: Added thermobaric rockets to reqtorio
+  Xander3359:
+  - bugfix: Fixes a dark spot on the pillar of spring.
+2023-02-12:
+  Lumipharon:
+  - bugfix: fixed an exploit with the AMR
+  - bugfix: fixed AMR lase overlays getting stuck sometimes
+  Naaanii:
+  - bugfix: adjusts RR heat shell price to match its counterparts.
+2023-02-13:
+  Dikozda:
+  - bugfix: MLRS reqtorio refils will now work properly and not just pop out the final
+      product from the unboxer
+  Lumipharon:
+  - balance: 'HvH: Stun grenade detonation time reduced to 2 seconds from 4 seconds'
+  - rscadd: Added SOM HE and incendiary grenades, replacing all instances of other
+      HE/incendiary equivalents
+  - qol: Incendiary grenades can now be heard from more than 4 tiles away when detonating
+  - balance: Reduces the duration of fire produced by spray nozzles to 30% of normal
+  - imageadd: VX-12 and power cell resprited
+  Pariah919:
+  - rscadd: Added new C-1 'Garand' SLR. Brought to you by Crowford Armory Union! Mostly
+      for CLF, its in the WW2 seasonal for marines. And req.
+  - balance: Mortar/Howitzer have lost shell speed, so they have higher travel times.
+      They also emit a different color of light to make it easier to perceive them.
+  - balance: Howitzer has slightly higher cooloff, 10 seconds over 4.
+  - balance: Engineers can no longer buy teleporters

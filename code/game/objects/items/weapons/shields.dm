@@ -6,7 +6,7 @@
 	set_shield()
 
 /obj/item/weapon/shield/proc/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 80, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
@@ -96,7 +96,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 400
 	integrity_failure = 100
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, FIRE = 0, ACID = 35)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, FIRE = 0, ACID = 30)
 	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	force = 20
 	slowdown = 0.5

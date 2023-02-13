@@ -56,6 +56,9 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
+	///Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.
+	var/list/fixed_underlay = null
+
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
@@ -100,9 +103,17 @@
 	else if (!istype(hard_armor, /datum/armor))
 		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
-	if(smoothing_behavior)
-		smooth_self()
-		smooth_neighbors()
+	if (length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if (length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -322,8 +333,8 @@
 			var/turf/D = get_step(W,dirn)
 			if(isnull(D))
 				continue
-			D.smooth_self()
-			D.smooth_neighbors()
+			QUEUE_SMOOTH(D)
+			QUEUE_SMOOTH_NEIGHBORS(D)
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
@@ -950,3 +961,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 /turf/proc/clean_turf()
 	for(var/obj/effect/decal/cleanable/filth in src)
 		qdel(filth) //dirty, filthy floor
+
+/turf/proc/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
+	underlay_appearance.icon = icon
+	underlay_appearance.icon_state = icon_state
+	underlay_appearance.dir = adjacency_dir
+	return TRUE

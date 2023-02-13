@@ -972,6 +972,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/garand
+	name = "\improper C1 stock"
+	desc = "A irremovable C1 stock."
+	icon_state = "garandstock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
 	desc = "A specialized stock for the SH-35."
@@ -1040,6 +1047,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper BR-64 stock"
 	desc = "A specialized stock for the BR-64."
 	icon_state = "t64stock"
+
+//You can remove the stock on the Magnum. So it has stats and is removeable.
+
+/obj/item/attachable/stock/t76
+	name = "T-76 magnum stock"
+	desc = "A R-76 magnum stock. Makes about all your handling better outside of making it harder to wield. Recommended to be kept on the R-76 at all times if you value your shoulder."
+	icon_state = "t76stock"
+	flags_attach_features = ATTACH_REMOVABLE
+	melee_mod = 5
+	scatter_mod = -1
+	size_mod = 2
+	aim_speed_mod = 0.05
+	recoil_mod = -2
+	pixel_shift_x = 30
+	pixel_shift_y = 14
 
 //Underbarrel
 
@@ -1534,17 +1556,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
 	icon_state = "flame_wide"
-	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
-	burn_time_mod = 0.8
+	burn_time_mod = 0.3
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red
 	name = "red spray flamer nozzle"
 	desc = "It is red, therefore its obviously more effective."
 	icon_state = "flame_wide_red"
-	range_modifier = 0
+	range_modifier = 3
 
 ///Flamer ammo is a normal ammo datum, which means we can shoot it if we want
 /obj/item/attachable/flamer_nozzle/long

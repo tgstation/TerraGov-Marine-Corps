@@ -141,6 +141,42 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 	. = ..()
 	recipe = GLOB.recoilless_missile_recipe
 
+/obj/item/factory_part/heat_rr_missile
+	name = "Standard Recoilless ammo assembly"
+	desc = "An unfinished squat missile. It has a particularily large warhead."
+	result = /obj/item/ammo_magazine/rocket/recoilless/heat
+
+/obj/item/factory_part/heat_rr_missile/Initialize()
+	. = ..()
+	recipe = GLOB.recoilless_missile_recipe
+
+/obj/item/factory_part/smoke_rr_missile
+	name = "Standard Recoilless ammo assembly"
+	desc = "An unfinished squat missile. It has a particularily large warhead."
+	result = /obj/item/ammo_magazine/rocket/recoilless/smoke
+
+/obj/item/factory_part/smoke_rr_missile/Initialize()
+	. = ..()
+	recipe = GLOB.recoilless_missile_recipe
+
+/obj/item/factory_part/cloak_rr_missile
+	name = "Standard Recoilless ammo assembly"
+	desc = "An unfinished squat missile. It has a particularily large warhead."
+	result = /obj/item/ammo_magazine/rocket/recoilless/cloak
+
+/obj/item/factory_part/cloak_rr_missile/Initialize()
+	. = ..()
+	recipe = GLOB.recoilless_missile_recipe
+
+/obj/item/factory_part/tfoot_rr_missile
+	name = "Standard Recoilless ammo assembly"
+	desc = "An unfinished squat missile. It has a particularily large warhead."
+	result = /obj/item/ammo_magazine/rocket/recoilless/plasmaloss
+
+/obj/item/factory_part/tfoot_rr_missile/Initialize()
+	. = ..()
+	recipe = GLOB.recoilless_missile_recipe
+
 GLOBAL_LIST_INIT(claymore_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "claymoreframe"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "claymorefilled"),
@@ -482,6 +518,23 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 	desc = "An unfinished high explosive rocket"
 	result = /obj/item/storage/box/mlrs_rockets
 
-/obj/item/factory_part/mlrs_rockets/Initialize()
+/obj/item/factory_part/mlrs_rocket/Initialize()
 	. = ..()
 	recipe = GLOB.mlrs_rocket
+
+GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/thermobaric_wp
+	name = "RL-57 Thermobaric WP rocket array"
+	desc = "An unfinished Thermobaric WP rocket array"
+	result = /obj/item/ammo_magazine/rocket/m57a4
+
+/obj/item/factory_part/thermobaric_wp/Initialize()
+	. = ..()
+	recipe = GLOB.thermobaric_wp_recipe
