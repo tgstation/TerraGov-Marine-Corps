@@ -11,6 +11,7 @@
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a TerraGov vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. This is our chance to attack without being intercepted!</b>")
 	to_chat(H, "<B>Eliminate the TerraGov personnel onboard, capture the ship. If there are fellow ICC contingents such as the SoM, then work with them in this goal. Take no prisoners.</B>")
+
 /*
 /datum/emergency_call/icc/create_member(datum/mind/M)
 	. = ..()
@@ -45,4 +46,5 @@
 	var/datum/job/J = SSjob.GetJobType(/datum/job/icc/standard)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained member of this special force group directed to investigate the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice></p>")
-/*
+
+*/

@@ -381,3 +381,17 @@
 	max_rounds = 1000
 	caliber = CALIBER_10x26_CASELESS
 	flags_item_map_variant = null
+
+
+// railgun
+
+/obj/item/ammo_magazine/rifle/icc_coilgun
+	name = "coilgun canister"
+	desc = "A canister holding tungsten projectiles for a coilgun. Will probably penetrate through just about everything."
+	caliber = CALIBER_RAILGUN
+	icon_state = "railgun"
+	default_ammo = /datum/ammo/bullet/coilgun
+	max_rounds = 5
+	reload_delay = 10
+	icon_state_mini = "mag_railgun"
+

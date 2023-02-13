@@ -176,10 +176,10 @@
 /obj/item/clothing/shoes/marine/clf/full
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full
 
-/obj/item/clothing/shoes/marine/icc/guard
+/obj/item/clothing/shoes/marine/icc
 	name = "\improper Modelle/32 combat shoes"
 	desc = "A set of sturdy working boots."
-	item_state = "icc"
+	icon_state = "icc"
 
 /obj/item/clothing/shoes/marine/icc/knife
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full
