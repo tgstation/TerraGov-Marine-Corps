@@ -569,6 +569,15 @@
 	new /obj/item/ammo_magazine/rifle/mpi_km(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km(src)
 
+/obj/item/storage/belt/marine/som/carbine/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/som_carbine(src)
+	new /obj/item/ammo_magazine/rifle/som_carbine(src)
+	new /obj/item/ammo_magazine/rifle/som_carbine(src)
+	new /obj/item/ammo_magazine/rifle/som_carbine(src)
+	new /obj/item/ammo_magazine/rifle/som_carbine(src)
+	new /obj/item/ammo_magazine/rifle/som_carbine(src)
+
 /obj/item/storage/belt/marine/sectoid
 	name = "\improper strange ammo belt"
 	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."

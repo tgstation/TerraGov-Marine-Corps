@@ -1870,6 +1870,9 @@
 	movement_acc_penalty_mult = 4
 	damage_falloff_mult = 1
 
+/obj/item/weapon/gun/rifle/som_carbine/mag_harness
+	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine, /obj/item/attachable/magnetic_harness)
+
 //-------------------------------------------------------
 // V-41 SOM LMG
 
