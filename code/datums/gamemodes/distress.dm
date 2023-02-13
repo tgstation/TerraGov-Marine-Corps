@@ -1,8 +1,7 @@
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SPAWNING_MINIONS|MODE_ALLOW_XENO_QUICKBUILD
-	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TURRETS
+	flags_round_type = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD
 	flags_xeno_abilities = ABILITY_DISTRESS
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
@@ -60,8 +59,31 @@
 	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
 
+/datum/game_mode/infestation/distress/update_silo_death_timer(datum/hive_status/silo_owner)
+	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
+		return
 
-/datum/game_mode/infestation/distress/siloless_hive_collapse()
+	//handle potential stopping
+	if(round_stage != INFESTATION_MARINE_DEPLOYMENT)
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
+	if(GLOB.xeno_resin_silos.len)
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
+
+	//handle starting
+	if(siloless_hive_timer)
+		return
+
+	silo_owner.xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
+	siloless_hive_timer = addtimer(CALLBACK(src, .proc/siloless_hive_collapse), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
+
+///called by [/proc/update_silo_death_timer] after [DISTRESS_SILO_COLLAPSE] elapses to end the round
+/datum/game_mode/infestation/distress/proc/siloless_hive_collapse()
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(round_finished)

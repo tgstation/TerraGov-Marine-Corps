@@ -5,8 +5,6 @@
 	var/required_players = 0
 	var/maximum_players = INFINITY
 	var/squads_max_number = 4
-	///Determines whether rounds with the gamemode will be factored in when it comes to persistency
-	var/allow_persistence_save = TRUE
 
 	var/round_finished
 	var/list/round_end_states = list()
@@ -14,8 +12,10 @@
 
 	var/round_time_fog
 	var/flags_round_type = NONE
-	var/flags_landmarks = NONE
 	var/flags_xeno_abilities = NONE
+
+	///Determines whether rounds with the gamemode will be factored in when it comes to persistency
+	var/allow_persistence_save = TRUE
 
 	var/distress_cancelled = FALSE
 
@@ -82,7 +82,7 @@
 
 
 /datum/game_mode/proc/pre_setup()
-	if(flags_landmarks & MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE)
+	if(flags_round_type & MODE_TWO_HUMAN_FACTIONS)
 		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
 			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)
 		for(var/turf/T AS in GLOB.lz2_shuttle_console_turfs_list)
@@ -259,16 +259,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/setup_blockers()
 	set waitfor = FALSE
-	if(flags_round_type & MODE_FOG_ACTIVATED)
-		var/turf/T
-		while(GLOB.fog_blocker_locations.len)
-			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-			GLOB.fog_blocker_locations.len--
-			new /obj/effect/forcefield/fog(T)
-			stoplag()
-		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
-	if(flags_round_type & MODE_LZ_SHUTTERS)
+	if(flags_round_type & MODE_LATE_OPENING_SHUTTER_TIMER)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
@@ -368,12 +360,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
-
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
-///handles end of the round when no silo is left
-/datum/game_mode/proc/siloless_hive_collapse()
+/// called to check for updates that might require starting/stopping the siloless collapse timer
+/datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
 	return
 
 ///starts the timer to end the round when no silo is left
@@ -572,17 +563,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
 	return FALSE
-
-
-/datum/game_mode/proc/remove_fog()
-	set waitfor = FALSE
-
-	DISABLE_BITFIELD(flags_round_type, MODE_FOG_ACTIVATED)
-
-	for(var/i in GLOB.fog_blockers)
-		qdel(i)
-		stoplag(1)
-
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
 	if(!isnewplayer(NP))
