@@ -282,7 +282,7 @@
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/pillpacket
-	name = "\improper crumpled pill packet"
+	name = "crumpled pill packet"
 	desc = "Fully biodegradable, some say it's delicious."
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "pillpacketempty"
