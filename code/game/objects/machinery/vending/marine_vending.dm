@@ -1146,29 +1146,22 @@
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-		"Armors" = list(
+		"Xenonauten" = list(
 			/obj/item/clothing/suit/modular/xenonauten/light = -1,
+			/obj/item/clothing/suit/modular/xenonauten = -1,
+			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
+			/obj/item/clothing/head/modular/m10x = -1,
+			/obj/item/clothing/head/modular/m10x/heavy = -1,
+		),
+		"Jaeger" = list(
 			/obj/item/clothing/suit/modular/jaeger/light = -1,
 			/obj/item/clothing/suit/modular/jaeger/light/skirmisher = -1,
-			/obj/item/clothing/suit/modular/xenonauten = -1,
 			/obj/item/clothing/suit/modular/jaeger = -1,
 			/obj/item/clothing/suit/modular/jaeger/eva = -1,
 			/obj/item/clothing/suit/modular/jaeger/helljumper = -1,
-			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/assault = -1,
 			/obj/item/clothing/suit/modular/jaeger/heavy/eod = -1,
-			/obj/item/clothing/suit/modular/rownin = -1,
-			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
-			/obj/item/facepaint/green = -1,
-			/obj/item/clothing/suit/modular/robot/light = -1,
-			/obj/item/clothing/suit/modular/robot = -1,
-			/obj/item/clothing/suit/modular/robot/heavy = -1,
-			/obj/item/clothing/suit/modular = -1,
-		),
-		"Helmets" = list(
-			/obj/item/clothing/head/modular/m10x = -1,
-			/obj/item/clothing/head/modular/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine = -1,
@@ -1178,11 +1171,22 @@
 			/obj/item/clothing/head/modular/marine/gungnir = -1,
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
+		),
+		"Combat Robot" = list(
+			/obj/item/clothing/suit/modular/robot/light = -1,
+			/obj/item/clothing/suit/modular/robot = -1,
+			/obj/item/clothing/suit/modular/robot/heavy = -1,
 			/obj/item/clothing/head/modular/robot/light = -1,
 			/obj/item/clothing/head/modular/robot = -1,
 			/obj/item/clothing/head/modular/robot/heavy = -1,
 		),
-		"Jaeger modules" = list(
+		"General" = list(
+			/obj/item/clothing/suit/modular = -1,
+			/obj/item/clothing/suit/modular/rownin = -1,
+			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
+			/obj/item/facepaint/green = -1,
+		),
+		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,

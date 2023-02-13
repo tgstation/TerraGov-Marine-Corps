@@ -93,7 +93,7 @@
 #define HIDETOPHAIR (1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR (1<<9)		// temporarily removes the user's hair, facial and otherwise.
 #define HIDEFACE (1<<10)	//Dictates whether we appear as unknown.
-#define HIDE_EXCESS_HAIR (1<<11)	//Trims hair based on an alpha mask, but still allowing ponytails etc.
+#define HIDE_EXCESS_HAIR (1<<11)	//masks hair so it doesn't poke out of the top or front of helmets.
 
 
 //==========================================================================================
