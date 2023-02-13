@@ -304,7 +304,7 @@
 /obj/item/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
 	if(.)
-		balloon_alert(user, "You take a pill out a pill")
+		balloon_alert(user, "You take out a pill")
 		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /obj/item/storage/pill_bottle/update_overlays()
