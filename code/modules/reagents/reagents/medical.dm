@@ -140,6 +140,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/tramadol)
+	purge_rate = 5
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
 	if(TIMER_COOLDOWN_CHECK(L, name))
