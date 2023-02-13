@@ -1246,11 +1246,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
-	damage = 60
-	penetration = 50
+	damage = 40
+	penetration = 20
 	sundering = 12
 	max_range = 30
-	airburst_multiplier	= 0.7
+	airburst_multiplier	= 1.5
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
