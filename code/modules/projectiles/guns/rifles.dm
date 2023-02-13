@@ -1861,14 +1861,14 @@
 	force = 15
 
 	burst_amount = 1
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 0.75
 	scatter = 12
 	recoil = 1.5
 	wield_delay = 0.5 SECONDS
 	aim_slowdown = 0.3
 	movement_acc_penalty_mult = 4
-	damage_falloff_mult = 1
+	damage_falloff_mult = 2
 
 /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine, /obj/item/attachable/magnetic_harness)

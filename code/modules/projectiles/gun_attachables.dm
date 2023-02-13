@@ -1255,7 +1255,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "v34stock"
 	accuracy_mod = 0.3
 	recoil_mod = -2
-	scatter_mod = -7
+	scatter_mod = -6
 
 /obj/item/attachable/foldable/t35stock
 	name = "\improper SH-35 stock"
