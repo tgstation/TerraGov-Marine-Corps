@@ -1209,11 +1209,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 5
 	damage = 40
 	penetration = 100
-	sundering = 7
+	sundering = 8
 	max_range = 35
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
-	P.proj_max_range -= 20
+	P.proj_max_range -= 15
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 15
@@ -1229,7 +1229,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_INCENDIARY|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
 	penetration = 100
-	sundering = 2
+	sundering = 4
 	max_range = 30
 
 /datum/ammo/bullet/auto_cannon/incendiary/on_hit_mob(mob/M, obj/projectile/P)
@@ -1241,7 +1241,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
 	damage = 60
 	penetration = 50
-	sundering = 10
+	sundering = 12
 	max_range = 30
 	airburst_multiplier	= 0.7
 
