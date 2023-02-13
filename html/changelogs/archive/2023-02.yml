@@ -170,3 +170,21 @@
   - bugfix: fixed AMR lase overlays getting stuck sometimes
   Naaanii:
   - bugfix: adjusts RR heat shell price to match its counterparts.
+2023-02-13:
+  Dikozda:
+  - bugfix: MLRS reqtorio refils will now work properly and not just pop out the final
+      product from the unboxer
+  Lumipharon:
+  - balance: 'HvH: Stun grenade detonation time reduced to 2 seconds from 4 seconds'
+  - rscadd: Added SOM HE and incendiary grenades, replacing all instances of other
+      HE/incendiary equivalents
+  - qol: Incendiary grenades can now be heard from more than 4 tiles away when detonating
+  - balance: Reduces the duration of fire produced by spray nozzles to 30% of normal
+  - imageadd: VX-12 and power cell resprited
+  Pariah919:
+  - rscadd: Added new C-1 'Garand' SLR. Brought to you by Crowford Armory Union! Mostly
+      for CLF, its in the WW2 seasonal for marines. And req.
+  - balance: Mortar/Howitzer have lost shell speed, so they have higher travel times.
+      They also emit a different color of light to make it easier to perceive them.
+  - balance: Howitzer has slightly higher cooloff, 10 seconds over 4.
+  - balance: Engineers can no longer buy teleporters

@@ -1,4 +1,0 @@
-author: "Dikozda"
-delete-after: True
-changes:
-  - bugfix: "MLRS reqtorio refils will now work properly and not just pop out the final product from the unboxer"

@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "Mortar/Howitzer have lost shell speed, so they have higher travel times. They also emit a different color of light to make it easier to perceive them."
-  - balance: "Howitzer has slightly higher cooloff, 10 seconds over 4."
