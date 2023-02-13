@@ -177,7 +177,6 @@
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/auto_cannon,
-		/obj/item/ammo_magazine/auto_cannon/incendiary,
 		/obj/item/ammo_magazine/auto_cannon/flak,
 	)
 

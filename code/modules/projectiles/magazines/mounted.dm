@@ -144,13 +144,6 @@
 	default_ammo = /datum/ammo/bullet/auto_cannon
 	reload_delay = 4 SECONDS
 
-/obj/item/ammo_magazine/auto_cannon/incendiary
-	name = "autocannon incendiary magazine(20mm)"
-	desc = "A box of 80 incendiary 20mm rounds for the ATR-22 mounted autocannon. Sets targets on flame on impact"
-	icon_state = "ac_mag_inc"
-	item_state = "ac_inc"
-	default_ammo = /datum/ammo/bullet/auto_cannon/incendiary
-
 /obj/item/ammo_magazine/auto_cannon/flak
 	name = "autocannon smart-detonating magazine(20mm)"
 	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will pierce cover, but detonate on hitting a target"

@@ -1229,19 +1229,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/auto_cannon/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
 
-/datum/ammo/bullet/auto_cannon/incendiary
-	name = "autocannon incendiary bullet"
-	hud_state = "sniper_fire"
-	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_INCENDIARY|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 25
-	penetration = 100
-	sundering = 4
-	max_range = 30
-
-/datum/ammo/bullet/auto_cannon/incendiary/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, slowdown = 0)
-
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
