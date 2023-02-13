@@ -303,7 +303,7 @@
 
 /obj/item/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	if(.)
+	if(. && user)
 		balloon_alert(user, "You take out a pill")
 		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
