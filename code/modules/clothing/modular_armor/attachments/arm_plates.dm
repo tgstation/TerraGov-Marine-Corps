@@ -3,7 +3,7 @@
 */
 
 /obj/item/armor_module/armor/arms
-	icon = 'icons/mob/modular/old_jaeger/arm_plates.dmi'
+	icon = 'icons/mob/modular/mark_one/arm_plates.dmi'
 	icon_state = "infantry"
 	slot = ATTACHMENT_SLOT_SHOULDER
 	current_variant = "black"

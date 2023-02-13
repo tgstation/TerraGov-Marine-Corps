@@ -4,7 +4,7 @@
  *
  */
 /obj/item/armor_module/armor/chest
-	icon = 'icons/mob/modular/old_jaeger/chest_plates.dmi'
+	icon = 'icons/mob/modular/mark_one/chest_plates.dmi'
 	icon_state = "infantry"
 	slot = ATTACHMENT_SLOT_CHESTPLATE
 	current_variant = "black"

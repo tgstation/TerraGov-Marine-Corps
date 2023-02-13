@@ -3,7 +3,7 @@
 */
 
 /obj/item/armor_module/armor/legs
-	icon = 'icons/mob/modular/old_jaeger/leg_plates.dmi'
+	icon = 'icons/mob/modular/mark_one/leg_plates.dmi'
 	icon_state = "infantry"
 	slot = ATTACHMENT_SLOT_KNEE
 	current_variant = "black"

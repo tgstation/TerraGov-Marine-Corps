@@ -2,11 +2,11 @@
 /obj/item/clothing/head/modular/marine/old
 	name = "Jaeger Mk.I Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
-	icon = 'icons/mob/modular/old_jaeger/helmets.dmi'
+	icon = 'icons/mob/modular/mark_one/helmets.dmi'
 	icon_state = "infantry"
 	item_state = "infantry"
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/old_jaeger/helmets.dmi',
+		slot_head_str = 'icons/mob/modular/mark_one/helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
