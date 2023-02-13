@@ -100,12 +100,12 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/mob/owner //Alert owner
 
 
-/atom/movable/screen/alert/fire
+/atom/movable/screen/alert/status_effect/fire
 	name = "On Fire"
 	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
 	icon_state = "fire"
 
-/atom/movable/screen/alert/fire/Click()
+/atom/movable/screen/alert/status_effect/fire/Click()
 	var/mob/living/L = usr
 	if(!istype(L) || usr != owner)
 		return

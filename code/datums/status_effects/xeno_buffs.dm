@@ -828,8 +828,8 @@
 	owner.Immobilize(landing_delay)
 	animate(owner, landing_delay, pixel_y = initial(owner.pixel_y), easing = BACK_EASING)
 	animate(owner, landing_delay, alpha = initial(owner.alpha))
-	if(shadow)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, shadow), landing_delay)
+	if(shadow) 
+		QDEL_NULL_IN(shadow, shadow, landing_delay)
 
 /datum/status_effect/xeno/dragon_flight/proc/create_shadow()
 	shadow = new /obj/effect/following_shadow(get_turf(owner), owner)
@@ -844,6 +844,7 @@
 	hover_transition = TRUE
 	hover.hover_transition = TRUE
 	qdel(src)
+	return hover
 
 /datum/status_effect/xeno/dragon_flight/hover
 	id = "hover"
@@ -855,12 +856,12 @@
 
 /datum/status_effect/xeno/dragon_flight/hover/on_apply()
 	. = ..()
-	slide_comp = AddComponent(/datum/component/slidey_movement)
+	// slide_comp = AddComponent(/datum/component/slidey_movement)
 
 /datum/status_effect/xeno/dragon_flight/hover/on_remove()
 	. = ..()
-	slide_comp.RemoveComponent()
-	slide_comp = null
+	// slide_comp.RemoveComponent()
+	// slide_comp = null
 
 /datum/status_effect/xeno/dragon_flight/hover/take_off()
 	// Ensure we only lower the height when transition from flight to hover, not land and then takeoff again.

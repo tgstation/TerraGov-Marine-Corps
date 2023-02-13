@@ -423,7 +423,7 @@
 // TODO: Turn actual fire into status effects?
 /datum/status_effect/dragon_fire
 	id = "dragon_fire"
-	alert_type = /atom/movable/screen/alert/fire
+	alert_type = /atom/movable/screen/alert/status_effect/fire
 	var/mob/living/carbon/human/person
 	var/mutable_appearance/fire_effect
 

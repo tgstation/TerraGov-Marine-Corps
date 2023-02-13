@@ -27,13 +27,14 @@
 
 /datum/action/xeno_action/activable/tail_stab/use_ability(mob/living/carbon/human/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	target.apply_damage(owner_xeno.xeno_caste.melee_damage)
+	target.apply_damage(owner_xeno.xeno_caste.melee_damage * owner_xeno.xeno_melee_damage_modifier)
 	playsound(owner_xeno, 'sound/weapons/alien_tail_attack.ogg', 50, TRUE)
 	log_combat(owner_xeno, target, "fire tailkstabbed")
 	owner_xeno.balloon_alert_to_viewers("has tail-stabbed [target]")
 	owner_xeno.face_atom(target)
 	target.Immobilize(tail_stab_delay)
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
+	owner_xeno.do_attack_animation(target, ATTACK_EFFECT_GRAB)
 	var/tail_stab_start_time = world.time
 
 	if(!do_after(owner_xeno, tail_stab_delay))
@@ -42,7 +43,7 @@
 		target.AdjustImmobilized(world.time - tail_stab_start_time - tail_stab_delay)
 		add_cooldown(cooldown_timer * 0.5)
 		return succeed_activate() 
-
+	owner_xeno.do_attack_animation(target, ATTACK_EFFECT_REDSTAB)
 	owner_xeno.balloon_alert_to_viewers("has set [target] on fire with their tail!")
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 40)
 	add_cooldown()
@@ -122,9 +123,9 @@
 		return FALSE
 	var/invalid_area = FALSE
 	var/area/owner_area = get_area(owner)
-	if(owner_area.ceiling == CEILING_UNDERGROUND || owner_area.ceiling == CEILING_DEEP_UNDERGROUND)
+	if(owner_area.ceiling != CEILING_NONE)
 		if(!silent)
-			owner.balloon_alert("the ceiling here stops you from flying!")
+			owner.balloon_alert(owner, "the ceiling here stops you from flying!")
 		return FALSE
 	for(var/area/area in blacklisted_areas)
 		if(istype(owner_area, area))
@@ -137,40 +138,42 @@
 
 /datum/action/xeno_action/flight/action_activate()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(flight.hover_transition)
+	if(flight?.hover_transition)
 		return fail_activate()
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_FLIGHT))
+	// If we're already at max height, tell them how to descend
+	if(istype(flight, STATUS_EFFECT_FLIGHT))
 		// Tempting to make this land you immediately,
 		//  but having a way to inform the player how to do it themselves is better
 		owner_xeno.balloon_alert(owner_xeno, "right click the action button to land!")
 		return fail_activate()
-
+	var/old_flight_landing_delay = flight ? flight.landing_delay : 0
 	if(ascend_to_flight_or_hover())
 		return succeed_activate()
 	
 	if(!do_after(owner_xeno, 10 SECONDS))
-		owner_xeno.remove_status_effect(STATUS_EFFECT_FLIGHT)
-		owner_xeno.AdjustImmobilized(-10 SECONDS)
-		add_cooldown(1 MINUTES)
-		return
+		if(old_flight_landing_delay)
+			owner_xeno.AdjustImmobilized(-old_flight_landing_delay)
+		alternate_action_activate()
+		return fail_activate()
 
 /datum/action/xeno_action/flight/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/is_hovering = istype(flight, STATUS_EFFECT_HOVER)
 	if(!flight)
+		owner_xeno.balloon_alert(owner_xeno, "you're not flying!")
+		fail_activate()
 		return
 	owner_xeno.Immobilize(flight.landing_delay, TRUE)
 	owner_xeno.remove_status_effect(flight)
-	if(is_hovering)
-		// Full cooldown if we're landed on the ground.
-		add_cooldown()
-		return succeed_activate()
-	if(flight.type == STATUS_EFFECT_FLIGHT)
-		flight.transition_to_hover()
+	switch(flight.type)
+		if(STATUS_EFFECT_FLIGHT)
+			flight = flight.transition_to_hover()
+		if(STATUS_EFFECT_HOVER)
+			// Full cooldown if we're landed on the ground.
+			add_cooldown()
+			land()
 
 /datum/action/xeno_action/flight/proc/ascend_to_flight_or_hover(is_hovering = FALSE)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/old_effect = flight.type
 	var/status_effect_to_add
 	if(!flight)
 		owner_xeno.balloon_alert_to_viewers("unfolds it's wings and flies low")
@@ -187,18 +190,16 @@
 	flight = owner_xeno.apply_status_effect(status_effect_to_add)
 	var/takeoff_time = initial(flight.takeoff_flaps) * initial(flight.flap_delay) + 1 SECONDS
 	owner_xeno.AdjustImmobilized(takeoff_time)
-	if(!do_after(owner_xeno, takeoff_time))
-		owner_xeno.remove_status_effect(flight)
-		owner_xeno.AdjustImmobilized(-takeoff_time)
-		flight = null
-		if(status_effect_to_add != STATUS_EFFECT_HOVER)
-			flight = owner_xeno.apply_status_effect(old_effect)
-			if(status_effect_to_add == STATUS_EFFECT_FLIGHT)
-				flight.hover_transition = TRUE
-		return FALSE
 	return TRUE
+
+/datum/action/xeno_action/flight/proc/land()
+	if(!flight)
+		CRASH("Somehow called land() while not even flying, or the pointer to the flight effect was missing")
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.remove_status_effect(flight)
+	flight = null
 
 /datum/action/xeno_action/flight/remove_action(mob/living/L)
 	. = ..()
 	if(flight)
-		L.remove_status_effect(flight)
+		land()
