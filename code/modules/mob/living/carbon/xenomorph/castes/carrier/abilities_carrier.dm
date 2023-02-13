@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	if(caster.health > (caster.maxHealth * 0.25))
+	if(caster.health > (caster.maxHealth * 0.56))
 		if(!silent)
 			to_chat(caster, span_xenowarning("We are not injured enough to panic yet!"))
 		return FALSE
