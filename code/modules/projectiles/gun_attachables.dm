@@ -1253,9 +1253,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "v34stock"
-	accuracy_mod = 0.2
+	accuracy_mod = 0.3
 	recoil_mod = -2
-	scatter_mod = -6
+	scatter_mod = -7
 
 /obj/item/attachable/foldable/t35stock
 	name = "\improper SH-35 stock"
@@ -1275,8 +1275,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2
 	melee_mod = -10
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
-	attachment_action_type = /datum/action/item_action/toggle
 	deploy_time = 1 SECONDS
 	accuracy_mod = 0.3
 	recoil_mod = -2

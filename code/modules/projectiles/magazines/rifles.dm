@@ -126,7 +126,7 @@
 	desc = "A 7.62x39mm magazine for the V-34 carbine."
 	caliber = CALIBER_762X39
 	icon_state = "v34"
-	default_ammo = /datum/ammo/bullet/rifle/heavy
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 30
 	icon_state_mini = "mag_rifle_big"
 

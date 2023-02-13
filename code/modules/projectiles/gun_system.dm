@@ -216,7 +216,7 @@
 	var/burst_accuracy_mult	= 1
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
-	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
+	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.
 	var/movement_acc_penalty_mult = 5
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
