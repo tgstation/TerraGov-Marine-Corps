@@ -16,12 +16,12 @@
 	var/mob/living/target_living = target
 	if(!isliving(target) || target_living.stat == DEAD)
 		if(!silent)
-			owner.balloon_alert("We can't tail stab that!")
+			owner.balloon_alert(owner, "We can't tail stab that!")
 		return FALSE
 	// TODO, replace this with something that deals with densities, not sight
 	if(!line_of_sight(owner, target, tail_stab_delay))
 		if(!silent)
-			owner.balloon_alert("You can't reach the target from here!")
+			owner.balloon_alert(owner, "You can't reach the target from here!")
 		return FALSE
 	return TRUE
 
@@ -61,10 +61,10 @@
 		dragon_spit.hivenumber = spitter_xeno.hivenumber
 
 	if(spitter_xeno.has_status_effect(STATUS_EFFECT_FLIGHT))
-		return flight_spit()
+		return flight_spit(newspit, owner)
 	// Hover spit uses normal spit, but with a different animation
 	else if(spitter_xeno.has_status_effect(STATUS_EFFECT_HOVER))
-		return hover_spit()
+		return hover_spit(newspit, owner)
 	else
 		// False will make it spit normally
 		return FALSE
@@ -133,7 +133,7 @@
 			break
 	if(invalid_area)
 		if(!silent)
-			owner.balloon_alert("can't fly in this area!")
+			owner.balloon_alert(owner, "can't fly in this area!")
 		return FALSE
 
 /datum/action/xeno_action/flight/action_activate()
@@ -147,19 +147,20 @@
 		owner_xeno.balloon_alert(owner_xeno, "right click the action button to land!")
 		return fail_activate()
 	var/old_flight_landing_delay = flight ? flight.landing_delay : 0
-	if(ascend_to_flight_or_hover())
-		return succeed_activate()
+	if(!ascend_to_flight_or_hover())
+		return
 	
 	if(!do_after(owner_xeno, 10 SECONDS))
 		if(old_flight_landing_delay)
 			owner_xeno.AdjustImmobilized(-old_flight_landing_delay)
-		alternate_action_activate()
+		alternate_action_activate(TRUE)
 		return fail_activate()
 
-/datum/action/xeno_action/flight/alternate_action_activate()
+/datum/action/xeno_action/flight/alternate_action_activate(silent = FALSE)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(!flight)
-		owner_xeno.balloon_alert(owner_xeno, "you're not flying!")
+		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "you're not flying!")
 		fail_activate()
 		return
 	owner_xeno.Immobilize(flight.landing_delay, TRUE)
@@ -176,9 +177,8 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/status_effect_to_add
 	if(!flight)
-		owner_xeno.balloon_alert_to_viewers("unfolds it's wings and flies low")
+		owner_xeno.balloon_alert_to_viewers("unfolds it's wings and begins to ascend!")
 		status_effect_to_add = STATUS_EFFECT_HOVER
-		owner_xeno.remove_status_effect(flight)
 
 	else if(is_hovering)
 		owner_xeno.visible_message("<span class='warning'>[owner_xeno] begins to ascend to the skies!</span>")

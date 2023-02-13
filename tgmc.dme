@@ -127,6 +127,7 @@
 #include "code\__HELPERS\_string_lists.dm"
 #include "code\__HELPERS\admin.dm"
 #include "code\__HELPERS\ai.dm"
+#include "code\__HELPERS\animations.dm"
 #include "code\__HELPERS\announce.dm"
 #include "code\__HELPERS\chat.dm"
 #include "code\__HELPERS\cmp.dm"

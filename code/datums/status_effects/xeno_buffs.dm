@@ -769,7 +769,7 @@
 	var/flap_delay = 2 SECONDS
 	var/takeoff_flaps = 10
 	var/flight_pixel_height = 200
-	var/plasma_to_sustain = 20
+	var/plasma_to_sustain = 10
 	var/hover_transition = FALSE
 	var/obj/effect/shadow
 
@@ -808,7 +808,7 @@
 /datum/status_effect/xeno/dragon_flight/proc/flap(current_step, total_steps)
 	// We want to reach out of the view screen within the steps left
 	var/pixel_change = flight_pixel_height * (current_step / total_steps)
-	playsound(owner, 'sound/effects/woosh_swoosh.ogg', 100, vary = TRUE, sound_range = 14)
+	playsound(owner, 'sound/effects/woosh_swoosh.ogg', 100, TRUE, 14)
 	addtimer(CALLBACK(src, .proc/dissapear, flap_delay * 4), flap_delay * 2)
 	animate(owner, flap_delay, pixel_y = pixel_change, flags = ANIMATION_RELATIVE, easing = BACK_EASING)
 
@@ -826,10 +826,11 @@
 
 /datum/status_effect/xeno/dragon_flight/proc/land()
 	owner.Immobilize(landing_delay)
-	animate(owner, landing_delay, pixel_y = initial(owner.pixel_y), easing = BACK_EASING)
+	animate(owner, landing_delay, pixel_y = initial(owner.pixel_y), easing = SINE_EASING)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, owner, 'sound/effects/woosh_swoosh.ogg', 70, TRUE), landing_delay * 0.5)
 	animate(owner, landing_delay, alpha = initial(owner.alpha))
 	if(shadow) 
-		QDEL_NULL_IN(shadow, shadow, landing_delay)
+		QDEL_NULL_IN(src, shadow, landing_delay)
 
 /datum/status_effect/xeno/dragon_flight/proc/create_shadow()
 	shadow = new /obj/effect/following_shadow(get_turf(owner), owner)
@@ -848,7 +849,7 @@
 
 /datum/status_effect/xeno/dragon_flight/hover
 	id = "hover"
-	plasma_to_sustain = 10
+	plasma_to_sustain = 5
 	takeoff_flaps = 2
 	landing_delay = 1 SECONDS
 	flight_pixel_height = 70
@@ -871,7 +872,15 @@
 	. = ..()
 
 /datum/status_effect/xeno/dragon_flight/hover/finish_take_off()
+	DO_FLOATING_ANIM(owner, 2 SECONDS, 4)
 	return
+
+/datum/status_effect/xeno/dragon_flight/hover/dissapear(time)
+	return
+
+/datum/status_effect/xeno/dragon_flight/hover/land()
+	STOP_FLOATING_ANIM(owner)
+	. = ..()
 // ***************************************
 // *********** Drain Surge
 // ***************************************
