@@ -293,8 +293,6 @@
 		if(!remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
-			to_chat(user, span_notice("You take a pill out of \the [src]."))
-			playsound(user, 'sound/items/pills.ogg', 15, 1)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.swap_hand()
@@ -302,21 +300,12 @@
 			user.dropItemToGround(I)
 			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
-	else
-		user.balloon_alert(user, "Empty")
-		return
 
-/obj/item/storage/pill_bottle/attack_hand_alternate(mob/living/user) //Most of the time you are just taking pills out with right click which skips the sound being played.
-	if(contents.len)
-		var/obj/item/I = contents[1]
-		if(!remove_from_storage(I,user,user))
-			return
-		if(user.put_in_hands(I))
-			to_chat(user, span_notice("You take a pill out of \the [src]."))
-			playsound(user, 'sound/items/pills.ogg', 15, 1)
-	else
-		user.balloon_alert(user, "Empty")
-		return
+/obj/item/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	. = ..()
+	if(.)
+		balloon_alert(user, "You take a pill out a pill")
+		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /obj/item/storage/pill_bottle/update_overlays()
 	. = ..()
