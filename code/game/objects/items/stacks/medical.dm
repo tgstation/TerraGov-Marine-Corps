@@ -25,7 +25,7 @@
 		return FALSE
 	var/mob/living/carbon/human/target = M
 
-	if(!ishuman(user)) // TODO port advanced_tool_user
+	if(!ishuman(user))
 		target.balloon_alert(user, "not dextrous enough")
 		return FALSE
 
