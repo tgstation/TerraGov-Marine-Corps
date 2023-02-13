@@ -121,6 +121,15 @@
 	max_rounds = 60
 
 
+/obj/item/ammo_magazine/rifle/som_carbine
+	name = "\improper V-34 magazine (7.62x39mm)"
+	desc = "A 7.62x39mm magazine for the V-34 carbine."
+	caliber = CALIBER_762X39
+	icon_state = "v34"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	max_rounds = 30
+	icon_state_mini = "mag_rifle_big"
+
 
 //-------------------------------------------------------
 //M16 RIFLE

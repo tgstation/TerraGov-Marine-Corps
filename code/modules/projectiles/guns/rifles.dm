@@ -559,6 +559,43 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
+/obj/item/weapon/gun/rifle/som_carbine
+	name = "\improper V-34 carbine"
+	desc = "A modern redesign by the SOM of an ancient weapon that saw extensive use in the Martian uprising. A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. Chambers 7.62x39mm."
+	icon_state = "v34"
+	item_state = "v34"
+	caliber = CALIBER_762X39
+	muzzleflash_iconstate = "muzzle_flash"
+	max_shells = 30
+	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som_carbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/som_carbine)
+	attachable_allowed = list(
+		/obj/item/attachable/foldable/som_carbine,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/verticalgrip,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 8, "rail_y" = 20, "under_x" = 17, "under_y" = 13, "stock_x" = -6, "stock_y" = 16)
+	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine)
+	force = 15
+
+	burst_amount = 1
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 0.7
+	scatter = 12
+	recoil = 1.5
+	wield_delay = 0.3 SECONDS
+	aim_slowdown = 0.3
+	movement_acc_penalty_mult = 4
+	damage_falloff_mult = 2
+
 //-------------------------------------------------------
 //M16 RIFLE
 
