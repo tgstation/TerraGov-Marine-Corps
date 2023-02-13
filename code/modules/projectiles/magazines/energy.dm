@@ -78,7 +78,6 @@
 	maxcharge = 540
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_cell"
-	charge_overlay = "volkite_small"
 
 /obj/item/cell/lasgun/volkite/turret
 	name = "\improper volkite nuclear energy cell"

@@ -336,7 +336,7 @@ WEAPONS
 /datum/supply_packs/weapons/shell_heat
 	name = "RL-160 HEAT shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/heat)
-	cost = 3
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/shell_smoke
@@ -1464,6 +1464,16 @@ Imports
 /datum/supply_packs/imports/mkh/ammo
 	name = "MKH-98 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/mkh)
+	cost = 10
+
+/datum/supply_packs/imports/garand
+	name = "CAU C1 Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/garand)
+	cost = 50
+
+/datum/supply_packs/imports/garand/ammo
+	name = "CAU C1 Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/garand)
 	cost = 10
 
 /datum/supply_packs/imports/judge
