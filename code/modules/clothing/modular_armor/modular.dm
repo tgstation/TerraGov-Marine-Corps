@@ -53,7 +53,6 @@
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_BADGE,
-		ATTACHMENT_SLOT_CHESTPLATE,
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/chest/marine,
