@@ -136,9 +136,6 @@
 	)
 
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-
-	visorless_offset_x = 0
-	visorless_offset_y = 0
 	icon_state_variants = list(
 		"black",
 	)

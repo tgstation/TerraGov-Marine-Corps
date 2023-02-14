@@ -147,8 +147,6 @@
 		/obj/item/armor_module/greyscale/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-	visorless_offset_x = 0
-	visorless_offset_y = 0
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(

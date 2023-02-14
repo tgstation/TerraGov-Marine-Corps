@@ -313,7 +313,7 @@
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
-	var/visorless_offset_y = -1
+	var/visorless_offset_y = 0
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
 	///Current varient selected.
