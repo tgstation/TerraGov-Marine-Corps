@@ -57,6 +57,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 
@@ -97,6 +98,7 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!

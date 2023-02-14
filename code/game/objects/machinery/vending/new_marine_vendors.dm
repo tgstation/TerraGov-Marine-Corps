@@ -707,6 +707,7 @@
 		/obj/item/cell/high,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/apc,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/effect/vendor_bundle/leader
@@ -758,6 +759,7 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/effect/vendor_bundle/white_dress
