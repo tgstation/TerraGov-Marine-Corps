@@ -187,7 +187,7 @@
 /obj/item/clothing/shoes/marine/icc/guard
 	name = "\improper Modelle/33 tactical shoes"
 	desc = "A set of sturdy tactical boots."
-	item_state = "icc_guard"
+	icon_state  = "icc_guard"
 
 /obj/item/clothing/shoes/marine/icc/guard/knife
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full
