@@ -263,6 +263,19 @@
 	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
+/obj/item/storage/holster/blade/officer/valirapier
+	name = "\improper HP-C vali rapier sheath"
+	desc = "An exquisite ceremonial sheat for a even more expensive rapier."
+	icon_state = "rapier_holster"
+	base_icon = "rapier_holster"
+	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword/valirapier)
+	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword/valirapier)
+
+/obj/item/storage/holster/blade/officer/valirapier/full/Initialize()
+	. = ..()
+	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword/valirapier(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+
 //guns
 
 /obj/item/storage/holster/m37

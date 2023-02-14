@@ -131,6 +131,19 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
+/obj/item/weapon/claymore/mercsword/officersword/valirapier
+	name = "\improper HP-C Harvester rapier"
+	desc = "Extremely expensive looking blade, with a golden handle and engravings, unexpectedly effective in combat, despite its ceremonial looks, compacted with a vali module."
+	icon_state = "rapier"
+	item_state = "rapier"
+	force = 60
+	attack_speed = 5
+	flags_item = DRAINS_XENO
+
+/obj/item/weapon/claymore/mercsword/officersword/valirapier/Initialize()
+	. = ..()
+	AddComponent(/datum/component/harvester)
+
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
 	desc = "The pride of an imperial commissar, held high as they charge into battle."
