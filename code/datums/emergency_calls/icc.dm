@@ -30,7 +30,7 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = SSjob.GetJobType(/datum/job/icc)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/icc/leader)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the ICC Squad Leader assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece, take over this vessel and get the job done!</notice></p>")
 		return

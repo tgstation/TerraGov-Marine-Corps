@@ -336,7 +336,7 @@
 		/obj/item/attachable/stock/trenchgun,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 11)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 22, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/trenchgun,
 	)
@@ -348,7 +348,7 @@
 
 	scatter = 4
 	min_scatter = 4
-	scatter_increase = 7
+	scatter_increase = 8
 	scatter_decay = 3
 	scatter_decay_unwielded = 1
 
@@ -356,7 +356,7 @@
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
 	cock_delay = 1.2 SECONDS
-	aim_slowdown = 0.5
+	aim_slowdown = 0.55
 
 /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
 	starting_attachment_types = list(

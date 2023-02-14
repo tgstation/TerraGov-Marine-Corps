@@ -202,7 +202,7 @@
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
 
 
-/datum/outfit/job/icc/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/icc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/barcardine, SLOT_IN_SUIT)
