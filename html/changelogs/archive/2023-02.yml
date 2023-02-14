@@ -188,3 +188,24 @@
       They also emit a different color of light to make it easier to perceive them.
   - balance: Howitzer has slightly higher cooloff, 10 seconds over 4.
   - balance: Engineers can no longer buy teleporters
+2023-02-14:
+  Lumipharon:
+  - balance: 'HvH: Capturing a sensor tower now adds 3 minutes to the clock instead
+      of 5'
+  - bugfix: Fixed bottles stunning armoured heads
+  - balance: bottle stuns last 4 seconds instead of 20
+  Naaanii:
+  - bugfix: fixes reqtorio formatting.
+  - balance: Increases TL mag size from 7-10
+  Pariah919:
+  - balance: Shields have lost 10 melee armor, and 5 acid armor. As well as dropping
+      melee coverage from 80 to 50.
+  TiviPlus:
+  - rscdel: Removed soldering tool
+  - balance: robots will now not need to be healed prior to defibbing and will instead
+      start at 1 HP after being defibbed
+  - balance: ceertain damage sources will now damage a certain amount of limbs rather
+      than than every limb
+  novaepee:
+  - rscadd: add easter eggs in PoS, fix rogue lights and cameras , and light cas lz
+  - rscdel: Remove mosin from Research Outpost

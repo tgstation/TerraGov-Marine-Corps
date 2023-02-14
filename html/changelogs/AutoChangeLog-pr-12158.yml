@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixed bottles stunning armoured heads"
-  - balance: "bottle stuns last 4 seconds instead of 20"
