@@ -65,3 +65,14 @@
 
 /obj/effect/turf_decal/warning_stripes/thick/corner
 	icon_state = "cornerthick"
+
+/obj/effect/turf_decal/warning_stripes/thick
+	icon_state = "thick"
+
+/obj/effect/turf_decal/warning_stripes/thick/autosmooth
+	icon = 'icons/obj/smooth_objects/warning_stripes.dmi'
+	icon_state = "warning_stripes-icon"
+	base_icon_state = "warning_stripes"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_DECAL_WARNING_STRIPE)
+	canSmoothWith = list(SMOOTH_GROUP_DECAL_WARNING_STRIPE)

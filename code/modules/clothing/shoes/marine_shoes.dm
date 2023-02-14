@@ -74,6 +74,14 @@
 	. = ..()
 	new /obj/item/attachable/bayonetknife(src)
 
+/obj/item/clothing/shoes/marine/brown
+	name = "brown marine combat boots"
+	icon_state = "marine_brown"
+	item_state = "marine_brown"
+
+/obj/item/clothing/shoes/marine/brown/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"

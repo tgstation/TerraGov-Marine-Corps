@@ -18,7 +18,7 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-	var/base_icon_state = "Larva"
+	base_icon_state = "Larva"
 
 // ***************************************
 // *********** Mob overrides

@@ -142,12 +142,6 @@
 		pull_icon.update_icon(owner)
 		hotkeybuttons += pull_icon
 
-
-	if(hud_data.has_internals)
-		internals = new /atom/movable/screen/internals()
-		infodisplay += internals
-
-
 	if(hud_data.has_warnings)
 		oxygen_icon = new /atom/movable/screen/oxygen()
 		infodisplay += oxygen_icon

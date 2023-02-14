@@ -10,56 +10,96 @@
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
 
+	///if FALSE, broadcasting and listening dont matter and this radio shouldnt do anything
 	var/on = TRUE
-	var/frequency = FREQ_COMMON //common chat
-	var/canhear_range = 3 // the range which mobs can hear this radio from
+	///the "default" radio frequency this radio is set to, listens and transmits to this frequency by default. wont work if the channel is encrypted
+	var/frequency = FREQ_COMMON
 
-	var/unscrewed = FALSE  // Whether wires are accessible. Toggleable by screwdrivering.
-	var/broadcasting = FALSE  // Whether the radio will transmit dialogue it hears nearby.
-	var/listening = TRUE  // Whether the radio is currently receiving.
-	var/freerange = FALSE  // If true, the radio has access to the full spectrum.
-	var/subspace_transmission = FALSE  // If true, the radio transmits and receives on subspace exclusively.
-	var/subspace_switchable = FALSE  // If true, subspace_transmission can be toggled at will.
-	var/freqlock = FALSE  // Frequency lock to stop the user from untuning specialist radios.
-	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
-	var/command = FALSE  // If true, use_command can be toggled at will.
-	var/independent = FALSE  // If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
+	/// Whether the radio will transmit dialogue it hears nearby into its radio channel.
+	var/broadcasting = FALSE
+	/// Whether the radio is currently receiving radio messages from its radio frequencies.
+	var/listening = TRUE
+
+	//the below three vars are used to track listening and broadcasting should they be forced off for whatever reason but "supposed" to be active
+	//eg player sets the radio to listening, but an emp or whatever turns it off, its still supposed to be activated but was forced off,
+	//when it wears off it sets listening to should_be_listening
+
+	///used for tracking what broadcasting should be in the absence of things forcing it off, eg its set to broadcast but gets emp'd temporarily
+	var/should_be_broadcasting = FALSE
+	///used for tracking what listening should be in the absence of things forcing it off, eg its set to listen but gets emp'd temporarily
+	var/should_be_listening = TRUE
+
+	/// Both the range around the radio in which mobs can hear what it receives and the range the radio can hear
+	var/canhear_range = 3
+	/// Tracks the number of EMPs currently stacked.
+	var/emped = 0
+
+	/// Whether wires are accessible. Toggleable by screwdrivering.
+	var/unscrewed = FALSE
+	/// If true, the radio has access to the full spectrum.
+	var/freerange = FALSE
+	/// If true, the radio transmits and receives on subspace exclusively.
+	var/subspace_transmission = FALSE
+	/// If true, subspace_transmission can be toggled at will.
+	var/subspace_switchable = FALSE
+	/// Frequency lock to stop the user from untuning specialist radios.
+	var/freqlock = FALSE
+	/// If true, broadcasts will be large and BOLD.
+	var/use_command = FALSE
+	/// If true, use_command can be toggled at will.
+	var/command = FALSE
+	/// If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
+	var/independent = FALSE
 
 	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
 
-	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
+	/// associative list of the encrypted radio channels this radio is currently set to listen/broadcast to, of the form: list(channel name = TRUE or FALSE)
+	var/list/channels = list()
+	/// associative list of the encrypted radio channels this radio can listen/broadcast to, of the form: list(channel name = channel frequency)
 	var/list/secure_radio_connections
 	var/obj/item/encryptionkey/keyslot
 
 	var/const/FREQ_LISTENING = 1
 
-
-/obj/item/radio/Initialize()
-	secure_radio_connections = new
-	. = ..()
-	frequency = sanitize_frequency(frequency, freerange)
-	set_frequency(frequency)
-	become_hearing_sensitive()
+/obj/item/radio/Initialize(mapload)
 	wires = new /datum/wires/radio(src)
+	secure_radio_connections = list()
+	. = ..()
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
+	set_listening(listening)
+	set_broadcasting(broadcasting)
+	set_frequency(sanitize_frequency(frequency, freerange))
+	set_on(on)
 
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
-	if(keyslot)
-		QDEL_NULL(keyslot)
-	if(wires)
-		QDEL_NULL(wires)
+	QDEL_NULL(wires)
+	QDEL_NULL(keyslot)
 	return ..()
-
 
 /obj/item/radio/proc/set_frequency(new_frequency)
 	SEND_SIGNAL(src, COMSIG_RADIO_NEW_FREQUENCY, args)
 	remove_radio(src, frequency)
 	frequency = add_radio(src, new_frequency)
 
+///simple getter for the on variable. necessary due to VAR_PROTECTED
+/obj/item/radio/proc/is_on()
+	return on
+
+///simple getter for the frequency variable. necessary due to VAR_PROTECTED
+/obj/item/radio/proc/get_frequency()
+	return frequency
+
+///simple getter for the broadcasting variable. necessary due to VAR_PROTECTED
+/obj/item/radio/proc/get_broadcasting()
+	return broadcasting
+
+///simple getter for the listening variable. necessary due to VAR_PROTECTED
+/obj/item/radio/proc/get_listening()
+	return listening
 
 /obj/item/radio/interact(mob/user)
 	. = ..()
@@ -144,24 +184,71 @@
 
 	updateUsrDialog()
 
+/**
+ * setter for the listener var, adds or removes this radio from the global radio list if we are also on
+ *
+ * * new_listening - the new value we want to set listening to
+ * * actual_setting - whether or not the radio is supposed to be listening, sets should_be_listening to the new listening value if true, otherwise just changes listening
+ */
+/obj/item/radio/proc/set_listening(new_listening, actual_setting = TRUE)
 
-/obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)
+	listening = new_listening
+	if(actual_setting)
+		should_be_listening = listening
+
+	if(listening && on)
+		recalculateChannels()
+		add_radio(src, frequency)
+	else if(!listening)
+		remove_radio_all(src)
+
+/**
+ * setter for broadcasting that makes us not hearing sensitive if not broadcasting and hearing sensitive if broadcasting
+ * hearing sensitive in this case only matters for the purposes of listening for words said in nearby tiles, talking into us directly bypasses hearing
+ *
+ * * new_broadcasting- the new value we want to set broadcasting to
+ * * actual_setting - whether or not the radio is supposed to be broadcasting, sets should_be_broadcasting to the new value if true, otherwise just changes broadcasting
+ */
+/obj/item/radio/proc/set_broadcasting(new_broadcasting, actual_setting = TRUE)
+
+	broadcasting = new_broadcasting
+	if(actual_setting)
+		should_be_broadcasting = broadcasting
+
+	if(broadcasting && on) //we dont need hearing sensitivity if we arent broadcasting, because talk_into doesnt care about hearing
+		become_hearing_sensitive(INNATE_TRAIT)
+	else if(!broadcasting)
+		lose_hearing_sensitivity(INNATE_TRAIT)
+
+///setter for the on var that sets both broadcasting and listening to off or whatever they were supposed to be
+/obj/item/radio/proc/set_on(new_on)
+
+	on = new_on
+
+	if(on)
+		set_broadcasting(should_be_broadcasting)//set them to whatever theyre supposed to be
+		set_listening(should_be_listening)
+	else
+		set_broadcasting(FALSE, actual_setting = FALSE)//fake set them to off
+		set_listening(FALSE, actual_setting = FALSE)
+
+/obj/item/radio/talk_into(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
 	if(!spans)
-		spans = list(M.speech_span)
+		spans = list(talking_movable.speech_span)
 	if(!language)
-		language = M.get_default_language()
-	INVOKE_ASYNC(src, .proc/talk_into_impl, M, message, channel, spans.Copy(), language)
+		language = talking_movable.get_default_language()
+	INVOKE_ASYNC(src, .proc/talk_into_impl, talking_movable, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 
 
-/obj/item/radio/proc/talk_into_impl(atom/movable/M, message, channel, list/spans, datum/language/language)
+/obj/item/radio/proc/talk_into_impl(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
 	if(!on)
 		return // the device has to be on
 
-	if(!M || !message)
+	if(!talking_movable || !message)
 		return
 
-	if(!M.IsVocal())
+	if(!talking_movable.IsVocal())
 		return
 
 	if(use_command)
@@ -190,7 +277,7 @@
 		channel = null
 
 	// Determine the identity information which will be attached to the signal.
-	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
+	var/atom/movable/virtualspeaker/speaker = new(null, talking_movable, src)
 
 	// Construct the signal
 	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans)
@@ -198,7 +285,7 @@
 	if (independent && freq >= MIN_ERT_FREQ && freq <= MAX_ERT_FREQ)
 		signal.data["compression"] = 0
 		signal.transmission_method = TRANSMISSION_SUPERSPACE
-		signal.levels = list(0)  // reaches all Z-levels
+		signal.levels = list(0)
 		signal.broadcast()
 		return
 
@@ -244,24 +331,20 @@
 	talk_into(speaker, raw_message, , spans, language = message_language)
 
 
-// Checks if this radio can receive on the given frequency.
-/obj/item/radio/proc/can_receive(freq, level)
-	// deny checks
-	if(!on || !listening)
-		return FALSE
-
-	if(!(0 in level))
+/// Checks if this radio can receive on the given frequency.
+/obj/item/radio/proc/can_receive(input_frequency, list/levels)
+	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
 		var/turf/position = get_turf(src)
-		if(!position || !(position.z in level))
+		if(!position || !(position.z in levels))
 			return FALSE
 
 	// allow checks: are we listening on that frequency?
-	if(freq == frequency)
+	if(input_frequency == frequency)
 		return TRUE
 	for(var/ch_name in channels)
 		if(channels[ch_name] & FREQ_LISTENING)
 			//the GLOB.GLOB.radiochannels list is located in communications.dm
-			if(GLOB.radiochannels[ch_name] == text2num(freq))
+			if(GLOB.radiochannels[ch_name] == text2num(input_frequency))
 				return TRUE
 	return FALSE
 
@@ -301,9 +384,9 @@
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
 
-/obj/item/radio/off
-	listening = FALSE
-
+/obj/item/radio/off/Initialize()
+	. = ..()
+	set_listening(FALSE)
 
 /obj/item/radio/survivor
 	freqlock = TRUE

@@ -161,12 +161,13 @@
 
 //Slows and staggers instead of hardstunning, balanced for HvH
 /obj/item/explosive/grenade/flashbang/stun
-	name = "\improper stun grenade"
+	name = "stun grenade"
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
 	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	inner_range = 3
+	det_time = 2 SECONDS
 	mp_only = FALSE
 
 /obj/item/explosive/grenade/flashbang/stun/base_effect(turf/T , mob/living/carbon/M, ear_safety)

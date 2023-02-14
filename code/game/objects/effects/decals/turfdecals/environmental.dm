@@ -58,6 +58,13 @@
 	layer = XENO_WEEDS_LAYER
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "riverdecal"
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_LATTICE,
+		SMOOTH_GROUP_GRILLE,
+	)
+
 
 /obj/effect/turf_decal/riverdecal/edge
 	icon_state = "riverdecal_edge"

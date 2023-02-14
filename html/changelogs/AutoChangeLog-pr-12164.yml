@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - code_imp: "Jukebuild will now only vendored nodeJS as the latest version is prone to issues."
