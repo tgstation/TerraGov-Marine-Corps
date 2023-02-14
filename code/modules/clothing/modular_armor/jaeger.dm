@@ -32,6 +32,7 @@
 		/obj/item/armor_module/greyscale/badge,
 	)
 
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	icon_state_variants = list(
 		"black",
 		"jungle",
