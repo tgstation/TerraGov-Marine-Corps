@@ -125,9 +125,8 @@
 /obj/item/clothing/head/modular/m10x
 	name = "\improper M10X pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	icon = 'icons/mob/modular/m10.dmi'
-	icon_state = "helmet_icon"
-	item_state = "helmet"
+	icon_state = "xenonauten"
+	item_state = "xenonauten"
 	item_state_worn = TRUE
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',
@@ -177,7 +176,7 @@
 /obj/item/clothing/head/modular/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
 	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
-	icon_state = "heavyhelmet_icon"
+	icon_state = "heavyhelmet"
 	item_state = "heavyhelmet"
 
 /obj/item/clothing/head/modular/m10x/leader
