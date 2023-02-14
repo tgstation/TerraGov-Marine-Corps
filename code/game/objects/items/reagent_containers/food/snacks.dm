@@ -281,15 +281,6 @@
 	list_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/consumable/nutriment = 0.5, /datum/reagent/consumable/sugar = 2)
 	bitesize = 2
 
-/obj/item/reagent_containers/food/snacks/pillpacket
-	name = "crumpled pill packet"
-	desc = "Fully biodegradable, some say it's delicious."
-	icon = 'icons/obj/items/trash.dmi'
-	icon_state = "pillpacketempty"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1) //Done just so that it makes the munching sound
-	tastes = list("syrupy medicine" = 1)
-	bitesize = 0.1
-
 /obj/item/reagent_containers/food/snacks/aesirsalad
 	name = "Aesir salad"
 	desc = "Probably too incredible for mortal men to fully enjoy."

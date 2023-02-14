@@ -12,7 +12,7 @@
 	///Color of the pips on top of the pill packet
 	var/pip_color = "#0066ff" //default color because I like this color
 	///the item left behind when this is used up
-	var/trash_item = /obj/item/reagent_containers/food/snacks/pillpacket
+	var/trash_item = /obj/item/trash/pillpacket
 	refill_types = null
 	refill_sound = null
 
@@ -20,11 +20,12 @@
 	. = ..()
 	if(!.)
 		return
-	update_icon()
-	if(!contents.len && !gc_destroyed)
+	if(!contents.len && !QDELETED(src))
 		var/turf/T = get_turf(src)
 		new trash_item(T)
 		qdel(src)
+		return
+	update_icon()
 
 /obj/item/storage/pill_bottle/packet/update_overlays()
 	. = ..()
