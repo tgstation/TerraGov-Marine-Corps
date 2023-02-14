@@ -123,11 +123,11 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	attack_verb = list("slash", "cut")
 
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
+/obj/item/weapon/claymore/mercsword/officersword/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
 
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
+/obj/item/weapon/claymore/mercsword/officersword/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
