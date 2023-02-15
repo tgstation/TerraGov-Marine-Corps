@@ -11,7 +11,7 @@ const EvolveProgress = (props) => (
         good: [0.75, Infinity],
         average: [-Infinity, 0.75],
       }}
-      value={props.current / props.max}
+      value={props.current ? props.current / props.max : 0}
     />
   </Section>
 );
@@ -19,15 +19,14 @@ const EvolveProgress = (props) => (
 const CasteView = (props) => {
   // These are removed since every caste has them and its just clutter.
   const filteredAbilities = ['Rest', 'Regurgitate'];
-  const abilites = Object.values(props.abilites).filter(
-    (ability) => filteredAbilities.indexOf(ability.name) === -1
-  );
-  const lastItem = Object.keys(props.abilites).slice(-1)[0];
+  const abilities = Object.values(props.abilities).filter(
+    (ability: XenoAbility) => filteredAbilities.indexOf(ability.name) === -1
+  ) as XenoAbility[];
 
   return (
     <Section title={`${props.name} - Abilities`}>
-      {props.abilites
-        ? abilites.map((ability) => (
+      {props.abilities
+        ? abilities.map((ability) => (
           <Button
             fluid={1}
             key={ability.name}
@@ -37,7 +36,7 @@ const CasteView = (props) => {
             content={ability.name}
           />
         ))
-        : 'This caste has no abilites'}
+        : 'This caste has no abilities'}
     </Section>
   );
 };
@@ -45,18 +44,18 @@ const CasteView = (props) => {
 export const HiveEvolveScreen = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { name, evolution, abilities, evolves_to, can_evolve } = data;
+  const { name, evolution, abilities, evolves_to, can_evolve } =
+    data as ByondData;
 
   const canEvolve = can_evolve && evolution.current >= evolution.max;
-  // Most checks are skipped for shrike and queeen so we except them below.
-  const instantEvolveTypes = ['Shrike', 'Queen'];
+  // Most checks are skipped for shrike and queen so we except them below.
   const evolvesInto = Object.values(evolves_to);
 
   return (
     <Window theme="xeno" title="Xenomorph Evolution" width={400} height={750}>
       <Window.Content scrollable>
         <Section title="Current Evolution">
-          <CasteView act={act} current name={name} abilites={abilities} />
+          <CasteView act={act} current name={name} abilities={abilities} />
           <EvolveProgress current={evolution.current} max={evolution.max} />
         </Section>
         <Section title="Available Evolutions">
@@ -66,16 +65,14 @@ export const HiveEvolveScreen = (props, context) => {
               title={`${evolve.name} (click for details)`}
               buttons={
                 <Button
-                  disabled={
-                    !canEvolve && !instantEvolveTypes.includes(evolve.name)
-                  }
+                  disabled={!canEvolve && !evolve.instant_evolve}
                   onClick={() => act('evolve', { path: evolve.type_path })}>
                   Evolve
                 </Button>
               }>
               <CasteView
                 name={evolve.name}
-                abilites={evolve.abilities}
+                abilities={evolve.abilities}
                 canEvolve={canEvolve}
               />
             </Collapsible>
@@ -84,4 +81,27 @@ export const HiveEvolveScreen = (props, context) => {
       </Window.Content>
     </Window>
   );
+};
+
+type ByondData = {
+  name: string;
+  evolution: {
+    current: number;
+    max: number;
+  };
+  abilities: XenoAbility[];
+  evolves_to: EvolveCaste[];
+  can_evolve: boolean;
+};
+
+type EvolveCaste = {
+  type_path: string;
+  name: string;
+  abilities: XenoAbility[];
+  instant_evolve: boolean;
+};
+
+type XenoAbility = {
+  name: string;
+  desc: string;
 };
