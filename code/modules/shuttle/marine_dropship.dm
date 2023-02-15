@@ -979,6 +979,7 @@
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
+	flags_pass = PASSLASER
 
 /obj/structure/dropship_piece/glasstwo
 	icon = 'icons/turf/dropship2.dmi'
@@ -989,6 +990,7 @@
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
 	opacity = FALSE
+	flags_pass = PASSLASER
 
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
