@@ -42,8 +42,6 @@
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	current_variant = jaeger_to_copy.current_variant
 	for(var/key in jaeger_to_copy.attachments_by_slot)
-		if(jaeger_to_copy.attachments_by_slot[key].type in attachments)
-			continue
 		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
 			continue
