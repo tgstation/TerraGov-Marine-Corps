@@ -177,8 +177,15 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
+	default_ammo_type = /obj/item/ammo_magazine/sentry/dropship
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/dropship)
+	max_shells = 1000
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	sentry_iff_signal = TGMC_LOYALIST_IFF
+	burst_delay = 0.15 SECONDS
+	burst_amount = 10
+	extra_delay = 1 SECONDS
+	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
@@ -248,7 +255,7 @@
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
-	max_shells = 100
+	max_shells = 1000
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	default_ammo_type = /obj/item/ammo_magazine/sentry

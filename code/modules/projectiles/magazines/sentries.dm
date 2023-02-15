@@ -1,12 +1,23 @@
 /obj/item/ammo_magazine/sentry
 	name = "\improper M30 box magazine (10x28mm Caseless)"
-	desc = "A drum of 50 10x28mm caseless rounds for the ST-571 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	desc = "A drum of 500 10x28mm caseless rounds for the ST-571 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "ua571c"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X28
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
+
+/obj/item/ammo_magazine/sentry/dropship
+	name = "\improper M30 box magazine (10x28mm Tungsten Caseless)"
+	desc = "A drum of 1000 10x28mm high-velocity tungsten caseless rounds for the ST-571 sentry gun only dropship variants can feed this due to the high energy required. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	w_class = WEIGHT_CLASS_BULKY
+	icon_state = "ua571c"
+	flags_magazine = NONE //can't be refilled or emptied by hand
+	caliber = CALIBER_10X28
+	max_rounds = 1000
+	default_ammo = /datum/ammo/bullet/turret/gauss
+
 
 /obj/item/ammo_magazine/minisentry
 	name = "\improper M30 box magazine (10x20mm Caseless)"

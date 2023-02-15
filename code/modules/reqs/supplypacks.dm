@@ -164,12 +164,12 @@ WEAPONS
 /datum/supply_packs/weapons/minisentry
 	name = "ST-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
-	cost = 400
+	cost = 350
 
 /datum/supply_packs/weapons/minisentry_ammo
 	name = "ST-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
-	cost = 100
+	cost = 25
 
 /datum/supply_packs/weapons/buildasentry
 	name = "Build-A-Sentry Attachment System"
