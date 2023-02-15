@@ -33,8 +33,8 @@
 	id = /obj/item/card/id/silver
 	gloves = /obj/item/clothing/gloves/marine/icc/insulated
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/magharness
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/tools/full
+	r_store = /obj/item/storage/pouch/pistol/icc
+	l_store = /obj/item/storage/pouch/tools/icc/full
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -85,8 +85,8 @@
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	suit_store = /obj/item/weapon/gun/launcher/rocket/som
 	back = /obj/item/weapon/gun/rifle/icc_coilgun
-	l_store = /obj/item/storage/pouch/explosive
-	r_store = /obj/item/storage/pouch/explosive
+	l_store = /obj/item/storage/pouch/explosive/icc
+	r_store = /obj/item/storage/pouch/explosive/icc
 
 
 /datum/outfit/job/icc/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -141,8 +141,8 @@
 	gloves = /obj/item/clothing/gloves/marine/icc
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 	back = /obj/item/storage/backpack/lightpack
-	l_store = /obj/item/storage/pouch/magazine/large/som
-	r_store = /obj/item/storage/pouch/magazine/large/som
+	l_store = /obj/item/storage/pouch/magazine/large/icc
+	r_store = /obj/item/storage/pouch/magazine/large/icc
 	belt = /obj/item/storage/belt/lifesaver/som/quick
 
 /datum/outfit/job/icc/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -194,8 +194,8 @@
 	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
 	belt = /obj/item/storage/belt/shotgun/som/mixed
 	back = /obj/item/storage/backpack/lightpack
-	l_store = /obj/item/storage/pouch/medical_injectors/som/firstaid
-	r_store = /obj/item/storage/pouch/construction/equippedengineer
+	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_store = /obj/item/storage/pouch/construction/icc/full
 
 
 /datum/outfit/job/icc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
