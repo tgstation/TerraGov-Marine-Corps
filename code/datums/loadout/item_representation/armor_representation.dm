@@ -42,6 +42,8 @@
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	current_variant = jaeger_to_copy.current_variant
 	for(var/key in jaeger_to_copy.attachments_by_slot)
+		if(jaeger_to_copy.attachments_by_slot[key].type in attachments)
+			continue
 		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
 			continue
@@ -115,13 +117,16 @@
 	..()
 
 ///Attach the instantiated item on an armor
-/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/thing_to_install_on, mob/living/user)
+/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/thing_to_install_on, mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
 	var/obj/item/armor_module/module_type = item_type
 	if(!CHECK_BITFIELD(initial(module_type.flags_attach_features), ATTACH_REMOVABLE))
 		bypass_vendor_check = TRUE
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
 	if(!module)
+		return
+	if(thing_to_install_on.attachments_by_slot[module.slot])
+		qdel(module)
 		return
 	SEND_SIGNAL(thing_to_install_on, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT, module)
 
