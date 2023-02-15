@@ -243,7 +243,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
-	animate(client, pixel_x = 0, pixel_y = 0)
+	if(client)
+		animate(client, pixel_x = 0, pixel_y = 0)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -905,10 +906,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
 	valhalla_job = SSjob.GetJobType(valhalla_job)
-	if(valhalla_job.outfit)
-		new_fallen.delete_equipment(TRUE)
-		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
-		new_fallen.regenerate_icons()
 
 	log_game("[key_name(usr)] has joined Valhalla.")
 	client.prefs.copy_to(new_fallen)
