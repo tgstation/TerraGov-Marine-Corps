@@ -937,6 +937,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/mpi_km/black
+	name = "MPi-KM polymer stock"
+	desc = "A black polymer stock, made to fit the MPi-KM."
+	icon_state = "ak47stock_black"
+
 /obj/item/attachable/stock/tx15
 	name = "\improper SH-15 stock"
 	desc = "The standard stock for the SH-15. Cannot be removed."

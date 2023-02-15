@@ -60,6 +60,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/veteran/standard_assaultrifle,
 		/datum/outfit/quick/som/veteran/standard_smg,
 		/datum/outfit/quick/som/veteran/mpi,
+		/datum/outfit/quick/som/veteran/carbine,
 		/datum/outfit/quick/som/veteran/charger,
 		/datum/outfit/quick/som/veteran/breacher,
 		/datum/outfit/quick/som/veteran/caliver,
