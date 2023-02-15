@@ -209,3 +209,15 @@
   novaepee:
   - rscadd: add easter eggs in PoS, fix rogue lights and cameras , and light cas lz
   - rscdel: Remove mosin from Research Outpost
+2023-02-15:
+  Arturlang:
+  - code_imp: Jukebuild will now only vendored nodeJS as the latest version is prone
+      to issues.
+  KillerOrcaCora:
+  - imageadd: Carrier is rogue pixel free...Her sisters on the other hand...
+  Xander3359:
+  - rscadd: Crumpled pill packets are biodegradable
+  - balance: Paracetamol, Leporazine, Red Russian, Ryetalyn Packets. 4 Pills >> 8
+      Pills.
+  - bugfix: Pill sound now properly plays when you take a pill out of a bottle/packet
+  - imageadd: New pill packet sprites.
