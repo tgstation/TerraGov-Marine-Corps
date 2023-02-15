@@ -724,11 +724,11 @@
 	desc = "A regular ICCAF helmet, used by all branches of its forces. It is made to fit in both a utility and combat role with noticeably high resistance to explosions and bullets. "
 	icon_state = "icc"
 	item_state = "icc"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 50, FIRE = 50, ACID = 40)
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 
 /obj/item/clothing/head/helmet/marine/icc/guard
 	name = "\improper Modelle/21 combat helmet"
 	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets."
 	icon_state = "icc_guard"
 	item_state = "icc_guard"
-	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 65, BOMB = 80, BIO = 50, FIRE = 60, ACID = 45)
+	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 10, FIRE = 55, ACID = 40)
