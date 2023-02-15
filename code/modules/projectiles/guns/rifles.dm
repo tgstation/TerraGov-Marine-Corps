@@ -586,6 +586,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight/under,
 	)
+	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km/black)
 
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness
 	starting_attachment_types = list(
