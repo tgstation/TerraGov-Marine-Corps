@@ -17,7 +17,7 @@
 
 	id = /obj/item/card/id/silver
 	w_uniform = /obj/item/clothing/under/icc/webbing
-	belt = /obj/item/storage/belt/marine/som
+	belt = /obj/item/storage/belt/marine/icc
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/icc/webbing
 	shoes = /obj/item/clothing/shoes/marine/icc/knife
@@ -143,7 +143,7 @@
 	back = /obj/item/storage/backpack/lightpack
 	l_store = /obj/item/storage/pouch/magazine/large/icc
 	r_store = /obj/item/storage/pouch/magazine/large/icc
-	belt = /obj/item/storage/belt/lifesaver/som/quick
+	belt = /obj/item/storage/belt/lifesaver/icc/ert
 
 /datum/outfit/job/icc/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -192,7 +192,7 @@
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
-	belt = /obj/item/storage/belt/shotgun/som/mixed
+	belt = /obj/item/storage/belt/shotgun/icc/mixed
 	back = /obj/item/storage/backpack/lightpack
 	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	r_store = /obj/item/storage/pouch/construction/icc/full
