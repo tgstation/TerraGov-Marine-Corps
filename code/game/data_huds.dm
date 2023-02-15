@@ -275,12 +275,6 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
-	if(species.species_flags & ROBOTIC_LIMBS)
-		simple_status_hud.icon_state = ""
-		status_hud.icon_state = "hudrobot"
-		infection_hud.icon_state = "hudrobot" //Xenos can feel synths are not human.
-		return TRUE
-
 	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
 		status_hud.icon_state = "huddead"
 		infection_hud.icon_state = ""
@@ -300,6 +294,9 @@
 			infection_hud.icon_state = ""
 	else
 		infection_hud.icon_state = ""
+	if(species.species_flags & ROBOTIC_LIMBS)
+		simple_status_hud.icon_state = ""
+		infection_hud.icon_state = "hudrobot"
 
 	switch(stat)
 		if(DEAD)
@@ -359,9 +356,14 @@
 				status_hud.icon_state = "hud_con_stagger"
 				return TRUE
 			else
-				simple_status_hud.icon_state = ""
-				status_hud.icon_state = "hudhealthy"
-				return TRUE
+				if(species.species_flags & ROBOTIC_LIMBS)
+					simple_status_hud.icon_state = ""
+					status_hud.icon_state = "hudrobot"
+					return TRUE
+				else
+					simple_status_hud.icon_state = ""
+					status_hud.icon_state = "hudhealthy"
+					return TRUE
 
 #define HEALTH_RATIO_PAIN_HUD 1
 #define PAIN_RATIO_PAIN_HUD 0.25
