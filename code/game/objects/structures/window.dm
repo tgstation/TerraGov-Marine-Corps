@@ -506,7 +506,7 @@
 	base_icon_state = "ship_gray_window"
 	window_frame = /obj/structure/window_frame/mainship/gray
 	reinf = FALSE
-	smoothing_groups = list(SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_AIRLOCK,
