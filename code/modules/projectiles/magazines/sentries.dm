@@ -18,7 +18,6 @@
 	max_rounds = 1000
 	default_ammo = /datum/ammo/bullet/turret/gauss
 
-
 /obj/item/ammo_magazine/minisentry
 	name = "\improper M30 box magazine (10x20mm Caseless)"
 	desc = "A box of 100 10x20mm caseless rounds for the ST-580 point defense sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
