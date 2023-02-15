@@ -517,7 +517,7 @@
 		/obj/item/ammo_magazine/rifle/mpi_km/carbine/black,
 		/obj/item/ammo_magazine/rifle/mpi_km/extended,
 	)
-	aim_slowdown = 0.6
+	aim_slowdown = 0.5
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
@@ -542,8 +542,8 @@
 
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
-	scatter = 2
-	wield_delay = 0.8 SECONDS
+	scatter = 0
+	wield_delay = 0.7 SECONDS
 
 	placed_overlay_iconstate = "ak47"
 

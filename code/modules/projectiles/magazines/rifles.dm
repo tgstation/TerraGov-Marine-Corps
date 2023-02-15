@@ -113,6 +113,9 @@
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 40
 	icon_state_mini = "mag_rifle_big"
+	scatter_mod = 2
+	aim_speed_mod = 0.1
+	wield_delay_mod = 0.1
 
 /obj/item/ammo_magazine/rifle/mpi_km/plum
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
@@ -130,6 +133,9 @@
 	icon_state = "ak_30"
 	bonus_overlay = "ak_30"
 	max_rounds = 30
+	scatter_mod = 0
+	aim_speed_mod = 0
+	wield_delay_mod = 0
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine/plum
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
@@ -147,6 +153,8 @@
 	icon_state = "ak47_ext"
 	bonus_overlay = "ak47_ex"
 	max_rounds = 60
+	aim_speed_mod = 0.2
+	wield_delay_mod = 0.2
 
 //-------------------------------------------------------
 //M16 RIFLE
