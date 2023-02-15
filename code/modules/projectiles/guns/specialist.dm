@@ -863,7 +863,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/icc_coilgun
 	name = "\improper ML-120 coilgun"
-	desc = "The ML-120 coilgun is the most common seen coilgun in ICCAF use, firing magnetic projecitles at a incredibly high velocity, requires some windup but will penetrate walls, your foes, and your friendlies too. So watch out.. Uses specialized canisters to reload."
+	desc = "The ML-120 coilgun is the most commonly seen coilgun in ICCAF use, firing magnetic projecitles at a incredibly high velocity. It requires some windup but will penetrate walls, your foes, and your friendlies too. So watch out... Uses specialized canisters to reload."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ml120"
 	item_state = "ml120"
