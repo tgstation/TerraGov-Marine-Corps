@@ -144,6 +144,7 @@
 	l_store = /obj/item/storage/pouch/magazine/large/icc
 	r_store = /obj/item/storage/pouch/magazine/large/icc
 	belt = /obj/item/storage/belt/lifesaver/icc/ert
+	glasses = /obj/item/clothing/glasses/hud/health
 
 /datum/outfit/job/icc/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
