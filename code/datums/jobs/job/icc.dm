@@ -191,7 +191,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
-	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun
+	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
 	belt = /obj/item/storage/belt/shotgun/som/mixed
 	back = /obj/item/storage/backpack/lightpack
 	l_store = /obj/item/storage/pouch/medical_injectors/som/firstaid

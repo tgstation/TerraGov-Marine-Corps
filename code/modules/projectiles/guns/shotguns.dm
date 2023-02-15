@@ -336,7 +336,7 @@
 		/obj/item/attachable/stock/trenchgun,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 22, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/trenchgun,
 	)
