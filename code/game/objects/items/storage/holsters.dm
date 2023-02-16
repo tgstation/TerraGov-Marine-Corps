@@ -330,8 +330,8 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
 	)
 
-	storage_slots = 3
-	max_storage_space = 8
+	storage_slots = 4
+	max_storage_space = 10
 	max_w_class = 4
 
 	can_hold = list(
