@@ -287,7 +287,7 @@
 	caliber = CALIBER_86X70
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
-	max_rounds = 7
+	max_rounds = 10
 	icon_state_mini = "mag_sniper"
 	bonus_overlay = "tl127_mag"
 
