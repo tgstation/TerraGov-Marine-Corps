@@ -88,6 +88,8 @@
 		return /datum/item_representation/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/greyscale))
 		return /datum/item_representation/armor_module/colored
+	if(ispath(item_type, /obj/item/armor_module/armor))
+		return /datum/item_representation/armor_module/armor
 	if(ispath(item_type, /obj/item/armor_module/storage))
 		return /datum/item_representation/armor_module/storage
 	if(ispath(item_type, /obj/item/storage))

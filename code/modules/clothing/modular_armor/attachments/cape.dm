@@ -11,10 +11,8 @@
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
 	secondary_color = TRUE
-	///List of slots the cape has.
-	var/list/attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
-	///Starting attachments that are spawned with this.
-	var/list/starting_attachments = list(/obj/item/armor_module/greyscale/cape_highlight)
+	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
+	starting_attachments = list(/obj/item/armor_module/greyscale/cape_highlight)
 	///True if the hood is up, false if not.
 	var/hood = FALSE
 

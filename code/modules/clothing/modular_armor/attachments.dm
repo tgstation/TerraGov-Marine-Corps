@@ -54,6 +54,11 @@
 	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
 	var/secondary_color = FALSE
 
+	///List of slots this attachment has.
+	var/list/attachments_by_slot = list()
+	///Starting attachments that are spawned with this.
+	var/list/starting_attachments = list()
+
 /obj/item/armor_module/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
