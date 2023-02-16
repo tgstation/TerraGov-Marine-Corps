@@ -205,15 +205,6 @@
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	soft_armor = list("bio" = 15, ACID = 15)
 
-//SOM version
-/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som
-	name = "Mithridatius Helmet System"
-	desc = "Designed for mounting on a modular SOM helmet. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius suit module and mask will make the user impervious to gas clouds."
-	icon_state = "mithridatius_head"
-	item_state = "mithridatius_head_a"
-	soft_armor = list(BIO = 25, ACID = 20)
-	variants_by_parent_type = list()
-
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
 	name = "Hlin Explosive Compensation Module"
@@ -470,7 +461,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_xn", /obj/item/clothing/head/modular/m10x/leader = "welding_head_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_xn", /obj/item/clothing/head/modular/m10x/leader = "welding_head_xn")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
@@ -507,6 +498,15 @@
 	parent.update_icon()
 	user.update_inv_head()
 
+/obj/item/armor_module/module/welding/som
+	name = "Integrated Welding Helmet Module"
+	desc = "Built in welding module for a SOM engineering helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "welding_head_som"
+	item_state = "welding_head_som"
+	variants_by_parent_type = null
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+
 /obj/item/armor_module/module/welding/superior
 	name = "Superior Welding Helmet Module"
 	desc = "Designed for mounting on a modular helmet. This more expensive module can be toggled on or off to function as welding protection for your delicate eyes, strangely smells like potatoes."
@@ -514,7 +514,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/m10x/leader = "welding_head_superior_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/m10x/leader = "welding_head_superior_xn")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD

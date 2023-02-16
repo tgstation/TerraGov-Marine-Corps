@@ -344,7 +344,7 @@
 /obj/effect/supply_drop/som_rpg/Initialize()
 	. = ..()
 	new /obj/item/storage/holster/backholster/rpg/som/war_crimes(loc)
-	new /obj/item/clothing/head/modular/som/mithridatius(loc)
+	new /obj/item/clothing/head/modular/som/bio(loc)
 	new /obj/item/clothing/suit/modular/som/heavy/mithridatius(loc)
 	return INITIALIZE_HINT_QDEL
 
@@ -358,7 +358,7 @@
 
 /obj/effect/supply_drop/som_armor_upgrades/Initialize()
 	. = ..()
-	new /obj/item/clothing/head/modular/som/veteran/lorica(loc)
+	new /obj/item/clothing/head/modular/som/lorica(loc)
 	new /obj/item/clothing/suit/modular/som/heavy/lorica(loc)
 	new /obj/item/weapon/shield/riot/marine/som(loc)
 	return INITIALIZE_HINT_QDEL

@@ -1313,7 +1313,7 @@
 	wear_suit = /obj/item/clothing/suit/modular/som/engineer
 	gloves = /obj/item/clothing/gloves/marine/som/insulated
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/som/welder
+	head = /obj/item/clothing/head/modular/som/engineer
 	glasses = /obj/item/clothing/glasses/meson
 	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	l_store = /obj/item/storage/pouch/tools/som/full
@@ -1667,7 +1667,7 @@
 	name = "Charger Veteran breacher"
 	desc = "Heavy armored breaching configuration. Equipped with a volkite charger configured for better one handed use, heavy armor upgraded with 'Lorica' armor reinforcements, a boarding shield and a good selection of grenades. Premier protection and deadly close range firepower."
 
-	head = /obj/item/clothing/head/modular/som/veteran/lorica
+	head = /obj/item/clothing/head/modular/som/lorica
 	glasses = /obj/item/clothing/glasses/welding
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
@@ -1814,7 +1814,7 @@
 	desc = "War crimes have never been so easy. Equipped with a V-71 RPG and both incendiary and rad warheads, as well as a V-21 submachine gun, heavy armor with a 'Mithridatius' environmental protection system, and rad grenades. Designed to inspire fear in the enemy and cripple them with deadly incendiary and radiological effects, providing excellent anti infantry support."
 	quantity = 2
 
-	head = /obj/item/clothing/head/modular/som/mithridatius
+	head = /obj/item/clothing/head/modular/som/bio
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	suit_store = /obj/item/weapon/gun/smg/som/support
 	belt = /obj/item/storage/belt/marine/som/som_smg

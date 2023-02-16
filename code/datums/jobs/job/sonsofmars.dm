@@ -545,7 +545,7 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 /datum/outfit/job/som/ert/veteran/breacher_vet
-	head = /obj/item/clothing/head/modular/som/veteran/lorica
+	head = /obj/item/clothing/head/modular/som/lorica
 	glasses = /obj/item/clothing/glasses/welding
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
@@ -646,7 +646,7 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_HEAD)
 
 /datum/outfit/job/som/ert/veteran/rpg
-	head = /obj/item/clothing/head/modular/som/mithridatius
+	head = /obj/item/clothing/head/modular/som/bio
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	suit_store = /obj/item/weapon/gun/smg/som/support
 	belt = /obj/item/storage/belt/marine/som/som_smg
