@@ -432,6 +432,11 @@
 		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
+/datum/action/xeno_action/activable/plant_weeds/slow
+	name = "Plant Weeds"
+	action_icon_state = "plant_weeds"
+	cooldown_timer = 30 SECONDS
+
 /datum/action/xeno_action/pheromones
 	name = "Emit Pheromones"
 	action_icon_state = "emit_pheromones"
