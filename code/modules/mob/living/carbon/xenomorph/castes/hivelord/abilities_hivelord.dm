@@ -98,7 +98,7 @@
 	action_icon_state = "build_tunnel"
 	desc = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
-	cooldown_timer = 120 SECONDS
+	cooldown_timer = 60 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
 	)
@@ -337,7 +337,7 @@
 	action_icon_state = "place_trap"
 	desc = "Sow the seeds of an alien plant."
 	plasma_cost = 200
-	cooldown_timer = 45 SECONDS
+	cooldown_timer = 60 SECONDS
 	use_state_flags = XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
