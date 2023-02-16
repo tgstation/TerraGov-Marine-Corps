@@ -42,7 +42,7 @@
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	current_variant = jaeger_to_copy.current_variant
 	for(var/key in jaeger_to_copy.attachments_by_slot)
-		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
+		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/greyscale))
 			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
 			continue
 		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
@@ -130,7 +130,7 @@
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it
- * This is only able to representate items of type /obj/item/armor_module/armor
+ * This is only able to representate items of type /obj/item/armor_module/greyscale
  */
 /datum/item_representation/armor_module/colored
 	///The color of that armor module
@@ -139,7 +139,7 @@
 /datum/item_representation/armor_module/colored/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!ismodulararmorarmorpiece(item_to_copy))
+	if(!isgreyscaleattachment(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger armor piece")
 	..()
 	greyscale_colors = item_to_copy.greyscale_colors
@@ -148,7 +148,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/armor_module/armor/armor = .
+	var/obj/item/armor_module/greyscale/armor = .
 	if(greyscale_colors)
 		armor.set_greyscale_colors(greyscale_colors)
 	armor.update_icon()
