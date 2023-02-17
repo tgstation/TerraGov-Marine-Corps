@@ -330,7 +330,7 @@
 	. = ..()
 	if(!.)
 		return
-	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	owner.set_skills(owner.skills.modifyAllRatings(old_organ_status - organ_status))
 	if(organ_status >= ORGAN_BRUISED)
 		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
 	else
