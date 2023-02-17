@@ -68,6 +68,9 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(mechanics_signal & COMPONENT_CLOTHING_MECHANICS_TINTED)
 		armor_strings += "<br>This will obstruct your vision."
 
+	if(mechanics_signal & COMPONENT_CLOTHING_BLUR_PROTECTION)
+		armor_strings += "<br>This will clarify your vision, removing all sources of blur."
+
 	if(accuracy_mod)
 		armor_strings += "<br>This will alter your shooting accuracy by up to [accuracy_mod]% when worn."
 
