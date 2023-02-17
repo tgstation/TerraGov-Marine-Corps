@@ -42,7 +42,7 @@
 	core.parent = src
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
-	ADD_TRAIT(src, TRAIT_INTANGIBLE, XENO_TRAIT)
+	ADD_TRAIT(src, TRAIT_INTANGIBLE, "hivemind")
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
@@ -110,7 +110,7 @@
 	return
 
 /mob/living/carbon/xenomorph/hivemind/change_form()
-	if(status_flags & INCORPOREAL && health != maxHealth)
+	if(HAS_TRAIT_FROM(src, TRAIT_INTANGIBLE, "hivemind") && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -118,18 +118,18 @@
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
-	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
-	addtimer(CALLBACK(src, .proc/toggle_intangibility, TRUE, TRUE), TIME_TO_TRANSFORM)
+	flick(HAS_TRAIT_FROM(src, TRAIT_INTANGIBLE, "hivemind") ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
+	addtimer(CALLBACK(src, .proc/toggle_intangibility, "hivemind"), TIME_TO_TRANSFORM)
 
-/mob/living/carbon/xenomorph/hivemind/toggle_intangibility()
+/mob/living/carbon/xenomorph/hivemind/toggle_intangibility(source)
 	. = ..()
+	status_flags = HAS_TRAIT_FROM(src, TRAIT_INTANGIBLE, "hivemind") ? initial(status_flags) : NONE
 	hive.xenos_by_upgrade[upgrade] -= src
 	LAZYCLEARLIST(movespeed_modification)
 	update_movespeed()
 	toggle_upgrading()
 	set_datum(FALSE)
 	hive.xenos_by_upgrade[upgrade] += src
-	upgrade = status_flags & INCORPOREAL ? XENO_UPGRADE_BASETYPE : XENO_UPGRADE_MANIFESTATION
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel, burnflags, firesource)
 	if(!CHECK_BITFIELD(burnflags, BURN_XENOS))

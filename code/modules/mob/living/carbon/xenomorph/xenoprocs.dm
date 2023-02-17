@@ -577,24 +577,25 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
 
 // Makes a xeno intagible and invisible. Make sure you use the same arguments to revert the effects.
-/mob/living/carbon/xenomorph/proc/toggle_intangibility(invincibility)
-	if(HAS_TRAIT(src, TRAIT_INTANGIBLE))
+/mob/living/carbon/xenomorph/proc/toggle_intangibility(source = "generic_intangibility")
+	if(HAS_TRAIT_FROM(src, TRAIT_INTANGIBLE, source))
 		invisibility = initial(invisibility)
 		status_flags = initial(status_flags)
 		resistance_flags = initial(resistance_flags)
 		flags_pass = initial(flags_pass)
 		density = initial(density)
-		upgrade = initial(upgrade)
-		REMOVE_TRAIT(src, TRAIT_INTANGIBLE, "xeno_toggled")
+		REMOVE_TRAIT(src, TRAIT_INTANGIBLE, source)
+	// Don't remove it if the source is invalid and we already have it
+	else if(HAS_TRAIT(src, TRAIT_INTANGIBLE))
+		return
 	else
-		ADD_TRAIT(src, TRAIT_INTANGIBLE, "xeno_toggled")
+		ADD_TRAIT(src, TRAIT_INTANGIBLE, source)
 		wound_overlay.icon_state = "none"
 		invisibility = INVISIBILITY_MAXIMUM
-		status_flags = invincibility ? GODMODE | INCORPOREAL : INCORPOREAL
+		status_flags = INCORPOREAL
 		resistance_flags = BANISH_IMMUNE
 		flags_pass = PASSTABLE|PASSMOB|PASSXENO
 		density = FALSE
-		upgrade = XENO_UPGRADE_BASETYPE
 	
 	update_wounds()
 	update_icon()

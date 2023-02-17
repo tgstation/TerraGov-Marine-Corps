@@ -78,7 +78,7 @@
 	effect.color = "purple"
 	QDEL_IN(effect, 3 SECONDS)
 	
-	newspit.transform = turn(newspit.transform, 180)
+	newspit.dir = SOUTH
 	animate(newspit, pixel_y = 0, time = flying_spit_delay, easing = CIRCULAR_EASING)
 	addtimer(CALLBACK(src, .proc/flight_spit_drop, newspit, target_turf), flying_spit_delay)
 	return continue_autospit()

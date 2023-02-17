@@ -772,6 +772,7 @@
 	var/plasma_to_sustain = 10
 	var/hover_transition = FALSE
 	var/obj/effect/shadow
+	var/wing_sound = 'sound/effects/woosh_swoosh.ogg'
 
 /datum/status_effect/xeno/dragon_flight/on_apply()
 	. = ..()
@@ -779,8 +780,8 @@
 	take_off()
 
 /datum/status_effect/xeno/dragon_flight/on_remove()
-	if(owner.status_flags & INCORPOREAL)
-		owner_xeno.toggle_intangibility()
+	if(HAS_TRAIT_FROM(owner, TRAIT_HANDS_BLOCKED, "dragon_flight"))
+		owner_xeno.toggle_intangibility("dragon_flight")
 	if(!hover_transition)
 		land()
 	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, "dragon_flight")
@@ -802,17 +803,17 @@
 	//Queues up flaps, because sleeps are bad
 	for(var/step in 1 to takeoff_flaps)
 		// Give give both the current step and the amount left as args, and delay it so it happens nicely after eachother
-		addtimer(CALLBACK(src, .proc/flap, step, takeoff_flaps), step * flap_delay)
+		addtimer(CALLBACK(src, .proc/flap, step), step * flap_delay)
 
 
-/datum/status_effect/xeno/dragon_flight/proc/flap(current_step, total_steps)
+/datum/status_effect/xeno/dragon_flight/proc/flap(current_step)
 	// We want to reach out of the view screen within the steps left
-	var/pixel_change = flight_pixel_height * (current_step / total_steps)
-	playsound(owner, 'sound/effects/woosh_swoosh.ogg', 100, TRUE, 14)
+	var/pixel_change = flight_pixel_height * (current_step / takeoff_flaps)
+	playsound(owner, wing_sound, 100, TRUE, 14)
 	addtimer(CALLBACK(src, .proc/dissapear, flap_delay * 4), flap_delay * 2)
 	animate(owner, flap_delay, pixel_y = pixel_change, flags = ANIMATION_RELATIVE, easing = BACK_EASING)
 
-	if (current_step >= total_steps)
+	if(current_step >= takeoff_flaps)
 		finish_take_off()
 
 /datum/status_effect/xeno/dragon_flight/proc/dissapear(time)
@@ -822,12 +823,12 @@
 	owner.pixel_y = initial(owner.pixel_y)
 
 /datum/status_effect/xeno/dragon_flight/proc/finish_take_off()
-	owner_xeno.toggle_intangibility()
+	owner_xeno.toggle_intangibility("dragon_flight")
 
 /datum/status_effect/xeno/dragon_flight/proc/land()
 	owner.Immobilize(landing_delay)
 	animate(owner, landing_delay, pixel_y = initial(owner.pixel_y), easing = SINE_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, owner, 'sound/effects/woosh_swoosh.ogg', 70, TRUE), landing_delay * 0.5)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, owner, wing_sound, 70, TRUE), landing_delay * 0.5)
 	animate(owner, landing_delay, alpha = initial(owner.alpha))
 	if(shadow) 
 		QDEL_NULL_IN(src, shadow, landing_delay)
@@ -852,7 +853,7 @@
 	plasma_to_sustain = 5
 	takeoff_flaps = 2
 	landing_delay = 1 SECONDS
-	flight_pixel_height = 70
+	flight_pixel_height = 50
 	var/datum/component/slidey_movement/slide_comp
 
 /datum/status_effect/xeno/dragon_flight/hover/on_apply()
