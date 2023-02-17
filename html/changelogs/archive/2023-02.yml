@@ -235,3 +235,9 @@
   - balance: Kitted limbs passively heal faster
   Xander3359:
   - rscdel: No longer spammed with balloon alerts from taking out a pill
+2023-02-17:
+  This1sPanda:
+  - bugfix: fixed mosin scope not appearing on gun
+  - bugfix: fixed mosin scope not appearing on hand
+  Xander3359:
+  - imageadd: Packet sprites suck less.
