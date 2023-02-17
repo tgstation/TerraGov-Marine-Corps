@@ -8,7 +8,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/facehugger
 
 	tier = XENO_TIER_MINION
-	upgrade = XENO_UPGRADE_INVALID
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage = 5

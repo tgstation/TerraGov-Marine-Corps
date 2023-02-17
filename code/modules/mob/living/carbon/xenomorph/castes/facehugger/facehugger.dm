@@ -15,7 +15,7 @@
 	old_y = -3
 
 	tier = XENO_TIER_MINION
-	upgrade = XENO_UPGRADE_INVALID
+	upgrade = XENO_UPGRADE_BASETYPE
 	mob_size = MOB_SIZE_SMALL
 	pull_speed = -2
 	flags_pass = PASSXENO | PASSTABLE | PASSMOB

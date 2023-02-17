@@ -959,7 +959,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		spawn_point[name] = potential_egg
 
 	if(!length_char(spawn_point))
-		to_chat(usr, span_warning("There are no spawn points for hagger at the moment."))
+		to_chat(usr, span_warning("There are no spawn points for facehugger at the moment."))
 		return
 
 	var/selected = tgui_input_list(usr, "Please select a spawn point:", "Spawn as Facehugger", spawn_point)
