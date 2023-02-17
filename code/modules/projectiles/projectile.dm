@@ -50,7 +50,7 @@
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
-	var/def_zone = "chest"	//So we're not getting empty strings.
+	var/def_zone = BODY_ZONE_CHEST	//So we're not getting empty strings.
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center

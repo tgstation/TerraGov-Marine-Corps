@@ -83,15 +83,11 @@
 	user.update_inv_r_hand()
 
 
-/obj/item/proc/toggle_wielded(user, new_value)
-	switch(new_value)
-		if(null)
-			flags_item ^= WIELDED
-		if(FALSE)
-			flags_item &= ~WIELDED
-		if(TRUE)
-			flags_item |= WIELDED
-
+/obj/item/proc/toggle_wielded(user, wielded)
+	if(wielded)
+		flags_item |= WIELDED
+	else
+		flags_item &= ~WIELDED
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
