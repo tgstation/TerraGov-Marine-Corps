@@ -1,0 +1,5 @@
+author: "carlarctg"
+delete-after: True
+changes:
+  - rscadd: "Added a new Artemis helmet module to the base vendors that protects from eye blurring."
+  - rscadd: "Added a upgraded Mk. 2 Artemis module to Req, purchasable for 40 points or included in the experimental modules crate."

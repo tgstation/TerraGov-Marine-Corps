@@ -221,3 +221,23 @@
       Pills.
   - bugfix: Pill sound now properly plays when you take a pill out of a bottle/packet
   - imageadd: New pill packet sprites.
+2023-02-16:
+  Arturlang:
+  - code_imp: Moved a lot of mob typechecks in evolution into being checked by bitflags.
+  - code_imp: Maximum checks for active caste and minimum amount of xenos and the
+      death timer is now handled by variables on the caste datum, instead of the type
+      of the mob.
+  - code_imp: Queen's death timers have been refactored into being applicable for
+      any xeno base using the death_evolution_delay variable on the caste datum
+  - bugfix: Fixes the evolution panel having N/A as the number when the xeno incapable
+      of having evolution progress, as it was trying to divide by 0
+  QualityVan:
+  - balance: Kitted limbs passively heal faster
+  Xander3359:
+  - rscdel: No longer spammed with balloon alerts from taking out a pill
+2023-02-17:
+  This1sPanda:
+  - bugfix: fixed mosin scope not appearing on gun
+  - bugfix: fixed mosin scope not appearing on hand
+  Xander3359:
+  - imageadd: Packet sprites suck less.

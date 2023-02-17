@@ -637,8 +637,17 @@
 		stagger = clamp(stagger + amount, 0, capped)
 		return stagger
 
-	stagger = max(stagger + amount,0)
+	set_stagger(max(stagger + amount,0))
 	return stagger
+
+///Used to set stagger to a set number
+/mob/living/proc/set_stagger(amount)
+	if(stagger == amount)
+		return
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
+	stagger = max(amount, 0)
+	SEND_SIGNAL(src, COMSIG_LIVING_STAGGER_CHANGED, stagger)
 
 ////////////////////////////// SLOW ////////////////////////////////////
 
