@@ -142,12 +142,6 @@
 		pull_icon.update_icon(owner)
 		hotkeybuttons += pull_icon
 
-
-	if(hud_data.has_internals)
-		internals = new /atom/movable/screen/internals()
-		infodisplay += internals
-
-
 	if(hud_data.has_warnings)
 		oxygen_icon = new /atom/movable/screen/oxygen()
 		infodisplay += oxygen_icon
@@ -196,21 +190,6 @@
 	//squad leader locator
 	SL_locator = new /atom/movable/screen/SL_locator
 	infodisplay += SL_locator
-
-	use_attachment = new /atom/movable/screen/firearms/attachment()
-	static_inventory += use_attachment
-
-	toggle_raillight = new /atom/movable/screen/firearms/flashlight()
-	static_inventory += toggle_raillight
-
-	eject_mag = new /atom/movable/screen/firearms/magazine()
-	static_inventory += eject_mag
-
-	toggle_firemode = new /atom/movable/screen/firearms/firemode()
-	static_inventory += toggle_firemode
-
-	unique_action = new /atom/movable/screen/firearms/unique()
-	static_inventory += unique_action
 
 	zone_sel = new /atom/movable/screen/zone_sel()
 	zone_sel.icon = ui_style

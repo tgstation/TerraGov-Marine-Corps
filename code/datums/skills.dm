@@ -398,7 +398,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = CHIEF_SHIP_ENGINEER
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
-	leadership = SKILL_LEAD_MASTER
+	leadership = SKILL_LEAD_EXPERT
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 

@@ -10,7 +10,8 @@
 	anchored = TRUE
 	opacity = TRUE
 	flags_pass = NONE
-
+	//used to determine icon state before update_icon, used for keeping the opening and closing animations working when the smoothing system is involved
+	var/formericon
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 	resistance_flags = DROPSHIP_IMMUNE
@@ -87,10 +88,20 @@
 
 
 /obj/structure/mineral_door/update_icon()
+	if(state && mineralType == "resin")
+		formericon = icon_state
+		if(formericon == "resin") //if we somehow end up with a nonsmoothed icon_state use resin-door-0 as a placeholder so the icon doesn't break
+			formericon = "resin-door-0"
+		icon_state = "[icon_state]-open"
+		return
+	if(!state && mineralType == "resin")
+		return
 	if(state)
 		icon_state = "[mineralType]open"
 	else
 		icon_state = mineralType
+
+
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	var/is_resin = istype(src, /obj/structure/mineral_door/resin)

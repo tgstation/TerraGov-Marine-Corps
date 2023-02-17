@@ -11,6 +11,7 @@
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
 	w_class = WEIGHT_CLASS_BULKY
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/style = "")
 	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
 	///If TRUE it will add extra overlays for the items within.
@@ -193,7 +194,6 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
-		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list()
 
@@ -235,7 +235,6 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
-		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/armor_module/storage/injector

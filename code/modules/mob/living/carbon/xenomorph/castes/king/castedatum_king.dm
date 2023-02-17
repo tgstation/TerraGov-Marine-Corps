@@ -19,15 +19,16 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 575
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
-
+	maximum_active_caste = 1
+	evolve_min_xenos = 12
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
-
+	death_evolution_delay = 7 MINUTES
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, FIRE = 100, ACID = 45)
 
@@ -77,7 +78,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 600
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -102,7 +103,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 625
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -129,7 +130,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 650
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -156,7 +157,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 650
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)

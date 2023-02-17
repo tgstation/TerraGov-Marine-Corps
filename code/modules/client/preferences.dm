@@ -58,6 +58,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
+	//Robot specific preferences
+	var/robot_type = "Basic"
+
 	//Xenomorph specific preferences
 	var/xeno_name = "Undefined"
 

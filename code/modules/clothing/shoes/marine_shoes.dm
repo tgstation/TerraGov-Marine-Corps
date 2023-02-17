@@ -1,12 +1,9 @@
-
-
 /obj/item/clothing/shoes/marine
 	name = "marine combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "marine"
 	item_state = "marine"
 	flags_armor_protection = FEET
-	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -77,12 +74,19 @@
 	. = ..()
 	new /obj/item/attachable/bayonetknife(src)
 
+/obj/item/clothing/shoes/marine/brown
+	name = "brown marine combat boots"
+	icon_state = "marine_brown"
+	item_state = "marine_brown"
+
+/obj/item/clothing/shoes/marine/brown/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
 	icon_state = "marine_armored"
 	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 100, ACID = 0)
-
 
 /obj/item/clothing/shoes/marinechief
 	name = "chief officer shoes"

@@ -349,7 +349,7 @@
 	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
-	slowdown = 1.05
+	slowdown = 0.05
 	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
@@ -361,20 +361,20 @@
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.h_style = "Bald"
-	H.skills = getSkillsType(/datum/skills/vatgrown)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown))
 
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
 	name_plural = "Early Vat-Grown Humans"
 	brute_mod = 1.3
 	burn_mod = 1.3
-	slowdown = 1.3
+	slowdown = 0.3
 
 	var/timerid
 
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	H.skills = getSkillsType(/datum/skills/vatgrown/early)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown/early))
 	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
@@ -415,7 +415,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -462,6 +462,29 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
 
+/datum/species/robot/alpharii
+	name = "Hammerhead Combat Robot"
+	name_plural = "Hammerhead Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_alpharii.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/charlit
+	name = "Chilvaris Combat Robot"
+	name_plural = "Chilvaris Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_charlit.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/deltad
+	name = "Ratcher Combat Robot"
+	name_plural = "Ratcher Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_deltad.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/bravada
+	name = "Sterling Combat Robot"
+	name_plural = "Sterling Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_bravada.dmi'
+	joinable_roundstart = FALSE
 
 /datum/species/synthetic
 	name = "Synthetic"

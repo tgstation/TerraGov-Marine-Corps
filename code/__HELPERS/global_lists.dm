@@ -2,6 +2,8 @@
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
+#define ROBOT_TYPES list("Basic","Hammerhead","Chilvaris","Ratcher","Sterling")
+
 
 // Posters
 GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
@@ -95,7 +97,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			"minimap" = icon2base64(xeno_minimap),
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
-			"is_unique" = tier == XENO_TIER_FOUR, //TODO: Make this check a flag after caste flag refactoring is merged.
+			"is_unique" = caste.maximum_active_caste == 1,
 			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.can_flags), CASTE_CAN_BE_GIVEN_PLASMA),
 			"evolution_max" = initial(caste.evolution_threshold)
 		))

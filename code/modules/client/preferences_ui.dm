@@ -54,6 +54,7 @@
 			.["xeno_name"] = xeno_name
 			.["synthetic_name"] = synthetic_name
 			.["synthetic_type"] = synthetic_type
+			.["robot_type"] = robot_type
 			.["random_name"] = random_name
 			.["ai_name"] = ai_name
 			.["age"] = age
@@ -246,6 +247,11 @@
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
 			if(choice)
 				synthetic_type = choice
+
+		if("robot_type")
+			var/choice = tgui_input_list(ui.user, "What model of robot do you want to play with?", "Robot model choice", ROBOT_TYPES)
+			if(choice)
+				robot_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]

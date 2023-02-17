@@ -1068,6 +1068,18 @@
 	icon_state = "hair_ziegler"
 	gender = FEMALE
 
+/datum/sprite_accessory/hair/bald_medium
+	name = "Balding medium"
+	icon_state = "hair_bald_medium"
+
+/datum/sprite_accessory/hair/bald_long
+	name = "Balding long"
+	icon_state = "hair_bald_long"
+
+/datum/sprite_accessory/hair/bald_ponytail
+	name = "Balding ponytail"
+	icon_state = "hair_bald_ponytail"
+
 // Non-humans from here on.
 
 /datum/sprite_accessory/hair/icp_screen_pink

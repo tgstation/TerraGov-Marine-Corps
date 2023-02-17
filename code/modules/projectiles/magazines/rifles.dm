@@ -168,7 +168,7 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 250
+	max_rounds = 200
 	reload_delay = 3 SECONDS
 	icon_state_mini = "mag_gpmg"
 
@@ -253,7 +253,7 @@
 	caliber = CALIBER_86X70
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
-	max_rounds = 7
+	max_rounds = 10
 	icon_state_mini = "mag_sniper"
 	bonus_overlay = "tl127_mag"
 
@@ -363,6 +363,17 @@
 	greyscale_colors = "#fa7923"
 
 //-------------------------------------------------------
+//Garand
+/obj/item/ammo_magazine/rifle/garand
+	name = "C1 Garand enbloc clip"
+	desc = "A enbloc clip filled with .30 caliber rifle rounds for the C1 Garand."
+	caliber = CALIBER_3006
+	icon_state = "garand"
+	default_ammo = /datum/ammo/bullet/rifle/garand
+	max_rounds = 8
+	icon_state_mini = "mag_sniper"
+
+//-------------------------------------------------------
 //V-31 SOM rifle
 
 /obj/item/ammo_magazine/rifle/som
@@ -381,7 +392,7 @@
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "v31_ap"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/ap
+	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 50
 	icon_state_mini = "mag_rifle_big_green"
 

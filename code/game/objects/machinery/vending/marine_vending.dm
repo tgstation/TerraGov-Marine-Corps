@@ -98,6 +98,7 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 			/obj/item/weapon/gun/shotgun/double/derringer = 10,
 			/obj/item/ammo_magazine/pistol/derringer = 15,
+			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
@@ -168,6 +169,7 @@
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
+			/obj/item/attachable/stock/t76 = -1,
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
@@ -289,6 +291,8 @@
 			/obj/item/ammo_magazine/pistol/standard_heavypistol = -1,
 			/obj/item/weapon/gun/revolver/standard_revolver = -1,
 			/obj/item/ammo_magazine/revolver/standard_revolver = -1,
+			/obj/item/weapon/gun/revolver/standard_magnum = -1,
+			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 			/obj/item/weapon/gun/pistol/standard_pocketpistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = -1,
 			/obj/item/weapon/gun/pistol/vp70 = -1,
@@ -345,6 +349,7 @@
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
+			/obj/item/attachable/stock/t76 = -1,
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
@@ -464,6 +469,8 @@
 			/obj/item/weapon/gun/pistol/standard_heavypistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_heavypistol = -1,
 			/obj/item/weapon/gun/revolver/standard_revolver = -1,
+			/obj/item/weapon/gun/revolver/standard_magnum = -1,
+			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 			/obj/item/ammo_magazine/revolver/standard_revolver = -1,
 			/obj/item/weapon/gun/pistol/standard_pocketpistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = -1,
@@ -534,6 +541,7 @@
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
+			/obj/item/attachable/stock/t76 = -1,
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
@@ -752,7 +760,6 @@
 		Best cigarettes since 2150.;\
 		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
 		Professionals. Better cigarettes for better people. Yes, better people."
-	vend_delay = 14
 	icon_state = "cigs"
 	icon_vend = "cigs-vend"
 	icon_deny = "cigs-deny"
@@ -982,7 +989,6 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
-	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
@@ -1145,9 +1151,7 @@
 			/obj/item/clothing/suit/modular/xenonauten = -1,
 			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular = -1,
-			/obj/item/clothing/suit/modular/xenonauten/rownin = -1,
-			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
-			/obj/item/clothing/suit/storage/marine/cowboy = -1,
+			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/facepaint/green = -1,
 			/obj/item/clothing/suit/storage/marine/robot/light = -1,
@@ -1155,8 +1159,8 @@
 			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
 		),
 		"Helmets" = list(
-			/obj/item/clothing/head/modular/marine/m10x = -1,
-			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
+			/obj/item/clothing/head/modular/m10x = -1,
+			/obj/item/clothing/head/modular/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,
@@ -1217,6 +1221,13 @@
 			/obj/item/armor_module/module/chemsystem = -1,
 			/obj/item/armor_module/module/eshield = -1,
 		),
+		"Style Line" = list(
+			/obj/item/clothing/suit/modular/style/leather_jacket = -1,
+			/obj/item/clothing/suit/modular/style/duster = -1,
+			/obj/item/armor_module/module/style/light_armor = -1,
+			/obj/item/armor_module/module/style/medium_armor = -1,
+			/obj/item/armor_module/module/style/heavy_armor = -1,
+		),
 	)
 
 	prices = list()
@@ -1253,6 +1264,7 @@
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
+			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
 			/obj/item/armor_module/armor/badge = -1,
 			/obj/item/armor_module/armor/cape = -1,
@@ -1367,6 +1379,7 @@
 			/obj/item/clothing/under/service = -1,
 			/obj/item/clothing/head/garrisoncap = -1,
 			/obj/item/clothing/head/servicecap = -1,
+			/obj/item/clothing/under/marine/black_suit = -1,
 		),
 	)
 
@@ -1408,10 +1421,13 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
+			/obj/item/ammo_magazine/railgun/smart = -1,
+			/obj/item/ammo_magazine/railgun/hvap = -1,
 			/obj/item/weapon/gun/rifle/tx8 = -1,
 			/obj/item/ammo_magazine/rifle/tx8 = -1,
 			/obj/item/ammo_magazine/rifle/tx8/impact = -1,
 			/obj/item/ammo_magazine/rifle/tx8/incendiary = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/xray = -1,
 			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = -1,
 			/obj/item/ammo_magazine/rocket/m57a4 = -1,
 			/obj/item/weapon/gun/launcher/rocket/sadar = -1,
@@ -1444,8 +1460,16 @@
 			/obj/item/weapon/claymore/harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,
+			/obj/item/explosive/grenade/training = -1,
+			/obj/item/explosive/grenade/impact = -1,
+			/obj/item/explosive/grenade/phosphorus = -1,
+			/obj/item/explosive/grenade/chem_grenade/metalfoam = -1,
+			/obj/item/explosive/grenade/smokebomb/neuro = -1,
+			/obj/item/explosive/grenade/smokebomb/acid = -1,
+			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
 		),
 		"Equipment" = list(
+			/obj/item/clothing/glasses/hud/xenohud = -1,
 			/obj/item/clothing/mask/gas/swat = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
 			/obj/item/clothing/suit/storage/marine/specialist = -1,
@@ -1468,7 +1492,22 @@
 			/obj/item/storage/backpack/lightpack = -1,
 			/obj/item/clothing/suit/storage/marine/riot = -1,
 			/obj/item/clothing/head/helmet/marine/riot = -1,
-		)
+			/obj/item/clothing/suit/storage/marine/harness/boomvest = -1,
+		),
+		"Reqtorio" = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = -1,
+			/obj/machinery/factory/heater = -1,
+			/obj/machinery/factory/flatter = -1,
+			/obj/machinery/factory/former = -1,
+			/obj/machinery/factory/reconstructor = -1,
+			/obj/machinery/unboxer = -1,
+			/obj/machinery/factory/driller = -1,
+			/obj/machinery/factory/galvanizer = -1,
+			/obj/machinery/factory/compressor = -1,
+			/obj/item/stack/conveyor/thirty = -1,
+			/obj/item/conveyor_switch_construct = -1,
+		),
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req
@@ -1523,6 +1562,10 @@
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
+			/obj/item/weapon/gun/shotgun/double = -1,
+			/obj/item/weapon/gun/shotgun/double/sawn = -1,
+			/obj/item/weapon/gun/rifle/sniper/svd = -1,
+			/obj/item/ammo_magazine/sniper/svd = -1,
 			/obj/item/weapon/gun/rifle/som = -1,
 			/obj/item/ammo_magazine/rifle/som = -1,
 			/obj/item/ammo_magazine/handful/micro_grenade = -1,
@@ -1531,6 +1574,20 @@
 			/obj/item/weapon/gun/smg/som = -1,
 			/obj/item/ammo_magazine/smg/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
+			/obj/item/cell/lasgun/volkite = -1,
+			/obj/item/cell/lasgun/volkite/powerpack = -1,
+			/obj/item/weapon/gun/rifle/sniper/elite = -1,
+			/obj/item/ammo_magazine/sniper/elite = -1,
+			/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc = -1,
+			/obj/item/ammo_magazine/standard_smartmachinegun = -1,
+			/obj/item/weapon/gun/smg/m25/elite/pmc = -1,
+			/obj/item/ammo_magazine/smg/m25/ap = -1,
+			/obj/item/weapon/gun/rifle/m412/elite = -1,
+			/obj/item/ammo_magazine/rifle/ap = -1,
 		)
 	)
 

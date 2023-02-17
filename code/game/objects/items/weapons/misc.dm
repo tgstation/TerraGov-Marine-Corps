@@ -46,10 +46,18 @@
 	///the higher the power level the harder it hits
 	var/setting = 1
 
+/obj/item/weapon/powerfist/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/weapon/powerfist/Destroy()
 	if(cell)
 		QDEL_NULL(cell)
 	return ..()
+
+/obj/item/weapon/powerfist/update_icon_state()
+	. = ..()
+	icon_state = cell ? "powerfist" : "powerfist_e"
 
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
@@ -84,7 +92,7 @@
 
 
 
-/obj/item/weapon/powerfist/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!cell)
 		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
 		return
@@ -92,7 +100,7 @@
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	var/powerused = setting * 30
+	var/powerused = setting * 20
 	if(powerused >= cell.charge)
 		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
 		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE, penetration = src.penetration)
@@ -106,7 +114,7 @@
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
+	var/throw_distance = setting * LERP(5, 3, M.mob_size / MOB_SIZE_BIG)
 	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
@@ -121,6 +129,7 @@
 		unload(user)
 	user.transferItemToLoc(I,src)
 	cell = I
+	update_icon()
 	to_chat(user, span_notice("You insert the [I] into the [src]."))
 
 /obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
@@ -137,4 +146,5 @@
 /obj/item/weapon/powerfist/proc/unload(mob/user)
 	user.dropItemToGround(cell)
 	cell = null
+	update_icon()
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)

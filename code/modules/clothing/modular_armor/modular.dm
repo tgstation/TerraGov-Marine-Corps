@@ -32,6 +32,7 @@
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,
 		/obj/item/tool/shovel/etool,
+		/obj/item/weapon/energy/sword,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -123,6 +124,21 @@
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
+
+/obj/item/clothing/suit/modular/update_item_sprites()
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				current_variant = "jungle"
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				current_variant = "snow"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				current_variant = "prison"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				current_variant = "desert"
 
 /obj/item/clothing/suit/modular/on_pocket_insertion()
 	. = ..()
@@ -255,9 +271,10 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	icon_state_variants = list(
-		"drab",
 		"black",
+		"jungle",
 		"desert",
 		"snow",
 	)
@@ -275,30 +292,15 @@
 /obj/item/clothing/suit/modular/xenonauten/shield
 	starting_attachments = list(/obj/item/armor_module/module/eshield)
 
-/obj/item/clothing/suit/modular/xenonauten/rownin
-	name = "\improper Rownin Skeleton"
-	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	icon_state = "rownin_skeleton"
-	item_state = "rownin_skeleton"
-	slowdown = 0
-
-	icon_state_variants = list()
-
-	current_variant = ""
-
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "pilot"
 	item_state = "pilot"
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_item = NONE
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
 	slowdown = 0.25
-
 	attachments_allowed = list()
-
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -315,6 +317,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun,
+		/obj/item/weapon/energy/sword,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
@@ -350,6 +353,35 @@
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/shield
 	starting_attachments = list(/obj/item/armor_module/module/eshield)
+
+/obj/item/clothing/suit/modular/rownin
+	name = "\improper Rownin Skeleton"
+	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "rownin_skeleton"
+	item_state = "rownin_skeleton"
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -413,6 +445,21 @@
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
+
+/obj/item/clothing/head/modular/update_item_sprites()
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				current_variant = "jungle"
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				current_variant = "snow"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				current_variant = "prison"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				current_variant = "desert"
 
 /obj/item/clothing/head/modular/on_pocket_insertion()
 	. = ..()
@@ -548,6 +595,69 @@
 	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)
+
+/obj/item/clothing/head/modular/m10x
+	name = "\improper M10X pattern marine helmet"
+	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	icon = 'icons/mob/modular/m10.dmi'
+	icon_state = "helmet_icon"
+	icon_override = null
+	item_state = "helmet"
+	item_state_worn = TRUE
+	item_state_slots = null
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	greyscale_colors = null
+	greyscale_config = null
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+	visorless_offset_x = 0
+	visorless_offset_y = 0
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+
+	icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/m10x/welding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/m10x/mimir
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
+
+/obj/item/clothing/head/modular/m10x/tyr
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/m10x/heavy
+	name = "\improper M10XE pattern marine helmet"
+	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
+	icon_state = "heavyhelmet_icon"
+	item_state = "heavyhelmet"
+
+/obj/item/clothing/head/modular/m10x/leader
+	name = "\improper M11X pattern leader helmet"
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
@@ -743,66 +853,88 @@
 	visorless_offset_x = 0
 	visorless_offset_y = 0
 
-/obj/item/clothing/head/modular/marine/m10x
-	name = "\improper M10X pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	icon = 'icons/mob/modular/m10.dmi'
-	icon_state = "helmet_icon"
-	icon_override = null
-	item_state = "helmet"
-	item_state_worn = TRUE
-	item_state_slots = null
+// ***************************************
+// *********** Modular Style Line
+// ***************************************
+/obj/item/clothing/suit/modular/style
+	name = "\improper Drip"
+	desc = "They got that drip, doe."
+	flags_item_map_variant = NONE
+	allowed_uniform_type = /obj/item/clothing/under
+	icon = 'icons/obj/clothing/cm_suits.dmi'
+	attachments_allowed = list(
+// Armor Modules
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+// Storage Modules
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+// Equalizer Modules
+		/obj/item/armor_module/module/style/light_armor,
+		/obj/item/armor_module/module/style/medium_armor,
+		/obj/item/armor_module/module/style/heavy_armor,
+	)
+
+	var/codex_info = {"<BR>This item is part of the <b>Style Line.</b><BR>
+	<BR>The <b>Style Line</b> is a line of equipment designed to provide as much style as possible without compromising the user's protection.
+	This line of equipment accepts <b>Equalizer modules</b>, which allow the user to alter any given piece of equipment's protection according to their preferences.<BR>"}
+
+/obj/item/clothing/suit/modular/style/get_mechanics_info()
+	. = ..()
+	. += jointext(codex_info, "<br>")
+
+/obj/item/clothing/suit/modular/style/leather_jacket
+	name = "\improper leather jacket"
+	desc = "A fashionable jacket. Get them with style."
+	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon_state = "leather_jacket"
+	item_state = "leather_jacket"
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
-	greyscale_colors = null
-	greyscale_config = null
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/hod_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
-	)
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
-	visorless_offset_x = 0
-	visorless_offset_y = 0
-
 	icon_state_variants = list(
-		"green",
-		"black",
-		"brown",
-		"white",
+		"normal",
+		"webbing",
 	)
+	current_variant = "normal"
 
+/obj/item/clothing/suit/modular/style/duster
+	name = "\improper duster"
+	desc = "A light, loose-fitting colorable long coat, for those that want to have more style."
+	icon_state = "duster"
+	item_state = "duster"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+	)
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
 	current_variant = "black"
-
-/obj/item/clothing/head/modular/marine/m10x/welding
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
-
-/obj/item/clothing/head/modular/marine/m10x/mimir
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
-
-/obj/item/clothing/head/modular/marine/m10x/tyr
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
-
-/obj/item/clothing/head/modular/marine/m10x/heavy
-	name = "\improper M10XE pattern marine helmet"
-	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
-	icon_state = "heavyhelmet_icon"
-	item_state = "heavyhelmet"
-
-/obj/item/clothing/head/modular/marine/m10x/leader
-	name = "\improper M11X pattern leader helmet"
-	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
 
 //SOM modular armour
 

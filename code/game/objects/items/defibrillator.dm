@@ -103,6 +103,10 @@
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
+	if(ready)
+		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 30, 0)
+	else
+		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 30, 0)
 	update_icon()
 
 
@@ -254,23 +258,38 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
 		return
 
-	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected."))
+	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist) or someone who didn't enter their body in time.
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected. Please try again."))
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
 	//At this point, the defibrillator is ready to work
-	if(!issynth(H))
+	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
+		H.setOxyLoss(0)
+
+		var/all_loss = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
+		var/heal_target = abs(H.health - H.get_death_threshold()) + 1
+		var/brute_ratio = H.getBruteLoss() / all_loss
+		var/burn_ratio = H.getFireLoss() / all_loss
+		var/tox_ratio = H.getToxLoss() / all_loss
+		if(tox_ratio)
+			H.adjustToxLoss(-(tox_ratio * heal_target))
+		H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE, TRUE) // explicitly also heals robit parts
+
+	else if(!issynth(H)) // TODO make me a trait :)
 		H.adjustBruteLoss(-defib_heal_amt)
 		H.adjustFireLoss(-defib_heal_amt)
 		H.adjustToxLoss(-defib_heal_amt)
-		H.adjustOxyLoss(-H.getOxyLoss())
+		H.setOxyLoss(0)
 		H.updatehealth() //Needed for the check to register properly
 
 	if(H.health <= H.get_death_threshold())
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again."))
+		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
 		return
 
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful."))
+	playsound(get_turf(src), 'sound/items/defib_success.ogg', 35, 0)
 	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
 	H.chestburst = 0 //reset our chestburst state
