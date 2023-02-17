@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon_state = "switch-off"
 	w_class = WEIGHT_CLASS_BULKY
 	var/id = "" //inherited by the switch
-	materials = list(/datum/material/metal = 0, /datum/material/glass = 0)
+	materials = null
 
 /obj/item/conveyor_switch_construct/Initialize()
 	. = ..()
