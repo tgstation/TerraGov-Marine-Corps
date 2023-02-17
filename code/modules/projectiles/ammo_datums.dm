@@ -2255,9 +2255,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy
 	ping = "ping_s"
-	sound_hit 	 	= "energy_hit"
-	sound_miss		= "energy_miss"
-	sound_bounce	= "energy_bounce"
+	sound_hit 	 = "energy_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
 
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
@@ -2794,9 +2795,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	//inherited, could use some changes
 	ping = "ping_s"
-	sound_hit 	 	= "energy_hit"
-	sound_miss		= "energy_miss"
-	sound_bounce	= "energy_bounce"
+	sound_hit 	 = "energy_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
 
 /datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
 	deflagrate(M, P)
