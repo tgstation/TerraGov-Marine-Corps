@@ -1009,6 +1009,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	. = ..()
 	if(!ishuman(new_mob))
 		return
+
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1 )
@@ -1027,6 +1028,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
+	M.mind.add_antag_datum(/datum/antagonist/corporate_liason)
 	to_chat(M, {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
 Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.

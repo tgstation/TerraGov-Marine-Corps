@@ -39,6 +39,9 @@
 
 	var/bypass_ff = FALSE
 
+	/// List of antag datums on this mind
+	var/list/antag_datums
+	var/assigned_role
 
 /datum/mind/New(key)
 	src.key = key
@@ -102,3 +105,4 @@
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
+	SSticker.minds += mind

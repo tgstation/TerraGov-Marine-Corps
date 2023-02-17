@@ -282,3 +282,8 @@
 
 // Slot helpers
 #define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))
+
+// Objective helpers
+#define ismaroonobjective(O) (istype(O, /datum/objective/maroon))
+#define isstealobjective(O) (istype(O, /datum/objective/steal))
+#define isassassinateobjective(O) (istype(O, /datum/objective/assassinate))
