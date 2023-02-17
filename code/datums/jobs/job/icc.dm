@@ -35,7 +35,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/magharness
 	r_store = /obj/item/storage/pouch/pistol/icc
 	l_store = /obj/item/storage/pouch/tools/icc/full
-	back = /obj/item/storage/backpack/lightpack
+	back = /obj/item/storage/backpack/lightpack/icc
 
 
 /datum/outfit/job/icc/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -140,7 +140,7 @@
 	id = /obj/item/card/id/silver
 	gloves = /obj/item/clothing/gloves/marine/icc
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	back = /obj/item/storage/backpack/lightpack
+	back = /obj/item/storage/backpack/lightpack/icc
 	l_store = /obj/item/storage/pouch/magazine/large/icc
 	r_store = /obj/item/storage/pouch/magazine/large/icc
 	belt = /obj/item/storage/belt/lifesaver/icc/ert
@@ -194,7 +194,7 @@
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
 	belt = /obj/item/storage/belt/shotgun/icc/mixed
-	back = /obj/item/storage/backpack/lightpack
+	back = /obj/item/storage/backpack/lightpack/icc/guard
 	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	r_store = /obj/item/storage/pouch/construction/icc/full
 
