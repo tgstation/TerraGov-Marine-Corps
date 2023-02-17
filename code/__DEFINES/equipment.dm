@@ -76,6 +76,7 @@
 #define DEPLOYED_NO_PICKUP  (1<<16) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
 #define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define FULLY_WIELDED (1<<19) //If the item is properly wielded. Used for guns
 
 //==========================================================================================
 
@@ -106,8 +107,7 @@
 //HELMET AND MASK======================================================================================
 #define COVEREYES (1<<1) // Covers the eyes/protects them.
 #define COVERMOUTH (1<<2) // Covers the mouth.
-#define ALLOWINTERNALS (1<<3)	//mask allows internals
-#define BLOCKGASEFFECT (1<<4) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define BLOCKGASEFFECT (1<<3) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================

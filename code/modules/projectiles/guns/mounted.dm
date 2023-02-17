@@ -39,7 +39,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
 	accuracy_mult = 1.2 //it's got a bipod
-	burst_accuracy_mult = 2
+	burst_accuracy_mult = 1
 	burst_scatter_mult = 0
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
@@ -364,6 +364,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,
 	)
 
@@ -394,7 +395,8 @@
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/mini)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)
+
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 
@@ -414,6 +416,8 @@
 		/obj/item/ammo_magazine/standard_atgun,
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 		/obj/item/ammo_magazine/standard_atgun/he,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
@@ -485,7 +489,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_agls
 	scatter = 0
-	fire_delay = 1 SECONDS
+	fire_delay = 1.1 SECONDS
 	burst_amount = 0
 	accuracy_mult = 1.2 //it's got a bipod
 	flags_item = IS_DEPLOYABLE|TWOHANDED
@@ -503,12 +507,16 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/standard_agls,
 		/obj/item/ammo_magazine/standard_agls/fragmentation,
+		/obj/item/ammo_magazine/standard_agls/incendiary,
 	)
 
 	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 500
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+
+	max_integrity = 300
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+
+
 

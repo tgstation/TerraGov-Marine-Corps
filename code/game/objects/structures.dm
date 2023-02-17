@@ -31,6 +31,13 @@
 	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		icon_state = ""
+		if(smoothing_flags & SMOOTH_CORNERS)
+			icon_state = ""
+
 
 /obj/structure/proc/climb_on()
 

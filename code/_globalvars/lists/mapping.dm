@@ -1,9 +1,6 @@
 GLOBAL_LIST_INIT(cardinals, list(NORTH, SOUTH, EAST, WEST))
 GLOBAL_LIST_INIT(alldirs, list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 GLOBAL_LIST_INIT(diagonals, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
-GLOBAL_LIST_INIT(diagonal_smoothing_conversion, list(\
-	"[NORTHEAST]" = N_NORTHEAST, "[NORTHWEST]" = N_NORTHWEST, "[SOUTHEAST]" = N_SOUTHEAST, "[SOUTHWEST]" = N_SOUTHWEST,\
-	"[N_NORTHEAST]" = NORTHEAST, "[N_NORTHWEST]" = NORTHWEST, "[N_SOUTHEAST]" = SOUTHEAST, "[N_SOUTHWEST]" = SOUTHWEST))
 
 //Spawnpoints.
 GLOBAL_LIST_EMPTY(latejoin)
@@ -41,3 +38,7 @@ GLOBAL_VAR_INIT(minidropship_start_loc, null)
 GLOBAL_LIST_EMPTY(sorted_areas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY_TYPED(areas_by_type, /area)
+
+GLOBAL_LIST_INIT(diagonal_smoothing_conversion, list(\
+	"[NORTHEAST]" = N_NORTHEAST, "[NORTHWEST]" = N_NORTHWEST, "[SOUTHEAST]" = N_SOUTHEAST, "[SOUTHWEST]" = N_SOUTHWEST,\
+	"[N_NORTHEAST]" = NORTHEAST, "[N_NORTHWEST]" = NORTHWEST, "[N_SOUTHEAST]" = SOUTHEAST, "[N_SOUTHWEST]" = SOUTHWEST))

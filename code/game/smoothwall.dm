@@ -3,7 +3,7 @@
 //I should really make the shuttle wall check run every time it's moved, but centcom uses unsimulated floors so !effort
 
 ///Base proc to trigger the smoothing system. It will behave according to the smoothing atom's system.
-/atom/proc/smooth_self()
+/* /atom/proc/smooth_self()
 	switch(smoothing_behavior)
 		if(CARDINAL_SMOOTHING)
 			relativewall()
@@ -239,6 +239,6 @@
 			if((object.smoothing_behavior != DIAGONAL_SMOOTHING) || !(smoothing_groups & object.smoothing_groups))
 				continue
 			object.smooth_self()
-
+*/
 
 

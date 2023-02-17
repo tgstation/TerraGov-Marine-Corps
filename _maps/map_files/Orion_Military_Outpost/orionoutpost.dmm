@@ -7842,7 +7842,6 @@
 /area/orion_outpost/ground/outpostnw)
 "OH" = (
 /obj/structure/table/mainship,
-/obj/structure/table/mainship,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
