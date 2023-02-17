@@ -109,28 +109,25 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	return target
 
 //dupe_search_range is a list of antag datums / minds / teams
-/datum/objective/proc/find_target(dupe_search_range, list/blacklist)
+/datum/objective/proc/find_target(dupe_search_range, blacklist)
+	var/list/datum/mind/owners = get_owners()
+	if(!dupe_search_range)
+		dupe_search_range = get_owners()
 	var/list/possible_targets = list()
 	var/try_target_late_joiners = FALSE
 	for(var/datum/mind/possible_target in GLOB.alive_human_list)
-//		var/target_area = get_area(possible_target.current)
-		if(!ishuman(possible_target.current))
-			continue
-		if(possible_target.current.stat == DEAD)
-			continue
-		if(!is_unique_objective(possible_target,dupe_search_range))
-			continue
-		if(possible_target in blacklist)
-			continue
-		possible_targets += possible_target
+		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+			if (!(possible_target in blacklist))
+				possible_targets += possible_target
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
-		for(var/I in all_possible_targets)
-//			var/datum/mind/PT = I
 		if(!possible_targets.len)
 			possible_targets = all_possible_targets
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
+	update_explanation_text()
+	if(!target)
+		target = pick(GLOB.alive_human_list) //last resort, just pick somebody living
 	return target
 
 /datum/objective/proc/find_target_by_role(role, role_type=FALSE,invert=FALSE)//Option sets either to check assigned role or special role. Default to assigned., invert inverts the check, eg: "Don't choose a Ling"
@@ -155,6 +152,25 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	update_explanation_text()
 	return target
 
+//Ideally this would be all of them but laziness and unusual subtypes
+/proc/generate_admin_objective_list()
+	GLOB.admin_objective_list = list()
+
+	var/list/allowed_types = sortList(list(
+		/datum/objective/assassinate,
+		/datum/objective/maroon,
+		/datum/objective/steal,
+		/datum/objective/survive,
+		/datum/objective/winoperation,
+		/datum/objective/loseoperation,
+		/datum/objective/custom
+	),/proc/cmp_typepaths_asc)
+
+	for(var/T in allowed_types)
+		var/datum/objective/X = T
+		GLOB.admin_objective_list[initial(X.name)] = T
+
+
 //Created by admin tools
 /datum/objective/custom
 	name = "custom"
@@ -164,17 +180,6 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/expl = stripped_input(admin, "Custom objective:", "Objective", explanation_text)
 	if(expl)
 		explanation_text = expl
-
-//Ideally this would be all of them but laziness and unusual subtypes
-/proc/generate_admin_objective_list()
-	GLOB.admin_objective_list = list()
-
-	var/list/allowed_types = sort_list(subtypesof(/datum/objective), GLOBAL_PROC_REF(cmp_typepaths_asc))
-
-	for(var/datum/objective/goal as anything in allowed_types)
-		if(!initial(goal.admin_grantable))
-			continue
-		GLOB.admin_objective_list[initial(goal.name)] = goal
 
 /datum/objective/escape
 	name = "escape"
@@ -217,6 +222,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	return !target || !isliving(target) || (!is_mainship_level(current_turf) && (SSticker.mode.round_finished == MODE_INFESTATION_X_MINOR||MODE_INFESTATION_X_MINOR))
 
 /datum/objective/maroon/update_explanation_text()
+	if(target == null)
+		explanation_text = "Strand somebody on the planet." //placeholder in case we can't find a real player
+		return
 	var/mob/living/livingtarget = target.current
 	if(target && target.current)
 		explanation_text = "Strand [livingtarget.name], the [livingtarget.job], on the planet."
@@ -227,7 +235,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	admin_simple_target_pick(admin)
 
 /datum/objective/assassinate
-	name = "assasinate"
+	name = "assassinate"
 	var/target_role_type=FALSE
 
 /datum/objective/assassinate/find_target_by_role(role, role_type=FALSE,invert=FALSE)
@@ -240,6 +248,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/assassinate/update_explanation_text()
 	..()
+	if(target == null)
+		explanation_text = "Kill somebody." //placeholder in case we can't find a real player
+		return
 	var/mob/living/livingtarget = target.current
 	if(target && target.current)
 		explanation_text = "Ensure [livingtarget.name], the [livingtarget.job] does not survive the operation."
@@ -247,7 +258,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Free Objective"
 
 /datum/objective/assassinate/admin_edit(mob/admin)
-	admin_simple_target_pick(admin)
+	find_target()
+//	admin_simple_target_pick(admin)
 
 GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal

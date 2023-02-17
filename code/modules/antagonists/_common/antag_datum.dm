@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Displayed at the start of roundend_category section, default to roundend_category header
 /datum/antagonist/proc/roundend_report_header()
-	return 	"<span class='header'>The [roundend_category] were:</span><br>"
+	return 	"<span class='header'>[GLOB.antagonists.len] players were assigned objectives:</span><br>"
 
 //Displayed at the end of roundend_category section
 /datum/antagonist/proc/roundend_report_footer()
@@ -205,3 +205,23 @@ GLOBAL_LIST_EMPTY(antagonists)
 	else
 		return
 	..()
+
+/datum/antagonist/Topic(href,href_list)
+	if(!check_rights(R_ADMIN))
+		return
+	//Antag memory edit
+	if (href_list["memory_edit"])
+		edit_memory(usr)
+		owner.traitor_panel()
+		return
+
+	//Some commands might delete/modify this datum clearing or changing owner
+	var/datum/mind/persistent_owner = owner
+
+	var/commands = get_admin_commands()
+	for(var/admin_command in commands)
+		if(href_list["command"] == admin_command)
+			var/datum/callback/C = commands[admin_command]
+			C.Invoke(usr)
+			persistent_owner.traitor_panel()
+			return

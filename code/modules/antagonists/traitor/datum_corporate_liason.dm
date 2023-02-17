@@ -69,8 +69,8 @@
 	.=1
 	var/list/objectivelist
 	objectivelist = list(
-		/datum/objective/maroon = 1,
-		/datum/objective/assassinate = 7,
+		/datum/objective/maroon = 7,
+		/datum/objective/assassinate = 2,
 		/datum/objective/steal = 2,
 	)
 	var/datum/objective/selectedobjective
