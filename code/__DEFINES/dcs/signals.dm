@@ -418,6 +418,10 @@
 #define COMSIG_MOB_FACE_DIR "mob_face_dir"
 #define COMSIG_MOB_ENABLE_STEALTH "mob_togglestealth"
 	#define STEALTH_ALREADY_ACTIVE (1<<0)
+#define COMSIG_RANGED_ACCURACY_MOD_CHANGED "ranged_accuracy_mod_changed"
+#define COMSIG_RANGED_SCATTER_MOD_CHANGED "ranged_scatter_mod_changed"
+#define COMSIG_MOB_SKILLS_CHANGED "mob_skills_changed"
+#define COMSIG_MOB_SHOCK_STAGE_CHANGED "mob_shock_stage_changed"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
@@ -447,6 +451,8 @@
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
+#define COMSIG_LIVING_STAGGER_CHANGED "living_stagger_changed"
+
 ///from end of fully_heal(): (admin_revive)
 #define COMSIG_LIVING_POST_FULLY_HEAL "living_post_fully_heal"
 
@@ -471,6 +477,8 @@
 #define COMSIG_HUMAN_REMOVE_OVERLAY "human_overlay_removed"
 
 #define COMSIG_HUMAN_SET_UNDEFIBBABLE "human_set_undefibbable"
+
+#define COMSIG_HUMAN_MARKSMAN_AURA_CHANGED "human_marksman_aura_changed"
 
 // shuttle signals
 #define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"
@@ -875,7 +883,6 @@
 //Signals for gun auto fire component
 #define COMSIG_GET_BURST_FIRE "get_burst_fire"
 	#define BURST_FIRING (1<<0)
-#define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"

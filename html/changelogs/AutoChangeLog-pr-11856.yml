@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed various minor gun and status bugs"
+  - refactor: "refactored accuracy and scatter calculations for projectiles"
+  - balance: "Offguard duration changed to 10 seconds, effect no longer decreases over time"

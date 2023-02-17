@@ -170,3 +170,74 @@
   - bugfix: fixed AMR lase overlays getting stuck sometimes
   Naaanii:
   - bugfix: adjusts RR heat shell price to match its counterparts.
+2023-02-13:
+  Dikozda:
+  - bugfix: MLRS reqtorio refils will now work properly and not just pop out the final
+      product from the unboxer
+  Lumipharon:
+  - balance: 'HvH: Stun grenade detonation time reduced to 2 seconds from 4 seconds'
+  - rscadd: Added SOM HE and incendiary grenades, replacing all instances of other
+      HE/incendiary equivalents
+  - qol: Incendiary grenades can now be heard from more than 4 tiles away when detonating
+  - balance: Reduces the duration of fire produced by spray nozzles to 30% of normal
+  - imageadd: VX-12 and power cell resprited
+  Pariah919:
+  - rscadd: Added new C-1 'Garand' SLR. Brought to you by Crowford Armory Union! Mostly
+      for CLF, its in the WW2 seasonal for marines. And req.
+  - balance: Mortar/Howitzer have lost shell speed, so they have higher travel times.
+      They also emit a different color of light to make it easier to perceive them.
+  - balance: Howitzer has slightly higher cooloff, 10 seconds over 4.
+  - balance: Engineers can no longer buy teleporters
+2023-02-14:
+  Lumipharon:
+  - balance: 'HvH: Capturing a sensor tower now adds 3 minutes to the clock instead
+      of 5'
+  - bugfix: Fixed bottles stunning armoured heads
+  - balance: bottle stuns last 4 seconds instead of 20
+  Naaanii:
+  - bugfix: fixes reqtorio formatting.
+  - balance: Increases TL mag size from 7-10
+  Pariah919:
+  - balance: Shields have lost 10 melee armor, and 5 acid armor. As well as dropping
+      melee coverage from 80 to 50.
+  TiviPlus:
+  - rscdel: Removed soldering tool
+  - balance: robots will now not need to be healed prior to defibbing and will instead
+      start at 1 HP after being defibbed
+  - balance: ceertain damage sources will now damage a certain amount of limbs rather
+      than than every limb
+  novaepee:
+  - rscadd: add easter eggs in PoS, fix rogue lights and cameras , and light cas lz
+  - rscdel: Remove mosin from Research Outpost
+2023-02-15:
+  Arturlang:
+  - code_imp: Jukebuild will now only vendored nodeJS as the latest version is prone
+      to issues.
+  KillerOrcaCora:
+  - imageadd: Carrier is rogue pixel free...Her sisters on the other hand...
+  Xander3359:
+  - rscadd: Crumpled pill packets are biodegradable
+  - balance: Paracetamol, Leporazine, Red Russian, Ryetalyn Packets. 4 Pills >> 8
+      Pills.
+  - bugfix: Pill sound now properly plays when you take a pill out of a bottle/packet
+  - imageadd: New pill packet sprites.
+2023-02-16:
+  Arturlang:
+  - code_imp: Moved a lot of mob typechecks in evolution into being checked by bitflags.
+  - code_imp: Maximum checks for active caste and minimum amount of xenos and the
+      death timer is now handled by variables on the caste datum, instead of the type
+      of the mob.
+  - code_imp: Queen's death timers have been refactored into being applicable for
+      any xeno base using the death_evolution_delay variable on the caste datum
+  - bugfix: Fixes the evolution panel having N/A as the number when the xeno incapable
+      of having evolution progress, as it was trying to divide by 0
+  QualityVan:
+  - balance: Kitted limbs passively heal faster
+  Xander3359:
+  - rscdel: No longer spammed with balloon alerts from taking out a pill
+2023-02-17:
+  This1sPanda:
+  - bugfix: fixed mosin scope not appearing on gun
+  - bugfix: fixed mosin scope not appearing on hand
+  Xander3359:
+  - imageadd: Packet sprites suck less.
