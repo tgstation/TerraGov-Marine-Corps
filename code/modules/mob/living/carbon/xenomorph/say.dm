@@ -38,8 +38,7 @@
 		return
 	if(!hive)
 		return
-
-	if(hivenumber == XENO_HIVE_NORMAL && !hive.living_xeno_ruler && hive.xeno_queen_timer && timeleft(hive.xeno_queen_timer) > QUEEN_DEATH_TIMER * 0.5)
+	if(hivenumber == XENO_HIVE_NORMAL && !hive.living_xeno_ruler && hive.get_hivemind_conduit_death_timer() && timeleft(hive.get_hivemind_conduit_death_timer()) > hive.get_total_hivemind_conduit_time() * 0.5)
 		to_chat(src, span_warning("The ruler is dead. The hivemind is weakened. Despair!"))
 		return
 
