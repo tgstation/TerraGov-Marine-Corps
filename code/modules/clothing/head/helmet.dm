@@ -689,36 +689,6 @@
 	soft_armor = list(MELEE = 65, BULLET = 60, LASER = 30, ENERGY = 20, BOMB = 25, BIO = 40, FIRE = 20, ACID = 20)
 	anti_hug = 5
 
-
-/obj/item/clothing/head/helmet/marine/robot
-	name = "XN-1 upper armor plating"
-	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_helmet_medium"
-	item_state = "robot_helmet_medium"
-	species_exception = list(/datum/species/robot)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 10, ACID = 50)
-
-/obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
-	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
-		return FALSE
-
-/obj/item/clothing/head/helmet/marine/robot/light
-	name = "XN-1-L upper armor plating"
-	desc = "Light armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_helmet_light"
-	item_state = "robot_helmet_light"
-
-/obj/item/clothing/head/helmet/marine/robot/heavy
-	name = "XN-1-H upper armor plating"
-	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_helmet_heavy"
-	item_state = "robot_helmet_heavy"
-
-// ICC. Their helmets have higher bomb resist.//
-
 /obj/item/clothing/head/helmet/marine/icc
 	name = "\improper Modelle/20 combat helmet"
 	desc = "A regular ICCAF helmet, used by all branches of its forces. It is made to fit in both a utility and combat role with noticeably high resistance to explosions and bullets. "

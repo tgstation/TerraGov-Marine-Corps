@@ -12,9 +12,6 @@
 		"Half" = "_h",
 	)
 
-/obj/item/clothing/under/marine/standard
-	flags_item_map_variant = null
-
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
