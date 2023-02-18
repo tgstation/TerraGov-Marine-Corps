@@ -245,10 +245,10 @@
 	max_integrity = 400
 	energy_drain = 5
 	variance = 0
-	projectile_delay = 0.6 SECONDS
+	projectile_delay = 0.8 SECONDS
 	burst_amount = 3
-	projectile_burst_delay = 0.2 SECONDS
-	slowdown = 0.4
+	projectile_burst_delay = 0.3 SECONDS
+	slowdown = 0.5
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
@@ -289,8 +289,8 @@
 	projectiles_cache = 15
 	projectiles_cache_max = 15
 	variance = 0
-	projectile_delay = 1 SECONDS
-	slowdown = 1.2
+	projectile_delay = 2 SECONDS
+	slowdown = 1.5
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_HEAVYCANNON
 	hud_icons = list("shell_apcr", "shell_empty")
@@ -355,13 +355,13 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /obj/item/explosive/grenade
 	max_integrity = 350
-	projectiles = 10
+	projectiles = 8
 	projectiles_cache = 40
 	projectiles_cache_max = 40
-	projectile_delay = 1.5 SECONDS
+	projectile_delay = 3 SECONDS
 	missile_speed = 1.5
-	equip_cooldown = 2 SECONDS
-	slowdown = 0.4
+	equip_cooldown = 3 SECONDS
+	slowdown = 0.7
 	ammo_type = MECHA_AMMO_GRENADE
 	hud_icons = list("grenade_he", "grenade_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO

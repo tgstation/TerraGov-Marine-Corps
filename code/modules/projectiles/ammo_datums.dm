@@ -1210,7 +1210,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/minigun/mech
 	name = "vulcan bullet"
-	damage = 30
+	damage = 18
 	penetration = 10
 	sundering = 0.5
 
@@ -1296,11 +1296,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
-	damage = 150
-	penetration = 100
+	damage = 125
+	penetration = 80
 	sundering = 0
 	bullet_color = COLOR_PULSE_BLUE
-	on_pierce_multiplier = 0.85
+	on_pierce_multiplier = 0.70
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
@@ -1427,8 +1427,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
-	damage = 15
-	penetration = 10
+	damage = 11
+	penetration = 8
 	sundering = 0.5
 
 /datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/M, obj/projectile/proj)
@@ -2729,7 +2729,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.5
 
 /datum/ammo/energy/lasgun/marine/mech/burst
-	damage = 30
+	damage = 22
 	penetration = 10
 	sundering = 0.75
 	damage_falloff = 0.6
