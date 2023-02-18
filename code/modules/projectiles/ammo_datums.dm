@@ -1220,10 +1220,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 35
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
-	P.proj_max_range -= 15
+	P.proj_max_range -= 20
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
-	P.proj_max_range -= 15
+	P.proj_max_range -= 5
 	staggerstun(M, P, max_range = 20, slowdown = 1)
 
 /datum/ammo/bullet/auto_cannon/on_hit_obj(obj/O, obj/projectile/P)
