@@ -113,6 +113,3 @@
 
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS
-
-///lazy list of all credit object bound to this client
-	var/list/credits
