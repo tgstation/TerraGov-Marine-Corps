@@ -14969,7 +14969,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship/nometal,
-/obj/item/clothing/head/helmet/marine/robot/heavy,
+/obj/item/clothing/head/modular/robot/heavy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "RQ" = (

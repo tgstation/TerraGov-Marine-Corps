@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - rscadd: "Maintenance mode for robots: disable yourself for five seconds to heal up to 20 damage."
+  - bugfix: "Fixed blindness not clearing properly if you tried to remove it a certain way."
