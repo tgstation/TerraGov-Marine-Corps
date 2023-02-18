@@ -366,7 +366,7 @@
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
 	plasma_stored = xeno_caste.plasma_max
-	stagger = 0
+	set_stagger(0)
 	sunder = 0
 	set_slowdown(0)
 	if(stat == DEAD)

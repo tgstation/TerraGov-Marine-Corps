@@ -7,6 +7,26 @@
 
 	update_sight()
 
+
+	if(HAS_TRAIT(src, TRAIT_PAIN_IMMUNE)) //We can't tell how hurt we are if we can't feel pain
+		clear_fullscreen("brute")
+		clear_fullscreen("oxy")
+		clear_fullscreen("crit")
+
+		if(!hud_used)
+			return
+		if(hud_used.nutrition_icon)
+			hud_used.nutrition_icon.icon_state = "nutrition1"
+		if(hud_used.toxin_icon)
+			hud_used.toxin_icon.icon_state = "tox0"
+		if(hud_used.oxygen_icon)
+			hud_used.oxygen_icon.icon_state = "oxy0"
+		if(hud_used.fire_icon)
+			hud_used.fire_icon.icon_state = "fire0"
+		if(hud_used.bodytemp_icon)
+			hud_used.bodytemp_icon.icon_state = "temp0"
+		return
+
 	if(stat == UNCONSCIOUS && health <= get_crit_threshold())
 		var/severity = 0
 		switch(health)
@@ -170,6 +190,10 @@
 
 	if(stat == DEAD)
 		hud_used.healths.icon_state = "health7"
+		return
+
+	if(HAS_TRAIT(src, TRAIT_PAIN_IMMUNE)) //We can't tell how hurt we are if we can't feel pain
+		hud_used.healths.icon_state = "health0"
 		return
 
 	if(analgesic)

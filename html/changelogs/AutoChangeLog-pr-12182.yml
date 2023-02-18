@@ -1,5 +1,0 @@
-author: "This1sPanda"
-delete-after: True
-changes:
-  - bugfix: "fixed mosin scope not appearing on gun"
-  - bugfix: "fixed mosin scope not appearing on hand"
