@@ -289,12 +289,13 @@
 	projectiles_cache = 15
 	projectiles_cache_max = 15
 	variance = 0
-	projectile_delay = 2 SECONDS
+	projectile_delay = 1 SECONDS
 	slowdown = 1.5
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_HEAVYCANNON
 	hud_icons = list("shell_apcr", "shell_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+	rearm_time = 4 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun
 	name = "\improper Rhea vulcan cannon"
