@@ -101,7 +101,7 @@
 	},
 /area/bigredv2/outside/nw)
 "hx" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/caves/northwest)
@@ -176,7 +176,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "lJ" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/caves/northwest)
@@ -200,7 +200,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "mA" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
@@ -318,7 +318,7 @@
 /area/bigredv2/caves/northwest)
 "wb" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
@@ -376,7 +376,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "zO" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -468,7 +468,7 @@
 /area/bigredv2/outside/nw)
 "EB" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -495,7 +495,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "Hr" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
@@ -536,7 +536,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "JE" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
@@ -609,7 +609,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "Os" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/caves/northwest)
@@ -623,7 +623,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Pz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
@@ -732,7 +732,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/northwest)
 "UP" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
@@ -823,7 +823,7 @@
 	},
 /area/bigredv2/outside/nw)
 "ZM" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/nw)
 "ZT" = (
 /obj/structure/cable,

@@ -16,6 +16,7 @@
 		/datum/outfit/job/clf/standard/skorpion,
 		/datum/outfit/job/clf/standard/mpi_km,
 		/datum/outfit/job/clf/standard/shotgun,
+		/datum/outfit/job/clf/standard/garand,
 		/datum/outfit/job/clf/standard/fanatic,
 		/datum/outfit/job/clf/standard/som_smg,
 	)
@@ -155,6 +156,24 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/clf/standard/garand
+	belt = /obj/item/storage/belt/marine/som
+	suit_store = /obj/item/weapon/gun/rifle/garand
+
+
+/datum/outfit/job/clf/standard/garand/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/garand, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)

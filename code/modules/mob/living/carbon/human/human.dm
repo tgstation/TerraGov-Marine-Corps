@@ -169,8 +169,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE)
-	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE, max_limbs = 4)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -390,41 +390,6 @@
 				// Update strip window
 				if(usr.interactee == src && Adjacent(usr))
 					show_inv(usr)
-
-
-	if(href_list["internal"])
-
-		if(!usr.do_actions)
-			log_combat(usr, src, "attempted to toggle internals")
-			if(internal)
-				usr.visible_message(span_danger("[usr] is trying to disable [src]'s internals"), null, null, 3)
-			else
-				usr.visible_message(span_danger("[usr] is trying to enable [src]'s internals."), null, null, 3)
-
-			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
-				if (internal)
-					internal = null
-					if (hud_used && hud_used.internals)
-						hud_used.internals.icon_state = "internal0"
-					visible_message("[src] is no longer running on internals.", null, null, 1)
-				else
-					if(istype(wear_mask, /obj/item/clothing/mask))
-						if (istype(back, /obj/item/tank))
-							internal = back
-						else if (istype(s_store, /obj/item/tank))
-							internal = s_store
-						else if (istype(belt, /obj/item/tank))
-							internal = belt
-						if (internal)
-							visible_message(span_notice("[src] is now running on internals."), null, null, 1)
-							if (hud_used && hud_used.internals)
-								hud_used.internals.icon_state = "internal1"
-
-				// Update strip window
-				if(usr.interactee == src && Adjacent(usr))
-					show_inv(usr)
-
-
 
 	if(href_list["splints"])
 
