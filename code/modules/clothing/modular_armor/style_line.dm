@@ -89,7 +89,7 @@
 	flags_item_map_variant = NONE
 	icon = 'icons/mob/modular/style_hats.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/style_hats.dmi',
+		slot_head_str = 'icons/mob/modular/style_hats_mob.dmi',
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
@@ -107,14 +107,242 @@
 	flags_inv_hide = NONE
 
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 
 //marine hats
 /obj/item/clothing/head/modular/style/beret
 	name = "TGMC Beret"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Typically reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
-	icon_state = "tgmc_beret_icon"
-	item_state = "tgmc_beret"
+	icon_state = "tgmc_beret"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/classic_beret
+	name = "TGMC Beret (Classic)"
+	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Typically reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
+	icon_state = "classic_beret"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+
+/obj/item/clothing/head/modular/style/boonie
+	name = "TGMC Boonie"
+	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
+	icon_state = "boonie"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/cap
+	name = "TGMC Cap"
+	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
+	icon_state = "tgmccap"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/slouchhat
+	name = "TGMC Slouch Hat"
+	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
+	icon_state = "slouchhat"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/ushanka
+	name = "TGMC Ushanka"
+	desc = "A comfortable ushanka used by the TGMC. Will keep you warm in even the most harshest artic enviroments."
+	icon_state = "tgmccap"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/campaignhat
+	name = "TGMC Campaign Hat"
+	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
+	icon_state = "campaignhat"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/beanie
+	name = "TGMC Beanie"
+	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
+	icon_state = "beanie"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/headband
+	name = "TGMC Headband"
+	desc = "A headband. Will keep the sweat off your eyes and also keep you looking cool."
+	icon_state = "headband"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/style/bandana
+	name = "TGMC Bandana"
+	desc = "A bandana that goes on your head. Has tgmc markings in the back tie, and it seems that the knot will never come undone, somehow."
+	icon_state = "headband"
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+
+// style masks
+/obj/item/clothing/head/modular/mask
+	name = "style mask"
+	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
+	flags_equip_slot = ITEM_SLOT_MASK
+	icon = 'icons/mob/modular/style_hats.dmi'
+	item_icons = list(
+		slot_wear_mask_str = 'icons/mob/modular/style_hats_mob.dmi',
+	)
+	icon_state = "gas_alt"
+	item_state = "gas_alt"
+	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
+	flags_inv_hide = HIDELOWHAIR
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	w_class = WEIGHT_CLASS_SMALL
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
+	siemens_coefficient = 0.9
+
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+
+	flags_armor_features = NONE
+	attachments_allowed = list()
+
+/obj/item/clothing/head/modular/mask/skimask
+	name = "ski mask"
+	desc = "A stylish skimask, can be recolored. Makes you feel like an operator just looking at it."
+	icon_state = "skimask"
+	item_state = "skimask"
+	flags_inv_hide = HIDEALLHAIR|HIDEEARS
+
+	icon_state_variants = list(
+		"drab",
+		"snow",
+		"black",
+		"desert",
+		"red",
+		"blue",
+		"purple",
+		"gold",
+	)
+
+	current_variant = "black"
+
+/obj/item/clothing/head/modular/mask/coofmask
+	name = "combat face cloth covering"
+	desc = "The CFCC is a prime and readied, yet stylish facemask ready to.. Cover your face."
+	icon_state = "coofmask"
+	item_state = "coofmask"
 
 	icon_state_variants = list(
 		"drab",
