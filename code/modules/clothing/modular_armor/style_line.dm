@@ -112,7 +112,7 @@
 
 //marine hats
 /obj/item/clothing/head/modular/style/beret
-	name = "TGMC Beret"
+	name = "TGMC beret"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Typically reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon_state = "tgmc_beret"
 
@@ -130,7 +130,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/classic_beret
-	name = "TGMC Beret (Classic)"
+	name = "TGMC beret (classic)"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Typically reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
 	icon_state = "classic_beret"
 
@@ -149,7 +149,7 @@
 
 
 /obj/item/clothing/head/modular/style/boonie
-	name = "TGMC Boonie"
+	name = "TGMC boonie"
 	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
 	icon_state = "boonie"
 
@@ -167,7 +167,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/cap
-	name = "TGMC Cap"
+	name = "TGMC cap"
 	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
 	icon_state = "tgmccap"
 
@@ -185,7 +185,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/slouchhat
-	name = "TGMC Slouch Hat"
+	name = "TGMC slouch hat"
 	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
 	icon_state = "slouchhat"
 
@@ -203,7 +203,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/ushanka
-	name = "TGMC Ushanka"
+	name = "TGMC ushanka"
 	desc = "A comfortable ushanka used by the TGMC. Will keep you warm in even the most harshest artic enviroments."
 	icon_state = "tgmccap"
 
@@ -221,7 +221,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/campaignhat
-	name = "TGMC Campaign Hat"
+	name = "TGMC campaign hat"
 	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
 	icon_state = "campaignhat"
 
@@ -239,7 +239,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/beanie
-	name = "TGMC Beanie"
+	name = "TGMC beanie"
 	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
 	icon_state = "beanie"
 
@@ -257,7 +257,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/headband
-	name = "TGMC Headband"
+	name = "TGMC headband"
 	desc = "A headband. Will keep the sweat off your eyes and also keep you looking cool."
 	icon_state = "headband"
 
@@ -275,8 +275,8 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/bandana
-	name = "TGMC Bandana"
-	desc = "A bandana that goes on your head. Has tgmc markings in the back tie, and it seems that the knot will never come undone, somehow."
+	name = "TGMC bandana"
+	desc = "A bandana that goes on your head. Has TGMC markings on the back tie, and it seems that the knot will never come undone somehow."
 	icon_state = "headband"
 
 	icon_state_variants = list(
@@ -340,7 +340,7 @@
 
 /obj/item/clothing/head/modular/mask/coofmask
 	name = "combat face cloth covering"
-	desc = "The CFCC is a prime and readied, yet stylish facemask ready to.. Cover your face."
+	desc = "The CFCC is a prime and readied, yet stylish facemask ready to... cover your face."
 	icon_state = "coofmask"
 	item_state = "coofmask"
 
