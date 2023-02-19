@@ -880,8 +880,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	return objective_parts.Join("<br>")
 
 /proc/printplayer(datum/mind/ply, fleecheck)
-	var/jobtext = ""
-	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and"
+	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b> and"
 	if(ply.current)
 		if(ply.current.stat == DEAD)
 			text += " [span_redtext("died")]"

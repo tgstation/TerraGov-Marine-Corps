@@ -1405,7 +1405,7 @@
 
 /client/proc/show_traitor_panel(mob/target_mob in GLOB.mob_list)
 	set category = "Admin"
-	set name = "Show Traitor Panel"
+	set name = "Show Objective Panel"
 	var/datum/mind/target_mind = target_mob.mind
 	if(!target_mind)
 		to_chat(usr, "This mob has no mind!", confidential = TRUE)
@@ -1414,4 +1414,4 @@
 		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
 		return
 	target_mind.traitor_panel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Traitor Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Objective Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

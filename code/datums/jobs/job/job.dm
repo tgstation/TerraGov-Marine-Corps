@@ -163,6 +163,9 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(req_admin_notify)
 		to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
 
+/datum/job/proc/add_objective_datum(mob/M)
+	return
+
 /datum/outfit/job
 	var/jobtype
 

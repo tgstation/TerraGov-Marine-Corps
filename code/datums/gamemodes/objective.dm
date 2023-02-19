@@ -125,9 +125,10 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			possible_targets = all_possible_targets
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
-	update_explanation_text()
 	if(!target)
-		target = pick(GLOB.alive_human_list) //last resort, just pick somebody living
+		var/mob/living/selectedtarget = pick(GLOB.mob_living_list) //last resort, just pick somebody living
+		target = selectedtarget.mind
+	update_explanation_text()
 	return target
 
 /datum/objective/proc/find_target_by_role(role, role_type=FALSE,invert=FALSE)//Option sets either to check assigned role or special role. Default to assigned., invert inverts the check, eg: "Don't choose a Ling"
@@ -244,6 +245,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	..()
 
 /datum/objective/assassinate/check_completion()
+	if(target == null)
+		return FALSE
 	return completed || (!considered_alive(target))
 
 /datum/objective/assassinate/update_explanation_text()
@@ -253,7 +256,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		return
 	var/mob/living/livingtarget = target.current
 	if(target && target.current)
-		explanation_text = "Ensure [livingtarget.name], the [livingtarget.job] does not survive the operation."
+		explanation_text = "Ensure [livingtarget.name], the [livingtarget.job.title] does not survive the operation."
 	else
 		explanation_text = "Free Objective"
 

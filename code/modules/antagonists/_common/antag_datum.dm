@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Displayed at the start of roundend_category section, default to roundend_category header
 /datum/antagonist/proc/roundend_report_header()
-	return 	"<span class='header'>[GLOB.antagonists.len] players were assigned objectives:</span><br>"
+	return 	"<span class='header'>the players with objectives were:</span><br>"
 
 //Displayed at the end of roundend_category section
 /datum/antagonist/proc/roundend_report_footer()

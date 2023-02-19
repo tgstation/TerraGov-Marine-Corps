@@ -36,14 +36,15 @@
 	var/toa = 3
 	for(var/i = objective_count, i < toa, i++)
 		forge_single_human_objective()
+
 	if(!(locate(/datum/objective/survive) in objectives))
 		var/list/objectivelist
 		objectivelist = list(
-			/datum/objective/winoperation = 1,
-			/datum/objective/loseoperation = 2,
+			/datum/objective/loseoperation = 1,
+			/datum/objective/winoperation = 2,
 			/datum/objective/survive = 7,
 		)
-		var/datum/objective/selectedobjective
+		var/datum/objective/selectedobjective = pick_weight_recursive(objectivelist)
 		selectedobjective = pick_weight_recursive(objectivelist)
 		if(selectedobjective == /datum/objective/winoperation)
 			var/datum/objective/winoperation/winoperation_objective = new
@@ -52,7 +53,7 @@
 			var/datum/objective/maroon/loseoperation_objective = new
 			selectedobjective =	loseoperation_objective
 		if(selectedobjective == /datum/objective/survive)
-			var/datum/objective/assassinate/survive_objective = new
+			var/datum/objective/survive/survive_objective = new
 			selectedobjective =	survive_objective
 		selectedobjective.owner = owner
 		add_objective(selectedobjective)
@@ -70,7 +71,6 @@
 	var/list/objectivelist
 	objectivelist = list(
 		/datum/objective/maroon = 7,
-		/datum/objective/assassinate = 2,
 		/datum/objective/steal = 2,
 	)
 	var/datum/objective/selectedobjective
