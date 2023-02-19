@@ -342,24 +342,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
-				var/job = pick(
-					/datum/job/clf/leader,
-					/datum/job/clf/standard,
-					/datum/job/freelancer/leader,
-					/datum/job/freelancer/grenadier,
-					/datum/job/freelancer/standard,
-					/datum/job/upp/leader,
-					/datum/job/upp/heavy,
-					/datum/job/upp/standard,
-					/datum/job/som/ert/leader,
-					/datum/job/som/ert/veteran,
-					/datum/job/som/ert/standard,
-					/datum/job/pmc/leader,
-					/datum/job/pmc/standard,
-				)
-				var/datum/job/J = SSjob.GetJobType(job)
-				H.apply_assigned_role_to_spawn(J)
-				H.regenerate_icons()
+				do_eord_respawn(H)
 
 		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK

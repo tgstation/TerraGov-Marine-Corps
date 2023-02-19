@@ -96,16 +96,21 @@
 	set name = "EORD Respawn"
 	set category = "OOC"
 
+	var/mob/living/liver
 	if(isliving(usr))
-		var/mob/living/liver = usr
+		liver = usr
 		if(liver.health >= liver.health_threshold_crit)
 			to_chat(src, "You can only use this when you're dead or crit.")
 			return
 
+	if(liver)
+		do_eord_respawn(liver)
+
+/proc/do_eord_respawn(mob/living/respawner)
 
 	var/spawn_location = pick(GLOB.deathmatch)
 	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
-	mind.transfer_to(L, TRUE)
+	respawner.mind.transfer_to(L, TRUE)
 	L.mind.bypass_ff = TRUE
 	L.revive()
 
@@ -148,7 +153,6 @@
 				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/engineer) : SSjob.GetJobType(/datum/job/terragov/squad/engineer)
 			if(56 to 70)
 				// Corpsman
-				role = is_som ? SOM_SQUAD_CORPSMAN : SQUAD_CORPSMAN
 				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/medic) : subtypesof(/datum/outfit/quick/tgmc/corpsman)
 				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/medic) : SSjob.GetJobType(/datum/job/terragov/squad/corpsman)
 			if(70 to 85)
@@ -157,7 +161,6 @@
 				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/veteran) : SSjob.GetJobType(/datum/job/terragov/squad/smartgunner)
 			else
 				// Squad Leader
-				role = is_som ? SOM_SQUAD_LEADER : SQUAD_LEADER
 				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/squad_leader) : subtypesof(/datum/outfit/quick/tgmc/leader)
 				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/leader) : SSjob.GetJobType(/datum/job/terragov/squad/leader)
 
