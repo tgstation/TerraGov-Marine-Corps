@@ -552,6 +552,8 @@ GLOBAL_PROTECT(admin_verbs_log)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
+	if(check_other_rights(C, R_ADMIN, FALSE))
+		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE
 	return TRUE
