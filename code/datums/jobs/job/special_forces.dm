@@ -24,7 +24,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
-	head = /obj/item/clothing/head/modular/marine/m10x
+	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
 	r_store = /obj/item/storage/pouch/pistol
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid

@@ -17,6 +17,8 @@
 	var/burn_dam = 0
 	///Max damage the limb can take. Extremities sever when they have at least LIMB_MAX_DAMAGE_SEVER_RATIO as a fraction of this in brute damage.
 	var/max_damage = 0
+	///Amount of damage this limb regenerates per tick while treated before multi-limb regen penalty
+	var/base_regen = 2
 	var/max_size = 0
 	var/last_dam = -1
 	var/supported = FALSE
@@ -381,11 +383,11 @@
 	return 0
 
 //TODO limbs should probably be on slow process
-/datum/limb/process()
+/datum/limb/process(limb_regen_penalty)
 
 	// Process wounds, doing healing etc. Only do this every few ticks to save processing power
 	if(owner.life_tick % wound_update_accuracy == 0)
-		update_wounds()
+		update_wounds(limb_regen_penalty)
 
 	//Bone fractures
 	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
@@ -507,15 +509,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 ///Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds
-/datum/limb/proc/update_wounds()
+/datum/limb/proc/update_wounds(limb_regen_penalty = 1)
 
 	if((limb_status & LIMB_ROBOT)) //Robotic limbs don't heal or get worse.
 		return
+	if(brute_dam || burn_dam)
+		var/damage_ratio = brute_dam / (brute_dam + burn_dam)
+		if(limb_wound_status & LIMB_WOUND_BANDAGED)
+			brute_dam = brute_dam - base_regen * damage_ratio * limb_regen_penalty
+		if(burn_dam && limb_wound_status & LIMB_WOUND_SALVED)
+			burn_dam = burn_dam - base_regen * (1 - damage_ratio) * limb_regen_penalty
 
-	if(brute_dam && limb_wound_status & LIMB_WOUND_BANDAGED && prob(75))
-		brute_dam = max(0, brute_dam - 0.5)
-	if(burn_dam && limb_wound_status & LIMB_WOUND_SALVED && prob(75))
-		burn_dam = max(0, burn_dam - 0.5)
+	if(brute_dam < 0.1)
+		brute_dam = 0
+	if(burn_dam < 0.1)
+		burn_dam = 0
 
 	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
 		for(var/datum/wound/W in wounds)

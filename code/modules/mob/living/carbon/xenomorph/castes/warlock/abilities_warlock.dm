@@ -58,7 +58,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_BUSY
 	///The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
@@ -165,7 +164,7 @@
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, "alien_roar", 50)
+	playsound(owner, 'sound/voice/alien_roar_warlock.ogg', 25)
 
 	GLOB.round_statistics.psy_shield_blasts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")

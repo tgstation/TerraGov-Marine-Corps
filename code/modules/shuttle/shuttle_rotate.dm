@@ -11,7 +11,7 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 		//rotate our direction
 		setDir(angle2dir(rotation+dir2angle(dir)))
 
-		smooth_self() //resmooth if need be.
+		QUEUE_SMOOTH(src) //resmooth if need be.
 
 	//rotate the pixel offsets too.
 	if((pixel_x || pixel_y) && (params & ROTATE_OFFSET))

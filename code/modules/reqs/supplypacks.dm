@@ -1,4 +1,4 @@
-//SUPPLY PACKS
+//SUPPLY PACKS//SUPPLY PACKS
 //NOTE: only secure crate types use the access var (and are lockable)
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
@@ -182,12 +182,42 @@ WEAPONS
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "HSG-102 Mounted Heavy Smartgun"
 	contains = list(/obj/item/storage/box/tl102)
-	cost = 800
+	cost = 600
 
 /datum/supply_packs/weapons/m56d
 	name = "HSG-102 mounted heavy smartgun ammo"
 	contains = list(/obj/item/ammo_magazine/tl102)
-	cost = 100
+	cost = 30
+
+/datum/supply_packs/weapons/minigun_emplacement
+	name = "Mounted Automatic Minigun"
+	contains = list(/obj/item/weapon/gun/standard_minigun)
+	cost = 600
+
+/datum/supply_packs/weapons/minigun_ammo
+	name = "Mounted Minigun ammo"
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
+	cost = 30
+
+/datum/supply_packs/weapons/autocannon_emplacement
+	name = "Mounted Autocannon"
+	contains = list(/obj/item/weapon/gun/standard_auto_cannon)
+	cost = 700
+
+/datum/supply_packs/weapons/ac_ammo
+	name = "Mounted Autocannon HV ammo"
+	contains = list(/obj/item/ammo_magazine/auto_cannon)
+	cost = 40
+
+/datum/supply_packs/weapons/ac_ammo/flak
+	name = "Mounted Autocannon Smart-Detonating ammo"
+	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
+	cost = 40
+
+/datum/supply_packs/weapons/ac_ammo
+	name = "Mounted Autocannon SD ammo"
+	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
+	cost = 40
 
 /datum/supply_packs/weapons/ags_emplacement
 	name = "AGLS-37 Mounted Automated Grenade Launcher"
@@ -204,10 +234,15 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
 	cost = 40
 
+/datum/supply_packs/weapons/ags_incendiary
+	name = "AGLS-37 AGL White Phosphorous Grenades"
+	contains = list(/obj/item/ammo_magazine/standard_agls/incendiary)
+	cost = 40
+
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
-	cost = 600
+	cost = 800
 
 /datum/supply_packs/weapons/antitankgunammo
 	name = "AT-36 AP-HE Shell (x3)"
@@ -233,6 +268,24 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/beehive
+	name = "AT-36 Beehive Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+		/obj/item/ammo_magazine/standard_atgun/beehive,
+	)
+	cost = 20
+
+/datum/supply_packs/weapons/antitankgunammo/incendiary
+	name = "AT-36 Napalm Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
+		/obj/item/ammo_magazine/standard_atgun/incend,
 	)
 	cost = 20
 
@@ -283,7 +336,7 @@ WEAPONS
 /datum/supply_packs/weapons/shell_heat
 	name = "RL-160 HEAT shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/heat)
-	cost = 3
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/shell_smoke
@@ -478,7 +531,7 @@ WEAPONS
 /datum/supply_packs/weapons/hmg
 	name = "HMG-08 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
-	cost = 300
+	cost = 400
 
 /datum/supply_packs/weapons/hmg_ammo
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
@@ -558,6 +611,13 @@ WEAPONS
 	name = "Mateba packet"
 	contains = list(/obj/item/ammo_magazine/packet/mateba)
 	cost = 120
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/magnum
+	name = "R-76 Magnum"
+	contains = list(/obj/item/weapon/gun/revolver/standard_magnum)
+	notes = "Ammo is contained within normal marine vendors."
+	cost = 75
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/standard_ammo
@@ -814,6 +874,7 @@ ARMOR
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
 	cost = 400
 
@@ -850,6 +911,13 @@ ARMOR
 	name = "Jaeger Hlin module"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
+
+/datum/supply_packs/armor/modular/attachments/artemis_mark_two
+	name = "Artemis Mark 2 helmet module"
+	contains = list(
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
+	)
+	cost = 40
 
 /*******************************************************************************
 CLOTHING
@@ -897,7 +965,7 @@ CLOTHING
 /datum/supply_packs/clothing/marine_outfits
 	name = "marine outfit"
 	contains = list(
-		/obj/item/clothing/under/marine/standard,
+		/obj/item/clothing/under/marine,
 		/obj/item/storage/belt/marine,
 		/obj/item/storage/backpack/marine/standard,
 		/obj/item/clothing/shoes/marine,
@@ -1406,6 +1474,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/mkh)
 	cost = 10
 
+/datum/supply_packs/imports/garand
+	name = "CAU C1 Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/garand)
+	cost = 50
+
+/datum/supply_packs/imports/garand/ammo
+	name = "CAU C1 Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/garand)
+	cost = 10
+
 /datum/supply_packs/imports/judge
 	name = "Judge Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/judge)
@@ -1594,20 +1672,10 @@ VEHICLES
 	contains = list(/obj/structure/dropship_equipment/mg_holder)
 	cost = 500
 
-/datum/supply_packs/vehicles/mounted_dualcannon
-	name = "Mounted Dualcannon"
-	contains = list(/obj/structure/dropship_equipment/dualcannon_holder)
-	cost = 600
-
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
 	contains = list(/obj/structure/dropship_equipment/heavylaser_holder)
 	cost = 900
-
-/datum/supply_packs/vehicles/mounted_minigun
-	name = "Mounted Automatic Minigun"
-	contains = list(/obj/structure/dropship_equipment/minigun_holder)
-	cost = 750
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
@@ -1617,19 +1685,7 @@ VEHICLES
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
 	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
-	cost = 300
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/vehicles/dc_ammo
-	name = "Mounted Dualcannon ammo"
-	contains = list(/obj/item/ammo_magazine/dual_cannon)
-	cost = 30
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/vehicles/minigun_ammo
-	name = "Mounted Minigun ammo"
-	contains = list(/obj/item/ammo_magazine/heavy_minigun)
-	cost = 30
+	cost = 100
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo
@@ -1730,6 +1786,26 @@ FACTORY
 /datum/supply_packs/factory/light_recoilless_refill
 	name = "Recoilless light missile assembly refill"
 	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/heat_recoilless_refill
+	name = "Recoilless heat missile assembly refill"
+	contains = list(/obj/item/factory_refill/heat_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/smoke_recoilless_refill
+	name = "Recoilless smoke missile assembly refill"
+	contains = list(/obj/item/factory_refill/smoke_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/cloak_recoilless_refill
+	name = "Recoilless cloak missile assembly refill"
+	contains = list(/obj/item/factory_refill/cloak_rr_missile_refill)
+	cost = 300
+
+/datum/supply_packs/factory/tfoot_recoilless_refill
+	name = "Recoilless tfoot missile assembly refill"
+	contains = list(/obj/item/factory_refill/tfoot_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/pizzarefill
@@ -1876,3 +1952,8 @@ FACTORY
 	name = "MLRS High Explosive rocket assembly refill"
 	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
 	cost = 240
+
+/datum/supply_packs/factory/thermobaric_wp_refill
+	name = "RL-57 Thermobaric WP rocket array assembly refill"
+	contains = list(/obj/item/factory_refill/thermobaric_wp_refill)
+	cost = 500

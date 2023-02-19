@@ -9,6 +9,7 @@
 	game_timer_delay = 0
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()

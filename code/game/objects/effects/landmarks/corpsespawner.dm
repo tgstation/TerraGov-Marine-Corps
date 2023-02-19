@@ -479,11 +479,11 @@
 
 /obj/effect/landmark/corpsespawner/marine
 	name = "Marine"
-	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpseuniform = /obj/item/clothing/under/marine
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/satchel
 	corpsemask = /obj/item/clothing/mask/rebreather
-	corpsehelmet = /obj/item/clothing/head/modular/marine/m10x
+	corpsehelmet = /obj/item/clothing/head/modular/m10x
 	corpsegloves = /obj/item/clothing/gloves/marine
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tool/lighter/zippo
@@ -496,7 +496,7 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
-	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpseuniform = /obj/item/clothing/under/marine
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/marine/engineerpack
 	corpsemask = /obj/item/clothing/mask/gas/tactical

@@ -12,9 +12,6 @@
 		"Half" = "_h",
 	)
 
-/obj/item/clothing/under/marine/standard
-	flags_item_map_variant = null
-
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
@@ -23,9 +20,6 @@
 /obj/item/clothing/under/marine/camo
 	name = "\improper TGMC camo fatigues (jungle)"
 	icon_state = "m_marine_jumpsuit"
-	adjustment_variants = list(
-		"Down" = "_d",
-	)
 
 /obj/item/clothing/under/marine/camo/snow
 	name = "\improper TGMC camo fatigues (snow)"

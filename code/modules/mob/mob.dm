@@ -6,9 +6,8 @@
 	for(var/alert in alerts)
 		clear_alert(alert, TRUE)
 	if(length(observers))
-		for(var/i in observers)
-			var/mob/dead/D = i
-			D.reset_perspective(null)
+		for(var/mob/dead/observes AS in observers)
+			observes.reset_perspective(null)
 	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
@@ -736,28 +735,30 @@
 
 
 // reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
-// reset_perspective() set eye to common default : mob on turf, loc otherwise
-/mob/proc/reset_perspective(atom/A)
+// reset_perspective(null) set eye to common default : mob on turf, loc otherwise
+/mob/proc/reset_perspective(atom/new_eye)
 	if(!client)
 		return
 
-	if(A)
-		if(ismovableatom(A))
-			//Set the the thing unless it's us
-			if(A != src)
+	if(new_eye)
+		if(ismovable(new_eye))
+			//Set the new eye unless it's us
+			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = A
+				client.eye = new_eye
 			else
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
-		else if(isturf(A))
+		else if(isturf(new_eye))
 			//Set to the turf unless it's our current turf
-			if(A != loc)
+			if(new_eye != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = A
+				client.eye = new_eye
 			else
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
+		else
+			return TRUE //no setting eye to stupid things like areas or whatever
 	else
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
@@ -766,9 +767,7 @@
 		else
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
-
 	return TRUE
-
 
 /mob/proc/update_joined_player_list(newname, oldname)
 	if(newname == oldname)
@@ -859,11 +858,10 @@
 	. = stat //old stat
 	stat = new_stat
 
-///Clears the client in contents list of our current "eye". Prevents hard deletes
+///clears the client mob in our client_mobs_in_contents list
 /mob/proc/clear_client_in_contents()
-	if(client?.movingmob) //In the case the client was transferred to another mob and not deleted.
-		client.movingmob.client_mobs_in_contents -= src
-		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
+	if(client?.movingmob)
+		LAZYREMOVE(client.movingmob.client_mobs_in_contents, src)
 		client.movingmob = null
 
 /mob/onTransitZ(old_z, new_z)

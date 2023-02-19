@@ -22,7 +22,6 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,
-		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list(
 		/obj/item/stack/razorwire,
@@ -76,7 +75,6 @@
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
-		/obj/item/tool/surgery/solderingtool,
 		/obj/item/whistle,
 	)
 
@@ -130,13 +128,19 @@
 	new /obj/item/weapon/gun/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
-	storage_slots = 1
-	max_w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 4
+	max_storage_space = 10
+	max_w_class = 4
+	storage_type_limits = list(/obj/item/weapon/gun = 1)
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/armor_module/storage/uniform/holster/armpit

@@ -53,6 +53,7 @@
 #define MODE_NO_PERMANENT_WOUNDS (1<<17)
 #define MODE_SPAWNING_MINIONS (1<<18)
 #define MODE_SOM_OPFOR (1<<19)
+#define MODE_ALLOW_XENO_QUICKBUILD (1<<20)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<1)
@@ -165,5 +166,5 @@
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.1
 
-#define SENSOR_CAP_ADDITION_TIME_BONUS 5 MINUTES //additional time granted by capturing a sensor tower
+#define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"

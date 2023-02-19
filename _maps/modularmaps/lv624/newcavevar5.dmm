@@ -25,11 +25,6 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"cO" = (
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
 "dp" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
@@ -105,7 +100,7 @@
 /area/lv624/ground/caves/central2)
 "jb" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "jl" = (
 /obj/structure/closet/cabinet,
@@ -124,11 +119,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
-"kp" = (
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "kE" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/iron{
@@ -153,11 +143,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"lb" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
 /area/lv624/ground/caves/central2)
 "lu" = (
 /obj/structure/closet/crate,
@@ -205,11 +190,6 @@
 "ph" = (
 /turf/open/floor/wood/broken/two,
 /area/lv624/ground/caves/central2)
-"pi" = (
-/turf/open/ground/coast/corner2{
-	dir = 8
-	},
-/area/lv624/ground/caves/central2)
 "pD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -226,11 +206,6 @@
 /obj/item/flashlight/lantern,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"pR" = (
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
 /area/lv624/ground/caves/central2)
 "qq" = (
 /turf/open/floor/tile/dark,
@@ -311,9 +286,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
-"ve" = (
-/turf/open/ground/coast/corner,
-/area/lv624/ground/caves/central2)
 "vi" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/wood/broken/six,
@@ -337,7 +309,7 @@
 /area/lv624/ground/caves/central1)
 "vz" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "vE" = (
 /turf/open/floor/wood/broken/four,
@@ -386,9 +358,7 @@
 /area/lv624/ground/caves/central1)
 "zz" = (
 /obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 5
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "zK" = (
 /obj/machinery/miner/damaged/platinum,
@@ -433,7 +403,7 @@
 /area/lv624/ground/caves/central2)
 "Ge" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Gm" = (
 /obj/item/ammo_casing/shell,
@@ -458,9 +428,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"Hb" = (
-/turf/open/ground/river,
 /area/lv624/ground/caves/central2)
 "Hl" = (
 /obj/structure/closet/crate/freezer/rations,
@@ -529,16 +496,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"KG" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
-"Ln" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/caves/central2)
 "Md" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/machinegun,
@@ -588,18 +545,10 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"QN" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "QO" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"QX" = (
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
 "RA" = (
 /obj/effect/spawner/random/trash,
 /turf/open/floor/wood,
@@ -613,9 +562,7 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "TR" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "UI" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -1100,10 +1047,10 @@ vk
 GF
 Yv
 Yv
-ve
-QN
-QN
-pR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1134,12 +1081,12 @@ vk
 vk
 GF
 pE
-ve
 TR
-Hb
-Hb
+TR
+TR
+TR
 zz
-pR
+TR
 Hy
 Yv
 Yv
@@ -1169,12 +1116,12 @@ vk
 GF
 GF
 Yv
-QX
-Hb
+TR
+TR
 Ge
-Hb
-Hb
-KG
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1204,12 +1151,12 @@ GF
 GF
 Yv
 Hy
-QX
-Hb
-Hb
-Hb
-Hb
-KG
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 GF
@@ -1239,12 +1186,12 @@ GF
 Yv
 Yv
 Yv
-QX
-Hb
+TR
+TR
 vz
-Hb
-Hb
-KG
+TR
+TR
+TR
 Yv
 Yv
 GF
@@ -1274,12 +1221,12 @@ GF
 Yv
 Yv
 pE
-QX
-Hb
-Hb
-Hb
+TR
+TR
+TR
+TR
 vz
-KG
+TR
 Hy
 Yv
 Yv
@@ -1308,13 +1255,13 @@ vk
 GF
 Hy
 pE
-ve
 TR
-Hb
-Hb
-Hb
-Hb
-KG
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1343,13 +1290,13 @@ vk
 GF
 Yv
 Yv
-QX
-Hb
-Hb
+TR
+TR
+TR
 jb
-Hb
-Hb
-KG
+TR
+TR
+TR
 Yv
 Yv
 UU
@@ -1378,14 +1325,14 @@ GF
 GF
 Yv
 Yv
-QX
-Hb
-Hb
-Hb
-Hb
-Hb
-Ln
-pR
+TR
+TR
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Mk
@@ -1413,14 +1360,14 @@ GF
 GF
 Yv
 pE
-QX
-Hb
-Hb
-Hb
-Hb
+TR
+TR
+TR
+TR
+TR
 Ge
-Hb
-KG
+TR
+TR
 Yv
 Yv
 Yv
@@ -1448,14 +1395,14 @@ GF
 GF
 Hy
 Yv
-QX
-Hb
+TR
+TR
 vz
-Hb
-Hb
-Hb
-Hb
-KG
+TR
+TR
+TR
+TR
+TR
 Yv
 GF
 GF
@@ -1483,14 +1430,14 @@ vk
 GF
 Yv
 Yv
-QX
-Hb
-Hb
-Hb
-Hb
-Hb
+TR
+TR
+TR
+TR
+TR
+TR
 vz
-KG
+TR
 Hy
 GF
 GF
@@ -1518,14 +1465,14 @@ vk
 GF
 Yv
 Yv
-QX
-Hb
-Hb
-Hb
-Hb
-pi
-lb
-kp
+TR
+TR
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1553,12 +1500,12 @@ vk
 GF
 GF
 Hy
-QX
-Hb
+TR
+TR
 jb
-Hb
-pi
-kp
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1588,11 +1535,11 @@ vk
 vk
 GF
 Yv
-QX
-Hb
-Hb
-pi
-kp
+TR
+TR
+TR
+TR
+TR
 Yv
 Hy
 Yv
@@ -1623,10 +1570,10 @@ vk
 vk
 GF
 pE
-cO
-lb
-lb
-kp
+TR
+TR
+TR
+TR
 Yv
 Yv
 zK
