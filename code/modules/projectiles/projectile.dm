@@ -800,7 +800,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		var/pitch = 0
-		if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY)
+		if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
 			pitch = 55000
 		if(proj.ammo.sound_miss)
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
@@ -1300,7 +1300,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 	if(prob(65))
 		var/pitch = 0
-		if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
+		if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
 			pitch = 55000
 		if(P.ammo.sound_bounce)
 			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
