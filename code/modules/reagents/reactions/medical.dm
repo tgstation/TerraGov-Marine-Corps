@@ -222,3 +222,8 @@
 	name = "Stimulum"
 	results = list(/datum/reagent/medicine/research/stimulon = 1)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)
+
+/datum/chemical_reaction/roulettium
+	name = "Roulettium"
+	results = list(/datum/reagent/medicine/roulettium = 1)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 52, /datum/reagent/medicine/kelotane = 58, /datum/reagent/medicine/meralyne = 33, /datum/reagent/medicine/dermaline = 27, /datum/reagent/medicine/synaptizine = 20, /datum/reagent/medicine/leporazine = 5, /datum/reagent/medicine/tricordrazine = 29, /datum/reagent/medicine/dexalinplus = 1, /datum/reagent/medicine/clonexadone = 5, /datum/reagent/toxin/mutagen = 7, /datum/reagent/space_drugs = 33, /datum/reagent/toxin/mindbreaker = 29, /datum/reagent/consumable/sodiumchloride = 1)

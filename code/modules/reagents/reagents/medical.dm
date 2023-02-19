@@ -1141,7 +1141,8 @@
 	L.adjustStaminaLoss(-30*effect_str)
 	L.AdjustStun(-100)
 	if(prob(5))
-		L.adjustBruteLoss(1200*effect_str) //the big oof. No, it's not kill or gib, I want them to nugget.
+		to_chat(L, "EVERY INSTANCE, EVERY MOMENT, THE PURE UNGA, THE PURE REALITY AS IT SPEAKS THROUGHOUT THE UNIVERSE AND FLOWS INTO YOUR MIND. YOU SEE ALL. THE POWER OF UNGA FLOWS SO DEEPLY THROUGH YOU THAT THE SEAMS THAT HOLD YOUR MERE MORTAL BODY CANNOT HOLD TOGETHER, YOU EXPLODE INTO A THOUSAND PIECES AND FALL INTO THE REALM OF FOREVERMORE.. The SHADOWREALM.")
+		L.gib() // Death.
 
 /datum/reagent/medicine/lemoline
 	name = "Lemoline"
