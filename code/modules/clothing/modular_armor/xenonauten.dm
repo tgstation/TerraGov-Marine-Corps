@@ -6,7 +6,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
 	icon_state = "xenonauten_medium"
 	item_state = "xenonauten_medium"
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -62,7 +62,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	icon_state = "xenonauten_light"
 	item_state = "xenonauten_light"
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/xenonauten/light/shield
 	starting_attachments = list(/obj/item/armor_module/module/eshield)
@@ -73,7 +73,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	icon_state = "xenonauten_heavy"
 	item_state = "xenonauten_heavy"
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	starting_attachments = list(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/storage/general)

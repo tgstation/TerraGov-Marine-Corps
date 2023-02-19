@@ -7,7 +7,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
 	icon_state = "infantry"
 	item_state = "infantry"
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -68,7 +68,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	icon_state = "scout"
 	item_state = "scout"
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/jaeger/light/skirmisher
 	name = "\improper Jaeger Skirmisher light exoskeleton"
@@ -84,7 +84,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	icon_state = "gungnir"
 	item_state = "gungnir"
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/modular/jaeger/heavy/assault
 	name = "\improper Jaeger Assault heavy exoskeleton"

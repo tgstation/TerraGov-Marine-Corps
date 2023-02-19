@@ -6,7 +6,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	icon_state = "som_medium"
 	item_state = "som_medium"
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -46,7 +46,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 65, LASER = 55, ENERGY = 55, BOMB = 45, BIO = 50, FIRE = 50, ACID = 45)
 	icon_state = "som_light"
 	item_state = "som_light"
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/som/light/shield
 	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
@@ -58,7 +58,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 50, FIRE = 60, ACID = 55)
 	icon_state = "som_heavy"
 	item_state = "som_heavy"
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/modular/som/heavy/pyro
 	starting_attachments = list(
