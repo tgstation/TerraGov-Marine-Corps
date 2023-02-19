@@ -102,6 +102,7 @@
 			to_chat(src, "You can only use this when you're dead or crit.")
 			return
 
+
 	var/spawn_location = pick(GLOB.deathmatch)
 	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
 	mind.transfer_to(L, TRUE)
@@ -109,23 +110,68 @@
 	L.revive()
 
 	var/mob/living/carbon/human/H = L
-	var/job = pick(
-		/datum/job/clf/leader,
-		/datum/job/clf/standard,
-		/datum/job/freelancer/leader,
-		/datum/job/freelancer/grenadier,
-		/datum/job/freelancer/standard,
-		/datum/job/upp/leader,
-		/datum/job/upp/heavy,
-		/datum/job/upp/standard,
-		/datum/job/som/ert/leader,
-		/datum/job/som/ert/veteran,
-		/datum/job/som/ert/standard,
-		/datum/job/pmc/leader,
-		/datum/job/pmc/standard,
+	// List of base choosable factions, taken job is a subtype of these.
+	var/list/static/base_faction_list = list(
+		/datum/job/clf,
+		/datum/job/freelancer,
+		/datum/job/upp,
+		/datum/job/pmc,
+		/datum/job/special_forces,
 	)
-	var/datum/job/J = SSjob.GetJobType(job)
-	H.apply_assigned_role_to_spawn(J)
+
+	// List of HvH factions - these are handled differently, using the quick loadout outfits.
+	var/list/static/hvh_faction_list = list(/datum/job/som, /datum/job/terragov)
+	// List of rare factions, not common because they're funny in moderation / stronk.
+	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton)
+
+
+	var/total_list = base_faction_list + hvh_faction_list
+
+	if(prob(7))
+		total_list = rare_faction_list
+
+	var/datum/job/result = pick(total_list)
+	if(result in hvh_faction_list)
+		var/is_som = FALSE
+		if(result == /datum/job/som)
+			is_som = TRUE
+		var/job_type
+		var/list/possible_outfits
+		switch(rand(100))
+			if(1 to 40)
+				// Standard
+				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/marine) : subtypesof(/datum/outfit/quick/tgmc/marine)
+				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/standard) : SSjob.GetJobType(/datum/job/terragov/squad/standard)
+			if(41 to 55)
+				// Engineer
+				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/engineer) : subtypesof(/datum/outfit/quick/tgmc/engineer)
+				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/engineer) : SSjob.GetJobType(/datum/job/terragov/squad/engineer)
+			if(56 to 70)
+				// Corpsman
+				role = is_som ? SOM_SQUAD_CORPSMAN : SQUAD_CORPSMAN
+				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/medic) : subtypesof(/datum/outfit/quick/tgmc/corpsman)
+				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/medic) : SSjob.GetJobType(/datum/job/terragov/squad/corpsman)
+			if(70 to 85)
+				// Specialist
+				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/veteran) : subtypesof(/datum/outfit/quick/tgmc/smartgunner)
+				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/veteran) : SSjob.GetJobType(/datum/job/terragov/squad/smartgunner)
+			else
+				// Squad Leader
+				role = is_som ? SOM_SQUAD_LEADER : SQUAD_LEADER
+				possible_outfits = is_som ? subtypesof(/datum/outfit/quick/som/squad_leader) : subtypesof(/datum/outfit/quick/tgmc/leader)
+				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/leader) : SSjob.GetJobType(/datum/job/terragov/squad/leader)
+
+		var/datum/job/J = job_type
+		H.apply_assigned_role_to_spawn(J)
+
+		var/datum/outfit/quick/picked_outfit = pick(possible_outfits)
+		picked_outfit = new picked_outfit
+		picked_outfit.equip(H, visualsOnly = FALSE)
+	else
+		result = pick(subtypesof(result))
+		var/datum/job/J = SSjob.GetJobType(result)
+		H.apply_assigned_role_to_spawn(J)
+
 	H.regenerate_icons()
 
 	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
