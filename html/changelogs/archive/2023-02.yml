@@ -241,3 +241,28 @@
   - bugfix: fixed mosin scope not appearing on hand
   Xander3359:
   - imageadd: Packet sprites suck less.
+2023-02-18:
+  Lumipharon:
+  - bugfix: fixed various minor gun and status bugs
+  - refactor: refactored accuracy and scatter calculations for projectiles
+  - balance: Offguard duration changed to 10 seconds, effect no longer decreases over
+      time
+  carlarctg:
+  - rscadd: Added a new Artemis helmet module to the base vendors that protects from
+      eye blurring.
+  - rscadd: Added a upgraded Mk. 2 Artemis module to Req, purchasable for 40 points
+      or included in the experimental modules crate.
+2023-02-19:
+  Arturlang:
+  - bugfix: Evolution doesn't check the evolving xeno's tier when checking if there
+      are enough tier slots, instead it checks the tier of the  caste the xeno is
+      evolving to.
+  Barnet2:
+  - balance: cable mat cost changed to 5
+  QualityVan:
+  - rscadd: 'Maintenance mode for robots: disable yourself for five seconds to heal
+      up to 20 damage.'
+  - bugfix: Fixed blindness not clearing properly if you tried to remove it a certain
+      way.
+  Xander3359:
+  - balance: shoulder holster webbing can hold carry some additional pistol magazines.

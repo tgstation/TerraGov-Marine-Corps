@@ -350,8 +350,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-	overlays_standing[HAIR_LAYER] = mutable_appearance(face_standing, layer =-HAIR_LAYER)
+	var/mutable_appearance/hair_final = mutable_appearance(face_standing, layer =-HAIR_LAYER)
 
+	if(head?.flags_inv_hide & HIDE_EXCESS_HAIR)
+		var/image/mask = image('icons/mob/human_face.dmi', null, "Jeager_Mask")
+		mask.render_target = "*[REF(src)]"
+		hair_final.overlays += mask
+		hair_final.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*[REF(src)]")))
+
+	overlays_standing[HAIR_LAYER] = hair_final
 	apply_overlay(HAIR_LAYER)
 
 //Call when target overlay should be added/removed

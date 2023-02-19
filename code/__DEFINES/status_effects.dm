@@ -69,6 +69,8 @@
 
 #define STATUS_EFFECT_INTOXICATED /datum/status_effect/stacking/intoxicated //Damage over time
 
+#define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
+
 /////////////
 // NEUTRAL //
 /////////////
