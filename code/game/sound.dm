@@ -153,6 +153,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg')
 		if("explosion_large")
 			S = pick('sound/effects/explosion_large1.ogg','sound/effects/explosion_large2.ogg','sound/effects/explosion_large3.ogg','sound/effects/explosion_large4.ogg','sound/effects/explosion_large5.ogg','sound/effects/explosion_large6.ogg')
+		if("explosion_micro")
+			S = pick('sound/effects/explosion_micro1.ogg','sound/effects/explosion_micro2.ogg','sound/effects/explosion_micro3.ogg')
 		if("explosion_small")
 			S = pick('sound/effects/explosion_small1.ogg','sound/effects/explosion_small2.ogg','sound/effects/explosion_small3.ogg','sound/effects/explosion_small4.ogg')
 		if("explosion_med")
