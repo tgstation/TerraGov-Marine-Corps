@@ -174,7 +174,7 @@
 	name = "Spiderling Mark"
 	ability_name = "spiderling_mark"
 	desc = "Send your spawn on a human"
-	action_icon_state = "hunter_mark"
+	action_icon_state = "spiderling_mark"
 	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
@@ -194,8 +194,7 @@
 	if(isnull(create_spiderling_action.spiderlings))
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
-	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action?.spiderlings)
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
 		var/datum/component/ai_controller/spiderling_ai = spiderling.GetComponent(/datum/component/ai_controller)
 		var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
 		spiderling_behavior.go_to_target(target = victim)
