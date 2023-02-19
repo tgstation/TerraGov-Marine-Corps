@@ -113,7 +113,7 @@
 //marine hats
 /obj/item/clothing/head/modular/style/beret
 	name = "TGMC beret"
-	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Typically reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon_state = "tgmc_beret"
 
 	icon_state_variants = list(
@@ -131,7 +131,7 @@
 
 /obj/item/clothing/head/modular/style/classic_beret
 	name = "TGMC beret (classic)"
-	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Typically reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
+	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
 	icon_state = "classic_beret"
 
 	icon_state_variants = list(
