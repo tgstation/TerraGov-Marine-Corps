@@ -54,6 +54,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	else
 		target = new_target.mind
 
+	update_explanation_text()
+
 /**
  * Checks if the passed mind is considered "escaped".
  *
@@ -126,8 +128,13 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 	if(!target)
-		var/mob/living/selectedtarget = pick(GLOB.mob_living_list) //last resort, just pick somebody living
-		target = selectedtarget.mind
+		var/mob/living/M
+		for(M in GLOB.mob_list)
+			if(M.mind == null)
+				continue
+			else
+				target = M.mind
+		//target = selectedtarget.mind
 	update_explanation_text()
 	return target
 
@@ -219,8 +226,14 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	..()
 
 /datum/objective/maroon/check_completion()
-	var/turf/current_turf = get_turf(target)
-	return !target || !isliving(target) || (!is_mainship_level(current_turf) && (SSticker.mode.round_finished == MODE_INFESTATION_X_MINOR||MODE_INFESTATION_X_MINOR))
+	var/turf/current_turf = get_turf(target.current)
+	if(!target)
+		return
+	if(!isliving(target.current))
+		return
+	if(is_mainship_level(current_turf.z))
+		return
+	return TRUE
 
 /datum/objective/maroon/update_explanation_text()
 	if(target == null)
@@ -228,7 +241,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		return
 	var/mob/living/livingtarget = target.current
 	if(target && target.current)
-		explanation_text = "Strand [livingtarget.name], the [livingtarget.job], on the planet."
+		explanation_text = "Make sure [livingtarget.name], the [livingtarget.job.title], is planetside at the end of the operation."
 	else
 		explanation_text = "Free Objective"
 
@@ -261,8 +274,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Free Objective"
 
 /datum/objective/assassinate/admin_edit(mob/admin)
-	find_target()
-//	admin_simple_target_pick(admin)
+	admin_simple_target_pick(admin)
 
 GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal
@@ -348,12 +360,12 @@ GLOBAL_LIST_EMPTY(possible_items)
 	team_explanation_text = "Make sure the operation is a failure, do not get your hands dirty."
 
 /datum/objective/loseoperation/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(SSticker.mode.round_finished == MODE_INFESTATION_M_MINOR||MODE_INFESTATION_M_MINOR)
-			return TRUE
-		else
-			return FALSE
+	if(SSticker.mode.round_finished == MODE_INFESTATION_X_MINOR)
+		return TRUE
+	else if(SSticker.mode.round_finished == MODE_INFESTATION_X_MAJOR)
+		return TRUE
+	else
+		return FALSE
 
 /datum/objective/winoperation
 	name = "win operation"
@@ -361,9 +373,9 @@ GLOBAL_LIST_EMPTY(possible_items)
 	team_explanation_text = "Make sure the operation is a success."
 
 /datum/objective/winoperation/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(SSticker.mode.round_finished == MODE_INFESTATION_M_MINOR||MODE_INFESTATION_M_MINOR)
-			return TRUE
-		else
-			return FALSE
+	if(SSticker.mode.round_finished == MODE_INFESTATION_M_MINOR)
+		return TRUE
+	else if(SSticker.mode.round_finished == MODE_INFESTATION_M_MAJOR)
+		return TRUE
+	else
+		return FALSE

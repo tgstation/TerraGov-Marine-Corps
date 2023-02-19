@@ -2,9 +2,9 @@
 #define TRAITOR_AI	  "AI"
 
 /datum/antagonist/corporate_liason
-	name = "Traitor"
+	name = "Corporate Liason"
 	roundend_category = "traitors"
-	var/employer = "The Syndicate"
+	var/employer = "Nanotrasen"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
@@ -50,7 +50,7 @@
 			var/datum/objective/winoperation/winoperation_objective = new
 			selectedobjective =	winoperation_objective
 		if(selectedobjective == /datum/objective/loseoperation)
-			var/datum/objective/maroon/loseoperation_objective = new
+			var/datum/objective/loseoperation/loseoperation_objective = new
 			selectedobjective =	loseoperation_objective
 		if(selectedobjective == /datum/objective/survive)
 			var/datum/objective/survive/survive_objective = new
@@ -70,7 +70,8 @@
 	.=1
 	var/list/objectivelist
 	objectivelist = list(
-		/datum/objective/maroon = 7,
+		/datum/objective/maroon = 2,
+		/datum/objective/assassinate = 7,
 		/datum/objective/steal = 2,
 	)
 	var/datum/objective/selectedobjective
@@ -82,7 +83,7 @@
 	if(selectedobjective == /datum/objective/maroon)
 		var/datum/objective/maroon/maroon_objective = new
 		selectedobjective =	maroon_objective
-	if(selectedobjective == /datum/objective/maroon)
+	if(selectedobjective == /datum/objective/assassinate)
 		var/datum/objective/assassinate/assassinate_objective = new
 		selectedobjective =	assassinate_objective
 

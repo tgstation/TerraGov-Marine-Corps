@@ -1415,3 +1415,24 @@
 		return
 	target_mind.traitor_panel()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Objective Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/validate_objectives()
+	set category = "Debug"
+	set name = "Validate all player objectives"
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+
+		to_chat(usr,"[A.owner.key]")
+		to_chat(usr,"[A.owner.name]")
+		to_chat(usr,"[A.type]")
+		to_chat(usr,"[A.name]")
+
+		if(A.objectives.len)
+			for(var/datum/objective/O in A.objectives)
+				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				to_chat(usr,"--------------------------------")
+				to_chat(usr,"[O.type]")
+				to_chat(usr,"---------------------------------")
+				to_chat(usr,"[O.explanation_text] = [result]")
+				to_chat(usr,"----------------------------------")

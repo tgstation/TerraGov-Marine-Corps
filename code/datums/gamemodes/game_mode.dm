@@ -629,6 +629,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	var/area/A = get_area(player.new_character)
+	addtimer(CALLBACK(player.new_character.mind, /datum/mind/.proc/add_antag_datum, /datum/antagonist/corporate_liason), 10.5 SECONDS)
 	deadchat_broadcast(span_game(" has woken at [span_name("[A?.name]")]."), span_game("[span_name("[player.new_character.real_name]")] ([job.title])"), follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
 
@@ -781,7 +782,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			if(ishuman(M))
 				parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 				var/turf/current_turf = get_turf(M)
-				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR||MODE_INFESTATION_X_MINOR))
+				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MAJOR))
+					parts += "<div class='panel stationborder'>"
+					parts += "<span class='marooned'>You managed to survive, but were marooned on [SSmapping.configs[GROUND_MAP].map_name]...</span>"
+				else if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR))
 					parts += "<div class='panel stationborder'>"
 					parts += "<span class='marooned'>You managed to survive, but were marooned on [SSmapping.configs[GROUND_MAP].map_name]...</span>"
 				else
