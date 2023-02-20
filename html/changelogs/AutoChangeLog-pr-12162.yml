@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "SOM forces now have access to the V-34 carbine"
+  - rscadd: "Cross compatible MPI and V-34 styles and magazines"
