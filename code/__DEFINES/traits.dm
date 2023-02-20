@@ -200,3 +200,6 @@
 
 //this mech is melee core boosted
 #define TRAIT_MELEE_CORE "melee_core"
+
+//added to escaped humans
+#define TRAIT_HAS_ESCAPED "escaped_marine"

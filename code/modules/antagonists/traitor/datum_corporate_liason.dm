@@ -43,7 +43,9 @@
 			/datum/objective/loseoperation = 1,
 			/datum/objective/winoperation = 2,
 			/datum/objective/survive = 7,
+			/datum/objective/escape = 2,
 		)
+
 		var/datum/objective/selectedobjective = pick_weight_recursive(objectivelist)
 		selectedobjective = pick_weight_recursive(objectivelist)
 		if(selectedobjective == /datum/objective/winoperation)
@@ -55,24 +57,24 @@
 		if(selectedobjective == /datum/objective/survive)
 			var/datum/objective/survive/survive_objective = new
 			selectedobjective =	survive_objective
+		if(selectedobjective == /datum/objective/escape)
+			var/datum/objective/escape/escape_objective = new
+			selectedobjective =	escape_objective
+
 		selectedobjective.owner = owner
 		add_objective(selectedobjective)
 		return
 
-
-/*	if(!(locate(/datum/objective/survive) in objectives))
-		var/datum/objective/survive/survive_objective = new
-		survive_objective.owner = owner
-		add_objective(survive_objective)
-		return
-*/
 /datum/antagonist/corporate_liason/proc/forge_single_human_objective() //Returns how many objectives are added
 	.=1
 	var/list/objectivelist
 	objectivelist = list(
-		/datum/objective/maroon = 2,
-		/datum/objective/assassinate = 7,
-		/datum/objective/steal = 2,
+		/datum/objective/maroon = 1,
+		/datum/objective/assassinate = 4,
+		/datum/objective/steal = 3,
+		/datum/objective/protect = 3,
+		/datum/objective/kidnap = 3,
+		/datum/objective/gather_cash = 3,
 	)
 	var/datum/objective/selectedobjective
 	selectedobjective = pick_weight_recursive(objectivelist)
@@ -86,6 +88,16 @@
 	if(selectedobjective == /datum/objective/assassinate)
 		var/datum/objective/assassinate/assassinate_objective = new
 		selectedobjective =	assassinate_objective
+	if(selectedobjective == /datum/objective/protect)
+		var/datum/objective/protect/protect_objective = new
+		selectedobjective =	protect_objective
+	if(selectedobjective == /datum/objective/kidnap)
+		var/datum/objective/kidnap/kidnap_objective = new
+		selectedobjective =	kidnap_objective
+	if(selectedobjective == /datum/objective/gather_cash)
+		var/datum/objective/gather_cash/gather_cash_objective = new
+		selectedobjective =	gather_cash_objective
+		update_explanation_text()
 
 	selectedobjective.find_target()
 	selectedobjective.owner = owner

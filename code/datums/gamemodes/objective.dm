@@ -64,23 +64,21 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
  * Escaped includes minds with alive, non-exiled mobs generally.
  */
 
-/* /proc/considered_escaped(datum/mind/escapee)
+/proc/considered_escaped(datum/mind/escapee)
 	if(!considered_alive(escapee))
 		return FALSE
-	if(considered_exiled(escapee))
+	//if(SSticker.force_ending) // Just let them win.
+		//return TRUE
+	var/area/current_area = get_area(escapee)
+	if(!current_area)
 		return FALSE
-	if(escapee.force_escaped)
-		return TRUE
-	if(SSticker.force_ending || GLOB.station_was_nuked) // Just let them win.
-		return TRUE
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
+	if(!istype(current_area, /area/shuttle/escape_pod)) //have to escape in a pod or escape shuttle, at least for the time being
 		return FALSE
-	var/area/current_area = get_area(escapee.current)
-	if(!current_area || istype(current_area, /area/shuttle/escape/brig)) // Fails if they are in the shuttle brig
+	if(!HAS_TRAIT(escapee.current, TRAIT_HAS_ESCAPED))
 		return FALSE
-	var/turf/current_turf = get_turf(escapee.current)
-	return current_turf.onCentCom() || current_turf.onSyndieBase()
-*/
+	return TRUE
+
+
 
 /datum/objective/proc/update_explanation_text()
 	if(team_explanation_text && LAZYLEN(get_owners()) > 1)
@@ -132,9 +130,12 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		for(M in GLOB.mob_list)
 			if(M.mind == null)
 				continue
+			if(M.mind == owner)
+				continue //don't select ourselves when considering targets
 			else
 				target = M.mind
-		//target = selectedtarget.mind
+	if(!target) //still no target, screw it we have no other option to keep sanity
+		target = owner
 	update_explanation_text()
 	return target
 
@@ -169,9 +170,13 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		/datum/objective/maroon,
 		/datum/objective/steal,
 		/datum/objective/survive,
+		/datum/objective/escape,
+		/datum/objective/protect,
 		/datum/objective/winoperation,
 		/datum/objective/loseoperation,
-		/datum/objective/custom
+		/datum/objective/kidnap,
+		/datum/objective/gather_cash,
+		/datum/objective/custom,
 	),/proc/cmp_typepaths_asc)
 
 	for(var/T in allowed_types)
@@ -191,17 +196,45 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/escape
 	name = "escape"
-	explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
+	explanation_text = "Escape on a shuttle or an escape pod alive and without being in custody."
 	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
 
 /datum/objective/escape/check_completion()
-	// Require all owners escape safely.
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		var/turf/current_turf = get_turf(M)
-		if(!is_mainship_level(current_turf))
-			return FALSE
+	if(!considered_escaped(owner))
+		return FALSE
 	return TRUE
+
+/datum/objective/escape/find_target(dupe_search_range, blacklist)
+	return
+
+/datum/objective/kidnap
+	name = "kidnap"
+	explanation_text = "Escape on a shuttle or an escape pod alive and with your target."
+	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
+
+/datum/objective/kidnap/check_completion()
+	if(!considered_escaped(owner))
+		return FALSE
+	if(!considered_escaped(target))
+		return FALSE
+	for(var/mob/M in range(4)) //enough to cover the entirety of an escape shuttle
+		if(M.mind == null)
+			continue
+		if(M.mind == target)
+			return TRUE
+
+/datum/objective/kidnap/update_explanation_text()
+	if(target == null)
+		explanation_text = "Escape with somebody on a shuttle." //placeholder in case we can't find a real player
+		return
+	var/mob/living/livingtarget = target.current
+	if(target && target.current)
+		explanation_text = "Escape with [livingtarget.name], the [livingtarget.job.title], on a shuttle without being in custody."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/kidnap/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
 
 /datum/objective/survive
 	name = "survive"
@@ -209,11 +242,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
 
 /datum/objective/survive/check_completion()
-	// Require all owners escape safely.
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(!considered_alive(M))
-			return FALSE
+	if(!considered_alive(owner))
+		return FALSE
 	return TRUE
 
 /datum/objective/maroon
@@ -379,3 +409,62 @@ GLOBAL_LIST_EMPTY(possible_items)
 		return TRUE
 	else
 		return FALSE
+
+/datum/objective/protect//The opposite of killing a dude.
+	name = "protect"
+	explanation_text = "Keep target from dying."
+	team_explanation_text = "Keep target from dying."
+
+/datum/objective/protect/check_completion()
+	//Protect will always suceed when someone suicides
+	return !target || considered_alive(target)
+
+/datum/objective/protect/update_explanation_text()
+	..()
+	if(target && target.current)
+		var/mob/living/livingtarget = target.current
+		explanation_text = "Protect [livingtarget.name], the [livingtarget.job.title]."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/protect/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
+
+/datum/objective/gather_cash//The opposite of killing a dude.
+	name = "gather cash"
+	explanation_text = "Gather credits to repay your debt."
+	team_explanation_text = "Gather credits to repay your debt."
+	var/neededcash = 1500
+
+/datum/objective/gather_cash/check_completion()
+	var/currentcash = 0
+	var/list/all_items = owner.current.GetAllContents()
+	for(var/obj/I in all_items) //Check and count cash
+		if(istype(I, /obj/item/spacecash/c1))
+			currentcash += 1
+		if(istype(I, /obj/item/spacecash/c10))
+			currentcash += 10
+		if(istype(I, /obj/item/spacecash/c20))
+			currentcash += 20
+		if(istype(I, /obj/item/spacecash/c50))
+			currentcash += 50
+		if(istype(I, /obj/item/spacecash/c100))
+			currentcash += 100
+		if(istype(I, /obj/item/spacecash/c200))
+			currentcash += 200
+		if(istype(I, /obj/item/spacecash/c500))
+			currentcash += 500
+	if(currentcash >= neededcash)
+		return TRUE
+	return FALSE
+
+/datum/objective/gather_cash/update_explanation_text()
+	..()
+	if(neededcash)
+		explanation_text = "Gather at least [neededcash] credits."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/gather_cash/admin_edit(mob/admin)
+	neededcash = input(admin,"Set the amount of cash needed to complete this objective", neededcash) as num
+	update_explanation_text()
