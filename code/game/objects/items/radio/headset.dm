@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /// Make the headset lose its keysloy
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
-	playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
 	user.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
