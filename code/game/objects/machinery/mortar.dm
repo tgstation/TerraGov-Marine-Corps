@@ -452,7 +452,7 @@
 		/obj/item/mortal_shell/flare,
 	)
 	tally_type = TALLY_HOWITZER
-	cool_off_time = 2 SECONDS
+	cool_off_time = 10 SECONDS
 	reload_time = 1 SECONDS
 	max_spread = 8
 

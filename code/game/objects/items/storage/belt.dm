@@ -57,7 +57,6 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering,
-		/obj/item/tool/surgery/solderingtool,
 	)
 
 
@@ -98,7 +97,6 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
-		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
@@ -560,14 +558,41 @@
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
 
-/obj/item/storage/belt/marine/som/mpi/Initialize()
+/obj/item/storage/belt/marine/som/mpi_plum/Initialize()
 	. = ..()
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+
+/obj/item/storage/belt/marine/som/mpi_black/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+
+/obj/item/storage/belt/marine/som/carbine/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+
+/obj/item/storage/belt/marine/som/carbine_black/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
 
 /obj/item/storage/belt/marine/sectoid
 	name = "\improper strange ammo belt"
