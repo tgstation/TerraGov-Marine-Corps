@@ -779,7 +779,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			if(ishuman(M))
 				parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 				var/turf/current_turf = get_turf(M)
-				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR||MODE_INFESTATION_X_MINOR))
+				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR))
+					parts += "<div class='panel stationborder'>"
+					parts += "<span class='marooned'>You managed to survive, but were marooned on [SSmapping.configs[GROUND_MAP].map_name]...</span>"
+				else if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MAJOR))
 					parts += "<div class='panel stationborder'>"
 					parts += "<span class='marooned'>You managed to survive, but were marooned on [SSmapping.configs[GROUND_MAP].map_name]...</span>"
 				else
