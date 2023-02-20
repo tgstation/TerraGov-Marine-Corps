@@ -529,7 +529,7 @@
 		eye_blind = amount
 		if(client && !old_eye_blind)
 			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
-	else if(!eye_blind)
+	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
 			blind_minimum = 1
@@ -540,9 +540,6 @@
 		eye_blind = blind_minimum
 		if(!eye_blind)
 			clear_fullscreen("blind")
-	else
-		eye_blind = max(eye_blind, 0)
-		clear_fullscreen("blind")
 
 /mob/living/proc/blur_eyes(amount)
 	if(amount>0)
@@ -637,8 +634,17 @@
 		stagger = clamp(stagger + amount, 0, capped)
 		return stagger
 
-	stagger = max(stagger + amount,0)
+	set_stagger(max(stagger + amount,0))
 	return stagger
+
+///Used to set stagger to a set number
+/mob/living/proc/set_stagger(amount)
+	if(stagger == amount)
+		return
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
+	stagger = max(amount, 0)
+	SEND_SIGNAL(src, COMSIG_LIVING_STAGGER_CHANGED, stagger)
 
 ////////////////////////////// SLOW ////////////////////////////////////
 

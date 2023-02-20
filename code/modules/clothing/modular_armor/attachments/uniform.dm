@@ -118,23 +118,38 @@
 /obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
 
 /obj/item/armor_module/storage/uniform/holster/vp/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
 
 /obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
-	storage_slots = 1
-	max_w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 4
+	max_storage_space = 10
+	max_w_class = 4
+	storage_type_limits = list(/obj/item/weapon/gun = 1)
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/armor_module/storage/uniform/holster/armpit
