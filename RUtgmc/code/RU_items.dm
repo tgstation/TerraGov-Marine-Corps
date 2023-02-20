@@ -253,6 +253,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
