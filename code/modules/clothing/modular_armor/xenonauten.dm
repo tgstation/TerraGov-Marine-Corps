@@ -4,6 +4,8 @@
 	name = "\improper Xenonauten-M pattern armored vest"
 	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	icon = 'icons/mob/modular/xenonauten_armor.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/xenonauten_armor.dmi')
 	icon_state = "xenonauten_medium"
 	item_state = "xenonauten_medium"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
@@ -95,12 +97,17 @@
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "pilot"
 	item_state = "pilot"
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_item = NONE
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
 	slowdown = 0.25
 
 	attachments_allowed = list()
+	icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+	)
 
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -125,14 +132,15 @@
 /obj/item/clothing/head/modular/m10x
 	name = "\improper M10X pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	icon_state = "xenonauten"
-	item_state = "xenonauten"
-	item_state_worn = TRUE
+	icon = 'icons/mob/modular/xenonauten_helmets.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_head_str = 'icons/mob/modular/xenonauten_helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
+	icon_state = "xenonauten"
+	item_state = "xenonauten"
+	item_state_worn = TRUE
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,

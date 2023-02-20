@@ -4,6 +4,8 @@
 	name = "\improper SOM light battle armor"
 	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	icon = 'icons/mob/modular/som_armor.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/som_armor.dmi')
 	icon_state = "som_medium"
 	item_state = "som_medium"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
@@ -114,9 +116,9 @@
 /obj/item/clothing/head/modular/som
 	name = "\improper SOM infantry helmet"
 	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
-	icon = 'icons/mob/modular/m10.dmi'
+	icon = 'icons/mob/modular/som_helmets.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_head_str = 'icons/mob/modular/som_helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "som_helmet"

@@ -2,6 +2,8 @@
 /obj/item/clothing/suit/modular/robot
 	name = "XR-1 armor plating"
 	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon = 'icons/mob/modular/robot_armor.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/robot_armor.dmi')
 	icon_state = "robot_medium"
 	item_state = "robot_medium"
 	species_exception = list(/datum/species/robot)
@@ -69,6 +71,12 @@
 /obj/item/clothing/head/modular/robot
 	name = "XN-1 upper armor plating"
 	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon = 'icons/mob/modular/robot_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/robot_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "robot_medium"
 	item_state = "robot_medium"
 	species_exception = list(/datum/species/robot)
