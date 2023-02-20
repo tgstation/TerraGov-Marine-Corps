@@ -181,7 +181,7 @@
 	var/sound_to_play
 	if(owner.getBruteLoss())
 		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
-		sound_to_play = pick('sound/effects/robotrepair.ogg', 'sound/effects/robotrepair.ogg')
+		sound_to_play = 'sound/effects/robotrepair.ogg'
 	else if(owner.getFireLoss())
 		owner.heal_limb_damage(0, healing_per_tick, TRUE, TRUE)
 		sound_to_play = 'sound/effects/robotrepair.ogg'
