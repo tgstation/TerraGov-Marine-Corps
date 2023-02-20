@@ -118,14 +118,23 @@
 /obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
+	new /obj/item/ammo_magazine/pistol/g22(storage)
 
 /obj/item/armor_module/storage/uniform/holster/vp/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
+	new /obj/item/ammo_magazine/pistol/vp70(storage)
 
 /obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
+	new /obj/item/ammo_magazine/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
 	storage_slots = 4

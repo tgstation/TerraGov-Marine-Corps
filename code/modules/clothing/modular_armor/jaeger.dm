@@ -5,9 +5,11 @@
 	name = "\improper Jaeger Infantry medium exoskeleton"
 	desc = "A Infantry-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a moderate amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	icon = 'icons/mob/modular/jaeger_armor.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/jaeger_armor.dmi')
 	icon_state = "infantry"
 	item_state = "infantry"
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -68,7 +70,7 @@
 	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	icon_state = "scout"
 	item_state = "scout"
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/jaeger/light/skirmisher
 	name = "\improper Jaeger Skirmisher light exoskeleton"
@@ -84,7 +86,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	icon_state = "gungnir"
 	item_state = "gungnir"
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/modular/jaeger/heavy/assault
 	name = "\improper Jaeger Assault heavy exoskeleton"
@@ -102,6 +104,12 @@
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	icon = 'icons/mob/modular/jaeger_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/jaeger_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "infantry"
 	item_state = "infantry"
 	icon_override = null

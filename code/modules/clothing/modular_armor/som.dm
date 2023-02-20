@@ -4,9 +4,11 @@
 	name = "\improper SOM light battle armor"
 	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 55, ACID = 50)
+	icon = 'icons/mob/modular/som_armor.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/som_armor.dmi')
 	icon_state = "som_medium"
 	item_state = "som_medium"
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -46,7 +48,7 @@
 	soft_armor = list(MELEE = 35, BULLET = 60, LASER = 50, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 50, ACID = 40)
 	icon_state = "som_light"
 	item_state = "som_light"
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/som/light/shield
 	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
@@ -58,7 +60,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 60, ACID = 55)
 	icon_state = "som_heavy"
 	item_state = "som_heavy"
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/modular/som/heavy/pyro
 	starting_attachments = list(
@@ -114,9 +116,9 @@
 /obj/item/clothing/head/modular/som
 	name = "\improper SOM infantry helmet"
 	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
-	icon = 'icons/mob/modular/m10.dmi'
+	icon = 'icons/mob/modular/som_helmets.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_head_str = 'icons/mob/modular/som_helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "som_helmet"
