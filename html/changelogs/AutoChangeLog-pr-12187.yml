@@ -1,4 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - bugfix: "Evolution doesn't check the evolving xeno's tier when checking if there are enough tier slots, instead it checks the tier of the  caste the xeno is evolving to."
