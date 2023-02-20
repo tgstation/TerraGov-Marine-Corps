@@ -442,7 +442,7 @@
 
 /obj/item/armor_module/module/style/light_armor
 	name = "\improper Light Armor Equalizer"
-	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 45)
 	slowdown = 0.3
 
 /obj/item/armor_module/module/style/medium_armor

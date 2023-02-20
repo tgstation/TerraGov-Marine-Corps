@@ -65,7 +65,7 @@
 /obj/item/clothing/suit/modular/jaeger/light
 	name = "\improper Jaeger Scout light exoskeleton"
 	desc = "A Scout-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a light amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 45)
 	icon_state = "scout"
 	item_state = "scout"
 	slowdown = 0.3

@@ -43,7 +43,7 @@
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
 	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 40, BULLET = 65, LASER = 55, ENERGY = 55, BOMB = 45, BIO = 50, FIRE = 50, ACID = 45)
+	soft_armor = list(MELEE = 35, BULLET = 60, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 50, FIRE = 50, ACID = 40)
 	icon_state = "som_light"
 	item_state = "som_light"
 	slowdown = 0.3

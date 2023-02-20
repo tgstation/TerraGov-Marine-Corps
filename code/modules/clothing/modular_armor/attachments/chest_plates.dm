@@ -30,7 +30,7 @@
 	name = "\improper Jaeger Pattern Light Skirmisher chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher"
-	soft_armor = list(MELEE = 20, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 30, FIRE = 30, ACID = 30)
+	soft_armor = list(MELEE = 15, BULLET = 35, LASER = 35, ENERGY = 25, BOMB = 30, BIO = 30, FIRE = 30, ACID = 25)
 	slowdown = 0.1
 
 /obj/item/armor_module/armor/chest/marine/skirmisher/scout
