@@ -807,8 +807,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/distress/icc
 	name = "shiphands headset"
-	keyslot = /obj/item/encryptionkey/som
+	keyslot = /obj/item/encryptionkey/icc
 	frequency = FREQ_ICC
+
 
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"
