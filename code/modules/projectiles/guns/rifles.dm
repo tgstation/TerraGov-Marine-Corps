@@ -497,6 +497,7 @@
 /obj/item/weapon/gun/rifle/mpi_km
 	name = "\improper MPi-KM assault rifle"
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ak47"
 	item_state = "ak47"
 	caliber = CALIBER_762X39 //codex
@@ -506,9 +507,17 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mpi_km, /obj/item/ammo_magazine/rifle/mpi_km/extended)
-	aim_slowdown = 0.6
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/plum
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/mpi_km,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum,
+		/obj/item/ammo_magazine/rifle/mpi_km/black,
+		/obj/item/ammo_magazine/rifle/mpi_km/carbine,
+		/obj/item/ammo_magazine/rifle/mpi_km/carbine/plum,
+		/obj/item/ammo_magazine/rifle/mpi_km/carbine/black,
+		/obj/item/ammo_magazine/rifle/mpi_km/extended,
+	)
+	aim_slowdown = 0.5
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
@@ -527,22 +536,16 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 1, "rail_y" = 20, "under_x" = 14, "under_y" = 14, "stock_x" = 0, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 5, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
 	force = 20
 
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
-	scatter = 2
-	wield_delay = 0.8 SECONDS
+	scatter = 0
+	wield_delay = 0.7 SECONDS
 
 	placed_overlay_iconstate = "ak47"
-
-/obj/item/weapon/gun/rifle/mpi_km/magharness
-	starting_attachment_types = list(
-		/obj/item/attachable/stock/mpi_km,
-		/obj/item/attachable/magnetic_harness,
-	)
 
 /obj/item/weapon/gun/rifle/mpi_km/standard
 	starting_attachment_types = list(
@@ -551,12 +554,53 @@
 		/obj/item/attachable/bayonet,
 	)
 
-/obj/item/weapon/gun/rifle/mpi_km/grenadier //built in UGL
-	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher, and looks pretty old but well looked after."
+/obj/item/weapon/gun/rifle/mpi_km/grenadier
+	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher and looks very old, but well looked after."
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/mpi_km,
 		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
 		/obj/item/attachable/magnetic_harness,
+	)
+
+/obj/item/weapon/gun/rifle/mpi_km/black
+	name = "\improper MPi-KM assault rifle"
+	desc = "A cheap and robust rifle manufactured by the SOM, famed for its reliability and stopping power. Sometimes better known as an 'AK', it chambers 7.62x39mm."
+	icon_state = "ak47_black"
+	item_state = "ak47_black"
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/black
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/mpi_km/black,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi, //alt sprite, unremovable
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+	)
+	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km/black)
+
+/obj/item/weapon/gun/rifle/mpi_km/black/magharness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km/black,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/lasersight,
+	)
+
+/obj/item/weapon/gun/rifle/mpi_km/black/grenadier
+	desc = "A cheap and robust rifle manufactured by the SOM, famed for its reliability and stopping power. Sometimes better known as an 'AK', it chambers 7.62x39mm. This one has a built in underbarrel grenade launcher."
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km/black,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
+		/obj/item/attachable/reddot,
 	)
 
 //-------------------------------------------------------
@@ -1469,6 +1513,7 @@
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+
 	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
@@ -1828,6 +1873,76 @@
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/bayonet,
+	)
+
+//-------------------------------------------------------
+// V-34 SOM carbine
+/obj/item/weapon/gun/rifle/som_carbine
+	name = "\improper V-34 carbine"
+	desc = "An old but robust weapon that saw extensive use in the Martian uprising. A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. Chambers 7.62x39mm."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "v34"
+	item_state = "v34"
+	caliber = CALIBER_762X39
+	muzzleflash_iconstate = "muzzle_flash"
+	max_shells = 30
+	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/carbine
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/mpi_km,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum,
+		/obj/item/ammo_magazine/rifle/mpi_km/black,
+		/obj/item/ammo_magazine/rifle/mpi_km/carbine,
+		/obj/item/ammo_magazine/rifle/mpi_km/carbine/plum,
+		/obj/item/ammo_magazine/rifle/mpi_km/carbine/black,
+		/obj/item/ammo_magazine/rifle/mpi_km/extended,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/foldable/som_carbine,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/verticalgrip,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 8, "rail_y" = 20, "under_x" = 17, "under_y" = 13, "stock_x" = -6, "stock_y" = 16)
+	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine)
+	force = 15
+
+	burst_amount = 1
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 0.75
+	scatter = 12
+	recoil = 1.5
+	wield_delay = 0.4 SECONDS
+	aim_slowdown = 0.3
+	movement_acc_penalty_mult = 4
+	damage_falloff_mult = 2
+
+/obj/item/weapon/gun/rifle/som_carbine/mag_harness
+	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine, /obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/rifle/som_carbine/black
+	desc = "A modern redesign by the SOM of an ancient weapon that saw extensive use in the Martian uprising. A comparatively light and compact weapon, it still packs a considerable punch thanks to a good rate of fire and high calibre, although at range its effective drops off considerably. Chambers 7.62x39mm."
+	icon_state = "v34_black"
+	item_state = "v34_black"
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/carbine/black
+	attachable_allowed = list(
+		/obj/item/attachable/foldable/som_carbine,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/reddot,
+	)
+
+/obj/item/weapon/gun/rifle/som_carbine/black/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/foldable/som_carbine,
+		/obj/item/attachable/reddot,
 	)
 
 //-------------------------------------------------------
