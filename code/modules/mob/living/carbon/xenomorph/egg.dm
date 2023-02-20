@@ -155,8 +155,16 @@
 /obj/alien/egg/hugger/attack_ghost(mob/dead/observer/user)
 	. = ..()
 
+	if(maturity_stage != stage_ready_to_burst)
+		to_chat(user, span_warning("The egg is not ready."))
+		return FALSE
+	if(!hugger_type)
+		to_chat(user, span_warning("The egg is empty."))
+		return FALSE
+
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(!hive.can_spawn_as_hugger(user))
+
 		return FALSE
 	if(maturity_stage != stage_ready_to_burst)
 		to_chat(user, span_warning("The egg is not ready."))

@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A fast, flexible creature that wants to hug your head."
 	wound_type = ""
-
+	job_type = /datum/job/xenomorph/facehugger
 	caste_type_path = /mob/living/carbon/xenomorph/facehugger
 
 	tier = XENO_TIER_MINION
