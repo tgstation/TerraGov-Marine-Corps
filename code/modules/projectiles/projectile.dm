@@ -799,10 +799,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
-		var/pitch = 0
-		if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
-			pitch = 55000
 		if(proj.ammo.sound_miss)
+			var/pitch = 0
+			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
 		on_dodged_bullet(proj)
 
@@ -1299,10 +1299,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!P.ammo.ping)
 		return
 	if(prob(65))
-		var/pitch = 0
-		if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
-			pitch = 55000
 		if(P.ammo.sound_bounce)
+			var/pitch = 0
+			if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
 			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
 		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
