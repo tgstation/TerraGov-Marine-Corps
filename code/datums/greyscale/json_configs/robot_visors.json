@@ -1,0 +1,26 @@
+{
+	"robot_light_visor": [
+		{
+			"type": "icon_state",
+			"icon_state": "robot_light_visor",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"robot_medium_visor": [
+		{
+			"type": "icon_state",
+			"icon_state": "robot_medium_visor",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"robot_heavy_visor": [
+		{
+			"type": "icon_state",
+			"icon_state": "robot_heavy_visor",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}

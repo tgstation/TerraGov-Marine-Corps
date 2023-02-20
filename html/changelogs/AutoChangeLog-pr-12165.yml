@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "gamemode/silo code has been cleaned up"
