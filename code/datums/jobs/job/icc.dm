@@ -3,7 +3,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafter
-	faction = FACTION_USL
+	faction = FACTION_ICC
 
 //ICC Standard
 /datum/job/icc
@@ -18,7 +18,7 @@
 	id = /obj/item/card/id/silver
 	w_uniform = /obj/item/clothing/under/icc/webbing
 	belt = /obj/item/storage/belt/marine/icc
-	ears = /obj/item/radio/headset/distress/som
+	ears = /obj/item/radio/headset/distress/icc
 	w_uniform = /obj/item/clothing/under/icc/webbing
 	shoes = /obj/item/clothing/shoes/marine/icc/knife
 	wear_suit = /obj/item/clothing/suit/storage/marine/icc

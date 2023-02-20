@@ -42,7 +42,7 @@
 		medics++
 		return
 
-	if(prob(25))
+	if(prob(15))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/icc/guard)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a trained member of the ICCGF, unlike most you are a dedicated infantryman, better known as a 'Guardsman'. You have been attached to this ICCN group to investigate the TGMC distress signal sent nearby. Be the vanguard of your squad!")]</p>")
