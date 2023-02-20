@@ -763,6 +763,9 @@
 	else
 		close()
 
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing
+	smoothing_groups = NONE
+
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
 
