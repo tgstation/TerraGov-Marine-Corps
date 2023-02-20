@@ -87,8 +87,10 @@
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	HS.xeno_message(message, span_class, size, force, target, sound, apply_preferences, filter_list, arrow_type, arrow_color, report_distance)
 
-///returns TRUE if we are permitted to evo to the next case FALSE otherwise
+///returns TRUE if we are permitted to evo to the next caste FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
+	if(xeno_caste.caste_flags & CASTE_DOES_NOT_AGE)
+		return
 	if(upgrade == XENO_UPGRADE_THREE)
 		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
@@ -583,3 +585,8 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
+
+///Deletes the xeno, for valhalla purposes. I swear there is a better way but calling qdel from a signal doesn't work.
+/mob/living/carbon/xenomorph/proc/delete_from_valhalla(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)

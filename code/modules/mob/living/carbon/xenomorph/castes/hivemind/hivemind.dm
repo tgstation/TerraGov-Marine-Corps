@@ -44,9 +44,6 @@
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
 	update_action_buttons()
 
-/mob/living/carbon/xenomorph/hivemind/upgrade_possible()
-	return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/upgrade_xeno(newlevel, silent = FALSE)
 	newlevel = XENO_UPGRADE_BASETYPE
 	return ..()

@@ -299,7 +299,8 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
-
+	if(hivenumber == XENO_HIVE_FALLEN)
+		RegisterSignal(src, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), .proc/delete_from_valhalla)
 
 /datum/hive_status/proc/can_hive_have_a_queen()
 	return (get_total_xeno_number() < xenos_per_queen)
@@ -1405,6 +1406,21 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/king/admeme
 	hivenumber = XENO_HIVE_ADMEME
+
+/datum/hive_status/corrupted/fallen
+	name = "Fallen"
+	hivenumber = XENO_HIVE_FALLEN
+	prefix = "Fallen "
+	color = "#8046ba"
+
+/datum/hive_status/corrupted/fallen/can_xeno_message()
+	return FALSE
+
+/mob/living/carbon/xenomorph/queen/corrupted/fallen
+	hivenumber = XENO_HIVE_FALLEN
+
+/mob/living/carbon/xenomorph/king/corrupted/fallen
+	hivenumber = XENO_HIVE_FALLEN
 
 // ***************************************
 // *********** Xeno hive compare helpers

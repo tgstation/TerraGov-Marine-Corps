@@ -183,6 +183,8 @@
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Zeta
 			if(XENO_HIVE_ADMEME)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/admeme
+			if(XENO_HIVE_FALLEN)
+				new_caste_type = /mob/living/carbon/xenomorph/queen/corrupted/fallen
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike) //Special case for dealing with shrikes
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
