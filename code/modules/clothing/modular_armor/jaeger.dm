@@ -65,7 +65,7 @@
 /obj/item/clothing/suit/modular/jaeger/light
 	name = "\improper Jaeger Scout light exoskeleton"
 	desc = "A Scout-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a light amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 45)
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	icon_state = "scout"
 	item_state = "scout"
 	slowdown = 0.3
@@ -81,7 +81,7 @@
 /obj/item/clothing/suit/modular/jaeger/heavy
 	name = "\improper Jaeger Gungnir heavy exoskeleton"
 	desc = "A Gungnir-pattern Jaeger combat exoskeleton made to work with modular attachments for the ability to function in many enviroments. This one seems to have a high amount of armor plating. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	icon_state = "gungnir"
 	item_state = "gungnir"
 	slowdown = 0.7
@@ -105,7 +105,7 @@
 	icon_state = "infantry"
 	item_state = "infantry"
 	icon_override = null
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 
 	attachments_allowed = list(
