@@ -201,8 +201,10 @@
 		if(stat != DEAD)
 			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
 			hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
+			hud_used.alien_plasma_display.desc = "[plasma_stored]/[xeno_caste.plasma_max]"
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
+			hud_used.alien_plasma_display.desc = "0/0"
 
 
 	interactee?.check_eye(src)

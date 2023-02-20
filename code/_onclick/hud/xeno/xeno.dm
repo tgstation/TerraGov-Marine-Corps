@@ -6,8 +6,18 @@
 		return FALSE
 	return TRUE
 
+/atom/movable/screen/alien/MouseEntered(location, control, params)
+	if(!usr.client?.prefs?.tooltips)
+		return
+	openToolTip(usr, src, params, title = name, content = desc)
+
+/atom/movable/screen/alien/MouseExited()
+	if(!usr.client?.prefs?.tooltips)
+		return
+	closeToolTip(usr)
+
 /atom/movable/screen/alien/nightvision
-	name = "toggle night vision"
+	name = "Toggle Night Vision"
 	icon_state = "nightvision2"
 	screen_loc = ui_alien_nightvision
 
@@ -30,7 +40,8 @@
 
 /atom/movable/screen/alien/queen_locator
 	icon_state = "trackoff"
-	name = "queen locator (click for hive status)"
+	name = "Queen Locator"
+	desc = "Click for hive status."
 	screen_loc = ui_queen_locator
 
 /atom/movable/screen/alien/queen_locator/Click()
@@ -41,7 +52,8 @@
 	X.hive_status()
 
 /atom/movable/screen/alien/plasmadisplay
-	name = "plasma stored"
+	name = "Plasma Stored"
+	desc = "0/0"
 	icon_state = "power_display2"
 	screen_loc = ui_alienplasmadisplay
 

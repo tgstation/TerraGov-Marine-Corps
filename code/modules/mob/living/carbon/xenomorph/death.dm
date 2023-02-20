@@ -32,6 +32,7 @@
 			hud_used.staminas.icon_state = "staminaloss200"
 		if(hud_used.alien_plasma_display)
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
+			hud_used.alien_plasma_display.desc = "0/0"
 	update_icons()
 
 	death_cry()
