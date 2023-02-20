@@ -3,6 +3,7 @@
 	config_tag = "Off-Duty"
 	required_players = 0
 	votable = FALSE
+	allow_persistence_save = FALSE
 	var/operation_start_timer
 
 /datum/game_mode/offduty/announce()
