@@ -8,7 +8,7 @@
 	item_state = "robot_medium"
 	species_exception = list(/datum/species/robot)
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -57,7 +57,7 @@
 	icon_state = "robot_light"
 	item_state = "robot_light"
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/robot/heavy
 	name = "XR-1-H armor plating"
@@ -65,7 +65,7 @@
 	icon_state = "robot_heavy"
 	item_state = "robot_heavy"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 //robot hats
 /obj/item/clothing/head/modular/robot
