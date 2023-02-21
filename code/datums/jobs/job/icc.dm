@@ -32,7 +32,7 @@
 
 	id = /obj/item/card/id/silver
 	gloves = /obj/item/clothing/gloves/marine/icc/insulated
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/standard
 	r_store = /obj/item/storage/pouch/pistol/icc
 	l_store = /obj/item/storage/pouch/tools/icc/full
 	back = /obj/item/storage/backpack/lightpack/icc
