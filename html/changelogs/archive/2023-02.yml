@@ -221,3 +221,70 @@
       Pills.
   - bugfix: Pill sound now properly plays when you take a pill out of a bottle/packet
   - imageadd: New pill packet sprites.
+2023-02-16:
+  Arturlang:
+  - code_imp: Moved a lot of mob typechecks in evolution into being checked by bitflags.
+  - code_imp: Maximum checks for active caste and minimum amount of xenos and the
+      death timer is now handled by variables on the caste datum, instead of the type
+      of the mob.
+  - code_imp: Queen's death timers have been refactored into being applicable for
+      any xeno base using the death_evolution_delay variable on the caste datum
+  - bugfix: Fixes the evolution panel having N/A as the number when the xeno incapable
+      of having evolution progress, as it was trying to divide by 0
+  QualityVan:
+  - balance: Kitted limbs passively heal faster
+  Xander3359:
+  - rscdel: No longer spammed with balloon alerts from taking out a pill
+2023-02-17:
+  This1sPanda:
+  - bugfix: fixed mosin scope not appearing on gun
+  - bugfix: fixed mosin scope not appearing on hand
+  Xander3359:
+  - imageadd: Packet sprites suck less.
+2023-02-18:
+  Lumipharon:
+  - bugfix: fixed various minor gun and status bugs
+  - refactor: refactored accuracy and scatter calculations for projectiles
+  - balance: Offguard duration changed to 10 seconds, effect no longer decreases over
+      time
+  carlarctg:
+  - rscadd: Added a new Artemis helmet module to the base vendors that protects from
+      eye blurring.
+  - rscadd: Added a upgraded Mk. 2 Artemis module to Req, purchasable for 40 points
+      or included in the experimental modules crate.
+2023-02-19:
+  Arturlang:
+  - bugfix: Evolution doesn't check the evolving xeno's tier when checking if there
+      are enough tier slots, instead it checks the tier of the  caste the xeno is
+      evolving to.
+  Barnet2:
+  - balance: cable mat cost changed to 5
+  QualityVan:
+  - rscadd: 'Maintenance mode for robots: disable yourself for five seconds to heal
+      up to 20 damage.'
+  - bugfix: Fixed blindness not clearing properly if you tried to remove it a certain
+      way.
+  Xander3359:
+  - balance: shoulder holster webbing can hold carry some additional pistol magazines.
+2023-02-20:
+  Blundir:
+  - imageadd: crematorium sprites from tg
+2023-02-21:
+  Lewdcifer:
+  - admin: Admin Observers should now appear on staffwho and be able to use msay now
+      that they have +ADMINTICKET.
+  Lumipharon:
+  - balance: Chemistry machines now require skill to operate
+  - code_imp: Cleaned up some armor code and organised some sprite files
+  - rscadd: SOM forces now have access to the V-34 carbine
+  - rscadd: Cross compatible MPI and V-34 styles and magazines
+  TiviPlus:
+  - code_imp: gamemode/silo code has been cleaned up
+  Xander3359:
+  - rscadd: fills the slots of the recently buffed shoulder holster webbing for ERTs.
+  - rscadd: a roller bed to the synth essentials kit
+  tyeagg:
+  - rscadd: different sounds for different explosion types
+  - soundadd: new explosion sounds
+  - soundadd: new bullet ricochet and miss
+  - sounddel: removed old explosion sounds

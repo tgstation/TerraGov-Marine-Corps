@@ -453,7 +453,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = 0.7
+	burst_accuracy_mult = -0.3
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
