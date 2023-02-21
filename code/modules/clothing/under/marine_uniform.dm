@@ -269,6 +269,9 @@
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_jumpsuit"
 
+/obj/item/clothing/under/marine/veteran/pmc/leader/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
 /obj/item/clothing/under/marine/veteran/pmc/commando
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
