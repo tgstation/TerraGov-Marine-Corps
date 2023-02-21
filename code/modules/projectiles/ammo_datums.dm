@@ -1692,6 +1692,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	T.ignite(5, 10)
 
+
+/datum/ammo/bullet/coilgun
+	name = "high-velocity tungsten slug"
+	hud_state = "railgun_ap"
+	icon_state 	= "blue_bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 5
+	max_range = 31
+	damage = 70
+	penetration = 35
+	sundering = 5
+	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
+
+/datum/ammo/bullet/coilgun/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, weaken = 0.1, slowdown = 1, knockback = 3)
+
+
 /*
 //================================================
 					Rocket Ammo

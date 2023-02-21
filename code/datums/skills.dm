@@ -425,6 +425,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
+/datum/skills/crafter
+	name = "Craftier Private"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
+
 /datum/skills/special_forces_standard
 	name = "Special Force Standard"
 	construction = SKILL_CONSTRUCTION_METAL
@@ -465,6 +470,15 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
+/datum/skills/sl/icc
+	name = "ICC Leader"
+	firearms = SKILL_FIREARMS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
+
 /datum/skills/sl/pmc/special_forces
 	name = "Special Force Leader"
 	police = SKILL_POLICE_MP

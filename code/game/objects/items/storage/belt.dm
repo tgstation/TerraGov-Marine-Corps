@@ -210,6 +210,36 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/healthanalyzer(src)
 
+/obj/item/storage/belt/lifesaver/icc
+	name = "\improper Modelle/129 lifesaver bag"
+	desc = "A medical belt made from synthetic tan fibres, carries just about anything you would need to responsd to traumatic injury in combat."
+	icon_state = "medicbag_icc"
+	item_state = "medicbag_icc"
+
+/obj/item/storage/belt/lifesaver/icc/ert/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
+
 /obj/item/storage/belt/rig
 	name = "\improper M276 pattern medical storage rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and heavier medical tools."
@@ -597,6 +627,11 @@
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
 
+/obj/item/storage/belt/marine/icc
+	name = "\improper Modello/120 ammo belt"
+	desc = "A belt purpose made to carry ammo, made with a tan synthetic fibre."
+	icon_state = "icc_belt"
+
 /obj/item/storage/belt/marine/sectoid
 	name = "\improper strange ammo belt"
 	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."
@@ -716,6 +751,45 @@
 	new /obj/item/ammo_magazine/handful/flechette(src)
 
 /obj/item/storage/belt/shotgun/som/mixed/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+
+/obj/item/storage/belt/shotgun/icc
+	name = "\improper Modelle/121 shell load rig"
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets, made with a synthetic tan fibre."
+	icon_state = "shotgunbelt_icc"
+
+/obj/item/storage/belt/shotgun/icc/flechette/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+
+/obj/item/storage/belt/shotgun/icc/mixed/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/ammo_magazine/handful/buckshot(src)
 	new /obj/item/ammo_magazine/handful/buckshot(src)

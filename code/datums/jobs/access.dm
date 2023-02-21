@@ -347,6 +347,14 @@
 			. = size ? "SOM " : "SOM Veteran"
 		if("SOM4")
 			. = size ? "SOM " : "SOM Leader"
+		if("ICC1")
+			. = size ? "ICC " : "ICC Standard"
+		if("ICC2")
+			. = size ? "ICC " : "ICC Medic"
+		if("ICC3")
+			. = size ? "ICCG " : "ICC Guard"
+		if("ICC4")
+			. = size ? "ICCL " : "ICC Leader"
 		if("MRC1")
 			. = size ? "MERC " : "MERC Heavy"
 		if("MRC2")

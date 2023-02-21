@@ -83,6 +83,11 @@
 	anti_hug = 2
 	breathy = FALSE
 
+/obj/item/clothing/mask/gas/icc
+	name = "\improper Modelle/60 gas mask"
+	desc = "A gasmask worn by ICC personnel."
+	icon_state = "icc"
+
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"
