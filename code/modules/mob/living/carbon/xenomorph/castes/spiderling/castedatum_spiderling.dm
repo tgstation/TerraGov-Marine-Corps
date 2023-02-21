@@ -34,5 +34,4 @@
 
 	actions = list(
 		/datum/action/xeno_action/burrow,
-		/datum/action/xeno_action/xeno_resting,
 	)

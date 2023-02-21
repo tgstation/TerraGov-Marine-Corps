@@ -30,8 +30,6 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
-	// is the spiderling currently resting?
-	var/spiderling_is_resting
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -128,5 +126,7 @@
 /// rest and unrest when widow does
 /datum/ai_behavior/spiderling/proc/toggle_rest()
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
-	spiderling_is_resting = !spiderling_is_resting
-	spiderling_parent.set_resting(spiderling_is_resting)
+	if(HAS_TRAIT(spiderling_parent, TRAIT_FLOORED))
+		spiderling_parent.set_resting(FALSE)
+	else
+		spiderling_parent.set_resting(TRUE)
