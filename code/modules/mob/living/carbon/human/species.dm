@@ -361,7 +361,7 @@
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.h_style = "Bald"
-	H.skills = getSkillsType(/datum/skills/vatgrown)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown))
 
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
@@ -374,7 +374,7 @@
 
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	H.skills = getSkillsType(/datum/skills/vatgrown/early)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown/early))
 	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
@@ -444,11 +444,17 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
 	H.health_threshold_crit = -100
+	var/datum/action/repair_self/repair_action = new()
+	repair_action.give_action(H)
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
 	H.health_threshold_crit = -50
+	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
+	repair_action.remove_action(H)
+	qdel(repair_action)
+
 
 /mob/living/carbon/human/species/robot/handle_regular_hud_updates()
 	. = ..()
@@ -461,6 +467,25 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	else
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
+
+///Lets a robot repair itself over time at the cost of being stunned and blind
+/datum/action/repair_self
+	name = "Activate autorepair"
+	action_icon_state = "suit_configure"
+
+/datum/action/repair_self/can_use_action()
+	. = ..()
+	if(!.)
+		return
+	return !owner.incapacitated()
+
+/datum/action/repair_self/action_activate()
+	. = ..()
+	if(!. || !ishuman(owner))
+		return
+	var/mob/living/carbon/human/howner = owner
+	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 5 SECONDS)
+	howner.balloon_alert_to_viewers("Repairing")
 
 /datum/species/robot/alpharii
 	name = "Hammerhead Combat Robot"

@@ -2066,7 +2066,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/datum/skills/S = pickedtype
 				previous = H.skills.name
 				change = initial(S.name)
-				H.skills = getSkillsType(pickedtype)
+				H.set_skills(getSkillsType(pickedtype))
 			if("commstitle")
 				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
 				if(!change || !istype(H) || !H.mind)
