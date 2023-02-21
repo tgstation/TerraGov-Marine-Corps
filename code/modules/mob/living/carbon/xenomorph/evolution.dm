@@ -167,7 +167,7 @@
 	// Check if there is a death timer for this caste
 	if(new_caste_type.death_evolution_delay)
 		var/death_timer = hive.caste_death_timers[new_caste_type.caste_type_path]
-		if(death_timer && timeleft(death_timer) > 0)
+		if(death_timer)
 			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste_type.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return
 	var/maximum_active_caste = new_caste_type.maximum_active_caste
