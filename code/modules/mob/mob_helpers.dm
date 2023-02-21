@@ -471,3 +471,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
 		inactive_item.do_unique_action(src)
+
+///Handles setting or changing a mob's skills
+/mob/proc/set_skills(datum/skills/new_skillset)
+	skills = new_skillset
+	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)

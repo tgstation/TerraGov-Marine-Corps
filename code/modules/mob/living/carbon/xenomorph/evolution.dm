@@ -164,6 +164,12 @@
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
 		return
+	// Check if there is a death timer for this caste
+	if(new_caste_type.death_evolution_delay)
+		var/death_timer = hive.caste_death_timers[new_caste_type.caste_type_path]
+		if(death_timer)
+			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste_type.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
+			return
 	var/maximum_active_caste = new_caste_type.maximum_active_caste
 	if(maximum_active_caste != INFINITY && maximum_active_caste <= hive.xenos_by_typepath[new_mob_type].len)
 		to_chat(src, span_warning("There is already a [initial(new_caste_type.display_name)] in the hive. We must wait for it to die."))
@@ -188,10 +194,10 @@
 
 
 	if(!regression)
-		if(tier == XENO_TIER_ONE && no_room_tier_two)
+		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)
 			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
 			return
-		if(tier == XENO_TIER_TWO && no_room_tier_three)
+		if(new_caste_type.tier == XENO_TIER_THREE && no_room_tier_three)
 			to_chat(src, span_warning("The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die."))
 			return
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
@@ -219,10 +225,10 @@
 		return
 
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
-		if(tier == XENO_TIER_ONE && no_room_tier_two)
+		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
 			return
-		else if(tier == XENO_TIER_TWO && no_room_tier_three)
+		else if(new_caste_type.tier == XENO_TIER_THREE && no_room_tier_three)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 3."))
 			return
 

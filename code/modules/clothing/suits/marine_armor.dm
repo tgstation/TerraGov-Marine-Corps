@@ -885,34 +885,19 @@
 /obj/item/clothing/suit/storage/marine/som/leader/hvh
 	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 65)
 
-/obj/item/clothing/suit/storage/marine/robot
-	name = "XR-1 armor plating"
-	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_armor_medium"
-	item_state = "robot_armor_medium"
-	species_exception = list(/datum/species/robot)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
-	slowdown = 0.5
+/obj/item/clothing/suit/storage/marine/icc
+	name = "\improper Modelle/16 combat armor"
+	desc = "A piece of ICC body armor, worn durning boarding actions by personnel in close quarters, as most ICC personnel serve dual purpose roles as ad-hoc marines, due to personnel shortages. Protects well from most sources, particularly explosions."
+	icon_state = "icc"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
+	flags_item_map_variant = NONE
 
-/obj/item/clothing/suit/storage/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
-	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
-		return FALSE
-
-/obj/item/clothing/suit/storage/marine/robot/light
-	name = "XR-1-L armor plating"
-	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_armor_light"
-	item_state = "robot_armor_light"
-	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	slowdown = 0.3
-
-/obj/item/clothing/suit/storage/marine/robot/heavy
-	name = "XR-1-H armor plating"
-	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_armor_heavy"
-	item_state = "robot_armor_heavy"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
-	slowdown = 0.7
+/obj/item/clothing/suit/storage/marine/icc/guard
+	name = "\improper Modelle/19 combat armor"
+	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
+	icon_state = "icc_guard"
+	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)

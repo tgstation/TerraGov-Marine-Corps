@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /// Make the headset lose its keysloy
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
-	playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
 	user.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
@@ -804,6 +804,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/sectoid
 	frequency = FREQ_SECTOID
 
+
+/obj/item/radio/headset/distress/icc
+	name = "shiphands headset"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
 
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"

@@ -857,3 +857,42 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 0
 	scatter = 0
 	movement_acc_penalty_mult = 6
+
+//-------------------------------------------------------
+//ML-120 Coilgun
+
+/obj/item/weapon/gun/rifle/icc_coilgun
+	name = "\improper ML-120 coilgun"
+	desc = "The ML-120 coilgun is the most commonly seen coilgun in ICCAF use, firing magnetic projecitles at a incredibly high velocity. It requires some windup but will penetrate walls, your foes, and your friendlies too. So watch out... Uses specialized canisters to reload."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "ml120"
+	item_state = "ml120"
+	max_shells = 5 //codex
+	caliber = CALIBER_RAILGUN
+	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_coilgun
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/icc_coilgun,
+	)
+	force = 40
+	wield_delay = 1 SECONDS //You're not quick drawing this.
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/reddot,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+
+	fire_delay = 1 SECONDS
+	windup_delay = 0.5 SECONDS
+	burst_amount = 1
+	accuracy_mult = 2
+	recoil = 0
+	scatter = 0
+	movement_acc_penalty_mult = 6
