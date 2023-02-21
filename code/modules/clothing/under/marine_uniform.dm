@@ -449,6 +449,16 @@
 /obj/item/clothing/under/som/leader/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
+/obj/item/clothing/under/icc
+	name = "\improper Modelle/30 uniform"
+	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
+	icon_state = "icc"
+	item_state = "icc"
+	has_sensor = FALSE
+
+/obj/item/clothing/under/icc/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
 /obj/item/clothing/under/sectoid
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
