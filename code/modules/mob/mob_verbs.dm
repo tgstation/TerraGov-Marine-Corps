@@ -119,7 +119,6 @@
 	var/list/static/base_faction_list = list(
 		/datum/job/clf,
 		/datum/job/freelancer,
-		/datum/job/upp,
 		/datum/job/pmc,
 		/datum/job/special_forces,
 	)
