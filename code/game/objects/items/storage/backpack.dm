@@ -807,3 +807,13 @@
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
 	item_state = "som_lightpack"
+
+/obj/item/storage/backpack/lightpack/icc
+	name = "\improper Modello/190"
+	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic tan fibre."
+	icon_state = "icc_bag"
+
+/obj/item/storage/backpack/lightpack/icc/guard
+	name = "\improper Modello/190"
+	desc = "A small lightweight buttpack made for use in a wide variety of operations, made with a synthetic black fibre."
+	icon_state = "icc_bag_guard"
