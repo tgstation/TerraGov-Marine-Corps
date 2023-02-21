@@ -252,7 +252,7 @@
 /obj/machinery/button/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	///The mob created by the spawner
-	var/mob/living/linked
+	var/mob/living/carbon/human/linked
 	///What spawner landmark is linked with this spawner (this has to be matching with the landmark)
 	var/link
 
@@ -268,18 +268,32 @@
 	if(!xeno_wanted)
 		return
 	QDEL_NULL(linked)
-	var/turf/T = get_turf(GLOB.valhalla_button_spawn_landmark[link])
-	linked = new xeno_wanted(T)
+	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
 /obj/machinery/button/valhalla/xeno_button
 	name = "Marine spawner"
 	var/outfit_list = list()
 
 /obj/machinery/button/valhalla/xeno_button/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	//var/datum/outfit/selected_outfit = tgui_input_list(usr, "Which outfit do you want the human to wear?", "Human spawn", outfit_list)
-	//if(!selected_outfit)
-	//	return
+	var/list/job_outfits = list()
+	for(var/type in subtypesof(/datum/outfit/job))
+		if(istype(type, /datum/outfit))
+			continue
+		var/datum/outfit/out = type
+		if(initial(out.can_be_admin_equipped))
+			job_outfits[initial(out.name)] = out
+
+	job_outfits = sortList(job_outfits)
+	job_outfits.Insert(1, "Naked")
+
+	var/datum/outfit/selected_outfit = tgui_input_list(usr, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
+	if(!selected_outfit)
+		return
+
 	QDEL_NULL(linked)
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+	if(selected_outfit == "Naked" || !selected_outfit)
+		return
+	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
 
 #undef DOOR_FLAG_OPEN_ONLY
