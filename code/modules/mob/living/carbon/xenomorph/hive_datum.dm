@@ -301,8 +301,6 @@
 
 	add_to_hive(HS)
 
-	if(hivenumber == XENO_HIVE_FALLEN)
-		RegisterSignal(src, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), .proc/delete_from_valhalla)
 /**
  * The total amount of xenomorphs that are considered for evolving purposes,
  * subtypes also consider stored larva, not just the current amount of living xenos

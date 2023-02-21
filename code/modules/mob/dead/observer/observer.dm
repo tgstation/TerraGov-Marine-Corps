@@ -908,18 +908,20 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(!xeno_choice)
 			return
 		log_game("[key_name(usr)] has joined Valhalla as a Xenomorph.")
-		var/mob/living/carbon/xenomorph/new_xeno = new xeno_choice(pick(GLOB.spawns_by_job[/datum/job/fallen]))
+		var/mob/living/carbon/xenomorph/new_xeno = new xeno_choice(pick(GLOB.spawns_by_job[/datum/job/fallen/xenomorph]))
 		new_xeno.transfer_to_hive(XENO_HIVE_FALLEN) //so they can talk to the other people in valhalla
 		new_xeno.xeno_caste.caste_flags &= ~CASTE_EVOLUTION_ALLOWED //we don't evolve
 		new_xeno.xeno_caste.caste_flags |= (CASTE_DOES_NOT_AGE|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE) //or age
+		var/datum/job/xallhala_job = SSjob.GetJobType(/datum/job/fallen/xenomorph)
+		new_xeno.apply_assigned_role_to_spawn(xallhala_job)
 		mind.transfer_to(new_xeno, TRUE)
-		to_chat(new_xeno, span_danger("This is a place for everyone to experiment and RP. Standard server rules apply here."))
+		xallhala_job.after_spawn(new_xeno)
 		return
 
-	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_all)
+	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_marine)
 	if(!valhalla_job)
 		return
-	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
+	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen/marine]))
 	valhalla_job = SSjob.GetJobType(valhalla_job)
 
 	log_game("[key_name(usr)] has joined Valhalla as a Marine.")

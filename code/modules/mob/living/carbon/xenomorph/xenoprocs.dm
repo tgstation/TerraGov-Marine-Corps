@@ -585,8 +585,3 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
-
-///Deletes the xeno, for valhalla purposes. I swear there is a better way but calling qdel from a signal doesn't work.
-/mob/living/carbon/xenomorph/proc/delete_from_valhalla(datum/source)
-	SIGNAL_HANDLER
-	qdel(src)
