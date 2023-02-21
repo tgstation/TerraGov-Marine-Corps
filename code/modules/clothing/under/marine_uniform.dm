@@ -262,6 +262,8 @@
 /obj/item/clothing/under/marine/veteran/pmc/holster
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
+/obj/item/clothing/under/marine/veteran/pmc/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 /obj/item/clothing/under/marine/veteran/pmc/leader
 	name = "\improper PMC command fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."

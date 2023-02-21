@@ -131,7 +131,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70_pmc
 	ears = /obj/item/radio/headset/distress/pmc
-	w_uniform = /obj/item/clothing/under/marine/veteran/pmc
+	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/webbing
 	shoes = /obj/item/clothing/shoes/veteran/pmc
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -152,13 +152,18 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
+
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/pmc, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
 
 
 //PMC Leader
