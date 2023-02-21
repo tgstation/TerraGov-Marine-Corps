@@ -269,3 +269,22 @@
 2023-02-20:
   Blundir:
   - imageadd: crematorium sprites from tg
+2023-02-21:
+  Lewdcifer:
+  - admin: Admin Observers should now appear on staffwho and be able to use msay now
+      that they have +ADMINTICKET.
+  Lumipharon:
+  - balance: Chemistry machines now require skill to operate
+  - code_imp: Cleaned up some armor code and organised some sprite files
+  - rscadd: SOM forces now have access to the V-34 carbine
+  - rscadd: Cross compatible MPI and V-34 styles and magazines
+  TiviPlus:
+  - code_imp: gamemode/silo code has been cleaned up
+  Xander3359:
+  - rscadd: fills the slots of the recently buffed shoulder holster webbing for ERTs.
+  - rscadd: a roller bed to the synth essentials kit
+  tyeagg:
+  - rscadd: different sounds for different explosion types
+  - soundadd: new explosion sounds
+  - soundadd: new bullet ricochet and miss
+  - sounddel: removed old explosion sounds
