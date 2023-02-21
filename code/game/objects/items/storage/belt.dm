@@ -1036,6 +1036,17 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
+/obj/item/storage/belt/gun/pistol/m4a3/vp70_pmc/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70/tactical(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
+
 /obj/item/storage/belt/gun/pistol/m4a3/vp78/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
