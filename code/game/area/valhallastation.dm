@@ -269,6 +269,10 @@
 	name = "Detective's Office"
 	icon_state = "detective"
 
+/area/centcom/valhalla/xenocave
+	name = "Xeno Cave"
+	icon_state = "north"
+
 ///////////WORK IN PROGRESS//////////
 
 /area/centcom/valhalla/quartermaster/miningdock
