@@ -370,15 +370,6 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/grenade/pmc/Initialize()
-	. = ..()
-	new /obj/item/explosive/grenade/smokebomb/cloak(src)
-	new /obj/item/explosive/grenade/smokebomb/drain(src)
-	new /obj/item/explosive/grenade/pmc(src)
-	new /obj/item/explosive/grenade/pmc(src)
-	new /obj/item/explosive/grenade/pmc(src)
-	new /obj/item/explosive/grenade/pmc(src)
-
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"

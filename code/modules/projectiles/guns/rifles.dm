@@ -435,9 +435,11 @@
 
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 21, "under_x" = 25, "under_y" = 16, "stock_x" = 18, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 
-	burst_delay = 0.2 SECONDS
+	burst_amount = 1
+	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	damage_mult = 1.5
 	scatter = -2

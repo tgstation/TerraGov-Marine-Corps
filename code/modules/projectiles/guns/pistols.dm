@@ -544,7 +544,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp78
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp78)
 	force = 8
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
