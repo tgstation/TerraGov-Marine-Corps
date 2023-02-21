@@ -56,6 +56,8 @@
 
 /obj/item/explosive/grenade/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
+	if(!active)
+		return
 	user.temporarilyRemoveItemFromInventory(src)
 	forceMove(get_turf(src))
 	src.throw_at(target, throw_range, throw_speed, user, TRUE)
