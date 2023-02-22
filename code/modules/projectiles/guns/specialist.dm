@@ -611,9 +611,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_s_store_str = 'icons/mob/items_suit_slot_64.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
+	worn_x_dimension = 64
 	max_shells = 1
 	caliber = CALIBER_84MM
 	load_method = SINGLE_CASING
