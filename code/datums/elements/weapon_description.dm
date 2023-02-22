@@ -90,8 +90,7 @@
 			readout += "If you decide to throw this object instead, one will take <span class='warning'>[round((100 / source.throwforce), 0.1)]</span> hit\s before collapsing."
 		else
 			readout += "If you decide to throw this object instead, then you will have trouble damaging anything."
-		if(source.armour_penetration > 0 || source.block_chance > 0)
-			readout += "This item has proven itself <span class='warning'>[weapon_tag_convert(source.armour_penetration)]</span> of piercing armor and <span class='warning'>[weapon_tag_convert(source.block_chance)]</span> of blocking attacks."
+            
 	// Custom manual notes
 	if(source.offensive_notes)
 		readout += source.offensive_notes
