@@ -13,7 +13,7 @@
 
 	// Flavor text crimes used in build_weapon_text()
 	var/list/crimes = list("Assaults", "Third Degree Murders", "Robberies", "Terrorist Attacks", "Different Felonies", "Felinies", "Counts of Tax Evasion", "Mutinies")
-	var/list/victims = list("a human", "a monkey", "a moth", "a clown", "a mime", "a mortal foe", "an innocent bystander", "a robot")
+	var/list/victims = list("a human", "a dysfunctional clone", "a monkey", "a moth", "a mortal foe", "an innocent bystander", "a robot", "a willing synthetic unit", "a terribly weakened xenomorph", "a sworn enemy of the government", "a simulated test dummy")
 
 /datum/element/weapon_description/Attach(datum/target, attached_proc)
 	. = ..()
@@ -76,7 +76,7 @@
 	var/list/readout = list("") // Readout is used to store the text block output to the user so it all can be sent in one message
 
 	// Meaningless flavor text. The number of crimes is constantly changing because of the complex Nanotrasen legal system and the esoteric nature of time itself!
-	readout += "<span class='warning'>WARNING:</span> This item has been marked as dangerous by the NT legal team because of its use in <span class='warning'>[rand(2,99)] [crimes[rand(1, crimes.len)]]</span> in the past hour.\n"
+	readout += "<span class='warning'>WARNING:</span> This item has been marked as dangerous by the TerraGov legal division because of its use in <span class='warning'>[rand(2,99)] [crimes[rand(1, crimes.len)]]</span> in the past hour.\n"
 
 	// Doesn't show the base notes for items that have the override notes variable set to true
 	if(!source.override_notes)
