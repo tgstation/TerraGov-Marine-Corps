@@ -184,7 +184,7 @@
 /datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
 	. = ..()
 	if(!ishuman(A))
-		owner.balloon_alert(owner, "Not a human")
+		owner.balloon_alert(owner, "Not a valid target")
 		return fail_activate()
 	var/mob/living/carbon/human/victim = A
 	if(victim.stat != CONSCIOUS)
