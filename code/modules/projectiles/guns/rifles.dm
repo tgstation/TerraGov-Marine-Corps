@@ -507,7 +507,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/plum
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/mpi_km,
 		/obj/item/ammo_magazine/rifle/mpi_km/plum,
