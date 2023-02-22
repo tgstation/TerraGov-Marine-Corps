@@ -226,15 +226,15 @@
 	icon = 'icons/obj/cannon_mounted_motorbike.dmi'
 	icon_state = "cannon_mounted_motorbike"
 	pixel_x = -7
-	/*motorbike_cover.pixel_x = 7*/
-	/*max_integrity = 300
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)*/ //Worth considering changing the hp/armor
+	//motorbike_cover.pixel_x = 7
 	///Internal motorbike storage object
-	/*///Fuel count, fuel usage is one per tile moved
-	var/fuel_count = 0
-	///max fuel that this bike can hold
-	var/fuel_max = 1000*/ //Worth considering changing the fuel usage/storage
 	motor_pack = /obj/item/storage/internal/motorcannonbike_pack
+	///The gun attached to the bike
+	var/obj/item/weapon/gun/gun
+
+	var/list/attachable_allowed = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
+	var/list/starting_attachment_types = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
+
 
 /obj/vehicle/ridden/motorbike/cannon_mounted/Initialize()
 	. = ..()
@@ -246,7 +246,39 @@
 	max_storage_space = 32
 	can_hold = list(/obj/item/ammo_magazine/rocket/recoilless)
 
-/*/obj/vehicle/ridden/motorbike/cannon_mounted/attacked_by(obj/item/I, mob/living/user, def_zone)
+/obj/item/storage/internal/motorcannonbike_pack/Initialize()
 	. = ..()
-	if(istype(I, /obj/item/ammo_magazine/rocket/recoilless))
-*/
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+
+/obj/vehicle/ridden/motorbike/cannon_mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun.
+	. = ..()
+	if(!ishuman(user))
+		return
+	reload(user, I)
+
+/obj/vehicle/ridden/motorbike/cannon_mounted/proc/reload(mob/user, ammo_magazine)
+	if(HAS_TRAIT(src, TRAIT_GUN_RELOADING))
+		to_chat(user, span_warning("The weapon is already being reloaded!"))
+		return
+	if(user.do_actions)
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return
+	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+	if(length(gun.chamber_items))
+		gun.unload(user)
+		update_icon_state()
+	gun.reload(ammo_magazine, user)
+	update_icon_state()
+	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		return
+	gun.do_unique_action(gun, user)
+
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle
