@@ -130,7 +130,7 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
@@ -145,7 +145,7 @@
 	icon_state = "som_helmet_engineer"
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 		/obj/item/armor_module/module/welding/som,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/som)
@@ -157,7 +157,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 50, ACID = 70)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 /obj/item/clothing/head/modular/som/veteran
@@ -172,7 +172,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/greyscale/badge,
 	)
 
 /obj/item/clothing/head/modular/som/leader
