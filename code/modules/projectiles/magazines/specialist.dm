@@ -122,34 +122,38 @@
 	name = "\improper 84mm 'L-G' high-explosive rocket"
 	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this.  When empty, use this frame to deconstruct it."
 	caliber = CALIBER_84MM
-	icon_state = "rocket"
+	icon_state = "rocket_he"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket
+	default_ammo = /datum/ammo/rocket/he
 	reload_delay = 60
+	bonus_overlay = "rocket_he"
 
 /obj/item/ammo_magazine/rocket/sadar/unguided
 	name = "\improper 84mm 'Unguided' high-explosive rocket"
 	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumb', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
-	default_ammo = /datum/ammo/rocket/unguided
+	icon_state = "rocket_he_unguided"
+	default_ammo = /datum/ammo/rocket/he/unguided
 
 /obj/item/ammo_magazine/rocket/sadar/ap
 	name = "\improper 84mm 'L-G' anti-armor rocket"
-	icon_state = "ap_rocket"
-	default_ammo = /datum/ammo/rocket/ap
 	desc = "A tube for an AP rocket, the warhead of which inside is a missile assisted kinetic penetrator that will devastate just about anything that it hits internally, but will do nothing to the surrounding armor. When empty, use this frame to deconstruct it."
+	icon_state = "rocket_ap"
+	default_ammo = /datum/ammo/rocket/ap
+	bonus_overlay = "rocket_ap"
 
 /obj/item/ammo_magazine/rocket/sadar/wp
 	name = "\improper 84mm 'L-G' white-phosphorus rocket"
-	icon_state = "wp_rocket"
-	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this. Use this in hand to deconstruct it."
+	icon_state = "rocket_wp"
+	default_ammo = /datum/ammo/rocket/wp
+	bonus_overlay = "rocket_wp"
 
 /obj/item/ammo_magazine/rocket/sadar/wp/unguided
 	name = "\improper 84mm 'Unguided' white-phosphorus rocket"
-	default_ammo = /datum/ammo/rocket/wp/unguided
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. It is entirely unguided, and thus 'Dumb', the benefit of this is a bigger overall payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all. Use this in hand to deconstruct it."
-
+	icon_state = "rocket_wp_unguided"
+	default_ammo = /datum/ammo/rocket/wp/unguided
 
 //-------------------------------------------------------
 //RL-160 recoilless rifle

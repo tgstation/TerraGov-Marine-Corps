@@ -605,11 +605,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/rocket/sadar
 	name = "\improper RL-152 sadar rocket launcher"
 	desc = "The RL-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
-	icon_state = "m5"
-	item_state = "m5"
-	max_shells = 1 //codex
-	caliber = CALIBER_84MM //codex
-	load_method = SINGLE_CASING //codex
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "sadar"
+	item_state = "sadar"
+	max_shells = 1
+	caliber = CALIBER_84MM
+	load_method = SINGLE_CASING
 	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket/sadar
 	allowed_ammo_types = list(
