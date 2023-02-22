@@ -12,6 +12,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/completed = FALSE //currently only used for custom objectives.
 	///can this be granted by admins?
 	var/admin_grantable = FALSE
+	///if true during target selection we will try to avoid players already targeted by another objective
+	var/avoid_double_target = FALSE
 
 /datum/objective/proc/get_owners() // Combine owner and team into a single list.
 	. = list()
@@ -51,6 +53,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		target = null
 	else if (new_target == "Random")
 		find_target()
+		if(!target)
+			target = owner
 	else
 		target = new_target.mind
 
@@ -128,14 +132,15 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(!target)
 		var/mob/living/M
 		for(M in GLOB.mob_list)
-			if(M.mind == null)
+			var/datum/mind/mobmind = M.mind
+			if(mobmind == null)
 				continue
-			if(M.mind == owner)
-				continue //don't select ourselves when considering targets
+			if(HAS_TRAIT(mobmind.current, TRAIT_HAS_BEEN_TARGETED) && avoid_double_target)
+				continue
 			else
-				target = M.mind
-	if(!target) //still no target, screw it we have no other option to keep sanity
-		target = owner
+				target = mobmind
+				if(!HAS_TRAIT(mobmind.current, TRAIT_HAS_BEEN_TARGETED))
+					ADD_TRAIT(mobmind.current, TRAIT_HAS_BEEN_TARGETED, TRAIT_HAS_BEEN_TARGETED)
 	update_explanation_text()
 	return target
 
@@ -176,6 +181,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		/datum/objective/loseoperation,
 		/datum/objective/kidnap,
 		/datum/objective/gather_cash,
+		/datum/objective/kill_zombies,
+		/datum/objective/seize_area,
+		/datum/objective/kill_other_factions,
 		/datum/objective/custom,
 	),/proc/cmp_typepaths_asc)
 
@@ -211,6 +219,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "kidnap"
 	explanation_text = "Escape on a shuttle or an escape pod alive and with your target."
 	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
+	avoid_double_target = TRUE
 
 /datum/objective/kidnap/check_completion()
 	if(!considered_escaped(owner))
@@ -248,7 +257,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/maroon
 	name = "maroon"
-	var/target_role_type=FALSE
+	var/target_role_type = FALSE
+	avoid_double_target = TRUE
 
 /datum/objective/maroon/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -280,7 +290,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/assassinate
 	name = "assassinate"
-	var/target_role_type=FALSE
+	var/target_role_type = FALSE
+	avoid_double_target = TRUE
 
 /datum/objective/assassinate/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -414,6 +425,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	name = "protect"
 	explanation_text = "Keep target from dying."
 	team_explanation_text = "Keep target from dying."
+	avoid_double_target = TRUE
 
 /datum/objective/protect/check_completion()
 	//Protect will always suceed when someone suicides
@@ -468,3 +480,63 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/gather_cash/admin_edit(mob/admin)
 	neededcash = input(admin,"Set the amount of cash needed to complete this objective", neededcash) as num
 	update_explanation_text()
+
+/datum/objective/kill_zombies
+	name = "kill all zombies"
+	explanation_text = "Eliminate all zombies and keep them from rising again. Rip and tear!"
+	team_explanation_text = "Eliminate all zombies. Rip and tear!"
+
+/datum/objective/kill_zombies/check_completion()
+	for(var/mob/living/carbon/human/affectedmob in GLOB.mob_list)
+		if(iszombie(affectedmob))
+			for(var/datum/internal_organ/affectedorgan in affectedmob.internal_organs)
+				if(affectedorgan == affectedmob.internal_organs_by_name["heart"]) //zombies with hearts aren't truly dead
+					return FALSE
+	return TRUE
+
+/datum/objective/seize_area
+	name = "control area"
+	explanation_text = "Hold area and defend against all intruders."
+	explanation_text = "Hold area and defend against all intruders."
+	var/area/defendedarea
+
+/datum/objective/seize_area/admin_edit(mob/admin)
+	if(tgui_alert(admin, "Use the area we are currently in?", "Continue?", list("Yes", "No")) != "No")
+		defendedarea = get_area(admin)
+	else
+		var/area/new_target = input(admin,"Select target:", "Objective target") as null|anything in GLOB.sorted_areas
+		defendedarea = new_target
+	update_explanation_text()
+
+/datum/objective/seize_area/check_completion()
+	var/currentfaction = owner.current.faction
+	for(var/mob/living/carbon/human/targethuman in GLOB.mob_list)
+		for(targethuman in defendedarea)
+			if(targethuman.stat == DEAD) //we don't care about dead humans
+				continue
+			if(targethuman.faction != currentfaction)
+				return FALSE
+	if(locate(/mob/living/carbon/xenomorph) in defendedarea)
+		return FALSE
+	return TRUE
+
+/datum/objective/seize_area/update_explanation_text()
+	..()
+	if(defendedarea)
+		explanation_text = "Defend [defendedarea] from any hostile forces."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/kill_other_factions
+	name = "kill other faction"
+	explanation_text = "Eliminate all other factions."
+	team_explanation_text = "Eliminate all other factions."
+
+/datum/objective/kill_other_factions/check_completion()
+	var/currentfaction = owner.current.faction
+	for(var/mob/living/carbon/human/affectedmob in GLOB.mob_list)
+		if(affectedmob.stat == DEAD) //we don't care about dead humans
+				continue
+			if(affectedmob.faction != currentfaction)
+				return FALSE
+	return TRUE

@@ -97,9 +97,12 @@
 	if(selectedobjective == /datum/objective/gather_cash)
 		var/datum/objective/gather_cash/gather_cash_objective = new
 		selectedobjective =	gather_cash_objective
-		update_explanation_text()
+		selectedobjective.update_explanation_text()
 
 	selectedobjective.find_target()
+	if(!selectedobjective.target) //find target returned null, set target to self for sanity
+		selectedobjective.target = owner
+		selectedobjective.update_explanation_text()
 	selectedobjective.owner = owner
 	add_objective(selectedobjective)
 
