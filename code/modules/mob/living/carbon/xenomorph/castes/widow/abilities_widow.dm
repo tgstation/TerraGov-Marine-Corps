@@ -183,24 +183,33 @@
 
 /datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
 	. = ..()
-	if(!ishuman(A))
-		owner.balloon_alert(owner, "Not a valid target")
-		return fail_activate()
-	var/mob/living/carbon/human/victim = A
-	if(victim.stat != CONSCIOUS)
-		owner.balloon_alert(owner, "Already down")
-		return fail_activate()
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(isnull(create_spiderling_action.spiderlings))
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
-		var/datum/component/ai_controller/spiderling_ai = spiderling.GetComponent(/datum/component/ai_controller)
-		var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
-		spiderling_behavior.go_to_target(target = victim)
-		spiderling_behavior.escorted_atom = null
-		spiderling_behavior.triggered_spiderling_rage()
-	succeed_activate()
+	if(!isobj(A))
+		if(!ishuman(A))
+			owner.balloon_alert(owner, "Not a valid target")
+			return fail_activate()
+		var/mob/living/carbon/human/victim = A
+		if(victim.stat != CONSCIOUS)
+			owner.balloon_alert(owner, "Already down")
+			return fail_activate()
+		for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
+			var/datum/component/ai_controller/spiderling_ai = spiderling.GetComponent(/datum/component/ai_controller)
+			var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
+			spiderling_behavior.go_to_target(target = victim)
+			spiderling_behavior.escorted_atom = null
+			spiderling_behavior.triggered_spiderling_rage()
+		return succeed_activate()
+	else
+		var/obj/victim = A
+		for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
+			var/datum/component/ai_controller/spiderling_ai = spiderling.GetComponent(/datum/component/ai_controller)
+			var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
+			spiderling_behavior.escorted_atom = null
+			spiderling_behavior.go_to_obj_target(target = victim)
+
 
 // ***************************************
 // *********** Burrow
