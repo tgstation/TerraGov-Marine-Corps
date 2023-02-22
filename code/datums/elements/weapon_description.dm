@@ -90,7 +90,6 @@
 			readout += "If you decide to throw this object instead, one will take <span class='warning'>[round((100 / source.throwforce), 0.1)]</span> hit\s before collapsing."
 		else
 			readout += "If you decide to throw this object instead, then you will have trouble damaging anything."
-            
 	// Custom manual notes
 	if(source.offensive_notes)
 		readout += source.offensive_notes
