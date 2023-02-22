@@ -101,26 +101,4 @@
 	// Finally bringing the fields together
 	return readout.Join("\n")
 
-/**
- *
- * Converts percentile based stats to an adjective appropriate for the
- * examined warning label
- *
- * Arguments:
- *  * tag_val: The value of the item to be added to the tag
- */
-/datum/element/weapon_description/proc/weapon_tag_convert(tag_val)
-	switch(tag_val)
-		if(0)
-			return "INCAPABLE"
-		if(1 to 25)
-			return "BARELY CAPABLE"
-		if(26 to 50)
-			return "CAPABLE"
-		if(51 to 75)
-			return "VERY CAPABLE"
-		if(76 to INFINITY)
-			return "EXTREMELY CAPABLE"
-		else
-			return "STRANGELY CAPABLE"
 			
