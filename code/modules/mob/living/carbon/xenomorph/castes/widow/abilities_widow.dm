@@ -178,7 +178,7 @@
 	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
-		COMSIG_XENOABILITY_SPIDERLING_MARK,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPIDERLING_MARK,
 	)
 
 /datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
