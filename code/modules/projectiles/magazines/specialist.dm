@@ -260,48 +260,48 @@
 
 //SOM RPG
 /obj/item/ammo_magazine/rocket/som
-	name = "\improper 84mm light-explosive RPG"
+	name = "\improper 84mm high-explosive RPG"
 	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
-	icon_state = "rpg_rocket"
+	icon_state = "rpg_he"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
-	bonus_overlay = "rpg_rocket"
+	bonus_overlay = "rpg_he"
 
 /obj/item/ammo_magazine/rocket/som/light
 	name = "\improper 84mm light-explosive RPG"
 	desc = "A light explosive warhead for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
-	icon_state = "rpg_rocket_le"
+	icon_state = "rpg_le"
 	default_ammo = /datum/ammo/rocket/som/light
 	reload_delay = 1 SECONDS
-	bonus_overlay = "rpg_rocket_le"
+	bonus_overlay = "rpg_le"
 
 /obj/item/ammo_magazine/rocket/som/heat
 	name = "\improper 84mm HEAT RPG"
 	desc = "A high explosive anti armor warhead for the V-71 rocket launcher. Designed to punch through the toughest armor."
-	icon_state = "rpg_rocket_heat"
+	icon_state = "rpg_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
-	bonus_overlay = "rpg_rocket_heat"
+	bonus_overlay = "rpg_heat"
 
 /obj/item/ammo_magazine/rocket/som/thermobaric
 	name = "\improper 84mm thermobaric RPG"
 	desc = "A thermobaric warhead for the V-71 rocket launcher. Causes a powerful fuel air explosion over a moderate area."
-	icon_state = "rpg_rocket_thermobaric"
+	icon_state = "rpg_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
-	bonus_overlay = "rpg_rocket_thermobaric"
+	bonus_overlay = "rpg_thermobaric"
 
 /obj/item/ammo_magazine/rocket/som/rad
 	name = "\improper 84mm  irrad RPG"
 	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
-	icon_state = "rpg_rocket_rad"
+	icon_state = "rpg_rad"
 	default_ammo = /datum/ammo/rocket/som/rad
-	bonus_overlay = "rpg_rocket_rad"
+	bonus_overlay = "rpg_rad"
 
 /obj/item/ammo_magazine/rocket/som/incendiary
 	name = "\improper 84mm incendiary RPG"
 	desc = "An incendiary warhead for the V-71 rocket launcher. Releases a white phosphorus payload, burning anything in a moderate blast radius."
-	icon_state = "rpg_rocket_incendiary"
+	icon_state = "rpg_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
-	bonus_overlay = "rpg_rocket_incendiary"
+	bonus_overlay = "rpg_incendiary"
 
 
 // railgun
