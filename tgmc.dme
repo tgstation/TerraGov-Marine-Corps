@@ -390,6 +390,7 @@
 #include "code\datums\elements\special_clothing_overlay.dm"
 #include "code\datums\elements\undertile.dm"
 #include "code\datums\elements\wall_speedup.dm"
+#include "code\datums\elements\weapon_description"
 #include "code\datums\elements\windowshutter.dm"
 #include "code\datums\emergency_calls\clf.dm"
 #include "code\datums\emergency_calls\colonists.dm"
