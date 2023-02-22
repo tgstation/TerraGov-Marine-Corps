@@ -120,6 +120,7 @@ const Menu = (props, context) => {
   const {
     requests,
     currentpoints,
+    personalpoints,
     categories,
     shopping_list_cost,
     shopping_list_items,
@@ -137,6 +138,9 @@ const Menu = (props, context) => {
   return (
     <Section height="100%" p="5px">
       Points: <AnimatedNumber value={currentpoints} />
+      <Section>
+        Personal Points: <AnimatedNumber value={personalpoints} />
+      </Section>
       {!readOnly && (
         <>
           <Divider />
@@ -393,6 +397,12 @@ const ShoppingCart = (props, context) => {
               reason: reason,
             })
           }
+        />
+        <Button
+          p="5px"
+          content="Personal Buy"
+          icon="dollar-sign"
+          onClick={() => act('buypersonal')}
         />
         <Button
           p="5px"
