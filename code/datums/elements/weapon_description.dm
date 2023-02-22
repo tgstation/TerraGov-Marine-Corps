@@ -123,3 +123,4 @@
 			return "EXTREMELY CAPABLE"
 		else
 			return "STRANGELY CAPABLE"
+			
