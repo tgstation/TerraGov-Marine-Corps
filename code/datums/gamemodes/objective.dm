@@ -497,7 +497,6 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/seize_area
 	name = "control area"
 	explanation_text = "Hold area and defend against all intruders."
-	explanation_text = "Hold area and defend against all intruders."
 	var/area/defendedarea
 
 /datum/objective/seize_area/admin_edit(mob/admin)
@@ -517,8 +516,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 			for(targethuman in defendedarea)
 				if(!iszombie(targethuman))
 					return FALSE
-			else
-				return TRUE
+			return TRUE
 		for(targethuman in defendedarea)
 			if(iszombie(targethuman)) //zombies count as hostile forces to everyone but zombies
 				for(var/datum/internal_organ/affectedorgan in targethuman.internal_organs)

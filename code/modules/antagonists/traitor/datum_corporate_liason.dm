@@ -1,20 +1,15 @@
 #define TRAITOR_HUMAN "human"
-#define TRAITOR_AI	  "AI"
 
 /datum/antagonist/corporate_liason
 	name = "Corporate Liason"
 	roundend_category = "traitors"
 	var/employer = "Nanotrasen"
 	var/give_objectives = TRUE
-	var/should_give_codewords = TRUE
-	var/should_equip = TRUE
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
-	var/datum/contractor_hub/contractor_hub
+	//list of players that have signed our recruiting contracts
+	var/list/recruitedplayers
 
 /datum/antagonist/corporate_liason/on_gain()
-	if(owner.current && isAI(owner.current))
-		traitor_kind = TRAITOR_AI
-
 	if(give_objectives)
 		forge_traitor_objectives()
 	return ..()
