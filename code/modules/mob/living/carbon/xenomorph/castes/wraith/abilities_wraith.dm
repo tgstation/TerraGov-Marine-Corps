@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Blink"
 	desc = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
-	plasma_cost = 30
+	plasma_cost = 15
 	cooldown_timer = 0.5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK,
@@ -411,8 +411,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Time stop"
 	action_icon_state = "time_stop"
 	desc = "Freezes bullets in their course, and they will start to move again only after a certain time"
-	plasma_cost = 100
-	cooldown_timer = 1 MINUTES
+	plasma_cost = 50
+	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TIMESTOP,
 	)
@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Portal"
 	action_icon_state = "portal"
 	desc = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
-	plasma_cost = 50
+	plasma_cost = 30
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PORTAL,
@@ -639,7 +639,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	action_icon_state = "rewind"
 	desc = "Save the location and status of the target. When the time is up, the target location and status are restored"
 	plasma_cost = 100
-	cooldown_timer = 30 SECONDS
+	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
 	)
@@ -728,10 +728,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!loc_b)
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
-		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
-		if(isxeno(target))
+		if(isxeno(targeted))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
+			targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
 		targeted.remove_filter("rewind_blur")
 		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
