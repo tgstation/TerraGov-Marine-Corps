@@ -129,6 +129,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
+	/// Used in obj/item/examine to give additional notes on what the weapon does, separate from the predetermined output variables
+	var/offensive_notes
+	/// Used in obj/item/examine to determines whether or not to detail an item's statistics even if it does not meet the force requirements
+	var/override_notes = FALSE
+
 /obj/item/Initialize()
 
 	if(species_exception)
@@ -148,6 +153,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(flags_item_map_variant)
 		update_item_sprites()
+
+	add_weapon_description()
 
 
 /obj/item/Destroy()
@@ -207,6 +214,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/examine(mob/user)
 	. = ..()
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
+
+/*
+ * Adds the weapon_description element, which shows the warning label for especially dangerous objects.
+ * Made to be overridden by item subtypes that require specific notes outside of the scope of offensive_notes
+ */
+/obj/item/proc/add_weapon_description()
+	AddElement(/datum/element/weapon_description)
 
 /obj/item/attack_ghost(mob/dead/observer/user)
 	if(!can_interact(user))
