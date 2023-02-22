@@ -173,7 +173,7 @@
 /datum/action/xeno_action/activable/spiderling_mark
 	name = "Spiderling Mark"
 	ability_name = "spiderling_mark"
-	desc = "Send your spawn on a human"
+	desc = "Send your spawn on a valid target, they will automatically destroy themselves out of sheer fury after 15 seconds."
 	action_icon_state = "spiderling_mark"
 	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
