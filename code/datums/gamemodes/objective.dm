@@ -520,14 +520,14 @@ GLOBAL_LIST_EMPTY(possible_items)
 			else
 				return TRUE
 		for(targethuman in defendedarea)
-			if(targethuman.stat == DEAD) //we don't care about dead humans
-				continue
-			if(targethuman.faction != currentfaction)
-				return FALSE
 			if(iszombie(targethuman)) //zombies count as hostile forces to everyone but zombies
 				for(var/datum/internal_organ/affectedorgan in targethuman.internal_organs)
 					if(affectedorgan == targethuman.internal_organs_by_name["heart"])
 						return FALSE
+			if(targethuman.stat == DEAD ) //we don't care about dead humans
+				continue
+			if(targethuman.faction != currentfaction)
+				return FALSE
 	if(locate(/mob/living/carbon/xenomorph) in defendedarea)
 		return FALSE
 	return TRUE
