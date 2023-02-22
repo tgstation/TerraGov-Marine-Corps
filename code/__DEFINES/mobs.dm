@@ -734,6 +734,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TIME_TO_DISSOLVE 5 SECONDS
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
+//Panther defines
+#define PANTHER_EVASION_COOLDOWN 2.5 SECONDS // how close a nearby human has to be in order to be targeted
+#define PANTHER_EVASION_PLASMADRAIN 3
+#define PANTHER_EVASION_LOW_PLASMADRAIN 1.5
+#define PANTHER_TEARING_TAIL_REAGENT_AMOUNT 8
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3

@@ -869,3 +869,9 @@
 	full_name = "Panther: Adrenaline Rush"
 	description = "Run faster."
 	keybind_signal = COMSIG_XENOABILITY_ADRENALINE_RUSH
+
+/datum/keybinding/xeno/evasive_maneuvers
+	name = "Evasive Maneuvers"
+	full_name = "Panther: Evasive Maneuvers"
+	description = "Toggle evasive action, forcing non-friendly projectiles that would hit you to miss."
+	keybind_signal = COMSIG_XENOABILITY_EVASIVE_MANEUVERS

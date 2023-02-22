@@ -67,6 +67,6 @@
 	. = ..()
 	var/mob/living/carbon/human/H = L
 	if(L.health < H.health_threshold_crit && volume >= 3)
-		to_chat(L, span_userdanger("Heart explosion! Power's running in your veins!"))
+		to_chat(L, span_userdanger("Heart explosion! Power running in your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.40)
 		L.jitter(5)

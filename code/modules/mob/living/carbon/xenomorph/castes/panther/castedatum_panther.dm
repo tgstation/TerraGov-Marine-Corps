@@ -55,9 +55,10 @@
 		/datum/action/xeno_action/activable/psydrain/panther,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce/panther,
-		/datum/action/xeno_action/evasion/panther,
-		/datum/action/xeno_action/tearingtail,
 		/datum/action/xeno_action/activable/adrenalinejump,
+		/datum/action/xeno_action/evasive_maneuvers,
+		/datum/action/xeno_action/tearingtail,
+		/datum/action/xeno_action/select_reagent/panther,
 	)
 
 /datum/xeno_caste/panther/young
@@ -174,8 +175,9 @@
 		/datum/action/xeno_action/activable/psydrain/panther,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce/panther,
-		/datum/action/xeno_action/evasion/panther,
-		/datum/action/xeno_action/tearingtail,
 		/datum/action/xeno_action/activable/adrenalinejump,
+		/datum/action/xeno_action/evasive_maneuvers,
+		/datum/action/xeno_action/tearingtail,
+		/datum/action/xeno_action/select_reagent/panther,
 		/datum/action/xeno_action/adrenaline_rush,
 	)
