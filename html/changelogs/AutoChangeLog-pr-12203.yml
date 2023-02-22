@@ -1,5 +1,0 @@
-author: "carlarctg"
-delete-after: True
-changes:
-  - bugfix: "Added support for the old infantry open helmet to have the cool visor."
-  - bugfix: "Fixed a runtime with blur_protection component that would've effectively given you permanent blur protection. Good thing it was bugged!"
