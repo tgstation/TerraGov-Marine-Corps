@@ -511,15 +511,23 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/seize_area/check_completion()
 	var/currentfaction = owner.current.faction
 	for(var/mob/living/carbon/human/targethuman in GLOB.mob_list)
+		if(iszombie(owner.current)) //zombies don't care about factions
+			if(locate(/mob/living/carbon/xenomorph) in defendedarea)
+				return FALSE
+			for(targethuman in defendedarea)
+				if(!iszombie(targethuman))
+					return FALSE
+			else
+				return TRUE
 		for(targethuman in defendedarea)
 			if(targethuman.stat == DEAD) //we don't care about dead humans
 				continue
 			if(targethuman.faction != currentfaction)
 				return FALSE
-		if(iszombie(targethuman) && !iszombie(owner.current)) //zombies count as hostile forces to everyone but zombies
-			for(var/datum/internal_organ/affectedorgan in targethuman.internal_organs)
-				if(affectedorgan == targethuman.internal_organs_by_name["heart"])
-					return FALSE
+			if(iszombie(targethuman)) //zombies count as hostile forces to everyone but zombies
+				for(var/datum/internal_organ/affectedorgan in targethuman.internal_organs)
+					if(affectedorgan == targethuman.internal_organs_by_name["heart"])
+						return FALSE
 	if(locate(/mob/living/carbon/xenomorph) in defendedarea)
 		return FALSE
 	return TRUE
