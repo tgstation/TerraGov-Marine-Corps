@@ -815,7 +815,7 @@
 /datum/keybinding/xeno/spiderling_mark
 	name = "Spiderling Mark"
 	full_name = "Widow: Spiderling Mark"
-	description = "Signal to your spawn which human they shall attack"
+	description = "Signal your spawn to a target they shall attack."
 	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
 
 /datum/keybinding/xeno/vent/down(client/user)
