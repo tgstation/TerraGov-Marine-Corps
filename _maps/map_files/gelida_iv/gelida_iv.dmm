@@ -3661,7 +3661,7 @@
 	spawnkey = 0
 	},
 /obj/item/storage/fancy/cigar,
-/obj/item/clothing/head/helmet/marine/veteran/PMC,
+/obj/item/clothing/head/helmet/marine/veteran/pmc,
 /obj/item/coin/diamond,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
@@ -36491,7 +36491,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xNQ" = (
-/obj/item/clothing/shoes/veteran/PMC{
+/obj/item/clothing/shoes/veteran/pmc{
 	name = "steel toe boots"
 	},
 /obj/machinery/light,

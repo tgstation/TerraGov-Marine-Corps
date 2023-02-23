@@ -1,0 +1,4 @@
+author: "Tanker"
+delete-after: True
+changes:
+  - rscadd: "Added a new mecha melee weapon, the Sunbeam particle piercer."

@@ -108,8 +108,7 @@
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
 
-	ENABLE_BITFIELD(item_to_deploy.flags_item, IS_DEPLOYED)
-
+	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
@@ -135,10 +134,14 @@
 		sentry?.set_on(TRUE)
 		return
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+	attached_item.toggle_deployment_flag()
 
 	user.unset_interaction()
-	user.put_in_hands(attached_item)
+
+	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)
+		attached_item.forceMove(get_turf(deployed_machine))
+	else
+		user.put_in_hands(attached_item)
 
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity

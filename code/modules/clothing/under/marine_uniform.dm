@@ -12,9 +12,6 @@
 		"Half" = "_h",
 	)
 
-/obj/item/clothing/under/marine/standard
-	flags_item_map_variant = null
-
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
@@ -256,18 +253,26 @@
 	item_state = "commissar_uniform"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/under/marine/veteran/PMC
+/obj/item/clothing/under/marine/veteran/pmc
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/under/marine/veteran/PMC/leader
+/obj/item/clothing/under/marine/veteran/pmc/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/veteran/pmc/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+/obj/item/clothing/under/marine/veteran/pmc/leader
 	name = "\improper PMC command fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_jumpsuit"
 
-/obj/item/clothing/under/marine/veteran/PMC/commando
+/obj/item/clothing/under/marine/veteran/pmc/leader/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/veteran/pmc/commando
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
@@ -450,6 +455,16 @@
 	item_state = "som_uniform_leader"
 
 /obj/item/clothing/under/som/leader/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/icc
+	name = "\improper Modelle/30 uniform"
+	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
+	icon_state = "icc"
+	item_state = "icc"
+	has_sensor = FALSE
+
+/obj/item/clothing/under/icc/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 /obj/item/clothing/under/sectoid

@@ -432,7 +432,7 @@
 /obj/item/mecha_parts/mecha_equipment/laser_sword
 	name = "\improper Moonlight particle cutter"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. Heavy, but it is the top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	max_integrity = 400
@@ -513,3 +513,29 @@
 			slashed.attackby(src, source, list2params(modifiers))
 	source.a_intent = old_intent
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear
+	name = "\improper Sunbeam particle piercer"
+	desc = "A spear made of compressed energy for the TGMC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	icon_state = "lance"
+	fire_sound = 'sound/mecha/weapons/laser_sword.ogg'
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.OGG'
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	ammotype = /datum/ammo/energy/lasgun/marine/mech/lance_strike
+	max_integrity = 400
+	slowdown = 0.15
+	windup_delay = 0.6 SECONDS
+	harmful = TRUE
+	projectile_delay = 3 SECONDS
+	energy_drain = 100
+	variance = 0
+	range = MECHA_MELEE|MECHA_RANGED
+	muzzle_iconstate = null
+	muzzle_flash_color = COLOR_PULSE_BLUE
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear/action_checks(mob/source, atom/target, list/modifiers)
+	. = ..()
+	if(!.)
+		return FALSE
+	ammotype = HAS_TRAIT(chassis, TRAIT_MELEE_CORE) ? /datum/ammo/energy/lasgun/marine/mech/lance_strike/super : /datum/ammo/energy/lasgun/marine/mech/lance_strike

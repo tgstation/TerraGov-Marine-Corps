@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscdel: "Removed soldering tool"
-  - balance: "robots will now not need to be healed prior to defibbing and will instead start at 1 HP after being defibbed"
-  - balance: "ceertain damage sources will now damage a certain amount of limbs rather than than every limb"

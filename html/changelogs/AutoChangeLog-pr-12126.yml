@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added TGUI to the nuke"
+  - qol: "Nuke disks are inserted into your hand, when removed from the nuke"

@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "PMC ERT updates slightly with better loadouts, mainly for more ammunition and grenades"
+  - balance: "VP78 burst fire is no longer just a worse version of semi auto"
+  - balance: " PR-412E no longer has a pointless burstfire mode"

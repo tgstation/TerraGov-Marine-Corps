@@ -33,31 +33,22 @@
 
 
 //Mode defines
-#define MODE_INFESTATION (1<<0)
+#define MODE_INFESTATION (1<<0) //TODO this flag is way too general
 #define MODE_NO_LATEJOIN (1<<1)
-#define MODE_HAS_FINISHED (1<<2)
-#define MODE_FOG_ACTIVATED (1<<3)
-#define MODE_INFECTION (1<<4)
-#define MODE_HUMAN_ANTAGS (1<<5)
-#define MODE_LZ_SHUTTERS (1<<6)
-#define MODE_XENO_SPAWN_PROTECT (1<<7)
-#define MODE_XENO_RULER (1<<8)
-#define MODE_PSY_POINTS (1<<9)
-#define MODE_PSY_POINTS_ADVANCED (1<<10)
-#define MODE_HIJACK_POSSIBLE (1<<11)
-#define MODE_DEAD_GRAB_FORBIDDEN (1<<12)
-#define MODE_SILO_RESPAWN (1<<13)
-#define MODE_HUMAN_ONLY (1<<14)
-#define MODE_TWO_HUMAN_FACTIONS	(1<<15)
-#define MODE_WIN_POINTS (1<<16)
-#define MODE_NO_PERMANENT_WOUNDS (1<<17)
-#define MODE_SPAWNING_MINIONS (1<<18)
-#define MODE_SOM_OPFOR (1<<19)
-#define MODE_ALLOW_XENO_QUICKBUILD (1<<20)
-
-#define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
-#define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<1)
-#define MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE (1<<2)
+#define MODE_LATE_OPENING_SHUTTER_TIMER (1<<2)
+#define MODE_XENO_SPAWN_PROTECT (1<<3)
+#define MODE_XENO_RULER (1<<4)
+#define MODE_PSY_POINTS (1<<5)
+#define MODE_PSY_POINTS_ADVANCED (1<<6)
+#define MODE_HIJACK_POSSIBLE (1<<7)
+#define MODE_DEAD_GRAB_FORBIDDEN (1<<8)
+#define MODE_SILO_RESPAWN (1<<9)
+#define MODE_HUMAN_ONLY (1<<10)
+#define MODE_TWO_HUMAN_FACTIONS	(1<<11)
+#define MODE_WIN_POINTS (1<<12)
+#define MODE_NO_PERMANENT_WOUNDS (1<<13)
+#define MODE_SILOS_SPAWN_MINIONS (1<<14)
+#define MODE_ALLOW_XENO_QUICKBUILD (1<<15)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -166,5 +157,5 @@
 
 #define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.1
 
-#define SENSOR_CAP_ADDITION_TIME_BONUS 5 MINUTES //additional time granted by capturing a sensor tower
+#define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"
