@@ -92,15 +92,7 @@
 		slot_head_str = 'icons/mob/modular/style_hats_mob.dmi',
 	)
 	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/binoculars/artemis_mark_two,
-		/obj/item/armor_module/module/artemis,
-		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/greyscale/badge,
 		/obj/item/armor_module/storage/helmet,
 	)
 
