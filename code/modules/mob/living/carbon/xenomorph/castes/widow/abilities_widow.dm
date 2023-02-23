@@ -209,6 +209,7 @@
 			var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
 			spiderling_behavior.escorted_atom = null
 			spiderling_behavior.go_to_obj_target(target = victim)
+			spiderling_behavior.register_obj_destruction(M = owner, obj_target = victim)
 
 
 // ***************************************

@@ -30,6 +30,7 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
+	var/default_escorted_atom
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -38,6 +39,7 @@
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/apply_spiderling_jelly)
+	default_escorted_atom = escorted_atom
 
 /// Signal handler to apply resin jelly to the spiderling whenever widow gets it
 /datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
@@ -51,6 +53,13 @@
 	if(QDELETED(target))
 		return
 	change_action(MOVING_TO_ATOM, target)
+
+/datum/ai_behavior/spiderling/proc/register_obj_destruction(mob/M, obj/obj_target)
+	SIGNAL_HANDLER
+	RegisterSignal(obj_target, COMSIG_OBJ_DECONSTRUCT, .proc/set_default_escorted_atom)
+
+/datum/ai_behavior/spiderling/proc/set_default_escorted_atom()
+	escorted_atom = default_escorted_atom
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
