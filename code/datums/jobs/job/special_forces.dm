@@ -23,7 +23,7 @@
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
 	r_store = /obj/item/storage/pouch/pistol
@@ -74,7 +74,7 @@
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/tech
 	suit_store = /obj/item/weapon/gun/pistol/standard_heavypistol/tacticool
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -122,7 +122,7 @@
 	glasses = /obj/item/clothing/glasses/night
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/beret/sec
 	suit_store = /obj/item/weapon/gun/rifle/famas/freelancermedic
 	r_store = /obj/item/storage/pouch/general/large

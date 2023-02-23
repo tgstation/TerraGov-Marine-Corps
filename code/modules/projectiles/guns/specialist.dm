@@ -259,20 +259,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.2
-	scatter = 3
 	recoil = 5
 	burst_amount = 1
 	movement_acc_penalty_mult = 7
-
-
-/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/PMC_sniper = user
-		if(PMC_sniper.lying_angle == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
-			PMC_sniper.visible_message(span_warning("[PMC_sniper] is blown backwards from the recoil of the [src]!"),span_highdanger("You are knocked prone by the blowback!"))
-			step(PMC_sniper,turn(PMC_sniper.dir,180))
-			PMC_sniper.Paralyze(10 SECONDS)
 
 //SVD //Based on the Dragunov sniper rifle.
 
