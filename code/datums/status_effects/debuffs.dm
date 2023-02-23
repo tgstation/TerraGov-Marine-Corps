@@ -184,7 +184,7 @@
 		sound_to_play = 'sound/effects/robotrepair.ogg'
 	else if(owner.getFireLoss())
 		owner.heal_limb_damage(0, healing_per_tick, TRUE, TRUE)
-		sound_to_play = 'sound/effects/robotrepair.ogg'
+		sound_to_play = 'sound/effects/robotrepair2.ogg'
 	if(!sound_to_play || last_sound)
 		last_sound = FALSE
 		return
