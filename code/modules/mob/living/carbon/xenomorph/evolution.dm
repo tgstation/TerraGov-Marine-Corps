@@ -80,7 +80,7 @@
 		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
 		return
 
-	if(isnull(xeno_caste.evolves_to))
+	if(isnull(xeno_caste.evolves_to) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		to_chat(src, span_warning("We are already the apex of form and function. Let's go forth and spread the hive!"))
 		return
 
