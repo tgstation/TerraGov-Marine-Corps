@@ -159,8 +159,6 @@ GLOBAL_VAR(antag_prototypes)
 
 	out += "<br>"
 
-	//Uplink
-	if(ishuman(current))
 	//Common Memory
 	var/common_memory = "<span>Common Memory:</span>"
 	common_memory += memory

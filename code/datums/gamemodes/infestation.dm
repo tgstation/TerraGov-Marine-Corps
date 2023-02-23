@@ -166,10 +166,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return TRUE
 	return FALSE
 
+
 /datum/game_mode/infestation/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 	var/sound/xeno_track
 	var/sound/human_track
 	var/sound/ghost_track
@@ -223,20 +223,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		SEND_SOUND(M, ghost_track)
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
-
-	announce_xenomorphs()
-	announce_medal_awards()
-	announce_round_stats()
-
-/// Announce to players the name of the surviving hive ruler
-/datum/game_mode/infestation/proc/announce_xenomorphs()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
-		return
-
-	var/dat = span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
-
-	to_chat(world, dat)
 
 /datum/game_mode/infestation/can_start(bypass_checks = FALSE)
 	. = ..()

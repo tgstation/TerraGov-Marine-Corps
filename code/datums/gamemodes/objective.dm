@@ -23,12 +23,16 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/New(text)
 	if(text)
 		explanation_text = text
+	post_setup()
 
 //Apparently objectives can be qdel'd. Learn a new thing every day
 /datum/objective/Destroy()
 	return ..()
 
 /datum/objective/proc/admin_edit(mob/admin)
+	return
+
+/datum/objective/proc/post_setup()
 	return
 
 //Shared by few objective types
@@ -183,6 +187,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		/datum/objective/gather_cash,
 		/datum/objective/kill_zombies,
 		/datum/objective/seize_area,
+		/datum/objective/recruitment_drive,
 		/datum/objective/kill_other_factions,
 		/datum/objective/custom,
 	),/proc/cmp_typepaths_asc)
@@ -507,13 +512,17 @@ GLOBAL_LIST_EMPTY(possible_items)
 		defendedarea = new_target
 	update_explanation_text()
 
-/datum/objective/seize_area/check_completion()
+/datum/objective/seize_area/check_completion() //gaze upon my if statements and weep Yandere-dev
+	if(!owner.current.faction)
+		owner.current.faction = FACTION_NEUTRAL //fallback in case factionless mobs get this objective
 	var/currentfaction = owner.current.faction
 	for(var/mob/living/carbon/human/targethuman in GLOB.mob_list)
 		if(iszombie(owner.current)) //zombies don't care about factions
 			if(locate(/mob/living/carbon/xenomorph) in defendedarea)
 				return FALSE
 			for(targethuman in defendedarea)
+				if(targethuman.stat == DEAD)
+					continue
 				if(!iszombie(targethuman))
 					return FALSE
 			return TRUE
@@ -522,8 +531,13 @@ GLOBAL_LIST_EMPTY(possible_items)
 				for(var/datum/internal_organ/affectedorgan in targethuman.internal_organs)
 					if(affectedorgan == targethuman.internal_organs_by_name["heart"])
 						return FALSE
-			if(targethuman.stat == DEAD ) //we don't care about dead humans
+			if(targethuman.stat == DEAD) //we don't care about dead humans
 				continue
+			if(isxeno(owner.current))
+				if(ishuman(targethuman))
+					return FALSE
+			if(!targethuman.faction) //consider them hostile anyway
+				return FALSE
 			if(targethuman.faction != currentfaction)
 				return FALSE
 	if(locate(/mob/living/carbon/xenomorph) in defendedarea)
@@ -550,3 +564,9 @@ GLOBAL_LIST_EMPTY(possible_items)
 		else if(affectedmob.faction != currentfaction)
 			return FALSE
 	return TRUE
+
+/datum/objective/recruitment_drive
+	name = "sign contracts"
+	explanation_text = "Convince 5 marines to sign their souls to NanoTrasen"
+	team_explanation_text = "Convince 5 marines to sign their souls to NanoTrasen"
+	//todo, think harder about if signup list should be on this or parent datum, currently on parent

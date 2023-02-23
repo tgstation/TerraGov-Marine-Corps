@@ -175,9 +175,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 		//owner.traitor_panel()
 		return
 
-	//Some commands might delete/modify this datum clearing or changing owner
-	var/datum/mind/persistent_owner = owner
-
 	var/commands = get_admin_commands()
 	for(var/admin_command in commands)
 		if(href_list["command"] == admin_command)
@@ -225,3 +222,13 @@ GLOBAL_LIST_EMPTY(antagonists)
 			C.Invoke(usr)
 			persistent_owner.traitor_panel()
 			return
+
+//Returns MINDS of the assigned antags of given type/subtypes
+/proc/get_antag_minds(antag_type,specific = FALSE)
+	RETURN_TYPE(/list/datum/mind)
+	. = list()
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+		if(!antag_type || !specific && istype(A,antag_type) || specific && A.type == antag_type)
+			. += A.owner
