@@ -24,7 +24,7 @@ The Grenade Launchers
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/training,
-		/obj/item/explosive/grenade/PMC,
+		/obj/item/explosive/grenade/pmc,
 		/obj/item/explosive/grenade/m15,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,

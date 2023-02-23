@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	if(caster.health > (caster.maxHealth * 0.25))
+	if(caster.health > (caster.maxHealth * 0.56))
 		if(!silent)
 			to_chat(caster, span_xenowarning("We are not injured enough to panic yet!"))
 		return FALSE
@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
 	while(xeno_carrier.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new xeno_carrier.selected_hugger_type(get_turf(xeno_carrier))
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier))
 		step_away(new_hugger, xeno_carrier, 1)
 		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--
