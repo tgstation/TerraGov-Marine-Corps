@@ -133,7 +133,7 @@
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
-		COMSIG_XENOABILITY_CREATE_SPIDERLING,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_SPIDERLING,
 	)
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
