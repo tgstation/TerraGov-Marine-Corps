@@ -767,7 +767,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_COLONIST
 
 
-/obj/item/radio/headset/distress/PMC
+/obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom
