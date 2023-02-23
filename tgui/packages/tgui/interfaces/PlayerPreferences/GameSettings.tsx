@@ -251,14 +251,29 @@ export const GameSettings = (props, context) => {
           <Section title="Keybinding Settings">
             <LabeledList>
               <SelectFieldPreference
-                label={'Quick equip slot'}
-                value={'preferred_slot'}
-                action={'preferred_slot_select'}
+                label={'Quick equip slot 1'}
+                value={'quick_equip[0]'}
+                action={'select_quick_equip_1'}
               />
               <SelectFieldPreference
-                label={'Alternate quick equip slot'}
-                value={'preferred_slot_alt'}
-                action={'preferred_slot_alt_select'}
+                label={'Quick equip slot 2'}
+                value={'quick_equip[1]'}
+                action={'select_quick_equip_2'}
+              />
+              <SelectFieldPreference
+                label={'Quick equip slot 3'}
+                value={'quick_equip[2]'}
+                action={'select_quick_equip_3'}
+              />
+              <SelectFieldPreference
+                label={'Quick equip slot 4'}
+                value={'quick_equip[3]'}
+                action={'select_quick_equip_4'}
+              />
+              <SelectFieldPreference
+                label={'Quick equip slot 5'}
+                value={'quick_equip[4]'}
+                action={'select_quick_equip_5'}
               />
             </LabeledList>
           </Section>

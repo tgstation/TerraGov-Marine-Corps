@@ -174,12 +174,12 @@
 	to_chat(src, span_notice("You will [(prefs.be_special & role_flag) ? "now" : "no longer"] be considered for [role] events (where possible)."))
 
 
-/client/verb/preferred_slot()
+/client/verb/quick_equip()
 	set category = "Preferences"
 	set name = "Set Preferred Slot"
 
 	var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
-	prefs.preferred_slot = slot_fluff_to_flag(slot)
+	prefs.quick_equip = slot_fluff_to_flag(slot)
 	prefs.save_character()
 
 	to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))

@@ -1,21 +1,47 @@
-///async signal wrapper for do_quick_equip
-/mob/living/carbon/human/proc/async_do_quick_equip()
+///async signal wrapper for do_quick_equip_1
+/mob/living/carbon/human/proc/async_do_quick_equip_1()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip)
+	INVOKE_ASYNC(src, .proc/do_quick_equip, 1)
 
-///async signal wrapper for do_quick_equip
+///async signal wrapper for do_quick_equip_2
+/mob/living/carbon/human/proc/async_do_quick_equip_2()
+	SIGNAL_HANDLER
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip, 2)
+
+///async signal wrapper for do_quick_equip_3
+/mob/living/carbon/human/proc/async_do_quick_equip_3()
+	SIGNAL_HANDLER
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip, 3)
+
+///async signal wrapper for do_quick_equip_4
+/mob/living/carbon/human/proc/async_do_quick_equip_4()
+	SIGNAL_HANDLER
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip, 4)
+
+///async signal wrapper for do_quick_equip_5
+/mob/living/carbon/human/proc/async_do_quick_equip_5()
+	SIGNAL_HANDLER
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip, 5)
+
+/*///async signal wrapper for do_quick_equip
 /mob/living/carbon/human/proc/async_do_quick_equip_alt()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, TRUE)
+	INVOKE_ASYNC(src, .proc/do_quick_equip, TRUE)*/
 
+//mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)
 /// runs equip, if passed use_alternate = TRUE will try to use the alternate preference slot
-/mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)
+/mob/living/carbon/human/proc/do_quick_equip(quick_equip_used = 0)
 	if(incapacitated() || lying_angle)
 		return
 
-	var/slot_requested = use_alternate ?  client?.prefs?.preferred_slot_alt : client?.prefs?.preferred_slot
+	//var/slot_requested = use_alternate ?  client?.prefs?.preferred_slot_alt : client?.prefs?.preferred_slot
+	var/slot_requested = client?.prefs?.quick_equip[quick_equip_used]
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
