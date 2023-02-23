@@ -1751,15 +1751,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/rocket/unguided
+/datum/ammo/rocket/he
+	name = "high explosive rocket"
+	icon_state = "rocket_he"
+	hud_state = "rocket_he"
+	accurate_range = 20
+	max_range = 14
+	damage = 200
+	penetration = 100
+	sundering = 100
+
+/datum/ammo/rocket/drop_nade(turf/T)
+	explosion(T, 0, 4, 6, 2)
+
+/datum/ammo/rocket/he/unguided
 	damage = 100
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
-/datum/ammo/rocket/unguided/drop_nade(turf/T)
+/datum/ammo/rocket/he/unguided/drop_nade(turf/T)
 	explosion(T, 0, 7, 0, 2)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
+	icon_state = "rocket_ap"
 	hud_state = "rocket_ap"
 	damage = 340
 	accurate_range = 15
@@ -1809,6 +1823,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
+	icon_state = "rocket_wp"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
 	armor_type = "fire"
@@ -1819,7 +1834,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 75
 	max_range = 20
 	sundering = 100
-	//The radius for the non explosion effects
+	///The radius for the non explosion effects
 	var/effect_radius = 3
 
 /datum/ammo/rocket/wp/drop_nade(turf/T)
@@ -1855,6 +1870,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/wp/quad/som
 	name = "white phosphorous RPG"
 	hud_state = "rpg_fire"
+	icon_state = "rpg_incendiary"
 	flags_ammo_behavior = AMMO_ROCKET
 
 /datum/ammo/rocket/wp/quad/ds
@@ -1963,8 +1979,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 100
 
 /datum/ammo/rocket/som
-	name = "low impact RPG"
-	hud_state = "rpg_le"
+	name = "high explosive RPG"
+	icon_state = "rpg_he"
+	hud_state = "rpg_he"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
 	max_range = 20
@@ -1977,6 +1994,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/light
 	name = "low impact RPG"
+	icon_state = "rpg_le"
 	hud_state = "rpg_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
@@ -1989,6 +2007,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/thermobaric
 	name = "thermobaric RPG"
+	icon_state = "rpg_thermobaric"
 	hud_state = "rpg_thermobaric"
 	damage = 30
 
@@ -1997,6 +2016,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/heat //Anti tank, or mech
 	name = "HEAT RPG"
+	icon_state = "rpg_heat"
 	hud_state = "rpg_heat"
 	damage = 200
 	penetration = 100
@@ -2013,6 +2033,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
+	icon_state = "rpg_rad"
 	hud_state = "rpg_rad"
 	damage = 50
 	penetration = 10
