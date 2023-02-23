@@ -144,6 +144,13 @@
 
 /obj/machinery/faxmachine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(istype(I, /obj/item/paper/liason_contract))
+		if(!signer)
+			user.transferItemToLoc(I, src)
+			message = I
+			to_chat(user, span_notice("You insert the paper into \the [src]."))
+			flick("faxsend", src)
+			updateUsrDialog()
 	if(istype(I, /obj/item/paper))
 		if(!message)
 			user.transferItemToLoc(I, src)

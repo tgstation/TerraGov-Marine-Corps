@@ -1418,7 +1418,7 @@
 
 /client/proc/validate_objectives()
 	set category = "Debug"
-	set name = "Check all objectives status"
+	set name = "Check All Objectives Completion"
 	for(var/datum/antagonist/A in GLOB.antagonists)
 		if(!A.owner)
 			continue

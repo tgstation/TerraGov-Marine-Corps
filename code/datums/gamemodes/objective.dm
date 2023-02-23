@@ -570,3 +570,17 @@ GLOBAL_LIST_EMPTY(possible_items)
 	explanation_text = "Convince 5 marines to sign their souls to NanoTrasen"
 	team_explanation_text = "Convince 5 marines to sign their souls to NanoTrasen"
 	//todo, think harder about if signup list should be on this or parent datum, currently on parent
+
+/datum/objective/proc/give_contract_button(mob/living/carbon/human/M)
+	var/datum/action/contracts/contractbutton = new
+	contractbutton.give_action(usr)
+	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(contractbutton)];report=1'>Summon paperwork</a></span>")
+
+/datum/objective/proc/give_pen_button(mob/living/carbon/human/M)
+	var/datum/action/contracts/pen/penbutton = new
+	penbutton.give_action(usr)
+	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(penbutton)];report=1'>Summon pen</a></span>")
+
+/datum/objective/recruitment_drive/post_setup()
+	give_contract_button(owner)
+	give_pen_button(owner)

@@ -1,5 +1,5 @@
 /obj/item/paper/liason_contract
-	name = "contract"
+	name = "paperwork"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
 	item_state = "paper"
@@ -9,16 +9,23 @@
 	flags_equip_slot = ITEM_SLOT_HEAD
 	flags_armor_protection = HEAD
 	attack_verb = list("bapped")
+	//who produced this paperwork
+	var/mob/living/carbon/human/owner
+	//who signed this paperwork
+	var/mob/living/signer
 
-/datum/objective/proc/give_contract_button(mob/living/carbon/human/M)
-	var/datum/action/contracts/contractbutton = new
-	contractbutton.give_action(usr)
-	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(contractbutton)];report=1'>Summon contract</a></span>")
-
-/datum/objective/proc/give_pen_button(mob/living/carbon/human/M)
-	var/datum/action/contracts/pen/penbutton = new
-	penbutton.give_action(usr)
-	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(penbutton)];report=1'>Summon pen</a></span>")
+/obj/item/paper/liason_contract/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/tool/pen) && ishuman(user))
+		if(user = owner) //no fair signing your own paperwork
+			balloon_alert(user, "Can't")
+			return
+		user.visible_message(span_notice("[user] begins to fill out the paperwork"), \
+		span_notice("You begin to fill out the paperwork..."), null, 5)
+		if(!do_after(user, 4.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+		signer = user
+		span_notice("You fill out the paperwork and sign your name...")
 
 /datum/action/contracts/pen
 	name = "Produce Pen"
