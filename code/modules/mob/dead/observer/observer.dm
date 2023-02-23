@@ -911,9 +911,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/living/carbon/xenomorph/new_xeno = new xeno_choice(pick(GLOB.spawns_by_job[/datum/job/fallen/xenomorph]))
 		new_xeno.transfer_to_hive(XENO_HIVE_FALLEN) //so they can talk to the other people in valhalla
 		new_xeno.xeno_caste.caste_flags &= ~CASTE_EVOLUTION_ALLOWED //we don't evolve
-		new_xeno.xeno_caste.caste_flags |= (CASTE_DOES_NOT_AGE|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE) //or age
+		new_xeno.xeno_caste.caste_flags |= (CASTE_DOES_NOT_AGE|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_CAN_TEAR_DOWN_STRUCTURES) //or age
 		var/datum/job/xallhala_job = SSjob.GetJobType(/datum/job/fallen/xenomorph)
 		new_xeno.apply_assigned_role_to_spawn(xallhala_job)
+		SSpoints.xeno_points_by_hive[XENO_HIVE_FALLEN] = 10000
 		mind.transfer_to(new_xeno, TRUE)
 		xallhala_job.after_spawn(new_xeno)
 		return

@@ -42,6 +42,18 @@
 	SIGNAL_HANDLER
 	obj_destruction(damage_flag = "melee")
 
+/obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!((X.xeno_caste.caste_flags & CASTE_CAN_TEAR_DOWN_STRUCTURES) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
+		return
+	if(!do_after(X, 3 SECONDS, TRUE, src))
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
+	playsound(src, "alien_resin_break", 25)
+	take_damage(max_integrity) // Ensure its destroyed
+
+
 //Carrier trap
 /obj/structure/xeno/trap
 	desc = "It looks like a hiding hole."
