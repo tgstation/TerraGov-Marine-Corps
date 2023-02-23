@@ -54,7 +54,7 @@
 		return
 	change_action(MOVING_TO_ATOM, target)
 
-/datum/ai_behavior/spiderling/proc/register_obj_destruction(mob/M, obj/obj_target)
+/datum/ai_behavior/spiderling/proc/register_obj_destruction(obj/obj_target)
 	SIGNAL_HANDLER
 	RegisterSignal(obj_target, COMSIG_OBJ_DECONSTRUCT, .proc/set_default_escorted_atom)
 

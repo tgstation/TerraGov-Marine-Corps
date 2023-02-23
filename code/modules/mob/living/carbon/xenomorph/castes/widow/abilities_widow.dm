@@ -184,7 +184,7 @@
 /datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
 	. = ..()
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
-	if(isnull(create_spiderling_action.spiderlings))
+	if(len(create_spiderling_action.spiderlings =< 0))
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
 	if(!isobj(A))
@@ -203,13 +203,13 @@
 			spiderling_behavior.triggered_spiderling_rage()
 		return succeed_activate()
 	else
-		var/obj/victim = A
+		var/obj/obj_to_attack = A
 		for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
 			var/datum/component/ai_controller/spiderling_ai = spiderling.GetComponent(/datum/component/ai_controller)
 			var/datum/ai_behavior/spiderling/spiderling_behavior = spiderling_ai.ai_behavior
 			spiderling_behavior.escorted_atom = null
-			spiderling_behavior.go_to_obj_target(target = victim)
-			spiderling_behavior.register_obj_destruction(M = owner, obj_target = victim)
+			spiderling_behavior.go_to_obj_target(obj_to_attack)
+			spiderling_behavior.register_obj_destruction(obj_to_attack)
 
 
 // ***************************************
