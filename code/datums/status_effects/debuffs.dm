@@ -189,7 +189,7 @@
 		last_sound = FALSE
 		return
 	last_sound = TRUE
-	playsound(owner, sound_to_play, 50)
+	playsound(owner, sound_to_play, 50, 1, 12)
 
 
 
