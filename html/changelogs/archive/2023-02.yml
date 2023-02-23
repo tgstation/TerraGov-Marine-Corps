@@ -300,3 +300,6 @@
   - bugfix: Added support for the old infantry open helmet to have the cool visor.
   - bugfix: Fixed a runtime with blur_protection component that would've effectively
       given you permanent blur protection. Good thing it was bugged!
+2023-02-23:
+  Lumipharon:
+  - bugfix: fixed a bug with portable vendors
