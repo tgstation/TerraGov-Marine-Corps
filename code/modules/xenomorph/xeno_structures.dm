@@ -1,3 +1,4 @@
+// TODO split this file its filled with random garbage why do we even use folders
 /obj/structure/xeno
 	hit_sound = "alien_resin_break"
 	layer = RESIN_STRUCTURE_LAYER
@@ -690,7 +691,7 @@ TUNNEL
 		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/silo
-	name = "Resin silo"
+	name = "resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
@@ -849,6 +850,13 @@ TUNNEL
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "silo[warning ? "_warn" : "_passive"]")
+
+/obj/structure/xeno/silo/core
+	name = "resin silo repository"
+	desc = "A slimy, rank surface blob of green...stuff restrained with resin. Somethings moving in there."
+	icon_state = "xeno_base"
+	larva_spawn_rate = 1
+	max_integrity = 1200
 
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
@@ -1096,6 +1104,13 @@ TUNNEL
 		newshot.color = initial(hugger_ammo.hugger_type.color)
 	firing = TRUE
 	update_minimap_icon()
+
+/obj/structure/xeno/xeno_turret/garrison
+	name = "large acid turret"
+
+/obj/structure/xeno/xeno_turret/garrison/Initialize(mapload, hivenumber)
+	. = ..()
+	transform = matrix().Scale(1.5)
 
 /obj/structure/xeno/xeno_turret/sticky
 	name = "Sticky resin turret"

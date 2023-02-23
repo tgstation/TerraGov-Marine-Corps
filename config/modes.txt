@@ -15,6 +15,11 @@ mode Nuclear War
 	requiredplayers 2
 endmode
 
+mode Garrison
+	requiredplayers 0
+	votable 0
+endmode
+
 mode Extended
 	requiredplayers 0
 	votable 0

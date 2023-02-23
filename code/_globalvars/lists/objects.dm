@@ -50,6 +50,11 @@ GLOBAL_LIST_EMPTY(xeno_spawner)
 GLOBAL_LIST_EMPTY(xeno_structure)
 GLOBAL_LIST_EMPTY(xeno_critical_structure)
 
+GLOBAL_LIST_EMPTY(xeno_base_silo_turfs)
+GLOBAL_LIST_EMPTY(marine_control_unit_turfs)
+GLOBAL_LIST_EMPTY(xeno_base_turret_turfs)
+GLOBAL_LIST_EMPTY(marine_base_turret_turfs)
+
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)
 GLOBAL_LIST_EMPTY(lz2_shuttle_console_turfs_list)

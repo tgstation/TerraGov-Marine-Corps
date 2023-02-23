@@ -200,6 +200,15 @@
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
 	sentry_iff_signal = TGMC_REBEL_IFF
 
+/obj/item/weapon/gun/sentry/big_sentry/garrison
+	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
+	deployable_item = /obj/machinery/deployable/mounted/sentry/big
+
+/obj/machinery/deployable/mounted/sentry/big/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	transform = matrix().Scale(1.5)
+
 /obj/item/storage/box/minisentry
 	name = "\improper ST-580 point defense sentry crate"
 	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
