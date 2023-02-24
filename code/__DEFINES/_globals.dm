@@ -58,3 +58,6 @@
 
 //Create an typed null global
 #define GLOBAL_DATUM(X, Typepath) GLOBAL_RAW(Typepath/##X); GLOBAL_UNMANAGED(X)
+
+#define PROC_REF(X) (.proc/##X)
+/// Call by name proc reference, checks if the proc exists on given type or as a global proc
