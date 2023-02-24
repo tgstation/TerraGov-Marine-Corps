@@ -79,7 +79,8 @@
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/holster/vendor_equip(mob/user)

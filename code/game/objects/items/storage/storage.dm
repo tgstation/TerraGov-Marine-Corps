@@ -618,7 +618,8 @@
 	if(!length(contents))
 		return FALSE //we don't want to equip the storage item itself
 	var/obj/item/W = contents[length(contents)]
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
