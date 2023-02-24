@@ -195,6 +195,23 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
+/mob/living/flamer_fire_act(burnlevel)
+	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+		return
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return
+
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
+	to_chat(src, span_warning("You are burned!"))
+
+	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+		return
+
+	adjust_fire_stacks(burnlevel)
+	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
