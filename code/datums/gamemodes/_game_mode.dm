@@ -805,7 +805,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/action/report
 	name = "Show roundend report"
-	action_icon_state = "signal_transmit"
+	action_icon_state = "end_round"
 
 /datum/action/report/action_activate()
 	if(owner && GLOB.common_report && SSticker.current_state == GAME_STATE_FINISHED)
