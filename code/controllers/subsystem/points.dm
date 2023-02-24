@@ -15,9 +15,7 @@ SUBSYSTEM_DEF(points)
 	///Assoc list of personal supply points
 	var/personal_supply_points = list()
 	///Personal supply points gain modifier
-	var/psp_multiplier = 0.1
-	///Personal supply points base gain per update
-	var/psp_base_gain = 0.5
+	var/psp_multiplier = 0.05
 	///Personal supply points limit
 	var/psp_limit = 600
 	///Var used to calculate points difference between updates
@@ -87,8 +85,9 @@ SUBSYSTEM_DEF(points)
 
 	for(var/key in supply_points)
 		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
-		for(var/mob/account in GLOB.alive_human_list)
-			personal_supply_points[account.ckey] = min(personal_supply_points[account.ckey] + psp_base_gain + max(supply_points[key] - supply_points_old, 0) * psp_multiplier, psp_limit)
+		for(var/mob/living/account in GLOB.alive_human_list_faction[key])
+			if(account.job.title in GLOB.jobs_marines)
+				personal_supply_points[account.ckey] = min(personal_supply_points[account.ckey] + max(supply_points[key] - supply_points_old, 0) * psp_multiplier, psp_limit)
 		supply_points_old = supply_points[key]
 
 ///Add amount of psy points to the selected hive only if the gamemode support psypoints
