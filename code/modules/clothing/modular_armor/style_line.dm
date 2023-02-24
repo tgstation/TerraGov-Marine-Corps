@@ -86,8 +86,8 @@
 /obj/item/clothing/head/modular/style
 	name = "\improper Nice Hat"
 	desc = "Nice hat bro. How did you find this?"
-	flags_item_map_variant = NONE
 	icon = 'icons/mob/modular/style_hats.dmi'
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/style_hats_mob.dmi',
 	)
@@ -122,7 +122,6 @@
 	name = "TGMC beret"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon_state = "tgmc_beret"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -141,7 +140,6 @@
 	name = "TGMC beret (classic)"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
 	icon_state = "classic_beret"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -156,12 +154,10 @@
 
 	current_variant = "black"
 
-
 /obj/item/clothing/head/modular/style/boonie
 	name = "TGMC boonie"
 	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
 	icon_state = "boonie"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -180,7 +176,6 @@
 	name = "TGMC cap"
 	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
 	icon_state = "tgmccap"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -199,7 +194,6 @@
 	name = "TGMC slouch hat"
 	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
 	icon_state = "slouchhat"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -217,8 +211,7 @@
 /obj/item/clothing/head/modular/style/ushanka
 	name = "TGMC ushanka"
 	desc = "A comfortable ushanka used by the TGMC. Will keep you warm in even the most harshest artic enviroments."
-	icon_state = "tgmccap"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	icon_state = "tgmcushanka"
 
 	icon_state_variants = list(
 		"drab",
@@ -237,7 +230,6 @@
 	name = "TGMC campaign hat"
 	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
 	icon_state = "campaignhat"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -256,7 +248,6 @@
 	name = "TGMC beanie"
 	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
 	icon_state = "beanie"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -275,7 +266,6 @@
 	name = "TGMC headband"
 	desc = "A headband. Will keep the sweat off your eyes and also keep you looking cool."
 	icon_state = "headband"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -294,7 +284,6 @@
 	name = "TGMC bandana"
 	desc = "A bandana that goes on your head. Has TGMC markings on the back tie, and it seems that the knot will never come undone somehow."
 	icon_state = "headbandana"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	icon_state_variants = list(
 		"drab",
@@ -309,9 +298,8 @@
 
 	current_variant = "black"
 
-
 // style masks
-/obj/item/clothing/mask/modular/skimask
+/obj/item/clothing/mask/gas/modular/skimask
 	name = "ski mask"
 	desc = "A stylish skimask, can be recolored. Makes you feel like an operator just looking at it."
 	icon_state = "skimask"
@@ -332,7 +320,7 @@
 
 	current_variant = "black"
 
-/obj/item/clothing/mask/modular/coofmask
+/obj/item/clothing/mask/gas/modular/coofmask
 	name = "combat face cloth covering"
 	desc = "The CFCC is a prime and readied, yet stylish facemask ready to... cover your face."
 	icon_state = "coofmask"

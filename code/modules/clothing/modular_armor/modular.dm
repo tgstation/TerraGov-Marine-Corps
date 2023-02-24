@@ -408,41 +408,34 @@
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
 /** Colorable masks */
-/obj/item/clothing/mask/modular
+/obj/item/clothing/mask/gas/modular
 	name = "style mask"
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
 	icon = 'icons/mob/modular/style_hats.dmi'
+	breathy = FALSE
 	item_icons = list(
 		slot_wear_mask_str = 'icons/mob/modular/style_hats_mob.dmi',
 	)
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
-	flags_inv_hide = HIDELOWHAIR
-	flags_cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	w_class = WEIGHT_CLASS_SMALL
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
-	siemens_coefficient = 0.9
 
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
 	///Current varient selected.
 	var/current_variant
 
-/obj/item/clothing/mask/modular/Initialize()
+/obj/item/clothing/mask/gas/modular/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/item/clothing/mask/modular/update_icon()
+/obj/item/clothing/mask/gas/modular/update_icon()
 	. = ..()
 	if(current_variant)
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
 
-/obj/item/clothing/mask/modular/update_item_sprites()
+/obj/item/clothing/mask/gas/modular/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
@@ -457,7 +450,7 @@
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
 
-/obj/item/clothing/mask/modular/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/mask/gas/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
