@@ -32,6 +32,7 @@
 	name = "quick_equip_5"
 	full_name = "Quick equip 5"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_5
+
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"
