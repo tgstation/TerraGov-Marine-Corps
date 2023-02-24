@@ -123,6 +123,31 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	attack_verb = list("slash", "cut")
 
+/obj/item/weapon/claymore/mercsword/officersword/attack(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.skills.getRating("swordplay") == SKILL_SWORDPLAY_DEFAULT)
+		attack_speed = 20
+		force = 35
+		to_chat(user, span_warning("You try to figure out how to wield [src]..."))
+		if(prob(40))
+			if(CHECK_BITFIELD(flags_item,NODROP))
+				TOGGLE_BITFIELD(flags_item, NODROP)
+			user.drop_held_item(src)
+			to_chat(user, span_warning("[src] slipped out of your hands!"))
+			playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
+	if(user.skills.getRating("swordplay") == SKILL_SWORDPLAY_TRAINED)
+		attack_speed = initial(attack_speed)
+		force = initial(force)
+
+/obj/item/weapon/claymore/mercsword/officersword/AltClick(mob/user)
+	if(!can_interact(user) || !ishuman(user) || !(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, span_warning("You tighten the grip around [src]!"))
+		return
+	to_chat(user, span_notice("You loosen the grip around [src]!"))
+
 /obj/item/weapon/claymore/mercsword/officersword/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -143,6 +168,9 @@
 /obj/item/weapon/claymore/mercsword/officersword/valirapier/Initialize()
 	. = ..()
 	AddComponent(/datum/component/harvester)
+
+/obj/item/weapon/claymore/mercsword/officersword/valirapier/AltClick(mob/user)
+	return
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"

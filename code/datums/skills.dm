@@ -1,19 +1,19 @@
 #define SKILLSID "skills-[cqc]-[melee_weapons]\
 -[firearms]-[pistols]-[shotguns]-[rifles]-[smgs]-[heavy_weapons]-[smartgun]\
--[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]"
+-[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]-[swordplay]"
 
 #define SKILLSIDSRC(S) "skills-[S.cqc]-[S.melee_weapons]\
 -[S.firearms]-[S.pistols]-[S.shotguns]-[S.rifles]-[S.smgs]-[S.heavy_weapons]-[S.smartgun]\
--[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]"
+-[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]-[S.swordplay]"
 
 /proc/getSkills(cqc = 0, melee_weapons = 0,\
 firearms = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
-engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0)
+engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, swordplay = 0)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new /datum/skills(cqc, melee_weapons,\
 			firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, swordplay)
 
 /proc/getSkillsType(skills_type = /datum/skills)
 	var/datum/skills/new_skill = skills_type
@@ -35,6 +35,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = initial(new_skill.police)
 	var/powerloader = initial(new_skill.powerloader)
 	var/large_vehicle = initial(new_skill.large_vehicle)
+	var/swordplay = initial(new_skill.swordplay)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new skills_type
@@ -62,6 +63,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
+	var/swordplay = SKILL_SWORDPLAY_DEFAULT
 
 
 /datum/skills/New(cqc, melee_weapons,\
@@ -103,6 +105,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		src.powerloader = powerloader
 	if(!isnull(large_vehicle))
 		src.large_vehicle = large_vehicle
+	if(!isnull(swordplay))
+		src.swordplay = swordplay
 	tag = SKILLSIDSRC(src)
 
 /datum/skills/proc/modifyRating(cqc, melee_weapons,\
@@ -125,7 +129,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.pilot+pilot,\
 	src.police+police,\
 	src.powerloader+powerloader,\
-	src.large_vehicle+large_vehicle)
+	src.large_vehicle+large_vehicle,\
+	src.swordplay+swordplay)
 
 /datum/skills/proc/modifyAllRatings(difference)
 	return getSkills(src.cqc+difference,\
@@ -145,7 +150,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.pilot+difference,\
 	src.police+difference,\
 	src.powerloader+difference,\
-	src.large_vehicle+difference)
+	src.large_vehicle+difference,\
+	src.swordplay+difference)
 
 /datum/skills/proc/setRating(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
@@ -167,7 +173,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		(isnull(pilot) ? src.pilot : pilot),\
 		(isnull(police) ? src.police : police),\
 		(isnull(powerloader) ? src.powerloader : powerloader),\
-		(isnull(large_vehicle) ? src.large_vehicle : large_vehicle))
+		(isnull(large_vehicle) ? src.large_vehicle : large_vehicle),\
+		(isnull(swordplay) ? src.swordplay : swordplay))
 
 /datum/skills/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, tag))
@@ -201,7 +208,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		"pilot" = pilot,\
 		"police" = police,\
 		"powerloader" = powerloader,\
-		"large_vehicle" = large_vehicle)
+		"large_vehicle" = large_vehicle,\
+		"swordplay" = swordplay)
 
 /datum/skills/civilian
 	name = "Civilian"
@@ -361,6 +369,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	smgs = SKILL_SMGS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 
 /datum/skills/fo
@@ -373,6 +382,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
 	cqc = SKILL_CQC_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/so
 	name = STAFF_OFFICER
@@ -381,6 +391,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/pilot
 	name = PILOT_OFFICER
@@ -435,6 +446,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 	police = SKILL_POLICE_MP
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/sl
 	name = SQUAD_LEADER
@@ -444,12 +456,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/sl/clf
 	name = "CLF leader"
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 	leadership = SKILL_LEAD_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/sl/upp
 	name = "UPP Leader"
@@ -461,6 +475,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/sl/pmc
 	name = "PMC Leader"
@@ -470,6 +485,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/sl/icc
 	name = "ICC Leader"
@@ -478,6 +494,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/sl/pmc/special_forces
 	name = "Special Force Leader"
@@ -539,6 +556,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/commando/medic
 	name = "Commando Medic"
@@ -571,6 +589,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/spy
 	name = "Spy"
@@ -587,6 +606,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	powerloader = SKILL_POWERLOADER_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/admiral
 	name = "Admiral"
@@ -596,6 +616,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/ninja
 	name = "Ninja"
@@ -605,6 +626,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_SUPER
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"
@@ -626,6 +648,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /*======  I.o.M.  ======*/
 
@@ -652,6 +675,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/imperial/medicae
 	name = "Guardsman Medicae" // medic
@@ -679,6 +703,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	powerloader = SKILL_POWERLOADER_DABBLING
+	swordplay = SKILL_SWORDPLAY_TRAINED
 
 /datum/skills/imperial/astartes/apothecary
 	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills

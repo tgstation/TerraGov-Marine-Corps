@@ -133,6 +133,9 @@
 #define SKILL_PILOT_DEFAULT 0
 #define SKILL_PILOT_TRAINED 1 //Pilot
 
+//ability to use elegant melee weapons (i.e. rapiers)
+#define SKILL_SWORDPLAY_DEFAULT 0
+#define SKILL_SWORDPLAY_TRAINED 1
 
 
 ////////////////////////////////////////////////
