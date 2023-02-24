@@ -313,6 +313,58 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
+//-------------------------------------------------------
+//A shotgun, how quaint.
+/obj/item/weapon/gun/shotgun/pump/trenchgun
+	name = "\improper L-4034 trenchgun"
+	desc = "A six-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "trenchgun"
+	item_state = "trenchgun"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/stock/trenchgun,
+	)
+	flags_item_map_variant = NONE
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/trenchgun,
+	)
+
+	fire_delay = 1.2 SECONDS
+	max_chamber_items = 5
+	damage_mult = 0.75
+	accuracy_mult_unwielded = 1
+
+	scatter = 4
+	min_scatter = 4
+	scatter_increase = 8
+	scatter_decay = 3
+	scatter_decay_unwielded = 1
+
+	scatter_unwielded = 10
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
+	cock_delay = 1.2 SECONDS
+	aim_slowdown = 0.55
+
+/obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/trenchgun,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+	)
+
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 

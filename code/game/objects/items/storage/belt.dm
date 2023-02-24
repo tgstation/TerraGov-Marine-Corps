@@ -208,6 +208,36 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/healthanalyzer(src)
 
+/obj/item/storage/belt/lifesaver/icc
+	name = "\improper Modelle/129 lifesaver bag"
+	desc = "A medical belt made from synthetic tan fibres, carries just about anything you would need to responsd to traumatic injury in combat."
+	icon_state = "medicbag_icc"
+	item_state = "medicbag_icc"
+
+/obj/item/storage/belt/lifesaver/icc/ert/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
+
 /obj/item/storage/belt/rig
 	name = "\improper M276 pattern medical storage rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and heavier medical tools."
@@ -558,14 +588,46 @@
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
 
-/obj/item/storage/belt/marine/som/mpi/Initialize()
+/obj/item/storage/belt/marine/som/mpi_plum/Initialize()
 	. = ..()
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
-	new /obj/item/ammo_magazine/rifle/mpi_km(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
+
+/obj/item/storage/belt/marine/som/mpi_black/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/black(src)
+
+/obj/item/storage/belt/marine/som/carbine/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine(src)
+
+/obj/item/storage/belt/marine/som/carbine_black/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+
+/obj/item/storage/belt/marine/icc
+	name = "\improper Modello/120 ammo belt"
+	desc = "A belt purpose made to carry ammo, made with a tan synthetic fibre."
+	icon_state = "icc_belt"
 
 /obj/item/storage/belt/marine/sectoid
 	name = "\improper strange ammo belt"
@@ -686,6 +748,45 @@
 	new /obj/item/ammo_magazine/handful/flechette(src)
 
 /obj/item/storage/belt/shotgun/som/mixed/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/buckshot(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+
+/obj/item/storage/belt/shotgun/icc
+	name = "\improper Modelle/121 shell load rig"
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets, made with a synthetic tan fibre."
+	icon_state = "shotgunbelt_icc"
+
+/obj/item/storage/belt/shotgun/icc/flechette/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+
+/obj/item/storage/belt/shotgun/icc/mixed/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/ammo_magazine/handful/buckshot(src)
 	new /obj/item/ammo_magazine/handful/buckshot(src)
@@ -902,7 +1003,8 @@
 	if(!current_gun)
 		return FALSE
 	var/obj/item/W = current_gun
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
@@ -1001,6 +1103,17 @@
 /obj/item/storage/belt/gun/pistol/m4a3/vp70/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
+
+/obj/item/storage/belt/gun/pistol/m4a3/vp70_pmc/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70/tactical(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
