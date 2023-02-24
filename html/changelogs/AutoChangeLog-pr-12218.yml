@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "SADAR and RPG rounds now have ammo specific projectile sprites"
-  - imageadd: "Updated SADAR sprites"

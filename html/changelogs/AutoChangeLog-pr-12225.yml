@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed dispensers teleporting into your hand when undeploying regardless of distance"
