@@ -181,15 +181,15 @@
 	var/sound_to_play
 	if(owner.getBruteLoss())
 		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
-		sound_to_play = pick('sound/items/welder.ogg', 'sound/items/welder2.ogg')
+		sound_to_play = 'sound/effects/robotrepair.ogg'
 	else if(owner.getFireLoss())
 		owner.heal_limb_damage(0, healing_per_tick, TRUE, TRUE)
-		sound_to_play = 'sound/items/deconstruct.ogg'
+		sound_to_play = 'sound/effects/robotrepair2.ogg'
 	if(!sound_to_play || last_sound)
 		last_sound = FALSE
 		return
 	last_sound = TRUE
-	playsound(owner, sound_to_play, 50)
+	playsound(owner, sound_to_play, 50, sound_range = 12)
 
 
 
