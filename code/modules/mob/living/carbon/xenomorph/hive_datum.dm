@@ -452,6 +452,13 @@
 		return
 	HS.update_ruler()
 
+/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
+	. = ..()
+
+	if(HS.living_xeno_ruler)
+		return
+	HS.update_ruler()
+
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
@@ -545,6 +552,14 @@
 		hive_removed_from.set_ruler(null)
 		hive_removed_from.update_ruler() //Try to find a successor.
 
+/mob/living/carbon/xenomorph/king/remove_from_hive()
+	var/datum/hive_status/hive_removed_from = hive
+
+	. = ..()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
 
 // ***************************************
 // *********** Xeno leaders
@@ -594,7 +609,7 @@
 	var/datum/xeno_caste/caste = X?.xeno_caste
 	if(caste.death_evolution_delay <= 0)
 		return
-	if(!caste_death_timers[caste.caste_type_path]) 
+	if(!caste_death_timers[caste.caste_type_path])
 		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
@@ -646,6 +661,10 @@
 		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
 		if(length_char(candidates))
 			successor = candidates[1]
+		else
+			candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/king]
+			if(length_char(candidates))
+				successor = candidates[1]
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
