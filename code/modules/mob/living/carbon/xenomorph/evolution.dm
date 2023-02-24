@@ -253,7 +253,7 @@
 			return FALSE
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))
-			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen like roles."))
+			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.exp_type] required to play queen like roles."))
 			return FALSE
 
 	var/min_xenos = new_caste_type.evolve_min_xenos
