@@ -300,3 +300,26 @@
   - bugfix: Added support for the old infantry open helmet to have the cool visor.
   - bugfix: Fixed a runtime with blur_protection component that would've effectively
       given you permanent blur protection. Good thing it was bugged!
+2023-02-23:
+  Lumipharon:
+  - bugfix: fixed a bug with portable vendors
+2023-02-24:
+  KillerOrcaCora:
+  - balance: Carrier panic drop ability being adjusted after being nooked!
+  Lumipharon:
+  - bugfix: fixed dispensers teleporting into your hand when undeploying regardless
+      of distance
+  - balance: PMC ERT updates slightly with better loadouts, mainly for more ammunition
+      and grenades
+  - balance: VP78 burst fire is no longer just a worse version of semi auto
+  - balance: ' PR-412E no longer has a pointless burstfire mode'
+  - bugfix: fixed quick equip not working for some items obtained from loadout vendors
+  - qol: SADAR and RPG rounds now have ammo specific projectile sprites
+  - imageadd: Updated SADAR sprites
+  - rscadd: Added TGUI to the nuke
+  - qol: Nuke disks are inserted into your hand, when removed from the nuke
+  Tanker:
+  - rscadd: Added a new mecha melee weapon, the Sunbeam particle piercer.
+  Zar000:
+  - bugfix: fixed create spiderling keybind
+  - qol: spiderlings will also rest when widow does
