@@ -112,7 +112,7 @@ export const JobPreferences = (props, context) => {
                 <h4>If failed to qualify for job</h4>
                 <Button.Checkbox
                   inline
-                  content={'Take a random job'}
+                  content={'Take a random job'} 
                   checked={alternate_option === 0}
                   onClick={() => act('jobalternative', { newValue: 0 })}
                 />

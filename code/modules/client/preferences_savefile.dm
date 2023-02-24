@@ -435,7 +435,8 @@
 	preferred_squad_som	= sanitize_inlist(preferred_squad_som, SELECTABLE_SQUADS_SOM, initial(preferred_squad_som))
 	alternate_option= sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_preferences = SANITIZE_LIST(job_preferences)
-	quick_equip = sanitize_inlist(quick_equip, SLOT_DRAW_ORDER, initial(quick_equip))
+	for(var/quick_equip_slots in quick_equip)
+		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
 	else
@@ -518,7 +519,8 @@
 	preferred_squad_som	= sanitize_inlist(preferred_squad_som, SELECTABLE_SQUADS_SOM, initial(preferred_squad_som))
 	alternate_option= sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_preferences = SANITIZE_LIST(job_preferences)
-	quick_equip	= sanitize_inlist(quick_equip, SLOT_DRAW_ORDER, initial(quick_equip))
+	for(var/quick_equip_slots in quick_equip)
+		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
 	else

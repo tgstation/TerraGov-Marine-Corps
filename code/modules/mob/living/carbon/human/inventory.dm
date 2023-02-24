@@ -28,19 +28,11 @@
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 	INVOKE_ASYNC(src, .proc/do_quick_equip, 5)
 
-/*///async signal wrapper for do_quick_equip
-/mob/living/carbon/human/proc/async_do_quick_equip_alt()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, TRUE)*/
-
-//mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)
-/// runs equip, if passed use_alternate = TRUE will try to use the alternate preference slot
+/// runs equip, quick_equip_used is the # in INVOKE_ASYNC
 /mob/living/carbon/human/proc/do_quick_equip(quick_equip_used = 0)
 	if(incapacitated() || lying_angle)
 		return
 
-	//var/slot_requested = use_alternate ?  client?.prefs?.preferred_slot_alt : client?.prefs?.preferred_slot
 	var/slot_requested = client?.prefs?.quick_equip[quick_equip_used]
 	var/obj/item/I = get_active_held_item()
 	if(!I)
