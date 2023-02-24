@@ -1218,10 +1218,10 @@
 /area/oscar_outpost/village)
 "iK" = (
 /obj/structure/closet/crate,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "iL" = (
@@ -3433,10 +3433,10 @@
 /area/oscar_outpost/village/central)
 "xK" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "xN" = (

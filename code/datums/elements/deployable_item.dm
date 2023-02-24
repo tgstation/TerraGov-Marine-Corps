@@ -137,7 +137,11 @@
 	attached_item.toggle_deployment_flag()
 
 	user.unset_interaction()
-	user.put_in_hands(attached_item)
+
+	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)
+		attached_item.forceMove(get_turf(deployed_machine))
+	else
+		user.put_in_hands(attached_item)
 
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity

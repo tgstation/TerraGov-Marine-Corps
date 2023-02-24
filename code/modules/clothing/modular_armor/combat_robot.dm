@@ -2,11 +2,13 @@
 /obj/item/clothing/suit/modular/robot
 	name = "XR-1 armor plating"
 	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon = 'icons/mob/modular/robot_armor.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/robot_armor.dmi')
 	icon_state = "robot_medium"
 	item_state = "robot_medium"
 	species_exception = list(/datum/species/robot)
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
-	slowdown = 0.5
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -55,7 +57,7 @@
 	icon_state = "robot_light"
 	item_state = "robot_light"
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	slowdown = 0.3
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/modular/robot/heavy
 	name = "XR-1-H armor plating"
@@ -63,12 +65,18 @@
 	icon_state = "robot_heavy"
 	item_state = "robot_heavy"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
-	slowdown = 0.7
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 //robot hats
 /obj/item/clothing/head/modular/robot
 	name = "XN-1 upper armor plating"
 	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon = 'icons/mob/modular/robot_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/robot_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "robot_medium"
 	item_state = "robot_medium"
 	species_exception = list(/datum/species/robot)
@@ -79,6 +87,8 @@
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
+		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/greyscale/badge,

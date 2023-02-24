@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscdel: "remove the capability to have Build-a-Sentry magnum"
