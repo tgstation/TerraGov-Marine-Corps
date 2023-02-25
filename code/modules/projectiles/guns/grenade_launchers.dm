@@ -28,6 +28,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/m15,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/molotov,
@@ -143,6 +144,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/training,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
@@ -176,7 +178,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
-	default_ammo_type = /obj/item/explosive/grenade/stick //no marine equipment here
+	default_ammo_type = /obj/item/explosive/grenade/som
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
