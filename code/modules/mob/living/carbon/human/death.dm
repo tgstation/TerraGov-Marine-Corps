@@ -57,6 +57,11 @@
 	if(pulledby)
 		pulledby.stop_pulling()
 
+	if(!HAS_TRAIT(src, TRAIT_WILLPOWERLESS))
+		skills = skills.modifyRating(willpower = -1)
+		health_threshold_crit = min(health_threshold_crit + 10, 0)
+		max_stamina_buffer = max(max_stamina_buffer - 10, 0)
+
 	//Handle species-specific deaths.
 	species.handle_death(src)
 

@@ -134,6 +134,14 @@
 #define SKILL_PILOT_TRAINED 1 //Pilot
 
 
+//willpower
+//how many times can you be revived
+#define SKILL_WILLPOWER_DEAD 0 //it's time to drop the worldly vanity
+#define SKILL_WILLPOWER_WEAK 3 //Civilian
+#define SKILL_WILLPOWER_DEFAULT 4 //Standard Marines
+#define SKILL_WILLPOWER_STRONG 5 //SL, CMO, CE and above
+
+
 
 ////////////////////////////////////////////////
 

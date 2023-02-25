@@ -415,7 +415,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB, TRAIT_WILLPOWERLESS)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -534,6 +534,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
+	inherent_traits = list(TRAIT_WILLPOWERLESS)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
@@ -586,6 +587,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
+	inherent_traits = list(TRAIT_WILLPOWERLESS)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
@@ -784,6 +786,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	speech_verb_override = "rattles"
 	count_human = TRUE
 
+	inherent_traits = list(TRAIT_WILLPOWERLESS)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
