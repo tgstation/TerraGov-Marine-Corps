@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/distress/nuclear_war
 	name = "Nuclear War"
 	config_tag = "Nuclear War"
-	silo_scaling = 1.80
+	silo_scaling = 2.50
 
 /datum/game_mode/infestation/distress/nuclear_war/post_setup()
 	. = ..()
