@@ -706,7 +706,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/get_joinable_factions(should_look_balance)
 	return
 
-/datum/game_mode/proc/display_report(popcount)
+/datum/game_mode/proc/display_report()
 	GLOB.common_report = build_roundend_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
