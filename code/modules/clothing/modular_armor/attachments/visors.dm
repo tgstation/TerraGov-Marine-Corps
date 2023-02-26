@@ -6,7 +6,7 @@
 
 /obj/item/armor_module/greyscale/visor
 	name = "standard visor"
-	icon = 'icons/mob/modular/m10.dmi'
+	icon = 'icons/mob/modular/jaeger_helmets.dmi'
 	slot = ATTACHMENT_SLOT_VISOR
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	greyscale_config = /datum/greyscale_config/visors
@@ -98,7 +98,9 @@
 /obj/item/armor_module/greyscale/visor/robot
 	name = "\improper XN-1 upper armor plating visor"
 	desc = "The visor attachment of the XN-1 upper armor plating."
+	icon = 'icons/mob/modular/robot_helmets.dmi'
 	icon_state = "robot_medium_visor"
+	greyscale_config = /datum/greyscale_config/visors/robot
 
 /obj/item/armor_module/greyscale/visor/robot/light
 	name = "\improper XN-1-L upper armor plating visor"
