@@ -27,7 +27,13 @@
 
 /turf/closed/wall/mainship/outer/canterbury
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
-	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
 
 /turf/closed/wall/mainship/white
 	icon = 'icons/turf/walls/wwall.dmi'
@@ -47,6 +53,16 @@
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
+
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
