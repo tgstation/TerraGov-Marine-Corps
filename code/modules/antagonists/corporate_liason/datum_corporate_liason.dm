@@ -102,6 +102,7 @@
 	add_objective(selectedobjective)
 
 /datum/antagonist/corporate_liason/greet()
+	to_chat(owner, span_boldnotice("NanoTrasen has need of your services!"))
 	owner.announce_objectives()
 
 //TODO Collate
@@ -136,3 +137,13 @@
 
 /datum/antagonist/corporate_liason/roundend_report_footer()
 	return
+
+/datum/antagonist/corporate_liason/farewell()
+	. = ..()
+	to_chat(owner, span_boldnotice("You no longer have any objectives."))
+
+/datum/antagonist/corporate_liason/on_removal()
+	. = ..()
+	for(var/datum/action/A AS in usr.actions)
+		if(istype(A, /datum/action/objectives))
+			A.remove_action(usr)

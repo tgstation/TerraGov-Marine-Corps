@@ -206,6 +206,7 @@
 			objective = locate(href_list["obj_delete"]) in A.objectives
 			if(istype(objective))
 				A.objectives -= objective
+				objective.handle_removal()
 				break
 		if(!objective)
 			to_chat(usr,"Invalid objective.")

@@ -35,6 +35,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/proc/post_setup()
 	return
 
+/datum/objective/proc/handle_removal() //called when an admin removes objective from a player
+	return
+
 //Shared by few objective types
 /datum/objective/proc/admin_simple_target_pick(mob/admin)
 	var/list/possible_targets = list()
@@ -567,20 +570,40 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/recruitment_drive
 	name = "sign contracts"
-	explanation_text = "Convince 5 marines to sign their souls to NanoTrasen"
-	team_explanation_text = "Convince 5 marines to sign their souls to NanoTrasen"
+	explanation_text = "Convince 5 marines to sign their souls to NanoTrasen, don't forget to fax it!"
+	team_explanation_text = "Convince 5 marines to sign their souls to NanoTrasen, don't forget to fax it!"
 	//todo, think harder about if signup list should be on this or parent datum, currently on parent
-
-/datum/objective/proc/give_contract_button(mob/living/carbon/human/M)
-	var/datum/action/contracts/contractbutton = new
-	contractbutton.give_action(usr)
-	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(contractbutton)];report=1'>Summon paperwork</a></span>")
-
-/datum/objective/proc/give_pen_button(mob/living/carbon/human/M)
-	var/datum/action/contracts/pen/penbutton = new
-	penbutton.give_action(usr)
-	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(penbutton)];report=1'>Summon pen</a></span>")
 
 /datum/objective/recruitment_drive/post_setup()
 	give_contract_button(owner)
 	give_pen_button(owner)
+	RegisterSignal(src, COMSIG_OBJECTIVE_CONTRACT, .proc/test_this)
+
+/datum/objective/recruitment_drive/proc/test_this()
+	SIGNAL_HANDLER
+	to_chat(usr, "What a world.")
+
+/datum/objective/recruitment_drive/handle_removal()
+	. = ..()
+	for(var/datum/action/A AS in usr.actions)
+		if(istype(A, /datum/action/objectives/contracts))
+			A.remove_action(usr)
+
+/datum/objective/proc/give_contract_button(mob/living/carbon/human/M)
+	var/datum/action/objectives/contracts/contractbutton = new
+	contractbutton.give_action(usr)
+	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(contractbutton)];report=1'>Summon paperwork</a></span>")
+
+/datum/objective/proc/give_pen_button(mob/living/carbon/human/M)
+	var/datum/action/objectives/contracts/pen/penbutton = new
+	penbutton.give_action(usr)
+	to_chat(usr,"<span class='infoplain'><a href='?src=[REF(penbutton)];report=1'>Summon pen</a></span>")
+
+/datum/objective/gather_genetics
+	name = "sample genetics"
+	explanation_text = "Collect the genetic data of at least 10 marines."
+	explanation_text = "Collect the genetic data of at least 10 marines."
+
+/datum/objective/gather_genetics/post_setup()
+//	give_dna_button(owner)
+
