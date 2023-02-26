@@ -123,8 +123,10 @@
 	addtimer(CALLBACK(src, .proc/kill_parent), 10 SECONDS)
 
 /// Makes the spiderling roar and then kill themselves after some time
-/datum/ai_behavior/spiderling/proc/triggered_spiderling_rage()
+/datum/ai_behavior/spiderling/proc/triggered_spiderling_rage(mob/M, mob/victim)
 	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
+	escorted_atom = null
+	change_action(MOVING_TO_ATOM, victim)
 	x.emote("roar")
 	addtimer(CALLBACK(src, .proc/kill_parent), 15 SECONDS)
 
