@@ -185,12 +185,12 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
-		return
-
 	if(H.skills.getRating("willpower") <= SKILL_WILLPOWER_DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's mind is exhausted by eternal battles. No remedy possible."))
+		return
+
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
 		return
 
 	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
