@@ -203,8 +203,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
-	for(var/client/C AS in GLOB.clients)
-		display_report(C)
+	display_report()
 	addtimer(CALLBACK(src, .proc/end_of_round_deathmatch), ROUNDEND_EORG_DELAY)
 	//end_of_round_deathmatch()
 	return TRUE
@@ -707,7 +706,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/get_joinable_factions(should_look_balance)
 	return
 
-/datum/game_mode/proc/display_report(popcount)
+/datum/game_mode/proc/display_report()
 	GLOB.common_report = build_roundend_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
