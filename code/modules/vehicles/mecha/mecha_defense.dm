@@ -198,6 +198,27 @@
 		var/obj/item/mecha_parts/P = W
 		P.try_attach_part(user, src, FALSE)
 		return
+
+	if(istype(W, /obj/item/stack/sheet/plasteel))
+		var/obj/item/stack/sheet/plasteel/plasteel_sheets = W
+		if(obj_integrity > max_integrity * 0.25)
+			return
+
+		if(plasteel_sheets.get_amount() < 5)
+			balloon_alert(user, "You need at least 5 plasteel")
+			return
+
+		balloon_alert_to_viewers("repairing structure...")
+
+		if(!do_after(user, 10 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return
+
+		if(!plasteel_sheets.use(5))
+			return
+
+		repair_damage(max_integrity * 0.25)
+		balloon_alert_to_viewers("structure repaired")
+
 	return ..()
 
 /obj/vehicle/sealed/mecha/attacked_by(obj/item/attacking_item, mob/living/user)
@@ -246,7 +267,9 @@
 		to_chat(user, span_notice("You close the hatch to the power unit."))
 
 /obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
+	. = welder_repair_act(user, I, 50, 10 SECONDS, 0.5, SKILL_ENGINEER_ENGI, 5, 10 SECONDS)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
+		balloon_alert(user, "Too damaged. Use plasteel sheets.")
 
 /obj/vehicle/sealed/mecha/proc/full_repair(charge_cell)
 	obj_integrity = max_integrity
