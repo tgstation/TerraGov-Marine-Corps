@@ -673,7 +673,7 @@ SUBSYSTEM_DEF(ru_items)
 	max_chamber_items = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/t500
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/t500)
-	force = 8
+	force = 20
 	actions_types = null
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -689,7 +689,7 @@ SUBSYSTEM_DEF(ru_items)
 	fire_animation = "t500_fire"
 	fire_delay = 0.8 SECONDS
 	akimbo_additional_delay = 0.6
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult_unwielded = 0.9
 	accuracy_mult = 1
 	scatter_unwielded = 5
 	scatter = -1
@@ -743,6 +743,7 @@ SUBSYSTEM_DEF(ru_items)
 	recoil_unwielded_mod = 1
 	scatter_mod = -2
 	scatter_unwielded_mod = 5
+	melee_mod = 10
 	pixel_shift_x = 0
 	pixel_shift_y = 0
 
@@ -770,10 +771,11 @@ SUBSYSTEM_DEF(ru_items)
 	delay_mod = -0.2 SECONDS
 	icon = 'icons/Marine/t500.dmi'
 	icon_state = "shortbarrel"
-	scatter_mod = -1
+	scatter_mod = -2
 	recoil_mod = -0.5
-	scatter_unwielded_mod = -3
+	scatter_unwielded_mod = -5
 	recoil_unwielded_mod = -1
+	accuracy_unwielded_mod = 0.15
 	size_mod = 0.5
 	pixel_shift_x = 0
 	pixel_shift_y = 0
