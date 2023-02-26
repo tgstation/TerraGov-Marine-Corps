@@ -184,7 +184,7 @@
 /datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
 	. = ..()
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
-	if(len(create_spiderling_action.spiderlings =< 0))
+	if(length(create_spiderling_action.spiderlings <= 0))
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
 	if(!isobj(A))
