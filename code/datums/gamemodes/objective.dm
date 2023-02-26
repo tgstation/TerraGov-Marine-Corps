@@ -186,7 +186,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		/datum/objective/protect,
 		/datum/objective/winoperation,
 		/datum/objective/loseoperation,
-		/datum/objective/kidnap,
+		/datum/objective/escape_with,
 		/datum/objective/gather_cash,
 		/datum/objective/kill_zombies,
 		/datum/objective/seize_area,
@@ -223,13 +223,13 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/escape/find_target(dupe_search_range, blacklist)
 	return
 
-/datum/objective/kidnap
+/datum/objective/escape_with
 	name = "kidnap"
-	explanation_text = "Escape on a shuttle or an escape pod alive and with your target."
-	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
+	explanation_text = "Have both you and your target escape alive and unharmed on a shuttle or pod."
+	team_explanation_text = "Have both you and your target escape alive and unharmed on a shuttle or pod."
 	avoid_double_target = TRUE
 
-/datum/objective/kidnap/check_completion()
+/datum/objective/escape_with/check_completion()
 	if(!considered_escaped(owner))
 		return FALSE
 	if(!considered_escaped(target))
@@ -240,7 +240,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		if(M.mind == target)
 			return TRUE
 
-/datum/objective/kidnap/update_explanation_text()
+/datum/objective/escape_with/update_explanation_text()
 	if(target == null)
 		explanation_text = "Escape with somebody on a shuttle." //placeholder in case we can't find a real player
 		return
@@ -250,7 +250,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	else
 		explanation_text = "Free Objective"
 
-/datum/objective/kidnap/admin_edit(mob/admin)
+/datum/objective/escape_with/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
 /datum/objective/survive

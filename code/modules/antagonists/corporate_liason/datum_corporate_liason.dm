@@ -35,7 +35,6 @@
 	if(!(locate(/datum/objective/survive) in objectives))
 		var/list/objectivelist
 		objectivelist = list(
-			/datum/objective/loseoperation = 1,
 			/datum/objective/winoperation = 2,
 			/datum/objective/survive = 7,
 			/datum/objective/escape = 2,
@@ -46,9 +45,6 @@
 		if(selectedobjective == /datum/objective/winoperation)
 			var/datum/objective/winoperation/winoperation_objective = new
 			selectedobjective =	winoperation_objective
-		if(selectedobjective == /datum/objective/loseoperation)
-			var/datum/objective/loseoperation/loseoperation_objective = new
-			selectedobjective =	loseoperation_objective
 		if(selectedobjective == /datum/objective/survive)
 			var/datum/objective/survive/survive_objective = new
 			selectedobjective =	survive_objective
@@ -65,10 +61,9 @@
 	var/list/objectivelist
 	objectivelist = list(
 		/datum/objective/maroon = 1,
-		/datum/objective/assassinate = 4,
 		/datum/objective/steal = 3,
 		/datum/objective/protect = 3,
-		/datum/objective/kidnap = 3,
+		/datum/objective/escape_with = 3,
 		/datum/objective/gather_cash = 3,
 	)
 	var/datum/objective/selectedobjective
@@ -80,15 +75,12 @@
 	if(selectedobjective == /datum/objective/maroon)
 		var/datum/objective/maroon/maroon_objective = new
 		selectedobjective =	maroon_objective
-	if(selectedobjective == /datum/objective/assassinate)
-		var/datum/objective/assassinate/assassinate_objective = new
-		selectedobjective =	assassinate_objective
 	if(selectedobjective == /datum/objective/protect)
 		var/datum/objective/protect/protect_objective = new
 		selectedobjective =	protect_objective
-	if(selectedobjective == /datum/objective/kidnap)
-		var/datum/objective/kidnap/kidnap_objective = new
-		selectedobjective =	kidnap_objective
+	if(selectedobjective == /datum/objective/escape_with)
+		var/datum/objective/escape_with/escape_with_objective = new
+		selectedobjective =	escape_with_objective
 	if(selectedobjective == /datum/objective/gather_cash)
 		var/datum/objective/gather_cash/gather_cash_objective = new
 		selectedobjective =	gather_cash_objective
