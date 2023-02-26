@@ -34,7 +34,8 @@
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
-	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_MARK_MARINE), .proc/go_to_target)
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
+	RegisterSignal(escorted_atom, COMSIG_MARK_MARINE, .proc/triggered_spiderling_rage)
 	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_ATTACK_OBJ, COMSIG_MARK_OBJ), .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
