@@ -21,7 +21,7 @@
 
 
 
-/obj/item/explosive/grenade/PMC
+/obj/item/explosive/grenade/pmc
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_pmc"
