@@ -313,10 +313,13 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
-	acid_melt_multiplier = 2 // we want flares to melt 2x as fast
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
+
+/obj/item/explosive/grenade/flare/get_acid_melt_multiplier()
+	. = ..()
+	return 2
 
 /obj/item/explosive/grenade/flare/Initialize()
 	. = ..()

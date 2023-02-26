@@ -193,9 +193,12 @@
 	raillight_compatible = FALSE
 	activation_sound = 'sound/items/flare.ogg'
 	nightfall_immune = TRUE
-	acid_melt_multiplier = 2 // we want flares to melt 2x as fast
 	var/fuel = 0
 	var/on_damage = 7
+
+/obj/item/flashlight/flare/get_acid_melt_multiplier()
+	. = ..()
+	return 2
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()

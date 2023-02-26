@@ -168,8 +168,9 @@ directive is properly returned.
 	if(loc)
 		return loc.return_gas()
 
-
-
+//returns this atoms melt multiplier
+/atom/proc/get_acid_melt_multiplier()
+	return 1
 
 /atom/proc/on_reagent_change()
 	return

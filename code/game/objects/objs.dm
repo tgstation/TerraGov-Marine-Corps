@@ -42,9 +42,6 @@
 	///Odds of a projectile hitting the object, if the object is dense and has THROWPROJECTILE
 	var/coverage = 50
 
-	///The multiplier for how fast this obj will melt when its on acid
-	var/acid_melt_multiplier = 1
-
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))

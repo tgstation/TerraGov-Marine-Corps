@@ -136,6 +136,7 @@
 	var/acid_strength = 0.04 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
+	var/acid_melt_multiplier
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
@@ -168,11 +169,11 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	if(istype(acid_t, /obj)) // objs have a multiplier for being melted
-		var/obj/acid_o = acid_t
-		ticks += delta_time * (acid_strength * acid_o.acid_melt_multiplier)
-	else
-		ticks += delta_time * acid_strength
+	acid_melt_multiplier = acid_t.get_acid_melt_multiplier()
+	if(!acid_melt_multiplier)
+		return
+	ticks += delta_time * (acid_strength * acid_melt_multiplier)
+
 	if(ticks >= strength_t)
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, "acid_hit", 25)
