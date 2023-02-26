@@ -155,6 +155,7 @@
 /obj/effect/xenomorph/acid/Initialize(mapload, target)
 	. = ..()
 	acid_t = target
+	acid_melt_multiplier = acid_t.get_acid_melt_multiplier()
 	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	START_PROCESSING(SSslowprocess, src)
 
@@ -169,7 +170,6 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	acid_melt_multiplier = acid_t.get_acid_melt_multiplier()
 	if(!acid_melt_multiplier)
 		return
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
