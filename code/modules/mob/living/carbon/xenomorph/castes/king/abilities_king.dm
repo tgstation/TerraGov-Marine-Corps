@@ -485,7 +485,8 @@
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
-		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
+		if(sister.z == X.z)
+			sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		add_cooldown(3 SECONDS)
@@ -496,7 +497,8 @@
 	allxenos = X.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
-		sister.forceMove(get_turf(X))
+		if(sister.z == X.z)
+			sister.forceMove(get_turf(X))
 	log_game("[key_name(owner)] has summoned hive ([length_char(allxenos)] Xenos) in [AREACOORD(owner)]")
 	X.emote("roar")
 
