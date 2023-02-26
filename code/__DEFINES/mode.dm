@@ -122,8 +122,8 @@
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
-#define SILO_PRICE 800
-#define XENO_TURRET_PRICE 100
+#define SILO_PRICE 600
+#define XENO_TURRET_PRICE 40
 
 //How many psych point one gen gives every second
 #define GENERATOR_PSYCH_POINT_OUTPUT 1
@@ -140,7 +140,7 @@
 #define HIGH_PLAYER_POP 80
 
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
-#define SILO_BASE_OUTPUT_PER_MARINE 0.035
+#define SILO_BASE_OUTPUT_PER_MARINE 0.07
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 1.75
 //Time (after shutters open) before siloless timer can start
