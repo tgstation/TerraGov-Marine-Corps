@@ -8,19 +8,18 @@
 	var/undeploy_time = 0
 	///Typepath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
-	///Typepath of the object this element is attached too
-	var/obj/deployable_type
+	///The item this element is attached too
+	var/obj/item/attached_item
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deployable_type, _deploy_time, _undeploy_time)
+/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
-	deployable_type = _deployable_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
 
-	var/obj/item/attached_item = target
+	attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
@@ -50,7 +49,7 @@
 	if(!isturf(location))
 		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(!istype(item_in_active_hand, deployable_type))
+	if(item_in_active_hand != attached_item)
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)

@@ -1357,7 +1357,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/prison,
 		)
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployable_item, master_gun.type, deploy_time, undeploy_time)
+	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
@@ -1367,7 +1367,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detaching_gun.ignored_terrains = null
 	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployable_item, master_gun.type, deploy_time, undeploy_time)
+	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 
 
 /obj/item/attachable/shoulder_mount
