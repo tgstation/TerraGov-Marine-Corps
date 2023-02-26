@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "You no longer spend 2 uses of jetpack when you spam the activation."
-  - bugfix: "You can no longer use jetpack if it isnt toggled on."

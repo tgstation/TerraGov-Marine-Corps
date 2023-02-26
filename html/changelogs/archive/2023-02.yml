@@ -333,3 +333,13 @@
   novaepee:
   - soundadd: New combat robot self maint sounds
   - rscdel: remove the capability to have Build-a-Sentry magnum
+2023-02-26:
+  Pariah919:
+  - rscadd: Added new style line of headgear, sprites by Fitz, other than the classic
+      beret which is by ocelot.
+  SuperSlayer0:
+  - qol: Time Shift description now says that it wouldn't save the target from death
+      or from being in crit
+  Xander3359:
+  - bugfix: You no longer spend 2 uses of jetpack when you spam the activation.
+  - bugfix: You can no longer use jetpack if it isnt toggled on.
