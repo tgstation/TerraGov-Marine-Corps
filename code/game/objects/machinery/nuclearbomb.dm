@@ -16,6 +16,7 @@
 	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
+	interaction_flags = INTERACT_OBJ_UI
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -224,71 +225,95 @@
 	. = ..()
 	if(.)
 		return
+
+	var/mob/user = usr
 	switch(action)
 		if("toggle_timer")
-			toggle_timer()
+			toggle_timer(user)
 		if("change_time")
 			change_time(params["seconds"])
 		if("toggle_safety")
-			toggle_safety()
+			toggle_safety(user)
 		if("toggle_anchor")
-			toggle_anchor()
+			toggle_anchor(user)
 		if("toggle_disk")
-			toggle_disk(params["disktype"])
+			toggle_disk(user, params["disktype"])
 
-/obj/machinery/nuclearbomb/proc/toggle_timer()
-	if(has_auth)
-		if(exploded)
-			return
+///Toggles the timer on or off
+/obj/machinery/nuclearbomb/proc/toggle_timer(mob/user)
+	if(!has_auth)
+		return
 
-		if(safety)
-			to_chat(usr, span_warning("The safety is still on."))
-			return
+	if(exploded)
+		return
 
-		if(!anchored)
-			to_chat(usr, span_warning("The anchors are not set."))
-			return
+	if(safety)
+		balloon_alert(user, "safety is still on")
+		return
 
-		timer_enabled = !timer_enabled
+	if(!anchored)
+		balloon_alert(user, "anchors not set")
+		return
 
-		if(timer_enabled)
-			start_processing()
+	timer_enabled = !timer_enabled
 
-		if(!lighthack)
-			icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
+	if(timer_enabled)
+		start_processing()
+		balloon_alert(user, "timer started")
+	else
+		balloon_alert(user, "timer stopped")
 
+	if(!lighthack)
+		icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
+
+///Modifies the nuke timer
 /obj/machinery/nuclearbomb/proc/change_time(time)
-	if(has_auth && !timer_enabled)
-		timemax += time
-		timemax = clamp(timemax, initial(timemax), 600)
-		timeleft = timemax
+	if(!has_auth || timer_enabled)
+		return
 
-/obj/machinery/nuclearbomb/proc/toggle_safety()
-	if(has_auth)
-		safety = !safety
-		if(safety)
-			timer_enabled = FALSE
-			stop_processing()
+	timemax += time
+	timemax = clamp(timemax, initial(timemax), 600)
+	timeleft = timemax
 
-/obj/machinery/nuclearbomb/proc/toggle_anchor()
-	if(has_auth)
-		if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
-			anchored = FALSE
-			visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
-			return
-		if(istype(get_area(loc), /area/shuttle))
-			to_chat(usr, span_warning("This doesn't look like a good spot to anchor the nuke."))
-			return
+///Toggles the safety on or off
+/obj/machinery/nuclearbomb/proc/toggle_safety(mob/user)
+	if(!has_auth)
+		return
 
-		anchored = !anchored
-		if(anchored)
-			visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
-		else
-			visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
-			timer_enabled = FALSE
-			stop_processing()
+	safety = !safety
+	if(safety)
+		timer_enabled = FALSE
+		balloon_alert(user, "safety enabled")
+		stop_processing()
+	else
+		balloon_alert(user, "safety disabled")
 
-/obj/machinery/nuclearbomb/proc/toggle_disk(disk_colour)
+///Toggles the safety on or off
+/obj/machinery/nuclearbomb/proc/toggle_anchor(mob/user)
+	if(!has_auth)
+		return
+
+	if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
+		anchored = FALSE
+		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
+		return
+
+	if(istype(get_area(loc), /area/shuttle))
+		balloon_alert(user, "unsuitable location")
+		return
+
+	anchored = !anchored
+	if(anchored)
+		balloon_alert(user, "anchored")
+		visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+	else
+		balloon_alert(user, "unanchored")
+		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
+		timer_enabled = FALSE
+		stop_processing()
+
+///Handles disk insertion and removal
+/obj/machinery/nuclearbomb/proc/toggle_disk(mob/user, disk_colour)
 	var/disk_type
 	var/obj/item/disk/nuclear/disk_slot
 	switch(disk_colour)
@@ -306,21 +331,23 @@
 		has_auth = FALSE
 		switch(disk_colour)
 			if("red")
-				r_auth.forceMove(loc)
+				user.put_in_hands(r_auth)
 				r_auth = null
 			if("green")
-				g_auth.forceMove(loc)
+				user.put_in_hands(g_auth)
 				g_auth = null
 			if("blue")
-				b_auth.forceMove(loc)
+				user.put_in_hands(b_auth)
 				b_auth = null
 	else
-		var/obj/item/I = usr.get_active_held_item()
+		var/obj/item/I = user.get_active_held_item()
 		if(!istype(I, disk_type))
 			return
+
 		if(!usr.drop_held_item())
 			return
-		I.forceMove(src)
+
+		I.forceMove(user)
 		switch(disk_colour)
 			if("red")
 				r_auth = I
@@ -331,12 +358,7 @@
 		if(r_auth && g_auth && b_auth)
 			has_auth = TRUE
 
-/obj/machinery/nuclearbomb/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	ui_interact(user)
-
+///Returns time left on the nuke
 /obj/machinery/nuclearbomb/proc/get_time_left()
 	return timeleft
 
