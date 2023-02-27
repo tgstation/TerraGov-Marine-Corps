@@ -422,7 +422,7 @@
 	synthetic_type = sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	robot_type = sanitize_inlist(robot_type, ROBOT_TYPES, initial(robot_type))
 	xeno_name = reject_bad_name(xeno_name)
-	ai_name	 = reject_bad_name(ai_name, TRUE)
+	ai_name = reject_bad_name(ai_name, TRUE)
 
 	real_name = reject_bad_name(real_name, TRUE)
 	random_name = sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
