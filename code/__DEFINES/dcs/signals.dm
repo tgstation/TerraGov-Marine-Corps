@@ -798,6 +798,7 @@
 // widow spiderling mark signals
 #define COMSIG_MARK_MARINE "mark_marine"
 #define COMSIG_MARK_OBJ "mark_obj"
+#define COMSIG_NO_MARK "no_mark"
 
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"

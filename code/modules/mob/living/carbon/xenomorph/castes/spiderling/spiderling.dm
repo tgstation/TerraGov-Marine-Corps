@@ -36,17 +36,28 @@
 	. = ..()
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
 	RegisterSignal(escorted_atom, COMSIG_MARK_MARINE, .proc/triggered_spiderling_rage)
-	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_ATTACK_OBJ, COMSIG_MARK_OBJ), .proc/go_to_obj_target)
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/apply_spiderling_jelly)
 	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), .proc/toggle_rest)
+	RegisterSignal(escorted_atom, COMSIG_NO_MARK, .proc/only_set_escorted_atom)
+	RegisterSignal(escorted_atom, COMSIG_MARK_OBJ, .proc/obj_mark)
+
+/datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
+	SIGNAL_HANDLER
+	escorted_atom = A
 
 /// Signal handler to apply resin jelly to the spiderling whenever widow gets it
 /datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/spiderling/beno_to_coat = mob_parent
 	beno_to_coat.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+
+/datum/ai_behavior/spiderling/proc/obj_mark(source, obj/target)
+	SIGNAL_HANDLER
+	escorted_atom = null
+	go_to_obj_target(source, target)
 
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)

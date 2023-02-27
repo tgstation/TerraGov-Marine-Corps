@@ -190,10 +190,14 @@
 	if(ishuman(A))
 		var/mob/living/carbon/human/victim = A
 		SEND_SIGNAL(owner, COMSIG_MARK_MARINE, victim)
+		owner.balloon_alert(owner, "Attacking victim")
 	else if(isobj(A))
 		var/obj/obj_target = A
 		SEND_SIGNAL(owner, COMSIG_MARK_OBJ, obj_target)
+		owner.balloon_alert(owner, "Attacking" + obj_target.name)
 	else
+		SEND_SIGNAL(owner, COMSIG_NO_MARK, owner)
+		owner.balloon_alert(owner, "Nothing to attack")
 		return fail_activate()
 	succeed_activate()
 	add_cooldown()
