@@ -33,7 +33,7 @@
 
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
-	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2 * SILO_PRICE + 4 * XENO_TURRET_PRICE)
+	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2000)
 
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/xeno/xeno_turret(i)
