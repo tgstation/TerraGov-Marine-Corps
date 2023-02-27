@@ -672,7 +672,7 @@ SUBSYSTEM_DEF(ru_items)
 	caliber =  CALIBER_500 //codex
 	max_chamber_items = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/t500
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/t500)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/t500, /datum/ammo/bullet/revolver/t500/qk)
 	force = 20
 	actions_types = null
 	attachable_allowed = list(
@@ -680,8 +680,11 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/attachable/stock/t500stock,
 		/obj/item/attachable/t500barrelshort,
 		/obj/item/attachable/t500barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/lace/t500,
 	)
-	attachable_offset = list("muzzle_x" = 0, "muzzle_y" = 0,"rail_x" = 0, "rail_y" = 0, "under_x" = 0, "under_y" = 0, "stock_x" = -19, "stock_y" = 0)
+	attachable_offset = list("muzzle_x" = 0, "muzzle_y" = 0,"rail_x" = 0, "rail_y" = 0, "under_x" = 19, "under_y" = 13, "stock_x" = -19, "stock_y" = 0)
 	windup_delay = 0.8 SECONDS
 	windup_sound = 'sound/weapons/guns/fire/t500_start.ogg'
 	fire_sound = 'sound/weapons/guns/fire/t500.ogg'
@@ -717,6 +720,16 @@ SUBSYSTEM_DEF(ru_items)
 	w_class = WEIGHT_CLASS_SMALL
 	used_casings = 5
 
+/obj/item/ammo_magazine/packet/t500/qk
+	name = "packet of .500 'Queen Killer'"
+	icon_state = "boxt500_qk"
+	default_ammo = /datum/ammo/bullet/revolver/t500/qk
+	caliber = CALIBER_500
+	current_rounds = 50
+	max_rounds = 50
+	w_class = WEIGHT_CLASS_SMALL
+	used_casings = 5
+
 /datum/ammo/bullet/revolver/t500
 	name = ".500 Nigro Express revolver bullet"
 	handful_icon_state = "nigro"
@@ -726,6 +739,23 @@ SUBSYSTEM_DEF(ru_items)
 	sundering = 0.5
 
 /datum/ammo/bullet/revolver/t500/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
+
+/datum/ammo/bullet/revolver/t500/qk
+	name = ".500 'Queen Killer' revolver bullet"
+	handful_icon_state = "nigro_qk"
+	handful_amount = 5
+	damage = 100
+	penetration = 40
+	sundering = 0
+
+/datum/ammo/bullet/revolver/t500/qk/on_hit_mob(mob/M,obj/projectile/P)
+	if(isxenoqueen(M))
+		var/mob/living/carbon/xenomorph/X = M
+		X.apply_damage(30)
+		staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 0)
+		to_chat(X, span_highdanger("Something burn inside you!"))
+		return
 	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
 
 // attachable
@@ -780,6 +810,13 @@ SUBSYSTEM_DEF(ru_items)
 	pixel_shift_x = 0
 	pixel_shift_y = 0
 
+/obj/item/attachable/lace/t500
+	name = "R-500 lace"
+	icon = 'icons/Marine/t500.dmi'
+	slot = ATTACHMENT_SLOT_STOCK
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
 // storage
 /obj/item/storage/belt/gun/revolver/t500
 	name = "\improper BM500 pattern BF revolver holster rig"
@@ -800,16 +837,18 @@ SUBSYSTEM_DEF(ru_items)
 	icon_state = "case"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_w_class = 1
-	storage_slots = 4
+	storage_slots = 5
 	max_storage_space = 1
 	can_hold = list(
 		/obj/item/attachable/stock/t500stock,
+		/obj/item/attachable/lace/t500,
 		/obj/item/attachable/t500barrelshort,
 		/obj/item/attachable/t500barrel,
 		/obj/item/weapon/gun/revolver/t500,
 	)
 	bypass_w_limit = list(
 		/obj/item/attachable/stock/t500stock,
+		/obj/item/attachable/lace/t500,
 		/obj/item/attachable/t500barrelshort,
 		/obj/item/attachable/t500barrel,
 		/obj/item/weapon/gun/revolver/t500,
@@ -818,6 +857,7 @@ SUBSYSTEM_DEF(ru_items)
 /obj/item/storage/box/t500case/Initialize()
 	. = ..()
 	new /obj/item/attachable/stock/t500stock(src)
+	new /obj/item/attachable/lace/t500(src)
 	new /obj/item/attachable/t500barrelshort(src)
 	new /obj/item/attachable/t500barrel(src)
 	new /obj/item/weapon/gun/revolver/t500(src)
