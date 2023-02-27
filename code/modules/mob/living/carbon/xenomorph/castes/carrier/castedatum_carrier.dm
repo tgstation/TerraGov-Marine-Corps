@@ -35,6 +35,7 @@
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, FIRE = 15, ACID = 5)

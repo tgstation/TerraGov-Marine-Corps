@@ -207,14 +207,6 @@
 			tray.check_level_sanity()
 			tray.update_icon()
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
-	. = ..()
-	if(!ishuman(L))
-		return
-	var/mob/living/carbon/human/H = L
-	if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
-		H.adjustToxLoss(10 * touch_protection)
-
 /datum/reagent/toxin/sleeptoxin
 	name = "Soporific"
 	description = "An effective hypnotic used to treat insomnia."

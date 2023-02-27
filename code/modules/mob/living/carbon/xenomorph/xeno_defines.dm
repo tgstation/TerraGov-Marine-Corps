@@ -82,7 +82,9 @@
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
-	var/can_flags = CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	///list of traits granted to the owner by becoming this caste
+	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
 	// How long the hive must wait before a new one of this caste can evolve
 	var/death_evolution_delay = 0
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
@@ -242,6 +244,8 @@
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	for(var/trait in caste_traits)
+		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
@@ -251,6 +255,8 @@
 	bump_attack?.RemoveComponent()
 	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+	for(var/trait in caste_traits)
+		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
 /mob/living/carbon/xenomorph
 	name = "Drone"

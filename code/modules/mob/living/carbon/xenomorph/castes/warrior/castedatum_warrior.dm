@@ -31,6 +31,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 20, BIO = 36, FIRE = 40, ACID = 36)

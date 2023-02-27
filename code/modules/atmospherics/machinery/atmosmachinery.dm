@@ -44,7 +44,7 @@
 	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
-		if(L.can_ventcrawl())
+		if(HAS_TRAIT(L, TRAIT_CAN_VENTCRAWL))
 			. += span_notice("Alt-click to crawl through it.")
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
