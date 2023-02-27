@@ -35,10 +35,10 @@
 			dead_ticks ++
 
 			if(!HAS_TRAIT(src, TRAIT_WILLPOWERLESS)) //body degradation
-				if(dead_ticks < TIME_BEFORE_DNR * 0.5) //delayed degradation in the first half
+				if(dead_ticks > 10 && dead_ticks < TIME_BEFORE_DNR * 0.5) //delayed degradation in the first half
 					health_threshold_crit = min(health_threshold_crit + 0.1, 0)
 					max_stamina_buffer = max(max_stamina_buffer - 0.1, 0)
-				else //time to suffer
+				else if(dead_ticks > TIME_BEFORE_DNR * 0.5) //time to suffer
 					health_threshold_crit = min(health_threshold_crit + 0.5, 0)
 					max_stamina_buffer = max(max_stamina_buffer - 0.5, 0)
 
