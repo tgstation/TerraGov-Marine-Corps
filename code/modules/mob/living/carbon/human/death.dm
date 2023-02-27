@@ -57,12 +57,7 @@
 	if(pulledby)
 		pulledby.stop_pulling()
 
-	if(!HAS_TRAIT(src, TRAIT_WILLPOWERLESS)) //Every death irreversibly degrades the body
-		skills = skills.modifyRating(willpower = -1)
-		health_threshold_crit = min(health_threshold_crit + 10, 0)
-		max_stamina_buffer = max(max_stamina_buffer - 10, 0)
-
-	if(skills.getRating("willpower") <= SKILL_WILLPOWER_DEAD) //We've died too many times, it's time to retire
+	if(skills.getRating("willpower") <= SKILL_WILLPOWER_DEAD) //We've been drained too many times, it's time to retire
 		set_undefibbable()
 
 	//Handle species-specific deaths.

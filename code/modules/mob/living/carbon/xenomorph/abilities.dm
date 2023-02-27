@@ -1299,6 +1299,8 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
+	if(!HAS_TRAIT(victim, TRAIT_WILLPOWERLESS))
+		victim.skills = victim.skills.modifyRating(willpower = -1)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -1404,6 +1406,8 @@
 		X.stop_sound_channel(channel)
 		return fail_activate()
 	victim.dead_ticks = 0
+	if(!HAS_TRAIT(victim, TRAIT_WILLPOWERLESS))
+		victim.skills = victim.skills.modifyRating(willpower = -1)
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
 

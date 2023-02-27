@@ -69,8 +69,6 @@
 		set_stat(UNCONSCIOUS)
 	else if(stat == UNCONSCIOUS)
 		set_stat(CONSCIOUS)
-		if(HAS_TRAIT_FROM(src, TRAIT_WILLPOWERLESS, TRAIT_WILLPOWERLESS))
-			REMOVE_TRAIT(src, TRAIT_WILLPOWERLESS, TRAIT_WILLPOWERLESS)
 
 
 /mob/living/carbon/handle_status_effects()
