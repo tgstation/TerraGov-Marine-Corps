@@ -489,7 +489,7 @@ WEAPONS
 	cost = 30
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/autosniper_pacet
+/datum/supply_packs/weapons/autosniper_packet
 	name = "SR-81 IFF sniper ammo box"
 	contains = list(/obj/item/ammo_magazine/packet/autosniper)
 	cost = 50
