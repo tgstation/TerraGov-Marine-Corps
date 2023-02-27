@@ -343,3 +343,6 @@
   Xander3359:
   - bugfix: You no longer spend 2 uses of jetpack when you spam the activation.
   - bugfix: You can no longer use jetpack if it isnt toggled on.
+2023-02-27:
+  Lumipharon:
+  - bugfix: Fixed SOM nades not fitting in grenade launchers
