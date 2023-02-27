@@ -69,14 +69,6 @@
 	else
 		to_chat(user, span_notice("You'll need the keys in one of your hands to drive this [callme]."))
 
-
-/obj/structure/bed/chair/janicart/bullet_act(obj/projectile/Proj)
-	if(LAZYLEN(buckled_mobs))
-		if(prob(85))
-			return buckled_mobs[1].bullet_act(Proj)
-	visible_message(span_warning("[Proj] ricochets off the [callme]!"))
-	return 1
-
 /obj/item/key
 	name = "key"
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
