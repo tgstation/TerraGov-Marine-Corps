@@ -41,8 +41,12 @@
 
 //jaeger visors
 /datum/greyscale_config/visors
-	icon_file = 'icons/mob/modular/m10.dmi'
+	icon_file = 'icons/mob/modular/jaeger_helmets.dmi'
 	json_config = 'code/datums/greyscale/json_configs/visors.json'
+
+/datum/greyscale_config/visors/robot
+	icon_file = 'icons/mob/modular/robot_helmets.dmi'
+	json_config = 'code/datums/greyscale/json_configs/robot_visors.json'
 
 /datum/greyscale_config/visors/old
 	icon_file = 'icons/mob/modular/mark_one/helmets.dmi'
