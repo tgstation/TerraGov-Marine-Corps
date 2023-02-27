@@ -38,7 +38,6 @@
 	icon_state = "beret"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_item_map_variant = NONE
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"
@@ -157,7 +156,6 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/slouch
 	name = "\improper TGMC slouch hat"
@@ -175,8 +173,6 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "headband"
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/headband/red
 	name = "\improper Red headband"
