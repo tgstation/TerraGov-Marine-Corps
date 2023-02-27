@@ -16,7 +16,7 @@
 	icon_state = "mod_lamp"
 	item_state = "mod_lamp_a"
 	slowdown = 0
-	light_mod = 4 /// The boost to armor shoulder light
+	light_mod = 6 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_lamp_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_lamp_xn")
 
