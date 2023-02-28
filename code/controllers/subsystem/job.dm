@@ -279,7 +279,6 @@ SUBSYSTEM_DEF(job)
 	job.radio_help_message(player)
 
 	job.after_spawn(new_character, player, joined_late) // note: this happens before new_character has a key!
-	job.add_objective_datum(new_character)
 
 	return new_character
 

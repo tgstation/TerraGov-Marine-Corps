@@ -182,6 +182,15 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(length(livings))
 		addtimer(CALLBACK(src, .proc/release_characters, livings), 1 SECONDS, TIMER_CLIENT_TIME)
 
+/datum/game_mode/proc/give_player_objectives()
+	for(var/i in GLOB.mob_list)
+		var/mob/living/carbon/human/player = i
+		if(!player.mind)
+			continue
+		var/datum/job/job = player.mind.assigned_role
+		if(!job)
+			continue
+		job.add_objective_datum(player)
 
 /datum/game_mode/proc/release_characters(list/livings)
 	for(var/I in livings)
@@ -202,7 +211,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
-	display_report(C)
+	display_report()
 	addtimer(CALLBACK(src, .proc/end_of_round_deathmatch), ROUNDEND_EORG_DELAY)
 	//end_of_round_deathmatch()
 	return TRUE
@@ -628,7 +637,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	var/area/A = get_area(player.new_character)
-	addtimer(CALLBACK(player.new_character.mind, /datum/mind/.proc/add_antag_datum, /datum/antagonist/corporate_liason), 10.5 SECONDS)
+	//job.add_objective_datum(player.new_character)
 	deadchat_broadcast(span_game(" has woken at [span_name("[A?.name]")]."), span_game("[span_name("[player.new_character.real_name]")] ([job.title])"), follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
 

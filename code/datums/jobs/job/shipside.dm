@@ -1004,6 +1004,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
 	minimap_icon = "cl"
+	objective_datum_to_add = /datum/antagonist/corporate_liason
 
 /datum/job/terragov/civilian/liaison/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -1028,15 +1029,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
-	//M.mind.add_antag_datum(/datum/antagonist/corporate_liason)
 	to_chat(M, {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
 Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.
 Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."})
-
-/datum/job/terragov/civilian/liaison/add_objective_datum(mob/M)
-	//addtimer(CALLBACK(M.mind, /datum/mind/.proc/add_antag_datum, /datum/antagonist/corporate_liason), 3.5 SECONDS)
-	//M.mind.add_antag_datum(/datum/antagonist/corporate_liason)
 
 /datum/outfit/job/civilian/liaison
 	name = CORPORATE_LIAISON
