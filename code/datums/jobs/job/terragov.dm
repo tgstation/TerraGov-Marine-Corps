@@ -18,20 +18,16 @@
 /datum/job/terragov/return_spawn_type(datum/preferences/prefs)
 	switch(prefs?.species)
 		if("Combat Robot")
-			if(prefs && prefs.robot_type == "Basic")
-				if(GLOB.join_as_robot_allowed)
+			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
+				if(prefs && prefs.robot_type == "Basic")
 					return /mob/living/carbon/human/species/robot
-			if(prefs && prefs.robot_type == "Alpharii")
-				if(GLOB.join_as_robot_allowed)
+				if(prefs && prefs.robot_type == "Hammerhead")
 					return /mob/living/carbon/human/species/robot/alpharii
-			if(prefs && prefs.robot_type == "Charlit")
-				if(GLOB.join_as_robot_allowed)
+				if(prefs && prefs.robot_type == "Chilvaris")
 					return /mob/living/carbon/human/species/robot/charlit
-			if(prefs && prefs.robot_type == "Deltad")
-				if(GLOB.join_as_robot_allowed)
+				if(prefs && prefs.robot_type == "Ratcher")
 					return /mob/living/carbon/human/species/robot/deltad
-			if(prefs && prefs.robot_type == "Bravada")
-				if(GLOB.join_as_robot_allowed)
+				if(prefs && prefs.robot_type == "Sterling")
 					return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human

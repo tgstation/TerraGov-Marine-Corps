@@ -49,7 +49,6 @@
 				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
-	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/combat_patrol/scale_roles()
 	. = ..()

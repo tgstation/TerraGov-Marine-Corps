@@ -388,8 +388,6 @@
 	H.set_species("Vat-Grown Human")
 
 
-GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
-
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
