@@ -190,14 +190,9 @@
 /obj/item/tool/weldingtool/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
+
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume)
-	if (welding)
-		remove_fuel(1)
-
-		if(isliving(O))
-			var/mob/living/L = O
-			L.IgniteMob()
 
 /obj/proc/handle_weldingtool_overlay(removing = FALSE)
 	if(!removing)
@@ -389,6 +384,7 @@
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(src, light_impact_range = 3)
 			qdel(src)
+			return
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()
 
