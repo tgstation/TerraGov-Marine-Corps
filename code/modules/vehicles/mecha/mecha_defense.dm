@@ -267,7 +267,7 @@
 		to_chat(user, span_notice("You close the hatch to the power unit."))
 
 /obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 50, 10 SECONDS, 0.5, SKILL_ENGINEER_ENGI, 5, 10 SECONDS)
+	. = welder_repair_act(user, I, 50, 10 SECONDS, 0.5, SKILL_ENGINEER_ENGI, 2, 10 SECONDS)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use plasteel sheets.")
 
