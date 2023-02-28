@@ -217,6 +217,10 @@
 			else if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_WATCHXENO, xeno_target)
+		if("Deevolve")
+			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+				return
+			attempt_deevolve(usr, xeno_target)
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
@@ -557,9 +561,64 @@
 // ***************************************
 // *********** Xeno upgrades
 // ***************************************
-/datum/hive_status/proc/upgrade_xeno(mob/living/carbon/xenomorph/X, oldlevel, newlevel) // called by Xenomorph/proc/upgrade_xeno()
+/// called by Xenomorph/proc/upgrade_xeno() to update xeno_by_upgrade
+/datum/hive_status/proc/upgrade_xeno(mob/living/carbon/xenomorph/X, oldlevel, newlevel)
 	xenos_by_upgrade[oldlevel] -= X
 	xenos_by_upgrade[newlevel] += X
+
+///attempts to have devolver devolve target
+/datum/hive_status/proc/attempt_deevolve(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
+	if(target.is_ventcrawling)
+		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is ventcrawling."))
+		return
+
+	if(!isturf(target.loc))
+		to_chat(devolver, span_xenonotice("Cannot deevolve [target] here."))
+		return
+
+	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
+		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is too weak."))
+		return
+
+	if(!target.xeno_caste.deevolves_to)
+		to_chat(devolver, span_xenonotice("Cannot deevolve [target]."))
+		return
+
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
+
+	var/confirm = tgui_alert(devolver, "Are you sure you want to deevolve [target] from [target.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
+		return
+
+	var/reason = stripped_input(devolver, "Provide a reason for deevolving this xenomorph, [target]")
+	if(isnull(reason))
+		to_chat(devolver, span_xenonotice("De-evolution reason required."))
+		return
+
+	if(!devolver.check_concious_state())
+		return
+
+	if(target.is_ventcrawling)
+		return
+
+	if(!isturf(target.loc))
+		return
+
+	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
+		return
+
+	target.balloon_alert(target, "Forced deevolution")
+	to_chat(target, span_xenowarning("[devolver] deevolved us for the following reason: [reason]."))
+
+	target.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
+
+	log_game("[key_name(devolver)] has deevolved [key_name(target)]. Reason: [reason]")
+	message_admins("[ADMIN_TPMONTY(devolver)] has deevolved [ADMIN_TPMONTY(target)]. Reason: [reason]")
+
+	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
+	qdel(target)
+
 
 // ***************************************
 // *********** Xeno death
@@ -575,7 +634,7 @@
 	var/datum/xeno_caste/caste = X?.xeno_caste
 	if(caste.death_evolution_delay <= 0)
 		return
-	if(!caste_death_timers[caste.caste_type_path]) 
+	if(!caste_death_timers[caste.caste_type_path])
 		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
