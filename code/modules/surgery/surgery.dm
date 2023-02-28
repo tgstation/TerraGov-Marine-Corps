@@ -33,18 +33,16 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)
-	if(!hasorgans(target))
-		return 0
-	if(allowed_species)
-		for(var/species in allowed_species)
-			if(target.species.name == species)
-				return 1
+	if(!ishuman(target))
+		return FALSE
+	for(var/species in allowed_species)
+		if(target.species.name == species)
+			return TRUE
 
-	if(disallowed_species)
-		for(var/species in disallowed_species)
-			if(target.species.name == species)
-				return 0
-	return 1
+	for(var/species in disallowed_species)
+		if(target.species.name == species)
+			return FALSE
+	return TRUE
 
 
 //Checks whether this step can be applied with the given user and target
