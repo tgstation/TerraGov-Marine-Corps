@@ -417,6 +417,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /atom/proc/ShiftClick(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
 	return TRUE
 
