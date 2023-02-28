@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	SIGNAL_HANDLER
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy, TRUE)
 	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, .proc/unregister_signals)
 
 ///Unregister and stop waiting for click to deploy
@@ -50,13 +50,13 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	SIGNAL_HANDLER
 	if(!isturf(location))
 		return
+	if(ISDIAGONALDIR(get_dir(user,location)))
+		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(!(item_in_active_hand in GLOB.deployable_items[item_in_active_hand.type]))
+	if(!(item_in_active_hand) || !(item_in_active_hand in GLOB.deployable_items[item_in_active_hand.type]))
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
-		return
-	if(ISDIAGONALDIR(get_dir(user,location)))
 		return
 	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, location)
 	return COMSIG_KB_ACTIVATED
