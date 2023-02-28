@@ -175,10 +175,10 @@
 ///The default Quick equip order list.
 #define QUICK_EQUIP_ORDER list(\
 	SLOT_S_STORE,\
+	SLOT_BELT,\
 	SLOT_IN_BOOT,\
-	SLOT_IN_BACKPACK,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH\
+	SLOT_L_STORE,\
+	SLOT_R_STORE\
 	)
 
 #define BE_SPECIAL_FLAGS list(\

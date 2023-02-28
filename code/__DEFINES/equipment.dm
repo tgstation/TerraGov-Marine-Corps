@@ -463,6 +463,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_BACK
 		if("Boot")
 			return SLOT_IN_BOOT
+		if("Backpack")
+			return SLOT_IN_BACKPACK
 		if("Helmet")
 			return SLOT_IN_HEAD
 		if("Left Pocket")
@@ -510,7 +512,3 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Storage Holster"
 		if(SLOT_IN_B_HOLSTER)
 			return "Back Holster"
-		if(SLOT_IN_L_POUCH)
-			return "Left Pouch"
-		if(SLOT_IN_R_POUCH)
-			return "Right Pouch"
