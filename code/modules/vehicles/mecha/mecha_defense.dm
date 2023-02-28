@@ -201,7 +201,7 @@
 
 	if(istype(W, /obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/plasteel_sheets = W
-		if(obj_integrity > max_integrity * 0.25)
+		if(obj_integrity > max_integrity * 0.5)
 			return
 
 		if(plasteel_sheets.get_amount() < 5)
