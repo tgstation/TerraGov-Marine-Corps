@@ -184,7 +184,9 @@ const BlessingsButton = (_props, context) => {
 
   return (
     <Box className="Section__buttons">
-      <Button onClick={() => act('Blessings', { xeno: user_ref })}>
+      <Button
+        onClick={() => act('Blessings', { xeno: user_ref })}
+        icon={'store'}>
         Blessings
       </Button>
     </Box>
