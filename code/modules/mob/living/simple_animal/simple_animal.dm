@@ -176,15 +176,6 @@
 	if(changed)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
-
-/mob/living/simple_animal/bullet_act(obj/projectile/Proj)
-	if(!Proj || Proj.damage <= 0)
-		return FALSE
-
-	adjustBruteLoss(Proj.damage)
-	return TRUE
-
-
 /mob/living/simple_animal/attack_hand(mob/living/user)
 	. = ..()
 	switch(user.a_intent)
