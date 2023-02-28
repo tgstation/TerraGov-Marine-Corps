@@ -1289,6 +1289,8 @@
 	cock_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 6
 
+/obj/item/weapon/gun/rifle/chambered/unscoped
+	starting_attachment_types = list(/obj/item/attachable/stock/tl127stock)
 
 //-------------------------------------------------------
 //SR-81 Auto-Sniper
