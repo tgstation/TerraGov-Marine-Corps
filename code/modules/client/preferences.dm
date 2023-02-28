@@ -79,7 +79,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Your preferred squad, when playing SOM
 	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	var/list/quick_equip = list(SLOT_S_STORE, SLOT_IN_BOOT, SLOT_IN_BACKPACK, SLOT_IN_L_POUCH, SLOT_IN_R_POUCH)
+	///Quick equip slots, up to 5. One per quick equip hotkey.
+	var/list/quick_equip = list()
 	var/list/gear
 	var/list/job_preferences = list()
 

@@ -16,19 +16,16 @@
 	keybind_signal = COMSIG_KB_QUICKEQUIP_2
 
 /datum/keybinding/human/quick_equip_3
-	hotkey_keys = list("ShiftE")
 	name = "quick_equip_3"
 	full_name = "Quick equip 3"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_3
 
 /datum/keybinding/human/quick_equip_4
-	hotkey_keys = list("ShiftE")
 	name = "quick_equip_4"
 	full_name = "Quick equip 4"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_4
 
 /datum/keybinding/human/quick_equip_5
-	hotkey_keys = list("ShiftE")
 	name = "quick_equip_5"
 	full_name = "Quick equip 5"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_5

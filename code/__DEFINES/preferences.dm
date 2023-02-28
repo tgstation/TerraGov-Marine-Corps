@@ -172,6 +172,15 @@
 	"Holo"\
 	)
 
+///The default Quick equip order list.
+#define QUICK_EQUIP_ORDER list(\
+	SLOT_S_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH\
+	)
+
 #define BE_SPECIAL_FLAGS list(\
 	"Latejoin Xenomorph" = BE_ALIEN,\
 	"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,\

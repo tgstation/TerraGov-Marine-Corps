@@ -205,6 +205,7 @@
 	key_bindings = sanitize_islist(key_bindings, list())
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros = sanitize_islist(chem_macros, list())
+	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER)
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
@@ -435,6 +436,7 @@
 	preferred_squad_som = sanitize_inlist(preferred_squad_som, SELECTABLE_SQUADS_SOM, initial(preferred_squad_som))
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_preferences = SANITIZE_LIST(job_preferences)
+	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER)
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
 	if(gender == MALE)
@@ -519,6 +521,7 @@
 	preferred_squad_som = sanitize_inlist(preferred_squad_som, SELECTABLE_SQUADS_SOM, initial(preferred_squad_som))
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_preferences = SANITIZE_LIST(job_preferences)
+	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER)
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
 	if(gender == MALE)
