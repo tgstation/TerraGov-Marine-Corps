@@ -121,6 +121,9 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You need [psypoint_cost-SSpoints.xeno_points_by_hive[buyer.hivenumber]] more points to request this blessing!"))
 		return FALSE
+	if(buyer.status_flags & INCORPOREAL)
+		to_chat(buyer, span_xenowarning("You need to be manifested to do this!"))
+		return FALSE
 	return TRUE
 
 /datum/hive_upgrade/building
