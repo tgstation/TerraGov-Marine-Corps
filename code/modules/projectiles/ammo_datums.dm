@@ -3606,7 +3606,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	burnlevel = 10
 	burntime = 30
 	incendiary_strength = 0
-	fire_type = /obj/flamer_fire/smoothed/resin
+	fire_type = /obj/flamer_fire/autosmoothing/resin
 	var/added_spit_delay = 0
 	var/spit_cost = 150
 	var/hivenumber = XENO_HIVE_NORMAL

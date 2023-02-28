@@ -570,20 +570,16 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
 // Variant of flamer fire without fire amount stages, but has smoothing
-/obj/flamer_fire/smoothed
+/obj/flamer_fire/autosmoothing
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	icon_state = "gray"
 	color = COLOR_ORANGE
-	smoothing_groups = SMOOTH_FIRE
+	smoothing_groups = list(SMOOTH_GROUP_FIRE)
 	smoothing_behavior = CARDINAL_SMOOTHING
 	light_color = null
 	// firelevel = 500
 
-/obj/flamer_fire/smoothed/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage, burn_flags)
-	. = ..()
-	smooth_neighbors()
-
-/obj/flamer_fire/smoothed/update_icon()
+/obj/flamer_fire/autosmoothing/update_icon()
 	if(!light_color)
 		light_color = flame_color
 	set_light_range_power_color(light_intensity, light_power, light_color)
@@ -592,10 +588,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	// Gets more seethrough as it's about to go out
 	alpha = clamp(255 * fire_percentage + 40, 0, 255)
 
-/obj/flamer_fire/smoothed/handle_icon_junction(junction)
-	icon_state = "[initial(icon_state)][junction]"
-
-/obj/flamer_fire/smoothed/resin
+/obj/flamer_fire/autosmoothing/resin
 	burnflags = BURN_HUMANS|BURN_ENVIRONMENT
 	color = COLOR_PURPLE
 	firelevel = 24
