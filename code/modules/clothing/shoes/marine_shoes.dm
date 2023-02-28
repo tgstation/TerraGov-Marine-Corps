@@ -74,6 +74,14 @@
 	. = ..()
 	new /obj/item/attachable/bayonetknife(src)
 
+/obj/item/clothing/shoes/marine/brown
+	name = "brown marine combat boots"
+	icon_state = "marine_brown"
+	item_state = "marine_brown"
+
+/obj/item/clothing/shoes/marine/brown/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
@@ -98,7 +106,7 @@
 
 /obj/item/clothing/shoes/veteran
 
-/obj/item/clothing/shoes/veteran/PMC
+/obj/item/clothing/shoes/veteran/pmc
 	name = "polished shoes"
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "jackboots"
@@ -112,7 +120,7 @@
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/shoes/veteran/PMC/commando
+/obj/item/clothing/shoes/veteran/pmc/commando
 	name = "\improper PMC commando boots"
 	desc = "A pair of heavily armored, acid-resistant boots."
 	icon_state = "commando_boots"
@@ -166,4 +174,20 @@
 	item_state = "boots"
 
 /obj/item/clothing/shoes/marine/clf/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+
+/obj/item/clothing/shoes/marine/icc
+	name = "\improper Modelle/32 combat shoes"
+	desc = "A set of sturdy working boots."
+	icon_state = "icc"
+
+/obj/item/clothing/shoes/marine/icc/knife
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+
+/obj/item/clothing/shoes/marine/icc/guard
+	name = "\improper Modelle/33 tactical shoes"
+	desc = "A set of sturdy tactical boots."
+	icon_state  = "icc_guard"
+
+/obj/item/clothing/shoes/marine/icc/guard/knife
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full

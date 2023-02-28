@@ -79,7 +79,8 @@
 	if(!holstered_item)
 		return FALSE
 	var/obj/item/W = holstered_item
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/holster/vendor_equip(mob/user)
@@ -90,7 +91,13 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 	max_w_class = 3 //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
@@ -130,7 +137,13 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
+		)
 
 /obj/item/storage/holster/backholster/rpg/full/Initialize()
 	. = ..()
@@ -317,7 +330,15 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
 		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
 	)
-	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
+
+	storage_slots = 4
+	max_storage_space = 10
+	max_w_class = 4
+
+	can_hold = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
+	)
 
 /obj/item/storage/holster/t19/full/Initialize()
 	. = ..()

@@ -49,6 +49,11 @@
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 	///How long does it take to put items into or out of this, in ticks
 	var/access_delay = 0
+	///What item do you use to tactical refill this
+	var/list/obj/item/storage/refill_types
+	///What sound gets played when the item is tactical refilled
+	var/refill_sound = null
+
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -519,11 +524,37 @@
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(length(refill_types))
+		for(var/typepath in refill_types)
+			if(istype(I, typepath))
+				return do_refill(I, user)
+
 	if(!can_be_inserted(I))
 		return
-
 	return handle_item_insertion(I, FALSE, user)
 
+///Refills the storage from the refill_types item
+/obj/item/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
+	if(!length(refiller.contents))
+		user.balloon_alert(user, "[refiller] is empty.")
+		return
+
+	if(!can_be_inserted(refiller.contents[1]))
+		user.balloon_alert(user, "[src] is full.")
+		return
+
+	user.balloon_alert(user, "Refilling.")
+
+	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	playsound(user.loc, refill_sound, 15, 1, 6)
+	for(var/obj/item/IM in refiller)
+		if(!can_be_inserted(refiller.contents[1]))
+			return
+
+		refiller.remove_from_storage(IM)
+		handle_item_insertion(IM, TRUE, user)
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
@@ -587,7 +618,8 @@
 	if(!length(contents))
 		return FALSE //we don't want to equip the storage item itself
 	var/obj/item/W = contents[length(contents)]
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
@@ -797,8 +829,10 @@
 
 ///attempts to get the first possible object from this container
 /obj/item/storage/proc/attempt_draw_object(mob/living/user)
-	if(!ishuman(user) || user.incapacitated() || !length(contents) || isturf(loc))
+	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
+	if(!length(contents))
+		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]

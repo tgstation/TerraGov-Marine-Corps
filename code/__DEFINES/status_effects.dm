@@ -59,9 +59,9 @@
 
 #define STATUS_EFFECT_CONFUSED /datum/status_effect/incapacitating/confused // random direction chosen when trying to move
 
-#define STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF /datum/status_effect/stacking/gun_skill/accuracy/debuff // Decreases the accuracy of the mob
+#define STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF /datum/status_effect/gun_skill/accuracy/debuff // Decreases the accuracy of the mob
 
-#define STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF /datum/status_effect/stacking/gun_skill/scatter/debuff // Decreases the scatter of the mob
+#define STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF /datum/status_effect/gun_skill/scatter/debuff // Decreases the scatter of the mob
 
 #define STATUS_EFFECT_MUTED /datum/status_effect/mute //Mutes the affected mob
 
@@ -74,6 +74,9 @@
 #define STATUS_EFFECT_FLIGHT /datum/status_effect/xeno/dragon_flight // The affected mob starts bobbing upwards and then become intangible for as long as the status effect exists
 
 #define STATUS_EFFECT_HOVER /datum/status_effect/xeno/dragon_flight/hover // Lets others walk under the mob and moves it a bit higher, while making it unable to unarmed attack
+
+#define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
+
 /////////////
 // NEUTRAL //
 /////////////

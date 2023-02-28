@@ -37,6 +37,14 @@
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/apply_spiderling_jelly)
+	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), .proc/toggle_rest)
+
+/// Signal handler to apply resin jelly to the spiderling whenever widow gets it
+/datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/spiderling/beno_to_coat = mob_parent
+	beno_to_coat.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
@@ -110,6 +118,15 @@
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
 	spiderling_parent.death(gibbing = FALSE)
 
+/// resist when widow does
 /datum/ai_behavior/spiderling/proc/parent_resist()
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
 	spiderling_parent.do_resist()
+
+/// rest and unrest when widow does
+/datum/ai_behavior/spiderling/proc/toggle_rest()
+	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
+	if(HAS_TRAIT(spiderling_parent, TRAIT_FLOORED))
+		spiderling_parent.set_resting(FALSE)
+	else
+		spiderling_parent.set_resting(TRUE)

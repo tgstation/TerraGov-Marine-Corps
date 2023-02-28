@@ -153,20 +153,20 @@
 	///The optional cell to power the teleporter if off the grid
 	var/obj/item/cell/cell
 	COOLDOWN_DECLARE(teleport_cooldown)
-	
-	///Tag for teleporters number. Exists for fluff reasons. Shared variable. 
+
+	///Tag for teleporters number. Exists for fluff reasons. Shared variable.
 	var/static/tele_tag = 78
 	///References to the number of the teleporter.
 	var/self_tele_tag
 
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
 	tele_tag++
 	self_tele_tag = tele_tag
 	name = "\improper ASRS Bluespace teleporter #[tele_tag]"
-	
+
 
 /obj/item/teleporter_kit/Destroy()
 	if(linked_teleporter)
@@ -189,7 +189,7 @@
 		return FALSE
 	if(!istype(I, /obj/item/teleporter_kit))
 		return
-	
+
 	var/obj/item/teleporter_kit/gadget = I
 	if(linked_teleporter)
 		balloon_alert(user, "The teleporter is already linked with another!")

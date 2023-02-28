@@ -708,11 +708,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 		istype(I, /obj/item/tool/shovel) \
 	)
 
-
-//Actually better performant than reverse_direction()
-#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
-
-
 /proc/reverse_nearby_direction(direction)
 	switch(direction)
 		if(NORTH)

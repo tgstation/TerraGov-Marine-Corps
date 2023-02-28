@@ -154,11 +154,16 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
 
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)
 	. = ..()
 	set_opacity(initial_opacity)
 
+/obj/effect/opacifier/Destroy()
+	. = ..()
+	QUEUE_SMOOTH_NEIGHBORS(loc)
 
 /obj/effect/supplypod_selector
 	icon_state = "supplypod_selector"

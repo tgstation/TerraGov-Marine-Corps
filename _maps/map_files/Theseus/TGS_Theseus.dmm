@@ -15257,7 +15257,7 @@
 "oLJ" = (
 /obj/machinery/vending/nanomed,
 /obj/structure/table/mainship/nometal,
-/obj/item/clothing/head/helmet/marine/robot/heavy,
+/obj/item/clothing/head/modular/robot/heavy,
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/black{

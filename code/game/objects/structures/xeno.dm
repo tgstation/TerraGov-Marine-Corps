@@ -119,6 +119,8 @@
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
+		if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
+			SSresinshaping.decrement_build_counter(X)
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
 		deconstruct(TRUE)
@@ -139,12 +141,20 @@
 /obj/structure/mineral_door/resin
 	name = RESIN_DOOR
 	mineralType = "resin"
-	icon = 'icons/Xeno/Effects.dmi'
+	icon = 'icons/obj/smooth_objects/resin-door.dmi'
+	icon_state = "resin-door-1"
+	base_icon_state = "resin-door"
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
+	canSmoothWith = list(
+		SMOOTH_GROUP_XENO_STRUCTURES,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+	)
+
 	var/close_delay = 10 SECONDS
 
 /obj/structure/mineral_door/resin/Initialize()
@@ -176,6 +186,10 @@
 		return FALSE //Some basic logic here
 	if(X.a_intent != INTENT_HARM)
 		TryToSwitchState(X)
+		return TRUE
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
+		SSresinshaping.decrement_build_counter(X)
+		qdel(src)
 		return TRUE
 
 	src.balloon_alert(X, "Destroying...")
@@ -209,7 +223,7 @@
 	if(state || !loc)
 		return //already open
 	playsound(loc, "alien_resin_move", 25)
-	flick("[mineralType]opening",src)
+	flick("[icon_state]-opening",src)
 	density = FALSE
 	set_opacity(FALSE)
 	state = 1
@@ -226,13 +240,14 @@
 			return
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
-	flick("[mineralType]closing",src)
 	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
 
 /// Change the icon and density of the door
 /obj/structure/mineral_door/resin/proc/do_close()
 	density = TRUE
 	set_opacity(TRUE)
+	icon_state = formericon
+	flick("[icon_state]-closing",src)
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

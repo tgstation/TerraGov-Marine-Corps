@@ -344,7 +344,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
 	flags_equip_slot = ITEM_SLOT_BACK
-	var/base_icon_state = "big_ammo_box"
+	base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 2400
 	var/max_bullet_amount = 2400

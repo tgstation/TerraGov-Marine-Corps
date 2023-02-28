@@ -8,19 +8,18 @@
 	var/undeploy_time = 0
 	///Typepath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
-	///Typepath of the object this element is attached too
-	var/obj/deployable_type
+	///The item this element is attached too
+	var/obj/item/attached_item
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deployable_type, _deploy_time, _undeploy_time)
+/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
-	deployable_type = _deployable_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
 
-	var/obj/item/attached_item = target
+	attached_item = target
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
@@ -50,7 +49,7 @@
 	if(!isturf(location))
 		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(!istype(item_in_active_hand, deployable_type))
+	if(item_in_active_hand != attached_item)
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
@@ -108,8 +107,7 @@
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
 
-	ENABLE_BITFIELD(item_to_deploy.flags_item, IS_DEPLOYED)
-
+	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
@@ -120,30 +118,34 @@
 //Handles the conversion of Machine into Item. 'source' should be the Machine. User is the one undeploying. It can be undeployed without a user, if so, the var 'location' is required. If 'source' is not /obj/machinery/deployable then 'undeploying' should be the item to be undeployed from the machine.
 /datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user)
 	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
-	var/obj/item/attached_item  = deployed_machine.get_internal_item() //Item the machine is undeploying
+	var/obj/item/undeployed_item  = deployed_machine.get_internal_item() //Item the machine is undeploying
 
 	if(!user)
-		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
+		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")
 	if(!ishuman(user))
 		return
 	var/obj/machinery/deployable/mounted/sentry/sentry
 	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
-	user.balloon_alert(user, "You start disassembling [attached_item]")
+	user.balloon_alert(user, "You start disassembling [undeployed_item]")
 	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+	undeployed_item.toggle_deployment_flag()
 
 	user.unset_interaction()
-	user.put_in_hands(attached_item)
 
-	attached_item.max_integrity = deployed_machine.max_integrity
-	attached_item.obj_integrity = deployed_machine.obj_integrity
+	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)
+		undeployed_item.forceMove(get_turf(deployed_machine))
+	else
+		user.put_in_hands(undeployed_item)
+
+	undeployed_item.max_integrity = deployed_machine.max_integrity
+	undeployed_item.obj_integrity = deployed_machine.obj_integrity
 
 	deployed_machine.clear_internal_item()
 
 	QDEL_NULL(deployed_machine)
-	attached_item.update_icon_state()
+	undeployed_item.update_icon_state()

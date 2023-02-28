@@ -6,13 +6,15 @@
 /turf/closed/wall/resin
 	name = RESIN_WALL
 	desc = "Weird slime solidified into a wall."
-	icon = 'icons/Xeno/structures.dmi'
-	icon_state = "resin0"
-	walltype = "resin"
+	icon = 'icons/obj/smooth_objects/resin-wall.dmi'
+	icon_state = "resin-wall-0"
+	walltype = "resin-wall"
+	base_icon_state = "resin-wall"
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
@@ -50,8 +52,9 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
 
 
 /turf/closed/wall/resin/membrane/thicken()
@@ -80,7 +83,10 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.should_refund(src, X))
+		SSresinshaping.decrement_build_counter(X)
+		take_damage(max_integrity) // Ensure its destroyed
+		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))

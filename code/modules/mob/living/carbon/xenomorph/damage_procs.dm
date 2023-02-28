@@ -3,6 +3,13 @@
 		return
 	return ..()
 
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
+	if(get_fire_resist() <= 0)
+		return
+	return ..()
+
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
 	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
 	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
@@ -13,19 +20,16 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	var/bomb_armor = soft_armor.getRating("bomb")
-	if(bomb_armor >= 100)
-		return //immune
-
-	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_effective_armor = (soft_armor.getRating("bomb")/100)*get_sunder()
 	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
 	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
-	//lowered to account for new armor values but keep old gibs
-	//probs needs to be a define somewhere
-	var/gib_min_armor = 10
-	if(severity == EXPLODE_DEVASTATE && bomb_armor < gib_min_armor)
-		return gib()    //Gibs unprotected benos
+	if(bomb_effective_armor >= 1)
+		return //immune
+
+
+	if((severity == EXPLODE_DEVASTATE) && ((bomb_effective_armor * 100) <= XENO_EXPLOSION_GIB_THRESHOLD))
+		return gib() //Gibs unprotected benos
 
 	//Slowdown and stagger
 	var/ex_slowdown = (2 + (4 - severity)) * bomb_slow_multiplier

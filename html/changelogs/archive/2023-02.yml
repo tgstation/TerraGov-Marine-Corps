@@ -1,0 +1,362 @@
+2023-02-01:
+  Neocloudy:
+  - rscadd: Ports CM defib sounds. These play when toggling the defib, failing to
+      revive someone or succeeding to revive someone.
+  novaepee, Jack(ie) Burgdorf:
+  - imageadd: update sprites for vali activation
+2023-02-02:
+  Lumipharon:
+  - bugfix: fixed a couple of sensor tower bugs
+  - code_imp: Updated sensor tower code, are no longer coded to the TGMC faction specifically.
+  - code_imp: Fixed some harddel failures
+  - bugfix: fixed the King death timer
+  Pariah919:
+  - spellcheck: P-14 no longer lies to you in the description about the mag size.
+  RipGrayson:
+  - imageadd: Created new 3/4ths perspective ice walls for our ice themed maps.
+  novaepee:
+  - bugfix: Fix camo fatigues not having half sleeve
+  - rscadd: new FC and SO dorms
+  - bugfix: extra tcomm in Sulaco, which annihilate comm issues in Sulaco
+  novaepee, Billy Bob / Huggy:
+  - soundadd: King Death Cry
+2023-02-03:
+  Lumipharon:
+  - rscadd: Xenonauten armour spawns with map appropriate colours where applicable
+  - balance: Sunder is now taken into account when calculating xeno bomb immunity
+      and devastating explosion gib thresholds
+  - balance: Crusher and defender fortify bomb armour increased slightly
+  MLGTASTICa:
+  - balance: Added Resin-Building ability for xenos , a ability that is active pre-shutters
+      and removed on shutters opening , which is resin-shaping with no cost and which
+      can be done anywhere.
+  RipGrayson:
+  - rscadd: Added a new alternate map to WO, Oscar outpost.
+  Tanker:
+  - rscadd: Marine job-specific satchels now have sprites and extra functionality.
+  novaepee, Billy Bob / Huggy:
+  - soundadd: Warlock has new screech sound for psychic barrier
+  tyeagg:
+  - imageadd: new action frames, show/hide order option icons, and minimap action
+      icon
+  - bugfix: autodoc not showing that its activated, join larva queue not showing that
+      its activated and empowered ability not disappearing
+2023-02-04:
+  Lumipharon:
+  - bugfix: fixed xenos getting gibbed by devestating explosions when they shouldn't
+      have
+2023-02-05:
+  Dgeen:
+  - bugfix: Larva and hunter now crawl into the ventilation faster (as it should have
+      been for like a year and a half)
+  Lumipharon:
+  - balance: All deployable guns standardised to 50 bomb armour
+  - bugfix: Fixed deployable item explosion interactions ignoring bomb armour and
+      rng qdeling
+  QualityVan:
+  - bugfix: Vatborn have been given permission to take off their training weights.
+  Zar000:
+  - qol: spiderlings get coated in jelly too :)
+  maikilangiolo:
+  - rscadd: added the mounted minigun and mounted dual cannon to normal marine use
+  - balance: rebalanced cost of HSG ammo between marine and tadpole version
+  - balance: rebalanced cost of mounted guns according to a sensible hierarchy of
+      power vs availability
+  - balance: tweaked the dual cannon performance
+  - balance: tweaked the heavy minigun performance
+  tyeagg:
+  - imageadd: new menu ui icons
+2023-02-06:
+  Blundir:
+  - rscadd: Added 4 new cosmetic robot types
+  Dgeen:
+  - rscadd: ported carrier hugger overlay
+  - imageadd: added hugger images for carrier
+  Lumipharon:
+  - balance: Ravagers now gain rage every tick when on fire, instead of refilling
+      rage entirely when on a flame turf
+  novaepee:
+  - rscdel: Remove Mosin from Icy Cave due to HvH balance
+  tyeagg:
+  - rscdel: removed supply manifest from orders
+2023-02-07:
+  Blundir:
+  - rscadd: Marine combat boots is now actually black
+  - rscadd: adds brown marine combat boots
+  Lumipharon:
+  - balance: 'HvH: SH-35 and V-51 loadouts no longer have tac sensors'
+  - balance: 'HvH: Removed the damage malus from the V-51B burst shotgun'
+  - balance: 'HvH: Improved damage falloff for volkite weapons slightly'
+  - balance: 'HvH: MG-27 scope cannot be removed'
+  - code_imp: cleaned up deflagrate code a little and added a small visual effect
+  - balance: Fire turfs now have consistant behavior between walking through them
+      and standing in them
+  - qol: Warlock shield hotkey not selects the ability instead of casting it
+  carlarctg:
+  - qol: Removes vending delay from marine vendors
+2023-02-08:
+  Lumipharon:
+  - code_imp: Ports the spatial grid SS to reduce tidi in high pop and long rounds
+  - balance: Reduced throwing knife throwforce to 25 from 45
+  - balance: Reduced MG-60 damage to 25 from 27.5, and reduced magazine capacity to
+      200 from 250
+  Pariah919:
+  - balance: MG-42 now has AR-12 burst fire. As in completely the same.
+  - balance: MG-42 now has BFA and tactical sensor.
+  - balance: Both Marine and DS Thermobarics have a 10 second reload time.
+  Xander3359:
+  - qol: You can hold click to throw knives at a constant rate.
+  ivanmixo:
+  - qol: Only humans spin when stop drop and rolling
+  maikilangiolo:
+  - rscadd: added Napalm and Beehive AT36 shells
+  - balance: AGLS reload 2 seconds --> 4 seconds
+  - balance: AGLS HP 500 --> 300, bomb armor 75 --> 100, acid armor 0 --> 20
+  - bugfix: fixed AT36 HE ammo being described as "high velocity" when its actually
+      very slow
+2023-02-09:
+  Blundir:
+  - imageadd: resprited xenohealth, plasma, leader star, active phero/buff status,
+      larva huds
+  Guidesa:
+  - imageadd: powerfists now display if they have a power cell in them
+  KillerOrcaCora:
+  - imageadd: New rouny sprites for warlock
+  Lumipharon:
+  - balance: Oxycodone OD now causes stam loss and confusion
+  TiviPlus:
+  - balance: power fist uses a little less power and pushes large xenos a little further
+      away
+  Xander3359:
+  - rscadd: Getting hit by something being thrown at you (like knives) now plays a
+      sound.
+  maikilangiolo:
+  - rscadd: added WP shrapnel AGLS ammo
+  - balance: rebalanced AGLS frag to be better
+  - balance: rebalanced AGLS AOEs to be less oppressive for both sides
+  - qol: recolored AGLS ammo to be easier to distinguish
+2023-02-10:
+  Blundir:
+  - rscdel: Removed gasmask action
+  - imagedel: Removed gasmask action icon
+  Pariah919:
+  - rscadd: Added new Marine Magnum. It has a windup to fire, staggers on hit, and
+      deals solid damage.
+  QualityVan:
+  - balance: The bible is no longer in and of itself a miracle
+  RipGrayson:
+  - rscadd: Ported the 8-bit bitmasking smoothing system used by TG.
+  - imageadd: Converted most smoothing icons to the new smoothing system.
+  Xander3359:
+  - rscadd: You can now reload pill bottles from pill packets.
+  - code_imp: do_refill is on object level, so now it's easy to add tactical reload
+      functionality to containers using refill_types and refill_sound.
+  maikilangiolo:
+  - bugfix: fixed AGLS WP magazine in req console
+2023-02-11:
+  Dikozda:
+  - bugfix: Plasma OB will now hit the lased position instead of going off in the
+      OB room
+  Lumipharon:
+  - bugfix: fixed Rownin and flak vests being invisible in some cases
+  Naaanii:
+  - rscadd: Added heat, smoke, cloak and Tfoot rrshells to reqtorio
+  - rscadd: Added thermobaric rockets to reqtorio
+  Xander3359:
+  - bugfix: Fixes a dark spot on the pillar of spring.
+2023-02-12:
+  Lumipharon:
+  - bugfix: fixed an exploit with the AMR
+  - bugfix: fixed AMR lase overlays getting stuck sometimes
+  Naaanii:
+  - bugfix: adjusts RR heat shell price to match its counterparts.
+2023-02-13:
+  Dikozda:
+  - bugfix: MLRS reqtorio refils will now work properly and not just pop out the final
+      product from the unboxer
+  Lumipharon:
+  - balance: 'HvH: Stun grenade detonation time reduced to 2 seconds from 4 seconds'
+  - rscadd: Added SOM HE and incendiary grenades, replacing all instances of other
+      HE/incendiary equivalents
+  - qol: Incendiary grenades can now be heard from more than 4 tiles away when detonating
+  - balance: Reduces the duration of fire produced by spray nozzles to 30% of normal
+  - imageadd: VX-12 and power cell resprited
+  Pariah919:
+  - rscadd: Added new C-1 'Garand' SLR. Brought to you by Crowford Armory Union! Mostly
+      for CLF, its in the WW2 seasonal for marines. And req.
+  - balance: Mortar/Howitzer have lost shell speed, so they have higher travel times.
+      They also emit a different color of light to make it easier to perceive them.
+  - balance: Howitzer has slightly higher cooloff, 10 seconds over 4.
+  - balance: Engineers can no longer buy teleporters
+2023-02-14:
+  Lumipharon:
+  - balance: 'HvH: Capturing a sensor tower now adds 3 minutes to the clock instead
+      of 5'
+  - bugfix: Fixed bottles stunning armoured heads
+  - balance: bottle stuns last 4 seconds instead of 20
+  Naaanii:
+  - bugfix: fixes reqtorio formatting.
+  - balance: Increases TL mag size from 7-10
+  Pariah919:
+  - balance: Shields have lost 10 melee armor, and 5 acid armor. As well as dropping
+      melee coverage from 80 to 50.
+  TiviPlus:
+  - rscdel: Removed soldering tool
+  - balance: robots will now not need to be healed prior to defibbing and will instead
+      start at 1 HP after being defibbed
+  - balance: ceertain damage sources will now damage a certain amount of limbs rather
+      than than every limb
+  novaepee:
+  - rscadd: add easter eggs in PoS, fix rogue lights and cameras , and light cas lz
+  - rscdel: Remove mosin from Research Outpost
+2023-02-15:
+  Arturlang:
+  - code_imp: Jukebuild will now only vendored nodeJS as the latest version is prone
+      to issues.
+  KillerOrcaCora:
+  - imageadd: Carrier is rogue pixel free...Her sisters on the other hand...
+  Xander3359:
+  - rscadd: Crumpled pill packets are biodegradable
+  - balance: Paracetamol, Leporazine, Red Russian, Ryetalyn Packets. 4 Pills >> 8
+      Pills.
+  - bugfix: Pill sound now properly plays when you take a pill out of a bottle/packet
+  - imageadd: New pill packet sprites.
+2023-02-16:
+  Arturlang:
+  - code_imp: Moved a lot of mob typechecks in evolution into being checked by bitflags.
+  - code_imp: Maximum checks for active caste and minimum amount of xenos and the
+      death timer is now handled by variables on the caste datum, instead of the type
+      of the mob.
+  - code_imp: Queen's death timers have been refactored into being applicable for
+      any xeno base using the death_evolution_delay variable on the caste datum
+  - bugfix: Fixes the evolution panel having N/A as the number when the xeno incapable
+      of having evolution progress, as it was trying to divide by 0
+  QualityVan:
+  - balance: Kitted limbs passively heal faster
+  Xander3359:
+  - rscdel: No longer spammed with balloon alerts from taking out a pill
+2023-02-17:
+  This1sPanda:
+  - bugfix: fixed mosin scope not appearing on gun
+  - bugfix: fixed mosin scope not appearing on hand
+  Xander3359:
+  - imageadd: Packet sprites suck less.
+2023-02-18:
+  Lumipharon:
+  - bugfix: fixed various minor gun and status bugs
+  - refactor: refactored accuracy and scatter calculations for projectiles
+  - balance: Offguard duration changed to 10 seconds, effect no longer decreases over
+      time
+  carlarctg:
+  - rscadd: Added a new Artemis helmet module to the base vendors that protects from
+      eye blurring.
+  - rscadd: Added a upgraded Mk. 2 Artemis module to Req, purchasable for 40 points
+      or included in the experimental modules crate.
+2023-02-19:
+  Arturlang:
+  - bugfix: Evolution doesn't check the evolving xeno's tier when checking if there
+      are enough tier slots, instead it checks the tier of the  caste the xeno is
+      evolving to.
+  Barnet2:
+  - balance: cable mat cost changed to 5
+  QualityVan:
+  - rscadd: 'Maintenance mode for robots: disable yourself for five seconds to heal
+      up to 20 damage.'
+  - bugfix: Fixed blindness not clearing properly if you tried to remove it a certain
+      way.
+  Xander3359:
+  - balance: shoulder holster webbing can hold carry some additional pistol magazines.
+2023-02-20:
+  Blundir:
+  - imageadd: crematorium sprites from tg
+2023-02-21:
+  Lewdcifer:
+  - admin: Admin Observers should now appear on staffwho and be able to use msay now
+      that they have +ADMINTICKET.
+  Lumipharon:
+  - balance: Chemistry machines now require skill to operate
+  - code_imp: Cleaned up some armor code and organised some sprite files
+  - rscadd: SOM forces now have access to the V-34 carbine
+  - rscadd: Cross compatible MPI and V-34 styles and magazines
+  TiviPlus:
+  - code_imp: gamemode/silo code has been cleaned up
+  Xander3359:
+  - rscadd: fills the slots of the recently buffed shoulder holster webbing for ERTs.
+  - rscadd: a roller bed to the synth essentials kit
+  tyeagg:
+  - rscadd: different sounds for different explosion types
+  - soundadd: new explosion sounds
+  - soundadd: new bullet ricochet and miss
+  - sounddel: removed old explosion sounds
+2023-02-22:
+  Arturlang:
+  - bugfix: Caste death timers now work, whoops.
+  Pariah919:
+  - rscadd: Added new Hostile ERT, ICC. They're allied to SoM and are strapped with
+      a large amount of explosives and engineering equipment.
+  - spellcheck: SoM ert blurb has been redone to clairify a few things, such as the
+      addition of ICC as an ally and grammar stuff.
+  carlarctg:
+  - bugfix: Added support for the old infantry open helmet to have the cool visor.
+  - bugfix: Fixed a runtime with blur_protection component that would've effectively
+      given you permanent blur protection. Good thing it was bugged!
+2023-02-23:
+  Lumipharon:
+  - bugfix: fixed a bug with portable vendors
+2023-02-24:
+  KillerOrcaCora:
+  - balance: Carrier panic drop ability being adjusted after being nooked!
+  Lumipharon:
+  - bugfix: fixed dispensers teleporting into your hand when undeploying regardless
+      of distance
+  - balance: PMC ERT updates slightly with better loadouts, mainly for more ammunition
+      and grenades
+  - balance: VP78 burst fire is no longer just a worse version of semi auto
+  - balance: ' PR-412E no longer has a pointless burstfire mode'
+  - bugfix: fixed quick equip not working for some items obtained from loadout vendors
+  - qol: SADAR and RPG rounds now have ammo specific projectile sprites
+  - imageadd: Updated SADAR sprites
+  - rscadd: Added TGUI to the nuke
+  - qol: Nuke disks are inserted into your hand, when removed from the nuke
+  Tanker:
+  - rscadd: Added a new mecha melee weapon, the Sunbeam particle piercer.
+  Zar000:
+  - bugfix: fixed create spiderling keybind
+  - qol: spiderlings will also rest when widow does
+2023-02-25:
+  Lumipharon:
+  - bugfix: Fixed ravager fire interaction and added a one second cooldown
+  - bugfix: fixed ERT radios
+  - bugfix: fixed an issue with spamming quick equip for storage with an access delay
+  - bugfix: Combat robot maintenance mode is audible from the correct range again.
+  - bugfix: fixed some evolution bugs
+  novaepee:
+  - soundadd: New combat robot self maint sounds
+  - rscdel: remove the capability to have Build-a-Sentry magnum
+2023-02-26:
+  Pariah919:
+  - rscadd: Added new style line of headgear, sprites by Fitz, other than the classic
+      beret which is by ocelot.
+  SuperSlayer0:
+  - qol: Time Shift description now says that it wouldn't save the target from death
+      or from being in crit
+  Xander3359:
+  - bugfix: You no longer spend 2 uses of jetpack when you spam the activation.
+  - bugfix: You can no longer use jetpack if it isnt toggled on.
+2023-02-27:
+  Lumipharon:
+  - bugfix: Fixed SOM nades not fitting in grenade launchers
+2023-02-28:
+  Lumipharon:
+  - bugfix: fixed a deployable exploit
+  TiviPlus:
+  - qol: medical kits & splints use balloon alerts
+  - balance: kits use 1 pack per limb but have 4 times as many uses
+  - bugfix: fixed some exploits allowing instant healing with kits
+  - bugfix: fixed splints not being able to be reapplied if they get damaged or you
+      have better medical skill than when you applied them
+  - bugfix: fixed kits healing before the progress bar healed instead of after
+  - bugfix: fixed kits healing destroyed limbs
+  - bugfix: fixed kits generating double radial menus in some cases
+  Xander3359:
+  - rscadd: Loadout vendor in minerva medbay

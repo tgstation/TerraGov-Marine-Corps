@@ -736,6 +736,7 @@
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	possible_destinations = "lz1;lz2;alamo"
+	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/one/Initialize()
 	. = ..()
@@ -764,6 +765,9 @@
 
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
+
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing
+	smoothing_groups = NONE
 
 /turf/open/shuttle/dropship/floor/alt
 	icon_state = "rasputin14"
@@ -969,6 +973,33 @@
 
 /obj/structure/dropship_piece/tadpole/rearright
 	icon_state = "blue_rear_rc"
+
+/obj/structure/dropship_piece/glassone
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass1"
+
+/obj/structure/dropship_piece/glassone/tadpole
+	icon_state = "shuttle_glass1"
+	resistance_flags = NONE
+	opacity = FALSE
+	flags_pass = PASSLASER
+
+/obj/structure/dropship_piece/glasstwo
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass2"
+
+/obj/structure/dropship_piece/glasstwo/tadpole
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass2"
+	resistance_flags = NONE
+	opacity = FALSE
+	flags_pass = PASSLASER
+
+/obj/structure/dropship_piece/singlewindow/tadpole
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_single_window"
+	resistance_flags = NONE
+	opacity = FALSE
 
 /obj/structure/dropship_piece/tadpole/cockpit
 	desc = "The nose part of the tadpole, able to be destroyed."

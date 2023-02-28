@@ -45,7 +45,7 @@
 
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
-	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
+	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
@@ -544,14 +544,17 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp78
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp78)
 	force = 8
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	burst_delay = 0.3 SECONDS
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+
+/obj/item/weapon/gun/pistol/vp78/pmc
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/gyro, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //SOM pistol
