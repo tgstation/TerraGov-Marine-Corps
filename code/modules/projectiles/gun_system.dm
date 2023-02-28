@@ -171,8 +171,6 @@
 	var/windup_sound
 	///Used if a weapon need windup before firing
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	///Used if a weapon has a minimum range for firing (i.e. grenade launchers)
-	var/need_min_range = NEED_MIN_RANGE
 
 /*
  *  STAT VARS

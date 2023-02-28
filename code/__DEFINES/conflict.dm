@@ -80,7 +80,6 @@
 #define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
 #define GUN_SHOWS_AMMO_REMAINING (1<<14) //Whether the mob sprite reflects the ammo level
 #define GUN_SHOWS_LOADED (1<<15) //Whether the mob sprite as loaded or unloaded, a binary version of the above
-#define NEED_MIN_RANGE (1<<16) //Whether gun needs minimum range to fire (i.e. grenade launchers)
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)

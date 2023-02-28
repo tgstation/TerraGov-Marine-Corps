@@ -58,12 +58,14 @@ The Grenade Launchers
 
 	///the maximum range the launcher can fling the grenade, by default 15 tiles
 	var/max_range = 15
+	///must be greater than this value to shoot launcher
+	var/min_range = 2
 
 /obj/item/weapon/gun/grenade_launcher/able_to_fire(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(get_dist(target, gun_user) <= 2 && NEED_MIN_RANGE == 0)
+	if(get_dist(target, gun_user) <= min_range)
 		to_chat(gun_user, span_warning("[src] beeps a warning noise. You are too close!"))
 		return FALSE
 
@@ -104,7 +106,6 @@ The Grenade Launchers
 	item_state = "t70"
 	fire_animation = "t70_fire"
 	flags_equip_slot = ITEM_SLOT_BACK
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	max_shells = 6 //codex
 	wield_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
@@ -138,7 +139,7 @@ The Grenade Launchers
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY|NEED_MIN_RANGE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 	allowed_ammo_types = list(
@@ -192,7 +193,7 @@ The Grenade Launchers
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	wield_delay = 0.2 SECONDS
 	aim_slowdown = 1
-	flags_gun_features = GUN_AMMO_COUNTER|NEED_MIN_RANGE
+	flags_gun_features = GUN_AMMO_COUNTER
 	attachable_allowed = list()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1.05 SECONDS
@@ -222,6 +223,7 @@ The Grenade Launchers
 	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/flaregun)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
+	min_range = 0
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine
 	name = "M30E2 flare gun"
