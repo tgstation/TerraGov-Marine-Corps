@@ -287,12 +287,6 @@
 		. = ..()
 	return client.prefs.gender
 
-
-
-/mob/new_player/Hear()
-	return
-
-
 /mob/new_player/proc/create_character()
 	if(!assigned_role)
 		CRASH("create_character called for [key] without an assigned_role")
