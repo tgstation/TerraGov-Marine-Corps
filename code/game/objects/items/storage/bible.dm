@@ -14,6 +14,7 @@
 	icon = 'icons/obj/items/priest.dmi'
 	icon_state = "Koran"
 	deity_name = "Allah"
+	storage_slots = 7
 	actions_types = list(/datum/action/item_action)
 
 /obj/item/storage/bible/koran/attack_self(mob/user)
