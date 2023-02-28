@@ -582,6 +582,7 @@
 	max_w_class = 1
 	storage_slots = 28
 	max_storage_space = 28
+	draw_mode = 1
 	icon_state = "flare"
 	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
 	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
@@ -595,8 +596,9 @@
 	refill_sound = "rustle"
 
 /obj/item/storage/pouch/flare/full/Initialize()
-	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	var/obj/item/flare_gun
 	fill_number = max_storage_space - flare_gun.w_class
+	new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
 	return ..()
 
 /obj/item/storage/pouch/flare/attackby_alternate(obj/item/I, mob/user, params)
