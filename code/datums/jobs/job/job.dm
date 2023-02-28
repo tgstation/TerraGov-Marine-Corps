@@ -273,7 +273,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 // Spawning mobs.
-/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE, eord_spawn = FALSE)
+/mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
@@ -283,7 +283,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 
-/mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE, eord_spawn = FALSE)
+/mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
 
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)

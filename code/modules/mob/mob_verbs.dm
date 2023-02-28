@@ -103,30 +103,36 @@
 			to_chat(src, "You can only use this when you're dead or crit.")
 			return
 
-	if(liver)
-		do_eord_respawn(liver)
+	if(usr)
+		do_eord_respawn(usr)
 
-/proc/do_eord_respawn(mob/living/respawner)
+/proc/do_eord_respawn(mob/respawner)
 
 	var/spawn_location = pick(GLOB.deathmatch)
-	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
-	respawner.mind.transfer_to(L, TRUE)
-	L.mind.bypass_ff = TRUE
-	L.revive()
+	var/mob/living/carbon/human/eord_body
+	if(ishuman(respawner))
+		eord_body = respawner
+		eord_body.forceMove(spawn_location)
 
-	var/mob/living/carbon/human/H = L
+	else
+		eord_body = new(spawn_location)
+		respawner.mind.transfer_to(eord_body, TRUE)
+	eord_body.revive()
+	eord_body.mind.bypass_ff = TRUE
+
 	// List of base choosable factions, taken job is a subtype of these.
 	var/list/static/base_faction_list = list(
 		/datum/job/clf,
 		/datum/job/freelancer,
 		/datum/job/pmc,
 		/datum/job/special_forces,
+		/datum/job/icc,
 	)
 
 	// List of HvH factions - these are handled differently, using the quick loadout outfits.
 	var/list/static/hvh_faction_list = list(/datum/job/som, /datum/job/terragov)
 	// List of rare factions, not common because they're funny in moderation / stronk.
-	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton)
+	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton, /datum/job/deathsquad)
 
 
 	var/total_list = base_faction_list + hvh_faction_list
@@ -164,19 +170,19 @@
 				job_type = is_som ? SSjob.GetJobType(/datum/job/som/squad/leader) : SSjob.GetJobType(/datum/job/terragov/squad/leader)
 
 		var/datum/job/J = job_type
-		H.apply_assigned_role_to_spawn(J)
+		eord_body.apply_assigned_role_to_spawn(J)
 
 		var/datum/outfit/quick/picked_outfit = pick(possible_outfits)
 		picked_outfit = new picked_outfit
-		picked_outfit.equip(H, visualsOnly = FALSE)
+		picked_outfit.equip(eord_body, visualsOnly = FALSE)
 	else
 		result = pick(subtypesof(result))
 		var/datum/job/J = SSjob.GetJobType(result)
-		H.apply_assigned_role_to_spawn(J)
+		eord_body.apply_assigned_role_to_spawn(J)
 
-	H.regenerate_icons()
+	eord_body.regenerate_icons()
 
-	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
+	to_chat(eord_body, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
 
 
 /mob/verb/cancel_camera()
