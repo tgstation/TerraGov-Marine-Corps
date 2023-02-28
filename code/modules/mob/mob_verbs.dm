@@ -106,6 +106,11 @@
 	if(usr)
 		do_eord_respawn(usr)
 
+/**
+ * Grabs a mob, if it's human, continue, if it's not, creates a human mob and transfers the mind there. Proceeds to outfit it with the loadout of various factions.
+ * 7% chance to be a separate rare strong or funny faction. Tiny additional 2% chance if that procs to be a deathsquad!
+ * SOM and TG loadouts are handled differently, taking subtypes from the HvH loadout sets.
+ */
 /proc/do_eord_respawn(mob/respawner)
 
 	var/spawn_location = pick(GLOB.deathmatch)
@@ -132,13 +137,15 @@
 	// List of HvH factions - these are handled differently, using the quick loadout outfits.
 	var/list/static/hvh_faction_list = list(/datum/job/som, /datum/job/terragov)
 	// List of rare factions, not common because they're funny in moderation / stronk.
-	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton, /datum/job/deathsquad)
+	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton)
 
 
 	var/total_list = base_faction_list + hvh_faction_list
 
 	if(prob(7))
 		total_list = rare_faction_list
+		if(prob(2))
+			total_list = list(/datum/job/deathsquad) // JACKPOT
 
 	var/datum/job/result = pick(total_list)
 	if(result in hvh_faction_list)
