@@ -561,6 +561,8 @@
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
+#define COMSIG_XENO_WIDOW_GRAB_SPIDERLINGS "xeno_widow_grab_spiderlings"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 

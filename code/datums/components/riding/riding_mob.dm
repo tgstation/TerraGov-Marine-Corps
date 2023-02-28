@@ -300,6 +300,7 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
 	RegisterSignal(parent, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/check_widow_attack)
+	RegisterSignal(parent, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/check_widow_attack)
 
 /datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
 	unequip_buckle_inhands(parent)
