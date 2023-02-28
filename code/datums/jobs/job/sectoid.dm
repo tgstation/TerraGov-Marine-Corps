@@ -6,7 +6,7 @@
 	faction = FACTION_SECTOIDS
 
 /datum/outfit/job/sectoid/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
+	. = ..()
 	H.set_species("Sectoid")
 
 	H.name = GLOB.namepool[/datum/namepool/sectoid].random_name(H)
