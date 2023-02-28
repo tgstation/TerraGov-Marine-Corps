@@ -272,6 +272,7 @@
 
 /obj/machinery/button/valhalla/xeno_button
 	name = "Marine spawner"
+	///The list of outfits we can equip on the humans we're spawning
 	var/outfit_list = list()
 
 /obj/machinery/button/valhalla/xeno_button/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)

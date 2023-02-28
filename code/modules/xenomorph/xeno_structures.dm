@@ -44,7 +44,7 @@
 
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!((X.xeno_caste.caste_flags & CASTE_CAN_TEAR_DOWN_STRUCTURES) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
-		return
+		return ..()
 	if(!do_after(X, 3 SECONDS, TRUE, src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
