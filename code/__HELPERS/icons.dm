@@ -1116,7 +1116,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	appearing_part.filters = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0,flags=MASK_INVERSE)
 	animate(appearing_part.filters[1],y=-32,time=time)
 	transformation_objects += appearing_part
-	//Transform effect thing - todo make appearance passed in
+	//Transform effect thing
 	if(transform_appearance)
 		var/obj/transform_effect = new
 		transform_effect.appearance = transform_appearance
