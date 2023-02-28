@@ -596,8 +596,7 @@
 	refill_sound = "rustle"
 
 /obj/item/storage/pouch/flare/full/Initialize()
-	var/obj/item/flare_gun
-	fill_number = max_storage_space - flare_gun.w_class
+	fill_number = max_storage_space - 2
 	new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
 	return ..()
 
