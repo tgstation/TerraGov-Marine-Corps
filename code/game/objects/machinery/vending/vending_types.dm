@@ -291,7 +291,7 @@
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
 			/obj/item/clothing/glasses/hud/health = -1,
 			/obj/item/roller = -1,
-		)
+		),
 		"Valhalla" = list(
 			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
