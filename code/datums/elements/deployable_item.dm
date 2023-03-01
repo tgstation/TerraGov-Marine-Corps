@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	SIGNAL_HANDLER
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy, TRUE)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy, TRUE) //You can hold more than one deployable item at once
 	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, .proc/unregister_signals)
 
 ///Unregister and stop waiting for click to deploy
