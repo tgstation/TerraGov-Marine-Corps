@@ -58,10 +58,7 @@
 	. = ..()
 	if(!active)
 		return
-	user.temporarilyRemoveItemFromInventory(src)
-	forceMove(get_turf(src))
-	src.throw_at(target, throw_range, throw_speed, user, TRUE)
-	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+	user.throw_item(target)
 
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
