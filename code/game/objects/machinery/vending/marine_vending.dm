@@ -1018,6 +1018,7 @@
 			/obj/item/storage/pill_bottle/packet/tramadol = -1,
 			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
 			/obj/item/storage/pill_bottle/packet/dylovene = -1,
+			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -1062,6 +1063,7 @@
 			/obj/item/storage/pill_bottle/packet/tramadol = -1,
 			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
 			/obj/item/storage/pill_bottle/packet/dylovene = -1,
+			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,

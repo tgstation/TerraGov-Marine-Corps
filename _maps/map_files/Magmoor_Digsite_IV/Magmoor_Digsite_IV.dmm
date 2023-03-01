@@ -25258,7 +25258,6 @@
 	dir = 5;
 	id = "brg"
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/plating,
 /area/magmoor/research/lab)
 "sve" = (
