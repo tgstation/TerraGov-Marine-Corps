@@ -79,6 +79,15 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/packet/autosniper
+	name = "box of low-pressure 8.6x70mm"
+	desc = "A box containing 120 rounds of 8.6x70mm low velocity."
+	icon_state = "box_t81"
+	default_ammo = /datum/ammo/bullet/sniper/auto
+	caliber = CALIBER_86X70
+	current_rounds = 100
+	max_rounds = 100
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm

@@ -495,6 +495,12 @@ WEAPONS
 	cost = 30
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/autosniper_packet
+	name = "SR-81 IFF sniper ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/autosniper)
+	cost = 50
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 Antimaterial rifle (AMR) kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
