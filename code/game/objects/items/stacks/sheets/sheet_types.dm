@@ -29,6 +29,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("table parts", /obj/item/frame/table, 1), \
 	new/datum/stack_recipe("reinforced table parts", /obj/item/frame/table/reinforced, 1), \
 	new/datum/stack_recipe("rack parts", /obj/item/frame/rack, 1), \
+	new/datum/stack_recipe("floor tiles", /obj/item/stack/tile/plasteel, 4), \
 	new/datum/stack_recipe_list("airlock assemblies", list( \
 		new/datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
 		new/datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
