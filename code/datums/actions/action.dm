@@ -151,7 +151,12 @@ KEYBINDINGS
 /// Handler for what action to trigger, inherit from this and call parent before for extra actions
 /datum/action/proc/keybind_trigger(mob/source, datum/keybinding/kb_type)
 	SIGNAL_HANDLER
-	if(kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])
+	/**
+	 * assumption: if no keybind ref passed you want to call normally.
+	 * would use comp_lookup but that'd start getting cursed and overly expensive for what it is
+	 * Add it if you need it
+	 */
+	if(!kb_type || kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])
 		return keybind_activation()
 	if(kb_type.keybind_signal == keybinding_signals[KEYBINDING_ALTERNATE])
 		return alternate_action_activate()
