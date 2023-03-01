@@ -330,7 +330,15 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
 		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
 	)
-	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
+
+	storage_slots = 4
+	max_storage_space = 10
+	max_w_class = 4
+
+	can_hold = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
+	)
 
 /obj/item/storage/holster/t19/full/Initialize()
 	. = ..()

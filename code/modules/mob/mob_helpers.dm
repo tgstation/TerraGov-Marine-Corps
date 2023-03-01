@@ -10,23 +10,11 @@
 		return M.eye_blind
 	return FALSE
 
-/proc/hasorgans(A)
-	return ishuman(A)
-
-/proc/hsl2rgb(h, s, l)
-	return //TODO: Implement
-
-
-
 /mob/proc/can_use_hands()
 	return
 
-
 /mob/proc/get_gender()
 	return gender
-
-
-
 
 /*
 	Miss Chance

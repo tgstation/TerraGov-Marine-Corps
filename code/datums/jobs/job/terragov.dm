@@ -18,7 +18,7 @@
 /datum/job/terragov/return_spawn_type(datum/preferences/prefs)
 	switch(prefs?.species)
 		if("Combat Robot")
-			if(GLOB.join_as_robot_allowed)
+			if(!(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY))
 				if(prefs && prefs.robot_type == "Basic")
 					return /mob/living/carbon/human/species/robot
 				if(prefs && prefs.robot_type == "Hammerhead")

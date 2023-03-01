@@ -1,0 +1,31 @@
+2023-03-01:
+  Lumipharon:
+  - qol: Eswords now have bumpslash when activated
+  - bugfix: fixed combat robots being able to spawn in HvH
+  - balance: Increased Incendiary RPG radius to 5 from 3
+  - balance: Increased HEAT RPG mech damage multiplier to 3 from 2
+  Pariah919:
+  - balance: T-19 belt has gotten the ability to hold spare magazines, the sprite
+      changed to reflect this.
+  RipGrayson:
+  - balance: Removed some plasma cutters from Gelida and one modular of Big Red.
+  - bugfix: Fixed Oscar Outpost runtiming on load due to bad vars.
+  - bugfix: Fixed lava basalt incorrectly smoothing with regular floors.
+  - bugfix: Fixed Tadpole shutters smoothing with walls.
+  - bugfix: Fixed Canterbury smoothing issues with walls and windows.
+  - bugfix: Fixed Tadpole windows allowing bullets through them.
+  TiviPlus:
+  - qol: Monkeys can now wield two-handed weapons
+  - qol: the blessings button in hive status ui has a little store icon now
+  - bugfix: the blessings button in the hive UI works again
+  - bugfix: cocoons are no longer meltable
+  - bugfix: hive status has been made wider to prevent cutting off at the edges of
+      the T3 list
+  - qol: Deevolve has been removed as an action and is now a button in the hive status
+  - bugfix: animals now take damage from bullets properly
+  ivanmixo:
+  - qol: Added a prompt for evolving to hivemind which should hopefully help with
+      newer players putting their cores in unintended places
+  - bugfix: Fixes prae primo giving the person it was used on the PASSMOB flag
+  - rscadd: Added new the P1911 to req imports and changed some of the order names
+      to be less outdated/inconsistent and more descriptive
