@@ -200,6 +200,7 @@
 			/obj/item/storage/pill_bottle/alkysine = 15,
 			/obj/item/storage/pill_bottle/imidazoline = 15,
 			/obj/item/storage/pill_bottle/quickclot = 15,
+			/obj/item/storage/pill_bottle/paracetamol = 6,
 			/obj/item/storage/pill_bottle/hypervene = 6,
 			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
