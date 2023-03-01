@@ -187,16 +187,11 @@
 	if(length(create_spiderling_action.spiderlings) <= 0)
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
-	if(ishuman(A))
-		var/mob/living/carbon/human/victim = A
-		SEND_SIGNAL(owner, COMSIG_MARK_MARINE, victim)
-		owner.balloon_alert(owner, "Attacking victim")
-	else if(isobj(A))
-		var/obj/obj_target = A
-		SEND_SIGNAL(owner, COMSIG_MARK_OBJ, obj_target)
-		owner.balloon_alert(owner, "Attacking" + obj_target.name)
+	if(!isturf(A))
+		SEND_SIGNAL(owner, COMSIG_SPIDERLING_MARK, A)
+		owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
 	else
-		SEND_SIGNAL(owner, COMSIG_NO_MARK, owner)
+		SEND_SIGNAL(owner, COMSIG_SPIDERLING_MARK)
 		owner.balloon_alert(owner, "Nothing to attack")
 		return fail_activate()
 	succeed_activate()

@@ -263,6 +263,8 @@
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 #define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
 
+
+
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -796,9 +798,7 @@
 #define COMSIG_XENOABILITY_SPIDERLING_MARK "xenoability_spiderling_mark"
 
 // widow spiderling mark signals
-#define COMSIG_MARK_MARINE "mark_marine"
-#define COMSIG_MARK_OBJ "mark_obj"
-#define COMSIG_NO_MARK "no_mark"
+#define COMSIG_SPIDERLING_MARK "spiderling_mark"
 
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
