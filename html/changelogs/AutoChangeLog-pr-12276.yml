@@ -1,0 +1,5 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - rscadd: "Added paracetamol pill bottle to the medplus"
+  - rscdel: "corpsmen can no longer buy paracetamol pill bottle for 8 points."
