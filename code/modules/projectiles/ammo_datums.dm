@@ -1865,6 +1865,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rpg_fire"
 	icon_state = "rpg_incendiary"
 	flags_ammo_behavior = AMMO_ROCKET
+	effect_radius = 5
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
