@@ -430,8 +430,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!hasorgans(src))
-		return ..()
 
 	if(user.a_intent != INTENT_HELP)
 		return ..()

@@ -471,7 +471,14 @@
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
-	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
@@ -500,6 +507,7 @@
 	base_icon_state = "ship_gray_window"
 	window_frame = /obj/structure/window_frame/mainship/gray
 	reinf = FALSE
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_AIRLOCK,

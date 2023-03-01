@@ -152,6 +152,7 @@
 	if(hud_used && hud_used.throw_icon)
 		hud_used.throw_icon.icon_state = "act_throw_on"
 
+///Throws active held item at target in params
 /mob/proc/throw_item(atom/target)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)

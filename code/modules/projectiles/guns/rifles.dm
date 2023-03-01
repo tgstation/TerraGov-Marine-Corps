@@ -843,7 +843,6 @@
 		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope,
@@ -1289,6 +1288,8 @@
 	cock_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 6
 
+/obj/item/weapon/gun/rifle/chambered/unscoped
+	starting_attachment_types = list(/obj/item/attachable/stock/tl127stock)
 
 //-------------------------------------------------------
 //SR-81 Auto-Sniper
