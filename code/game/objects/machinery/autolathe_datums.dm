@@ -1,15 +1,3 @@
-GLOBAL_LIST_EMPTY(autolathe_recipes)
-GLOBAL_LIST_EMPTY(autolathe_categories)
-
-/datum/autolathe/recipe
-	var/name = "object"
-	var/path
-	var/list/resources
-	var/hidden
-	var/category
-	var/power_use = 0
-	var/is_stack
-
 /datum/autolathe/recipe/bucket
 	name = "bucket"
 	path = /obj/item/reagent_containers/glass/bucket
@@ -18,11 +6,6 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 /datum/autolathe/recipe/flashlight
 	name = "flashlight"
 	path = /obj/item/flashlight
-	category = "General"
-
-/datum/autolathe/recipe/extinguisher
-	name = "extinguisher"
-	path = /obj/item/tool/extinguisher
 	category = "General"
 
 /datum/autolathe/recipe/crowbar
