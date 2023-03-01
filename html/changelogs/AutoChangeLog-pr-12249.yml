@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "hive status has been made wider to prevent cutting off at the edges of the T3 list"
-  - qol: "Deevolve has been removed as an action and is now a button in the hive status"

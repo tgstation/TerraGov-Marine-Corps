@@ -1,9 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - balance: "Removed some plasma cutters from Gelida and one modular of Big Red."
-  - bugfix: "Fixed Oscar Outpost runtiming on load due to bad vars."
-  - bugfix: "Fixed lava basalt incorrectly smoothing with regular floors."
-  - bugfix: "Fixed Tadpole shutters smoothing with walls."
-  - bugfix: "Fixed Canterbury smoothing issues with walls and windows."
-  - bugfix: "Fixed Tadpole windows allowing bullets through them."

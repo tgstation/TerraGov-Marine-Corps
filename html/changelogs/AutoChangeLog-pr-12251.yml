@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "the blessings button in hive status ui has a little store icon now"
-  - bugfix: "the blessings button in the hive UI works again"

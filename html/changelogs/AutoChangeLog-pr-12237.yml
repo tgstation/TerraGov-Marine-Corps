@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixes prae primo giving the person it was used on the PASSMOB flag"

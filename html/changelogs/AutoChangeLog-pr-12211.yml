@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "Added new the P1911 to req imports and changed some of the order names to be less outdated/inconsistent and more descriptive"
