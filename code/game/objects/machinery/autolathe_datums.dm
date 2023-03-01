@@ -1,3 +1,4 @@
+/*
 /datum/autolathe/recipe/bucket
 	name = "bucket"
 	path = /obj/item/reagent_containers/glass/bucket
@@ -8,79 +9,10 @@
 	path = /obj/item/flashlight
 	category = "General"
 
-/datum/autolathe/recipe/crowbar
-	name = "crowbar"
-	path = /obj/item/tool/crowbar
-	category = "Tools"
-
-/datum/autolathe/recipe/multitool
-	name = "multitool"
-	path = /obj/item/multitool
-	category = "Tools"
-
-/datum/autolathe/recipe/t_scanner
-	name = "T-ray scanner"
-	path = /obj/item/t_scanner
-	category = "Tools"
-
-/datum/autolathe/recipe/weldertool
-	name = "blowtorch"
-	path = /obj/item/tool/weldingtool
-	category = "Tools"
-
-/datum/autolathe/recipe/screwdriver
-	name = "screwdriver"
-	path = /obj/item/tool/screwdriver
-	category = "Tools"
-
-/datum/autolathe/recipe/wirecutters
-	name = "wirecutters"
-	path = /obj/item/tool/wirecutters
-	category = "Tools"
-
-/datum/autolathe/recipe/wrench
-	name = "wrench"
-	path = /obj/item/tool/wrench
-	category = "Tools"
-
-/datum/autolathe/recipe/radio_headset
-	name = "radio headset"
-	path = /obj/item/radio/headset
-	category = "General"
-
-/datum/autolathe/recipe/radio_bounced
-	name = "station bounced radio"
-	path = /obj/item/radio/off
-	category = "General"
-
 /datum/autolathe/recipe/weldermask
 	name = "welding mask"
 	path = /obj/item/clothing/head/welding
 	category = "General"
-
-/datum/autolathe/recipe/metal
-	name = "steel sheets"
-	path = /obj/item/stack/sheet/metal
-	category = "General"
-	is_stack = 1
-
-/datum/autolathe/recipe/glass
-	name = "glass sheets"
-	path = /obj/item/stack/sheet/glass
-	category = "General"
-	is_stack = 1
-
-/datum/autolathe/recipe/rglass
-	name = "reinforced glass sheets"
-	path = /obj/item/stack/sheet/glass/reinforced
-	category = "General"
-	is_stack = 1
-
-/datum/autolathe/recipe/rods
-	name = "metal rods"
-	path = /obj/item/stack/rods
-	category = "General"
-	is_stack = 1
 
 /datum/autolathe/recipe/knife
 	name = "kitchen knife"
@@ -92,80 +24,10 @@
 	path = /obj/item/taperecorder
 	category = "General"
 
-/datum/autolathe/recipe/airlockmodule
-	name = "airlock electronics"
-	path = /obj/item/circuitboard/airlock
-	category = "Engineering"
-
-/datum/autolathe/recipe/airalarm
-	name = "air alarm electronics"
-	path = /obj/item/circuitboard/airalarm
-	category = "Engineering"
-
-/datum/autolathe/recipe/firealarm
-	name = "fire alarm electronics"
-	path = /obj/item/circuitboard/firealarm
-	category = "Engineering"
-
 /datum/autolathe/recipe/powermodule
 	name = "power control module"
 	path = /obj/item/circuitboard/apc
 	category = "Engineering"
-
-/datum/autolathe/recipe/rcd_ammo
-	name = "matter cartridge"
-	path = /obj/item/ammo_rcd
-	category = "Engineering"
-
-/datum/autolathe/recipe/table_parts
-	name = "table parts"
-	path = /obj/item/frame/table
-	category = "Engineering"
-
-/datum/autolathe/recipe/table_parts_reinforced
-	name = "reinforced table parts"
-	path = /obj/item/frame/table/reinforced
-	category = "Engineering"
-
-/datum/autolathe/recipe/rack_parts
-	name = "rack parts"
-	path = /obj/item/frame/rack
-	category = "Engineering"
-
-/datum/autolathe/recipe/scalpel
-	name = "scalpel"
-	path = /obj/item/tool/surgery/scalpel
-	category = "Medical"
-
-/datum/autolathe/recipe/circularsaw
-	name = "circular saw"
-	path = /obj/item/tool/surgery/circular_saw
-	category = "Medical"
-
-/datum/autolathe/recipe/surgicaldrill
-	name = "surgical drill"
-	path = /obj/item/tool/surgery/surgicaldrill
-	category = "Medical"
-
-/datum/autolathe/recipe/retractor
-	name = "retractor"
-	path = /obj/item/tool/surgery/retractor
-	category = "Medical"
-
-/datum/autolathe/recipe/cautery
-	name = "cautery"
-	path = /obj/item/tool/surgery/cautery
-	category = "Medical"
-
-/datum/autolathe/recipe/hemostat
-	name = "hemostat"
-	path = /obj/item/tool/surgery/hemostat
-	category = "Medical"
-
-/datum/autolathe/recipe/suture
-	name = "suture"
-	path = /obj/item/tool/surgery/suture
-	category = "Medical"
 
 /datum/autolathe/recipe/beaker
 	name = "glass beaker"
@@ -186,11 +48,6 @@
 	name = "syringe"
 	path = /obj/item/reagent_containers/syringe
 	category = "Medical"
-
-/datum/autolathe/recipe/consolescreen
-	name = "console screen"
-	path = /obj/item/stock_parts/console_screen
-	category = "Devices and Components"
 
 /datum/autolathe/recipe/igniter
 	name = "igniter"
@@ -236,69 +93,4 @@
 	name = "camera assembly"
 	path = /obj/item/frame/camera
 	category = "Devices and Components"
-
-/datum/autolathe/recipe/conveyorbelts
-	name = "30 conveyors"
-	path = /obj/item/stack/conveyor/thirty
-	category = "Devices and Components"
-
-/datum/autolathe/recipe/conveyorswitch
-	name = "Conveyor Switch"
-	path = /obj/item/conveyor_switch_construct
-	category = "Devices and Components"
-
-/datum/autolathe/recipe/mass_produced_crate
-	name = "Mass Produced Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced__alpha_crate
-	name = "Mass Produced Alpha Squad Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/alpha
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_bravo_crate
-	name = "Mass Produced Bravo Squad Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/bravo
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_charlie_crate
-	name = "Mass Produced Charlie Squad Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/charlie
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_delta_crate
-	name = "Mass Produced Delta Squad Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/delta
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_ammo_crate
-	name = "Mass Produced Ammo Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/ammo
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_construction_crate
-	name = "Mass Produced Construction Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/construction
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_explosives_crate
-	name = "Mass Produced Explosives Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/explosives
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_medical_crate
-	name = "Mass Produced Medical Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/medical
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_supply_crate
-	name = "Mass Produced Supply Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/supply
-	category = "Mass Produced Crates"
-
-/datum/autolathe/recipe/mass_produced_weapon_crate
-	name = "Mass Produced Weapon Crate"
-	path = /obj/structure/closet/crate/mass_produced_crate/weapon
-	category = "Mass Produced Crates"
-
+*/
