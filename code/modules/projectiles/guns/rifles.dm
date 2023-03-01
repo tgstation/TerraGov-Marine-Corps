@@ -822,7 +822,7 @@
 	inhand_y_dimension = 32
 
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 200 //codex
+	max_shells = 250 //codex
 	force = 35
 	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
