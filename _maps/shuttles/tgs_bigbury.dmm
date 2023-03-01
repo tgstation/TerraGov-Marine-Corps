@@ -702,7 +702,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "sR" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "te" = (

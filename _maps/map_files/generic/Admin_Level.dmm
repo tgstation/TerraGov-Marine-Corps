@@ -15700,10 +15700,6 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/circuitboard/machine/autolathe{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/circuitboard/computer/secure_data{
 	pixel_x = -3;
 	pixel_y = -3
@@ -18740,7 +18736,6 @@
 /turf/closed/wall,
 /area/centcom/valhalla/central)
 "yec" = (
-/obj/machinery/autolathe,
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
