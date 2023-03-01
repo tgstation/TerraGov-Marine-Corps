@@ -92,8 +92,8 @@
 	user.visible_message(span_notice("[user] starts assembling [src]."),
 	span_notice("You start assembling [src]."))
 	var/delay_assembly = SKILL_TASK_EASY
-	if(user.skills.getRating("engineer")) //Higher skill lowers the delay.
-		delay_assembly -= 0.5 SECONDS + user.skills.getRating("engineer") * 2
+	if(user.skills.getRating(SKILL_ENGINEER)) //Higher skill lowers the delay.
+		delay_assembly -= 0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER) * 2
 
 	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)

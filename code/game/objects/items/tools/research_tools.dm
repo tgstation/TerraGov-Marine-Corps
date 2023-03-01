@@ -1,7 +1,7 @@
 // Tools used for research
 /obj/item/tool/research
 	///Skill type needed to use the tool
-	var/skill_type = "medical"
+	var/skill_type = SKILL_MEDICAL
 	///Skill level needed to use the tool
 	var/skill_threshold = SKILL_MEDICAL_EXPERT
 
@@ -46,10 +46,10 @@
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
-	if(user.skills.getRating("medical") < SKILL_MEDICAL_EXPERT)
+	if(user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_EXPERT)
 		user.visible_message(span_notice("[user] begins trying to find a cutting point on the [target_xeno].."),
 		span_notice("You begin trying to find a cutting point on the [target_xeno]..."))
-		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("medical")
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_MEDICAL)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return ..()
 	user.visible_message(span_notice("[user] begins cutting into the [target_xeno]."))

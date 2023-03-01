@@ -141,7 +141,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/master_gun
 
 	///Skill used to attach src to something.
-	var/attach_skill = "firearms"
+	var/attach_skill = SKILL_FIREARMS
 	///Skill threshold where the time to attach is halved.
 	var/attach_skill_upper_threshold = SKILL_FIREARMS_TRAINED
 	///Sound played on attach

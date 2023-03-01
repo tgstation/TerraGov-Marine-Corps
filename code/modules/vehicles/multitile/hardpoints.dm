@@ -40,7 +40,7 @@ Currently only has the tank hardpoints
 	. = ..()
 	var/status = obj_integrity <= 0.1 ? "broken" : "functional"
 	var/span_class = obj_integrity <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
-	if((user.skills.getRating("engineer") >= SKILL_ENGINEER_METAL) || isobserver(user))
+	if((user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_METAL) || isobserver(user))
 		switch(PERCENT(obj_integrity / max_integrity))
 			if(0.1 to 33)
 				status = "heavily damaged"

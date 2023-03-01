@@ -48,7 +48,7 @@
 
 	H.UpdateDamageIcon()
 
-	if(user.skills.getRating("medical") < skill_level_needed)
+	if(user.skills.getRating(SKILL_MEDICAL) < skill_level_needed)
 		if(user.do_actions || !do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			to_chat(user, span_warning("You're busy with something else right now!"))
 			return TRUE
@@ -85,7 +85,7 @@
 			to_chat(user, span_notice("\The [affecting.display_name] is cut open, you'll need more than a bandage!"))
 		return
 
-	var/unskilled_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
+	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
 	var/affected = heal_limb(affecting, unskilled_penalty)
 
 	generate_treatment_messages(user, patient, affecting, affected)
@@ -273,7 +273,7 @@
 			user.visible_message(span_warning("[user] starts to apply [src] to [user.p_their()] [limb]."),
 			span_notice("You start to apply [src] to your [limb], hold still."))
 
-		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
+		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M)) // Referenced in external organ helpers.
 			use(1)
 
 #undef BANDAGE

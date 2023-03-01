@@ -186,7 +186,7 @@
 /obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 	span_notice("You start disassembling [src]."))
-	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
+	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER))
 
 	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE

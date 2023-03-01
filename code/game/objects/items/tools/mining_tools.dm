@@ -212,7 +212,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	. = PLASMACUTTER_CUT_DELAY
-	var/skill = user.skills.getRating("engineer")
+	var/skill = user.skills.getRating(SKILL_ENGINEER)
 	if(skill < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))

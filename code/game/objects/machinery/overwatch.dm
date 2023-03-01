@@ -747,7 +747,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /mob/living/carbon/human/verb/issue_order(command_aura as null|text)
 	set hidden = TRUE
 
-	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
+	if(skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
 		to_chat(src, span_warning("You are not competent enough in leadership to issue an order."))
 		return
 
@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	var/aura_strength = skills.getRating("leadership") - 1
+	var/aura_strength = skills.getRating(SKILL_LEADERSHIP) - 1
 	var/aura_target = pick_order_target()
 	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 30 SECONDS, faction)
 
@@ -816,7 +816,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
-	skill_name = "leadership"
+	skill_name = SKILL_LEADERSHIP
 	action_icon = 'icons/mob/order_icons.dmi'
 	skill_min = SKILL_LEAD_TRAINED
 	var/order_type = null
@@ -865,7 +865,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
-	skill_name = "leadership"
+	skill_name = SKILL_LEADERSHIP
 	skill_min = SKILL_LEAD_TRAINED
 	var/orders_visible = TRUE
 	action_icon_state = "hide_order"

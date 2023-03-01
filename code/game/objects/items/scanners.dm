@@ -80,9 +80,9 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
-	if(user.skills.getRating("medical") < skill_threshold)
+	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
-		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0), BUSY_ICON_UNSKILLED))
+		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
@@ -96,7 +96,7 @@ REAGENT SCANNER
 	current_user = user
 	ui_interact(user)
 	update_static_data(user)
-	if(user.skills.getRating("medical") < upper_skill_threshold)
+	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return
 	START_PROCESSING(SSobj, src)
 

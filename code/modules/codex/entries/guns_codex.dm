@@ -112,7 +112,7 @@
 
 /obj/item/weapon/gun/shotgun/pump/get_mechanics_info()
 	. = ..()
-	if(gun_skill_category == GUN_SKILL_RIFLES)
+	if(gun_skill_category == SKILL_RIFLES)
 		. += "<br><br>To work the weapon press spacebar.<br>"
 	else
 		. += "<br><br>To pump it press spacebar.<br>"

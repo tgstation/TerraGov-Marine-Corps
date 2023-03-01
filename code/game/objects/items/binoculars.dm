@@ -226,7 +226,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
-		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
 	if(targ_area.flags_area & OB_CAS_IMMUNE)
 		to_chat(user, span_warning("Our payload won't reach this target!"))
