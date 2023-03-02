@@ -1633,6 +1633,11 @@
 			/obj/item/ammo_magazine/smg/m25/ap = -1,
 			/obj/item/weapon/gun/rifle/m412/elite = -1,
 			/obj/item/ammo_magazine/rifle/ap = -1,
+			/obj/item/weapon/gun/rifle/garand = -1,
+			/obj/item/ammo_magazine/rifle/garand = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 		)
 	)
 
