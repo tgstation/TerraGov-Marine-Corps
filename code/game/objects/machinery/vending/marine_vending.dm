@@ -265,6 +265,9 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -444,6 +447,9 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -630,6 +636,9 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -809,7 +818,6 @@
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
 			/obj/item/ammo_magazine/minigun_powerpack = 2,
-			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
