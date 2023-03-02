@@ -1093,7 +1093,7 @@
 	name = "Req Line Shutters";
 	pixel_x = 7;
 	pixel_y = 1;
-	
+
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1934,14 +1934,14 @@
 	name = "Req Line Shutters";
 	pixel_x = 7;
 	pixel_y = -2;
-	
+
 	},
 /obj/structure/table/mainship,
 /obj/machinery/line_nexter_control{
 	id = "UPPreqturn";
 	pixel_x = -6;
 	pixel_y = -2;
-	
+
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -2279,9 +2279,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "BN" = (
-/obj/effect/spawner/random/structure/powergenerator/superweighted{
-	power_gen = 25000
-	},
+/obj/effect/spawner/random/structure/powergenerator/superweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "Ce" = (

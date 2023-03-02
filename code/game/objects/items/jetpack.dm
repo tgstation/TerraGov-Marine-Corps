@@ -42,27 +42,24 @@
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/can_use_jetpack)
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
-	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 	selected = FALSE
 	LAZYCLEARLIST(actions)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
-		UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
+		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
-		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
-		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/can_use_jetpack)
-		action.set_toggle(TRUE)
+		RegisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), .proc/can_use_jetpack)
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
+		action.set_toggle(TRUE)
 	selected = !selected
 
 ///Signal handler for making it impossible to use middleclick to use the jetpack
@@ -71,8 +68,7 @@
 	if(!selected)
 		return
 	selected = FALSE
-	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
-	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 	for(var/action in user.actions)
 		if (!istype(action, /datum/action/item_action))
 			continue
@@ -91,6 +87,8 @@
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
 	if(human_user.buckled)
 		balloon_alert(human_user, "Cannot fly while buckled")
+		return
+	if(human_user.do_actions)
 		return
 	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return

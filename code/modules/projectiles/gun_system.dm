@@ -378,7 +378,7 @@
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
-		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
+		AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -678,9 +678,8 @@
 	if(modifiers["shift"])
 		return
 
-	if(modifiers["right"] || modifiers["middle"])
+	if(modifiers["right"])
 		modifiers -= "right"
-		modifiers -= "middle"
 		params = list2params(modifiers)
 		active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
 		return
