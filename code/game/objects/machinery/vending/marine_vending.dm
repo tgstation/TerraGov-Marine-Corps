@@ -516,7 +516,6 @@
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = -1,
 			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
-			/obj/item/storage/holster/backholster/rpg/full = -1,
 			/obj/item/jetpack_marine = -1,
 		),
 		"Heavy Weapons" = list(
@@ -527,6 +526,13 @@
 			/obj/item/storage/box/tl102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
+			/obj/item/storage/holster/backholster/rpg/full = -1,
+			/obj/item/ammo_magazine/rocket/recoilless = -1,
+			/obj/item/ammo_magazine/rocket/recoilless/light = -1,
+			/obj/item/ammo_magazine/rocket/recoilless/heat = -1,
+			/obj/item/ammo_magazine/rocket/recoilless/cloak = -1,
+			/obj/item/ammo_magazine/rocket/recoilless/smoke = -1,
+			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = -1,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -1459,7 +1465,6 @@
 			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
 			/obj/item/weapon/gun/shotgun/zx76 = -1,
-			/obj/item/ammo_magazine/shotgun/tracker = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
 			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
 			/obj/item/ammo_magazine/rifle/autosniper = -1,
@@ -1509,6 +1514,7 @@
 			/obj/item/armor_module/module/fire_proof = -1,
 			/obj/item/armor_module/module/tyr_extra_armor = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
+			/obj/item/attachable/shoulder_mount = -1,
 			/obj/item/armor_module/module/mimir_environment_protection = -1,
 			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
@@ -1518,6 +1524,8 @@
 			/obj/item/clothing/suit/storage/marine/riot = -1,
 			/obj/item/clothing/head/helmet/marine/riot = -1,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = -1,
+			/obj/item/implanter/cloak = -1,
+			/obj/item/implanter/chem/blood = -1,
 		),
 		"Reqtorio" = list(
 			/obj/item/paper/factoryhowto = -1,
@@ -1613,6 +1621,12 @@
 			/obj/item/ammo_magazine/smg/m25/ap = -1,
 			/obj/item/weapon/gun/rifle/m412/elite = -1,
 			/obj/item/ammo_magazine/rifle/ap = -1,
+			/obj/item/weapon/gun/rifle/garand = -1,
+			/obj/item/ammo_magazine/rifle/garand = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
+			/obj/item/ammo_magazine/shotgun/tracker = -1,
 		)
 	)
 
