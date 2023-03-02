@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "paracetamol pill packets in the marine vendor."
-  - rscdel: "Removed paracetamol pill packets from map spawns"
