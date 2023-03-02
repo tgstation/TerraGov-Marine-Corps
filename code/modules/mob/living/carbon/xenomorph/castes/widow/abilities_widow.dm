@@ -133,7 +133,7 @@
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
-		COMSIG_XENOABILITY_CREATE_SPIDERLING,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_SPIDERLING,
 	)
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
@@ -275,6 +275,7 @@
 			continue
 		remaining_list -= remaining_spiderling
 		owner.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
+		ADD_TRAIT(remaining_spiderling, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, .proc/grab_spiderlings, remaining_list, number_of_attempts_left - 1), 1)
 
 // ***************************************

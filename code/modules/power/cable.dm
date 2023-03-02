@@ -400,6 +400,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	var/cable_color = "yellow"
 	var/obj/structure/cable/target_type = /obj/structure/cable
 	var/target_layer = CABLE_LAYER_2
+	materials = list(/datum/material/metal = 5)
 
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = null)
 	. = ..()
@@ -514,7 +515,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 			span_warning("You patch some wires in \the [H]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(0, 15, robo_repair = TRUE, updating_health = TRUE))
 			H.UpdateDamageIcon()
-		if(!amount)
+		if(amount < 1)
 			return TRUE
 		if(!affecting.burn_dam)
 			var/previous_limb = affecting

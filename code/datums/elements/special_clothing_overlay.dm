@@ -77,11 +77,14 @@
 /datum/element/special_clothing_overlay/modular_helmet_visor
 	///greyscale icon we fetch to make worn icon with
 	var/icon/special_icon
+	///Icon_state to use for the emissive
+	var/visor_icon_state
 
-/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, greyscale_type, color_string)
-	if(!special_icon)
+/datum/element/special_clothing_overlay/modular_helmet_visor/Attach(datum/target, applytarget, icon_state, greyscale_type, color_string)
+	if(!special_icon || !visor_icon_state)
+		visor_icon_state = icon_state
 		special_icon = SSgreyscale.GetColoredIconByType(greyscale_type, list(color_string))
 	return ..()
 
 /datum/element/special_clothing_overlay/modular_helmet_visor/get_overlay_icon()
-	return emissive_appearance(special_icon, "")
+	return emissive_appearance(special_icon, visor_icon_state)

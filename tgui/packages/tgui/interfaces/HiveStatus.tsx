@@ -19,7 +19,7 @@ type InputPack = {
   hive_orphan_max: number;
   hive_minion_count: number;
   hive_primos: PrimoUpgrades[];
-  hive_queen_remaining: number;
+  hive_death_timers: DeathTimer[];
   hive_queen_max: number;
   hive_structures: StructureData[];
   // ----- Per xeno info ------
@@ -79,6 +79,12 @@ type PrimoUpgrades = {
   purchased: boolean;
 };
 
+type DeathTimer = {
+  caste: string;
+  time_left: number;
+  end_time: number;
+};
+
 export const HiveStatus = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
   const {
@@ -95,7 +101,7 @@ export const HiveStatus = (_props, context) => {
       theme="xeno"
       title={hive_name + ' Hive Status'}
       resizable
-      width={700}
+      width={800}
       height={800}>
       <Window.Content scrollable>
         <CachedCollapsible
@@ -178,7 +184,9 @@ const BlessingsButton = (_props, context) => {
 
   return (
     <Box className="Section__buttons">
-      <Button onClick={() => act('Blessings', { xeno: user_ref })}>
+      <Button
+        onClick={() => act('Blessings', { xeno: user_ref })}
+        icon={'store'}>
         Blessings
       </Button>
     </Box>
@@ -192,10 +200,9 @@ const GeneralInfo = (_props, context) => {
     hive_psy_points,
     hive_silo_collapse,
     hive_orphan_collapse,
-    hive_queen_remaining,
+    hive_death_timers,
     hive_silo_max,
     hive_orphan_max,
-    hive_queen_max,
   } = data;
 
   return (
@@ -232,17 +239,7 @@ const GeneralInfo = (_props, context) => {
         <Flex.Item>
           <EvolutionBar />
         </Flex.Item>
-        {(hive_silo_collapse > 0 ||
-          hive_orphan_collapse > 0 ||
-          hive_queen_remaining > 0) && <Divider />}
-        <Flex.Item>
-          <XenoCountdownBar
-            time={hive_queen_remaining}
-            max={hive_queen_max}
-            tooltip="When new queen can evolve."
-            left_side="Next Queen:"
-          />
-        </Flex.Item>
+        <DeadXenoTimerCountdowns hive_death_timers={hive_death_timers} />
         <Flex.Item>
           <XenoCountdownBar
             time={hive_silo_collapse}
@@ -261,6 +258,30 @@ const GeneralInfo = (_props, context) => {
         </Flex.Item>
       </Flex>
     </Box>
+  );
+};
+
+const DeadXenoTimerCountdowns = (props: {
+  hive_death_timers: DeathTimer[];
+}) => {
+  const hive_death_timers = props.hive_death_timers;
+  if (!hive_death_timers.length) {
+    return null;
+  }
+  return (
+    <Flex.Item>
+      {hive_death_timers.map((timer, i) => {
+        return (
+          <XenoCountdownBar
+            key={i}
+            time={timer.time_left}
+            max={timer.end_time}
+            tooltip={`Time until a ${timer.caste} can evolve.`}
+            left_side={`Next ${timer.caste}:`}
+          />
+        );
+      })}
+    </Flex.Item>
   );
 };
 
@@ -413,14 +434,14 @@ const PopulationPyramid = (_props, context) => {
   // and then generating equality from unique keys.
   // From there, we record the lengths of those lists
   // to find number of counts per caste.
-  // But all these keys are numbers. And this is a lot simplier.
+  // But all these keys are numbers. And this is a lot simpler.
 
   hive_primos.map((entry) => {
     primos[entry.tier] = entry.purchased;
   });
 
   static_info.map((static_entry, index) => {
-    // Inititalizing arrays.
+    // Initializing arrays.
     if (pyramid_data[static_entry.tier] === undefined) {
       pyramid_data[static_entry.tier] = {
         caste: [],
@@ -477,15 +498,17 @@ const PopulationPyramid = (_props, context) => {
     );
   };
 
-  const compact_disp = user_xeno ? user_show_compact : showCompact;
-  const empty_disp = user_xeno ? user_show_empty : showEmpty;
+  const compact_display = user_xeno ? user_show_compact : showCompact;
+  const empty_display = user_xeno ? user_show_empty : showEmpty;
 
   return (
     <Section
       title={`Total Living Sisters: ${hive_total}`}
-      align={compact_disp ? 'left' : 'center'}
+      align={compact_display ? 'left' : 'center'}
       buttons={<ShowButtons />}>
-      <Flex direction="column-reverse" align={compact_disp ? 'left' : 'center'}>
+      <Flex
+        direction="column-reverse"
+        align={compact_display ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
           const max_slots =
@@ -514,7 +537,7 @@ const PopulationPyramid = (_props, context) => {
           ) : (
             ''
           );
-          if (compact_disp) {
+          if (compact_display) {
             // Display less busy compact mode
             if (tier === 0) {
               return (
@@ -535,11 +558,11 @@ const PopulationPyramid = (_props, context) => {
                 {tier === 2 || tier === 3
                   ? ` (${tier_info.total}/${max_slots || 0}) `
                   : ` ${tier_info.total} `}
-                Sisters {!empty_disp && tier_info.total === 0 ? '' : '| '}
+                Sisters {!empty_display && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index
                   .map((value, idx) => {
                     const count = tier_info.caste[idx];
-                    if (!empty_disp && count === 0) {
+                    if (!empty_display && count === 0) {
                       return null;
                     }
                     const static_entry = static_info[value];
@@ -561,7 +584,7 @@ const PopulationPyramid = (_props, context) => {
               <Flex className="Section__content">
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
-                  if (!empty_disp && count === 0) {
+                  if (!empty_display && count === 0) {
                     return <Box />;
                   }
                   const static_entry = static_info[value];
@@ -586,7 +609,7 @@ const PopulationPyramid = (_props, context) => {
               </Flex>
               <Flex>
                 {tier_info.caste.map((count, idx) => {
-                  if (!empty_disp && count === 0) {
+                  if (!empty_display && count === 0) {
                     return <Box />;
                   }
                   const static_entry = static_info[tier_info.index[idx]];
@@ -693,7 +716,7 @@ const XenoList = (_props, context) => {
   const row_height = '16px';
   const ssd_width = '16px';
   const ssd_mr = '4px';
-  const action_width = '40px';
+  const action_width = '54px';
   const action_mr = '4px';
   const leader_width = '16px';
   const leader_mr = '6px';
@@ -709,7 +732,7 @@ const XenoList = (_props, context) => {
     : Number.MIN_SAFE_INTEGER;
 
   if (sortingBy.category === location) {
-    // Sorting value inversed because direction is inversed.
+    // Sorting value inverted because direction is inverted.
     xeno_info.sort((a, b) => -a.location.localeCompare(b.location));
   }
 
@@ -908,7 +931,6 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   const { act } = useBackend<InputPack>(context);
   const observing = props.target_ref === props.watched_xeno;
 
-  let timer: NodeJS.Timeout;
   const overwatch_button = (
     <Button
       fluid
@@ -931,6 +953,20 @@ const ActionButtons = (props: ActionButtonProps, context) => {
         {/* Overwatch */}
         <Flex.Item grow mr="4px">
           {overwatch_button}
+        </Flex.Item>
+        <Flex.Item grow mr="4px">
+          <Button
+            fluid
+            height="16px"
+            fontSize={0.75}
+            tooltip={'Deevolve'}
+            align="center"
+            verticalAlignContent="middle"
+            icon="bolt"
+            onClick={() => {
+              act('Deevolve', { xeno: props.target_ref });
+            }}
+          />
         </Flex.Item>
         {/* Transfer plasma */}
         <Flex.Item grow>
@@ -966,7 +1002,7 @@ const StructureList = (_props, context) => {
   const track_width = '100px';
   const name_width = '33%'; // Matches xeno list name width.
   const integrity_width = '60px';
-  const max_integ_width = '60px';
+  const max_integer_width = '60px';
 
   hive_structures.sort((a, b) => a.name.localeCompare(b.name));
   hive_structures.sort((a, b) => {
@@ -993,7 +1029,7 @@ const StructureList = (_props, context) => {
               {/* Integrity */}
               Health
             </Flex.Item>
-            <Flex.Item width={max_integ_width}>
+            <Flex.Item width={max_integer_width}>
               {' '}
               {/* Max integrity */}
               Max
@@ -1042,7 +1078,7 @@ const StructureList = (_props, context) => {
                     <Box textColor="good">{entry.integrity}</Box>
                   )}
                 </Flex.Item>
-                <Flex.Item width={max_integ_width}>
+                <Flex.Item width={max_integer_width}>
                   {entry.max_integrity}
                 </Flex.Item>
                 <Flex.Item

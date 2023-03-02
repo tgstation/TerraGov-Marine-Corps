@@ -393,7 +393,7 @@
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, type, 1 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, 1 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -452,7 +452,7 @@
 		/obj/item/mortal_shell/flare,
 	)
 	tally_type = TALLY_HOWITZER
-	cool_off_time = 2 SECONDS
+	cool_off_time = 10 SECONDS
 	reload_time = 1 SECONDS
 	max_spread = 8
 

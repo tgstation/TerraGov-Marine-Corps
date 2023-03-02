@@ -11352,7 +11352,6 @@
 /area/magmoor/compound)
 "ilf" = (
 /obj/structure/table/mainship,
-/obj/item/tool/surgery/solderingtool,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -25259,7 +25258,6 @@
 	dir = 5;
 	id = "brg"
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/plating,
 /area/magmoor/research/lab)
 "sve" = (
@@ -28751,7 +28749,6 @@
 /area/magmoor/security/infocenter)
 "uTu" = (
 /obj/structure/table/mainship,
-/obj/item/tool/surgery/solderingtool,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/power)
 "uTx" = (

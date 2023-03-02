@@ -389,16 +389,16 @@
 
 /obj/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
-	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
 	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
-	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
+	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged
 	corpseradio = /obj/item/radio/headset/survivor
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
+	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 
 /obj/effect/landmark/corpsespawner/pmc/burst
 	death_type = CHESTBURST_DEATH
@@ -457,13 +457,13 @@
 
 /obj/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"
-	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
-	corpseshoes = /obj/item/clothing/shoes/veteran/PMC
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/veteran/pmc
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
@@ -479,7 +479,7 @@
 
 /obj/effect/landmark/corpsespawner/marine
 	name = "Marine"
-	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpseuniform = /obj/item/clothing/under/marine
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/satchel
 	corpsemask = /obj/item/clothing/mask/rebreather
@@ -496,7 +496,7 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
-	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpseuniform = /obj/item/clothing/under/marine
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/marine/engineerpack
 	corpsemask = /obj/item/clothing/mask/gas/tactical
