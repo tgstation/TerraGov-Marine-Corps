@@ -104,9 +104,11 @@
 
 	deployed_machine.update_icon_state()
 
-	user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
+		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
+	else
+		item_to_deploy.forceMove(deployed_machine)
 
 	ENABLE_BITFIELD(item_to_deploy.flags_item, IS_DEPLOYED)
 
