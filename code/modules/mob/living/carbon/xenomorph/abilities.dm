@@ -235,7 +235,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/New(Target)
 	. = ..()
-	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD)))
+	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.?flags_round_type, MODE_ALLOW_XENO_QUICKBUILD)))
 		return
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	build_maptext.pixel_x = 12
