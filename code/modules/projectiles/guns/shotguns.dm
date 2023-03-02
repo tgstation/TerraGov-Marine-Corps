@@ -606,7 +606,7 @@
 //MBX900 Lever Action Shotgun
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX lever action shotgun"
-	desc = "A .410 bore lever action shotgun that fires nearly as fast as you can operate the lever. Renowed due to its devastating and extremely reliable design."
+	desc = "A .410 bore lever action shotgun that fires nearly as fast as you can operate the lever. Renowed due to its extremely reliable design while retaining a light frame. Uses .410 shells."
 	icon_state = "mbx900"
 	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
