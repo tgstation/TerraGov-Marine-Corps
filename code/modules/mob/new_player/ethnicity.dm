@@ -88,11 +88,6 @@
 	icon_name = "costalafrican"
 	ethnic_category = "African"
 
-/datum/ethnicity/persian
-	name = "Persian"
-	icon_name = "persian"
-	ethnic_category = "Middle Eastern"
-
 /datum/ethnicity/arabian
 	name = "Arabian"
 	icon_name = "arabian"
@@ -112,3 +107,8 @@
 	name = "Polynesian"
 	icon_name = "polynesian"
 	ethnic_category = "Oceania"
+
+/datum/ethnicity/mediterranean
+	name = "Mediterranean"
+	icon_name = "mediterranean"
+	ethnic_category = "Mediterranean"
