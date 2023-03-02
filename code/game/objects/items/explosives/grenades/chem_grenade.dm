@@ -109,8 +109,8 @@
 			return
 
 	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		stage_change(CG_WIRED)
-		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+		to_chat(user, span_notice("Patented marine-proof Dura-Cable prevents you from taking apart the grenade."))
+		return
 
 	else if(stage == CG_WIRED && I.tool_behaviour == TOOL_WRENCH)
 		if(length(beakers))
