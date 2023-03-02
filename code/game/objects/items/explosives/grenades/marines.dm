@@ -191,7 +191,7 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
 	smoke.set_up(smokeradius, loc, smoke_duration)
 	smoke.start()
 	qdel(src)
@@ -279,7 +279,7 @@
 	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
+	arm_sound = 'sound/weapons/armbombpin_1.ogg'
 
 /obj/item/explosive/grenade/impact
 	name = "\improper M40 IMDP grenade"
