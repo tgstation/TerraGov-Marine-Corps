@@ -1,0 +1,7 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscadd: "Adds shoulder mount, cloak and blood implant and RR heat, smoke, cloak and tfoot shells to Valhalla."
+  - rscadd: "Adds Garand and MBX and its shell types to Valhalla."
+  - qol: "Moves RR shells to the same position in the normal vendor along with its ammo."
+  - qol: "Moves tracker shells from valhalla req vendor to seasonals vendor for the MBX."
