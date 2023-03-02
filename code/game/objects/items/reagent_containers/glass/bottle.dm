@@ -225,7 +225,7 @@
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
 /obj/item/reagent_containers/glass/bottle/lemoline/doctor
-	desc = "A small bottle. Contains 30 units of lemoline, a reagent used in the creation of advanced medicine."
+	desc = "A small bottle. Contains 60 units of lemoline, a reagent used in the creation of advanced medicine."
 	list_reagents = list(/datum/reagent/medicine/lemoline = 60)
 
 /obj/item/reagent_containers/glass/bottle/doctor_delight
