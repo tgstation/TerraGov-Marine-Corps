@@ -24,7 +24,8 @@ SUBSYSTEM_DEF(sounds)
 	var/channel_reserve_high
 
 /datum/controller/subsystem/sounds/Initialize()
-	setup_available_channels()
+	if(!length(channel_list))
+		setup_available_channels()
 	return ..()
 
 /datum/controller/subsystem/sounds/proc/setup_available_channels()
@@ -120,15 +121,15 @@ SUBSYSTEM_DEF(sounds)
 /datum/controller/subsystem/sounds/proc/random_available_channel_text()
 	if(channel_random_low > channel_reserve_high)
 		channel_random_low = 1
-	. = "[channel_list[channel_random_low++]]"
+	. = "[random_available_channel()]"
 
 /// Random available channel, returns number
 /datum/controller/subsystem/sounds/proc/random_available_channel()
+	// This can get called before the subsystem is even actually initialized
+	if(!length(channel_list))
+		setup_available_channels()
 	if(channel_random_low > channel_reserve_high)
 		channel_random_low = 1
-	if(channel_random_low++ > length(channel_list))
-		. = channel_list[length(channel_list)]
-		return
 	. = channel_list[channel_random_low++]
 
 /// How many channels we have left.
