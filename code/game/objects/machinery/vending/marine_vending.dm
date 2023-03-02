@@ -63,7 +63,6 @@
 			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
-
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
