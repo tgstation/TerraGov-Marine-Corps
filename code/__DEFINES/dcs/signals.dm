@@ -795,9 +795,6 @@
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
 #define COMSIG_XENOABILITY_SPIDERLING_MARK "xenoability_spiderling_mark"
 
-// widow spiderling mark signals
-#define COMSIG_SPIDERLING_MARK "spiderling_mark"
-
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
@@ -908,3 +905,6 @@
 #define SPATIAL_GRID_CELL_ENTERED(contents_type) "spatial_grid_cell_entered_[contents_type]"
 ///Called from base of /datum/controller/subsystem/spatial_grid/proc/exit_cell: (/atom/movable)
 #define SPATIAL_GRID_CELL_EXITED(contents_type) "spatial_grid_cell_exited_[contents_type]"
+
+// widow spiderling mark signals
+#define COMSIG_SPIDERLING_MARK "spiderling_mark"

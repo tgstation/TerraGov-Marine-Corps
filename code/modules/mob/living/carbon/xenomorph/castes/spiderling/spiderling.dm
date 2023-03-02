@@ -30,7 +30,7 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
-	var/default_escorted_atom
+	var/datum/weakref/default_escorted_atom
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -43,6 +43,7 @@
 	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), .proc/toggle_rest)
 	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_MARK, .proc/decide_mark)
 
+/// Decides what to do when widow uses spiderling mark ability
 /datum/ai_behavior/spiderling/proc/decide_mark(source, atom/A)
 	SIGNAL_HANDLER
 	if(!A)
@@ -62,12 +63,6 @@
 /datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
 	SIGNAL_HANDLER
 	escorted_atom = default_escorted_atom
-
-/// Signal handler to apply resin jelly to the spiderling whenever widow gets it
-/datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
-	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/spiderling/beno_to_coat = mob_parent
-	beno_to_coat.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /datum/ai_behavior/spiderling/proc/obj_mark(source, obj/target)
 	SIGNAL_HANDLER
@@ -166,3 +161,9 @@
 		spiderling_parent.set_resting(FALSE)
 	else
 		spiderling_parent.set_resting(TRUE)
+
+/// Signal handler to apply resin jelly to the spiderling whenever widow gets it
+/datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/spiderling/beno_to_coat = mob_parent
+	beno_to_coat.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
