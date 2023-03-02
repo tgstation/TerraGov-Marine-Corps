@@ -1477,7 +1477,6 @@
 			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
 			/obj/item/weapon/gun/shotgun/zx76 = -1,
-			/obj/item/ammo_magazine/shotgun/tracker = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
 			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
 			/obj/item/ammo_magazine/rifle/autosniper = -1,
@@ -1638,6 +1637,7 @@
 			/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900 = -1,
 			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
+			/obj/item/ammo_magazine/shotgun/tracker = -1,
 		)
 	)
 
