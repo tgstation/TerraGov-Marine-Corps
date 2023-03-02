@@ -952,9 +952,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 5
 	max_range = 30
-	damage = 50
+	damage = 30
 	penetration = 40
-	sundering = 3
+	sundering = 1
+
+/datum/ammo/bullet/shotgun/mbx900_sabot/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
 	name = "light shotgun tracker round"
