@@ -275,6 +275,7 @@
 			continue
 		remaining_list -= remaining_spiderling
 		owner.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
+		ADD_TRAIT(remaining_spiderling, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	SEND_SIGNAL(owner, COMSIG_XENO_WIDOW_GRAB_SPIDERLINGS)
 	addtimer(CALLBACK(src, .proc/grab_spiderlings, remaining_list, number_of_attempts_left - 1), 1)
 
