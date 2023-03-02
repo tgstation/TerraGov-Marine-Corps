@@ -104,7 +104,7 @@
 
 	deployed_machine.update_icon_state()
 
-	item_to_deploy.forceMove(deployed_machine) //Moves the Item into the machine or structure
+	user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
 
