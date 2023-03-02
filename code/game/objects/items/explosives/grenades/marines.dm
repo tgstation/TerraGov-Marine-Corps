@@ -158,9 +158,8 @@
 	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
-	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE)
 	flame_radius(2, get_turf(src))
-	playsound(loc, "incendiary_explosion", 35)
+	playsound(loc, "molotov", 35)
 	qdel(src)
 
 /obj/item/explosive/grenade/ags

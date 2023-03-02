@@ -187,6 +187,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/machines/vending_cans.ogg', 'sound/machines/vending_drop.ogg')
 		if("incendiary_explosion")
 			S = pick('sound/effects/incendiary_explosion_1.ogg', 'sound/effects/incendiary_explosion_2.ogg', 'sound/effects/incendiary_explosion_3.ogg')
+		if("molotov")
+			S = pick('sound/effects/molotov_detonate_1.ogg', 'sound/effects/molotov_detonate_2.ogg', 'sound/effects/molotov_detonate_3.ogg')
 		// Weapons/bullets
 		if("ballistic_hit")
 			S = pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact3.ogg')
