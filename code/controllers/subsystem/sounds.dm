@@ -119,8 +119,6 @@ SUBSYSTEM_DEF(sounds)
 
 /// Random available channel, returns text.
 /datum/controller/subsystem/sounds/proc/random_available_channel_text()
-	if(channel_random_low > channel_reserve_high)
-		channel_random_low = 1
 	. = "[random_available_channel()]"
 
 /// Random available channel, returns number
