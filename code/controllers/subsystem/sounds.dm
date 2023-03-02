@@ -126,6 +126,9 @@ SUBSYSTEM_DEF(sounds)
 /datum/controller/subsystem/sounds/proc/random_available_channel()
 	if(channel_random_low > channel_reserve_high)
 		channel_random_low = 1
+	if(channel_random_low++ > length(channel_list))
+		. = channel_list[length(channel_list)]
+		return
 	. = channel_list[channel_random_low++]
 
 /// How many channels we have left.
