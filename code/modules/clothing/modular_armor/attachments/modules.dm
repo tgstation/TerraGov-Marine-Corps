@@ -429,7 +429,6 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
 	slot = ATTACHMENT_SLOT_CHESTPLATE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/style = "")
 
 	var/codex_info = {"<BR>This item is part of the <b>Style Line.</b><BR>
 	<BR>The <b>Style Line</b> is a line of equipment designed to provide as much style as possible without compromising the user's protection.
