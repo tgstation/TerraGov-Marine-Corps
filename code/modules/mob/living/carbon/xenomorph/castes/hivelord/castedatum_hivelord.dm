@@ -58,6 +58,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/Recycle,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,

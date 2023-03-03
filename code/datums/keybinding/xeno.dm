@@ -2,6 +2,12 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
+/datum/keybinding/xeno/Recycle
+	name = "Recycle"
+	full_name = "Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph for psy points and larva points"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+
 /datum/keybinding/xeno/headbite
 	name = "headbite"
 	full_name = "Headbite / Psydrain"
