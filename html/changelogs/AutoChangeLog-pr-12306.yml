@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - balance: "Vali boosting can't be toggled on while you're in crit"
