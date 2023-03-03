@@ -723,6 +723,12 @@ SUBSYSTEM_DEF(ru_items)
 	w_class = WEIGHT_CLASS_SMALL
 	used_casings = 5
 
+/obj/item/ammo_magazine/packet/t500/attack_hand_alternate(mob/living/user)
+	if(current_rounds <= 0)
+		to_chat(user, span_notice("[src] is empty. There is nothing to grab."))
+		return
+	create_handful(user)
+
 /obj/item/ammo_magazine/packet/t500/qk
 	name = "packet of .500 'Queen Killer'"
 	icon_state = "boxt500_qk"
