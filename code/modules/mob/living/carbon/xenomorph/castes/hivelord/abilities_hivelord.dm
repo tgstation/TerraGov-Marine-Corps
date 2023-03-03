@@ -46,7 +46,7 @@
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
-    	span_danger("We retract our inner jaw."), null, 20)
+		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
 		return FALSE
 	succeed_activate() //dew it
