@@ -199,6 +199,7 @@
 	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
 	var/static/image/intoxicated_high_image = image('icons/mob/hud.dmi', icon_state = "intoxicated_high")
 	var/static/image/hive_target_image = image('icons/mob/hud.dmi', icon_state = "hive_target")
+	var/static/image/medicalnanites_image = image('icons/mob/hud.dmi', icon_state = "nanites")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -209,6 +210,7 @@
 		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
 		var/ozelomelyn_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn)
 		var/jellyjuice_amount = reagents.get_reagent_amount(/datum/reagent/medicine/xenojelly)
+		var/medicalnanites_amount = reagents.get_reagent_amount(/datum/reagent/medicine/research/medicalnanites)
 
 		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
 			xeno_reagent.overlays += neurotox_high_image
@@ -235,6 +237,9 @@
 
 		if(jellyjuice_amount > 0) // Has no effect beyond having it in them, don't need to have a high image.
 			xeno_reagent.overlays += jellyjuice_image
+
+		if(medicalnanites_amount > 0)
+			xeno_reagent.overlays += medicalnanites_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
 
