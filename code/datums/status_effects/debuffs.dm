@@ -482,8 +482,8 @@
 /// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
 	if(!do_after(debuff_owner, 3 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
-		debuff_owner.balloon_alert("Interrupted")
+		debuff_owner.balloon_alert(debuff_owner, "Interrupted")
 		return
 	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
-	debuff_owner.balloon_alert("Succeeded")
+	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION

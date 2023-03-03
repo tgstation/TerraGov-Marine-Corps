@@ -889,7 +889,7 @@ SUBSYSTEM_DEF(ru_items)
 	item_icons = list(
 		slot_head_str = 'icons/mob/Banzai.dmi')
 	icon_state = "Banzai"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/list/armor_overlays
