@@ -1,15 +1,6 @@
 /mob/living/carbon/xenomorph/can_be_pulled(user, force)
 	return ..(user, move_resist) // xenos can always be pulled regardless of move force
 
-/mob/living/carbon/xenomorph/can_ventcrawl()
-	if(mob_size == MOB_SIZE_BIG || !(xeno_caste.can_flags & CASTE_CAN_VENT_CRAWL))
-		return FALSE
-	else
-		return TRUE
-
-/mob/living/carbon/xenomorph/ventcrawl_carry()
-	return TRUE
-
 /mob/living/carbon/human/get_reagent_tags()
 	. = ..()
 	return .|IS_XENO
