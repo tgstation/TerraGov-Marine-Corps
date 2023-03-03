@@ -73,7 +73,7 @@
 			SSpoints.add_psy_points(X.hivenumber,25)
 			xeno_job.add_job_points(4)
 			recycled_xeno.gib()
-		if(XENO_TIER_THREE)
+		if(XENO_TIER_FOUR)
 			SSpoints.add_psy_points(X.hivenumber,40)
 			xeno_job.add_job_points(8)
 			recycled_xeno.gib()
