@@ -99,35 +99,37 @@
 	. = ..()
 	if(.)
 		return
+	var/mob/user = usr
 	switch(action)
 		if("vend")
-			if(!allowed(usr))
-				to_chat(usr, span_warning("Access denied."))
+			if(!allowed(user))
+				balloon_alert(user, "Access denied.")
 				return
 
+			if(fabricating)
+				balloon_alert(user, "already fabricating")
+				return
 			var/idx = text2num(params["vend"])
 
 			var/list/L = listed_products[idx]
 			var/cost = L[2]
 
 			if(use_points && points < cost)
-				to_chat(usr, span_warning("Not enough points."))
-
+				balloon_alert(user, "Not enough points")
 
 			var/turf/T = get_turf(src)
 			if(length(T.contents) > 25)
-				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
+				balloon_alert(user, "not enough space")
 				return
-
 
 			if(use_points)
 				points -= cost
 
 			playsound(src, "sound/machines/fax.ogg", 5)
-			to_chat(usr, span_notice("The automated system clunks as it starts to vend something."))
+			balloon_alert(user, "fabricating")
 			fabricating = TRUE
 			update_overlays()
-			addtimer(CALLBACK(src, .proc/do_vend, L[3], usr), 3 SECONDS)
+			addtimer(CALLBACK(src, .proc/do_vend, L[3], user), 1 SECONDS)
 
 	updateUsrDialog()
 

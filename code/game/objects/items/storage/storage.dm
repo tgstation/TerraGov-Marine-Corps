@@ -618,7 +618,8 @@
 	if(!length(contents))
 		return FALSE //we don't want to equip the storage item itself
 	var/obj/item/W = contents[length(contents)]
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
@@ -828,8 +829,10 @@
 
 ///attempts to get the first possible object from this container
 /obj/item/storage/proc/attempt_draw_object(mob/living/user)
-	if(!ishuman(user) || user.incapacitated() || !length(contents) || isturf(loc))
+	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
+	if(!length(contents))
+		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]

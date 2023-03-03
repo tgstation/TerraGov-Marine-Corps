@@ -13824,7 +13824,7 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/rack,
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP,
-/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC,
+/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
 /obj/item/portable_vendor/marine/squadmarine/smartgunner,
 /obj/item/storage/box/m94,
 /obj/item/clothing/glasses/hud/xenohud,

@@ -544,14 +544,17 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp78
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp78)
 	force = 8
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	burst_delay = 0.3 SECONDS
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+
+/obj/item/weapon/gun/pistol/vp78/pmc
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/gyro, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //SOM pistol

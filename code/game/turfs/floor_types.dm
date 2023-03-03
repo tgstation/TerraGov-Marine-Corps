@@ -312,6 +312,8 @@
 /turf/open/floor/light/LateInitialize(mapload)
 	update_icon()
 
+/turf/open/floor/light/plating
+	icon_state = "plating"
 
 /turf/open/floor/wood
 	name = "floor"

@@ -83,7 +83,8 @@
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
 	var/can_flags = CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
-
+	// How long the hive must wait before a new one of this caste can evolve
+	var/death_evolution_delay = 0
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -234,6 +235,10 @@
 	var/water_slowdown = 1.3
 	///how much snow slows down this caste
 	var/snow_slowdown = 0.25
+	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
+	var/evolve_min_xenos = 0
+	// How many of this caste may be alive at once
+	var/maximum_active_caste = INFINITY
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)

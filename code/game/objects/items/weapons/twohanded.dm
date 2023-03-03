@@ -83,15 +83,11 @@
 	user.update_inv_r_hand()
 
 
-/obj/item/proc/toggle_wielded(user, new_value)
-	switch(new_value)
-		if(null)
-			flags_item ^= WIELDED
-		if(FALSE)
-			flags_item &= ~WIELDED
-		if(TRUE)
-			flags_item |= WIELDED
-
+/obj/item/proc/toggle_wielded(user, wielded)
+	if(wielded)
+		flags_item |= WIELDED
+	else
+		flags_item &= ~WIELDED
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
@@ -114,12 +110,9 @@
 
 	force = initial(force)
 
-
+// TODO port tg wielding component
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
-	if(ismonkey(user)) //TODO MAKE THIS A SPECIES FLAG
-		to_chat(user, span_warning("It's too heavy for you to wield fully!"))
-		return
 
 	if(flags_item & WIELDED)
 		unwield(user)

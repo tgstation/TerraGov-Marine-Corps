@@ -17,7 +17,9 @@
 	var/obj/item/clothing/under/uniform_to_copy = item_to_copy
 	current_variant = uniform_to_copy.current_variant
 	for(var/key in uniform_to_copy.attachments_by_slot)
-		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
+		if(!isitem(uniform_to_copy.attachments_by_slot[key]))
+			continue
+		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/greyscale))
 			attachments += new /datum/item_representation/armor_module/colored(uniform_to_copy.attachments_by_slot[key])
 			continue
 		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))

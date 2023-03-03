@@ -169,8 +169,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE)
-	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE, max_limbs = 4)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)

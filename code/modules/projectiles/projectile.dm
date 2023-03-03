@@ -50,7 +50,7 @@
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
-	var/def_zone = "chest"	//So we're not getting empty strings.
+	var/def_zone = BODY_ZONE_CHEST	//So we're not getting empty strings.
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
@@ -800,7 +800,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		if(proj.ammo.sound_miss)
-			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1)
+			var/pitch = 0
+			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
+			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
 		on_dodged_bullet(proj)
 
 	return FALSE
@@ -854,6 +857,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
+	SHOULD_CALL_PARENT(TRUE)
 	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
 		proj.damage *= proj.ammo.on_pierce_multiplier
 		proj.penetration *= proj.ammo.on_pierce_multiplier
@@ -1296,7 +1300,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!P.ammo.ping)
 		return
 	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
+		if(P.ammo.sound_bounce)
+			var/pitch = 0
+			if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
+			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
 		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
 		if(prob(60))

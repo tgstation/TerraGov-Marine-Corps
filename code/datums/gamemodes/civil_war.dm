@@ -1,8 +1,7 @@
 /datum/game_mode/civil_war
 	name = "Civil War"
 	config_tag = "Civil War"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_NO_PERMANENT_WOUNDS
-	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
+	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_NO_PERMANENT_WOUNDS|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 18 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	respawn_time = 5 MINUTES
@@ -71,7 +70,6 @@
 		new /obj/structure/sensor_tower(T)
 	if(GLOB.zones_to_control.len)
 		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
-	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")

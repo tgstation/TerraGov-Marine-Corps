@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15))
 
-//The main object, should be an abstract class
+//The main object, should be an abstract class // todo delete me
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
@@ -421,10 +421,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		return FALSE
 
 	return ..()
-
-//For the next few, we're just tossing the handling up to the rot object
-/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(obj/projectile/P)
-	return root.bullet_act(P)
 
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)

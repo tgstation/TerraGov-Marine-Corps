@@ -226,7 +226,7 @@
 
 
 ///Damages all limbs equally. Overridden by human, otherwise just does apply_damage
-/mob/living/proc/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/proc/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, max_limbs)
 	return apply_damage(damage, damagetype, null, armortype, sharp, edge, updating_health, penetration)
 
 /mob/living/proc/restore_all_organs()
@@ -366,7 +366,7 @@
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
 	plasma_stored = xeno_caste.plasma_max
-	stagger = 0
+	set_stagger(0)
 	sunder = 0
 	set_slowdown(0)
 	if(stat == DEAD)

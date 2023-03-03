@@ -1218,10 +1218,10 @@
 /area/oscar_outpost/village)
 "iK" = (
 /obj/structure/closet/crate,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "iL" = (
@@ -1815,9 +1815,7 @@
 "np" = (
 /obj/machinery/power/apc/hyper,
 /obj/structure/cable,
-/obj/effect/spawner/random/structure/powergenerator/superweighted{
-	power_gen = 25000
-	},
+/obj/effect/spawner/random/structure/powergenerator/superweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "nt" = (
@@ -3433,10 +3431,10 @@
 /area/oscar_outpost/village/central)
 "xK" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
+/obj/item/explosive/grenade/pmc,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "xN" = (

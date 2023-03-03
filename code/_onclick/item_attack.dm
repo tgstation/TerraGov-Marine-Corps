@@ -152,13 +152,14 @@
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Can't attack the incorporeal
+	// TODO terrible placement move this up the stack or something
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
 		return FALSE
+
+	if(M.can_be_operated_on() && do_surgery(M, user, src)) //Checks if mob is lying down on table for surgery
+		return TRUE
 
 	if(flags_item & NOBLUDGEON)
-		return FALSE
-
-	if(M.can_be_operated_on() && do_surgery(M,user,src)) //Checks if mob is lying down on table for surgery
 		return FALSE
 
 	if(!force)

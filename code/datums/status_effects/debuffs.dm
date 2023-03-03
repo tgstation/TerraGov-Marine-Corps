@@ -153,6 +153,44 @@
 		if(prob(10) && owner.health > owner.health_threshold_crit)
 			owner.emote("snore")
 
+///Basically a temporary self-inflicted shutdown for maintenance
+/datum/status_effect/incapacitating/repair_mode
+	id = "repairing"
+	tick_interval = 1 SECONDS
+	///How much brute or burn per second
+	var/healing_per_tick = 4
+	///Whether the last tick made a sound effect or not
+	var/last_sound
+
+/datum/status_effect/incapacitating/repair_mode/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.disabilities |= BLIND
+	owner.blind_eyes(1)
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/repair_mode/on_remove()
+	owner.disabilities &= ~BLIND
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/datum/status_effect/incapacitating/repair_mode/tick()
+	var/sound_to_play
+	if(owner.getBruteLoss())
+		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
+		sound_to_play = 'sound/effects/robotrepair.ogg'
+	else if(owner.getFireLoss())
+		owner.heal_limb_damage(0, healing_per_tick, TRUE, TRUE)
+		sound_to_play = 'sound/effects/robotrepair2.ogg'
+	if(!sound_to_play || last_sound)
+		last_sound = FALSE
+		return
+	last_sound = TRUE
+	playsound(owner, sound_to_play, 50)
+
 
 
 /**

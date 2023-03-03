@@ -272,7 +272,7 @@
 			if(human_caught.hard_armor.getRating(FIRE) >= 100)
 				continue
 
-		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -559,32 +559,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		A.flamer_fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
-
-// override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel)
-	if(!burnlevel)
-		return
-	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
-		return
-	if(hard_armor.getRating(FIRE) >= 100)
-		to_chat(src, span_warning("Your suit protects you from the flames."))
-		return
-
-	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
-	to_chat(src, span_warning("You are burned!"))
-
-	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
-		return
-
-	adjust_fire_stacks(burnlevel)
-	IgniteMob()
-
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	if(get_fire_resist() <= 0)
-		return
-	. = ..()
 
 /obj/item/weapon/gun/flamer/hydro_cannon
 	name = "underslung hydrocannon"

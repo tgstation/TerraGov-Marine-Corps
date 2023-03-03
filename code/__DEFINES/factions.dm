@@ -11,6 +11,7 @@
 #define FACTION_NANOTRASEN "Nanotrasen"
 #define FACTION_SECTOIDS "Sectoids"
 #define FACTION_SOM "Sons of Mars"
+#define FACTION_ICC "Independent Colonial Confederation"
 #define FACTION_USL "United Space Lepidoptera"
 #define FACTION_ALIEN "Alien"
 #define FACTION_SPIDER "Spider"
@@ -40,6 +41,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_UNKN_MERCS = ALIGNEMENT_HOSTILE,
 	FACTION_SECTOIDS = ALIGNEMENT_HOSTILE,
 	FACTION_SOM = ALIGNEMENT_HOSTILE,
+	FACTION_ICC = ALIGNEMENT_HOSTILE,
 	FACTION_USL = ALIGNEMENT_HOSTILE,
 	FACTION_ALIEN = ALIGNEMENT_HOSTILE,
 	FACTION_SPIDER = ALIGNEMENT_HOSTILE,
@@ -54,6 +56,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 #define SON_OF_MARS_IFF (1 << 1)
 #define TGMC_REBEL_IFF (1 << 2)
 #define DEATHSQUAD_IFF (1 << 3)
+#define ICC_IFF (1 << 4)
 
 //Iff for each faction that is able to use iff
 GLOBAL_LIST_INIT(faction_to_iff, list(
@@ -64,6 +67,7 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_FREELANCERS = TGMC_LOYALIST_IFF,
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_SOM = SON_OF_MARS_IFF,
+	FACTION_ICC = ICC_IFF,
 ))
 
 //List of correspond factions to data hud
