@@ -116,7 +116,7 @@
 /datum/chemical_reaction/synaptizine
 	name = "Synaptizine"
 	results = list(/datum/reagent/medicine/synaptizine = 3)
-	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/leporazine
 	name = "Leporazine"
@@ -163,7 +163,7 @@
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
+	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
 
 /datum/chemical_reaction/lemoline
 	name = "Lemoline catalysis"
@@ -220,4 +220,4 @@
 /datum/chemical_reaction/stimulum
 	name = "Stimulum"
 	results = list(/datum/reagent/medicine/research/stimulon = 1)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)
+	required_reagents = list(/datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)
