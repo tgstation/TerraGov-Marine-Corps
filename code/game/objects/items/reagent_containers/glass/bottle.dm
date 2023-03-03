@@ -216,7 +216,7 @@
 	name = "\improper Polyhexanide bottle"
 	desc = "A small bottle. Contains one and a half doses of polyhexanide, a sterilizer for internal surgical use."
 	icon_state = "bottle2"
-	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
+	list_reagents = list(/datum/reagent/medicine/polyhexanide = 60)
 
 /obj/item/reagent_containers/glass/bottle/lemoline
 	name = "\improper Lemoline bottle"
