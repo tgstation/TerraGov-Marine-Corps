@@ -8,7 +8,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/Recycle
 	name = "Recycle"
-	action_icon_state = "regurgitate"
+	action_icon_state = "recycle"
 	desc = "We devour the body of a fellow fallen xeno. Gaining psy points and larva points for it."
 	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
@@ -43,7 +43,7 @@
 	X.visible_message(span_warning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
 	span_danger("We slowly feast upon \the [victim]'s carcass!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
+	playsound(X, 'sound/vore/eating.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
