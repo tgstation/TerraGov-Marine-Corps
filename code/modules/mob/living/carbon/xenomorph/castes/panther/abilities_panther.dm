@@ -73,10 +73,10 @@
 /datum/action/xeno_action/activable/adrenalinejump
 	name = "Adrenaline Jump"
 	action_icon_state = "adrenaline_jump"
-	desc = "Jump from some distance to target, knocking them down and pulling them to you, only works if you are at least 3 meters away from the target, this ability sends Pounce on cooldown."
+	desc = "Jump from some distance to target, knocking them down and pulling them to you, only works if you are at least from 3 to 8 meters away from the target, this ability sends Pounce on cooldown."
 	ability_name = "adrenaline jump"
-	plasma_cost = 10
-	cooldown_timer = 13 SECONDS
+	plasma_cost = 15
+	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADRENALINE_JUMP,
 	)
@@ -94,7 +94,7 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 18)
+	if(get_dist_euclide_square(A, owner) > 64) //8 tiles range
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
@@ -114,7 +114,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.visible_message(span_xenowarning("\The [X] jump towards [A]!"), \
-	span_xenowarning("We lunge at [A]!"))
+	span_xenowarning("We jump at [A]!"))
 
 	lunge_target = A
 
@@ -161,7 +161,7 @@
 	X.face_atom(lunge_target) //Face towards the victim
 
 	X.visible_message(span_xenowarning("\The [X] effortlessly flings [lunge_target] away!"), \
-	span_xenowarning("We effortlessly fling [lunge_target] away!"))
+	span_xenowarning("We effortlessly trip [lunge_target] away!"))
 	playsound(lunge_target,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	var/turf/T = X.loc
@@ -474,7 +474,7 @@
 /datum/action/xeno_action/select_reagent/panther
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	desc = "Selects which reagent to use for tearing tail. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
+	desc = "Selects which reagent to use for tearing tail. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration. Ozelomelyn purges medical chemicals from humans, while also causing slight intoxication. Sanguinal does damage depending on presence and amount of all previously mentioned reagents, also causes light brute damage and bleeding."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
