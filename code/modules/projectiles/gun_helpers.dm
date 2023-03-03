@@ -65,7 +65,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
-	if(user.skills.getRating("police") >= SKILL_POLICE_MP)
+	if(user.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 		return TRUE
 	if(user.mind && allowed(user))
 		return TRUE
@@ -111,11 +111,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
-	if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
+	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_FIREARMS) * 5)
 	if(length_char(chamber_items))
 		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 			return

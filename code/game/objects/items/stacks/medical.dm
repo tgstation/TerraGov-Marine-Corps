@@ -85,7 +85,7 @@
 			to_chat(user, span_notice("\The [affecting.display_name] is cut open, you'll need more than a bandage!"))
 		return
 
-	var/unskilled_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
+	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
 	var/affected = heal_limb(affecting, unskilled_penalty)
 
 	generate_treatment_messages(user, patient, affecting, affected)

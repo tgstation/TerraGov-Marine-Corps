@@ -949,7 +949,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, span_warning("This limb is already splinted!"))
 		return FALSE
 
-	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
+	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating(SKILL_MEDICAL) * 5)
 	var/text1 = span_warning("[user] finishes applying [S] to [target]'s [display_name].")
 	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
 
