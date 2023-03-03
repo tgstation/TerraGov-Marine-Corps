@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "You can only attach a back-worn mag to a gun while you're carrying both"
+  - bugfix: "Flamers will disconnect from a backtank when deployed as a sentry"
