@@ -409,7 +409,7 @@
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
-	new obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 	for(var/obj/structure/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
