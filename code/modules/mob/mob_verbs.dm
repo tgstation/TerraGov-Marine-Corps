@@ -107,7 +107,7 @@
 		do_eord_respawn(usr)
 
 /**
- * Grabs a mob, if it's human, continue, if it's not, creates a human mob and transfers the mind there. Proceeds to outfit it with the loadout of various factions.
+ * Grabs a mob, if it's human, check uniform, if it has one just stops there, otherwise proceeds. if it's not human, creates a human mob and transfers the mind there. Proceeds to outfit either result with the loadout of various factions.
  * 7% chance to be a separate rare strong or funny faction. Tiny additional 2% chance if that procs to be a deathsquad!
  * SOM and TG loadouts are handled differently, taking subtypes from the HvH loadout sets.
  */
@@ -115,14 +115,17 @@
 
 	var/spawn_location = pick(GLOB.deathmatch)
 	var/mob/living/carbon/human/eord_body
-	if(ishuman(respawner))
+	if(ishuman(respawner) && !is_centcom_level(respawner.z)) // Wont take
 		eord_body = respawner
 		eord_body.forceMove(spawn_location)
-
+		eord_body.revive()
+		if(eord_body.w_uniform)
+			return
 	else
 		eord_body = new(spawn_location)
 		respawner.mind.transfer_to(eord_body, TRUE)
-	eord_body.revive()
+		eord_body.revive()
+
 	eord_body.mind.bypass_ff = TRUE
 
 	// List of base choosable factions, taken job is a subtype of these.

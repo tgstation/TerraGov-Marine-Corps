@@ -333,8 +333,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			if(!H.w_uniform)
-				do_eord_respawn(H)
+			do_eord_respawn(H)
 
 		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
