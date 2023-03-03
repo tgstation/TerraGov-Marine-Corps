@@ -405,7 +405,7 @@
 	var/obj/flamer_fire/old_fire = locate(/obj/flamer_fire) in src
 	if(old_fire)
 		var/new_fire_level = min(fire_lvl + old_fire.firelevel, fire_lvl * 2)
-		var/new_burn_level = min(burn_lvl + old_fire.burnlevel, burn_lvl * 2)
+		var/new_burn_level = min(burn_lvl + old_fire.burnlevel, burn_lvl * 1.5)
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
