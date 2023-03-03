@@ -1,6 +1,3 @@
-
-
-
 /datum/surgery_step/cut_limb
 	can_infect = 1
 	allowed_tools = list(
