@@ -460,8 +460,11 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
-	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
-	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
+	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
+	var/firelevel = 12
+	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
+	var/burnlevel = 10
+	///The color the flames and associated particles appear
 	var/flame_color = "red"
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
