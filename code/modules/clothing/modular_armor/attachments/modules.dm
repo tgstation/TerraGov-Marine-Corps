@@ -442,16 +442,22 @@
 
 /obj/item/armor_module/module/style/light_armor
 	name = "\improper Light Armor Equalizer"
+	icon_state = "style_light"
+	item_state = "style_light_a"
 	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/armor_module/module/style/medium_armor
 	name = "\improper Medium Armor Equalizer"
+	icon_state = "style_medium"
+	item_state = "style_medium_a"
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/armor_module/module/style/heavy_armor
 	name = "\improper Heavy Armor Equalizer"
+	icon_state = "style_heavy"
+	item_state = "style_heavy_a"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
