@@ -209,7 +209,7 @@
 
 /obj/effect/particle_effect/smoke/bad
 	lifetime = 8
-	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS
+	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS|SMOKE_EXTINGUISH
 
 /////////////////////////////////////////////
 // Cloak Smoke
