@@ -99,6 +99,11 @@
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
 
+	if(!line_of_sight(A, owner))
+		if(!silent)
+			owner.balloon_alert(owner, "We need clear jump line!")
+		return FALSE
+
 	if(!isliving(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't jump at that!"))
@@ -161,8 +166,8 @@
 
 	X.face_atom(lunge_target) //Face towards the victim
 
-	X.visible_message(span_xenowarning("\The [X] effortlessly flings [lunge_target] away!"), \
-	span_xenowarning("We effortlessly trip [lunge_target] away!"))
+	X.visible_message(span_xenowarning("\The [X] effortlessly trips [lunge_target] !"), \
+	span_xenowarning("We effortlessly trip [lunge_target] !"))
 	playsound(lunge_target,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	X.do_attack_animation(lunge_target, ATTACK_EFFECT_DISARM2)
