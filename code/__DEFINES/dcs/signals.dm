@@ -639,7 +639,7 @@
 
 // xeno abilities for keybindings
 
-#define COMSIG_XENOABILITY_RECYCLE "xenoability_Recycle"
+#define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
 #define COMSIG_XENOABILITY_REST "xenoability_rest"
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"

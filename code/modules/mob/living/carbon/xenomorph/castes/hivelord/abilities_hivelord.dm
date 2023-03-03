@@ -27,8 +27,8 @@
 		X.balloon_alert(X, "Busy")
 		return FALSE
 	if(!X.Adjacent(victim))
- 		X.balloon_alert(X, "Too far")
- 		return FALSE
+		X.balloon_alert(X, "Too far")
+		return FALSE
 	if(X.on_fire)
 		X.balloon_alert(X, "Cannot while burning")
 		return FALSE

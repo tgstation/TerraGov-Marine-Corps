@@ -2,7 +2,7 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
-/datum/keybinding/xeno/Recycle
+/datum/keybinding/xeno/recycle
 	name = "Recycle"
 	full_name = "Recycle xenomorph"
 	description = "Recycles a fellow dead xenomorph for psy points and larva points"
