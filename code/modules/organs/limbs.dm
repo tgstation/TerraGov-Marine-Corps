@@ -946,7 +946,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		target.balloon_alert(user, "current splint is better")
 		return FALSE
 
-	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
+	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating(SKILL_MEDICAL) * 5)
 	if(target == user)
 		delay *= 3
 

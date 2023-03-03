@@ -342,7 +342,7 @@
 	. = ..()
 	if(.)
 		return
-	if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED)
+	if(user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
 		balloon_alert(user, "skill issue")
 		return
 
