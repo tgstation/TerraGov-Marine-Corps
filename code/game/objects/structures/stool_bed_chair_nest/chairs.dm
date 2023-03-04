@@ -91,10 +91,10 @@
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to weld down \the [src]."),
 			span_notice("You fumble around figuring out how to weld down \the [src]."))
-			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer"))
+			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
