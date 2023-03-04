@@ -2275,6 +2275,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/south)
 "kO" = (
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -8934,6 +8935,7 @@
 	},
 /area/outpost/science/hydponics)
 "Pi" = (
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/dark/purple2{
 	dir = 6
 	},
@@ -10451,6 +10453,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/outpost/yard/south_east)
 "VO" = (
+/obj/machinery/prop/r_n_d/server,
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
 	},
@@ -10597,6 +10600,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Ww" = (
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/research)
 "Wx" = (

@@ -67400,6 +67400,9 @@
 /area/deltastation/science/server)
 "nNR" = (
 /obj/structure/cable,
+/obj/machinery/prop/computer/rdservercontrol{
+	dir = 4
+},
 /obj/effect/spawner/random/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/security/range)

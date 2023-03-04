@@ -1676,7 +1676,8 @@
 
 /obj/effect/spawner/random/structure/random_broken_computer/rdconsole
 	loot = list(
-		/obj/effect/spawner/random/structure/random_broken_computer = 100,
+		/obj/machinery/computer/rdconsole = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer = 15,
 	)
 
 /obj/effect/spawner/random/structure/random_broken_computer/medicalrecords

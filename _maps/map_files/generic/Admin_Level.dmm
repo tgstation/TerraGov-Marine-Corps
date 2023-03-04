@@ -544,6 +544,7 @@
 /turf/open/space/basic,
 /area/space)
 "aHO" = (
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},

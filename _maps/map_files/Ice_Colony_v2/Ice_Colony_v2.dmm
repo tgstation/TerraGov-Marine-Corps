@@ -15896,6 +15896,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
