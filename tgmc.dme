@@ -644,7 +644,6 @@
 #include "code\game\objects\items\stock_parts.dm"
 #include "code\game\objects\items\suit_cooling.dm"
 #include "code\game\objects\items\taperecorder.dm"
-#include "code\game\objects\items\teleportation.dm"
 #include "code\game\objects\items\transfer_valve.dm"
 #include "code\game\objects\items\trash.dm"
 #include "code\game\objects\items\violin.dm"
