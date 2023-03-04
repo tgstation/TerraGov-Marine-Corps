@@ -1338,3 +1338,25 @@
 		if (21 to INFINITY)
 			L.jitter(5)
 	return ..()
+
+/datum/reagent/medicine/research/jitterium
+	name = "Jitterium"
+	description = "Makes you jitter, not much else. Take more jitterium to jitter more."
+	color = "#6D33A6"
+	scannable = TRUE
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	custom_metabolism = REAGENTS_METABOLISM * 0.125 //Same as Paracetamol
+
+/datum/reagent/medicine/research/jitterium/on_mob_life(mob/living/L, metabolism)
+	. = ..()
+	L.jitter(5)
+
+/datum/reagent/medicine/research/jitterium/overdose_process(mob/living/L, metabolism)
+	. = ..()
+	L.jitter(20)
+
+/datum/reagent/medicine/research/jitterium/overdose_crit_process(mob/living/L, metabolism)
+	. = ..()
+	L.jitter(50)
+

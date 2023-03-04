@@ -242,3 +242,8 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+/obj/item/reagent_containers/pill/jitterium
+	pill_desc = "A Jitterium pill. Guaranteed to make you jitter... that's it, that's all it does."
+	list_reagents = list(/datum/reagent/medicine/research/jitterium = 15)
+	pill_id = 10

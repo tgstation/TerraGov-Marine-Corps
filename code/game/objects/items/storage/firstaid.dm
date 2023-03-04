@@ -479,6 +479,15 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 	greyscale_colors = "#ef3ad4#ffffff"
 
+/obj/item/storage/pill_bottle/jitterium
+	name = "jitterium pill bottle"
+	desc = "Contains pills that make you jittery."
+	icon_state = "pill_canistercomplete"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/jitterium
+	greyscale_colors = "#6D33A6#ffffff"
+	greyscale_config = /datum/greyscale_config/pillbottleround
+	description_overlay = "Jit"
+
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)

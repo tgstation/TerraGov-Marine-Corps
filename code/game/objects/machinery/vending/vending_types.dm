@@ -200,6 +200,7 @@
 			/obj/item/storage/pill_bottle/quickclot = 6,
 			/obj/item/storage/pill_bottle/hypervene = 6,
 			/obj/item/storage/pill_bottle/russian_red = 6,
+			/obj/item/storage/pill_bottle/jitterium = 6,
 		),
 		"Misc" = list(
 			/obj/item/reagent_containers/syringe = -1,
@@ -269,6 +270,7 @@
 			/obj/item/storage/pill_bottle/quickclot = -1,
 			/obj/item/storage/pill_bottle/hypervene = -1,
 			/obj/item/storage/pill_bottle/russian_red = -1,
+			/obj/item/storage/pill_bottle/jitterium = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
