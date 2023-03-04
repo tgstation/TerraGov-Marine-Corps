@@ -678,8 +678,9 @@
 	if(modifiers["shift"])
 		return
 
-	if(modifiers["right"])
+	if(modifiers["right"] || modifiers["middle"])
 		modifiers -= "right"
+		modifiers -= "middle"
 		params = list2params(modifiers)
 		active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
 		return
