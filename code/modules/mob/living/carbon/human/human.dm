@@ -346,7 +346,7 @@
 						to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
+			if(!usr.do_actions || usr.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -734,7 +734,7 @@
 		return
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
-	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return

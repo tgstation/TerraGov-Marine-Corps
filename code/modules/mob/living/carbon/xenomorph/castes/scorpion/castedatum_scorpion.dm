@@ -26,6 +26,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 15, FIRE = 15, ACID = 15)

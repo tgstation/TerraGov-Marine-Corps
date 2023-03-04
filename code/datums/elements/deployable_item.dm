@@ -105,9 +105,11 @@ GLOBAL_LIST_EMPTY(deployable_items)
 
 	deployed_machine.update_icon_state()
 
-	item_to_deploy.forceMove(deployed_machine) //Moves the Item into the machine or structure
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
+		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
+	else
+		item_to_deploy.forceMove(deployed_machine)
 
 	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
