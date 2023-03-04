@@ -3105,7 +3105,6 @@
 	},
 /area/icy_caves/outpost/medbay)
 "qY" = (
-/obj/machinery/computer/rdconsole,
 /turf/open/floor/tile/dark/purple2{
 	dir = 10
 	},
@@ -3115,7 +3114,6 @@
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
 "ra" = (
-/obj/machinery/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
 "rb" = (

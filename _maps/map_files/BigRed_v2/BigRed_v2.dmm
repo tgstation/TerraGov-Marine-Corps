@@ -217,7 +217,6 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "adK" = (
-/obj/machinery/computer/rdconsole,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "adQ" = (
@@ -2822,7 +2821,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "azi" = (
-/obj/machinery/r_n_d/protolathe,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -6701,7 +6699,6 @@
 /turf/closed/wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxO" = (
-/obj/machinery/r_n_d/protolathe,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -6970,7 +6967,6 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAf" = (
-/obj/machinery/r_n_d/server,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAg" = (

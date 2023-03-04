@@ -32785,15 +32785,6 @@
 /area/deltastation/medical/chemistry)
 "gBv" = (
 /obj/structure/table/reinforced,
-/obj/item/disk/tech_disk{
-	pixel_x = -6
-	},
-/obj/item/disk/tech_disk{
-	pixel_x = 6
-	},
-/obj/item/disk/tech_disk{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
@@ -67400,9 +67391,6 @@
 	},
 /area/deltastation/engineering/atmos)
 "nNF" = (
-/obj/machinery/computer/rdservercontrol{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/alarm{
 	dir = 4
@@ -118513,15 +118501,6 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/paperbin,
-/obj/item/disk/tech_disk{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/disk/tech_disk{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/disk/tech_disk,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/qm)
 "xRG" = (
