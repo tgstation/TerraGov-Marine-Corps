@@ -19,7 +19,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
 	)
 	///What skill is needed to have this action
-	var/skill_name = "leadership"
+	var/skill_name = SKILL_LEADERSHIP
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_EXPERT
 

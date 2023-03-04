@@ -97,6 +97,7 @@
 	var/resting = FALSE
 
 	var/list/icon/pipes_shown = list()
+	/// TODO MAKE ME A TRAIT
 	var/is_ventcrawling
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base

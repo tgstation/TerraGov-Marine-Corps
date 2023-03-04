@@ -143,7 +143,7 @@
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	///Skill used to operate this gun.
-	var/gun_skill_category = GUN_SKILL_RIFLES
+	var/gun_skill_category = SKILL_RIFLES
 
 	///the default gun icon_state. change to reskin the gun
 	var/base_gun_icon
@@ -373,7 +373,7 @@
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
-		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
+		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, SKILL_FIREARMS, SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -631,7 +631,7 @@
 
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		wdelay += 0.3 SECONDS //no training in any firearms
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
@@ -1215,7 +1215,8 @@
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
 		var/flags_magazine_features = get_flags_magazine_features(new_mag)
-		if(flags_magazine_features && CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
+		if(flags_magazine_features && CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN) && ((loc != user) || (new_mag.loc != user)))
+			to_chat(user, span_warning("You need to be carrying both [src] and [new_mag] to connect them!"))
 			return FALSE
 		if(get_magazine_reload_delay(new_mag) > 0 && user && !force)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
@@ -1621,14 +1622,14 @@
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
 	if(user)
-		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
+		if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
-				if(GUN_SKILL_HEAVY_WEAPONS)
+				if(SKILL_HEAVY_WEAPONS)
 					if(fire_delay > 1 SECONDS) //long delay to fire
 						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-				if(GUN_SKILL_SMARTGUN)
+				if(SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 	var/delay = last_fired + added_delay
@@ -1705,7 +1706,7 @@
 
 	if(gun_user)
 		//firearm skills modifiers
-		if(gun_user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
+		if(gun_user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
 			gun_accuracy_mult += -0.15
 			gun_scatter += 10
 		else
@@ -1737,7 +1738,7 @@
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
+	if(!gun_user.skills.getRating(SKILL_FIREARMS)) //no training in any firearms
 		total_recoil += 2
 	else
 		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)

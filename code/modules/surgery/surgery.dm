@@ -134,10 +134,10 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			if(SURGERY_INVALID)
 				return TRUE
 
-		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
+		if(user.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_PROFESSIONAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 			span_notice("You fumble around figuring out how to operate [M]."))
-			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
+			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating(SKILL_SURGERY) )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
 			if(fumbling_time && !do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 				return TRUE
 
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			multipler = 1
 
 		//calculate step duration
-		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
+		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
 
 		//Multiply tool success rate with multipler
 		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))

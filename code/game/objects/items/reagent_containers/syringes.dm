@@ -65,7 +65,7 @@
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
 		var/mob/M = target
 		var/mob/living/L = user
-		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
+		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
 			L.Paralyze(60)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			M.visible_message(span_danger("[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!"), \
@@ -76,7 +76,7 @@
 		syringestab(target, user)
 		return
 
-	var/injection_time = max(0.5 SECONDS, 5 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
+	var/injection_time = max(0.5 SECONDS, 5 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
 	switch(mode)
 		if(SYRINGE_DRAW)
