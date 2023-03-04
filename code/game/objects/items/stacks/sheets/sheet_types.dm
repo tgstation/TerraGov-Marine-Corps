@@ -63,7 +63,6 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	materials = list(/datum/material/metal = 4000)
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
@@ -118,7 +117,6 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	materials = list(/datum/material/metal = 7500)
 	throwforce = 15.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel

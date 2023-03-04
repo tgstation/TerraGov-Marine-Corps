@@ -2,7 +2,6 @@
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
-	materials = list(/datum/material/metal = 1000, /datum/material/glass = 500)
 	is_position_sensitive = TRUE
 
 	var/on = FALSE
@@ -12,7 +11,6 @@
 	var/olddir = 0
 	var/turf/listeningTo
 	var/hearing_range = 3
-
 
 /obj/item/assembly/infra/Initialize()
 	. = ..()
@@ -26,10 +24,8 @@
 		CALLBACK(src,.proc/after_rotation)\
 		)
 
-
 /obj/item/assembly/infra/proc/after_rotation()
 	refreshBeam()
-
 
 /obj/item/assembly/infra/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -37,11 +33,9 @@
 	QDEL_LIST(beams)
 	return ..()
 
-
 /obj/item/assembly/infra/examine(mob/user)
 	. = ..()
 	. += span_notice("The infrared trigger is [on?"on":"off"].")
-
 
 /obj/item/assembly/infra/activate()
 	. = ..()
@@ -51,7 +45,6 @@
 	refreshBeam()
 	update_icon()
 	return TRUE
-
 
 /obj/item/assembly/infra/toggle_secure()
 	secured = !secured
@@ -63,7 +56,6 @@
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	return secured
-
 
 /obj/item/assembly/infra/update_icon()
 	cut_overlays()
@@ -78,7 +70,6 @@
 	if(holder)
 		holder.update_icon()
 
-
 /obj/item/assembly/infra/dropped()
 	. = ..()
 	if(holder)
@@ -86,12 +77,10 @@
 	else
 		refreshBeam()
 
-
 /obj/item/assembly/infra/process()
 	if(!on || !secured)
 		refreshBeam()
 		return
-
 
 /obj/item/assembly/infra/proc/refreshBeam()
 	QDEL_LIST(beams)
@@ -130,29 +119,24 @@
 			_T = get_step(_T, _dir)
 			CHECK_TICK
 
-
 /obj/item/assembly/infra/on_detach()
 	. = ..()
 	if(!.)
 		return
 	refreshBeam()
 
-
 /obj/item/assembly/infra/attack_hand(mob/living/user)
 	. = ..()
 	refreshBeam()
-
 
 /obj/item/assembly/infra/Moved()
 	var/t = dir
 	. = ..()
 	setDir(t)
 
-
 /obj/item/assembly/infra/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
 	. = ..()
 	olddir = dir
-
 
 /obj/item/assembly/infra/throw_impact(atom/hit_atom)
 	. = ..()
@@ -160,7 +144,6 @@
 		return
 	setDir(olddir)
 	olddir = null
-
 
 /obj/item/assembly/infra/proc/trigger_beam(atom/movable/AM, turf/location)
 	refreshBeam()
@@ -175,7 +158,6 @@
 			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	next_activate =  world.time + 30
 
-
 /obj/item/assembly/infra/proc/switchListener(turf/newloc)
 	if(listeningTo == newloc)
 		return
@@ -183,7 +165,6 @@
 		UnregisterSignal(listeningTo, COMSIG_ATOM_EXITED)
 	RegisterSignal(newloc, COMSIG_ATOM_EXITED, .proc/check_exit)
 	listeningTo = newloc
-
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender, direction)
 	SIGNAL_HANDLER_DOES_SLEEP
@@ -197,7 +178,6 @@
 			return
 	return refreshBeam()
 
-
 /obj/item/assembly/signaler/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -207,7 +187,6 @@
 		return FALSE
 
 	return TRUE
-
 
 /obj/item/assembly/infra/interact(mob/user)
 	. = ..()
@@ -222,7 +201,6 @@
 	var/datum/browser/popup = new(user, "infra", name)
 	popup.set_content(dat)
 	popup.open()
-
 
 /obj/item/assembly/infra/Topic(href, href_list)
 	. = ..()
@@ -241,11 +219,9 @@
 
 	updateUsrDialog()
 
-
 /obj/item/assembly/infra/setDir()
 	. = ..()
 	refreshBeam()
-
 
 /***************************IBeam*********************************/
 /obj/effect/beam/i_beam

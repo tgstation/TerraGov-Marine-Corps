@@ -5,7 +5,6 @@
 	icon_state = "tile"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6.0
-	materials = list(/datum/material/metal = 1000)
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6

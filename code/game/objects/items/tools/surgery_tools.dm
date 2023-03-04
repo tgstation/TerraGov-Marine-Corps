@@ -1,14 +1,8 @@
-
-
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
-	materials = list(/datum/material/metal = 50, /datum/material/glass = 25)
 
-/*
-* Retractor
-*/
 /obj/item/tool/surgery/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
@@ -16,9 +10,6 @@
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
 
-/*
-* Hemostat
-*/
 /obj/item/tool/surgery/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
@@ -27,9 +18,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "pinched")
 
-/*
-* Cautery
-*/
 /obj/item/tool/surgery/cautery
 	name = "cautery"
 	desc = "This stops bleeding."
@@ -38,9 +26,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt")
 
-/*
-* Surgical Drill
-*/
 /obj/item/tool/surgery/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
@@ -55,9 +40,6 @@
 	user.visible_message(span_danger("[user] is pressing the [name] to [user.p_their()] [pick("temple","chest")] and activating it! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS)
 
-/*
-* Scalpel
-*/
 /obj/item/tool/surgery/scalpel
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
