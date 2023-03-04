@@ -48,6 +48,13 @@
 	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
+/obj/item/armor_module/module/valkyrie_autodoc/som
+	name = "\improper Apollo Automedical Armor System"
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	desc = "Designed to be mounted on SOM combat armor, or internally inside Gorgon assault armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
+	icon_state = "mod_autodoc_som"
+	item_state = "mod_autodoc_som_a"
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/som/heavy/leader = "")
 
 /**
  * Fire poof module
@@ -403,6 +410,11 @@
 	affected.remove_filter("eshield")
 	affected.add_filter("eshield", 1, outline_filter(1, new_color))
 
+//original Martian design, donutsteel
+/obj/item/armor_module/module/eshield/som
+	name = "Aegis Energy Dispersion Module"
+	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Arrowhead' shield system which was developed around the same time."
+
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
 	desc = "Designed for mounting on conventional clothing, this grants it a level of reinforcement against attacks."
@@ -434,11 +446,6 @@
 	name = "\improper Heavy Armor Equalizer"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-
-//original Martian design, donutsteel
-/obj/item/armor_module/module/eshield/som
-	name = "Aegis Energy Dispersion Module"
-	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Arrowhead' shield system which was developed around the same time."
 
 /**
  *   Helmet Modules

@@ -12,7 +12,7 @@
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
@@ -22,7 +22,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -89,7 +91,7 @@
 	gas_transfer_coefficient = 0.5
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
@@ -98,7 +100,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -107,8 +111,8 @@
 
 /obj/item/clothing/suit/modular/som/heavy/leader/valk
 	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/storage/medical/som,
 	)
 
 //helmet
