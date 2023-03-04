@@ -140,6 +140,11 @@
 	if(.)
 		return
 	switch(action)
+		if("selectSlot")
+			var/datum/loadout/loadout = create_empty_loadout(name, job)
+			loadout.item_list[params["key"]] = item_list[params["key"]]
+			var/datum/loadout_seller/seller = new (loadout_vendor.faction)
+			seller.try_to_equip_loadout(loadout, ui.user)
 		if("equipLoadout")
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
