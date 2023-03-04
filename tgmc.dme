@@ -312,7 +312,6 @@
 #include "code\datums\http.dm"
 #include "code\datums\map_config.dm"
 #include "code\datums\marine_main_ship.dm"
-#include "code\datums\materials.dm"
 #include "code\datums\medal_awards.dm"
 #include "code\datums\mind.dm"
 #include "code\datums\movement_detector.dm"

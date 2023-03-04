@@ -519,6 +519,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,
 		/obj/item/tool/kitchen/knife/butcher = 2,
+		/obj/item/tool/kitchen/knife = -1,
 	)
 
 /obj/machinery/vending/sovietsoda
@@ -559,7 +560,6 @@
 		/obj/item/ashtray/glass = -1,
 		/obj/item/frame/camera = -1,
 		/obj/item/reagent_containers/glass/bucket = -1,
-		/obj/item/tool/kitchen/knife = -1,
 	)
 
 /obj/machinery/vending/engivend/nopower
