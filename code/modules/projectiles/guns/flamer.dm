@@ -595,6 +595,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	for(var/mob/living/mob_caught in turf_to_ignite)
 		mob_caught.ExtinguishMob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, direction)
+	user.ExtinguishMob()
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
 	return
