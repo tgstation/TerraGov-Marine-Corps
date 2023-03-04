@@ -60,3 +60,12 @@
   - bugfix: RO SAA Revolver can use the 2 special speedloaders.
   Zar000:
   - bugfix: fixed spiderlings controlling widow movement
+2023-03-04:
+  ClosetedSkeletonGH:
+  - imageadd: Increases darkness of several race choices
+  QualityVan:
+  - balance: Vali boosting can't be toggled on while you're in crit
+  - bugfix: You can only attach a back-worn mag to a gun while you're carrying both
+  - bugfix: Flamers will disconnect from a backtank when deployed as a sentry
+  TiviPlus:
+  - bugfix: non-xeno ventcrawl works again
