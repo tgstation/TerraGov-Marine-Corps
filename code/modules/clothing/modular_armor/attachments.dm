@@ -82,6 +82,8 @@
 			if(istype(parent, selection))
 				icon_state = variants_by_parent_type[selection]
 				base_icon = variants_by_parent_type[selection]
+	else
+		base_icon = icon_state
 
 	update_icon()
 
