@@ -2155,7 +2155,7 @@
 	},
 /area/lv624/lazarus/comms)
 "ld" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -2197,7 +2197,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "lr" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
