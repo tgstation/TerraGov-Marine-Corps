@@ -6,17 +6,6 @@
 	icon = 'icons/mob/modular/mark_one/arm_plates.dmi'
 	icon_state = "infantry"
 	slot = ATTACHMENT_SLOT_SHOULDER
-	current_variant = "black"
-	icon_state_variants = list(
-		"black",
-		"jungle",
-		"desert",
-		"snow",
-		"alpha",
-		"bravo",
-		"charlie",
-		"delta",
-	)
 
 /obj/item/armor_module/armor/arms/marine
 	name = "\improper Jaeger Pattern Infantry arm plates"
