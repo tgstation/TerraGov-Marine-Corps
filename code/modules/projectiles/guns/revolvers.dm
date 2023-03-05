@@ -187,6 +187,7 @@
 	accuracy_mult = 1.15
 	scatter = 0
 	accuracy_mult_unwielded = 0.8
+	akimbo_additional_delay = 0.9 // Akimbo only gives more shots.
 	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
