@@ -81,19 +81,6 @@
 /*
 * Researchable Scalpels
 */
-/obj/item/tool/surgery/scalpel/laser1
-	name = "laser scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
-	icon_state = "scalpel_laser1_on"
-	damtype = BURN
-
-/obj/item/tool/surgery/scalpel/laser2
-	name = "laser scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
-	icon_state = "scalpel_laser2_on"
-	damtype = BURN
-	force = 12.0
-
 /obj/item/tool/surgery/scalpel/laser3
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"

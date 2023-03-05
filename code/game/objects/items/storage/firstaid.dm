@@ -286,15 +286,13 @@
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
-		to_chat(user, span_warning("You need an empty hand to take out a pill."))
+		user.balloon_alert(user, "Need an empty hand")
 		return
 	if(contents.len)
 		var/obj/item/I = contents[1]
 		if(!remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
-			to_chat(user, span_notice("You take a pill out of \the [src]."))
-			playsound(user, 'sound/items/pills.ogg', 15, 1)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.swap_hand()
@@ -302,9 +300,11 @@
 			user.dropItemToGround(I)
 			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
-	else
-		to_chat(user, span_warning("\The [src] is empty."))
-		return
+
+/obj/item/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	. = ..()
+	if(. && user)
+		playsound(user, 'sound/items/pills.ogg', 15, 1)
 
 /obj/item/storage/pill_bottle/update_overlays()
 	. = ..()

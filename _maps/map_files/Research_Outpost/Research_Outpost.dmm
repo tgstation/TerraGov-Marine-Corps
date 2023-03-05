@@ -807,7 +807,6 @@
 "em" = (
 /obj/item/attachable/extended_barrel,
 /obj/item/attachable/gyro,
-/obj/item/attachable/scope,
 /obj/item/attachable/compensator,
 /obj/item/attachable/burstfire_assembly,
 /obj/item/attachable/lasersight,
@@ -2276,7 +2275,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/south)
 "kO" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -8883,12 +8882,6 @@
 /area/outpost/brig/wardens_office)
 "OQ" = (
 /obj/structure/closet/secure_closet/security,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/weapon/gun/shotgun/pump/bolt,
-/obj/item/attachable/bayonet,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -8942,7 +8935,7 @@
 	},
 /area/outpost/science/hydponics)
 "Pi" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/dark/purple2{
 	dir = 6
 	},
@@ -9052,9 +9045,7 @@
 	dir = 8
 	},
 /obj/structure/paper_bin,
-/obj/effect/spawner/random/plushie{
-
-	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -10462,7 +10453,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/outpost/yard/south_east)
 "VO" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
 	},
@@ -10609,7 +10600,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Ww" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/research)
 "Wx" = (

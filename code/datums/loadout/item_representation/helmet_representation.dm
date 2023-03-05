@@ -19,7 +19,9 @@
 	var/obj/item/clothing/head/modular/helmet_to_copy = item_to_copy
 	current_variant = helmet_to_copy.current_variant
 	for(var/key in helmet_to_copy.attachments_by_slot)
-		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
+		if(!isitem(helmet_to_copy.attachments_by_slot[key]))
+			continue
+		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/greyscale))
 			attachments += new /datum/item_representation/armor_module/colored(helmet_to_copy.attachments_by_slot[key])
 			continue
 		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))

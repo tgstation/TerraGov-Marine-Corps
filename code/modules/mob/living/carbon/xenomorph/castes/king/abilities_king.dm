@@ -165,7 +165,7 @@
 
 /datum/action/xeno_action/activable/off_guard/use_ability(atom/target)
 	var/mob/living/carbon/human/human_target = target
-	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 20)
+	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 100)
 	human_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
 	human_target.log_message("has been off-guarded by [owner]", LOG_ATTACK, color="pink")
 	human_target.balloon_alert_to_viewers("confused")

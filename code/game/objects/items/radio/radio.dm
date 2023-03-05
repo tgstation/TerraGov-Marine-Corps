@@ -333,7 +333,7 @@
 
 /// Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(input_frequency, list/levels)
-	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
+	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
 			return FALSE

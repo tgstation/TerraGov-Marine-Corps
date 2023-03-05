@@ -134,6 +134,10 @@
 		dispensable_reagents -= emagged_reagents
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	if(needs_medical_training && ishuman(usr) && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
+		balloon_alert(user, "skill issue")
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemDispenser", name)
@@ -181,15 +185,6 @@
 	. = ..()
 	if(.)
 		return
-
-	if(needs_medical_training && ishuman(usr))
-		var/mob/living/carbon/human/user = usr
-		if(user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
-			if(user.do_actions)
-				return
-			to_chat(user, span_notice("You start fiddling with \the [src]..."))
-			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
 
 	switch(action)
 		if("amount")

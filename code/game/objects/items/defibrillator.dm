@@ -91,7 +91,7 @@
 		return
 
 	//Job knowledge requirement
-	var/skill = user.skills.getRating("medical")
+	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
@@ -161,7 +161,7 @@
 	var/defib_heal_amt = damage_threshold
 
 	//job knowledge requirement
-	var/skill = user.skills.getRating("medical")
+	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
@@ -264,11 +264,23 @@
 		return
 
 	//At this point, the defibrillator is ready to work
-	if(!issynth(H))
+	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
+		H.setOxyLoss(0)
+
+		var/all_loss = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
+		var/heal_target = abs(H.health - H.get_death_threshold()) + 1
+		var/brute_ratio = H.getBruteLoss() / all_loss
+		var/burn_ratio = H.getFireLoss() / all_loss
+		var/tox_ratio = H.getToxLoss() / all_loss
+		if(tox_ratio)
+			H.adjustToxLoss(-(tox_ratio * heal_target))
+		H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE, TRUE) // explicitly also heals robit parts
+
+	else if(!issynth(H)) // TODO make me a trait :)
 		H.adjustBruteLoss(-defib_heal_amt)
 		H.adjustFireLoss(-defib_heal_amt)
 		H.adjustToxLoss(-defib_heal_amt)
-		H.adjustOxyLoss(-H.getOxyLoss())
+		H.setOxyLoss(0)
 		H.updatehealth() //Needed for the check to register properly
 
 	if(H.health <= H.get_death_threshold())

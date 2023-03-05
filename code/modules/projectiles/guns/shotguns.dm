@@ -16,7 +16,7 @@
 	allowed_ammo_types = list()
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
-	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_skill_category = SKILL_SHOTGUNS
 	flags_item_map_variant = NONE
 
 	fire_delay = 6
@@ -313,6 +313,58 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
+//-------------------------------------------------------
+//A shotgun, how quaint.
+/obj/item/weapon/gun/shotgun/pump/trenchgun
+	name = "\improper L-4034 trenchgun"
+	desc = "A six-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "trenchgun"
+	item_state = "trenchgun"
+	fire_sound = 'sound/weapons/guns/fire/trenchgun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/stock/trenchgun,
+	)
+	flags_item_map_variant = NONE
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/trenchgun,
+	)
+
+	fire_delay = 1.2 SECONDS
+	max_chamber_items = 5
+	damage_mult = 0.75
+	accuracy_mult_unwielded = 1
+
+	scatter = 4
+	min_scatter = 4
+	scatter_increase = 8
+	scatter_decay = 3
+	scatter_decay_unwielded = 1
+
+	scatter_unwielded = 10
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
+	cock_delay = 1.2 SECONDS
+	aim_slowdown = 0.55
+
+/obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/trenchgun,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+	)
+
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
@@ -330,7 +382,7 @@
 	max_chamber_items = 4 //codex
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/boltclip)
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	cocked_message = "You work the bolt."
 	attachable_allowed = list(
@@ -393,7 +445,7 @@
 	max_chamber_items = 1 //codex
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
@@ -436,7 +488,7 @@
 	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
 	icon_state = "derringer"
 	item_state = "tp17"
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_41RIM //codex
 	muzzle_flash_lum = 5
@@ -480,7 +532,7 @@
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 9 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	cocked_message = "You work the lever."
 	flags_item_map_variant = NONE
@@ -520,7 +572,7 @@
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/rifle/repeater
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
@@ -564,7 +616,7 @@
 	load_method = SINGLE_CASING
 	max_chamber_items = 9
 	default_ammo_type = /datum/ammo/bullet/shotgun/mbx900_buckshot
-	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_skill_category = SKILL_SHOTGUNS
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 
 	attachable_allowed = list(

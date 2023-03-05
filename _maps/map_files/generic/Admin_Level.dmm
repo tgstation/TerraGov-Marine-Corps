@@ -544,7 +544,7 @@
 /turf/open/space/basic,
 /area/space)
 "aHO" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -13824,7 +13824,7 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/rack,
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP,
-/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC,
+/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
 /obj/item/portable_vendor/marine/squadmarine/smartgunner,
 /obj/item/storage/box/m94,
 /obj/item/clothing/glasses/hud/xenohud,
@@ -18927,7 +18927,6 @@
 	pixel_y = 1
 	},
 /obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/hand_tele,
 /obj/effect/turf_decal/tile/black,
 /obj/effect/turf_decal/tile/black{
 	dir = 4

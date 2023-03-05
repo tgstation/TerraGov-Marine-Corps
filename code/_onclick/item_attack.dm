@@ -83,7 +83,7 @@
 	user.visible_message(span_warning("[user] hits [src] with [I]!"),
 		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
+	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
 	take_damage(power, I.damtype, "melee")
 	return TRUE
 
@@ -104,7 +104,7 @@
 
 	user.do_attack_animation(src, used_item = I)
 
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
+	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
 
 	switch(I.damtype)
 		if(BRUTE)
@@ -152,13 +152,14 @@
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Can't attack the incorporeal
+	// TODO terrible placement move this up the stack or something
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
 		return FALSE
+
+	if(M.can_be_operated_on() && do_surgery(M, user, src)) //Checks if mob is lying down on table for surgery
+		return TRUE
 
 	if(flags_item & NOBLUDGEON)
-		return FALSE
-
-	if(M.can_be_operated_on() && do_surgery(M,user,src)) //Checks if mob is lying down on table for surgery
 		return FALSE
 
 	if(!force)
@@ -273,7 +274,7 @@
 
 	user.do_attack_animation(src, used_item = I)
 
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
+	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
 
 	switch(I.damtype)
 		if(BRUTE)

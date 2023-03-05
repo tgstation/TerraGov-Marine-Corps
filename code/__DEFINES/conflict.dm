@@ -60,6 +60,7 @@
 #define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 #define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
+#define AMMO_SOUND_PITCH (1<<22) //If the projectile ricochet and miss sound is pitched up
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -121,10 +122,10 @@
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
 #define SLOWDOWN_ARMOR_VERY_LIGHT 0.20
-#define SLOWDOWN_ARMOR_LIGHT 0.35
-#define SLOWDOWN_ARMOR_MEDIUM 0.55
-#define SLOWDOWN_ARMOR_HEAVY 1
-#define SLOWDOWN_ARMOR_VERY_HEAVY 1.15
+#define SLOWDOWN_ARMOR_LIGHT 0.3
+#define SLOWDOWN_ARMOR_MEDIUM 0.5
+#define SLOWDOWN_ARMOR_HEAVY 0.7
+#define SLOWDOWN_ARMOR_VERY_HEAVY 1
 
 
 //=================================================
