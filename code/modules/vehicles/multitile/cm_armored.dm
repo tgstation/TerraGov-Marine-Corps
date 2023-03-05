@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15))
 
-//The main object, should be an abstract class
+//The main object, should be an abstract class // todo delete me
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
@@ -422,10 +422,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	return ..()
 
-//For the next few, we're just tossing the handling up to the rot object
-/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(obj/projectile/P)
-	return root.bullet_act(P)
-
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
@@ -580,10 +576,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
 
 	//Need to the what the hell you're doing
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
-		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating("engineer"))
+		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER))
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -691,10 +687,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 //Similar to repairing stuff, down to the time delay
 /obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [HP] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [HP] on the [src]."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -738,10 +734,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 

@@ -17,7 +17,7 @@
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
@@ -338,7 +338,7 @@
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
 	default_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

@@ -141,7 +141,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/master_gun
 
 	///Skill used to attach src to something.
-	var/attach_skill = "firearms"
+	var/attach_skill = SKILL_FIREARMS
 	///Skill threshold where the time to attach is halved.
 	var/attach_skill_upper_threshold = SKILL_FIREARMS_TRAINED
 	///Sound played on attach
@@ -1364,10 +1364,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
 	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
+	detaching_gun.RemoveElement(/datum/element/deployable_item, detaching_gun.deployable_item, deploy_time, undeploy_time)
 	detaching_gun.ignored_terrains = null
 	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 
 
 /obj/item/attachable/shoulder_mount
