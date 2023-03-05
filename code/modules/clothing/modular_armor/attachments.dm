@@ -77,6 +77,7 @@
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
+	base_icon = icon_state
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
 			if(istype(parent, selection))

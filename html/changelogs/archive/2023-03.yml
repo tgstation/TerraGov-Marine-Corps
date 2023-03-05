@@ -1,0 +1,74 @@
+2023-03-01:
+  Lumipharon:
+  - qol: Eswords now have bumpslash when activated
+  - bugfix: fixed combat robots being able to spawn in HvH
+  - balance: Increased Incendiary RPG radius to 5 from 3
+  - balance: Increased HEAT RPG mech damage multiplier to 3 from 2
+  Pariah919:
+  - balance: T-19 belt has gotten the ability to hold spare magazines, the sprite
+      changed to reflect this.
+  RipGrayson:
+  - balance: Removed some plasma cutters from Gelida and one modular of Big Red.
+  - bugfix: Fixed Oscar Outpost runtiming on load due to bad vars.
+  - bugfix: Fixed lava basalt incorrectly smoothing with regular floors.
+  - bugfix: Fixed Tadpole shutters smoothing with walls.
+  - bugfix: Fixed Canterbury smoothing issues with walls and windows.
+  - bugfix: Fixed Tadpole windows allowing bullets through them.
+  TiviPlus:
+  - qol: Monkeys can now wield two-handed weapons
+  - qol: the blessings button in hive status ui has a little store icon now
+  - bugfix: the blessings button in the hive UI works again
+  - bugfix: cocoons are no longer meltable
+  - bugfix: hive status has been made wider to prevent cutting off at the edges of
+      the T3 list
+  - qol: Deevolve has been removed as an action and is now a button in the hive status
+  - bugfix: animals now take damage from bullets properly
+  ivanmixo:
+  - qol: Added a prompt for evolving to hivemind which should hopefully help with
+      newer players putting their cores in unintended places
+  - bugfix: Fixes prae primo giving the person it was used on the PASSMOB flag
+  - rscadd: Added new the P1911 to req imports and changed some of the order names
+      to be less outdated/inconsistent and more descriptive
+2023-03-02:
+  Lumipharon:
+  - bugfix: fixed a bug with deployable items not deploying and some other minor bugs
+  - balance: MG-60 can no longer take a suppressor
+  Pariah919:
+  - soundadd: New Garand firing sound.
+  - rscadd: Autosniper now has a ammo packet available to be bought in req.
+  Xander3359:
+  - rscadd: paracetamol pill packets in the marine vendor.
+  - rscdel: Removed paracetamol pill packets from map spawns
+  - rscadd: Added paracetamol pill bottle to the medplus
+  - rscdel: corpsmen can no longer buy paracetamol pill bottle for 8 points.
+  - rscdel: You can no longer fire underbarrel attachments with middle click.
+  - rscadd: Primed grenades throw on click regardless of intent.
+  novaepee:
+  - rscadd: SR-127 now spawn scopeless in planetside due to HvH balance
+2023-03-03:
+  Lumipharon:
+  - imageadd: Human mob sprites have been brought into the future
+  Naaanii:
+  - rscadd: Adds shoulder mount, cloak and blood implant and RR heat, smoke, cloak
+      and tfoot shells to Valhalla.
+  - rscadd: Adds Garand and MBX and its shell types to Valhalla.
+  - qol: Moves RR shells to the same position in the normal vendor along with its
+      ammo.
+  - qol: Moves tracker shells from valhalla req vendor to seasonals vendor for the
+      MBX.
+  Xander3359:
+  - bugfix: RO SAA Revolver can use the 2 special speedloaders.
+  Zar000:
+  - bugfix: fixed spiderlings controlling widow movement
+2023-03-04:
+  ClosetedSkeletonGH:
+  - imageadd: Increases darkness of several race choices
+  QualityVan:
+  - balance: Vali boosting can't be toggled on while you're in crit
+  - bugfix: You can only attach a back-worn mag to a gun while you're carrying both
+  - bugfix: Flamers will disconnect from a backtank when deployed as a sentry
+  TiviPlus:
+  - bugfix: non-xeno ventcrawl works again
+2023-03-05:
+  Lumipharon:
+  - imageadd: New mob sprites for SOM uniforms and some equipment

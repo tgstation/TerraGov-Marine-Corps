@@ -243,6 +243,9 @@
 		if(resource_storage_current < resource_drain_amount)
 			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 			return
+		if(wearer.stat)
+			wearer.balloon_alert(wearer, "Not conscious")
+			return
 	boost_on = !boost_on
 	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
 	if(!boost_on)

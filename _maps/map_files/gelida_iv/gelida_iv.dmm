@@ -8543,10 +8543,10 @@
 /area/gelida/indoors/a_block/executive)
 "fxp" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/item/tool/pickaxe,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "fxu" = (

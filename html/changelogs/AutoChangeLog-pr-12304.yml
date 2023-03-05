@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - rscdel: "Removed repurposing existing chem grenades with a new payload."

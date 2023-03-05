@@ -118,7 +118,7 @@
 		hive.purchases.setup_upgrades()
 	return TRUE
 
-
+///Gamemode setup run after the game has started
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(flags_round_type & MODE_SILO_RESPAWN)

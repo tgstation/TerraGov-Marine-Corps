@@ -110,12 +110,9 @@
 
 	force = initial(force)
 
-
+// TODO port tg wielding component
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
-	if(ismonkey(user)) //TODO MAKE THIS A SPECIES FLAG
-		to_chat(user, span_warning("It's too heavy for you to wield fully!"))
-		return
 
 	if(flags_item & WIELDED)
 		unwield(user)

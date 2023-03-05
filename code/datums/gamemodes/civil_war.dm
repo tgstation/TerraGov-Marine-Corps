@@ -70,7 +70,6 @@
 		new /obj/structure/sensor_tower(T)
 	if(GLOB.zones_to_control.len)
 		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
-	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
