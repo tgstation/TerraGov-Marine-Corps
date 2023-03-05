@@ -416,8 +416,6 @@
 		to_chat(user, span_xenodanger("We crack open the metal bird's shell."))
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
 			return FALSE
-		if(user.do_actions)
-			return FALSE
 		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
 		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 			to_chat(user, span_warning("We cease overriding the shuttle lockdown."))
