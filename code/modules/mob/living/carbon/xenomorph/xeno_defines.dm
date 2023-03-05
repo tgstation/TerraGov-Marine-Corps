@@ -311,17 +311,19 @@
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
-
-	var/evolution_stored = 0 //How much evolution they have stored
-
-	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
-
-	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
+	///How much evolution they have stored
+	var/evolution_stored = 0
+	///How much upgrade points they have stored.
+	var/upgrade_stored = 0
+	///This will track their upgrade level.
+	var/upgrade = XENO_UPGRADE_INVALID
+	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
+	var/sunder = 0
 	var/fire_resist_modifier = 0
 
 	var/obj/structure/xeno/tunnel/start_dig = null
-	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
+	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
+	var/datum/ammo/xeno/ammo = null
 
 	var/list/upgrades_bought = list()
 
@@ -331,23 +333,27 @@
 	var/datum/aura_bearer/leader_current_aura
 	///Passive plasma cost per tick for enabled personal (not leadership) pheromones.
 	var/pheromone_cost = 5
-	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
+	///Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
+	var/frenzy_aura = 0
+	///Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
+	///Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/recovery_aura = 0
-
-	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
-	//Negative values act as a delay while values greater than 0 act as a multiplier.
-	//Will increase by 10 every decisecond if under 0. Increases by xeno_caste.regen_ramp_amount every decisecond.
-	//If you want to balance this, look at the xeno_caste defines mentioned above.
+	///Resets to -xeno_caste.regen_delay when you take damage.
+	///Negative values act as a delay while values greater than 0 act as a multiplier.
+	///Will increase by 10 every decisecond if under 0.
+	///Increases by xeno_caste.regen_ramp_amount every decisecond. If you want to balance this, look at the xeno_caste defines mentioned above.
+	var/regen_power = 0
 
 	var/is_zoomed = 0
 	var/zoom_turf = null
 
 	///Type of weeds the xeno is standing on, null when not on weeds
 	var/obj/alien/weeds/loc_weeds_type
-
-	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
+	///Bonus or pen to time in between attacks. + makes slashes slower.
+	var/attack_delay = 0
+	///This will track their "tier" to restrict/limit evolutions
+	var/tier = XENO_TIER_ONE
 
 	var/emotedown = 0
 
@@ -359,12 +365,12 @@
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
-	//Naming variables
+	///Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
-	//This list of inherent verbs lets us take any proc basically anywhere and add them.
-	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
-	//It should add them properly on New() and should reset/readd them on evolves
+	///This list of inherent verbs lets us take any proc basically anywhere and add them.
+	///If they're not a xeno subtype it might crash or do weird things, like using human verb procs
+	///It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
 
 	///The xenomorph that this source is currently overwatching
@@ -372,13 +378,14 @@
 
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
-
-	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
-
-	var/queen_chosen_lead = FALSE //whether the xeno has been selected by the queen as a leader.
+	///whether the xeno mobhud is activated or not.
+	var/xeno_mobhud = FALSE
+	///whether the xeno has been selected by the queen as a leader.
+	var/queen_chosen_lead = FALSE
 
 	//Charge vars
-	var/is_charging = CHARGE_OFF //Will the mob charge when moving ? You need the charge verb to change this
+	///Will the mob charge when moving ? You need the charge verb to change this
+	var/is_charging = CHARGE_OFF
 
 	//Pounce vars
 	var/usedPounce = 0
@@ -387,7 +394,8 @@
 	var/overheal = 0
 
 	// Warrior vars
-	var/agility = 0		// 0 - upright, 1 - all fours
+	///0 - upright, 1 - all fours
+	var/agility = 0
 
 	// Defender vars
 	var/fortify = 0
