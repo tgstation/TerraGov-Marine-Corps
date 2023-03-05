@@ -29,9 +29,6 @@
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/metal
-	icon_state = "riot_metal"
-
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	var/health_status = (obj_integrity-integrity_failure) * 100 / (max_integrity-integrity_failure)
@@ -132,6 +129,9 @@
 		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
 	else
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
+
+/obj/item/weapon/shield/riot/marine/metal
+	icon_state = "riot_metal"
 
 /obj/item/weapon/shield/riot/marine/som
 	name = "\improper S-144 boarding shield"
