@@ -30,7 +30,7 @@
 
 	log_combat(user, M, "attempted to flash", src)
 
-	if(user.skills.getRating("police") < SKILL_POLICE_FLASH)
+	if(user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_FLASH)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 
@@ -89,7 +89,7 @@
 	if(!user)
 		return
 
-	if(user.skills.getRating("police") < SKILL_POLICE_FLASH)
+	if(user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_FLASH)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 

@@ -134,7 +134,7 @@
 		dispensable_reagents -= emagged_reagents
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
-	if(needs_medical_training && ishuman(usr) && user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED)
+	if(needs_medical_training && ishuman(usr) && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
 		balloon_alert(user, "skill issue")
 		return
 

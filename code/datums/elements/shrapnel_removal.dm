@@ -28,7 +28,7 @@
 	if(!has_shrapnel(targetlimb))
 		M.balloon_alert(user, "There is nothing in limb!")
 		return
-	var/skill = user.skills.getRating("medical")
+	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
 		span_notice("You fumble around figuring out how to use [removaltool]."))

@@ -177,7 +177,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt
 	name = "dirt"
 	icon_state = "mars_dirt"
-	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT)
+	smoothing_groups = list(SMOOTH_GROUP_RED_DIRT, SMOOTH_GROUP_OPEN_FLOOR)
 
 /turf/open/floor/plating/ground/mars/random/sand
 	name = "sand"
