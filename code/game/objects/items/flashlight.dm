@@ -196,9 +196,9 @@
 	var/fuel = 0
 	var/on_damage = 7
 
-/obj/item/flashlight/flare/get_acid_melt_multiplier()
+/obj/item/flashlight/flare/dissolvability(acid_strength)
 	. = ..()
-	return 2
+	return 2 * acid_strength
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()

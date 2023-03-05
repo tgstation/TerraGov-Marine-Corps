@@ -168,9 +168,13 @@ directive is properly returned.
 	if(loc)
 		return loc.return_gas()
 
-//returns this atoms melt multiplier
-/atom/proc/get_acid_melt_multiplier()
-	return 1
+//returns how dissolveable this atom is, lower number means it takes longer to dissolve it
+/atom/proc/dissolvability(acid_strength)
+	return 1 * acid_strength
+
+//returns how long it takes to apply acid on this atom
+/atom/proc/get_acid_delay()
+	return 1 SECONDS
 
 /atom/proc/on_reagent_change()
 	return

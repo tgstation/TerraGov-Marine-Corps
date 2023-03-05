@@ -100,6 +100,10 @@
 	STOP_PROCESSING(SSobj, src)
 	return 0
 
+/obj/get_acid_delay()
+	. = ..()
+	if(density || isstructure(src))
+		return 4 SECONDS
 
 /obj/proc/updateUsrDialog()
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))

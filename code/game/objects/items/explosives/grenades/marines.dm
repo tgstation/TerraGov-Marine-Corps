@@ -317,9 +317,9 @@
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
 
-/obj/item/explosive/grenade/flare/get_acid_melt_multiplier()
+/obj/item/explosive/grenade/flare/dissolvability(acid_strength)
 	. = ..()
-	return 2
+	return 2 * acid_strength
 
 /obj/item/explosive/grenade/flare/Initialize()
 	. = ..()
