@@ -653,7 +653,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
-	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 37, "under_y" = 14, "stock_x" = 19, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 29, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2.5
@@ -672,11 +672,8 @@
 /obj/item/weapon/gun/rifle/m16/ugl
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/grenade_launcher/underslung)
 
-/obj/item/weapon/gun/rifle/m16/somleader
-	starting_attachment_types = list(/obj/item/attachable/reddot)
-
-/obj/item/weapon/gun/rifle/m16/somvet
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+/obj/item/weapon/gun/rifle/m16/spec_op
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/suppressor, /obj/item/weapon/gun/shotgun/combat/masterkey)
 
 //-------------------------------------------------------
 //FAMAS rifle, based on the F1
