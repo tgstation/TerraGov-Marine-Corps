@@ -232,8 +232,19 @@
 	///The gun attached to the bike
 	var/obj/item/weapon/gun/gun
 
+	///List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.
 	var/list/attachable_allowed = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
+
+	///This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.
+	var/obj/item/weapon/gun/active_attachable = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
+
+	///The attachments this gun starts with on Init
 	var/list/starting_attachment_types = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
+
+	///the current gun attachment, used for attachment aim mode
+	var/obj/item/weapon/gun/gunattachment = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
+
+
 
 
 /obj/vehicle/ridden/motorbike/cannon_mounted/Initialize()
@@ -271,14 +282,14 @@
 		to_chat(user, span_warning("You are busy doing something else!"))
 		return
 	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
-	if(length(gun.chamber_items))
-		gun.unload(user)
+	if(length(gunattachment.chamber_items))
+		gunattachment.unload(user)
 		update_icon_state()
-	gun.reload(ammo_magazine, user)
+	gunattachment.reload(ammo_magazine, user)
 	update_icon_state()
 	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
-	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(!CHECK_BITFIELD(gunattachment.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
-	gun.do_unique_action(gun, user)
+	gunattachment.do_unique_action(gunattachment, user)
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle
