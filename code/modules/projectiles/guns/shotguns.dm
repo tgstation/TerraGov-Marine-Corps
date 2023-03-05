@@ -321,9 +321,9 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "trenchgun"
 	item_state = "trenchgun"
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/trenchgun.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
