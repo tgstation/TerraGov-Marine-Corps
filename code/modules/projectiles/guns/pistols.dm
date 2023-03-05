@@ -246,7 +246,8 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.1 SECONDS
+	damage_mult = 1.25
 
 //-------------------------------------------------------
 //P-22. Blocc
