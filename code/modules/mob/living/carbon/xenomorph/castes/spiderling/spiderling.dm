@@ -31,6 +31,7 @@
 	target_distance = 1
 	base_action = ESCORTING_ATOM
 	var/datum/weakref/default_escorted_atom
+	var/atom/current_target
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -47,32 +48,32 @@
 /datum/ai_behavior/spiderling/proc/decide_mark(source, atom/A)
 	SIGNAL_HANDLER
 	if(!A)
-		escorted_atom = source
+		only_set_escorted_atom()
+		UnregisterSignal(current_target, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+		current_target = null
 		return
+	if(current_target == A)
+		return
+	escorted_atom = null
 	if(ishuman(A))
-		escorted_atom = null
 		INVOKE_ASYNC(src, .proc/triggered_spiderling_rage, source, A)
 		return
 	if(isobj(A))
 		var/obj/obj_target = A
 		RegisterSignal(obj_target, COMSIG_PARENT_QDELETING, .proc/only_set_escorted_atom)
-		escorted_atom = null
-		INVOKE_ASYNC(src, .proc/obj_mark, source, A)
+		go_to_obj_target(source, A)
 		return
 
 /datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
 	SIGNAL_HANDLER
 	escorted_atom = default_escorted_atom
 
-/datum/ai_behavior/spiderling/proc/obj_mark(source, obj/target)
-	SIGNAL_HANDLER
-	go_to_obj_target(source, target)
-
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
 	SIGNAL_HANDLER
 	if(QDELETED(target))
 		return
+	current_target = target
 	change_action(MOVING_TO_ATOM, target)
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
@@ -84,6 +85,7 @@
 		return
 	if(mob_parent?.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
+	current_target = target
 	change_action(MOVING_TO_ATOM, target)
 
 ///Signal handler to try to attack our target
