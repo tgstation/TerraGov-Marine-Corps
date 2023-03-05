@@ -142,6 +142,7 @@
 			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
 			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
 			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
