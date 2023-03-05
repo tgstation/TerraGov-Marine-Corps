@@ -69,3 +69,6 @@
   - bugfix: Flamers will disconnect from a backtank when deployed as a sentry
   TiviPlus:
   - bugfix: non-xeno ventcrawl works again
+2023-03-05:
+  Lumipharon:
+  - imageadd: New mob sprites for SOM uniforms and some equipment
