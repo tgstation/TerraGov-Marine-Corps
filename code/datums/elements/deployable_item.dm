@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(deployable_items)
+
 /datum/element/deployable_item
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
@@ -8,8 +10,6 @@
 	var/undeploy_time = 0
 	///Typepath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
-	///The item this element is attached too
-	var/obj/item/attached_item
 
 /datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
 	. = ..()
@@ -19,7 +19,8 @@
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
 
-	attached_item = target
+	var/obj/item/attached_item = target
+	LAZYADD(GLOB.deployable_items[attached_item.type], attached_item)
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
@@ -28,13 +29,14 @@
 /datum/element/deployable_item/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source, COMSIG_ITEM_EQUIPPED)
+	LAZYREMOVE(GLOB.deployable_items[source.type], source)
 
 ///Register click signals to be ready for deploying
 /datum/element/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
 	SIGNAL_HANDLER
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy, TRUE) //You can hold more than one deployable item at once
 	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, .proc/unregister_signals)
 
 ///Unregister and stop waiting for click to deploy
@@ -48,13 +50,13 @@
 	SIGNAL_HANDLER
 	if(!isturf(location))
 		return
+	if(ISDIAGONALDIR(get_dir(user,location)))
+		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(item_in_active_hand != attached_item)
+	if(!(item_in_active_hand) || !(item_in_active_hand in GLOB.deployable_items[item_in_active_hand.type]))
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
-		return
-	if(ISDIAGONALDIR(get_dir(user,location)))
 		return
 	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, location)
 	return COMSIG_KB_ACTIVATED
@@ -103,9 +105,11 @@
 
 	deployed_machine.update_icon_state()
 
-	item_to_deploy.forceMove(deployed_machine) //Moves the Item into the machine or structure
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
+		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
+	else
+		item_to_deploy.forceMove(deployed_machine)
 
 	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
