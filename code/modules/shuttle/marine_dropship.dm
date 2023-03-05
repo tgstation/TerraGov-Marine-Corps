@@ -368,7 +368,8 @@
 	if(!port)
 		to_chat(src, span_warning("Something went wrong."))
 		return
-
+	message_admins("[ADMIN_TPMONTY(src)] has summoned the dropship")
+	log_admin("[key_name(src)] has summoned the dropship")
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
 	priority_announce("Unknown interference with dropship control. Shutting down autopilot",  "Dropship malfunction")
 
@@ -766,6 +767,9 @@
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
 
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing
+	smoothing_groups = NONE
+
 /turf/open/shuttle/dropship/floor/alt
 	icon_state = "rasputin14"
 
@@ -979,6 +983,7 @@
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
+	flags_pass = PASSLASER
 
 /obj/structure/dropship_piece/glasstwo
 	icon = 'icons/turf/dropship2.dmi'
@@ -989,6 +994,7 @@
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
 	opacity = FALSE
+	flags_pass = PASSLASER
 
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'

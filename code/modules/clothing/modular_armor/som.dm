@@ -12,7 +12,7 @@
 
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
@@ -22,7 +22,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -89,7 +91,7 @@
 	gas_transfer_coefficient = 0.5
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
@@ -98,7 +100,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -107,8 +111,8 @@
 
 /obj/item/clothing/suit/modular/som/heavy/leader/valk
 	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/storage/medical/som,
 	)
 
 //helmet
@@ -127,10 +131,6 @@
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
 	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head/som,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,
@@ -145,19 +145,41 @@
 	)
 	current_variant = "black"
 
-/obj/item/clothing/head/modular/som/welder
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+/obj/item/clothing/head/modular/som/engineer
+	name = "\improper SOM engineering helmet"
+	desc = "A specialised helmet designed for use by combat engineers. Its main feature being an integrated welding mask."
+	icon_state = "som_helmet_engineer"
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/module/welding/som,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/som)
 
-/obj/item/clothing/head/modular/som/mithridatius
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som)
+/obj/item/clothing/head/modular/som/bio
+	name = "\improper SOM biohazard helmet"
+	desc = "This specialised helmet is worn by SOM personel equipped to deal with dangerous chemical, radiological or otherwise hazard substances. Typical unleashed by the SOM themselves."
+	icon_state = "som_helmet_bio"
+	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 50, ACID = 70)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/greyscale/badge,
+	)
 
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 50, FIRE = 60, ACID = 55)
 
-/obj/item/clothing/head/modular/som/veteran/lorica
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head/som)
+/obj/item/clothing/head/modular/som/lorica
+	name = "Lorica Helmet System"
+	desc = "An bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. Substantial additional armor improves protection against all damage."
+	icon_state = "som_helmet_lorica"
+	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/greyscale/badge,
+	)
 
 /obj/item/clothing/head/modular/som/leader
 	name = "\improper SOM Gorgon pattern helmet"
@@ -166,9 +188,6 @@
 	item_state = "som_helmet_leader"
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 65, ACID = 55)
 	attachments_allowed = list(
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,

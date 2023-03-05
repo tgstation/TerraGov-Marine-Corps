@@ -33,7 +33,6 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/protolathe
 	name = "Circuit board (Protolathe)"
-	build_path = /obj/machinery/r_n_d/protolathe
 	frame_desc = "Requires 2 Matter Bins, 2 Micro Manipulators, and 2 Beakers."
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
@@ -75,7 +74,6 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/rdserver
 	name = "Circuit Board (R&D Server)"
-	build_path = /obj/machinery/r_n_d/server
 	frame_desc = "Requires 2 pieces of cable, and 1 Scanning Module."
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,

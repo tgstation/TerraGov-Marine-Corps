@@ -7,7 +7,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher
 	w_class = WEIGHT_CLASS_BULKY
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = NONE
 	throw_speed = 2
@@ -24,12 +24,14 @@ The Grenade Launchers
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/training,
-		/obj/item/explosive/grenade/PMC,
+		/obj/item/explosive/grenade/pmc,
 		/obj/item/explosive/grenade/m15,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
 		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/smokebomb/cloak,
@@ -143,7 +145,9 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/training,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/smokebomb/cloak,
@@ -176,7 +180,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
-	default_ammo_type = /obj/item/explosive/grenade/stick //no marine equipment here
+	default_ammo_type = /obj/item/explosive/grenade/som
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
@@ -211,7 +215,7 @@ The Grenade Launchers
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	flags_gun_features = NONE
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
 	default_ammo_type = /obj/item/explosive/grenade/flare
 	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)

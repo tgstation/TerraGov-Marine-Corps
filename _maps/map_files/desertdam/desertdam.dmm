@@ -3909,7 +3909,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "avx" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /obj/machinery/light,
 /turf/open/floor/prison/darkyellow{
 	dir = 10
@@ -3973,11 +3973,11 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avM" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avN" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avO" = (
