@@ -1834,6 +1834,7 @@
 #include "code\modules\vehicles\multitile\multitile.dm"
 #include "code\modules\vehicles\multitile\tank.dm"
 #include "code\modules\vehicles\multitile\tankvendor.dm"
+#include "code\modules\vehicles\unmanned\deployable_vehicles.dm"
 #include "code\modules\vehicles\unmanned\unmanned_droid.dm"
 #include "code\modules\vehicles\unmanned\unmanned_turrets.dm"
 #include "code\modules\vehicles\unmanned\unmanned_vehicle.dm"
