@@ -148,11 +148,20 @@
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_DESERT_VARIANT
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	///List of icon_state suffixes for armor varients.
-	var/list/icon_state_variants = list()
+	var/list/icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+		"alpha",
+		"bravo",
+		"charlie",
+		"delta",
+	)
 	///Current varient selected.
-	var/current_variant
+	var/current_variant = "black"
 
 /obj/item/armor_module/armor/update_icon()
 	. = ..()
