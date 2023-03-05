@@ -18,13 +18,13 @@ KEYBINDINGS
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
-	/// holds a set of misc visual references to use with the overlay API. Always atleast one
+	///Holds a set of misc visual references to use with the overlay API. Always atleast one
 	var/list/visual_references = list()
 	/// Used for keybindings , use KEYBINDING_NORMAL or KEYBINDING_ALTERNATE for keybinding_activation or alternate_ability_activate
 	var/list/keybinding_signals = null
-	/// Defines what visual references will be initialized at round-start
+	///Defines what visual references will be initialized at round-start
 	var/action_type = ACTION_CLICK
-	/// Used for keeping track of the addition of the selected/active frames
+	///Used for keeping track of the addition of the selected/active frames
 	var/toggled = FALSE
 
 /datum/action/New(Target)
@@ -68,7 +68,7 @@ KEYBINDINGS
 /datum/action/proc/should_show()
 	return TRUE
 
-/// Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
+///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
 	if(value == toggled)
 		return
@@ -87,10 +87,9 @@ KEYBINDINGS
 			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 	toggled = FALSE
 
-/// A handler used to update the maptext and show the change immediately.
+///A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string, key_signal)
-	// The cutting needs to be done /BEFORE/ the string maptext gets changed
-	// Since byond internally recognizes it as a different image, and doesn't cut it properly
+	///The cutting needs to be done /BEFORE/ the string maptext gets changed. Since byond internally recognizes it as a different image, and doesn't cut it properly
 	var/mutable_appearance/reference = null
 	if(length(keybinding_signals) == 1)
 		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
@@ -202,15 +201,15 @@ KEYBINDINGS
 	owner = null
 	SEND_SIGNAL(M, ACTION_REMOVED)
 
-//Should a AI element occasionally see if this ability should be used?
+///Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()
 	return FALSE
 
-//When called, see if based on the surroundings should the AI use this ability
+///When called, see if based on the surroundings should the AI use this ability
 /datum/action/proc/ai_should_use(target)
 	return FALSE
 
-//This is the proc used to update all the action buttons.
+///This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
 	if(!hud_used || !client)
 		return

@@ -45,3 +45,30 @@
   - rscadd: Primed grenades throw on click regardless of intent.
   novaepee:
   - rscadd: SR-127 now spawn scopeless in planetside due to HvH balance
+2023-03-03:
+  Lumipharon:
+  - imageadd: Human mob sprites have been brought into the future
+  Naaanii:
+  - rscadd: Adds shoulder mount, cloak and blood implant and RR heat, smoke, cloak
+      and tfoot shells to Valhalla.
+  - rscadd: Adds Garand and MBX and its shell types to Valhalla.
+  - qol: Moves RR shells to the same position in the normal vendor along with its
+      ammo.
+  - qol: Moves tracker shells from valhalla req vendor to seasonals vendor for the
+      MBX.
+  Xander3359:
+  - bugfix: RO SAA Revolver can use the 2 special speedloaders.
+  Zar000:
+  - bugfix: fixed spiderlings controlling widow movement
+2023-03-04:
+  ClosetedSkeletonGH:
+  - imageadd: Increases darkness of several race choices
+  QualityVan:
+  - balance: Vali boosting can't be toggled on while you're in crit
+  - bugfix: You can only attach a back-worn mag to a gun while you're carrying both
+  - bugfix: Flamers will disconnect from a backtank when deployed as a sentry
+  TiviPlus:
+  - bugfix: non-xeno ventcrawl works again
+2023-03-05:
+  Lumipharon:
+  - imageadd: New mob sprites for SOM uniforms and some equipment

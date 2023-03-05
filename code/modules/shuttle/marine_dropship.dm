@@ -368,7 +368,8 @@
 	if(!port)
 		to_chat(src, span_warning("Something went wrong."))
 		return
-
+	message_admins("[ADMIN_TPMONTY(src)] has summoned the dropship")
+	log_admin("[key_name(src)] has summoned the dropship")
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
 	priority_announce("Unknown interference with dropship control. Shutting down autopilot",  "Dropship malfunction")
 

@@ -7,7 +7,7 @@
 	///the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target
 	var/visual_type
 	///What skill is needed to have this action
-	var/skill_name = "leadership"
+	var/skill_name = SKILL_LEADERSHIP
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_EXPERT
 

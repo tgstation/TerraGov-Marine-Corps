@@ -17,7 +17,7 @@
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
@@ -187,6 +187,7 @@
 	accuracy_mult = 1.15
 	scatter = 0
 	accuracy_mult_unwielded = 0.8
+	akimbo_additional_delay = 0.9 // Akimbo only gives more shots.
 	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
