@@ -44719,10 +44719,6 @@
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/escape)
 "jbd" = (
-/obj/item/hand_tele{
-	pixel_x = -5;
-	pixel_y = -7
-	},
 /obj/effect/landmark/corpsespawner/marine/engineer/regular,
 /obj/item/prop/dogtag/pfcjim{
 	desc = "This marine was pretty foolish for trying to explore space without protection. Did they really think shields were vacuum-proof?";

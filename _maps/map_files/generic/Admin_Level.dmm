@@ -18927,7 +18927,6 @@
 	pixel_y = 1
 	},
 /obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/hand_tele,
 /obj/effect/turf_decal/tile/black,
 /obj/effect/turf_decal/tile/black{
 	dir = 4
