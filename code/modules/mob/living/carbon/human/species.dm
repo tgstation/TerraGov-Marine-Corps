@@ -388,8 +388,6 @@
 	H.set_species("Vat-Grown Human")
 
 
-GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
-
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
@@ -626,7 +624,8 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
+	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
+	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
 	speech_verb_override = "chimpers"

@@ -1,14 +1,9 @@
 /datum/component/blur_protection
-	var/mob/living/protected_mob
 
 /datum/component/blur_protection/Initialize()
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-
-/datum/component/blur_protection/Destroy(force, silent)
-	protected_mob = null
-	return ..()
 
 /datum/component/blur_protection/RegisterWithParent()
 	. = ..()
@@ -26,13 +21,11 @@
 
 /datum/component/blur_protection/proc/equipped_to_slot(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	protected_mob = user
-	RegisterSignal(protected_mob, COMSIG_LIVING_UPDATE_PLANE_BLUR, .proc/cancel_blur)
+	RegisterSignal(user, COMSIG_LIVING_UPDATE_PLANE_BLUR, .proc/cancel_blur)
 
 /datum/component/blur_protection/proc/cancel_blur()
 	return COMPONENT_CANCEL_BLUR
 
 /datum/component/blur_protection/proc/removed_from_slot(datum/source, mob/user)
 	SIGNAL_HANDLER
-	UnregisterSignal(protected_mob, COMSIG_LIVING_UPDATE_PLANE_BLUR)
-	protected_mob = null
+	UnregisterSignal(user, COMSIG_LIVING_UPDATE_PLANE_BLUR)

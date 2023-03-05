@@ -3661,7 +3661,7 @@
 	spawnkey = 0
 	},
 /obj/item/storage/fancy/cigar,
-/obj/item/clothing/head/helmet/marine/veteran/PMC,
+/obj/item/clothing/head/helmet/marine/veteran/pmc,
 /obj/item/coin/diamond,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
@@ -8543,10 +8543,10 @@
 /area/gelida/indoors/a_block/executive)
 "fxp" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/item/tool/pickaxe,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "fxu" = (
@@ -36491,7 +36491,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xNQ" = (
-/obj/item/clothing/shoes/veteran/PMC{
+/obj/item/clothing/shoes/veteran/pmc{
 	name = "steel toe boots"
 	},
 /obj/machinery/light,

@@ -21,7 +21,7 @@
 
 
 
-/obj/item/explosive/grenade/PMC
+/obj/item/explosive/grenade/pmc
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_pmc"
@@ -374,9 +374,6 @@
 	// All good, turn it on.
 	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
 	turn_on(user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = usr
-		C.toggle_throw_mode()
 
 /obj/item/explosive/grenade/flare/activate(mob/user)
 	if(!active)

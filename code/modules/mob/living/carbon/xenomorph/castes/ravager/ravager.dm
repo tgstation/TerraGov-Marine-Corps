@@ -30,12 +30,15 @@
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
 	H.Paralyze(2 SECONDS)
 
-/mob/living/carbon/xenomorph/ravager/fire_act()
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
 	. = ..()
 	if(stat)
 		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RAVAGER_FLAMER_ACT))
+		return FALSE
 	gain_plasma(50)
-	if(prob(15))
+	TIMER_COOLDOWN_START(src, COOLDOWN_RAVAGER_FLAMER_ACT, 1 SECONDS)
+	if(prob(30))
 		emote("roar")
 		to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 
