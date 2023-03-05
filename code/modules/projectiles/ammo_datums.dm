@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
 		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
+		playsound(target, "incendiary_explosion", 40)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
