@@ -388,8 +388,8 @@
 
 /obj/item/storage/pouch/grenade/som/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/explosive/grenade/smokebomb(src)
-	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
@@ -397,8 +397,8 @@
 
 /obj/item/storage/pouch/grenade/som/ert/Initialize()
 	. = ..()
-	new /obj/item/explosive/grenade/smokebomb(src)
-	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/som(src)
