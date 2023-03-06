@@ -99,8 +99,8 @@
 
 //police skill, hidden
 #define SKILL_POLICE_DEFAULT 0
-#define SKILL_POLICE_FLASH 1 //flash use (CE, CMO, any officer starting with a flash)
-#define SKILL_POLICE_MP 2 //all police gear use, can strip someone's clothes simultaneously (MP)
+#define SKILL_POLICE_FLASH 1 //flash use
+#define SKILL_POLICE_MP 2 //all police gear use, can strip someone's clothes simultaneously (MP, CSE, CMO)
 
 //cqc skill
 //higher disarm chance on humans(+5% per level)
