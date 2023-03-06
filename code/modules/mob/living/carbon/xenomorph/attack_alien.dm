@@ -177,7 +177,7 @@
 		return FALSE
 
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
-		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
+		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the already secured, helpless host.</span>")
 		return FALSE
 
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
