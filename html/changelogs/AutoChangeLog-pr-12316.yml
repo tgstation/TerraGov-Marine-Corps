@@ -1,4 +1,0 @@
-author: "Autisem"
-delete-after: True
-changes:
-  - admin: "Dropship calls are logged now"
