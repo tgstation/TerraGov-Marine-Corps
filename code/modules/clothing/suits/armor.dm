@@ -188,7 +188,7 @@
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_item = SYNTH_RESTRICTED
-	slowdown = 0
+	slowdown = 0.5
 	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
 

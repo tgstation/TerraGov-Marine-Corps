@@ -227,12 +227,15 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/civilian/survivor/master
 	name = "Survivor"
 	firearms = SKILL_FIREARMS_DEFAULT
-	medical = SKILL_MEDICAL_EXPERT
-	surgery = SKILL_SURGERY_EXPERT
-	construction = SKILL_CONSTRUCTION_MASTER
-	engineer = SKILL_ENGINEER_MASTER
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_TRAINED
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	engineer = SKILL_ENGINEER_ENGI
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_FLASH
+	cqc = SKILL_CQC_MP
+	melee_weapons = SKILL_MELEE_TRAINED
+
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
@@ -626,7 +629,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/imperial/astartes
-	name = "Space Marine" 
+	name = "Space Marine"
 	cqc = SKILL_CQC_MASTER
 	melee_weapons = SKILL_MELEE_SUPER
 

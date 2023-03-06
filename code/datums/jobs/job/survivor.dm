@@ -47,6 +47,8 @@
 			to_chat(M, span_notice("You are a survivor of the attack on the outpost. But you question yourself: are you truely safe now?"))
 		if(MAP_MAGMOOR_DIGSITE)
 			to_chat(M, span_notice("You are a survivor of the attack on the Magmoor Digsite IV. You worked or lived on the digsite, and managed to avoid the alien attacks... until now."))
+		if(MAP_GELIDA_IV)
+			to_chat(M, span_notice("You are a survivor of the attack on the Gelida IV. You've worked or lived on this outpost and have managed to avoid the alien attacks... until now."))
 		else
 			to_chat(M, span_notice("Through a miracle you managed to survive the attack. But are you truly safe now?"))
 

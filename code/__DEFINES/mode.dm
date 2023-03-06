@@ -83,7 +83,10 @@
 				list(/obj/item/weapon/gun/smg/m25, /obj/item/ammo_magazine/smg/m25),\
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
-				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
+				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum),\
+				list(/obj/item/weapon/gun/shotgun/pump/lever/repeater, /obj/item/ammo_magazine/packet/p4570),\
+				list(/obj/item/weapon/gun/rifle/garand, /obj/item/ammo_magazine/rifle/garand),\
+				list(/obj/item/ammo_magazine/smg/ppsh, /obj/item/ammo_magazine/smg/ppsh/extended))
 
 
 #define LATEJOIN_LARVA_DISABLED 0
