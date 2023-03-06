@@ -51,7 +51,7 @@ GLOBAL_PROTECT(exp_to_update)
 	return_text += "<UL>"
 	var/list/exp_data = list()
 	for(var/category in SSjob.name_occupations)
-		if(!(category in GLOB.jobs_regular_all))
+		if(!(category in GLOB.jobs_all))
 			continue
 		if(play_records[category])
 			exp_data[category] = text2num(play_records[category])
