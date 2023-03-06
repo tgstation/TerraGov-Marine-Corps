@@ -509,6 +509,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	firelevel -= 20 //Water level extinguish
 	updateicon()
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
+		playsound(S, 'sound/effects/smoke_extinguish.ogg', 20)
 		qdel(src)
 
 /obj/flamer_fire/proc/updateicon()

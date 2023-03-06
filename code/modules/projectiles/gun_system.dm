@@ -678,6 +678,8 @@
 	if(modifiers["shift"])
 		return
 
+	if(modifiers["middle"])
+		return
 	if(modifiers["right"])
 		modifiers -= "right"
 		params = list2params(modifiers)

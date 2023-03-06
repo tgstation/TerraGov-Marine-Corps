@@ -66,8 +66,6 @@
 	priority = 0.1 //Attempt before generic scalpel step
 	allowed_tools = list(
 		/obj/item/tool/surgery/scalpel/laser3 = 95,
-		/obj/item/tool/surgery/scalpel/laser2 = 85,
-		/obj/item/tool/surgery/scalpel/laser1 = 75,
 		/obj/item/weapon/energy/sword = 5,
 	)
 

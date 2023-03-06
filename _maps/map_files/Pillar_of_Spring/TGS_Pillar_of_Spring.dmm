@@ -9241,6 +9241,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
+"lTe" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "lTt" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{

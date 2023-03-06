@@ -72,3 +72,26 @@
 2023-03-05:
   Lumipharon:
   - imageadd: New mob sprites for SOM uniforms and some equipment
+2023-03-06:
+  Autisem:
+  - admin: Dropship calls are logged now
+  Lumipharon:
+  - imageadd: Updated vatborn and vatgrown sprites
+  - soundadd: added some new sounds for the V-41
+  - soundadd: updated some sounds for smoke, incendiary and stun grenades
+  - imageadd: Added sprites for the style line equalizer modules
+  - bugfix: fixed Jaeger Mk.I being invisible on prison station
+  Naaanii:
+  - rscadd: Adds RR Tfoot shells to normal vendor
+  Pariah919:
+  - balance: Mateba has much more fire delay in akimbo.
+  - soundadd: ICC Trenchgun has a unique sound now.
+  QualityVan:
+  - bugfix: Beheaded synths can ghost and return to their head later
+  - bugfix: Beheaded mobs keep their old known languages
+  - rscdel: Removed repurposing existing chem grenades with a new payload.
+  Xander3359:
+  - rscdel: Middle click no longer shoots gun.
+  - rscdel: Unused hand tele and bluespace locator
+  - code_imp: more gooder code. :)
+  - rscdel: Removed RND, old unused code.
