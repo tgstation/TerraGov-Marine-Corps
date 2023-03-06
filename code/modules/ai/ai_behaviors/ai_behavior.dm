@@ -164,12 +164,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			change_action(MOVING_TO_NODE, current_node)
 		return
 	if(goal_node && goal_node != current_node)
-		if(!length_char(goal_nodes))
+		if(!length(goal_nodes))
 			if(!registered_for_node_pathfinding)
 				SSadvanced_pathfinding.node_pathfinding_to_do += src
 				registered_for_node_pathfinding = TRUE
 			return
-		set_current_node(GLOB.all_nodes[goal_nodes[length_char(goal_nodes)] + 1])
+		set_current_node(GLOB.all_nodes[goal_nodes[length(goal_nodes)] + 1])
 		goal_nodes.len--
 	else
 		set_current_node(current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier))
@@ -200,11 +200,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(QDELETED(current_node))
 		return
 	turfs_in_path = get_path(get_turf(mob_parent), get_turf(current_node), TILE_PATHING)
-	if(!length_char(turfs_in_path))
+	if(!length(turfs_in_path))
 		cleanup_current_action()
 		late_initialize()
 		return
-	change_action(FOLLOWING_PATH, turfs_in_path[length_char(turfs_in_path)])
+	change_action(FOLLOWING_PATH, turfs_in_path[length(turfs_in_path)])
 	turfs_in_path.len--
 
 ///Look for the a* node path to get to goal_node
@@ -222,11 +222,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Signal handler when we reached our current tile goal
 /datum/ai_behavior/proc/finished_path_move()
 	SIGNAL_HANDLER
-	if(!length_char(turfs_in_path))//We supposedly found our goal
+	if(!length(turfs_in_path))//We supposedly found our goal
 		cleanup_current_action()
 		late_initialize()
 		return
-	atom_to_walk_to = turfs_in_path[length_char(turfs_in_path)]
+	atom_to_walk_to = turfs_in_path[length(turfs_in_path)]
 	if(!registered_for_move)
 		INVOKE_ASYNC(src, .proc/scheduled_move)
 	turfs_in_path.len--
