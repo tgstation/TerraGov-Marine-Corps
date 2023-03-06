@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(resinshaping)
 
 /// Retrieves a mob's building points using their ckey. Only works for mobs with clients.
 /datum/controller/subsystem/resinshaping/proc/get_building_points(mob/the_builder)
-	var/player_key = "[the_builder.client?.ckey]"
+a	var/player_key = "[the_builder.client?.ckey]"
 	if(!player_key)
 		return 0
 	return QUICKBUILD_STRUCTURES_PER_XENO - xeno_builds_counter[player_key]
