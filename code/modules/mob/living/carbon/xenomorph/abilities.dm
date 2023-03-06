@@ -587,7 +587,7 @@
 	desc = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
 	plasma_cost = 100
-	var/acid_type = /obj/effect/xenomorph/acid
+	var/obj/effect/xenomorph/acid/acid_type = /obj/effect/xenomorph/acid
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
@@ -599,32 +599,20 @@
 		return FALSE
 	if(!owner.Adjacent(A))
 		if(!silent)
-			owner.balloon_alert(owner, "The [A] is too far away.")
+			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
 	if(A.resistance_flags & UNACIDABLE)
 		if(!silent)
-			owner.balloon_alert(owner, "We cannot dissolve the [A].")
+			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
-
-/obj/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid)
-		return TRUE
-	if(!current_acid)
+	if(A.acid_check(acid_type))
+		if(!silent)
+			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
-
-	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
+	if(ismob(A))
+		if(!silent)
+			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-	return TRUE
-
-/turf/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid)
-		return TRUE
-	if(!current_acid)
-		return FALSE
-
-	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
-		return FALSE
-	return TRUE
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -635,7 +623,7 @@
 	var/wait_time = A.get_acid_delay()
 
 	X.face_atom(A)
-	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [T]"))
+	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
 
 	if(!do_after(X, wait_time, TRUE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
@@ -643,7 +631,7 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
+	new acid_type(get_turf(A), A, acid_rate)
 
 	succeed_activate()
 

@@ -1,5 +1,4 @@
 
-
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons
@@ -133,30 +132,29 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 0.04 //base speed, normal
+	var/acid_strength = REGULAR_ACID_STRENGTH
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
-	var/strength_t
+	var/strength_t = 4
 	var/acid_melt_multiplier
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.016 //40% of base speed
+	acid_strength = WEAK_ACID_STRENGTH
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.1 //250% normal speed
+	acid_strength = STRONG_ACID_STRENGTH
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/Initialize(mapload, target)
+/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate)
 	. = ..()
+	acid_melt_multiplier = melting_rate
 	acid_t = target
-	acid_melt_multiplier = acid_t.dissolvability()
-	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()

@@ -407,6 +407,7 @@
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	plane = GAME_PLANE
+	resistance_flags = RESIST_ALL|PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE

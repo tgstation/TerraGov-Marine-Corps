@@ -502,5 +502,8 @@
 
 		return attack_hand(user)
 
-/turf/closed/wall/can_be_dissolved()
-	return !(resistance_flags & INDESTRUCTIBLE)
+/turf/closed/wall/get_acid_delay()
+	return 5 SECONDS
+
+/turf/closed/wall/dissolvability(acid_strength)
+	return 0.5

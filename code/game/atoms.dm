@@ -170,11 +170,20 @@ directive is properly returned.
 
 //returns how dissolveable this atom is, lower number means it takes longer to dissolve it
 /atom/proc/dissolvability(acid_strength)
-	return 1 * acid_strength
+	return 1
 
 //returns how long it takes to apply acid on this atom
 /atom/proc/get_acid_delay()
 	return 1 SECONDS
+
+/atom/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
+	if(!new_acid)
+		return TRUE
+	if(!current_acid)
+		return FALSE
+	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
+		return FALSE
+	return TRUE
 
 /atom/proc/on_reagent_change()
 	return

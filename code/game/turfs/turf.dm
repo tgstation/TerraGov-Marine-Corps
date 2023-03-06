@@ -451,10 +451,6 @@
 
 	return FALSE
 
-//for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
-/turf/proc/can_be_dissolved()
-	return FALSE
-
 /turf/proc/ceiling_debris_check(size = 1)
 	return
 
