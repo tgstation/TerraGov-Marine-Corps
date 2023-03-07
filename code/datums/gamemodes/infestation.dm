@@ -224,20 +224,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
-	announce_xenomorphs()
-	announce_medal_awards()
-	announce_round_stats()
-
-/// Announce to players the name of the surviving hive ruler
-/datum/game_mode/infestation/proc/announce_xenomorphs()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
-		return
-
-	var/dat = span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
-
-	to_chat(world, dat)
-
 /datum/game_mode/infestation/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
