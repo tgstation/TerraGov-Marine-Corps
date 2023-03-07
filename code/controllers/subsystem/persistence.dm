@@ -195,8 +195,10 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/rifle/mpi_km = -1,
 		/obj/item/ammo_magazine/rifle/mpi_km = -1,
+		/obj/item/ammo_magazine/packet/p762x39mm = -1,
 		/obj/item/weapon/gun/rifle/m16 = -1,
 		/obj/item/ammo_magazine/rifle/m16 = -1,
+		/obj/item/ammo_magazine/packet/p556x45mm = -1,
 		/obj/item/weapon/gun/rifle/mkh = -1,
 		/obj/item/ammo_magazine/rifle/mkh = -1,
 		/obj/item/weapon/gun/smg/ppsh = -1,
