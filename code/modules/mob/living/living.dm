@@ -340,6 +340,7 @@
 
 /mob/living/Bump(atom/A)
 	. = ..()
+	to_chat(world, "Bumping")
 	if(.) //We are thrown onto something.
 		return FALSE
 	if(buckled || now_pushing)
@@ -413,9 +414,14 @@
 			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
 				return
 			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
+		var/loc_to_move_into = A.loc
+		//If something was successfully bumped
 		if(PushAM(A))
-			return TURF_ENTER_ALREADY_MOVED
-
+			var/atom/movable/AM = A
+			add_movespeed_modifier(MOVESPEED_ID_PUSHING, TRUE, 0, NONE, TRUE, AM.drag_delay)	//Otherwise pushing has no downside
+			//Using a timer based on the slowdown seemed to be the best solution for how long to remain slowed
+			addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, MOVESPEED_ID_PUSHING), cached_multiplicative_slowdown, TIMER_OVERRIDE|TIMER_UNIQUE)
+			return Move(loc_to_move_into)	//Let's move into the tile the object we pushed out was occupying
 
 //Called when we want to push an atom/movable
 /mob/living/proc/PushAM(atom/movable/AM, force = move_force)
@@ -466,9 +472,10 @@
 				return
 	if(pulling == AM)
 		stop_pulling()
-	AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
+	var/move_result = AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
 	now_pushing = FALSE
-
+	to_chat(world, "pushing end")
+	return move_result
 
 /mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	if(!target)
