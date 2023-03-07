@@ -150,11 +150,21 @@
 /obj/item/ammo_magazine/rifle/mpi_km/extended
 	name = "\improper MPi-KM extended magazine (7.62x39mm)"
 	desc = "A 60 round 7.62x39mm Kalashnikov magazine. this one is notably heavy."
-	icon_state = "ak47_ext"
-	bonus_overlay = "ak47_ex"
+	icon_state = "ak_40"
+	bonus_overlay = "ak_40"
 	max_rounds = 60
 	aim_speed_mod = 0.2
 	wield_delay_mod = 0.2
+
+// RPD
+
+/obj/item/ammo_magazine/rifle/mpi_km/lmg_d
+	name = "\improper lMG-D drum magazine (7.62x39mm)"
+	desc = "A 100 round 7.62x39mm Kalashnikov drum, won't fit on most kalasnikov rifles, as it is made for the beltfed variant."
+	icon_state = "rpd"
+	bonus_overlay = "rpd_125"
+	max_rounds = 100
+
 
 //-------------------------------------------------------
 //M16 RIFLE

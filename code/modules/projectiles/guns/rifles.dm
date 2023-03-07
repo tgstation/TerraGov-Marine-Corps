@@ -605,6 +605,56 @@
 		/obj/item/attachable/reddot,
 	)
 
+// RPD
+
+/obj/item/weapon/gun/rifle/mpi_km/lmg_d
+	name = "\improper lMG-D light machinegun"
+	desc = "A cheap and robust machinegun, sometimes better known as an 'RPD'. Chambers 7.62x39mm. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost, high capacity and higher than usual caliber rounds."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "rpd"
+	item_state = "rpd"
+	caliber = CALIBER_762X39 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	max_shells = 125  //codex
+	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km/lmg_d
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mpi_km/lmg_d)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/lmg_d,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+	)
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 6, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/stock/lmg_d)
+
+	wield_delay = 1 SECONDS
+	aim_slowdown = 0.75
+
+/obj/item/weapon/gun/rifle/mpi_km/lmg_d/magharness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/lmg_d,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/foldable/bipod,
+	)
+
 //-------------------------------------------------------
 //M16 RIFLE
 
