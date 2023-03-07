@@ -474,7 +474,6 @@
 		stop_pulling()
 	var/move_result = AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
 	now_pushing = FALSE
-	to_chat(world, "pushing end")
 	return move_result
 
 /mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
