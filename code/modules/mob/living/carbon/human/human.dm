@@ -40,6 +40,7 @@
 	randomize_appearance()
 
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, .proc/async_do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_1, .proc/async_do_quick_equip_1)
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_2, .proc/async_do_quick_equip_2)
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_3, .proc/async_do_quick_equip_3)

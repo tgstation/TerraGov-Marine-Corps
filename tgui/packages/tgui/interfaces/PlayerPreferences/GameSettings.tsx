@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Section, LabeledList, Grid, ColorBox } from '../../components';
+import { Box, Button, Section, LabeledList, Grid, ColorBox, Flex } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
@@ -28,7 +28,7 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip } =
+  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip_slot, amount_quick_equip_slots, quick_equip } =
     data;
   return (
     <Section title="Game Settings">
@@ -250,6 +250,18 @@ export const GameSettings = (props, context) => {
         </Grid.Column>
         <Grid.Column>
           <Section title="Keybinding Settings">
+            <Flex.Item>
+              <h4>Amount of quick equip slots</h4>
+              {Object.values(amount_quick_equip_slots).map((quick_equip_slots) => (
+                <Button.Checkbox
+                  key={quick_equip_slots}
+                  inline
+                  content={quick_equip_slots}
+                  checked={quick_equip_slot === quick_equip_slots}
+                  onClick={() => act('quick_equip_slots', { newValue: quick_equip_slots })}
+                />
+              ))}
+            </Flex.Item>
             <LabeledList>
               {quick_equip.map((equip_slot, index_slot) => (
                 <>

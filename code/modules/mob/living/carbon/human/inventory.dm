@@ -1,4 +1,10 @@
 ///async signal wrapper for do_quick_equip_1
+/mob/living/carbon/human/proc/async_do_quick_equip()
+	SIGNAL_HANDLER
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip, 1)
+
+///async signal wrapper for do_quick_equip_1
 /mob/living/carbon/human/proc/async_do_quick_equip_1()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
