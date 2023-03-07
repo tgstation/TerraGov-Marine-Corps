@@ -226,6 +226,7 @@ export const GameSettings = (props, context) => {
                 label="Radial stacks wheel"
                 value="radialstackspref"
                 action="radialstackspref"
+                leftValue={4}
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
