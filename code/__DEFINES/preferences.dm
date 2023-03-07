@@ -172,15 +172,6 @@
 	"Holo"\
 	)
 
-#define AMOUNT_QUICK_EQUIP_SLOTS list(\
-	"None",\
-	"1 Slot",\
-	"2 Slot",\
-	"3 Slot",\
-	"4 Slot",\
-	"5 Slot"\
-	)
-
 ///The default Quick equip order list.
 #define QUICK_EQUIP_ORDER list(\
 	SLOT_S_STORE,\

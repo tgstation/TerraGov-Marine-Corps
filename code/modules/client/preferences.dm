@@ -79,8 +79,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Your preferred squad, when playing SOM
 	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	///Amount of quick equip keybinds the client wishes to have available to them.
-	var/quick_equip_amount = "2 Slot"
 	///Quick equip slots, up to 5. One per quick equip hotkey.
 	var/list/quick_equip = list()
 	var/list/gear

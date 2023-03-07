@@ -35,8 +35,6 @@ type GameSettingData = {
   scaling_method: string;
   pixel_size: number;
   parallax: number;
-  amount_quick_equip_slots: string[];
-  quick_equip_amount: string;
   quick_equip: string[];
 };
 

@@ -122,8 +122,6 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
-			data["quick_equip_amount"] = quick_equip_amount
-			data["amount_quick_equip_slots"] = AMOUNT_QUICK_EQUIP_SLOTS
 			data["quick_equip"] = list()
 			for(var/quick_equip_slots in quick_equip)
 				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
@@ -582,13 +580,6 @@
 
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
-
-		if("quick_equip_slots")
-			var/new_quick_equip_amount = params["newValue"]
-			if(!(new_quick_equip_amount in AMOUNT_QUICK_EQUIP_SLOTS))
-				return
-			quick_equip_amount = new_quick_equip_amount
-			to_chat(src, span_notice("You will now have X quick equip options."))
 
 		if("change_quick_equip")
 			var/editing_slot = params["selection"]
