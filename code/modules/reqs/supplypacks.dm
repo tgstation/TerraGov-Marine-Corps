@@ -1309,6 +1309,7 @@ SUPPLIES
 /*******************************************************************************
 Imports
 *******************************************************************************/
+//If you add anything to this category, please add it to marine_vending.dm under "Requisition Imports" for valhalla. -Xander Mercury
 /datum/supply_packs/imports
 	group = "Imports"
 	containertype = /obj/structure/closet/crate/weapon
