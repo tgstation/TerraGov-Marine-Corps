@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - qol: "Round end info is now displayed in its own panel instead of in chat"
