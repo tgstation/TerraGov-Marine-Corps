@@ -340,7 +340,6 @@
 
 /mob/living/Bump(atom/A)
 	. = ..()
-	to_chat(world, "Bumping")
 	if(.) //We are thrown onto something.
 		return FALSE
 	if(buckled || now_pushing)
