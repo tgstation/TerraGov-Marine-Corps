@@ -608,7 +608,12 @@
 		playsound(src, vending_sound, 25, 0)
 	else
 		playsound(src, "vending", 25, 0)
-	return new R.product_path(get_turf(src))
+	if(ispath(R.product_path,/obj/item/weapon/gun/launcher/rocket/oneuse))
+		return new R.product_path(get_turf(src))
+	else if(ispath(R.product_path,/obj/item/weapon/gun))
+		return new R.product_path(get_turf(src), 1)
+	else
+		return new R.product_path(get_turf(src))
 
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
