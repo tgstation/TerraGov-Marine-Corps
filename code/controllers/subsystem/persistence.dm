@@ -218,6 +218,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rifle/m41a = -1,
 		/obj/item/weapon/gun/rifle/type71/seasonal = -1,
 		/obj/item/ammo_magazine/rifle/type71 = -1,
+		/obj/item/ammo_magazine/packet/p762x39mm = -1,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		)

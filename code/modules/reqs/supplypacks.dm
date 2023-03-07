@@ -1475,11 +1475,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/packet/p762x39mm)
 	cost = 30
 
-/datum/supply_packs/imports/mpi_km/ammo
-	name = "MPi-KM Assault Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
-	cost = 10
-
 /datum/supply_packs/imports/mkh
 	name = "MKH-98 Storm Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/mkh)
