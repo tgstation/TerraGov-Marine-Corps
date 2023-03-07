@@ -116,8 +116,8 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
-			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
-			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
+			.["radialmedicalpref"] = ((toggles_gameplay & RADIAL_MEDICAL) ? 1 : 0)
+			.["radialstackspref"] = ((toggles_gameplay & RADIAL_STACKS) ? 1 : 0)
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
