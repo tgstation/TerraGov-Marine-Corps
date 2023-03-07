@@ -122,6 +122,7 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
+			data["quick_equip_amount"] = quick_equip_amount
 			data["amount_quick_equip_slots"] = AMOUNT_QUICK_EQUIP_SLOTS
 			data["quick_equip"] = list()
 			for(var/quick_equip_slots in quick_equip)

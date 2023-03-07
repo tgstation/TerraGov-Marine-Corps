@@ -173,11 +173,12 @@
 	)
 
 #define AMOUNT_QUICK_EQUIP_SLOTS list(\
-	"1",\
-	"2",\
-	"3",\
-	"4",\
-	"5"\
+	"None",\
+	"1 Slot",\
+	"2 Slot",\
+	"3 Slot",\
+	"4 Slot",\
+	"5 Slot"\
 	)
 
 ///The default Quick equip order list.

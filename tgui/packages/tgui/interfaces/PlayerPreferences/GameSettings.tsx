@@ -28,7 +28,7 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip_slot, amount_quick_equip_slots, quick_equip } =
+  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip_amount, amount_quick_equip_slots, quick_equip } =
     data;
   return (
     <Section title="Game Settings">
@@ -257,7 +257,7 @@ export const GameSettings = (props, context) => {
                   key={quick_equip_slots}
                   inline
                   content={quick_equip_slots}
-                  checked={quick_equip_slot === quick_equip_slots}
+                  checked={quick_equip_amount === quick_equip_slots}
                   onClick={() => act('quick_equip_slots', { newValue: quick_equip_slots })}
                 />
               ))}
