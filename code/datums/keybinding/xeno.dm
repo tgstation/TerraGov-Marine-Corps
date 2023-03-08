@@ -214,6 +214,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 
+/datum/keybinding/xeno/dumpacid
+	name = "dump_acid"
+	full_name = "Boiler: Dump Acid"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_DUMP_ACID
+
 /datum/keybinding/xeno/throw_hugger
 	name = "throw_hugger"
 	full_name = "Carrier: Throw Hugger"

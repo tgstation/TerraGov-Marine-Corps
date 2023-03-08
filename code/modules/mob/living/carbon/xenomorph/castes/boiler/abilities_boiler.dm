@@ -309,3 +309,90 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/xeno_action/activable/spray_acid/line/boiler
 	cooldown_timer = 9 SECONDS
+
+// ***************************************
+// *********** dump_acid
+// ***************************************
+//
+//
+// В дефы бойлера добавлен BOILER_GAS_DELAY - время между пуками
+// Для ускорения нужны вот эти два прикола, само ускорение настраивается ниже
+	var/speed_activated = FALSE
+	var/speed_bonus_active = FALSE
+
+/datum/action/xeno_action/dump_acid
+	name = "Dump Acid"
+	action_icon_state = "dump_acid"
+	desc = "You dump your acid to escape, creating clouds of deadly acid mist behind you, while becoming faster for a short period of time."
+	ability_name = "dump acid"
+	plasma_cost = 150
+	cooldown_timer = 230 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DUMP_ACID,
+	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/xeno_action/dump_acid/action_activate()
+	var/mob/living/carbon/xenomorph/defiler/X = owner
+	toggle_particles(TRUE)
+
+	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas. это надо вообще?
+
+	add_cooldown()
+	succeed_activate()
+
+	if(X.stagger) //If we got staggered, return
+		to_chat(X, span_xenowarning("We try to emit acid but are staggered!"))
+		return fail_activate()
+
+	GLOB.round_statistics.boiler_dump_acid++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_dump_acid")
+
+	X.visible_message(span_xenodanger("[X] emits an acid!"),
+	span_xenohighdanger("You dump your acid, disabling your offensive abilities to escape!"))
+	dispense_gas()
+
+	var/datum/action/xeno_action/activable/spray_acid = X.actions_by_path[/datum/action/xeno_action/activable/spray_acid/line/boiler]
+	if(spray_acid)
+		spray_acid.add_cooldown()
+
+/datum/action/xeno_action/dump_acid/fail_activate()
+	toggle_particles(FALSE)
+	return ..()
+
+/datum/action/xeno_action/dump_acid/proc/dispense_gas(count = 6)
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	set waitfor = FALSE
+	var/smoke_range = 1
+	var/datum/effect_system/smoke_spread/xeno/gas
+	gas = new /datum/effect_system/smoke_spread/xeno/acid/light
+
+	while(count)
+		//здесь контролируется ускорение
+		owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		if(X.IsStun() || X.IsParalyzed())
+			to_chat(X, span_xenohighdanger("We try to emit acid but are disabled!"))
+			toggle_particles(FALSE)
+			return
+		var/turf/T = get_turf(X)
+		playsound(T, 'sound/effects/smoke.ogg', 25)
+		if(count > 1)
+			gas.set_up(smoke_range, T)
+		else //last emission is larger
+			gas.set_up(CEILING(smoke_range*1.3,1), T)
+		gas.start()
+		T.visible_message(span_danger("Acidic mist emits from the hulking xenomorph!"))
+		count = max(0,count - 1)
+		sleep(BOILER_GAS_DELAY)
+
+	toggle_particles(FALSE)
+	owner.remove_movespeed_modifier(type) //здесь ускорение отключается
+
+// Toggles particles on or off, depending on the defined var. эта хуйня нужна
+/datum/action/xeno_action/dump_acid/proc/toggle_particles(activate)
+	if(!activate)
+		QDEL_NULL(particle_holder)
+		return
