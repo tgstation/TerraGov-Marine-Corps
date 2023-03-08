@@ -43,6 +43,11 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/clothing/glasses/eyepatch
 	cost = 2
 	slot = SLOT_GLASSES
+/datum/gear/og
+	display_name = "Orange glasses"
+	path = /obj/item/clothing/glasses/ru/orange
+	cost = 1
+	slot = SLOT_GLASSES
 
 /datum/gear/beret
 	display_name = "TGMC beret (blue)"

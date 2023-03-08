@@ -1840,6 +1840,7 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "RUtgmc\code\clothes.dm"
 #include "RUtgmc\code\clown.dm"
 #include "RUtgmc\code\militarypolice.dm"
 #include "RUtgmc\code\necoarc.dm"
