@@ -471,16 +471,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/caves/west_caves)
-"apq" = (
-/obj/structure/closet,
-/obj/machinery/power/apc/drained,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
-/area/gelida/indoors/a_block/dorms)
 "apv" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -37126,7 +37116,6 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "yiU" = (
-/obj/machinery/power/apc/drained,
 /obj/structure/bed/chair{
 	dir = 8
 	},
@@ -41609,7 +41598,7 @@ tqi
 tqi
 tqF
 cNp
-ndb
+tqi
 ngP
 wOd
 wOd
@@ -42497,7 +42486,7 @@ ndb
 qOV
 tqi
 ilJ
-ndb
+tqi
 ngP
 wOd
 wOd
@@ -44271,9 +44260,9 @@ tqi
 tqi
 tqi
 tqi
-tqi
+tqF
 ilJ
-ndb
+nAJ
 ngP
 siX
 lBm
@@ -44716,7 +44705,7 @@ tqi
 tqi
 tqi
 tqi
-ilJ
+hkj
 tqF
 siX
 wDw
@@ -44939,7 +44928,7 @@ tqF
 pwy
 tqi
 ilJ
-ndb
+gdq
 ngP
 siX
 wOd
@@ -46503,16 +46492,16 @@ oas
 oas
 ngP
 wDw
-wOd
 ngP
+wOd
 wOd
 wOd
 wOd
 csz
 wOd
 wOd
-ngP
 wOd
+ngP
 wOd
 ngP
 wOd
@@ -46727,12 +46716,12 @@ ngP
 ngP
 ngP
 ngP
-ngP
+wOd
 wOd
 wOd
 csz
 wOd
-ngP
+wOd
 ngP
 ngP
 ngP
@@ -46854,7 +46843,7 @@ jjX
 tkC
 kpE
 yfp
-apq
+kpE
 qGg
 yfp
 ujy
@@ -46947,16 +46936,16 @@ ndb
 ndb
 ngP
 ndb
-ndb
 ngP
+tqi
 tqi
 tqi
 tqi
 vYQ
 tqi
 tqi
+tqi
 ngP
-ndb
 ndb
 ngP
 ndb
@@ -47177,7 +47166,7 @@ oHe
 okT
 oHe
 oHe
-gEI
+oHe
 gEI
 gEI
 gEI

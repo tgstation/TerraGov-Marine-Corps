@@ -418,7 +418,7 @@
 "aDC" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "aDG" = (
 /turf/open/floor/mainship/terragov/north{
@@ -815,13 +815,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"aYI" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "aZk" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1804,9 +1797,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"cgH" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/hallways/hangar)
 "chT" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
@@ -7537,9 +7527,6 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
-"jZA" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/numbertwobunks)
 "jZZ" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -8910,9 +8897,6 @@
 /obj/machinery/microwave,
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
-"lDs" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/tankerbunks)
 "lDR" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2
@@ -46106,7 +46090,7 @@ jJD
 jJD
 vTb
 tVP
-aYI
+lTe
 dQG
 gpC
 gcd
@@ -54599,7 +54583,7 @@ fAJ
 gxA
 cUW
 mpS
-jZA
+uyy
 jaA
 hRK
 uyy
@@ -54856,7 +54840,7 @@ fAJ
 roN
 cUW
 vYB
-jZA
+uyy
 feU
 ujQ
 uyy
@@ -55113,8 +55097,8 @@ fAJ
 pqh
 tbT
 oKe
-jZA
-jZA
+uyy
+uyy
 wql
 uyy
 oKm
@@ -55347,7 +55331,7 @@ wPV
 wPV
 wPV
 bIO
-cgH
+tyN
 uzm
 hEa
 gSJ
@@ -55370,7 +55354,7 @@ fAJ
 iTf
 cUW
 oKe
-jZA
+uyy
 uNy
 tzF
 uyy
@@ -55604,11 +55588,11 @@ esN
 esN
 esN
 wPV
-cgH
-cgH
-cgH
+tyN
+tyN
+tyN
 gUp
-ifT
+xLu
 xLu
 xLu
 qjj
@@ -55627,7 +55611,7 @@ fAJ
 roN
 cUW
 vYB
-jZA
+uyy
 tzF
 tzF
 uyy
@@ -55884,7 +55868,7 @@ fAJ
 aym
 tCO
 oKe
-jZA
+uyy
 hpS
 lHu
 tzF
@@ -56141,7 +56125,7 @@ fAJ
 qwW
 cRF
 qwW
-jZA
+uyy
 bZE
 dYs
 qKf
@@ -57937,7 +57921,7 @@ viN
 viN
 viN
 aTO
-lDs
+viN
 pdj
 xvv
 nJG
@@ -58451,7 +58435,7 @@ esN
 esN
 esN
 unX
-lDs
+viN
 uOd
 mux
 nJG
@@ -58708,7 +58692,7 @@ nWT
 nWT
 esN
 unX
-lDs
+viN
 dct
 qSz
 nJG
@@ -58965,9 +58949,9 @@ nWT
 nWT
 esN
 unX
-lDs
-lDs
-lDs
+viN
+viN
+viN
 nJG
 nJG
 nJG

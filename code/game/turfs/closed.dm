@@ -50,6 +50,7 @@
 
 /turf/closed/mineral/smooth/indestructible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/snowrock
 	icon = 'icons/turf/walls/snowwall.dmi'
@@ -59,6 +60,7 @@
 
 /turf/closed/mineral/smooth/snowrock/indestructible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/frostwall
 	icon = 'icons/turf/walls/frostwall.dmi'
@@ -68,6 +70,7 @@
 
 /turf/closed/mineral/smooth/frostwall/indestructible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/darkfrostwall
 	icon = 'icons/turf/walls/darkfrostwall.dmi'
@@ -78,6 +81,7 @@
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/mineral/smooth/bluefrostwall
 	icon = 'icons/turf/walls/bluefrostwall.dmi'
@@ -89,6 +93,8 @@
 
 /turf/closed/mineral/smooth/bluefrostwall/indestructible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0"
@@ -97,6 +103,7 @@
 
 /turf/closed/mineral/smooth/bigred/indestructible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/mineral/bigred
 	name = "rock"
@@ -148,6 +155,7 @@
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/desertdamrockwall/invincible/perimeter
 	name = "wall"
@@ -794,6 +802,7 @@
 
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
