@@ -1114,10 +1114,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_IFF
-	damage = 100
-	penetration = 35
+	damage = 50
+	penetration = 45
 	sundering = 0
-	damage_falloff = 0.3
+	damage_falloff = -2.5
 
 /*
 //================================================
