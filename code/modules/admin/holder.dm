@@ -414,6 +414,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/map_template_load,
 	/datum/admins/proc/map_template_upload,
 	/datum/admins/proc/spatial_agent,
+	/datum/admins/proc/military_policeman,
 	/datum/admins/proc/set_xeno_stat_buffs,
 	/datum/admins/proc/check_bomb_impacts,
 	)
