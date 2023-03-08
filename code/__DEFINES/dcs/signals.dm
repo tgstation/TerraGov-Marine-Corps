@@ -745,10 +745,10 @@
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
 #define COMSIG_XENOABILITY_CALL_OF_THE_BURROWED "xenoability_call_of_the_burrowed"
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
+#define COMSIG_XENOABILITY_PSYCHIC_GRAB "xenoability_psychic_grab"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT "xenoability_unrelenting_force_select"
-#define COMSIG_XENOABILITY_GRAV_NADE "xenoability_grav_nade"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"

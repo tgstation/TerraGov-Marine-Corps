@@ -207,5 +207,5 @@
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
-		/datum/action/xeno_action/activable/gravity_grenade,
+		/datum/action/xeno_action/activable/psychic_grab,
 	)
