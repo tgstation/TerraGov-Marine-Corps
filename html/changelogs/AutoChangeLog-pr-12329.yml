@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added a deployable Iguana drone for the spec op ERT"
+  - balance: "Updated and refreshed the spec op ERT"
