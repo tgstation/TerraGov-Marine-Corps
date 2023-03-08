@@ -1,8 +1,13 @@
-///async signal wrapper for do_quick_equip_1
+///Amount of quick equips the player has available to them.
+#define QUICK_EQUIP_AMOUNT 5
+
+///async signal wrapper for do_quick_equip
 /mob/living/carbon/human/proc/async_do_quick_equip()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, 1)
+	var/quick_equip_keybind = /datum/keybinding/human/quick_equip
+	INVOKE_ASYNC(src, .proc/do_quick_equip, quick_equip_keybind.quick_equip_used)
+
 
 ///async signal wrapper for do_quick_equip_1
 /mob/living/carbon/human/proc/async_do_quick_equip_1()
@@ -33,6 +38,7 @@
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 	INVOKE_ASYNC(src, .proc/do_quick_equip, 5)
+
 
 /// runs equip, quick_equip_used is the # in INVOKE_ASYNC
 /mob/living/carbon/human/proc/do_quick_equip(quick_equip_used = 0)

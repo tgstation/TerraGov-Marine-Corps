@@ -3,32 +3,40 @@
 	weight = WEIGHT_MOB
 	description = ""
 
-/datum/keybinding/human/quick_equip_1
+/datum/keybinding/human/quick_equip
+	var/quick_equip_used = null
+
+/datum/keybinding/human/quick_equip/quick_equip_1
 	hotkey_keys = list("E")
 	name = "quick_equip_1"
 	full_name = "Quick equip 1"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_1
+	quick_equip_used = 1
 
-/datum/keybinding/human/quick_equip_2
+/datum/keybinding/human/quick_equip/quick_equip_2
 	hotkey_keys = list("ShiftE")
 	name = "quick_equip_2"
 	full_name = "Quick equip 2"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_2
+	quick_equip_used = 2
 
-/datum/keybinding/human/quick_equip_3
+/datum/keybinding/human/quick_equip/quick_equip_3
 	name = "quick_equip_3"
 	full_name = "Quick equip 3"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_3
+	quick_equip_used = 3
 
-/datum/keybinding/human/quick_equip_4
+/datum/keybinding/human/quick_equip/quick_equip_4
 	name = "quick_equip_4"
 	full_name = "Quick equip 4"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_4
+	quick_equip_used = 4
 
-/datum/keybinding/human/quick_equip_5
+/datum/keybinding/human/quick_equip/quick_equip_5
 	name = "quick_equip_5"
 	full_name = "Quick equip 5"
 	keybind_signal = COMSIG_KB_QUICKEQUIP_5
+	quick_equip_used = 5
 
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")

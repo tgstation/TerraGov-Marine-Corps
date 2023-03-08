@@ -566,7 +566,6 @@
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
 //human signals
-#define QUICK_EQUIP_AMOUNT
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
 // /obj/item/radio signals
@@ -811,7 +810,6 @@
 	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
 // human signals for keybindings
-#define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_QUICKEQUIP_1 "keybinding_quickequip_1"
 #define COMSIG_KB_QUICKEQUIP_2 "keybinding_quickequip_2"
 #define COMSIG_KB_QUICKEQUIP_3 "keybinding_quickequip_3"
