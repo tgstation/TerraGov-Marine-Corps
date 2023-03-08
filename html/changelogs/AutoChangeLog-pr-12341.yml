@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "King is now consistantly vulnerable to stagger when channeling abilities"
+  - balance: "Interrupting a king while channeling now put the ability on cooldown for 10 seconds instead of 5"
