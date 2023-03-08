@@ -655,9 +655,8 @@
 
 /// Gets the total time that the death timer for the hivemind conduit will last
 /datum/hive_status/proc/get_total_hivemind_conduit_time()
-	var/mob/living/carbon/xenomorph/xeno = GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/queen]
-	var/datum/xeno_caste/caste = xeno.xeno_caste
-	return initial(caste.death_evolution_delay)
+	var/datum/xeno_caste/xeno = GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/queen]["basetype"]
+	return initial(xeno.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
 	if(living_xeno_ruler == ruler)
