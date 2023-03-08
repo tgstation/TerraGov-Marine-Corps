@@ -132,8 +132,12 @@
 				msg_holder = "Medium"
 			if(3.0 to 3.9)
 				msg_holder = "Strong"
-			if(4.0 to INFINITY)
+			if(4.0 to 5.9)
 				msg_holder = "Very strong"
+			if(6.0 to 7.9)
+				msg_holder = "Extreme"
+			if(8.0 to INFINITY)
+				msg_holder = "Superior"
 		stat("[AURA_XENO_FRENZY] pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
@@ -145,8 +149,12 @@
 				msg_holder = "Medium"
 			if(3.0 to 3.9)
 				msg_holder = "Strong"
-			if(4.0 to INFINITY)
+			if(4.0 to 5.9)
 				msg_holder = "Very strong"
+			if(6.0 to 7.9)
+				msg_holder = "Extreme"
+			if(8.0 to INFINITY)
+				msg_holder = "Superior"
 		stat("[AURA_XENO_WARDING] pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
@@ -158,8 +166,12 @@
 				msg_holder = "Medium"
 			if(3.0 to 3.9)
 				msg_holder = "Strong"
-			if(4.0 to INFINITY)
+			if(4.0 to 5.9)
 				msg_holder = "Very strong"
+			if(6.0 to 7.9)
+				msg_holder = "Extreme"
+			if(8.0 to INFINITY)
+				msg_holder = "Superior"
 		stat("[AURA_XENO_RECOVERY] pheromone strength:", msg_holder)
 
 	if(hivenumber == XENO_HIVE_NORMAL)
