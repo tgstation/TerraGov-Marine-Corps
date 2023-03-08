@@ -238,6 +238,7 @@
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
 		/obj/item/tool/surgery/solderingtool,
+		/obj/item/roller/medevac,
 	)
 
 /obj/item/armor_module/storage/injector

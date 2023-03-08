@@ -99,6 +99,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
 		/obj/item/tool/surgery/solderingtool,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
@@ -263,6 +264,7 @@
 		/obj/item/defibrillator,
 		/obj/item/roller,
 		/obj/item/tool/research,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/belt/rig/medical/Initialize()  //The belt, with all it's magic inside!
