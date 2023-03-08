@@ -344,10 +344,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	add_cooldown()
 	succeed_activate()
 
-	if(X.stagger) //If we got staggered, return
-		to_chat(X, span_xenowarning("We try to emit acid but are staggered!"))
-		return fail_activate()
-
 	GLOB.round_statistics.boiler_dump_acid++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_dump_acid")
 
