@@ -131,10 +131,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define B18_OXY_CODE 3
 #define B18_TOX_CODE 4
 #define B18_PAIN_CODE 5
-#define B18_DAMAGE_MIN 50
-#define B18_DAMAGE_MAX 150
-#define B18_PAIN_MIN 50
-#define B18_PAIN_MAX 150
+#define B18_DAMAGE_MIN 20
+#define B18_DAMAGE_MAX 300
+#define B18_PAIN_MIN 20
+#define B18_PAIN_MAX 300
 
 
 //Razor wire

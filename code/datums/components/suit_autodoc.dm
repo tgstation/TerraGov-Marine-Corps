@@ -1,5 +1,5 @@
-#define SUIT_AUTODOC_DAM_MIN 50
-#define SUIT_AUTODOC_DAM_MAX 150
+#define SUIT_AUTODOC_DAM_MIN 20
+#define SUIT_AUTODOC_DAM_MAX 300
 #define COOLDOWN_CHEM_BURN "chem_burn"
 #define COOLDOWN_CHEM_OXY "oxy_chems"
 #define COOLDOWN_CHEM_BRUTE "brute_chems"
@@ -357,6 +357,7 @@
 	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>
 	<BR>
 	<B>Damage Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
+	<A href='byond://?src=[REF(src)];automed_damage=-100'>-100</A><BR>
 	<A href='byond://?src=[REF(src)];automed_damage=-50'>-50</A>
 	<A href='byond://?src=[REF(src)];automed_damage=-10'>-10</A>
 	<A href='byond://?src=[REF(src)];automed_damage=-5'>-5</A>
@@ -365,8 +366,11 @@
 	<A href='byond://?src=[REF(src)];automed_damage=5'>+5</A>
 	<A href='byond://?src=[REF(src)];automed_damage=10'>+10</A>
 	<A href='byond://?src=[REF(src)];automed_damage=50'>+50</A><BR>
+	<A href='byond://?src=[REF(src)];automed_damage=50'>+100</A>
+	<A href='byond://?src=[REF(src)];automed_damage=100'>+100</A><BR>
 	<BR>
 	<B>Pain Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
+	<A href='byond://?src=[REF(src)];automed_pain=-100'>-100</A><BR>
 	<A href='byond://?src=[REF(src)];automed_pain=-50'>-50</A>
 	<A href='byond://?src=[REF(src)];automed_pain=-10'>-10</A>
 	<A href='byond://?src=[REF(src)];automed_pain=-5'>-5</A>
@@ -374,7 +378,8 @@
 	<A href='byond://?src=[REF(src)];automed_pain=1'>+1</A>
 	<A href='byond://?src=[REF(src)];automed_pain=5'>+5</A>
 	<A href='byond://?src=[REF(src)];automed_pain=10'>+10</A>
-	<A href='byond://?src=[REF(src)];automed_pain=50'>+50</A><BR>"}
+	<A href='byond://?src=[REF(src)];automed_pain=50'>+50</A>
+	<A href='byond://?src=[REF(src)];automed_pain=100'>+100</A><BR>"}
 
 	var/datum/browser/popup = new(user, "Suit Automedic")
 	popup.set_content(dat)
