@@ -18249,6 +18249,7 @@
 /area/ice_colony/underground/storage)
 "bGu" = (
 /obj/machinery/computer/security,
+/obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},

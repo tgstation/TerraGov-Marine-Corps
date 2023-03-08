@@ -1609,9 +1609,11 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "anA" = (
-/obj/machinery/door/airlock/glass_security/locked{
-	name = "Cell"
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 1;
+	name = "\improper Cell"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "anE" = (
@@ -5862,7 +5864,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "blU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "blV" = (
