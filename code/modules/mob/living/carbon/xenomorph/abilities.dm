@@ -1034,12 +1034,11 @@
 	add_cooldown()
 	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
-	if(type == /datum/action/xeno_action/activable/neurotox_sting)
-		GLOB.round_statistics.sentinel_neurotoxin_stings++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
-	if(type == /datum/action/xeno_action/activable/neurotox_sting/ozelomelyn)
-		GLOB.round_statistics.ozelomelyn_stings++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "ozelomelyn_stings")
+	track_stats()
+
+/datum/action/xeno_action/activable/neurotox_sting/track_stats()
+	GLOB.round_statistics.sentinel_neurotoxin_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
 //Ozelomelyn Sting
 /datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
@@ -1053,6 +1052,10 @@
 	)
 	plasma_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
+
+/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn/track_stats()
+	GLOB.round_statistics.ozelomelyn_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "ozelomelyn_stings")
 
 // ***************************************
 // *********** Psychic Whisper
