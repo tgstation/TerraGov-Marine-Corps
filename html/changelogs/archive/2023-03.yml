@@ -95,3 +95,14 @@
   - rscdel: Unused hand tele and bluespace locator
   - code_imp: more gooder code. :)
   - rscdel: Removed RND, old unused code.
+2023-03-08:
+  Blundir:
+  - rscadd: facehugger above helmet layer rendering
+  Pariah919:
+  - balance: white dress jacket can now hold instruments, swords+sword holsters.
+  RipGrayson:
+  - qol: Round end info is now displayed in its own panel instead of in chat
+  Skye:
+  - bugfix: Removed a flag that doesn't do anything from the C1 Garand
+  - bugfix: The Garand's clip now pings out after it's empty!
+  - balance: '...And by extension the Garand cannot be +1ed. Sorry!'

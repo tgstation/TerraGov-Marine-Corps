@@ -1,6 +1,0 @@
-author: "Skye"
-delete-after: True
-changes:
-  - bugfix: "Removed a flag that doesn't do anything from the C1 Garand"
-  - bugfix: "The Garand's clip now pings out after it's empty!"
-  - balance: "...And by extension the Garand cannot be +1ed. Sorry!"
