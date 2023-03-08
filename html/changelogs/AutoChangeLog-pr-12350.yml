@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "The queen dying will no longer mute hivemind for the full queen evolve delay"
