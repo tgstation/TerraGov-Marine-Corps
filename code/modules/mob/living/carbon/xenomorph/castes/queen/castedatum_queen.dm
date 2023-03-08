@@ -75,6 +75,7 @@
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/create_jelly,
 	)
 
 
@@ -235,5 +236,6 @@
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/ready_charge/queen_charge,
 	)
