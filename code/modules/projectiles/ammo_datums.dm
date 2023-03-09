@@ -3268,7 +3268,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
-		P.damage *= 10 //Globs deal much higher damage to mechs.
+		P.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/T = get_turf(O)
 	drop_nade(T.density ? P.loc : T, P.firer)
 
