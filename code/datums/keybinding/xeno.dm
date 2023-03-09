@@ -405,6 +405,7 @@
 	full_name = "Hivelord: Toggle Resin Walker"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/build_tunnel
 	name = "build_tunnel"
@@ -423,6 +424,14 @@
 	full_name = "Hivelord: Create Jelly"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/healing_infusion
+	name = "healing_infusion"
+	full_name = "Hivelord: Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/change_form
 	name = "change_form"
@@ -682,12 +691,6 @@
 	full_name = "Command Minions"
 	description = "Order the minions escorting you to be either agressive or passive."
 	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
-
-/datum/keybinding/xeno/healing_infusion
-	name = "healing_infusion"
-	full_name = "Hivelord: Healing Infusion"
-	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
-	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
 /datum/keybinding/xeno/scatter_spit
 	name = "scatter_spit"
