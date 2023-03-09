@@ -106,3 +106,32 @@
   - bugfix: Removed a flag that doesn't do anything from the C1 Garand
   - bugfix: The Garand's clip now pings out after it's empty!
   - balance: '...And by extension the Garand cannot be +1ed. Sorry!'
+2023-03-09:
+  Arturlang:
+  - bugfix: The queen dying will no longer mute hivemind for the full queen evolve
+      delay
+  Lumipharon:
+  - bugfix: fixed the preference for radial construction not actually showing when
+      it was enabled
+  - rscadd: Added a deployable Iguana drone for the spec op ERT
+  - balance: Updated and refreshed the spec op ERT
+  - bugfix: King is now consistantly vulnerable to stagger when channeling abilities
+  - balance: Interrupting a king while channeling now put the ability on cooldown
+      for 10 seconds instead of 5
+  Pariah919:
+  - balance: FC no longer spawns with a Mateba belt, they instead spawn with their
+      custom 1911.
+  - balance: 1911 custom buffed,  it now does much more damage.
+  RipGrayson:
+  - qol: Walls and windows now show if they are reinforced or invincible while mapping
+  - balance: Slightly widened the entrances to LZ2 on Gelida.
+  - bugfix: Removed extra APCs on Gelida
+  Xander3359:
+  - bugfix: Hive leaders can no longer spam "Hijack Dropship"
+  - rscadd: Ozelomelyn Sting is now a tallied ability.
+  - balance: Polyhexanide reagent bottles in the medplus contain 60 units like the
+      other bottles in the vendor.
+  - rscadd: Sentinel Drain Sting shows up in post-round stats.
+  ivanmixo:
+  - balance: If you melt a container the things inside the container melt too, with
+      the exception of mobs

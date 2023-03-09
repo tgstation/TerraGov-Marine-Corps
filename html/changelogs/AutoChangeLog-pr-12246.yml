@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "If you melt a container the things inside the container melt too, with the exception of mobs"

@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - qol: "Walls and windows now show if they are reinforced or invincible while mapping"
-  - balance: "Slightly widened the entrances to LZ2 on Gelida."
-  - bugfix: "Removed extra APCs on Gelida"
