@@ -327,36 +327,42 @@
 	full_name = "Defender: Forward charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/tail_sweep
 	name = "tail_sweep"
 	full_name = "Defender: Tail Sweep"
 	description = "Hit all adjacent units around you, knocking them away and down."
 	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/crest_defense
 	name = "crest_defense"
 	full_name = "Defender: Crest Defense"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
+	hotkey_keys = list("Z")
 
 /datum/keybinding/xeno/fortify
 	name = "fortify"
 	full_name = "Defender: Fortify"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
+	hotkey_keys = list("Space")
 
 /datum/keybinding/xeno/regenerate_skin
 	name = "regenerate_skin"
 	full_name = "Defender: Regenerate Skin"
 	description = "Regenerate your skin, restoring some health and removing all armor sunder."
 	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/centrifugal_force
 	name = "centrifugal_force"
 	full_name = "Defender: Centrifugal Force"
 	description = "Rapidly spin and hit all adjacent humans around you, knocking them away and down."
 	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
