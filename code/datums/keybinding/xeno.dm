@@ -281,18 +281,21 @@
 	full_name = "Crusher: Stomp"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_STOMP
+	hotkey_keys = list("Space")
 
 /datum/keybinding/xeno/cresttoss
 	name = "cresttoss"
 	full_name = "Crusher: Crest Toss"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/advance
 	name = "advance"
 	full_name = "Crusher: Rapid Advance"
 	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/devour
 	name = "devour"
