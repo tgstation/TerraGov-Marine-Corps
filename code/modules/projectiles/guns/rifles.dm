@@ -613,9 +613,10 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "rpd"
 	item_state = "rpd"
+	fire_animation = "rpd_fire"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	max_shells = 125  //codex
+	max_shells = 100  //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
