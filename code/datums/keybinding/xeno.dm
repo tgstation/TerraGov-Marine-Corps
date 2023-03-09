@@ -612,36 +612,42 @@
 	full_name = "Warrior: Toggle Agility"
 	description = "Toggles Agility mode. While in Agility mode, you move much more quickly but can't use abilities and your armor is greatly reduced."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
+	hotkey_keys = list("Space")
 
 /datum/keybinding/xeno/lunge
 	name = "lunge"
 	full_name = "Warrior: Lunge"
 	description = "Charges towards a target, then neckgrabs them if they're adjacent to you. Stuns on upon grabbing for 1 second."
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/fling
 	name = "fling"
 	full_name = "Warrior: Fling"
 	description = "Quickly flings a target 4 tiles away and inflicts a short stun. Shared cooldown with Grapple Toss."
 	keybind_signal = COMSIG_XENOABILITY_FLING
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/grapple_toss
 	name = "grapple_toss"
 	full_name = "Warrior: Grapple Toss"
 	description = "Throw a target you're grabbing up to 5 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/punch
 	name = "punch"
 	full_name = "Warrior: Punch"
 	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/jab
 	name = "jab"
 	full_name = "Warrior: Jab"
 	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
 	keybind_signal = COMSIG_XENOABILITY_JAB
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"
