@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "Mechs take much more damage from crusher charges, now."
