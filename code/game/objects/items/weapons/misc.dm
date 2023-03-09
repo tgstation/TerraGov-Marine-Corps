@@ -45,7 +45,6 @@
 	var/obj/item/cell/cell
 	///the higher the power level the harder it hits
 	var/setting = 1
-	var/powerused
 
 /obj/item/weapon/powerfist/Initialize()
 	. = ..()
@@ -62,7 +61,7 @@
 
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
-	powerused = setting * 20
+	var/powerused = setting * 20
 	. += "It's power setting is set to [setting]."
 	if(cell)
 		. += "It has [round(cell.charge/powerused, 1)] level [setting] punches remaining."
@@ -100,10 +99,10 @@
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	powerused = setting * 20
+	var/powerused = setting * 20
 	if(powerused > cell.charge)
 		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
-		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE, penetration = src.penetration)
+		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
 		if(M == user)
 			to_chat(user, span_userdanger("You punch yourself!"))
@@ -112,13 +111,13 @@
 				span_userdanger("[user] punches you!"))
 		return ..()
 	if(M == user)
-		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, penetration = src.penetration)
+		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
 		to_chat(user, span_userdanger("You punch yourself!"))
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
 		return ..()
-	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, penetration = src.penetration)
+	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
 	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
 		span_userdanger("[user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
