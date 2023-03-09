@@ -1511,7 +1511,6 @@
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
-	damage_mult = 1.05
 
 	movement_acc_penalty_mult = 4
 
