@@ -1434,21 +1434,6 @@ Imports
 	cost = 50
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/imports/mosin
-	name = "Mosin Nagant Sniper"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/bolt)
-	cost = 150
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/imports/mosin/ammo
-	name = "Mosin Nagant Sniper Ammo (x2)"
-	contains = list(
-		/obj/item/ammo_magazine/rifle/bolt,
-		/obj/item/ammo_magazine/rifle/bolt,
-	)
-	cost = 50
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
