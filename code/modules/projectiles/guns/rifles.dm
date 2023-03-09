@@ -1490,7 +1490,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/alf_machinecarbine)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/heavy_barrel,
@@ -1505,14 +1505,13 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
-	extra_delay = 0.5 SECONDS
-	///Same delay as normal burst mode
-	autoburst_delay = 0.7 SECONDS
+	extra_delay = 0.2 SECONDS
 	scatter = 4
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+	damage_mult = 1.05
 
 	movement_acc_penalty_mult = 4
 
