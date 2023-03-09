@@ -9077,9 +9077,6 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aUV" = (
-/obj/machinery/computer/mech_builder{
-	dir = 2
-	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -9362,7 +9359,7 @@
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "aXf" = (
-/obj/machinery/loadout_vendor,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
@@ -10249,9 +10246,6 @@
 /area/sulaco/hydro)
 "bjL" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/computer/mech_builder{
-	dir = 2
-	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
@@ -25542,6 +25536,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},

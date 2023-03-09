@@ -3300,12 +3300,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical)
-"efa" = (
-/obj/machinery/computer/mech_builder{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/living/tankerbunks)
 "efy" = (
 /turf/open/floor/carpet/side{
 	dir = 4
@@ -10020,6 +10014,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -11650,12 +11645,6 @@
 /obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
 /area/space)
-"pdj" = (
-/obj/machinery/loadout_vendor,
-/turf/open/floor/mainship/black{
-	dir = 1
-	},
-/area/mainship/living/tankerbunks)
 "pdo" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -12065,6 +12054,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -13132,6 +13122,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "qSz" = (
+/obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -13474,9 +13465,6 @@
 /area/mainship/squads/general)
 "rrj" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
-/obj/machinery/computer/mech_builder{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
 "rrt" = (
@@ -16927,6 +16915,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -57150,7 +57139,7 @@ viN
 jpU
 iSK
 btQ
-efa
+rpk
 rpk
 rrj
 nJG
@@ -57922,7 +57911,7 @@ viN
 viN
 aTO
 viN
-pdj
+uzy
 xvv
 nJG
 bDv

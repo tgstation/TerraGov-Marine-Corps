@@ -6099,7 +6099,6 @@
 /turf/open/floor/mainship/purple,
 /area/mainship/living/briefing)
 "rW" = (
-/obj/machinery/loadout_vendor,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -6348,6 +6347,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "sO" = (
@@ -6825,12 +6825,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"up" = (
-/obj/machinery/computer/mech_builder{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/living/tankerbunks)
 "uq" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -9106,6 +9100,7 @@
 /obj/machinery/door_control/mainship/mech{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "AE" = (
@@ -11838,6 +11833,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"IE" = (
+/obj/effect/decal/cleanable/cobweb2,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/tankerbunks)
 "IF" = (
 /obj/machinery/roomba,
 /obj/structure/mirror{
@@ -25976,9 +25975,9 @@ fg
 oI
 mA
 yH
-up
 Bf
-up
+Bf
+Bf
 qt
 fK
 mA
@@ -26368,10 +26367,10 @@ dY
 pR
 SA
 Ih
-oI
+IE
 Tq
 RP
-oI
+IE
 Jv
 PE
 Ci
