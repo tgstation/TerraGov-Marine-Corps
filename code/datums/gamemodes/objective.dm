@@ -514,7 +514,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 		defendedarea = new_target
 	update_explanation_text()
 
-/datum/objective/seize_area/check_completion() //gaze upon my if statements and weep Yandere-dev
+/datum/objective/seize_area/check_completion()
 	if(!owner.current.faction)
 		owner.current.faction = FACTION_NEUTRAL //fallback in case factionless mobs get this objective
 	var/currentfaction = owner.current.faction
