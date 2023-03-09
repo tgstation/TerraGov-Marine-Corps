@@ -617,8 +617,8 @@
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 100  //codex
-	wield_delay = 1 SECONDS
-	aim_slowdown = 0.8
+	wield_delay = 1.2 SECONDS
+	aim_slowdown = 0.95
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
@@ -653,8 +653,9 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/lmg_d)
 
 	fire_delay = 0.25 SECONDS
-	scatter = 0
+	scatter = 2
 	burst_amount = 1
+	movement_acc_penalty_mult = 3
 
 /obj/item/weapon/gun/rifle/lmg_d/magharness
 	starting_attachment_types = list(
