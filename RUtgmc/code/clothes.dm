@@ -135,7 +135,7 @@
 		slot_glasses_str = 'RUtgmc/icons/mob/clothes.dmi')
 	icon_state = "mesonog"
 	item_state = "mesonog"
-	deactive_state = "og"
+	deactive_state = "d_og"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/night/imager_goggles/og
@@ -146,7 +146,7 @@
 		slot_glasses_str = 'RUtgmc/icons/mob/clothes.dmi')
 	icon_state = "optog"
 	item_state = "optog"
-	deactive_state = "og"
+	deactive_state = "d_og"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/og
@@ -157,7 +157,7 @@
 		slot_glasses_str = 'RUtgmc/icons/mob/clothes.dmi')
 	icon_state = "medog"
 	item_state = "medog"
-	deactive_state = "og"
+	deactive_state = "d_og"
 	prescription = TRUE
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
