@@ -411,7 +411,7 @@
 	return (CHARGE_SPEED(charge_datum) * 10)
 
 /obj/vehicle/sealed/mecha/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
-	return (CHARGE_SPEED(charge_datum) * 240)
+	return (CHARGE_SPEED(charge_datum) * 375)
 
 /obj/structure/razorwire/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) || charger.is_charging < CHARGE_ON)
