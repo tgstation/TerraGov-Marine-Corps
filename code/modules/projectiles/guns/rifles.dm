@@ -655,7 +655,7 @@
 	fire_delay = 0.25 SECONDS
 	scatter = 2
 	burst_amount = 1
-	movement_acc_penalty_mult = 3
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/lmg_d/magharness
 	starting_attachment_types = list(
