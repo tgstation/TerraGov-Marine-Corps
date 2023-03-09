@@ -187,6 +187,12 @@
 	anchored = TRUE
 	coverage = 15
 
+/obj/machinery/prop/autolathe
+	name = "\improper autolathe"
+	desc = "It used to produce items using metal and glass."
+	icon_state = "autolathe"
+	coverage = 30
+
 /obj/structure/prop/mainship/minigun_crate
 	name = "30mm ammo crate"
 	desc = "A crate full of 30mm bullets used on one of the weapon pod types for the dropship. Moving this will require some sort of lifter."

@@ -3153,7 +3153,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "cbH" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "cbI" = (
@@ -9006,7 +9006,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "fRA" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "fRP" = (

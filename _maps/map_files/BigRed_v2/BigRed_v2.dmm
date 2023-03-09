@@ -2828,7 +2828,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "azj" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/machinery/prop/autolathe,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5895,7 +5895,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bms" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/machinery/prop/autolathe,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bmv" = (
@@ -7292,7 +7292,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCS" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
