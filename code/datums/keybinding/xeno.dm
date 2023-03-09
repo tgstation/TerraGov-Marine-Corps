@@ -430,18 +430,21 @@
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/toggle_disguise
 	name = "toggle_disguise"
 	full_name = "Hunter: Toggle Disguise"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/mirage
 	name = "mirage"
 	full_name = "Hunter: Mirage"
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/mark
 	name = "mark"
