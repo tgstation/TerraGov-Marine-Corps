@@ -618,12 +618,14 @@
 	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
+	hotkey_keys = list("Space")
 
 /datum/keybinding/xeno/snatch
 	name = "snatch"
 	full_name = "Runner: Snatch"
 	description = "Take an item equipped by your target in your mouth, and carry it away."
 	keybind_signal = COMSIG_XENOABILITY_SNATCH
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
