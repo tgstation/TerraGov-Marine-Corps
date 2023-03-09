@@ -1596,7 +1596,7 @@
 			/obj/item/weapon/gun/shotgun/combat = -1,
 			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 			/obj/item/weapon/gun/rifle/mpi_km = -1,
-			/obj/item/ammo_magazine/rifle/mpi_km = -1,
+			/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
 			/obj/item/weapon/gun/rifle/m16 = -1,
 			/obj/item/ammo_magazine/rifle/m16 = -1,
 			/obj/item/weapon/gun/rifle/m412 = -1,

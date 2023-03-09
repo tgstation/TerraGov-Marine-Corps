@@ -194,7 +194,7 @@ SUBSYSTEM_DEF(persistence)
 	description = "Old Earth guns. Antique and obsolete, but no less deadly"
 	item_list = list(
 		/obj/item/weapon/gun/rifle/mpi_km = -1,
-		/obj/item/ammo_magazine/rifle/mpi_km = -1,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
 		/obj/item/weapon/gun/rifle/m16 = -1,
 		/obj/item/ammo_magazine/rifle/m16 = -1,
 		/obj/item/weapon/gun/rifle/mkh = -1,

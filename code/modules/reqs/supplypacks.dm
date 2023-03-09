@@ -1467,7 +1467,7 @@ Imports
 
 /datum/supply_packs/imports/mpi_km/ammo
 	name = "MPi-KM Assault Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
+	contains = list(/obj/item/ammo_magazine/rifle/mpi_km/plum)
 	cost = 10
 
 /datum/supply_packs/imports/mkh
