@@ -432,7 +432,7 @@
 	full_name = "Hunter: Toggle Disguise"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
-	hotkey_keys = list("Q")
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/mirage
 	name = "mirage"
