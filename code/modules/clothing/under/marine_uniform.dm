@@ -10,6 +10,7 @@
 	adjustment_variants = list(
 		"Down" = "_d",
 		"Half" = "_h",
+		"Rolled" = "_r",
 	)
 
 /obj/item/clothing/under/marine/black_vest
