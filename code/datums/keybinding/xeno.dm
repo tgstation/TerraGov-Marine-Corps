@@ -503,6 +503,7 @@
 	full_name = "Shrike: Psychic Fling"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/psychic_grab
 	name = "psychic_grab"
@@ -515,6 +516,7 @@
 	full_name = "Shrike: Unrelenting Force"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/unrelenting_force_select
 	name = "unrelenting_force_select"
@@ -527,6 +529,7 @@
 	full_name = "Shrike: Psychic Cure"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/screech
 	name = "screech"
