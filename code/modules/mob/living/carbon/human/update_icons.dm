@@ -290,16 +290,28 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 
 	if(species.species_flags & HAS_UNDERWEAR)
-
+		//if(faction == FACTION_SOM) //SOM have their lown limited selection
+		//	underwear = 1
+		//	undershirt = min(0, undershirt)
 		//Underwear
-		if(underwear >0 && underwear < 3)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
+		if(gender == MALE)
+			underwear = clamp(underwear, 0, length(GLOB.underwear_m))
+			undershirt = clamp(undershirt, 0, length(GLOB.undershirt_m))
+		else
+			underwear = clamp(underwear, 0, length(GLOB.underwear_f))
+			undershirt = clamp(undershirt, 0, length(GLOB.undershirt_f))
 
-		if(ismarinejob(job)) //undoing override
-			if(undershirt>0 && undershirt < 5)
-				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
-		else if(undershirt > 0 && undershirt < 7)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_marine[underwear]_[gender]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_marine[undershirt]_[gender]"), ICON_OVERLAY)
+		//if(ismarinejob(job))
+			//stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_marine[undershirt]_[gender]"), ICON_OVERLAY)
+		//else if(issommarinejob(job))
+		//	stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_som[undershirt]_[gender]"), ICON_OVERLAY)
+		//else
+		//	stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt[undershirt]_[gender]"), ICON_OVERLAY)
+
+		//if(underwear >0 && underwear < 3)
+		//	stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
 	icon = stand_icon
 
