@@ -120,6 +120,7 @@
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
+		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
 		return TRUE
 

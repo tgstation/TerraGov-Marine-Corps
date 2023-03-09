@@ -402,12 +402,14 @@
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
-	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
-	if(F)
-		qdel(F)
+	var/obj/flamer_fire/old_fire = locate(/obj/flamer_fire) in src
+	if(old_fire)
+		var/new_fire_level = min(fire_lvl + old_fire.firelevel, fire_lvl * 2)
+		var/new_burn_level = min(burn_lvl + old_fire.burnlevel, burn_lvl * 1.5)
+		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
+		return
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
-
 	for(var/obj/structure/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
@@ -458,32 +460,16 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
-	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
-	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
+	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
+	var/firelevel = 12
+	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
+	var/burnlevel = 10
+	///The color the flames and associated particles appear
 	var/flame_color = "red"
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
-
-	if(!GLOB.flamer_particles[f_color])
-		GLOB.flamer_particles[f_color] = new /particles/flamer_fire(f_color)
-	particles = GLOB.flamer_particles[f_color]
-
-	if(f_color)
-		flame_color = f_color
-
-	icon_state = "[flame_color]_2"
-	if(fire_lvl)
-		firelevel = fire_lvl
-	if(burn_lvl)
-		burnlevel = burn_lvl
-	if(fire_stacks || fire_damage)
-		for(var/mob/living/C in get_turf(src))
-			C.flamer_fire_act(fire_stacks)
-
-			C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
-			if(C.IgniteMob())
-				C.visible_message(span_danger("[C] bursts into flames!"), isxeno(C) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
+	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 
 	START_PROCESSING(SSobj, src)
 
@@ -497,7 +483,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs) //Only way to get it to reliable do it when you walk into it.
+///Effects applied to a mob that crosses a burning turf
+/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
 	if(istype(M))
 		M.flamer_fire_act(burnlevel)
 
@@ -511,6 +498,29 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
 		playsound(S, 'sound/effects/smoke_extinguish.ogg', 20)
 		qdel(src)
+
+///Sets the fire object to the correct colour and fire values, and applies the initial effects to any mob on the turf
+/obj/flamer_fire/proc/set_fire(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	if(f_color && (flame_color != f_color))
+		flame_color = f_color
+
+	if(!GLOB.flamer_particles[flame_color])
+		GLOB.flamer_particles[flame_color] = new /particles/flamer_fire(flame_color)
+
+	particles = GLOB.flamer_particles[flame_color]
+	icon_state = "[flame_color]_2"
+
+	if(fire_lvl)
+		firelevel = fire_lvl
+	if(burn_lvl)
+		burnlevel = burn_lvl
+
+	if(!fire_stacks && !fire_damage)
+		return
+
+	for(var/mob/living/C in get_turf(src))
+		C.flamer_fire_act(fire_stacks)
+		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
 	var/light_color = "LIGHT_COLOR_LAVA"
