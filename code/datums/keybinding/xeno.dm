@@ -582,18 +582,21 @@
 	full_name = "Ravager: Eviscerating Charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/ravager_endure
 	name = "ravager_endure"
 	full_name = "Ravager: Endure"
 	description = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	keybind_signal = COMSIG_XENOABILITY_ENDURE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/ravager_rage
 	name = "ravager_rage"
 	full_name = "Ravager: Rage"
 	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
 	keybind_signal = COMSIG_XENOABILITY_RAGE
+	hotkey_keys = list("Space")
 
 /datum/keybinding/xeno/ravager_vampirism
 	name = "togglevampirism"
@@ -606,6 +609,7 @@
 	full_name = "Ravager: Ravage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/ravage_select
 	name = "ravage select"
