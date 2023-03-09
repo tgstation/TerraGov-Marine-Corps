@@ -234,12 +234,14 @@
 	full_name = "Carrier: Throw Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/call_younger
 	name = "call_younger"
 	full_name = "Carrier: Call of Younger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
@@ -252,6 +254,7 @@
 	full_name = "Carrier: Spawn Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/switch_hugger
 	name = "switch_hugger"
@@ -264,12 +267,14 @@
 	full_name = "Carrier: Choose Hugger"
 	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
+	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/drop_all_hugger
 	name = "drop_all_hugger"
 	full_name = "Carrier: Drop All Facehuggers"
 	description = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+	hotkey_keys = list("Space")
 
 /datum/keybinding/xeno/stomp
 	name = "stomp"
