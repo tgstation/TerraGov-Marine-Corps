@@ -65,10 +65,6 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	///string; typepath for the icon that this job will show on the minimap
 	var/minimap_icon
-	///objective datum that will be added to the role on spawn
-	var/objective_datum_to_add = null
-	///chance that an objective datum will be assigned
-	var/chance_of_objective = 100
 
 /datum/job/New()
 	if(outfit)
@@ -166,11 +162,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")
 	if(req_admin_notify)
 		to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
-
-/datum/job/proc/add_objective_datum(mob/living/M)
-	if(objective_datum_to_add && prob(chance_of_objective))
-		addtimer(CALLBACK(M.mind, /datum/mind/.proc/add_antag_datum, objective_datum_to_add), 5.5 SECONDS)
-	return
 
 /datum/outfit/job
 	var/jobtype

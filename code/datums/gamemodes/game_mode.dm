@@ -637,7 +637,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	var/area/A = get_area(player.new_character)
-	//job.add_objective_datum(player.new_character)
 	deadchat_broadcast(span_game(" has woken at [span_name("[A?.name]")]."), span_game("[span_name("[player.new_character.real_name]")] ([job.title])"), follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
 

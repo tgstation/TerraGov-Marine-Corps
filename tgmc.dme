@@ -1090,8 +1090,6 @@
 #include "code\modules\ai\spawners\zombie.dm"
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\antagonists\_common\antag_datum.dm"
-#include "code\modules\antagonists\corporate_liason\datum_corporate_liason.dm"
-#include "code\modules\antagonists\corporate_liason\liason_contract.dm"
 #include "code\modules\assembly\assembly.dm"
 #include "code\modules\assembly\helpers.dm"
 #include "code\modules\assembly\holder.dm"

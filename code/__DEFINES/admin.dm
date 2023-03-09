@@ -136,5 +136,3 @@
 
 /// for asay pings, this is the index in the return list for [/proc/check_admin_pings] that contains the message modified with underlines for the spotted names
 #define ADMINSAY_PING_UNDERLINE_NAME_INDEX "!underlined_names"
-
-#define ROUNDEND_EORG_DELAY 10 SECONDS //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.

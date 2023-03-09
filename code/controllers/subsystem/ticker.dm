@@ -179,7 +179,6 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 	PostSetup()
-	mode.give_player_objectives()
 	return TRUE
 
 

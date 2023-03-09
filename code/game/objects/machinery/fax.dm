@@ -12,9 +12,6 @@
 	var/obj/item/card/id/idscan = null
 	var/authenticated = FALSE
 
-	//is the paper inside a part of an objective?
-	var/specialmessage = FALSE
-
 	var/obj/item/paper/message = null
 	var/sendcooldown = FALSE
 
@@ -96,14 +93,7 @@
 	if(.)
 		return
 	if(href_list["send"])
-		if(specialmessage)
-			send_fax(usr, src, selected, message.name, message.info, FALSE)
-			to_chat(usr, "Message transmitted directly to NanoTrasen.")
-			addtimer(VARSET_CALLBACK(src, sendcooldown, FALSE), 2 MINUTES)
-			updateUsrDialog()
-			var/obj/item/paper/liason_contract/signeddocument = message
-			SEND_SIGNAL(src, COMSIG_OBJECTIVE_CONTRACT, signeddocument.signer)
-		else if(message)
+		if(message)
 			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
 			sendcooldown = TRUE
@@ -117,7 +107,6 @@
 				message.loc = usr.loc
 				usr.put_in_hands(message)
 				to_chat(usr, span_notice("You take the paper out of \the [src]."))
-				specialmessage = FALSE
 				message = null
 	if(href_list["scan"])
 		if(idscan)
@@ -155,18 +144,6 @@
 
 /obj/machinery/faxmachine/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/paper/liason_contract))
-		var/obj/item/paper/liason_contract/faxeddocument = I
-		if(faxeddocument.signer && faxeddocument.owner == user)
-			user.transferItemToLoc(faxeddocument, src)
-			message = faxeddocument
-			specialmessage = TRUE
-			to_chat(user, span_notice("You insert the paper into \the [src]."))
-			flick("faxsend", src)
-			updateUsrDialog()
-		else
-			to_chat(user, span_notice("You can't do this."))
-			return
 	if(istype(I, /obj/item/paper))
 		if(!message)
 			user.transferItemToLoc(I, src)

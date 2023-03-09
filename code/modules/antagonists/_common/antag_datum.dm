@@ -82,6 +82,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!owner)
 		CRASH("Antag datum with no owner.")
 
+	for(var/datum/action/A AS in usr.actions) //remove all objective buttons
+		if(istype(A, /datum/action/objectives))
+			A.remove_action(usr)
+
 	remove_innate_effects()
 	LAZYREMOVE(owner.antag_datums, src)
 	if(!silent && owner.current)
@@ -232,3 +236,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 			continue
 		if(!antag_type || !specific && istype(A,antag_type) || specific && A.type == antag_type)
 			. += A.owner
+
+/datum/action/objectives
+	name = "Generic Objective Button"
+	action_icon_state = "62"
