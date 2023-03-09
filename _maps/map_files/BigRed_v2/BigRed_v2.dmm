@@ -217,7 +217,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "adK" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "adQ" = (
@@ -1609,9 +1609,11 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "anA" = (
-/obj/machinery/door/airlock/glass_security/locked{
-	name = "Cell"
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 1;
+	name = "\improper Cell"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "anE" = (
@@ -2822,7 +2824,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "azi" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -5862,7 +5864,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "blU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "blV" = (
@@ -6701,7 +6703,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxO" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -6970,7 +6972,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAf" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAg" = (

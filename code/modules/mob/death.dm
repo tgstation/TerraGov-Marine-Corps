@@ -34,6 +34,7 @@
 
 
 /mob/proc/death(gibbing, deathmessage = "seizes up and falls limp...", silent)
+	SHOULD_CALL_PARENT(TRUE)
 	if(stat == DEAD)
 		if(gibbing)
 			qdel(src)

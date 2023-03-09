@@ -95,7 +95,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -264,6 +266,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -406,3 +411,72 @@
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
+
+/** Colorable masks */
+/obj/item/clothing/mask/gas/modular
+	name = "style mask"
+	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
+	icon = 'icons/mob/modular/style_hats.dmi'
+	breathy = FALSE
+	item_icons = list(
+		slot_wear_mask_str = 'icons/mob/modular/style_hats_mob.dmi',
+	)
+	icon_state = "gas_alt"
+	item_state = "gas_alt"
+
+	///List of icon_state suffixes for armor varients.
+	var/list/icon_state_variants = list()
+	///Current varient selected.
+	var/current_variant
+
+/obj/item/clothing/mask/gas/modular/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/mask/gas/modular/update_icon()
+	. = ..()
+	if(current_variant)
+		icon_state = initial(icon_state) + "_[current_variant]"
+		item_state = initial(item_state) + "_[current_variant]"
+	update_clothing_icon()
+
+/obj/item/clothing/mask/gas/modular/update_item_sprites()
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				current_variant = "drab"
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				current_variant = "snow"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				current_variant = "black"
+		if(MAP_ARMOR_STYLE_DESERT)
+			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
+				current_variant = "desert"
+
+/obj/item/clothing/mask/gas/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+		return
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+
+	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+	if(!variant)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	current_variant = variant
+	paint.uses--
+	update_icon()
+

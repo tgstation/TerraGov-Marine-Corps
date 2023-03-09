@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Light armor armor values reduced by 5 across the board"
+  - balance: "Heavy armor fire, bio and bomb armor increased by 5"

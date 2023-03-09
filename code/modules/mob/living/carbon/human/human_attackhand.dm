@@ -107,7 +107,7 @@
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = H.melee_damage + H.skills.getRating("cqc")
+			var/max_dmg = H.melee_damage + H.skills.getRating(SKILL_CQC)
 			var/damage = rand(1, max_dmg)
 
 			var/target_zone = ran_zone(H.zone_selected)
@@ -141,7 +141,7 @@
 			var/target_zone = ran_zone(H.zone_selected)
 
 			//Accidental gun discharge
-			if(user.skills.getRating("cqc") < SKILL_CQC_MP)
+			if(user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -163,7 +163,7 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
+			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * 5 - H.skills.getRating(SKILL_CQC) * 5
 
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, get_soft_armor("melee", target_zone))

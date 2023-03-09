@@ -35,6 +35,7 @@
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	ADD_TRAIT(src, TRAIT_CAN_VENTCRAWL, INNATE_TRAIT)
 
 
 /mob/living/simple_animal/mouse/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)

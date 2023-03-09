@@ -65,7 +65,6 @@
 		icon_state = initial(icon_state)
 		icon_state += "0"
 
-
 /obj/machinery/prop/mainship/computer/aiupload
 	name = "\improper AI upload console"
 	desc = "Used to upload laws to the AI."
@@ -146,6 +145,38 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "weapon_recharger"
 	density = FALSE
+
+//RND Props
+/obj/machinery/prop/r_n_d/protolathe
+	name = "Protolathe"
+	icon = 'icons/obj/machines/research.dmi'
+	desc = "Protolathe, used to be used to print tools and such."
+	icon_state = "protolathe"
+
+/obj/machinery/prop/computer/rdconsole
+	name = "R&D Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	desc = "A research console."
+	icon_state = "rdcomp"
+
+/obj/machinery/prop/r_n_d/server
+	name = "R&D Server"
+	icon = 'icons/obj/machines/research.dmi'
+	desc = "A research server"
+	icon_state = "server"
+
+/obj/machinery/prop/computer/rdservercontrol
+	name = "R&D Server Controller"
+	icon = 'icons/obj/machines/computer.dmi'
+	desc = "Oversees all research"
+	icon_state = "rdcomp"
+
+/obj/machinery/prop/r_n_d/server/alt
+	name = "Alternate R&D Server"
+	icon = 'icons/obj/machines/research.dmi'
+	desc = "A research server"
+	icon_state = "server_alt"
+//End RND props
 
 //Nonpower using props
 
