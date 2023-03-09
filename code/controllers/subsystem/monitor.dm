@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(monitor)
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
-	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		//Balance spawners output
 		for(var/silo in GLOB.xeno_resin_silos)
 			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait

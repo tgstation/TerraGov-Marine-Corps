@@ -57,11 +57,11 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 
-	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
 		finish_charging()
-		add_cooldown(5 SECONDS)
+		add_cooldown(10 SECONDS)
 		return fail_activate()
 
 	finish_charging()
@@ -165,7 +165,7 @@
 
 /datum/action/xeno_action/activable/off_guard/use_ability(atom/target)
 	var/mob/living/carbon/human/human_target = target
-	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 20)
+	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 100)
 	human_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
 	human_target.log_message("has been off-guarded by [owner]", LOG_ATTACK, color="pink")
 	human_target.balloon_alert_to_viewers("confused")
@@ -211,7 +211,7 @@
 	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
 		finish_charging()
-		add_cooldown(5 SECONDS)
+		add_cooldown(10 SECONDS)
 		return fail_activate()
 
 	finish_charging()
@@ -364,12 +364,12 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 
-	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
-		add_cooldown(5 SECONDS)
+		add_cooldown(10 SECONDS)
 		return fail_activate()
 
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
@@ -488,7 +488,7 @@
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
-		add_cooldown(3 SECONDS)
+		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")
 		return fail_activate()

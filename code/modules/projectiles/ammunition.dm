@@ -236,6 +236,20 @@
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/flechette
+	name = "handful of shotgun flechette shells (12g)"
+	icon_state = "shotgun flechette shell"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/incendiary
+	name = "handful of shotgun incendiary shells (12g)"
+	icon_state = "incendiary slug"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/incendiary
+	caliber = CALIBER_12G
+
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"
 	icon_state = "micro_grenade_airburst"
@@ -258,13 +272,6 @@
 	name = "handful of smoke burst micro grenades (10g)"
 	icon_state = "micro_grenade_smoke"
 	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
-
-/obj/item/ammo_magazine/handful/flechette
-	name = "handful of shotgun flechette shells (12g)"
-	icon_state = "shotgun flechette shell"
-	current_rounds = 5
-	default_ammo = /datum/ammo/bullet/shotgun/flechette
-	caliber = CALIBER_12G
 
 //----------------------------------------------------------------//
 

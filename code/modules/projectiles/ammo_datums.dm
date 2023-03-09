@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
 		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
+		playsound(target, "incendiary_explosion", 40)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -376,6 +376,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
+
+/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
 
 /datum/ammo/bullet/pistol/mech
 	name = "super-heavy pistol bullet"
@@ -1206,8 +1209,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/dual_cannon
-	name = "dualcannon bullet"
+/datum/ammo/bullet/auto_cannon
+	name = "autocannon high-velocity bullet"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
@@ -1216,17 +1219,31 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 5
 	damage = 40
 	penetration = 100
-	sundering = 7
-	max_range = 30
+	sundering = 8
+	max_range = 35
 
-/datum/ammo/bullet/dual_cannon/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/auto_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
 
-/datum/ammo/bullet/dual_cannon/on_hit_mob(mob/M, obj/projectile/P)
-	P.proj_max_range -= 15
-
-/datum/ammo/bullet/dual_cannon/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 5
+	staggerstun(M, P, max_range = 20, slowdown = 1)
+
+/datum/ammo/bullet/auto_cannon/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 5
+
+/datum/ammo/bullet/auto_cannon/flak
+	name = "autocannon smart-detonating bullet"
+	hud_state = "sniper_flak"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	damage = 40
+	penetration = 20
+	sundering = 12
+	max_range = 30
+	airburst_multiplier	= 1
+
+/datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
@@ -1311,25 +1328,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1)
 	bonus_projectiles_amount = 7
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
 	bonus_projectiles_amount = 7
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 7
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/do_at_max_range(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 7
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
 
@@ -1431,7 +1448,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/micro_rail/do_at_max_range(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = bonus_projectile_quantity
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, get_turf(proj), 1)
 	smoke.start()
@@ -1528,7 +1545,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///handles the actual bomblet detonation
 /datum/ammo/micro_rail_cluster/proc/detonate(turf/T, obj/projectile/P)
-	playsound(T, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(T, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
@@ -1616,25 +1633,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/ags_shrapnel/on_hit_mob(mob/M, obj/projectile/proj)
 	bonus_projectiles_amount = 15
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 2, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/ags_shrapnel/on_hit_obj(obj/O, obj/projectile/proj)
 	bonus_projectiles_amount = 15
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 2, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/ags_shrapnel/on_hit_turf(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 15
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 2, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/ags_shrapnel/do_at_max_range(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 15
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 2, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
 
@@ -1669,6 +1686,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!istype(T))
 		return
 	T.ignite(5, 10)
+
+
+/datum/ammo/bullet/coilgun
+	name = "high-velocity tungsten slug"
+	hud_state = "railgun_ap"
+	icon_state 	= "blue_bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 5
+	max_range = 31
+	damage = 70
+	penetration = 35
+	sundering = 5
+	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
+
+/datum/ammo/bullet/coilgun/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, weaken = 0.1, slowdown = 1, knockback = 3)
+
 
 /*
 //================================================
@@ -1711,15 +1746,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/rocket/unguided
+/datum/ammo/rocket/he
+	name = "high explosive rocket"
+	icon_state = "rocket_he"
+	hud_state = "rocket_he"
+	accurate_range = 20
+	max_range = 14
+	damage = 200
+	penetration = 100
+	sundering = 100
+
+/datum/ammo/rocket/drop_nade(turf/T)
+	explosion(T, 0, 4, 6, 2)
+
+/datum/ammo/rocket/he/unguided
 	damage = 100
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
-/datum/ammo/rocket/unguided/drop_nade(turf/T)
+/datum/ammo/rocket/he/unguided/drop_nade(turf/T)
 	explosion(T, 0, 7, 0, 2)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
+	icon_state = "rocket_ap"
 	hud_state = "rocket_ap"
 	damage = 340
 	accurate_range = 15
@@ -1770,6 +1819,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
+	icon_state = "rocket_wp"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
 	armor_type = "fire"
@@ -1780,7 +1830,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 75
 	max_range = 20
 	sundering = 100
-	//The radius for the non explosion effects
+	///The radius for the non explosion effects
 	var/effect_radius = 3
 
 /datum/ammo/rocket/wp/drop_nade(turf/T)
@@ -1816,7 +1866,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/wp/quad/som
 	name = "white phosphorous RPG"
 	hud_state = "rpg_fire"
+	icon_state = "rpg_incendiary"
 	flags_ammo_behavior = AMMO_ROCKET
+	effect_radius = 5
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
@@ -1925,8 +1977,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 
 /datum/ammo/rocket/som
-	name = "low impact RPG"
-	hud_state = "rpg_le"
+	name = "high explosive RPG"
+	icon_state = "rpg_he"
+	hud_state = "rpg_he"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
 	max_range = 20
@@ -1939,6 +1992,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/light
 	name = "low impact RPG"
+	icon_state = "rpg_le"
 	hud_state = "rpg_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
@@ -1950,6 +2004,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/thermobaric
 	name = "thermobaric RPG"
+	icon_state = "rpg_thermobaric"
 	hud_state = "rpg_thermobaric"
 	damage = 30
 
@@ -1958,6 +2013,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/heat //Anti tank, or mech
 	name = "HEAT RPG"
+	icon_state = "rpg_heat"
 	hud_state = "rpg_heat"
 	damage = 200
 	penetration = 100
@@ -1967,13 +2023,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
 	if(ismecha(O))
-		P.damage *= 2 //this is specifically designed to hurt mechs
+		P.damage *= 3 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
 	explosion(T, 0, 1, 0, 1)
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
+	icon_state = "rpg_rad"
 	hud_state = "rpg_rad"
 	damage = 50
 	penetration = 10
@@ -2074,7 +2131,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/atgun_shell/beehive
 	name = "beehive shell"
-	hud_state = "shell_beehive"
+	hud_state = "shell_le"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	shell_speed = 3
 	damage = 30
@@ -2090,31 +2147,31 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(M, proj, stagger = 0, slowdown = 0.2, knockback = 1)
 	drop_nade(get_turf(M))
 	bonus_projectiles_amount = 10
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/O, obj/projectile/proj)
 	bonus_projectiles_amount = 10
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 10
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 10
-	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 5, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/rocket/atgun_shell/beehive/incend
 	name = "napalm shell"
-	hud_state = "shell_incend"
+	hud_state = "shell_heat"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
@@ -2260,12 +2317,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy
 	ping = "ping_s"
-	sound_hit 	 	= "energy_hit"
-	sound_miss		= "energy_miss"
-	sound_bounce	= "energy_bounce"
+	sound_hit 	 = "energy_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
 
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_ENERGY
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SOUND_PITCH
 	armor_type = "energy"
 	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
@@ -2716,6 +2774,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "superheated pulsed laser bolt"
 	damage = 15
 	penetration = 10
+	hitscan_effect_icon = "beam_particle"
+
+/datum/ammo/energy/lasgun/marine/mech/lance_strike
+	name = "particle lance"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SNIPER|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
+	damage_type = BRUTE
+	damage = 100
+	armor_type = MELEE
+	penetration = 25
+	sundering = 8
+	damage_falloff = -12.5 //damage increases per turf crossed
+	max_range = 4
+	on_pierce_multiplier = 0.5
+	hitscan_effect_icon = "lance"
+
+/datum/ammo/energy/lasgun/marine/mech/lance_strike/super
+	damage = 120
+	damage_falloff = -8
+	max_range = 5
 
 // Plasma //
 /datum/ammo/energy/plasma
@@ -2782,7 +2859,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "overchargedlaser"
 	hud_state = "laser_heat"
 	hud_state_empty = "battery_empty_flash"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_SOUND_PITCH
 	bullet_color = COLOR_TAN_ORANGE
 	armor_type = "energy"
 	max_range = 14
@@ -2799,9 +2876,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	//inherited, could use some changes
 	ping = "ping_s"
-	sound_hit 	 	= "energy_hit"
-	sound_miss		= "energy_miss"
-	sound_bounce	= "energy_bounce"
+	sound_hit 	 = "energy_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
 
 /datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
 	deflagrate(M, P)

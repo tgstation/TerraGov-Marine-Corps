@@ -400,6 +400,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	var/cable_color = "yellow"
 	var/obj/structure/cable/target_type = /obj/structure/cable
 	var/target_layer = CABLE_LAYER_2
+	materials = list(/datum/material/metal = 5)
 
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = null)
 	. = ..()

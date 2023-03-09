@@ -1,8 +1,10 @@
 
 /datum/action/xeno_action
-	desc = "This ability can not be found in codex." // If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
+	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
+	desc = "This ability can not be found in codex."
 	var/plasma_cost = 0
-	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
+	///bypass use limitations checked by can_use_action()
+	var/use_state_flags = NONE
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
@@ -134,8 +136,7 @@
 	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
-//checks if the linked ability is on some cooldown.
-//The action can still be activated by clicking the button
+///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !cooldown_id
 
@@ -167,7 +168,7 @@
 	return timeleft(cooldown_id) * 0.1
 
 
-//override this for cooldown completion.
+///override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
 	cooldown_id = null
 	if(!button)
@@ -250,7 +251,7 @@
 		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
 
-//override this
+///override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	if(QDELETED(owner))
 		return FALSE

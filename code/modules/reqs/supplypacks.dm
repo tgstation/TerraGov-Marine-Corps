@@ -38,12 +38,12 @@ OPERATIONS
 	cost = 1000
 
 /datum/supply_packs/operations/beacons_supply
-	name = "supply beacon"
+	name = "Supply beacon"
 	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 100
 
 /datum/supply_packs/operations/fulton_extraction_pack
-	name = "fulton extraction pack"
+	name = "Fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 100
 
@@ -63,7 +63,7 @@ OPERATIONS
 	cost = 50
 
 /datum/supply_packs/operations/binoculars_tatical
-	name = "tactical binoculars crate"
+	name = "Tactical binoculars crate"
 	contains = list(
 		/obj/item/binoculars/tactical,
 		/obj/item/encryptionkey/cas,
@@ -72,7 +72,7 @@ OPERATIONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/pinpointer
-	name = "pool tracker crate"
+	name = "Xeno structure tracker crate"
 	contains = list(/obj/item/pinpointer)
 	cost = 200
 	available_against_xeno_only = TRUE
@@ -199,14 +199,24 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/heavy_minigun)
 	cost = 30
 
-/datum/supply_packs/weapons/dualcannon_emplacement
-	name = "Mounted Dualcannon"
-	contains = list(/obj/item/weapon/gun/standard_dual_cannon)
+/datum/supply_packs/weapons/autocannon_emplacement
+	name = "Mounted Autocannon"
+	contains = list(/obj/item/weapon/gun/standard_auto_cannon)
 	cost = 700
 
-/datum/supply_packs/weapons/dc_ammo
-	name = "Mounted Dualcannon ammo"
-	contains = list(/obj/item/ammo_magazine/dual_cannon)
+/datum/supply_packs/weapons/ac_ammo
+	name = "Mounted Autocannon HV ammo"
+	contains = list(/obj/item/ammo_magazine/auto_cannon)
+	cost = 40
+
+/datum/supply_packs/weapons/ac_ammo/flak
+	name = "Mounted Autocannon Smart-Detonating ammo"
+	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
+	cost = 40
+
+/datum/supply_packs/weapons/ac_ammo
+	name = "Mounted Autocannon SD ammo"
+	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
 	cost = 40
 
 /datum/supply_packs/weapons/ags_emplacement
@@ -358,17 +368,17 @@ WEAPONS
 	cost = 400
 
 /datum/supply_packs/weapons/railgun_ammo
-	name = "Railgun armor piercing discarding sabot round"
+	name = "SR-220 Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
 	cost = 20
 
 /datum/supply_packs/weapons/railgun_ammo/hvap
-	name = "Railgun high velocity armor piercing round"
+	name = "SR-220 Railgun high velocity armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/hvap)
 	cost = 20
 
 /datum/supply_packs/weapons/railgun_ammo/smart
-	name = "Railgun smart armor piercing round"
+	name = "SR-220 Railgun smart armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/smart)
 	cost = 20
 
@@ -379,25 +389,25 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
-	name = "BR-8 scout magazine"
+	name = "BR-8 scout rifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
 	cost = 20
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular_box
-	name = "BR-8 scout ammo box"
+	name = "BR-8 scout rifle ammo box"
 	contains = list(/obj/item/ammo_magazine/packet/scout_rifle)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_impact
-	name = "BR-8 scout impact magazine"
+	name = "BR-8 scout rifle impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
 	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_incendiary
-	name = "Br-8 scout incendiary magazine"
+	name = "Br-8 scout rifle incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
 	cost = 40
 	available_against_xeno_only = TRUE
@@ -479,8 +489,14 @@ WEAPONS
 	cost = 30
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/autosniper_packet
+	name = "SR-81 IFF sniper ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/autosniper)
+	cost = 50
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/antimaterial
-	name = "SR-26 Antimaterial rifle kit"
+	name = "SR-26 Antimaterial rifle (AMR) kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	cost = 775
 	available_against_xeno_only = TRUE
@@ -509,7 +525,7 @@ WEAPONS
 	cost = MINIGUN_PRICE
 
 /datum/supply_packs/weapons/minigun
-	name = "Minigun Powerpack"
+	name = "MG-100 Vindicator Minigun Powerpack"
 	contains = list(/obj/item/ammo_magazine/minigun_powerpack)
 	cost = 50
 
@@ -618,7 +634,7 @@ WEAPONS
 	cost = 200
 
 /datum/supply_packs/weapons/pfcflak
-	name = "Tl-127 Flak Magazine"
+	name = "SR-127 Flak Magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
 	cost = 50
 	available_against_xeno_only = TRUE
@@ -864,6 +880,7 @@ ARMOR
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
 	cost = 400
 
@@ -900,6 +917,13 @@ ARMOR
 	name = "Jaeger Hlin module"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
+
+/datum/supply_packs/armor/modular/attachments/artemis_mark_two
+	name = "Artemis Mark 2 helmet module"
+	contains = list(
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
+	)
+	cost = 40
 
 /*******************************************************************************
 CLOTHING
@@ -947,7 +971,7 @@ CLOTHING
 /datum/supply_packs/clothing/marine_outfits
 	name = "marine outfit"
 	contains = list(
-		/obj/item/clothing/under/marine/standard,
+		/obj/item/clothing/under/marine,
 		/obj/item/storage/belt/marine,
 		/obj/item/storage/backpack/marine/standard,
 		/obj/item/clothing/shoes/marine,
@@ -1559,6 +1583,16 @@ Imports
 /datum/supply_packs/imports/highpower/ammo
 	name = "Highpower Automag Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/highpower)
+	cost = 10
+
+/datum/supply_packs/imports/m1911
+	name = "P-1911 service pistol"
+	contains = list(/obj/item/weapon/gun/pistol/m1911)
+	cost = 50
+
+/datum/supply_packs/imports/m1911/ammo
+	name = "P-1911 service pistol ammo"
+	contains = list(/obj/item/ammo_magazine/pistol/m1911)
 	cost = 10
 
 /datum/supply_packs/imports/strawhat

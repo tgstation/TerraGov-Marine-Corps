@@ -135,6 +135,8 @@
 #define TRAIT_PSY_LINKED "psy_linked"
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
+#define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
+
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
@@ -170,6 +172,7 @@
 #define TRAIT_DROOLING "drooling" //target is drooling
 #define TRAIT_INTOXICATION_IMMUNE "intoxication_immune" // Immune to the Intoxication debuff.
 #define TRAIT_INTOXICATION_RESISTANT "intoxication_resistant" // Resistant to the Intoxication debuff. Maximum amount of stacks limited.
+#define TRAIT_PAIN_IMMUNE "pain_immune" // We don't feel pain.
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something

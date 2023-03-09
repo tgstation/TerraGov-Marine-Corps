@@ -2,7 +2,7 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon = 'icons/turf/walls/rwall.dmi'
-	icon_state = "rwall-0"
+	icon_state = "wall-reinforced"
 	base_icon_state = "rwall"
 	opacity = TRUE
 	density = TRUE
@@ -33,7 +33,7 @@
 /turf/closed/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
-	icon_state = "rwall-0"
+	icon_state = "wall-invincible"
 	walltype = "rwall"
 	resistance_flags = RESIST_ALL
 
@@ -53,7 +53,7 @@
 /turf/closed/wall/r_wall/chigusa
 	name = "facility wall"
 	icon = 'icons/turf/walls/chigusa.dmi'
-	icon_state = "chigusa-0"
+	icon_state = "wall-reinforced"
 	walltype = "chigusa"
 	base_icon_state = "chigusa"
 
@@ -68,12 +68,13 @@
 	icon_state = "rwall-0"
 	walltype = "rwall"
 	base_icon_state = "rwall"
+	icon_state = "wall-reinforced"
 
 /turf/closed/wall/r_wall/prison_unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
 	icon = 'icons/turf/walls/gorg_prison_rwall_two.dmi'
-	icon_state = "rwall-0"
+	icon_state = "wall-invincible"
 	walltype = "rwall"
 	resistance_flags = RESIST_ALL
 	base_icon_state = "rwall"

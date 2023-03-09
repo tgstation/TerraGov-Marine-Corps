@@ -187,6 +187,10 @@
 	desc = "It can contain a pistol or revolver. Useful for emergencies, and made out of stylish leather in the old SOM tradition."
 	icon_state = "pistol_som"
 
+/obj/item/storage/pouch/pistol/icc
+	desc = "It can contain a pistol or revolver. Useful for emergencies, and made is out of a syntheic tan fabric."
+	icon_state = "pistol_icc"
+
 //// MAGAZINE POUCHES /////
 
 /obj/item/storage/pouch/magazine
@@ -227,6 +231,10 @@
 /obj/item/storage/pouch/magazine/large/som
 	desc = "This pouch can contain three ammo magazines. Made with traditional SOM leather."
 	icon_state = "mag_som"
+
+/obj/item/storage/pouch/magazine/large/icc
+	desc = "This pouch can contain three ammo magazines, appears to be made with a synthetic tan fiber."
+	icon_state = "mag_icc"
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
@@ -348,6 +356,10 @@
 	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/icc
+	desc = "It can contain grenades, plastiques, mine boxes, and other explosives. Clearly made from with a synthetic tan fiber."
+	icon_state = "large_explosive_icc"
+
 /obj/item/storage/pouch/grenade
 	name = "Grenade pouch"
 	desc = "It can contain grenades."
@@ -369,7 +381,6 @@
 	new /obj/item/explosive/grenade/smokebomb/neuro(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
-
 
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
@@ -497,6 +508,22 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+
+/obj/item/storage/pouch/medical_injectors/icc
+	desc = "A specialized medical pouch that can only hold auto-injectors. This one looks to be made out of a synthetic tan fabric."
+	icon_state = "firstaid_injector_icc"
+
+/obj/item/storage/pouch/medical_injectors/icc/firstaid/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+
 
 /obj/item/storage/pouch/med_lolipops
 	name = "medical lolipop pouch"
@@ -665,6 +692,16 @@
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with traditional SOM leather."
 	icon_state = "construction_som"
 
+/obj/item/storage/pouch/construction/icc
+	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with synthetic tan."
+	icon_state = "construction_icc"
+
+/obj/item/storage/pouch/construction/icc/full/Initialize()
+	. = ..()
+	new /obj/item/stack/sheet/metal/large_stack (src)
+	new /obj/item/stack/sheet/metal/large_stack (src)
+	new /obj/item/stack/sheet/plasteel/medium_stack (src)
+
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
@@ -703,7 +740,19 @@
 	new /obj/item/tool/wrench (src)
 	new /obj/item/tool/crowbar (src)
 
-/obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
+/obj/item/storage/pouch/tools/icc
+	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool. Made with a synthetic tan fiber."
+	icon_state = "tools_icc"
+
+/obj/item/storage/pouch/tools/icc/full/Initialize()
+	. = ..()
+	new /obj/item/tool/screwdriver (src)
+	new /obj/item/tool/wirecutters (src)
+	new /obj/item/tool/weldingtool (src)
+	new /obj/item/tool/wrench (src)
+	new /obj/item/tool/crowbar (src)
+
+/obj/item/storage/pouch/shotgun
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
 	icon_state = "shotshells"

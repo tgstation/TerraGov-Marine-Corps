@@ -182,7 +182,7 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
-	suit_store = /obj/item/storage/belt/gun/mateba/officer/full
+	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel

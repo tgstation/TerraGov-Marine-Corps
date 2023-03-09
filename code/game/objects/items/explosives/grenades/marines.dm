@@ -21,7 +21,7 @@
 
 
 
-/obj/item/explosive/grenade/PMC
+/obj/item/explosive/grenade/pmc
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_pmc"
@@ -123,7 +123,7 @@
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 35, TRUE, 9)
+	playsound(loc, "incendiary_explosion", 35)
 	qdel(src)
 
 
@@ -158,9 +158,8 @@
 	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
-	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
+	playsound(loc, "molotov", 35)
 	qdel(src)
 
 /obj/item/explosive/grenade/ags
@@ -192,7 +191,7 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
 	smoke.set_up(smokeradius, loc, smoke_duration)
 	smoke.start()
 	qdel(src)
@@ -280,7 +279,7 @@
 	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
+	arm_sound = 'sound/weapons/armbombpin_1.ogg'
 
 /obj/item/explosive/grenade/impact
 	name = "\improper M40 IMDP grenade"
@@ -374,9 +373,6 @@
 	// All good, turn it on.
 	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
 	turn_on(user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = usr
-		C.toggle_throw_mode()
 
 /obj/item/explosive/grenade/flare/activate(mob/user)
 	if(!active)

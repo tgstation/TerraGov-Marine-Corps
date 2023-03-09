@@ -1,8 +1,7 @@
 /datum/game_mode/combat_patrol
 	name = "Combat Patrol"
 	config_tag = "Combat Patrol"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR //MODE_NO_PERMANENT_WOUNDS is for nerds
-	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
+	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	time_between_round = 0 HOURS
@@ -50,7 +49,6 @@
 				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
-	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/combat_patrol/scale_roles()
 	. = ..()
@@ -288,12 +286,9 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-
-	announce_medal_awards()
-	announce_round_stats()
 
 /datum/game_mode/combat_patrol/announce_round_stats()
 	//sets up some stats which are added if applicable

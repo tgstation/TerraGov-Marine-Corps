@@ -6661,11 +6661,10 @@
 	},
 /area/mainship/hallways/hangar)
 "tM" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/glass/beaker/biomass,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -7764,6 +7763,13 @@
 	dir = 4
 	},
 /area/mainship/squads/req)
+"wR" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/glass/beaker/biomass,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "wT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14969,7 +14975,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship/nometal,
-/obj/item/clothing/head/helmet/marine/robot/heavy,
+/obj/item/clothing/head/modular/robot/heavy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "RQ" = (
@@ -22741,7 +22747,7 @@ Bm
 qN
 AJ
 kq
-tN
+wR
 uX
 jc
 wz
@@ -22839,7 +22845,7 @@ GZ
 mi
 SG
 kq
-tO
+tN
 uX
 jc
 nA
@@ -22937,7 +22943,7 @@ pG
 sa
 sa
 fJ
-qM
+tO
 un
 vK
 wB

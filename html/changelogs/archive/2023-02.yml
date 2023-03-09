@@ -241,3 +241,122 @@
   - bugfix: fixed mosin scope not appearing on hand
   Xander3359:
   - imageadd: Packet sprites suck less.
+2023-02-18:
+  Lumipharon:
+  - bugfix: fixed various minor gun and status bugs
+  - refactor: refactored accuracy and scatter calculations for projectiles
+  - balance: Offguard duration changed to 10 seconds, effect no longer decreases over
+      time
+  carlarctg:
+  - rscadd: Added a new Artemis helmet module to the base vendors that protects from
+      eye blurring.
+  - rscadd: Added a upgraded Mk. 2 Artemis module to Req, purchasable for 40 points
+      or included in the experimental modules crate.
+2023-02-19:
+  Arturlang:
+  - bugfix: Evolution doesn't check the evolving xeno's tier when checking if there
+      are enough tier slots, instead it checks the tier of the  caste the xeno is
+      evolving to.
+  Barnet2:
+  - balance: cable mat cost changed to 5
+  QualityVan:
+  - rscadd: 'Maintenance mode for robots: disable yourself for five seconds to heal
+      up to 20 damage.'
+  - bugfix: Fixed blindness not clearing properly if you tried to remove it a certain
+      way.
+  Xander3359:
+  - balance: shoulder holster webbing can hold carry some additional pistol magazines.
+2023-02-20:
+  Blundir:
+  - imageadd: crematorium sprites from tg
+2023-02-21:
+  Lewdcifer:
+  - admin: Admin Observers should now appear on staffwho and be able to use msay now
+      that they have +ADMINTICKET.
+  Lumipharon:
+  - balance: Chemistry machines now require skill to operate
+  - code_imp: Cleaned up some armor code and organised some sprite files
+  - rscadd: SOM forces now have access to the V-34 carbine
+  - rscadd: Cross compatible MPI and V-34 styles and magazines
+  TiviPlus:
+  - code_imp: gamemode/silo code has been cleaned up
+  Xander3359:
+  - rscadd: fills the slots of the recently buffed shoulder holster webbing for ERTs.
+  - rscadd: a roller bed to the synth essentials kit
+  tyeagg:
+  - rscadd: different sounds for different explosion types
+  - soundadd: new explosion sounds
+  - soundadd: new bullet ricochet and miss
+  - sounddel: removed old explosion sounds
+2023-02-22:
+  Arturlang:
+  - bugfix: Caste death timers now work, whoops.
+  Pariah919:
+  - rscadd: Added new Hostile ERT, ICC. They're allied to SoM and are strapped with
+      a large amount of explosives and engineering equipment.
+  - spellcheck: SoM ert blurb has been redone to clairify a few things, such as the
+      addition of ICC as an ally and grammar stuff.
+  carlarctg:
+  - bugfix: Added support for the old infantry open helmet to have the cool visor.
+  - bugfix: Fixed a runtime with blur_protection component that would've effectively
+      given you permanent blur protection. Good thing it was bugged!
+2023-02-23:
+  Lumipharon:
+  - bugfix: fixed a bug with portable vendors
+2023-02-24:
+  KillerOrcaCora:
+  - balance: Carrier panic drop ability being adjusted after being nooked!
+  Lumipharon:
+  - bugfix: fixed dispensers teleporting into your hand when undeploying regardless
+      of distance
+  - balance: PMC ERT updates slightly with better loadouts, mainly for more ammunition
+      and grenades
+  - balance: VP78 burst fire is no longer just a worse version of semi auto
+  - balance: ' PR-412E no longer has a pointless burstfire mode'
+  - bugfix: fixed quick equip not working for some items obtained from loadout vendors
+  - qol: SADAR and RPG rounds now have ammo specific projectile sprites
+  - imageadd: Updated SADAR sprites
+  - rscadd: Added TGUI to the nuke
+  - qol: Nuke disks are inserted into your hand, when removed from the nuke
+  Tanker:
+  - rscadd: Added a new mecha melee weapon, the Sunbeam particle piercer.
+  Zar000:
+  - bugfix: fixed create spiderling keybind
+  - qol: spiderlings will also rest when widow does
+2023-02-25:
+  Lumipharon:
+  - bugfix: Fixed ravager fire interaction and added a one second cooldown
+  - bugfix: fixed ERT radios
+  - bugfix: fixed an issue with spamming quick equip for storage with an access delay
+  - bugfix: Combat robot maintenance mode is audible from the correct range again.
+  - bugfix: fixed some evolution bugs
+  novaepee:
+  - soundadd: New combat robot self maint sounds
+  - rscdel: remove the capability to have Build-a-Sentry magnum
+2023-02-26:
+  Pariah919:
+  - rscadd: Added new style line of headgear, sprites by Fitz, other than the classic
+      beret which is by ocelot.
+  SuperSlayer0:
+  - qol: Time Shift description now says that it wouldn't save the target from death
+      or from being in crit
+  Xander3359:
+  - bugfix: You no longer spend 2 uses of jetpack when you spam the activation.
+  - bugfix: You can no longer use jetpack if it isnt toggled on.
+2023-02-27:
+  Lumipharon:
+  - bugfix: Fixed SOM nades not fitting in grenade launchers
+2023-02-28:
+  Lumipharon:
+  - bugfix: fixed a deployable exploit
+  TiviPlus:
+  - qol: medical kits & splints use balloon alerts
+  - balance: kits use 1 pack per limb but have 4 times as many uses
+  - bugfix: fixed some exploits allowing instant healing with kits
+  - bugfix: fixed splints not being able to be reapplied if they get damaged or you
+      have better medical skill than when you applied them
+  - bugfix: fixed kits healing before the progress bar healed instead of after
+  - bugfix: fixed kits healing destroyed limbs
+  - bugfix: fixed kits generating double radial menus in some cases
+  Xander3359:
+  - rscadd: Loadout vendor in minerva medbay
