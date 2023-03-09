@@ -879,8 +879,8 @@
 			/obj/machinery/factory/former = 1,
 			/obj/machinery/factory/reconstructor = 1,
 			/obj/machinery/unboxer = 1,
-			/obj/item/stack/conveyor/thirty = -1,
-			/obj/item/conveyor_switch_construct = -1,
+			/obj/item/stack/conveyor/thirty = 10,
+			/obj/item/conveyor_switch_construct = 10,
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
