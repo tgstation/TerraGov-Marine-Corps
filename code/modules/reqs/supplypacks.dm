@@ -204,18 +204,13 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/standard_auto_cannon)
 	cost = 700
 
-/datum/supply_packs/weapons/ac_ammo
+/datum/supply_packs/weapons/ac_hv
 	name = "Mounted Autocannon HV ammo"
 	contains = list(/obj/item/ammo_magazine/auto_cannon)
 	cost = 40
 
-/datum/supply_packs/weapons/ac_ammo/flak
+/datum/supply_packs/weapons/ac_flak
 	name = "Mounted Autocannon Smart-Detonating ammo"
-	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
-	cost = 40
-
-/datum/supply_packs/weapons/ac_ammo
-	name = "Mounted Autocannon SD ammo"
 	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
 	cost = 40
 
