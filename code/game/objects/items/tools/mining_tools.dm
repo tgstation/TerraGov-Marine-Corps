@@ -13,7 +13,6 @@
 	throwforce = 4.0
 	item_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/metal = 2000)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = 'sound/weapons/genhit.ogg'

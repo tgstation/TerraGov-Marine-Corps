@@ -1922,7 +1922,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "crh" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "csh" = (
@@ -13462,7 +13462,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
 "rqW" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "rqX" = (

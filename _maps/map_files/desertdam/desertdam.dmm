@@ -3920,7 +3920,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/lab_northeast/east_lab_workshop)
 "avB" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/lab_northeast/east_lab_workshop)
 "avC" = (
@@ -15053,7 +15053,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "bOa" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
