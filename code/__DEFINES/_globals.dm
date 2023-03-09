@@ -75,3 +75,4 @@
 /// Call by name proc reference, checks if the proc is existing global proc
 #define GLOBAL_PROC_REF(X) (/proc/##X)
 #endif
+
