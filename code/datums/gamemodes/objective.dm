@@ -190,7 +190,6 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		/datum/objective/gather_cash,
 		/datum/objective/kill_zombies,
 		/datum/objective/seize_area,
-		/datum/objective/recruitment_drive,
 		/datum/objective/kill_other_factions,
 		/datum/objective/custom,
 	),/proc/cmp_typepaths_asc)

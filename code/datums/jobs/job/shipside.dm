@@ -1004,7 +1004,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
 	minimap_icon = "cl"
-	objective_datum_to_add = /datum/antagonist/corporate_liason
 
 /datum/job/terragov/civilian/liaison/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
