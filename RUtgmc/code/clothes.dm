@@ -11,7 +11,7 @@
 
 /obj/item/clothing/under/marine/ru/black
 	name = "Alpha squad turtleneck"
-	desc = "Tacticool looking, squad issued uniform. This one belong to Alpha, smells like hospital."
+	desc = "Tacticool looking, squad issued uniform. This one belongs to Alpha, smells like hospital."
 	icon_state = "alpha_merc"
 	item_state = "alpha_merc"
 	adjustment_variants = list(
@@ -20,19 +20,19 @@
 
 /obj/item/clothing/under/marine/ru/black/bravo
 	name = "Bravo squad turtleneck"
-	desc = "Tacticool looking, squad issued uniform. This one belong to Bravo, smells like welder fuel."
+	desc = "Tacticool looking, squad issued uniform. This one belongs to Bravo, smells like welder fuel."
 	icon_state = "bravo_merc"
 	item_state = "bravo_merc"
 
 /obj/item/clothing/under/marine/ru/black/delta
 	name = "Delta squad turtleneck"
-	desc = "Tacticool looking, squad issued uniform. This one belong to Bravo, smells like gunpowder."
+	desc = "Tacticool looking, squad issued uniform. This one belongs to Bravo, smells like gunpowder."
 	icon_state = "delta_merc"
 	item_state = "delta_merc"
 
 /obj/item/clothing/under/marine/ru/black/charlie
 	name = "Charlie squad turtleneck"
-	desc = "Tacticool looking, squad issued uniform. This one belong to Bravo, smells like perfume."
+	desc = "Tacticool looking, squad issued uniform. This one belongs to Bravo, smells like perfume."
 	icon_state = "charlie_merc"
 	item_state = "charlie_merc"
 
@@ -209,7 +209,7 @@
 /obj/item/clothing/head/tgmcberet/squad/black
 	name = "\improper Alpha squad black beret"
 	icon_state = "alpha_black_beret"
-	desc = "Black stylish beret with TGMC marine squad insignia. This one belongs to the Charlie Squad."
+	desc = "Black stylish beret with TGMC marine squad insignia. This one belongs to the Alpha Squad."
 	icon = 'RUtgmc/icons/item/clothes.dmi'
 	item_icons = list(
 		slot_head_str = 'RUtgmc/icons/mob/clothes.dmi')
