@@ -547,9 +547,6 @@
 /turf/open/ground/coast/is_weedable()
 	return FALSE
 
-/turf/open/floor/plating/ground/snow/is_weedable()
-	return !slayer && ..()
-
 /**
  * Checks for whether we can build advanced xeno structures here
  * Returns TRUE if present, FALSE otherwise

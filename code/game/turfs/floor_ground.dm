@@ -140,8 +140,7 @@
 	. = ..()
 	icon_state = "fullgrass[pick("0","1","2","3","4")]"
 
-// Big Red
-
+// Fake snow
 
 /turf/open/floor/plating/ground/fakesnow
 	name = "shallow snow"
@@ -153,6 +152,8 @@
 	name = "deep snow"
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_2"
+
+// Big Red
 
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'

@@ -29,7 +29,6 @@
 		return
 
 	if(M.a_intent == INTENT_GRAB)
-
 		if(!slayer)
 			to_chat(M, span_warning("There is nothing to clear out!"))
 			return FALSE
@@ -49,7 +48,7 @@
 		slayer = 0
 		update_icon(1, 0)
 
-	//PLACING/REMOVING/BUILDING
+//PLACING/REMOVING/BUILDING
 /turf/open/floor/plating/ground/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	//Light Stick
@@ -76,14 +75,8 @@
 
 
 /turf/open/floor/plating/ground/snow/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	if(slayer > 0 && iscarbon(arrived))
-		var/mob/living/carbon/C = arrived
-		if(prob(1))
-			to_chat(C, span_warning("Moving through [src] slows you down."))
-		if(!isxeno(C))
-			C.next_move_slowdown += 0.5 * slayer
-			return ..()
-		var/mob/living/carbon/xenomorph/xeno = C
+	if(slayer > 0 && isxeno(arrived))
+		var/mob/living/carbon/xenomorph/xeno = arrived
 		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown * slayer
 		if(xeno.is_charging >= CHARGE_ON) // chargers = snow plows
 			slayer = 0
@@ -94,7 +87,7 @@
 //Update icon
 /turf/open/floor/plating/ground/snow/update_icon(update_full, skip_sides)
 	icon_state = "snow_[slayer]"
-	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
+	setDir(pick(GLOB.alldirs))
 	switch(slayer)
 		if(0)
 			name = "dirt floor"
@@ -166,7 +159,6 @@
 
 //Fire act; fire now melts snow as it should; fire beats ice
 /turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel)
-
 	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return
 
