@@ -6,6 +6,19 @@
 	name = "broken armor module"
 	desc = "You better be debugging."
 
+
+/**
+ * PT belt
+ */
+
+/obj/item/armor_module/module/pt_belt
+	name = "\improper physical training reflective belt"
+	desc = "Sergeant Major ordered marines to wear reflective belt to ensure marines' safety. You can speculate what danger entail a PT belt."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "pt_belt"
+	item_state = "pt_belt_a"
+	slot = ATTACHMENT_SLOT_BELT
+
 /**
  * Shoulder lamp strength module
  */

@@ -1348,6 +1348,7 @@
 			/obj/item/armor_module/greyscale/cape/half = -1,
 			/obj/item/armor_module/greyscale/cape/scarf = -1,
 			/obj/item/armor_module/greyscale/cape/short = -1,
+			/obj/item/armor_module/module/pt_belt = -1,
 		),
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,
