@@ -1217,8 +1217,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
-	damage = 60
-	penetration = 60
+	damage = 40
+	penetration = 100
 	sundering = 8
 	max_range = 35
 
@@ -1226,7 +1226,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	P.proj_max_range -= 20
 
 /datum/ammo/bullet/auto_cannon/on_hit_mob(mob/M, obj/projectile/P)
-	P.proj_max_range -= 10
+	P.proj_max_range -= 5
 	staggerstun(M, P, max_range = 20, slowdown = 1)
 
 /datum/ammo/bullet/auto_cannon/on_hit_obj(obj/O, obj/projectile/P)
@@ -1236,11 +1236,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
-	damage = 60
+	damage = 40
 	penetration = 20
 	sundering = 12
 	max_range = 30
-	airburst_multiplier	= 0.8
+	airburst_multiplier	= 1
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
