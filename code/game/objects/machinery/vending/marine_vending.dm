@@ -1194,7 +1194,6 @@
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/facepaint/green = -1,
-			/obj/item/armor_module/module/pt_belt = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -1301,6 +1300,7 @@
 			/obj/item/armor_module/greyscale/cape/half = -1,
 			/obj/item/armor_module/greyscale/cape/scarf = -1,
 			/obj/item/armor_module/greyscale/cape/short = -1,
+			/obj/item/armor_module/module/pt_belt = -1,
 		),
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,
