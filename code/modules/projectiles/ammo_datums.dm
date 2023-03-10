@@ -3276,6 +3276,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
+	if(ismecha(O))
+		P.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/T = get_turf(O)
 	drop_nade(T.density ? P.loc : T, P.firer)
 
