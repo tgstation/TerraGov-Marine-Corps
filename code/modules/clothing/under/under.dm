@@ -69,6 +69,7 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 		ATTACHMENT_SLOT_CAPE,
+		ATTACHMENT_SLOT_BELT,
 	)
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
