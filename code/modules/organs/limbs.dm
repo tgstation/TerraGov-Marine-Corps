@@ -928,7 +928,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what [owner.p_they()] [owner.p_were()] holding in their [hand_name]!")
 			return
 	if(is_malfunctioning())
-		if(prob(5))
+		if(prob(20))
 			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, [owner.p_their()] [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
