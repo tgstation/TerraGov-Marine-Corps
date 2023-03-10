@@ -45,7 +45,6 @@
 		return
 	deactivate_hud()
 
-
 /obj/item/clothing/glasses/hud/proc/activate_hud(mob/living/carbon/human/user)
 	var/datum/atom_hud/hud_datum = GLOB.huds[hud_type]
 	hud_datum.add_hud_to(user)
@@ -55,8 +54,10 @@
 /obj/item/clothing/glasses/hud/proc/deactivate_hud()
 	var/datum/atom_hud/hud_datum = GLOB.huds[hud_type]
 	hud_datum.remove_hud_from(affected_user)
+	if(issynth(affected_user))
+		var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+		AH.add_hud_to(affected_user)
 	affected_user = null
-
 
 /obj/item/clothing/glasses/hud/health
 	name = "\improper HealthMate HUD"
