@@ -140,19 +140,6 @@
 	. = ..()
 	icon_state = "fullgrass[pick("0","1","2","3","4")]"
 
-// Fake snow
-
-/turf/open/floor/plating/ground/fakesnow
-	name = "shallow snow"
-	icon = 'icons/turf/snow2.dmi'
-	icon_state = "snow_1"
-	minimap_color = MINIMAP_SNOW
-
-/turf/open/floor/plating/ground/fakesnow/alt
-	name = "deep snow"
-	icon = 'icons/turf/snow2.dmi'
-	icon_state = "snow_2"
-
 // Big Red
 
 /turf/open/floor/plating/ground/mars
@@ -164,7 +151,6 @@
 	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/floor/plating/ground/mars/random/cave
-
 	name = "cave"
 	icon_state = "mars_cave"
 

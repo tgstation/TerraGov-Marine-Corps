@@ -16,12 +16,12 @@
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
-	update_icon(1,1) //Update icon and sides on start, but skip nearby check for turfs.
+	update_icon(TRUE, TRUE) //Update icon and sides on start, but skip nearby check for turfs.
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
 	slayer = 0
-	update_icon(1, 0)
+	update_icon(TRUE, FALSE)
 
 //Xenos digging up snow
 /turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -46,7 +46,7 @@
 		M.visible_message(span_notice("\The [M] clears out \the [src]."), \
 		span_notice("We clear out \the [src]."), null, 5)
 		slayer = 0
-		update_icon(1, 0)
+		update_icon(TRUE, FALSE)
 
 //PLACING/REMOVING/BUILDING
 /turf/open/floor/plating/ground/snow/attackby(obj/item/I, mob/user, params)
@@ -55,7 +55,7 @@
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
 		if(locate(/obj/item/lightstick) in get_turf(src))
-			to_chat(user, "There's already a [L]  at this position!")
+			to_chat(user, "There's already a [L.name] at this position!")
 			return
 
 		to_chat(user, "Now planting \the [L].")
@@ -80,7 +80,7 @@
 		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown * slayer
 		if(xeno.is_charging >= CHARGE_ON) // chargers = snow plows
 			slayer = 0
-			update_icon(1, 0)
+			update_icon(TRUE, FALSE)
 	return ..()
 
 
@@ -106,7 +106,7 @@
 				var/turf/open/floor/plating/ground/snow/D = get_step(src,dirn)
 				if(istype(D))
 					//Update turfs that are near us, but only once
-					D.update_icon(1,1)
+					D.update_icon(TRUE, TRUE)
 
 		overlays.Cut()
 
@@ -154,7 +154,7 @@
 			if(slayer && prob(20))
 				slayer = max(slayer - 1, 0)
 
-	update_icon(1, 0)
+	update_icon(TRUE, FALSE)
 	return ..()
 
 //Fire act; fire now melts snow as it should; fire beats ice
@@ -170,7 +170,7 @@
 		if(25 to INFINITY)
 			slayer = 0
 
-	update_icon(1, 0)
+	update_icon(TRUE, FALSE)
 
 /turf/open/floor/plating/ground/snow/proc/acidspray_act()
 	SIGNAL_HANDLER
@@ -179,7 +179,7 @@
 		return
 
 	slayer = max(0, slayer - 1) //Melt a layer
-	update_icon(1, 0)
+	update_icon(TRUE, FALSE)
 
 
 //SNOW LAYERS-----------------------------------//
