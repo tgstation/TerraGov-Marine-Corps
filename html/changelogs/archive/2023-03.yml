@@ -135,3 +135,42 @@
   ivanmixo:
   - balance: If you melt a container the things inside the container melt too, with
       the exception of mobs
+2023-03-10:
+  Al-1ce:
+  - balance: Derringer now applies knockback.
+  Lumipharon:
+  - balance: Light armor armor values reduced by 5 across the board
+  - balance: Heavy armor fire, bio and bomb armor increased by 5
+  - rscadd: Added a SOM specific version of the basic smoke grenade
+  - imageadd: updated the flashbang sprites
+  - balance: Applying fire to an already burning turf now increases the strength of
+      the fire instead of removing the old fire
+  Pariah919:
+  - balance: Mechs take much more damage from crusher charges, now.
+  - balance: Style hats now have helmet-level armor.
+  TiviPlus:
+  - qol: Added boiler keybind defaults
+  - qol: Added runner keybind defaults
+  - qol: Added hunter keybind defaults
+  - qol: Added carrier keybind defaults
+  - qol: Added warrior keybind defaults
+  - qol: Added shrike keybind defaults
+  - qol: Added sentinel keybind defaults
+  - qol: Added ravager keybind defaults
+  - qol: Added crusher keybind defaults
+  - qol: Added defender keybind defaults
+  - qol: Added hivelord keybind defaults
+  Xander3359:
+  - rscadd: Isotonic pill packets are vendable in the marine med.
+  - rscadd: Crates can be vended from the Automated Weapons rack in the Boxes section
+      (They don't give metal when welded)
+  - rscadd: Conveyor belts and switches are in the req vendor under Reqtorio Basics.
+  - rscadd: Beakers to Nanotrasen Med Plus
+  - rscadd: Various engineering thingies to engi-vend.
+  - rscadd: Welding goggles and helmets to engi-vend.
+  - rscadd: Table parts, reinforced table parts and rack parts can be made from metal
+      sheets in-hand.
+  - rscadd: You can weld 4 floor tiles to make 1 metal.
+  - rscdel: Removes the autolathe
+  novaepee:
+  - rscadd: Roll down uniforms to see naked chest

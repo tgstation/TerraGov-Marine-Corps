@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added a SOM specific version of the basic smoke grenade"
-  - imageadd: "updated the flashbang sprites"
