@@ -174,7 +174,8 @@
 			user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 			span_notice("You start welding [src]'s internal damage."))
 			add_overlay(GLOB.welding_sparks)
-			if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS) , TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				return FALSE
 				if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 					cut_overlay(GLOB.welding_sparks)
 					return FALSE
