@@ -247,14 +247,24 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message(span_notice("[user] starts prying [src]'s fuel receptacle open."),
 		span_notice("You start prying [src]'s fuel receptacle open."))
-		if(do_after(user, 100, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
-			user.visible_message(span_notice("[user] pries [src]'s fuel receptacle open and removes the cell."),
-			span_notice("You pry [src]'s fuel receptacle open and remove the cell.."))
-			fusion_cell.update_icon()
-			user.put_in_hands(fusion_cell)
-			fusion_cell = null
-			update_icon()
-			return TRUE
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+			if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
+				user.visible_message(span_notice("[user] pries [src]'s fuel receptacle open and removes the cell."),
+				span_notice("You pry [src]'s fuel receptacle open and remove the cell.."))
+				fusion_cell.update_icon()
+				user.put_in_hands(fusion_cell)
+				fusion_cell = null
+				update_icon()
+				return TRUE
+		else
+			if(do_after(user, 1, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
+				user.visible_message(span_notice("[user] instantly pries [src]'s fuel receptacle open and removes the cell."),
+				span_notice("You instantly pry [src]'s fuel receptacle open and remove the cell.."))
+				fusion_cell.update_icon()
+				user.put_in_hands(fusion_cell)
+				fusion_cell = null
+				update_icon()
+				return TRUE
 
 
 /obj/machinery/power/fusion_engine/examine(mob/user)
