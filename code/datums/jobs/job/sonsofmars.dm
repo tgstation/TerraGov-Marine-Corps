@@ -7,7 +7,8 @@
 
 /datum/outfit/job/som/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.undershirt = 6
+	H.underwear = 10
+	H.undershirt = H.undershirt ? 10 : 0
 	H.regenerate_icons()
 
 //Base job for normal gameplay SOM, not ERT.
