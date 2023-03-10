@@ -200,7 +200,7 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 		span_notice("You start securing [src]'s wiring."))
-		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
+		if(!do_after(user,  10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), TRUE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
 			return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		buildstate = FUSION_ENGINE_LIGHT_DAMAGE
