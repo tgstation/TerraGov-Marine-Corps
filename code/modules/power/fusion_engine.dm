@@ -220,13 +220,14 @@
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 		span_notice("You start repairing [src]'s tubing and plating."))
-		if(do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			buildstate = FUSION_ENGINE_NO_DAMAGE
-			user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
-			span_notice("You repair [src]'s tubing and plating."))
-			update_icon()
-			return TRUE
+		if(!do_after(user,  15 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
+			return FALSE
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		buildstate = FUSION_ENGINE_NO_DAMAGE
+		user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
+		span_notice("You repair [src]'s tubing and plating."))
+		update_icon()
+		return TRUE
 
 /obj/machinery/power/fusion_engine/crowbar_act(mob/living/user, obj/item/O)
 	if(buildstate != FUSION_ENGINE_NO_DAMAGE)
