@@ -176,16 +176,16 @@
 			add_overlay(GLOB.welding_sparks)
 			if(!do_after(user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS) , TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return FALSE
-				if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
-					cut_overlay(GLOB.welding_sparks)
-					return FALSE
-				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-				buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
-				user.visible_message(span_notice("[user] welds [src]'s internal damage."),
-				span_notice("You weld [src]'s internal damage."))
+			if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 				cut_overlay(GLOB.welding_sparks)
-				update_icon()
-				return TRUE
+				return FALSE
+			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+			buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
+			user.visible_message(span_notice("[user] welds [src]'s internal damage."),
+			span_notice("You weld [src]'s internal damage."))
+			cut_overlay(GLOB.welding_sparks)
+			update_icon()
+			return TRUE
 		else
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return FALSE
