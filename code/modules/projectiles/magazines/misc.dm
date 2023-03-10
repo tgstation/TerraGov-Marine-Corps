@@ -15,7 +15,7 @@
 	current_rounds = 150
 	max_rounds = 150
 
-/obj/item/ammo_magazine/packet/p556x45mm
+/obj/item/ammo_magazine/packet/pnato
 	name = "box of 556x45mm"
 	desc = "A box containing 150 rounds of 556x45mm."
 	caliber = CALIBER_556X45
@@ -24,7 +24,7 @@
 	current_rounds = 150
 	max_rounds = 150
 
-/obj/item/ammo_magazine/packet/p762x39mm
+/obj/item/ammo_magazine/packet/pwarsaw
 	name = "box of 762x39mm"
 	desc = "A box containing 120 rounds of 762x39mm."
 	caliber = CALIBER_762X39
@@ -184,7 +184,7 @@
 	current_rounds = 50
 	max_rounds = 50
 
-/obj/item/ammo_magazine/packet/p380acp
+/obj/item/ammo_magazine/packet/pthreeightyacp
 	name = "packet of .380 ACP"
 	desc = "A packet containing 210 rounds of .380 ACP."
 	caliber = CALIBER_380ACP
