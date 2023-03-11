@@ -339,7 +339,7 @@
 	desc = "A box magazine for the ALF-51B machinecarbine."
 	icon_state = "t60"
 	caliber = CALIBER_10X25_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle/heavy
+	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 80
 	reload_delay = 1 SECONDS
