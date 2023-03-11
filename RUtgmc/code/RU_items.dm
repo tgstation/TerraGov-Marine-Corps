@@ -13,6 +13,8 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/ammo_magazine/packet/long_special = -1,
 		/obj/item/ammo_magazine/revolver/t500 = -1,
 		/obj/item/ammo_magazine/packet/t500 = -1,
+		/obj/item/ammo_magazine/revolver/t500/t312 = -1,
+		/obj/item/ammo_magazine/packet/t500/t312 = -1,
 		/obj/item/storage/belt/gun/revolver/t500 = -1,
 		/obj/item/storage/box/t500case = 5,
 		/obj/item/ammo_magazine/som_mg = 20,
@@ -682,8 +684,8 @@ SUBSYSTEM_DEF(ru_items)
 /////////////////////////// t500 revolver ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 /obj/item/weapon/gun/revolver/t500
-	name = "\improper R-500 BF revolver"
-	desc = "The R-500 BF revolver, chambered in .500 Nigro Express. Hard to use, but hits as hard as it’s kicks your hand. This handgun made by BMSS, designed to be deadly, unholy force to stop everything what moves, so in exchange for it, revolver lacking recoil control and have tight cocking system. Because of its specific, handcanon niche, was produced in small numbers. Black & Metzer special attachments system can turn extremely powerful handgun to fullscale rifle, making it a weapon to surpass Metal Gear."
+	name = "\improper R-500 'Nigredo' revolver"
+	desc = "The R-500 'Nigredo' revolver, chambered in .500 Nigro Express. Hard to use, but hits as hard as it’s kicks your hand. This handgun made by BMSS, designed to be deadly, unholy force to stop everything what moves, so in exchange for it, revolver lacking recoil control and have tight cocking system. Because of its specific, handcanon niche, was produced in small numbers. Black & Metzer special attachments system can turn extremely powerful handgun to fullscale rifle, making it a weapon to surpass Metal Gear."
 	icon = 'icons/Marine/t500.dmi'
 	icon_state = "t500"
 	item_icons = list(
@@ -693,7 +695,7 @@ SUBSYSTEM_DEF(ru_items)
 	caliber =  CALIBER_500 //codex
 	max_chamber_items = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/t500
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/t500, /datum/ammo/bullet/revolver/t500/qk)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/t500, /datum/ammo/bullet/revolver/t500qk)
 	force = 20
 	actions_types = null
 	attachable_allowed = list(
@@ -724,7 +726,7 @@ SUBSYSTEM_DEF(ru_items)
 /obj/item/ammo_magazine/revolver/t500
 	name = "\improper R-500 speed loader (.500)"
 	icon_state = "t500"
-	desc = "A R-500 BF revolver speed loader."
+	desc = "A R-500 'Nigredo' revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver/t500
 	flags_equip_slot = NONE
 	caliber = CALIBER_500
@@ -747,19 +749,26 @@ SUBSYSTEM_DEF(ru_items)
 		return
 	create_handful(user)
 
-/obj/item/ammo_magazine/packet/t500/qk
+/obj/item/ammo_magazine/packet/t500qk
 	name = "packet of .500 'Queen Killer'"
 	icon_state = "boxt500_qk"
-	default_ammo = /datum/ammo/bullet/revolver/t500/qk
+	default_ammo = /datum/ammo/bullet/revolver/t500qk
 	caliber = CALIBER_500
 	current_rounds = 50
 	max_rounds = 50
 	w_class = WEIGHT_CLASS_SMALL
 	used_casings = 5
 
+/obj/item/ammo_magazine/packet/t500qk/attack_hand_alternate(mob/living/user)
+	if(current_rounds <= 0)
+		to_chat(user, span_notice("[src] is empty. There is nothing to grab."))
+		return
+	create_handful(user)
+
 /datum/ammo/bullet/revolver/t500
 	name = ".500 Nigro Express revolver bullet"
 	handful_icon_state = "nigro"
+	accurate_range = 15
 	handful_amount = 5
 	damage = 100
 	penetration = 40
@@ -768,22 +777,22 @@ SUBSYSTEM_DEF(ru_items)
 /datum/ammo/bullet/revolver/t500/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
 
-/datum/ammo/bullet/revolver/t500/qk
+/datum/ammo/bullet/revolver/t500qk
 	name = ".500 'Queen Killer' revolver bullet"
 	handful_icon_state = "nigro_qk"
+	accurate_range = 15
 	handful_amount = 5
 	damage = 100
 	penetration = 40
 	sundering = 0
 
-/datum/ammo/bullet/revolver/t500/qk/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/revolver/t500qk/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 0)
 	if(isxenoqueen(M))
 		var/mob/living/carbon/xenomorph/X = M
 		X.apply_damage(30)
-		staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 0)
 		to_chat(X, span_highdanger("Something burn inside you!"))
 		return
-	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
 
 // attachable
 /obj/item/attachable/stock/t500stock
@@ -846,8 +855,8 @@ SUBSYSTEM_DEF(ru_items)
 
 // storage
 /obj/item/storage/belt/gun/revolver/t500
-	name = "\improper BM500 pattern BF revolver holster rig"
-	desc = "The BM500 is the special modular belt for R-500 BF revolver."
+	name = "\improper BM500 pattern revolver holster rig"
+	desc = "The BM500 is the special modular belt for BMSS revolvers."
 	icon = 'icons/Marine/t500_belt.dmi'
 	icon_state = "belt"
 	max_w_class = 3.5
@@ -855,10 +864,11 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/weapon/gun/revolver/t500,
 		/obj/item/ammo_magazine/revolver/t500,
 		/obj/item/ammo_magazine/packet/t500,
+		/obj/item/weapon/gun/revolver/t312,
 	)
 
 /obj/item/storage/box/t500case
-	name = "\improper R-500 special case"
+	name = "\improper R-500 'Nigredo' special case"
 	desc = "High-tech case made by BMSS for delivery their special weapons. Label on this case says: 'This is the greatest handgun ever made. Five bullets. More than enough to kill anything that moves'."
 	icon = 'icons/Marine/t500.dmi'
 	icon_state = "case"
@@ -866,13 +876,6 @@ SUBSYSTEM_DEF(ru_items)
 	max_w_class = 1
 	storage_slots = 5
 	max_storage_space = 1
-	can_hold = list(
-		/obj/item/attachable/stock/t500stock,
-		/obj/item/attachable/lace/t500,
-		/obj/item/attachable/t500barrelshort,
-		/obj/item/attachable/t500barrel,
-		/obj/item/weapon/gun/revolver/t500,
-	)
 	bypass_w_limit = list(
 		/obj/item/attachable/stock/t500stock,
 		/obj/item/attachable/lace/t500,
