@@ -31,7 +31,6 @@
 	target_distance = 1
 	base_action = ESCORTING_ATOM
 	var/datum/weakref/default_escorted_atom
-	var/atom/current_target
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -49,10 +48,10 @@
 	SIGNAL_HANDLER
 	if(!A)
 		only_set_escorted_atom()
-		UnregisterSignal(current_target, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
-		current_target = null
+		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+		atom_to_walk_to = null
 		return
-	if(current_target == A)
+	if(atom_to_walk_to == A)
 		return
 	escorted_atom = null
 	if(ishuman(A))
@@ -73,7 +72,7 @@
 	SIGNAL_HANDLER
 	if(QDELETED(target))
 		return
-	current_target = target
+	atom_to_walk_to = target
 	change_action(MOVING_TO_ATOM, target)
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
@@ -85,7 +84,7 @@
 		return
 	if(mob_parent?.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
-	current_target = target
+	atom_to_walk_to = target
 	change_action(MOVING_TO_ATOM, target)
 
 ///Signal handler to try to attack our target
