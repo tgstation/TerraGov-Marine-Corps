@@ -1472,7 +1472,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hH" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hJ" = (
@@ -1575,7 +1575,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "ik" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "im" = (

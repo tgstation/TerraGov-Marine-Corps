@@ -9380,7 +9380,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
 "Rj" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -10717,7 +10717,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/east)
 "WZ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2{
 	dir = 10

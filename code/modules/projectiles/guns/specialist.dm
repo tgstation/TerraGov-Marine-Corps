@@ -528,7 +528,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
-	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket)
 	flags_equip_slot = NONE
@@ -608,7 +607,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1
 	caliber = CALIBER_84MM
 	load_method = SINGLE_CASING
-	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket/sadar
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/sadar,
@@ -698,7 +696,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1 //codex
 	caliber = CALIBER_67MM //codex
 	load_method = SINGLE_CASING //codex
-	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/recoilless,

@@ -600,6 +600,23 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		usr.client.smite(H)
 
+	else if(href_list["traitor"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		if(!SSticker.HasRoundStarted())
+			alert("The game hasn't started yet!")
+			return
+
+		var/mob/M = locate(href_list["traitor"])
+		if(!ismob(M))
+			var/datum/mind/D = M
+			if(!istype(D))
+				to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+				return
+			else
+				D.traitor_panel()
+
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])
 

@@ -9,6 +9,7 @@
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_avoidharm(str) ("<span class='avoidharms'>" + str + "</span>")
 #define span_bad(str) ("<span class='bad'>" + str + "</span>")
+#define span_big(str) ("<span class='big'>" + str + "</span>")
 #define span_binarysay(str) ("<span class='binarysay'>" + str + "</span>")
 #define span_bold(str) ("<span class='bold'>" + str + "</span>")
 #define span_boldannounce(str) ("<span class='boldannounce'>" + str + "</span>")

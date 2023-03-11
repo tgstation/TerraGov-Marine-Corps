@@ -14,7 +14,6 @@
 	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
-	materials = list(/datum/material/glass = 3750)
 	merge_type = /obj/item/stack/sheet/glass
 	var/created_window = /obj/structure/window
 	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
@@ -58,8 +57,6 @@
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 
-	materials = list(/datum/material/metal = 20, /datum/material/glass = 3750)
-
 	created_window = /obj/structure/window/reinforced
 	is_reinforced = TRUE
 
@@ -72,7 +69,6 @@
 	desc = "Phoron glass is a silicate-phoron alloy turned into a non-crystalline solid. It is transparent just like glass, even if visibly tainted pink, and very resistant to damage and heat."
 	singular_name = "phoron glass sheet"
 	icon_state = "sheet-phoronglass"
-	materials = list(/datum/material/glass = 7500)
 	created_window = /obj/structure/window/phoronbasic
 	reinforced_type = /obj/item/stack/sheet/glass/phoronrglass
 
@@ -84,6 +80,5 @@
 	desc = "Reinforced phoron glass is made out of squares of silicate-phoron alloy glass layered on a metallic rod matrice. It is insanely resistant to both physical shock and heat."
 	singular_name = "reinforced phoron glass sheet"
 	icon_state = "sheet-phoronrglass"
-	materials = list(/datum/material/glass = 7500, /datum/material/metal = 1875)
 	created_window = /obj/structure/window/phoronreinforced
 	is_reinforced = TRUE

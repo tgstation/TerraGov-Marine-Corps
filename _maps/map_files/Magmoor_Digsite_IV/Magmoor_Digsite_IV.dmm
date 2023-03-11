@@ -25539,7 +25539,7 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "sEJ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -25608,7 +25608,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "sHu" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -27756,7 +27756,7 @@
 	},
 /area/magmoor/medical/lobby)
 "uiL" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "uiY" = (
@@ -30098,7 +30098,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
 "vUz" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/purple{
 	dir = 8
 	},
