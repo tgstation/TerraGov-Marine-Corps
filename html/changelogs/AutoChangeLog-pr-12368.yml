@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Improved ALF burst fire rate"
+  - balance: "ALF now inflicts small amounts of slowdown on hit, and has slightly better AP but worse sunder"
