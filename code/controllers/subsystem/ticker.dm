@@ -44,6 +44,7 @@ SUBSYSTEM_DEF(ticker)
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
+	var/list/datum/mind/minds = list() //The characters in the game. Used for objective tracking.
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
