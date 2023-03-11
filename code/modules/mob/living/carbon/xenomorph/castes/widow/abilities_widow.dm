@@ -189,12 +189,12 @@
 		return fail_activate()
 	if(!isturf(A))
 		owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
+		succeed_activate()
 	else
 		A = null
 		owner.balloon_alert(owner, "Nothing to attack")
 		fail_activate()
 	SEND_SIGNAL(owner, COMSIG_SPIDERLING_MARK, A)
-	succeed_activate()
 	add_cooldown()
 
 // ***************************************

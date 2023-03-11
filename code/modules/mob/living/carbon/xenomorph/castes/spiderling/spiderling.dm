@@ -35,7 +35,7 @@
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
-	default_escorted_atom = escorted_atom
+	default_escorted_atom = WEAKREF(escorted_atom)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
@@ -66,7 +66,7 @@
 
 /datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
 	SIGNAL_HANDLER
-	escorted_atom = default_escorted_atom
+	escorted_atom = default_escorted_atom.resolve()
 
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
