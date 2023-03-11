@@ -4853,7 +4853,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqf" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqg" = (

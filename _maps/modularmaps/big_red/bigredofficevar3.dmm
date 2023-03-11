@@ -104,7 +104,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "fZ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ge" = (

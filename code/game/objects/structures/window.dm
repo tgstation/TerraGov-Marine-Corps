@@ -429,7 +429,7 @@
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	icon = 'icons/obj/smooth_objects/ship_window.dmi'
-	icon_state = "ship_window-0"
+	icon_state = "window-reinforced"
 	basestate = "ship_window"
 	base_icon_state = "ship_window"
 	max_integrity = 100 //Was 600
@@ -443,6 +443,7 @@
 
 /obj/structure/window/framed/mainship/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
+	icon_state = "window-invincible"
 
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
@@ -467,17 +468,26 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
+	icon_state = "window-invincible"
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
-	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
 	max_integrity = 1000
 	deconstructable = FALSE
+	icon_state = "window-reinforced"
 
 /obj/structure/window/framed/mainship/white
 	icon = 'icons/obj/smooth_objects/wwindow.dmi'
@@ -500,6 +510,7 @@
 	base_icon_state = "ship_gray_window"
 	window_frame = /obj/structure/window_frame/mainship/gray
 	reinf = FALSE
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 		SMOOTH_GROUP_AIRLOCK,
@@ -513,7 +524,7 @@
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
 	max_integrity = 300
 	reinf = TRUE
-	icon_state = "ship_gray_window-0"
+	icon_state = "window-reinforced"
 	basestate = "ship_gray_window"
 
 /obj/structure/window/framed/mainship/gray/toughened/hull
@@ -522,10 +533,11 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
+	icon_state = "window-invincible"
 
 /obj/structure/window/framed/mainship/white/toughened/hull
 	name = "hull window"
-	icon_state = "white_rwindow-0"
+	icon_state = "window-invincible"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
@@ -541,7 +553,7 @@
 /obj/structure/window/framed/colony/reinforced
 	name = "reinforced window"
 	icon = 'icons/obj/smooth_objects/col_rwindow.dmi'
-	icon_state = "col_rwindow-0"
+	icon_state = "window-reinforced"
 	base_icon_state = "col_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
@@ -561,6 +573,7 @@
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
+	icon_state = "window-invincible"
 
 
 
@@ -569,7 +582,7 @@
 /obj/structure/window/framed/chigusa
 	name = "reinforced window"
 	icon = 'icons/obj/smooth_objects/chigusa_window.dmi'
-	icon_state = "chigusa_wall-0"
+	icon_state = "window-reinforced"
 	basestate = "chigusa_wall"
 	base_icon_state = "chigusa_wall"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
@@ -615,7 +628,7 @@
 	max_integrity = 100
 	reinf = TRUE
 	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
-	icon_state = "prison_rwindow-0"
+	icon_state = "window-reinforced"
 	base_icon_state = "prison_rwindow"
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
@@ -626,6 +639,7 @@
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	resistance_flags = BANISH_IMMUNE
+	icon_state = "window-invincible"
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize()
 	. = ..()

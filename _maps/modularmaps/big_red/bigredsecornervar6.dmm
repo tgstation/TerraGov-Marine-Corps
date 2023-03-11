@@ -44,7 +44,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "dI" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "dV" = (
@@ -227,10 +227,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
-"nb" = (
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "nc" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -370,11 +366,6 @@
 /area/bigredv2/caves/secomplex)
 "vs" = (
 /turf/open/floor/tile/blue,
-/area/bigredv2/caves/secomplex)
-"vH" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "vT" = (
 /obj/effect/turf_decal/sandedge{
@@ -767,7 +758,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "SZ" = (
-/obj/effect/landmarkweed_node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
@@ -792,7 +783,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "UC" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "UJ" = (
@@ -1545,7 +1536,7 @@ Dx
 Dx
 Dx
 Dx
-nb
+Ro
 Ro
 Ir
 qY
@@ -3946,7 +3937,7 @@ Ir
 Ro
 Ro
 Ro
-nb
+Ro
 Ro
 Ir
 Ro
@@ -4332,7 +4323,7 @@ My
 Ir
 Ro
 le
-vH
+Iv
 tu
 Iv
 nY

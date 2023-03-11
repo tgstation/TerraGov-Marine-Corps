@@ -6,17 +6,6 @@
 	icon = 'icons/mob/modular/mark_one/leg_plates.dmi'
 	icon_state = "infantry"
 	slot = ATTACHMENT_SLOT_KNEE
-	current_variant = "black"
-	icon_state_variants = list(
-		"black",
-		"jungle",
-		"desert",
-		"snow",
-		"alpha",
-		"bravo",
-		"charlie",
-		"delta",
-	)
 
 /obj/item/armor_module/armor/legs/marine
 	name = "\improper Jaeger Pattern Infantry leg plates"
