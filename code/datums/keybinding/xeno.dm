@@ -857,6 +857,12 @@
 	description = "Shoot a strong web and pull yourself towards whatever it hits."
 	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 
+/datum/keybinding/xeno/spiderling_mark
+	name = "Spiderling Mark"
+	full_name = "Widow: Spiderling Mark"
+	description = "Signal your spawn to a target they shall attack."
+	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
+
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()
 	if(!isxeno(user.mob))
