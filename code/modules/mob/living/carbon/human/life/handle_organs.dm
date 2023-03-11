@@ -22,6 +22,8 @@
 	for(var/datum/internal_organ/I in internal_organs)
 		I.process()
 
+	var/multi_limb_regen_penalty = 1 / (max(1, length(get_damaged_limbs(TRUE, TRUE))) ** 0.5) //Per-limb regen decreases with multiple damaged limbs, but slower than linear
+
 	for(var/i in limbs)
 		var/datum/limb/E = i
 
@@ -32,7 +34,7 @@
 		if(!E.need_process())
 			continue
 
-		E.process()
+		E.process(multi_limb_regen_penalty)
 
 		if(!lying_angle && world.time - last_move_time < 15)
 			if(E.is_broken() && E.internal_organs && prob(15))

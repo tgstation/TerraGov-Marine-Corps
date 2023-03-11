@@ -612,7 +612,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/general_offices)
 "EU" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -633,7 +633,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Go" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/ne)
@@ -1034,7 +1034,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "Xz" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/ne)
 "XC" = (
 /obj/machinery/portable_atmospherics/hydroponics,

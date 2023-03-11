@@ -17,7 +17,7 @@
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
@@ -187,6 +187,7 @@
 	accuracy_mult = 1.15
 	scatter = 0
 	accuracy_mult_unwielded = 0.8
+	akimbo_additional_delay = 0.9 // Akimbo only gives more shots.
 	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
@@ -267,6 +268,49 @@
 	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
+//-------------------------------------------------------
+// The R-76 Magnum. Fires a big round, equal to a slug. Has a windup.
+
+/obj/item/weapon/gun/revolver/standard_magnum
+	name = "\improper R-76 KC magnum"
+	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t76"
+	item_state = "t76"
+	fire_animation = "t76_fire"
+	caliber =  CALIBER_12x7 //codex
+	max_chamber_items = 5 //codex
+	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_magnum
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_magnum)
+	force = 8
+	actions_types = null
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/stock/t76,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 18)
+	windup_delay = 0.5 SECONDS
+	aim_slowdown = 0.1
+	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t76.ogg'
+	fire_delay = 0.75 SECONDS
+	akimbo_additional_delay = 0.6
+	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1
+	scatter_unwielded = 5
+	scatter = 2
+	recoil = 2
+	recoil_unwielded = 3
+
+	starting_attachment_types = list(/obj/item/attachable/stock/t76)
+
 
 //Single action revolvers below
 //---------------------------------------------------
@@ -295,7 +339,7 @@
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
 	default_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

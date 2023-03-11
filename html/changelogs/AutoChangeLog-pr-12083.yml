@@ -1,7 +1,0 @@
-author: "maikilangiolo"
-delete-after: True
-changes:
-  - rscadd: "added WP shrapnel AGLS ammo"
-  - balance: "rebalanced AGLS frag to be better"
-  - balance: "rebalanced AGLS AOEs to be less oppressive for both sides"
-  - qol: "recolored AGLS ammo to be easier to distinguish"

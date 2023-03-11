@@ -1,4 +1,0 @@
-author: "Guidesa"
-delete-after: True
-changes:
-  - imageadd: "powerfists now display if they have a power cell in them"

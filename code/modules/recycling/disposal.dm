@@ -571,7 +571,6 @@
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	plane = FLOOR_PLANE
 	resistance_flags = RESIST_ALL
-	var/base_icon_state	//Initial icon state on map
 
 	//New pipe, set the icon_state as on map
 /obj/structure/disposalpipe/Initialize()

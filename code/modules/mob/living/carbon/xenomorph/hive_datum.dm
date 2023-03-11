@@ -4,16 +4,8 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
-	///Current king, there can only be one
-	var/mob/living/carbon/xenomorph/king/living_xeno_king
-	///Timer for queen evolution after the last one dying
-	var/xeno_queen_timer
-	///Timer for king evolution after the last one dying
-	var/xeno_king_timer
-	/// minimum amount of xenos needed to support a queen
-	var/xenos_per_queen = 8
-	/// minimum amount of xenos needed to support a king
-	var/xenos_per_king = 12
+	///Timer for caste evolution after the last one died
+	var/list/caste_death_timers = list()
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
@@ -90,7 +82,17 @@
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
 	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
-	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? timeleft(xeno_queen_timer) MILLISECONDS : 0
+	// Show all the death timers in milliseconds
+	.["hive_death_timers"] = list()
+	// The key for caste_death_timer is the mob's type
+	for(var/mob in caste_death_timers)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[mob][XENO_UPGRADE_BASETYPE]
+		var/timeleft = timeleft(caste_death_timers[caste.caste_type_path])
+		.["hive_death_timers"] += list(list(
+			"caste" = caste.caste_name,
+			"time_left" = round(timeleft MILLISECONDS),
+			"end_time" = caste.death_evolution_delay MILLISECONDS,
+		))
 
 	.["hive_primos"] = list()
 	for(var/tier in GLOB.tier_to_primo_upgrade)
@@ -179,7 +181,6 @@
 	.["hive_name"] = name
 	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
 	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
-	.["hive_queen_max"] = QUEEN_DEATH_TIMER MILLISECONDS
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_threshold"] = xeno_job.job_points_needed
@@ -216,6 +217,10 @@
 			else if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_WATCHXENO, xeno_target)
+		if("Deevolve")
+			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+				return
+			attempt_deevolve(usr, xeno_target)
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
@@ -299,23 +304,17 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
+/**
+ * The total amount of xenomorphs that are considered for evolving purposes,
+ * subtypes also consider stored larva, not just the current amount of living xenos
+ */
+/datum/hive_status/proc/total_xenos_for_evolving()
+	return get_total_xeno_number()
 
-
-/datum/hive_status/proc/can_hive_have_a_queen()
-	return (get_total_xeno_number() < xenos_per_queen)
-
-/datum/hive_status/normal/can_hive_have_a_queen()
+/datum/hive_status/normal/total_xenos_for_evolving()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
-
-/datum/hive_status/proc/can_hive_have_a_king()
-	return (get_total_xeno_number() < xenos_per_king)
-
-/datum/hive_status/normal/can_hive_have_a_king()
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	return ((get_total_xeno_number() + stored_larva) < xenos_per_king)
+	return get_total_xeno_number() + stored_larva
 
 /datum/hive_status/proc/get_total_tier_zeros()
 	return length(xenos_by_tier[XENO_TIER_ZERO])
@@ -437,13 +436,6 @@
 	if(HS.living_xeno_ruler)
 		return
 	HS.update_ruler()
-
-/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
-	. = ..()
-
-	if(HS.living_xeno_king)
-		return
-	HS.living_xeno_king = src
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -569,9 +561,64 @@
 // ***************************************
 // *********** Xeno upgrades
 // ***************************************
-/datum/hive_status/proc/upgrade_xeno(mob/living/carbon/xenomorph/X, oldlevel, newlevel) // called by Xenomorph/proc/upgrade_xeno()
+/// called by Xenomorph/proc/upgrade_xeno() to update xeno_by_upgrade
+/datum/hive_status/proc/upgrade_xeno(mob/living/carbon/xenomorph/X, oldlevel, newlevel)
 	xenos_by_upgrade[oldlevel] -= X
 	xenos_by_upgrade[newlevel] += X
+
+///attempts to have devolver devolve target
+/datum/hive_status/proc/attempt_deevolve(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
+	if(target.is_ventcrawling)
+		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is ventcrawling."))
+		return
+
+	if(!isturf(target.loc))
+		to_chat(devolver, span_xenonotice("Cannot deevolve [target] here."))
+		return
+
+	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
+		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is too weak."))
+		return
+
+	if(!target.xeno_caste.deevolves_to)
+		to_chat(devolver, span_xenonotice("Cannot deevolve [target]."))
+		return
+
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
+
+	var/confirm = tgui_alert(devolver, "Are you sure you want to deevolve [target] from [target.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
+		return
+
+	var/reason = stripped_input(devolver, "Provide a reason for deevolving this xenomorph, [target]")
+	if(isnull(reason))
+		to_chat(devolver, span_xenonotice("De-evolution reason required."))
+		return
+
+	if(!devolver.check_concious_state())
+		return
+
+	if(target.is_ventcrawling)
+		return
+
+	if(!isturf(target.loc))
+		return
+
+	if((target.health < target.maxHealth) || (target.plasma_stored < (target.xeno_caste.plasma_max * target.xeno_caste.plasma_regen_limit)))
+		return
+
+	target.balloon_alert(target, "Forced deevolution")
+	to_chat(target, span_xenowarning("[devolver] deevolved us for the following reason: [reason]."))
+
+	target.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
+
+	log_game("[key_name(devolver)] has deevolved [key_name(target)]. Reason: [reason]")
+	message_admins("[ADMIN_TPMONTY(devolver)] has deevolved [ADMIN_TPMONTY(target)]. Reason: [reason]")
+
+	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
+	qdel(target)
+
 
 // ***************************************
 // *********** Xeno death
@@ -584,9 +631,11 @@
 
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)
-
-	return TRUE
-
+	var/datum/xeno_caste/caste = X?.xeno_caste
+	if(caste.death_evolution_delay <= 0)
+		return
+	if(!caste_death_timers[caste.caste_type_path])
+		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
@@ -597,6 +646,17 @@
 // ***************************************
 // *********** Ruler
 // ***************************************
+
+// The hivemind conduit is the xeno that on death severs the connection to the hivemind for xenos for half the time the death timer exists for.
+
+/// Gets the hivemind conduit's death timer, AKA, the time before a replacement can evolve
+/datum/hive_status/proc/get_hivemind_conduit_death_timer()
+	return caste_death_timers[/mob/living/carbon/xenomorph/queen]
+
+/// Gets the total time that the death timer for the hivemind conduit will last
+/datum/hive_status/proc/get_total_hivemind_conduit_time()
+	var/datum/xeno_caste/xeno = GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/queen]["basetype"]
+	return initial(xeno.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
 	if(living_xeno_ruler == ruler)
@@ -663,15 +723,10 @@
 	return
 
 
-///Allows a new queen to evolve. Safe for use by gamemode code, this allows per hive overrides
-/datum/hive_status/proc/end_queen_death_timer()
-	xeno_message("The Hive is ready for a new ruler to evolve.", "xenoannounce", 6, TRUE)
-	xeno_queen_timer = null
-
-///Allows a new king to evolve. Safe for use by gamemode code, this allows per hive overrides
-/datum/hive_status/proc/end_king_death_timer()
-	xeno_message("The Hive is ready for a new king to evolve.", "xenoannounce", 6, TRUE)
-	xeno_king_timer = null
+///Allows death delay caste to evolve. Safe for use by gamemode code, this allows per hive overrides
+/datum/hive_status/proc/end_caste_death_timer(datum/xeno_caste/caste)
+	xeno_message("The Hive is ready for a new [caste.caste_name] to evolve.", "xenoannounce", 6, TRUE)
+	caste_death_timers[caste.caste_type_path] = null
 
 /datum/hive_status/proc/check_ruler()
 	return TRUE
@@ -687,24 +742,10 @@
 // *********** Queen
 // ***************************************
 
-// These are defined for per-hive behaviour
-/datum/hive_status/proc/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
-	SIGNAL_HANDLER
-	if(living_xeno_queen != Q)
-		return FALSE
+// If the queen dies, update the hive's queen, and the leader pheromones
+/datum/hive_status/proc/on_queen_death()
 	living_xeno_queen = null
-	if(!xeno_queen_timer)
-		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
 	update_leader_pheromones()
-
-// These are defined for per-hive behaviour
-/datum/hive_status/proc/on_king_death(mob/living/carbon/xenomorph/king/xeno_king)
-	SIGNAL_HANDLER
-	if(living_xeno_king != xeno_king)
-		return FALSE
-	living_xeno_king = null
-	if(!xeno_king_timer)
-		xeno_king_timer = addtimer(CALLBACK(src, .proc/end_king_death_timer), KING_DEATH_TIMER, TIMER_STOPPABLE)
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -785,7 +826,8 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/set_siloless_collapse_timer()
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
-	addtimer(CALLBACK(src, .proc/handle_silo_death_timer, TRUE), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+	hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
+	addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/update_silo_death_timer, src), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
@@ -927,7 +969,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
-	handle_silo_death_timer()
+	SSticker.mode.update_silo_death_timer(src)
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
@@ -970,36 +1012,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 	update_tier_limits()
-
-
-///Handles the timer when all silos are destroyed
-/datum/hive_status/proc/handle_silo_death_timer()
-	return
-
-/datum/hive_status/normal/handle_silo_death_timer(bypass_flag = FALSE)
-	if(bypass_flag)
-		hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
-	else if(!(hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
-		return
-	if(SSticker.mode.name != "Distress Signal")
-		return
-	var/datum/game_mode/infestation/distress/D = SSticker.mode
-	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
-		if(D?.siloless_hive_timer)
-			deltimer(D.siloless_hive_timer)
-			D.siloless_hive_timer = null
-		return
-	if(GLOB.xeno_resin_silos.len)
-		if(D?.siloless_hive_timer)
-			deltimer(D.siloless_hive_timer)
-			D.siloless_hive_timer = null
-		return
-
-	if(D?.siloless_hive_timer)
-		return
-
-	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
 
 /**
  * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots

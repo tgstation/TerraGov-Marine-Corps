@@ -4853,7 +4853,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqf" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqg" = (
@@ -27994,8 +27994,8 @@
 /area/prison/security/checkpoint/medsec)
 "bIQ" = (
 /obj/item/stack/rods,
-/obj/structure/window_frame/colony/reinforced,
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/structure/window_frame/prison,
 /turf/open/floor/plating,
 /area/prison/security/monitoring/lowsec/sw)
 "bIR" = (

@@ -49,6 +49,9 @@
 
 	var/datum/wires/wires = null
 
+	///Used for changing icon states for different base sprites.
+	var/base_icon_state
+
 	//light stuff
 
 	///Light systems, only one of the three should be active at the same time.
@@ -94,8 +97,23 @@
 
 	///Whether this atom smooths with things around it, and what type of smoothing if any.
 	var/smoothing_behavior = NO_SMOOTHING
-	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
-	var/smoothing_groups = NONE
+
+	///Icon-smoothing behavior.
+	var/smoothing_flags = NONE
+	///What directions this is currently smoothing with. IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
+	var/smoothing_junction = NONE
+	///Smoothing variable
+	var/top_left_corner
+	///Smoothing variable
+	var/top_right_corner
+	///Smoothing variable
+	var/bottom_left_corner
+	///Smoothing variable
+	var/bottom_right_corner
+	///What smoothing groups does this atom belongs to, to match canSmoothWith. If null, nobody can smooth with it.
+	var/list/smoothing_groups = null
+	///List of smoothing groups this atom can smooth with. If this is null and atom is smooth, it smooths only with itself.
+	var/list/canSmoothWith = null
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
@@ -300,7 +318,7 @@ directive is properly returned.
 		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 			if(isxeno(user))
 				return
-			if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
+			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
 				. += "It contains these reagents:"
 				if(length(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)
@@ -423,7 +441,7 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-///Generalized Fire Proc. Burn level is the base fire damage being received.
+///Fire effects from a burning turf. Burn level is the base fire damage being received.
 /atom/proc/flamer_fire_act(burnlevel)
 	return
 
@@ -720,9 +738,18 @@ Proc for attack log creation, because really why not
 				var/turf/T = loc
 				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
-			if(smoothing_behavior)
-				smooth_self()
-				smooth_neighbors()
+			if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+				QUEUE_SMOOTH(src)
+				QUEUE_SMOOTH_NEIGHBORS(src)
+
+	if(length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if(length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
 
 	return INITIALIZE_HINT_NORMAL
 

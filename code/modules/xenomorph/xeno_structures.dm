@@ -346,15 +346,6 @@ TUNNEL
 			deconstruct(FALSE)
 		return
 
-	//Prevents using tunnels by the queen to bypass the fog.
-	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!X.hive.living_xeno_ruler)
-			balloon_alert(X, "No ruler")
-			return FALSE
-		else if(isxenoqueen(X))
-			balloon_alert(X, "No reason to leave yet")
-			return FALSE
-
 	if(X.anchored)
 		balloon_alert(X, "Cannot enter while immobile")
 		return FALSE
@@ -711,8 +702,8 @@ TUNNEL
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
+	/// hive that owns this silo
 	var/datum/hive_status/associated_hive
-	var/silo_area
 	var/number_silo
 	///For minimap icon change if silo takes damage or nearby hostile
 	var/warning
@@ -734,7 +725,7 @@ TUNNEL
 		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
-	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
@@ -752,8 +743,7 @@ TUNNEL
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		if(length(GLOB.xeno_resin_silos) == 1)
 			associated_hive.give_larva_to_next_in_queue()
-		associated_hive.handle_silo_death_timer()
-	silo_area = get_area(src)
+		SSticker.mode.update_silo_death_timer(associated_hive)
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf)
@@ -764,7 +754,7 @@ TUNNEL
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
-		INVOKE_NEXT_TICK(associated_hive, /datum/hive_status.proc/handle_silo_death_timer) // checks all silos next tick after this one is gone
+		INVOKE_NEXT_TICK(SSticker.mode, /datum/game_mode.proc/update_silo_death_timer, associated_hive) // checks all silos next tick after this one is gone
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
@@ -776,8 +766,6 @@ TUNNEL
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-
-	silo_area = null
 	center_turf = null
 
 	STOP_PROCESSING(SSslowprocess, src)

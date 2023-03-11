@@ -182,7 +182,7 @@
 /area/bigredv2/outside/office_complex)
 "gP" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "gW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -403,7 +403,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "pO" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "pV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -632,7 +632,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "xY" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -1264,7 +1264,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "Vh" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)

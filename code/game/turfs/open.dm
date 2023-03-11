@@ -12,6 +12,7 @@
 	var/barefootstep = FOOTSTEP_HARD
 	var/mediumxenofootstep = FOOTSTEP_HARD
 	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
+	smoothing_groups = list(SMOOTH_GROUP_OPEN_FLOOR)
 
 /turf/open/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //todo refactor this entire proc is garbage
 	if(iscarbon(arrived))
@@ -172,7 +173,6 @@
 	shoefootstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
-	smoothing_behavior = NO_SMOOTHING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -431,6 +431,14 @@
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return
 
+/turf/open/lavaland/lava/autosmoothing
+	icon = 'icons/turf/floors/lava.dmi'
+	icon_state = "lava-icon"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
+	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
+	base_icon_state = "lava"
+
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
@@ -446,6 +454,22 @@
 	name = "cave"
 	icon_state = "basalt_to_cave_corner"
 
+/turf/open/lavaland/basalt/cave/autosmooth
+	icon = 'icons/turf/floors/cave-basalt.dmi'
+	icon_state = "cave-basalt-icon"
+	base_icon_state = "cave-basalt"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_BASALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_BASALT,
+		SMOOTH_GROUP_OPEN_FLOOR,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
 /turf/open/lavaland/basalt/dirt
 	name = "dirt"
 	icon_state = "basalt_to_dirt"
@@ -453,6 +477,23 @@
 /turf/open/lavaland/basalt/dirt/corner
 	name = "dirt"
 	icon_state = "basalt_to_dirt_corner"
+
+/turf/open/lavaland/basalt/dirt/autosmoothing
+	icon = 'icons/turf/floors/basalt-dirt.dmi'
+	icon_state = "basalt-dirt-icon"
+	base_icon_state = "basalt-dirt"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_BASALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_BASALT,
+		SMOOTH_GROUP_OPEN_FLOOR,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
 
 /turf/open/lavaland/basalt/glowing
 	icon_state = "basaltglow"

@@ -136,9 +136,6 @@
 	///Sound played when the mech walks
 	var/turnsound = 'sound/mecha/mechturn.ogg'
 
-	///base icon state do do stuff off of
-	var/base_icon_state
-
 	///Cooldown duration between melee punches
 	var/melee_cooldown = 10
 

@@ -39,6 +39,8 @@
 ///Wrapper to clear reference on target vehicle deletion
 /obj/item/unmanned_vehicle_remote/proc/clear_vehicle()
 	SIGNAL_HANDLER
+	if(!vehicle)
+		return
 	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
 	vehicle.on_unlink(src)
 	vehicle = null

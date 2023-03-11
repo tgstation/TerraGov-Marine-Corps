@@ -1013,7 +1013,7 @@
 /area/bigredv2/outside/medical)
 "AM" = (
 /obj/structure/table,
-/obj/item/organ/kidneys/prosthetic,
+/obj/effect/spawner/random/organ,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "AY" = (

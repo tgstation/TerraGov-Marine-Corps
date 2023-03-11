@@ -9,6 +9,12 @@
 	name = "4no raisins"
 	icon_state= "4no_raisins"
 
+/obj/item/trash/pillpacket
+	name = "crumpled pill packet"
+	desc = "After healing a lot of damage, the empty packet is laid to rest"
+	icon = 'icons/obj/items/trash.dmi'
+	icon_state = "pillpacketempty"
+
 /obj/item/trash/candy
 	name = "Candy"
 	icon_state= "candy"

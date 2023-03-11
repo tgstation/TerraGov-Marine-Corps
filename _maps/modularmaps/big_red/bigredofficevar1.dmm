@@ -53,7 +53,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "cD" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -253,7 +253,7 @@
 /area/bigredv2/outside/office_complex)
 "lK" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "lZ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -410,7 +410,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "ra" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "rb" = (
 /obj/structure/janitorialcart,
@@ -1039,7 +1039,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "Tz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)

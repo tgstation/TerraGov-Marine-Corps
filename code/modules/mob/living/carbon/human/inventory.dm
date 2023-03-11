@@ -175,7 +175,7 @@
 		I.unequipped(src, SLOT_HEAD)
 		if(updatename)
 			name = get_visible_name()
-		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
 			update_hair()	//rebuild hair
 		if(I.flags_inv_hide & HIDEEARS)
 			update_inv_ears()
@@ -326,7 +326,7 @@
 			head = W
 			if(head.flags_inv_hide & HIDEFACE)
 				name = get_visible_name()
-			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
 				update_hair()	//rebuild hair
 			if(head.flags_inv_hide & HIDEEARS)
 				update_inv_ears()

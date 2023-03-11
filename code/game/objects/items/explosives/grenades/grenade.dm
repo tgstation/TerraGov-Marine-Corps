@@ -11,10 +11,13 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
 	icon_state_mini = "grenade_red"
-	var/launched = FALSE //if launched from a UGL/grenade launcher
-	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
-	var/det_time =  40
-	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
+	///if launched from a UGL/grenade launcher
+	var/launched = FALSE
+	///bonus impact damage if launched from a UGL/grenade launcher
+	var/launchforce = 10
+	var/det_time =  4 SECONDS
+	///Does it make a danger overlay for humans? Can synths use it?
+	var/dangerous = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
@@ -24,7 +27,7 @@
 
 /obj/item/explosive/grenade/Initialize()
 	. = ..()
-	det_time = rand(det_time - 10, det_time + 10)
+	det_time = rand(det_time - 1 SECONDS, det_time + 1 SECONDS)
 
 /obj/item/explosive/grenade/attack_self(mob/user)
 	if(active)
@@ -51,10 +54,11 @@
 		var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
 		user.add_emote_overlay(grenade)
 
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		C.throw_mode_on()
-
+/obj/item/explosive/grenade/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if(!active)
+		return
+	user.throw_item(target)
 
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)

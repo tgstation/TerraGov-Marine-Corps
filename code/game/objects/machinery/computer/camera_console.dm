@@ -235,6 +235,7 @@
 /obj/machinery/computer/security/dropship/one
 	name = "\improper 'Alamo' camera controls"
 	network = list("dropship1")
+	opacity = FALSE
 
 
 /obj/machinery/computer/security/dropship/two

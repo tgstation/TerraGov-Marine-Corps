@@ -2,6 +2,8 @@
 	name = "Local System Special Forces"
 	base_probability = 15
 	alignement_factor = -1
+	///number of available special weapon dudes
+	var/max_specialists = 1
 
 /datum/emergency_call/special_forces/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are part of the local Special Responses unit, based within this isolated system, having received good training and equipment.</b>")
@@ -32,14 +34,17 @@
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the Special Forces captain assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece and get the job done!</notice></p>")
 		return
-
+	if(max_specialists > 0)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/special_forces/drone_operator)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are the specially trained drone operator of this special force group directed to investigate the TGMC distress signal sent nearby. Don't let you and your team's guard down!")]</p>")
+		max_specialists --
+		return
 	if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/special_forces/breacher)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a specially trained member of this special force group directed to investigate the TGMC distress signal sent nearby. Be the vanguard of your squad!")]</p>")
 		return
-
-
 	var/datum/job/J = SSjob.GetJobType(/datum/job/special_forces/standard)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained member of this special force group directed to investigate the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice></p>")

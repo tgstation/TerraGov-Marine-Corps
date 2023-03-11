@@ -77,7 +77,7 @@
 "pF" = (
 /obj/effect/attach_point/weapon/cas/right{
 	equipment_offset_x = -5;
-	equipment_offset_y = 10;
+	equipment_offset_y = 10
 	},
 /obj/structure/caspart/four{
 	dir = 1
@@ -114,7 +114,7 @@
 "yO" = (
 /obj/effect/attach_point/weapon/cas/left/alt{
 	equipment_offset_x = 5;
-	equipment_offset_y = 12;
+	equipment_offset_y = 12
 	},
 /obj/structure/caspart/five{
 	dir = 1
@@ -140,7 +140,7 @@
 "DR" = (
 /obj/effect/attach_point/weapon/cas/left{
 	equipment_offset_x = 5;
-	equipment_offset_y = 12;
+	equipment_offset_y = 12
 	},
 /obj/structure/caspart/five,
 /turf/open/floor/plating,
@@ -219,9 +219,7 @@
 /turf/closed/shuttle/cas/leftwingfar,
 /area/shuttle/cas)
 "Op" = (
-/turf/closed/shuttle/cas/eight{
-	dir = 1
-	},
+/turf/closed/shuttle/cas/leftwingmid,
 /area/shuttle/cas)
 "Ot" = (
 /obj/structure/caspart/rightprong,
@@ -237,9 +235,7 @@
 	},
 /area/shuttle/cas)
 "Qv" = (
-/turf/closed/shuttle/cas/eight{
-	dir = 4
-	},
+/turf/closed/shuttle/cas/rightwingmid,
 /area/shuttle/cas)
 "QP" = (
 /obj/structure/caspart/fourteen,

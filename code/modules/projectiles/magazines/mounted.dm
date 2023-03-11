@@ -131,17 +131,25 @@
 	default_ammo = /datum/ammo/bullet/minigun
 	reload_delay = 10 SECONDS
 
-/obj/item/ammo_magazine/dual_cannon
-	name = "dualcannon IFF Magazine(20mm)"
-	desc = "A box of 150 20mm rounds for the ATR-22 mounted dualcannon."
+/obj/item/ammo_magazine/auto_cannon
+	name = "autocannon high-velocity magazine(20mm)"
+	desc = "A box of 80 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover"
 	w_class = WEIGHT_CLASS_NORMAL
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "ac_mag"
+	item_state = "ac"
 	flags_magazine = NONE
 	caliber = CALIBER_20
 	max_rounds = 80
-	default_ammo = /datum/ammo/bullet/dual_cannon
+	default_ammo = /datum/ammo/bullet/auto_cannon
 	reload_delay = 4 SECONDS
+
+/obj/item/ammo_magazine/auto_cannon/flak
+	name = "autocannon smart-detonating magazine(20mm)"
+	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will pierce cover, but detonate on hitting a target"
+	icon_state = "ac_mag_flak"
+	item_state = "ac_flak"
+	default_ammo = /datum/ammo/bullet/auto_cannon/flak
 
 /obj/item/ammo_magazine/heavy_laser
 	name = "heavy-duty weapon laser cell"

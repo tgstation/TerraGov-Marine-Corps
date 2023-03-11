@@ -394,16 +394,27 @@
 	static_frame = TRUE
 	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+	)
+	canSmoothWith = list(
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_ESCAPESHUTTLE,
+	)
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
 
 /obj/structure/window/framed/update_nearby_icons()
-	smooth_neighbors()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/window/framed/update_icon()
-	smooth_self()
+	QUEUE_SMOOTH(src)
+
 
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE)
@@ -417,21 +428,22 @@
 /obj/structure/window/framed/mainship
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	icon_state = "ship_rwindow0"
-	basestate = "ship_rwindow"
+	icon = 'icons/obj/smooth_objects/ship_window.dmi'
+	icon_state = "window-reinforced"
+	basestate = "ship_window"
+	base_icon_state = "ship_window"
 	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
 	window_frame = /obj/structure/window_frame/mainship
 
 /obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
-	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/structure/window/framed/mainship/escapeshuttle
-	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 
 /obj/structure/window/framed/mainship/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
+	icon_state = "window-invincible"
 
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
@@ -442,8 +454,8 @@
 	name = "cockpit window"
 	desc = "A very tough looking glass window with a special rod matrice, made to be space worthy."
 	max_integrity = 500
-	icon_state = "gray_window0_frame"
-	basestate = "gray_window"
+	icon_state = "ship_window-0"
+	basestate = "ship_window"
 
 /obj/structure/window/framed/mainship/spaceworthy/Initialize()
 	. = ..()
@@ -456,38 +468,64 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
+	icon_state = "window-invincible"
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
-	smoothing_groups = SMOOTH_CANTERBURY
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
 	max_integrity = 1000
 	deconstructable = FALSE
+	icon_state = "window-reinforced"
 
 /obj/structure/window/framed/mainship/white
-	icon_state = "white_rwindow0"
-	basestate = "white_rwindow"
+	icon = 'icons/obj/smooth_objects/wwindow.dmi'
+	icon_state = "white_rwindow-0"
+	base_icon_state = "white_rwindow"
 	window_frame = /obj/structure/window_frame/mainship/white
 
+
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
-	smoothing_groups = SMOOTH_CANTERBURY
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_CANTERBURY,
+		SMOOTH_GROUP_AIRLOCK,
+	)
 
 /obj/structure/window/framed/mainship/gray
-	icon_state = "gray_window0"
-	basestate = "gray_window"
+	icon = 'icons/obj/smooth_objects/ship_gray_window.dmi'
+	icon_state = "ship_gray_window-0"
+	basestate = "ship_gray_window"
+	base_icon_state = "ship_gray_window"
 	window_frame = /obj/structure/window_frame/mainship/gray
 	reinf = FALSE
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_ESCAPESHUTTLE,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+	)
 
 /obj/structure/window/framed/mainship/gray/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
 	max_integrity = 300
 	reinf = TRUE
-	icon_state = "gray_rwindow0"
-	basestate = "gray_rwindow"
+	icon_state = "window-reinforced"
+	basestate = "ship_gray_window"
 
 /obj/structure/window/framed/mainship/gray/toughened/hull
 	name = "hull window"
@@ -495,10 +533,11 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
+	icon_state = "window-invincible"
 
 /obj/structure/window/framed/mainship/white/toughened/hull
 	name = "hull window"
-	icon_state = "white_rwindow0"
+	icon_state = "window-invincible"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
@@ -506,14 +545,16 @@
 
 /obj/structure/window/framed/colony
 	name = "window"
-	icon_state = "col_window0"
-	basestate = "col_window"
+	icon = 'icons/obj/smooth_objects/col_window.dmi'
+	icon_state = "col_window-0"
+	base_icon_state = "col_window"
 	window_frame = /obj/structure/window_frame/colony
 
 /obj/structure/window/framed/colony/reinforced
 	name = "reinforced window"
-	icon_state = "col_rwindow0"
-	basestate = "col_rwindow"
+	icon = 'icons/obj/smooth_objects/col_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "col_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = 1
@@ -532,6 +573,7 @@
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
+	icon_state = "window-invincible"
 
 
 
@@ -539,8 +581,10 @@
 
 /obj/structure/window/framed/chigusa
 	name = "reinforced window"
-	icon_state = "chig_rwindow0"
-	basestate = "chig_rwindow"
+	icon = 'icons/obj/smooth_objects/chigusa_window.dmi'
+	icon_state = "window-reinforced"
+	basestate = "chigusa_wall"
+	base_icon_state = "chigusa_wall"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = TRUE
@@ -550,8 +594,10 @@
 
 /obj/structure/window/framed/wood
 	name = "window"
-	icon_state = "wood_window0"
-	basestate = "wood_window"
+	icon = 'icons/obj/smooth_objects/wood_regular.dmi'
+	icon_state = "wood_regular-0"
+	basestate = "wood_regular"
+	base_icon_state = "wood_regular"
 	window_frame = /obj/structure/window_frame/wood
 
 /obj/structure/window/framed/wood/reinforced
@@ -559,8 +605,10 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = TRUE
-	icon_state = "wood_rwindow0"
-	basestate = "wood_rwindow"
+	icon = 'icons/obj/smooth_objects/wood_reinforced.dmi'
+	icon_state = "wood_reinforced-0"
+	basestate = "wood_reinforced"
+	base_icon_state = "wood_reinforced"
 	window_frame = /obj/structure/window_frame/wood
 
 //Prison windows
@@ -568,8 +616,10 @@
 
 /obj/structure/window/framed/prison
 	name = "window"
-	icon_state = "wood_window0"
-	basestate = "wood_window"
+	icon = 'icons/obj/smooth_objects/wood_reinforced.dmi'
+	icon_state = "wood_reinforced-0"
+	basestate = "wood_reinforced"
+	base_icon_state = "wood_reinforced"
 	window_frame = /obj/structure/window_frame/prison
 
 /obj/structure/window/framed/prison/reinforced
@@ -577,7 +627,9 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	max_integrity = 100
 	reinf = TRUE
-	icon_state = "prison_rwindow0"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "prison_rwindow"
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
 
@@ -587,6 +639,7 @@
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	resistance_flags = BANISH_IMMUNE
+	icon_state = "window-invincible"
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize()
 	. = ..()
@@ -613,8 +666,10 @@
 
 /obj/structure/window/framed/prison/cell
 	name = "cell window"
-	icon_state = "prison_cellwindow0"
-	basestate = "prison_cellwindow"
+	icon = 'icons/obj/smooth_objects/cell_rwindow.dmi'
+	icon_state = "prison_rwindow-0"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. Has no reachable screws to prevent enterprising prisoners from deconstructing it."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE

@@ -438,7 +438,7 @@
 /obj/item/clothing/head/helmet/marine/veteran
 	flags_item = SYNTH_RESTRICTED
 
-/obj/item/clothing/head/helmet/marine/veteran/PMC
+/obj/item/clothing/head/helmet/marine/veteran/pmc
 	name = "\improper PMC tactical helmet"
 	desc = "A protective helmet made from flexible aramid materials. Standard issue protection for a lot of security firms."
 	icon_state = "pmc_helmet"
@@ -448,13 +448,13 @@
 	flags_inv_hide = NONE
 	flags_marine_helmet = NONE
 
-/obj/item/clothing/head/helmet/marine/veteran/PMC/leader
+/obj/item/clothing/head/helmet/marine/veteran/pmc/leader
 	name = "\improper PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
 	icon_state = "officer_hat"
 	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 50, FIRE = 55, ACID = 60)
 
-/obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
+/obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	icon_state = "pmc_sniper_hat"
@@ -464,7 +464,7 @@
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
-/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
+/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	name = "\improper PMC gunner helmet"
 	desc = "A modification of the standard helmet used by a lot of security firms, has a visor for added protection."
 	icon_state = "pmc_heavyhelmet"
@@ -474,7 +474,7 @@
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
-/obj/item/clothing/head/helmet/marine/veteran/PMC/commando
+/obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"
 	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
 	icon_state = "commando_helmet"
@@ -689,31 +689,16 @@
 	soft_armor = list(MELEE = 65, BULLET = 60, LASER = 30, ENERGY = 20, BOMB = 25, BIO = 40, FIRE = 20, ACID = 20)
 	anti_hug = 5
 
+/obj/item/clothing/head/helmet/marine/icc
+	name = "\improper Modelle/20 combat helmet"
+	desc = "A regular ICCAF helmet, used by all branches of its forces. It is made to fit in both a utility and combat role with noticeably high resistance to explosions and bullets. "
+	icon_state = "icc"
+	item_state = "icc"
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 
-/obj/item/clothing/head/helmet/marine/robot
-	name = "XN-1 upper armor plating"
-	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_helmet_medium"
-	item_state = "robot_helmet_medium"
-	species_exception = list(/datum/species/robot)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 10, ACID = 50)
-
-/obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
-	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
-		return FALSE
-
-/obj/item/clothing/head/helmet/marine/robot/light
-	name = "XN-1-L upper armor plating"
-	desc = "Light armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_helmet_light"
-	item_state = "robot_helmet_light"
-
-/obj/item/clothing/head/helmet/marine/robot/heavy
-	name = "XN-1-H upper armor plating"
-	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_helmet_heavy"
-	item_state = "robot_helmet_heavy"
-
+/obj/item/clothing/head/helmet/marine/icc/guard
+	name = "\improper Modelle/21 combat helmet"
+	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets."
+	icon_state = "icc_guard"
+	item_state = "icc_guard"
+	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 10, FIRE = 55, ACID = 40)

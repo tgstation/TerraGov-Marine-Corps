@@ -19,11 +19,12 @@
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	resistance_flags = NONE
-	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH
+	flags_inventory = COVEREYES|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
 	throw_range = 1
+	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
 
 	///Whether the hugger is dead, active or inactive

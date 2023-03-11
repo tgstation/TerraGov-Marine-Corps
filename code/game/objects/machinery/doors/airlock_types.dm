@@ -291,7 +291,6 @@
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"

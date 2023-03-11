@@ -44,7 +44,7 @@
 	var/datum/limb/affecting = user.zone_selected //Find what the player is aiming at
 
 	//apply damage
-	var/weaken_duration =  target.apply_damage(force, BRUTE, affecting, updating_health = TRUE)
+	var/weaken_duration =  target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE)
 
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
@@ -53,7 +53,7 @@
 		else
 			user.visible_message(span_danger("[user] has hit [user.p_them()]self with the bottle of [name] on the head!"))
 		if(weaken_duration >= force) //if they have armor, no stun
-			target.apply_effect(10, WEAKEN)
+			target.apply_effect(2, WEAKEN)
 
 	else
 		if(target != user)
