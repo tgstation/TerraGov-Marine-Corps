@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "The vote screen for the automatic votes now pops up when they start"
-  - admin: "Admins can now make the voting panel pop up for everyone for their custom votes"

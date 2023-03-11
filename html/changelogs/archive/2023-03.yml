@@ -174,3 +174,20 @@
   - rscdel: Removes the autolathe
   novaepee:
   - rscadd: Roll down uniforms to see naked chest
+2023-03-11:
+  Lumipharon:
+  - imageadd: Updated under clothing sprites with some new options
+  Pariah919:
+  - balance: Mech takes much more damage from direct hits by boiler acid globs and
+      lances.
+  Youtubeboy139:
+  - imageadd: Adds new menu icon
+  ivanmixo:
+  - rscadd: The vote screen for the automatic votes now pops up when they start
+  - admin: Admins can now make the voting panel pop up for everyone for their custom
+      votes
+  - balance: Increased the chance for robotic arms to drop stuff if their arm is malfunctioning
+  maikilangiolo:
+  - bugfix: fixed autocannon ammo in req
+  novaepee:
+  - rscadd: PT belt is here

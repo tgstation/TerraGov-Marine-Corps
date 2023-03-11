@@ -1,4 +1,0 @@
-author: "maikilangiolo"
-delete-after: True
-changes:
-  - bugfix: "fixed autocannon ammo in req"

@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "Increased the chance for robotic arms to drop stuff if their arm is malfunctioning"
