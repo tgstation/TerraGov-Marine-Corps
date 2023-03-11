@@ -1713,10 +1713,6 @@
 		if(gun_user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
 			gun_accuracy_mult += -0.15
 			gun_scatter += 10
-		if(gun_user.skills.getRating("dartgun") < SKILL_DARTGUN_TRAINED) //lack of dartgun skills
-			accuracy_mult += -3.50
-			accuracy_mult_unwielded += -5
-			gun_scatter += 5
 		else
 			var/skill_level = gun_user.skills.getRating(gun_skill_category) //specific weapon type skill modifiers
 			gun_accuracy_mult += skill_level * 0.15

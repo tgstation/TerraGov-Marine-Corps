@@ -66,12 +66,7 @@
 /datum/reagent/medicine/synaptizine/adrenaline/on_mob_add(mob/living/L, metabolism)
 	. = ..()
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
-		return
-	if(L.health < H.health_threshold_crit && volume >= 2)
+	if(L.health < H.health_threshold_crit && volume >= 3)
 		to_chat(L, span_userdanger("Heart explosion! Power running in your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.40)
-		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
-		L.adjustToxLoss(5)
 		L.jitter(5)
-		TIMER_COOLDOWN_START(L, name, 180 SECONDS)

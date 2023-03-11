@@ -214,7 +214,7 @@
 		/obj/item/weapon/gun/rifle/som_mg = 2,
 		/obj/item/storage/box/t500case = 10,
 		/obj/item/ammo_magazine/rifle/standard_skirmishrifle/extended = 10,
-		/obj/item/ammo_magazine/packet/t500qk = 1
+		/obj/item/ammo_magazine/packet/t500/qk = 1
 	)
 
 /obj/machinery/vending/weapon/crash
