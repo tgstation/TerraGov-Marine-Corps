@@ -43,7 +43,11 @@
 #define SKILL_SMART_EXPERT 1
 #define SKILL_SMART_MASTER 2
 
-
+//dartgun skill
+//increase or decrase accuracy and scatter.
+#define SKILL_DARTGUN_DEFAULT -1
+#define SKILL_DARTGUN_TRAINED 0
+#define SKILL_DARTGUN_MASTER 2
 
 
 
@@ -148,6 +152,7 @@
 #define GUN_SKILL_RIFLES "rifles"
 #define GUN_SKILL_HEAVY_WEAPONS "heavy_weapons"
 #define GUN_SKILL_SMARTGUN "smartgun"
+#define GUN_SKILL_DARTGUN "dartgun"
 
 //multitile and mech vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0
