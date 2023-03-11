@@ -16,6 +16,27 @@
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
+//Squad colored turtlenecks
+/obj/item/clothing/under/marine/squad/delta
+	name = "\improper TGMC Delta turtleneck"
+	desc = "A standard issued TGMC turtleneck colored blue, with a slight hint of bravery."
+	icon_state = "delta_merc"
+
+/obj/item/clothing/under/marine/squad/charile
+	name = "\improper TGMC Charile turtleneck"
+	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
+	icon_state = "charile_merc"
+
+/obj/item/clothing/under/marine/squad/bravo
+	name = "\improper TGMC Bravo turtleneck"
+	desc = "A standard issued TGMC turtleneck colored yellow, you suddenly get thoughts of how to improve the FOB, if slightly."
+	icon_state = "bravo_merc"
+
+/obj/item/clothing/under/marine/squad/alpha
+	name = "\improper TGMC Alpha turtleneck"
+	desc = "A standard issued TGMC turtleneck colored red, you feel as if you can face the world and all it has to bring against you."
+	icon_state = "alpha_merc"
+
 // camo things stuff yeah!
 
 /obj/item/clothing/under/marine/camo
