@@ -116,6 +116,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
+	use_state_flags = XACT_USE_LYING //Can use this while resting
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -157,7 +158,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_STAGGERED
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
@@ -195,7 +196,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_STAGGERED //Can use this while staggered
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
@@ -251,7 +252,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_STAGGERED //Can use this while staggered
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()

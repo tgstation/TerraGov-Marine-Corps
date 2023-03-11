@@ -231,6 +231,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()

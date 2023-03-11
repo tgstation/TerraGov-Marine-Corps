@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	desc = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
+	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED //Can use this while staggered
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST,
 	)
@@ -30,7 +30,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_WEEDS,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING| XACT_USE_STAGGERED //Can use this while staggered
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
@@ -811,7 +811,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
 	)
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK|XACT_USE_STAGGERED //Can use this while staggered
 	target_flags = XABB_MOB_TARGET
 	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
