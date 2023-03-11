@@ -52,6 +52,7 @@
 		/datum/action/xeno_action/create_spiderling,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/attach_spiderlings,
+		/datum/action/xeno_action/activable/spiderling_mark,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
@@ -185,5 +186,6 @@
 		/datum/action/xeno_action/create_spiderling,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/attach_spiderlings,
+		/datum/action/xeno_action/activable/spiderling_mark,
 		/datum/action/xeno_action/activable/web_hook,
 	)
