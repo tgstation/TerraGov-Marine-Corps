@@ -30,6 +30,7 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
+	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the spiderling's widow
 	var/datum/weakref/default_escorted_atom
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
@@ -63,6 +64,7 @@
 		go_to_obj_target(source, A)
 		return
 
+/// Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow
 /datum/ai_behavior/spiderling/proc/only_set_escorted_atom(source, atom/A)
 	SIGNAL_HANDLER
 	escorted_atom = default_escorted_atom.resolve()
