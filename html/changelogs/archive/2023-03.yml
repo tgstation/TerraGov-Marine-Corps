@@ -191,3 +191,20 @@
   - bugfix: fixed autocannon ammo in req
   novaepee:
   - rscadd: PT belt is here
+2023-03-12:
+  David-Stormwell:
+  - rscadd: Added TGMC turtlenecks courtesy of RU-TGMC, available within the uniform
+      vender!
+  DeltaFire15:
+  - bugfix: boiler glob direct hits should more reliably deposit their gas on the
+      target's tile
+  Lumipharon:
+  - balance: Improved ALF burst fire rate
+  - balance: ALF now inflicts small amounts of slowdown on hit, and has slightly better
+      AP but worse sunder
+  Otterwatch:
+  - imageadd: Changed Snow Armor sprites with a new color palette
+  RipGrayson:
+  - rscadd: Added new objective system and admin tools for assigning objectives
+  Zar000:
+  - rscadd: new widow ability, spiderling mark

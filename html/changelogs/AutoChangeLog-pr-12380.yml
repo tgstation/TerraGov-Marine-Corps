@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "boiler glob direct hits should more reliably deposit their gas on the target's tile"
