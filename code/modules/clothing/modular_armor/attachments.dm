@@ -59,6 +59,9 @@
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list()
 
+	///The signal for this module if it can toggled
+	var/toggle_signal
+
 /obj/item/armor_module/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
@@ -109,6 +112,8 @@
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
+	if(toggle_signal)
+		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
@@ -129,7 +134,6 @@
 /obj/item/armor_module/proc/extra_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += "Right click [parent] with paint to color [src]"
-
 
 /**
  *  These are the basic type for modules with set variant icons.
