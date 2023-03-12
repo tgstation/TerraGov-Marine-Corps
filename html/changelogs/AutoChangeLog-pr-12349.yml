@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "762x39,mm and 5.56x45mm ammo boxes to seasonals containing guns with these calibers, they are also avaliable in req."
+  - rscadd: ".380 ACP ammo packet for the Pocket pistol."
