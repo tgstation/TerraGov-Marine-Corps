@@ -1,0 +1,4 @@
+author: "Otterwatch"
+delete-after: True
+changes:
+  - imageadd: "Changed Snow Armor sprites with a new color palette"
