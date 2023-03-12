@@ -1,0 +1,7 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - rscadd: "Powerfist cell is easier to remove."
+  - rscadd: "Powerfist description is better."
+  - rscdel: "You can no send yourself flying with your own powerfist."
+  - bugfix: "powerfist cell can properly reach 0 charge."
