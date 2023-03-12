@@ -107,7 +107,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 /datum/job/som/squad/engineer
 	title = SOM_SQUAD_ENGINEER
-	paygrade = "SOM2"
+	paygrade = "SOM_E3"
 	comm_title = "Eng"
 	total_positions = 12
 	skills_type = /datum/skills/combat_engineer
@@ -163,7 +163,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 /datum/job/som/squad/medic
 	title = SOM_SQUAD_CORPSMAN
-	paygrade = "SOM2"
+	paygrade = "SOM_E3"
 	comm_title = "Med"
 	total_positions = 16
 	minimap_icon = "medic"
@@ -219,8 +219,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/som/squad/veteran
 	title = SOM_SQUAD_VETERAN
-	paygrade = "SOM3"
-	comm_title = "SGnr"
+	paygrade = "SOM_S1"
+	comm_title = "Vet"
 	total_positions = 8
 	skills_type = /datum/skills/crafty //smarter than the average bear
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
@@ -270,7 +270,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/som/squad/leader
 	title = SOM_SQUAD_LEADER
 	req_admin_notify = TRUE
-	paygrade = "SOM3"
+	paygrade = "SOM_S3"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
