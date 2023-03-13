@@ -156,6 +156,17 @@
 	aim_speed_mod = 0.2
 	wield_delay_mod = 0.2
 
+// RPD
+
+/obj/item/ammo_magazine/rifle/lmg_d
+	name = "\improper lMG-D drum magazine (7.62x39mm)"
+	desc = "A 100 round 7.62x39mm Kalashnikov drum, won't fit on most kalasnikov rifles, as it is made for the beltfed variant."
+	caliber = CALIBER_762X39
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km
+	icon_state = "rpd"
+	bonus_overlay = "rpd_100"
+	max_rounds = 100
+
 //-------------------------------------------------------
 //M16 RIFLE
 
