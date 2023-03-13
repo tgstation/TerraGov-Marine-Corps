@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "Pillar of Spring's SMES not being connected"
