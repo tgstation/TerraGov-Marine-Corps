@@ -247,6 +247,7 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	fire_delay = 0.15 SECONDS
+	damage_mult = 1.3
 
 //-------------------------------------------------------
 //P-22. Blocc

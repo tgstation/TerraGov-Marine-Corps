@@ -128,7 +128,6 @@
 	icon = 'icons/obj/mining_drill.dmi'
 	icon_state = "mining_drill_reinforceddisplay"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 60000) // 18 Sheets , because thats all a autolathe can fit
 	/// Used to determine the type of upgrade the miner is going to receive. Has to be a string which is defined in miner.dm or it won't work.
 	var/uptype
 

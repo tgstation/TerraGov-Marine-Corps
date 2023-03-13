@@ -116,7 +116,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Undershirt (select one)'}>
             <LabeledList>
-              {clothing['undershirt']?.map((item, idx) => (
+              {clothing['undershirt'][gender]?.map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
