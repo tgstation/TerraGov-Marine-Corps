@@ -476,6 +476,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 	///Mod for extra eye protection when activated.
 	var/eye_protection_mod = 2
 
@@ -546,6 +547,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
@@ -604,6 +606,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
