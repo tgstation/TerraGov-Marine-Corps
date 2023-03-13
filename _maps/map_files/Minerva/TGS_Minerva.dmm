@@ -50,6 +50,11 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
+"ai" = (
+/obj/structure/dropprop,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "aj" = (
 /obj/structure/dropship_equipment/weapon/rocket_pod,
 /turf/open/floor/mainship/cargo,
@@ -26739,7 +26744,7 @@ ab
 TY
 TY
 TY
-TY
+ai
 SP
 bo
 by
@@ -27229,7 +27234,7 @@ ab
 TY
 TY
 TY
-TY
+ai
 SP
 bo
 by
