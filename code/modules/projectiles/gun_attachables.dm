@@ -115,8 +115,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]
 	var/flags_attach_features = ATTACH_REMOVABLE
 
-	///only used by bipod, denotes whether the bipod is currently deployed
-	var/bipod_deployed = FALSE
 	///only used by lace, denotes whether the lace is currently deployed
 	var/lace_deployed = FALSE
 
@@ -1193,17 +1191,53 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///How long it takes to fold or unfold
 	var/deploy_time
 	///whether the attachment is currently folded or not
-	var/folded = FALSE
+	var/folded = TRUE
+	//var/folded = FALSE
 
 /obj/item/attachable/foldable/on_attach(attaching_item, mob/user)
-	. = ..()
-	activate()
+	if(!istype(attaching_item, /obj/item/weapon/gun))
+		return //Guns only
+
+	master_gun = attaching_item
+
+	//apply_modifiers(attaching_item, user, TRUE)
+
+	if(attachment_action_type)
+		var/datum/action/action_to_update = new attachment_action_type(src, master_gun)
+		if(isliving(master_gun.loc))
+			var/mob/living/living_user = master_gun.loc
+			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
+				action_to_update.give_action(living_user)
+
+	//custom attachment icons for specific guns
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(master_gun, selection))
+				icon_state = variants_by_parent_type[selection]
+
+	update_icon()
+	//
+	//activate()
+
+/obj/item/attachable/foldable/on_detach(detaching_item, mob/user)
+	if(!isgun(detaching_item))
+		return
+
+	if(!folded)
+		activate()
+
+	for(var/datum/action/action_to_update AS in master_gun.actions)
+		if(action_to_update.target != src)
+			continue
+		qdel(action_to_update)
+		break
+
+	master_gun = null
+	icon_state = initial(icon_state)
+	update_icon()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
 	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
-		return FALSE
-
-	if(turn_off && folded == TRUE) //force it to off for dettach purposes
 		return FALSE
 
 	folded = !folded
@@ -1293,26 +1327,30 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_mode_delay_mod = -0.5
 
 /obj/item/attachable/foldable/bipod/activate(mob/living/user, turn_off)
+	if(folded && !(master_gun.flags_item & WIELDED)) //no one handed bipod use
+		if(user)
+			balloon_alert(user, "Unwielded")
+		return
+
 	. = ..()
 
 	if(user)
 		if(folded)
 			to_chat(user, span_notice("You retract [src]."))
-			UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
+			UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD))
 			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		else
 			to_chat(user, span_notice("You deploy [src]."))
 			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
-			RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
+			RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD), .proc/retract_bipod)
 
 ///Signal handler for forced undeployment
-/obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source, mob/living/user)
+/obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source)
 	SIGNAL_HANDLER
 	deploy_time = 0
-	INVOKE_ASYNC(src, .proc/activate, (istype(user) ? user : source), TRUE)
+	INVOKE_ASYNC(src, .proc/activate, source, TRUE)
 	deploy_time = initial(deploy_time)
 	to_chat(source, span_warning("Losing support, the bipod retracts!"))
-	//playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
