@@ -1192,15 +1192,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/deploy_time
 	///whether the attachment is currently folded or not
 	var/folded = TRUE
-	//var/folded = FALSE
 
 /obj/item/attachable/foldable/on_attach(attaching_item, mob/user)
 	if(!istype(attaching_item, /obj/item/weapon/gun))
 		return //Guns only
 
 	master_gun = attaching_item
-
-	//apply_modifiers(attaching_item, user, TRUE)
 
 	if(attachment_action_type)
 		var/datum/action/action_to_update = new attachment_action_type(src, master_gun)
@@ -1216,8 +1213,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
-	//
-	//activate()
 
 /obj/item/attachable/foldable/on_detach(detaching_item, mob/user)
 	if(!isgun(detaching_item))
