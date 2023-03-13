@@ -1,0 +1,4 @@
+author: "David-Stormwell"
+delete-after: True
+changes:
+  - bugfix: "Fixed turtlenecks having the ability to roll the shirt down, as it doesn't have the sprites needed other then sleeves."
