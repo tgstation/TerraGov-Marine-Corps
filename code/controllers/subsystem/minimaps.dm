@@ -10,7 +10,6 @@
  * actual updating of marker locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
  * and zlevel changes are handled in [/datum/controller/subsystem/minimaps/proc/on_z_change]
  * tracking of the actual atoms you want to be drawn on is done by means of datums holding info pertaining to them with [/datum/hud_displays]
- * There is a byond bug to be aware of when working with minimaps, see [/datum/hud_displays] and http://www.byond.com/forum/post/2661309
  */
 SUBSYSTEM_DEF(minimaps)
 	name = "Minimaps"
@@ -159,7 +158,6 @@ SUBSYSTEM_DEF(minimaps)
  * raw lists just store the images, while the normal ones are assoc list of [tracked_atom] = image
  * the raw lists are to speed up the Fire() of the subsystem so we dont have to filter through
  * WARNING!
- * There is a byond bug: http://www.byond.com/forum/post/2661309
  * That that forces us to use a seperate list ref when accessing the lists of this datum
  * Yea it hurts me too
  */
@@ -220,8 +218,7 @@ SUBSYSTEM_DEF(minimaps)
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
 		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
-		var/ref = minimaps_by_z["[zlevel]"].images_raw["[flag]"] //what the fuck? you might be thinking, yea well this is a byond bug thanks
-		ref += blip //workaround see http://www.byond.com/forum/post/2661309
+		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
@@ -235,8 +232,7 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target)
 	for(var/flag in GLOB.all_minimap_flags)
-		var/ref = minimaps_by_z["[target.z]"].images_raw["[flag]"]
-		ref -= blip // see above http://www.byond.com/forum/post/2661309
+		minimaps_by_z["[target.z]"].images_raw["[flag]"] -= blip
 	removal_cbs -= target
 
 /**
@@ -247,15 +243,11 @@ SUBSYSTEM_DEF(minimaps)
 	for(var/flag in GLOB.all_minimap_flags)
 		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
-		//see previous byond bug comments http://www.byond.com/forum/post/2661309
 		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
 		minimaps_by_z["[newz]"].images_assoc["[flag]"][source] = ref_old
-		var/rawold = minimaps_by_z["[oldz]"].images_raw["[flag]"]
-		var/rawnew = minimaps_by_z["[newz]"].images_raw["[flag]"]
-		rawold -= ref_old
-		rawnew += ref_old
-		var/anotherref = minimaps_by_z["[oldz]"].images_assoc["[flag]"]
-		anotherref -= source
+		minimaps_by_z["[oldz]"].images_raw["[flag]"] -= ref_old
+		minimaps_by_z["[newz]"].images_raw["[flag]"] += ref_old
+		minimaps_by_z["[oldz]"].images_assoc["[flag]"] -= source
 
 /**
  * Simple proc, updates overlay position on the map when a atom moves
@@ -276,8 +268,7 @@ SUBSYSTEM_DEF(minimaps)
 		return
 	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
 	for(var/flag in GLOB.all_minimap_flags)
-		var/ref = minimaps_by_z["[source.z]"].images_assoc["[flag]"]
-		ref -=  source //see above
+		minimaps_by_z["[source.z]"].images_assoc["[flag]"] -= source
 	images_by_source -= source
 	removal_cbs[source].Invoke()
 	removal_cbs -= source
