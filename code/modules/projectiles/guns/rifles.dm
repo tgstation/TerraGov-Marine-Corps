@@ -1297,7 +1297,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_86X70 //codex
-	max_shells = 11 //codex
+	max_shells = 10 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle,
