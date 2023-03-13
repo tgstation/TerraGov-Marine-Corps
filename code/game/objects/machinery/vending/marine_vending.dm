@@ -1612,12 +1612,110 @@
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req
-	name = "\improper TerraGovTech seasonal vendor"
+	name = "\improper TerraGovTech ERT vendor"
 	desc = "A automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
-	products = list()
+	products = list(
+		"CLF" = list(
+			//CLF Guns
+			/obj/item/weapon/gun/smg/uzi/mag_harness = -1,
+			/obj/item/ammo_magazine/smg/uzi/extended = -1,
+
+			/obj/item/weapon/gun/smg/skorpion/mag_harness = -1,
+			/obj/item/ammo_magazine/smg/skorpion = -1,
+
+			/obj/item/weapon/gun/shotgun/double/sawn = -1,
+
+			/obj/item/weapon/gun/rifle/mpi_km/standard = -1,
+			/obj/item/weapon/gun/rifle/mpi_km/grenadier = -1,
+			/obj/item/ammo_magazine/rifle/mpi_km = -1,
+
+			/obj/item/weapon/gun/smg/som/basic = -1,
+			/obj/item/ammo_magazine/smg/som = -1,
+			/obj/item/weapon/gun/rifle/som/basic = -1,
+			/obj/item/ammo_magazine/rifle/som = -1,
+
+			/obj/item/weapon/gun/rifle/garand = -1,
+			/obj/item/ammo_magazine/rifle/garand = -1,
+
+			/obj/item/weapon/gun/rifle/type71/flamer/standard = -1,
+			/obj/item/ammo_magazine/rifle/type71 = -1,
+
+			/obj/item/ammo_magazine/handful/micro_grenade = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,
+			/obj/item/explosive/grenade/stick = -1,
+			/obj/item/explosive/grenade/smokebomb = -1,
+			//Misc
+			/obj/item/explosive/grenade/incendiary/molotov = -1,
+			/obj/item/storage/pill_bottle/zoom = -1,
+			//CLF Clothes
+			/obj/item/clothing/under/colonist = -1,
+			/obj/item/clothing/under/colonist/webbing = -1,
+			/obj/item/clothing/suit/storage/faction/militia = -1,
+			/obj/item/clothing/suit/storage/marine/harness/boomvest = -1,
+
+			/obj/item/clothing/shoes/marine/clf/full = -1,
+			/obj/item/clothing/shoes/black = -1,
+
+			/obj/item/clothing/head/tgmcberet/bloodred = -1,
+			/obj/item/clothing/head/headband/rambo = -1,
+			/obj/item/clothing/head/strawhat = -1,
+			/obj/item/clothing/head/militia = -1,
+		),
+		"Freelancers" = list(
+			//Freelancer Guns
+			/obj/item/weapon/gun/rifle/m16/freelancer = -1,
+			/obj/item/weapon/gun/rifle/m16/ugl = -1,
+			/obj/item/ammo_magazine/rifle/m16 = -1,
+
+			/obj/item/weapon/gun/rifle/tx11/freelancerone = -1,
+			/obj/item/weapon/gun/rifle/tx11/freelancertwo = -1,
+			/obj/item/ammo_magazine/rifle/tx11 = -1,
+
+			/obj/item/weapon/gun/rifle/famas/freelancermedic = -1,
+			/obj/item/ammo_magazine/rifle/famas = -1,
+
+			/obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer = -1,
+			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
+
+			/obj/item/weapon/gun/rifle/m412l1_hpr/freelancer = -1,
+			/obj/item/ammo_magazine/m412l1_hpr = -1,
+
+			/obj/item/weapon/gun/rifle/tx55/freelancer = -1,
+			/obj/item/ammo_magazine/rifle/tx55 = -1,
+
+			/obj/item/explosive/grenade = -1,
+			/obj/item/explosive/grenade/smokebomb/cloak = -1,
+			/obj/item/explosive/grenade/incendiary = -1,
+			/obj/item/explosive/grenade/m15 = -1,
+
+			//Freelancer Clothes
+			/obj/item/clothing/under/marine/veteran/freelancer = -1,
+			/obj/item/clothing/under/marine/veteran/freelancer/veteran = -1,
+
+			/obj/item/clothing/suit/storage/faction/freelancer = -1,
+			/obj/item/clothing/suit/storage/faction/freelancer/medic = -1,
+			/obj/item/clothing/suit/storage/faction/freelancer/leader = -1,
+			/obj/item/clothing/suit/storage/faction/freelancer/leader/two = -1,
+
+			/obj/item/clothing/mask/rebreather/scarf/freelancer = -1,
+			/obj/item/clothing/head/frelancer = -1,
+			/obj/item/clothing/head/frelancer/beret = -1,
+			/obj/item/clothing/gloves/marine/veteran/pmc = -1,
+			/obj/item/clothing/shoes/marine = -1,
+		),
+		"ICC" = list(),
+		"Imprerium" = list(),
+		"Mercenaries" = list(),
+		"PMC" = list(),
+		"SoM" = list(),
+		"Special Forces" = list(),
+		"UPP" = list(),
+	)
 
 /obj/machinery/vending/tool
 	name = "YouTool"
