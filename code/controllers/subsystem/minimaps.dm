@@ -157,9 +157,6 @@ SUBSYSTEM_DEF(minimaps)
  * The individual image trackers have a raw and a normal list
  * raw lists just store the images, while the normal ones are assoc list of [tracked_atom] = image
  * the raw lists are to speed up the Fire() of the subsystem so we dont have to filter through
- * WARNING!
- * That that forces us to use a seperate list ref when accessing the lists of this datum
- * Yea it hurts me too
  */
 /datum/hud_displays
 	///Actual icon of the drawn zlevel with all of it's atoms
