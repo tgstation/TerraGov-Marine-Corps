@@ -10,8 +10,8 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,30,45,90)
-	volume = 90
+	possible_transfer_amounts = list(5,10,15,20,30,45,60,120)
+	volume = 120
 	init_reagent_flags = OPENCONTAINER
 
 	var/label_text = ""
@@ -175,11 +175,12 @@
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
-	desc = "A large beaker. Can hold up to 120 units."
+	desc = "A large beaker. Can hold up to 240 units."
 	icon_state = "beakerlarge"
-	volume = 120
+	w_class = WEIGHT_CLASS_NORMAL
+	volume = 240
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,30,40,60,120)
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120,240)
 
 /obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
