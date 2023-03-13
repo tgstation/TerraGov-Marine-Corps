@@ -8,8 +8,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///radius of dispersion for leader pods
 #define LEADER_POD_DISPERSION 5
 
-#define TESTING "H"
-
 ///base marine drop pod. can be controlled by an attached [/obj/structure/droppod/leader] or [/obj/machinery/computer/droppod_control]
 /obj/structure/droppod
 	name = "\improper TGMC Zeus orbital drop pod"
