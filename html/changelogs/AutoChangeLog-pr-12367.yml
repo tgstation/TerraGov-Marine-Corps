@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "SOM no longer use any M15 grenades"
+  - bugfix: "fixed some missing items for the SOM vet V-34 loadout"
+  - bugfix: "MPI mags will have the correct color when map or seasonal vendor spawned"
