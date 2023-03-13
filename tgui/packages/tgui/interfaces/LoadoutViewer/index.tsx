@@ -29,9 +29,9 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => {
-              act('rewriteLoadout');
+              act('overwriteLoadout');
             }}>
-            Rewrite Loadout
+            Overwrite Loadout
           </Button>
         </Flex.Item>
         <Flex.Item grow={1}>
