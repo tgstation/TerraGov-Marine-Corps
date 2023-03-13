@@ -243,10 +243,9 @@ SUBSYSTEM_DEF(minimaps)
 	for(var/flag in GLOB.all_minimap_flags)
 		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
-		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
-		minimaps_by_z["[newz]"].images_assoc["[flag]"][source] = ref_old
-		minimaps_by_z["[oldz]"].images_raw["[flag]"] -= ref_old
-		minimaps_by_z["[newz]"].images_raw["[flag]"] += ref_old
+		minimaps_by_z["[newz]"].images_assoc["[flag]"][source] = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
+		minimaps_by_z["[oldz]"].images_raw["[flag]"] -= minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
+		minimaps_by_z["[newz]"].images_raw["[flag]"] += minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
 		minimaps_by_z["[oldz]"].images_assoc["[flag]"] -= source
 
 /**
