@@ -21,16 +21,12 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
-
-/obj/item/weapon/shield/riot/metal
-	icon_state = "riot_metal"
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -132,6 +128,9 @@
 		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
 	else
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
+
+/obj/item/weapon/shield/riot/marine/metal
+	icon_state = "riot_metal"
 
 /obj/item/weapon/shield/riot/marine/som
 	name = "\improper S-144 boarding shield"

@@ -45,6 +45,7 @@
 	whitelist_ship_maps = list(MAP_TWIN_PILLARS)
 	blacklist_ship_maps = null
 
+
 	win_points_needed = 1000
 	///How many points per zone to control, determined by the number of zones
 	var/points_per_zone_per_second = 1
@@ -120,9 +121,5 @@
 /datum/game_mode/civil_war/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
-
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
-	announce_medal_awards()
-	announce_round_stats()

@@ -151,7 +151,7 @@
 #define TRAIT_IMMEDIATE_DEFIB "immediate_defib"//immediately revives when defibbed, rather than just healing
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
-#define TRAIT_HIVE_TARGET "hive_target"//mob is targetted for draining by the hive
+#define TRAIT_HIVE_TARGET "hive_target"//mob is targeted for draining by the hive
 #define TRAIT_RESEARCHED "researched" // Whether the thing has been researched/probed
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
 #define TRAIT_STAGGER_RESISTANT	"stagger_resistant" //Resistance to certain sources of stagger
@@ -203,3 +203,7 @@
 
 //this mech is melee core boosted
 #define TRAIT_MELEE_CORE "melee_core"
+
+//added to escaped humans
+#define TRAIT_HAS_ESCAPED "escaped_marine"
+#define TRAIT_HAS_BEEN_TARGETED "been_targeted"

@@ -100,7 +100,7 @@
 
 	flags_inv_hide = NONE
 
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/style/update_item_sprites()
