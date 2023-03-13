@@ -10,7 +10,7 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,30,45,60,120)
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120)
 	volume = 120
 	init_reagent_flags = OPENCONTAINER
 
@@ -127,7 +127,7 @@
 
 /obj/item/reagent_containers/glass/beaker
 	name = "beaker"
-	desc = "A beaker. Can hold up to 90 units."
+	desc = "A beaker. Can hold up to 120 units."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
