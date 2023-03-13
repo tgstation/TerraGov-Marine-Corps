@@ -10,7 +10,7 @@
  * * timeout - The timeout of the alert, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * autofocus - The bool that controls if this alert should grab window focus.
  */
-/proc/tgui_alert(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 60, autofocus = TRUE)
+/proc/tgui_alert(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 60, autofocus = TRUE, src_object = null)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -29,7 +29,7 @@
 			return alert(user, message, title, buttons[1], buttons[2])
 		if(length(buttons) == 3)
 			return alert(user, message, title, buttons[1], buttons[2], buttons[3])
-	var/datum/tgui_alert/alert = new(user, message, title, buttons, timeout, autofocus)
+	var/datum/tgui_alert/alert = new(user, src_object, message, title, buttons, timeout, autofocus)
 	alert.ui_interact(user)
 	alert.wait()
 	if (alert)
@@ -59,12 +59,14 @@
 	var/autofocus
 	/// Boolean field describing if the tgui_alert was closed by the user.
 	var/closed
+	var/src_object
 
-/datum/tgui_alert/New(mob/user, message, title, list/buttons, timeout, autofocus)
+/datum/tgui_alert/New(mob/user, src_object, message, title, list/buttons, timeout, autofocus)
 	src.autofocus = autofocus
 	src.buttons = buttons.Copy()
 	src.message = message
 	src.title = title
+	src.src_object = src_object
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
@@ -131,3 +133,13 @@
 
 /datum/tgui_alert/proc/set_choice(choice)
 	src.choice = choice
+
+/datum/tgui_alert/ui_host()
+	if(src_object)
+		return src_object
+	return ..()
+
+/datum/tgui_alert/ui_state(mob/user)
+	if(src_object)
+		return GLOB.human_adjacent_state
+	return ..()

@@ -29,6 +29,17 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => {
+              act('rewriteLoadout');
+            }}>
+            Rewrite Loadout
+          </Button>
+        </Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
+        <Flex.Item>
+          <Button
+            onClick={() => {
               act('deleteLoadout');
             }}>
             Delete Loadout
@@ -48,7 +59,7 @@ export const LoadoutViewer = (props, context) => {
   const { loadout, items } = data;
 
   return (
-    <Window title="Loadout Viewer" width={260} height={460}>
+    <Window title="Loadout Viewer" width={350} height={460}>
       <Window.Content>
         <Stack fill vertical>
           <SlotSelector items={items} />
