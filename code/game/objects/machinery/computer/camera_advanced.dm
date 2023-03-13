@@ -216,7 +216,7 @@
 	var/cooldown = 0
 	var/acceleration = TRUE
 	var/mob/living/eye_user = null
-	var/obj/machinery/origin
+	var/obj/origin
 	var/eye_initialized = 0
 	var/visible_icon = 0
 	var/image/user_image = null
@@ -231,7 +231,8 @@
 
 /mob/camera/aiEye/remote/Destroy()
 	if(origin && eye_user)
-		origin.remove_eye_control(eye_user,src)
+		var/obj/machinery/machine = origin
+		machine?.remove_eye_control(eye_user,src)
 	origin = null
 	eye_user = null
 	return ..()
