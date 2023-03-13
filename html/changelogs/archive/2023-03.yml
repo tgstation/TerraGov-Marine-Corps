@@ -208,3 +208,18 @@
   - rscadd: Added new objective system and admin tools for assigning objectives
   Zar000:
   - rscadd: new widow ability, spiderling mark
+2023-03-13:
+  Lumipharon:
+  - rscadd: Added ranks for SOM
+  Naaanii:
+  - qol: Makes repairing shipside gens and removing fuel cells scale with engineering
+      skill.
+  Pariah919:
+  - rscadd: 762x39,mm and 5.56x45mm ammo boxes to seasonals containing guns with these
+      calibers, they are also avaliable in req.
+  - rscadd: .380 ACP ammo packet for the Pocket pistol.
+  Xander3359:
+  - rscadd: Powerfist cell is easier to remove.
+  - rscadd: Powerfist description is better.
+  - rscdel: You can no send yourself flying with your own powerfist.
+  - bugfix: powerfist cell can properly reach 0 charge.
