@@ -697,6 +697,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
+///Converts a screen loc param to a x,y coordinate pixel on the screen
 /proc/params2screenpixel(scr_loc)
 	var/list/x_and_y = splittext(scr_loc, ",")
 	var/list/x_dirty = splittext(x_and_y[1], ":")
