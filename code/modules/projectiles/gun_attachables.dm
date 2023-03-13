@@ -1346,12 +1346,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		to_chat(user, span_notice("You deploy [src]."))
 
 ///Signal handler for forced undeployment
-/obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source)
+/obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	deploy_time = 0
-	INVOKE_ASYNC(src, .proc/activate, source, TRUE)
+	INVOKE_ASYNC(src, .proc/activate, (istype(user) ? user : source), TRUE)
 	deploy_time = initial(deploy_time)
-	to_chat(source, span_warning("Losing support, the bipod retracts!"))
+	to_chat(user, span_warning("Losing support, the bipod retracts!"))
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
