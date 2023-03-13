@@ -1334,15 +1334,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	. = ..()
 
+	if(folded)
+		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD))
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		to_chat(user, span_notice("You retract [src]."))
+		return
+
 	if(user)
-		if(folded)
-			to_chat(user, span_notice("You retract [src]."))
-			UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD))
-			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		else
-			to_chat(user, span_notice("You deploy [src]."))
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
-			RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD), .proc/retract_bipod)
+		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD), .proc/retract_bipod)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
+		to_chat(user, span_notice("You deploy [src]."))
 
 ///Signal handler for forced undeployment
 /obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source)
