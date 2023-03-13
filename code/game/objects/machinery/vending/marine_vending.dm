@@ -1539,30 +1539,7 @@
 			/obj/item/implanter/cloak = -1,
 			/obj/item/implanter/chem/blood = -1,
 		),
-		"Reqtorio" = list(
-			/obj/item/paper/factoryhowto = -1,
-			/obj/machinery/factory/cutter = -1,
-			/obj/machinery/factory/heater = -1,
-			/obj/machinery/factory/flatter = -1,
-			/obj/machinery/factory/former = -1,
-			/obj/machinery/factory/reconstructor = -1,
-			/obj/machinery/unboxer = -1,
-			/obj/machinery/factory/driller = -1,
-			/obj/machinery/factory/galvanizer = -1,
-			/obj/machinery/factory/compressor = -1,
-			/obj/item/stack/conveyor/thirty = -1,
-			/obj/item/conveyor_switch_construct = -1,
-		),
-	)
-
-/obj/machinery/vending/valhalla_seasonal_req
-	name = "\improper TerraGovTech seasonal vendor"
-	desc = "A automated rack hooked up to a colossal storage of items."
-	icon_state = "requisitionop"
-	resistance_flags = INDESTRUCTIBLE
-	use_power = NO_POWER_USE
-	products = list(
-		"Buyable Seasonals" = list(
+		"Imports" = list(
 			/obj/item/weapon/gun/rifle/m41a = -1,
 			/obj/item/ammo_magazine/rifle/m41a = -1,
 			/obj/item/weapon/gun/rifle/m412 = -1,
@@ -1618,40 +1595,29 @@
 			/obj/item/clothing/head/strawhat = -1,
 			/obj/item/loot_box/marine = -1,
 		),
-		"Seasonal Only" = list(
-			/obj/item/weapon/gun/revolver/upp = -1,
-			/obj/item/ammo_magazine/revolver/upp = -1,
-			/obj/item/weapon/gun/revolver/cmb = -1,
-			/obj/item/ammo_magazine/revolver/cmb = -1,
-			/obj/item/weapon/gun/shotgun/combat = -1,
-			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
-			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
-			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
-			/obj/item/weapon/gun/shotgun/double = -1,
-			/obj/item/weapon/gun/rifle/som = -1,
-			/obj/item/ammo_magazine/rifle/som = -1,
-			/obj/item/ammo_magazine/handful/micro_grenade = -1,
-			/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
-			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,
-			/obj/item/weapon/gun/smg/som = -1,
-			/obj/item/ammo_magazine/smg/som = -1,
-			/obj/item/weapon/gun/shotgun/som = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin = -1,
-			/obj/item/cell/lasgun/volkite = -1,
-			/obj/item/cell/lasgun/volkite/powerpack = -1,
-			/obj/item/weapon/gun/rifle/sniper/elite = -1,
-			/obj/item/ammo_magazine/sniper/elite = -1,
-			/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = -1,
-			/obj/item/weapon/gun/smg/m25/elite/pmc = -1,
-			/obj/item/ammo_magazine/smg/m25/ap = -1,
-			/obj/item/weapon/gun/rifle/m412/elite = -1,
-			/obj/item/ammo_magazine/rifle/ap = -1,
+		"Reqtorio" = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = -1,
+			/obj/machinery/factory/heater = -1,
+			/obj/machinery/factory/flatter = -1,
+			/obj/machinery/factory/former = -1,
+			/obj/machinery/factory/reconstructor = -1,
+			/obj/machinery/unboxer = -1,
+			/obj/machinery/factory/driller = -1,
+			/obj/machinery/factory/galvanizer = -1,
+			/obj/machinery/factory/compressor = -1,
+			/obj/item/stack/conveyor/thirty = -1,
+			/obj/item/conveyor_switch_construct = -1,
 		),
 	)
+
+/obj/machinery/vending/valhalla_seasonal_req
+	name = "\improper TerraGovTech seasonal vendor"
+	desc = "A automated rack hooked up to a colossal storage of items."
+	icon_state = "requisitionop"
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list()
 
 /obj/machinery/vending/tool
 	name = "YouTool"
