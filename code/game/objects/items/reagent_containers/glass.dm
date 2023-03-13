@@ -10,8 +10,8 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,30,60)
-	volume = 60
+	possible_transfer_amounts = list(5,10,15,20,30,45,90)
+	volume = 90
 	init_reagent_flags = OPENCONTAINER
 
 	var/label_text = ""
@@ -127,7 +127,7 @@
 
 /obj/item/reagent_containers/glass/beaker
 	name = "beaker"
-	desc = "A beaker. Can hold up to 60 units."
+	desc = "A beaker. Can hold up to 90 units."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
@@ -199,11 +199,12 @@
 
 /obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"
-	desc = "A small glass vial. Can hold up to 30 units."
+	desc = "A tiny glass vial. Can hold up to 60 units."
 	icon_state = "vial"
-	volume = 30
+	volume = 60
+	w_class = WEIGHT_CLASS_TINY
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25)
+	possible_transfer_amounts = list(5,10,15,20,30,60)
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
