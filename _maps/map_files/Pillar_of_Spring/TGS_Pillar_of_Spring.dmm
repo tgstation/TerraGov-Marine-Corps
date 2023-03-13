@@ -10469,6 +10469,11 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"nyb" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -13630,6 +13635,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"rCl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "rCA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -50787,9 +50798,9 @@ vOw
 qwg
 dny
 dny
-qwg
-dny
-dny
+rCl
+nyb
+nyb
 lvw
 dcY
 wPV
@@ -51813,7 +51824,7 @@ vsI
 iHY
 uBM
 kfm
-kfm
+ltw
 kfm
 ltw
 soK
