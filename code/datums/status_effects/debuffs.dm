@@ -293,3 +293,20 @@
 	explosion(get_turf(owner), 0, 1, 8, 5)
 	return ..()
 
+/datum/status_effect/glow
+    id = "Glowing"
+    status_type = STATUS_EFFECT_REFRESH
+    tick_interval = 20
+    var/mob/living/carbon/carbon_owner
+
+/datum/status_effect/glow/on_creation(mob/living/new_owner, set_duration)
+    if(isnum(set_duration))
+        duration = set_duration
+    . = ..()
+    if(.)
+        if(iscarbon(owner))
+            carbon_owner = owner
+
+/datum/status_effect/glow/Destroy()
+    carbon_owner = null
+    return ..()

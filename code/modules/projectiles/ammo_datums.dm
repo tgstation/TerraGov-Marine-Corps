@@ -1566,8 +1566,37 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 35
 
 /datum/ammo/bullet/arrow/sticky/on_hit_mob(mob/M,obj/projectile/P)
+	H.apply_status_effect(/datum/status_effect/sticky_arrow, 5 seconds)
 
+/datum/ammo/bullet/arrow/flare
+    name = "flare tracking arrow"
+    handful_icon_state = "flare arrow"
+    hud_state = "sniper_fire"
+    hud_state_empty = "sniper_empty"
+    flags_ammo_behavior = AMMO_BALLISTIC
+    damage_falloff = 0
+    shell_speed = 3
+    accurate_range = 30
+    max_range = 30
+    damage = 15
+    penetration = 5
 
+/datum/ammo/bullet/arrow/ice
+    name = "ice concussive arrow"
+    handful_icon_state = "ice arrow"
+    hud_state = "sniper_fire"
+    hud_state_empty = "sniper_empty"
+    flags_ammo_behavior = AMMO_BALLISTIC
+    damage_falloff = 0
+    shell_speed = 3
+    accurate_range = 30
+    max_range = 30
+    damage = 10
+    penetration = 10
+
+/datum/ammo/bullet/arrow/ice/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 3, shake = 1)
+	to_chat((target, span_xenodanger("You are hit by the ice bolt and find it difficult to move!")))
 /*
 //================================================
 					Rocket Ammo
