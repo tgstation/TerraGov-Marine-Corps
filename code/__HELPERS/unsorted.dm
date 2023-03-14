@@ -40,14 +40,6 @@
 #define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
 #endif
 
-// 515 split call for external libraries into call_ext
-#if DM_VERSION < 515
-#define LIBCALL call
-#else
-#define LIBCALL call_ext
-#endif
-
-
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
