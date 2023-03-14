@@ -153,11 +153,11 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 		if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
 			multipler -= 0.5
 			switch(M.reagent_pain_modifier)
-				if(PAIN_REDUCTION_MEDIUM to PAIN_REDUCTION_HEAVY)
+				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_MEDIUM)
 					multipler += 0.15
-				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_VERY_HEAVY)
+				if(PAIN_REDUCTION_VERY_HEAVY to PAIN_REDUCTION_HEAVY)
 					multipler += 0.25
-				if(PAIN_REDUCTION_VERY_HEAVY to INFINITY)
+				if(-INFINITY to PAIN_REDUCTION_VERY_HEAVY)
 					multipler += 0.45
 			if(M.shock_stage > 100) //Being near to unconsious is good in this case
 				multipler += 0.25
