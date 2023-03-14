@@ -1574,7 +1574,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(prob(1))
+	if(user && prob(1))
 		garand_thumb(user)
 
 /obj/item/weapon/gun/rifle/garand/proc/garand_thumb(mob/living/user)
