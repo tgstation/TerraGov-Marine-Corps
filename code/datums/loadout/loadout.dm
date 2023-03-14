@@ -149,15 +149,11 @@
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("overwriteLoadout")
-			if(tgui_alert(usr, "Are you sure?", "Overwrite loadout?", list("Yes", "No"), src_object = loadout_vendor) != "Yes")
-				return
 			item_list = list()
 			save_mob_loadout(ui.user)
 			ui.user.client.prefs.save_loadout(src)
 			ui.close()
 		if("deleteLoadout")
-			if(tgui_alert(usr, "Are you sure?", "Overwrite loadout?", list("Yes", "No"),src_object = loadout_vendor) != "Yes")
-				return
 			ui.user.client.prefs.loadout_manager.delete_loadout(ui.user, name, job)
 			ui.close()
 
