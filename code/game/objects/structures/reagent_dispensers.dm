@@ -62,7 +62,7 @@
 	desc = "A watertank"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	obj_integrity = 200
+	max_integrity = 200
 	amount_per_transfer_from_this = 500
 	possible_transfer_amounts = list(10, 25, 50, 100, 500)
 	tank_volume = 10000
@@ -74,7 +74,7 @@
 	desc = "A fueltank"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
-	obj_integrity = 200
+	max_integrity = 200
 	amount_per_transfer_from_this = 500
 	possible_transfer_amounts = list(10, 25, 50, 100, 500)
 	tank_volume = 10000
