@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Created a more simplified version of Minerva's powernet."
+  - rscdel: "Deleted the old version of Minerva's powernet."
