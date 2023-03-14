@@ -1581,6 +1581,7 @@
 	var/zone = user.hand ? "l_hand" : "r_hand"
 	to_chat(user, span_userdanger("Your thumb gets caught while reloading [src]!"))
 	user.apply_damage(1, BRUTE, zone)
+	user.emote("scream")
 
 //----------------------------------------------------------
 				//							\\
