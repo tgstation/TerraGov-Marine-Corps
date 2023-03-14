@@ -55,7 +55,7 @@
 
 	pulsed()
 
-	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
 
 
 /obj/machinery/button/proc/pulsed()
@@ -140,8 +140,8 @@
 
 	alarm_played = TRUE
 	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
-	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/pulsed), 185)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pulsed)), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -237,7 +237,7 @@
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/icon_update_check), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(icon_update_check)), 10 SECONDS)
 
 /obj/machinery/medical_help_button/proc/icon_update_check()
 	active = FALSE
@@ -263,7 +263,7 @@
 		return
 	QDEL_NULL(xeno)
 	xeno = new xeno_wanted(get_turf(GLOB.valhalla_xeno_spawn_landmark[link]))
-	RegisterSignal(xeno, COMSIG_PARENT_QDELETING, .proc/clean_xeno)
+	RegisterSignal(xeno, COMSIG_PARENT_QDELETING, PROC_REF(clean_xeno))
 
 /obj/machinery/button/valhalla_button/proc/clean_xeno()
 	SIGNAL_HANDLER

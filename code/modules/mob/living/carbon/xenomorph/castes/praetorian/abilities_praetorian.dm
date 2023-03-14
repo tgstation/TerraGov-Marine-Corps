@@ -34,7 +34,7 @@
 	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
 	start_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
 	add_cooldown()
-	addtimer(CALLBACK(src, .proc/reset_speed), rand(2 SECONDS, 3 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(reset_speed)), rand(2 SECONDS, 3 SECONDS))
 
 /datum/action/xeno_action/activable/spray_acid/cone/proc/reset_speed()
 	var/mob/living/carbon/xenomorph/spraying_xeno = owner
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
-			addtimer(CALLBACK(src, .proc/continue_acid_cone_spray, T, next_normal_turf, distance_left, facing, direction_flag, spray), 3)
+			addtimer(CALLBACK(src, PROC_REF(continue_acid_cone_spray), T, next_normal_turf, distance_left, facing, direction_flag, spray), 3)
 			return
 		continue_acid_cone_spray(T, next_normal_turf, distance_left, facing, direction_flag, spray)
 
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
 	if(recast_available)
-		addtimer(CALLBACK(src, .proc/dash_complete), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
+		addtimer(CALLBACK(src, PROC_REF(dash_complete)), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
 		recast = TRUE
 	else
 		recast = FALSE
@@ -211,10 +211,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		O.acid_spray_act(X)
 
 /datum/action/xeno_action/activable/acid_dash/use_ability(atom/A)
-	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/acid_steps) //We drop acid on every tile we pass through
-	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/dash_complete)
+	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) //We drop acid on every tile we pass through
+	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(dash_complete))
 
 	owner.visible_message(span_danger("[owner] slides towards \the [A]!"), \
 	span_danger("We dash towards \the [A], spraying acid down our path!") )

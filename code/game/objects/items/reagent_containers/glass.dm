@@ -93,7 +93,7 @@
 
 			visible_message(span_warning("[target] has been splashed with something by [user]!"))
 			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 			return
 
 
@@ -101,7 +101,7 @@
 			to_chat(user, span_notice("You splash the solution onto [target]."))
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 			return
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)

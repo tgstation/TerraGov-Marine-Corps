@@ -2,13 +2,13 @@
 /mob/living/carbon/human/proc/async_do_quick_equip()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip)
+	INVOKE_ASYNC(src, PROC_REF(do_quick_equip))
 
 ///async signal wrapper for do_quick_equip
 /mob/living/carbon/human/proc/async_do_quick_equip_alt()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(do_quick_equip), TRUE)
 
 /// runs equip, if passed use_alternate = TRUE will try to use the alternate preference slot
 /mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)

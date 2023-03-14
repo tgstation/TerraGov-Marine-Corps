@@ -603,7 +603,7 @@
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
-	addtimer(CALLBACK(src, .proc/stock_vacuum), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
+	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
 	if(vending_sound)
 		playsound(src, vending_sound, 25, 0)
 	else

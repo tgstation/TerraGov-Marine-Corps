@@ -145,7 +145,7 @@
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
-	addtimer(CALLBACK(src, .proc/prime), det_time)
+	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
 
 ///Reverts the gun back to it's unarmed state, allowing it to be activated again
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/reset()

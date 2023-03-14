@@ -369,10 +369,10 @@
 	if(!autoburst_delay)
 		autoburst_delay = (fire_delay + extra_delay)
 	setup_firemodes()
-	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
-	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
+	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, PROC_REF(set_bursting)), CALLBACK(src, PROC_REF(reset_fire)), CALLBACK(src, PROC_REF(Fire))) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, PROC_REF(on_attachment_attach)), CALLBACK(src, PROC_REF(on_attachment_detach)), attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
-		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, SKILL_FIREARMS, SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
+		AddElement(/datum/element/attachment, slot, icon, PROC_REF(on_attach), PROC_REF(on_detach), PROC_REF(activate), PROC_REF(can_attach), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, SKILL_FIREARMS, SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -387,7 +387,7 @@
 	if(spawn_empty || !default_ammo_type)
 		update_icon()
 		return
-	INVOKE_ASYNC(src, .proc/fill_gun)
+	INVOKE_ASYNC(src, PROC_REF(fill_gun))
 
 /obj/item/weapon/gun/Destroy()
 	active_attachable = null
@@ -469,24 +469,24 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
-		COMSIG_LIVING_STAGGER_CHANGED), .proc/setup_bullet_accuracy)
+		COMSIG_LIVING_STAGGER_CHANGED), PROC_REF(setup_bullet_accuracy))
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
 		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	else
-		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
-	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
-	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), .proc/stop_fire)
-	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
-	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
-	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
-	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
-	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
+		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, PROC_REF(unique_action))
+	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, PROC_REF(clean_gun_user))
+	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
+	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
+	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
+	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
+	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, PROC_REF(do_toggle_firemode))
+	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, PROC_REF(toggle_gun_safety_keybind))
 
 
 ///Null out gun user to prevent hard del
@@ -706,7 +706,7 @@
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		if(!INVOKE_ASYNC(src, .proc/Fire) || windup_checked == WEAPON_WINDUP_CHECKING)
+		if(!INVOKE_ASYNC(src, PROC_REF(Fire)) || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
@@ -724,7 +724,7 @@
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
 	target = object
 	if(target)
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
 
 ///Set the target to it's turf, so we keep shooting even when it was qdeled
 /obj/item/weapon/gun/proc/clean_target()
@@ -786,7 +786,7 @@
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(loc, windup_sound, 30, TRUE)
 		if(!gun_user)
-			addtimer(CALLBACK(src, .proc/fire_after_autonomous_windup), windup_delay)
+			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
 		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
@@ -885,7 +885,7 @@
 			set_light_range(muzzle_flash_lum)
 			set_light_color(muzzle_flash_color)
 			set_light_on(TRUE)
-			addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
 		//Offset the pixels.
 		switch(firing_angle)
 			if(0, 360)
@@ -958,7 +958,7 @@
 		flash_loc.vis_contents += muzzle_flash
 		muzzle_flash.applied = TRUE
 
-		addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(remove_muzzle_flash), flash_loc, muzzle_flash), 0.2 SECONDS)
 
 	simulate_recoil(dual_wield, firing_angle)
 
@@ -1246,7 +1246,7 @@
 		update_ammo_count()
 		update_icon()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
-		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 		return TRUE
 
 

@@ -21,7 +21,7 @@
 		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,\
 		null,\
 		null,\
-		CALLBACK(src,.proc/after_rotation)\
+		CALLBACK(src,PROC_REF(after_rotation))\
 		)
 
 /obj/item/assembly/infra/proc/after_rotation()
@@ -163,7 +163,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_ATOM_EXITED)
-	RegisterSignal(newloc, COMSIG_ATOM_EXITED, .proc/check_exit)
+	RegisterSignal(newloc, COMSIG_ATOM_EXITED, PROC_REF(check_exit))
 	listeningTo = newloc
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender, direction)
@@ -236,7 +236,7 @@
 /obj/effect/beam/i_beam/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 
 /obj/effect/beam/i_beam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)

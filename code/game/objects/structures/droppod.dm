@@ -33,8 +33,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/allow_drop)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_launching))
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
 	GLOB.droppod_list += src
 
 /obj/structure/droppod/proc/disable_launching()
@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return
 
 	occupant = user
-	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/exitpod)
+	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(exitpod))
 	user.forceMove(src)
 	userimg = image(user)
 	userimg.layer = DOOR_CLOSED_LAYER
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	cut_overlays()
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, .proc/finish_drop, user), launch_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), launch_time)
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 
@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
 	pixel_y = 500
 	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
-	addtimer(CALLBACK(src, .proc/dodrop, targetturf, user), falltime)
+	addtimer(CALLBACK(src, PROC_REF(dodrop), targetturf, user), falltime)
 
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	explosion(targetturf,-1,-1,2,-1)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
-	addtimer(CALLBACK(src, .proc/completedrop, user), 7) //dramatic effect
+	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes everything after a dramatic effect
 /obj/structure/droppod/proc/completedrop(mob/user)

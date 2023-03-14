@@ -372,13 +372,13 @@
 
 /obj/machinery/door/airlock/mainship/secure/evac/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, .proc/force_open)
+	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, PROC_REF(force_open))
 
 ///Force open that door
 /obj/machinery/door/airlock/mainship/secure/proc/force_open()
 	SIGNAL_HANDLER
 	unlock(TRUE)
-	INVOKE_ASYNC(src, .proc/open, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(open), TRUE)
 	lock(TRUE)
 
 /obj/machinery/door/airlock/mainship/secure/rebel/evac

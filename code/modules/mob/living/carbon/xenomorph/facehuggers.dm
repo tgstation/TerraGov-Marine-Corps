@@ -66,7 +66,7 @@
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
 	. = ..()
 	if(stat == CONSCIOUS)
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
+		lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE)
 
 	if(input_hivenumber)
 		hivenumber = input_hivenumber
@@ -75,8 +75,8 @@
 		facehugger_register_source(input_source)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXITED = .proc/on_exited,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -86,7 +86,7 @@
 		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 
 	source = S //set and register new source
-	RegisterSignal(S, COMSIG_PARENT_QDELETING, .proc/clear_hugger_source)
+	RegisterSignal(S, COMSIG_PARENT_QDELETING, PROC_REF(clear_hugger_source))
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
@@ -206,14 +206,14 @@
 		stasis = TRUE
 		deltimer(lifetimer)
 	else if(!attached && !(stasis || no_activate))
-		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+		lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 ///Resets the life timer for the facehugger
 /obj/item/clothing/mask/facehugger/proc/reset_life_timer()
 	deltimer(lifetimer)
 	lifetimer = null
-	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+	lifetimer = addtimer(CALLBACK(src, PROC_REF(check_lifecycle)), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE, reset_life_timer = FALSE)
 	if(QDELETED(src))
@@ -237,9 +237,9 @@
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
 	if(QDELETED(src))
 		return
-	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+	jumptimer = addtimer(CALLBACK(src, PROC_REF(leap_at_nearest_target)), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	if(activation_time >= 2 SECONDS) //If activation timer is equal to or greater than two seconds, we trigger the danger overlay at 1 second, otherwise we do so immediately.
-		addtimer(CALLBACK(src, .proc/apply_danger_overlay), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(apply_danger_overlay)), 1 SECONDS)
 		return
 	apply_danger_overlay()
 
@@ -562,7 +562,7 @@
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
-	addtimer(CALLBACK(src, .proc/Impregnate, user), IMPREGNATION_TIME)
+	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
@@ -577,7 +577,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time)
 		update_icon()
 
 	if(as_planned)
@@ -606,7 +606,7 @@
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
-	addtimer(CALLBACK(src, .proc/melt_away), melt_timer)
+	addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP

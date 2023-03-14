@@ -259,7 +259,7 @@
 			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))
-		addtimer(CALLBACK(src, .proc/strafe_turfs, strafelist), 2)
+		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
 
 
 /obj/structure/ship_ammo/heavygun/highvelocity
@@ -357,7 +357,7 @@
 	laser_burn(lazertargets[1])
 	lazertargets -= lazertargets[1]
 	if(length(lazertargets))
-		INVOKE_NEXT_TICK(src, .proc/process_lazer, lazertargets)
+		INVOKE_NEXT_TICK(src, PROC_REF(process_lazer), lazertargets)
 
 ///Lazer ammo acts on the turf passed in
 /obj/structure/ship_ammo/laser_battery/proc/laser_burn(turf/T)
@@ -458,7 +458,7 @@
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
-	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_detonation), impact), 3 SECONDS)
 
 /**
  * proc/delayed_detonation(turf/impact)
@@ -526,7 +526,7 @@
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
-	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_smoke_spread), impact), 0.5 SECONDS)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
@@ -613,8 +613,8 @@
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(4, 0, impact)
 	P.start()
-	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/drop_cas_flare, impact), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_smoke_spread), impact), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(drop_cas_flare), impact), 1.5 SECONDS)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 

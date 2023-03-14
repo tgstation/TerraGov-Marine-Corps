@@ -55,7 +55,7 @@
 	for(var/mob/living/L in range(1, src))
 		SEND_SIGNAL(L, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED)
 	SEND_SIGNAL(loc, COMSIG_TURF_WEED_REMOVED)
-	INVOKE_NEXT_TICK(src, .proc/update_neighbours, loc)
+	INVOKE_NEXT_TICK(src, PROC_REF(update_neighbours), loc)
 	return ..()
 
 /obj/alien/weeds/examine(mob/user)
@@ -111,7 +111,7 @@
 	if(parent_node)
 		UnregisterSignal(parent_node, COMSIG_PARENT_QDELETING)
 	parent_node = node
-	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, .proc/clean_parent_node)
+	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, PROC_REF(clean_parent_node))
 
 ///Clean the parent node var
 /obj/alien/weeds/proc/clean_parent_node()

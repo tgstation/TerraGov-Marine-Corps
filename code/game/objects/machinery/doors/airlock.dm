@@ -124,7 +124,7 @@
 			secondsBackupPowerLost = 10
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 
@@ -133,7 +133,7 @@
 		secondsBackupPowerLost = 60
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 
@@ -302,7 +302,7 @@
 							span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
 							span_italics("You hear welding."))
 
-			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
 			welded = !welded
@@ -321,7 +321,7 @@
 							span_notice("You begin repairing the airlock..."), \
 							span_italics("You hear welding."))
 
-			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
 			repair_damage(max_integrity)
@@ -452,7 +452,7 @@
 	if(safe)
 		for(var/turf/turf AS in locs)
 			if(locate(/mob/living) in turf)
-				addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(close)), 6 SECONDS)
 				return
 
 	for(var/turf/turf in locs)
@@ -464,7 +464,7 @@
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
 				if(S?.species_flags & NO_PAIN)
-					INVOKE_ASYNC(M, /mob/living.proc/emote, "pain")
+					INVOKE_ASYNC(M, TYPE_PROC_REF(/mob/living, emote), "pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_mob_blood(M)
@@ -531,7 +531,7 @@
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds
 	if(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		INVOKE_ASYNC(src, .proc/electrified_loop)
+		INVOKE_ASYNC(src, PROC_REF(electrified_loop))
 
 	if(user)
 		var/message

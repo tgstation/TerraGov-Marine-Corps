@@ -89,7 +89,7 @@
 		return
 
 	to_chat(usr, span_notice("You start getting into the other seat."))
-	addtimer(CALLBACK(src, .proc/seat_switched, wannabe_trucker, usr), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(seat_switched), wannabe_trucker, usr), 3 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(wannabe_trucker, mob/living/user)
 
@@ -204,7 +204,7 @@
 
 	to_chat(M, span_notice("You start climbing out of [src]."))
 
-	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(exit_tank), M), 5 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/exit_tank(mob/M, forced = FALSE, silent = FALSE)
 	if(!forced)
