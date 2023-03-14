@@ -38,7 +38,7 @@
 	icon_state = "beret"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_item_map_variant = NONE
-	flags_armor_features = ARMOR_NO_DECAP
+
 
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"
@@ -176,7 +176,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "headband"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
+
 
 /obj/item/clothing/head/headband/red
 	name = "\improper Red headband"
@@ -373,7 +373,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
-	flags_armor_features = ARMOR_NO_DECAP
+	
 
 /obj/item/clothing/head/strawhat
 	name = "\improper straw hat"
