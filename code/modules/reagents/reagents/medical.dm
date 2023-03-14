@@ -275,6 +275,26 @@
 /datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(3*effect_str, 0, 3*effect_str)
 
+/datum/reagent/medicine/saline_glucose
+	name = "Saline-Glucose"
+	description = "Saline-Glucose can be used to restore blood in a pinch."
+	color = "#d4f1f9"
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	taste_description = "salty water"
+
+//Same effects as /datum/reagent/iron 
+/datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
+	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+		L.blood_volume += 0.8
+	return ..()
+
+/datum/reagent/medicine/saline_glucose/overdose_process(mob/living/L, metabolism)
+	L.apply_damages(1, 0, 1)
+
+/datum/reagent/medicine/saline_glucose/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damages(1, 0, 1)
+
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
 	description = "Dexalin is used in the treatment of oxygen deprivation."
