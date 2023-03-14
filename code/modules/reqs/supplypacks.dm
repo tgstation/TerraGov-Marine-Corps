@@ -1374,7 +1374,7 @@ Imports
 	contains = list(
 		/obj/item/ammo_magazine/smg/mp7,
 		/obj/item/ammo_magazine/smg/mp7,
-		/obj/item/ammo_magazine/smg/mp7
+		/obj/item/ammo_magazine/smg/mp7,
 	)
 	cost = 10
 
