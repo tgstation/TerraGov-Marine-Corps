@@ -282,8 +282,9 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "salty water"
+	scannable = TRUE
 
-//Same effects as /datum/reagent/iron 
+//Same effects as /datum/reagent/iron
 /datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
 	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
 		L.blood_volume += 0.8
