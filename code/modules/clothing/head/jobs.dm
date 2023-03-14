@@ -56,7 +56,7 @@
 	icon_state = "beret"
 	siemens_coefficient = 0.9
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
+	
 
 //Security
 /obj/item/clothing/head/beret/sec
