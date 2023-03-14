@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Flamer water tank attachment to crash."
-  - bugfix: "no more infinite crates in crash."

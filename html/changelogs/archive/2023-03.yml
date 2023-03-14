@@ -223,3 +223,32 @@
   - rscadd: Powerfist description is better.
   - rscdel: You can no send yourself flying with your own powerfist.
   - bugfix: powerfist cell can properly reach 0 charge.
+2023-03-14:
+  David-Stormwell:
+  - bugfix: Fixed turtlenecks having the ability to roll the shirt down, as it doesn't
+      have the sprites needed other then sleeves.
+  Lumipharon:
+  - balance: SOM no longer use any M15 grenades
+  - bugfix: fixed some missing items for the SOM vet V-34 loadout
+  - bugfix: MPI mags will have the correct color when map or seasonal vendor spawned
+  - qol: Added hotkeys for helmet modules and suit lights
+  - bugfix: fixed some bipod exploits
+  - bugfix: fixed a couple of minor SOM paygrade and radio rank issues
+  Naaanii:
+  - spellcheck: fixed 'sports bra' typo.
+  - spellcheck: fixed the grammar of the lack of xeno message alert.
+  - spellcheck: fixed BAS desc grammar.
+  - spellcheck: fixed codex entry for the TL-127
+  Pariah919:
+  - rscadd: New lMG-D machinegun, a beltfed variant of the MPi, better known as the
+      "RPD".
+  RipGrayson:
+  - bugfix: Fixed end round status not displaying correctly to nonhumans.
+  Xander3359:
+  - bugfix: RL72 is no longer broken in valhalla
+  - rscadd: Flamer water tank attachment to crash.
+  - bugfix: no more infinite crates in crash.
+  ivanmixo:
+  - rscadd: Added the hampter emoji
+  novaepee:
+  - bugfix: Pillar of Spring's SMES not being connected
