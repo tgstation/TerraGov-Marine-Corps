@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - qol: "Created an option for admins to loosen the success requirements for the escape objective."
+  - bugfix: "Fixed the escape objective not completing successfully."
