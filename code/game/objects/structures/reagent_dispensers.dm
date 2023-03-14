@@ -62,17 +62,24 @@
 	desc = "A watertank"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	amount_per_transfer_from_this = 10
-	list_reagents = list(/datum/reagent/water = 1000)
-
-
+	obj_integrity = 200
+	amount_per_transfer_from_this = 500
+	possible_transfer_amounts = list(10, 25, 50, 100, 500)
+	tank_volume = 10000
+	list_reagents = list(/datum/reagent/water = 10000)
+	drag_delay = 0
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
 	desc = "A fueltank"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
-	list_reagents = list(/datum/reagent/fuel = 1000)
+	obj_integrity = 200
+	amount_per_transfer_from_this = 500
+	possible_transfer_amounts = list(10, 25, 50, 100, 500)
+	tank_volume = 10000
+	list_reagents = list(/datum/reagent/fuel = 10000)
+	drag_delay = 0
 	///Whether this tank is modded to drip fuel when its moved
 	var/modded = FALSE
 	///Rig we attached to this fuel tank
@@ -178,9 +185,9 @@
 	if(exploding)
 		return
 	exploding = TRUE
-	if (reagents.total_volume > 500)
+	if (reagents.total_volume > tank_volume/2)
 		explosion(loc, light_impact_range = 4, flame_range = 4, small_animation = TRUE)
-	else if (reagents.total_volume > 100)
+	else if (reagents.total_volume > tank_volume/10)
 		explosion(loc, light_impact_range = 3, flame_range = 3, small_animation = TRUE)
 	else
 		explosion(loc, light_impact_range = 2, flame_range = 2, small_animation = TRUE)
