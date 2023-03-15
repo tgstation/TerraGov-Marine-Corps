@@ -210,7 +210,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "maturitytower"
-	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/maturitytower
 
 /datum/hive_upgrade/building/pherotower
@@ -323,23 +322,23 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/primordial/tier_four
 	name = PRIMORDIAL_TIER_FOUR
 	desc = "Unlocks the primordial for the last tier"
-	psypoint_cost = 600
+	psypoint_cost = 800
 	icon = "primoqueen"
 
 /datum/hive_upgrade/primordial/tier_three
 	name = PRIMORDIAL_TIER_THREE
 	desc = "Unlocks the primordial for the third tier"
-	psypoint_cost = 600
+	psypoint_cost = 800
 	icon = "primorav"
 
 /datum/hive_upgrade/primordial/tier_two
 	name = PRIMORDIAL_TIER_TWO
 	desc = "Unlocks the primordial for the second tier"
-	psypoint_cost = 600
+	psypoint_cost = 800
 	icon = "primowarrior"
 
 /datum/hive_upgrade/primordial/tier_one
 	name = PRIMORDIAL_TIER_ONE
 	desc = "Unlocks the primordial for the first tier"
-	psypoint_cost = 600
+	psypoint_cost = 800
 	icon = "primosent"

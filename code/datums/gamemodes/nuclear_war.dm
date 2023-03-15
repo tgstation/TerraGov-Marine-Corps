@@ -72,3 +72,15 @@
 
 /datum/game_mode/infestation/distress/nuclear_war/update_silo_death_timer(datum/hive_status/silo_owner)
 	return
+
+/datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
+	switch(new_xeno.tier)
+		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
+		if(XENO_TIER_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
+		if(XENO_TIER_THREE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
+		if(XENO_TIER_FOUR)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
