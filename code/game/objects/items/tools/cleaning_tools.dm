@@ -69,9 +69,6 @@
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 
-
-
-
 /obj/item/tool/soap
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
@@ -84,17 +81,7 @@
 
 /obj/item/tool/soap/Initialize()
 	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/item/tool/soap/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
-	SIGNAL_HANDLER
-	if (iscarbon(AM))
-		var/mob/living/carbon/C =AM
-		C.slip("soap", 3, 2)
-
+	AddComponent(/datum/component/slippery, 0.3 SECONDS, 0.2 SECONDS)
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	return
