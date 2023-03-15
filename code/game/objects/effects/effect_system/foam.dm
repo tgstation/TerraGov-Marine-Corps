@@ -162,9 +162,8 @@
 // dense and opaque, but easy to break
 
 /obj/structure/foamedmetal
-	icon = 'icons/obj/smooth_objects/foamwall.dmi'
-	icon_state = "foamwall-icon"
-	base_icon_state = "foamwall"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "metalfoam"
 	density = TRUE
 	opacity = FALSE 	// changed in New()
 	anchored = TRUE
@@ -173,13 +172,6 @@
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 120
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(
-		SMOOTH_GROUP_FOAM_WALL,
-	)
-	canSmoothWith = list(
-		SMOOTH_GROUP_FOAM_WALL,
-	)
 
 /obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
 	take_damage(10, BURN, "fire")
