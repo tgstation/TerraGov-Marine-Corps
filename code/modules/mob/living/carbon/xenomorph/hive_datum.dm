@@ -304,6 +304,7 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
+
 /**
  * The total amount of xenomorphs that are considered for evolving purposes,
  * subtypes also consider stored larva, not just the current amount of living xenos
@@ -1417,6 +1418,21 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/king/admeme
 	hivenumber = XENO_HIVE_ADMEME
+
+/datum/hive_status/corrupted/fallen
+	name = "Fallen"
+	hivenumber = XENO_HIVE_FALLEN
+	prefix = "Fallen "
+	color = "#8046ba"
+
+/datum/hive_status/corrupted/fallen/can_xeno_message()
+	return FALSE
+
+/mob/living/carbon/xenomorph/queen/Corrupted/fallen
+	hivenumber = XENO_HIVE_FALLEN
+
+/mob/living/carbon/xenomorph/king/Corrupted/fallen
+	hivenumber = XENO_HIVE_FALLEN
 
 // ***************************************
 // *********** Xeno hive compare helpers
