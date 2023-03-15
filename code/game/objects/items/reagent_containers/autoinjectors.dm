@@ -281,8 +281,7 @@
 	amount_per_transfer_from_this = 15
 	volume = 30
 	list_reagents = list(
-		/datum/reagent/iron = 15,
-		/datum/reagent/medicine/saline_glucose = 15,
+		/datum/reagent/medicine/saline_glucose = 30,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
