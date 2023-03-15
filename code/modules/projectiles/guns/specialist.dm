@@ -18,7 +18,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 */
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = 1
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	wield_delay = 1 SECONDS
 
 //Pow! Headshot
@@ -269,11 +269,18 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	name = "\improper SR-33 Dragunov sniper rifle"
 	desc = "A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it. Fires 7.62x54mmR rounds."
 	icon = 'icons/Marine/gun64.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
 	icon_state = "svd"
 	item_state = "svd"
 	max_shells = 10 //codex
 	caliber = CALIBER_762X54 //codex
-	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
+	fire_sound = "svd_fire"
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
@@ -291,7 +298,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.8 SECONDS
@@ -356,7 +363,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
 
 
@@ -395,7 +402,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 12
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	aim_slowdown = 0.8
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -438,7 +445,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
 	wield_delay = 1.5 SECONDS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
-	gun_skill_category = GUN_SKILL_SMARTGUN
+	gun_skill_category = SKILL_SMARTGUN
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/motiondetector)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 29, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12) //Only has rail attachments so only the rail variables are properly aligned
 	aim_slowdown = 1.5
@@ -528,7 +535,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
-	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket)
 	flags_equip_slot = NONE
@@ -546,7 +552,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -608,7 +614,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1
 	caliber = CALIBER_84MM
 	load_method = SINGLE_CASING
-	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket/sadar
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/sadar,
@@ -631,7 +636,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED
 
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -698,7 +703,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1 //codex
 	caliber = CALIBER_67MM //codex
 	load_method = SINGLE_CASING //codex
-	materials = list(/datum/material/metal = 10000)
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/recoilless,
@@ -725,7 +729,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1 SECONDS
@@ -764,6 +768,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1 SECONDS
 	recoil = 3
 	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/Initialize(mapload, spawn_empty)
+	. = ..(mapload, FALSE)
 
 // Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
 /obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)

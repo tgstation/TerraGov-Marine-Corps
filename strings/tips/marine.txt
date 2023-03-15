@@ -42,7 +42,7 @@ If a M40 FLDP grenade collides to any mob when thrown, the mob will be lit in a 
 SWAT masks ordered from Requisitions can block only one larval facehugger attack. If they successfully blocked an attempted attack, replace them immediately.
 Drag crates of platinum and phoron to the Automated Storage and Retrieval System (ASRS) pad inside cargo. Once the pad lowers with the applicable crates, you will gain requisition points. This applies to dead xenomorphs as well!
 In snow maps (such as Ice Colony or Icey Caves), wear a coif or scarf! You will freeze to death if you go outside of your dropship if you are not wearing them!
-To throw a grenade, Activate (Default: Z) the grenade while in the active hand. You will then automatically enter throw mode, in which then you can simply click anywhere to throw it. Do not take too long!
+To throw a grenade, Activate (Default: Z) the grenade while in the active hand. Then simply click where you want to throw it. Do not take too long!
 Quickly store items to the container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and you are looking at a container.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
 Stasis bags do not pause xenomorph infection entirely, they only slow progress by a lot.

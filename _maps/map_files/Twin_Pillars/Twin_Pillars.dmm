@@ -667,7 +667,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
 "aFi" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "aFy" = (
@@ -901,7 +901,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct/rebel)
 "aQA" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "aRy" = (
@@ -1799,11 +1799,11 @@
 /area/mainship/hull/lower_hull)
 "bOh" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
@@ -4038,11 +4038,11 @@
 /area/mainship/command/self_destruct/rebel)
 "dNQ" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
@@ -7430,7 +7430,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "gLP" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "gMl" = (
@@ -10100,11 +10100,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jod" = (
@@ -15694,11 +15689,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "ojp" = (
@@ -16966,7 +16956,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "pfY" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "pgk" = (

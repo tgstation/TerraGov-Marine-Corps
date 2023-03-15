@@ -21,19 +21,8 @@ to destroy them and players will be able to make replacements.
 		/obj/item/stock_parts/micro_laser = 1,
 	)
 
-/obj/item/circuitboard/machine/autolathe
-	name = "Circuit board (Autolathe)"
-	build_path = /obj/machinery/autolathe
-	frame_desc = "Requires 3 Matter Bins, 1 Micro Manipulator, and 1 Console Screen."
-	req_components = list(
-		/obj/item/stock_parts/matter_bin = 3,
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stock_parts/console_screen = 1,
-	)
-
 /obj/item/circuitboard/machine/protolathe
 	name = "Circuit board (Protolathe)"
-	build_path = /obj/machinery/r_n_d/protolathe
 	frame_desc = "Requires 2 Matter Bins, 2 Micro Manipulators, and 2 Beakers."
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
@@ -75,7 +64,6 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/rdserver
 	name = "Circuit Board (R&D Server)"
-	build_path = /obj/machinery/r_n_d/server
 	frame_desc = "Requires 2 pieces of cable, and 1 Scanning Module."
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,

@@ -32,6 +32,7 @@
 		for(var/mob/living/carbon/human/marine in T.GetAllContents())
 			if(marine.stat == DEAD)
 				continue
+			ADD_TRAIT(T, TRAIT_HAS_ESCAPED, TRAIT_HAS_ESCAPED)
 			SSevacuation.human_escaped++
 
 /obj/docking_port/mobile/escape_pod/proc/launch(manual = FALSE)

@@ -10,7 +10,6 @@
 	var/damtype = BRUTE
 	///The amount of armor penetration the object has when attacking something
 	var/penetration = 0
-	var/list/materials
 
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor
@@ -213,10 +212,10 @@
 		balloon_alert(user, "already repaired")
 		return TRUE
 
-	if(user.skills.getRating("engineer") < skill_required)
+	if(user.skills.getRating(SKILL_ENGINEER) < skill_required)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating("engineer")), TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 	repair_time *= welder.toolspeed

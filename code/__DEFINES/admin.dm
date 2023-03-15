@@ -75,6 +75,7 @@
 #define AHELP_RESOLVED 3
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME 10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDEND_EORG_DELAY 10 SECONDS //Amount of time (in deciseconds) after the rounds ends that the end round report is given to the players.
 
 #define SPAM_TRIGGER_TIME_PERIOD 10 SECONDS //The time period for checking spammy messages
 #define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200

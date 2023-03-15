@@ -2499,7 +2499,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "bnK" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "bow" = (

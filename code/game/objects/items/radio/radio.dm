@@ -51,8 +51,6 @@
 	/// If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
 	var/independent = FALSE
 
-	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
-
 	/// associative list of the encrypted radio channels this radio is currently set to listen/broadcast to, of the form: list(channel name = TRUE or FALSE)
 	var/list/channels = list()
 	/// associative list of the encrypted radio channels this radio can listen/broadcast to, of the form: list(channel name = channel frequency)

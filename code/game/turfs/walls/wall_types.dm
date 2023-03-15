@@ -21,13 +21,20 @@
 	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
 	resistance_flags = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
 
 /turf/closed/wall/mainship/outer/canterbury
 	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
-	canSmoothWith = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
 
 /turf/closed/wall/mainship/white
 	icon = 'icons/turf/walls/wwall.dmi'
@@ -47,11 +54,21 @@
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
+
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	icon_state = "wwall-0"
+	icon_state = "wall-invincible"
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
@@ -171,9 +188,11 @@
 	desc = "A reinforced outer hull, probably to prevent breaches"
 	walltype = "sulaco"
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/sulaco/unmeltable
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
 	return

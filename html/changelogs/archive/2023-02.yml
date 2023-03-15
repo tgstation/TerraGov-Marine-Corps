@@ -323,3 +323,40 @@
   Zar000:
   - bugfix: fixed create spiderling keybind
   - qol: spiderlings will also rest when widow does
+2023-02-25:
+  Lumipharon:
+  - bugfix: Fixed ravager fire interaction and added a one second cooldown
+  - bugfix: fixed ERT radios
+  - bugfix: fixed an issue with spamming quick equip for storage with an access delay
+  - bugfix: Combat robot maintenance mode is audible from the correct range again.
+  - bugfix: fixed some evolution bugs
+  novaepee:
+  - soundadd: New combat robot self maint sounds
+  - rscdel: remove the capability to have Build-a-Sentry magnum
+2023-02-26:
+  Pariah919:
+  - rscadd: Added new style line of headgear, sprites by Fitz, other than the classic
+      beret which is by ocelot.
+  SuperSlayer0:
+  - qol: Time Shift description now says that it wouldn't save the target from death
+      or from being in crit
+  Xander3359:
+  - bugfix: You no longer spend 2 uses of jetpack when you spam the activation.
+  - bugfix: You can no longer use jetpack if it isnt toggled on.
+2023-02-27:
+  Lumipharon:
+  - bugfix: Fixed SOM nades not fitting in grenade launchers
+2023-02-28:
+  Lumipharon:
+  - bugfix: fixed a deployable exploit
+  TiviPlus:
+  - qol: medical kits & splints use balloon alerts
+  - balance: kits use 1 pack per limb but have 4 times as many uses
+  - bugfix: fixed some exploits allowing instant healing with kits
+  - bugfix: fixed splints not being able to be reapplied if they get damaged or you
+      have better medical skill than when you applied them
+  - bugfix: fixed kits healing before the progress bar healed instead of after
+  - bugfix: fixed kits healing destroyed limbs
+  - bugfix: fixed kits generating double radial menus in some cases
+  Xander3359:
+  - rscadd: Loadout vendor in minerva medbay

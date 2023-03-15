@@ -59,6 +59,9 @@
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list()
 
+	///The signal for this module if it can toggled
+	var/toggle_signal
+
 /obj/item/armor_module/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
@@ -77,6 +80,7 @@
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
+	base_icon = icon_state
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
 			if(istype(parent, selection))
@@ -108,6 +112,8 @@
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
+	if(toggle_signal)
+		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
@@ -129,7 +135,6 @@
 	SIGNAL_HANDLER
 	examine_list += "Right click [parent] with paint to color [src]"
 
-
 /**
  *  These are the basic type for modules with set variant icons.
  *  These include Leg plates, Chest plates and Shoulder Plates.
@@ -147,11 +152,20 @@
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_DESERT_VARIANT
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	///List of icon_state suffixes for armor varients.
-	var/list/icon_state_variants = list()
+	var/list/icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+		"alpha",
+		"bravo",
+		"charlie",
+		"delta",
+	)
 	///Current varient selected.
-	var/current_variant
+	var/current_variant = "black"
 
 /obj/item/armor_module/armor/update_icon()
 	. = ..()

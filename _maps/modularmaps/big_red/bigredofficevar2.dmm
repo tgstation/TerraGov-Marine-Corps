@@ -1188,7 +1188,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "JK" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "JT" = (

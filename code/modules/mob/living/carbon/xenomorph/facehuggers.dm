@@ -24,6 +24,7 @@
 	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
 	throw_range = 1
+	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
 
 	///Whether the hugger is dead, active or inactive

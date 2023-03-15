@@ -544,7 +544,7 @@
 /turf/open/space/basic,
 /area/space)
 "aHO" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -15796,10 +15796,6 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/circuitboard/machine/autolathe{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/circuitboard/computer/secure_data{
 	pixel_x = -3;
 	pixel_y = -3
@@ -18846,7 +18842,6 @@
 /turf/closed/wall,
 /area/centcom/valhalla/central)
 "yec" = (
-/obj/machinery/autolathe,
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
@@ -19033,7 +19028,6 @@
 	pixel_y = 1
 	},
 /obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/hand_tele,
 /obj/effect/turf_decal/tile/black,
 /obj/effect/turf_decal/tile/black{
 	dir = 4

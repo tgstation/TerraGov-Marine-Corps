@@ -189,6 +189,8 @@
 	debuff.stacks -= round(debuff.stacks * 0.7)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.sentinel_drain_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_drain_stings")
 
 /datum/action/xeno_action/activable/drain_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
