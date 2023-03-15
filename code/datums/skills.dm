@@ -391,7 +391,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/mech_pilot
 	name = MECH_PILOT
-	engineer = SKILL_ENGINEER_ENGI
+	engineer = SKILL_ENGINEER_METAL
+	construction = SKILL_CONSTRUCTION_METAL
 	powerloader = SKILL_POWERLOADER_PRO
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
@@ -626,7 +627,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/imperial/astartes
-	name = "Space Marine" 
+	name = "Space Marine"
 	cqc = SKILL_CQC_MASTER
 	melee_weapons = SKILL_MELEE_SUPER
 

@@ -855,7 +855,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "LE" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "LH" = (

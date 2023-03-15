@@ -26,6 +26,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("office chair",/obj/structure/bed/chair/office/dark, 2, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, 2), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, 1), \
+	new/datum/stack_recipe("table parts", /obj/item/frame/table, 1), \
+	new/datum/stack_recipe("reinforced table parts", /obj/item/frame/table/reinforced, 2), \
+	new/datum/stack_recipe("rack parts", /obj/item/frame/rack, 1), \
 	new/datum/stack_recipe_list("airlock assemblies", list( \
 		new/datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
 		new/datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
@@ -60,7 +63,6 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	materials = list(/datum/material/metal = 4000)
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
@@ -115,7 +117,6 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	materials = list(/datum/material/metal = 7500)
 	throwforce = 15.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel

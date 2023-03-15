@@ -95,6 +95,5 @@
 	icon_full  = "ashtray_full_gl"
 	max_butts = 12
 	max_integrity = 12
-	materials = list(/datum/material/glass = 60)
 	empty_desc = "Glass ashtray. Looks fragile."
 	throwforce = 6

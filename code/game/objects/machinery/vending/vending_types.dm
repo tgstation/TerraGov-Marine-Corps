@@ -202,11 +202,14 @@
 			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
 		"Misc" = list(
-			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/reagent_containers/glass/beaker = -1,
+			/obj/item/reagent_containers/glass/beaker/large = -1,
+			/obj/item/reagent_containers/glass/beaker/vial = -1,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
 		),
@@ -278,11 +281,14 @@
 			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
-			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/reagent_containers/glass/beaker = -1,
+			/obj/item/reagent_containers/glass/beaker/large = -1,
+			/obj/item/reagent_containers/glass/beaker/vial = -1,
 			/obj/item/clothing/glasses/hud/health = -1,
 			/obj/item/roller = -1,
 		),
@@ -513,6 +519,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,
 		/obj/item/tool/kitchen/knife/butcher = 2,
+		/obj/item/tool/kitchen/knife = -1,
 	)
 
 /obj/machinery/vending/sovietsoda
@@ -540,6 +547,19 @@
 		/obj/item/circuitboard/airlock = -1,
 		/obj/item/cell/high = 10,
 		/obj/item/clothing/head/hardhat = 4,
+		/obj/item/clothing/head/welding = 4,
+		/obj/item/clothing/glasses/welding = 4,
+		/obj/item/taperecorder = -1,
+		/obj/item/assembly/igniter = -1,
+		/obj/item/assembly/signaler = -1,
+		/obj/item/assembly/infra = -1,
+		/obj/item/assembly/timer = -1,
+		/obj/item/assembly/prox_sensor = -1,
+		/obj/item/light_bulb/tube = -1,
+		/obj/item/light_bulb/bulb = -1,
+		/obj/item/ashtray/glass = -1,
+		/obj/item/frame/camera = -1,
+		/obj/item/reagent_containers/glass/bucket = -1,
 	)
 
 /obj/machinery/vending/engivend/nopower

@@ -204,18 +204,13 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/standard_auto_cannon)
 	cost = 700
 
-/datum/supply_packs/weapons/ac_ammo
+/datum/supply_packs/weapons/ac_hv
 	name = "Mounted Autocannon HV ammo"
 	contains = list(/obj/item/ammo_magazine/auto_cannon)
 	cost = 40
 
-/datum/supply_packs/weapons/ac_ammo/flak
+/datum/supply_packs/weapons/ac_flak
 	name = "Mounted Autocannon Smart-Detonating ammo"
-	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
-	cost = 40
-
-/datum/supply_packs/weapons/ac_ammo
-	name = "Mounted Autocannon SD ammo"
 	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
 	cost = 40
 
@@ -1467,8 +1462,13 @@ Imports
 
 /datum/supply_packs/imports/mpi_km/ammo
 	name = "MPi-KM Assault Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
+	contains = list(/obj/item/ammo_magazine/rifle/mpi_km/plum)
 	cost = 10
+
+/datum/supply_packs/imports/mpi_km/ammo_packet
+	name = "7.62x39mm Ammo Box"
+	contains = list(/obj/item/ammo_magazine/packet/pwarsaw)
+	cost = 30
 
 /datum/supply_packs/imports/mkh
 	name = "MKH-98 Storm Rifle"
@@ -1514,6 +1514,11 @@ Imports
 	name = "FN M16 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 10
+
+/datum/supply_packs/imports/m16/ammo_packet
+	name = "556x45mm Ammo Box"
+	contains = list(/obj/item/ammo_magazine/packet/pnato)
+	cost = 30
 
 /datum/supply_packs/imports/famas //bread joke here
 	name = "FAMAS Assault Rifle"

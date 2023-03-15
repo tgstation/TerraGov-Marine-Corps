@@ -1922,7 +1922,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "crh" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "csh" = (
@@ -10464,6 +10464,11 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"nyb" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -13453,7 +13458,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
 "rqW" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "rqX" = (
@@ -13618,6 +13623,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"rCl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "rCA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -50776,9 +50787,9 @@ vOw
 qwg
 dny
 dny
-qwg
-dny
-dny
+rCl
+nyb
+nyb
 lvw
 dcY
 wPV
@@ -51802,7 +51813,7 @@ vsI
 iHY
 uBM
 kfm
-kfm
+ltw
 kfm
 ltw
 soK
