@@ -286,7 +286,7 @@
 
 /datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
 	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-		L.blood_volume += 0.8
+		L.blood_volume += 1.2
 	return ..()
 
 /datum/reagent/medicine/saline_glucose/overdose_process(mob/living/L, metabolism)
