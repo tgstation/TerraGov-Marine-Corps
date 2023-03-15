@@ -499,3 +499,54 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/magnetic_harness,
 	)
+
+//-------------------------------------------------------
+// PL-38, ICC Machinepistol
+
+/obj/item/weapon/gun/smg/icc_mp
+	name = "\improper PL-38 machinepistol"
+	desc = "The PL-38 is a machinepistol used by the ICCAF opinions on it vary, with some calling it a glorified pipe and others beliving it to be an excellent and high quality subgun, it has great performance at close quarters, with a sizeable capacity and decent stopping power. But suffers at range. It uses 10x20mm caseless rounds."
+	icon_state = "pl38"
+	item_state = "pl38"
+	caliber = CALIBER_10X20_CASELESS //codex
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	max_shells = 40 //codex
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/icc_mp
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_mp)
+
+	w_class = WEIGHT_CLASS_NORMAL
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/foldable/t19stock,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/motiondetector,
+	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/icc_mp)
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = -4, "stock_y" = 16)
+
+	burst_amount = 3
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.75
+	recoil_unwielded = 0
+	fire_delay = 0.15 SECONDS
+	damage_falloff_mult = 1.5
+
+	scatter = 0
+	scatter_unwielded = 4
+	aim_slowdown = 0.2
+
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3

@@ -2068,3 +2068,130 @@
 
 /obj/item/weapon/gun/rifle/som_mg/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+
+//-------------------------------------------------------
+//L-11 ICC Sharpshooter Rifle
+
+/obj/item/weapon/gun/rifle/icc_sr
+	name = "\improper L-11 sharpshooter rifle"
+	desc = "The L-11 is a venerable and battle-tested rifle used by the ICCAF, although rather heavy, long and unwieldy compared to most ICCAF rifles, which focus on getting up close and personal. It easily makes up with excellent long-range potential when compared to most of its peers, mostly seen in use by reserve troops who expect to fight at distance, rather than up close. Uses 10x27mm magazines."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "l11"
+	item_state = "l11"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	fire_sound = 'sound/weapons/guns/fire/DMR.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/DMR_low.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = CALIBER_10x27_CASELESS //codex
+	aim_slowdown = 0.8
+	wield_delay = 0.85 SECONDS
+	force = 20
+	max_shells = 20 //codex
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_dmr
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_dmr)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
+
+	burst_amount = 1
+	fire_delay = 0.7 SECONDS
+	damage_mult = 1.1
+	accuracy_mult = 1.15
+	scatter = 0
+	movement_acc_penalty_mult = 5
+
+//-------------------------------------------------------
+// L-15 ICC Battlecarbine
+
+/obj/item/weapon/gun/rifle/icc_bc
+	name = "\improper L-15 Battlecarbine"
+	desc = "The L-15 battlecarbine is the standard rifle of the ICCAF, boasting a high caliber round and a menacing profile, it presents an excellent CQC firearm, however it struggles at range due to high dropoff from the short barrel, units that use it say that you need to close the gap at any cost to see the true efficacy of this weapon. Uses 10x25mm caseless ammunition."
+	icon_state = "l15"
+	item_state = "l15"
+	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X25_CASELESS //codex
+	max_shells = 30 //codex
+	force = 20
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_bc
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/icc_bc)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.25 SECONDS
+	aim_speed_modifier = 1.65
+
+	burst_amount = 1
+	fire_delay = 0.2 SECONDS
+	scatter = 3
+	aim_slowdown = 0.35
+	wield_delay = 0.35 SECONDS
+	damage_falloff_mult = 2.5
+	movement_acc_penalty_mult = 4
