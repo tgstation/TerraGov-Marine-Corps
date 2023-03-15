@@ -142,7 +142,7 @@
 	user.balloon_alert(user, "Cell inserted")
 
 /obj/item/weapon/powerfist/attack_hand(mob/living/user)
-	if(!user.get_inactive_held_item(src))
+	if(!(user.get_inactive_held_item() == src))
 		return ..()
 	if(!cell)
 		user.balloon_alert(user, "No cell")
