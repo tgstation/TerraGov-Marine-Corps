@@ -28,10 +28,7 @@
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/slippery, 0.5 SECONDS, 0.2 SECONDS)
 
 /obj/effect/particle_effect/foam/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -108,15 +105,10 @@
 	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
 		kill_foam()
 
-/obj/effect/particle_effect/foam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
-	SIGNAL_HANDLER
+/obj/effect/particle_effect/foam/can_slip()
+	. = ..()
 	if(foam_flags & METAL_FOAM|RAZOR_FOAM)
-		return
-	if (iscarbon(AM))
-		var/mob/living/carbon/C = AM
-		C.slip("foam", 5, 2)
-
-
+		return FALSE
 
 //datum effect system
 
