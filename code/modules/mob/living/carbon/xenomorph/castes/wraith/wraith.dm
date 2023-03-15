@@ -4,6 +4,7 @@
 	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Wraith Walking"
+	bubble_icon = "alienleft"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 150

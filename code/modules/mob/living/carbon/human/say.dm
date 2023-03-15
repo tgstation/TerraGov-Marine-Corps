@@ -1,10 +1,10 @@
 /mob/living/carbon/human/say_mod(input, message_mode, datum/language/language)
-	if(slurring)
+	if(has_status_effect(/datum/status_effect/speech/slurring/drunk))
 		return "slurs"
 	if(HAS_TRAIT(src, TRAIT_DROOLING))
 		return "drools"
 	else
-		. = ..()
+		return ..()
 
 
 /mob/living/carbon/human/GetVoice()

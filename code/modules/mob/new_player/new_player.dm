@@ -144,7 +144,7 @@
 			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				if((xeno_job.total_positions-xeno_job.current_positions) > GLOB.alive_xeno_list.len * TOO_MUCH_BURROWED_PROPORTION)
-					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
+					if(tgui_alert(src, "There is a lack of xeno players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
 						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
@@ -287,12 +287,6 @@
 		. = ..()
 	return client.prefs.gender
 
-
-
-/mob/new_player/Hear()
-	return
-
-
 /mob/new_player/proc/create_character()
 	if(!assigned_role)
 		CRASH("create_character called for [key] without an assigned_role")
@@ -314,15 +308,15 @@
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client)
 		summoner.client.prefs.copy_to(src)
 	update_names_joined_list(real_name)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/silicon/ai/on_spawn(mob/new_player/summoner)
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client?.prefs?.ai_name)
 		fully_replace_character_name(real_name, summoner.client.prefs.ai_name)
 	update_names_joined_list(real_name)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 
 /mob/new_player/proc/transfer_character()

@@ -175,6 +175,8 @@
 
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 110
+/// Bubble for typing indicators
+#define TYPING_LAYER 500
 
 #define O_LIGHTING_VISUAL_PLANE 120
 #define O_LIGHTING_VISUAL_LAYER 16
@@ -223,6 +225,8 @@
 #define HUD_LAYER 24
 #define ABOVE_HUD_PLANE 2000
 #define ABOVE_HUD_LAYER 25
+#define INTRO_PLANE 2001
+#define INTRO_LAYER 26
 
 #define ADMIN_POPUP_LAYER 1
 

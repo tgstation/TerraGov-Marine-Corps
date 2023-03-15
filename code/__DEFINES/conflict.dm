@@ -60,6 +60,7 @@
 #define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 #define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
+#define AMMO_SOUND_PITCH (1<<22) //If the projectile ricochet and miss sound is pitched up
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -77,7 +78,8 @@
 #define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<11)
 #define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<12)
 #define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
-#define GUN_SHOWS_AMMO_REMAINING (1<<14)
+#define GUN_SHOWS_AMMO_REMAINING (1<<14) //Whether the mob sprite reflects the ammo level
+#define GUN_SHOWS_LOADED (1<<15) //Whether the mob sprite as loaded or unloaded, a binary version of the above
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
@@ -106,6 +108,10 @@
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
+//autofire component fire callback callback return flags
+#define AUTOFIRE_CONTINUE (1<<0)
+#define AUTOFIRE_SUCCESS (1<<1)
+
 //Ammo magazine defines, for flags_magazine
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)
@@ -116,10 +122,10 @@
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
 #define SLOWDOWN_ARMOR_VERY_LIGHT 0.20
-#define SLOWDOWN_ARMOR_LIGHT 0.35
-#define SLOWDOWN_ARMOR_MEDIUM 0.55
-#define SLOWDOWN_ARMOR_HEAVY 1
-#define SLOWDOWN_ARMOR_VERY_HEAVY 1.15
+#define SLOWDOWN_ARMOR_LIGHT 0.3
+#define SLOWDOWN_ARMOR_MEDIUM 0.5
+#define SLOWDOWN_ARMOR_HEAVY 0.7
+#define SLOWDOWN_ARMOR_VERY_HEAVY 1
 
 
 //=================================================
@@ -164,6 +170,7 @@
 #define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
 #define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
 #define SMOKE_SATRAPINE (1<<20) //nerve agent that purges painkillers and causes increasing pain
+#define SMOKE_XENO_TOXIC (1<<21) //deals damage to anyone inside it and inflicts the intoxicated debuff, dealing damage over time
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

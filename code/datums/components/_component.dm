@@ -309,7 +309,7 @@
 		var/datum/listening_datum = target
 		return NONE | CallAsync(listening_datum, listening_datum.signal_procs[src][sigtype], arguments)
 	. = NONE
-	for(var/datum/listening_datum as anything in target)
+	for(var/datum/listening_datum AS in target)
 		. |= CallAsync(listening_datum, listening_datum.signal_procs[src][sigtype], arguments)
 
 // The type arg is casted so initial works, you shouldn't be passing a real instance into this

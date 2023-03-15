@@ -40,6 +40,13 @@
 			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
 		if(prob(10 * S.strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
 			to_chat(src, span_danger("You feel your body going numb and lifeless!"))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TOXIC))
+		if(!HAS_TRAIT(src, TRAIT_INTOXICATION_IMMUNE))
+			if(has_status_effect(STATUS_EFFECT_INTOXICATED))
+				var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+				debuff.add_stacks(SENTINEL_TOXIC_GRENADE_STACKS_PER)
+			apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_GRENADE_STACKS_PER)
+			adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_HEMODILE))
 		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TRANSVITOX))
@@ -77,3 +84,7 @@
 		reagents.add_reagent(/datum/reagent/toxin/satrapine, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
 		if(prob(10 * S.strength * protection))
 			to_chat(src, span_danger("Your whole body feels like it's burning!"))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_OZELOMELYN) && (internal || has_smoke_protection())) //either inhaled or this.
+		reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
+		if(prob(10 * S.strength * protection))
+			to_chat(src, span_danger("Your veins and skin itch where the gas touches them!"))

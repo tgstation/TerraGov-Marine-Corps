@@ -461,7 +461,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "pipeoff"
 	icon_on = "pipeon"  //Note - these are in masks.dmi
 	icon_off = "pipeoff"
-	smoketime = 100
+	smoketime = 400
 
 /obj/item/clothing/mask/cigarette/pipe/process()
 	var/turf/location = get_turf(src)
@@ -500,9 +500,22 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cobpipeoff"
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
-	smoketime = 400
 
+/obj/item/clothing/mask/cigarette/pipe/cobpipe/curved
+	name = "curved corn cob pipe"
+	desc = "Usually seen smoked by generals, or mindless bloodlusted commandos... but with style!"
+	icon_state = "curvedcoboff"
+	item_state = "curvedcoboff"
+	icon_on = "curvedcobon"  //Note - these are in masks.dmi
+	icon_off = "curvedcoboff"
 
+/obj/item/clothing/mask/cigarette/pipe/bonepipe
+	name = "Europan bone pipe"
+	desc = "A smoking pipe made out of the bones of the Europan bone whale."
+	icon_state = "bonepipeoff"
+	item_state = "bonepipeoff"
+	icon_on = "bonepipeon"  //Note - these are in masks.dmi
+	icon_off = "bonepipeoff"
 
 /////////
 //ZIPPO//

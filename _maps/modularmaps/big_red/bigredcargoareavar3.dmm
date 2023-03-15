@@ -14,7 +14,7 @@
 /area/bigredv2/outside/nw)
 "av" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -93,7 +93,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "gc" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
@@ -122,7 +122,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "hH" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -147,7 +147,6 @@
 "jR" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -196,7 +195,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "mO" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "nd" = (
@@ -204,7 +203,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "nq" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pJ" = (
@@ -225,7 +224,7 @@
 /area/bigredv2/caves/northwest)
 "qh" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/nw)
 "qv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -292,7 +291,7 @@
 /area/bigredv2/caves/west)
 "vu" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
@@ -300,7 +299,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "xt" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
@@ -352,7 +351,7 @@
 /area/bigredv2/outside/nw)
 "Av" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "AE" = (
@@ -377,7 +376,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Dx" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
@@ -390,7 +389,6 @@
 "Ef" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -399,7 +397,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Eq" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/nw)
@@ -410,7 +408,7 @@
 	},
 /area/bigredv2/outside/nw)
 "EO" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
@@ -464,7 +462,7 @@
 /area/bigredv2/outside/nw)
 "IX" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
@@ -482,7 +480,6 @@
 "JZ" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -511,7 +508,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Mv" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/nw)
 "MD" = (
 /obj/effect/landmark/weed_node,
@@ -528,7 +525,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Of" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "Os" = (
@@ -541,7 +538,7 @@
 /area/bigredv2/outside/nw)
 "Ph" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
@@ -559,7 +556,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "RD" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/virology)
@@ -632,12 +629,12 @@
 	},
 /area/bigredv2/outside/nw)
 "XJ" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
 "XW" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)

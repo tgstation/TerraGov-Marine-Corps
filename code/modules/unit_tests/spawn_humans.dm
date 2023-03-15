@@ -6,7 +6,7 @@
 		var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
 		humans += H
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	for(var/i in humans)
 		if(!length(outfits_to_test))
@@ -15,4 +15,4 @@
 		H.equipOutfit(outfits_to_test[outfits_to_test.len])
 		outfits_to_test.len--
 
-	sleep(20)
+	sleep(2 SECONDS)

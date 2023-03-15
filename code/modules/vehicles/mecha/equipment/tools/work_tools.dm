@@ -100,7 +100,7 @@
 			log_combat(source, M, "removed both arms and legs with a real clamp,", "[name]", "(INTENT: [source.a_intent]) (DAMTYPE: [uppertext(damtype)])")
 			return ..()
 
-		M.take_overall_damage(clamp_damage)
+		M.take_overall_damage(clamp_damage, BRUTE, MELEE, updating_health = TRUE)
 		if(!M) //get gibbed stoopid
 			return
 		M.adjustOxyLoss(round(clamp_damage/2))

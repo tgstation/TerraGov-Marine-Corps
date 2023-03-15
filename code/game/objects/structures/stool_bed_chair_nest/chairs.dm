@@ -10,6 +10,16 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+//directional variants mostly used for random spawners
+/obj/structure/bed/chair/east
+	dir = EAST
+
+/obj/structure/bed/chair/west
+	dir = WEST
+
+/obj/structure/bed/chair/north
+	dir = NORTH
+
 /obj/structure/bed/chair/alt
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "chair_alt"
@@ -81,10 +91,10 @@
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to weld down \the [src]."),
 			span_notice("You fumble around figuring out how to weld down \the [src]."))
-			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer"))
+			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
@@ -148,8 +158,7 @@
 	name = "comfy sofa"
 	desc = "It looks comfy."
 	icon_state = "sofamiddle"
-
-
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 
@@ -194,6 +203,25 @@
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
 
+//directional chairs for random spawners
+/obj/structure/bed/chair/office/light/north
+	dir = 1
+
+/obj/structure/bed/chair/office/light/east
+	dir = 4
+
+/obj/structure/bed/chair/office/light/west
+	dir = 8
+
+/obj/structure/bed/chair/office/dark/north
+	dir = 1
+
+/obj/structure/bed/chair/office/dark/east
+	dir = 4
+
+/obj/structure/bed/chair/office/dark/west
+	dir = 8
+
 /obj/structure/bed/chair/office/Bump(atom/A)
 	. = ..()
 	if(!LAZYLEN(buckled_mobs))
@@ -210,7 +238,7 @@
 	occupant.apply_effect(6, STUN, blocked)
 	occupant.apply_effect(6, WEAKEN, blocked)
 	occupant.apply_effect(6, STUTTER, blocked)
-	occupant.apply_damage(10, BRUTE, def_zone, blocked)
+	occupant.apply_damage(10, BRUTE, def_zone, MELEE)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 	if(isliving(A))
@@ -220,7 +248,7 @@
 		victim.apply_effect(6, STUN, blocked)
 		victim.apply_effect(6, WEAKEN, blocked)
 		victim.apply_effect(6, STUTTER, blocked)
-		victim.apply_damage(10, BRUTE, def_zone, blocked)
+		victim.apply_damage(10, BRUTE, def_zone, MELEE)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
@@ -289,7 +317,7 @@
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
 			chair_state = DROPSHIP_CHAIR_FOLDED
-		sleep(5) // animation length
+		sleep(0.5 SECONDS) // animation length
 		icon_state = "shuttle_chair_new_folded"
 
 /obj/structure/bed/chair/dropship/passenger/proc/unfold_up()
@@ -299,7 +327,7 @@
 	flick("shuttle_chair_new_unfolding", src)
 	is_animating = 0
 	chair_state = DROPSHIP_CHAIR_UNFOLDED
-	sleep(5)
+	sleep(0.5 SECONDS)
 	icon_state = "shuttle_chair"
 
 /obj/structure/bed/chair/dropship/passenger/rotate()

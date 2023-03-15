@@ -4,6 +4,7 @@
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
+	bubble_icon = "alienleft"
 	health = 300
 	maxHealth = 300
 	plasma_stored = 200
@@ -21,7 +22,7 @@
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "Crusher Charging"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 

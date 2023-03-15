@@ -144,7 +144,7 @@
 		if(M.id == id)
 			INVOKE_ASYNC(M, /obj/machinery/flasher.proc/flash)
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	icon_state = "launcherbtt"
 	active = 0

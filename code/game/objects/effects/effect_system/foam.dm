@@ -12,7 +12,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_MOB_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	animate_movement = NO_STEPS
 	///How much the foam expands.
 	var/spread_amount = 3
@@ -167,7 +167,7 @@
 	density = TRUE
 	opacity = FALSE 	// changed in New()
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE

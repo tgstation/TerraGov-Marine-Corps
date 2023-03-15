@@ -35,8 +35,8 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x(src)
-	new /obj/item/clothing/under/marine/standard(src)
+	new /obj/item/clothing/head/modular/m10x(src)
+	new /obj/item/clothing/under/marine(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
 	name = "alpha equipment locker"
@@ -88,8 +88,8 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/leader(src)
 	new /obj/item/storage/belt/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x/leader(src)
-	new /obj/item/clothing/under/marine/standard(src)
+	new /obj/item/clothing/head/modular/m10x/leader(src)
+	new /obj/item/clothing/under/marine(src)
 
 /obj/structure/closet/secure_closet/marine/leader/alpha
 	name = "alpha leader equipment locker"
@@ -147,7 +147,7 @@
 	new /obj/item/clothing/glasses/welding(src)
 	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x(src)
+	new /obj/item/clothing/head/modular/m10x(src)
 	new /obj/item/clothing/under/marine/engineer(src)
 
 /obj/structure/closet/secure_closet/marine/engi/alpha
@@ -203,7 +203,7 @@
 	new /obj/item/roller/medevac(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x(src)
+	new /obj/item/clothing/head/modular/m10x(src)
 	new /obj/item/clothing/under/marine/corpsman(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha

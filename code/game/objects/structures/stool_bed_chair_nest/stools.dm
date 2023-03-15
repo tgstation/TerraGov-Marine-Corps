@@ -46,7 +46,7 @@
 		var/mob/living/T = M
 		if(istype(T) && !isxeno(T))
 			T.Paralyze(20 SECONDS)
-		T.apply_damage(20)
+		T.apply_damage(20, blocked = MELEE)
 		UPDATEHEALTH(T)
 		qdel(src)
 		return

@@ -188,13 +188,13 @@
 	},
 /area/bigredv2/outside/s)
 "oc" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
 "ou" = (
 /obj/effect/landmark/corpsespawner/marine,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
@@ -253,7 +253,7 @@
 	},
 /area/bigredv2/outside/se)
 "qK" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/se)
 "rd" = (
@@ -278,12 +278,12 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
 "sG" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -383,7 +383,7 @@
 /area/bigredv2/outside/se)
 "zz" = (
 /turf/open/ground/river,
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/rock)
 "zI" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -451,7 +451,7 @@
 /area/bigredv2/outside/se)
 "Eu" = (
 /obj/effect/landmark/corpsespawner/marine,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -547,7 +547,7 @@
 	},
 /area/bigredv2/outside/se)
 "Ma" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
@@ -626,7 +626,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "Sv" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -639,7 +639,7 @@
 /area/bigredv2/caves/east)
 "Tv" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -670,7 +670,9 @@
 /obj/machinery/door/poddoor/two_tile_hor{
 	name = "\improper Eta Lab Lockdown"
 	},
-/turf/open/floor/plating/ground/mars/random/sand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
+	dir = 1
+	},
 /area/bigredv2/outside/s)
 "Wc" = (
 /obj/effect/ai_node,
@@ -697,7 +699,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Zk" = (
-/obj/structure/window/framed/colony/reinforced/hull,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/s)
 "Zu" = (
@@ -861,7 +863,7 @@ OK
 kz
 ec
 sG
-ms
+sG
 qo
 nC
 rV
@@ -1049,7 +1051,7 @@ OK
 OK
 Ey
 ms
-qo
+sG
 BV
 jM
 rV
@@ -1076,7 +1078,7 @@ uz
 OK
 Ey
 ec
-qo
+sG
 BV
 jM
 eE

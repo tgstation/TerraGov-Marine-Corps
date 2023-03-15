@@ -158,7 +158,7 @@
 	if(world.time < mob_parent.next_move)
 		return
 	if(!attacked)
-		attacked = atom_to_walk_to
+		attacked = get_atom_on_turf(atom_to_walk_to)
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)

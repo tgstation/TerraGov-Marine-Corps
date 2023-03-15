@@ -22,8 +22,9 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
-	move_resist = MOVE_FORCE_EXTREMELY_STRONG
-	resistance_flags = UNACIDABLE
+	move_resist = MOVE_FORCE_OVERPOWERING
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
+	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -44,7 +45,7 @@
 	///How much energy we drain each time we mechpunch someone
 	var/melee_energy_drain = 15
 	///The minimum amount of energy charge consumed by leg overload
-	var/overload_step_energy_drain_min = 100
+	var/overload_step_energy_drain_min = 50
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.5, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_ARMOUR = 1.5)
 	///if we cant use our equipment(such as due to EMP)
@@ -135,9 +136,6 @@
 	///Sound played when the mech walks
 	var/turnsound = 'sound/mecha/mechturn.ogg'
 
-	///base icon state do do stuff off of
-	var/base_icon_state
-
 	///Cooldown duration between melee punches
 	var/melee_cooldown = 10
 
@@ -166,7 +164,9 @@
 	///Bool for leg overload on/off
 	var/leg_overload_mode = FALSE
 	///Energy use modifier for leg overload
-	var/leg_overload_coeff = 100
+	var/leg_overload_coeff = 5
+	///stores value that we will add and remove from the mecha when toggling leg overload
+	var/speed_mod = 0
 
 	//Bool for zoom on/off
 	var/zoom_mode = FALSE
@@ -194,7 +194,7 @@
 	/// Ui size, so you can make the UI bigger if you let it load a lot of stuff
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
-	var/obj/screen/mech_view/ui_view
+	var/atom/movable/screen/mech_view/ui_view
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
@@ -215,7 +215,7 @@
 	radio = new(src)
 	radio.name = "[src] radio"
 
-
+	GLOB.nightfall_toggleable_lights += src
 	add_cell()
 	add_scanmod()
 	add_capacitor()
@@ -247,6 +247,8 @@
 	for(var/ejectee in occupants)
 		mob_exit(ejectee, TRUE, TRUE)
 
+	GLOB.nightfall_toggleable_lights -= src
+
 	if(LAZYLEN(flat_equipment))
 		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
 			equip.detach(loc)
@@ -273,7 +275,7 @@
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(isAI(occupant))
 			unlucky_ais = occupant
 			occupant.gib() //No wreck, no AI to recover
@@ -396,7 +398,7 @@
 			. += "It's falling apart."
 	if(LAZYLEN(flat_equipment))
 		. += "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/ME AS in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
@@ -429,22 +431,22 @@
 				if(0.75 to INFINITY)
 					occupant.clear_alert(ALERT_CHARGE)
 				if(0.5 to 0.75)
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/lowcell, 1)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/lowcell, 1)
 				if(0.25 to 0.5)
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/lowcell, 2)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/lowcell, 2)
 				if(0.01 to 0.25)
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/lowcell, 3)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/lowcell, 3)
 				else
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/emptycell)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/emptycell)
 
 		var/integrity = obj_integrity/max_integrity*100
 		switch(integrity)
 			if(30 to 45)
-				occupant.throw_alert(ALERT_MECH_DAMAGE, /obj/screen/alert/low_mech_integrity, 1)
+				occupant.throw_alert(ALERT_MECH_DAMAGE, /atom/movable/screen/alert/low_mech_integrity, 1)
 			if(15 to 35)
-				occupant.throw_alert(ALERT_MECH_DAMAGE, /obj/screen/alert/low_mech_integrity, 2)
+				occupant.throw_alert(ALERT_MECH_DAMAGE, /atom/movable/screen/alert/low_mech_integrity, 2)
 			if(-INFINITY to 15)
-				occupant.throw_alert(ALERT_MECH_DAMAGE, /obj/screen/alert/low_mech_integrity, 3)
+				occupant.throw_alert(ALERT_MECH_DAMAGE, /atom/movable/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert(ALERT_MECH_DAMAGE)
 		var/atom/checking = occupant.loc
@@ -469,9 +471,15 @@
 	hud_set_mecha_battery()
 
 ///Called when a driver clicks somewhere. Handles everything like equipment, punches, etc.
-/obj/vehicle/sealed/mecha/proc/on_mouseclick(mob/user, atom/target, list/modifiers)
+/obj/vehicle/sealed/mecha/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
 	SIGNAL_HANDLER
-	modifiers = params2list(modifiers) //tgmc added
+	//tgmc add start
+	modifiers = params2list(modifiers)
+	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
+		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+	//tgmc add end
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
 		set_safety(user)
 		return COMSIG_MOB_CLICK_CANCELED
@@ -507,7 +515,7 @@
 		balloon_alert(user, "wrong seat for equipment!")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected
-	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+	if(modifiers[BUTTON] == RIGHT_CLICK)
 		selected = equip_by_category[MECHA_R_ARM]
 	else
 		selected = equip_by_category[MECHA_L_ARM]

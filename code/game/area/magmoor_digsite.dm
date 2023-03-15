@@ -21,8 +21,7 @@
 // Volcano
 /area/magmoor/volcano
 	name = "Magmoor Central Fissure"
-	ceiling = CEILING_NONE
-	outside = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 	flags_area = NO_DROPPOD
 
 //Caves
@@ -121,7 +120,7 @@
 /area/magmoor/medical
 	name = "Medical Clinic"
 	icon_state = "lava_med"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/magmoor/medical/chemistry
@@ -166,7 +165,7 @@
 /area/magmoor/engi
 	name = "Engineering"
 	icon_state = "lava_engie"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ceiling = CEILING_METAL
 	ambience = list('sound/ambience/ambisin1.ogg', 'sound/ambience/ambisin2.ogg', 'sound/ambience/ambisin3.ogg', 'sound/ambience/ambisin4.ogg')
 	minimap_color = MINIMAP_AREA_ENGI
 
@@ -174,8 +173,14 @@
 	name = "Atmospheric Processing"
 	icon_state = "lava_atmos"
 
-/area/magmoor/engi/power
+/area/magmoor/engi/thermal
 	name = "Thermal Reactors"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	icon_state = "lava_power"
+
+/area/magmoor/engi/power
+	name = "Power Management Centre"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	icon_state = "lava_power"
 
 /area/magmoor/engi/storage
@@ -252,6 +257,33 @@
 	icon_state = "lava_chapel"
 	ceiling = CEILING_GLASS
 	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
+
+/area/magmoor/civilian/mosque
+	name = "Mosque"
+	icon_state = "lava_chapel"
+	ceiling = CEILING_GLASS
+	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
+
+/area/magmoor/civilian/pool
+	name = "Bath House"
+	icon_state = "lava_civ"
+	ceiling = CEILING_GLASS
+
+/area/magmoor/civilian/basket
+	name = "Basketball Arena"
+	icon_state = "lava_civ"
+	ceiling = CEILING_GLASS
+
+/area/magmoor/civilian/gambling
+	name = "Games Lounge"
+	icon_state = "lava_civ"
+
+/area/magmoor/civilian/cryostasis
+	name = "Cryostasis"
+	icon_state = "lava_civ"
+
+/area/magmoor/civilian/rnr
+	name = "Rest and Recreation"
 
 /area/magmoor/civilian/arrival
 	name = "Southern Arrivals Hallway"

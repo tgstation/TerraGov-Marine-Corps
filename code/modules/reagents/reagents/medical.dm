@@ -23,14 +23,9 @@
 		return
 	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(-L.getBruteLoss() * 0.30)
-		L.adjustFireLoss(-L.getFireLoss() * 0.30)
+		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.30)
+		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.30)
 		L.jitter(5)
-		for(var/datum/internal_organ/I AS in H.internal_organs)
-			if(I.damage)
-				if(I.damage < 29)
-					return
-				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/on_mob_delete(mob/living/L, metabolism)
@@ -66,6 +61,14 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
+/datum/reagent/medicine/ryetalyn/on_mob_add(mob/living/L, metabolism)
+	ADD_TRAIT(L, TRAIT_INTOXICATION_RESISTANT, REAGENT_TRAIT(src))
+	return ..()
+
+/datum/reagent/medicine/ryetalyn/on_mob_delete(mob/living/L, metabolism)
+	REMOVE_TRAIT(L, TRAIT_INTOXICATION_RESISTANT, REAGENT_TRAIT(src))
+	return ..()
+
 /datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -86,7 +89,7 @@
 	color = "#cac5c5"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
-	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
+	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
@@ -98,12 +101,12 @@
 	L.adjustStaminaLoss(-effect_str)
 	return ..()
 
-/datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicine/paracetamol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
 	L.apply_damage(0.5*effect_str, TOX)
 
-/datum/reagent/paracetamol/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/paracetamol/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
 
 /datum/reagent/medicine/tramadol
@@ -145,7 +148,7 @@
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	L.reagent_pain_modifier += PAIN_REDUCTION_SUPER_HEAVY
 	L.apply_damage(0.2*effect_str, TOX)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -153,9 +156,10 @@
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 3)
+	L.adjustStaminaLoss(5*effect_str)
 	L.set_drugginess(10)
 	L.jitter(3)
+	L.AdjustConfused(6)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
@@ -399,7 +403,9 @@
 	L.SetParalyzed(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
-	L.stuttering = 0
+	// Remove all speech related status effects
+	for(var/effect in typesof(/datum/status_effect/speech))
+		L.remove_status_effect(effect)
 	L.SetConfused(0)
 	L.SetSleeping(0)
 	L.jitteriness = 0
@@ -468,21 +474,16 @@
 		return
 	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
-		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
+		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
 		L.jitter(10)
-		for(var/datum/internal_organ/I AS in H.internal_organs)
-			if(I.damage)
-				if(I.damage < 29)
-					return
-				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
 	L.adjustDrowsyness(-5)
 	L.dizzy(-5)
-	L.stuttering = max(L.stuttering-5, 0)
+	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness-5, 0)
@@ -543,7 +544,7 @@
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, TOX)
 
-/datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/arithrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, effect_str, 2*effect_str)
 
 /datum/reagent/medicine/russian_red
@@ -561,14 +562,9 @@
 		return
 	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
-		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
+		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
 		L.jitter(10)
-		for(var/datum/internal_organ/I AS in H.internal_organs)
-			if(I.damage)
-				if(I.damage < 29)
-					return
-				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
@@ -657,7 +653,7 @@
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(15*effect_str, TOX)
 
-/datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
 
 /datum/reagent/medicine/bicaridine
@@ -1086,7 +1082,7 @@
 /datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-1)
 	L.adjustDrowsyness(-1)
-	L.stuttering = max(L.stuttering-1, 0)
+	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-20)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)
@@ -1171,6 +1167,8 @@
 	if(host.bodytemperature < 170)
 		for(var/datum/limb/limb_to_fix AS in host.limbs)
 			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				if(!(prob(20) || limb_to_fix.brute_dam > limb_to_fix.min_broken_damage))
+					continue //Once every 10s average while active, but guaranteed if the limb'll just break again so we get maximum crunchtube.
 				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
 				break
@@ -1269,16 +1267,16 @@
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 150)
+		if(1 to 75)
 			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
 			L.adjustToxLoss(1*effect_str)
 			L.adjustStaminaLoss((1.5)*effect_str)
-			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
+			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.40)
 			if(prob(5))
 				to_chat(L, span_notice("You feel intense itching!"))
-		if(151)
+		if(76)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
-		if(152 to INFINITY)
+		if(77 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2
@@ -1286,7 +1284,7 @@
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
 
-			if (volume >5 && L.getBruteLoss(organic_only = TRUE))
+			if (volume > 5 && L.getBruteLoss(organic_only = TRUE))
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)

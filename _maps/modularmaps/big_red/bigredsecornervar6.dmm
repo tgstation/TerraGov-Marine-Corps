@@ -44,7 +44,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "dI" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "dV" = (
@@ -71,7 +71,7 @@
 /turf/open/space/basic,
 /area/space)
 "fG" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
@@ -123,7 +123,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "iU" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/damaged/panel,
@@ -163,7 +163,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "kt" = (
-/obj/effect/decal/sandedge/corner{
+/obj/effect/turf_decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/damaged/panel,
@@ -227,10 +227,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
-"nb" = (
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "nc" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -306,7 +302,7 @@
 /area/bigredv2/caves/secomplex)
 "tb" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "te" = (
@@ -314,7 +310,7 @@
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/secomplex)
 "tp" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -371,13 +367,8 @@
 "vs" = (
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/secomplex)
-"vH" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/secomplex)
 "vT" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/taupeblue{
@@ -390,7 +381,7 @@
 /area/bigredv2/caves/secomplex)
 "wL" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/taupeblue{
@@ -480,7 +471,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/secomplex)
 "BF" = (
-/obj/effect/decal/sandedge/corner2,
+/obj/effect/turf_decal/sandedge/corner2,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
@@ -580,7 +571,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Ja" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
@@ -717,7 +708,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QK" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QY" = (
@@ -767,7 +758,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "SZ" = (
-/obj/effect/landmarkweed_node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
@@ -792,7 +783,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "UC" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "UJ" = (
@@ -843,7 +834,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "XX" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -1545,7 +1536,7 @@ Dx
 Dx
 Dx
 Dx
-nb
+Ro
 Ro
 Ir
 qY
@@ -3946,7 +3937,7 @@ Ir
 Ro
 Ro
 Ro
-nb
+Ro
 Ro
 Ir
 Ro
@@ -4332,7 +4323,7 @@ My
 Ir
 Ro
 le
-vH
+Iv
 tu
 Iv
 nY

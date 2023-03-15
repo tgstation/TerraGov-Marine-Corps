@@ -45,7 +45,7 @@
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], 1, del_on_fail = 0))
+		if (equip_to_slot_if_possible(W, slot, ignore_delay = TRUE, warning = FALSE))
 			return slot
 	if (del_on_fail)
 		qdel(W)
@@ -175,7 +175,7 @@
 		I.unequipped(src, SLOT_HEAD)
 		if(updatename)
 			name = get_visible_name()
-		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
 			update_hair()	//rebuild hair
 		if(I.flags_inv_hide & HIDEEARS)
 			update_inv_ears()
@@ -326,7 +326,7 @@
 			head = W
 			if(head.flags_inv_hide & HIDEFACE)
 				name = get_visible_name()
-			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
 				update_hair()	//rebuild hair
 			if(head.flags_inv_hide & HIDEEARS)
 				update_inv_ears()

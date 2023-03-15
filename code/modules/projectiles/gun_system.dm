@@ -10,7 +10,6 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
 	max_integrity = 250
-	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
@@ -21,14 +20,6 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 0
 	light_color = COLOR_WHITE
-
-/*
- * Greyscale vars
-*/
-	greyscale_config = null
-	greyscale_colors = GUN_PALETTE_TAN
-	///List of palettes a greyscaled gun is allowed to use for its furniture
-	var/list/colorable_colors = GUN_PALETTE_LIST
 
 /*
  *  Muzzle Vars
@@ -153,7 +144,7 @@
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	///Skill used to operate this gun.
-	var/gun_skill_category = GUN_SKILL_RIFLES
+	var/gun_skill_category = SKILL_RIFLES
 
 	///the default gun icon_state. change to reskin the gun
 	var/base_gun_icon
@@ -200,17 +191,33 @@
 	var/recoil_backtime_multiplier = 2
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
-	///How much the bullet scatters when fired while wielded.
+	///How much the bullet currently scattered when last fired.
 	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
 	var/scatter_unwielded = 12
+	///Maximum scatter
+	var/max_scatter = 360
+	///Maximum scatter when wielded
+	var/max_scatter_unwielded = 360
+	///How much scatter decays every X seconds
+	var/scatter_decay = 0
+	///How much scatter decays every X seconds when wielded
+	var/scatter_decay_unwielded = 0
+	///How much scatter increases per shot
+	var/scatter_increase = 0
+	///How much scatter increases per shot when wielded
+	var/scatter_increase_unwielded = 0
+	///Minimum scatter
+	var/min_scatter = -360
+	///Minimum scatter when wielded
+	var/min_scatter_unwielded = -360
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
-	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
-	var/burst_accuracy_mult	= 1
+	///Additive number added to accuracy_mult. Defaults to 0 (no change).
+	var/burst_accuracy_mult	= 0
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
-	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
+	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.
 	var/movement_acc_penalty_mult = 5
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
@@ -255,6 +262,14 @@
 	///what ammo to use for overcharge
 	var/ammo_diff = null
 
+	//projectile modifier vars. Recorded at the gun level for perf reasons
+
+	///Projectile accuracy is multiplied by the number
+	var/gun_accuracy_mult = 1
+	///Additive to projectile accuracy, after gun_accuracy_mult
+	var/gun_accuracy_mod = 0
+	///The actual scatter value of the fired projectile
+	var/gun_scatter = 0
 /*
  *  extra icon and item states or overlays
 */
@@ -359,19 +374,19 @@
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
-		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
+		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, SKILL_FIREARMS, SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
-		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
+		AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 		for(var/i in 0 to max_chamber_items)
 			chamber_items.Add(null)
-	if(spawn_empty)
+	if(spawn_empty || !default_ammo_type)
 		update_icon()
 		return
 	INVOKE_ASYNC(src, .proc/fill_gun)
@@ -389,11 +404,11 @@
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
-	var/obj/item/attachable = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	if(!attachable || !istype(attachable, /obj/item/attachable))
-		return
-	var/obj/item/attachable/attachable_attachment = attachable
-	attachable_attachment.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
+	for(var/attachment_slot in attachments_by_slot)
+		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+		if(!istype(lit_flashlight))
+			continue
+		lit_flashlight.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -421,18 +436,45 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN,
+		COMSIG_MOB_MOUSEUP,
+		COMSIG_ITEM_ZOOM,
+		COMSIG_ITEM_UNZOOM,
+		COMSIG_MOB_MOUSEDRAG,
+		COMSIG_KB_RAILATTACHMENT,
+		COMSIG_KB_UNDERRAILATTACHMENT,
+		COMSIG_KB_UNLOADGUN,
+		COMSIG_KB_FIREMODE,
+		COMSIG_KB_GUN_SAFETY,
+		COMSIG_KB_UNIQUEACTION,
+		COMSIG_PARENT_QDELETING,
+		COMSIG_RANGED_ACCURACY_MOD_CHANGED,
+		COMSIG_RANGED_SCATTER_MOD_CHANGED,
+		COMSIG_MOB_SKILLS_CHANGED,
+		COMSIG_MOB_SHOCK_STAGE_CHANGED,
+		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
+		COMSIG_LIVING_STAGGER_CHANGED,))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
-		gun_user.hud_used.remove_ammo_hud(gun_user, src)
+		gun_user.hud_used.remove_ammo_hud(src)
 		gun_user = null
+
 	if(!user)
+		setup_bullet_accuracy()
 		return
 	if(master_gun?.master_gun) //Prevent gunception
 		return
 	gun_user = user
+	setup_bullet_accuracy()
+	RegisterSignal(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
+		COMSIG_RANGED_SCATTER_MOD_CHANGED,
+		COMSIG_MOB_SKILLS_CHANGED,
+		COMSIG_MOB_SHOCK_STAGE_CHANGED,
+		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
+		COMSIG_LIVING_STAGGER_CHANGED), .proc/setup_bullet_accuracy)
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
-	gun_user.hud_used.add_ammo_hud(gun_user, src)
+	if(flags_gun_features & GUN_AMMO_COUNTER)
+		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -471,13 +513,13 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
-		icon_state = !greyscale_config ? base_gun_icon + "_u" : GUN_ICONSTATE_UNRACKED
-	else if((!length(chamber_items) && max_chamber_items) || !rounds)
-		icon_state = !greyscale_config ? base_gun_icon + "_e" : GUN_ICONSTATE_UNLOADED
+		icon_state = base_gun_icon + "_u"
+	else if((!length(chamber_items) && max_chamber_items) || (!rounds && !max_chamber_items))
+		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
 	else
-		icon_state = !greyscale_config ? base_gun_icon : GUN_ICONSTATE_LOADED
+		icon_state = base_gun_icon
 
 //manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
@@ -501,27 +543,22 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
-		if(CHECK_BITFIELD(flags_item, WIELDED))
-			item_state = !greyscale_config ? "[base_gun_icon]_w" : "wielded"
-		else
-			item_state = !greyscale_config ? base_gun_icon : ""
+	var/current_state = item_state
+	if(flags_gun_features & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
+		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+		item_state = "[initial(icon_state)]_[remaining_rounds][flags_item & WIELDED ? "_w" : ""]"
+	else if(flags_gun_features & GUN_SHOWS_LOADED) //shows loaded or unloaded
+		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][flags_item & WIELDED ? "_w" : ""]"
+	else
+		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 		return
 
-	//If the gun has item states that show how much ammo is remaining
-	var/current_state = item_state
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	if(CHECK_BITFIELD(flags_item, WIELDED))
-		item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]_w" : "wielded"
-	else
-		item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]" : ""
 	if(current_state != item_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
 			human_user.update_inv_l_hand()
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
-
 
 /obj/item/weapon/gun/examine(mob/user)
 	. = ..()
@@ -568,7 +605,7 @@
 			if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
 				dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
 			else if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
-				dat += "Ammo counter shows [round(max_rounds / rounds_per_shot)] shots remaining."
+				dat += "Ammo counter shows [round(rounds / rounds_per_shot)] shots remaining."
 			else
 				dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 		else
@@ -595,7 +632,7 @@
 
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		wdelay += 0.3 SECONDS //no training in any firearms
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
@@ -614,6 +651,7 @@
 	if(!.)
 		return FALSE
 
+	setup_bullet_accuracy()
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
@@ -621,6 +659,11 @@
 
 	return TRUE
 
+/obj/item/weapon/gun/toggle_wielded(user, wielded)
+	if(wielded)
+		flags_item |= WIELDED
+	else
+		flags_item &= ~(WIELDED|FULLY_WIELDED)
 
 //----------------------------------------------------------
 			//							    \\
@@ -636,9 +679,10 @@
 	if(modifiers["shift"])
 		return
 
-	if(modifiers["right"] || modifiers["middle"])
+	if(modifiers["middle"])
+		return
+	if(modifiers["right"])
 		modifiers -= "right"
-		modifiers -= "middle"
 		params = list2params(modifiers)
 		active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
 		return
@@ -651,6 +695,7 @@
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			setup_bullet_accuracy()
 			modify_fire_delay(fire_delay * akimbo_additional_delay) // Adds the additional delay to auto_fire
 			modify_auto_burst_delay(autoburst_delay * akimbo_additional_delay)
 			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
@@ -707,6 +752,7 @@
 		modify_fire_delay(-fire_delay + fire_delay/(1 + akimbo_additional_delay)) // Removes the additional delay from auto_fire
 		modify_auto_burst_delay(-autoburst_delay + autoburst_delay/(1 + akimbo_additional_delay))
 		dual_wield = FALSE
+		setup_bullet_accuracy()
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
@@ -737,20 +783,20 @@
 ///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
-		return
+		return NONE
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(loc, windup_sound, 30, TRUE)
 		if(!gun_user)
 			addtimer(CALLBACK(src, .proc/fire_after_autonomous_windup), windup_delay)
-			return
+			return NONE
 		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
-			return
+			return NONE
 		windup_checked = WEAPON_WINDUP_CHECKED
 	if(!target)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
+		return NONE
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		cycle(gun_user, FALSE)
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -760,11 +806,12 @@
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(gun_user, FALSE)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
+		update_icon()
+		return NONE
 
 	if(!do_fire(projectile_to_fire))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
+		return NONE
 
 	last_fired = world.time
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
@@ -784,14 +831,14 @@
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
 	update_ammo_count()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	update_icon()
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
 		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
 			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
 			gun_user.swap_hand()
-	return TRUE
+	return AUTOFIRE_CONTINUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
 /obj/item/weapon/gun/proc/do_fire(obj/object_to_fire)
@@ -800,9 +847,32 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		projectile_to_fire = get_ammo_object()
 	apply_gun_modifiers(projectile_to_fire, target, firer)
-	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
 
-	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
+
+	if((flags_item & FULLY_WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && (master_gun.flags_item & FULLY_WIELDED)))
+		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
+		projectile_to_fire.scatter += gun_scatter + scatter
+	else
+		scatter_unwielded = clamp((scatter_unwielded + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), min_scatter_unwielded, max_scatter_unwielded)
+		projectile_to_fire.scatter += gun_scatter + scatter_unwielded
+
+	if(gun_user)
+		projectile_to_fire.firer = gun_user
+		projectile_to_fire.def_zone = gun_user.zone_selected
+
+		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
+			if(flags_item & FULLY_WIELDED)
+				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.03)
+				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult * 0.5))
+			else
+				projectile_to_fire.accuracy -= projectile_to_fire.accuracy * max(0,movement_acc_penalty_mult * 0.06)
+				projectile_to_fire.scatter = max(0, projectile_to_fire.scatter + max(0, movement_acc_penalty_mult))
+
+	projectile_to_fire.accuracy += gun_accuracy_mod //additive added after move delay mult
+	projectile_to_fire.scatter = max(projectile_to_fire.scatter, 0)
+
+	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
 	if(!isobj(projectile_to_fire))
@@ -822,67 +892,67 @@
 		switch(firing_angle)
 			if(0, 360)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(1 to 44)
 				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(45)
-				muzzle_flash.pixel_x = 4
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(46 to 89)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = round(4 * ((90 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(90)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(91 to 134)
-				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_x = 8
 				muzzle_flash.pixel_y = round(-3 * ((firing_angle - 90) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(135)
-				muzzle_flash.pixel_x = 4
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(136 to 179)
 				muzzle_flash.pixel_x = round(4 * ((180 - firing_angle) / 45))
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(180)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(181 to 224)
-				muzzle_flash.pixel_x = round(-3 * ((firing_angle - 180) / 45))
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = round(-6 * ((firing_angle - 180) / 45))
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(225)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = -3
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(226 to 269)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = round(-3 * ((270 - firing_angle) / 45))
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = round(-6 * ((270 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(270)
-				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_x = -6
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(271 to 314)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = round(4 * ((firing_angle - 270) / 45))
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = round(8 * ((firing_angle - 270) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(315)
-				muzzle_flash.pixel_x = -3
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(316 to 359)
-				muzzle_flash.pixel_x = round(-3 * ((360 - firing_angle) / 45))
-				muzzle_flash.pixel_y = 4
+				muzzle_flash.pixel_x = round(-6 * ((360 - firing_angle) / 45))
+				muzzle_flash.pixel_y = 8
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 
 		muzzle_flash.transform = null
@@ -1026,6 +1096,7 @@
 			last_cock_message = world.time
 			return
 		cycle(user, FALSE)
+		update_icon()
 		playsound(src, cocked_sound, 25, 1)
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && casings_to_eject)
 			make_casing()
@@ -1038,6 +1109,7 @@
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
+		update_icon()
 		playsound(src, cocked_sound, 25, 1)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
@@ -1146,7 +1218,8 @@
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
 		var/flags_magazine_features = get_flags_magazine_features(new_mag)
-		if(flags_magazine_features && CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
+		if(flags_magazine_features && CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN) && ((loc != user) || (new_mag.loc != user)))
+			to_chat(user, span_warning("You need to be carrying both [src] and [new_mag] to connect them!"))
 			return FALSE
 		if(get_magazine_reload_delay(new_mag) > 0 && user && !force)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
@@ -1359,7 +1432,6 @@
 			user.put_in_hands(in_chamber)
 	in_chamber = new_in_chamber
 	update_ammo_count()
-	update_icon()
 	if(!after_fire || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		return
 	make_casing()
@@ -1421,10 +1493,19 @@
 	ammo_datum_type = ammo_type
 	return ammo_datum_type
 
+///returns ammo string icon_states to display in the ammo counter of the HUD. list(normal_state, empty_state)
 /obj/item/weapon/gun/proc/get_ammo_list()
 	if(!ammo_datum_type)
 		return list("unknown", "unknown")
 	return list(initial(ammo_datum_type.hud_state), initial(ammo_datum_type.hud_state_empty))
+
+///returns ammo count to display in the ammo counter of the HUD
+/obj/item/weapon/gun/proc/get_display_ammo_count()
+	if(rounds && (flags_gun_features & GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
+		return round(rounds / rounds_per_shot)
+	if(max_rounds && rounds && (flags_gun_features & GUN_AMMO_COUNT_BY_PERCENTAGE))
+		return round((rounds / max_rounds) * 100)
+	return rounds
 
 ///Updates the guns rounds and max_rounds vars based on the contents of chamber_items
 /obj/item/weapon/gun/proc/update_ammo_count()
@@ -1440,18 +1521,18 @@
 				new_rounds++
 		rounds = new_rounds
 		max_rounds = max_chamber_items + 1
-		gun_user?.hud_used.update_ammo_hud(gun_user, src)
+		gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	var/total_rounds
 	var/total_max_rounds
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	total_max_rounds += rounds_per_shot
-	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
+	rounds = total_rounds
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
+		rounds += in_chamber ? rounds_per_shot : 0
 	max_rounds = total_max_rounds
-	update_icon()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Disconnects from a worn magazine.
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
@@ -1504,7 +1585,7 @@
 	if(!user || user.incapacitated()  || user.lying_angle || !isturf(user.loc))
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
-		to_chat(user, span_warning("Theres not enough rounds left to fire."))
+		to_chat(user, span_warning("There's not enough rounds left to fire."))
 		return FALSE
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
@@ -1529,10 +1610,10 @@
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
-		if(!master_gun && !wielded_stable())
+		if(!master_gun && !(flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
-		if(master_gun && !master_gun.wielded_stable())
+		if(master_gun && !(master_gun.flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
 			return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -1546,14 +1627,14 @@
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
 	if(user)
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
-				if(GUN_SKILL_HEAVY_WEAPONS)
+				if(SKILL_HEAVY_WEAPONS)
 					if(fire_delay > 1 SECONDS) //long delay to fire
 						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-				if(GUN_SKILL_SMARTGUN)
+				if(SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 	var/delay = last_fired + added_delay
@@ -1582,7 +1663,8 @@
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
-	projectile_to_fire.damage_falloff *= damage_falloff_mult
+	projectile_to_fire.sundering *= damage_mult
+	projectile_to_fire.damage_falloff *= max(0, damage_falloff_mult)
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) || projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
@@ -1600,111 +1682,68 @@
 	if(dual_wield)
 		projectile_to_fire.point_blank_range = 0
 
+///Sets the projectile accuracy and scatter
+/obj/item/weapon/gun/proc/setup_bullet_accuracy()
+	SIGNAL_HANDLER
+	var/wielded_fire = FALSE
+	gun_accuracy_mod = 0
+	gun_scatter = 0
 
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)
-	var/gun_accuracy_mult = accuracy_mult_unwielded
-	var/gun_accuracy_mod = 0
-	var/gun_scatter = scatter_unwielded
-	var/wielded_fire
-
-	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
-		gun_accuracy_mult = accuracy_mult
-		gun_scatter = scatter
+	if((flags_item & FULLY_WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && (master_gun.flags_item & FULLY_WIELDED) ))
 		wielded_fire = TRUE
+		gun_accuracy_mult = accuracy_mult
+	else
+		gun_accuracy_mult = accuracy_mult_unwielded
 
-	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+		gun_scatter += deployed_scatter_change
+
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
 		if(wielded_fire)
-			//if you're wielding your weapon, the penalty is lower
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.03))
-			gun_scatter += max(0, movement_acc_penalty_mult * 0.5)
+			gun_accuracy_mult += burst_accuracy_mult
+			gun_scatter += burst_amount * burst_scatter_mult
 		else
-			//if you're not wielding your weapon, the penalty is higher
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.06))
-			gun_scatter += max(0, movement_acc_penalty_mult)
-
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
+			gun_accuracy_mult += burst_accuracy_mult * 2
+			gun_scatter += burst_amount * burst_scatter_mult * 2
 
 	if(dual_wield) //akimbo firing gives terrible scatter
-		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy) //TODO: remove the rng increase
 
-	if(user)
-		// Apply any skill-based bonuses to accuracy
-		var/skill_accuracy = 0
-		if(!user.skills.getRating("firearms")) //no training in any firearms
-			skill_accuracy = -1
+	if(gun_user)
+		//firearm skills modifiers
+		if(gun_user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
+			gun_accuracy_mult += -0.15
+			gun_scatter += 10
 		else
-			skill_accuracy = user.skills.getRating(gun_skill_category)
-		if(skill_accuracy)
-			gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+			var/skill_level = gun_user.skills.getRating(gun_skill_category) //specific weapon type skill modifiers
+			gun_accuracy_mult += skill_level * 0.15
+			gun_scatter -= skill_level * 2
 
-		projectile_to_fire.firer = user
-		if(isliving(user))
-			var/mob/living/living_user = user
+		if(isliving(gun_user))
+			var/mob/living/living_user = gun_user
 			gun_accuracy_mod += living_user.ranged_accuracy_mod
-			if(iscarbon(user))
-				var/mob/living/carbon/carbon_user = user
-				projectile_to_fire.def_zone = user.zone_selected
-				if(carbon_user.stagger)
-					gun_scatter += 5
+			gun_scatter += living_user.ranged_scatter_mod
 
-			// Status effect changes
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
-				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF)
-				gun_accuracy_mod += buff.stacks
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF))
-				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF)
-				gun_accuracy_mod -= debuff.stacks
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF))
-				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF)
-				gun_scatter -= buff.stacks
-			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF))
-				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
-				gun_scatter += debuff.stacks
+			if(living_user.stagger)
+				gun_scatter += 5
 
-		if(ishuman(user))
-			var/mob/living/carbon/human/shooter_human = user
+		if(ishuman(gun_user))
+			var/mob/living/carbon/human/shooter_human = gun_user
 			gun_accuracy_mod -= round(min(20, (shooter_human.shock_stage * 0.2))) //Accuracy declines with pain, being reduced by 0.2% per point of pain.
 			if(shooter_human.marksman_aura)
 				gun_accuracy_mod += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
-
-	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
-
-/obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
-	. = starting_scatter //projectile_to_fire.scatter
-
-	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
-		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
-			. += burst_amount * burst_scatter_mult
-		else
-			. += burst_amount * burst_scatter_mult * 2
-
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
-		. += deployed_scatter_change
-
-	if(!user?.skills.getRating("firearms")) //no training in any firearms
-		. += 10
-	else
-		var/scatter_tweak = user.skills.getRating(gun_skill_category)
-		if(scatter_tweak > 1)
-			. -= scatter_tweak * 2
-
-	if(. <= 0)
-		return 0
-
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
-	if(flags_item & WIELDED && wielded_stable() || master_gun)
+	if((flags_item & FULLY_WIELDED) || master_gun)
 		total_recoil += recoil
 	else
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
+	if(!gun_user.skills.getRating(SKILL_FIREARMS)) //no training in any firearms
 		total_recoil += 2
 	else
 		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)
@@ -1748,11 +1787,11 @@
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
 		return
-	var/obj/item/attachment = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-	if(!istype(attachment, /obj/item/attachable))
-		return
-	var/obj/item/attachable/attachable = attachment
-	attachable.turn_light(null, FALSE)
+	for(var/attachment_slot in attachments_by_slot)
+		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+		if(!istype(lit_flashlight))
+			continue
+		lit_flashlight.turn_light(null, FALSE)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )

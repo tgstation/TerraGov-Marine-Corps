@@ -1,18 +1,11 @@
-import { useLocalState } from "../../backend";
-import { Button, Flex, Modal, TextArea } from "../../components";
-import { NameInputModalData } from "./Types";
-
+import { useLocalState } from '../../backend';
+import { Button, Flex, Modal, TextArea } from '../../components';
+import { NameInputModalData } from './Types';
 
 export const NameInputModal = (props: NameInputModalData, context) => {
-  const {
-    label,
-    button_text,
-    onSubmit,
-    onBack,
-  } = props;
+  const { label, button_text, onSubmit, onBack } = props;
 
-
-  const [input, setInput] = useLocalState(context, label, "");
+  const [input, setInput] = useLocalState(context, label, '');
 
   return (
     <Modal>
@@ -42,14 +35,10 @@ export const NameInputModal = (props: NameInputModalData, context) => {
             tooltipPosition="right"
             onClick={() => {
               onSubmit(input);
-              setInput("");
+              setInput('');
             }}
           />
-          <Button
-            content="Cancel"
-            color="bad"
-            onClick={onBack}
-          />
+          <Button content="Cancel" color="bad" onClick={onBack} />
         </Flex.Item>
       </Flex>
     </Modal>

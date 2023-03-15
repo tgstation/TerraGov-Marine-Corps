@@ -10,8 +10,8 @@
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
-#define PHORON_CRATE_SELL_AMOUNT 15
-#define PLATINUM_CRATE_SELL_AMOUNT 30
+#define PHORON_CRATE_SELL_AMOUNT 150
+#define PLATINUM_CRATE_SELL_AMOUNT 300
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
@@ -22,6 +22,7 @@
 	icon_state = "mining_drill_active"
 	anchored = TRUE
 	coverage = 30
+	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
@@ -77,10 +78,10 @@
 	if(miner_upgrade_type)
 		to_chat(user, span_info("The [src]'s module sockets are already occupied by the [miner_upgrade_type]."))
 		return FALSE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to install the module on [src]."),
 		span_notice("You fumble around figuring out how to install the module on [src]."))
-		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
@@ -153,10 +154,10 @@
 	if(!weldingtool.remove_fuel(1, user))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return FALSE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
 		span_notice("You fumble around figuring out [src]'s internals."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
@@ -180,10 +181,10 @@
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
 		span_notice("You fumble around figuring out [src]'s wiring."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
@@ -203,10 +204,10 @@
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
 		span_notice("You fumble around figuring out [src]'s tubing and plating."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)

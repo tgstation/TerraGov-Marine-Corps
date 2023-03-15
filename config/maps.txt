@@ -21,10 +21,6 @@ map desertdam
 	minplayers 90
 endmap
 
-map icarus_military_port
-	minplayers 50
-endmap
-
 map bigred_v2
 	minplayers 25
 endmap
@@ -52,6 +48,9 @@ endmap
 map whiskey_outpost_v2
 endmap
 
+map oscar_outpost
+endmap
+
 map magmoor_digsite_iv
 	minplayers 20
 endmap
@@ -62,4 +61,8 @@ endmap
 
 map gelida_iv
 	minplayers 50
+endmap
+
+map deltastation
+	minplayers 60
 endmap

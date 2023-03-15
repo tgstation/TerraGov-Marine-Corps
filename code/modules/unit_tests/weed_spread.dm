@@ -1,6 +1,6 @@
 /datum/unit_test/weed_spread/Run()
 	var/obj/alien/weeds/node/node = new(locate(run_loc_bottom_left.x+1, run_loc_bottom_left.y+1, run_loc_bottom_left.z))
-	sleep(60)
+	sleep(6 SECONDS)
 	var/found = FALSE
 	var/turf/origin = get_turf(node)
 	for(var/dir in GLOB.cardinals)

@@ -54,6 +54,7 @@
 			.["xeno_name"] = xeno_name
 			.["synthetic_name"] = synthetic_name
 			.["synthetic_type"] = synthetic_type
+			.["robot_type"] = robot_type
 			.["random_name"] = random_name
 			.["ai_name"] = ai_name
 			.["age"] = age
@@ -115,8 +116,8 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
-			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
-			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
+			.["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
+			.["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
@@ -150,7 +151,11 @@
 					"female" = GLOB.underwear_f,
 					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
-				"undershirt" = GLOB.undershirt_t,
+				"undershirt" = list(
+					"male" = GLOB.undershirt_m,
+					"female" = GLOB.undershirt_f,
+					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
+				),
 				"backpack" = GLOB.backpacklist,
 				)
 			.["gearsets"] = list()
@@ -247,6 +252,11 @@
 			if(choice)
 				synthetic_type = choice
 
+		if("robot_type")
+			var/choice = tgui_input_list(ui.user, "What model of robot do you want to play with?", "Robot model choice", ROBOT_TYPES)
+			if(choice)
+				robot_type = choice
+
 		if("xeno_name")
 			var/newValue = params["newValue"]
 			if(newValue == "")
@@ -330,7 +340,13 @@
 			underwear = new_underwear
 
 		if("undershirt")
-			var/new_undershirt = GLOB.undershirt_t.Find(params["newValue"])
+			var/list/undershirt_options
+			if(gender == MALE)
+				undershirt_options = GLOB.undershirt_m
+			else
+				undershirt_options = GLOB.undershirt_f
+
+			var/new_undershirt = undershirt_options.Find(params["newValue"])
 			if(!new_undershirt)
 				return
 			undershirt = new_undershirt
@@ -587,7 +603,7 @@
 			show_typing = !show_typing
 			// Need to remove any currently shown
 			if(!show_typing && istype(user))
-				user.remove_typing_indicator()
+				user.remove_all_indicators()
 
 		if("tooltips")
 			tooltips = !tooltips
@@ -628,8 +644,10 @@
 
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
-			current_client.update_movement_keys()
+			current_client.set_macros()
 			save_keybinds()
+			if(user)
+				SEND_SIGNAL(user, COMSIG_MOB_KEYBINDINGS_UPDATED, GLOB.keybindings_by_name[kb_name])
 			return TRUE
 
 		if("clear_keybind")
@@ -642,7 +660,7 @@
 					key_bindings -= key
 					continue
 				key_bindings[key] = sortList(key_bindings[key])
-			current_client.update_movement_keys()
+			current_client.set_macros()
 			save_keybinds()
 			return TRUE
 
@@ -670,7 +688,7 @@
 
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
-			current_client.update_movement_keys()
+			current_client.set_macros()
 			save_keybinds()
 
 		if("bancheck")

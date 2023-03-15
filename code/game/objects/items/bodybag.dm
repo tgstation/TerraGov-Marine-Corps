@@ -29,10 +29,12 @@
 
 
 /obj/item/bodybag/afterattack(atom/target, mob/user, proximity)
-	if(!proximity)
+	if(!proximity || !isturf(target) || target.density)
 		return
-	if(!isopenturf(target))
-		return
+	var/turf/target_turf = target
+	for(var/atom/atom_to_check AS in target_turf)
+		if(atom_to_check.density)
+			return
 	deploy_bodybag(user, target)
 
 
@@ -290,7 +292,7 @@
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I
-	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut
+	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut // TODO
 	return TRUE
 
 
@@ -371,7 +373,7 @@
 	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
 	var/serial_number //Randomized serial number used to stop point macros and such.
 

@@ -181,7 +181,7 @@
 		if(TRAP_ACID_STRONG)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
-	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, get_xeno_hivenumber(),  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
+	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, get_xeno_hivenumber(),  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
 	set_trap_type(null)
 
 /// Move the hugger out of the trap
@@ -345,15 +345,6 @@ TUNNEL
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
-
-	//Prevents using tunnels by the queen to bypass the fog.
-	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!X.hive.living_xeno_ruler)
-			balloon_alert(X, "No ruler")
-			return FALSE
-		else if(isxenoqueen(X))
-			balloon_alert(X, "No reason to leave yet")
-			return FALSE
 
 	if(X.anchored)
 		balloon_alert(X, "Cannot enter while immobile")
@@ -608,8 +599,8 @@ TUNNEL
 		return
 
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_L_FOOT) * 0.66) //33% armor pen
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_R_FOOT) * 0.66) //33% armor pen
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
 	stepper.ExtinguishMob()
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
@@ -711,9 +702,11 @@ TUNNEL
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
+	/// hive that owns this silo
 	var/datum/hive_status/associated_hive
-	var/silo_area
 	var/number_silo
+	///For minimap icon change if silo takes damage or nearby hostile
+	var/warning
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -732,11 +725,11 @@ TUNNEL
 		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
-	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+	update_minimap_icon()
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -750,8 +743,7 @@ TUNNEL
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		if(length(GLOB.xeno_resin_silos) == 1)
 			associated_hive.give_larva_to_next_in_queue()
-		associated_hive.handle_silo_death_timer()
-	silo_area = get_area(src)
+		SSticker.mode.update_silo_death_timer(associated_hive)
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf)
@@ -761,8 +753,8 @@ TUNNEL
 /obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-		INVOKE_NEXT_TICK(associated_hive, /datum/hive_status.proc/handle_silo_death_timer) // checks all silos next tick after this one is gone
+		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
+		INVOKE_NEXT_TICK(SSticker.mode, /datum/game_mode.proc/update_silo_death_timer, associated_hive) // checks all silos next tick after this one is gone
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
@@ -774,8 +766,6 @@ TUNNEL
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-
-	silo_area = null
 	center_turf = null
 
 	STOP_PROCESSING(SSslowprocess, src)
@@ -809,9 +799,11 @@ TUNNEL
 /obj/structure/xeno/silo/proc/resin_silo_damage_alert()
 	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
 		return
-
-	associated_hive.xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
+	warning = TRUE
+	update_minimap_icon()
+	associated_hive.xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_HEALTH_ALERT_COOLDOWN) //clear warning
 
 ///Alerts the Hive when hostiles get too close to their resin silo
 /obj/structure/xeno/silo/proc/resin_silo_proxy_alert(datum/source, atom/movable/hostile, direction)
@@ -832,8 +824,16 @@ TUNNEL
 		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
-	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
+	warning = TRUE
+	update_minimap_icon()
+	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+
+///Clears the warning for minimap if its warning for hostiles
+/obj/structure/xeno/silo/proc/clear_warning()
+	warning = FALSE
+	update_minimap_icon()
 
 /obj/structure/xeno/silo/process()
 	//Regenerate if we're at less than max integrity
@@ -844,6 +844,11 @@ TUNNEL
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+///Change minimap icon if silo is under attack or not
+/obj/structure/xeno/silo/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "silo[warning ? "_warn" : "_passive"]")
 
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
@@ -858,7 +863,7 @@ TUNNEL
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
-	throwpass = FALSE
+	flags_pass = PASSAIR|PASSTHROW
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -877,6 +882,13 @@ TUNNEL
 	var/last_scan_time
 	///light color that gets set in initialize
 	var/light_initial_color = LIGHT_COLOR_GREEN
+	///For minimap icon change if sentry is firing
+	var/firing
+
+///Change minimap icon if its firing or not firing
+/obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xeno_turret[firing ? "_firing" : "_passive"]")
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
@@ -890,6 +902,7 @@ TUNNEL
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
 	if(light_initial_color)
 		set_light(2, 2, light_initial_color)
+	update_minimap_icon()
 	update_icon()
 
 ///Signal handler to delete the turret when the alamo is hijacked
@@ -955,7 +968,7 @@ TUNNEL
 			set_last_hostile(null)
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
-		associated_hive.xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
+		associated_hive.xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
 		set_last_hostile(hostile)
@@ -1026,17 +1039,17 @@ TUNNEL
 			continue
 		var/blocked = FALSE
 		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+			if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE))
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && MA.throwpass == FALSE)
+				if(MA.opacity || MA.density && !(MA.flags_pass & PASSPROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
 			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && S.throwpass == FALSE )
+				if(S.opacity || S.density && !(S.flags_pass & PASSPROJECTILE))
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 		if(!blocked)
@@ -1061,13 +1074,17 @@ TUNNEL
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= range)
 			potential_hostiles += vehicle
-
+	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
+		if(mech.z == z && get_dist(mech, src) <= range)
+			potential_hostiles += mech
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/xeno/xeno_turret/proc/shoot()
 	SIGNAL_HANDLER
 	if(!hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
+		firing = FALSE
+		update_minimap_icon()
 		return
 	face_atom(hostile)
 	var/obj/projectile/newshot = new(loc)
@@ -1077,6 +1094,8 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
+	firing = TRUE
+	update_minimap_icon()
 
 /obj/structure/xeno/xeno_turret/sticky
 	name = "Sticky resin turret"
@@ -1184,6 +1203,7 @@ TUNNEL
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "phero")
 	GLOB.hive_datums[hivenumber].pherotowers += src
 	hivenumber = hivenum
 
@@ -1238,6 +1258,11 @@ TUNNEL
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
+	var/datum/hive_status/associated_hive
+	///For minimap icon change if silo takes damage or nearby hostile
+	var/warning
+	COOLDOWN_DECLARE(spawner_damage_alert_cooldown)
+	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
@@ -1245,10 +1270,85 @@ TUNNEL
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+	for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/spawner_proxy_alert)
+	update_minimap_icon()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/xeno/spawner/LateInitialize()
+	. = ..()
+	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+
+/obj/structure/xeno/spawner/examine(mob/user)
+	. = ..()
+	var/current_integrity = (obj_integrity / max_integrity) * 100
+	switch(current_integrity)
+		if(0 to 20)
+			. += span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.")
+		if(20 to 40)
+			. += span_warning("It looks severely damaged, its movements slow.")
+		if(40 to 60)
+			. += span_warning("It's quite beat up, but it seems alive.")
+		if(60 to 80)
+			. += span_warning("It's slightly damaged, but still seems healthy.")
+		if(80 to 100)
+			. += span_info("It appears in good shape, pulsating healthily.")
+
+
+/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+	. = ..()
+	spawner_damage_alert()
+
+///Alert if spawner is receiving damage
+/obj/structure/xeno/spawner/proc/spawner_damage_alert()
+	if(!COOLDOWN_CHECK(src, spawner_damage_alert_cooldown))
+		warning = FALSE
+		return
+	warning = TRUE
+	update_minimap_icon()
+	associated_hive.xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
+	COOLDOWN_START(src, spawner_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+
+///Alerts the Hive when hostiles get too close to their spawner
+/obj/structure/xeno/spawner/proc/spawner_proxy_alert(datum/source, atom/movable/hostile, direction)
+	SIGNAL_HANDLER
+
+	if(!COOLDOWN_CHECK(src, spawner_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
+		warning = FALSE
+		return
+
+	if(!isliving(hostile))
+		return
+
+	var/mob/living/living_triggerer = hostile
+	if(living_triggerer.stat == DEAD) //We don't care about the dead
+		return
+
+	if(isxeno(hostile))
+		var/mob/living/carbon/xenomorph/X = hostile
+		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
+			return
+
+	warning = TRUE
+	update_minimap_icon()
+	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
+	COOLDOWN_START(src, spawner_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+
+///Clears the warning for minimap if its warning for hostiles
+/obj/structure/xeno/spawner/proc/clear_warning()
+	warning = FALSE
+	update_minimap_icon()
 
 /obj/structure/xeno/spawner/Destroy()
 	GLOB.xeno_spawner -= src
 	return ..()
+
+///Change minimap icon if spawner is under attack or not
+/obj/structure/xeno/spawner/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner[warning ? "_warn" : "_passive"]")
 
 ///Those structures need time to grow and are supposed to be extremely weak healh-wise
 /obj/structure/xeno/plant
@@ -1334,7 +1434,7 @@ TUNNEL
 
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
-	HEAL_XENO_DAMAGE(X,heal_amount)
+	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	playsound(user, "alien_drool", 25)
 	balloon_alert(X, "Health restored")
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
@@ -1366,7 +1466,7 @@ TUNNEL
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.adjust_stagger(3)
-			H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
+			H.apply_damage(30, BRUTE, "chest", BOMB)
 		qdel(src)
 		return TRUE
 

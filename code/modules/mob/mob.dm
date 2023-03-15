@@ -6,9 +6,8 @@
 	for(var/alert in alerts)
 		clear_alert(alert, TRUE)
 	if(length(observers))
-		for(var/i in observers)
-			var/mob/dead/D = i
-			D.reset_perspective(null)
+		for(var/mob/dead/observes AS in observers)
+			observes.reset_perspective(null)
 	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
@@ -346,7 +345,7 @@
 		return FALSE
 
 	//calls on the item to return a suitable item to be equipped
-	var/obj/item/found = I.do_quick_equip()
+	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
 	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
@@ -427,11 +426,11 @@
 	return
 
 
-/mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
-	if(!AM.can_be_pulled(src))
+	if(!AM.can_be_pulled(src, force))
 		return FALSE
 
 	if(throwing || incapacitated())
@@ -583,7 +582,7 @@
 	return ""
 
 /mob/proc/flash_weak_pain()
-	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
+	overlay_fullscreen("pain", /atom/movable/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
 ///Called to update the stat var, returns a boolean to indicate if it has been handled.
@@ -736,28 +735,30 @@
 
 
 // reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
-// reset_perspective() set eye to common default : mob on turf, loc otherwise
-/mob/proc/reset_perspective(atom/A)
+// reset_perspective(null) set eye to common default : mob on turf, loc otherwise
+/mob/proc/reset_perspective(atom/new_eye)
 	if(!client)
 		return
 
-	if(A)
-		if(ismovableatom(A))
-			//Set the the thing unless it's us
-			if(A != src)
+	if(new_eye)
+		if(ismovable(new_eye))
+			//Set the new eye unless it's us
+			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = A
+				client.eye = new_eye
 			else
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
-		else if(isturf(A))
+		else if(isturf(new_eye))
 			//Set to the turf unless it's our current turf
-			if(A != loc)
+			if(new_eye != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = A
+				client.eye = new_eye
 			else
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
+		else
+			return TRUE //no setting eye to stupid things like areas or whatever
 	else
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
@@ -766,9 +767,7 @@
 		else
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
-
 	return TRUE
-
 
 /mob/proc/update_joined_player_list(newname, oldname)
 	if(newname == oldname)
@@ -809,7 +808,7 @@
 	if(!hud_used)
 		return
 
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
 	if(L)
 		L.alpha = lighting_alpha
 
@@ -859,11 +858,10 @@
 	. = stat //old stat
 	stat = new_stat
 
-///Clears the client in contents list of our current "eye". Prevents hard deletes
+///clears the client mob in our client_mobs_in_contents list
 /mob/proc/clear_client_in_contents()
-	if(client?.movingmob) //In the case the client was transferred to another mob and not deleted.
-		client.movingmob.client_mobs_in_contents -= src
-		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
+	if(client?.movingmob)
+		LAZYREMOVE(client.movingmob.client_mobs_in_contents, src)
 		client.movingmob = null
 
 /mob/onTransitZ(old_z, new_z)

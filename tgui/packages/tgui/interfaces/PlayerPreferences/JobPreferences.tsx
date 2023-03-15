@@ -1,4 +1,3 @@
-
 import { useBackend, useLocalState } from '../../backend';
 import { Section, LabeledList, Modal, Button, Box, Grid, Flex } from '../../components';
 
@@ -57,7 +56,7 @@ export const JobPreferences = (props, context) => {
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
       <LabeledList>
-        {jobs.map(job => (
+        {jobs.map((job) => (
           <JobPreference
             key={job}
             job={job}
@@ -132,7 +131,7 @@ export const JobPreferences = (props, context) => {
               </Flex.Item>
               <Flex.Item>
                 <h4>Preferred Squad</h4>
-                {Object.values(squads).map(squad => (
+                {Object.values(squads).map((squad) => (
                   <Button.Checkbox
                     key={squad}
                     inline
@@ -144,7 +143,7 @@ export const JobPreferences = (props, context) => {
               </Flex.Item>
               <Flex.Item>
                 <h4>Preferred Squad - SOM</h4>
-                {Object.values(squads_som).map(squad_som => (
+                {Object.values(squads_som).map((squad_som) => (
                   <Button.Checkbox
                     key={squad_som}
                     inline
@@ -163,13 +162,13 @@ export const JobPreferences = (props, context) => {
                       inline
                       content={special}
                       checked={
-                        special_occupation
-                        & special_occupations[special]
+                        special_occupation & special_occupations[special]
                       }
                       onClick={() =>
                         act('be_special', {
                           flag: special_occupations[special],
-                        })}
+                        })
+                      }
                     />
                     {idx === 1 && <br />}
                   </>

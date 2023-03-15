@@ -27,14 +27,14 @@
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
-	var/obj/screen/storage/boxes = null
-	var/obj/screen/storage/storage_start = null //storage UI
-	var/obj/screen/storage/storage_continue = null
-	var/obj/screen/storage/storage_end = null
-	var/obj/screen/storage/stored_start = null
-	var/obj/screen/storage/stored_continue = null
-	var/obj/screen/storage/stored_end = null
-	var/obj/screen/close/closer = null
+	var/atom/movable/screen/storage/boxes = null
+	var/atom/movable/screen/storage/storage_start = null //storage UI
+	var/atom/movable/screen/storage/storage_continue = null
+	var/atom/movable/screen/storage/storage_end = null
+	var/atom/movable/screen/storage/stored_start = null
+	var/atom/movable/screen/storage/stored_continue = null
+	var/atom/movable/screen/storage/stored_end = null
+	var/atom/movable/screen/close/closer = null
 	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
@@ -49,6 +49,11 @@
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 	///How long does it take to put items into or out of this, in ticks
 	var/access_delay = 0
+	///What item do you use to tactical refill this
+	var/list/obj/item/storage/refill_types
+	///What sound gets played when the item is tactical refilled
+	var/refill_sound = null
+
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -64,7 +69,7 @@
 		open(usr)
 		return
 
-	if(!istype(over_object, /obj/screen))
+	if(!istype(over_object, /atom/movable/screen))
 		return ..()
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
@@ -75,11 +80,13 @@
 	if(!usr.restrained() && !usr.stat)
 		switch(over_object.name)
 			if("r_hand")
-				usr.dropItemToGround(src)
-				usr.put_in_r_hand(src)
+				usr.temporarilyRemoveItemFromInventory(src)
+				if(!usr.put_in_r_hand(src))
+					usr.dropItemToGround(src)
 			if("l_hand")
-				usr.dropItemToGround(src)
-				usr.put_in_l_hand(src)
+				usr.temporarilyRemoveItemFromInventory(src)
+				if(!usr.put_in_l_hand(src))
+					usr.dropItemToGround(src)
 
 /obj/item/storage/proc/return_inv()
 
@@ -157,6 +164,7 @@
 	if (user.s_active)
 		user.s_active.close(user)
 	show_to(user)
+	return TRUE
 
 
 /obj/item/storage/proc/close(mob/user)
@@ -265,7 +273,7 @@
 
 
 
-/obj/screen/storage/Click(location, control, params)
+/atom/movable/screen/storage/Click(location, control, params)
 	if(usr.incapacitated(TRUE))
 		return
 
@@ -301,15 +309,15 @@
 	var/obj/item/sample_object
 	var/number
 
-	New(obj/item/sample)
-		if(!istype(sample))
-			qdel(src)
-		sample_object = sample
-		number = 1
+/datum/numbered_display/New(obj/item/sample)
+	if(!istype(sample))
+		qdel(src)
+	sample_object = sample
+	number = 1
 
-	Destroy()
-		sample_object = null
-		. = ..()
+/datum/numbered_display/Destroy()
+	sample_object = null
+	return ..()
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
@@ -516,23 +524,49 @@
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(length(refill_types))
+		for(var/typepath in refill_types)
+			if(istype(I, typepath))
+				return do_refill(I, user)
+
 	if(!can_be_inserted(I))
 		return
-
 	return handle_item_insertion(I, FALSE, user)
 
+///Refills the storage from the refill_types item
+/obj/item/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
+	if(!length(refiller.contents))
+		user.balloon_alert(user, "[refiller] is empty.")
+		return
+
+	if(!can_be_inserted(refiller.contents[1]))
+		user.balloon_alert(user, "[src] is full.")
+		return
+
+	user.balloon_alert(user, "Refilling.")
+
+	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	playsound(user.loc, refill_sound, 15, 1, 6)
+	for(var/obj/item/IM in refiller)
+		if(!can_be_inserted(refiller.contents[1]))
+			return
+
+		refiller.remove_from_storage(IM)
+		handle_item_insertion(IM, TRUE, user)
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
 			I.attack_hand(user)
-		else
-			open(user)
-	else
-		. = ..()
-		for(var/mob/M in content_watchers)
-			close(M)
+			return
+		else if(open(user))
+			return
+	. = ..()
+	for(var/mob/M AS in content_watchers)
+		close(M)
 
 
 /obj/item/storage/attack_ghost(mob/user)
@@ -580,11 +614,12 @@
 		qdel(I)
 
 //finds a stored item to draw
-/obj/item/storage/do_quick_equip()
+/obj/item/storage/do_quick_equip(mob/user)
 	if(!length(contents))
 		return FALSE //we don't want to equip the storage item itself
 	var/obj/item/W = contents[length(contents)]
-	remove_from_storage(W, user = src)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
@@ -611,21 +646,21 @@
 	boxes.layer = HUD_LAYER
 	boxes.plane = HUD_PLANE
 
-	storage_start = new /obj/screen/storage(  )
+	storage_start = new /atom/movable/screen/storage(  )
 	storage_start.name = "storage"
 	storage_start.master = src
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_start.layer = HUD_LAYER
 	storage_start.plane = HUD_PLANE
-	storage_continue = new /obj/screen/storage(  )
+	storage_continue = new /atom/movable/screen/storage(  )
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
 	storage_continue.layer = HUD_LAYER
 	storage_continue.plane = HUD_PLANE
-	storage_end = new /obj/screen/storage(  )
+	storage_end = new /atom/movable/screen/storage(  )
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
@@ -785,13 +820,19 @@
 /obj/item/storage/AltClick(mob/user)
 	attempt_draw_object(user)
 
+/obj/item/storage/AltRightClick(mob/user)
+	if(Adjacent(user))
+		open(user)
+
 /obj/item/storage/attack_hand_alternate(mob/living/user)
 	attempt_draw_object(user)
 
 ///attempts to get the first possible object from this container
 /obj/item/storage/proc/attempt_draw_object(mob/living/user)
-	if(!ishuman(user) || user.incapacitated() || !length(contents) || isturf(loc))
+	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
+	if(!length(contents))
+		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]

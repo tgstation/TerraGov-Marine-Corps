@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/operator
 
 	///Whether bullets can bypass the object even though it's dense
-	throwpass = TRUE
+	flags_pass = PASSABLE
 
 /obj/machinery/Initialize()
 	. = ..()
@@ -43,7 +43,6 @@
 	if(anchored && current_turf && density)
 		current_turf.flags_atom &= ~ AI_BLOCKED
 	return ..()
-
 
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))

@@ -28,21 +28,26 @@
 			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
-			"desc" = initial(xeno_ability.mechanics_text),
+			"desc" = initial(xeno_ability.desc),
 			"cost" = initial(xeno_ability.plasma_cost),
 			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
 		)
 	.["evolves_to"] = list()
 	for(var/evolves_into in xeno.xeno_caste.evolves_to)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[evolves_into][XENO_UPGRADE_BASETYPE]
-		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
+		var/list/caste_data = list(
+			"type_path" = caste.caste_type_path,
+			"name" = caste.display_name,
+			"abilities" = list(),
+			"instant_evolve" = (caste.caste_flags & CASTE_INSTANT_EVOLUTION),
+		)
 		for(var/ability in caste.actions)
 			var/datum/action/xeno_action/xeno_ability = ability
 			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
 				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
-				"desc" = initial(xeno_ability.mechanics_text),
+				"desc" = initial(xeno_ability.desc),
 				"cost" = initial(xeno_ability.plasma_cost),
 				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
 			)

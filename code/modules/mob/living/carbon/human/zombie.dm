@@ -200,6 +200,5 @@
 	update_button_icon()
 
 /datum/action/set_agressivity/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, zombies_agressive ? "minion_agressive" : "minion_passive")
+	action_icon_state = zombies_agressive ? "minion_agressive" : "minion_passive"
 	return ..()

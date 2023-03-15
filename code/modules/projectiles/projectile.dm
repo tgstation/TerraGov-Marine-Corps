@@ -17,9 +17,6 @@
 #define BULLET_FEEDBACK_SHRAPNEL (1<<4)
 #define BULLET_FEEDBACK_IMMUNE (1<<5)
 
-#define PROJECTILE_HIT 1
-#define PROJECTILE_FROZEN 2
-
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
 #define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing, hit_atoms) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing) && !(thing_to_hit in hit_atoms))
@@ -39,7 +36,7 @@
 	layer = FLY_LAYER
 	animate_movement = NO_STEPS
 	light_system = MOVABLE_LIGHT
-	light_range = 2
+	light_range = 1.5
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 
@@ -47,10 +44,13 @@
 	greyscale_config = null
 	greyscale_colors = null
 
+	///Any special effects applied to this projectile
+	var/flags_projectile_behavior = NONE
+
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
-	var/def_zone = "chest"	//So we're not getting empty strings.
+	var/def_zone = BODY_ZONE_CHEST	//So we're not getting empty strings.
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
@@ -66,8 +66,6 @@
 	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
-	///ammo penetration value
-	var/penetration = 0
 	///ammo sundering value
 	var/sundering = 0
 	var/accuracy = 90 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
@@ -314,7 +312,8 @@
 	var/first_moves = projectile_speed
 	switch(projectile_batch_move(first_move))
 		if(PROJECTILE_HIT) //Hit on first movement.
-			qdel(src)
+			if(!(flags_projectile_behavior & PROJECTILE_FROZEN))
+				qdel(src)
 			return
 		if(PROJECTILE_FROZEN)
 			invisibility = 0
@@ -323,7 +322,8 @@
 	first_moves -= first_move
 	switch(first_moves && projectile_batch_move(first_moves))
 		if(PROJECTILE_HIT) //First movement batch happens on the same tick.
-			qdel(src)
+			if(!(flags_projectile_behavior & PROJECTILE_FROZEN))
+				qdel(src)
 			return
 		if(PROJECTILE_FROZEN)
 			return
@@ -348,7 +348,8 @@
 
 	switch(projectile_batch_move(required_moves))
 		if(PROJECTILE_HIT) //Hit on first movement.
-			qdel(src)
+			if(!(flags_projectile_behavior & PROJECTILE_FROZEN))
+				qdel(src)
 			return PROCESS_KILL
 		if(PROJECTILE_FROZEN)
 			return PROCESS_KILL
@@ -619,10 +620,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	return FALSE
 
-///Signal handler to tell the projectile to move again
+///Tells the projectile to move again
 /obj/projectile/proc/resume_move(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	if(source)
+		UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	START_PROCESSING(SSprojectiles, src)
 
 
@@ -647,7 +649,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if(!throwpass)
+	if(!(flags_pass & PASSPROJECTILE))
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -693,11 +695,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	. = ..()
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
-	if(isxeno(proj.firer))
-		return TRUE
-	return	src == proj.original_target
+	var/hit_chance = coverage
+	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
+	if(!density)
+		return prob(hit_chance)
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -796,7 +800,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		if(proj.ammo.sound_miss)
-			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1)
+			var/pitch = 0
+			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
+			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
 		on_dodged_bullet(proj)
 
 	return FALSE
@@ -850,6 +857,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
+	SHOULD_CALL_PARENT(TRUE)
 	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
 		proj.damage *= proj.ammo.on_pierce_multiplier
 		proj.penetration *= proj.ammo.on_pierce_multiplier
@@ -881,38 +889,22 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/feedback_flags = NONE
 
-	var/living_hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
-	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
-	if(living_hard_armor || living_soft_armor)
-		if(proj.penetration > 0)
-			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
-				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-			if(living_hard_armor)
-				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
-			if(living_soft_armor)
-				living_soft_armor = max(0, living_soft_armor - proj.penetration) //Flat removal.
+	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
+		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
-		if(iscarbon(proj.firer))
-			var/mob/living/carbon/shooter_carbon = proj.firer
-			if(shooter_carbon.stagger)
-				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
-
-		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
-			feedback_flags |= BULLET_FEEDBACK_PEN
-		else
-			if(living_hard_armor)
-				damage = max(0, damage - living_hard_armor) //Damage soak.
-			if(!damage) //Damage fully negated by hard armor.
-				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(living_soft_armor >= 100) //Damage fully negated by soft armor.
-				damage = 0
-				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_SOAK
-			else if(living_soft_armor) //Soft armor/padding, damage reduction.
-				damage = max(0, damage - (damage * living_soft_armor * 0.01))
+	if(iscarbon(proj.firer))
+		var/mob/living/carbon/shooter_carbon = proj.firer
+		if(shooter_carbon.stagger)
+			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
+	var/original_damage = damage
+	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
+	if(damage == original_damage)
+		feedback_flags |= BULLET_FEEDBACK_PEN
+	else if(!damage)
+		feedback_flags |= BULLET_FEEDBACK_SOAK
+		bullet_soak_effect(proj)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		adjust_fire_stacks(proj.ammo.incendiary_strength)
@@ -920,7 +912,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		adjust_sunder(proj.sundering)
+		adjust_sunder(proj.sundering * get_sunder())
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
@@ -993,7 +985,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
-	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN)
+	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN || (flags_projectile_behavior & PROJECTILE_FROZEN))
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
@@ -1187,10 +1179,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 ///Returns the soft armor for the given mob. If human and no limb is specified, it takes the weighted average of all available limbs.
-/mob/living/proc/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
 
-/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
 	if(proj_def_zone)
 		var/datum/limb/affected_limb
 
@@ -1217,20 +1209,19 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		//Note, in the case of limbs missing, this will increase average armor if remaining armor is higher than if fully limbed.
 		return armor_val / total_weight
 
-/mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone)
 	return ..() * get_sunder()
 
 
-/mob/living/proc/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)
 
-/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
 	return affected_limb.hard_armor.getRating(armor_type)
 
-/mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone)
 	return ..() * get_sunder()
-
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
 	bullet_ping(proj)
@@ -1309,7 +1300,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!P.ammo.ping)
 		return
 	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
+		if(P.ammo.sound_bounce)
+			var/pitch = 0
+			if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
+			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
 		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
 		if(prob(60))
@@ -1418,9 +1413,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/proc/get_sunder()
 	return 0
-
-#undef PROJECTILE_HIT
-#undef PROJECTILE_FROZEN
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

@@ -17,8 +17,8 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	gun_skill_category = GUN_SKILL_SMGS
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	gun_skill_category = SKILL_SMGS
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
@@ -35,6 +35,7 @@
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = CALIBER_10X20_CASELESS //codex
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
@@ -46,9 +47,10 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/stock/t19stock,
+		/obj/item/attachable/foldable/t19stock,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -57,30 +59,38 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/motiondetector,
 	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock)
 
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = -4, "stock_y" = 16)
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
-	scatter = 0
 	fire_delay = 0.15 SECONDS
+
+	scatter = 0
 	scatter_unwielded = 4
+
 	aim_slowdown = 0.15
-	burst_amount = 5
 	movement_acc_penalty_mult = 2
-	akimbo_additional_delay = 0.5
+
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-/obj/item/weapon/gun/smg/standard_machinepistol/compact
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+	burst_amount = 1
+	autoburst_delay = 0.1 SECONDS
+	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
+	burst_accuracy_mult = 0.3
+	burst_scatter_mult = 25
 
-/obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
+/obj/item/weapon/gun/smg/standard_machinepistol/compact
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/smg/standard_machinepistol/vgrip
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/verticalgrip)
 
 /obj/item/weapon/gun/smg/standard_machinepistol/scanner
-	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 // War is hell. Not glorious.
@@ -88,16 +98,9 @@
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
-	icon = 'icons/Marine/gun64.dmi'
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "t90"
 	item_state = "t90"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t90,
-		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t90,
-		slot_back_str = /datum/greyscale_config/gun/worn/t90,
-		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t90,
-	)
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -112,6 +115,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
@@ -122,8 +126,8 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 26, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
@@ -138,7 +142,7 @@
 	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
-	greyscale_config = /datum/greyscale_config/gun/t90
+
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
@@ -177,6 +181,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
@@ -185,7 +190,7 @@
 		/obj/item/attachable/gyro,
 	)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 16)
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
@@ -215,6 +220,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
@@ -231,12 +237,15 @@
 	scatter = 3
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 /obj/item/weapon/gun/smg/m25/elite/suppressed
 	icon_state = "m25"
 	item_state = "m25"
-	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/smg/m25/elite/suppressed/breacher
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
 
 //-------------------------------------------------------
 //SMG-27, based on the grease gun
@@ -275,18 +284,28 @@
 /obj/item/weapon/gun/smg/skorpion
 	name = "\improper CZ-81 submachinegun"
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "skorpion"
 	item_state = "skorpion"
 	caliber = CALIBER_32ACP //codex
 	max_shells = 20 //codex
 	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/skorpion
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/skorpion)
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
+	attachable_allowed = list(
+		/obj/item/attachable/foldable/skorpion_stock,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 10, "rail_y" = 24, "under_x" = 23, "under_y" = 15, "stock_x" = -21, "stock_y" = -1)
 
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.1
@@ -298,7 +317,7 @@
 	wield_delay = 0.3 SECONDS
 
 /obj/item/weapon/gun/smg/skorpion/mag_harness
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.
@@ -330,12 +349,12 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/stock/irremoveable/ppsh,
+		/obj/item/attachable/stock/ppsh,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -345,7 +364,7 @@
 	aim_speed_modifier = 2.5
 
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/ppsh,
+		/obj/item/attachable/stock/ppsh,
 	)
 
 	fire_delay = 0.15 SECONDS
@@ -404,7 +423,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //semi, full auto, fuller auto
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -439,7 +458,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = 0.7
+	burst_accuracy_mult = -0.3
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7

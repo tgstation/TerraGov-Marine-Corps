@@ -28,6 +28,10 @@
 		to_chat(M, span_warning("You can't enter the exosuit with other creatures attached to you!"))
 		log_message("Permission denied (Attached mobs).", LOG_MECHA)
 		return FALSE
+	var/obj/item/I = M.get_item_by_slot(SLOT_BACK)
+	if(I && istype(I, /obj/item/jetpack_marine))
+		to_chat(M, span_warning("Something on your back prevents you from entering the mech!"))
+		return FALSE
 	return ..()
 
 ///proc called when a new non-mmi/AI mob enters this mech
@@ -36,6 +40,7 @@
 		return FALSE
 	if(ishuman(newoccupant) && !Adjacent(newoccupant))
 		return FALSE
+	newoccupant.drop_all_held_items()
 	add_occupant(newoccupant)
 	newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
@@ -63,16 +68,28 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/add_occupant(mob/M, control_flags)
-	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/mob_exit)
-	RegisterSignal(M, COMSIG_MOB_CLICKON, .proc/on_mouseclick)
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/display_speech_bubble)
-	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/mob_exit, TRUE)
+	RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, .proc/on_mouseclick, TRUE)
+	RegisterSignal(M, COMSIG_MOB_SAY, .proc/display_speech_bubble, TRUE)
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against, TRUE)
 	. = ..()
 	update_icon()
+	//tgmc addition start
+	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
+		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
+		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	//tgmc addition end
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
+	//tgmc addition start
+	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
+	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	//tgmc addition end
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
-	UnregisterSignal(M, COMSIG_MOB_CLICKON)
+	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	M.clear_alert(ALERT_CHARGE)

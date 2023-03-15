@@ -3,54 +3,44 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
-"b" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "d" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
-"h" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river2)
 "k" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "p" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "q" = (
@@ -58,6 +48,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "r" = (
@@ -74,20 +65,21 @@
 "u" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "w" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -101,7 +93,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "F" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/ground/river,
@@ -112,22 +104,16 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"I" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "J" = (
-/obj/structure/grille,
-/turf/open/ground/river,
+/obj/structure/grille/smoothing,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/river2)
 "K" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "N" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
@@ -138,10 +124,6 @@
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
-/area/lv624/ground/river2)
-"T" = (
-/obj/structure/grille/broken,
-/turf/open/floor/plating/dmg3,
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
@@ -161,7 +143,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "Z" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -179,8 +161,8 @@ P
 P
 V
 a
-h
-b
+a
+a
 "}
 (2,1,1) = {"
 D
@@ -246,7 +228,7 @@ n
 t
 W
 W
-T
+V
 P
 P
 P
@@ -264,5 +246,5 @@ V
 a
 a
 a
-I
+a
 "}

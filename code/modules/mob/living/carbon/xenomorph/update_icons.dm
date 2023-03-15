@@ -2,6 +2,7 @@
 /mob/living/carbon/xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
+		//TODO THIS SHOULD USE THE API!
 		overlays += I
 
 /mob/living/carbon/xenomorph/remove_overlay(cache_index)
@@ -15,23 +16,28 @@
 /mob/living/carbon/xenomorph/proc/handle_special_wound_states()
 	return FALSE
 
-/mob/living/carbon/xenomorph/update_icons()
+/mob/living/carbon/xenomorph/toggle_move_intent(new_intent)
+	. = ..()
+	update_icons()
+
+/mob/living/carbon/xenomorph/update_icons(state_change = TRUE)
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		return
-	if(stat == DEAD)
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
-	else if(HAS_TRAIT(src, TRAIT_BURROWED))
-		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
-	else if(lying_angle)
-		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
-		else
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
-	else if(!handle_special_state())
-		if(m_intent == MOVE_INTENT_RUN)
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
-		else
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
+	if(state_change)
+		if(stat == DEAD)
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
+		else if(HAS_TRAIT(src, TRAIT_BURROWED))
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
+		else if(lying_angle)
+			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
+			else
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
+		else if(!handle_special_state())
+			if(m_intent == MOVE_INTENT_RUN)
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+			else
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
@@ -107,6 +113,7 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
+	wound_overlay.vis_flags |= VIS_HIDE
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		wound_overlay.icon_state = "none"
 		return
@@ -132,6 +139,7 @@
 		wound_overlay.icon_state = "[xeno_caste.wound_type]_wounded_[health_thresholds]"
 	else
 		wound_overlay.icon_state = handle_special_wound_states(health_thresholds)
+	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
@@ -140,23 +148,7 @@
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
 	icon = 'icons/Xeno/wound_overlays.dmi'
-	var/mob/living/carbon/xenomorph/wound_owner
-
-/atom/movable/vis_obj/xeno_wounds/Initialize(mapload, mob/living/carbon/xenomorph/owner)
-	. = ..()
-	if(owner)
-		wound_owner = owner
-		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
-
-/atom/movable/vis_obj/xeno_wounds/Destroy()
-	if(wound_owner)
-		wound_owner = null
-	return ..()
-
-/atom/movable/vis_obj/xeno_wounds/proc/on_dir_change(mob/living/carbon/xenomorph/source, olddir, newdir)
-	SIGNAL_HANDLER
-	if(newdir != dir)
-		dir = newdir
+	vis_flags = VIS_INHERIT_DIR
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	icon = 'icons/Xeno/2x2_Xenos.dmi'

@@ -50,12 +50,6 @@
 	light.update_position()
 
 
-// If we have opacity, make sure to tell (potentially) affected light sources.
-/atom/movable/Destroy()
-	if(opacity)
-		RemoveElement(/datum/element/light_blocking)
-	return ..()
-
 /**
  * Updates the atom's opacity value.
  *
@@ -86,12 +80,6 @@
 	if(isnull(.))
 		return
 	recalculate_directional_opacity()
-
-// If we have opacity, make sure to tell (potentially) affected light sources.
-/atom/movable/Destroy()
-	. = ..()
-	QDEL_NULL(light)
-	QDEL_NULL(static_light)
 
 /atom/vv_edit_var(var_name, var_value)
 	switch(var_name)

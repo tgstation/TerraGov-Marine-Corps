@@ -349,8 +349,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
-		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
+	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
+		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE))
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
 			squad_leader.comm_title = J.comm_title
@@ -380,8 +380,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, H)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
-		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT)
+	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
+		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT))
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))

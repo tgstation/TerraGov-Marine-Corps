@@ -39,7 +39,7 @@
 	if(istype(A, /area/shuttle/dropship))
 		to_chat(H, span_warning("You have to be outside the dropship to use this or it won't transmit."))
 		return FALSE
-	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
+	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP))
 	H.visible_message(span_notice("[H] starts setting up [src] on the ground."),
 	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -57,12 +57,22 @@
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	H.visible_message("[H] activates [src].",
 	"You activate [src].")
+	var/marker_flags
+	if(H.faction == FACTION_TERRAGOV)
+		marker_flags = MINIMAP_FLAG_MARINE
+	else if(H.faction == FACTION_TERRAGOV_REBEL)
+		marker_flags = MINIMAP_FLAG_MARINE_REBEL
+	else if(H.faction == FACTION_SOM)
+		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else
+		marker_flags = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, z, marker_flags, "supply")
 	update_icon()
 	return TRUE
 
 /// Deactivate this beacon and put it in the hand of the human
 /obj/item/beacon/proc/deactivate(mob/living/carbon/human/H)
-	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating("leadership")) //Half as long as setting it up.
+	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP)) //Half as long as setting it up.
 	H.visible_message(span_notice("[H] starts removing [src] from the ground."),
 	span_notice("You start removing [src] from the ground, deactivating it."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -78,6 +88,7 @@
 	H.visible_message("[H] deactivates [src].",
 	"You deactivate [src].")
 	H.put_in_active_hand(src)
+	SSminimaps.remove_marker(src)
 	update_icon()
 	return TRUE
 

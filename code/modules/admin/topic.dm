@@ -288,12 +288,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					var/mob/living/L = i
 					if(!L.client)
 						continue
-					L.revive()
+					L.revive(TRUE)
 	else if(href_list["force_event"])
 		if(!check_rights(R_FUN))
 			return
 		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
-		if(E)
+		if(!E)
 			return
 		E.admin_setup(usr)
 		var/datum/round_event/event = E.run_event()
@@ -429,9 +429,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("widow")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/widow, location, null, delmob)
 			if("defiler")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defiler, location, null, delmob)
 			if("gorger")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/gorger, location, null, delmob)
+			if("warlock")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warlock, location, null, delmob)
 			if("shrike")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("hivemind")
@@ -485,7 +487,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
 			return
 
-		L.revive()
+		L.revive(TRUE)
 
 		log_admin("[key_name(usr)] revived [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
@@ -597,6 +599,23 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		usr.client.smite(H)
+
+	else if(href_list["traitor"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		if(!SSticker.HasRoundStarted())
+			alert("The game hasn't started yet!")
+			return
+
+		var/mob/M = locate(href_list["traitor"])
+		if(!ismob(M))
+			var/datum/mind/D = M
+			if(!istype(D))
+				to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+				return
+			else
+				D.traitor_panel()
 
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])
@@ -2064,7 +2083,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/datum/skills/S = pickedtype
 				previous = H.skills.name
 				change = initial(S.name)
-				H.skills = getSkillsType(pickedtype)
+				H.set_skills(getSkillsType(pickedtype))
 			if("commstitle")
 				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
 				if(!change || !istype(H) || !H.mind)
@@ -2208,7 +2227,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("upgrade")
 				previous = X.xeno_caste.upgrade
 
-				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
+				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID - XENO_UPGRADE_MANIFESTATION)
 				if(!change || change == previous)
 					return
 
@@ -2217,6 +2236,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				X.upgrade_xeno(change)
+				if(change != XENO_UPGRADE_ZERO)
+					var/datum/xeno_caste/previous_maturity = GLOB.xeno_caste_datums[X.caste_base_type][X.upgrade_prev()]
+					X.upgrade_stored = previous_maturity.upgrade_threshold
 
 		DIRECT_OUTPUT(usr, browse(null, "window=xeno_panel_[old_keyname]"))
 		usr.client.holder.xeno_panel(X)

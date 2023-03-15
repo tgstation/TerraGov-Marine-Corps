@@ -53,7 +53,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "cD" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -222,8 +222,7 @@
 /area/bigredv2/outside/e)
 "kz" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/grimy,
@@ -254,7 +253,7 @@
 /area/bigredv2/outside/office_complex)
 "lK" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "lZ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -411,7 +410,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "ra" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "rb" = (
 /obj/structure/janitorialcart,
@@ -511,7 +510,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wo" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/structure/prop/mainship/research/mechafab,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wr" = (
@@ -856,7 +855,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "LE" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "LH" = (
@@ -1040,7 +1039,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "Tz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)

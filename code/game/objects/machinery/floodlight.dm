@@ -56,6 +56,9 @@
 	use_power = FALSE
 	brightness_on = 10
 
+/obj/machinery/floodlight/outpost/oscar
+	brightness_on = 30
+
 /obj/machinery/floodlight/outpost/Initialize()
 	. = ..()
 	set_light(brightness_on)
@@ -80,41 +83,40 @@
 	. = ..()
 	set_light(brightness_on)
 
-/obj/machinery/floodlightcombat
+/obj/machinery/floodlight/combat
 	name = "armoured floodlight"
-	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodlightcombat_off"
 	anchored = FALSE
-	density = TRUE
-	light_power = SQRTWO
-	light_system = STATIC_LIGHT
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	///the cell powering this floodlight
 	var/obj/item/cell/cell
 	/// The charge consumption every 2 seconds
 	var/energy_consummed = 6
 	/// The lighting power of the floodlight
 	var/floodlight_light_range = 15
+	/// The amount of integrity repaired with every welder act.
+	var/repair_amount = 100
 
-/obj/machinery/floodlightcombat/Initialize()
+/obj/machinery/floodlight/combat/Initialize()
 	. = ..()
 	cell = new()
 	GLOB.nightfall_toggleable_lights += src
 
-/obj/machinery/floodlightcombat/Destroy()
+/obj/machinery/floodlight/combat/Destroy()
 	QDEL_NULL(cell)
 	GLOB.nightfall_toggleable_lights -= src
 	return ..()
 
-
-/obj/machinery/floodlightcombat/examine(mob/user)
+/obj/machinery/floodlight/combat/examine(mob/user)
 	. = ..()
 	if(!cell)
-		. += span_notice("It has no cell installed")
+		. += span_notice("It has no cell installed.")
 		return
-	. += span_notice("[cell] has [CEILING(cell.charge / cell.maxcharge * 100, 1)]% charge left")
+	. += span_notice("[cell] has [CEILING(cell.charge / cell.maxcharge * 100, 1)]% charge left.")
+	. += span_notice("It has [obj_integrity]/[max_integrity] integrity left.")
 
 /// Handles the wrench act .
-/obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/floodlight/combat/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
 	to_chat(user , span_notice("You begin wrenching \the [src]'s bolts."))
 	playsound(loc, 'sound/items/ratchet.ogg', 60, FALSE)
@@ -129,7 +131,7 @@
 		to_chat(user , span_notice("You wrench down \the [src]'s bolts."))
 		anchored = TRUE
 
-/obj/machinery/floodlightcombat/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/floodlight/combat/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(!user)
 		return
@@ -144,20 +146,23 @@
 	cell = null
 	turn_light(user, FALSE, forced = TRUE)
 
-/obj/machinery/floodlightcombat/process()
+/obj/machinery/floodlight/combat/welder_act(mob/living/user, obj/item/I)
+	return welder_repair_act(user, I, repair_amount, 4 SECONDS)
+
+/obj/machinery/floodlight/combat/process()
 	cell.charge -= energy_consummed
 	if(cell.charge > 0)
 		return
 	cell.charge = 0
 	turn_light(null, FALSE, forced = TRUE)
 
-/obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
+/obj/machinery/floodlight/combat/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
 		return FALSE
 	if(!istype(I, /obj/item/cell))
 		return FALSE
 	if(cell)
-		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
+		to_chat(user, span_warning("There is already a cell inside, use a crowbar to remove it."))
 		return
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
@@ -166,7 +171,7 @@
 	cell = I
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-/obj/machinery/floodlightcombat/turn_light(user, toggle_on , cooldown, sparks, forced)
+/obj/machinery/floodlight/combat/turn_light(user, toggle_on , cooldown, sparks, forced)
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
@@ -179,7 +184,7 @@
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	update_icon()
 
-/obj/machinery/floodlightcombat/attack_hand(mob/living/user)
+/obj/machinery/floodlight/combat/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return FALSE
 	if(!anchored)
@@ -194,16 +199,7 @@
 	turn_light(user, !light_on)
 	return TRUE
 
-/obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	if(!light_on)
-		return ..()
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_danger("[X] slashes \the [src]!"), \
-	span_danger("We slash \the [src]!"), null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)
-	turn_light(X, FALSE, forced = TRUE)
-
-/obj/machinery/floodlightcombat/update_icon_state()
+/obj/machinery/floodlight/combat/update_icon_state()
 	icon_state = "floodlightcombat" + (light_on ? "_on" : "_off")
 
 #define FLOODLIGHT_TICK_CONSUMPTION 800

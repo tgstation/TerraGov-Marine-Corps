@@ -3,45 +3,34 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
-"b" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "d" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
-"h" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river2)
 "k" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -56,6 +45,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "r" = (
@@ -73,10 +63,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "w" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "y" = (
@@ -84,13 +75,13 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -106,6 +97,7 @@
 "F" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "H" = (
@@ -113,12 +105,6 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/ground/river2)
-"I" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
 /area/lv624/ground/river2)
 "J" = (
 /turf/open/floor/plating/dmg1,
@@ -133,7 +119,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "N" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
@@ -166,7 +152,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "Z" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -184,8 +170,8 @@ a
 a
 a
 a
-h
-b
+a
+a
 "}
 (2,1,1) = {"
 D
@@ -269,5 +255,5 @@ V
 a
 a
 M
-I
+a
 "}

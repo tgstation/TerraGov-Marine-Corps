@@ -1,12 +1,12 @@
 /datum/game_mode/civil_war
 	name = "Civil War"
 	config_tag = "Civil War"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_NO_PERMANENT_WOUNDS|MODE_SPECIFIC_SHIP_MAP
-	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
+	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_NO_PERMANENT_WOUNDS|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 18 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	respawn_time = 5 MINUTES
 	time_between_round = 36 HOURS
+	factions = list(FACTION_TERRAGOV, FACTION_TERRAGOV_REBEL)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -42,6 +42,9 @@
 		/datum/job/terragov/squad/leader/rebel = 4,
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
+	whitelist_ship_maps = list(MAP_TWIN_PILLARS)
+	blacklist_ship_maps = null
+
 
 	win_points_needed = 1000
 	///How many points per zone to control, determined by the number of zones
@@ -68,7 +71,6 @@
 		new /obj/structure/sensor_tower(T)
 	if(GLOB.zones_to_control.len)
 		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
-	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
@@ -119,9 +121,5 @@
 /datum/game_mode/civil_war/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
-
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
-	announce_medal_awards()
-	announce_round_stats()

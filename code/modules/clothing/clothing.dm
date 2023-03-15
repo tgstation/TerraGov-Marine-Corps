@@ -54,6 +54,9 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	return ..()
 
+/obj/item/clothing/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -105,12 +108,12 @@
 	name = "suit"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
+	attachments_allowed = list(/obj/item/armor_module/greyscale/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/shield_state = "shield-blue"
@@ -234,7 +237,7 @@
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
-
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 
 /obj/item/clothing/shoes/update_clothing_icon()
 	if (ismob(src.loc))

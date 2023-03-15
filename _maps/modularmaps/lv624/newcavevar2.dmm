@@ -10,8 +10,8 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "cr" = (
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/darkgreen,
@@ -23,10 +23,10 @@
 /area/lv624/ground/caves/central2)
 "cQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/darkgreen,
@@ -139,7 +139,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "qA" = (
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
@@ -160,7 +160,7 @@
 /area/lv624/ground/caves/central1)
 "sB" = (
 /obj/item/shard,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
@@ -185,7 +185,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "tK" = (
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "uN" = (
@@ -250,7 +250,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "CO" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/tile/cafe,
@@ -261,8 +261,8 @@
 /area/lv624/ground/caves/central2)
 "Eb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen,
@@ -285,7 +285,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Gs" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -299,8 +299,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "ID" = (
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
@@ -320,7 +320,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Kp" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
@@ -332,14 +332,14 @@
 /area/lv624/ground/caves/central2)
 "LS" = (
 /obj/item/mecha_parts/part/durand_right_leg,
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "LU" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -351,7 +351,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "MZ" = (
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "NA" = (
@@ -371,8 +371,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "OR" = (
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /obj/effect/spawner/random/trash,
@@ -396,7 +396,7 @@
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "Rk" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor/asteroid,
@@ -447,7 +447,7 @@
 /area/lv624/ground/caves/central2)
 "WV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "Xi" = (
@@ -458,10 +458,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Xp" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "XC" = (

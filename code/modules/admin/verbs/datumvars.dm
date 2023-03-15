@@ -273,7 +273,7 @@
 	if(!islist)
 		for(var/V in D.vars)
 			names += V
-	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
+	sleep(0.1 SECONDS)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
 
 	var/list/variable_html = list()
 	if(islist)
@@ -947,6 +947,10 @@
 		var/client/C = usr.client
 		C?.open_filter_editor(locate(href_list["filteredit"]))
 		return
+
+	if(href_list["modify_particles"] && check_rights(R_VAREDIT))
+		var/client/C = usr.client
+		C?.open_particle_editor(locate(href_list["modify_particles"]))
 
 	else if(href_list["rotatedatum"])
 		if(!check_rights(R_DEBUG))

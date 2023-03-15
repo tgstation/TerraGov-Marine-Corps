@@ -104,8 +104,8 @@
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
 					if(loadout.version < 8)
-						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman" ||  "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/standard")
-							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
+						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/corpsman" ||  "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/standard")
+							helmet.item_type = /obj/item/clothing/head/modular/m10x
 					if(loadout.version < 10)
 						helmet.greyscale_colors = initial(helmet.item_type.greyscale_colors)
 						for(var/datum/item_representation/armor_module/colored/module AS in helmet.attachments)
@@ -167,8 +167,8 @@
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
 					if(loadout.version < 8)
-						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/standard")
-							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
+						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/corpsman" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/m10x/standard")
+							helmet.item_type = /obj/item/clothing/head/modular/m10x
 					if(loadout.version < 10)
 						helmet.greyscale_colors = initial(helmet.item_type.greyscale_colors)
 						for(var/datum/item_representation/armor_module/colored/module AS in helmet.attachments)

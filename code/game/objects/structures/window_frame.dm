@@ -1,24 +1,30 @@
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
-	icon = 'icons/obj/structures/window_frames.dmi'
-	icon_state = "window0_frame"
+	icon = 'icons/obj/smooth_objects/regular_window_frame.dmi'
+	icon_state = "white_window_frame-0"
+	base_icon_state = "white_window_frame"
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
-	throwpass = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
 	var/junction = 0
 	var/reinforced = FALSE
 	coverage = 50
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME)
+	canSmoothWith = list(
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+	)
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -41,10 +47,10 @@
 
 
 /obj/structure/window_frame/proc/update_nearby_icons()
-	smooth_neighbors()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/window_frame/update_icon()
-	smooth_self()
+	QUEUE_SMOOTH(src)
 
 /obj/structure/window_frame/Destroy()
 	density = FALSE
@@ -108,40 +114,59 @@
 
 
 /obj/structure/window_frame/mainship
-	icon_state = "ship_window0_frame"
-	basestate = "ship_window"
+	icon = 'icons/obj/smooth_objects/ship_window_frame.dmi'
+	icon_state = "ship_window_frame-0"
+	basestate = "ship_window_frame"
+	base_icon_state = "ship_window_frame"
 
 /obj/structure/window_frame/mainship/white
-	icon_state = "white_window0_frame"
-	basestate = "white_window"
+	icon = 'icons/obj/smooth_objects/white_window_frame.dmi'
+	icon_state = "white_window_frame-0"
+	basestate = "white_window_frame"
+	base_icon_state = "white_window_frame"
 	window_type = /obj/structure/window/framed/mainship/white
 
 /obj/structure/window_frame/mainship/gray
-	icon_state = "gray_window0_frame"
-	basestate = "gray_window"
+	icon = 'icons/obj/smooth_objects/gray_window_frame.dmi'
+	icon_state = "gray_window_frame-0"
+	basestate = "gray_window_frame"
+	base_icon_state = "gray_window_frame"
 	window_type = /obj/structure/window/framed/mainship/gray
 
 /obj/structure/window_frame/colony
-	icon_state = "col_window0_frame"
-	basestate = "col_window"
+	icon = 'icons/obj/smooth_objects/col_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
 
 /obj/structure/window_frame/colony/reinforced
-	icon_state = "col_rwindow0_frame"
-	basestate = "col_rwindow"
+	icon = 'icons/obj/smooth_objects/col_rwindow_frame.dmi'
+	icon_state = "col_rwindow_frame-0"
+	basestate = "col_rwindow_frame"
+	base_icon_state = "col_rwindow_frame"
 	reinforced = TRUE
 	max_integrity = 300
 
+/obj/structure/window_frame/colony/reinforced/weakened
+	max_integrity = 150
+
 /obj/structure/window_frame/chigusa
-	icon_state = "chig_window0_frame"
-	basestate = "chig_window"
+	icon = 'icons/obj/smooth_objects/chigusa_window_frame.dmi'
+	icon_state = "chigusa_window_frame-0"
+	basestate = "chigusa_window_frame"
+	base_icon_state = "chigusa_window_frame"
 
 /obj/structure/window_frame/wood
-	icon_state = "wood_window0_frame"
-	basestate = "wood_window"
+	icon = 'icons/obj/smooth_objects/wood_window_frame.dmi'
+	icon_state = "wood_window_frame-0"
+	basestate = "wood_window_frame"
+	base_icon_state = "wood_window_frame"
 
 /obj/structure/window_frame/prison
-	icon_state = "prison_rwindow0_frame"
-	basestate = "prison_rwindow"
+	icon = 'icons/obj/smooth_objects/prison_rwindow_frame.dmi'
+	icon_state = "col_rwindow_frame-0"
+	basestate = "col_rwindow_frame"
+	base_icon_state = "col_rwindow_frame"
 
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
@@ -149,6 +174,6 @@
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE
-	throwpass = FALSE
+	flags_pass = NONE
 	reinforced = TRUE
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE

@@ -252,7 +252,7 @@
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
 						to_chat(T:client, span_warning("[user] has sprayed you with water!"))
-				sleep(4)
+				sleep(0.4 SECONDS)
 			qdel(D)
 
 		return
@@ -363,9 +363,9 @@
 	throw_speed = 1
 	throw_range = 20
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_held_item()
-		throw_at(target, throw_range, throw_speed, user)
+/obj/item/toy/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	user.drop_held_item()
+	throw_at(target, throw_range, throw_speed, user)
 
 
 /obj/item/toy/dice
@@ -536,7 +536,6 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
-	throwpass = 1
 	var/side = ""
 	var/id = ""
 

@@ -96,7 +96,7 @@
 		amount = amount*species.brute_mod
 
 	if(amount > 0)
-		take_overall_damage(amount, updating_health = updating_health)
+		take_overall_damage(amount, BRUTE, updating_health = updating_health)
 	else
 		heal_overall_damage(-amount, 0, updating_health = updating_health)
 
@@ -106,7 +106,7 @@
 		amount = amount*species.burn_mod
 
 	if(amount > 0)
-		take_overall_damage(0, amount, updating_health = updating_health)
+		take_overall_damage(amount, BURN, updating_health = updating_health)
 	else
 		heal_overall_damage(0, -amount, updating_health = updating_health)
 
@@ -254,8 +254,6 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
-	speech_problem_flag = 1
-
 
 ///Heal MANY limbs, in random order. If robo_repair is TRUE then both metal and flesh limbs will be healed, otherwise only flesh.
 /mob/living/carbon/human/heal_overall_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
@@ -276,65 +274,27 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		parts -= picked
 	if(updating_health)
 		updatehealth()
-	speech_problem_flag = 1
 	if(update)
 		UpdateDamageIcon()
 
-// damage MANY limbs, in random order
-/mob/living/carbon/human/take_overall_damage(brute, burn, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+//Damage all limbs on your body equally
+/mob/living/carbon/human/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, max_limbs)
 	if(status_flags & GODMODE)
-		return	//godmode
-
-	var/hit_percent = (100 - blocked) * 0.01
-
-	if(hit_percent <= 0) //total negation
-		return FALSE
-
-	if(brute)
-		brute *= CLAMP01(hit_percent) //Percentage reduction
-	if(burn)
-		burn *= CLAMP01(hit_percent) //Percentage reduction
-
-	if(!brute && !burn) //Complete negation
-		return FALSE
-
-	if(protection_aura)
-		if(brute)
-			brute = round(brute * ((10 - protection_aura) / 10))
-		if(burn)
-			burn = round(burn * ((10 - protection_aura) / 10))
-
-	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
-
-	var/list/datum/limb/parts = get_damageable_limbs()
-	var/update = 0
-	while(parts.len && (brute>0 || burn>0) )
-		var/datum/limb/picked = pick_n_take(parts)
-
-		var/brute_was = picked.brute_dam
-		var/burn_was = picked.burn_dam
-
-		update |= picked.take_damage_limb(brute, burn, sharp, edge)
-		brute	-= (picked.brute_dam - brute_was)
-		burn	-= (picked.burn_dam - burn_was)
-
-	if(updating_health)
-		updatehealth()
-	if(update)
-		UpdateDamageIcon()
-
-/mob/living/carbon/human/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(status_flags & GODMODE)
-		return //we don't wanna kill gods...or do we ?
+		return
 
 	var/list/datum/limb/parts = get_damageable_limbs()
 	var/partcount = length(parts)
 	if(!partcount)
 		return
-	damage = damage / partcount //damage all limbs equally.
-	while(parts.len)
+	if(max_limbs)
+		partcount = min(partcount, max_limbs)
+	damage = damage / partcount
+	for(var/i=1 to partcount)
 		var/datum/limb/picked = pick_n_take(parts)
-		apply_damage(damage, damagetype, picked, get_soft_armor(armortype, picked), sharp, edge, updating_health)
+		apply_damage(damage, damagetype, picked, armortype, sharp, edge, FALSE, penetration)
+
+	if(updating_health)
+		updatehealth()
 
 ////////////////////////////////////////////
 
@@ -375,5 +335,7 @@ This function restores all limbs.
 			continue
 		return EO
 
-/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, src)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+	if(status_flags & (GODMODE))
+		return
+	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, src)

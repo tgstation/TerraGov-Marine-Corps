@@ -48,9 +48,24 @@
 	user.visible_message(span_notice("[user] goes through the [src]."),
 	span_notice("You walk through the [src]."))
 	user.trainteleport(linked_point.loc)
+	add_spawn_protection(user)
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "CURRENT OBJECTIVE: ELIMINATE HOSTILE FORCES IN THE AO.", /obj/screen/text/screen_text/command_order)
+	var/message
+	if(issensorcapturegamemode(SSticker.mode))
+		if(user.faction == FACTION_TERRAGOV)
+			message = "Reactivate all sensor towers, good luck team."
+		else
+			message = "Prevent reactivation of the sensor towers, glory to Mars!"
+	else if(user.faction == FACTION_TERRAGOV)
+		message = "Eliminate all hostile forces in the ao, good luck team."
+	else
+		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
+
+	if(user.faction == FACTION_TERRAGOV)
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
+	else
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
@@ -59,6 +74,15 @@
 		return
 
 	user.forceMove(get_turf(linked_point))
+
+///Temporarily applies godmode to prevent spawn camping
+/obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
+	user.status_flags |= GODMODE
+	addtimer(CALLBACK(src, .proc/remove_spawn_protection, user), 10 SECONDS)
+
+///Removes spawn protection godmode
+/obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
+	user.status_flags &= ~GODMODE
 
 /atom/movable/effect/rappel_rope
 	name = "rope"

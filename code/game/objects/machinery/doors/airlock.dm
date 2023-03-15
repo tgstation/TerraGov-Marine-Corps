@@ -2,7 +2,7 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
-	soft_armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 100, ACID = 0)
+	soft_armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -34,6 +34,7 @@
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/emergency = FALSE
+	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
@@ -97,7 +98,7 @@
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
 	while(cont)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 		cont = FALSE
@@ -151,7 +152,7 @@
 		return 0	//Already shocked someone recently?
 	if(..())
 		hasShocked = 1
-		sleep(10)
+		sleep(1 SECONDS)
 		hasShocked = 0
 		return 1
 	else
@@ -342,11 +343,11 @@
 		return
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -456,7 +457,7 @@
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE, blocked = MELEE)
 			M.Stun(10 SECONDS)
 			M.Paralyze(10 SECONDS)
 			if (iscarbon(M))
@@ -511,6 +512,7 @@
 
 
 /obj/machinery/door/airlock/Destroy()
+	QUEUE_SMOOTH_NEIGHBORS(loc)
 	QDEL_NULL(wires)
 	return ..()
 
@@ -523,7 +525,7 @@
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()
-	smooth_neighbors()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
@@ -546,7 +548,7 @@
 
 /obj/machinery/door/airlock/proc/electrified_loop()
 	while(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 

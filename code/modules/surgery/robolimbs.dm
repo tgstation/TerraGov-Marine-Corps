@@ -132,7 +132,7 @@
 	if(..())
 		var/obj/item/robot_parts/p = tool
 		if(p.part)
-			if(!(target_zone in p.part))
+			if(!(affected.name in p.part))
 				return SURGERY_CANNOT_USE
 		if(affected.limb_status & LIMB_AMPUTATED)
 			return SURGERY_CAN_USE
@@ -149,7 +149,10 @@
 	target.balloon_alert_to_viewers("Success")
 
 	//Update our dear victim to have a limb again
-	affected.robotize()
+	if(istype(tool, /obj/item/robot_parts/biotic))
+		affected.biotize()
+	else
+		affected.robotize()
 
 	target.update_body()
 	target.updatehealth()

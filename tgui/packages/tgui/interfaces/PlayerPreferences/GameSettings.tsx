@@ -3,25 +3,25 @@ import { Button, Section, LabeledList, Grid, ColorBox } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
-  let returnval = "";
+  let returnval = '';
   switch (integer) {
     case -1:
-      returnval = "Insane";
+      returnval = 'Insane';
       break;
     case 0:
-      returnval = "High";
+      returnval = 'High';
       break;
     case 1:
-      returnval = "Medium";
+      returnval = 'Medium';
       break;
     case 2:
-      returnval = "Low";
+      returnval = 'Low';
       break;
     case 3:
-      returnval = "Disabled";
+      returnval = 'Disabled';
       break;
     default:
-      returnval = "Error!";
+      returnval = 'Error!';
   }
   return returnval;
 };

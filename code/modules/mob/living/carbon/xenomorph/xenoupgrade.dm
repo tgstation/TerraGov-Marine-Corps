@@ -4,7 +4,6 @@
 		return
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
-	upgrade_stored = 0
 	if(!silent)
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
@@ -42,6 +41,10 @@
 
 	if(queen_chosen_lead)
 		give_rally_abilities() //Give them back their rally hive ability
+
+	if(current_aura) //Updates pheromone strength
+		current_aura.range = 6 + xeno_caste.aura_strength * 2
+		current_aura.strength = xeno_caste.aura_strength
 
 	switch(upgrade)
 		//FIRST UPGRADE
@@ -93,15 +96,19 @@
 
 /mob/living/carbon/xenomorph/runner/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_ONE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/runner/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_ONE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_ONE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/runner/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_ONE_ANCIENT_THRESHOLD
 
 //-----RUNNER END-----//
 //================//
@@ -109,15 +116,19 @@
 
 /mob/living/carbon/xenomorph/bull/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/bull/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/bull/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //-----BULL END-----//
 //================//
@@ -125,15 +136,19 @@
 
 /mob/living/carbon/xenomorph/drone/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_ONE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/drone/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_ONE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_ONE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/drone/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_ONE_ANCIENT_THRESHOLD
 
 //-----DRONE END-----//
 //================//
@@ -159,15 +174,19 @@
 
 /mob/living/carbon/xenomorph/carrier/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/carrier/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/carrier/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //-----CARRIER END-----//
 //================//
@@ -175,15 +194,19 @@
 
 /mob/living/carbon/xenomorph/hivelord/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/hivelord/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/hivelord/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //----HIVELORD END----//
 //================//
@@ -193,15 +216,19 @@
 
 /mob/living/carbon/xenomorph/praetorian/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/praetorian/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/praetorian/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //----PRAETORIAN END----//
 //================//
@@ -209,15 +236,19 @@
 
 /mob/living/carbon/xenomorph/ravager/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/ravager/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/ravager/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //----RAVAGER END----//
 //================//
@@ -225,15 +256,19 @@
 
 /mob/living/carbon/xenomorph/sentinel/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_ONE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/sentinel/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_ONE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_ONE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/sentinel/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_ONE_ANCIENT_THRESHOLD
 
 //----SENTINEL END----//
 //================//
@@ -241,15 +276,19 @@
 
 /mob/living/carbon/xenomorph/spitter/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/spitter/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/spitter/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //-----SPITTER END-----//
 //================//
@@ -273,15 +312,19 @@
 
 /mob/living/carbon/xenomorph/hunter/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/hunter/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/hunter/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //----HUNTER END----//
 //================//
@@ -305,31 +348,59 @@
 
 /mob/living/carbon/xenomorph/queen/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/queen/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/queen/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //----QUEEN END----//
+//============//
+//---KING START---//
+
+/mob/living/carbon/xenomorph/king/mature
+	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
+
+/mob/living/carbon/xenomorph/king/elder
+	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
+
+/mob/living/carbon/xenomorph/king/ancient
+	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
+
+/mob/living/carbon/xenomorph/king/primordial
+	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
+
+//----KING END----//
 //============//
 //---CRUSHER START---//
 
 /mob/living/carbon/xenomorph/crusher/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/crusher/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/crusher/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //---CRUSHER END---//
 //============//
@@ -337,15 +408,19 @@
 
 /mob/living/carbon/xenomorph/gorger/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/gorger/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/gorger/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/gorger/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //---GORGER END---//
 //============//
@@ -353,15 +428,19 @@
 
 /mob/living/carbon/xenomorph/boiler/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/boiler/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/boiler/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //---BOILER END---//
 //============//
@@ -369,15 +448,19 @@
 
 /mob/living/carbon/xenomorph/defender/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_ONE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/defender/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_ONE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/defender/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_ONE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/defender/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_ONE_ANCIENT_THRESHOLD
 
 //---DEFENDER END---//
 //============//
@@ -385,31 +468,39 @@
 
 /mob/living/carbon/xenomorph/warrior/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/warrior/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/warrior/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //----WARRIOR END----//
 //============//
 //----DEFILER START----//
 
-/mob/living/carbon/xenomorph/Defiler/mature
+/mob/living/carbon/xenomorph/defiler/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
-/mob/living/carbon/xenomorph/Defiler/elder
+/mob/living/carbon/xenomorph/defiler/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
-/mob/living/carbon/xenomorph/Defiler/ancient
+/mob/living/carbon/xenomorph/defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
-/mob/living/carbon/xenomorph/Defiler/primordial
+/mob/living/carbon/xenomorph/defiler/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //----DEFILER END----//
 //============//
@@ -417,30 +508,38 @@
 
 /mob/living/carbon/xenomorph/shrike/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/shrike/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/shrike/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //----SHRIKE END----//
 //============//
 //----WRAITH START----//
 /mob/living/carbon/xenomorph/wraith/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_TWO_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/wraith/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_TWO_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/wraith/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_TWO_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/wraith/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_TWO_ANCIENT_THRESHOLD
 
 //----WRAITH END----//
 //============//
@@ -448,15 +547,35 @@
 
 /mob/living/carbon/xenomorph/widow/mature
 	upgrade = XENO_UPGRADE_ONE
+	upgrade_stored = TIER_THREE_YOUNG_THRESHOLD
 
 /mob/living/carbon/xenomorph/widow/elder
 	upgrade = XENO_UPGRADE_TWO
+	upgrade_stored = TIER_THREE_MATURE_THRESHOLD
 
 /mob/living/carbon/xenomorph/widow/ancient
 	upgrade = XENO_UPGRADE_THREE
+	upgrade_stored = TIER_THREE_ELDER_THRESHOLD
 
 /mob/living/carbon/xenomorph/widow/primordial
 	upgrade = XENO_UPGRADE_FOUR
+	upgrade_stored = TIER_THREE_ANCIENT_THRESHOLD
 
 //----WIDOW END----//
+//============//
+//----WARLOCK START----//
+
+/mob/living/carbon/xenomorph/warlock/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/warlock/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/warlock/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warlock/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----WARLOCK END----//
 //============//

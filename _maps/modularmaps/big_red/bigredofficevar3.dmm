@@ -12,8 +12,7 @@
 /area/bigredv2/outside/office_complex)
 "aE" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/grimy,
@@ -105,7 +104,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "fZ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ge" = (
@@ -155,7 +154,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "iP" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -265,7 +264,7 @@
 /area/bigredv2/outside/office_complex)
 "mv" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "mO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -304,8 +303,7 @@
 /area/bigredv2/outside/e)
 "oU" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/tile/white,
@@ -346,7 +344,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "rl" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -378,7 +376,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "rN" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "so" = (
 /obj/structure/window_frame/colony,

@@ -11,6 +11,7 @@
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
 	w_class = WEIGHT_CLASS_BULKY
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/style = "")
 	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
 	///If TRUE it will add extra overlays for the items within.
@@ -31,6 +32,7 @@
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, .proc/open_storage)	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
 	storage.master_item = parent
 
@@ -102,6 +104,12 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 	)
+
+/obj/item/armor_module/storage/general/som
+	name = "General Purpose Storage module"
+	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, pistols or magazines."
+	icon_state = "mod_general_bag_som"
+	item_state = "mod_general_bag_som_a"
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -192,9 +200,14 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
-		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list()
+
+/obj/item/armor_module/storage/engineering/som
+	name = "Engineering Storage module"
+	desc = "Designed for mounting on SOM combat armor. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool."
+	icon_state = "mod_engineer_bag_som"
+	item_state = "mod_engineer_bag_som_a"
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
@@ -209,14 +222,6 @@
 	new /obj/item/storage/pill_bottle/meralyne(storage)
 	new /obj/item/storage/pill_bottle/dermaline(storage)
 	new /obj/item/storage/pill_bottle/tramadol(storage)
-
-/obj/item/armor_module/storage/medical/basic/Initialize()
-	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(storage)
-	new /obj/item/storage/pill_bottle/packet/kelotane(storage)
-	new /obj/item/storage/pill_bottle/packet/tramadol(storage)
-	new /obj/item/stack/medical/splint(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(storage)
 
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
@@ -234,8 +239,13 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
-		/obj/item/tool/surgery/solderingtool,
 	)
+
+/obj/item/armor_module/storage/medical/som
+	name = "Medical Storage module"
+	desc = "Designed for mounting on SOM combat armor. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
+	icon_state = "mod_medic_bag_som"
+	item_state = "mod_medic_bag_som_a"
 
 /obj/item/armor_module/storage/injector
 	name = "Injector Storage module"
@@ -288,18 +298,3 @@
 	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
-
-/obj/item/armor_module/storage/helmet/som_leader/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-
-/obj/item/armor_module/storage/helmet/som_vet/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(storage)
-
-/obj/item/armor_module/storage/helmet/som/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(storage)

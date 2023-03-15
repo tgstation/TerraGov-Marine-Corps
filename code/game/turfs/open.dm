@@ -3,6 +3,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	minimap_color = MINIMAP_AREA_COLONY
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -11,6 +12,7 @@
 	var/barefootstep = FOOTSTEP_HARD
 	var/mediumxenofootstep = FOOTSTEP_HARD
 	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
+	smoothing_groups = list(SMOOTH_GROUP_OPEN_FLOOR)
 
 /turf/open/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //todo refactor this entire proc is garbage
 	if(iscarbon(arrived))
@@ -111,40 +113,19 @@
 
 /turf/open/beach/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(has_catwalk || !iscarbon(arrived))
 		return
-	if(iscarbon(arrived))
-		var/mob/living/carbon/C = arrived
-		var/beachwater_slowdown = 1.75
+	var/mob/living/carbon/C = arrived
+	C.clean_mob()
 
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = arrived
-			cleanup(H)
+	if(isxeno(C))
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
+	else
+		C.next_move_slowdown += 1.75
 
-		else if(isxeno(C))
-			if(!isxenoboiler(C))
-				beachwater_slowdown = 1.3
-			else
-				beachwater_slowdown = -0.5
-
-		if(C.on_fire)
-			C.ExtinguishMob()
-
-		C.next_move_slowdown += beachwater_slowdown
-
-
-/turf/open/beach/water/proc/cleanup(mob/living/carbon/human/H)
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
+	if(C.on_fire)
+		C.ExtinguishMob()
 
 /turf/open/beach/water2
 	name = "water"
@@ -192,7 +173,6 @@
 	shoefootstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
-	smoothing_behavior = NO_SMOOTHING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -257,6 +237,24 @@
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
+
+// NECESSARY FOR LAGMOOR EXPERIENCE
+// Colony tiles
+/turf/open/floor/concrete
+	name = "concrete"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete0"
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	shoefootstep = FOOTSTEP_CONCRETE
+
+/turf/open/floor/concrete/ex_act() //Fixes black tile explosion issue
+
+/turf/open/floor/concrete/lines
+	icon_state = "concrete_lines"
+
+/turf/open/floor/concrete/edge
+	icon_state = "concrete_edge"
 
 /turf/open/floor/plating/heatinggrate
 	icon_state = "heatinggrate"
@@ -328,6 +326,7 @@
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
+	minimap_color = MINIMAP_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
 	return FALSE
@@ -382,13 +381,18 @@
 		STOP_PROCESSING(SSobj, src)
 
 /turf/open/lavaland/lava/proc/burn_stuff(AM)
-	. = 0
+	. = FALSE
 
 	var/thing_to_check = src
 	if (AM)
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
-		if(isobj(thing))
+		if(ismecha(thing))
+			var/obj/vehicle/sealed/mecha/burned_mech = thing
+			burned_mech.take_damage(rand(40, 120), BURN)
+			. = TRUE
+
+		else if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
 
@@ -399,11 +403,11 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), updating_health = TRUE)
+				L.take_overall_damage(LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), BURN, updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
-				. = 1
+				. = TRUE
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
 	..()
@@ -427,6 +431,14 @@
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return
 
+/turf/open/lavaland/lava/autosmoothing
+	icon = 'icons/turf/floors/lava.dmi'
+	icon_state = "lava-icon"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
+	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
+	base_icon_state = "lava"
+
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
@@ -442,6 +454,22 @@
 	name = "cave"
 	icon_state = "basalt_to_cave_corner"
 
+/turf/open/lavaland/basalt/cave/autosmooth
+	icon = 'icons/turf/floors/cave-basalt.dmi'
+	icon_state = "cave-basalt-icon"
+	base_icon_state = "cave-basalt"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_BASALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_BASALT,
+		SMOOTH_GROUP_OPEN_FLOOR,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
 /turf/open/lavaland/basalt/dirt
 	name = "dirt"
 	icon_state = "basalt_to_dirt"
@@ -449,6 +477,23 @@
 /turf/open/lavaland/basalt/dirt/corner
 	name = "dirt"
 	icon_state = "basalt_to_dirt_corner"
+
+/turf/open/lavaland/basalt/dirt/autosmoothing
+	icon = 'icons/turf/floors/basalt-dirt.dmi'
+	icon_state = "basalt-dirt-icon"
+	base_icon_state = "basalt-dirt"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_BASALT)
+	canSmoothWith = list(
+		SMOOTH_GROUP_BASALT,
+		SMOOTH_GROUP_OPEN_FLOOR,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+	)
+
 
 /turf/open/lavaland/basalt/glowing
 	icon_state = "basaltglow"

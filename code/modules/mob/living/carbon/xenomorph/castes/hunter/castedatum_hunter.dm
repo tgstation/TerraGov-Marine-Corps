@@ -9,6 +9,8 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hunter" //used to match appropriate wound overlays
+	gib_anim = "Hunter Gibs"
+	gib_flick = "Hunter Gibbed"
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
@@ -34,10 +36,11 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, "rad" = 10, FIRE = 15, ACID = 10)
+	soft_armor = list(MELEE = 40, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_MEDIUM
@@ -90,7 +93,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 15, "rad" = 15, FIRE = 20, ACID = 15)
+	soft_armor = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 15, FIRE = 20, ACID = 15)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 12.5 SECONDS
@@ -117,7 +120,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 18, "rad" = 18, FIRE = 25, ACID = 18)
+	soft_armor = list(MELEE = 50, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 18, FIRE = 25, ACID = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 11.0 SECONDS
@@ -145,7 +148,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, "rad" = 18, FIRE = 30, ACID = 18)
+	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS
@@ -169,7 +172,7 @@
 	// *** Health *** //
 	max_health = 290
 	// *** Defense *** //
-	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, "rad" = 18, FIRE = 30, ACID = 18)
+	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS

@@ -83,15 +83,11 @@
 	user.update_inv_r_hand()
 
 
-/obj/item/proc/toggle_wielded(user, new_value)
-	switch(new_value)
-		if(null)
-			flags_item ^= WIELDED
-		if(FALSE)
-			flags_item &= ~WIELDED
-		if(TRUE)
-			flags_item |= WIELDED
-
+/obj/item/proc/toggle_wielded(user, wielded)
+	if(wielded)
+		flags_item |= WIELDED
+	else
+		flags_item &= ~WIELDED
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
@@ -114,12 +110,9 @@
 
 	force = initial(force)
 
-
+// TODO port tg wielding component
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
-	if(ismonkey(user)) //TODO MAKE THIS A SPECIES FLAG
-		to_chat(user, span_warning("It's too heavy for you to wield fully!"))
-		return
 
 	if(flags_item & WIELDED)
 		unwield(user)
@@ -248,6 +241,33 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
+	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
+	var/current_angle = 45
+
+/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
+	spin = FALSE
+	//Find the angle the spear is to be thrown at, then rotate it based on that angle
+	var/rotation_value = Get_Angle(thrower, get_turf(target)) - current_angle
+	current_angle += rotation_value
+	var/matrix/rotate_me = matrix()
+	rotate_me.Turn(rotation_value)
+	transform = rotate_me
+	return ..()
+
+/obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed, bounce = FALSE)
+	. = ..()
+
+/obj/item/weapon/twohanded/spear/pickup(mob/user)
+	. = ..()
+	if(initial(current_angle) == current_angle)
+		return
+	//Reset the angle of the spear when picked up off the ground so it doesn't stay lopsided
+	var/matrix/rotate_me = matrix()
+	rotate_me.Turn(initial(current_angle) - current_angle)
+	//Rotate the object in the opposite direction because for some unfathomable reason, the above Turn() is applied twice; it just works
+	rotate_me.Turn(-(initial(current_angle) - current_angle))
+	transform = rotate_me
+	current_angle = initial(current_angle)	//Reset the angle
 
 /obj/item/weapon/twohanded/spear/tactical
 	name = "M-23 spear"
@@ -284,7 +304,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -447,7 +467,7 @@
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
-	M.apply_damage(max(0, additional_damage - additional_damage*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
+	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE)
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)

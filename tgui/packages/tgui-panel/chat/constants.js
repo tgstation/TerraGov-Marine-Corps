@@ -58,19 +58,22 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
-    selector: '.alert, .minorannounce, .radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind',
+    selector:
+      '.alert, .minorannounce, .radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind',
   },
   {
     type: MESSAGE_TYPE_INFO,
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
-    selector: '.notice, .xenonotice, .boldnotice, .adminnotice, .info, .cult, .infoplain',
+    selector:
+      '.notice, .xenonotice, .boldnotice, .adminnotice, .info, .cult, .infoplain',
   },
   {
     type: MESSAGE_TYPE_WARNING,
     name: 'Warnings',
     description: 'Urgent messages from the game and items',
-    selector: '.warning, .xenowarning, .danger, .xenodanger, .highdanger, .xenohighdanger, .xenoannounce',
+    selector:
+      '.warning, .xenowarning, .danger, .xenodanger, .highdanger, .xenohighdanger, .xenoannounce',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -82,7 +85,8 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_OOC,
     name: 'OOC',
     description: 'The bluewall of global OOC messages',
-    selector: '.ooc, .colorooc, .looc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc',
+    selector:
+      '.ooc, .colorooc, .looc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
@@ -94,7 +98,8 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_COMBAT,
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
-    selector: '.danger, .highdanger, .xenodanger, .xenohighdanger, .attack, .moderate, .disarm, .passive',
+    selector:
+      '.danger, .highdanger, .xenodanger, .xenohighdanger, .attack, .moderate, .disarm, .passive',
   },
   {
     type: MESSAGE_TYPE_UNKNOWN,

@@ -98,7 +98,7 @@
 		//combat patrol timer
 		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
 		if(patrol_end_countdown)
-			stat("<b>Combat Patrol timer:</b>", patrol_end_countdown)
+			stat("<b>Round End timer:</b>", patrol_end_countdown)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
@@ -122,6 +122,9 @@
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+		if(issensorcapturegamemode(SSticker.mode))
+			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -166,7 +169,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, f_loss, armor * 100, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE, max_limbs = 4)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -177,11 +181,9 @@
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
-		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
-		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = get_soft_armor("melee", affecting)
-		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
+		dam_zone = ran_zone(dam_zone)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
@@ -344,7 +346,7 @@
 						to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
+			if(!usr.do_actions || usr.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -388,41 +390,6 @@
 				// Update strip window
 				if(usr.interactee == src && Adjacent(usr))
 					show_inv(usr)
-
-
-	if(href_list["internal"])
-
-		if(!usr.do_actions)
-			log_combat(usr, src, "attempted to toggle internals")
-			if(internal)
-				usr.visible_message(span_danger("[usr] is trying to disable [src]'s internals"), null, null, 3)
-			else
-				usr.visible_message(span_danger("[usr] is trying to enable [src]'s internals."), null, null, 3)
-
-			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
-				if (internal)
-					internal = null
-					if (hud_used && hud_used.internals)
-						hud_used.internals.icon_state = "internal0"
-					visible_message("[src] is no longer running on internals.", null, null, 1)
-				else
-					if(istype(wear_mask, /obj/item/clothing/mask))
-						if (istype(back, /obj/item/tank))
-							internal = back
-						else if (istype(s_store, /obj/item/tank))
-							internal = s_store
-						else if (istype(belt, /obj/item/tank))
-							internal = belt
-						if (internal)
-							visible_message(span_notice("[src] is now running on internals."), null, null, 1)
-							if (hud_used && hud_used.internals)
-								hud_used.internals.icon_state = "internal1"
-
-				// Update strip window
-				if(usr.interactee == src && Adjacent(usr))
-					show_inv(usr)
-
-
 
 	if(href_list["splints"])
 
@@ -767,7 +734,7 @@
 		return
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
-	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
@@ -996,11 +963,12 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
-			if(!isattachmentflashlight(lit_rail_flashlight))
-				continue
-			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
-			light_off++
+			for(var/attachment_slot in lit_gun.attachments_by_slot)
+				var/obj/item/attachable/flashlight/lit_flashlight = lit_gun.attachments_by_slot[attachment_slot]
+				if(!isattachmentflashlight(lit_flashlight))
+					continue
+				lit_flashlight.turn_light(src, FALSE)
+				light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.light_on)

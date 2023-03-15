@@ -4,6 +4,7 @@
 	desc = "A large arachnid xenomorph, with fangs ready to bear and crawling with many little spiderlings ready to grow."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Widow Walking"
+	bubble_icon = "alienroyal"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 150
@@ -18,3 +19,8 @@
 	if(!force)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/xenomorph/widow/post_unbuckle_mob(mob/living/M)
+	M.layer = initial(M.layer)
+	M.pixel_x = rand(-8, 8)
+	M.pixel_y = rand(-8, 8)

@@ -6,7 +6,7 @@
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
@@ -31,6 +31,13 @@
 	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		icon_state = ""
+		if(smoothing_flags & SMOOTH_CORNERS)
+			icon_state = ""
+
 
 /obj/structure/proc/climb_on()
 

@@ -29,6 +29,24 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
+	minimap_color = MINIMAP_WATER
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+	)
+
+/turf/open/ground/river/autosmooth
+	icon = 'icons/turf/floors/river.dmi'
+	icon_state = "river-icon"
+	base_icon_state = "river"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_RIVER)
+	canSmoothWith = list(
+		SMOOTH_GROUP_RIVER,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_LATTICE,
+		SMOOTH_GROUP_GRILLE,
+		SMOOTH_GROUP_MINERAL_STRUCTURES,
+	)
 
 /obj/effect/river_overlay
 	name = "river_overlay"
@@ -37,50 +55,21 @@
 	plane = FLOOR_PLANE
 
 
-/turf/open/ground/river/Initialize()
-	. = ..()
-	if(!has_catwalk)
-		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
-
-
 /turf/open/ground/river/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(has_catwalk || !iscarbon(arrived))
 		return
-	if(iscarbon(arrived))
-		var/mob/living/carbon/C = arrived
-		var/river_slowdown = 1.75
+	var/mob/living/carbon/C = arrived
+	C.clean_mob()
 
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			cleanup(H)
+	if(isxeno(C))
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
+	else
+		C.next_move_slowdown += 1.75
 
-		else if(isxeno(C))
-			if(!isxenoboiler(C))
-				river_slowdown = 1.3
-			else
-				river_slowdown = -0.5
-
-		if(C.on_fire)
-			C.ExtinguishMob()
-
-		C.next_move_slowdown += river_slowdown
-
-
-/turf/open/ground/river/proc/cleanup(mob/living/carbon/human/H)
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
-
+	if(C.on_fire)
+		C.ExtinguishMob()
 
 /turf/open/ground/river/poison/Initialize()
 	. = ..()
@@ -95,7 +84,7 @@
 	if(!isliving(arrived))
 		return
 	var/mob/living/L = arrived
-	L.apply_damage(55, TOX)
+	L.apply_damage(55, TOX, blocked = BIO)
 	UPDATEHEALTH(L)
 
 
@@ -105,6 +94,9 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	smoothing_groups = list(
+		SMOOTH_GROUP_RIVER,
+	)
 
 /turf/open/ground/coast/corner
 	icon_state = "beachcorner"
@@ -135,9 +127,6 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
-
-/turf/open/ground/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return
 
 //shallow water
 /turf/open/ground/river/desertdam/clean/shallow

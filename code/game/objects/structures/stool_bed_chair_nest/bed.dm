@@ -14,7 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
@@ -32,7 +32,7 @@
 
 /obj/structure/bed/nometal
 	dropmetal = FALSE
-	
+
 /obj/structure/bed/bunkbed
 	name = "bunk bed"
 	icon_state = "bunkbed"
@@ -45,7 +45,7 @@
 	else
 		icon_state = "[base_bed_icon]_down"
 
-obj/structure/bed/Destroy()
+/obj/structure/bed/Destroy()
 	if(buckled_bodybag)
 		unbuckle_bodybag()
 	return ..()
@@ -170,10 +170,6 @@ obj/structure/bed/Destroy()
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
-/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BED)
-	return ..()
-
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -239,13 +235,14 @@ obj/structure/bed/Destroy()
 /obj/item/roller/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
-/obj/item/roller/afterattack(obj/target, mob/user , proximity)
-	if(!proximity)
+/obj/item/roller/afterattack(atom/target, mob/user , proximity)
+	if(!proximity || !isturf(target) || target.density)
 		return
-	if(isturf(target))
-		var/turf/T = target
-		if(!T.density)
-			deploy_roller(user, target)
+	var/turf/target_turf = target
+	for(var/atom/atom_to_check AS in target_turf)
+		if(atom_to_check.density)
+			return
+	deploy_roller(user, target_turf)
 
 /obj/item/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()

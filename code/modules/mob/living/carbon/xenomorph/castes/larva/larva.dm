@@ -2,6 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
+	bubble_icon = "alien"
 
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 
@@ -17,7 +18,7 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-	var/base_icon_state = "Larva"
+	base_icon_state = "Larva"
 
 // ***************************************
 // *********** Mob overrides
@@ -25,7 +26,7 @@
 /mob/living/carbon/xenomorph/larva/a_intent_change()
 	return
 
-/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	return FALSE
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)

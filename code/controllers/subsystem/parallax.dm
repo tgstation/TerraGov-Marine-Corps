@@ -15,14 +15,14 @@ SUBSYSTEM_DEF(parallax)
 /datum/controller/subsystem/parallax/PreInit()
 	. = ..()
 	if(prob(70)) //70% chance to pick a special extra layer
-		random_layer = pick(/obj/screen/parallax_layer/random/space_gas, /obj/screen/parallax_layer/random/asteroids)
+		random_layer = pick(/atom/movable/screen/parallax_layer/random/space_gas, /atom/movable/screen/parallax_layer/random/asteroids)
 		random_parallax_color = pick(COLOR_TEAL, COLOR_GREEN, COLOR_SILVER, COLOR_YELLOW, COLOR_CYAN, COLOR_ORANGE, COLOR_PURPLE)//Special color for random_layer1. Has to be done here so everyone sees the same color.
 	planet_y_offset = rand(100, 160)
 	planet_x_offset = rand(100, 160)
 
 
 /datum/controller/subsystem/parallax/fire(resumed = FALSE)
-	if (!resumed)
+	if(!resumed)
 		src.currentrun = GLOB.clients.Copy()
 
 	//cache for sanic speed (lists are references anyways)
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(parallax)
 	while(length(currentrun))
 		var/client/processing_client = currentrun[currentrun.len]
 		currentrun.len--
-		if (QDELETED(processing_client) || !processing_client.eye)
+		if(QDELETED(processing_client) || !processing_client.eye)
 			if (MC_TICK_CHECK)
 				return
 			continue
@@ -40,16 +40,18 @@ SUBSYSTEM_DEF(parallax)
 		if(!istype(movable_eye))
 			continue
 
-		for (movable_eye; isloc(movable_eye.loc) && !isturf(movable_eye.loc); movable_eye = movable_eye.loc);
+		for(movable_eye; isloc(movable_eye.loc) && !isturf(movable_eye.loc); movable_eye = movable_eye.loc);
+		//get the last movable holding the mobs eye
 
 		if(movable_eye == processing_client.movingmob)
 			if (MC_TICK_CHECK)
 				return
 			continue
+		//eye and the last recorded eye are different, and the last recorded eye isnt just the clients mob
 		if(!isnull(processing_client.movingmob))
 			LAZYREMOVE(processing_client.movingmob.client_mobs_in_contents, processing_client.mob)
 		LAZYADD(movable_eye.client_mobs_in_contents, processing_client.mob)
 		processing_client.movingmob = movable_eye
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 	currentrun = null

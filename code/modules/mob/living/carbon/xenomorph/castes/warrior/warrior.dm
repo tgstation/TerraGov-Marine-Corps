@@ -4,6 +4,7 @@
 	desc = "A beefy, alien with an armored carapace."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Warrior Walking"
+	bubble_icon = "alienroyal"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
@@ -11,6 +12,7 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alienroyal"
 	///How many stacks of combo do we have ? Interacts with every ability.
 	var/combo = 0
 	///Abilities with empowered interactions
@@ -45,7 +47,7 @@
 		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, suppress_message = TRUE, lunge = FALSE)
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, lunge = FALSE)
 	if(!check_state() || agility)
 		return FALSE
 
@@ -59,7 +61,7 @@
 	if(lunge && ..())
 		return neck_grab(L)
 
-	. = ..(L, suppress_message)
+	. = ..(L, force, suppress_message)
 
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	GLOB.round_statistics.warrior_grabs++

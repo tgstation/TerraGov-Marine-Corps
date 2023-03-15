@@ -63,7 +63,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "bG" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -132,7 +132,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "dz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
@@ -331,7 +331,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "jN" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
@@ -386,7 +386,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "lo" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -408,7 +408,7 @@
 /area/bigredv2/outside/marshal_office)
 "lH" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -683,9 +683,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "uc" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "ui" = (
@@ -779,7 +777,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -942,7 +940,7 @@
 /area/bigredv2/outside/space_port)
 "Af" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Aj" = (
@@ -1047,9 +1045,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "CH" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "CI" = (
@@ -1321,6 +1317,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
+"IG" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
 "Jf" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark,
@@ -1345,7 +1345,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
@@ -1436,7 +1436,7 @@
 /area/bigredv2/outside/marshal_office)
 "LB" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
@@ -1544,7 +1544,7 @@
 	},
 /area/bigredv2/outside/nw)
 "NV" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1629,7 +1629,7 @@
 /area/bigredv2/outside/nw)
 "PB" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
@@ -1833,12 +1833,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"Uj" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "Up" = (
 /obj/structure/rack,
 /turf/open/floor/tile/vault{
@@ -2361,7 +2355,7 @@ cj
 Xx
 fc
 Ko
-Uj
+og
 og
 Eh
 KC
@@ -2522,7 +2516,7 @@ Ko
 Yc
 ON
 ro
-og
+IG
 og
 CH
 ga

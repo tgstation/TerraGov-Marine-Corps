@@ -2,11 +2,6 @@
 "aa" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
-"aq" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "aI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
@@ -22,14 +17,14 @@
 /area/lv624/ground/caves/central1)
 "bb" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/lvsanddecal/full,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "bt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "bD" = (
@@ -97,11 +92,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"gz" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
 "gA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/item/ammo_casing/bullet,
@@ -112,7 +102,7 @@
 /turf/closed/wall,
 /area/lv624/ground/caves/central1)
 "ht" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/item/resin_jelly,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -128,19 +118,10 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"ik" = (
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
 "ip" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/dark2,
-/area/lv624/ground/caves/central2)
-"ir" = (
-/turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner"
-	},
 /area/lv624/ground/caves/central2)
 "iL" = (
 /obj/effect/landmark/corpsespawner/security,
@@ -166,7 +147,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jB" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central2)
 "ke" = (
@@ -193,7 +174,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "mR" = (
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "os" = (
@@ -213,15 +194,6 @@
 "qd" = (
 /obj/effect/spawner/random/ammo/machinegun,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"qh" = (
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
-"qv" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner"
-	},
 /area/lv624/ground/caves/central2)
 "qz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -259,12 +231,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/lv624/ground/caves/central2)
-"tE" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "ui" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -290,14 +256,14 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "uE" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 1
 	},
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "vp" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -327,10 +293,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "yy" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
@@ -354,7 +320,7 @@
 /area/lv624/ground/caves/central1)
 "zx" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "zA" = (
@@ -388,20 +354,20 @@
 /area/lv624/ground/caves/central1)
 "Ao" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Au" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "AF" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Bi" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -424,8 +390,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/lv624/ground/caves/central2)
 "Cp" = (
-/obj/effect/decal/lvsanddecal/full,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Dd" = (
@@ -439,18 +405,18 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Dq" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Dr" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "DE" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -520,10 +486,10 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Js" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Ko" = (
@@ -532,7 +498,7 @@
 /area/lv624/ground/caves/central2)
 "KG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "KP" = (
@@ -564,11 +530,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
-"MC" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/lv624/ground/caves/central2)
 "MF" = (
 /obj/effect/spawner/random/clothing,
 /obj/effect/ai_node,
@@ -591,18 +552,13 @@
 	dir = 5
 	},
 /area/lv624/ground/caves/central2)
-"OG" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "OX" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "Pl" = (
 /obj/effect/ai_node,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "PF" = (
@@ -624,9 +580,8 @@
 	},
 /area/lv624/ground/caves/central1)
 "Qn" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner2"
+/turf/open/ground/coast/corner2{
+	dir = 8
 	},
 /area/lv624/ground/caves/central2)
 "QR" = (
@@ -697,9 +652,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "Un" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Uy" = (
 /obj/structure/window_frame/colony,
@@ -713,14 +666,14 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "Vc" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Vq" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -750,20 +703,20 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "WN" = (
-/obj/effect/decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Xb" = (
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Xv" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -785,8 +738,8 @@
 	},
 /area/lv624/ground/caves/central1)
 "YP" = (
-/obj/effect/decal/lvsanddecal/full,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
@@ -803,8 +756,8 @@
 /area/lv624/ground/caves/central2)
 "Zu" = (
 /obj/effect/ai_node,
-/obj/effect/decal/lvsanddecal/full,
-/obj/effect/decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
+/obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 
@@ -2622,9 +2575,9 @@ lx
 iL
 lx
 bD
-OG
-aq
-qv
+Un
+Un
+Un
 MN
 aa
 "}
@@ -2656,10 +2609,10 @@ Xv
 mR
 lx
 lx
-OG
-MC
-ik
-gz
+Un
+Un
+Un
+Un
 lx
 aa
 "}
@@ -2690,11 +2643,11 @@ MN
 lx
 lx
 lx
-OG
-MC
+Un
+Un
 Au
 Dr
-gz
+Un
 lx
 aa
 "}
@@ -2724,12 +2677,12 @@ KP
 lx
 lx
 jf
-OG
-MC
-ik
-ik
-ik
-gz
+Un
+Un
+Un
+Un
+Un
+Un
 lx
 aa
 "}
@@ -2758,13 +2711,13 @@ MN
 KP
 lx
 Pl
-OG
-MC
-ik
-ik
-ik
+Un
+Un
+Un
+Un
+Un
 Au
-gz
+Un
 VH
 aa
 "}
@@ -2793,13 +2746,13 @@ lx
 KP
 VH
 Cp
-qh
-ik
-ik
+Un
+Un
+Un
 Dr
-ik
+Un
 Qn
-tE
+Un
 lx
 aa
 "}
@@ -2828,12 +2781,12 @@ lx
 KP
 Xb
 lx
-qh
+Un
 Au
-ik
-ik
+Un
+Un
 Qn
-tE
+Un
 lx
 aa
 aa
@@ -2863,11 +2816,11 @@ KP
 KP
 lx
 MN
-ir
 Un
 Un
 Un
-tE
+Un
+Un
 lx
 aa
 aa

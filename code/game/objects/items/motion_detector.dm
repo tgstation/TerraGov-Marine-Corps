@@ -141,7 +141,7 @@
 			continue
 		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
 	if(hostile_detected)
-		operator.playsound_local(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
+		playsound(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
 	addtimer(CALLBACK(src, .proc/clean_blips), 1 SECONDS)
 
 ///Clean all blips from operator screen

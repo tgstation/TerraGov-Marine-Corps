@@ -32,8 +32,4 @@
 
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
-	if(!equipping && internal)
-		if(hud_used?.internals)
-			hud_used.internals.icon_state = "internal0"
-		internal = null
 	update_inv_wear_mask()

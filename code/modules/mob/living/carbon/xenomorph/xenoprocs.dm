@@ -221,17 +221,18 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
-	if(!upgrade_possible()) //upgrade possible
-		return
-	if(upgrade_stored >= xeno_caste.upgrade_threshold)
-		if(!incapacitated())
-			upgrade_xeno(upgrade_next())
-		return
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
-	upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	if(!upgrade_possible())
+		return
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		return
+	if(incapacitated())
+		return
+	upgrade_xeno(upgrade_next())
+
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
@@ -421,16 +422,15 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	var/armor_block = get_soft_armor("acid", BODY_ZONE_CHEST)
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
-	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
+	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage)
 	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))
 
-/mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
-	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
+/mob/living/carbon/proc/apply_acid_spray_damage(damage)
+	apply_damage(damage, BURN, null, ACID, updating_health = TRUE)
 
-/mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage_armored(damage, BURN, "acid", updating_health = TRUE)
+/mob/living/carbon/human/apply_acid_spray_damage(damage)
+	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
 	Paralyze(20)
 
@@ -484,12 +484,13 @@
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
-
 /atom/proc/can_sting()
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
 	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+		return FALSE
+	if(status_flags & GODMODE)
 		return FALSE
 	if(stat != DEAD)
 		return TRUE
@@ -574,3 +575,11 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
+
+///updates the xeno's glow, based on the ability being used
+/mob/living/carbon/xenomorph/proc/update_glow(range, power, color)
+	if(!range || !power || !color)
+		set_light_on(FALSE)
+		return
+	set_light_range_power_color(range, power, color)
+	set_light_on(TRUE)

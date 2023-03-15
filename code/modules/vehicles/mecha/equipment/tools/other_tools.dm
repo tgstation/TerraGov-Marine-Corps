@@ -125,9 +125,9 @@
 	///max fuel material count allowed
 	var/max_fuel = 150000
 	/// Fuel used per second while idle, not generating
-	var/fuelrate_idle = 12.5
+	var/fuelrate_idle = 5
 	/// Fuel used per second while actively generating
-	var/fuelrate_active = 100
+	var/fuelrate_active = 50
 	/// Energy recharged per second
 	var/rechargerate = 10
 
@@ -171,7 +171,7 @@
 	load_fuel(weapon, user)
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(obj/item/stack/sheet/P, mob/user)
-	if(P.type == fuel.type && P.amount > 0)
+	if(istype(P, fuel.type) && P.amount > 0)
 		var/to_load = max(max_fuel - fuel.amount*MINERAL_MATERIAL_AMOUNT,0)
 		if(to_load)
 			var/units = min(max(round(to_load / MINERAL_MATERIAL_AMOUNT),1),P.amount)
@@ -185,9 +185,6 @@
 	else
 		to_chat(user, "[icon2html(src, user)][span_warning("[fuel] traces in target minimal! [P] cannot be used as fuel.")]")
 		return
-
-/obj/item/mecha_parts/mecha_equipment/generator/attackby(weapon,mob/user, params)
-	load_fuel(weapon)
 
 /obj/item/mecha_parts/mecha_equipment/generator/process(delta_time)
 	if(!chassis)

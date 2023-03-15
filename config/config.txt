@@ -197,7 +197,7 @@ DEFAULT_VIEW_SQUARE 15x15
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
 
-## Uncomment if you think xenos are struggling against marines
+## Uncomment if you think xenos are struggling against the marines
 #XENOS_ON_STRIKE
 
 AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20

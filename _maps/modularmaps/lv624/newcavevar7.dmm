@@ -3,15 +3,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"au" = (
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
-"aG" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "bj" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
@@ -30,36 +21,15 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"gn" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
-"gA" = (
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/lv624/ground/caves/central2)
 "hq" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
-"jG" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "kc" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "kd" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"ls" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
 /area/lv624/ground/caves/central2)
 "np" = (
 /obj/structure/rack,
@@ -87,11 +57,6 @@
 "oc" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
-"qJ" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
-/area/lv624/ground/caves/central2)
 "sG" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -153,12 +118,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"Ic" = (
-/turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "IQ" = (
 /obj/structure/rack,
 /turf/open/floor/tile/vault{
@@ -193,12 +152,7 @@
 /area/lv624/ground/caves/central2)
 "MU" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
-"ND" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "OT" = (
 /obj/structure/rack,
@@ -221,11 +175,6 @@
 "QS" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"Rz" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner2"
-	},
-/area/lv624/ground/caves/central2)
 "RL" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/silver{
@@ -255,11 +204,6 @@
 "Ux" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"UK" = (
-/turf/open/ground/coast{
-	dir = 10
-	},
-/area/lv624/ground/caves/central2)
 "UU" = (
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
@@ -270,13 +214,8 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"VW" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/caves/central2)
 "WN" = (
-/turf/open/ground/coast,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "WW" = (
 /turf/closed/wall,
@@ -928,8 +867,8 @@ kc
 kd
 kc
 kc
-ls
-aG
+WN
+WN
 kc
 kc
 kd
@@ -962,10 +901,10 @@ kc
 kc
 kc
 kc
-ls
-qJ
-VW
-aG
+WN
+WN
+WN
+WN
 kc
 kc
 LK
@@ -996,12 +935,12 @@ kc
 kc
 LL
 kc
-ls
-Rz
-au
-au
-VW
-aG
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1030,14 +969,14 @@ kc
 kc
 kc
 kc
-ls
-Rz
-au
-au
-au
-au
-VW
-aG
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1066,14 +1005,14 @@ kc
 kc
 kc
 WN
-au
+WN
 MU
-au
-au
-au
-au
-VW
-aG
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 LK
 kc
@@ -1101,14 +1040,14 @@ LK
 kc
 kc
 WN
-au
-au
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kd
@@ -1136,14 +1075,14 @@ kc
 kc
 kc
 WN
-au
-au
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kd
 bj
@@ -1171,14 +1110,14 @@ kc
 LL
 kc
 WN
-au
-au
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 bj
@@ -1205,15 +1144,15 @@ kc
 kc
 kc
 kc
-Ic
-UK
-au
-au
+WN
+WN
+WN
+WN
 MU
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
 kc
 kc
 bj
@@ -1242,13 +1181,13 @@ kc
 kc
 kd
 WN
-au
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1277,13 +1216,13 @@ kc
 kc
 kc
 WN
-au
-au
-au
-au
-au
+WN
+WN
+WN
+WN
+WN
 MU
-gn
+WN
 kc
 kd
 kc
@@ -1312,13 +1251,13 @@ kc
 kc
 kc
 WN
-au
-au
-au
-au
-au
-gA
-jG
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 LK
 LK
 kd
@@ -1347,12 +1286,12 @@ LL
 kc
 kc
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 LK
 LK
@@ -1382,12 +1321,12 @@ kc
 kc
 kc
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1417,12 +1356,12 @@ kc
 kd
 kc
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 LL
 kc
@@ -1452,12 +1391,12 @@ kc
 LL
 kd
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1487,12 +1426,12 @@ bj
 kc
 kc
 WN
-au
-au
+WN
+WN
 MU
-au
-au
-gn
+WN
+WN
+WN
 LK
 LK
 kc
@@ -1522,12 +1461,12 @@ bj
 kc
 kc
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 LK
 LK
 LL
@@ -1557,12 +1496,12 @@ bj
 kc
 kc
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1591,13 +1530,13 @@ bj
 bj
 kc
 kc
-Ic
-UK
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1628,12 +1567,12 @@ kc
 LL
 kc
 WN
-au
-au
-au
-au
-VW
-aG
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 LK
@@ -1663,12 +1602,12 @@ kd
 kc
 kc
 WN
-au
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1698,12 +1637,12 @@ kc
 kd
 kc
 WN
-au
-au
+WN
+WN
 MU
-au
-au
-gn
+WN
+WN
+WN
 kc
 kc
 LL
@@ -1732,13 +1671,13 @@ bj
 kc
 kc
 LL
-Ic
-UK
-au
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1769,11 +1708,11 @@ kc
 kc
 kc
 WN
-au
-au
-au
-gA
-jG
+WN
+WN
+WN
+WN
+WN
 kc
 kc
 kc
@@ -1804,10 +1743,10 @@ kc
 kc
 kc
 WN
-au
-au
-au
-gn
+WN
+WN
+WN
+WN
 kc
 kc
 LL
@@ -1839,10 +1778,10 @@ kc
 kc
 kc
 WN
-au
-au
-gA
-jG
+WN
+WN
+WN
+WN
 kc
 kd
 kc
@@ -1873,10 +1812,10 @@ bj
 kc
 kc
 kc
-Ic
-ND
-ND
-jG
+WN
+WN
+WN
+WN
 kc
 kc
 kc

@@ -27,10 +27,11 @@
 	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 28, "rad" = 28, FIRE = 35, ACID = 28)
+	soft_armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 28, FIRE = 35, ACID = 28)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -87,7 +88,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 35, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 33, "rad" = 33, FIRE = 40, ACID = 33)
+	soft_armor = list(MELEE = 35, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 33, FIRE = 40, ACID = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -121,7 +122,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 35, "rad" = 35, FIRE = 45, ACID = 35)
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 35, FIRE = 45, ACID = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -156,7 +157,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 38, "rad" = 38, FIRE = 50, ACID = 38)
+	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 38, FIRE = 50, ACID = 38)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
@@ -188,7 +189,7 @@
 	max_health = 360
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 38, "rad" = 38, FIRE = 50, ACID = 38)
+	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 38, FIRE = 50, ACID = 38)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

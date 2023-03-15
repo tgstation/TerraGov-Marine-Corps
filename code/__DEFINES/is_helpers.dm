@@ -6,6 +6,12 @@
 
 #define isclient(A) (istype(A, /client))
 
+#define isdatum(thing) (istype(thing, /datum))
+
+#define isweakref(D) (istype(D, /datum/weakref))
+
+#define isgenerator(A) (istype(A, /generator))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -98,11 +104,12 @@
 #define isxenolarva(A) (istype(A, /mob/living/carbon/xenomorph/larva))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/xenomorph/queen))
 #define isxenoshrike(A) (istype(A, /mob/living/carbon/xenomorph/shrike))
-#define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
+#define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
+#define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -175,6 +182,8 @@
 #define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
 #define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
+
+#define isgreyscaleattachment(A) (istype(A, /obj/item/armor_module/greyscale))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 
@@ -255,6 +264,7 @@
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
+#define issensorcapturegamemode(O) (istype(O, /datum/game_mode/combat_patrol/sensor_capture))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
@@ -274,3 +284,8 @@
 
 // Slot helpers
 #define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))
+
+// Objective helpers
+#define ismaroonobjective(O) (istype(O, /datum/objective/maroon))
+#define isstealobjective(O) (istype(O, /datum/objective/steal))
+#define isassassinateobjective(O) (istype(O, /datum/objective/assassinate))

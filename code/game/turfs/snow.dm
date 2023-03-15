@@ -11,6 +11,7 @@
 	shoefootstep = FOOTSTEP_SNOW
 	barefootstep = FOOTSTEP_SNOW
 	mediumxenofootstep = FOOTSTEP_SNOW
+	minimap_color = MINIMAP_SNOW
 
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
@@ -75,19 +76,18 @@
 
 
 /turf/open/floor/plating/ground/snow/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	if(slayer > 0)
-		if(iscarbon(arrived))
-			var/mob/living/carbon/C = arrived
+	if(slayer > 0 && iscarbon(arrived))
+		var/mob/living/carbon/C = arrived
+		if(prob(1))
+			to_chat(C, span_warning("Moving through [src] slows you down."))
+		if(!isxeno(C))
 			C.next_move_slowdown += 0.5 * slayer
-			if(prob(1))
-				to_chat(C, span_warning("Moving through [src] slows you down."))
-			if(!isxeno(C))
-				return ..()
-			C.next_move_slowdown -= 0.25 * slayer
-			var/mob/living/carbon/xenomorph/X = C
-			if(X.is_charging >= CHARGE_ON) // chargers = snow plows
-				slayer = 0
-				update_icon(1, 0)
+			return ..()
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown * slayer
+		if(xeno.is_charging >= CHARGE_ON) // chargers = snow plows
+			slayer = 0
+			update_icon(1, 0)
 	return ..()
 
 
@@ -194,6 +194,7 @@
 /turf/open/floor/plating/ground/snow/layer0
 	icon_state = "snow_0"
 	slayer = 0
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/snow/layer1
 	icon_state = "snow_1"

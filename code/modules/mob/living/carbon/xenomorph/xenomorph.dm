@@ -66,6 +66,8 @@
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, XENO_TRAIT)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
+	if(xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+		ADD_TRAIT(src, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
@@ -139,7 +141,8 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
-	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -260,7 +263,7 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, bypass_crit_delay = FALSE)
 	if(do_actions)
 		return FALSE //We are already occupied with something.
 	if(!Adjacent(AM))
@@ -269,8 +272,8 @@
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
-	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
-		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns.
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, /mob.proc/break_do_after_checks, list("health" = src.health))))
+		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns. If the user takes damage during the windup, it breaks the channel.
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
@@ -347,7 +350,7 @@
 /mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
-	var/obj/screen/LL_dir = hud_used.locate_leader
+	var/atom/movable/screen/LL_dir = hud_used.locate_leader
 	if(!tracked)
 		if(hive.living_xeno_ruler)
 			set_tracked(hive.living_xeno_ruler)
@@ -376,7 +379,7 @@
 	if(!hud_used?.locate_leader)
 		return
 
-	var/obj/screen/LL_dir = hud_used.locate_leader
+	var/atom/movable/screen/LL_dir = hud_used.locate_leader
 	LL_dir.icon_state = "trackoff"
 
 

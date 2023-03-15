@@ -156,6 +156,8 @@
 	var/time_between_cycle = 0
 	///The timer to launch the dropship in automatic mode
 	var/cycle_timer
+	///If first landing is false intro sequence wont play
+	var/static/first_landing = TRUE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -167,6 +169,13 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
+	if(first_landing)
+		first_landing = FALSE
+		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+			if(human.faction != FACTION_TERRAGOV)
+				return
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "36th Marine LRPRR Platoon<br>" + "[human.job.title], [human]", /atom/movable/screen/text/screen_text/picture)
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
@@ -359,7 +368,8 @@
 	if(!port)
 		to_chat(src, span_warning("Something went wrong."))
 		return
-
+	message_admins("[ADMIN_TPMONTY(src)] has summoned the dropship")
+	log_admin("[key_name(src)] has summoned the dropship")
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
 	priority_announce("Unknown interference with dropship control. Shutting down autopilot",  "Dropship malfunction")
 
@@ -367,6 +377,9 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
+	if(user.do_actions)
+		user.balloon_alert(user, span_warning("Busy"))
+		return FALSE
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
 		return FALSE
@@ -403,8 +416,6 @@
 			return FALSE
 		to_chat(user, span_xenodanger("We crack open the metal bird's shell."))
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
-			return FALSE
-		if(user.do_actions)
 			return FALSE
 		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
 		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
@@ -727,6 +738,7 @@
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	possible_destinations = "lz1;lz2;alamo"
+	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/one/Initialize()
 	. = ..()
@@ -755,6 +767,12 @@
 
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
+
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing
+	smoothing_groups = NONE
+
+/turf/open/shuttle/dropship/floor/alt
+	icon_state = "rasputin14"
 
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
@@ -958,13 +976,40 @@
 /obj/structure/dropship_piece/tadpole/rearright
 	icon_state = "blue_rear_rc"
 
+/obj/structure/dropship_piece/glassone
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass1"
+
+/obj/structure/dropship_piece/glassone/tadpole
+	icon_state = "shuttle_glass1"
+	resistance_flags = NONE
+	opacity = FALSE
+	flags_pass = PASSLASER
+
+/obj/structure/dropship_piece/glasstwo
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass2"
+
+/obj/structure/dropship_piece/glasstwo/tadpole
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_glass2"
+	resistance_flags = NONE
+	opacity = FALSE
+	flags_pass = PASSLASER
+
+/obj/structure/dropship_piece/singlewindow/tadpole
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "shuttle_single_window"
+	resistance_flags = NONE
+	opacity = FALSE
+
 /obj/structure/dropship_piece/tadpole/cockpit
 	desc = "The nose part of the tadpole, able to be destroyed."
 	max_integrity = 500
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	layer = BELOW_OBJ_LAYER
-	throwpass = FALSE
+	flags_pass = NONE
 
 /obj/structure/dropship_piece/tadpole/cockpit/left
 	icon_state = "blue_cockpit_fl"

@@ -53,6 +53,21 @@
 #define MECHA_AMMO_FLASHBANG "Flashbang"
 #define MECHA_AMMO_CLUSTERBANG "Clusterbang"
 
+#define MECHA_AMMO_GREY_LMG "30mm LMG bullet"
+#define MECHA_AMMO_RIFLE "Rocket-assisted rifle bullet"
+#define MECHA_AMMO_BURSTRIFLE "Rocket-assisted burst bullet"
+#define MECHA_AMMO_SHOTGUN "Large buckshot shell"
+#define MECHA_AMMO_LIGHTCANNON "Autocannon shrapnel shell"
+#define MECHA_AMMO_HEAVYCANNON "APFSDS tank shell"
+#define MECHA_AMMO_SMG "Large SMG bullet"
+#define MECHA_AMMO_BURSTPISTOL "Heavy burstpistol bullet"
+#define MECHA_AMMO_PISTOL "Heavy pistol bullet"
+#define MECHA_AMMO_RPG "High explosive missile"
+#define MECHA_AMMO_MINIGUN "Vulcan bullet"
+#define MECHA_AMMO_SNIPER "Anti-tank bullet"
+#define MECHA_AMMO_GRENADE "Frag grenade"
+#define MECHA_AMMO_FLAMER "Napalm"
+
 /// Module is compatible with Ripley Exosuit models
 #define EXOSUIT_MODULE_RIPLEY (1<<0)
 /// Module is compatible with Odyseeus Exosuit models
@@ -77,6 +92,9 @@
 /// Module is compatible with "Medical" Exosuit modelsm - Odysseus
 #define EXOSUIT_MODULE_MEDICAL EXOSUIT_MODULE_ODYSSEUS
 
+///degree of cone in front of which mech is allowed to fire at
+#define MECH_FIRE_CONE_ALLOWED 120
+
 /**
  * greyscale mech shenanigans
  */
@@ -94,3 +112,9 @@
 #define MECH_GREY_PRIMARY_DEFAULT ARMOR_PALETTE_DRAB
 #define MECH_GREY_SECONDARY_DEFAULT ARMOR_PALETTE_BLACK
 #define MECH_GREY_VISOR_DEFAULT VISOR_PALETTE_GOLD
+
+#define MECH_GREYSCALE_MAX_EQUIP list(\
+		MECHA_UTILITY = 1,\
+		MECHA_POWER = 1,\
+		MECHA_ARMOR = 1,\
+	)

@@ -125,7 +125,7 @@
 	user.swap_hand()
 	return TRUE
 
-/datum/keybinding/mob/say
+/*/datum/keybinding/mob/say
 	name = "say"
 	full_name = "Say"
 	hotkey_keys = list("T")
@@ -138,22 +138,7 @@
 		return
 	var/mob/M = user.mob
 	M.say_wrapper()
-	return TRUE
-
-/datum/keybinding/mob/me
-	name = "me"
-	full_name = "Me"
-	hotkey_keys = list("M")
-	description = ""
-	keybind_signal = COMSIG_KB_MOB_ME_DOWN
-
-/datum/keybinding/mob/me/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/M = user.mob
-	M.me_wrapper()
-	return TRUE
+	return TRUE*/
 
 /datum/keybinding/mob/activate_inhand
 	hotkey_keys = list("Z")

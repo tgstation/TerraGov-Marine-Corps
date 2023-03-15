@@ -179,7 +179,7 @@
 				//do not convert to timer.
 				spawn (5)
 					world.SetConfig("ban", bannedckey, null)
-					sleep(1)
+					sleep(0.1 SECONDS)
 					world.SetConfig("ban", bannedckey, null)
 					if (!ban["fromdb"])
 						cachedban = cachedban.Copy() //so old references to the list still see the ban as reverting

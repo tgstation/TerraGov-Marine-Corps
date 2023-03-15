@@ -153,18 +153,16 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "aJ" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "96"
-	},
+/turf/closed/shuttle/dropship1/window,
 /area/deathmatch)
 "aK" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "97"
+/turf/closed/shuttle/dropship1/window{
+	dir = 1
 	},
 /area/deathmatch)
 "aL" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "98"
+/turf/closed/shuttle/dropship1/window{
+	dir = 8
 	},
 /area/deathmatch)
 "aM" = (
@@ -187,8 +185,8 @@
 	},
 /area/deathmatch)
 "aQ" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "92"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 4
 	},
 /area/deathmatch)
 "aR" = (
@@ -200,8 +198,8 @@
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "aT" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "94"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 8
 	},
 /area/deathmatch)
 "aU" = (
@@ -240,17 +238,15 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "bc" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "86"
-	},
+/turf/closed/shuttle/dropship1/interiorwindow,
 /area/deathmatch)
 "bd" = (
 /obj/machinery/light,
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "be" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "89"
+/turf/closed/shuttle/dropship1/interiorwindow{
+	dir = 1
 	},
 /area/deathmatch)
 "bf" = (
@@ -284,14 +280,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "bl" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "75"
-	},
+/turf/closed/shuttle/dropship1/cornersalt2,
 /area/deathmatch)
 "bm" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "76"
-	},
+/turf/closed/shuttle/dropship1/edge,
 /area/deathmatch)
 "bn" = (
 /obj/structure/lattice,
@@ -299,14 +291,9 @@
 	dir = 4
 	},
 /area/deathmatch)
-"bo" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "81"
-	},
-/area/deathmatch)
 "bp" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "78"
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 4
 	},
 /area/deathmatch)
 "bq" = (
@@ -314,13 +301,8 @@
 /turf/open/floor/plating/dmg1,
 /area/deathmatch)
 "br" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "80"
-	},
-/area/deathmatch)
-"bs" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "77"
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 8
 	},
 /area/deathmatch)
 "bt" = (
@@ -339,13 +321,14 @@
 /area/deathmatch)
 "bw" = (
 /obj/structure/dropship_piece/one/wing/left/top,
+/obj/structure/dropship_piece/one/wing/left/top,
 /turf/open/ground/coast{
 	dir = 8
 	},
 /area/deathmatch)
 "bx" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "72"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 4
 	},
 /area/deathmatch)
 "by" = (
@@ -399,13 +382,13 @@
 /turf/open/floor/freezer,
 /area/deathmatch)
 "bG" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "66"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 8
 	},
 /area/deathmatch)
 "bH" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "67"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 1
 	},
 /area/deathmatch)
 "bI" = (
@@ -419,9 +402,7 @@
 /turf/open/floor/plating,
 /area/deathmatch)
 "bK" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "68"
-	},
+/turf/closed/shuttle/dropship1/aisle,
 /area/deathmatch)
 "bL" = (
 /obj/machinery/shower{
@@ -440,18 +421,16 @@
 /area/deathmatch)
 "bN" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
+/obj/structure/dropship_piece/one/wing/left/bottom,
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/open/ground/coast{
 	dir = 8
 	},
 /area/deathmatch)
 "bO" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "62"
-	},
+/turf/closed/shuttle/dropship1/finleft,
 /area/deathmatch)
 "bP" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -460,8 +439,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "bQ" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "63"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 4
 	},
 /area/deathmatch)
 "bR" = (
@@ -542,11 +521,6 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
-"cf" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "52"
-	},
-/area/deathmatch)
 "cg" = (
 /obj/structure/lattice,
 /turf/open/ground/coast/corner{
@@ -554,8 +528,8 @@
 	},
 /area/deathmatch)
 "ch" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "53"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 8
 	},
 /area/deathmatch)
 "ci" = (
@@ -563,18 +537,19 @@
 	dir = 8
 	},
 /area/deathmatch)
-"cj" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "50"
-	},
-/area/deathmatch)
 "ck" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
 /obj/structure/dropship_piece/one/weapon/rightleft,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
 /area/deathmatch)
 "cl" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
 /obj/structure/dropship_piece/one/weapon/rightright,
 /turf/open/ground/grass,
 /area/deathmatch)
@@ -593,9 +568,7 @@
 	},
 /area/deathmatch)
 "cp" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "47"
-	},
+/turf/closed/shuttle/dropship1/cornersalt,
 /area/deathmatch)
 "cq" = (
 /obj/structure/lattice,
@@ -603,8 +576,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "cr" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "83"
+/turf/closed/shuttle/dropship1/cornersalt2{
+	dir = 1
 	},
 /area/deathmatch)
 "cs" = (
@@ -620,8 +593,7 @@
 /area/deathmatch)
 "cv" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/tile/bar,
 /area/deathmatch)
 "cw" = (
@@ -636,8 +608,8 @@
 /turf/open/floor/plating/dmg3,
 /area/deathmatch)
 "cz" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "73"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 4
 	},
 /area/deathmatch)
 "cA" = (
@@ -660,13 +632,13 @@
 /turf/open/floor/tile/bar,
 /area/deathmatch)
 "cE" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "69"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 1
 	},
 /area/deathmatch)
 "cF" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "70"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 8
 	},
 /area/deathmatch)
 "cG" = (
@@ -678,14 +650,11 @@
 /turf/open/floor/tile/bar,
 /area/deathmatch)
 "cI" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "64"
-	},
+/turf/closed/shuttle/dropship1/finright,
 /area/deathmatch)
 "cJ" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
+	dir = 4
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/open/ground/grass,
@@ -744,8 +713,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "cU" = (
@@ -782,21 +750,11 @@
 	},
 /turf/open/ground/river,
 /area/deathmatch)
-"da" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "42"
-	},
-/area/deathmatch)
 "db" = (
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
-/area/deathmatch)
-"dc" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "54"
-	},
 /area/deathmatch)
 "dd" = (
 /obj/structure/platform{
@@ -804,18 +762,13 @@
 	},
 /turf/open/ground/river,
 /area/deathmatch)
-"de" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "51"
-	},
-/area/deathmatch)
 "df" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "dg" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "30"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 4
 	},
 /area/deathmatch)
 "dh" = (
@@ -823,8 +776,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "di" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "48"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 1
 	},
 /area/deathmatch)
 "dj" = (
@@ -832,8 +785,8 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "dk" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "24"
+/turf/closed/shuttle/dropship1/edge{
+	dir = 4
 	},
 /area/deathmatch)
 "dl" = (
@@ -843,9 +796,7 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "dm" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "43"
-	},
+/turf/closed/shuttle/dropship1/edge/alt,
 /area/deathmatch)
 "dn" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -865,12 +816,8 @@
 /area/deathmatch)
 "dq" = (
 /obj/structure/dropship_piece/one/corner/rearleft,
+/obj/structure/dropship_piece/one/corner/rearleft,
 /turf/open/ground/river,
-/area/deathmatch)
-"dr" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "10"
-	},
 /area/deathmatch)
 "ds" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -947,7 +894,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "dG" = (
-/turf/closed/wall/wood,
+/obj/structure/closet,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/wood,
 /area/deathmatch)
 "dH" = (
 /obj/effect/ai_node,
@@ -956,38 +905,30 @@
 	},
 /area/deathmatch)
 "dI" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
+/obj/structure/window_frame/wood,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "dJ" = (
-/obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/tile/bar,
-/area/deathmatch)
-"dK" = (
-/obj/structure/window/framed/wood,
-/turf/open/floor/tile/bar,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "dL" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "31"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 8
 	},
 /area/deathmatch)
 "dM" = (
-/obj/machinery/light,
-/turf/open/floor/plating/asteroidfloor,
+/obj/structure/window/framed/wood,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "dN" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper General Store"
-	},
-/turf/open/floor/tile/bar,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "dO" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "25"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 1
 	},
 /area/deathmatch)
 "dP" = (
@@ -997,25 +938,17 @@
 "dQ" = (
 /obj/structure/dropship_piece/one/engine/lefttop,
 /obj/structure/flora/tree/jungle,
+/obj/structure/dropship_piece/one/engine/lefttop,
 /turf/open/ground/grass,
 /area/deathmatch)
 "dR" = (
 /obj/structure/dropship_piece/one/engine/righttop,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/structure/dropship_piece/one/engine/righttop,
 /turf/open/ground/grass,
 /area/deathmatch)
-"dS" = (
-/obj/structure/window_frame/wood,
-/turf/open/floor/wood/broken,
-/area/deathmatch)
 "dT" = (
-/obj/structure/window/framed/wood,
-/turf/open/floor/plating/ground/dirt,
-/area/deathmatch)
-"dU" = (
-/obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/tile/bar,
+/turf/open/floor/wood,
 /area/deathmatch)
 "dV" = (
 /obj/structure/platform_decoration,
@@ -1034,10 +967,8 @@
 	},
 /area/deathmatch)
 "dY" = (
-/obj/structure/platform,
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "dZ" = (
 /obj/structure/platform_decoration{
@@ -1048,23 +979,25 @@
 	},
 /area/deathmatch)
 "ea" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "38"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 4
 	},
 /area/deathmatch)
 "eb" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "39"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 8
 	},
 /area/deathmatch)
 "ec" = (
-/obj/structure/bed,
-/turf/open/floor/wood,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Civilian Housing"
+	},
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "ed" = (
-/obj/structure/closet,
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/turf/open/floor/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ee" = (
 /obj/structure/platform_decoration,
@@ -1098,38 +1031,32 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ej" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "14"
-	},
+/turf/closed/shuttle/dropship1/interiormisc,
 /area/deathmatch)
 "ek" = (
 /obj/structure/dropship_piece/one/corner/rearright,
+/obj/structure/dropship_piece/one/corner/middleright,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "el" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "32"
+/obj/effect/attach_point/fuel/dropship1,
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 8
 	},
 /area/deathmatch)
 "em" = (
-/obj/effect/attach_point/fuel/dropship1{
-	pixel_x = -32
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 4
 	},
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "33"
-	},
-/area/deathmatch)
-"en" = (
-/turf/open/floor/wood/broken,
 /area/deathmatch)
 "eo" = (
-/turf/open/floor/wood,
+/turf/closed/wall/wood,
 /area/deathmatch)
 "ep" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Civilian Housing"
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
 	},
-/turf/open/floor/wood/broken,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "eq" = (
 /turf/open/floor/stairs/rampbottom{
@@ -1146,13 +1073,13 @@
 	},
 /area/deathmatch)
 "et" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "26"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 4
 	},
 /area/deathmatch)
 "eu" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "27"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 8
 	},
 /area/deathmatch)
 "ev" = (
@@ -1244,17 +1171,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "eJ" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 1;
-	name = "\improper Civilian Housing"
-	},
-/turf/open/floor/wood,
+/turf/open/floor/grime,
 /area/deathmatch)
 "eK" = (
-/obj/structure/window_frame/wood,
-/turf/open/floor/wood,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/grime,
 /area/deathmatch)
 "eL" = (
+/obj/structure/dropship_piece/one/engine/lefttop,
 /obj/structure/dropship_piece/one/engine/lefttop,
 /turf/open/ground/coast{
 	dir = 5
@@ -1262,25 +1186,20 @@
 /area/deathmatch)
 "eM" = (
 /obj/structure/dropship_piece/one/engine/righttop,
+/obj/structure/dropship_piece/one/engine/righttop,
 /turf/open/ground/river,
 /area/deathmatch)
-"eN" = (
-/obj/structure/prop/mainship/toolboxforacause2020,
-/turf/open/floor/wood,
-/area/deathmatch)
 "eO" = (
-/obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
 /turf/open/floor/wood,
 /area/deathmatch)
 "eP" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "34"
-	},
+/turf/closed/shuttle/dropship1/enginefour,
 /area/deathmatch)
 "eQ" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "35"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 1
 	},
 /area/deathmatch)
 "eR" = (
@@ -1288,29 +1207,19 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "eS" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/open/floor/tile/white,
+/obj/machinery/light,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "eT" = (
-/obj/structure/sink{
-	dir = 4
-	},
-/obj/structure/mirror{
-	dir = 8
-	},
-/turf/open/floor/tile/white,
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "eU" = (
-/obj/effect/attach_point/fuel/dropship1,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "28"
-	},
+/turf/closed/shuttle/dropship1/enginethree,
 /area/deathmatch)
 "eV" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "29"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 1
 	},
 /area/deathmatch)
 "eW" = (
@@ -1326,28 +1235,20 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "eZ" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/structure/window/reinforced/tinted/frosted{
-	dir = 1
-	},
-/obj/machinery/door/window,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/tile/white,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "fa" = (
-/obj/machinery/light,
-/turf/open/floor/tile/white,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "fb" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "22"
-	},
+/turf/closed/shuttle/dropship1/enginetwo,
 /area/deathmatch)
 "fc" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "23"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 1
 	},
 /area/deathmatch)
 "fd" = (
@@ -1366,6 +1267,15 @@
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/open/ground/river,
 /area/deathmatch)
+"fv" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/obj/structure/mirror{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/deathmatch)
 "fI" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -1377,19 +1287,41 @@
 "hM" = (
 /turf/open/floor/plating/asteroidwarning,
 /area/deathmatch)
-"kJ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/ai_node,
+"jw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"jC" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"kJ" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
 /area/deathmatch)
 "ll" = (
 /obj/effect/ai_node,
 /turf/open/ground/coast,
 /area/deathmatch)
+"ln" = (
+/obj/machinery/light,
+/turf/open/floor/tile/white,
+/area/deathmatch)
 "lu" = (
 /turf/open/floor/freezer,
+/area/deathmatch)
+"nc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"oS" = (
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "pj" = (
 /obj/effect/ai_node,
@@ -1401,10 +1333,32 @@
 	dir = 1
 	},
 /area/deathmatch)
+"py" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grime,
+/area/deathmatch)
+"rN" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/grime,
+/area/deathmatch)
 "rW" = (
 /turf/open/ground/coast{
 	dir = 8
 	},
+/area/deathmatch)
+"sP" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/obj/machinery/door/window,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/white,
 /area/deathmatch)
 "tf" = (
 /turf/open/ground/coast,
@@ -1415,14 +1369,29 @@
 	dir = 8
 	},
 /area/deathmatch)
+"uP" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "va" = (
 /obj/effect/ai_node,
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
 /area/deathmatch)
+"xw" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
+	},
+/area/deathmatch)
 "xX" = (
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"CG" = (
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "GL" = (
 /turf/open/ground/coast/corner{
@@ -1439,8 +1408,20 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
+"KK" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/deathmatch)
 "LP" = (
 /turf/open/ground/grass,
+/area/deathmatch)
+"QB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Tu" = (
 /turf/open/ground/coast{
@@ -1457,10 +1438,13 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "UN" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Vo" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/grime,
 /area/deathmatch)
 "VE" = (
 /turf/open/ground/coast{
@@ -1547,21 +1531,21 @@ TP
 VE
 bj
 am
+fI
+eS
+eo
+dM
+oS
+eo
+xX
+xX
+xX
 xX
 fI
-fI
-al
-xX
-af
-xX
-fI
-fI
-xX
-al
-xX
-xX
-xX
-ac
+as
+as
+as
+as
 ab
 "}
 (3,1,1) = {"
@@ -1595,21 +1579,21 @@ TP
 TP
 aq
 am
-xX
-ae
 fI
-xX
-xX
-xX
-xX
-ae
 fI
-xX
-xX
-xX
+dI
+kJ
+dT
+eo
 xX
 ad
 xX
+xX
+fI
+as
+KK
+sP
+as
 ab
 "}
 (4,1,1) = {"
@@ -1643,21 +1627,21 @@ TP
 TP
 aq
 am
-xX
+fI
 fI
 dM
 dG
 dT
-en
-dG
-fI
-fI
-as
-as
-as
-as
+eo
 xX
 xX
+xX
+xX
+fI
+bv
+fv
+ln
+as
 ab
 "}
 (5,1,1) = {"
@@ -1691,21 +1675,21 @@ TP
 TP
 aq
 am
-xX
 fI
 fI
-dS
+eo
+eo
 ec
 eo
-dG
-cx
-fI
-as
+xX
+af
+xX
+xX
 eS
-eZ
 as
-xX
-xX
+as
+as
+as
 ab
 "}
 (6,1,1) = {"
@@ -1739,20 +1723,20 @@ ap
 rW
 GL
 xX
-xX
 fI
 fI
-dT
-ed
-eo
-dG
 fI
 fI
-bv
-eT
+fI
+fI
+fI
+cx
+fI
+fI
+fI
 fa
-as
 xX
+aw
 xX
 ab
 "}
@@ -1787,19 +1771,19 @@ aq
 am
 al
 xX
-xX
 fI
 fI
-dG
-dG
+dY
+jw
+nc
 ep
-dG
 fI
-dM
-as
-as
-as
-as
+ep
+ep
+dY
+dY
+fI
+xX
 xX
 al
 ab
@@ -1835,17 +1819,17 @@ aq
 am
 xX
 dE
-xX
 fI
 fI
-fI
-fI
-fI
-UN
-fI
-fI
-fI
-cx
+ed
+eo
+CG
+CG
+py
+jC
+jC
+eo
+eZ
 fI
 fI
 fI
@@ -1883,19 +1867,19 @@ aq
 am
 af
 ad
-xX
-kJ
-cx
 fI
 fI
+dN
+UN
+eK
+eJ
+eJ
+eJ
+eK
+eO
+dN
 fI
 fI
-ae
-fI
-fI
-fI
-fI
-dI
 ae
 fI
 ab
@@ -1931,19 +1915,19 @@ VE
 an
 bj
 xX
-dG
-dG
-dN
-dG
-dK
-dG
 fI
-dM
-dG
-dT
-dS
-dG
-dG
+ae
+dN
+UN
+eJ
+eJ
+eJ
+eJ
+eJ
+eO
+dN
+fI
+xX
 xX
 xX
 ab
@@ -1979,19 +1963,19 @@ TP
 TP
 aq
 xX
-dG
-cC
-ct
-dJ
-ct
-dK
 fI
 fI
+eT
+UN
 eJ
-eo
-eo
-ed
-dG
+eJ
+Vo
+eJ
+eJ
+eO
+QB
+fI
+xX
 xX
 xX
 ab
@@ -2027,19 +2011,19 @@ dd
 dt
 dy
 xX
-dG
+fI
 dJ
-ct
-dU
-ct
-dK
-fI
-fI
-dG
-eN
-eo
-eo
-en
+eT
+UN
+eJ
+eJ
+eJ
+eJ
+eJ
+eO
+dN
+dJ
+xX
 xX
 af
 ab
@@ -2075,19 +2059,19 @@ ez
 as
 dz
 xX
-dG
-dK
-dK
-dG
-dN
-dG
 fI
-cx
+fa
+dN
+UN
+eK
+eJ
+eJ
+eJ
 eK
 eO
-eo
-ec
-dG
+eT
+fI
+xX
 xX
 xX
 ab
@@ -2123,19 +2107,19 @@ cY
 cS
 dA
 fI
+fI
+fI
+eZ
+eo
 UN
-fI
-fI
-fI
-fI
 UN
+rN
+eO
+eO
+eo
+cx
 fI
-fI
-dG
-en
-dT
-dS
-dG
+xX
 al
 xX
 ab
@@ -2175,15 +2159,15 @@ ce
 fI
 fI
 fI
-cx
+uP
+uP
+fI
+uP
+uP
+dY
+dY
 fI
 fI
-ae
-UN
-fI
-fI
-fI
-UN
 ae
 fI
 ab
@@ -2223,10 +2207,10 @@ fI
 fI
 fI
 fI
+cx
 fI
 fI
-fI
-fI
+ae
 fI
 fI
 fI
@@ -2558,7 +2542,7 @@ TP
 TP
 TP
 ap
-dY
+dW
 ez
 ez
 ez
@@ -2642,11 +2626,11 @@ TP
 TP
 TP
 aq
-da
-da
+dk
+dk
 dg
 dk
-da
+xw
 dq
 aH
 TP
@@ -2682,8 +2666,8 @@ bH
 bO
 tf
 aq
-cf
-cj
+dk
+dk
 co
 bT
 TP
@@ -2695,7 +2679,7 @@ bI
 bV
 bI
 bI
-dr
+ej
 dv
 dC
 ai
@@ -3252,7 +3236,7 @@ ax
 aI
 aQ
 bc
-bo
+bm
 af
 aN
 bf
@@ -3266,8 +3250,8 @@ cE
 cI
 cQ
 cQ
-dc
-de
+dm
+dm
 dj
 dn
 LP
@@ -3444,7 +3428,7 @@ aA
 aM
 aT
 be
-bs
+bm
 LP
 LP
 bR

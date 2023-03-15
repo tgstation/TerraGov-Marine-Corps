@@ -14,15 +14,15 @@
 	max_w_class = 2
 	max_storage_space = 14
 
-	examine(mob/user)
-		..()
-		to_chat(user, "The service panel is [open ? "open" : "closed"].")
+/obj/item/storage/secure/examine(mob/user)
+	. = ..()
+	. += "The service panel is [open ? "open" : "closed"]."
 
 
-	MouseDrop(over_object, src_location, over_location)
-		if (locked)
-			return
-		..()
+/obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)
+	if (locked)
+		return
+	..()
 
 
 /obj/item/storage/secure/interact(mob/user)
@@ -105,10 +105,11 @@
 			l_hacking = FALSE
 			return
 
+
 		l_setshort = TRUE
 		l_set = FALSE
 		user.show_message(span_warning(" Internal memory reset.  Please give it a few seconds to reinitialize."))
-		sleep(80)
+		sleep(8 SECONDS)
 		l_setshort = FALSE
 		l_hacking = FALSE
 

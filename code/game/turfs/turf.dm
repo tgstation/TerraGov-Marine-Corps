@@ -56,6 +56,8 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
+	///Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.
+	var/list/fixed_underlay = null
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
@@ -101,9 +103,17 @@
 	else if (!istype(hard_armor, /datum/armor))
 		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
-	if(smoothing_behavior)
-		smooth_self()
-		smooth_neighbors()
+	if (length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if (length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -276,7 +286,7 @@
 	if(old_signal_procs)
 		LAZYOR(W.signal_procs, old_signal_procs)
 
-	for(var/datum/callback/callback as anything in post_change_callbacks)
+	for(var/datum/callback/callback AS in post_change_callbacks)
 		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
@@ -316,6 +326,15 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
+	if(!W.smoothing_behavior == NO_SMOOTHING)
+		return W
+	else
+		for(var/dirn in GLOB.alldirs)
+			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
+			QUEUE_SMOOTH(D)
+			QUEUE_SMOOTH_NEIGHBORS(D)
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
@@ -510,6 +529,9 @@
 /turf/proc/is_weedable()
 	return !density
 
+/turf/closed/wall/is_weedable()
+	return TRUE
+
 /turf/open/space/is_weedable()
 	return FALSE
 
@@ -577,7 +599,7 @@
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/alien/hivemindcore))
+		if(istype(O, /obj/structure/xeno/hivemindcore))
 			has_obstacle = TRUE
 			break
 
@@ -636,7 +658,8 @@
 /turf/open/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 
-
+/turf/open/lavaland/basalt/can_dig_xeno_tunnel()
+	return TRUE
 
 
 
@@ -933,3 +956,14 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	// Balloon alerts occuring on turf objects result in mass spam of alerts.
 	// Thus, no more balloon alerts for turfs.
 	return
+
+///cleans any cleanable decals from the turf
+/turf/proc/clean_turf()
+	for(var/obj/effect/decal/cleanable/filth in src)
+		qdel(filth) //dirty, filthy floor
+
+/turf/proc/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
+	underlay_appearance.icon = icon
+	underlay_appearance.icon_state = icon_state
+	underlay_appearance.dir = adjacency_dir
+	return TRUE

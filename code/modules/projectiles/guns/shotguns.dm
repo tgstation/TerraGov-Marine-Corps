@@ -16,7 +16,7 @@
 	allowed_ammo_types = list()
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
-	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_skill_category = SKILL_SHOTGUNS
 	flags_item_map_variant = NONE
 
 	fire_delay = 6
@@ -53,7 +53,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/tactical,
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
@@ -126,7 +125,6 @@
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
-	damage_falloff_mult = 2
 	scatter = 3
 	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
@@ -251,7 +249,6 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/shotgun,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -292,12 +289,12 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 	)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 14)
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 	)
 
 	fire_delay = 15
@@ -312,8 +309,60 @@
 
 /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/stock/pal12,
 		/obj/item/attachable/magnetic_harness,
+	)
+
+//-------------------------------------------------------
+//A shotgun, how quaint.
+/obj/item/weapon/gun/shotgun/pump/trenchgun
+	name = "\improper L-4034 trenchgun"
+	desc = "A six-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "trenchgun"
+	item_state = "trenchgun"
+	fire_sound = 'sound/weapons/guns/fire/trenchgun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/stock/trenchgun,
+	)
+	flags_item_map_variant = NONE
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/trenchgun,
+	)
+
+	fire_delay = 1.2 SECONDS
+	max_chamber_items = 5
+	damage_mult = 0.75
+	accuracy_mult_unwielded = 1
+
+	scatter = 4
+	min_scatter = 4
+	scatter_increase = 8
+	scatter_decay = 3
+	scatter_decay_unwielded = 1
+
+	scatter_unwielded = 10
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
+	cock_delay = 1.2 SECONDS
+	aim_slowdown = 0.55
+
+/obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/trenchgun,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
 	)
 
 //------------------------------------------------------
@@ -333,7 +382,7 @@
 	max_chamber_items = 4 //codex
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/boltclip)
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	cocked_message = "You work the bolt."
 	attachable_allowed = list(
@@ -344,7 +393,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -396,7 +445,7 @@
 	max_chamber_items = 1 //codex
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
@@ -439,7 +488,7 @@
 	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
 	icon_state = "derringer"
 	item_state = "tp17"
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_41RIM //codex
 	muzzle_flash_lum = 5
@@ -483,7 +532,7 @@
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 9 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	cocked_message = "You work the lever."
 	flags_item_map_variant = NONE
@@ -523,7 +572,7 @@
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/rifle/repeater
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
@@ -567,13 +616,13 @@
 	load_method = SINGLE_CASING
 	max_chamber_items = 9
 	default_ammo_type = /datum/ammo/bullet/shotgun/mbx900_buckshot
-	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_skill_category = SKILL_SHOTGUNS
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/flashlight,
@@ -601,16 +650,10 @@
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper SH-35 pump shotgun"
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
-	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = GUN_ICONSTATE_LOADED
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t35"
 	item_state = "t35"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t35,
-		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t35,
-		slot_back_str = /datum/greyscale_config/gun/worn/t35,
-		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t35,
-	)
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
@@ -627,14 +670,14 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/t35stock,
+		/obj/item/attachable/foldable/t35stock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock)
 
-	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 20, "under_x" = 23, "under_y" = 8, "stock_x" = 7, "stock_y" = 12)
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
 	flags_item_map_variant = NONE
 
 	fire_delay = 20
@@ -645,16 +688,19 @@
 	cock_delay = 14
 
 	placed_overlay_iconstate = "t35"
-	greyscale_config = /datum/greyscale_config/gun/t35
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/angledgrip, /obj/item/attachable/bayonet)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/motiondetector, /obj/item/attachable/angledgrip, /obj/item/attachable/bayonet)
+
+/obj/item/weapon/gun/shotgun/pump/t35/standard
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
 
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	starting_attachment_types = list(/obj/item/attachable/stock/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX
@@ -697,6 +743,9 @@
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
 
+/obj/item/weapon/gun/shotgun/zx76/standard
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
 //-------------------------------------------------------
 //V-51 SOM shotgun
 
@@ -723,8 +772,9 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight/under,
 	)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 38, "under_y" = 12, "stock_x" = 14, "stock_y" = 16)
 
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15
@@ -740,9 +790,30 @@
 /obj/item/weapon/gun/shotgun/som/pointman
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
 
+/obj/item/weapon/gun/shotgun/som/standard
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+
 /obj/item/weapon/gun/shotgun/som/support
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/shotgun/som/burst
+	name = "\improper V-51B assault shotgun"
+	desc = "V-51B custom. An upgraded version of the standard SOM shotgun with a burst fire mode and a snazzy paintjob. Rare as it is deadly."
+	icon_state = "v51b"
+	burst_amount = 2
+	burst_delay = 0.5 SECONDS
+	extra_delay = -0.2 SECONDS
+	damage_mult = 1
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+
+/obj/item/weapon/gun/shotgun/som/burst/pointman
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
+
+/obj/item/weapon/gun/shotgun/som/burst/ert
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31

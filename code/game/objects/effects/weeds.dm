@@ -40,6 +40,7 @@
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		set_parent_node(node)
+		color_variant = node.color_variant
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
@@ -171,7 +172,12 @@
 /obj/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	plane = GAME_PLANE
+	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
+	base_icon_state = "weedwall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_WEEDS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS)
 
 /obj/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
@@ -184,9 +190,10 @@
 	layer = ABOVE_TABLE_LAYER
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
-	var/obj/structure/window/framed/F = locate() in loc
-	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
@@ -198,9 +205,10 @@
 	layer = ABOVE_TABLE_LAYER
 
 /obj/alien/weeds/weedwall/frame/update_icon_state()
-	var/obj/structure/window_frame/WF = locate() in loc
-	icon_state = WF?.junction ? "weedframe[WF.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
@@ -243,10 +251,32 @@
 /obj/alien/weeds/node/set_parent_node(atom/node)
 	CRASH("set_parent_node was called on a /obj/alien/weeds/node, node are not supposed to have node themselves")
 
+/obj/alien/weeds/node/update_icon_state()
+	. = ..()
+	var/my_dir = 0
+	for (var/check_dir in GLOB.cardinals)
+		var/turf/check = get_step(src, check_dir)
+
+		if (!istype(check))
+			continue
+		if(istype(check, /turf/closed/wall/resin))
+			my_dir |= check_dir
+
+		else if (locate(/obj/alien/weeds) in check)
+			my_dir |= check_dir
+
+	if (my_dir == 15) //weeds in all four directions
+		icon_state = "weed[rand(0,15)]"
+	else if(my_dir == 0) //no weeds in any direction
+		icon_state = "base"
+	else
+		icon_state = "weed_dir[my_dir]"
+	icon_state += color_variant
+
 /obj/alien/weeds/node/update_overlays()
 	. = ..()
 	overlays.Cut()
-	overlays += node_icon
+	overlays += node_icon + "[rand(0,5)]"
 
 //Sticky weed node
 /obj/alien/weeds/node/sticky

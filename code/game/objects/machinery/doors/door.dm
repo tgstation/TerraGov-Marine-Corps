@@ -6,13 +6,13 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, "rad" = 100, FIRE = 80, ACID = 70)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
@@ -27,8 +27,6 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 	//Multi-tile doors
 	dir = EAST

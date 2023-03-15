@@ -10,6 +10,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
 	resistance_flags = XENO_DAMAGEABLE
+	flags_pass = PASSAIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
 	///mob = bitflags of their control level.
 	var/list/mob/occupants
@@ -157,3 +158,10 @@
 	. = ..()
 	if(trailer)
 		trailer.Move(old_loc, movement_dir)
+
+
+//TGMC ADDED BELOW
+/obj/vehicle/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		take_damage(20 * S.strength)

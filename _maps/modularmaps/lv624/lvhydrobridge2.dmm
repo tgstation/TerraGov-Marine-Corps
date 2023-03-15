@@ -4,26 +4,20 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "b" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"c" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "d" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -32,7 +26,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "i" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "j" = (
@@ -43,7 +37,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -56,6 +50,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "r" = (
@@ -65,7 +60,7 @@
 /turf/closed/wall,
 /area/lv624/ground/river2)
 "u" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -74,14 +69,9 @@
 /obj/structure/fence,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
-"A" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/river2)
 "B" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "D" = (
@@ -94,6 +84,7 @@
 "G" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "I" = (
@@ -104,12 +95,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/catwalk,
 /turf/open/ground/river,
-/area/lv624/ground/river2)
-"N" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
 /area/lv624/ground/river2)
 "P" = (
 /obj/machinery/floodlight/colony{
@@ -141,8 +126,8 @@ I
 I
 I
 I
-N
-A
+I
+I
 "}
 (2,1,1) = {"
 w
@@ -226,5 +211,5 @@ I
 I
 I
 K
-c
+I
 "}

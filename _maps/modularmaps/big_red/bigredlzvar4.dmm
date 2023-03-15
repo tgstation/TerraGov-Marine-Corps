@@ -5,7 +5,7 @@
 /area/bigredv2/outside/space_port)
 "ak" = (
 /obj/structure/window/reinforced,
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "al" = (
@@ -625,7 +625,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qR" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -783,7 +783,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "uB" = (
-/obj/machinery/botany,
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -873,6 +873,10 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"wc" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "we" = (
@@ -971,7 +975,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "yO" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
@@ -990,9 +994,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "zj" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "zw" = (
@@ -1152,7 +1154,7 @@
 /area/bigredv2/caves/northwest)
 "DW" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
@@ -1172,7 +1174,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -1215,7 +1217,7 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "EZ" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
@@ -1398,7 +1400,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "JC" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
@@ -1407,7 +1409,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "Kb" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
@@ -1605,7 +1607,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "Or" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
@@ -1724,16 +1726,14 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "RN" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "RO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
@@ -1789,7 +1789,6 @@
 "Tk" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -2007,7 +2006,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "ZV" = (
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -2517,7 +2516,7 @@ wz
 WM
 er
 kH
-CE
+wc
 CE
 zj
 eS

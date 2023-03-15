@@ -7,7 +7,7 @@
 	///the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target
 	var/visual_type
 	///What skill is needed to have this action
-	var/skill_name = "leadership"
+	var/skill_name = SKILL_LEADERSHIP
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_EXPERT
 
@@ -21,7 +21,7 @@
 
 /datum/action/innate/order/Activate()
 	active = TRUE
-	add_selected_frame()
+	set_toggle(TRUE)
 	SEND_SIGNAL(owner, COMSIG_ORDER_SELECTED, src)
 	RegisterSignal(owner, COMSIG_ORDER_SELECTED, .proc/Deactivate_signal_handler)
 
@@ -32,7 +32,7 @@
 
 /datum/action/innate/order/Deactivate()
 	active = FALSE
-	remove_selected_frame()
+	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_ORDER_SELECTED)
 
 /datum/action/innate/order/can_use_action()
@@ -98,7 +98,7 @@
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return
-	var/obj/screen/arrow/arrow_hud = new arrow_type
+	var/atom/movable/screen/arrow/arrow_hud = new arrow_type
 	arrow_hud.add_hud(src, target)
 	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
 	to_chat(src,span_ordercic("Command is urging you to [verb_name] [get_area(get_turf(target))]!"))
@@ -107,12 +107,14 @@
 	name = "Send Attack Order"
 	action_icon_state = "attack"
 	verb_name = "attack the enemy at"
-	arrow_type = /obj/screen/arrow/attack_order_arrow
+	arrow_type = /atom/movable/screen/arrow/attack_order_arrow
 	visual_type = /obj/effect/temp_visual/order/attack_order
 
 //These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
 /datum/action/innate/order/attack_order/personal
-	keybind_signal = COMSIG_KB_ATTACKORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_ATTACKORDER,
+	)
 
 /datum/action/innate/order/attack_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -127,11 +129,13 @@
 	name = "Send Defend Order"
 	action_icon_state = "defend"
 	verb_name = "defend our position in"
-	arrow_type = /obj/screen/arrow/defend_order_arrow
+	arrow_type = /atom/movable/screen/arrow/defend_order_arrow
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
 /datum/action/innate/order/defend_order/personal
-	keybind_signal = COMSIG_KB_DEFENDORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_DEFENDORDER,
+	)
 
 /datum/action/innate/order/defend_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -149,7 +153,9 @@
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
 /datum/action/innate/order/retreat_order/personal
-	keybind_signal = COMSIG_KB_RETREATORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_RETREATORDER,
+	)
 
 /datum/action/innate/order/retreat_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -164,11 +170,13 @@
 	name = "Send Rally Order"
 	action_icon_state = "rally"
 	verb_name = "rally to"
-	arrow_type = /obj/screen/arrow/rally_order_arrow
+	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
 	visual_type = /obj/effect/temp_visual/order/rally_order
 
 /datum/action/innate/order/rally_order/personal
-	keybind_signal = COMSIG_KB_RALLYORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER,
+	)
 
 /datum/action/innate/order/rally_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min

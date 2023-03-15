@@ -78,12 +78,6 @@
 	return ..()
 
 
-/mob/living/simple_animal/handle_status_effects()
-	. = ..()
-	if(stuttering)
-		stuttering = 0
-
-
 /mob/living/simple_animal/updatehealth()
 	. = ..()
 	health = clamp(health, 0, maxHealth)
@@ -100,7 +94,7 @@
 	med_hud_set_status()
 
 
-/mob/living/simple_animal/revive()
+/mob/living/simple_animal/revive(admin_revive = FALSE)
 	. = ..()
 	icon = initial(icon)
 	icon_state = icon_living
@@ -181,15 +175,6 @@
 
 	if(changed)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
-
-
-/mob/living/simple_animal/bullet_act(obj/projectile/Proj)
-	if(!Proj || Proj.damage <= 0)
-		return FALSE
-
-	adjustBruteLoss(Proj.damage)
-	return TRUE
-
 
 /mob/living/simple_animal/attack_hand(mob/living/user)
 	. = ..()
@@ -276,7 +261,7 @@
 		visible_message(span_warning("[src] looks unharmed."))
 		return FALSE
 	else
-		apply_damage(damage, damagetype, blocked = get_soft_armor(armorcheck))
+		apply_damage(damage, damagetype, blocked = armorcheck)
 		UPDATEHEALTH(src)
 		return TRUE
 

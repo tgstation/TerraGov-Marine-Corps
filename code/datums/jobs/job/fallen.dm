@@ -33,3 +33,8 @@
 	title = SQUAD_LEADER
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/marine/leader
+
+/datum/job/fallen/mechpilot
+	title = MECH_PILOT
+	skills_type = /datum/skills/mech_pilot
+	outfit = /datum/outfit/job/command/mech_pilot

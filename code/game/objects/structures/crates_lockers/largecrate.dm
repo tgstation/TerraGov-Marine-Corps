@@ -105,7 +105,7 @@
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
 						/obj/item/analyzer,
-						/obj/item/clothing/under/marine/standard,
+						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine
 						)
 
@@ -179,7 +179,7 @@
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
 
-/obj/structure/largecrate/random/barrel/red
+/obj/structure/largecrate/random/barrel/red //lame non explosive version
 	name = "red barrel"
 	desc = "A red storage barrel"
 	icon_state = "barrel_red"
@@ -266,7 +266,7 @@
 	stuff = list(
 		/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
 		/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
-		/obj/item/weapon/gun/rifle/mpi_km = /obj/item/ammo_magazine/rifle/mpi_km,
+		/obj/item/weapon/gun/rifle/mpi_km = /obj/item/ammo_magazine/rifle/mpi_km/plum,
 		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
 		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
 		/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,

@@ -126,7 +126,7 @@
 		return
 	M.visible_message(span_warning("[M] starts pulling [occupant] out of \the [src]."),
 	span_warning("You start pulling [occupant] out of \the [src]. (this will take a while...)"), null, 6)
-	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating("police") - 2 SECONDS * M.skills.getRating("large_vehicle")
+	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating(SKILL_POLICE) - 2 SECONDS * M.skills.getRating(SKILL_LARGE_VEHICLE)
 	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
@@ -167,10 +167,10 @@
 		to_chat(M, span_warning("You need your hands free to climb on [src]."))
 		return
 
-	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message(span_notice("[M] fumbles around figuring out how to get into the [src]."),
 		span_notice("You fumble around figuring out how to get into [src]."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating("large_vehicle")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating(SKILL_LARGE_VEHICLE)
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
@@ -283,7 +283,7 @@
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/click_action(A, mob/user, params)
-	if(istype(A, /obj/screen) || A == src)
+	if(istype(A, /atom/movable/screen) || A == src)
 		return FALSE
 
 	if(!can_use_hp(user))

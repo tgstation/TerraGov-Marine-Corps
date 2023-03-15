@@ -47,12 +47,10 @@
 		attack_self(user)
 
 
-/obj/item/radio/intercom/can_receive(freq, level)
-	if(!on)
-		return FALSE
-	if(!(0 in level))
+/obj/item/radio/intercom/can_receive(freq, list/levels)
+	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
 		var/turf/position = get_turf(src)
-		if(isnull(position) || !(position.z in level))
+		if(isnull(position) || !(position.z in levels))
 			return FALSE
 	if(!listening)
 		return FALSE

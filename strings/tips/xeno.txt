@@ -1,11 +1,13 @@
-Always thank your drones and hivelords for supporting the hive!
-Do not fight as a young xenomorph.
+As a xeno, you can freely melt barricades while in boiler or defiler gas as long as you can click on the right spot, the gas is also a really good hiding spot to launch ambushes from without marines being aware of you.
+As a xeno, always thank your drones and hivelords for supporting the hive!
+As a xeno, you can drag any items, but you must wait before you drag the desirable item!
+As a xeno, do not fight as a young xenomorph.
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
-If you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
+As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mhelp.
 In the xeno tab, you can use the crawl through vent verb to quickly find and use vents in the floor without having to alt-click them. You can also keybind it!
-It is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
-Acid well extinguishes fire and explode into an acid cloud when destroyed. The queen, the shrike, praetorians, boilers, and hivelords can make acid wells.
+As a xeno, it is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
+As a xeno, acid well extinguishes fire and explode into an acid cloud when destroyed. The queen, the shrike, praetorians, boilers, and hivelords can make acid wells.
 The queen, shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
@@ -36,3 +38,28 @@ As a spitter, boiler, praetorian, or the Queen take advantage of unguarded barri
 As a boiler or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects to your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
+As a drone, hivelord, hivemind, shrike, and queen, a large maze is almost always a good investment.
+As a drone, hivelord, hivemind, shrike, and queen, be clever with your walling. Try to allow for as much fluid movement as possible.
+Sticky resin can act as the path for your maze to be built around.
+The Hivemind is very skilled at flanking marines. Wait for them to push, and wall them off from behind!
+Praying to the Queen-Mother will usually net a response.
+Your queen is your lifeline. Try to listen to her.
+As a hunter, the movement of your Mirage is controlled by your intent.
+Defenders have a very small window to sweep grenades back at marines with their tail.
+Aiming for the head is a good long-term investment, causing brain damage on marines.
+Aiming for the groin can easily damage someones liver.
+Arms and legs are particularly vulnerable to damage.
+As a xeno, to be robust is to know when to disengage.
+As a xeno, in a duel, observe your enemy. They are likely predictable.
+The QM has put a lot of faith into your hive. It would be a shame to let her down.
+As a xeno, attack between the delay of a shotgun being fired.
+As a xeno, listen to the sound of your enemies magazine! If it sounds hollow, it will soon be empty.
+As a xeno, strike hard and fast.
+As a xeno, you are not disposable. However, sacrificing your life to save the queen is widely respected.
+A fortified defender is one of the best ways to stall a push.
+Skilled defilers can easily kill any marine in a span of seconds.
+As a xeno, always have an escape plan.
+Tileswapping marines via help intent can have interesting consequences.
+As a boiler, you'll begin to glow with the more globules you have stored.
+If you see a red dot, RUN!
+Allowing marines to push caves only to block off their exit is hillariously effective.

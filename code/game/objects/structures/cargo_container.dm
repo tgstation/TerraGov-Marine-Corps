@@ -9,7 +9,7 @@
 	max_integrity = 200
 	opacity = TRUE
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 
 /obj/structure/cargo_container/attack_hand(mob/living/user)
 	. = ..()

@@ -76,18 +76,15 @@ SUBSYSTEM_DEF(weeds)
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/alien/weeds/node/node)
 	if(QDELETED(node))
 		return
-
-	if(iswallturf(T))
-		new /obj/alien/weeds/weedwall(T, node)
-		return
+	var/obj/alien/weeds/weed_to_spawn = node.weed_type
 	var/swapped = FALSE
+	if(iswallturf(T))
+		weed_to_spawn = /obj/alien/weeds/weedwall
 	for (var/obj/O in T)
 		if(istype(O, /obj/structure/window/framed))
-			new /obj/alien/weeds/weedwall/window(T, node)
-			return
+			weed_to_spawn = /obj/alien/weeds/weedwall/window
 		else if(istype(O, /obj/structure/window_frame))
-			new /obj/alien/weeds/weedwall/frame(T, node)
-			return
+			weed_to_spawn = /obj/alien/weeds/weedwall/frame
 		else if(istype(O, /obj/machinery/door) && O.density)
 			return
 		else if(istype(O, /obj/alien/weeds))
@@ -96,10 +93,10 @@ SUBSYSTEM_DEF(weeds)
 			var/obj/alien/weeds/weed = O
 			if(weed.parent_node && weed.parent_node != node && get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
 				return
-			if(weed.type == node.weed_type)
+			if((weed.type == weed_to_spawn) && (weed.color_variant == node.color_variant))
 				weed.set_parent_node(node)
 				return
 			weed.swapped = TRUE
 			swapped = TRUE
 			qdel(O)
-	new node.weed_type(T, node, swapped)
+	new weed_to_spawn(T, node, swapped)

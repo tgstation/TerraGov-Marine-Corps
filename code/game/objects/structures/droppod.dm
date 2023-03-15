@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 70, BIO = 100, "rad" = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
@@ -138,6 +138,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!targetarea.outside)
 		to_chat(user, span_warning("Cannot launch pod at a roofed area."))
 		return FALSE
+	if(targetarea.ceiling > CEILING_METAL)
+		to_chat(user, span_warning("Target location is deep underground. Invalid area."))
+		return FALSE
 	for(var/x in target.contents)
 		var/atom/object = x
 		if(object.density)
@@ -205,6 +208,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 			break
 
 	forceMove(targetturf)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
 	pixel_y = 500
 	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
 	addtimer(CALLBACK(src, .proc/dodrop, targetturf, user), falltime)

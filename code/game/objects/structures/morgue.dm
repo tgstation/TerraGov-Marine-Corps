@@ -119,7 +119,6 @@
 	layer = OBJ_LAYER
 	var/obj/structure/morgue/linked_morgue = null
 	anchored = TRUE
-	throwpass = 1
 
 /obj/structure/morgue_tray/Initialize(mapload, obj/structure/morgue/morgue_source)
 	. = ..()
@@ -216,7 +215,7 @@
 			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
-		sleep(30)
+		sleep(3 SECONDS)
 		cremating = 0
 		update_icon()
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)

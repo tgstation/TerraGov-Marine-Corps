@@ -10,16 +10,11 @@
 	pixel_x = -7;
 	pixel_y = 11
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "aT" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"dx" = (
-/turf/open/ground/coast/corner,
 /area/lv624/ground/caves/central2)
 "eu" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -37,14 +32,9 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"fX" = (
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "gv" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "hQ" = (
 /obj/structure/rack,
@@ -61,9 +51,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "iX" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "jd" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -74,14 +62,6 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"jp" = (
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
-"jx" = (
-/turf/open/ground/coast/corner{
-	dir = 1
-	},
 /area/lv624/ground/caves/central2)
 "km" = (
 /obj/structure/rack,
@@ -128,11 +108,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"mp" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
 "my" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -158,11 +133,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"qN" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "qX" = (
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/wood,
@@ -181,9 +151,7 @@
 /area/lv624/ground/caves/central2)
 "sb" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
+/turf/open/floor/wood/broken/four,
 /area/lv624/ground/caves/central2)
 "sp" = (
 /obj/structure/rack,
@@ -202,22 +170,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/lv624/ground/caves/central2)
-"wg" = (
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/lv624/ground/caves/central2)
-"wv" = (
-/turf/open/ground/river,
-/area/lv624/ground/caves/central2)
-"wO" = (
-/turf/open/ground/coast/corner2{
-	dir = 4
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "xs" = (
 /obj/structure/rack,
@@ -236,9 +189,7 @@
 /area/lv624/ground/caves/central1)
 "yw" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "yC" = (
 /obj/effect/spawner/random/trash,
@@ -266,9 +217,7 @@
 /area/lv624/ground/caves/central1)
 "BI" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Ce" = (
 /obj/effect/decal/cleanable/dirt,
@@ -280,11 +229,6 @@
 "Dn" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"EH" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
-/area/lv624/ground/caves/central2)
 "EP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -293,11 +237,6 @@
 "Fg" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"Fv" = (
-/turf/open/ground/coast/corner2{
-	dir = 1
-	},
 /area/lv624/ground/caves/central2)
 "Fz" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -332,9 +271,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Jh" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
+/turf/open/floor/wood/broken/seven,
 /area/lv624/ground/caves/central2)
 "JW" = (
 /obj/effect/ai_node,
@@ -357,9 +294,7 @@
 "Lt" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "LD" = (
 /obj/structure/rack,
@@ -380,16 +315,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
-"Ng" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/lv624/ground/caves/central2)
 "Nl" = (
 /obj/item/paper/crumpled/bloody,
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
+/turf/open/floor/wood/broken/seven,
 /area/lv624/ground/caves/central2)
 "Np" = (
 /obj/structure/table/woodentable,
@@ -418,9 +346,7 @@
 /area/lv624/ground/caves/central1)
 "QD" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "QH" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -438,7 +364,7 @@
 /area/lv624/ground/caves/central2)
 "SB" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "SE" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -481,15 +407,8 @@
 /obj/item/paper/crumpled/bloody,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"US" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/caves/central2)
 "VD" = (
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "VF" = (
 /turf/closed/wall/wood,
@@ -524,14 +443,10 @@
 	pixel_y = 6
 	},
 /obj/effect/spawner/random/ammo/machinegun,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
+/turf/open/floor/wood/broken/four,
 /area/lv624/ground/caves/central2)
 "Za" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "Zg" = (
 /obj/item/stack/sheet/wood,
@@ -542,7 +457,7 @@
 /area/lv624/ground/caves/central2)
 "ZL" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 
 (1,1,1) = {"
@@ -1254,9 +1169,9 @@ fs
 JW
 fs
 fs
-dx
-qN
-qN
+VD
+VD
+VD
 VD
 fs
 QP
@@ -1289,10 +1204,10 @@ fs
 fs
 ly
 fs
-jp
-wv
-wv
-wO
+VD
+VD
+VD
+VD
 VD
 fs
 fs
@@ -1324,17 +1239,17 @@ fs
 fs
 fs
 PY
-jp
-wv
-wv
-wv
-wO
-qN
-qN
-qN
-qN
-qN
-qN
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 VD
 fs
 Fg
@@ -1359,18 +1274,18 @@ PY
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -1394,18 +1309,18 @@ fs
 fs
 fs
 fs
-jp
-wv
-wv
-wv
+VD
+VD
+VD
+VD
 ZL
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 kE
 fs
 kE
@@ -1429,18 +1344,18 @@ LR
 fs
 kE
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -1464,18 +1379,18 @@ fs
 fs
 Fg
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 gv
-wv
-wv
-mp
+VD
+VD
+VD
 fs
 fs
 fs
@@ -1499,18 +1414,18 @@ fs
 fs
 fs
 fs
-jp
-wv
+VD
+VD
 SB
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 kE
 fs
 fs
@@ -1534,18 +1449,18 @@ fs
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wO
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 VD
 fs
 fs
@@ -1569,19 +1484,19 @@ PY
 fs
 kE
 fs
-jp
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
 SB
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 kE
 fs
@@ -1604,19 +1519,19 @@ PY
 JW
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -1639,19 +1554,19 @@ fs
 fs
 JW
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -1674,19 +1589,19 @@ fs
 Fg
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 ZL
-wv
-mp
+VD
+VD
 fs
 kE
 fs
@@ -1709,19 +1624,19 @@ PY
 fs
 kE
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wO
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 VD
 fs
 fs
@@ -1744,20 +1659,20 @@ fs
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 SB
-wv
+VD
 gv
-wv
-wv
-wv
-US
+VD
+VD
+VD
+VD
 VD
 JW
 kE
@@ -1779,21 +1694,21 @@ fs
 fs
 fs
 PY
-jp
-wv
-wv
+VD
+VD
+VD
 gv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-US
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 VD
 JW
 fs
@@ -1814,22 +1729,22 @@ fs
 fs
 JW
 fs
-jx
-Fv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -1850,21 +1765,21 @@ fs
 kE
 fs
 Fg
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 ly
 fs
 fs
@@ -1885,21 +1800,21 @@ fs
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
 gv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 JW
 fs
@@ -1920,21 +1835,21 @@ fs
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wO
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 VD
 fs
 fs
@@ -1955,22 +1870,22 @@ fs
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 kE
 fs
 PY
@@ -1990,22 +1905,22 @@ fs
 ly
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 SB
-wv
-wv
-mp
+VD
+VD
+VD
 fs
 fs
 Fg
@@ -2025,22 +1940,22 @@ fs
 Fg
 fs
 fs
-jp
+VD
 SB
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 gv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
 fs
 Fg
 fs
@@ -2059,23 +1974,23 @@ fs
 fs
 fs
 fs
-dx
-EH
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -2094,23 +2009,23 @@ PY
 PY
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
 ZL
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 kE
 fs
 fs
@@ -2129,23 +2044,23 @@ PY
 PY
 kE
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -2164,23 +2079,23 @@ PY
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
 gv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
 gv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -2199,23 +2114,23 @@ PY
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 SB
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wg
-fX
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 JW
 fs
 fs
@@ -2234,22 +2149,22 @@ PY
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 kE
 JW
@@ -2269,22 +2184,22 @@ QP
 fs
 kE
 fs
-jp
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wv
-wg
-Ng
-Ng
-fX
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 LR
 fs
@@ -2304,19 +2219,19 @@ QP
 fs
 JW
 fs
-jp
-wv
-wv
+VD
+VD
+VD
 gv
-wv
-wv
-wv
-wv
-wv
-wg
-Ng
-Ng
-fX
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -2339,16 +2254,16 @@ QP
 JW
 fs
 fs
-jx
-Ng
-Fv
-wv
-wv
-wv
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -2376,14 +2291,14 @@ fs
 LR
 fs
 fs
-jp
-wv
-wv
-wv
-wg
-Ng
-Ng
-fX
+VD
+VD
+VD
+VD
+VD
+VD
+VD
+VD
 fs
 Fg
 fs
@@ -2411,11 +2326,11 @@ kE
 fs
 fs
 fs
-jp
-wv
-wv
-wv
-mp
+VD
+VD
+VD
+VD
+VD
 fs
 fs
 fs
@@ -2446,11 +2361,11 @@ fs
 fs
 fs
 kE
-jx
-Ng
-Ng
-Ng
-fX
+VD
+VD
+VD
+VD
+VD
 fs
 kE
 fs

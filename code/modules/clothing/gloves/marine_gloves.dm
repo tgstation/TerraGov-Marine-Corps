@@ -15,7 +15,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = HANDS
-	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, "rad" = 5, FIRE = 15, ACID = 15)
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
@@ -58,24 +58,24 @@
 	icon_state = "armored"
 	item_state = "bgloves"
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 15, "rad" = 15, FIRE = 15, ACID = 20)
+	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 15, FIRE = 15, ACID = 20)
 	resistance_flags = UNACIDABLE
 
-/obj/item/clothing/gloves/marine/veteran/PMC
+/obj/item/clothing/gloves/marine/veteran/pmc
 	name = "armored gloves"
 	desc = "Armored gloves used in special operations. They are also insulated against electrical shock."
 	icon_state = "black"
 	item_state = "bgloves"
 	siemens_coefficient = 0
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
 
-/obj/item/clothing/gloves/marine/veteran/PMC/commando
+/obj/item/clothing/gloves/marine/veteran/pmc/commando
 	name = "\improper PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"
-	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 25)
+	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/som
@@ -94,11 +94,29 @@
 	desc = "Gloves with origins dating back to the old mining colonies. These ones seem tougher than normal."
 	icon_state = "som_veteran"
 	item_state = "som_veteran"
-	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, "rad" = 5, FIRE = 15, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+
+/obj/item/clothing/gloves/marine/icc
+	name = "\improper ICC gloves"
+	desc = "Tough looking working gloves."
+	icon_state = "icc"
+	item_state = "icc"
+
+/obj/item/clothing/gloves/marine/icc/insulated
+	name = "\improper ICC insulated gloves"
+	desc = "Tough looking working gloves. These ones appear to have insulation to protect from electric shock."
+	siemens_coefficient = 0
+
+/obj/item/clothing/gloves/marine/icc/guard
+	name = "\improper ICCGF gloves"
+	desc = "Tough looking tactical gloves."
+	icon_state = "icc_guard"
+	item_state = "icc_guard"
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
 /obj/item/clothing/gloves/marine/commissar
 	name = "\improper commissar gloves"
 	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
 	icon_state = "gloves_commissar"
 	item_state = "gloves_commissar"
-	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, "rad" = 0, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)

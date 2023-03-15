@@ -109,6 +109,7 @@ SUBSYSTEM_DEF(job)
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
 		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
+	player.mind.assigned_role = job
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")
 	return TRUE
@@ -186,7 +187,7 @@ SUBSYSTEM_DEF(job)
 
 		if(LAZYLEN(occupations_reroll)) //Jobs that were scaled up due to the assignment of other jobs.
 			for(var/reroll_level = JOBS_PRIORITY_HIGH; reroll_level >= level; reroll_level--)
-				assign_players_to_occupations(level, occupations_reroll)
+				assign_players_to_occupations(reroll_level, occupations_reroll)
 			occupations_reroll = null
 
 	JobDebug("DO, Handling unassigned.")
@@ -206,7 +207,7 @@ SUBSYSTEM_DEF(job)
 			RejectPlayer(player)
 		//Choose a faction in advance if needed
 		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
-			if(SSticker.mode.flags_round_type & MODE_SOM_OPFOR)
+			if(FACTION_SOM in SSticker.mode.factions)
 				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_SOM : FACTION_TERRAGOV
 			else
 				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
@@ -311,7 +312,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Recover()
 	set waitfor = FALSE
 	var/oldjobs = SSjob.occupations
-	sleep(20)
+	sleep(2 SECONDS)
 	for(var/datum/job/J in oldjobs)
 		INVOKE_ASYNC(src, .proc/RecoverJob, J)
 

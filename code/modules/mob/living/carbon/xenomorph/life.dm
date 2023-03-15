@@ -32,7 +32,7 @@
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
-	update_icons()
+	update_icons(FALSE)
 
 /mob/living/carbon/xenomorph/handle_status_effects()
 	. = ..()
@@ -114,7 +114,7 @@
 
 	var/list/heal_data = list(amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data)
-	HEAL_XENO_DAMAGE(src, heal_data[1])
+	HEAL_XENO_DAMAGE(src, heal_data[1], TRUE)
 	return heal_data[1]
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()

@@ -81,7 +81,7 @@
 		if(2)
 			Stun(rand(2 SECONDS, 10 SECONDS))
 			take_limb_damage(10)
-	flash_act(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
+	flash_act(1, TRUE, type = /atom/movable/screen/fullscreen/flash/noise)
 
 	to_chat(src, span_danger("*BZZZT*"))
 	to_chat(src, span_warning("Warning: Electromagnetic pulse detected."))

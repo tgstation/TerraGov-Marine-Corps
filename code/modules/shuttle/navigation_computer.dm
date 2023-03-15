@@ -211,7 +211,7 @@
 		newI.loc = I.loc //It is highly unlikely that any landing spot including a null tile will get this far, but better safe than sorry.
 		newI.layer = ABOVE_OPEN_TURF_LAYER
 		newI.plane = 0
-		newI.mouse_opacity = 0
+		newI.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		the_eye.placed_images += newI
 
 	if(current_user.client)
@@ -442,7 +442,7 @@
 			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE)
 			remote_eye.setLoc(T)
 			to_chat(target, span_notice("Jumped to [selected]."))
-			C.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/noise)
+			C.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 			C.clear_fullscreen("flash", 3)
 	else
 		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE)

@@ -74,6 +74,7 @@ There are several things that need to be remembered:
 	SEND_SIGNAL(src, COMSIG_HUMAN_APPLY_OVERLAY, cache_index, to_add)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
+		//TODO THIS SHOULD USE THE API!
 		to_add += I
 	overlays += to_add
 
@@ -289,16 +290,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 
 	if(species.species_flags & HAS_UNDERWEAR)
-
-		//Underwear
-		if(underwear >0 && underwear < 3)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
-
-		if(ismarinejob(job)) //undoing override
-			if(undershirt>0 && undershirt < 5)
-				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
-		else if(undershirt > 0 && undershirt < 7)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear_[underwear]_[gender]"), ICON_OVERLAY)
+		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt_[undershirt]_[gender]"), ICON_OVERLAY)
 
 	icon = stand_icon
 
@@ -349,8 +342,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-	overlays_standing[HAIR_LAYER] = mutable_appearance(face_standing, layer =-HAIR_LAYER)
+	var/mutable_appearance/hair_final = mutable_appearance(face_standing, layer =-HAIR_LAYER)
 
+	if(head?.flags_inv_hide & HIDE_EXCESS_HAIR)
+		var/image/mask = image('icons/mob/human_face.dmi', null, "Jeager_Mask")
+		mask.render_target = "*[REF(src)]"
+		hair_final.overlays += mask
+		hair_final.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*[REF(src)]")))
+
+	overlays_standing[HAIR_LAYER] = hair_final
 	apply_overlay(HAIR_LAYER)
 
 //Call when target overlay should be added/removed
@@ -681,15 +681,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	overlays_standing[BURST_LAYER]	= standing
 	apply_overlay(BURST_LAYER)
-
-/mob/living/carbon/human/update_headbite()
-	remove_overlay(HEADBITE_LAYER)
-	var/mutable_appearance/standing
-	if(headbitten)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "headbite_stand", -HEADBITE_LAYER)
-
-	overlays_standing[HEADBITE_LAYER]	= standing
-	apply_overlay(HEADBITE_LAYER)
 
 /mob/living/carbon/human/update_fire()
 	remove_overlay(FIRE_LAYER)

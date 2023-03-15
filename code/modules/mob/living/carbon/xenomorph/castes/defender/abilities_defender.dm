@@ -4,13 +4,15 @@
 /datum/action/xeno_action/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
-	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
+	desc = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
 	plasma_cost = 35
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
+	)
 
 /datum/action/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -44,9 +46,8 @@
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
-			var/armor_block = H.get_soft_armor("melee", affecting)
-			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
-			H.apply_damage(damage, STAMINA, updating_health = TRUE) //...But some sweet armour ignoring Stamina
+			H.apply_damage(damage, BRUTE, affecting, MELEE)
+			H.apply_damage(damage, STAMINA, updating_health = TRUE)
 			H.Paralyze(5) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
@@ -87,12 +88,14 @@
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
 	action_icon_state = "charge"
-	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
+	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
-	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
+	)
 	///How far can we charge
 	var/range = 4
 	///How long is the windup before charging
@@ -188,11 +191,13 @@
 /datum/action/xeno_action/toggle_crest_defense
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
-	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
+	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
 	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREST_DEFENSE,
+	)
 	var/last_crest_bonus = 0
 
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
@@ -263,11 +268,13 @@
 /datum/action/xeno_action/fortify
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
-	mechanics_text = "Plant yourself for a large defensive boost."
+	desc = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_FORTIFY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
+	)
 	var/last_fortify_bonus = 0
 
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
@@ -275,7 +282,7 @@
 	if(X.fortify)
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 100)
+		X.soft_armor = X.soft_armor.setRating(bomb = 130)
 		last_fortify_bonus = fortifyAB
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
@@ -335,13 +342,15 @@
 /datum/action/xeno_action/regenerate_skin
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
-	mechanics_text = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
+	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
 	ability_name = "regenerate skin"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED|XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
 	plasma_cost = 160
 	cooldown_timer = 1 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
+	)
 
 /datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -375,13 +384,15 @@
 /datum/action/xeno_action/centrifugal_force
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
-	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
 	ability_name = "centrifugal force"
 	plasma_cost = 15
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 30 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
+	)
 	///bool whether we should take a random step this tick
 	var/step_tick = FALSE
 	///timer hash for the timer we use when spinning
@@ -428,8 +439,7 @@
 		var/affecting = slapped.get_limb(ran_zone(null, 0))
 		if(!affecting)
 			affecting = slapped.get_limb("chest")
-		var/armor_block = slapped.get_soft_armor("melee", affecting)
-		slapped.apply_damage(damage, BRUTE, affecting, armor_block)
+		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
 		slapped.Paralyze(3)
 		shake_camera(slapped, 2, 1)

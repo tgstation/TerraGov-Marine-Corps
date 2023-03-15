@@ -4,6 +4,7 @@
 	icon_state ="bible"
 	throw_speed = 1
 	throw_range = 5
+	storage_slots = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	var/mob/affecting = null
 	var/deity_name = "Christ"
@@ -17,6 +18,11 @@
 	name = "bible"
 	desc = "To be applied to the head repeatedly."
 	icon_state ="bible"
+	storage_slots = 7
+	can_hold = list(
+		/obj/item/reagent_containers/food/drinks/cans,
+		/obj/item/spacecash,
+	)
 
 /obj/item/storage/bible/booze/Initialize(mapload, ...)
 	. = ..()

@@ -33,12 +33,14 @@
 	flags_area = NO_DROPPOD
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/orion_outpost/surface/landing_pad_external
 	name = "Landing Zone 1"
 	icon_state = "landing_pad_ext"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/orion_outpost/surface/landing_pad_2
 	name = "Landing Pad 2"
@@ -46,12 +48,14 @@
 	flags_area = NO_DROPPOD
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/orion_outpost/surface/landing_pad2_external
 	name = "Landing Zone 2"
 	icon_state = "landing_pad_ext"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 //River
 /area/orion_outpost/ground/river/riverside_north
@@ -158,10 +162,12 @@
 /area/orion_outpost/surface/building/prep
 	name = "Preperations"
 	icon_state = "green"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/orion_outpost/surface/building/command
 	name = "Command"
 	icon_state = "bluenew"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/orion_outpost/surface/building/engineering
 	name = "Engineering"
@@ -216,6 +222,7 @@
 /area/orion_outpost/surface/building/administration
 	name = "Administration"
 	icon_state = "bluenew"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/orion_outpost/surface/building/atc
 	name = "Traffic Control"

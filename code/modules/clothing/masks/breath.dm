@@ -3,7 +3,7 @@
 	name = "breath mask"
 	icon_state = "breath"
 	item_state = "breath"
-	flags_inventory = COVERMOUTH|ALLOWINTERNALS
+	flags_inventory = COVERMOUTH
 	flags_armor_protection = NONE
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.10
@@ -11,26 +11,26 @@
 
 	var/hanging = 0
 
-	verb/toggle()
-		set category = "Object"
-		set name = "Adjust mask"
-		set src in usr
+/obj/item/clothing/mask/breath/verb/toggle()
+	set category = "Object"
+	set name = "Adjust mask"
+	set src in usr
 
-		if(usr.canmove && !usr.stat && !usr.restrained())
-			if(!src.hanging)
-				src.hanging = !src.hanging
-				gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
-				flags_inventory &= ~(COVERMOUTH|ALLOWINTERNALS)
-				icon_state = "breathdown"
-				to_chat(usr, "Your mask is now hanging on your neck.")
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(!src.hanging)
+			src.hanging = !src.hanging
+			gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
+			flags_inventory &= ~(COVERMOUTH)
+			icon_state = "breathdown"
+			to_chat(usr, "Your mask is now hanging on your neck.")
 
-			else
-				src.hanging = !src.hanging
-				gas_transfer_coefficient = 0.10
-				flags_inventory |= COVERMOUTH|ALLOWINTERNALS
-				icon_state = "breath"
-				to_chat(usr, "You pull the mask up to cover your face.")
-			update_clothing_icon()
+		else
+			src.hanging = !src.hanging
+			gas_transfer_coefficient = 0.10
+			flags_inventory |= COVERMOUTH
+			icon_state = "breath"
+			to_chat(usr, "You pull the mask up to cover your face.")
+		update_clothing_icon()
 
 /obj/item/clothing/mask/breath/medical
 	desc = "A close-fitting sterile mask that can be connected to an air supply."
@@ -49,7 +49,7 @@
 	icon_state = "rebreather"
 	item_state = "rebreather"
 	flags_armor_protection = NONE
-	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT
+	flags_inventory = COVERMOUTH|COVEREYES|BLOCKGASEFFECT
 	flags_inv_hide = HIDELOWHAIR
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -74,7 +74,7 @@
 	flags_armor_protection = NONE
 	flags_armor_protection = FACE
 	flags_inv_hide = HIDEFACE|HIDELOWHAIR
-	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT
+	flags_inventory = COVERMOUTH|COVEREYES|BLOCKGASEFFECT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 

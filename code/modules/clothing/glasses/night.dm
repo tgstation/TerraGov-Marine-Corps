@@ -5,7 +5,12 @@
 	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	species_exception = list(/datum/species/robot)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 7
@@ -62,15 +67,6 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
 
-/obj/item/clothing/glasses/night/imager_goggles
-	name = "optical imager goggles"
-	desc = "Uses image scanning to increase visibility of even the most dimly lit surroundings except total darkness"
-	icon_state = "securityhud"
-	deactive_state = "degoggles_sec"
-	darkness_view = 2
-	toggleable = TRUE
-	actions_types = list(/datum/action/item_action/toggle)
-
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"
 	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."
@@ -81,7 +77,12 @@
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	species_exception = list(/datum/species/robot)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
 

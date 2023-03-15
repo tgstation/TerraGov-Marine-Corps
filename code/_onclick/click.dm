@@ -105,10 +105,6 @@
 	if(!modifiers["catcher"] && A.IsObscured())
 		return
 
-	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/N = loc
-		N.click_action(A, src, params)
-		return
 
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
@@ -421,6 +417,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /atom/proc/ShiftClick(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
 	return TRUE
 
@@ -506,7 +503,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
 
 
-/obj/screen/proc/scale_to(x1,y1)
+/atom/movable/screen/proc/scale_to(x1,y1)
 	if(!y1)
 		y1 = x1
 	var/matrix/M = new
@@ -514,7 +511,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	transform = M
 
 
-/obj/screen/click_catcher
+/atom/movable/screen/click_catcher
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "catcher"
 	plane = CLICKCATCHER_PLANE
@@ -526,7 +523,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 #define MAX_SAFE_BYOND_ICON_SCALE_PX (33 * 32)			//Not using world.icon_size on purpose.
 
 
-/obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
+/atom/movable/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
 	var/icon/newicon = icon('icons/mob/screen/generic.dmi', "catcher")
 	var/ox = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_x)
 	var/oy = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_y)
@@ -542,7 +539,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	transform = M
 
 
-/obj/screen/click_catcher/Click(location, control, params)
+/atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 	params += "&catcher=1"
@@ -553,7 +550,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		T.Click(location, control, list2params(modifiers))
 	. = TRUE
 
-/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+/atom/movable/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
 	return
 
 

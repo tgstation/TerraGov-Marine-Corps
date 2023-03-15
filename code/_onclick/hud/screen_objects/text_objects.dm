@@ -1,6 +1,6 @@
 
 /// UI obj holders for all your maptext needs
-/obj/screen/text
+/atom/movable/screen/text
 	name = null
 	icon = null
 	icon_state = null

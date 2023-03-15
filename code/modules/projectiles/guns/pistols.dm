@@ -15,7 +15,7 @@
 	movement_acc_penalty_mult = 2
 	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -24,6 +24,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
@@ -44,14 +45,9 @@
 
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
-	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
-	icon = 'icons/Marine/gun64.dmi'
-	icon_state = GUN_ICONSTATE_LOADED
+	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
+	icon_state = "tp14"
 	item_state = "tp14"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/t14/l_hand,
-		slot_r_hand_str = /datum/greyscale_config/gun/t14/r_hand,
-	)
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
@@ -59,7 +55,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 24, "under_y" = 14, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 25, "under_y" = 14, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
@@ -69,8 +65,6 @@
 	recoil_unwielded = -2
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 4
-
-	greyscale_config = /datum/greyscale_config/gun/t14
 
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
@@ -196,7 +190,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
@@ -206,6 +200,9 @@
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/tacticool
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/flashlight) //Tacticool
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot)
@@ -250,6 +247,7 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	fire_delay = 0.15 SECONDS
+	damage_mult = 1.3
 
 //-------------------------------------------------------
 //P-22. Blocc
@@ -322,6 +320,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
@@ -368,6 +367,7 @@
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/suppressor/unremovable/invisible,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -423,7 +423,6 @@
 /obj/item/weapon/gun/pistol/standard_pocketpistol
 	name = "\improper P-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
-	icon = 'icons/Marine/gun64.dmi' // This is here here for the empty sprite.
 	icon_state = "tp17"
 	item_state = "tp17"
 	fire_animation = "tp17_fire"
@@ -442,7 +441,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 	recoil = -2
@@ -507,12 +506,13 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 	)
 
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 24, "under_x" = 24, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
@@ -545,14 +545,17 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp78
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp78)
 	force = 8
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	burst_delay = 0.3 SECONDS
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+
+/obj/item/weapon/gun/pistol/vp78/pmc
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/gyro, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //SOM pistol
@@ -590,13 +593,21 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	aim_slowdown = 0.1
-	scatter = 0
+	scatter = -1
 	scatter_unwielded = 4
 
 /obj/item/weapon/gun/pistol/som/standard
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/reddot,
+	)
+
+/obj/item/weapon/gun/pistol/som/burst
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som/extended
+	starting_attachment_types = list(
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lace,
 	)
 
 //-------------------------------------------------------
@@ -617,7 +628,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/auto9)
 	force = 15
 	attachable_allowed = list()
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
 
 	fire_delay = 0.1 SECONDS
@@ -641,7 +652,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 8
 	type_of_casings = null
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list()
 	flags_gun_features = GUN_AMMO_COUNTER
 
@@ -664,7 +675,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)
 	attachable_allowed = list(
 		/obj/item/attachable/quickfire,
@@ -677,7 +688,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
@@ -713,7 +724,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
-	gun_skill_category = GUN_SKILL_SMARTGUN
+	gun_skill_category = SKILL_SMARTGUN
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 

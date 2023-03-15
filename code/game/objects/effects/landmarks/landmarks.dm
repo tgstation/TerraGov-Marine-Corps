@@ -124,7 +124,7 @@
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
-	icon_state = "weednode"
+	icon_state = "weednode0"
 
 /obj/effect/landmark/weed_node/Initialize()
 	GLOB.xeno_weed_node_turfs += loc
@@ -425,9 +425,17 @@
 
 /obj/effect/landmark/sensor_tower/Initialize()
 	. = ..()
-	var/area/area_to_control = get_area(src)
-	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower_patrol
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol/Initialize()
+	..()
+	GLOB.sensor_towers_patrol += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_close

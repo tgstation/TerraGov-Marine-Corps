@@ -502,7 +502,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "wu" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/ne)
 "wz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -553,7 +553,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "xR" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -621,7 +621,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "AT" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/ne)

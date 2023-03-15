@@ -7,6 +7,11 @@
 #define PASSSMALLSTRUCT (1<<5)
 #define PASSFIRE (1<<6)
 #define PASSXENO (1<<7)
+#define PASSTHROW (1<<8) //you can throw past
+#define PASSPROJECTILE (1<<9) //projectiles can pass
+#define PASSAIR (1<<10) //non-airtight, gas/fire can pass
+#define PASSLASER (1<<11) //lasers and the like can pass unobstructed
+#define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
 #define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 
 //==========================================================================================
@@ -71,6 +76,7 @@
 #define DEPLOYED_NO_PICKUP  (1<<16) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
 #define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define FULLY_WIELDED (1<<19) //If the item is properly wielded. Used for guns
 
 //==========================================================================================
 
@@ -88,6 +94,7 @@
 #define HIDETOPHAIR (1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR (1<<9)		// temporarily removes the user's hair, facial and otherwise.
 #define HIDEFACE (1<<10)	//Dictates whether we appear as unknown.
+#define HIDE_EXCESS_HAIR (1<<11)	//masks hair so it doesn't poke out of the top or front of helmets.
 
 
 //==========================================================================================
@@ -101,8 +108,7 @@
 //HELMET AND MASK======================================================================================
 #define COVEREYES (1<<1) // Covers the eyes/protects them.
 #define COVERMOUTH (1<<2) // Covers the mouth.
-#define ALLOWINTERNALS (1<<3)	//mask allows internals
-#define BLOCKGASEFFECT (1<<4) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define BLOCKGASEFFECT (1<<3) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
@@ -343,15 +349,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
 
 #define SLOT_EQUIP_ORDER list(\
-	SLOT_IN_BOOT,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH,\
-	SLOT_IN_HEAD,\
-	SLOT_IN_ACCESSORY,\
-	SLOT_IN_HOLSTER,\
-	SLOT_IN_S_HOLSTER,\
-	SLOT_IN_B_HOLSTER,\
-	SLOT_BACK,\
 	SLOT_WEAR_ID,\
 	SLOT_GLASSES,\
 	SLOT_W_UNIFORM,\
@@ -363,13 +360,22 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_GLOVES,\
 	SLOT_EARS,\
 	SLOT_BELT,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_HEAD,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
 	SLOT_S_STORE,\
 	SLOT_L_STORE,\
 	SLOT_R_STORE,\
 	SLOT_IN_STORAGE,\
 	SLOT_IN_SUIT,\
-	SLOT_IN_BACKPACK,\
-	SLOT_IN_BELT\
+	SLOT_IN_BELT,\
+	SLOT_IN_BACKPACK\
 	)
 
 #define SLOT_DRAW_ORDER list(\

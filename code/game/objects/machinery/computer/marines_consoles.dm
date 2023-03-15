@@ -97,7 +97,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = (GLOB.jobs_regular_all - list(SYNTHETIC, SILICON_AI) + "Custom")
+		var/list/alljobs = (GLOB.jobs_regular_all - GLOB.jobs_som - list(SYNTHETIC, SILICON_AI) + "Custom")
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
@@ -310,7 +310,7 @@
 		if ("print")
 			if (!( printing ))
 				printing = 1
-				sleep(50)
+				sleep(5 SECONDS)
 				var/obj/item/paper/P = new /obj/item/paper( loc )
 
 				var/t1 = "<h4>Crew Manifest</h4>"

@@ -18,7 +18,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	if(!category || QDELETED(src))
 		return
 
-	var/obj/screen/alert/thealert
+	var/atom/movable/screen/alert/thealert
 	if(alerts[category])
 		thealert = alerts[category]
 		if(thealert.override_alerts)
@@ -69,13 +69,13 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		thealert.timeout = world.time + thealert.timeout - world.tick_lag
 	return thealert
 
-/mob/proc/alert_timeout(obj/screen/alert/alert, category)
+/mob/proc/alert_timeout(atom/movable/screen/alert/alert, category)
 	if(alert.timeout && alerts[category] == alert && world.time >= alert.timeout)
 		clear_alert(category)
 
 // Proc to clear an existing alert.
 /mob/proc/clear_alert(category, clear_override = FALSE)
-	var/obj/screen/alert/alert = alerts[category]
+	var/atom/movable/screen/alert/alert = alerts[category]
 	if(!alert)
 		return FALSE
 	if(alert.override_alerts && !clear_override)
@@ -87,7 +87,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		client.screen -= alert
 	qdel(alert)
 
-/obj/screen/alert
+/atom/movable/screen/alert
 	icon = 'icons/mob/screen_alert.dmi'
 	icon_state = "default"
 	name = "Alert"
@@ -100,12 +100,12 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/mob/owner //Alert owner
 
 
-/obj/screen/alert/fire
+/atom/movable/screen/alert/fire
 	name = "On Fire"
 	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
 	icon_state = "fire"
 
-/obj/screen/alert/fire/Click()
+/atom/movable/screen/alert/fire/Click()
 	var/mob/living/L = usr
 	if(!istype(L) || usr != owner)
 		return
@@ -113,7 +113,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
-/obj/screen/alert/notify_action
+/atom/movable/screen/alert/notify_action
 	name = "Notification"
 	desc = "A new notification. You can enter it."
 	icon_state = "template"
@@ -121,7 +121,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/atom/target = null
 	var/action = NOTIFY_JUMP
 
-/obj/screen/alert/notify_action/Click()
+/atom/movable/screen/alert/notify_action/Click()
 	var/mob/dead/observer/G = usr
 	if(!istype(G) || usr != owner)
 		return
@@ -150,16 +150,16 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 //OBJECT-BASED
 
-/obj/screen/alert/restrained/buckled
+/atom/movable/screen/alert/restrained/buckled
 	name = "Buckled"
 	desc = "You've been buckled to something. Click the alert to unbuckle unless you're handcuffed."
 	icon_state = "buckled"
 
-/obj/screen/alert/restrained/handcuffed
+/atom/movable/screen/alert/restrained/handcuffed
 	name = "Handcuffed"
 	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
 
-/obj/screen/alert/restrained/Click()
+/atom/movable/screen/alert/restrained/Click()
 	if(!isliving(usr) || usr != owner)
 		return
 	var/mob/living/L = usr
@@ -178,12 +178,12 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		return FALSE
 	if(!hud_shown)
 		for(var/category in alerts)
-			var/obj/screen/alert/alert = alerts[category]
+			var/atom/movable/screen/alert/alert = alerts[category]
 			screenmob.client.screen -= alert
 		return TRUE
 	var/c = 0
 	for(var/category in alerts)
-		var/obj/screen/alert/alert = alerts[category]
+		var/atom/movable/screen/alert/alert = alerts[category]
 		c++
 		switch(c)
 			if(1)
@@ -205,7 +205,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			reorganize_alerts(obs)
 	return TRUE
 
-/obj/screen/alert/Click(location, control, params)
+/atom/movable/screen/alert/Click(location, control, params)
 	if(!usr?.client)
 		return
 	var/paramslist = params2list(params)
@@ -215,29 +215,29 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	if(master)
 		return usr.client.Click(master, location, control, params)
 
-/obj/screen/alert/Destroy()
+/atom/movable/screen/alert/Destroy()
 	master = null
 	owner = null
 	return ..()
 
 
 //MECHS
-/obj/screen/alert/nocell
+/atom/movable/screen/alert/nocell
 	name = "Missing Power Cell"
 	desc = "Unit has no power cell. No modules available until a power cell is reinstalled. Robotics may provide assistance."
 	icon_state = "no_cell"
 
-/obj/screen/alert/emptycell
+/atom/movable/screen/alert/emptycell
 	name = "Out of Power"
 	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
 	icon_state = "empty_cell"
 
-/obj/screen/alert/lowcell
+/atom/movable/screen/alert/lowcell
 	name = "Low Charge"
 	desc = "Unit's power cell is running low."
 	icon_state = "low_cell"
 
-/obj/screen/alert/low_mech_integrity
+/atom/movable/screen/alert/low_mech_integrity
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"

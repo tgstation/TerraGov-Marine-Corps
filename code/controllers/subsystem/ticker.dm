@@ -44,6 +44,7 @@ SUBSYSTEM_DEF(ticker)
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
+	var/list/datum/mind/minds = list() //The characters in the game. Used for objective tracking.
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
@@ -344,7 +345,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, "<br>[span_tip("[html_encode(tip)]")]<br>")
+		to_chat(world, "<br>[span_tip(examine_block("[html_encode(tip)]"))]<br>")
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()

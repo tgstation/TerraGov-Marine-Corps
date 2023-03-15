@@ -35,7 +35,9 @@
 /datum/action/vehicle/sealed/mecha/mech_smoke
 	name = "Smoke"
 	action_icon_state = "mech_smoke"
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SMOKE,
+	)
 /datum/action/vehicle/sealed/mecha/mech_smoke/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
@@ -47,7 +49,9 @@
 /datum/action/vehicle/sealed/mecha/mech_zoom
 	name = "Zoom"
 	action_icon_state = "mech_zoom_off"
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_ZOOM,
+	)
 /datum/action/vehicle/sealed/mecha/mech_zoom/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return

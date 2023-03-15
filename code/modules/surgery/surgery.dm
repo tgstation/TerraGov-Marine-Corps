@@ -24,27 +24,25 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	var/can_infect = 0 //Evil infection stuff that will make everyone hate me
 	var/blood_level = 0 //How much blood this step can get on surgeon. 1 - hands, 2 - full body
 
-	//Returns how well tool is suited for this step
-	proc/tool_quality(obj/item/tool)
-		for(var/T in allowed_tools)
-			if(istype(tool, T))
-				return allowed_tools[T]
-		return 0
+///Returns how well tool is suited for this step
+/datum/surgery_step/proc/tool_quality(obj/item/tool)
+	for(var/T in allowed_tools)
+		if(istype(tool, T))
+			return allowed_tools[T]
+	return 0
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)
-	if(!hasorgans(target))
-		return 0
-	if(allowed_species)
-		for(var/species in allowed_species)
-			if(target.species.name == species)
-				return 1
+	if(!ishuman(target))
+		return FALSE
+	for(var/species in allowed_species)
+		if(target.species.name == species)
+			return TRUE
 
-	if(disallowed_species)
-		for(var/species in disallowed_species)
-			if(target.species.name == species)
-				return 0
-	return 1
+	for(var/species in disallowed_species)
+		if(target.species.name == species)
+			return FALSE
+	return TRUE
 
 
 //Checks whether this step can be applied with the given user and target
@@ -71,7 +69,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 /datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	return null
 
-proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
+//TODO why is this not a proc on the actual limb??
+/proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	if(!istype(user) || !istype(E))
 		return
 
@@ -110,7 +109,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 		E.germ_level += 100
 
 
-proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
+/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
@@ -135,10 +134,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			if(SURGERY_INVALID)
 				return TRUE
 
-		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
+		if(user.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_PROFESSIONAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 			span_notice("You fumble around figuring out how to operate [M]."))
-			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
+			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating(SKILL_SURGERY) )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
 			if(fumbling_time && !do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 				return TRUE
 
@@ -166,7 +165,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			multipler = 1
 
 		//calculate step duration
-		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
+		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
 
 		//Multiply tool success rate with multipler
 		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))

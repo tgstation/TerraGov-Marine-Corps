@@ -13,7 +13,7 @@
 /area/bigredv2/caves/south)
 "ad" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -37,7 +37,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -48,7 +48,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -90,7 +90,7 @@
 /area/bigredv2/caves/south)
 "aq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -120,7 +120,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -192,7 +192,7 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/caves/south)
 "aL" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -244,7 +244,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2/corner{
@@ -302,7 +302,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/south)
 "PS" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner{

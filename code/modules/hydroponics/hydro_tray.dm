@@ -671,4 +671,8 @@
 	. = ..()
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid
 
+/obj/machinery/portable_atmospherics/hydroponics/slashable
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 80
+
 #undef HYDRO_SPEED_MULTIPLIER

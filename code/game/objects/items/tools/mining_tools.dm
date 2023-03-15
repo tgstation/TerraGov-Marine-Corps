@@ -13,7 +13,6 @@
 	throwforce = 4.0
 	item_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/metal = 2000)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = 'sound/weapons/genhit.ogg'
@@ -212,7 +211,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	. = PLASMACUTTER_CUT_DELAY
-	var/skill = user.skills.getRating("engineer")
+	var/skill = user.skills.getRating(SKILL_ENGINEER)
 	if(skill < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
@@ -307,5 +306,5 @@
 		return TRUE
 
 	cut_apart(user, O.name, O)
-	qdel(O)
+	O.deconstruct(TRUE)
 	return TRUE

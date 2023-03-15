@@ -70,8 +70,8 @@
 				// not its contents. BS12
 				if(get_dist(D, A_turf) == 1 && A_turf.density)
 					D.reagents.reaction(A_turf)
-				sleep(2)
-			sleep(3)
+				sleep(0.2 SECONDS)
+			sleep(0.3 SECONDS)
 		qdel(D)
 
 
@@ -195,7 +195,7 @@
 				D.reagents.reaction(get_turf(D))
 				for(var/atom/t in get_turf(D))
 					D.reagents.reaction(t, VAPOR)
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(D)
 
 

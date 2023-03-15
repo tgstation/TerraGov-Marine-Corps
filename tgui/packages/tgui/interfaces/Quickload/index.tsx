@@ -1,18 +1,17 @@
-import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, Box, LabeledList, Modal, Tabs, Flex } from "../../components";
-import { Window } from "../../layouts";
+import { useBackend, useLocalState } from '../../backend';
+import { Stack, Button, Section, Box, LabeledList, Modal, Tabs, Flex } from '../../components';
+import { Window } from '../../layouts';
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 
-const LoadoutItem = (props : LoadoutItemData, context) => {
+const LoadoutItem = (props: LoadoutItemData, context) => {
   const { act } = useBackend(context);
-  const {
-    loadout,
-  } = props;
+  const { loadout } = props;
 
-  const [
-    showDesc,
-    setShowDesc,
-  ] = useLocalState<String|null>(context, 'showDesc', null);
+  const [showDesc, setShowDesc] = useLocalState<String | null>(
+    context,
+    'showDesc',
+    null
+  );
 
   return (
     <LabeledList.Item
@@ -27,9 +26,8 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
       }
       label={loadout.name}>
       {!!loadout.desc && (
-        <Button
-          onClick={() => setShowDesc(loadout.desc)}>?
-        </Button>)}
+        <Button onClick={() => setShowDesc(loadout.desc)}>?</Button>
+      )}
       <div> </div>
     </LabeledList.Item>
   );
@@ -41,14 +39,14 @@ const LoadoutList = (props: LoadoutListData) => {
     <Stack.Item>
       <Section height={23} fill scrollable>
         <LabeledList>
-          {loadout_list
-            .map(loadout_visible => {
-              return (
-                <LoadoutItem
-                  key={loadout_visible.name}
-                  loadout={loadout_visible} />
-              );
-            })}
+          {loadout_list.map((loadout_visible) => {
+            return (
+              <LoadoutItem
+                key={loadout_visible.name}
+                loadout={loadout_visible}
+              />
+            );
+          })}
         </LabeledList>
       </Section>
     </Stack.Item>
@@ -62,11 +60,14 @@ const JobTabs = (props: LoadoutTabData, context) => {
   return (
     <Section>
       <Flex>
-        <Flex.Item grow={1}><div> </div></Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
         <Flex.Item>
           <Tabs>
             {categories_to_use.map((role, i) => (
-              <Tabs.Tab key={i}
+              <Tabs.Tab
+                key={i}
                 selected={job === role.jobs}
                 onClick={() => setJob(role)}>
                 {role}
@@ -74,7 +75,9 @@ const JobTabs = (props: LoadoutTabData, context) => {
             ))}
           </Tabs>
         </Flex.Item>
-        <Flex.Item grow={1}><div> </div></Flex.Item>
+        <Flex.Item grow={1}>
+          <div> </div>
+        </Flex.Item>
       </Flex>
     </Section>
   );
@@ -86,15 +89,9 @@ export const Quickload = (props, context) => {
   const ui_theme_to_use = data.ui_theme;
   const default_job_tab = data.vendor_categories[0];
 
-  const [
-    showDesc,
-    setShowDesc,
-  ] = useLocalState(context, 'showDesc', null);
+  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null);
 
-  const [
-    job,
-    setJob,
-  ] = useLocalState(context, 'job', default_job_tab);
+  const [job, setJob] = useLocalState(context, 'job', default_job_tab);
 
   return (
     <Window
@@ -105,16 +102,14 @@ export const Quickload = (props, context) => {
       {showDesc && (
         <Modal width="400px">
           <Box>{showDesc}</Box>
-          <Button
-            content="Dismiss"
-            onClick={() => setShowDesc(null)} />
+          <Button content="Dismiss" onClick={() => setShowDesc(null)} />
         </Modal>
       )}
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />
           <LoadoutList
-            loadout_list={loadout_list.filter(loadout => loadout.job === job)}
+            loadout_list={loadout_list.filter((loadout) => loadout.job === job)}
           />
         </Stack>
       </Window.Content>

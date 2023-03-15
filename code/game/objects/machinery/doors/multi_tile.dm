@@ -68,6 +68,12 @@
 	icon = 'icons/obj/doors/Door2x1_secure.dmi'
 	openspeed = 34
 
+/obj/machinery/door/airlock/multi_tile/secure/indestructible
+	name = "Secure Airlock"
+	icon = 'icons/obj/doors/Door2x1_secure.dmi'
+	openspeed = 34
+	resistance_flags = RESIST_ALL
+
 /obj/machinery/door/airlock/multi_tile/secure2
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/Door2x1_secure2.dmi'
@@ -120,6 +126,9 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/rnr
 	name = "\improper Rest and Recreation"
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/mechbay
+	name = "\improper Mech Pilot's Office"
 
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"
@@ -344,52 +353,6 @@
 	icon = 'icons/obj/doors/mainship/2x1secdoor_glass.dmi'
 	glass = TRUE
 
-/obj/machinery/door/airlock/multi_tile/mainship/handle_multidoor()
-	if(!(width > 1)) return //Bubblewrap
-
-	for(var/i = 1, i < width, i++)
-		if(dir in list(NORTH, SOUTH))
-			var/turf/T = locate(x, y + i, z)
-			T.set_opacity(opacity)
-		else if(dir in list(EAST, WEST))
-			var/turf/T = locate(x + i, y, z)
-			T.set_opacity(opacity)
-
-	if(dir in list(NORTH, SOUTH))
-		bound_height = world.icon_size * width
-	else if(dir in list(EAST, WEST))
-		bound_width = world.icon_size * width
-
-//We have to find these again since these doors are used on shuttles a lot so the turfs changes
-/obj/machinery/door/airlock/multi_tile/mainship/proc/update_filler_turfs()
-
-	for(var/i = 1, i < width, i++)
-		if(dir in list(NORTH, SOUTH))
-			var/turf/T = locate(x, y + i, z)
-			if(T) T.set_opacity(opacity)
-		else if(dir in list(EAST, WEST))
-			var/turf/T = locate(x + i, y, z)
-			if(T) T.set_opacity(opacity)
-
-/obj/machinery/door/airlock/multi_tile/mainship/proc/get_filler_turfs()
-	var/list/filler_turfs = list()
-	for(var/i = 1, i < width, i++)
-		if(dir in list(NORTH, SOUTH))
-			var/turf/T = locate(x, y + i, z)
-			if(T) filler_turfs += T
-		else if(dir in list(EAST, WEST))
-			var/turf/T = locate(x + i, y, z)
-			if(T) filler_turfs += T
-	return filler_turfs
-
-/obj/machinery/door/airlock/multi_tile/mainship/open()
-	. = ..()
-	update_filler_turfs()
-
-/obj/machinery/door/airlock/multi_tile/mainship/close()
-	. = ..()
-	update_filler_turfs()
-
 //------Dropship Cargo Doors -----//
 
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear
@@ -412,8 +375,9 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/close(forced=0)
 	if(forced)
-		for(var/turf/T in get_filler_turfs())
-			for(var/mob/living/L in T)
+		for(var/filler in fillers)
+			var/filler_turf = get_turf(filler)
+			for(var/mob/living/L in filler_turf)
 				step(L, pick(NORTH,SOUTH)) // bump them off the tile
 		safe = FALSE // in case anyone tries to run into the closing door~
 		..()

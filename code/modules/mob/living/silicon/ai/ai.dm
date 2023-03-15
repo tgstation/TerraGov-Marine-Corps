@@ -6,6 +6,7 @@
 	real_name = "ARES v3.2"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
+	bubble_icon = "robot"
 	anchored = TRUE
 	move_resist = MOVE_FORCE_OVERPOWERING
 	density = TRUE
@@ -25,7 +26,7 @@
 	var/acceleration = FALSE
 
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -51,7 +52,7 @@
 	var/datum/action/innate/order/current_order
 	/// If it is currently controlling an object
 	var/controlling = FALSE
-	
+
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
@@ -286,7 +287,7 @@
 	show_message(rendered, 2)
 
 
-/mob/living/silicon/ai/reset_perspective(atom/A, has_static = TRUE)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye, has_static = TRUE)
 	if(has_static)
 		sight = initial(sight)
 		eyeobj?.use_static = initial(eyeobj?.use_static)
@@ -297,14 +298,14 @@
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
 		light_cameras()
-	if(istype(A, /obj/machinery/camera))
-		current = A
+	if(istype(new_eye, /obj/machinery/camera))
+		current = new_eye
 	if(client)
-		if(ismovableatom(A))
-			if(A != GLOB.ai_camera_room_landmark)
+		if(ismovableatom(new_eye))
+			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
+			client.eye = new_eye
 		else
 			end_multicam()
 			if(isturf(loc))
@@ -361,7 +362,7 @@
 		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
 
 		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
-	
+
 		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
 
@@ -468,7 +469,9 @@
 /datum/action/innate/squad_message
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
-	keybind_signal = COMSIG_KB_SENDORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
+	)
 
 /datum/action/innate/squad_message/can_use_action()
 	. = ..()
@@ -497,4 +500,4 @@
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)

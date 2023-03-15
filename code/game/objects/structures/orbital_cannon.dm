@@ -14,7 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
-	throwpass = FALSE
+	flags_pass = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -79,7 +79,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -110,7 +110,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -155,7 +155,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(6)
+	sleep(0.6 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -230,7 +230,6 @@
 	icon_state = "cannon_tray"
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
@@ -325,7 +324,6 @@
 	name = "theoretical ob ammo"
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = XENO_DAMAGEABLE
@@ -410,17 +408,17 @@
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
 		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
 	name = "\improper Plasma draining orbital warhead"
 	warhead_kind = "plasma"
 	icon_state = "ob_warhead_4"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	smoke = new(src)
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()
 
@@ -460,10 +458,10 @@
 	if(!allowed(user))
 		return
 
-	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(!isobserver(user) && user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the console."),
 		span_notice("You fumble around figuring out how to use the console."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 

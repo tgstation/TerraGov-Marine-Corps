@@ -1,19 +1,10 @@
-import { Button, Flex, Modal, TextArea } from "../../components";
+import { Button, Flex, Modal, TextArea } from '../../components';
 import { useLocalState } from '../../backend';
 
 export const TextInputModal = (props: TextInputModalData, context) => {
+  const { label, button_text, onSubmit, onBack, areaHeigh, areaWidth } = props;
 
-  const {
-    label,
-    button_text,
-    onSubmit,
-    onBack,
-    areaHeigh,
-    areaWidth,
-  } = props;
-
-
-  const [input, setInput] = useLocalState(context, label, "");
+  const [input, setInput] = useLocalState(context, label, '');
 
   return (
     <Modal id="grab-focus">
@@ -45,11 +36,7 @@ export const TextInputModal = (props: TextInputModalData, context) => {
               onSubmit(input);
             }}
           />
-          <Button
-            content="Cancel"
-            color="bad"
-            onClick={onBack}
-          />
+          <Button content="Cancel" color="bad" onClick={onBack} />
         </Flex.Item>
       </Flex>
       <script type="application/javascript">

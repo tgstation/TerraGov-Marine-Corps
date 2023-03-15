@@ -3,12 +3,13 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "pdoor1"
-	soft_armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 100, ACID = 70)
+	soft_armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 100, ACID = 70)
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 	obj_flags = NONE
 	explosion_block = 6
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS)
 
 /obj/machinery/door/poddoor/Initialize()
 	. = ..()
@@ -21,6 +22,9 @@
 	if(anchored && current_turf && density)
 		current_turf.flags_atom &= ~AI_BLOCKED
 	return ..()
+
+/obj/machinery/door/poddoor/bumpopen(mob/user)
+	return
 
 /obj/machinery/door/poddoor/open()
 	. = ..()
@@ -215,6 +219,11 @@
 	name = "\improper Hangar Shutters"
 	id = "hangar_shutters"
 
+/obj/machinery/door/poddoor/mainship/mech
+	name = "\improper Mech Shutters"
+	id = "mech_shutters"
+	resistance_flags = PLASMACUTTER_IMMUNE
+
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
 	resistance_flags = RESIST_ALL
@@ -250,8 +259,6 @@
 	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
-	smoothing_behavior = NO_SMOOTHING
-	smoothing_groups = NONE
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/Initialize(mapload)

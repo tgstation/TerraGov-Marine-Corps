@@ -137,7 +137,7 @@
 	if(secondary_unarmed_type)
 		secondary_unarmed = new secondary_unarmed_type()
 	if(species_flags & GREYSCALE_BLOOD)
-		brute_damage_icon_state = "greyscale"
+		brute_damage_icon_state = "grayscale"
 
 /datum/species/proc/create_organs(mob/living/carbon/human/organless_human) //Handles creation of mob organs and limbs.
 
@@ -330,7 +330,7 @@
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
-	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
+	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body with your head still attached, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
 
@@ -349,7 +349,7 @@
 	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
-	slowdown = 1.05
+	slowdown = 0.05
 	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
@@ -361,20 +361,20 @@
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.h_style = "Bald"
-	H.skills = getSkillsType(/datum/skills/vatgrown)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown))
 
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
 	name_plural = "Early Vat-Grown Humans"
 	brute_mod = 1.3
 	burn_mod = 1.3
-	slowdown = 1.3
+	slowdown = 0.3
 
 	var/timerid
 
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	H.skills = getSkillsType(/datum/skills/vatgrown/early)
+	H.set_skills(getSkillsType(/datum/skills/vatgrown/early))
 	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
@@ -388,8 +388,6 @@
 	H.set_species("Vat-Grown Human")
 
 
-GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
-
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
@@ -398,6 +396,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
+	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
@@ -414,7 +413,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -443,24 +442,72 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
 	H.health_threshold_crit = -100
+	var/datum/action/repair_self/repair_action = new()
+	repair_action.give_action(H)
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
 	H.health_threshold_crit = -50
+	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
+	repair_action.remove_action(H)
+	qdel(repair_action)
+
 
 /mob/living/carbon/human/species/robot/handle_regular_hud_updates()
 	. = ..()
 	if(health <= 0 && health > -50)
 		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /obj/screen/fullscreen/robothalf)
+		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/robothalf)
 	else if(health <= -50)
 		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /obj/screen/fullscreen/robotlow)
+		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/robotlow)
 	else
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
 
+///Lets a robot repair itself over time at the cost of being stunned and blind
+/datum/action/repair_self
+	name = "Activate autorepair"
+	action_icon_state = "suit_configure"
+
+/datum/action/repair_self/can_use_action()
+	. = ..()
+	if(!.)
+		return
+	return !owner.incapacitated()
+
+/datum/action/repair_self/action_activate()
+	. = ..()
+	if(!. || !ishuman(owner))
+		return
+	var/mob/living/carbon/human/howner = owner
+	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 5 SECONDS)
+	howner.balloon_alert_to_viewers("Repairing")
+
+/datum/species/robot/alpharii
+	name = "Hammerhead Combat Robot"
+	name_plural = "Hammerhead Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_alpharii.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/charlit
+	name = "Chilvaris Combat Robot"
+	name_plural = "Chilvaris Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_charlit.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/deltad
+	name = "Ratcher Combat Robot"
+	name_plural = "Ratcher Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_deltad.dmi'
+	joinable_roundstart = FALSE
+
+/datum/species/robot/bravada
+	name = "Sterling Combat Robot"
+	name_plural = "Sterling Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot_bravada.dmi'
+	joinable_roundstart = FALSE
 
 /datum/species/synthetic
 	name = "Synthetic"
@@ -577,7 +624,8 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
+	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
+	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
 	speech_verb_override = "chimpers"
@@ -611,7 +659,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
 		to_chat(user, span_danger("Your bite misses [victim]!"))
 		return TRUE
-	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
+	victim.apply_damage(rand(10, 20), BRUTE, "chest", updating_health = TRUE)
 	victim.visible_message(span_danger("[name] bites [victim]!"),
 		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
 	to_chat(user, span_danger("You bite [victim]!"))
@@ -886,30 +934,31 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
 
+///damage override at the species level, called by /mob/living/proc/apply_damage
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
+	var/datum/limb/organ = null
+	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
+		organ = def_zone
+		def_zone = organ.name
 
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
-	var/hit_percent = (100 - blocked) * 0.01
+	if(!def_zone)
+		def_zone = ran_zone(def_zone)
+	if(!organ)
+		organ = victim.get_limb(check_zone(def_zone))
+	if(!organ)
+		return FALSE
 
-	if(hit_percent <= 0) //total negation
-		return 0
-
-	damage *= CLAMP01(hit_percent) //Percentage reduction
-
-	if(!damage) //Complete negation
-		return 0
+	if(isnum(blocked))
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
+	else
+		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
 		damage = round(damage * ((10 - victim.protection_aura) / 10))
 
-	var/datum/limb/organ = null
-	if(isorgan(def_zone))
-		organ = def_zone
-	else
-		if(!def_zone)
-			def_zone = ran_zone(def_zone)
-		organ = victim.get_limb(check_zone(def_zone))
-	if(!organ)
-		return FALSE
+	if(!damage)
+		return 0
+
 
 	switch(damagetype)
 		if(BRUTE)

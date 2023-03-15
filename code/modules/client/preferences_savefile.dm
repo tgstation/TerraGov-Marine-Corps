@@ -27,7 +27,7 @@
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
 	if(current_version < 39)
 		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
-		parent.update_movement_keys(src)
+		parent.set_macros()
 		to_chat(parent, span_userdanger("Empty keybindings, setting to default"))
 
 	// Add missing keybindings for T L O M for when they were removed as defaults
@@ -364,6 +364,7 @@
 
 	READ_FILE(S["synthetic_name"], synthetic_name)
 	READ_FILE(S["synthetic_type"], synthetic_type)
+	READ_FILE(S["robot_type"], robot_type)
 	READ_FILE(S["xeno_name"], xeno_name)
 	READ_FILE(S["ai_name"], ai_name)
 
@@ -420,6 +421,7 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
+	robot_type = sanitize_inlist(robot_type, ROBOT_TYPES, initial(robot_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
@@ -438,9 +440,10 @@
 	preferred_slot_alt	= sanitize_inlist(preferred_slot_alt, SLOT_DRAW_ORDER, initial(preferred_slot_alt))
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_t), initial(undershirt))
+		undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
 	backpack		= sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style			= sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
@@ -503,6 +506,7 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
+	robot_type = sanitize_inlist(robot_type, ROBOT_TYPES, initial(robot_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
@@ -521,9 +525,10 @@
 	preferred_slot_alt	= sanitize_inlist(preferred_slot_alt, SLOT_DRAW_ORDER, initial(preferred_slot_alt))
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_t), initial(undershirt))
+		undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
 	backpack		= sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style			= sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
@@ -560,6 +565,7 @@
 
 	WRITE_FILE(S["synthetic_name"], synthetic_name)
 	WRITE_FILE(S["synthetic_type"], synthetic_type)
+	WRITE_FILE(S["robot_type"], robot_type)
 	WRITE_FILE(S["xeno_name"], xeno_name)
 	WRITE_FILE(S["ai_name"], ai_name)
 

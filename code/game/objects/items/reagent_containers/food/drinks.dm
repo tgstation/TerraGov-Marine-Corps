@@ -8,7 +8,7 @@
 	icon_state = null
 	init_reagent_flags = OPENCONTAINER_NOUNIT
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
-	possible_transfer_amounts = list(5,10,25)
+	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 50
 
 /obj/item/reagent_containers/food/drinks/on_reagent_change()

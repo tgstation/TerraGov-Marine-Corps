@@ -54,9 +54,8 @@
 			return
 
 		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
-		var/armor = get_soft_armor("melee")
 
-		apply_damage(throw_damage, dtype, BODY_ZONE_CHEST, armor, is_sharp(O), has_edge(O), TRUE)
+		apply_damage(throw_damage, dtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -121,6 +120,7 @@
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
+		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
 		return TRUE
 
@@ -196,12 +196,28 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
+/mob/living/flamer_fire_act(burnlevel)
+	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+		return
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return
+
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
+	to_chat(src, span_warning("You are burned!"))
+
+	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+		return
+
+	adjust_fire_stacks(burnlevel)
+	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(80)
-
+	Paralyze(30)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
@@ -228,6 +244,8 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
+	if(status_flags & GODMODE)
+		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
 	if(LAZYACCESS(smoke_delays, S.type) > world.time)
@@ -246,6 +264,14 @@
 		if(prob(25 * protection))
 			to_chat(src, span_danger("Your skin feels like it is melting away!"))
 		adjustFireLoss(S.strength * rand(20, 23) * protection)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TOXIC))
+		if(HAS_TRAIT(src, TRAIT_INTOXICATION_IMMUNE))
+			return
+		if(has_status_effect(STATUS_EFFECT_INTOXICATED))
+			var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+			debuff.add_stacks(SENTINEL_TOXIC_GRENADE_STACKS_PER)
+		apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_GRENADE_STACKS_PER)
+		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection

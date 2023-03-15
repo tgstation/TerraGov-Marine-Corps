@@ -19,8 +19,6 @@
 #define MOB_PIXEL_SHIFT_Y "mob_pixel_shift_y"
 #define ATTACHMENT_LAYER "attachment_layer"
 
-#define GREYSCALE_ATTACHMENT_ICONSTATE "attached"
-
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
@@ -47,6 +45,7 @@
 #define ATTACHMENT_SLOT_KNEE "knee"
 #define ATTACHMENT_SLOT_MODULE "module"
 #define ATTACHMENT_SLOT_STORAGE "storage"
+#define ATTACHMENT_SLOT_BELT "belt"
 
 //Jaeger helmet slot defines
 #define ATTACHMENT_SLOT_HEAD_MODULE "head_module"

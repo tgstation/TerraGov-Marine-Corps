@@ -6,21 +6,13 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/activable/secrete_resin/ranged
+/datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
-	///the maximum range of the ability
-	var/max_range = 1
-
-/datum/action/xeno_action/activable/secrete_resin/ranged/use_ability(atom/A)
-	if(get_dist(owner, A) > max_range)
-		return ..()
-
-	return build_resin(get_turf(A))
 
 // ***************************************
 // *********** Resin walker
@@ -28,10 +20,13 @@
 /datum/action/xeno_action/toggle_speed
 	name = "Resin Walker"
 	action_icon_state = "toggle_speed"
-	mechanics_text = "Move faster on resin."
+	desc = "Move faster on resin."
 	plasma_cost = 50
-	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
+	)
 	use_state_flags = XACT_USE_LYING
+	action_type = ACTION_TOGGLE
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
 
@@ -60,6 +55,7 @@
 	if(walker.loc_weeds_type)
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+	set_toggle(TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
 
 
@@ -71,6 +67,7 @@
 		walker.remove_movespeed_modifier(type)
 		speed_bonus_active = FALSE
 	speed_activated = FALSE
+	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 
@@ -99,10 +96,12 @@
 /datum/action/xeno_action/build_tunnel
 	name = "Dig Tunnel"
 	action_icon_state = "build_tunnel"
-	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
+	desc = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
 	cooldown_timer = 120 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
+	)
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -185,11 +184,13 @@
 
 /datum/action/xeno_action/place_jelly_pod
 	name = "Place Resin Jelly pod"
-	action_icon_state = "haunt"
-	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
+	action_icon_state = "resin_jelly_pod"
+	desc = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
-	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD,
+	)
 
 /datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -223,11 +224,13 @@
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
-	action_icon_state = "gut"
-	mechanics_text = "Create a fireproof jelly."
+	action_icon_state = "resin_jelly"
+	desc = "Create a fireproof jelly."
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
+	)
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -251,10 +254,12 @@
 /datum/action/xeno_action/activable/healing_infusion
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
-	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
+	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
+	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
@@ -323,3 +328,63 @@
 
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
+
+// ***************************************
+// *********** Sow
+// ***************************************
+/datum/action/xeno_action/sow
+	name = "Sow"
+	action_icon_state = "place_trap"
+	desc = "Sow the seeds of an alien plant."
+	plasma_cost = 200
+	cooldown_timer = 45 SECONDS
+	use_state_flags = XACT_USE_LYING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
+	)
+
+/datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot sow, no weeds")
+		return FALSE
+
+	var/turf/T = get_turf(owner)
+	if(!T.check_alien_construction(owner, silent))
+		return FALSE
+
+/datum/action/xeno_action/sow/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!X.selected_plant)
+		return FALSE
+
+	playsound(src, "alien_resin_build", 25)
+	new X.selected_plant(get_turf(owner))
+	add_cooldown()
+	return succeed_activate()
+
+/datum/action/xeno_action/sow/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
+	return ..()
+
+///Shows a radial menu to pick the plant they wish to put down when they use the ability
+/datum/action/xeno_action/sow/proc/choose_plant()
+	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!plant_choice)
+		return
+	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
+		if(initial(current_plant.name) == plant_choice)
+			X.selected_plant = current_plant
+			break
+	X.balloon_alert(X, "[plant_choice]")
+	update_button_icon()
+
+/datum/action/xeno_action/sow/alternate_action_activate()
+	INVOKE_ASYNC(src, .proc/choose_plant)
+	return COMSIG_KB_ACTIVATED

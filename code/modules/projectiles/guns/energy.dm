@@ -53,7 +53,7 @@
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	rounds_per_shot = 500
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 
 
@@ -66,7 +66,7 @@
 	. = ..()
 	if (!.)
 		return
-	if(user.skills.getRating("police") < SKILL_POLICE_MP)
+	if(user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return FALSE
 
@@ -89,7 +89,7 @@
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
@@ -131,9 +131,7 @@
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
-	//load_into_chamber()
-
-	user?.hud_used.update_ammo_hud(user, src)
+	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 	return TRUE
 
@@ -160,7 +158,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -257,7 +255,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
@@ -326,7 +324,7 @@
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 	to_chat(user, initial(choice.message_to_user))
-	user?.hud_used.update_ammo_hud(user, src)
+	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 	if(!in_chamber || !length(chamber_items))
 		return
@@ -502,6 +500,7 @@
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	damage_falloff_mult = 0.2
+	aim_slowdown = 0
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
@@ -736,6 +735,7 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
 		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
+		"Swarm mode" = /datum/lasrifle/base/energy_mg_mode/standard/swarm,
 	)
 
 /datum/lasrifle/base/energy_mg_mode/standard
@@ -752,6 +752,13 @@
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+	radial_icon_state = "laser_disabler"
+
+/datum/lasrifle/base/energy_mg_mode/standard/swarm
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/swarm
+	fire_delay = 0.15 SECONDS
+	message_to_user = "You set the machine laser's charge mode to swarm mode."
+	radial_icon_state = "laser_swarm"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
 	name = "\improper Terra Experimental X-Ray laser rifle"
@@ -818,6 +825,7 @@
 	desc = "you shouldn't see this gun."
 	icon_state = "charger"
 	item_state = "charger"
+	ammo_level_icon = ""
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
@@ -830,7 +838,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_SHOWS_LOADED
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult = 1
@@ -854,7 +862,6 @@
 	icon_state = "vx12"
 	item_state = "vx12"
 	w_class = WEIGHT_CLASS_NORMAL
-	ammo_level_icon = ""
 	max_shots = 15
 	rounds_per_shot = 36
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
@@ -871,15 +878,15 @@
 	recoil_unwielded = 0
 	movement_acc_penalty_mult = 2
 	aim_slowdown = 0.1
+	wield_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper VX-32 Charger"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	item_state = "charger"
-	ammo_level_icon = "charger"
-	max_shots = 40
-	rounds_per_shot = 24
+	max_shots = 45
+	rounds_per_shot = 32
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
@@ -890,14 +897,14 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 9, "rail_y" = 23, "under_x" = 30, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	scatter = 3
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 8
 	recoil_unwielded = 1
 	movement_acc_penalty_mult = 3
+	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -914,16 +921,22 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper VX-33 Caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "caliver"
 	item_state = "caliver"
-	ammo_level_icon = "caliver"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	max_shots = 40
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
 	rounds_per_shot = 36
-	default_ammo_type = /obj/item/cell/lasgun/volkite/highcap
+	default_ammo_type = /obj/item/cell/lasgun/volkite
 	allowed_ammo_types = list(
-		/obj/item/cell/lasgun/volkite/highcap,
+		/obj/item/cell/lasgun/volkite,
 		/obj/item/cell/lasgun/volkite/powerpack,
 	)
 	attachable_allowed = list(
@@ -938,11 +951,10 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 33, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 13,"rail_x" = 9, "rail_y" = 24, "under_x" = 45, "under_y" = 11, "stock_x" = 22, "stock_y" = 12)
 	accuracy_mult = 1.1
 	aim_slowdown = 0.65
-	damage_falloff_mult = 0.6
+	damage_falloff_mult = 0.4
 	wield_delay	= 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
@@ -963,6 +975,12 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack. Drag click the powerpack to the gun to load."
 	icon_state = "culverin"
 	item_state = "culverin"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
 	ammo_level_icon = null
 	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
@@ -972,9 +990,9 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_SHOWS_LOADED
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
-	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 17, "rail_y" = 22, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 11, "rail_y" = 29, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	aim_slowdown = 1
 	wield_delay	= 1.2 SECONDS
 	fire_delay = 0.15 SECONDS
@@ -982,7 +1000,7 @@
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.4
 	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness

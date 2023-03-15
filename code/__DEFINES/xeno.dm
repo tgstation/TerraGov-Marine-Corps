@@ -2,6 +2,7 @@
 #define IGNORE_WEED_REMOVAL (1<<0)
 #define HAS_OVERLAY (1<<1)
 #define CRITICAL_STRUCTURE (1<<2)
+#define DEPART_DESTRUCTION_IMMUNE (1<<3)
 
 //Weeds defines
 #define WEED "weed sac"
@@ -81,6 +82,7 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_sanguinal,
+		/datum/status_effect/stacking/intoxicated,
 		)))
 
 //List of plant types
@@ -120,18 +122,18 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 ))
 
 ///Heals a xeno, respecting different types of damage
-#define HEAL_XENO_DAMAGE(xeno, amount) do { \
+#define HEAL_XENO_DAMAGE(xeno, amount, passive) do { \
 	var/fire_loss = xeno.getFireLoss(); \
 	if(fire_loss) { \
 		var/fire_heal = min(fire_loss, amount); \
 		amount -= fire_heal;\
-		xeno.adjustFireLoss(-fire_heal, TRUE); \
+		xeno.adjustFireLoss(-fire_heal, TRUE, passive); \
 	} \
 	var/brute_loss = xeno.getBruteLoss(); \
 	if(brute_loss) { \
 		var/brute_heal = min(brute_loss, amount); \
 		amount -= brute_heal; \
-		xeno.adjustBruteLoss(-brute_heal, TRUE); \
+		xeno.adjustBruteLoss(-brute_heal, TRUE, passive); \
 	} \
 } while(FALSE)
 
@@ -143,3 +145,22 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	} else { \
 		xeno.remove_filter("overheal_vis"); \
 	}
+
+/// Used by the is_valid_for_resin_structure proc.
+/// 0 is considered valid , anything thats not 0 is false
+/// Simply not allowed by the area to build
+#define NO_ERROR 0
+#define ERROR_JUST_NO 1
+#define ERROR_NOT_ALLOWED 2
+/// No weeds here, but it is weedable
+#define ERROR_NO_WEED 3
+/// Area is not weedable
+#define ERROR_CANT_WEED 4
+/// Gamemode-fog prevents spawn-building
+#define ERROR_FOG 5
+/// Blocked by a xeno
+#define ERROR_BLOCKER 6
+/// No adjaecent wall or door tile
+#define ERROR_NO_SUPPORT 7
+/// Failed to other blockers such as egg, power plant , coocon , traps
+#define ERROR_CONSTRUCT 8

@@ -102,10 +102,23 @@
 #define TIMESHIFT_TRAIT "timeshift"
 #define BRAIN_TRAIT "brain"
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
+#define PSYCHIC_BLAST_ABILITY_TRAIT "psychic_blast_ability_trait"
+#define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"
+#define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
+#define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
+#define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
+
+/// A trait given by any status effect
+#define STATUS_EFFECT_TRAIT "status-effect"
+/// A trait given by a specific status effect (not sure why we need both but whatever!)
+#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+
 /// Trait from a reagent of the given name
 #define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
+
+
 
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
@@ -118,9 +131,12 @@
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
 #define TRAIT_IS_RESURRECTING "resurrecting"
+#define TRAIT_ESSENCE_LINKED "essence_linked"
 #define TRAIT_PSY_LINKED "psy_linked"
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
+#define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
+
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
@@ -132,17 +148,31 @@
 #define TRAIT_LEGLESS "legless" //Has lost all the appendages needed to stay standing up.
 #define TRAIT_NOPLASMAREGEN "noplasmaregen"//xeno plasma wont recharge
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
+#define TRAIT_IMMEDIATE_DEFIB "immediate_defib"//immediately revives when defibbed, rather than just healing
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
+#define TRAIT_HIVE_TARGET "hive_target"//mob is targeted for draining by the hive
 #define TRAIT_RESEARCHED "researched" // Whether the thing has been researched/probed
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
+#define TRAIT_STAGGER_RESISTANT	"stagger_resistant" //Resistance to certain sources of stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
-#define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
+
+//important_recursive_contents traits
+/*
+ * Used for movables that need to be updated, via COMSIG_ENTER_AREA and COMSIG_EXIT_AREA, when transitioning areas.
+ * Use [/atom/movable/proc/become_area_sensitive(trait_source)] to properly enable it. How you remove it isn't as important.
+ */
+#define TRAIT_AREA_SENSITIVE "area-sensitive"
+#define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive. Every hearing sensitive atom has this trait
+
 #define TRAIT_DROOLING "drooling" //target is drooling
+#define TRAIT_INTOXICATION_IMMUNE "intoxication_immune" // Immune to the Intoxication debuff.
+#define TRAIT_INTOXICATION_RESISTANT "intoxication_resistant" // Resistant to the Intoxication debuff. Maximum amount of stacks limited.
+#define TRAIT_PAIN_IMMUNE "pain_immune" // We don't feel pain.
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something
@@ -164,3 +194,16 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
+
+// UI traits
+/// Inability to access UI hud elements.
+#define TRAIT_UI_BLOCKED "ui_blocked" //if user is blocked from using UI
+/// This mob should never close UI even if it doesn't have a client
+#define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client"
+
+//this mech is melee core boosted
+#define TRAIT_MELEE_CORE "melee_core"
+
+//added to escaped humans
+#define TRAIT_HAS_ESCAPED "escaped_marine"
+#define TRAIT_HAS_BEEN_TARGETED "been_targeted"

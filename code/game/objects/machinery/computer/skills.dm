@@ -206,7 +206,7 @@ What a mess.*/
 				return
 			Perp = new/list()
 			t1 = lowertext(t1)
-			var/list/components = text2list(t1, " ")
+			var/list/components = splittext(t1, " ")
 			if(components.len > 5)
 				return //Lets not let them search too greedily.
 			for(var/datum/data/record/R in GLOB.datacore.general)
@@ -236,7 +236,7 @@ What a mess.*/
 		if ("Print Record")
 			if (!( printing ))
 				printing = 1
-				sleep(50)
+				sleep(5 SECONDS)
 				var/obj/item/paper/P = new /obj/item/paper( loc )
 				P.info = "<CENTER><B>Employment Record</B></CENTER><BR>"
 				if ((istype(active1, /datum/data/record) && GLOB.datacore.general.Find(active1)))

@@ -7,7 +7,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher
 	w_class = WEIGHT_CLASS_BULKY
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = NONE
 	throw_speed = 2
@@ -24,14 +24,17 @@ The Grenade Launchers
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/training,
-		/obj/item/explosive/grenade/PMC,
+		/obj/item/explosive/grenade/pmc,
 		/obj/item/explosive/grenade/m15,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
 		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/explosive/grenade/smokebomb/som,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
 		/obj/item/explosive/grenade/smokebomb/neuro,
@@ -76,7 +79,7 @@ The Grenade Launchers
 	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
 	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
 	play_fire_sound(loc)
-	grenade_to_launch.det_time = min(10, grenade_to_launch.det_time)
+	grenade_to_launch.launched_det_time()
 	grenade_to_launch.launched = TRUE
 	grenade_to_launch.activate(gun_user)
 	grenade_to_launch.throwforce += grenade_to_launch.launchforce
@@ -143,9 +146,12 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/training,
 		/obj/item/explosive/grenade/stick,
 		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/explosive/grenade/smokebomb/som,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
 		/obj/item/explosive/grenade/smokebomb/neuro,
@@ -165,10 +171,18 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
 
+/obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
+	name = "\improper BR-64 underslung grenade launcher"
+	desc = "A weapon-mounted, reloadable, two-shot grenade launcher designed to fit the BR-64."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "t64_grenade"
+	pixel_shift_x = 21
+	pixel_shift_y = 15
+
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
-	default_ammo_type = /obj/item/explosive/grenade/stick //no marine equipment here
+	default_ammo_type = /obj/item/explosive/grenade/som
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
@@ -201,9 +215,9 @@ The Grenade Launchers
 	item_state = "gun"
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 	flags_gun_features = NONE
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
 	default_ammo_type = /obj/item/explosive/grenade/flare
 	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)

@@ -26,6 +26,10 @@
 					ExtinguishMob()
 				return TRUE
 
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+				H.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
+				return TRUE
+
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
 				return TRUE
@@ -103,11 +107,11 @@
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = H.melee_damage + H.skills.getRating("cqc")
+			var/max_dmg = H.melee_damage + H.skills.getRating(SKILL_CQC)
 			var/damage = rand(1, max_dmg)
 
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
-			var/armor_block = get_soft_armor("melee", affecting)
+			var/target_zone = ran_zone(H.zone_selected)
+			var/armor_block = get_soft_armor("melee", target_zone)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
@@ -119,7 +123,7 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -134,10 +138,10 @@
 
 			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
+			var/target_zone = ran_zone(H.zone_selected)
 
 			//Accidental gun discharge
-			if(user.skills.getRating("cqc") < SKILL_CQC_MP)
+			if(user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -159,10 +163,10 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
+			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * 5 - H.skills.getRating(SKILL_CQC) * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, get_soft_armor("melee", affecting))
+				apply_effect(3, WEAKEN, get_soft_armor("melee", target_zone))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")
@@ -199,8 +203,7 @@
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return
 
-		visible_message(span_notice("[src] examines [p_them()]self."),
-			span_notice("You check yourself for injuries."), null, 3)
+
 		check_self_for_injuries()
 		return
 
@@ -209,6 +212,8 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
+	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
+	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
 		var/status = ""
@@ -298,4 +303,4 @@
 		if(26 to INFINITY)
 			final_msg += span_info("Your body aches all over, it's driving you mad!")
 
-	to_chat(src, final_msg.Join("\n"))
+	to_chat(src, examine_block(final_msg.Join("\n")))

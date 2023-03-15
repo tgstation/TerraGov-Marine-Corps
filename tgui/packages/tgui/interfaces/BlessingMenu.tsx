@@ -1,60 +1,55 @@
-import { useBackend, useLocalState } from "../backend";
-import { Window } from "../layouts";
+import { useBackend, useLocalState } from '../backend';
+import { Window } from '../layouts';
 import { Button, Section, Box, LabeledList, Divider, Tabs, Stack, Collapsible, Flex } from '../components';
 import { classes } from 'common/react';
 
 type BlessingData = {
-  user: string,
-  psypoints: number,
-  upgrades: UpgradeData[],
-  categories: string[],
+  user: string;
+  psypoints: number;
+  upgrades: UpgradeData[];
+  categories: string[];
 };
 
 type UpgradeData = {
-  name: string,
-  desc: string,
-  iconstate: string,
-  category: string,
-  cost: number,
-  times_bought: number,
-}
+  name: string;
+  desc: string;
+  iconstate: string;
+  category: string;
+  cost: number;
+  times_bought: number;
+};
 
 const categoryIcons = {
-  "Buildings": "gopuram",
-  "Defences": "user-shield",
-  "Xenos": "khanda",
-  "Primordial": "skull", // wolf-pack-battalion
+  'Buildings': 'gopuram',
+  'Defences': 'user-shield',
+  'Xenos': 'khanda',
+  'Primordial': 'skull', // wolf-pack-battalion
 };
 
 export const BlessingMenu = (props, context) => {
   const { data } = useBackend<BlessingData>(context);
 
-  const {
-    psypoints,
-    categories,
-  } = data;
+  const { psypoints, categories } = data;
 
-  const [
-    selectedCategory,
-    setSelectedCategory,
-  ] = useLocalState(context, 'selectedCategory', categories.length ? categories[0] : null);
+  const [selectedCategory, setSelectedCategory] = useLocalState(
+    context,
+    'selectedCategory',
+    categories.length ? categories[0] : null
+  );
 
   return (
     <Window
       theme="xeno"
-      title={"Queen Mothers Blessings"}
+      title={'Queen Mothers Blessings'}
       width={500}
       height={600}>
       <Window.Content scrollable>
-        <Section title={"Psychic points: " + (psypoints ? psypoints : 0)}>
-          {(categories.length > 0 && (
-            <Section
-              lineHeight={1.75}
-              textAlign="center">
+        <Section title={'Psychic points: ' + (psypoints ? psypoints : 0)}>
+          {categories.length > 0 && (
+            <Section lineHeight={1.75} textAlign="center">
               <Tabs>
-                <Stack
-                  wrap="wrap">
-                  {categories.map(categoryname => {
+                <Stack wrap="wrap">
+                  {categories.map((categoryname) => {
                     return (
                       <Stack.Item
                         m={0.5}
@@ -74,7 +69,7 @@ export const BlessingMenu = (props, context) => {
               </Tabs>
               <Divider />
             </Section>
-          ))}
+          )}
           <Upgrades />
         </Section>
       </Window.Content>
@@ -85,16 +80,13 @@ export const BlessingMenu = (props, context) => {
 const Upgrades = (props, context) => {
   const { data } = useBackend<BlessingData>(context);
 
-  const {
-    psypoints,
-    upgrades,
-    categories,
-  } = data;
+  const { psypoints, upgrades, categories } = data;
 
-  const [
-    selectedCategory,
-    setSelectedCategory,
-  ] = useLocalState(context, 'selectedCategory', categories.length ? categories[0] : null);
+  const [selectedCategory, setSelectedCategory] = useLocalState(
+    context,
+    'selectedCategory',
+    categories.length ? categories[0] : null
+  );
 
   return (
     <Section>
@@ -103,8 +95,8 @@ const Upgrades = (props, context) => {
           <Box color="bad">No upgrades available!</Box>
         ) : (
           upgrades
-            .filter(record => record.category === selectedCategory)
-            .map(upgrade => (
+            .filter((record) => record.category === selectedCategory)
+            .map((upgrade) => (
               <UpgradeEntry
                 psy_points={psypoints}
                 upgrade_name={upgrade.name}
@@ -112,23 +104,23 @@ const Upgrades = (props, context) => {
                 upgrade_desc={upgrade.desc}
                 upgrade_cost={upgrade.cost}
                 upgrade_times_bought={upgrade.times_bought}
-                upgradeicon={upgrade.iconstate} />)
-            )
+                upgradeicon={upgrade.iconstate}
+              />
+            ))
         )}
       </LabeledList>
     </Section>
   );
 };
 
-
 type UpgradeEntryProps = {
-  psy_points: number,
-  upgrade_name: string,
-  upgrade_desc: string,
-  upgrade_cost: number,
-  upgrade_times_bought: number,
-  upgradeicon: string,
-}
+  psy_points: number;
+  upgrade_name: string;
+  upgrade_desc: string;
+  upgrade_cost: number;
+  upgrade_times_bought: number;
+  upgradeicon: string;
+};
 
 const UpgradeEntry = (props: UpgradeEntryProps, context) => {
   const { act } = useBackend<UpgradeData>(context);
@@ -146,15 +138,15 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
     <Collapsible
       ml={1}
       title={upgrade_name}
-      buttons={(
+      buttons={
         <Button
           mr={1}
-          tooltip={upgrade_cost + " points"}
+          tooltip={upgrade_cost + ' points'}
           disabled={upgrade_cost > psy_points}
           onClick={() => act('buy', { buyname: upgrade_name })}>
           Claim Blessing
         </Button>
-      )}>
+      }>
       <UpgradeView
         name={upgrade_name}
         desc={upgrade_desc}
@@ -167,26 +159,18 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
 };
 
 type UpgradeViewEntryProps = {
-  name: string,
-  desc: string,
-  timesbought: number,
-  iconstate: string,
-  cost: number,
-}
+  name: string;
+  desc: string;
+  timesbought: number;
+  iconstate: string;
+  cost: number;
+};
 
 const UpgradeView = (props: UpgradeViewEntryProps, context) => {
   const { data } = useBackend<BlessingData>(context);
-  const {
-    psypoints,
-  } = data;
+  const { psypoints } = data;
 
-  const {
-    name,
-    desc,
-    timesbought,
-    iconstate,
-    cost,
-  } = props;
+  const { name, desc, timesbought, iconstate, cost } = props;
 
   return (
     <Flex align="center">
@@ -204,18 +188,15 @@ const UpgradeView = (props: UpgradeViewEntryProps, context) => {
             'transform': 'scale(2) translate(0px, 10%)',
           }}
         />
-        <Box bold mt={5} color={psypoints > cost ? "good" : "bad"}>
-          {"Cost: " + cost}
+        <Box bold mt={5} color={psypoints > cost ? 'good' : 'bad'}>
+          {'Cost: ' + cost}
         </Box>
-        <Box bold my={0.5} color={timesbought >= 1 ? "good" : ""}>
-          {timesbought + " Bought"}
+        <Box bold my={0.5} color={timesbought >= 1 ? 'good' : ''}>
+          {timesbought + ' Bought'}
         </Box>
       </Flex.Item>
       <Flex.Item grow={1} basis={0}>
-        <Box
-          italic
-          ml={-25}
-        >
+        <Box italic ml={-25}>
           {desc}
         </Box>
       </Flex.Item>

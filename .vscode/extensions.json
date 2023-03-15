@@ -9,6 +9,7 @@
 		"editorconfig.editorconfig",
 		"eamodio.gitlens",
 		"anturk.dmi-editor",
-		"sukumo28.wav-preview"
+		"sukumo28.wav-preview",
+		"esbenp.prettier-vscode"
 	]
 }

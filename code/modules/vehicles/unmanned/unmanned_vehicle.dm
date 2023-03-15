@@ -13,7 +13,9 @@
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
-	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 25, ACID = 25)
+	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
+	/// Needed to keep track of any slowdowns and/or diagonal movement
+	var/next_move_delay = 0
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -68,7 +70,7 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
-
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "uav")
 
 /obj/vehicle/unmanned/Destroy()
 	. = ..()
@@ -120,17 +122,22 @@
 
 /obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && !ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)
 	if(user.incapacitated())
 		return FALSE
 
-	if(world.time < last_move_time + move_delay)
+	if(world.time < last_move_time + next_move_delay)
 		return
 
-	return Move(get_step(src, direction))
+	. = Move(get_step(src, direction))
+
+	if(ISDIAGONALDIR(direction)) //moved diagonally successfully
+		next_move_delay = move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
+	else
+		next_move_delay = move_delay
 
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
@@ -274,57 +281,14 @@
 /obj/vehicle/unmanned/proc/delete_muzzle_flash()
 	vis_contents -= flash
 
-/obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
-	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
-
-/obj/vehicle/unmanned/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to uavs
-	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
-		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
-	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	Shake(4, 4, 2 SECONDS)
-	return TRUE
-
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel)
 	take_damage(burnlevel / 2, BURN, "fire")
 
 /obj/vehicle/unmanned/fire_act()
 	take_damage(20, BURN, "fire")
 
-/obj/vehicle/unmanned/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(20 * S.strength)
-
 /obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		balloon_alert(user, "You're already busy!")
-		return FALSE
-	if(obj_integrity >= max_integrity)
-		balloon_alert(user, "This doesn't need repairing")
-		return TRUE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		balloon_alert_to_viewers("[user] tries to repair the [name]" , ignored_mobs = user)
-		balloon_alert(user, "You try to repair the [name]")
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
-			return FALSE
-	balloon_alert_to_viewers("[user] begins repairing the vehicle", ignored_mobs = user)
-	balloon_alert(user, "You begin repairing the [name]")
-	if(!do_after(user, 2 SECONDS, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
-		balloon_alert_to_viewers("[user] stops repairing the [name]")
-		return
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	repair_damage(35)
-	if(obj_integrity == max_integrity)
-		balloon_alert_to_viewers("Fully repaired!")
-	else
-		balloon_alert_to_viewers("[user] repairs the [name]", ignored_mobs = user)
-		balloon_alert(user, "You finish repairing the [name]")
-	return TRUE
+	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
 
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"
@@ -355,4 +319,3 @@
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/unmanned_vehicle_remote(src)
-

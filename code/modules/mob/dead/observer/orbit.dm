@@ -1,4 +1,5 @@
 /datum/orbit_menu
+	/// Determines whether the orbit UI displays the hud on observable click.
 	var/auto_observe = FALSE
 	var/mob/dead/observer/owner
 
@@ -33,7 +34,7 @@
 				owner.do_observe(poi)
 			. = TRUE
 		if("refresh")
-			update_static_data()
+			update_static_data(usr, ui)
 			. = TRUE
 		if("toggle_observe")
 			auto_observe = !auto_observe
@@ -41,8 +42,7 @@
 				owner.do_observe(owner.orbiting.parent)
 			else
 				owner.reset_perspective(null)
-
-
+			. = TRUE
 
 /datum/orbit_menu/ui_data(mob/user)
 	var/list/data = list()
@@ -66,54 +66,87 @@
 	var/list/pois = getpois(skip_mindless = !is_admin, specify_dead_role = FALSE)
 	for(var/name in pois)
 		var/list/serialized = list()
-		serialized["name"] = name
+		serialized["full_name"] = name
 
 		var/poi = pois[name]
 
 		serialized["ref"] = REF(poi)
 
-		var/mob/M = poi
-		if(!istype(M))
+		var/mob/mob_poi = poi
+
+		if(!istype(mob_poi))
 			misc += list(serialized)
 			continue
 
-		var/number_of_orbiters = length(M.get_all_orbiters())
+		if(isobserver(mob_poi))
+			ghosts += list(serialized)
+			continue
+
+		if(mob_poi.stat == DEAD)
+			dead += list(serialized)
+			continue
+
+		if(mob_poi.mind == null)
+			npcs += list(serialized)
+			continue
+
+		var/number_of_orbiters = length(mob_poi.get_all_orbiters())
 		if(number_of_orbiters)
 			serialized["orbiters"] = number_of_orbiters
 
-		if(isobserver(M))
-			ghosts += list(serialized)
-		else if(M.stat == DEAD)
-			dead += list(serialized)
-		else if(M.mind == null)
-			npcs += list(serialized)
-		else if(isxeno(M))
-			xenos += list(serialized)
-		else if(isAI(M))
-			humans += list(serialized)
-		else if(ishuman(M))
-			var/mob/living/carbon/human/H = poi
-			if(ismarinejob(H.job))
-				marines += list(serialized)
-			else if(issommarinejob(H.job))
-				som += list(serialized)
-			else if (issurvivorjob(H.job))
-				survivors += list(serialized)
-			else
-				humans += list(serialized)
+		var/mob/living/player = mob_poi
+		serialized["health"] = FLOOR((player.health / player.maxHealth * 100), 1)
 
+		if(isxeno(mob_poi))
+			var/mob/living/carbon/xenomorph/xeno = poi
+			if(xeno.xeno_caste)
+				var/datum/xeno_caste/caste = xeno.xeno_caste
+				serialized["caste"] = caste.display_name
+				serialized["icon"] = caste.minimap_icon
+			if(!isnum(xeno.nicknumber))
+				serialized["nickname"] = xeno.nicknumber
+			xenos += list(serialized)
+			continue
+
+		if(isAI(mob_poi))
+			serialized["job"] = "AI"
+			humans += list(serialized)
+			continue
+
+		if(ishuman(mob_poi))
+			var/mob/living/carbon/human/human = poi
+			var/datum/job/job = human.job
+			serialized["nickname"] = human.real_name
+
+			if(ismarinejob(human.job))
+				if(human.assigned_squad)
+					serialized["icon"] = lowertext(human.assigned_squad.name) + "_" + job.minimap_icon
+					serialized["job"] = human.assigned_squad.name + " " + job.title
+				marines += list(serialized)
+				continue
+
+			serialized["icon"] = job.minimap_icon
+			serialized["job"] = job.title
+
+			if(issommarinejob(human.job))
+				som += list(serialized)
+				continue
+
+			if(issurvivorjob(human.job))
+				survivors += list(serialized)
+				continue
+
+			humans += list(serialized)
+
+	data["dead"] = dead
+	data["ghosts"] = ghosts
 	data["humans"] = humans
+	data["icons"] = GLOB.minimap_icons
+	data["misc"] = misc
+	data["npcs"] = npcs
 	data["marines"] = marines
 	data["som"] = som
 	data["survivors"] = survivors
 	data["xenos"] = xenos
-	data["dead"] = dead
-	data["ghosts"] = ghosts
-	data["misc"] = misc
-	data["npcs"] = npcs
 
 	return data
-
-/datum/orbit_menu/ui_assets(mob/user)
-	. = ..() || list()
-	. += get_asset_datum(/datum/asset/simple/orbit)

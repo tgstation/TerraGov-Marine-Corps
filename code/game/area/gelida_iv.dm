@@ -27,17 +27,20 @@
 	name = "Landing Zone One"
 	icon_state = "explored"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/drop1/gelida
 	name = "Gelida IV - Dropship Alamo Landing Zone"
 	icon_state = "away1"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/gelida/landing_zone_1/lz1_console
 	name = "Gelida IV - Dropship Alamo Console"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 //Landing Zone 2
 
@@ -45,15 +48,18 @@
 	name = "Gelida IV - Landing Zone Two"
 	icon_state = "explored"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/drop2/gelida
 	name = "Gelida IV - Dropship Normandy Landing Zone"
 	icon_state = "away2"
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/gelida/landing_zone_2/lz2_console
 	name = "Gelida IV - Dropship Normandy Console"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 //Landing Zone 3 & 4
 
@@ -142,6 +148,7 @@
 /area/gelida/indoors/lone_buildings/engineering
 	name = "Emergency Engineering"
 	icon_state = "engine_smes"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/gelida/indoors/lone_buildings/spaceport
 	name = "North LZ1 - Spaceport"
@@ -170,6 +177,7 @@
 	name = "A-Block - Colony Operations Centre"
 	icon_state = "mechbay"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/gelida/indoors/a_block/dorms
 	name = "A-Block - Western Dorms And Offices"
@@ -192,10 +200,12 @@
 	name = "A-Block - Medical"
 	icon_state = "medbay"
 	ceiling =  CEILING_GLASS
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/gelida/indoors/a_block/security
 	name = "A-Block - Security"
 	icon_state = "head_quarters"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/gelida/indoors/a_block/kitchen
 	name = "A-Block - Kitchen And Dining"
@@ -276,6 +286,7 @@
 /area/gelida/indoors/c_block/cargo
 	name = "C-Block - Cargo"
 	icon_state = "primarystorage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/gelida/indoors/c_block/mining
 	name = "C-Block - Mining"
@@ -329,6 +340,7 @@
 	icon_state = "transparent"
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 //ATMOS
 /area/gelida/atmos
@@ -367,6 +379,7 @@
 /area/gelida/atmos/cargo_intake
 	name = "Atmospheric Processor - Cargo Intake"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/gelida/atmos/command_centre
 	name = "Atmospheric Processor - Central Command"
@@ -383,6 +396,8 @@
 /area/gelida/caves
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
+
 /area/gelida/caves/west_caves
 	name = "Western Caves"
 	icon_state = "yellow"

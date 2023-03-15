@@ -1,4 +1,3 @@
-#define MAX_LOADABLE_REAGENT_AMOUNT 30
 #define NO_REAGENT_COLOR "#FFFFFF"
 
 /datum/component/harvester
@@ -16,12 +15,17 @@
 	var/list/loaded_reagents = list()
 	///Selects the active reagent
 	var/datum/action/harvester/reagent_select/reagent_select_action
+	///The maximum amount that one chemical can be loaded
+	var/max_loadable_reagent_amount = 30
 
-/datum/component/harvester/Initialize(chem_component)
+/datum/component/harvester/Initialize(max_reagent_amount)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	var/obj/item/item_parent = parent
+
+	if(max_reagent_amount)
+		max_loadable_reagent_amount = max_reagent_amount
 
 	reagent_select_action = new
 	LAZYADD(item_parent.actions, reagent_select_action)
@@ -88,7 +92,7 @@
 		user.balloon_alert(user, "incompatible reagent, check description")
 		return
 
-	if(loaded_reagents[reagent_to_load] > MAX_LOADABLE_REAGENT_AMOUNT)
+	if(loaded_reagents[reagent_to_load] > max_loadable_reagent_amount)
 		user.balloon_alert(user, "full")
 		return
 
@@ -99,7 +103,7 @@
 	if(!loaded_reagents[reagent_to_load])
 		loaded_reagents[reagent_to_load] = 0
 
-	var/added_amount = min(container.reagents.total_volume, MAX_LOADABLE_REAGENT_AMOUNT - loaded_reagents[reagent_to_load])
+	var/added_amount = min(container.reagents.total_volume, max_loadable_reagent_amount - loaded_reagents[reagent_to_load])
 	container.reagents.remove_reagent(reagent_to_load, added_amount)
 	loaded_reagents[reagent_to_load] += added_amount
 	user.balloon_alert(user, "[loaded_reagents[reagent_to_load]]u")
@@ -175,12 +179,12 @@
 
 		if(/datum/reagent/medicine/kelotane)
 			target.flamer_fire_act(10)
-			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
+			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
 			for(var/turf/checked_turf AS in cone_turfs)
 				for(var/mob/living/victim in checked_turf)
 					victim.flamer_fire_act(10)
-					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(target))
@@ -192,8 +196,6 @@
 		update_selected_reagent(null)
 		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
 	loaded_reagent = null
-
-#undef MAX_LOADABLE_REAGENT_AMOUNT
 
 /datum/component/harvester/proc/select_reagent(datum/source)
 	var/list/options = list()

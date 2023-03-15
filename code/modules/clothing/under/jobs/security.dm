@@ -13,7 +13,6 @@
 	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
 	icon_state = "wardenred"
 	item_state = "r_suit"
-	soft_armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/warden/white
@@ -27,7 +26,6 @@
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "securityred"
 	item_state = "r_suit"
-	soft_armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/security/white
@@ -40,7 +38,6 @@
 	name = "dispatcher's uniform"
 	desc = "A dress shirt and khakis with a security patch sewn on."
 	icon_state = "dispatch"
-	soft_armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	flags_armor_protection = CHEST|GROIN|LEGS
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
@@ -50,7 +47,6 @@
 	desc = "It's made of a slightly sturdier material, to allow for robust protection."
 	icon_state = "redshirt2"
 	item_state = "r_suit"
-	soft_armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
 
@@ -66,7 +62,6 @@
 	name = "tactical jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "swatunder"
-	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.9
 
 /*
@@ -77,7 +72,6 @@
 	desc = "Someone who wears this means business."
 	icon_state = "detective"
 	item_state = "det"
-	soft_armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
 
@@ -106,7 +100,6 @@
 	name = "head of security's jumpsuit"
 	icon_state = "hosred"
 	item_state = "r_suit"
-	soft_armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/head_of_security/white

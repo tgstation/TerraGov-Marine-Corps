@@ -10,23 +10,11 @@
 		return M.eye_blind
 	return FALSE
 
-/proc/hasorgans(A)
-	return ishuman(A)
-
-/proc/hsl2rgb(h, s, l)
-	return //TODO: Implement
-
-
-
 /mob/proc/can_use_hands()
 	return
 
-
 /mob/proc/get_gender()
 	return gender
-
-
-
 
 /*
 	Miss Chance
@@ -150,6 +138,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 /**
  * Makes you speak like you're drunk
+ * todo remove, deprecated
  */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
@@ -181,51 +170,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		. += "[newletter]"
 	return sanitize(.)
 
-/// Makes you talk like you got cult stunned, which is slurring but with some dark messages
-/proc/cultslur(phrase) // Inflicted on victims of a stun talisman
-	phrase = html_decode(phrase)
-	var/leng = length(phrase)
-	. = ""
-	var/newletter = ""
-	var/rawchar = ""
-	for(var/i = 1, i <= leng, i += length(rawchar))
-		rawchar = newletter = phrase[i]
-		if(rand(1, 2) == 2)
-			var/lowerletter = lowertext(newletter)
-			if(lowerletter == "o")
-				newletter = "u"
-			else if(lowerletter == "t")
-				newletter = "ch"
-			else if(lowerletter == "a")
-				newletter = "ah"
-			else if(lowerletter == "u")
-				newletter = "oo"
-			else if(lowerletter == "c")
-				newletter = " NAR "
-			else if(lowerletter == "s")
-				newletter = " SIE "
-		if(rand(1, 4) == 4)
-			if(newletter == " ")
-				newletter = " no hope... "
-			else if(newletter == "H")
-				newletter = " IT COMES... "
-
-		if(prob(33))
-			switch(rand(1, 5))
-				if(1)
-					newletter = "'"
-				if(2)
-					newletter += "agn"
-				if(3)
-					newletter = "fth"
-				if(4)
-					newletter = "nglu"
-				if(5)
-					newletter = "glor"
-		. += newletter
-	return sanitize(.)
-
-///Adds stuttering to the message passed in
+///Adds stuttering to the message passed in, todo remove, deprecated
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
 	var/leng = length(phrase)
@@ -239,8 +184,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
 			else if(prob(20))
 				newletter = "[newletter]-[newletter]-[newletter]"
-			else if (prob(5))
-				newletter = ""
 			else
 				newletter = "[newletter]-[newletter]"
 		. += newletter
@@ -398,7 +341,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/get_eye_protection()
 	return 0
 
-mob/proc/get_standard_bodytemperature()
+/mob/proc/get_standard_bodytemperature()
 	return BODYTEMP_NORMAL
 
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)
@@ -456,7 +399,7 @@ mob/proc/get_standard_bodytemperature()
 	if(!source)
 		return
 
-	var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+	var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 	if(!A)
 		return
 	if (header)
@@ -516,3 +459,8 @@ mob/proc/get_standard_bodytemperature()
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
 		inactive_item.do_unique_action(src)
+
+///Handles setting or changing a mob's skills
+/mob/proc/set_skills(datum/skills/new_skillset)
+	skills = new_skillset
+	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)

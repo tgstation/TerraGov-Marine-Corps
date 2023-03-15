@@ -92,6 +92,20 @@
 	description = ""
 	keybind_signal = COMSIG_KB_SUITANALYZER
 
+/datum/keybinding/human/toggle_helmet_module
+	hotkey_keys = list("h")
+	name = "toggle_helmet_module"
+	full_name = "Toggle helmet module"
+	description = "Toggles your helmet module on or off"
+	keybind_signal = COMSIG_KB_HELMETMODULE
+
+/datum/keybinding/human/toggle_suit_light
+	hotkey_keys = list("l")
+	name = "toggle_suit_light"
+	full_name = "Toggle suit light"
+	description = "Toggles your suit light on or off"
+	keybind_signal = COMSIG_KB_SUITLIGHT
+
 /datum/keybinding/human/move_order
 	name = "move_order"
 	full_name = "Issue Move Order"

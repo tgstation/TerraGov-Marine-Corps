@@ -13,6 +13,9 @@
 	if(!pockets || pockets.handle_attack_hand(user))
 		return ..()
 
+/obj/item/clothing/suit/storage/AltRightClick(mob/user)
+	if(pockets && Adjacent(user))
+		pockets.handle_attack_hand(user)
 
 /obj/item/clothing/suit/storage/MouseDrop(obj/over_object)
 	if(!pockets && (over_object.name == "r_hand" || over_object.name == "l_hand"))

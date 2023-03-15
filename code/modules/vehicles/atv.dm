@@ -25,15 +25,7 @@
 	return ..()
 
 /obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/I)
-	if(obj_integrity >= max_integrity)
-		return TRUE
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to \the [src]."))
-	obj_integrity += min(10, max_integrity-obj_integrity)
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_notice("It looks to be fully repaired now."))
-	return TRUE
+	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/atv/obj_break()
 	START_PROCESSING(SSobj, src)

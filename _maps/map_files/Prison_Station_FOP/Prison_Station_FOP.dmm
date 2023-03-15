@@ -327,7 +327,7 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "acV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/item/shard,
@@ -342,7 +342,7 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "acW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -362,7 +362,7 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "acY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -375,7 +375,7 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "acZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -432,8 +432,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "adg" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -442,22 +442,22 @@
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adh" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adi" = (
 /obj/machinery/disposal,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/up{
 	dir = 1
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adj" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/item/shard,
 /obj/item/circuitboard/airlock,
 /obj/item/stack/cable_coil,
@@ -469,23 +469,23 @@
 /obj/machinery/door/window/right{
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
 /area/prison/research/secret/biolab)
 "adl" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adm" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adn" = (
@@ -496,14 +496,14 @@
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "ado" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adp" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/window{
 	dir = 2
 	},
@@ -513,15 +513,15 @@
 /area/prison/research/secret/biolab)
 "adq" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adr" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -650,13 +650,9 @@
 	},
 /area/prison/research/secret/biolab)
 "adM" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
-/turf/open/floor/prison/whitepurple{
-	dir = 4
-	},
-/area/prison/research/secret/biolab)
+/obj/structure/window/framed/mainship/escapeshuttle/prison,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "adN" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/structure/disposalpipe/segment{
@@ -1076,11 +1072,6 @@
 "aeZ" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/research/secret/bioengineering)
-"afa" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/prison/research/secret/bioengineering)
 "afb" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
@@ -1202,7 +1193,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1369,7 +1360,7 @@
 	},
 /area/prison/research/secret/bioengineering)
 "afR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -1480,7 +1471,7 @@
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
 "agi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/disposal,
@@ -1593,7 +1584,7 @@
 	},
 /area/prison/cellblock/highsec/north/south)
 "agA" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1624,14 +1615,14 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
 "agG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /turf/open/floor/plating,
 /area/prison/research/secret/containment)
 "agH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -1665,7 +1656,7 @@
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
 "agN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/shower{
@@ -1684,7 +1675,7 @@
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/biolab)
 "agP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/shower{
@@ -1731,7 +1722,7 @@
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/containment)
 "agZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/shower{
@@ -1792,7 +1783,7 @@
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
 "ahi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/maint/free_access{
@@ -1981,7 +1972,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/prison/whitepurple{
@@ -2014,7 +2005,7 @@
 /area/prison/research/secret/bioengineering)
 "ahL" = (
 /obj/item/shard,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/item/stack/rods,
@@ -2125,7 +2116,7 @@
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/containment)
 "aib" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -2183,7 +2174,7 @@
 	},
 /area/prison/research/secret/bioengineering)
 "aih" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -2225,7 +2216,7 @@
 	},
 /area/prison/research/secret/containment)
 "ain" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/prison/whitepurple{
@@ -2263,17 +2254,17 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/prison/whitepurple/corner,
 /area/prison/research/secret/bioengineering)
 "aiu" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/whitepurple,
 /area/prison/research/secret/bioengineering)
 "aiv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/light,
@@ -2311,7 +2302,7 @@
 	},
 /area/prison/research/secret/bioengineering)
 "aiF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/whitepurple{
@@ -2627,7 +2618,7 @@
 	},
 /area/prison/research/secret/containment)
 "ajz" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/shower{
 	pixel_y = 15
 	},
@@ -2640,21 +2631,21 @@
 /obj/machinery/shower{
 	pixel_y = 15
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
 /turf/open/floor/plating,
 /area/prison/research/secret)
 "ajB" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/shower{
 	pixel_y = 15
 	},
 /turf/open/floor/plating,
 /area/prison/research/secret)
 "ajC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -2969,7 +2960,7 @@
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret)
 "akB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -3059,13 +3050,13 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/research/secret)
 "akP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/darkpurple{
@@ -3378,7 +3369,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -4236,9 +4227,9 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/prison/research/secret/chemistry)
 "aoj" = (
-/obj/docking_port/stationary/marine_dropship/lz2/prison,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/space/sea,
+/area/space)
 "aok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4427,7 +4418,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -4671,7 +4662,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -4783,7 +4774,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay/surgery)
 "apS" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -4831,24 +4822,24 @@
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
 "apZ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/darkpurple{
 	dir = 10
 	},
 /area/prison/research/secret)
 "aqa" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret)
 "aqb" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret)
 "aqc" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/darkpurple{
 	dir = 6
 	},
@@ -4862,7 +4853,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqf" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "aqg" = (
@@ -5177,7 +5168,7 @@
 	},
 /area/prison/research)
 "arh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/prison/whitepurple{
@@ -5185,7 +5176,7 @@
 	},
 /area/prison/research)
 "ari" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/whitepurple{
@@ -5193,7 +5184,7 @@
 	},
 /area/prison/research)
 "arj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -5204,7 +5195,7 @@
 	},
 /area/prison/research)
 "arl" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/whitepurple{
@@ -5432,16 +5423,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
-"arS" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "arT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -5498,7 +5479,7 @@
 	},
 /area/prison/cellblock/highsec/north/north)
 "asd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
@@ -5712,16 +5693,16 @@
 /area/prison/research/RD)
 "asG" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/research/RD)
 "asH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -5988,7 +5969,7 @@
 	},
 /area/prison/medbay)
 "atl" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -6006,7 +5987,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "atn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
@@ -6226,10 +6207,10 @@
 /area/prison/research/RD)
 "atR" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/prison/research/RD)
 "atS" = (
@@ -8246,7 +8227,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "azY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -8256,7 +8237,7 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/maxsec)
 "aAa" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -8397,17 +8378,8 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hangar/civilian)
-"aAD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "aAE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -8463,7 +8435,7 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating,
@@ -8514,7 +8486,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aAV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8537,7 +8509,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aAX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9583,7 +9555,7 @@
 /turf/open/floor/plating,
 /area/prison/engineering)
 "aDN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -10697,16 +10669,6 @@
 	dir = 1
 	},
 /area/prison/hangar_storage/main)
-"aHl" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "aHm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -10725,7 +10687,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
 "aHp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2{
@@ -14166,9 +14128,8 @@
 /turf/open/floor/wood,
 /area/prison/hallway/staff)
 "aRz" = (
-/obj/structure/showcase{
-	desc = "A stand with a plastic display of some kind of weird machine.";
-	icon_state = "coinpress0"
+/obj/structure/showcase/coinpress{
+	desc = "A stand with a plastic display of some kind of weird machine."
 	},
 /turf/open/floor/wood,
 /area/prison/hallway/staff)
@@ -14776,15 +14737,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/lowsec/ne)
-"aTC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "aTD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15599,19 +15551,19 @@
 /turf/open/floor/prison/green/corner,
 /area/prison/cellblock/lowsec/ne)
 "aVO" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "aVP" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "aVQ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -16036,7 +15988,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
@@ -16074,7 +16026,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/prison/kitchen,
@@ -16575,10 +16527,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -16968,14 +16920,14 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
 "aZV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
 "aZW" = (
 /obj/machinery/vending/cola,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -17134,18 +17086,18 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "baE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baF" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -17159,22 +17111,22 @@
 	},
 /area/prison/cellblock/mediumsec/north)
 "baH" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baI" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -17240,7 +17192,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17253,7 +17205,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -17269,7 +17221,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "baV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delayone{
@@ -17470,10 +17422,10 @@
 /turf/open/floor/plating,
 /area/prison/hallway/entrance)
 "bbD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -17482,10 +17434,10 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bbE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -17520,15 +17472,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/prison/residential/central)
-"bbL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "bbN" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison/blue{
@@ -17552,7 +17495,7 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -17606,7 +17549,7 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/n)
 "bcd" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2{
@@ -17735,7 +17678,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcE" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -17748,7 +17691,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcG" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -17771,13 +17714,9 @@
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "bcJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "bcK" = (
 /obj/machinery/computer/secure_data,
@@ -17798,7 +17737,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "bcM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
@@ -17996,7 +17935,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
 "bdq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delayone{
@@ -18005,7 +17944,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bdr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delayone{
@@ -18418,7 +18357,7 @@
 	},
 /area/prison/residential/central)
 "bew" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -18427,7 +18366,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bex" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
@@ -18497,7 +18436,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
@@ -18544,7 +18483,7 @@
 	pixel_x = 9;
 	pixel_y = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/prison/blue/full,
@@ -18553,7 +18492,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -18571,7 +18510,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -18579,7 +18518,7 @@
 "beR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "beS" = (
@@ -18906,7 +18845,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -18933,7 +18872,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bfR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/prison/plate,
@@ -18943,7 +18882,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/prison/hangar/main)
 "bfT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -18952,7 +18891,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bfV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -19007,13 +18946,13 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "bge" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "bgf" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 1
 	},
 /turf/open/floor/asteroid,
@@ -19087,7 +19026,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -19430,7 +19369,7 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/kitchen)
 "bhq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/kitchen,
@@ -19445,7 +19384,7 @@
 	},
 /area/prison/cellblock/highsec/north/north)
 "bhs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -19478,7 +19417,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bhz" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /turf/open/ground/grass,
@@ -19505,7 +19444,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "bhD" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /turf/open/ground/grass,
@@ -19534,14 +19473,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/prison,
 /area/prison/residential/central)
 "bhH" = (
 /obj/structure/table/reinforced,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -19667,7 +19606,7 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/vip)
 "bhY" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /turf/open/ground/grass,
@@ -19973,7 +19912,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
@@ -20538,7 +20477,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 4
 	},
 /turf/open/floor/asteroid,
@@ -20557,7 +20496,7 @@
 /area/prison/cellblock/lowsec/nw)
 "bkq" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/space/sea,
 /area/space)
 "bkr" = (
@@ -20670,7 +20609,7 @@
 	},
 /area/prison/hangar/main)
 "bkK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -20721,7 +20660,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/residential/central)
 "bkS" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/prison/darkred{
@@ -20950,7 +20889,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/prison/hangar/main)
 "blH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
@@ -21039,7 +20978,7 @@
 	},
 /area/prison/residential/central)
 "blT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -21050,7 +20989,7 @@
 	},
 /area/prison/residential/central)
 "blV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/darkred{
@@ -21312,7 +21251,7 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "bmP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -21347,7 +21286,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "bmV" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -21371,7 +21310,7 @@
 /turf/open/floor/asteroid,
 /area/prison/residential/central)
 "bmY" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 4
 	},
 /turf/open/floor/asteroid,
@@ -21397,7 +21336,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "bne" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -21680,7 +21619,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "bod" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -22151,7 +22090,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/prison/residential/central)
 "bpi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen{
@@ -22393,7 +22332,7 @@
 /turf/open/floor/prison/green/full,
 /area/prison/monorail/west)
 "bqe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/prison/darkred{
@@ -22823,7 +22762,7 @@
 	},
 /area/prison/cellblock/highsec/north/south)
 "brx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/prison/kitchen,
@@ -23046,7 +22985,7 @@
 "bsn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /turf/open/ground/grass,
@@ -23224,7 +23163,7 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "bsX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/bed/chair/comfy{
@@ -23943,15 +23882,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/visitation)
-"bvp" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "bvq" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/prison/sterilewhite,
@@ -24241,17 +24171,17 @@
 /turf/open/floor/prison/red,
 /area/prison/hallway/entrance)
 "bwo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwp" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1{
@@ -24260,7 +24190,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delayone{
@@ -24269,7 +24199,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -24278,7 +24208,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bws" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -24287,12 +24217,12 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -25181,7 +25111,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bzC" = (
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
 /obj/machinery/power/geothermal{
 	desc = "A thermoelectric generator fueled by searing hot uranium!";
@@ -25540,7 +25470,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bAP" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -25664,7 +25594,7 @@
 /turf/closed/wall/prison,
 /area/prison/security/monitoring/lowsec/sw)
 "bBi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/prison/green{
@@ -25858,19 +25788,8 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
-"bBR" = (
-/turf/closed/shuttle/diagonal/sea{
-	dir = 8
-	},
-/area/prison/hangar/main)
-"bBS" = (
-/obj/structure/shuttle/window,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
 "bBT" = (
-/turf/closed/shuttle/diagonal/sea{
-	dir = 1
-	},
+/turf/open/space/sea,
 /area/prison/hangar/main)
 "bBV" = (
 /turf/open/floor/prison/cellstripe{
@@ -26226,9 +26145,6 @@
 /area/prison/hangar/main)
 "bDf" = (
 /turf/open/floor/prison/darkred,
-/area/prison/hangar/main)
-"bDi" = (
-/turf/closed/shuttle/swall3,
 /area/prison/hangar/main)
 "bDj" = (
 /obj/structure/bed/chair/comfy{
@@ -27113,7 +27029,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
 "bFN" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bFO" = (
@@ -27278,8 +27194,11 @@
 /turf/open/shuttle/dropship/floor,
 /area/prison/hangar/main)
 "bGi" = (
-/obj/machinery/door/airlock/unpowered/shuttle,
 /obj/machinery/door/poddoor/shutters/transit/open,
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 8;
+	name = "\improper Monorail Airlock"
+	},
 /turf/open/shuttle/dropship/three,
 /area/prison/hangar/main)
 "bGj" = (
@@ -28075,8 +27994,8 @@
 /area/prison/security/checkpoint/medsec)
 "bIQ" = (
 /obj/item/stack/rods,
-/obj/structure/window_frame/colony/reinforced,
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/structure/window_frame/prison,
 /turf/open/floor/plating,
 /area/prison/security/monitoring/lowsec/sw)
 "bIR" = (
@@ -28254,7 +28173,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJz" = (
-/turf/closed/shuttle,
+/turf/closed/shuttle/escapeshuttle/prison,
 /area/prison/hangar/main)
 "bJA" = (
 /obj/structure/bookcase,
@@ -28451,7 +28370,9 @@
 	},
 /area/prison/security/checkpoint/highsec/s)
 "bKj" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass{
+	dir = 1
+	},
 /turf/open/floor/marking/delivery,
 /area/prison/hangar/main)
 "bKk" = (
@@ -29250,7 +29171,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bMQ" = (
-/turf/closed/shuttle/diagonal/sea,
+/obj/structure/window/framed/mainship/escapeshuttle,
+/turf/open/floor/plating,
 /area/prison/hangar/main)
 "bMR" = (
 /obj/structure/cable,
@@ -29283,11 +29205,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/residential/south)
-"bMU" = (
-/turf/closed/shuttle/diagonal/sea{
-	dir = 4
-	},
-/area/prison/hangar/main)
 "bMV" = (
 /obj/structure/lattice,
 /obj/structure/monorail,
@@ -29902,7 +29819,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "bOQ" = (
@@ -30671,7 +30588,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "bRC" = (
@@ -30681,7 +30598,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -30727,7 +30644,7 @@
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
 "bRP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -31470,7 +31387,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "bUj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31637,13 +31554,13 @@
 /turf/open/floor/prison,
 /area/prison/engineering)
 "bUK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
 "bUT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/light{
@@ -31740,7 +31657,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/prison/cellstripe{
 	dir = 8
 	},
@@ -31822,7 +31739,7 @@
 /obj/machinery/door/poddoor/two_tile_hor/secure{
 	name = "Monorail Passage Door"
 	},
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/access/south)
 "bVz" = (
 /obj/structure/monorail,
@@ -31830,7 +31747,7 @@
 	dir = 2;
 	name = "Monorail Passage Door"
 	},
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/access/south)
 "bVA" = (
 /obj/structure/cable,
@@ -31889,7 +31806,7 @@
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
 "bVL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -31898,7 +31815,7 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/medsec)
 "bVM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -31966,20 +31883,20 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "bVV" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bVW" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bVX" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -31988,7 +31905,7 @@
 "bVY" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -32137,44 +32054,44 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bWJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bWK" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bWL" = (
 /obj/structure/monorail,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bWM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bWN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -32344,7 +32261,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/prison/hallway/east)
@@ -32584,7 +32501,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bYl" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/prison/hallway/east)
 "bYm" = (
@@ -32640,7 +32557,7 @@
 	},
 /area/prison/cellblock/highsec/south/south)
 "bYt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -32965,40 +32882,40 @@
 /turf/open/floor/plating,
 /area/prison/security/head)
 "bZB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bZC" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bZD" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bZE" = (
 /obj/structure/monorail,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/prison/maintenance/residential/access/south)
 "bZF" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/prison/bright_clean,
@@ -33378,7 +33295,7 @@
 	dir = 2;
 	name = "Monorail Passage Door"
 	},
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/access/south)
 "caV" = (
 /obj/structure/table/reinforced,
@@ -35164,7 +35081,7 @@
 	},
 /area/prison/hallway/engineering)
 "cfZ" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cga" = (
@@ -35349,7 +35266,7 @@
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cgL" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -35362,7 +35279,7 @@
 /turf/open/floor/prison,
 /area/prison/execution)
 "cgM" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -35498,28 +35415,28 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chj" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chk" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chl" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chm" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chn" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/rifle/m16,
@@ -36151,7 +36068,7 @@
 /turf/open/floor/wood,
 /area/prison/security/head)
 "cjt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/light/small{
@@ -36160,13 +36077,13 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cju" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cjv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
@@ -36175,14 +36092,14 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cjx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cjy" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/largecrate/random,
@@ -36729,7 +36646,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "clh" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec_medsec)
 "cli" = (
@@ -37779,15 +37696,15 @@
 /area/prison/security/armory/lethal)
 "coq" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /obj/item/weapon/gun/rifle/mpi_km,
 /obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cor" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cos" = (
@@ -38007,7 +37924,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpc" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cpd" = (
@@ -38165,7 +38082,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
@@ -38174,7 +38091,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
@@ -38331,16 +38248,16 @@
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cqj" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/disposal)
 "cqk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -38408,11 +38325,11 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced,
+/obj/structure/grille/smoothing,
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
-/obj/structure/grille,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cqB" = (
@@ -38420,7 +38337,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cqC" = (
@@ -38431,7 +38348,10 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cqD" = (
@@ -38506,7 +38426,7 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "cqU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -39015,11 +38935,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/east)
-"csO" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/prison/disposal)
 "csP" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
@@ -39214,19 +39129,19 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/mediumsec/south)
 "ctn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/ds2/delayone{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "cto" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -39240,16 +39155,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "ctq" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
-"ctr" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delaythree{
@@ -39257,11 +39163,20 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"ctr" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "cts" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -39314,7 +39229,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctE" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctF" = (
@@ -39765,7 +39680,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cvp" = (
@@ -39816,7 +39731,7 @@
 	},
 /area/prison/cellblock/mediumsec/west)
 "cvz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -40245,7 +40160,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
@@ -40275,7 +40190,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -40307,7 +40222,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
@@ -40322,7 +40237,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -40487,7 +40402,7 @@
 /area/prison/cellblock/highsec/north/south)
 "cyB" = (
 /obj/structure/shuttle/engine/heater,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
@@ -40495,7 +40410,7 @@
 /area/prison/pirate)
 "cyD" = (
 /obj/structure/shuttle/engine/heater,
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /obj/machinery/atmospherics/pipe/simple/violet,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -40516,7 +40431,7 @@
 /obj/structure/shuttle/engine/router{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes,
+/obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cyL" = (
@@ -40972,16 +40887,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
-"cEC" = (
-/turf/open/floor{
-	icon_state = "asteroid"
-	},
-/area/prison/residential/central)
 "cFh" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 10
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
 	},
-/area/prison/hangar/civilian)
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/space)
 "cFk" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken,
@@ -41026,7 +40937,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/north/south)
 "cMn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -41093,10 +41004,10 @@
 	},
 /area/prison/intake)
 "cRI" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -41115,10 +41026,10 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/medsec/south)
 "cSJ" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -41159,10 +41070,10 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "dkA" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /turf/open/ground/grass,
@@ -41234,6 +41145,10 @@
 "dtT" = (
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
+"duc" = (
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "duu" = (
 /obj/machinery/light{
 	dir = 4
@@ -41311,9 +41226,18 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "dLE" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 5
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
 	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "dMY" = (
 /obj/effect/landmark/weed_node,
@@ -41405,8 +41329,8 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
 "eaN" = (
-/obj/effect/decal/woodsiding,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding,
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -41569,10 +41493,10 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "esR" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/effect/landmark/excavation_site_spawner,
@@ -41607,10 +41531,19 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "evv" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating/icefloor/warnplate{
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/door/open_only/landing_zone/lz2,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "evK" = (
 /obj/effect/landmark/weed_node,
@@ -41705,6 +41638,15 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
+"eNp" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "eOr" = (
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
@@ -41841,7 +41783,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -41905,7 +41847,13 @@
 /turf/open/space/sea,
 /area/space)
 "fwE" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "fwZ" = (
@@ -42004,7 +41952,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
 "fLx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -42019,9 +41967,8 @@
 /turf/open/floor/prison,
 /area/prison/execution)
 "fRl" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "fRP" = (
 /obj/structure/cable,
@@ -42042,10 +41989,10 @@
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "fWv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -42091,7 +42038,7 @@
 /turf/open/ground/river,
 /area/prison/hallway/entrance)
 "gdP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -42113,8 +42060,8 @@
 /area/prison/hangar/civilian)
 "ggX" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -42157,17 +42104,12 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
-"gne" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "gnD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "gnJ" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "gok" = (
@@ -42200,6 +42142,10 @@
 /obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/prison/darkred/full,
 /area/prison/hangar/main)
+"gtU" = (
+/obj/docking_port/stationary/marine_dropship/lz2/prison,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "gux" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4;
@@ -42208,7 +42154,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "gvs" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
@@ -42247,7 +42193,7 @@
 /turf/open/floor/prison/green/full,
 /area/prison/quarters/staff)
 "gBP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
@@ -42258,8 +42204,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "gCN" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "gCS" = (
@@ -42374,7 +42320,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "gNc" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -42402,6 +42348,11 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison,
 /area/prison/execution)
+"gQK" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/prison/hangar/civilian)
 "gSj" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison,
@@ -42421,6 +42372,14 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hangar/main)
+"gSs" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/civilian)
 "gTf" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -42444,10 +42403,10 @@
 /turf/closed/wall/prison,
 /area/prison/cellblock/lowsec/ne)
 "gZL" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 6
 	},
 /turf/open/ground/grass,
@@ -42617,10 +42576,10 @@
 	},
 /area/prison/cellblock/highsec/north/south)
 "hFq" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -42684,6 +42643,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
+"hPH" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/medbay)
 "hQE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -42737,7 +42700,7 @@
 /turf/open/floor/wood/broken,
 /area/prison/library)
 "hYi" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/prison/bright_clean,
@@ -42758,8 +42721,8 @@
 /turf/open/floor/prison,
 /area/prison/hallway/east)
 "hZS" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "hZU" = (
@@ -42771,13 +42734,11 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/visitation)
 "iaK" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "ibS" = (
 /turf/open/floor/prison/red{
@@ -42792,7 +42753,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -42818,10 +42779,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/staff)
 "iii" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "ijh" = (
@@ -42840,10 +42801,8 @@
 	},
 /area/prison/security/checkpoint/vip)
 "ikz" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 9
-	},
-/area/prison/hangar/civilian)
+/turf/open/floor/plating,
+/area/space)
 "ikQ" = (
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -42955,7 +42914,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/maxsec)
 "iBH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -42992,7 +42951,7 @@
 	},
 /area/prison/cellblock/lowsec/sw)
 "iHR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/prison/bright_clean,
@@ -43065,7 +43024,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "iTH" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 9
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -43123,10 +43082,10 @@
 /turf/open/space/sea,
 /area/space)
 "iXP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -43316,7 +43275,7 @@
 	},
 /area/prison/quarters/research)
 "jtL" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/ground/grass,
@@ -43571,16 +43530,9 @@
 /turf/open/floor/wood/broken,
 /area/prison/residential/central)
 "jZZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
 	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "kaR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -43593,7 +43545,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "kaY" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
@@ -43707,13 +43659,7 @@
 	},
 /area/prison/research/secret/biolab)
 "ksV" = (
-/obj/machinery/vending/cigarette/colony,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
+/obj/machinery/vending/coffee,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "ktw" = (
@@ -43791,13 +43737,13 @@
 /turf/open/floor/prison,
 /area/prison/recreation/highsec/n)
 "kHP" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -43813,14 +43759,14 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/research)
 "kIO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/execution)
 "kIR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -43907,7 +43853,7 @@
 /turf/open/floor/prison,
 /area/prison/security/armory/riot)
 "laI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -43937,7 +43883,7 @@
 	},
 /area/prison/recreation/highsec/s)
 "lhZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -43991,7 +43937,7 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "lvX" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -44145,8 +44091,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
+"lUM" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/prison/hangar/civilian)
 "lXn" = (
-/obj/effect/attach_point/electronics/dropship1,
+/obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "lXO" = (
@@ -44180,18 +44132,32 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
+"mex" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "mfh" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
+"mhm" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "mhw" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "mlR" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 6
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
 	},
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "mmI" = (
 /obj/effect/landmark/weed_node,
@@ -44254,7 +44220,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "mrt" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -44292,17 +44258,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/south/south)
-"mwh" = (
-/obj/structure/table/reinforced,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/landmark/dropship_console_spawn_lz2,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "myy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -44510,7 +44465,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "mTC" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
 "mUo" = (
@@ -44524,7 +44479,11 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "mXp" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "mXz" = (
@@ -44647,9 +44606,13 @@
 /turf/open/floor/plating,
 /area/prison/residential/central)
 "niO" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
 	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "niT" = (
@@ -44662,14 +44625,14 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "njm" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
@@ -44969,7 +44932,7 @@
 /turf/open/floor/wood/broken,
 /area/prison/residential/north)
 "oaR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/sensor_tower,
@@ -45032,11 +44995,10 @@
 /turf/open/floor/carpet,
 /area/prison/command/secretary_office)
 "ogg" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/space/sea,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/space)
 "ogM" = (
-/obj/effect/attach_point/weapon/dropship1,
+/obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "ohC" = (
@@ -45125,10 +45087,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/prison/canteen)
 "otx" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -45157,7 +45116,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
 "ovT" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -45181,8 +45140,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "oxD" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delayone,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "oyy" = (
@@ -45251,7 +45210,7 @@
 /turf/open/floor/prison,
 /area/prison/security)
 "oRz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -45311,8 +45270,8 @@
 /area/prison/residential/central)
 "pep" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -45372,7 +45331,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "pkD" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "pla" = (
@@ -45460,7 +45419,7 @@
 /turf/open/floor/prison,
 /area/prison/cellblock/highsec/north/south)
 "pBH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -45575,25 +45534,25 @@
 /turf/open/floor/prison/yellow/corner,
 /area/prison/cellblock/mediumsec/south)
 "pNt" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
 	},
 /obj/structure/prop/mainship/hangar_stencil/two,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "pOu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "pPu" = (
-/obj/effect/decal/woodsiding,
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding,
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /turf/open/ground/grass,
@@ -45775,10 +45734,10 @@
 /turf/open/floor/wood/broken,
 /area/prison/library)
 "qio" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
@@ -45898,11 +45857,13 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "qBi" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 1
+/obj/structure/bed/chair/comfy{
+	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison,
 /area/prison/hangar/civilian)
 "qBA" = (
 /turf/open/floor/carpet,
@@ -45980,7 +45941,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "qMm" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -46017,7 +45978,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "qPG" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds1,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -46070,13 +46031,8 @@
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
 "qWN" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "qZb" = (
@@ -46092,6 +46048,11 @@
 "raF" = (
 /turf/open/floor/wood/broken,
 /area/prison/parole/protective_custody)
+"raQ" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/yard)
 "rbs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
 	dir = 1
@@ -46158,6 +46119,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
+"rhB" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/prison/security/monitoring/highsec)
 "rhE" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/plate,
@@ -46211,18 +46176,14 @@
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
 "rnW" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "rpt" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 8
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -46247,7 +46208,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/research/secret/biolab)
 "rrY" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
@@ -46359,10 +46320,10 @@
 	dir = 8;
 	welded = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -46522,10 +46483,9 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/toilet/security)
 "rZZ" = (
-/obj/machinery/door/poddoor/four_tile_ver/secure{
-	name = "Civilian Hangar Door"
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
 	},
-/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "sao" = (
 /obj/structure/cable,
@@ -46637,7 +46597,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
 "stU" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
@@ -46647,7 +46607,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "suo" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
@@ -46719,6 +46679,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/prison/residential/south)
+"szH" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/civilian)
 "sBo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -46933,7 +46899,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -47011,10 +46977,13 @@
 /turf/open/floor/prison,
 /area/prison/hangar/civilian)
 "tqT" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating/icefloor/warnplate{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/landinglight/ds2{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "tqX" = (
 /obj/effect/landmark/weed_node,
@@ -47030,7 +46999,7 @@
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/biolab)
 "tsb" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -47087,15 +47056,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
-"tzz" = (
-/obj/effect/landmark/xeno_turret_spawn,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/prison/bright_clean,
-/area/prison/hallway/central)
 "tAo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "tBE" = (
@@ -47126,14 +47090,9 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "tGN" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
 	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "tHS" = (
 /obj/machinery/computer/intel_computer,
@@ -47152,20 +47111,11 @@
 	},
 /area/prison/cellblock/protective)
 "tKy" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/door/poddoor/four_tile_ver/secure{
+	name = "Civilian Hangar Door"
 	},
-/obj/machinery/button/door/open_only/landing_zone/lz2,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor/plating,
-/area/prison/hangar/civilian)
+/area/space)
 "tKQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -47274,7 +47224,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/canteen)
 "ubI" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 4
 	},
 /obj/effect/landmark/fob_sentry,
@@ -47334,7 +47284,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
 "ufB" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "uhu" = (
@@ -47462,7 +47412,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/medbay/foyer)
 "uCz" = (
-/obj/effect/decal/siding,
+/obj/effect/turf_decal/siding,
 /turf/open/floor/asteroid,
 /area/prison/residential/central)
 "uCC" = (
@@ -47590,7 +47540,7 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/command/quarters)
 "uWT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
@@ -47602,7 +47552,7 @@
 	},
 /area/prison/hangar/civilian)
 "uYv" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
@@ -47621,7 +47571,7 @@
 	},
 /area/prison/security/checkpoint/highsec/n)
 "vcu" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 10
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -47650,18 +47600,22 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "vep" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "veZ" = (
-/turf/open/floor/plating/icefloor/warnplate{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "vfh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -47702,7 +47656,7 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "vhu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating,
@@ -47726,6 +47680,18 @@
 	},
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
+"vlk" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "vlm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -47745,7 +47711,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "vrN" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/prison,
@@ -47789,10 +47755,10 @@
 /turf/open/floor/wood/broken,
 /area/prison/residential/central)
 "vuV" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 5
 	},
 /turf/open/ground/grass,
@@ -47831,10 +47797,10 @@
 /turf/open/floor/wood,
 /area/prison/command/office)
 "vDZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "vEh" = (
@@ -47966,7 +47932,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/prison/canteen)
 "vPB" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/shower{
@@ -48017,8 +47983,12 @@
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
 "vYn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/vending/cigarette/colony,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
@@ -48044,13 +48014,13 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "wbe" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -48071,6 +48041,10 @@
 /obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/entrance)
+"wfX" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating,
+/area/prison/engineering)
 "wfY" = (
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
@@ -48136,8 +48110,9 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "woF" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
 /area/prison/hangar/civilian)
 "woW" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
@@ -48222,16 +48197,16 @@
 /area/prison/residential/north)
 "wxn" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "wzD" = (
-/obj/effect/decal/woodsiding,
+/obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "wAk" = (
@@ -48265,6 +48240,10 @@
 	dir = 4
 	},
 /area/prison/monorail/west)
+"wHf" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/mediumsec/south)
 "wHm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
@@ -48286,7 +48265,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "wKh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -48339,7 +48318,12 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "wPa" = (
-/obj/machinery/light,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "wQF" = (
@@ -48359,7 +48343,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "wUR" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
@@ -48415,10 +48399,10 @@
 /area/prison/cellblock/mediumsec/south)
 "xgj" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "xgI" = (
@@ -48428,8 +48412,7 @@
 /area/prison/hallway/central)
 "xgV" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -48573,6 +48556,15 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"xDJ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "xDM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -48633,10 +48625,10 @@
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "xRQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/ai_node,
@@ -48710,7 +48702,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/engineering)
 "ydk" = (
-/obj/effect/decal/woodsiding{
+/obj/effect/turf_decal/woodsiding{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -49446,36 +49438,36 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
+aoj
 aab
 aab
 aab
@@ -49703,36 +49695,36 @@ aab
 aab
 aab
 aab
+iHW
 ogg
 ogg
+ikz
+ikz
+ikz
+tKy
+ikz
+ikz
+ikz
+tKy
+ikz
+ikz
+ikz
+tKy
+ikz
+ikz
+ikz
+tKy
+ikz
+ikz
+ikz
+tKy
+ikz
+ikz
+ikz
+tKy
 ogg
 ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
-ogg
+iHW
 aab
 aab
 aab
@@ -49962,32 +49954,32 @@ aab
 aab
 iHW
 amu
-amu
+dLE
+mlR
+pep
 qhf
 qhf
 qhf
-rZZ
 qhf
 qhf
 qhf
-rZZ
 qhf
 qhf
 qhf
-rZZ
 qhf
 qhf
 qhf
-rZZ
 qhf
 qhf
 qhf
-rZZ
 qhf
 qhf
 qhf
-rZZ
-amu
+qhf
+mex
+mlR
+pep
+duc
 amu
 iHW
 aab
@@ -50218,34 +50210,34 @@ aab
 aab
 aab
 iHW
-amu
-mwh
-niO
-pep
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+hdB
 otx
-niO
-pep
 qhf
-amu
+rnW
+qhf
+qhf
+qhf
+mhm
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+mhm
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+mhm
+otx
+qhf
+rnW
+qhf
+hdB
 iHW
 aab
 aab
@@ -50477,30 +50469,30 @@ aab
 iHW
 hdB
 vYn
-qhf
+niO
 fwE
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-vYn
-qhf
-fwE
+tqT
+veZ
+wPa
+xDJ
+tqT
+veZ
+wPa
+xDJ
+tqT
+veZ
+wPa
+xDJ
+tqT
+veZ
+wPa
+xDJ
+tqT
+veZ
+wPa
+vlk
+eNp
+iii
 qhf
 hdB
 iHW
@@ -50736,28 +50728,28 @@ hdB
 ksV
 qWN
 tGN
-aAD
-aTC
-bbL
-arS
-aAD
-aTC
-bbL
 bcJ
-aAD
-aTC
-bbL
-arS
-aAD
-aTC
-bbL
 bcJ
-aAD
-aTC
-aHl
+bcJ
+bcJ
+bcJ
+bcJ
+gSs
+bcJ
+bcJ
+szH
+bcJ
+bcJ
+bcJ
+bcJ
+bcJ
+bcJ
+bcJ
+bcJ
+bcJ
 jZZ
-bvp
-iii
+ctr
+qhf
 qhf
 hdB
 iHW
@@ -50989,34 +50981,34 @@ aab
 aab
 aab
 iHW
-hdB
+amu
 mXp
 hZS
-ikz
+sqF
+qhf
 fRl
+lXn
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
 fRl
-fRl
-fRl
-fRl
-fRl
-iaK
-fRl
-fRl
-evv
-fRl
-fRl
-fRl
-fRl
-fRl
-fRl
-fRl
-fRl
-fRl
-cFh
+qhf
+iOg
 ctn
 qhf
-qhf
-hdB
+duc
+amu
 iHW
 aab
 aab
@@ -51246,12 +51238,12 @@ aab
 aab
 aab
 iHW
-amu
-rnW
+hdB
+mRK
 oxD
 sqF
 qhf
-woF
+qhf
 ogM
 qhf
 qhf
@@ -51267,13 +51259,13 @@ qhf
 qhf
 qhf
 qhf
-woF
+qhf
 qhf
 iOg
 cto
 qhf
-wPa
-amu
+qhf
+hdB
 iHW
 aab
 aab
@@ -51509,7 +51501,7 @@ gCN
 sqF
 qhf
 qhf
-lXn
+qhf
 qhf
 qhf
 qhf
@@ -51762,7 +51754,7 @@ aab
 iHW
 hdB
 mRK
-gne
+qWN
 sqF
 qhf
 qhf
@@ -52017,8 +52009,8 @@ aab
 aab
 aab
 iHW
-hdB
-mRK
+amu
+evv
 hZS
 sqF
 qhf
@@ -52030,7 +52022,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
+gtU
 qhf
 qhf
 qhf
@@ -52043,8 +52035,8 @@ qhf
 iOg
 ctn
 qhf
-qhf
-hdB
+duc
+amu
 iHW
 aab
 aab
@@ -52274,8 +52266,8 @@ aab
 aab
 aab
 iHW
-amu
-tKy
+hdB
+mRK
 oxD
 sqF
 qhf
@@ -52287,7 +52279,7 @@ qhf
 qhf
 qhf
 qhf
-aoj
+qhf
 qhf
 qhf
 qhf
@@ -52300,8 +52292,8 @@ qhf
 iOg
 cto
 qhf
-wPa
-amu
+qhf
+hdB
 iHW
 aab
 aab
@@ -52790,11 +52782,11 @@ aab
 iHW
 hdB
 mRK
-gne
+qWN
 sqF
 qhf
 qhf
-qhf
+ogM
 qhf
 qhf
 qhf
@@ -53045,12 +53037,12 @@ aRS
 aab
 aab
 iHW
-hdB
+amu
 mRK
 hZS
 sqF
 qhf
-qhf
+fRl
 lXn
 qhf
 qhf
@@ -53066,13 +53058,13 @@ qhf
 qhf
 qhf
 qhf
-qhf
+fRl
 qhf
 iOg
 ctn
 qhf
-qhf
-hdB
+duc
+amu
 iHW
 aab
 aab
@@ -53301,34 +53293,34 @@ nPd
 aRS
 aab
 aab
-iHW
+cFh
 amu
-mRK
+iaK
 oxD
-sqF
-qhf
+rZZ
 woF
-ogM
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
 woF
-qhf
-iOg
+woF
+woF
+woF
+woF
+woF
+woF
+woF
+lUM
+woF
+woF
+woF
+woF
+woF
+woF
+woF
+woF
+woF
+gQK
 cto
 qhf
-wPa
+qhf
 amu
 iHW
 aab
@@ -53560,30 +53552,30 @@ aRS
 aRS
 pYD
 amu
-qBi
-gCN
-dLE
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-tqT
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-veZ
-mlR
-ctq
+mRK
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
+qhf
 qhf
 qhf
 amu
@@ -54589,7 +54581,7 @@ cTQ
 tvZ
 jFi
 aAC
-aAC
+qBi
 aAC
 ays
 bcH
@@ -54612,7 +54604,7 @@ ays
 bcH
 ays
 aAC
-aAC
+qBi
 aAC
 jFi
 tvZ
@@ -56143,7 +56135,7 @@ gZL
 bkL
 xwG
 xwG
-cEC
+xwG
 xwG
 bkL
 cSJ
@@ -64400,11 +64392,11 @@ adO
 adO
 adO
 adO
-oxt
+bSk
 bWK
 aSR
 bZD
-oxt
+bSk
 bHd
 bHd
 adO
@@ -65171,11 +65163,11 @@ aab
 aab
 adO
 aab
-oxt
+bSk
 bWK
 bUl
 bZD
-oxt
+bSk
 aab
 adO
 aab
@@ -66679,7 +66671,7 @@ bni
 bjR
 bkr
 lnA
-lnA
+rhB
 lnA
 lnA
 bkr
@@ -79762,7 +79754,7 @@ aIS
 aKO
 aCe
 alo
-tzz
+ttr
 bRS
 alo
 bRS
@@ -82929,7 +82921,7 @@ wiD
 ccV
 csH
 cvA
-cvA
+wHf
 ctT
 cuY
 cvE
@@ -86211,7 +86203,7 @@ mng
 eOr
 hwj
 bjj
-bny
+raQ
 yaF
 bpG
 kAY
@@ -87454,7 +87446,7 @@ gDz
 gDz
 gDz
 gDz
-gDz
+hPH
 gDz
 gDz
 axZ
@@ -89211,7 +89203,7 @@ acF
 acX
 adr
 adA
-adM
+aeI
 aek
 aeI
 ksL
@@ -91013,7 +91005,7 @@ aab
 aab
 aab
 aqK
-afa
+afb
 afo
 afo
 agm
@@ -93445,7 +93437,7 @@ bVY
 bXz
 ejV
 bYu
-ejV
+wfX
 ejV
 cej
 bRC
@@ -94235,7 +94227,7 @@ cqi
 cqi
 cry
 csd
-csO
+csP
 bYF
 bYG
 aab
@@ -107274,9 +107266,9 @@ aXt
 aYL
 tsM
 aYL
-aXt
-aXt
-aXt
+aYL
+aYL
+aYL
 aVm
 bnQ
 oRe
@@ -109614,21 +109606,21 @@ nRo
 byl
 aXt
 bAP
-bBR
-bDi
-bBS
-bDi
-bBS
-bDi
+bBT
 bJz
-bBS
+adM
 bJz
-bDi
-bBS
-bDi
-bBS
-bDi
-bMQ
+adM
+bJz
+bJz
+bJz
+bJz
+bJz
+adM
+bJz
+adM
+bJz
+aab
 aab
 adO
 aab
@@ -109871,21 +109863,21 @@ byi
 eJX
 obp
 bAP
-bBS
-bDj
-bDj
-bGh
-bDj
-bDj
-bDj
-bBS
-bDj
-bDj
+bBT
+adM
 bDj
 bGh
 bDj
 bDj
-bBS
+bDj
+bMQ
+bDj
+bDj
+bDj
+bGh
+bDj
+adM
+adO
 adO
 bHd
 adO
@@ -110128,8 +110120,8 @@ byi
 bnQ
 obp
 bAP
-bBS
-bDk
+bBT
+adM
 bDk
 bDk
 bDk
@@ -110141,8 +110133,8 @@ bDk
 bDk
 bDk
 bDk
-bDk
-bBS
+adM
+bDE
 btd
 btd
 btd
@@ -110385,21 +110377,21 @@ byi
 bnQ
 obp
 bAP
-bBS
-bDl
-bDl
-bGh
-bDl
-bDl
-bDl
-bBS
-bDl
-bDl
+bBT
+adM
 bDl
 bGh
 bDl
 bDl
-bBS
+bDl
+bMQ
+bDl
+bDl
+bDl
+bGh
+bDl
+adM
+adO
 adO
 adO
 adO
@@ -110643,20 +110635,20 @@ bnQ
 aXt
 bAP
 bBT
-bDi
-bBS
-bGi
-bBS
-bDi
 bJz
-bBS
-bJz
-bDi
-bBS
+adM
 bGi
-bBS
-bDi
-bMU
+adM
+bJz
+bJz
+bJz
+bJz
+bJz
+adM
+bGi
+adM
+bJz
+aab
 aab
 aab
 aab

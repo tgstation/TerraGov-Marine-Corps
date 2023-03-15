@@ -1,5 +1,6 @@
 /obj/item/tool/hand_labeler
 	name = "hand labeler"
+	desc = "A hand labeler used to label objects"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"

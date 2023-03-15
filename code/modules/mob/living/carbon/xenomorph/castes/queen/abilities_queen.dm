@@ -4,14 +4,16 @@
 /datum/action/xeno_action/hive_message
 	name = "Hive Message" // Also known as Word of Queen.
 	action_icon_state = "queen_order"
-	mechanics_text = "Announces a message to the hive."
+	desc = "Announces a message to the hive."
 	plasma_cost = 50
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
+	)
 	use_state_flags = XACT_USE_LYING
 
 //Parameters used when displaying hive message to all xenos
-/obj/screen/text/screen_text/queen_order
+/atom/movable/screen/text/screen_text/queen_order
 	maptext_height = 128 //Default 64 doubled in height
 	maptext_width = 456 //Default 480 shifted right by 12
 	maptext_x = 12 //Half of 24
@@ -48,7 +50,7 @@
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
 		SEND_SOUND(X, queen_sound)
 		//Display the queen's hive message at the top of the game screen.
-		X.play_screen_text(queens_word, /obj/screen/text/screen_text/queen_order)
+		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 		//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
 		to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 
@@ -62,12 +64,14 @@
 /datum/action/xeno_action/activable/screech
 	name = "Screech"
 	action_icon_state = "screech"
-	mechanics_text = "A large area knockdown that causes pain and screen-shake."
+	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
 	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_SCREECH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
+	)
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
@@ -127,7 +131,7 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
+	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
 	use_state_flags = XACT_USE_LYING
 	var/overwatch_active = FALSE
@@ -166,7 +170,7 @@
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/on_damage_taken)
 	overwatch_active = TRUE
-	add_selected_frame()
+	set_toggle(TRUE)
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
 	var/mob/living/carbon/xenomorph/watcher = owner
@@ -180,7 +184,7 @@
 		watcher.reset_perspective()
 	UnregisterSignal(watcher, list(COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_TAKING_DAMAGE))
 	overwatch_active = FALSE
-	remove_selected_frame()
+	set_toggle(FALSE)
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
@@ -217,9 +221,11 @@
 /datum/action/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
-	mechanics_text = "Zoom out for a larger view around wherever you are looking."
+	desc = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
+	)
 
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
@@ -262,7 +268,7 @@
 /datum/action/xeno_action/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
-	mechanics_text = "Make a target Xenomorph a leader."
+	desc = "Make a target Xenomorph a leader."
 	plasma_cost = 200
 	use_state_flags = XACT_USE_LYING
 
@@ -327,15 +333,56 @@
 	selected_xeno.update_leader_icon(TRUE)
 
 // ***************************************
+// *********** Queen Acidic Salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal
+	name = "Heal"
+	action_icon_state = "heal_xeno"
+	desc = "Apply a minor heal to the target."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 150
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+	)
+	heal_range = HIVELORD_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	playsound(target, "alien_drool", 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
+
+/// Heals the target.
+/mob/living/carbon/xenomorph/proc/salve_healing()
+	var/amount = 50
+	if(recovery_aura)
+		amount += recovery_aura * maxHealth * 0.01
+	var/remainder = max(0, amount - getBruteLoss())
+	adjustBruteLoss(-amount)
+	adjustFireLoss(-remainder, updating_health = TRUE)
+	adjust_sunder(-amount/10)
+
+// ***************************************
 // *********** Queen plasma
 // ***************************************
 /datum/action/xeno_action/activable/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
-	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
+	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
+	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
@@ -389,74 +436,3 @@
 	if (get_dist(owner, receiver) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
-
-// ***************************************
-// *********** Queen deevolve
-// ***************************************
-/datum/action/xeno_action/deevolve
-	name = "De-Evolve a Xenomorph"
-	action_icon_state = "xeno_deevolve"
-	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
-	plasma_cost = 600
-	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
-	use_state_flags = XACT_USE_LYING
-
-/datum/action/xeno_action/deevolve/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.observed_xeno)
-		X.balloon_alert(X, "Must overwatch to deevolve")
-		return
-
-	var/mob/living/carbon/xenomorph/T = X.observed_xeno
-
-	if(T.is_ventcrawling)
-		T.balloon_alert(X, "Cannot deevolve, ventcrawling")
-		return
-
-	if(!isturf(T.loc))
-		T.balloon_alert(X, "Cannot deevolve here")
-		return
-
-	if(T.health <= 0)
-		T.balloon_alert(X, "Cannot deevolve, too weak")
-		return
-
-	if(!T.xeno_caste.deevolves_to)
-		T.balloon_alert(X, "Cannot deevolve")
-		return
-
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
-
-	var/confirm = tgui_alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
-	if(confirm != "Yes")
-		return
-
-	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
-	if(isnull(reason))
-		T.balloon_alert(X, "De-evolution reason required")
-		return
-
-	if(!X.check_concious_state() || X.observed_xeno != T)
-		return
-
-	if(T.is_ventcrawling)
-		return
-
-	if(!isturf(T.loc))
-		return
-
-	if(T.health <= 0)
-		return
-
-	T.balloon_alert(T, "Queen deevolution")
-	to_chat(T, span_xenowarning("The Queen deevolved us for the following reason: [reason]"))
-
-	T.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
-
-	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
-	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
-
-	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
-	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
-	qdel(T)
-	succeed_activate()

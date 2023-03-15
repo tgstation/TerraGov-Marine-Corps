@@ -21,7 +21,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "bh" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
 	},
 /area/bigredv2/outside/ne)
@@ -36,7 +36,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "bQ" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -293,7 +293,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "nh" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/ne)
 "nj" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{

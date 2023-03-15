@@ -86,13 +86,13 @@ a.popt {
   color: #333;
 }
 
-.popup input[type=text]:hover,
-.popup input[type=text]:active,
-.popup input[type=text]:focus {
+.popup input[type='text']:hover,
+.popup input[type='text']:active,
+.popup input[type='text']:focus {
   border-color: green;
 }
 
-.popup input[type=submit] {
+.popup input[type='submit'] {
   padding: 5px 10px;
   background: #999;
   color: #ddd;
@@ -101,9 +101,9 @@ a.popt {
   font-weight: bold;
 }
 
-.popup input[type=submit]:hover,
-.popup input[type=submit]:focus,
-.popup input[type=submit]:active {
+.popup input[type='submit']:hover,
+.popup input[type='submit']:focus,
+.popup input[type='submit']:active {
   background: #aaa;
   cursor: pointer;
 }
@@ -128,7 +128,7 @@ a.popt {
   text-align: center;
 }
 
-.highlightPopup input[type=text] {
+.highlightPopup input[type='text'] {
   display: block;
   width: 215px;
   text-align: left;
@@ -136,17 +136,14 @@ a.popt {
 }
 
 .highlightPopup input.highlightColor {
-  background-color: #FFFF00;
+  background-color: #ffff00;
 }
 
 .highlightPopup input.highlightTermSubmit {
   margin-top: 5px;
 }
 
-
-
 /* ADMIN CONTEXT MENU */
-
 
 .contextMenu {
   background-color: #ddd;
@@ -166,10 +163,7 @@ a.popt {
   background-color: #ccc;
 }
 
-
-
 /* ADMIN FILTER MESSAGES MENU */
-
 
 .filterMessages {
   padding: 5px;
@@ -193,21 +187,13 @@ a.popt {
   margin-top: -2px;
 }
 
-
-
-
 /*****************************************
 *
 * OUTPUT ACTUALLY RELATED TO MESSAGES
 *
 ******************************************/
 
-
-
-
-
 /* MOTD */
-
 
 .motd {
   color: #638500;
@@ -233,14 +219,12 @@ a.popt {
   color: #638500;
 }
 
-
-.tip	{
+.tip {
   color: #a000c4;
   font-weight: bold;
 }
 
 /* ADD HERE FOR BOLD */
-
 
 .bold,
 .name,
@@ -254,31 +238,33 @@ a.popt {
   font-weight: bold;
 }
 
-
-
 /* ADD HERE FOR ITALIC */
 
-
-.italic, .italics, .emote {
+.italic,
+.italics,
+.emote {
   font-style: italic;
 }
 
-
-
 /* OUTPUT COLORS */
-
 
 .highlight {
   background: yellow;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #A4BAD6;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #a4bad6;
   font-family: Georgia, Verdana, sans-serif;
 }
 
-h1.alert, h2.alert {
-  color: #A4BAD6;
+h1.alert,
+h2.alert {
+  color: #a4bad6;
 }
 
 em {
@@ -289,113 +275,113 @@ em {
 .ooc {
   font-weight: bold;
 }
-.colorooc	{
-  color: #004ED8;
+.colorooc {
+  color: #004ed8;
   font-weight: bold;
 }
 
 .looc {
-  color: #3A9696;
+  color: #3a9696;
   font-weight: bold;
 }
 
-.hostooc{
+.hostooc {
   color: #666666;
   font-weight: bold;
 }
-.projleadooc{
-  color: #7F44A6;
+.projleadooc {
+  color: #7f44a6;
   font-weight: bold;
 }
-.headcoderooc{
-  color: #4E47B2;
+.headcoderooc {
+  color: #4e47b2;
   font-weight: bold;
 }
-.headminooc{
-  color: #9F2524;
+.headminooc {
+  color: #9f2524;
   font-weight: bold;
 }
-.headmentorooc{
+.headmentorooc {
   color: #397339;
   font-weight: bold;
 }
 .senioradminooc {
-  color: #CC707F;
+  color: #cc707f;
   font-weight: bold;
 }
 .adminooc {
-  color: #C3324A;
+  color: #c3324a;
   font-weight: bold;
 }
-.trialminooc{
-  color: #F35A32;
+.trialminooc {
+  color: #f35a32;
   font-weight: bold;
 }
-.candiminooc{
-  color: #FF7A4A;
+.candiminooc {
+  color: #ff7a4a;
   font-weight: bold;
 }
-.eventminooc{
-   color: #CCAA7A;
-   font-weight: bold;
+.eventminooc {
+  color: #ccaa7a;
+  font-weight: bold;
 }
-.mentorooc{
+.mentorooc {
   color: #329932;
   font-weight: bold;
 }
-.maintainerooc{
-  color: #7760E6;
+.maintainerooc {
+  color: #7760e6;
   font-weight: bold;
 }
-.contributorooc{
-  color: #3283FF;
+.contributorooc {
+  color: #3283ff;
   font-weight: bold;
 }
-.otherooc{
-  color: #835A32;
+.otherooc {
+  color: #835a32;
   font-weight: bold;
 }
-.msay{
-  color: #927C66;
+.msay {
+  color: #927c66;
   font-weight: bold;
 }
-.adminmsay{
-  color: #84664A;
+.adminmsay {
+  color: #84664a;
   font-weight: bold;
 }
-.headminmsay{
+.headminmsay {
   color: #665442;
   font-weight: bold;
 }
 .admin {
-  color: #3269FF;
+  color: #3269ff;
   font-weight: bold;
 }
-.asay{
-  color: #CC1E58;
+.asay {
+  color: #cc1e58;
   font-weight: bold;
 }
-.headminasay{
-  color: #A5313B;
+.headminasay {
+  color: #a5313b;
   font-weight: bold;
 }
-.boldannounce{
-  color: #FF0000;
+.boldannounce {
+  color: #ff0000;
   font-weight: bold;
 }
-.staffpmin{
-  color: #CC1E1E;
+.staffpmin {
+  color: #cc1e1e;
   font-weight: bold;
 }
-.staffpmout	{
-  color: #3D5ECC;
+.staffpmout {
+  color: #3d5ecc;
   font-weight: bold;
 }
-.adminnotice{
-  color: #3D5ECC;
+.adminnotice {
+  color: #3d5ecc;
 }
-.adminhelp{
-  color: #CC1E1E;
+.adminhelp {
+  color: #cc1e1e;
   font-weight: bold;
 }
 
@@ -403,223 +389,228 @@ em {
   font-weight: bold;
 }
 
-.say, .infoplain {
+.say,
+.infoplain {
 }
 .yell {
   font-weight: bold;
 }
-.emote{
+.emote {
   font-style: italic;
 }
-.singing{
-  font-family: "Trebuchet MS",cursive, sans-serif;
+.singing {
+  font-family: 'Trebuchet MS', cursive, sans-serif;
   font-style: italic;
 }
 
 .deadsay {
-  color: #8041D8;
+  color: #8041d8;
 }
-.radio{
-  color: #158C15;
+.radio {
+  color: #158c15;
 }
-.deptradio{
-  color: #B21AB2;
+.deptradio {
+  color: #b21ab2;
 }
-.comradio{
-  color: #3E67B2;
+.comradio {
+  color: #3e67b2;
 }
-.syndradio{
-  color: #7F4648;
+.syndradio {
+  color: #7f4648;
 }
-.centradio{
+.centradio {
   color: #636399;
 }
-.airadio{
-  color: #B21AB2;
+.airadio {
+  color: #b21ab2;
 }
 
-.casradio{
-  color: #A51830;
+.casradio {
+  color: #a51830;
 }
-.engradio{
-  color: #CC631E;
+.engradio {
+  color: #cc631e;
 }
-.medradio{
-  color: #158C78;
+.medradio {
+  color: #158c78;
 }
-.sciradio{
+.sciradio {
   color: #993599;
 }
 
-.supradio{
-  color: #996F2D;
+.supradio {
+  color: #996f2d;
 }
 
-.alpharadio{
-  color: #BF2F2F;
+.alpharadio {
+  color: #bf2f2f;
 }
-.bravoradio{
-  color: #CC8814;
+.bravoradio {
+  color: #cc8814;
 }
-.charlieradio{
-  color: #B259B2;
+.charlieradio {
+  color: #b259b2;
 }
-.deltaradio	{
-  color: #3656D8;
+.deltaradio {
+  color: #3656d8;
 }
 
-.zuluradio{
-  color: #FF6A00;
+.zuluradio {
+  color: #ff6a00;
 }
-.yankeeradio{
+.yankeeradio {
   color: #009999;
 }
-.xrayradio{
+.xrayradio {
   color: #008000;
 }
-.whiskeyradio{
-  color: #CC00CC;
+.whiskeyradio {
+  color: #cc00cc;
 }
 
-.binarysay{
-  color: #24BF13;
+.binarysay {
+  color: #24bf13;
   background-color: #000000;
   display: block;
 }
-.binarysay a{
-  color: #56BF56;
+.binarysay a {
+  color: #56bf56;
 }
-.binarysay a:active, .binarysay a:visited{
-  color: #56BF56;
-}
-
-.alert{
-  color: #FF0000;
-}
-h1.alert, h2.alert{
-  color: #99AAB5;
-}
-.selecteddna{
-  color: #FFFFFF;
-  background-color: #001B1B;
+.binarysay a:active,
+.binarysay a:visited {
+  color: #56bf56;
 }
 
-.attack{
-  color: #F22424;
+.alert {
+  color: #ff0000;
 }
-.moderate{
-  color: #CC0000;
+h1.alert,
+h2.alert {
+  color: #99aab5;
 }
-.disarm{
+.selecteddna {
+  color: #ffffff;
+  background-color: #001b1b;
+}
+
+.attack {
+  color: #f22424;
+}
+.moderate {
+  color: #cc0000;
+}
+.disarm {
   color: #990000;
 }
-.passive{
-  color: #8C1515;
+.passive {
+  color: #8c1515;
 }
 
-.scanner{
-  color: #FF0000;}
-.scannerb	{
-  color: #FF0000;
+.scanner {
+  color: #ff0000;
+}
+.scannerb {
+  color: #ff0000;
   font-weight: bold;
 }
-.scannerburn{
-  color: #FFA500;
+.scannerburn {
+  color: #ffa500;
 }
-.scannerburnb{
-  color: #ffA500;
+.scannerburnb {
+  color: #ffa500;
   font-weight: bold;
 }
-.rose{
-  color: #FF4C4C;
+.rose {
+  color: #ff4c4c;
 }
-.info{
-  color: #6666CC;
+.info {
+  color: #6666cc;
 }
-.debuginfo{
-  color: #6C994C;
+.debuginfo {
+  color: #6c994c;
   font-style: italic;
 }
-.notice{
-  color: #6060C9;
+.notice {
+  color: #6060c9;
 }
-.xenonotice{
-  color: #2C7F5C;
+.xenonotice {
+  color: #2c7f5c;
 }
-.boldnotice{
-  color: #6666CC;
+.boldnotice {
+  color: #6666cc;
   font-weight: bold;
 }
-.warning{
-  color: #FF5959;
+.warning {
+  color: #ff5959;
   font-style: italic;
 }
-.xenowarning{
-  color: #2C7F5C;
+.xenowarning {
+  color: #2c7f5c;
   font-style: italic;
 }
-.danger{
-  color: #FF2626;
+.danger {
+  color: #ff2626;
   font-weight: bold;
 }
-.userdanger{color: #FF0000;
-	font-weight: bold;
+.userdanger {
+  color: #ff0000;
+  font-weight: bold;
   font-size: 3em;
 }
-.xenodanger{
+.xenodanger {
   color: #359980;
   font-weight: bold;
 }
-.avoidharm{
-  color:	#72A0E5;
+.avoidharm {
+  color: #72a0e5;
   font-weight: bold;
 }
-.highdanger{
-  color: #FF2626;
+.highdanger {
+  color: #ff2626;
   font-weight: bold;
   font-size: 1.5em;
 }
-.xenohighdanger{
+.xenohighdanger {
   color: #359980;
   font-weight: bold;
   font-size: 1.5em;
 }
-.xenoannounce{
-  color: #2C7F5C;
+.xenoannounce {
+  color: #2c7f5c;
   font-family: book-antiqua;
   font-weight: bold;
   font-style: italic;
   font-size: 1.5em;
 }
-.hivemind{
-  color: #B23593;
+.hivemind {
+  color: #b23593;
   font-weight: bold;
 }
-.xenoqueen{
+.xenoqueen {
   font-size: 1.4em;
 }
-.xenoshrike{
+.xenoshrike {
   font-size: 1.2em;
 }
-.xenohivemind{
+.xenohivemind {
   font-size: 1.2em;
 }
-.ordercic{
+.ordercic {
   font-weight: bold;
-  font-size: 2em
+  font-size: 2em;
 }
-.xenoleader{
+.xenoleader {
   font-size: 1.2em;
 }
 
-.alien{
-  color: #7F4C7F;
+.alien {
+  color: #7f4c7f;
 }
-.newscaster{
-  color: #993D3D;
+.newscaster {
+  color: #993d3d;
 }
 
-.role_header{
+.role_header {
   color: #db0000;
   display: block;
   text-align: center;
@@ -627,18 +618,18 @@ h1.alert, h2.alert{
   font-family: trebuchet-ms;
   font-size: 1.5em;
 }
-.role_body{
+.role_body {
   color: #5a5abd;
   display: block;
   text-align: center;
 }
 
-.round_setup{
+.round_setup {
   color: #db0000;
   font-family: impact;
   font-size: 1.25em;
 }
-.round_header{
+.round_header {
   color: #db0000;
   display: block;
   text-align: center;
@@ -646,7 +637,7 @@ h1.alert, h2.alert{
   font-weight: bold;
   font-size: 2em;
 }
-.round_body	{
+.round_body {
   color: #6685f5;
   display: block;
   text-align: center;
@@ -654,142 +645,158 @@ h1.alert, h2.alert{
   font-weight: bold;
   font-size: 1.5em;
 }
-.event_announcement{
+.event_announcement {
   color: #966fd6;
   font-family: arial-narrow;
   font-size: 1.5em;
 }
-.seasons_announce		{
-  color: #1ABC9C;
+.seasons_announce {
+  color: #1abc9c;
   font-size: 1em;
 }
-.season_additional_info	{
-  color: #AEB6BF;
+.season_additional_info {
+  color: #aeb6bf;
 }
 
-.centerbold	{
-  text-align: center; font-weight: bold;
+.centerbold {
+  text-align: center;
+  font-weight: bold;
 }
 
-.rough{
+.rough {
   font-family: trebuchet-ms, cursive, sans-serif;
 }
-.say_quote{
+.say_quote {
   font-family: Georgia, Verdana, sans-serif;
 }
-.command_headset{
+.command_headset {
   font-weight: bold;
   font-size: 160%;
 }
-.robot{
-  font-family: "Courier New", cursive, sans-serif;
+.robot {
+  font-family: 'Courier New', cursive, sans-serif;
 }
 
-
-.green{
+.green {
   color: #059223;
 }
-.nicegreen{
+.nicegreen {
   color: #059223;
 }
-.shadowling{
+.shadowling {
   color: #3b2769;
 }
-.cult{
+.cult {
   color: #740202;
 }
-.cultlarge{
+.cultlarge {
   color: #740202;
   font-weight: bold;
   font-size: 3;
 }
-.narsie{
+.narsie {
   color: #740202;
   font-weight: bold;
   font-size: 15;
 }
-.narsiesmall{
+.narsiesmall {
   color: #740202;
   font-weight: bold;
   font-size: 6;
 }
-.colossus{
-  color: #7F282A;
+.colossus {
+  color: #7f282a;
   font-size: 5;
 }
-.hierophant{
+.hierophant {
   color: #660099;
   font-weight: bold;
   font-style: italic;
 }
-.hierophant_warning{
+.hierophant_warning {
   color: #660099;
   font-style: italic;
 }
-.purple{
+.purple {
   color: #7c00e6;
 }
-.holoparasite{
+.holoparasite {
   color: #35333a;
 }
 
-.revennotice{
+.revennotice {
   color: #1d2953;
 }
-.revenboldnotice{
+.revenboldnotice {
   color: #1d2953;
   font-weight: bold;
 }
-.revenbignotice{
+.revenbignotice {
   color: #1d2953;
   font-weight: bold;
   font-size: 3;
 }
-.revenminor{
-  color: #823abb
+.revenminor {
+  color: #823abb;
 }
-.revenwarning{
+.revenwarning {
   color: #760fbb;
   font-style: italic;
 }
-.revendanger{
+.revendanger {
   color: #760fbb;
   font-weight: bold;
   font-size: 3;
 }
-.umbra{
+.umbra {
   color: #7c00e6;
 }
-.umbra_emphasis{
+.umbra_emphasis {
   color: #7c00e6;
   font-weight: bold;
   font-style: italic;
 }
-.umbra_large{
+.umbra_large {
   color: #7c00e6;
   font-size: 3;
   font-weight: bold;
   font-style: italic;
 }
 
-.deconversion_message{color: #7c00e6; font-size: 3; font-style: italic;}
+.deconversion_message {
+  color: #7c00e6;
+  font-size: 3;
+  font-style: italic;
+}
 
-.interface{color: #750e75;}
+.interface {
+  color: #750e75;
+}
 
-.connectionClosed, .fatalError{background: red; color: white; padding: 5px;}
-.connectionClosed.restored{background: green;}
-.internal.boldnshit{color:#3d5bc3; font-weight: bold;}
+.connectionClosed,
+.fatalError {
+  background: red;
+  color: white;
+  padding: 5px;
+}
+.connectionClosed.restored {
+  background: green;
+}
+.internal.boldnshit {
+  color: #3d5bc3;
+  font-weight: bold;
+}
 
 .sans {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
 .papyrus {
-  font-family: "Papyrus", cursive, sans-serif;
+  font-family: 'Papyrus', cursive, sans-serif;
 }
 
 .robot {
-  font-family: "Courier New", cursive, sans-serif;
+  font-family: 'Courier New', cursive, sans-serif;
 }
 
 .command_headset {
@@ -826,7 +833,7 @@ h1.alert, h2.alert{
 .clown {
   color: #ff70c1;
   font-size: 160%;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   font-weight: bold;
 }
 
@@ -901,7 +908,7 @@ h1.alert, h2.alert{
 }
 
 .slime {
-  color: #00CED1;
+  color: #00ced1;
 }
 
 .drone {
@@ -913,11 +920,11 @@ h1.alert, h2.alert{
 }
 
 .swarmer {
-  color: #2C75FF;
+  color: #2c75ff;
 }
 
 .resonate {
-  color: #298F85;
+  color: #298f85;
 }
 
 .monkeyhive {
@@ -929,7 +936,8 @@ h1.alert, h2.alert{
   font-size: 80%;
 }
 
-.connectionClosed, .fatalError {
+.connectionClosed,
+.fatalError {
   background: red;
   color: white;
   padding: 5px;
@@ -944,10 +952,7 @@ h1.alert, h2.alert{
   font-weight: bold;
 }
 
-
-
 /* HELPER CLASSES */
-
 
 .text-normal {
   font-weight: normal;
@@ -969,4 +974,16 @@ h1.alert, h2.alert{
 
 .ml-3 {
   margin-left: 3em;
+}
+
+.examine_block {
+  background: #1b1c1e;
+  border: 1px solid #a4bad6;
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+}
+
+.tooltip {
+  font-style: italic;
+  border-bottom: 1px dashed #fff;
 }

@@ -18,9 +18,6 @@
 #define APPEARANCE_UI (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
 #define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
-//Just space
-#define SPACE_ICON_STATE(x, y, z) "[((x + y) ^ ~(x * y) + z) % 25]"
-
 //dirt type for each turf types.
 #define NO_DIRT 0
 #define DIRT_TYPE_GROUND 1
@@ -45,6 +42,9 @@
 
 GLOBAL_VAR_INIT(global_unique_id, 1)
 #define UNIQUEID (GLOB.global_unique_id++)
+
+///The icon_state for space.  There is 25 total icon states that vary based on the x/y/z position of the turf
+#define SPACE_ICON_STATE(x, y, z) "[((x + y) ^ ~(x * y) + z) % 25]"
 
 // Maploader bounds indices
 #define MAP_MINX 1
@@ -109,7 +109,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 //for obj explosion block calculation
 #define EXPLOSION_BLOCK_PROC -1
 
-
 //Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
 #define LUMA_R 0.213
 #define LUMA_G 0.715
@@ -136,5 +135,8 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
+
+//Actually better performant than reverse_direction()
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 GLOBAL_VAR_INIT(geothermal_generator_ammount, 0)

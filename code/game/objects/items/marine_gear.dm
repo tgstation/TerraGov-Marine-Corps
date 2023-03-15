@@ -52,29 +52,56 @@
 	bitesize = 4
 	greyscale_config = /datum/greyscale_config/protein
 	tastes = list(("flavored protein bar") = 1)
+	var/faction = FACTION_TERRAGOV
 	///list of protein bar types
-	var/static/list/randlist = list(
-		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
-		list("mint TGMC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",list("minty protein" = 1)),
-		list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
-		list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
-		list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
-		list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
-		list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
-		list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
-		list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
+	var/static/list/flavor_list = list(
+		FACTION_TERRAGOV = list(
+			list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
+			list("mint TGMC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",list("minty protein" = 1)),
+			list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
+			list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
+			list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
+			list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
+			list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
+			list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
+			list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
+		),
+		FACTION_SOM = list(
+			list("stale SOM protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. Its supposedly made with real Martian soil for that patriotic flavour. It has a grainy, metallic taste.","#f37d43",list("rust" = 1)),
+			list("salted SOM protein bar","A satisfying protein bar, although quite salty. Made with real TGMC tears.","#86a9b8",list("salt" = 1)),
+			list("grape SOM protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
+			list("mystery SOM protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
+			list("dark chocolate SOM protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
+			list("milk chocolate SOM protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
+			list("beef SOM protein bar","A beef flavored protein bar, doesn't taste like any cow you've ever tried.","#ff0066",list("meat substitute" = 1)),
+			list("meat SOM protein bar","A surprisingly tasty protein bar made from an unspecified meat. Rumors claiming they're made from reconstituted TGMC personnel have been widely dismissed.","#a7576b",list("pork" = 1)),
+			list("chicken SOM protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
+			list("blueberry SOM protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
+		),
 	)
 
 /obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
 	. = ..()
 	//list of picked variables
-	var/list/picked = pick(randlist)
+	var/list/picked = pick(flavor_list[faction])
 	name = picked[1]
 	desc = picked[2]
 	set_greyscale_colors(picked[3])
 	tastes = picked[4]
 	//due the way nutriment works it has to be added like this or the flavor is cached
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 8, picked[4])
+
+/obj/item/reagent_containers/food/snacks/protein_pack/som
+	name = "SOM protein bar"
+	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
+	faction = FACTION_SOM
+
+/obj/item/reagent_containers/food/snacks/req_pizza
+	name = "\improper TGMC PFC Jim pizza"
+	desc = "You think that is a pizza. You definitely shouldn't eat this, but you can sell this for a PROFIT! While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it sat in the ASRS for a while? Oh well, time to sell it to some poor customer in space."
+	icon_state = "mushroompizza"
+	list_reagents = list(/datum/reagent/iron = 8)
+	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
@@ -114,11 +141,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
-
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
-	desc = "This is supposedly a pizza MRE, fit for marine consumption. While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it's sat in the ASRS for a while?"
-	list_reagents = list(/datum/reagent/iron = 8)
-	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"
@@ -216,7 +238,7 @@
 //Harness Belts
 /obj/item/belt_harness
 	name = "gun sling"
-	desc = "A leather sling with a spot to attach a gun. Should keep you from losing your weapon, hopefully."
+	desc = "A leather sling with a clip to attach something. Should keep you from losing your weapon, hopefully."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "gun_sling"
 	item_state = "gun_sling"
@@ -225,17 +247,74 @@
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
+	///The current attacher. Gets remade for every new item
+	var/datum/component/reequip/reequip_component
+
+/obj/item/belt_harness/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(reequip_component)
+		. += "There is \a [reequip_component.parent] hooked into it."
+
+/obj/item/belt_harness/unequipped(mob/unequipper, slot)
+	if(reequip_component)
+		detach_item(reequip_component.parent, unequipper)
+	return ..()
+
+/obj/item/belt_harness/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I))
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/huser = user
+	if(huser.belt != src)
+		to_chat(user, span_notice("You need to be wearing [src] to attach something to it!"))
+		return
+	if(reequip_component)
+		if(reequip_component.parent == I)
+			detach_item(I, user)
+			return
+		to_chat(user, span_notice("[src] already has \a [reequip_component.parent] hooked into it!"))
+		return
+	attach_item(I, user)
+
+///Set up the link between belt and object
+/obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
+	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
+	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
+
+///Clean out attachment refs/signals
+/obj/item/belt_harness/proc/detach_item(source)
+	SIGNAL_HANDLER
+	if(!reequip_component)
+		return
+	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
+	if(ishuman(loc))
+		to_chat(loc, span_notice("[src] clicks as \the [reequip_component.parent] unhook[reequip_component.parent.p_s()] from it."))
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	if(!QDELING(reequip_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
+		qdel(reequip_component)
+	reequip_component = null
+
+/obj/item/belt_harness/vendor_equip(mob/user)
+	..()
+	return user.equip_to_appropriate_slot(src)
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
-	desc = "A shoulder worn strap with clamps that can attach to a gun. Should keep you from losing your weapon, hopefully."
+	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
 	icon_state = "heavy_harness"
 	item_state = "heavy_harness"
 
-/obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+/obj/item/belt_harness/marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+		to_chat(user, span_danger("!!REMEMBER TO ATTACH YOUR WEAPON TO YOUR HARNESS OR IT WON'T WORK!!"))
 
 /obj/item/compass
 	name = "compass"

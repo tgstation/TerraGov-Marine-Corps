@@ -133,7 +133,7 @@
 /area/bigredv2/outside/office_complex)
 "ey" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "fr" = (
@@ -182,7 +182,7 @@
 /area/bigredv2/outside/office_complex)
 "gP" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "gW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -319,7 +319,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner,
@@ -353,8 +353,7 @@
 /area/bigredv2/outside/office_complex)
 "ne" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/tile/white,
@@ -404,7 +403,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "pO" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "pV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -474,7 +473,7 @@
 "sy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "sL" = (
@@ -633,7 +632,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "xY" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -708,7 +707,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner,
@@ -747,7 +746,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner,
@@ -772,7 +771,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner,
@@ -874,7 +873,7 @@
 "FF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
@@ -995,7 +994,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/spawner/random/trash,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner,
@@ -1059,7 +1058,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
 	},
 /turf/open/floor,
@@ -1182,8 +1181,7 @@
 /area/bigredv2/outside/office_complex)
 "RA" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/grimy,
@@ -1266,7 +1264,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "Vh" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -1286,7 +1284,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor,
@@ -1388,7 +1386,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/office_complex)
 "ZQ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 

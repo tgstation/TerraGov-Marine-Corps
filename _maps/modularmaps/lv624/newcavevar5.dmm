@@ -25,11 +25,6 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"cO" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/lv624/ground/caves/central2)
 "dp" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
@@ -41,9 +36,7 @@
 /area/lv624/ground/caves/central2)
 "eE" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "eF" = (
 /obj/structure/table/woodentable,
@@ -96,9 +89,7 @@
 /area/lv624/ground/caves/central3)
 "iE" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "iN" = (
 /turf/open/floor/plating/ground/dirt,
@@ -109,7 +100,7 @@
 /area/lv624/ground/caves/central2)
 "jb" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "jl" = (
 /obj/structure/closet/cabinet,
@@ -128,12 +119,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
-"kp" = (
-/turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "kE" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/iron{
@@ -159,11 +144,6 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"lb" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/lv624/ground/caves/central2)
 "lu" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/ammo/shotgun,
@@ -186,8 +166,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/carpet/side{
-	dir = 10;
-	
+	dir = 10
 	},
 /area/lv624/ground/caves/central2)
 "op" = (
@@ -209,15 +188,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "ph" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken2"
-	},
-/area/lv624/ground/caves/central2)
-"pi" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner2"
-	},
+/turf/open/floor/wood/broken/two,
 /area/lv624/ground/caves/central2)
 "pD" = (
 /obj/effect/landmark/weed_node,
@@ -229,20 +200,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "pJ" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "pP" = (
 /obj/item/flashlight/lantern,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"pR" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner"
-	},
 /area/lv624/ground/caves/central2)
 "qq" = (
 /turf/open/floor/tile/dark,
@@ -254,9 +217,7 @@
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/turf/open/floor/carpet/side{
-	
-	},
+/turf/open/floor/carpet/side,
 /area/lv624/ground/caves/central2)
 "qI" = (
 /obj/structure/table/woodentable,
@@ -265,15 +226,11 @@
 /area/lv624/ground/caves/central2)
 "qW" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "ro" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
+/turf/open/floor/wood/broken/four,
 /area/lv624/ground/caves/central2)
 "sl" = (
 /obj/structure/rack,
@@ -289,9 +246,7 @@
 /area/lv624/ground/caves/central1)
 "sv" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "sH" = (
 /obj/structure/barricade/sandbags{
@@ -318,35 +273,22 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "uy" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
+/turf/open/floor/wood/broken/four,
 /area/lv624/ground/caves/central2)
 "uV" = (
 /turf/closed/wall/wood,
 /area/lv624/ground/caves/central2)
 "vb" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
-/area/lv624/ground/caves/central2)
-"ve" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "vi" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "vk" = (
 /turf/closed/mineral/smooth,
@@ -367,12 +309,10 @@
 /area/lv624/ground/caves/central1)
 "vz" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "vE" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
+/turf/open/floor/wood/broken/four,
 /area/lv624/ground/caves/central2)
 "vN" = (
 /obj/effect/spawner/random/clothing,
@@ -394,9 +334,7 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "xD" = (
 /obj/structure/bed/chair/wood/wings,
@@ -406,8 +344,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/carpet/side{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/lv624/ground/caves/central2)
 "yy" = (
@@ -421,9 +358,7 @@
 /area/lv624/ground/caves/central1)
 "zz" = (
 /obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 5
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "zK" = (
 /obj/machinery/miner/damaged/platinum,
@@ -440,8 +375,7 @@
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lantern,
 /turf/open/floor/carpet/side{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/lv624/ground/caves/central2)
 "Dm" = (
@@ -449,9 +383,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
 "DD" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
+/turf/open/floor/wood/broken/seven,
 /area/lv624/ground/caves/central2)
 "DE" = (
 /obj/structure/rack,
@@ -471,7 +403,7 @@
 /area/lv624/ground/caves/central2)
 "Ge" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river,
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Gm" = (
 /obj/item/ammo_casing/shell,
@@ -488,8 +420,7 @@
 	pixel_x = 3
 	},
 /turf/open/floor/carpet/side{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/lv624/ground/caves/central2)
 "GZ" = (
@@ -497,9 +428,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"Hb" = (
-/turf/open/ground/river,
 /area/lv624/ground/caves/central2)
 "Hl" = (
 /obj/structure/closet/crate/freezer/rations,
@@ -537,9 +465,7 @@
 /area/lv624/ground/caves/central2)
 "Ik" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "In" = (
 /turf/open/floor,
@@ -570,16 +496,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"KG" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/caves/central2)
-"Ln" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/caves/central2)
 "Md" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/machinegun,
@@ -603,25 +519,19 @@
 "MQ" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "NI" = (
 /obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "NO" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "OX" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Pl" = (
 /obj/item/stack/sheet/wood,
@@ -635,43 +545,28 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"QN" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/caves/central2)
 "QO" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"QX" = (
-/turf/open/ground/coast,
-/area/lv624/ground/caves/central2)
 "RA" = (
 /obj/effect/spawner/random/trash,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "RT" = (
 /obj/effect/spawner/random/clothing,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "Tp" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "TR" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
+/turf/open/ground/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "UI" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "UT" = (
 /obj/structure/rack,
@@ -738,16 +633,13 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "Xu" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/candle,
 /turf/open/floor/carpet/side{
-	dir = 5;
-	
+	dir = 5
 	},
 /area/lv624/ground/caves/central2)
 "Yt" = (
@@ -1155,10 +1047,10 @@ vk
 GF
 Yv
 Yv
-ve
-cO
-cO
-pR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1189,12 +1081,12 @@ vk
 vk
 GF
 pE
-ve
 TR
-Hb
-Hb
+TR
+TR
+TR
 zz
-pR
+TR
 Hy
 Yv
 Yv
@@ -1224,12 +1116,12 @@ vk
 GF
 GF
 Yv
-QX
-Hb
+TR
+TR
 Ge
-Hb
-Hb
-KG
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1259,12 +1151,12 @@ GF
 GF
 Yv
 Hy
-QX
-Hb
-Hb
-Hb
-Hb
-KG
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 GF
@@ -1294,12 +1186,12 @@ GF
 Yv
 Yv
 Yv
-QX
-Hb
+TR
+TR
 vz
-Hb
-Hb
-KG
+TR
+TR
+TR
 Yv
 Yv
 GF
@@ -1329,12 +1221,12 @@ GF
 Yv
 Yv
 pE
-QX
-Hb
-Hb
-Hb
+TR
+TR
+TR
+TR
 vz
-KG
+TR
 Hy
 Yv
 Yv
@@ -1363,13 +1255,13 @@ vk
 GF
 Hy
 pE
-ve
 TR
-Hb
-Hb
-Hb
-Hb
-KG
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1398,13 +1290,13 @@ vk
 GF
 Yv
 Yv
-QX
-Hb
-Hb
+TR
+TR
+TR
 jb
-Hb
-Hb
-KG
+TR
+TR
+TR
 Yv
 Yv
 UU
@@ -1433,14 +1325,14 @@ GF
 GF
 Yv
 Yv
-QX
-Hb
-Hb
-Hb
-Hb
-Hb
-Ln
-pR
+TR
+TR
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Mk
@@ -1468,14 +1360,14 @@ GF
 GF
 Yv
 pE
-QX
-Hb
-Hb
-Hb
-Hb
+TR
+TR
+TR
+TR
+TR
 Ge
-Hb
-KG
+TR
+TR
 Yv
 Yv
 Yv
@@ -1503,14 +1395,14 @@ GF
 GF
 Hy
 Yv
-QX
-Hb
+TR
+TR
 vz
-Hb
-Hb
-Hb
-Hb
-KG
+TR
+TR
+TR
+TR
+TR
 Yv
 GF
 GF
@@ -1538,14 +1430,14 @@ vk
 GF
 Yv
 Yv
-QX
-Hb
-Hb
-Hb
-Hb
-Hb
+TR
+TR
+TR
+TR
+TR
+TR
 vz
-KG
+TR
 Hy
 GF
 GF
@@ -1573,14 +1465,14 @@ vk
 GF
 Yv
 Yv
-QX
-Hb
-Hb
-Hb
-Hb
-pi
-lb
-QN
+TR
+TR
+TR
+TR
+TR
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1608,12 +1500,12 @@ vk
 GF
 GF
 Hy
-QX
-Hb
+TR
+TR
 jb
-Hb
-pi
-QN
+TR
+TR
+TR
 Yv
 Yv
 Yv
@@ -1643,11 +1535,11 @@ vk
 vk
 GF
 Yv
-QX
-Hb
-Hb
-pi
-QN
+TR
+TR
+TR
+TR
+TR
 Yv
 Hy
 Yv
@@ -1678,10 +1570,10 @@ vk
 vk
 GF
 pE
-kp
-lb
-lb
-QN
+TR
+TR
+TR
+TR
 Yv
 Yv
 zK

@@ -1,12 +1,14 @@
+
 /datum/action/xeno_action
+	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
+	desc = "This ability can not be found in codex."
 	var/plasma_cost = 0
-	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
-	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
+	///bypass use limitations checked by can_use_action()
+	var/use_state_flags = NONE
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
 	var/keybind_flags
-	var/image/cooldown_image
 	var/cooldown_id
 	var/target_flags = NONE
 	/// flags to restrict a xeno ability to certain gamemode
@@ -16,10 +18,12 @@
 	. = ..()
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
-	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
-	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
+	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
+	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
+	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
+	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 
 /datum/action/xeno_action/give_action(mob/living/L)
 	. = ..()
@@ -37,6 +41,13 @@
 
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return
+
+///Adds an outline around the ability button
+/datum/action/xeno_action/proc/add_empowered_frame()
+	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+
+/datum/action/xeno_action/proc/remove_empowered_frame()
+	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -125,8 +136,7 @@
 	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
-//checks if the linked ability is on some cooldown.
-//The action can still be activated by clicking the button
+///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !cooldown_id
 
@@ -151,23 +161,21 @@
 		return
 	last_use = world.time
 	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
-	button.overlays += cooldown_image
-	update_button_icon()
+	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 
 /datum/action/xeno_action/proc/cooldown_remaining()
 	return timeleft(cooldown_id) * 0.1
 
 
-//override this for cooldown completion.
+///override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
 	cooldown_id = null
 	if(!button)
 		CRASH("no button object on finishing xeno action cooldown")
-	button.overlays -= cooldown_image
-	update_button_icon()
+	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
-/datum/action/xeno_action/update_button_icon()
+/datum/action/xeno_action/handle_button_status_visuals()
 	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
@@ -175,6 +183,8 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
+/datum/action/xeno_action/activable
+	action_type = ACTION_SELECT
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -205,13 +215,13 @@
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
-	remove_selected_frame()
+	set_toggle(FALSE)
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
 	var/mob/living/carbon/xenomorph/X = owner
-	add_selected_frame()
+	set_toggle(TRUE)
 	X.selected_ability = src
 	on_activation()
 
@@ -241,7 +251,7 @@
 		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
 
-//override this
+///override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	if(QDELETED(owner))
 		return FALSE

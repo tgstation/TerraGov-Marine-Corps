@@ -18,6 +18,7 @@
 	var/pillbottlesprite = "1"
 	var/bottlesprite = "1" //yes, strings
 	var/pillsprite = "1"
+	var/base_state = "mixer"
 	var/autoinjectorsprite = "11"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
@@ -119,11 +120,6 @@
 		return
 
 	var/mob/living/user = usr
-
-	if(!user.skills.getRating("medical"))
-		to_chat(user, span_notice("You start fiddling with \the [src]..."))
-		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
@@ -346,6 +342,10 @@
 	. = ..()
 	if(.)
 		return
+	if(user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
+		balloon_alert(user, "skill issue")
+		return
+
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
@@ -408,6 +408,13 @@
 	popup.set_content(dat)
 	popup.open()
 
+/obj/machinery/chem_master/update_icon()
+	if(machine_stat & BROKEN)
+		icon_state = (beaker?"mixer1_b":"mixer0_b")
+	else if(machine_stat & NOPOWER)
+		icon_state = (beaker?"[base_state]1_nopower":"[base_state]0_nopower")
+	else
+		icon_state = (beaker?"[base_state]1":"[base_state]0")
 
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"

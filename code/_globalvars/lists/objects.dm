@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(lz2_shuttle_console_turfs_list)
 GLOBAL_LIST_EMPTY(fob_sentries_loc)
 GLOBAL_LIST_EMPTY(fob_sentries_rebel_loc)
 GLOBAL_LIST_EMPTY(sensor_towers)
+GLOBAL_LIST_EMPTY(sensor_towers_patrol)
 
 GLOBAL_LIST_EMPTY(unmanned_vehicles)
 
@@ -89,6 +90,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 
 GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/satchel,
-	/obj/item/storage/backpack/marine/satchel/corpsman,
+	/obj/item/storage/backpack/marine/corpsman/satchel,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))

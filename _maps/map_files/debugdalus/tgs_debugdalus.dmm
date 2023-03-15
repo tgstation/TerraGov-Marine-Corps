@@ -101,8 +101,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aay" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
+/turf/open/shuttle/escapepod/eleven{
 	},
 /area/mainship/command/self_destruct)
 "aaz" = (
@@ -200,7 +199,6 @@
 /area/mainship/squads/general)
 "aaS" = (
 /obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -211,7 +209,6 @@
 /area/mainship/squads/general)
 "aaT" = (
 /obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -377,8 +374,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "abC" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+/turf/open/shuttle/escapepod/eight{
 	},
 /area/mainship/command/self_destruct)
 "abD" = (
@@ -966,10 +962,14 @@
 /area/mainship/squads/req)
 "aey" = (
 /obj/effect/landmark/start/job/ai,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "aez" = (
-/obj/structure/window/reinforced{
+/obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -1026,9 +1026,6 @@
 /area/mainship/squads/req)
 "aeM" = (
 /obj/machinery/telecomms/processor/preset_one,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "aeN" = (
@@ -1077,7 +1074,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeX" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afd" = (
@@ -1194,14 +1191,12 @@
 "afC" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "afD" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
-	icon_state = "equip_base_r_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -1638,7 +1633,6 @@
 /area/mainship/medical/medical_science)
 "ahI" = (
 /obj/machinery/telecomms/bus/preset_one,
-/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "ahJ" = (
@@ -2350,6 +2344,19 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"eDr" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "eDC" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -2565,6 +2572,19 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"qzT" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -4930,7 +4950,7 @@ aaA
 aaS
 qxC
 aaA
-aaS
+eDr
 cCb
 aaC
 hni
@@ -5050,7 +5070,7 @@ aaA
 aaT
 apF
 aaA
-aaT
+qzT
 abi
 qEm
 acI

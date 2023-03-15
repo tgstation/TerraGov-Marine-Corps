@@ -22,13 +22,10 @@
 "fl" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
@@ -154,13 +151,10 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "sG" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -190,13 +184,10 @@
 /area/lv624/ground/compound/ne)
 "wl" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
@@ -268,24 +259,18 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Nexus Dome"
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "EN" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)

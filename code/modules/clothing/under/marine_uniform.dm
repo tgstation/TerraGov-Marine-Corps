@@ -6,27 +6,50 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0) //No armor on non ERT uniforms.
 	has_sensor = 2
 	adjustment_variants = list(
 		"Down" = "_d",
 		"Half" = "_h",
+		"Rolled" = "_r",
 	)
-
-/obj/item/clothing/under/marine/standard
-	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+//Squad colored turtlenecks
+/obj/item/clothing/under/marine/squad/neck
+	name = "\improper TGMC Delta turtleneck"
+	desc = "A standard issued TGMC turtleneck colored blue."
+	icon_state = "delta_merc"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
+
+/obj/item/clothing/under/marine/squad/neck/delta
+	name = "\improper TGMC Delta turtleneck"
+	desc = "A standard issued TGMC turtleneck colored blue, with a slight hint of bravery."
+	icon_state = "delta_merc"
+
+/obj/item/clothing/under/marine/squad/neck/charile
+	name = "\improper TGMC Charile turtleneck"
+	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
+	icon_state = "charile_merc"
+
+/obj/item/clothing/under/marine/squad/neck/bravo
+	name = "\improper TGMC Bravo turtleneck"
+	desc = "A standard issued TGMC turtleneck colored yellow, you suddenly get thoughts of how to improve the FOB, if slightly."
+	icon_state = "bravo_merc"
+
+/obj/item/clothing/under/marine/squad/neck/alpha
+	name = "\improper TGMC Alpha turtleneck"
+	desc = "A standard issued TGMC turtleneck colored red, you feel as if you can face the world and all it has to bring against you."
+	icon_state = "alpha_merc"
 
 // camo things stuff yeah!
 
 /obj/item/clothing/under/marine/camo
 	name = "\improper TGMC camo fatigues (jungle)"
 	icon_state = "m_marine_jumpsuit"
-	adjustment_variants = list(
-		"Down" = "_d",
-	)
 
 /obj/item/clothing/under/marine/camo/snow
 	name = "\improper TGMC camo fatigues (snow)"
@@ -81,6 +104,45 @@
 	icon_state = "MP_jumpsuit"
 	adjustment_variants = list()
 
+/obj/item/clothing/under/marine/orion_fatigue
+	name = "\improper Orion fatigues"
+	desc = "Originated from Orion Military Outpost. Designed for ship and urban environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They're the definition of over-funded ideas, least they look neat. It is very likely that a boot fresh from boot camp to buy this at the BX with his E-1 pay because of how tacticool it looks."
+	icon_state = "orion_fatigues"
+	item_state = "orion_fatigues"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
+
+/obj/item/clothing/under/marine/red_fatigue
+	name = "\improper Big Red fatigues"
+	desc = "Originated from Big Red. Designed for dry, low humid, and Mars-eqse environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They make you feel like one with the desert, forged by the beating Sun. Rumors had it that it can recycle your sweat and urine for drinkable water!"
+	icon_state = "red_fatigues"
+	item_state = "red_fatigues"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
+
+/obj/item/clothing/under/marine/lv_fatigue
+	name = "\improper LV-624 fatigues"
+	desc = "Originated from LV-624. Designed for wet, high humid, and jungle environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. Somewhere, someone is playing 'Fortunate Sons' in the background, and you can smell napalm and Agent Orange in the air..."
+	icon_state = "lv_fatigues"
+	item_state = "lv_fatigues"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
+
+/obj/item/clothing/under/marine/striped
+	name = "\improper Striped fatigues"
+	desc = "A simple set of camo pants and a striped shirt."
+	icon_state = "marine_striped"
+	item_state = "marine_striped"
+	adjustment_variants = list()
+/obj/item/clothing/under/marine/black_suit
+	name = "\improper marine black suit"
+	desc = "A easy fitting black suit, somehow exactly your size."
+	icon_state = "marine_suit"
+	item_state = "marine_suit"
+	adjustment_variants = list()
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
@@ -208,7 +270,7 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/under/marine/veteran
 	adjustment_variants = list()
@@ -219,25 +281,32 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/under/marine/veteran/PMC
+/obj/item/clothing/under/marine/veteran/pmc
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 
-/obj/item/clothing/under/marine/veteran/PMC/leader
+/obj/item/clothing/under/marine/veteran/pmc/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/veteran/pmc/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+/obj/item/clothing/under/marine/veteran/pmc/leader
 	name = "\improper PMC command fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_jumpsuit"
 
-/obj/item/clothing/under/marine/veteran/PMC/commando
+/obj/item/clothing/under/marine/veteran/pmc/leader/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/veteran/pmc/commando
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, FIRE = 20, ACID = 20)
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/wolves
@@ -295,7 +364,7 @@
 	desc = "A beige suit with a red armband. Sturdy and thick, simply imposing. A mysterious crest emblazons it."
 	icon_state = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 1, "rad" = 1, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 1, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "mercenary miner fatigues"
@@ -331,7 +400,6 @@
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	has_sensor = 2
 
 /obj/item/clothing/under/liaison_suit
@@ -417,6 +485,16 @@
 	item_state = "som_uniform_leader"
 
 /obj/item/clothing/under/som/leader/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/icc
+	name = "\improper Modelle/30 uniform"
+	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
+	icon_state = "icc"
+	item_state = "icc"
+	has_sensor = FALSE
+
+/obj/item/clothing/under/icc/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 /obj/item/clothing/under/sectoid

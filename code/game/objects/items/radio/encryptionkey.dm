@@ -142,6 +142,10 @@
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
 	independent = TRUE
 
+/obj/item/encryptionkey/icc
+	name = "\improper ICC encryption key"
+	channels = list(RADIO_CHANNEL_ICC = TRUE)
+	independent = TRUE
 
 /obj/item/encryptionkey/sectoid
 	name = "\improper alien encryption key"
@@ -162,7 +166,7 @@
 	channels = list(RADIO_CHANNEL_MEDICAL_SOM = TRUE)
 
 /obj/item/encryptionkey/mcom/som
-	channels = list(RADIO_CHANNEL_COMMAND_SOM = TRUE, RADIO_CHANNEL_ZULU = TRUE, RADIO_CHANNEL_YANKEE = TRUE, RADIO_CHANNEL_XRAY = TRUE, RADIO_CHANNEL_WHISKEY = TRUE, RADIO_CHANNEL_ENGINEERING_SOM = TRUE, RADIO_CHANNEL_MEDICAL_SOM = TRUE)
+	channels = list(RADIO_CHANNEL_SOM = TRUE, RADIO_CHANNEL_COMMAND_SOM = TRUE, RADIO_CHANNEL_ZULU = TRUE, RADIO_CHANNEL_YANKEE = TRUE, RADIO_CHANNEL_XRAY = TRUE, RADIO_CHANNEL_WHISKEY = TRUE, RADIO_CHANNEL_ENGINEERING_SOM = TRUE, RADIO_CHANNEL_MEDICAL_SOM = TRUE)
 
 /obj/item/encryptionkey/squadlead/som
 	channels = list(RADIO_CHANNEL_COMMAND_SOM = TRUE)

@@ -1,7 +1,7 @@
 #define TELEPORTING_COST 250
 /obj/machinery/deployable/teleporter
 	density = FALSE
-	max_integrity = 250
+	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
 	///List of all teleportable types
@@ -15,6 +15,22 @@
 		/obj/machinery/nuclearbomb
 	)
 
+/obj/machinery/deployable/teleporter/examine(mob/user)
+	. = ..()
+	var/obj/item/teleporter_kit/kit = internal_item
+	if(!kit.cell)
+		. += "It is currently lacking a power cell."
+	if(kit.linked_teleporter)
+		. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag] at [get_area(kit.linked_teleporter)]"
+	else
+		. += "It is not linked to any other teleporter."
+
+
+/obj/machinery/deployable/teleporter/Initialize()
+	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+
+
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
 	var/obj/item/teleporter_kit/kit = internal_item
@@ -22,16 +38,16 @@
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 
 	if (!powered() && (!kit.cell || kit.cell.charge < TELEPORTING_COST))
-		to_chat(user, span_warning("A red light flashes on the [src]. It seems it doesn't have enough power."))
+		to_chat(user, span_warning("A red light flashes on \the [src]. It seems it doesn't have enough power."))
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
 	if(!COOLDOWN_CHECK(kit, teleport_cooldown))
-		to_chat(user, span_warning("The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
+		to_chat(user, span_warning("\The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
 		return
 
 	if(!kit.linked_teleporter)
-		to_chat(user, span_warning("The [src] is not linked to any other teleporter."))
+		to_chat(user, span_warning("\The [src] is not linked to any other teleporter."))
 		return
 
 	if(!istype(kit.linked_teleporter.loc, /obj/machinery/deployable/teleporter))
@@ -138,23 +154,55 @@
 	var/obj/item/cell/cell
 	COOLDOWN_DECLARE(teleport_cooldown)
 
+	///Tag for teleporters number. Exists for fluff reasons. Shared variable.
+	var/static/tele_tag = 78
+	///References to the number of the teleporter.
+	var/self_tele_tag
+
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
+	tele_tag++
+	self_tele_tag = tele_tag
+	name = "\improper ASRS Bluespace teleporter #[tele_tag]"
+
 
 /obj/item/teleporter_kit/Destroy()
-	linked_teleporter = null
+	if(linked_teleporter)
+		linked_teleporter.linked_teleporter = null
+		linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
 
+
 ///Link the two teleporters
-/obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/linked_teleporter)
-	if(src.linked_teleporter)
+/obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
+	if(linked_teleporter)
 		CRASH("A teleporter was linked with another teleporter even though it already has a twin!")
-	if(linked_teleporter == src)
+	if(link_teleport == src)
 		CRASH("A teleporter was linked with itself!")
-	src.linked_teleporter = linked_teleporter
+	linked_teleporter = link_teleport
+
+/obj/item/teleporter_kit/attackby(obj/item/I, mob/user, params)
+	if(!ishuman(user))
+		return FALSE
+	if(!istype(I, /obj/item/teleporter_kit))
+		return
+
+	var/obj/item/teleporter_kit/gadget = I
+	if(linked_teleporter)
+		balloon_alert(user, "The teleporter is already linked with another!")
+		return
+	if(linked_teleporter == src)
+		balloon_alert(user, "You can't link the teleporter with itself!")
+		return
+	linked_teleporter = linked_teleporter
+	balloon_alert(user, "You link both teleporters to each others.")
+
+	set_linked_teleporter(gadget)
+	gadget.set_linked_teleporter(src)
+	return
 
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)

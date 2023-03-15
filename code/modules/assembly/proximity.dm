@@ -2,7 +2,6 @@
 	name = "proximity sensor"
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
-	materials = list(/datum/material/metal = 800, /datum/material/glass = 200)
 	attachable = TRUE
 
 	var/scanning = FALSE
@@ -11,22 +10,18 @@
 	var/sensitivity = 1
 	var/hearing_range = 3
 
-
 /obj/item/assembly/prox_sensor/Initialize()
 	. = ..()
 	proximity_monitor = new(src, 0)
 	START_PROCESSING(SSobj, src)
 
-
 /obj/item/assembly/prox_sensor/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-
 /obj/item/assembly/prox_sensor/examine(mob/user)
 	. = ..()
 	. += span_notice("The proximity sensor is [timing ? "arming" : (scanning ? "armed" : "disarmed")].")
-
 
 /obj/item/assembly/prox_sensor/activate()
 	. = ..()
@@ -39,14 +34,12 @@
 	update_icon()
 	return TRUE
 
-
 /obj/item/assembly/prox_sensor/on_detach()
 	. = ..()
 	if(!.)
 		return
 	else
 		proximity_monitor.SetHost(src,src)
-
 
 /obj/item/assembly/prox_sensor/toggle_secure()
 	secured = !secured
@@ -62,12 +55,10 @@
 	update_icon()
 	return secured
 
-
 /obj/item/assembly/prox_sensor/HasProximity(atom/movable/AM)
 	if(istype(AM, /obj/effect/beam))
 		return
 	sense()
-
 
 /obj/item/assembly/prox_sensor/proc/sense()
 	if(!scanning || !secured || next_activate > world.time)
@@ -81,7 +72,6 @@
 	next_activate = world.time + 30
 	return TRUE
 
-
 /obj/item/assembly/prox_sensor/process()
 	if(!timing)
 		return
@@ -91,7 +81,6 @@
 		toggle_scan(TRUE)
 		time = initial(time)
 
-
 /obj/item/assembly/prox_sensor/proc/toggle_scan(scan)
 	if(!secured)
 		return FALSE
@@ -99,13 +88,11 @@
 	proximity_monitor.SetRange(scanning ? sensitivity : 0)
 	update_icon()
 
-
 /obj/item/assembly/prox_sensor/proc/sensitivity_change(value)
 	var/sense = min(max(sensitivity + value, 0), 5)
 	sensitivity = sense
 	if(scanning && proximity_monitor.SetRange(sense))
 		sense()
-
 
 /obj/item/assembly/prox_sensor/update_icon()
 	cut_overlays()
@@ -119,7 +106,6 @@
 	if(holder)
 		holder.update_icon()
 
-
 /obj/item/assembly/prox_sensor/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -129,7 +115,6 @@
 		return FALSE
 
 	return TRUE
-
 
 /obj/item/assembly/prox_sensor/interact(mob/user)
 	. = ..()
@@ -149,7 +134,6 @@
 	var/datum/browser/popup = new(user, "prox", name)
 	popup.set_content(dat)
 	popup.open()
-
 
 /obj/item/assembly/prox_sensor/Topic(href, href_list)
 	. = ..()

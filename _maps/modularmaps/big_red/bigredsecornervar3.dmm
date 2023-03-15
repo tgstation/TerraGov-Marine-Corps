@@ -45,7 +45,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "cr" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -92,7 +92,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "eC" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
@@ -157,7 +157,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "hl" = (
 /obj/effect/spawner/random/cable,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -193,7 +193,7 @@
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "iP" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
 /obj/effect/ai_node,
@@ -206,7 +206,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "jw" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /obj/effect/spawner/random/trash,
@@ -356,10 +356,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "pR" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -376,7 +376,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "qC" = (
-/obj/effect/decal/sandedge,
+/obj/effect/turf_decal/sandedge,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
@@ -416,7 +416,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "rI" = (
 /obj/item/mecha_parts/part/durand_torso,
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "rJ" = (
@@ -437,10 +437,10 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "tC" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thick/corner{
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -462,7 +462,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "uB" = (
 /obj/item/mecha_parts/part/durand_right_arm,
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "uC" = (
@@ -512,7 +512,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "xL" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
@@ -614,7 +614,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "FB" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Gc" = (
@@ -651,7 +651,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Iq" = (
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -813,7 +813,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "Qd" = (
 /obj/item/mecha_parts/part/durand_left_arm,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -884,7 +884,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Uq" = (
-/obj/effect/decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Vi" = (

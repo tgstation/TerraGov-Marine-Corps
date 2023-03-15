@@ -47,7 +47,7 @@
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, "rad" = 10, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, FIRE = 20, ACID = 20)
 
 
 /obj/item/clothing/suit/cyborg_suit
@@ -169,6 +169,13 @@
 	desc = "The perfect white jacket to go with your white dress uniform."
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
+
+	allowed = list(
+		/obj/item/instrument,
+		/obj/item/storage/holster/blade,
+		/obj/item/weapon/claymore,
+		/obj/item/weapon/twohanded,
+	)
 
 
 /obj/item/clothing/suit/straight_jacket

@@ -8,7 +8,12 @@
 	item_state = "meson"
 	deactive_state = "degoggles_meson"
 	species_exception = list(/datum/species/robot)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
 	darkness_view = 2
@@ -32,4 +37,27 @@
 /obj/item/clothing/glasses/meson/enggoggles/prescription
 	name = "\improper Optical meson prescription ballistic goggles"
 	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical meson scanner."
+	prescription = TRUE
+
+/obj/item/clothing/glasses/meson/eyepatch
+	name = "\improper Meson eyepatch"
+	desc = "An eyepatch fitted with the meson scanner interface. For the disabled and/or edgy Engineer."
+	icon_state = "patchmeson"
+	deactive_state = "degoggles_medpatch"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list(
+		"Combat Robot" = 'icons/mob/species/robot/glasses.dmi',
+		"Sterling Combat Robot" = 'icons/mob/species/robot/glasses_bravada.dmi',
+		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
+		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
+		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/meson/sunglasses
+	name = "\improper Meson sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with an optical meson scanner."
+	icon_state = "mesonsunglasses"
+	item_state = "mesonsunglasses"
+	deactive_state = "degoggles_mesonsunglasses"
 	prescription = TRUE
