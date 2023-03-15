@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Added the slippery component"
+  - refactor: "Refactored the way slips work"
