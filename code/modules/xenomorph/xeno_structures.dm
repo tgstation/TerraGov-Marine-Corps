@@ -48,8 +48,7 @@
 	if(!do_after(X, 3 SECONDS, TRUE, src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
-	span_xenonotice("We tear down \the [src]."))
+	balloon_alert_to_viewers("\The [X] tears down \the [src]!", "We tear down \the [src].")
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max_integrity) // Ensure its destroyed
 
