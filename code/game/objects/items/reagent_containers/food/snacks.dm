@@ -2392,6 +2392,20 @@
 	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
+/obj/item/pizzabox/random
+	var/list/pizza_choices = list(
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+	)
+
+/obj/item/pizzabox/random/Initialize()
+	. = .. ()
+	var/pizza_type = pick(pizza_choices)
+	pizza = new pizza_type(src)
+	boxtag = "Pizza Time"
+
 ///////////////////////////////////////////
 // new old food stuff from bs12
 ///////////////////////////////////////////
