@@ -1577,6 +1577,7 @@
 	if(user && prob(1))
 		garand_thumb(user)
 
+///Gets your thumb stuck in the gun while reloading
 /obj/item/weapon/gun/rifle/garand/proc/garand_thumb(mob/living/user)
 	var/zone = user.hand ? "l_hand" : "r_hand"
 	to_chat(user, span_userdanger("Your thumb gets caught while reloading [src]!"))
