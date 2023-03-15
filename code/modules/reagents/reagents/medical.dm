@@ -279,6 +279,7 @@
 	name = "Saline-Glucose"
 	description = "Saline-Glucose can be used to restore blood in a pinch."
 	color = "#d4f1f9"
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "salty water"
