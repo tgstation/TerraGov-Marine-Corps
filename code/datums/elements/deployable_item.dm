@@ -103,6 +103,9 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	deployed_machine.max_integrity = item_to_deploy.max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = item_to_deploy.obj_integrity
 
+	if(item_to_deploy?.reagents?.total_volume)
+		item_to_deploy.reagents.trans_to(deployed_machine, item_to_deploy.reagents.total_volume)
+
 	deployed_machine.update_icon_state()
 
 	if(user)
@@ -148,6 +151,9 @@ GLOBAL_LIST_EMPTY(deployable_items)
 
 	undeployed_item.max_integrity = deployed_machine.max_integrity
 	undeployed_item.obj_integrity = deployed_machine.obj_integrity
+
+	if(deployed_machine?.reagents?.total_volume)
+		deployed_machine.reagents.trans_to(undeployed_item, deployed_machine.reagents.total_volume)
 
 	deployed_machine.clear_internal_item()
 

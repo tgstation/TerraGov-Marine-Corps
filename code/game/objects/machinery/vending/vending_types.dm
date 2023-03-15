@@ -210,6 +210,7 @@
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/reagent_containers/reagent_tank = 5,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
 		),
