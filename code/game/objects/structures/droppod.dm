@@ -23,7 +23,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
-	buckle
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -57,7 +56,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
-	GLOB.droppod_list -= src
+	GLOB.droppod_list -= src // todo should be active pods only for iterative checks
 	return ..()
 
 ///Disables launching upon dropship hijack
@@ -118,24 +117,30 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/checklanding(mob/user, optional_turf)
 	var/turf/target = optional_turf ? optional_turf : locate(target_x, target_y, 2)
 	if(target.density)
-		balloon_alert(user, "Dense area")
+		if(user)
+			balloon_alert(user, "Dense area")
 		return FALSE
 	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
-		balloon_alert(user, "Hazardous zone")
+		if(user)
+			balloon_alert(user, "Hazardous zone")
 		return FALSE
 	var/area/targetarea = get_area(target)
 	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
-		balloon_alert(user, "Invalid area")
+		if(user)
+			balloon_alert(user, "Invalid area")
 		return FALSE
 	if(!targetarea.outside)
-		balloon_alert(user, "Roofed area")
+		if(user)
+			balloon_alert(user, "Roofed area")
 		return FALSE
 	if(targetarea.ceiling > CEILING_METAL)
-		balloon_alert(user, "Area underground")
+		if(user)
+			balloon_alert(user, "Area underground")
 		return FALSE
 	for(var/atom/movable/object AS in target.contents)
 		if(object.density)
-			balloon_alert(user, "Dense object detected")
+			if(user)
+				balloon_alert(user, "Dense object detected")
 			return FALSE
 	return TRUE
 
@@ -241,8 +246,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	TIMER_COOLDOWN_START(src, COOLDOWN_DROPPOD_TARGETTING, 10 SECONDS)
 
 	var/turf/target = locate(new_x, new_y, 2)
-	var/turf/topright = locate(new_x + LEADER_POD_DISPERSION, new_y + LEADER_POD_DISPERSION,2)
-	var/turf/bottomleft = locate(new_x - LEADER_POD_DISPERSION, new_y - LEADER_POD_DISPERSION,2)
+	var/occupied_pods
+	for(var/obj/structure/droppod/pod AS in GLOB.droppod_list)
+		if(LAZYLEN(pod.buckled_mobs))
+			occupied_pods++
+	var/dispersion = max(LEADER_POD_DISPERSION, LEADER_POD_DISPERSION + ((occupied_pods - 10) / 5))
+	var/turf/topright = locate(new_x + dispersion, new_y + dispersion,2)
+	var/turf/bottomleft = locate(new_x - dispersion, new_y - dispersion,2)
 	var/list/block = block(bottomleft, topright) - locate()
 	for(var/turf/attemptdrop AS in block) // prune invalid turfs
 		if(!checklanding(null, attemptdrop))
@@ -264,6 +274,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		pod.target_y = newturf.y
 
 /obj/structure/droppod/leader/launchpod(mob/user, commanded_drop = FALSE)
+	#ifndef TESTING
+	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
+		to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
+		return
+	#endif
+	if(!launch_allowed)
+		to_chat(user, span_notice("Error. Ship calibration unavailable. Please %#&ç:*"))
+		return
 	if(commanded_drop)
 		return ..()
 	//todo find an alarm sound and play it here for audio confirmation?
