@@ -181,6 +181,8 @@
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_THREE)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
+		if(XENO_TIER_FOUR)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))
