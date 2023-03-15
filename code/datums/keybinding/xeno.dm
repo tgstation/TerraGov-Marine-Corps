@@ -381,6 +381,7 @@
 	full_name = "Defiler: Emit Neurogas"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/select_reagent
 	name = "select_reagent"
@@ -393,6 +394,7 @@
 	full_name = "Defiler: Select Reagent (Radial)"
 	description = "Chooses a reagent from a radial menu to use for Defiler abilities."
 	keybind_signal = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
+	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/reagent_slash
 	name = "reagent_slash"
@@ -405,12 +407,14 @@
 	full_name = "Defiler: Defile"
 	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/tentacle
 	name = "tentacle"
 	full_name = "Defiler: Tentacle"
 	description = "Allows the defiler to grab a tallhost or item from range and bring it towards the defiler."
 	keybind_signal = COMSIG_XENOABILITY_TENTACLE
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"

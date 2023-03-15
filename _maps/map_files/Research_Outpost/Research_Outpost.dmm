@@ -444,6 +444,15 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering)
+"cw" = (
+/obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/attachable/flashlight,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/arrivals/securitylz1)
 "cy" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -695,6 +704,19 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
+"dJ" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/turf/open/floor/tile/dark/red2,
+/area/outpost/brig/armoury)
 "dK" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -863,6 +885,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/security)
+"eB" = (
+/obj/machinery/prop/autolathe,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/purple2{
+	dir = 10
+	},
+/area/outpost/science/research)
 "eC" = (
 /obj/machinery/vending/hydronutrients,
 /obj/machinery/light,
@@ -2943,6 +2972,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/north_west)
+"nQ" = (
+/obj/machinery/prop/autolathe,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/yellow2{
+	dir = 4
+	},
+/area/outpost/engineering)
 "nR" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
@@ -5961,6 +5999,17 @@
 	dir = 4
 	},
 /area/outpost/yard/east)
+"Bp" = (
+/obj/structure/closet/secure_closet/security,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/attachable/flashlight,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/outpost/engineering/security)
 "Bq" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidwarning,
@@ -8782,17 +8831,6 @@
 	dir = 4
 	},
 /area/outpost/engineering)
-"Ow" = (
-/obj/structure/closet/secure_closet/security,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/attachable/flashlight,
-/turf/open/floor/tile/dark/red2{
-	dir = 6
-	},
-/area/outpost/engineering/security)
 "Oy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -9379,15 +9417,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
-"Rj" = (
-/obj/machinery/prop/autolathe,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
-	},
-/area/outpost/engineering)
 "Rk" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -9735,15 +9764,6 @@
 	dir = 1
 	},
 /area/outpost/hallway/northern)
-"SM" = (
-/obj/structure/closet/secure_closet/security,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/attachable/flashlight,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/arrivals/securitylz1)
 "SN" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
@@ -10022,19 +10042,6 @@
 /obj/item/attachable/reddot,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
-"TU" = (
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/weapon/gun/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig/armoury)
 "TW" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -10716,13 +10723,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/east)
-"WZ" = (
-/obj/machinery/prop/autolathe,
-/obj/machinery/light,
-/turf/open/floor/tile/dark/purple2{
-	dir = 10
-	},
-/area/outpost/science/research)
 "Xa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15450,7 +15450,7 @@ Wl
 HI
 rx
 xC
-SM
+cw
 Pt
 Gj
 Gj
@@ -24148,7 +24148,7 @@ VO
 MS
 RP
 MS
-WZ
+eB
 zZ
 rF
 aM
@@ -25518,7 +25518,7 @@ yW
 Zt
 Mz
 xy
-Ow
+Bp
 IV
 Ok
 CV
@@ -25866,7 +25866,7 @@ lp
 iz
 cp
 vt
-TU
+dJ
 lp
 op
 OK
@@ -26179,7 +26179,7 @@ Sw
 hF
 zW
 xA
-Rj
+nQ
 ju
 Ov
 UM

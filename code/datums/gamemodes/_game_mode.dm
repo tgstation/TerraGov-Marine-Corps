@@ -760,9 +760,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/list/parts = list()
 	var/mob/M = C.mob
 	if(M.mind && !isnewplayer(M))
+		parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 		if(M.stat != DEAD && !isbrain(M))
 			if(ishuman(M))
-				parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 				var/turf/current_turf = get_turf(M)
 				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR))
 					parts += "<div class='panel stationborder'>"

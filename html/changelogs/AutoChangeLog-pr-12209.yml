@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "You can now spawn as a xenomorph in valhalla, and can spawn dummy humans which you can also select outfits for."
