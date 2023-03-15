@@ -116,11 +116,16 @@ type AllKeybindingsList = {
 
 type PreferencesClothingTypeList = {
   underwear: PreferencesUnderWearTypes;
-  undershirt: string[];
+  undershirt: PreferencesUnderShirtTypes;
   backpack: string[];
 };
 
 type PreferencesUnderWearTypes = {
+  male: string[];
+  female: string[];
+};
+
+type PreferencesUnderShirtTypes = {
   male: string[];
   female: string[];
 };

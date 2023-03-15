@@ -12064,7 +12064,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bie" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -13450,7 +13450,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
 "bom" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},

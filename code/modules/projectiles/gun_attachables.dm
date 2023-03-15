@@ -31,7 +31,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/pixel_shift_y = 16
 
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	///ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.
@@ -116,8 +115,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]
 	var/flags_attach_features = ATTACH_REMOVABLE
 
-	///only used by bipod, denotes whether the bipod is currently deployed
-	var/bipod_deployed = FALSE
 	///only used by lace, denotes whether the lace is currently deployed
 	var/lace_deployed = FALSE
 
@@ -562,7 +559,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	light_mod = 6
 	light_system = MOVABLE_LIGHT
 	slot = ATTACHMENT_SLOT_RAIL
-	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
@@ -942,6 +938,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A black polymer stock, made to fit the MPi-KM."
 	icon_state = "ak47stock_black"
 
+/obj/item/attachable/stock/lmg_d
+	name = "lMG-D wooden stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit lMG-D."
+	icon_state = "ak47stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/tx15
 	name = "\improper SH-15 stock"
 	desc = "The standard stock for the SH-15. Cannot be removed."
@@ -1195,17 +1198,48 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///How long it takes to fold or unfold
 	var/deploy_time
 	///whether the attachment is currently folded or not
-	var/folded = FALSE
+	var/folded = TRUE
 
 /obj/item/attachable/foldable/on_attach(attaching_item, mob/user)
-	. = ..()
-	activate()
+	if(!istype(attaching_item, /obj/item/weapon/gun))
+		return //Guns only
+
+	master_gun = attaching_item
+
+	if(attachment_action_type)
+		var/datum/action/action_to_update = new attachment_action_type(src, master_gun)
+		if(isliving(master_gun.loc))
+			var/mob/living/living_user = master_gun.loc
+			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
+				action_to_update.give_action(living_user)
+
+	//custom attachment icons for specific guns
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(master_gun, selection))
+				icon_state = variants_by_parent_type[selection]
+
+	update_icon()
+
+/obj/item/attachable/foldable/on_detach(detaching_item, mob/user)
+	if(!isgun(detaching_item))
+		return
+
+	if(!folded)
+		activate()
+
+	for(var/datum/action/action_to_update AS in master_gun.actions)
+		if(action_to_update.target != src)
+			continue
+		qdel(action_to_update)
+		break
+
+	master_gun = null
+	icon_state = initial(icon_state)
+	update_icon()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
 	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
-		return FALSE
-
-	if(turn_off && folded == TRUE) //force it to off for dettach purposes
 		return FALSE
 
 	folded = !folded
@@ -1295,17 +1329,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_mode_delay_mod = -0.5
 
 /obj/item/attachable/foldable/bipod/activate(mob/living/user, turn_off)
+	if(folded && !(master_gun.flags_item & WIELDED)) //no one handed bipod use
+		if(user)
+			balloon_alert(user, "Unwielded")
+		return
+
 	. = ..()
 
+	if(folded)
+		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD))
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		to_chat(user, span_notice("You retract [src]."))
+		return
+
 	if(user)
-		if(folded)
-			to_chat(user, span_notice("You retract [src]."))
-			UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
-			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		else
-			to_chat(user, span_notice("You deploy [src]."))
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
-			RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
+		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD), .proc/retract_bipod)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
+		to_chat(user, span_notice("You deploy [src]."))
 
 ///Signal handler for forced undeployment
 /obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source, mob/living/user)
@@ -1313,14 +1353,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	deploy_time = 0
 	INVOKE_ASYNC(src, .proc/activate, (istype(user) ? user : source), TRUE)
 	deploy_time = initial(deploy_time)
-	to_chat(source, span_warning("Losing support, the bipod retracts!"))
-	//playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
+	to_chat(user, span_warning("Losing support, the bipod retracts!"))
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "build_a_sentry_attachment"
-	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it the rail of a gun and deploy. Its that easy!"
+	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
 	pixel_shift_y = 18

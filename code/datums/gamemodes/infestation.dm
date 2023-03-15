@@ -166,10 +166,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return TRUE
 	return FALSE
 
+
 /datum/game_mode/infestation/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 	var/sound/xeno_track
 	var/sound/human_track
 	var/sound/ghost_track

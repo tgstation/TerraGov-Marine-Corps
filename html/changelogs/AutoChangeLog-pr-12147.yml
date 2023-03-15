@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Applying fire to an already burning turf now increases the strength of the fire instead of removing the old fire"

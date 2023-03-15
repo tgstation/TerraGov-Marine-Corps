@@ -141,8 +141,8 @@
 		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
-	name = "\improper S31 incendiary grenade"
-	desc = "A reliable incendiary grenade utilised by SOM forces. Designed for hand or grenade launcher use."
+	name = "\improper S30-I incendiary grenade"
+	desc = "A reliable incendiary grenade utilised by SOM forces. Based off the S30 platform shared by most SOM grenades. Designed for hand or grenade launcher use."
 	icon_state = "grenade_fire_som"
 	item_state = "grenade_fire_som"
 
@@ -196,6 +196,12 @@
 	smoke.start()
 	qdel(src)
 
+/obj/item/explosive/grenade/smokebomb/som
+	name = "\improper S30-S smoke grenade"
+	desc = "The S30-S is a small, but powerful smoke grenade. Based off the S30 platform shared by most SOM grenades. It is set to detonate in 2 seconds."
+	icon_state = "grenade_smoke_som"
+	item_state = "grenade_smoke_som"
+
 ///chemical grenades
 
 //neuro xeno nade
@@ -220,8 +226,8 @@
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/satrapine
-	name = "\improper Satrapine smoke grenade"
-	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
+	name = "satrapine smoke grenade"
+	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers. Employed heavily by the SOM."
 	icon_state = "grenade_nerve"
 	item_state = "grenade_nerve"
 	det_time = 4 SECONDS

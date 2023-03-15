@@ -182,7 +182,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(length(livings))
 		addtimer(CALLBACK(src, .proc/release_characters, livings), 1 SECONDS, TIMER_CLIENT_TIME)
 
-
 /datum/game_mode/proc/release_characters(list/livings)
 	for(var/I in livings)
 		var/mob/living/L = I
@@ -721,6 +720,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/build_roundend_report()
 	var/list/parts = list()
 
+	parts += antag_report()
+
 	parts += announce_round_stats()
 	parts += announce_xenomorphs()
 	CHECK_TICK
@@ -759,9 +760,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/list/parts = list()
 	var/mob/M = C.mob
 	if(M.mind && !isnewplayer(M))
+		parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 		if(M.stat != DEAD && !isbrain(M))
 			if(ishuman(M))
-				parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 				var/turf/current_turf = get_turf(M)
 				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR))
 					parts += "<div class='panel stationborder'>"
@@ -831,3 +832,82 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
+
+/datum/game_mode/proc/gather_antag_data()
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+		var/list/antag_info = list()
+		antag_info["key"] = A.owner.key
+		antag_info["name"] = A.owner.name
+		antag_info["antagonist_type"] = A.type
+		antag_info["antagonist_name"] = A.name //For auto and custom roles
+		antag_info["objectives"] = list()
+		if(A.objectives.len)
+			for(var/datum/objective/O in A.objectives)
+				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				antag_info["objectives"] += list(list("objective_type"=O.type,"text"=O.explanation_text,"result"=result))
+		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
+
+/proc/printobjectives(list/objectives)
+	if(!objectives || !objectives.len)
+		return
+	var/list/objective_parts = list()
+	var/count = 1
+	for(var/datum/objective/objective in objectives)
+		if(objective.check_completion())
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
+		else
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+		count++
+	return objective_parts.Join("<br>")
+
+/proc/printplayer(datum/mind/ply, fleecheck)
+	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b> and"
+	if(ply.current)
+		if(ply.current.stat == DEAD)
+			text += " [span_redtext("died")]"
+		else
+			text += " [span_greentext("survived")]"
+		if(fleecheck)
+			var/turf/T = get_turf(ply.current)
+			if(!T || !is_station_level(T.z))
+				text += " while [span_redtext("fleeing the station")]"
+		if(ply.current.real_name != ply.name)
+			text += " as <b>[ply.current.real_name]</b>"
+	else
+		text += " [span_redtext("had their body destroyed")]"
+	return text
+
+/datum/game_mode/proc/antag_report()
+	var/list/result = list()
+	var/list/all_antagonists = list()
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+		all_antagonists |= A
+	var/currrent_category
+	var/datum/antagonist/previous_category
+	sortTim(all_antagonists, /proc/cmp_antag_category)
+	for(var/datum/antagonist/A in all_antagonists)
+		if(!A.show_in_roundend)
+			continue
+		if(A.roundend_category != currrent_category)
+			if(previous_category)
+				result += previous_category.roundend_report_footer()
+				result += "</div>"
+			result += "<div class='panel redborder'>"
+			result += A.roundend_report_header()
+			currrent_category = A.roundend_category
+			previous_category = A
+		result += A.roundend_report()
+		result += "<br><br>"
+		CHECK_TICK
+	if(all_antagonists.len)
+		var/datum/antagonist/last = all_antagonists[all_antagonists.len]
+		result += last.roundend_report_footer()
+		result += "</div>"
+	return result.Join()
+
+/proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
+	return sorttext(B.roundend_category,A.roundend_category)
