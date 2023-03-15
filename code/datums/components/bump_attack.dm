@@ -12,11 +12,11 @@
 		return COMPONENT_INCOMPATIBLE
 	if(ishuman(parent))
 		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, PROC_REF(living_activation_toggle))
-		bump_action_path = .proc/human_bump_action
+		bump_action_path = PROC_REF(human_bump_action)
 	else if(isxeno(parent))
-		bump_action_path = .proc/xeno_bump_action
+		bump_action_path = PROC_REF(xeno_bump_action)
 	else
-		bump_action_path = .proc/living_bump_action
+		bump_action_path = PROC_REF(living_bump_action)
 	if(has_button)
 		toggle_action = new()
 		toggle_action.give_action(parent)

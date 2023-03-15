@@ -15,11 +15,11 @@
 	///Icon sheet of the attachment overlays
 	var/attach_icon = null
 	///Proc typepath that is called when this is attached to something.
-	var/on_attach = .proc/on_attach
+	var/on_attach = PROC_REF(on_attach)
 	///Proc typepath that is called when this is detached from something.
-	var/on_detach = .proc/on_detach
+	var/on_detach = PROC_REF(on_detach)
 	///Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.
-	var/can_attach = .proc/can_attach
+	var/can_attach = PROC_REF(can_attach)
 	///Pixel shift for the item overlay on the X axis.
 	var/pixel_shift_x = 0
 	///Pixel shift for the item overlay on the Y axis.

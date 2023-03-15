@@ -85,7 +85,7 @@
 /obj/alien/resin/sticky/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

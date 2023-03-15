@@ -142,7 +142,7 @@
 	claymore = I
 	claymore.armed = TRUE
 	var/static/list/explosive_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/attempt_mine_explode
+		COMSIG_ATOM_ENTERED = PROC_REF(attempt_mine_explode)
 	)
 	AddElement(/datum/element/connect_loc, explosive_connections)
 

@@ -31,7 +31,7 @@
 		/datum/action/chem_booster/configure = PROC_REF(configure),
 		/datum/action/chem_booster/connect_weapon = PROC_REF(connect_weapon),
 		/datum/action/chem_booster/power = PROC_REF(on_off),
-		/datum/action/suit_autodoc/scan = .proc/scan_user
+		/datum/action/suit_autodoc/scan = PROC_REF(scan_user)
 	)
 	///Instant analyzer for the chemsuit
 	var/obj/item/healthanalyzer/integrated/analyzer

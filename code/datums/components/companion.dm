@@ -16,7 +16,7 @@
 		"help" = PROC_REF(help),
 		"you will be called" = PROC_REF(update_name),
 		"repeat after me" = PROC_REF(repeat_speech),
-		"goodbye" = .proc/goodbye
+		"goodbye" = PROC_REF(goodbye)
 	)
 	var/static/commands_info
 

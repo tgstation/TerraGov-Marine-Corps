@@ -535,7 +535,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /obj/effect/wraith_portal/Initialize(mapload, portal_is_yellow = FALSE)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/teleport_atom
+		COMSIG_ATOM_ENTERED = PROC_REF(teleport_atom)
 	)
 	if(portal_is_yellow)
 		icon_state = "portal1"
