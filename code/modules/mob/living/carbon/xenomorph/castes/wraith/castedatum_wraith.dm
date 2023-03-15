@@ -22,7 +22,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	evolution_threshold = 180
+	evolution_threshold = 270
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(

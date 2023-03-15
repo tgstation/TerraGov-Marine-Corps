@@ -28,7 +28,7 @@
 	max_health = 230
 
 	// *** Evolution *** //
-	evolution_threshold = 180
+	evolution_threshold = 270
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/widow)
