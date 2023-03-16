@@ -1,24 +1,25 @@
 /obj/machinery/deployable/reagent_tank
 	name = "portable reagent dispenser"
-	desc = "A large vessel for transporting chemicals."
+	desc = "A large vessel for transporting chemicals. Has a cabinet for storing chemical supplies."
 	density = TRUE
 	max_integrity = 200
 	examine_internal_item = FALSE
 	///Properties relating to reagents for this container; whether you can check if reagents are visible, if it is refillable, etc.
 	var/container_flags = TRANSPARENT|DRAINABLE
 	///Maximum units of reagents this container can hold
-	var/max_volume = 1000
-	///List of reagents this dispenser will start with
-	var/list/list_reagents
+	var/max_volume = 3000
 
 /obj/machinery/deployable/reagent_tank/Initialize()
 	. = ..()
-	create_reagents(max_volume, container_flags, list_reagents)
+	create_reagents(max_volume, container_flags)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50)
 
+//Using examine() because deployable descriptions are overwritten by the internal object's description
 /obj/machinery/deployable/reagent_tank/examine(mob/user)
 	. = ..()
-	. += "The refilling hatch is [is_refillable() ? "open" : "closed"]."
+	. += "The refilling hatch is [is_refillable() ? "open" : "closed"]. [span_bold("Alt Click")] to toggle the hatch."
+	. += "[span_bold("Click")] with an open hand to access the storage cabinet."
+	. += "[span_bold("Drag")] to yourself to undeploy."
 
 /obj/machinery/deployable/reagent_tank/update_icon()
 	//Remove overlays and reset the icon
@@ -50,6 +51,11 @@
 /obj/machinery/deployable/reagent_tank/on_reagent_change()
 	update_icon()
 
+/obj/machinery/deployable/reagent_tank/attack_hand(mob/living/user)
+	. = ..()
+	var/obj/item/storage/internal_bag = internal_item
+	internal_bag.open(user)
+
 /obj/machinery/deployable/reagent_tank/attackby(obj/item/I, mob/user, params)
 	if(I.is_refillable())
 		return FALSE //Beakers run the refilling code in afterattack()
@@ -69,31 +75,47 @@
 
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
 	. = ..()
+	var/obj/item/storage/internal_bag = internal_item
+	for(var/mob/watching in internal_bag.content_watchers)
+		internal_bag.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
 
-/obj/item/reagent_containers/reagent_tank
+/obj/item/storage/reagent_tank
 	name = "portable reagent dispenser"
-	desc = "A large vessel for transporting chemicals."
+	desc = "A large vessel for transporting chemicals. Has a cabinet for storing chemical supplies."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "dispenser"
 	item_state_worn = TRUE
 	item_state = "reagent_dispenser"
-	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	init_reagent_flags = TRANSPARENT
+	w_class = WEIGHT_CLASS_HUGE
+	max_w_class = WEIGHT_CLASS_SMALL	//Beaker size
+	storage_slots = 28
+	max_storage_space = 28
+	can_hold = list(/obj/item/reagent_containers, /obj/item/reagent_scanner)
 	max_integrity = 200
-	volume = 1000
+	var/container_flags = TRANSPARENT
+	var/max_volume = 3000
+	///List of reagents this dispenser will start with
+	var/list/starting_reagents
 
-/obj/item/reagent_containers/reagent_tank/Initialize()
+/obj/item/storage/reagent_tank/Initialize()
 	. = ..()
+	create_reagents(max_volume, container_flags, starting_reagents)
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/reagent_tank, 3 SECONDS, 3 SECONDS)
+	//Comes with a scanner by default so players can scan the tanks
+	new /obj/item/reagent_scanner/adv (src)
 
-/obj/item/reagent_containers/reagent_tank/update_icon()
+/obj/item/storage/reagent_tank/examine(mob/user)
+	. = ..()
+	. += "[span_bold("Ctrl Click")] an adjacent tile to deploy."
+
+/obj/item/storage/reagent_tank/update_icon()
 	overlays.Cut()
 	icon_state = initial(icon_state)
 	if(reagents.total_volume)
 		var/image/filling = image(icon, src, "[icon_state]")
-		var/percent = round((reagents.total_volume/volume) * 100)
+		var/percent = round((reagents.total_volume/max_volume) * 100)
 		switch(percent)
 			if(0 to 19)
 				filling.icon_state = "[icon_state]_1"
@@ -110,5 +132,54 @@
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		overlays += filling
 
-/obj/item/reagent_containers/reagent_tank/on_reagent_change()
+/obj/item/storage/reagent_tank/on_reagent_change()
 	update_icon()
+
+/obj/item/storage/reagent_tank/attack_hand(mob/living/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return open(user)
+	. = ..()
+
+/obj/item/storage/reagent_tank/open(mob/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		. = ..()
+
+/obj/item/storage/reagent_tank/attempt_draw_object(mob/living/user)
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		balloon_alert(user, "[src] must be deployed!")
+		return FALSE
+	. = ..()
+
+/obj/item/storage/reagent_tank/do_quick_equip(mob/user)
+	balloon_alert(user, "[src] must be deployed!")
+
+/obj/item/storage/reagent_tank/can_be_inserted(obj/item/W, warning)
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		balloon_alert(usr, "Deploy [src] to store [W]!")
+		return FALSE
+	. = ..()
+
+//Preset tanks so you can have these ready for a round and not need to drain the chem master's energy
+/obj/item/storage/reagent_tank/bicaridine
+	name = "portable Bicaridine dispenser"
+	starting_reagents = list(/datum/reagent/medicine/bicaridine = 3000)
+
+/obj/item/storage/reagent_tank/kelotane
+	name = "portable Kelotane dispenser"
+	starting_reagents = list(/datum/reagent/medicine/kelotane = 3000)
+
+/obj/item/storage/reagent_tank/tramadol
+	name = "portable Tramadol dispenser"
+	starting_reagents = list(/datum/reagent/medicine/tramadol = 3000)
+
+/obj/item/storage/reagent_tank/tricordrazine
+	name = "portable Tricordrazine dispenser"
+	starting_reagents = list(/datum/reagent/medicine/tricordrazine = 3000)
+
+/obj/item/storage/reagent_tank/bktt
+	name = "portable BKTT-mix dispenser"
+	starting_reagents = list(
+		/datum/reagent/medicine/bicaridine = 750,
+		/datum/reagent/medicine/kelotane = 750,
+		/datum/reagent/medicine/tramadol = 750,
+		/datum/reagent/medicine/tricordrazine = 750)
