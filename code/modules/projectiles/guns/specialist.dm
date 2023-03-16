@@ -586,8 +586,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/x_component = sin(angle) * -30
 	var/y_component = cos(angle) * -30
 	backblast = new(blast_source, /particles/backblast)
-	backblast.particles.velocity = list(x_component * 1, y_component * 1)
-	QDEL_IN(backblast, 0.6 SECONDS)
+	backblast.particles.velocity = list(x_component, y_component)
+	QDEL_NULL_IN(src, backblast, 0.7 SECONDS)
 
 	if(!backblastdamage)
 		return
