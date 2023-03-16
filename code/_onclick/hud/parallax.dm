@@ -133,7 +133,7 @@
 	if (C.parallax_animate_timer)
 		deltimer(C.parallax_animate_timer)
 	var/datum/callback/CB = CALLBACK(src, .proc/update_parallax_motionblur, C, animatedir, new_parallax_movedir, newtransform)
-	if(skip_windups)
+	if(skip_windups || !shortesttimer) //shorttest timer can be null/0 if we don't have any parallax layers (ie the pref is off)
 		CB.Invoke()
 	else
 		C.parallax_animate_timer = addtimer(CB, min(shortesttimer, PARALLAX_LOOP_TIME), TIMER_CLIENT_TIME|TIMER_STOPPABLE)
