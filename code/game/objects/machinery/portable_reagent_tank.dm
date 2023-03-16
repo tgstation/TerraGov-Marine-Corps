@@ -1,6 +1,7 @@
 /obj/machinery/deployable/reagent_tank
 	name = "portable reagent dispenser"
 	desc = "A large vessel for transporting chemicals. Has a cabinet for storing chemical supplies."
+	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
 	max_integrity = 200
 	examine_internal_item = FALSE
@@ -19,6 +20,7 @@
 	. = ..()
 	. += "The refilling hatch is [is_refillable() ? "open" : "closed"]. [span_bold("Alt Click")] to toggle the hatch."
 	. += "[span_bold("Click")] with an open hand to access the storage cabinet."
+	. += "[span_bold("Click")] with an open hand on [span_bold("Grab")] intent to drink from the nozzle."
 	. += "[span_bold("Drag")] to yourself to undeploy."
 
 /obj/machinery/deployable/reagent_tank/update_icon()
@@ -53,8 +55,34 @@
 
 /obj/machinery/deployable/reagent_tank/attack_hand(mob/living/user)
 	. = ..()
+	if(user.a_intent == INTENT_GRAB)
+		return drink_from_nozzle(user)
 	var/obj/item/storage/internal_bag = internal_item
 	internal_bag.open(user)
+
+/obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(X.a_intent != INTENT_HARM)
+		return drink_from_nozzle(X, TRUE)
+	. = ..()
+
+///Process for drinking reagents directly from the dispenser's nozzle
+/obj/machinery/deployable/reagent_tank/proc/drink_from_nozzle(mob/living/user, is_xeno = FALSE)
+	if(isrobot(user) || issynth(user))
+		balloon_alert(user, "You are incapable of drinking!")
+		return FALSE
+	if(reagents?.total_volume)
+		if(!is_xeno)
+			//Everyone will be made aware of your nasty habits!
+			visible_message(span_alert("[user] is putting [user.p_their()] mouth on [src]'s nozzle. Gross!"))
+		if(!do_after(user, 0.5 SECONDS, FALSE, src, BUSY_ICON_DANGER))
+			return FALSE
+		if(is_xeno)
+			visible_message(span_alert("[user] sips from [src]'s nozzle. Adorable."))
+		playsound(user.loc,'sound/items/drink.ogg', 25, 2)
+		reagents.reaction(user, INGEST)
+		reagents.trans_to(user, 5)
+		return TRUE
+	balloon_alert(user, "It's empty!")
 
 /obj/machinery/deployable/reagent_tank/attackby(obj/item/I, mob/user, params)
 	if(I.is_refillable())
@@ -182,5 +210,5 @@
 		/datum/reagent/medicine/bicaridine = 750,
 		/datum/reagent/medicine/kelotane = 750,
 		/datum/reagent/medicine/tramadol = 750,
-		/datum/reagent/medicine/tricordrazine = 750
+		/datum/reagent/medicine/tricordrazine = 750,
 		)
