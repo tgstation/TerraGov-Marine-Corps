@@ -1619,6 +1619,11 @@ VEHICLES
 	cost = 200
 	contains = list(/obj/item/sidecar)
 
+/datum/supply_packs/vehicles/jerrycan
+	name = "Jerry Can"
+	cost = 100
+	contains = list(/obj/item/reagent_containers/jerrycan)
+
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
