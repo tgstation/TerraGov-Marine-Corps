@@ -1246,7 +1246,7 @@ TUNNEL
 	hivenumber = hivenum
 
 //Pheromone towers start off with recovery.
-	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO)
+	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	playsound(src, "alien_drool", 25)
 	update_icon()
 
@@ -1269,7 +1269,7 @@ TUNNEL
 		return
 
 	QDEL_NULL(current_aura)
-	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO)
+	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	balloon_alert(X, "[phero_choice]")
 	playsound(src, "alien_drool", 25)
 	update_icon()
