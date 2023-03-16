@@ -272,3 +272,30 @@
   - code_imp: Updates SSminimaps to account for BYOND error being fixed
   tyeagg:
   - rscadd: add shuttle dust particles when shuttle landing
+2023-03-16:
+  FosterGrime-Heymynameslouie:
+  - qol: infinite pre filled ammo boxes in op vendor
+  Naaanii:
+  - rscadd: Added Garand thumb mechanic. (1% chance to deal 1 brute when reloading
+      a Garand)
+  - rscadd: Adds more options of pizzas to spawn with the pizza ERT.
+  QualityVan:
+  - qol: Cauteries can't infect you. They already couldn't, but now they extra can't.
+  - balance: Spaceacillin OD doesn't prevent necrosis from forming
+  TiviPlus:
+  - rscadd: Revamped drop pod interactivity
+  - rscadd: Added Leader drop pods that can control other drop pods
+  - bugfix: Fixed drop pods sometimes sending you into space
+  - imageadd: Leader pod sprite by Revalation
+  - code_imp: Cleaned up drop pod code a little
+  Xander3359:
+  - bugfix: You can pull out a powerfist while holding something in your off-hand
+      (oops)
+  ivanmixo:
+  - bugfix: Fixes a runtime related to parallax
+  - rscadd: Added the slippery component
+  - refactor: Refactored the way slips work
+  - rscadd: You can now spawn as a xenomorph in valhalla, and can spawn dummy humans
+      which you can also select outfits for.
+  - bugfix: Fixed pre shutter mazing trying to access owner before it's assigned
+  - rscdel: Disabled wall weeds

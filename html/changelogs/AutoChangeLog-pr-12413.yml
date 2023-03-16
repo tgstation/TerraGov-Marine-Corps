@@ -1,8 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Revamped drop pod interactivity"
-  - rscadd: "Added Leader drop pods that can control other drop pods"
-  - bugfix: "Fixed drop pods sometimes sending you into space"
-  - imageadd: "Leader pod sprite by Revalation"
-  - code_imp: "Cleaned up drop pod code a little"
