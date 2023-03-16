@@ -288,7 +288,7 @@ TUNNEL
 
 /obj/structure/xeno/tunnel/Initialize(mapload)
 	. = ..()
-	GLOB.xeno_tunnels += src //todo make this by hive too
+	LAZYADD(GLOB.xeno_tunnels_by_hive[hivenumber], src) //todo make this by hive too
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
@@ -305,7 +305,7 @@ TUNNEL
 
 	xeno_message("Hive tunnel [name] at [tunnel_desc] has been destroyed!", "xenoannounce", 5, hivenumber) //Also alert hive because tunnels matter.
 
-	GLOB.xeno_tunnels -= src
+	LAZYREMOVE(GLOB.xeno_tunnels_by_hive[hivenumber], src)
 	if(creator)
 		creator.tunnels -= src
 	creator = null
@@ -360,7 +360,7 @@ TUNNEL
 		balloon_alert(X, "Cannot enter while immobile")
 		return FALSE
 
-	if(length(GLOB.xeno_tunnels) < 2)
+	if(length(GLOB.xeno_tunnels_by_hive[hivenumber]) < 2)
 		balloon_alert(X, "No exit tunnel")
 		return FALSE
 
@@ -371,7 +371,7 @@ TUNNEL
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
-	var/obj/structure/xeno/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels)
+	var/obj/structure/xeno/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels_by_hive[hivenumber])
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one

@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(monitor)
 
 	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		//Balance spawners output
-		for(var/silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) //todo make this by hive
+		for(var/silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
 		for(var/spawner in GLOB.xeno_spawners_by_hive[XENO_HIVE_NORMAL])
