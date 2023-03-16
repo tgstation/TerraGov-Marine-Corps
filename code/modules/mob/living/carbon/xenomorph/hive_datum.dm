@@ -103,10 +103,10 @@
 
 	.["hive_structures"] = list()
 	// Silos
-	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(resin_silo))
 	// Acid, sticky, and hugger turrets.
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[hivenumber]) //TODO make *all* of these hive specific
 		.["hive_structures"] += list(get_structure_packet(turret))
 	// Maturity towers
 	for(var/obj/structure/xeno/maturitytower/tower AS in GLOB.hive_datums[hivenumber].maturitytowers)
@@ -118,7 +118,7 @@
 	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Spawners
-	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawner)
+	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))
 
 	.["xeno_info"] = list()
@@ -974,7 +974,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
-	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
+	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structures_by_hive[XENO_HIVE_NORMAL])
 		if(!is_ground_level(structure.z) || structure.xeno_structure_flags & DEPART_DESTRUCTION_IMMUNE)
 			continue
 		qdel(structure)
@@ -1477,10 +1477,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
 	return FALSE
-
-
-/obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
-	return associated_hive.hivenumber
 
 /obj/structure/xeno/evotower/get_xeno_hivenumber()
 	return hivenumber
