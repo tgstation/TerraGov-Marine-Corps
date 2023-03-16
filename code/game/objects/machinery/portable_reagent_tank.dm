@@ -211,4 +211,4 @@
 		/datum/reagent/medicine/kelotane = 750,
 		/datum/reagent/medicine/tramadol = 750,
 		/datum/reagent/medicine/tricordrazine = 750,
-		)
+	)
