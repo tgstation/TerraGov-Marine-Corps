@@ -481,42 +481,6 @@
 	placed_overlay_iconstate = "wood"
 
 //***********************************************************
-// Derringer
-
-/obj/item/weapon/gun/shotgun/double/derringer
-	name = "R-2395 Derringer"
-	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
-	icon_state = "derringer"
-	item_state = "tp17"
-	gun_skill_category = SKILL_PISTOLS
-	w_class = WEIGHT_CLASS_TINY
-	caliber = CALIBER_41RIM //codex
-	muzzle_flash_lum = 5
-	max_chamber_items = 2 //codex
-	ammo_datum_type = /datum/ammo/bullet/pistol/superheavy/derringer
-	default_ammo_type = /datum/ammo/bullet/pistol/superheavy/derringer
-	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
-	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
-	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
-	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-
-	fire_delay = 0.5 SECONDS
-	scatter = 2
-	recoil = 1
-	recoil_unwielded = 1
-	aim_slowdown = 0
-	wield_delay = 0.5 SECONDS
-
-/obj/item/weapon/gun/shotgun/double/derringer/Initialize()
-	. = ..()
-	if(round(rand(1, 10), 1) != 1)
-		return
-	base_gun_icon = "derringerw"
-	update_icon()
-
-//***********************************************************
 // Yee Haw it's a cowboy lever action gun!
 
 /obj/item/weapon/gun/shotgun/pump/lever

@@ -752,19 +752,6 @@
 	spawn_number = 40
 	spawn_type = /obj/item/ammo_magazine/pistol/vp70
 
-
-/obj/item/storage/box/visual/magazine/compact/derringer
-	name = "Derringer ammo packet box"
-	desc = "A box specifically designed to hold a large amount of Derringer ammo packets."
-	closed_overlay = "mag_box_small_overlay_derringer"
-	can_hold = list(
-		/obj/item/ammo_magazine/pistol/derringer,
-	)
-
-/obj/item/storage/box/visual/magazine/compact/derringer/full
-	spawn_number = 40
-	spawn_type = /obj/item/ammo_magazine/pistol/derringer
-
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol
 	name = "PP-7 plasma cell box"
 	desc = "A box specifically designed to hold a large amount of PP-7 plasma cells."

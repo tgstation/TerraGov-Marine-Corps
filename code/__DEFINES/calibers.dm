@@ -11,7 +11,6 @@
 #define CALIBER_380ACP ".380 ACP"
 #define CALIBER_PLASMA "Ionized Plasma Bolt" //PP-7 Plasma Pistol
 #define CALIBER_50AE ".50 AE"
-#define CALIBER_41RIM ".41 Rimfire" //Derringer
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
 
 // Revolvers

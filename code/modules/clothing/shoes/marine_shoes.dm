@@ -18,7 +18,6 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
-		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
