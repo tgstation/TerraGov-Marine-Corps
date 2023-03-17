@@ -15,3 +15,13 @@
 	if(target == user && !user.do_self_harm)
 		return
 	return ..()
+
+/obj/item/weapon/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/tool/pen))
+		var/new_name = reject_bad_text(stripped_input(user, "Rename your weapon:"))
+		if(!new_name)
+			to_chat(user, "Invalid name.")
+			return
+		name = new_name
+		to_chat(user, "<span class='notice'>You gave your weapon a name. Say hello to your new friend.</span>")
