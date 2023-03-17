@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - balance: "lowers MR surgery skill"
+  - bugfix: "MRs now have their own skill set instead of inheriting it from doctors"
