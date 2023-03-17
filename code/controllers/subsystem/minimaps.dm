@@ -118,7 +118,11 @@ SUBSYSTEM_DEF(minimaps)
 			depthcount++
 			continue
 		for(var/datum/minimap_updator/updator AS in update_targets[flag])
-			updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw[flag]
+			//assignment is crazy fast compared to += and it automatically copies for overlays
+			if(length(updator.minimap.overlays))
+				updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw[flag]
+			else
+				updator.minimap.overlays = minimaps_by_z["[updator.ztarget]"].images_raw[flag]
 		depthcount++
 		iteration++
 		if(MC_TICK_CHECK)
