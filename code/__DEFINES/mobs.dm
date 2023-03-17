@@ -503,8 +503,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_HOLD_ONE_HAND 2
 
 #define CASTE_INNATE_HEALING (1<<0) // Xenomorphs heal outside of weeds. Larvas, for example.
-#define CASTE_FIRE_IMMUNE (1<<1)
-#define CASTE_EVOLUTION_ALLOWED (1<<2)
+#define CASTE_FIRE_IMMUNE (1<<1) //Are we immune to fire
+#define CASTE_EVOLUTION_ALLOWED (1<<2) //If we're allowed to evolve (also affects the gain of evo points)
 #define CASTE_IS_INTELLIGENT (1<<3) // A hive leader or able to use more human controls
 #define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<4) //Doesn't alert the hive when at low life, and is quieter when dying
 #define CASTE_HIDE_IN_STATUS (1<<5)
@@ -518,7 +518,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
 #define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
-#define CASTE_DOES_NOT_AGE (1<<16) //This caste doesn't age
 
 // Xeno defines that affect evolution, considering making a new var for these
 #define CASTE_LEADER_TYPE (1<<16) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions

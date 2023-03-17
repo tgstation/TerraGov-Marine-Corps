@@ -89,7 +89,7 @@
 
 ///returns TRUE if we are permitted to evo to the next caste FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
-	if((xeno_caste.caste_flags & CASTE_DOES_NOT_AGE) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return FALSE
 	if(upgrade == XENO_UPGRADE_THREE)
 		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
