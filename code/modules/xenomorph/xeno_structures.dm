@@ -42,6 +42,17 @@
 	SIGNAL_HANDLER
 	obj_destruction(damage_flag = "melee")
 
+/obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!(HAS_TRAIT(X, TRAIT_VALHALLA_XENO) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
+		return ..()
+	if(!do_after(X, 3 SECONDS, TRUE, src))
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	balloon_alert_to_viewers("\The [X] tears down \the [src]!", "We tear down \the [src].")
+	playsound(src, "alien_resin_break", 25)
+	take_damage(max_integrity) // Ensure its destroyed
+
+
 //Carrier trap
 /obj/structure/xeno/trap
 	desc = "It looks like a hiding hole."
@@ -1208,7 +1219,7 @@ TUNNEL
 	hivenumber = hivenum
 
 //Pheromone towers start off with recovery.
-	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO)
+	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	playsound(src, "alien_drool", 25)
 	update_icon()
 
@@ -1231,7 +1242,7 @@ TUNNEL
 		return
 
 	QDEL_NULL(current_aura)
-	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO)
+	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	balloon_alert(X, "[phero_choice]")
 	playsound(src, "alien_drool", 25)
 	update_icon()

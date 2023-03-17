@@ -213,7 +213,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(xeno_caste.evolves_to))
+	if(isnull(xeno_caste.evolves_to) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 
@@ -293,6 +293,8 @@
 				new_mob_type = /mob/living/carbon/xenomorph/queen/Zeta
 			if(XENO_HIVE_ADMEME)
 				new_mob_type = /mob/living/carbon/xenomorph/queen/admeme
+			if(XENO_HIVE_FALLEN)
+				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted/fallen
 
 	if(!regression)
 		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)

@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Reverted a flag and fixed some evolution issues with certain xeno castes"

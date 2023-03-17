@@ -366,6 +366,7 @@
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\shield.dm"
 #include "code\datums\components\sizzle.dm"
+#include "code\datums\components\slippery.dm"
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\components\suit_autodoc.dm"

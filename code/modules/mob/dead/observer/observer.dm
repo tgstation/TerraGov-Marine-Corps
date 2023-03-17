@@ -243,7 +243,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
-	animate(client, pixel_x = 0, pixel_y = 0)
+	if(client)
+		animate(client, pixel_x = 0, pixel_y = 0)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -900,17 +901,30 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
-	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_all)
+	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+
+	if(choice == "Xenomorph")
+		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)
+		if(!xeno_choice)
+			return
+		log_game("[key_name(usr)] has joined Valhalla as a Xenomorph.")
+		var/mob/living/carbon/xenomorph/new_xeno = new xeno_choice(pick(GLOB.spawns_by_job[/datum/job/fallen/xenomorph]))
+		new_xeno.transfer_to_hive(XENO_HIVE_FALLEN)
+		ADD_TRAIT(new_xeno, TRAIT_VALHALLA_XENO, VALHALLA_TRAIT)
+		var/datum/job/xallhala_job = SSjob.GetJobType(/datum/job/fallen/xenomorph)
+		new_xeno.apply_assigned_role_to_spawn(xallhala_job)
+		SSpoints.xeno_points_by_hive[XENO_HIVE_FALLEN] = 10000
+		mind.transfer_to(new_xeno, TRUE)
+		xallhala_job.after_spawn(new_xeno)
+		return
+
+	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_marine)
 	if(!valhalla_job)
 		return
-	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
+	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen/marine]))
 	valhalla_job = SSjob.GetJobType(valhalla_job)
-	if(valhalla_job.outfit)
-		new_fallen.delete_equipment(TRUE)
-		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
-		new_fallen.regenerate_icons()
 
-	log_game("[key_name(usr)] has joined Valhalla.")
+	log_game("[key_name(usr)] has joined Valhalla as a Marine.")
 	client.prefs.copy_to(new_fallen)
 	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
 	mind.transfer_to(new_fallen, TRUE)
