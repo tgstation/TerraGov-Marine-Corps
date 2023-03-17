@@ -2382,7 +2382,6 @@
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "dfx" = (
 /obj/item/clothing/suit/space/rig,
-/obj/item/clothing/head/helmet/space/syndicate,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dfR" = (

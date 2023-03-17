@@ -1,23 +1,5 @@
 
 
-//Deathsquad suit
-/obj/item/clothing/head/helmet/space/deathsquad
-	name = "deathsquad helmet"
-	desc = "That's not red paint. That's real blood."
-	icon_state = "deathsquad"
-	item_state = "deathsquad"
-	soft_armor = list(MELEE = 65, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 100, FIRE = 20, ACID = 20)
-	siemens_coefficient = 0.6
-
-/obj/item/clothing/head/helmet/space/deathsquad/beret
-	name = "officer's beret"
-	desc = "An armored beret commonly used by special operations officers."
-	icon_state = "beret_badge"
-	soft_armor = list(MELEE = 65, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 30, FIRE = 20, ACID = 20)
-	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEYES
-	siemens_coefficient = 0.9
-
 //Space santa outfit suit
 /obj/item/clothing/head/helmet/space/santahat
 	name = "Santa's hat"
@@ -58,24 +40,6 @@
 	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, FIRE = 15, ACID = 15)
 	siemens_coefficient = 0.9
 	flags_armor_protection = CHEST|ARMS
-
-
-
-/obj/item/clothing/head/helmet/space/compression
-	name = "\improper MK.50 compression helmet"
-	desc = "A heavy space helmet, designed to be coupled with the MK.50 compression suit, though it is less resilient than the suit. Feels like you could hotbox in here."
-	item_state = "compression"
-	icon_state = "compression"
-	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 40, ENERGY = 55, BOMB = 40, BIO = 100, FIRE = 55, ACID = 55)
-	resistance_flags = UNACIDABLE
-
-/obj/item/clothing/suit/space/compression
-	name = "\improper MK.50 compression suit"
-	desc = "A heavy, bulky civilian space suit, fitted with armored plates. Commonly seen in the hands of mercenaries, explorers, scavengers, and researchers."
-	item_state = "compression"
-	icon_state = "compression"
-	soft_armor = list(MELEE = 40, BULLET = 55, LASER = 65, ENERGY = 70, BOMB = 65, BIO = 100, FIRE = 70, ACID = 70)
-	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/head/helmet/space/chronos
 	name = "\improper Chronos Mk 0 Bluespace helmet"
