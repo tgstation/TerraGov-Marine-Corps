@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscdel: "Removed you being notified of nearby players being hit by bullets"
