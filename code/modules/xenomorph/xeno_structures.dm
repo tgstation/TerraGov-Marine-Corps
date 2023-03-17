@@ -11,12 +11,11 @@
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
-	if(!(GLOB.xeno_structures_by_hive[hivenumber]))
-		GLOB.xeno_structures_by_hive[hivenumber] = list()
-	GLOB.xeno_structures_by_hive[hivenumber] += src
+	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures += src
-	src.hivenumber = hivenumber
+	if(hivenumber) ///because admins can spawn them
+		src.hivenumber = hivenumber
 
 /obj/structure/xeno/Destroy()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
@@ -288,7 +287,7 @@ TUNNEL
 
 /obj/structure/xeno/tunnel/Initialize(mapload)
 	. = ..()
-	LAZYADD(GLOB.xeno_tunnels_by_hive[hivenumber], src) //todo make this by hive too
+	LAZYADDASSOC(GLOB.xeno_tunnels_by_hive, hivenumber, src)
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
@@ -744,9 +743,7 @@ TUNNEL
 	name = "[siloprefix == "Normal" ? "" : "[siloprefix] "][name] [number]"
 	number_silo = number
 	number++
-	if(!(hivenumber in GLOB.xeno_resin_silos_by_hive))
-		GLOB.xeno_resin_silos_by_hive[hivenumber] = list()
-	GLOB.xeno_resin_silos_by_hive[hivenumber] += src
+	LAZYADDASSOC(GLOB.xeno_resin_silos_by_hive, hivenumber, src)
 
 	if(!locate(/obj/alien/weeds) in center_turf)
 		new /obj/alien/weeds/node(center_turf)
@@ -903,9 +900,7 @@ TUNNEL
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	potential_hostiles = list()
-	if(!(GLOB.xeno_resin_turrets_by_hive[hivenumber]))
-		GLOB.xeno_resin_turrets_by_hive[hivenumber] = list()
-	GLOB.xeno_resin_turrets_by_hive[hivenumber] += src
+	LAZYADDASSOC(GLOB.xeno_resin_turrets_by_hive, hivenumber, src)
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
@@ -1267,9 +1262,7 @@ TUNNEL
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
-	if(!(GLOB.xeno_spawners_by_hive[hivenumber]))
-		GLOB.xeno_spawners_by_hive[hivenumber] = list()
-	GLOB.xeno_spawners_by_hive[hivenumber] += src
+	LAZYADDASSOC(GLOB.xeno_spawners_by_hive, hivenumber, src)
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
