@@ -163,6 +163,7 @@
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)
+	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
 	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
 
 /datum/chemical_reaction/lemoline
