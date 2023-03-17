@@ -145,6 +145,8 @@
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
+		for(var/datum/action/xeno_action/xenohide)
+			xenohide.button.cut_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Убирает рамку вокруг способности Hide, так, как ты больше не прячешься
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 
