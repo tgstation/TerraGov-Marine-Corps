@@ -211,9 +211,12 @@ GLOBAL_PROTECT(exp_to_update)
 			if(announce_changes)
 				to_chat(src,span_notice("You got: [minutes] Living EXP!"))
 			if(living_mob.job)
-				play_records[living_mob.job.title] += minutes
-				if(announce_changes)
-					to_chat(src,span_notice("You got: [minutes] [living_mob.job] EXP!"))
+				if(!istype(living_mob.job, /datum/job/fallen))
+					play_records[living_mob.job.title] += minutes
+					if(announce_changes)
+						to_chat(src,span_notice("You got: [minutes] [living_mob.job] EXP!"))
+				else
+					play_records["Valhalla"] += minutes
 			else
 				play_records["Unknown"] += minutes
 		else
