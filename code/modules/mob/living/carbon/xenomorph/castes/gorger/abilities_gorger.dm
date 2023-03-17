@@ -158,6 +158,7 @@
 
 	REMOVE_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	target_human.blur_eyes(1)
+	target_human.blood_volume -= 10
 	add_cooldown()
 
 #undef DO_DRAIN_ACTION
@@ -194,7 +195,7 @@
 
 	if(owner.do_actions)
 		return FALSE
-	if(!line_of_sight(owner, target_xeno, 2) || get_dist(owner, target_xeno) > 2)
+	if(!line_of_sight(owner, target_xeno, 3) || get_dist(owner, target_xeno) > 3)
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
@@ -202,7 +203,7 @@
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
-	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE))
 		return FALSE
 	return TRUE
 
@@ -405,7 +406,7 @@
 	name = "Feast"
 	action_icon_state = "feast"
 	desc = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	cooldown_timer = 180 SECONDS
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
