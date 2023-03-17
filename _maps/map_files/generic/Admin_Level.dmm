@@ -1677,7 +1677,7 @@
 /area/centcom/valhalla/crew_quarters/captain)
 "cjO" = (
 /obj/structure/closet/secure_closet/captains,
-/obj/item/clothing/suit/armor/captain,
+/obj/item/clothing/suit/space/captain,
 /obj/item/clothing/under/gimmick/rank/captain/suit,
 /obj/item/clothing/gloves/captain,
 /obj/item/card/id/captains_spare,

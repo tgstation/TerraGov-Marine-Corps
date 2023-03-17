@@ -103956,6 +103956,15 @@
 	},
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/item/clothing/head/helmet/space/syndicate/black,
+/obj/item/clothing/head/helmet/space/syndicate/black{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/head/helmet/space/syndicate/black{
+	pixel_x = -2;
+	pixel_y = 2
+	},
 /obj/structure/window/reinforced{
 	dir = 1;
 	pixel_y = 2
@@ -114701,6 +114710,12 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
+"xgM" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/clothing/head/helmet/space/syndicate/black/engie,
+/obj/item/clothing/suit/space/syndicate/black/engie,
+/turf/open/floor/engine,
+/area/deltastation/asteroidcaves/ship/two)
 "xgO" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -146549,8 +146564,8 @@ mUx
 wxm
 uyW
 uyW
-gRO
-gRO
+xgM
+xgM
 uyW
 uyW
 wxm
