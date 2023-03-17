@@ -276,12 +276,12 @@
 		var/turf/open/floor/plating/ground/snow/ST = T
 		if(!ST.slayer)
 			return
-		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, span_notice("You start melting the [target.name] with [src].")))
+		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
-		if(!cell.charge >= PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD || !powered)
+		if(!powered)
 			fizzle_message(user)
 			return
 		if(!turfdirt == DIRT_TYPE_SNOW)
@@ -290,7 +290,7 @@
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
 		ST.update_icon(1,0)
-		cut_apart(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "You melt the snow with [src]. ") //costs 25% normal
+		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
 
 
 
