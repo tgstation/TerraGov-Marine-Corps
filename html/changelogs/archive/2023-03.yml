@@ -299,3 +299,8 @@
       which you can also select outfits for.
   - bugfix: Fixed pre shutter mazing trying to access owner before it's assigned
   - rscdel: Disabled wall weeds
+2023-03-17:
+  Xander3359:
+  - rscadd: Jerrycans are now in the vehicles category in req for 100 points.
+  ivanmixo:
+  - bugfix: Fixed non-normal hive pheros not working
