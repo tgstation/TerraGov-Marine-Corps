@@ -738,11 +738,9 @@ TUNNEL
 
 /obj/structure/xeno/silo/LateInitialize()
 	. = ..()
-	var/static/number = 1
 	var/siloprefix = GLOB.hive_datums[hivenumber].name
-	name = "[siloprefix == "Normal" ? "" : "[siloprefix] "][name] [number]"
-	number_silo = number
-	number++
+	number_silo = length(GLOB.xeno_resin_silos_by_hive[hivenumber]) + 1
+	name = "[siloprefix == "Normal" ? "" : "[siloprefix] "][name] [number_silo]"
 	LAZYADDASSOC(GLOB.xeno_resin_silos_by_hive, hivenumber, src)
 
 	if(!locate(/obj/alien/weeds) in center_turf)
