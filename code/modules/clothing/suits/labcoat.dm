@@ -5,7 +5,6 @@
 	item_state = "labcoat_open"
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
-	pockets = /obj/item/storage/internal/modular/medical
 	permeability_coefficient = 0.6
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, FIRE = 0, ACID = 0)
 	allowed = list(
