@@ -2086,10 +2086,10 @@
 	inhand_y_dimension = 32
 
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = 'sound/weapons/guns/fire/fnfal.ogg'
+	fire_sound = "fal_fire"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/fal_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/fal_reload.ogg'
 	caliber = CALIBER_10x27_CASELESS //codex
 	aim_slowdown = 0.8
 	wield_delay = 0.85 SECONDS
