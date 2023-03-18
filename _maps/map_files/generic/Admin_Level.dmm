@@ -4710,7 +4710,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gil" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/suit/fire,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/head/hardhat/red,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -5307,7 +5307,6 @@
 /area/centcom/valhalla/primary/aft)
 "hbV" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/laserproof,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/spawner/random/gun/sidearms,
 /obj/effect/spawner/random/gun/sidearms,
@@ -12683,7 +12682,7 @@
 /area/centcom/valhalla/port)
 "qVI" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/suit/fire,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/head/hardhat/red,
 /obj/effect/turf_decal/warning_stripes/thick,

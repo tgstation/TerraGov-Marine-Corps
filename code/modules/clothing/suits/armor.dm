@@ -75,15 +75,6 @@
 	item_state = "warden_jacket"
 	flags_armor_protection = CHEST|GROIN|ARMS
 
-/obj/item/clothing/suit/armor/laserproof
-	name = "Ablative Armor Vest"
-	desc = "A vest that excels in protecting the wearer against energy projectiles."
-	icon_state = "armor_reflec"
-	item_state = "armor_reflec"
-	blood_overlay_type = "armor"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 80, ENERGY = 50, BOMB = 0, BIO = 0, FIRE = 50, ACID = 50)
-	siemens_coefficient = 0
-
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
@@ -160,25 +151,6 @@
 	flags_armor_protection = CHEST|GROIN
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
-
-
-//Reactive armor
-/obj/item/clothing/suit/armor/reactive
-	name = "Reactive Shield Armor"
-	desc = "Highly experimental armor. Do not use outside of controlled lab conditions."
-	icon_state = "reactiveoff"
-	item_state = "reactiveoff"
-	blood_overlay_type = "armor"
-	slowdown = 1
-	flags_atom = CONDUCT
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-
-/obj/item/clothing/suit/armor/reactive/Initialize()
-	. = ..()
-	AddComponent(/datum/component/shield/overhealth)
-
-/obj/item/clothing/suit/armor/reactive/red
-	shield_state = "shield-red"
 
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"

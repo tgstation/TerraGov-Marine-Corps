@@ -142,7 +142,7 @@
 		new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	else
 		new /obj/item/armor_module/storage/uniform/webbing(src)
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tool/extinguisher(src)
