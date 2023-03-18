@@ -491,6 +491,7 @@
 	gun_skill_category = SKILL_PISTOLS
 	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_41RIM //codex
+	suicide_delay = 0
 	muzzle_flash_lum = 5
 	max_chamber_items = 2 //codex
 	ammo_datum_type = /datum/ammo/bullet/pistol/superheavy/derringer

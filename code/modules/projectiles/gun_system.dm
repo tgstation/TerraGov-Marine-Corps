@@ -9,6 +9,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
+	var/suicide_delay = 40
 	max_integrity = 250
 	w_class 	= 3
 	throwforce 	= 5
@@ -1004,7 +1005,7 @@
 	user.visible_message(span_warning("[user] sticks their gun in their mouth, ready to pull the trigger."))
 	log_combat(user, null, "is trying to commit suicide")
 
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, suicide_delay, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message(span_notice("[user] decided life was worth living."))
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
