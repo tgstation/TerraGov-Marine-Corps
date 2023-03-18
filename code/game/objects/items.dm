@@ -8,7 +8,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	icon = 'icons/obj/items/items.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	materials = list(/datum/material/metal = 50)
 	light_system = MOVABLE_LIGHT
 	flags_pass = PASSTABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION

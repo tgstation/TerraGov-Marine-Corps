@@ -167,6 +167,37 @@
 	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 
 // ***************************************
+// *********** Spiderling mark
+// ***************************************
+
+/datum/action/xeno_action/activable/spiderling_mark
+	name = "Spiderling Mark"
+	ability_name = "spiderling_mark"
+	desc = "Send your spawn on a valid target, they will automatically destroy themselves out of sheer fury after 15 seconds."
+	action_icon_state = "spiderling_mark"
+	plasma_cost = 50
+	cooldown_timer = 5 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPIDERLING_MARK,
+	)
+
+/datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
+	. = ..()
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	if(length(create_spiderling_action.spiderlings) <= 0)
+		owner.balloon_alert(owner, "No spiderlings")
+		return fail_activate()
+	if(!isturf(A))
+		owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
+		succeed_activate()
+	else
+		A = null
+		owner.balloon_alert(owner, "Nothing to attack")
+		fail_activate()
+	SEND_SIGNAL(owner, COMSIG_SPIDERLING_MARK, A)
+	add_cooldown()
+
+// ***************************************
 // *********** Burrow
 // ***************************************
 

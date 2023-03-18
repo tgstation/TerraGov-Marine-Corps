@@ -7,7 +7,8 @@
 
 /datum/outfit/job/som/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.undershirt = 6
+	H.underwear = 10
+	H.undershirt = H.undershirt ? 10 : 0
 	H.regenerate_icons()
 
 //Base job for normal gameplay SOM, not ERT.
@@ -49,7 +50,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 //SOM Standard
 /datum/job/som/squad/standard
 	title = SOM_SQUAD_MARINE
-	paygrade = "SOM1"
+	paygrade = "SOM_E1"
 	comm_title = "Mar"
 	minimap_icon = "private"
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -70,6 +71,28 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the Sons of Mars.
 	"}
 
+/datum/job/som/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "SOM_E1"
+		if(601 to 6000) // 10hrs
+			new_human.wear_id.paygrade = "SOM_E2"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_E3"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_E4"
+		if(30001 to 60000) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_E5"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "SOM_S1"
+
 /datum/job/som/squad/standard/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
@@ -84,7 +107,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 /datum/job/som/squad/engineer
 	title = SOM_SQUAD_ENGINEER
-	paygrade = "SOM2"
+	paygrade = "SOM_E3"
 	comm_title = "Eng"
 	total_positions = 12
 	skills_type = /datum/skills/combat_engineer
@@ -106,6 +129,26 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
+/datum/job/som/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "SOM_E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "SOM_E4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_E5"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_S1"
+		if(30001 to INFINITY) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_S2"
+
 /datum/job/som/squad/engineer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
@@ -120,7 +163,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 /datum/job/som/squad/medic
 	title = SOM_SQUAD_CORPSMAN
-	paygrade = "SOM2"
+	paygrade = "SOM_E3"
 	comm_title = "Med"
 	total_positions = 16
 	minimap_icon = "medic"
@@ -142,6 +185,26 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength.
 	"}
 
+/datum/job/som/squad/medic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "SOM_E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "SOM_E4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_E5"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_S1"
+		if(30001 to INFINITY) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_S2"
+
 /datum/job/som/squad/medic/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
@@ -156,8 +219,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/som/squad/veteran
 	title = SOM_SQUAD_VETERAN
-	paygrade = "SOM3"
-	comm_title = "SGnr"
+	paygrade = "SOM_S1"
+	comm_title = "Vet"
 	total_positions = 8
 	skills_type = /datum/skills/crafty //smarter than the average bear
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
@@ -175,6 +238,26 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		<b>Duty</b>: Show your comrades how a true Son of Mars acts, and crush our enemies without mercy!.
 	"}
 
+/datum/job/som/squad/veteran/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "SOM_S1"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "SOM_S2"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_S3"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_S4"
+		if(30001 to INFINITY) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_S5"
+
 /datum/job/som/squad/veteran/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are the a Veteran among the SOM. With your long experience (and better training and equipment), your job is to provide special weapons support to bolster the line."})
@@ -187,7 +270,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/som/squad/leader
 	title = SOM_SQUAD_LEADER
 	req_admin_notify = TRUE
-	paygrade = "SOM3"
+	paygrade = "SOM_S3"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
@@ -212,6 +295,32 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		<b>Duty</b>: Be a responsible leader of your squad, make sure your squad communicates frequently all the time and ensure they are working together for the task at hand. Stay safe, as you’re a valuable leader.
 	"}
 
+/datum/job/som/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(C))
+		return
+	var/mob/living/carbon/human/new_human = C
+	var/playtime_mins = user?.client?.get_exp(title)
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "SOM_S3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "SOM_S4"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "SOM_S5"
+		if(18001 to 30000) // 300 hrs
+			new_human.wear_id.paygrade = "SOM_W1"
+		if(30001 to INFINITY) // 500 hrs
+			new_human.wear_id.paygrade = "SOM_W2"
+	if(!latejoin)
+		return
+	if(!new_human.assigned_squad)
+		return
+	if(new_human.assigned_squad.squad_leader != new_human)
+		if(new_human.assigned_squad.squad_leader)
+			new_human.assigned_squad.demote_leader()
+		new_human.assigned_squad.promote_leader(new_human)
+
 /datum/job/som/squad/leader/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
@@ -235,7 +344,7 @@ You are also in charge of communicating with command and letting them know about
 //SOM Standard
 /datum/job/som/ert/standard
 	title = "SOM Standard"
-	paygrade = "SOM1"
+	paygrade = "SOM_E3"
 	outfit = /datum/outfit/job/som/ert/standard/standard_assaultrifle
 	multiple_outfits = TRUE
 	outfits = list(
@@ -375,7 +484,7 @@ You are also in charge of communicating with command and letting them know about
 //SOM Medic
 /datum/job/som/ert/medic
 	title = "SOM Medic"
-	paygrade = "SOM2"
+	paygrade = "SOM_E4"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/ert/medic/standard_assaultrifle
 	multiple_outfits = TRUE
@@ -489,7 +598,7 @@ You are also in charge of communicating with command and letting them know about
 //SOM Veteran
 /datum/job/som/ert/veteran
 	title = "SOM Veteran"
-	paygrade = "SOM3"
+	paygrade = "SOM_S1"
 	outfit = /datum/outfit/job/som/ert/veteran/charger
 	multiple_outfits = TRUE
 	outfits = list(
@@ -613,8 +722,8 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BELT)
@@ -656,8 +765,8 @@ You are also in charge of communicating with command and letting them know about
 /datum/outfit/job/som/ert/veteran/rpg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, SLOT_IN_L_POUCH)
@@ -722,7 +831,7 @@ You are also in charge of communicating with command and letting them know about
 //SOM Specialist - special weapon vets
 /datum/job/som/ert/specialist
 	title = "SOM Specialist"
-	paygrade = "SOM3"
+	paygrade = "SOM_S2"
 	outfit = /datum/outfit/job/som/ert/veteran/culverin
 	multiple_outfits = TRUE
 	outfits = list(
@@ -736,7 +845,7 @@ You are also in charge of communicating with command and letting them know about
 /datum/job/som/ert/leader
 	job_category = JOB_CAT_COMMAND
 	title = "SOM Leader"
-	paygrade = "SOM3"
+	paygrade = "SOM_S4"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/som/ert/leader/charger
 	multiple_outfits = TRUE

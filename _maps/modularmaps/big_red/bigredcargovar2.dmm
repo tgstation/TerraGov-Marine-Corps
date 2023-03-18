@@ -333,7 +333,7 @@
 /turf/open/floor/marking/loadingarea,
 /area/bigredv2/outside/cargo)
 "uR" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "uY" = (

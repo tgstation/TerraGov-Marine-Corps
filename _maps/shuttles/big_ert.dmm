@@ -4,7 +4,7 @@
 /area/template_noop)
 "ab" = (
 /turf/closed/wall/mainship/white{
-	
+
 	},
 /area/shuttle/big_ert)
 "ac" = (
@@ -358,7 +358,7 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bi" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bj" = (

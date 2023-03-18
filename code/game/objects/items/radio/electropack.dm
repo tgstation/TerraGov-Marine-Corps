@@ -8,7 +8,6 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 
-	materials = list(/datum/material/metal = 10000, /datum/material/glass = 2500)
 
 	var/on = TRUE
 	var/code = 2

@@ -31657,7 +31657,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/prison/cellstripe{
 	dir = 8
 	},
@@ -35081,7 +35081,7 @@
 	},
 /area/prison/hallway/engineering)
 "cfZ" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cga" = (
@@ -35431,7 +35431,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chm" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -36646,7 +36646,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "clh" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec_medsec)
 "cli" = (
@@ -37696,15 +37696,15 @@
 /area/prison/security/armory/lethal)
 "coq" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /obj/item/weapon/gun/rifle/mpi_km,
 /obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cor" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cos" = (
@@ -37924,7 +37924,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpc" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cpd" = (
@@ -39229,7 +39229,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctE" = (
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctF" = (
@@ -39680,7 +39680,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km/plum,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cvp" = (

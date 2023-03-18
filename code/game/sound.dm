@@ -1,3 +1,41 @@
+
+///Default override for echo
+/sound
+	echo = list(
+		0, // Direct
+		0, // DirectHF
+		-10000, // Room, -10000 means no low frequency sound reverb
+		-10000, // RoomHF, -10000 means no high frequency sound reverb
+		0, // Obstruction
+		0, // ObstructionLFRatio
+		0, // Occlusion
+		0.25, // OcclusionLFRatio
+		1.5, // OcclusionRoomRatio
+		1.0, // OcclusionDirectRatio
+		0, // Exclusion
+		1.0, // ExclusionLFRatio
+		0, // OutsideVolumeHF
+		0, // DopplerFactor
+		0, // RolloffFactor
+		0, // RoomRolloffFactor
+		1.0, // AirAbsorptionFactor
+		0, // Flags (1 = Auto Direct, 2 = Auto Room, 4 = Auto RoomHF)
+	)
+	// todo pls port tg style enviromental sound
+	//environment = SOUND_ENVIRONMENT_NONE //Default to none so sounds without overrides dont get reverb
+	environment = list(
+		100.0, 0.5, \
+		-250, -1000, 0, \
+		1.5, 0.75, 1.0, \
+		-2000, 0.01, \
+		500, 0.015, \
+		0.25, 0.1, \
+		0.25, 0.1, \
+		-10.0, \
+		5000.0, 250.0, \
+		1.0, 10.0, 10.0, 255, \
+	)
+
 /**Proc used to play a sound.
  * Arguments:
  * * source: what played the sound.
@@ -37,25 +75,11 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!client)
 		return FALSE
 
-	soundin = get_sfx(soundin)
-
 	if(!S)
-		S = sound(soundin)
+		S = sound(get_sfx(soundin))
 	S.wait = 0 //No queue
 	S.channel = channel || SSsounds.random_available_channel()
 	S.volume = vol
-	S.environment = list(
-		100.0, 0.5, \
-		-250, -1000, 0, \
-		1.5, 0.75, 1.0, \
-		-2000, 0.01, \
-		500, 0.015, \
-		0.25, 0.1, \
-		0.25, 0.1, \
-		-10.0, \
-		5000.0, 250.0, \
-		1.0, 10.0, 10.0, 255, \
-	)
 
 	if(vary)
 		S.frequency = frequency ? frequency : GET_RANDOM_FREQ
@@ -79,14 +103,6 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
-
-		S.echo = list(
-			0, 0, \
-			-250, -1000, \
-			0, 1.0, \
-			-1000, 0.25, 1.5, 1.0, \
-			-1000, 1.0, \
-			0, 1.0, 1.0, 1.0, 1.0, 7)
 
 	if(!is_global)
 		S.environment = 2
@@ -228,6 +244,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/weapons/guns/fire/rpg_1.ogg', 'sound/weapons/guns/fire/rpg_2.ogg', 'sound/weapons/guns/fire/rpg_3.ogg')
 		if("ac_fire")
 			S = pick('sound/weapons/guns/fire/autocannon_1.ogg', 'sound/weapons/guns/fire/autocannon_2.ogg', 'sound/weapons/guns/fire/autocannon_3.ogg')
+		if("svd_fire")
+			S = pick('sound/weapons/guns/fire/svd1.ogg', 'sound/weapons/guns/fire/svd2.ogg', 'sound/weapons/guns/fire/svd3.ogg')
 
 		// Xeno
 		if("acid_hit")

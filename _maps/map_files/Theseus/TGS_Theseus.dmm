@@ -4176,7 +4176,7 @@
 	},
 /area/mainship/squads/req)
 "bpr" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -9970,6 +9970,11 @@
 /obj/machinery/meter,
 /turf/open/floor/mainship/orange,
 /area/mainship/hull/port_hull)
+"fLr" = (
+/obj/structure/dropprop,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "fLQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -11136,7 +11141,7 @@
 /area/mainship/command/bridge)
 "hHj" = (
 /obj/machinery/camera/autoname/mainship,
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -16449,7 +16454,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "qFT" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "qGo" = (
@@ -47381,7 +47386,7 @@ blt
 byG
 byG
 byG
-byG
+fLr
 adp
 brX
 iZq
@@ -48409,7 +48414,7 @@ blt
 byG
 byG
 byG
-byG
+fLr
 adp
 vuE
 iZq

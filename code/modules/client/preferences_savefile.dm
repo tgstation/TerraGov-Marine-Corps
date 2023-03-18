@@ -441,9 +441,10 @@
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
 	if(gender == MALE)
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_t), initial(undershirt))
+		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
@@ -526,9 +527,10 @@
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], initial(quick_equip_slots))
 	if(gender == MALE)
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_t), initial(undershirt))
+	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))

@@ -1337,8 +1337,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
-
 	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
@@ -1357,10 +1355,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
-		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
-	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
-	span_highdanger("[victim_feedback.Join(" ")]"), null, 4, visible_message_flags = COMBAT_MESSAGE)
+	if(!client.prefs.mute_self_combat_messages)
+		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1377,8 +1374,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
-
 	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback = list("We've been shot in the [parse_zone(proj.def_zone)] by [proj]!")
@@ -1387,22 +1382,19 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += "Our exoskeleton deflects it!"
-		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton deflects it!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
 		victim_feedback += "Our exoskeleton absorbs it!"
-		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton absorbs it!"
 	else if(feedback_flags & BULLET_FEEDBACK_PEN)
 		victim_feedback += "Our exoskeleton was penetrated!"
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
-		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
-	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
+	if(!client.prefs.mute_self_combat_messages)
+		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)

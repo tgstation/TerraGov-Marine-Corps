@@ -10,7 +10,6 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
 	max_integrity = 250
-	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
@@ -1570,6 +1569,20 @@
 /obj/item/weapon/gun/proc/get_magazine_overlay(obj/item/mag)
 	var/obj/item/ammo_magazine/magazine = mag
 	return magazine?.bonus_overlay
+
+/obj/item/weapon/gun/rifle/garand/reload(obj/item/new_mag, mob/living/user, force = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(user && prob(1))
+		garand_thumb(user)
+
+///Gets your thumb stuck in the gun while reloading
+/obj/item/weapon/gun/rifle/garand/proc/garand_thumb(mob/living/user)
+	var/zone = user.hand ? "l_hand" : "r_hand"
+	to_chat(user, span_userdanger("Your thumb gets caught while reloading [src]!"))
+	user.apply_damage(1, BRUTE, zone)
+	user.emote("scream")
 
 //----------------------------------------------------------
 				//							\\

@@ -1386,7 +1386,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/office_complex)
 "ZQ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 

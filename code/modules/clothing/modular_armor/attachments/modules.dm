@@ -6,6 +6,19 @@
 	name = "broken armor module"
 	desc = "You better be debugging."
 
+
+/**
+ * PT belt
+ */
+
+/obj/item/armor_module/module/pt_belt
+	name = "\improper physical training reflective belt"
+	desc = "Sergeant Major ordered marines to wear reflective belt to ensure marines' safety. You can speculate what danger entail a PT belt."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "pt_belt"
+	item_state = "pt_belt_a"
+	slot = ATTACHMENT_SLOT_BELT
+
 /**
  * Shoulder lamp strength module
  */
@@ -432,7 +445,7 @@
 	name = "\improper Light Armor Equalizer"
 	icon_state = "style_light"
 	item_state = "style_light_a"
-	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/armor_module/module/style/medium_armor
@@ -446,7 +459,7 @@
 	name = "\improper Heavy Armor Equalizer"
 	icon_state = "style_heavy"
 	item_state = "style_heavy_a"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /**
@@ -463,6 +476,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 	///Mod for extra eye protection when activated.
 	var/eye_protection_mod = 2
 
@@ -533,6 +547,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
@@ -591,6 +606,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
