@@ -5224,7 +5224,7 @@
 "hda" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/button/valhalla/marine_button{
-	link = "close2"
+	link = "xenoclose2"
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/centcom/valhalla/security/brig)
@@ -5248,7 +5248,7 @@
 "heB" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/button/valhalla/marine_button{
-	link = "far2"
+	link = "xenofar2"
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/centcom/valhalla/security/brig)
@@ -6916,13 +6916,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla/port)
-"jAF" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/security/free_access,
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla/security/brig)
 "jAP" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -25783,7 +25776,7 @@ lGH
 lGH
 nDI
 iXv
-jAF
+iXv
 nDI
 lhE
 lGH
