@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Removed various items from the codebase that are entirely unused"
+  - imageadd: "Ported TG sprites for various very old suits and hats"
