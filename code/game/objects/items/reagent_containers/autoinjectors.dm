@@ -276,14 +276,12 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/isotonic
 	name = "isotonic solution autoinjector"
-	desc = "An auto-injector loaded with a single dose of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
+	desc = "An auto-injector loaded with 2 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
 	icon_state = "autoinjector-8"
-	amount_per_transfer_from_this = 25
-	volume = 25
+	amount_per_transfer_from_this = 15
+	volume = 30
 	list_reagents = list(
-		/datum/reagent/iron = 10,
-		/datum/reagent/consumable/nutriment = 10,
-		/datum/reagent/consumable/sugar = 5,
+		/datum/reagent/medicine/saline_glucose = 30,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium

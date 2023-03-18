@@ -991,3 +991,12 @@ Proc for attack log creation, because really why not
 	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
 		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
 	return output
+
+/**
+ * Function that determines if we can slip when we walk over this atom.
+ *
+ * Returns true if we can, false if we can't. Put your special checks here.
+ */
+
+/atom/proc/can_slip()
+	return TRUE

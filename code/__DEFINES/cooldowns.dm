@@ -48,6 +48,7 @@
 #define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
 #define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
 #define COOLDOWN_RAVAGER_FLAMER_ACT "cooldown_ravager_flamer_act"
+#define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"

@@ -216,6 +216,23 @@
 		return ..()
 	return WF.MouseDrop_T(dropping, user)
 
+/obj/alien/weeds/weedwall/frame/specialclick(mob/living/carbon/user)
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.specialclick(user)
+
+/obj/alien/weeds/weedwall/frame/attackby(obj/item/I, mob/user, params) //yes, this blocks attacking the weed itself, but if you destroy the frame you destroy the weed!
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.attackby(I, user, params)
+
+/obj/alien/weeds/weedwall/frame/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 
 // =================
 // weed node - grows other weeds

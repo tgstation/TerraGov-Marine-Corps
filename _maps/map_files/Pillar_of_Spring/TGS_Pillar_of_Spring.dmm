@@ -13959,6 +13959,11 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"sbg" = (
+/obj/structure/dropprop,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "sbr" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -46326,7 +46331,7 @@ swG
 bTS
 bTS
 bTS
-bTS
+sbg
 uQQ
 ufq
 ufq
@@ -47611,7 +47616,7 @@ ufq
 bTS
 bTS
 bTS
-bTS
+sbg
 jqG
 ufq
 ufq
