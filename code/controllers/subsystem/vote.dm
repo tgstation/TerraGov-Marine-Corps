@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(vote)
 	wait = 10
 
 	flags = SS_KEEP_TIMING|SS_NO_INIT
-	
+
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	/// Available choices in the vote
@@ -343,7 +343,9 @@ SUBSYSTEM_DEF(vote)
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY, volume = 50))
+		for(var/client/C in GLOB.clients)
+			if(C.prefs?.toggles_sound & SOUND_VOTE)
+				SEND_SOUND(C, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY, volume = 50))
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click on vote action (top left) to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
 		vote_happening = TRUE

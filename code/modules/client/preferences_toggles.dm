@@ -325,6 +325,15 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	to_chat(usr, span_notice("You will [(usr.client.prefs.toggles_sound & SOUND_NOENDOFROUND) ? "no longer" : "now"] hear round end sounds."))
 
+/client/verb/toggle_vote_music()
+	set category = "Preferences"
+	set name = "Toggle Vote Music"
+
+	prefs.toggles_sound ^= SOUND_VOTE
+	prefs.save_preferences()
+
+	to_chat(src, span_notice("You will [(prefs.toggles_sound & SOUND_VOTE) ? "now" : "no longer"] hear vote music."))
+
 ///Toggles whether or not you need to hold shift to access the right click menu
 /client/verb/toggle_right_click()
 	set name = "Toggle Right Click"
