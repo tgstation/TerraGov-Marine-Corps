@@ -3,9 +3,10 @@
 //      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
 /obj/item/clothing/head/helmet/space
 	name = "Space helmet"
-	icon_state = "space"
+	icon = 'icons/obj/clothing/space_suit_helmets.dmi'
+	item_icons = list(slot_head_str = 'icons/mob/space_suit_helmets.dmi')
+	icon_state = "space-helm"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
-	item_state = "space"
 	permeability_coefficient = 0.01
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	flags_inventory = COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|BLOCKSHARPOBJ
@@ -19,9 +20,10 @@
 /obj/item/clothing/suit/space
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
+	icon = 'icons/obj/clothing/space_suits.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/space_suits.dmi')
 	icon_state = "space"
-	item_state = "s_suit"
-	w_class = WEIGHT_CLASS_BULKY//bulky item
+	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

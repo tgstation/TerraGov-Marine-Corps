@@ -1677,7 +1677,7 @@
 /area/centcom/valhalla/crew_quarters/captain)
 "cjO" = (
 /obj/structure/closet/secure_closet/captains,
-/obj/item/clothing/suit/armor/captain,
+/obj/item/clothing/suit/space/captain,
 /obj/item/clothing/under/gimmick/rank/captain/suit,
 /obj/item/clothing/gloves/captain,
 /obj/item/card/id/captains_spare,
@@ -2382,7 +2382,7 @@
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "dfx" = (
 /obj/item/clothing/suit/space/rig,
-/obj/item/clothing/head/helmet/space/syndicate,
+/obj/item/clothing/head/helmet/space/rig,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dfR" = (
@@ -4710,7 +4710,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gil" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/suit/fire,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/head/hardhat/red,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -5307,7 +5307,6 @@
 /area/centcom/valhalla/primary/aft)
 "hbV" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/laserproof,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/spawner/random/gun/sidearms,
 /obj/effect/spawner/random/gun/sidearms,
@@ -12683,7 +12682,7 @@
 /area/centcom/valhalla/port)
 "qVI" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/suit/fire,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/head/hardhat/red,
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -13916,7 +13915,6 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP,
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
-/obj/item/portable_vendor/marine/squadmarine/smartgunner,
 /obj/item/storage/box/m94,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/plating,
