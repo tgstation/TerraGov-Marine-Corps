@@ -4,39 +4,36 @@
 	description = ""
 
 /datum/keybinding/human/quick_equip
-	var/quick_equip_used = null
+	keybind_signal = COMSIG_KB_QUICKEQUIP
+	///The quick equip slot the keybind will equip to, checked by the reciever of the keybind signal.
+	var/quick_equip_slot
 
 /datum/keybinding/human/quick_equip/quick_equip_1
 	hotkey_keys = list("E")
 	name = "quick_equip_1"
 	full_name = "Quick equip 1"
-	keybind_signal = COMSIG_KB_QUICKEQUIP_1
-	quick_equip_used = 1
+	quick_equip_slot = 1
 
 /datum/keybinding/human/quick_equip/quick_equip_2
 	hotkey_keys = list("ShiftE")
 	name = "quick_equip_2"
 	full_name = "Quick equip 2"
-	keybind_signal = COMSIG_KB_QUICKEQUIP_2
-	quick_equip_used = 2
+	quick_equip_slot = 2
 
 /datum/keybinding/human/quick_equip/quick_equip_3
 	name = "quick_equip_3"
 	full_name = "Quick equip 3"
-	keybind_signal = COMSIG_KB_QUICKEQUIP_3
-	quick_equip_used = 3
+	quick_equip_slot = 3
 
 /datum/keybinding/human/quick_equip/quick_equip_4
 	name = "quick_equip_4"
 	full_name = "Quick equip 4"
-	keybind_signal = COMSIG_KB_QUICKEQUIP_4
-	quick_equip_used = 4
+	quick_equip_slot = 4
 
 /datum/keybinding/human/quick_equip/quick_equip_5
 	name = "quick_equip_5"
 	full_name = "Quick equip 5"
-	keybind_signal = COMSIG_KB_QUICKEQUIP_5
-	quick_equip_used = 5
+	quick_equip_slot = 5
 
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")

@@ -172,7 +172,11 @@
 	"Holo"\
 	)
 
-///The default Quick equip order list.
+///The amount of quick equip slots there should have. If someone doesn't have this many slots, their prefs will reset to get the new ones.
+///This adds only the buttons, to make the hotkeys usable in-game you need to make a keybind for it.
+#define MAX_QUICK_EQUIP_SLOTS 5
+
+///The default Quick equip order list, adding/removing slots from this list will increase the amount of quick equip slots. Update the define above when
 #define QUICK_EQUIP_ORDER list(\
 	SLOT_S_STORE,\
 	SLOT_BELT,\

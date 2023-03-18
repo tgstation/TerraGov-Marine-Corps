@@ -811,11 +811,7 @@
 	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
 // human signals for keybindings
-#define COMSIG_KB_QUICKEQUIP_1 "keybinding_quickequip_1"
-#define COMSIG_KB_QUICKEQUIP_2 "keybinding_quickequip_2"
-#define COMSIG_KB_QUICKEQUIP_3 "keybinding_quickequip_3"
-#define COMSIG_KB_QUICKEQUIP_4 "keybinding_quickequip_4"
-#define COMSIG_KB_QUICKEQUIP_5 "keybinding_quickequip_5"
+#define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_GUN_SAFETY "keybinding_gun_safety"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"

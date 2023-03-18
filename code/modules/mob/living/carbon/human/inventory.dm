@@ -1,51 +1,15 @@
-///Amount of quick equips the player has available to them.
-#define QUICK_EQUIP_AMOUNT 5
-
 ///async signal wrapper for do_quick_equip
-/mob/living/carbon/human/proc/async_do_quick_equip()
+/mob/living/carbon/human/proc/async_do_quick_equip(atom/source, datum/keybinding/human/quick_equip/equip_slot)
 	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	var/quick_equip_keybind = /datum/keybinding/human/quick_equip
-	INVOKE_ASYNC(src, .proc/do_quick_equip, quick_equip_keybind.quick_equip_used)
-
-
-///async signal wrapper for do_quick_equip_1
-/mob/living/carbon/human/proc/async_do_quick_equip_1()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, 1)
-
-///async signal wrapper for do_quick_equip_2
-/mob/living/carbon/human/proc/async_do_quick_equip_2()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, 2)
-
-///async signal wrapper for do_quick_equip_3
-/mob/living/carbon/human/proc/async_do_quick_equip_3()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, 3)
-
-///async signal wrapper for do_quick_equip_4
-/mob/living/carbon/human/proc/async_do_quick_equip_4()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, 4)
-
-///async signal wrapper for do_quick_equip_5
-/mob/living/carbon/human/proc/async_do_quick_equip_5()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, 5)
-
+	INVOKE_ASYNC(src, .proc/do_quick_equip, initial(equip_slot.quick_equip_slot))
+	return COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
 /// runs equip, quick_equip_used is the # in INVOKE_ASYNC
-/mob/living/carbon/human/proc/do_quick_equip(quick_equip_used = 0)
+/mob/living/carbon/human/proc/do_quick_equip(quick_equip_slot = 0)
 	if(incapacitated() || lying_angle)
 		return
 
-	var/slot_requested = client?.prefs?.quick_equip[quick_equip_used]
+	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot]
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)

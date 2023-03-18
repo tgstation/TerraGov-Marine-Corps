@@ -40,14 +40,7 @@
 	randomize_appearance()
 
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
-	//RegisterSignal(src, COMSIG_KB_QUICKEQUIP, .proc/async_do_quick_equip)
-	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP_1, COMSIG_KB_QUICKEQUIP_2, COMSIG_KB_QUICKEQUIP_3, COMSIG_KB_QUICKEQUIP_4, COMSIG_KB_QUICKEQUIP_5), .proc/async_do_quick_equip)
-
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_1, .proc/async_do_quick_equip_1)
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_2, .proc/async_do_quick_equip_2)
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_3, .proc/async_do_quick_equip_3)
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_4, .proc/async_do_quick_equip_4)
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIP_5, .proc/async_do_quick_equip_5)
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, .proc/async_do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
