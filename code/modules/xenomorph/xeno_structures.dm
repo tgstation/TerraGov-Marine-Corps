@@ -19,7 +19,8 @@
 
 /obj/structure/xeno/Destroy()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
-	GLOB.xeno_critical_structures -= src
+	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+		GLOB.xeno_critical_structures -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -752,7 +753,7 @@ TUNNEL
 		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
-		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf)
+		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
