@@ -1,7 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "New chem, saline glucose, restores blood at a rate of 1.2 units (QC is 0.2, Nano is 2.4)"
-  - rscdel: "Iron no longer regens blood."
-  - rscadd: "Saline-Glucose has replaced iron in the cryomix."
-  - refactor: "Isotonics are now just 15u of saline-glucose. Pills hold 1 dose, injectors hold 2 doses."
