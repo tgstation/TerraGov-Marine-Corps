@@ -204,6 +204,9 @@
 		if(obj_integrity > max_integrity * 0.5)
 			return
 
+		if(user.do_actions)
+			return
+
 		if(plasteel_sheets.get_amount() < 5)
 			balloon_alert(user, "You need at least 5 plasteel")
 			return
