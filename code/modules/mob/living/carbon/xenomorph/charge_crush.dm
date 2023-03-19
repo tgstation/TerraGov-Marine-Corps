@@ -576,6 +576,8 @@
 			charger.visible_message(span_danger("[charger] rams [src]!"),
 			span_xenodanger("We ram [src]!"))
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
+			GLOB.round_statistics.bull_crush_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_crush_hit")
 			return PRECRUSH_PLOWED
 
 		if(CHARGE_BULL_GORE)
@@ -588,6 +590,9 @@
 					throw_at(destination, 1, 1, charger, FALSE)
 				charger.visible_message(span_danger("[charger] gores [src]!"),
 					span_xenowarning("We gore [src] and skid to a halt!"))
+				GLOB.round_statistics.bull_gore_hit++
+				SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_gore_hit")
+
 
 		if(CHARGE_BULL_HEADBUTT)
 			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
@@ -605,6 +610,8 @@
 
 			charger.visible_message(span_danger("[charger] rams into [src] and flings [p_them()] away!"),
 				span_xenowarning("We ram into [src] and skid to a halt!"))
+			GLOB.round_statistics.bull_headbutt_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_headbutt_hit")
 
 	charge_datum.do_stop_momentum(FALSE)
 	return PRECRUSH_STOPPED
