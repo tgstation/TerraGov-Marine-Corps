@@ -122,7 +122,7 @@
 /datum/action/innate/order/attack_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";MARINES, FIGHT! SHOOT! KILL!!", ";BLAST THEM!", ";MAKE THEM EAT LEAD!", ";END THEM!", ";ATTACK HERE!", ";CHARGE!", ";RUN THEM OVER!")
+		var/message = pick(";ДОБЕЙТЕ ВЫЖИВШИХ!", ";РАЗОТРИТЕ ИХ В ПЫЛЬ!", ";НАКОРМИТЕ ИХ СВИНЦОМ!", ";ВПЕРЁД! В РУКОПАШНУЮ!", ";АТАКОВАТЬ!", ";В АТАКУ!", ";ПЕРЕБЕЙТЕ ИХ!")
 		owner.say(message)
 
 /datum/action/innate/order/defend_order
@@ -143,7 +143,7 @@
 /datum/action/innate/order/defend_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!", ";DON'T PUSH! STAY HERE!")
+		var/message = pick(";ПРИГНИТЕСЬ!", ";ДЕРЖИМ ЛИНИЮ!", ";ДЕРЖИМ ПОЗИЦИЮ!", ";НИ ШАГУ НАЗАД!", ";СТОЯТЬ И СРАЖАТЬСЯ!", ";В УКРЫТИЕ!", ";ЗАЩИЩАЙТЕ ПОЗИЦИЮ!", ";ПРИГОТОВИТЬСЯ К УДАРУ!", ";ДЕРЖИТЕСЬ!", ";ОНИ ИДУТ!", ";НЕ АТАКОВАТЬ! ЗАЩИЩАТЬСЯ!")
 		owner.say(message)
 
 /datum/action/innate/order/retreat_order
@@ -163,7 +163,7 @@
 /datum/action/innate/order/retreat_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!")
+		var/message = pick(";НАЗАД! НАЗАД!", ";ТАКТИЧЕСКОЕ ОТСТУПЛЕНИЕ!", ";НЕ УМРИТЕ! УБЕГАЕМ!", ";БЕГИ ПОКА МОЖЕШЬ!", ";ОТСТУПАЕМ! ПОВТОРЯЮ, ОТСТУПАЕМ!", ";ОТСТУПАЕМ! УХОДИМ!")
 		owner.say(message)
 
 /datum/action/innate/order/rally_order
