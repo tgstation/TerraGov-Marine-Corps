@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/sundering = 0
 	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
 	var/airburst_multiplier	= 0.1
+	///What kind of behavior the ammo has
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
