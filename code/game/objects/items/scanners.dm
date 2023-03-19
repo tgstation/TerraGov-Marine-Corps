@@ -94,15 +94,15 @@ REAGENT SCANNER
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 	if(!iscarbon(M))
-		to_chat(user, span_warning("Error: Unable to scan"))
+		balloon_alert(user, "Cannot scan")
 		return
 	if(isxeno(M))
-		to_chat(user, span_warning("[src] can't make sense of this creature!"))
+		balloon_alert(user, "Unknown entity")
 		return
 	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
-		to_chat(user, span_warning("Error: Cannot read vitals!"))
+		balloon_alert(user, "Not Organic")
 		return
-	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
+	balloon_alert_to_viewers("Analyzed Vitals")
 	patient = M
 	current_user = user
 	if(show_patient == TRUE)
