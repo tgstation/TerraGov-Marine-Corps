@@ -75,7 +75,7 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	addtimer(CALLBACK(src, .proc/prime), det_time)
+	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()

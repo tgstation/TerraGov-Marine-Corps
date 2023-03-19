@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 					return FALSE
 			if(isnull(selected_visor))
 				return FALSE
-			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
 			S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
 			return TRUE

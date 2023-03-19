@@ -13,10 +13,10 @@
 	var/mob/mob_master
 	///List of actions performed upon hearing certain things from mob_master
 	var/static/list/on_hear_behaviours = list(
-		"help" = .proc/help,
-		"you will be called" = .proc/update_name,
-		"repeat after me" = .proc/repeat_speech,
-		"goodbye" = .proc/goodbye
+		"help" = PROC_REF(help),
+		"you will be called" = PROC_REF(update_name),
+		"repeat after me" = PROC_REF(repeat_speech),
+		"goodbye" = PROC_REF(goodbye)
 	)
 	var/static/commands_info
 
@@ -35,7 +35,7 @@
 
 /datum/component/companion/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/handle_attackby)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(handle_attackby))
 
 /datum/component/companion/UnregisterFromParent()
 	. = ..()
@@ -53,7 +53,7 @@
 	var/obj/item/paper/brassnote/new_note = new
 	new_note.info = commands_info
 	if(mob_master.put_in_any_hand_if_possible(new_note))
-		RegisterSignal(new_note, COMSIG_ITEM_DROPPED, .proc/clear_note)
+		RegisterSignal(new_note, COMSIG_ITEM_DROPPED, PROC_REF(clear_note))
 		COMPANION_EMOTE("passes note")
 		return
 	else
@@ -86,8 +86,8 @@
 ///Handles assigning a new master mob
 /datum/component/companion/proc/assign_mob_master(atom/movable/new_mob_master, hello_message)
 	mob_master = new_mob_master
-	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech)
-	RegisterSignal(mob_master, COMSIG_PARENT_QDELETING, .proc/unassign_mob_master)
+	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(handle_mob_master_speech))
+	RegisterSignal(mob_master, COMSIG_PARENT_QDELETING, PROC_REF(unassign_mob_master))
 	var/mob/living/mob_parent = parent
 	if(isanimal(parent))
 		var/mob/living/simple_animal/animal_parent = parent
@@ -138,7 +138,7 @@
 ///The slugcat listens for its new name
 /datum/component/companion/proc/update_name(message)
 	COMPANION_EMOTE("listens")
-	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_update_name, override = TRUE)
+	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(handle_update_name), override = TRUE)
 
 ///Does the name update action
 /datum/component/companion/proc/handle_update_name(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
@@ -146,23 +146,23 @@
 	if(speaker != mob_master)
 		return
 	var/new_name = copytext(raw_message, 1, length(raw_message))
-	addtimer(CALLBACK(SSspeech_controller, /datum/controller/subsystem/speech_controller.proc/queue_say_for_mob, parent, "[new_name]", SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(SSspeech_controller, TYPE_PROC_REF(/datum/controller/subsystem/speech_controller, queue_say_for_mob), parent, "[new_name]", SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
 	var/mob/living/mob_parent = parent
 	mob_parent.name = new_name
-	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech, override = TRUE)
+	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(handle_mob_master_speech), override = TRUE)
 
 ///The slugcat repeats the person's words
 /datum/component/companion/proc/repeat_speech(message)
 	COMPANION_EMOTE("listens")
-	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_repeat_speech, override = TRUE)
+	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(handle_repeat_speech), override = TRUE)
 
 ///Does the words repeating action
 /datum/component/companion/proc/handle_repeat_speech(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SIGNAL_HANDLER
 	if(speaker != mob_master)
 		return
-	addtimer(CALLBACK(SSspeech_controller, /datum/controller/subsystem/speech_controller.proc/queue_say_for_mob, parent, raw_message, SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
-	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech, override = TRUE)
+	addtimer(CALLBACK(SSspeech_controller, TYPE_PROC_REF(/datum/controller/subsystem/speech_controller, queue_say_for_mob), parent, raw_message, SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
+	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(handle_mob_master_speech), override = TRUE)
 
 ///Removes the current master_mob through a command
 /datum/component/companion/proc/goodbye()

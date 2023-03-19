@@ -30,8 +30,8 @@
 /datum/round_event/supply_drop/proc/set_target(turf/target_turf)
 	var/supplying_faction = pick(SSticker.mode.factions)
 	priority_announce("Friendly supply drop arriving in AO in [drop_delay / 600] minutes. Drop zone at [target_turf.loc].", "Bluespace Tactical Scanner Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list_faction[supplying_faction] + GLOB.observer_list))
-	addtimer(CALLBACK(src, .proc/alert_hostiles, target_turf, supplying_faction), alert_delay)
-	addtimer(CALLBACK(src, .proc/drop_supplies, target_turf, supplying_faction), drop_delay)
+	addtimer(CALLBACK(src, PROC_REF(alert_hostiles), target_turf, supplying_faction), alert_delay)
+	addtimer(CALLBACK(src, PROC_REF(drop_supplies), target_turf, supplying_faction), drop_delay)
 
 ///Alerts the hostile faction(s)
 /datum/round_event/supply_drop/proc/alert_hostiles(turf/target_turf, supplying_faction)

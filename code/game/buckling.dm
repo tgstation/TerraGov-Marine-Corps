@@ -62,7 +62,7 @@
 	buckling_mob.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
-	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, PROC_REF(resisted_against))
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	return TRUE
 

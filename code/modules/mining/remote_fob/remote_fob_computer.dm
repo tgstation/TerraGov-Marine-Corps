@@ -34,7 +34,7 @@
 	eject_metal_action = new()
 	eject_plasteel_action = new()
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, PROC_REF(disable_drone_creation))
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	SIGNAL_HANDLER
@@ -178,7 +178,7 @@
 		eject_plasteel_action.give_action(user)
 		actions += eject_plasteel_action
 
-	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/on_controller_click)
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_controller_click))
 
 	eyeobj.invisibility = 0
 

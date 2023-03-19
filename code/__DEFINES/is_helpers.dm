@@ -171,11 +171,9 @@
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
-#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
-
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
 
-#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
+#define ismodularsuit(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
 

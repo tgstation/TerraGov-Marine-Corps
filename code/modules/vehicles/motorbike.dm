@@ -115,7 +115,7 @@
 		motorbike_cover.icon = 'icons/obj/motorbike_sidecar.dmi'
 		motorbike_cover.pixel_x = -9
 		sidecar_dir_change(newdir = dir)
-		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, .proc/sidecar_dir_change)
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(sidecar_dir_change))
 		add_overlay(motorbike_cover)
 		RemoveElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 		AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike/sidecar)

@@ -9,7 +9,7 @@
 	var/mob/living/stamina_holder = parent
 	if(stamina_holder.m_intent == MOVE_INTENT_RUN)
 		stamina_active()
-	RegisterSignal(parent, COMSIG_MOB_TOGGLEMOVEINTENT, .proc/on_toggle_move_intent)
+	RegisterSignal(parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_toggle_move_intent))
 
 
 /datum/component/stamina_behavior/proc/on_toggle_move_intent(datum/source, new_intent)
@@ -25,8 +25,8 @@
 	if(stamina_state == STAMINA_STATE_ACTIVE)
 		return
 	stamina_state = STAMINA_STATE_ACTIVE
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_move_run)
-	RegisterSignal(parent, COMSIG_LIVING_SET_CANMOVE, .proc/on_canmove_change)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_move_run))
+	RegisterSignal(parent, COMSIG_LIVING_SET_CANMOVE, PROC_REF(on_canmove_change))
 
 
 /datum/component/stamina_behavior/proc/stamina_idle()

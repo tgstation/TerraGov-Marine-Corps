@@ -503,7 +503,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	shoes = /obj/item/clothing/shoes/marine/full
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
@@ -594,7 +594,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tech
+	wear_suit = /obj/item/clothing/suit/storage/marine/ship_tech
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding/flipped
@@ -689,7 +689,7 @@ A happy ship is a well-functioning ship."})
 	belt = /obj/item/storage/belt/gun/m44/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/ro_suit
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	wear_suit = /obj/item/clothing/suit/storage/marine/officer/req
 	suit_store = /obj/item/weapon/gun/energy/taser
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
@@ -1199,7 +1199,7 @@ If you require any help, use <b>mentorhelp</b> to ask mentors about what you're 
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce), "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
 
 
 /datum/job/terragov/silicon/ai/config_check()

@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
 	priority_announce(message, title = "Orbit Change")
-	addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_change_orbit), current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
 	if(changing_orbit)
@@ -195,8 +195,8 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	engine_shudder()
 
 	var/message = "Arriving at new orbital level. Prepare for engine ignition and stabilization."
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
-	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 3 MINUTES)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(priority_announce), message, "Orbit Change"), 290 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(orbit_gets_changed), current_orbit, direction), 3 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
 	if(direction == "UP")

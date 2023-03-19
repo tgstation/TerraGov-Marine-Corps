@@ -31,9 +31,9 @@
 	. = ..()
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
-	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, .proc/open_storage)	//Open storage if the armor is alt right clicked
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(insert_item))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
@@ -58,7 +58,7 @@
 		return
 	if(parent.loc != user)
 		return
-	INVOKE_ASYNC(storage, /atom.proc/attackby, I, user)
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/atom, attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
@@ -104,6 +104,12 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 	)
+
+/obj/item/armor_module/storage/general/irremovable
+	desc = "General storage module. Limited capacity but can hold some larger items like pistols or magazines."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
@@ -214,6 +220,12 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
+
+/obj/item/armor_module/storage/medical/irremovable
+	desc = "Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/medical/freelancer/Initialize()
 	. = ..()

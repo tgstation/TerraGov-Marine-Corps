@@ -1,7 +1,7 @@
 ///async signal wrapper for do_quick_equip
 /mob/living/carbon/human/proc/async_do_quick_equip(atom/source, datum/keybinding/human/quick_equip/equip_slot)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/do_quick_equip, initial(equip_slot.quick_equip_slot))
+	INVOKE_ASYNC(src, PROC_REF(do_quick_equip), initial(equip_slot.quick_equip_slot))
 	return COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
 /// runs equip, quick_equip_used is the # in INVOKE_ASYNC
@@ -367,15 +367,10 @@
 			var/obj/item/storage/S = back
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
-			if(istype(wear_suit, /obj/item/clothing/suit/modular))
-				var/obj/item/clothing/suit/modular/T = wear_suit
+			if(istype(wear_suit, /obj/item/clothing/suit))
+				var/obj/item/clothing/suit/T = wear_suit
 				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 				var/obj/item/storage/S = U.storage
-				S.handle_item_insertion(W, FALSE, src)
-				S.close(src)
-			if(istype(wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
-				var/obj/item/clothing/suit/storage/T = wear_suit
-				var/obj/item/storage/internal/S = T.pockets
 				S.handle_item_insertion(W, FALSE, src)
 				S.close(src)
 		if(SLOT_IN_BELT)

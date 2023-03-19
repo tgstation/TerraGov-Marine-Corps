@@ -66,13 +66,13 @@
 /obj/structure/closet/firecloset/PopulateContents()
 	..()
 
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/tool/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
 /obj/structure/closet/firecloset/full/PopulateContents()
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tool/extinguisher(src)

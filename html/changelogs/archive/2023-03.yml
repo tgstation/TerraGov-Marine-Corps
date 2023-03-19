@@ -321,3 +321,7 @@
       hold 2 doses.
   ivanmixo:
   - bugfix: Reverted a flag and fixed some evolution issues with certain xeno castes
+2023-03-19:
+  Lumipharon:
+  - code_imp: Removed various items from the codebase that are entirely unused
+  - imageadd: Ported TG sprites for various very old suits and hats

@@ -471,10 +471,10 @@
 	icon_state += "_on"
 	chassis.update_icon()
 	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
-	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, .proc/end_dash)
+	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	cutter = source
 	chassis.flags_atom |= DIRLOCK
-	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, .proc/drop_afterimage)
+	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(drop_afterimage))
 	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
 	return ..()
 

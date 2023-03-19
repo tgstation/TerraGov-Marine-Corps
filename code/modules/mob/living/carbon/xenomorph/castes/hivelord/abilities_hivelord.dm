@@ -56,7 +56,7 @@
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
 	set_toggle(TRUE)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
 
 
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
@@ -149,7 +149,7 @@
 
 	newt.hivenumber = X.hivenumber //Set our structure's hivenumber for alerts/lists
 	newt.creator = X
-	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, /obj/structure/xeno/tunnel.proc/clear_creator)
+	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
 
 	X.tunnels.Add(newt)
 
@@ -386,5 +386,5 @@
 	update_button_icon()
 
 /datum/action/xeno_action/sow/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/choose_plant)
+	INVOKE_ASYNC(src, PROC_REF(choose_plant))
 	return COMSIG_KB_ACTIVATED

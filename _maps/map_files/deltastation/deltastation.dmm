@@ -65126,12 +65126,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
-"noy" = (
-/obj/structure/closet/crate/secure/gear,
-/obj/item/clothing/head/helmet/space/syndicate/black/engie,
-/obj/item/clothing/suit/space/syndicate/black/engie,
-/turf/open/floor/engine,
-/area/deltastation/asteroidcaves/ship/two)
 "noz" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -67398,7 +67392,7 @@
 /obj/structure/cable,
 /obj/machinery/prop/computer/rdservercontrol{
 	dir = 4
-},
+	},
 /obj/effect/spawner/random/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/security/range)
@@ -114716,6 +114710,12 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
+"xgM" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/clothing/head/helmet/space/syndicate/black/engie,
+/obj/item/clothing/suit/space/syndicate/black/engie,
+/turf/open/floor/engine,
+/area/deltastation/asteroidcaves/ship/two)
 "xgO" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -146564,8 +146564,8 @@ mUx
 wxm
 uyW
 uyW
-noy
-noy
+xgM
+xgM
 uyW
 uyW
 wxm

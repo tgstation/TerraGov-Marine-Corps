@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	if(style == STYLE_SEETHROUGH)
 		open(src)
 	else
-		addtimer(CALLBACK(src, .proc/open, src), openingDelay)
+		addtimer(CALLBACK(src, PROC_REF(open), src), openingDelay)
 
 
 
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 			return
 	if(openingSound)
 		playsound(get_turf(holder), openingSound, soundVolume, 0, 0)
-	INVOKE_ASYNC(holder, .proc/setOpened)
+	INVOKE_ASYNC(holder, PROC_REF(setOpened))
 	if(style == STYLE_SEETHROUGH)
 		update_icon()
 	for(var/i in holder.contents)
@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	if(style == STYLE_SEETHROUGH)
 		depart(src)
 	else
-		addtimer(CALLBACK(src, .proc/depart, holder), departureDelay)
+		addtimer(CALLBACK(src, PROC_REF(depart), holder), departureDelay)
 
 
 /obj/structure/closet/supplypod/proc/depart(atom/movable/holder)
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 /obj/structure/closet/supplypod/centcompod/close(atom/movable/holder)
 	opened = FALSE
-	INVOKE_ASYNC(holder, .proc/setClosed)
+	INVOKE_ASYNC(holder, PROC_REF(setClosed))
 	for(var/i in get_turf(holder))
 		var/atom/movable/AM = i
 		if(ismob(AM) && !isliving(AM))
@@ -302,8 +302,8 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	if(soundStartTime < 0)
 		soundStartTime = 1
 	if(!pod.effectQuiet)
-		addtimer(CALLBACK(src, .proc/playFallingSound), soundStartTime)
-	addtimer(CALLBACK(src, .proc/beginLaunch, pod.effectCircle), pod.landingDelay)
+		addtimer(CALLBACK(src, PROC_REF(playFallingSound)), soundStartTime)
+	addtimer(CALLBACK(src, PROC_REF(beginLaunch), pod.effectCircle), pod.landingDelay)
 
 
 /obj/effect/DPtarget/proc/playFallingSound()
@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	M.Turn(rotation)
 	pod.transform = M
 	animate(fallingPod, pixel_z = 0, pixel_x = -16, time = pod.fallDuration, , easing = LINEAR_EASING)
-	addtimer(CALLBACK(src, .proc/endLaunch), pod.fallDuration, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(endLaunch)), pod.fallDuration, TIMER_CLIENT_TIME)
 
 
 /obj/effect/DPtarget/proc/endLaunch()

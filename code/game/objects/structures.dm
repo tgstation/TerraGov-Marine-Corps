@@ -121,7 +121,7 @@
 
 	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))
 
-	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
+	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_climb), user)))
 		return
 
 	for(var/m in user.buckled_mobs)

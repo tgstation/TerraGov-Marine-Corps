@@ -206,27 +206,8 @@
 		SOM_SQUAD_LEADER = 1,
 )
 
-GLOBAL_LIST_EMPTY(glovemarkings)
-GLOBAL_LIST_EMPTY(armormarkings)
-GLOBAL_LIST_EMPTY(armormarkings_sl)
-GLOBAL_LIST_EMPTY(helmetmarkings)
-GLOBAL_LIST_EMPTY(helmetmarkings_sl)
-
 /datum/squad/New()
 	. = ..()
-	var/image/armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
-	var/image/armorsl = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
-	armor.color = color
-	armorsl.color = color
-	GLOB.armormarkings[type] = armor
-	GLOB.armormarkings_sl[type] = armorsl
-	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
-	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
-	helmet.color = color
-	helmetsl.color = color
-	GLOB.helmetmarkings[type] = helmet
-	GLOB.helmetmarkings_sl[type] = helmetsl
-
 	tracking_id = SSdirection.init_squad(name, squad_leader)
 
 

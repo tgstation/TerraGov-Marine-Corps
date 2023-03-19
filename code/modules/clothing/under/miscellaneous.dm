@@ -30,13 +30,6 @@
 	desc = "It's a very smart uniform with a special pocket for tip."
 	icon_state = "waiter"
 
-/obj/item/clothing/under/rank/mailman
-	name = "mailman's jumpsuit"
-	desc = "<i>'Special delivery!'</i>"
-	icon_state = "mailman"
-	item_state = "b_suit"
-	adjustment_variants = list()
-
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
 	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."

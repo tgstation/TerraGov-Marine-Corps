@@ -9,7 +9,7 @@
 /obj/item/assembly/mousetrap/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -77,13 +77,13 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/H = AM
 		if(H.m_intent == MOVE_INTENT_RUN)
-			INVOKE_ASYNC(src, .proc/triggered, H)
+			INVOKE_ASYNC(src, PROC_REF(triggered), H)
 			H.visible_message(span_warning("[H] accidentally steps on [src]."), \
 							span_warning("You accidentally step on [src]"))
 	else if(ismouse(AM))
-		INVOKE_ASYNC(src, .proc/triggered, AM)
+		INVOKE_ASYNC(src, PROC_REF(triggered), AM)
 	else if(AM.density) // For mousetrap grenades, set off by anything heavy
-		INVOKE_ASYNC(src, .proc/triggered, AM)
+		INVOKE_ASYNC(src, PROC_REF(triggered), AM)
 
 
 /obj/item/assembly/mousetrap/on_found(mob/finder)
