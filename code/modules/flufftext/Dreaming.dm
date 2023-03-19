@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(dream_topics, list(
 		dream_amounts = 0
 		return FALSE
 	to_chat(src, span_notice("<i>... [pick(GLOB.dream_topics)] ...</i>"))
-	addtimer(CALLBACK(src, .proc/dream), rand(4 SECONDS, 7 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(dream)), rand(4 SECONDS, 7 SECONDS))
 	dream_amounts--
 	return TRUE
 

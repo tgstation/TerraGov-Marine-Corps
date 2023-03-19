@@ -171,11 +171,9 @@
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
-#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
-
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
 
-#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
+#define ismodularsuit(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
 
@@ -284,3 +282,8 @@
 
 // Slot helpers
 #define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))
+
+// Objective helpers
+#define ismaroonobjective(O) (istype(O, /datum/objective/maroon))
+#define isstealobjective(O) (istype(O, /datum/objective/steal))
+#define isassassinateobjective(O) (istype(O, /datum/objective/assassinate))

@@ -28,7 +28,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -44,17 +44,17 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/ex_act()
 	. = ..()
 	if(!QDELETED(src))
-		INVOKE_ASYNC(src, .proc/trigger_explosion)
+		INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Any emp effects mines will trigger their explosion
 /obj/item/explosive/mine/emp_act()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
 /obj/item/explosive/mine/flamer_fire_act(burnlevel)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
@@ -142,7 +142,7 @@ Stepping directly on the mine will also blow it up
 	span_danger("You hear a click."))
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
@@ -157,7 +157,7 @@ Stepping directly on the mine will also blow it up
 	X.visible_message(span_danger("[X] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Trigger an actual explosion and delete the mine.
 /obj/item/explosive/mine/proc/trigger_explosion()
@@ -180,7 +180,7 @@ Stepping directly on the mine will also blow it up
 /obj/effect/mine_tripwire/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

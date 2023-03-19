@@ -73,7 +73,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
-		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
+		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
 	if(length(GLOB.ready_players) < required_players && !bypass_checks)
 		to_chat(world, "<b>Unable to start [name].</b> Not enough players, [required_players] players needed.")
@@ -124,10 +124,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 ///Gamemode setup run after the game has started
 /datum/game_mode/proc/post_setup()
-	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(flags_round_type & MODE_SILO_RESPAWN)
 		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HN.RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), /datum/hive_status/normal.proc/set_siloless_collapse_timer)
+		HN.RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), TYPE_PROC_REF(/datum/hive_status/normal, set_siloless_collapse_timer))
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -180,8 +180,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		livings += living
 
 	if(length(livings))
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 1 SECONDS, TIMER_CLIENT_TIME)
-
+		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 1 SECONDS, TIMER_CLIENT_TIME)
 
 /datum/game_mode/proc/release_characters(list/livings)
 	for(var/I in livings)
@@ -204,7 +203,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
 	display_report()
-	addtimer(CALLBACK(src, .proc/end_of_round_deathmatch), ROUNDEND_EORG_DELAY)
+	addtimer(CALLBACK(src, PROC_REF(end_of_round_deathmatch)), ROUNDEND_EORG_DELAY)
 	//end_of_round_deathmatch()
 	return TRUE
 
@@ -268,7 +267,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	set waitfor = FALSE
 
 	if(flags_round_type & MODE_LATE_OPENING_SHUTTER_TIMER)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -285,7 +284,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	source.verbs |= /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, PROC_REF(grant_eord_respawn)) // New mobs can now respawn into EORD
 	var/list/spawns = GLOB.deathmatch.Copy()
 
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
@@ -329,7 +328,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			M.mind.transfer_to(L, TRUE)
 		else
 			L = M
-			INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
+			INVOKE_ASYNC(L, TYPE_PROC_REF(/atom/movable, forceMove), picked)
 
 		L.mind.bypass_ff = TRUE
 		L.revive()
@@ -464,6 +463,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.ravager_endures)
 		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
+	if(GLOB.round_statistics.bull_crush_hit)
+		parts += "[GLOB.round_statistics.bull_crush_hit] number of times Bulls crushed marines."
+	if(GLOB.round_statistics.bull_gore_hit)
+		parts += "[GLOB.round_statistics.bull_gore_hit] number of times Bulls gored marines."
+	if(GLOB.round_statistics.bull_headbutt_hit)
+		parts += "[GLOB.round_statistics.bull_headbutt_hit] number of times Bulls headbutted marines."
 	if(GLOB.round_statistics.hunter_marks)
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.ravager_rages)
@@ -721,6 +726,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/build_roundend_report()
 	var/list/parts = list()
 
+	parts += antag_report()
+
 	parts += announce_round_stats()
 	parts += announce_xenomorphs()
 	CHECK_TICK
@@ -759,9 +766,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/list/parts = list()
 	var/mob/M = C.mob
 	if(M.mind && !isnewplayer(M))
+		parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 		if(M.stat != DEAD && !isbrain(M))
 			if(ishuman(M))
-				parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 				var/turf/current_turf = get_turf(M)
 				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR))
 					parts += "<div class='panel stationborder'>"
@@ -831,3 +838,82 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
+
+/datum/game_mode/proc/gather_antag_data()
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+		var/list/antag_info = list()
+		antag_info["key"] = A.owner.key
+		antag_info["name"] = A.owner.name
+		antag_info["antagonist_type"] = A.type
+		antag_info["antagonist_name"] = A.name //For auto and custom roles
+		antag_info["objectives"] = list()
+		if(A.objectives.len)
+			for(var/datum/objective/O in A.objectives)
+				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				antag_info["objectives"] += list(list("objective_type"=O.type,"text"=O.explanation_text,"result"=result))
+		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
+
+/proc/printobjectives(list/objectives)
+	if(!objectives || !objectives.len)
+		return
+	var/list/objective_parts = list()
+	var/count = 1
+	for(var/datum/objective/objective in objectives)
+		if(objective.check_completion())
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
+		else
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+		count++
+	return objective_parts.Join("<br>")
+
+/proc/printplayer(datum/mind/ply, fleecheck)
+	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b> and"
+	if(ply.current)
+		if(ply.current.stat == DEAD)
+			text += " [span_redtext("died")]"
+		else
+			text += " [span_greentext("survived")]"
+		if(fleecheck)
+			var/turf/T = get_turf(ply.current)
+			if(!T || !is_station_level(T.z))
+				text += " while [span_redtext("fleeing the station")]"
+		if(ply.current.real_name != ply.name)
+			text += " as <b>[ply.current.real_name]</b>"
+	else
+		text += " [span_redtext("had their body destroyed")]"
+	return text
+
+/datum/game_mode/proc/antag_report()
+	var/list/result = list()
+	var/list/all_antagonists = list()
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+		all_antagonists |= A
+	var/currrent_category
+	var/datum/antagonist/previous_category
+	sortTim(all_antagonists, GLOBAL_PROC_REF(cmp_antag_category))
+	for(var/datum/antagonist/A in all_antagonists)
+		if(!A.show_in_roundend)
+			continue
+		if(A.roundend_category != currrent_category)
+			if(previous_category)
+				result += previous_category.roundend_report_footer()
+				result += "</div>"
+			result += "<div class='panel redborder'>"
+			result += A.roundend_report_header()
+			currrent_category = A.roundend_category
+			previous_category = A
+		result += A.roundend_report()
+		result += "<br><br>"
+		CHECK_TICK
+	if(all_antagonists.len)
+		var/datum/antagonist/last = all_antagonists[all_antagonists.len]
+		result += last.roundend_report_footer()
+		result += "</div>"
+	return result.Join()
+
+/proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
+	return sorttext(B.roundend_category,A.roundend_category)

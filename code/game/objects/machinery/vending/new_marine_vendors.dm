@@ -276,7 +276,7 @@
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/engi/valhalla
-	vendor_role = /datum/job/fallen/engineer
+	vendor_role = /datum/job/fallen/marine/engineer
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -316,7 +316,7 @@
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/medic/valhalla
-	vendor_role = /datum/job/fallen/corpsman
+	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -356,7 +356,7 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/smartgun/valhalla
-	vendor_role = /datum/job/fallen/smartgunner
+	vendor_role = /datum/job/fallen/marine/smartgunner
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -396,7 +396,7 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/leader/valhalla
-	vendor_role = /datum/job/fallen/leader
+	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -518,7 +518,7 @@
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/medic/valhalla
-	vendor_role = /datum/job/fallen/corpsman
+	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -539,7 +539,7 @@
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi/valhalla
-	vendor_role = /datum/job/fallen/engineer
+	vendor_role = /datum/job/fallen/marine/engineer
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -560,7 +560,7 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/smartgun/valhalla
-	vendor_role = /datum/job/fallen/smartgunner
+	vendor_role = /datum/job/fallen/marine/smartgunner
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -581,7 +581,7 @@
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/marine_selector/gear/leader/valhalla
-	vendor_role = /datum/job/fallen/leader
+	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 

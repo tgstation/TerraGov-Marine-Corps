@@ -15,8 +15,8 @@
 
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
-	update_icon(TRUE, TRUE) //Update icon and sides on start, but skip nearby check for turfs.
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acidspray_act))
+	update_icon(TRUE,TRUE) //Update icon and sides on start, but skip nearby check for turfs.
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)

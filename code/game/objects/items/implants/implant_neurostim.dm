@@ -32,7 +32,7 @@
 	else
 		playsound(implant_owner, 'sound/machines/twobeep.ogg', 60, 1)
 		implant_owner.visible_message(span_warning("Something beeps inside [implant_owner][part ? "'s [part.display_name]" : ""]."))
-	addtimer(CALLBACK(src, .proc/shock_sparks), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(shock_sparks)), 1 SECONDS)
 
 ///Plays a shocky animation
 /obj/item/implant/neurostim/proc/shock_sparks()
@@ -40,7 +40,7 @@
 	var/datum/effect_system/spark_spread/s = new
 	s.set_up(2, 1, src)
 	s.start()
-	addtimer(CALLBACK(src, .proc/shock_collar), 5)
+	addtimer(CALLBACK(src, PROC_REF(shock_collar)), 5)
 
 ///Shocks the owner for whatever reason
 /obj/item/implant/neurostim/proc/shock_collar()

@@ -43,7 +43,7 @@
 	if(isxeno(pulledby))
 		if(adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS)) //take oxy damage per tile dragged
 			return
-		INVOKE_ASYNC(src, .proc/adjustBruteLoss, HUMAN_CRITDRAG_OXYLOSS)
+		INVOKE_ASYNC(src, PROC_REF(adjustBruteLoss), HUMAN_CRITDRAG_OXYLOSS)
 
 /mob/living/carbon/update_stat()
 	. = ..()

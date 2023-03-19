@@ -62,6 +62,6 @@
 				var/obj/item/implant/imp = I
 				user.visible_message(span_warning("Something beeps inside [target]'s [affected.display_name]!"))
 				playsound(imp.loc, 'sound/items/countdown.ogg', 25, 1)
-				addtimer(CALLBACK(imp, /obj/item/implant.proc/activate), 25)
+				addtimer(CALLBACK(imp, TYPE_PROC_REF(/obj/item/implant, activate)), 25)
 	target.updatehealth()
 	affected.update_wounds()

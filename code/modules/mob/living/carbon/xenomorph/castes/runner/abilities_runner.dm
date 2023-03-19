@@ -52,7 +52,7 @@
 	M.attack_alien_harm(src, extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
 	use_plasma(extra_dam * 2)
 	savage_used = TRUE
-	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(savage_cooldown)), xeno_caste.savage_cooldown)
 
 	return TRUE
 
@@ -121,7 +121,7 @@
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
 		if(!X.savage_used)
 			if(X.plasma_stored >= 10)
-				INVOKE_ASYNC(X, /mob/living/carbon/xenomorph/.proc/Savage, M)
+				INVOKE_ASYNC(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, Savage), M)
 			else
 				X.balloon_alert(X, "Cannot savage, no plasma")
 				to_chat(X, span_xenodanger("We attempt to savage our victim but we need at least [10-X.plasma_stored] more plasma."))
@@ -160,9 +160,9 @@
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/pounce_complete)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
 
 	prepare_to_pounce()
 
@@ -177,7 +177,7 @@
 	X.flags_pass = PASSTABLE|PASSFIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 6)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_flags_pass)), 6)
 
 	return TRUE
 
@@ -239,7 +239,7 @@
 	R.balloon_alert(R, "Begin evasion: [RUNNER_EVASION_DURATION * 0.1] sec.")
 	to_chat(R, span_highdanger("We take evasive action, making us impossible to hit with projectiles for the next [RUNNER_EVASION_DURATION * 0.1] seconds."))
 
-	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(evasion_deactivate)), RUNNER_EVASION_DURATION)
 
 	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
@@ -247,12 +247,12 @@
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
+		COMSIG_LIVING_STATUS_STAGGER), PROC_REF(evasion_debuff_check))
 
-	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, .proc/evasion_dodge) //This is where we actually check to see if we dodge the projectile.
-	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge)) //This is where we actually check to see if we dodge the projectile.
+	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, PROC_REF(evasion_burn_check)) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit)) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge)) //Register status effects and fire which impact evasion.
 
 	evade_active = TRUE //evasion is currently active
 
@@ -382,7 +382,7 @@
 	span_xenodanger("We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
 
 	X.add_filter("runner_evasion", 2, gauss_blur_filter(5))
-	addtimer(CALLBACK(X, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	X.do_jitter_animation(4000)
 
 	if(evasion_stacks >= evasion_stack_target && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
@@ -451,7 +451,7 @@
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	stolen_item = victim.get_active_held_item()
@@ -469,8 +469,8 @@
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
 	stolen_appearance.layer = ABOVE_OBJ_LAYER
-	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
-	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
+	addtimer(CALLBACK(src, PROC_REF(drop_item), stolen_item), 3 SECONDS)
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
 	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
 	add_cooldown()

@@ -118,7 +118,7 @@
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
-		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
 		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
@@ -284,7 +284,7 @@
 	var/list/affecting_shields = list()
 	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
 	if(length(affecting_shields) > 1)
-		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
+		sortTim(affecting_shields, GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
 		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)

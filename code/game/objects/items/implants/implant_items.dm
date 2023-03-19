@@ -20,7 +20,7 @@
 		fetch_item()
 		return
 	put_in_slots()
-	RegisterSignal(helditem, COMSIG_ITEM_DROPPED, .proc/fetch_item)
+	RegisterSignal(helditem, COMSIG_ITEM_DROPPED, PROC_REF(fetch_item))
 
 ///Takes the held item and puts it into it's predestined slot
 /obj/item/implant/deployitem/proc/put_in_slots()

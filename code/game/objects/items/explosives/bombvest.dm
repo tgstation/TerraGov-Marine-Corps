@@ -11,7 +11,7 @@
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/equipped(mob/user, slot)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_SHIELD_DETATCH, .proc/shield_dropped)
+	RegisterSignal(user, COMSIG_MOB_SHIELD_DETATCH, PROC_REF(shield_dropped))
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/unequipped(mob/unequipper, slot)
 	. = ..()

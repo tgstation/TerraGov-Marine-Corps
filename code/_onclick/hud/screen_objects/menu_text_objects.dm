@@ -62,7 +62,7 @@
 /atom/movable/screen/text/lobby/clickable/setup_character/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
+		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
 		return
 	set_text()
 
@@ -73,7 +73,7 @@
 /atom/movable/screen/text/lobby/clickable/setup_character/set_text()
 	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
 	if(!registered)
-		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
+		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(set_text))
 		registered = TRUE
 
 /atom/movable/screen/text/lobby/clickable/join_game
@@ -102,7 +102,7 @@
 /atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
+		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
 		return
 	set_text()
 
@@ -152,9 +152,9 @@
 /atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/fetch_polls)//stupid fucking initialize bug fuck you
+		INVOKE_NEXT_TICK(src, PROC_REF(fetch_polls))//stupid fucking initialize bug fuck you
 		return
-	INVOKE_ASYNC(src, .proc/fetch_polls)
+	INVOKE_ASYNC(src, PROC_REF(fetch_polls))
 
 ///This proc is invoked async to avoid sleeping in Initialize and fetches polls from the DB
 /atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()

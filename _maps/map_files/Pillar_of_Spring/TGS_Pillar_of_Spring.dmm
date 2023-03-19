@@ -10469,6 +10469,11 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"nyb" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -13630,6 +13635,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"rCl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "rCA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -13948,6 +13959,11 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"sbg" = (
+/obj/structure/dropprop,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "sbr" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -46315,7 +46331,7 @@ swG
 bTS
 bTS
 bTS
-bTS
+sbg
 uQQ
 ufq
 ufq
@@ -47600,7 +47616,7 @@ ufq
 bTS
 bTS
 bTS
-bTS
+sbg
 jqG
 ufq
 ufq
@@ -50787,9 +50803,9 @@ vOw
 qwg
 dny
 dny
-qwg
-dny
-dny
+rCl
+nyb
+nyb
 lvw
 dcY
 wPV
@@ -51813,7 +51829,7 @@ vsI
 iHY
 uBM
 kfm
-kfm
+ltw
 kfm
 ltw
 soK
