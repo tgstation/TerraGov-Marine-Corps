@@ -279,7 +279,7 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
+	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
