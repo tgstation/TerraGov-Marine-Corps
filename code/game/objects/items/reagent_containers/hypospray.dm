@@ -73,48 +73,7 @@
 	if(!in_range(A, user) || !user.Adjacent(A))
 		return
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
-		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
-			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
-			update_icon() //So we now display as Inject
-			return
-
-		if(iscarbon(A))
-			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
-			var/mob/living/carbon/C = A
-			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-				to_chat(user, span_warning("There is already a blood sample in [src]."))
-				return
-			if(!C.blood_type)
-				to_chat(user, span_warning("You are unable to locate any blood."))
-				return
-
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
-				if(H.species.species_flags & NO_BLOOD)
-					to_chat(user, span_warning("You are unable to locate any blood."))
-					return
-				else
-					C.take_blood(src,amount)
-			else
-				C.take_blood(src,amount)
-
-			reagents.handle_reactions()
-			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
-								span_notice("You take a blood sample from [A]."), null, 4)
-
-		else if(istype(A, /obj)) //if not mob
-			if(!A.reagents.total_volume)
-				to_chat(user, "<span class='warning'>[A] is empty.")
-				return
-
-			if(!A.is_drawable())
-				to_chat(user, span_warning("You cannot directly remove reagents from this object."))
-				return
-
-			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
-
-			to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
+		draw_reagent(A, user)
 
 		on_reagent_change()
 		return TRUE
@@ -167,6 +126,10 @@
 	return TRUE
 
 /obj/item/reagent_containers/hypospray/afterattack_alternate(atom/A, mob/living/user)
+	draw_reagent(A, user)
+
+///Draws reagent from container A.
+/obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
 	if(reagents.holder_full())
 		to_chat(user, span_warning("[src] is full."))
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
