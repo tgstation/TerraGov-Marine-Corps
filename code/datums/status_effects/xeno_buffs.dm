@@ -490,7 +490,7 @@
 ///Calculates the effectiveness of parts of the status based on plasma of owner
 #define CALC_PLASMA_MOD(xeno) \
 	(clamp(1 - xeno.plasma_stored / owner_xeno.xeno_caste.plasma_max, 0.2, 0.8) + 0.2)
-#define HIGN_THRESHOLD 0.6
+#define HIGN_THRESHOLD 0.8
 #define KNOCKDOWN_DURATION 1 SECONDS
 
 // ***************************************
@@ -562,7 +562,7 @@
 
 		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
-			target.blood_volume -= 10
+			target.blood_volume -= 30
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
@@ -621,6 +621,7 @@
 			continue
 		HEAL_XENO_DAMAGE(affected_xeno, heal_amount, FALSE)
 		adjustOverheal(affected_xeno, heal_amount / 2)
+		new /obj/effect/temp_visual/healing(get_turf(affected_xeno))
 	X.use_plasma(plasma_drain)
 
 // ***************************************

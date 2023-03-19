@@ -20,8 +20,8 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 0
-	plasma_regen_limit = 0
+	plasma_gain = 5
+	plasma_regen_limit = 0.1
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
@@ -45,8 +45,8 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 200
-	drain_plasma_gain = 20
-	carnage_plasma_gain = 25
+	drain_plasma_gain = 40
+	carnage_plasma_gain = 75
 	feast_plasma_drain = 20
 
 	actions = list(
@@ -88,8 +88,8 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 225
-	drain_plasma_gain = 20
-	carnage_plasma_gain = 30
+	drain_plasma_gain = 45
+	carnage_plasma_gain = 90
 
 /datum/xeno_caste/gorger/elder
 	upgrade_name = "Elder"
@@ -114,8 +114,8 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 250
-	drain_plasma_gain = 30
-	carnage_plasma_gain = 35
+	drain_plasma_gain = 55
+	carnage_plasma_gain = 110
 
 /datum/xeno_caste/gorger/ancient
 	upgrade_name = "Ancient"
@@ -139,8 +139,8 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
-	drain_plasma_gain = 40
-	carnage_plasma_gain = 40
+	drain_plasma_gain = 75
+	carnage_plasma_gain = 150
 
 /datum/xeno_caste/gorger/primordial
 	upgrade_name = "Primordial"
@@ -161,8 +161,8 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
-	drain_plasma_gain = 40
-	carnage_plasma_gain = 40
+	drain_plasma_gain = 75
+	carnage_plasma_gain = 150
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
