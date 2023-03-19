@@ -125,7 +125,7 @@
 	if(!.)
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()

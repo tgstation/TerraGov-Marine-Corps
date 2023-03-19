@@ -504,7 +504,7 @@
 	camo_last_stealth = world.time
 	wearer = M
 
-	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
+	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, PROC_REF(on_other_activate))
 	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
@@ -522,14 +522,14 @@
 		GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(M)
 		GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(M)
 
-	addtimer(CALLBACK(src, .proc/on_cloak), 1)
-	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
+	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
+	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	RegisterSignal(M, list(
 		COMSIG_MOB_GUN_FIRED,
 		COMSIG_MOB_GUN_AUTOFIRED,
 		COMSIG_MOB_ATTACHMENT_FIRED,
 		COMSIG_MOB_THROW,
-		COMSIG_MOB_ITEM_ATTACK), .proc/action_taken)
+		COMSIG_MOB_ITEM_ATTACK), PROC_REF(action_taken))
 
 	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
@@ -572,7 +572,7 @@
 	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(user)
 	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(user)
 
-	addtimer(CALLBACK(src, .proc/on_decloak), 1)
+	addtimer(CALLBACK(src, PROC_REF(on_decloak)), 1)
 
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
@@ -593,7 +593,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)
 		return
-	addtimer(CALLBACK(src, .proc/cooldown_finished), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown_finished)), cooldown)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/cooldown_finished()
 	camo_cooldown_timer = null

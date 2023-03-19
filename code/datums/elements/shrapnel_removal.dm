@@ -8,7 +8,7 @@
 	if(!isitem(target) || (duration < 1))
 		return ELEMENT_INCOMPATIBLE
 	do_after_time = duration
-	RegisterSignal(target, COMSIG_ITEM_ATTACK, .proc/on_attack)
+	RegisterSignal(target, COMSIG_ITEM_ATTACK, PROC_REF(on_attack))
 
 /datum/element/shrapnel_removal/Detach(datum/source, force)
 	. = ..()
@@ -16,7 +16,7 @@
 
 /datum/element/shrapnel_removal/proc/on_attack(datum/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/attempt_remove, source, M, user)
+	INVOKE_ASYNC(src, PROC_REF(attempt_remove), source, M, user)
 	return COMPONENT_ITEM_NO_ATTACK
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)

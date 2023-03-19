@@ -97,7 +97,7 @@
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C AS in show_to)
 		C.images += I
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_images_from_clients, I, show_to), duration, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), duration, TIMER_CLIENT_TIME)
 
 ///wrapper for flick_overlay(), flicks to everyone who can see the target atom
 /proc/flick_overlay_view(image/image_to_show, atom/target, duration)

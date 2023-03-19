@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(aura)
 			affects_xenos = TRUE
 
 	SEND_SIGNAL(emitter, COMSIG_AURA_STARTED, aura_types)
-	RegisterSignal(emitter, COMSIG_PARENT_QDELETING, .proc/stop_emitting)
+	RegisterSignal(emitter, COMSIG_PARENT_QDELETING, PROC_REF(stop_emitting))
 
 ///Center gets destroyed, we run out of duration, or any other reason to finish. Perish immediately.
 /datum/aura_bearer/proc/stop_emitting()

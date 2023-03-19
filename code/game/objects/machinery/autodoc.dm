@@ -63,12 +63,12 @@
 
 /obj/machinery/autodoc/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 
 /obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	INVOKE_ASYNC(src, .proc/do_eject)
+	INVOKE_ASYNC(src, PROC_REF(do_eject))
 	if(connected)
 		connected.connected = null
 		connected = null
@@ -772,7 +772,7 @@
 			qdel(O)
 		if(automaticmode)
 			say("Automatic mode engaged, initialising procedures.")
-			addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 ///Callback to start auto mode on someone entering
 /obj/machinery/autodoc/proc/auto_start()
@@ -921,7 +921,7 @@
 
 	if(automaticmode)
 		say("Automatic mode engaged, initialising procedures.")
-		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 
 /////////////////////////////////////////////////////////////
