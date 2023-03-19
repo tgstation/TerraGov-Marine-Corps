@@ -279,6 +279,7 @@
 	name = "Saline-Glucose"
 	description = "Saline-Glucose can be used to restore blood in a pinch."
 	color = "#d4f1f9"
+	var/nutriment_factor = 1.5
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -286,8 +287,10 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
-	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-		L.blood_volume += 1.2
+	var/mob/living/carbon/human = L
+	if(human.blood_volume < BLOOD_VOLUME_NORMAL)
+		human.blood_volume += 1.2
+	human.adjust_nutrition(nutriment_factor)
 	return ..()
 
 /datum/reagent/medicine/saline_glucose/overdose_process(mob/living/L, metabolism)
