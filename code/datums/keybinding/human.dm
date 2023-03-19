@@ -106,12 +106,12 @@
 	description = "Toggles your suit light on or off"
 	keybind_signal = COMSIG_KB_SUITLIGHT
 
-/datum/keybinding/human/activate_autorepair
+/datum/keybinding/human/activate_robot_autorepair
 	hotkey_keys = list("g")
 	name = "autorepair"
-	full_name = "Activate autorepair"
+	full_name = "Activate combat robot autorepair"
 	description = "Activate combat robot's autorepair"
-	keybind_signal = COMSIG_KB_AUTOREPAIR
+	keybind_signal = COMSIG_KB_ROBOT_AUTOREPAIR
 
 /datum/keybinding/human/move_order
 	name = "move_order"
