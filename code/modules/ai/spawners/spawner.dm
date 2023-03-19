@@ -22,7 +22,7 @@
 		stack_trace("Spawndelay too low, deleting AI spawner node")
 		return INITIALIZE_HINT_QDEL
 	. = ..()
-	SSspawning.registerspawner(src, spawndelay, spawntypes, maxamount, spawnamount, use_postspawn ? CALLBACK(src, .proc/postspawn) : null)
+	SSspawning.registerspawner(src, spawndelay, spawntypes, maxamount, spawnamount, use_postspawn ? CALLBACK(src, PROC_REF(postspawn)) : null)
 
 ///This proc runs on the created mobs if use_postspawn is enabled, use this to equip humans and such
 /obj/effect/ai_node/spawner/proc/postspawn(list/squad)

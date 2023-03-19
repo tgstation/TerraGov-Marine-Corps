@@ -233,7 +233,7 @@
 		force = on_damage
 		heat = 1500
 		damtype = BURN
-		addtimer(CALLBACK(src, .proc/turn_off), fuel)
+		addtimer(CALLBACK(src, PROC_REF(turn_off)), fuel)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = usr
 			C.toggle_throw_mode()
@@ -245,7 +245,7 @@
 	turn_light(null, TRUE)
 	force = on_damage
 	damtype = BURN
-	addtimer(CALLBACK(src, .proc/turn_off), fuel)
+	addtimer(CALLBACK(src, PROC_REF(turn_off)), fuel)
 
 /obj/item/flashlight/slime
 	gender = PLURAL

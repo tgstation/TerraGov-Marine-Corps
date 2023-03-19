@@ -129,7 +129,7 @@
 			balloon_alert(user, "fabricating")
 			fabricating = TRUE
 			update_overlays()
-			addtimer(CALLBACK(src, .proc/do_vend, L[3], user), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(do_vend), L[3], user), 1 SECONDS)
 
 	updateUsrDialog()
 

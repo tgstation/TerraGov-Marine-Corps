@@ -30,8 +30,8 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/life_draining_over, null, TRUE), cocoon_life_time)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
+	addtimer(CALLBACK(src, PROC_REF(life_draining_over), null, TRUE), cocoon_life_time)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(life_draining_over))
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()

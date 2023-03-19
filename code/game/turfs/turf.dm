@@ -948,7 +948,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(current_acid)
 		UnregisterSignal(current_acid, COMSIG_PARENT_QDELETING)
 	current_acid = new_acid
-	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, .proc/clean_current_acid)
+	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, PROC_REF(clean_current_acid))
 
 ///Signal handler to clean current_acid var
 /turf/proc/clean_current_acid()

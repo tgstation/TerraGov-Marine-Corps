@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(minimaps)
 		LAZYADD(update_targets["[flag]"], holder)
 	updators_by_datum[target] = holder
 	update_targets_unsorted += target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_updator)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_updator))
 
 /**
  * Removes a atom from the subsystems updating overlays
@@ -208,7 +208,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
 		CRASH("Invalid marker added to subsystem")
 	if(!initialized)
-		earlyadds += CALLBACK(src, .proc/add_marker, target, zlevel, hud_flags, iconstate, icon)
+		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, zlevel, hud_flags, iconstate, icon)
 		return
 
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
@@ -221,10 +221,10 @@ SUBSYSTEM_DEF(minimaps)
 		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
 		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
 	if(ismovableatom(target))
-		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change)
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
-	removal_cbs[target] = CALLBACK(src, .proc/removeimage, blip, target)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_marker)
+		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_marker))
 
 
 
@@ -317,7 +317,7 @@ SUBSYSTEM_DEF(minimaps)
  */
 /atom/movable/screen/minimap/proc/get_coords_from_click(mob/user)
 	//lord forgive my shitcode
-	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/on_click)
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_click))
 	while(!choices_by_mob[user] && user.client)
 		stoplag(1)
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
@@ -416,8 +416,8 @@ SUBSYSTEM_DEF(minimaps)
 	if(default_overwatch_level)
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 	else
-		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
-	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, .proc/action_activate)
+		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)

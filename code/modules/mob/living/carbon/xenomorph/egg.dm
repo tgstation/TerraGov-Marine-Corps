@@ -32,12 +32,12 @@
 	maturity_stage = maturity ? maturity : maturity_stage + 1
 	update_icon()
 	if(maturity_stage < stage_ready_to_burst)
-		addtimer(CALLBACK(src, .proc/advance_maturity), maturity_time)
+		addtimer(CALLBACK(src, PROC_REF(advance_maturity)), maturity_time)
 		return
 	if(maturity_stage != stage_ready_to_burst)
 		return
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
-		RegisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED, .proc/enemy_crossed)
+		RegisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED, PROC_REF(enemy_crossed))
 
 ///Bursts the egg. Return TRUE if it bursts successfully, FALSE if it fails for any reason.
 /obj/alien/egg/proc/burst(via_damage)
@@ -114,7 +114,7 @@
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type()
 	hugger_type = null
-	addtimer(CALLBACK(hugger, /atom/movable.proc/forceMove, loc), 1 SECONDS)
+	addtimer(CALLBACK(hugger, TYPE_PROC_REF(/atom/movable, forceMove), loc), 1 SECONDS)
 	hugger.go_active()
 
 /obj/alien/egg/hugger/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)

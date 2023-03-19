@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(automatedfire)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	target = locate(x+5, y, z)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
-	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
+	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, PROC_REF(shoot))
 	SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 	var/static/number = 1
 	name = "[name] [number]"
@@ -192,15 +192,15 @@ SUBSYSTEM_DEF(automatedfire)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	shot_delay = _shot_delay
-	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, .proc/start_shooting)
-	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, .proc/stop_shooting)
+	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, PROC_REF(start_shooting))
+	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, PROC_REF(stop_shooting))
 
 ///Signal handler for starting the autoshooting at something
 /datum/component/automatedfire/xeno_turret_autofire/proc/start_shooting(datum/source)
 	SIGNAL_HANDLER
 	if(!shooting)
 		shooting = TRUE
-		INVOKE_ASYNC(src, .proc/process_shot)
+		INVOKE_ASYNC(src, PROC_REF(process_shot))
 
 
 ///Signal handler for stoping the shooting
