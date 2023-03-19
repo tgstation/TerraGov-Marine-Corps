@@ -72,9 +72,8 @@
 		return
 	if(!in_range(A, user) || !user.Adjacent(A))
 		return
-	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
+	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're drawing
 		draw_reagent(A, user)
-
 		on_reagent_change()
 		return TRUE
 
@@ -127,6 +126,7 @@
 
 /obj/item/reagent_containers/hypospray/afterattack_alternate(atom/A, mob/living/user)
 	draw_reagent(A, user)
+	on_reagent_change()
 
 ///Draws reagent from container A.
 /obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
