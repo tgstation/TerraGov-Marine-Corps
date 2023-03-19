@@ -471,7 +471,7 @@
 	name = "Activate autorepair"
 	action_icon_state = "suit_configure"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_AUTOREPAIR,
+		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
 	)
 
 /datum/action/repair_self/can_use_action()
