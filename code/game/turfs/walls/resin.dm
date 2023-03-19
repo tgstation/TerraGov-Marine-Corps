@@ -200,7 +200,7 @@
 		return
 	if(existingtimer)// Dont spam timers >:(
 		return
-	addtimer(CALLBACK(src, .proc/start_healing), cooldown_on_taking_dmg)
+	addtimer(CALLBACK(src, PROC_REF(start_healing)), cooldown_on_taking_dmg)
 	existingtimer = TRUE
 
 

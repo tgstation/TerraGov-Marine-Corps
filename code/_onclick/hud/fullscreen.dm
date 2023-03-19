@@ -3,7 +3,7 @@
 
 /mob/proc/overlay_fullscreen_timer(duration, animated, category, type, severity)
 	overlay_fullscreen(category, type, severity)
-	addtimer(CALLBACK(src, .proc/clear_fullscreen, category, animated), duration)
+	addtimer(CALLBACK(src, PROC_REF(clear_fullscreen), category, animated), duration)
 
 
 /mob/proc/overlay_fullscreen(category, type, severity)
@@ -34,7 +34,7 @@
 
 	if(animated)
 		animate(screen, alpha = 0, time = animated)
-		addtimer(CALLBACK(src, .proc/clear_fullscreen_after_animate, screen), animated, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(clear_fullscreen_after_animate), screen), animated, TIMER_CLIENT_TIME)
 	else
 		if(client)
 			client.screen -= screen

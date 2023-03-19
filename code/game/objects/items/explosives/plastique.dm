@@ -94,7 +94,7 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
-		detonation_pending = addtimer(CALLBACK(src, .proc/warning_sound, target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
+		detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -149,4 +149,4 @@
 /obj/item/explosive/plastique/proc/warning_sound()
 	if(armed)
 		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
-		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), 27, TIMER_STOPPABLE)
+		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)

@@ -131,7 +131,7 @@
 			continue
 		KA.reset()
 		KA.receive_request(src)
-	addtimer(CALLBACK(src, .proc/finish_confirm), confirm_delay)
+	addtimer(CALLBACK(src, PROC_REF(finish_confirm)), confirm_delay)
 
 /obj/machinery/keycard_auth/proc/finish_confirm()
 	if(confirmed)
@@ -148,7 +148,7 @@
 	busy = FALSE
 	active = TRUE
 	icon_state = "auth_on"
-	addtimer(CALLBACK(src, .proc/confirm), confirm_delay)
+	addtimer(CALLBACK(src, PROC_REF(confirm)), confirm_delay)
 
 /obj/machinery/keycard_auth/proc/confirm()
 	event_source = null

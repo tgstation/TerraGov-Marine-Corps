@@ -46,7 +46,7 @@
 /mob/living/silicon/decoy/on_death()
 	density = TRUE
 	icon_state = "hydra-off"
-	addtimer(CALLBACK(src, .proc/post_mortem_explosion), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(post_mortem_explosion)), 2 SECONDS)
 	return ..()
 
 

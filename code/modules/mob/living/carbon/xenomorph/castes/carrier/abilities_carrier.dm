@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/do_activate)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(do_activate))
 
 /datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /// Helper proc for action acitvation via signal
 /datum/action/xeno_action/carrier_panic/proc/do_activate()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/action_activate)
+	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	while(xeno_carrier.huggers > 0)
 		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier))
 		step_away(new_hugger, xeno_carrier, 1)
-		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
+		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--
 	succeed_activate(INFINITY) //Consume all remaining plasma
 	add_cooldown()
@@ -389,7 +389,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()

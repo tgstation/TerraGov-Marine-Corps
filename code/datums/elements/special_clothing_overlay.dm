@@ -26,7 +26,7 @@
 		overlay_to_apply = get_overlay_icon()
 		if(!overlay_to_apply)
 			return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
+	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 
 /datum/element/special_clothing_overlay/Detach(datum/source, force)
 	. = ..()
@@ -43,9 +43,9 @@
  */
 /datum/element/special_clothing_overlay/proc/equipped(obj/item/source, mob/equipper, slot)
 	SIGNAL_HANDLER
-	RegisterSignal(equipper, COMSIG_HUMAN_APPLY_OVERLAY, .proc/add_as_overlay)
-	RegisterSignal(equipper, COMSIG_HUMAN_REMOVE_OVERLAY, .proc/remove_as_overlay)
-	RegisterSignal(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
+	RegisterSignal(equipper, COMSIG_HUMAN_APPLY_OVERLAY, PROC_REF(add_as_overlay))
+	RegisterSignal(equipper, COMSIG_HUMAN_REMOVE_OVERLAY, PROC_REF(remove_as_overlay))
+	RegisterSignal(source, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 
 /**
  * Signal handler for adding the overlay to the wearer

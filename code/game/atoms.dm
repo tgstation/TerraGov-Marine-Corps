@@ -574,7 +574,7 @@ Proc for attack log creation, because really why not
 ///Sorts our filters by priority and reapplies them
 /atom/proc/update_filters()
 	filters = null
-	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
 	for(var/f in filter_data)
 		var/list/data = filter_data[f]
 		var/list/arguments = data.Copy()
@@ -962,7 +962,7 @@ Proc for attack log creation, because really why not
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
 	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
-		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+		addtimer(CALLBACK(src, PROC_REF(reset_light)), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
