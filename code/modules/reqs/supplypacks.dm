@@ -877,8 +877,10 @@ ARMOR
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
 	cost = 400
 
@@ -915,6 +917,13 @@ ARMOR
 	name = "Jaeger Hlin module"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
+
+/datum/supply_packs/armor/modular/attachments/artemis_mark_two
+	name = "Artemis Mark 2 helmet module"
+	contains = list(
+		/obj/item/armor_module/module/binoculars/artemis_mark_two,
+	)
+	cost = 40
 
 /*******************************************************************************
 CLOTHING

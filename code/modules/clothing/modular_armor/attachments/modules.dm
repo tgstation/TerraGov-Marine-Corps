@@ -540,6 +540,45 @@
 		activate(user)
 	return COMSIG_MOB_CLICK_CANCELED
 
+/obj/item/armor_module/module/binoculars/artemis_mark_two // a little cheating with subtypes
+	name = "\improper Mark 2 Artemis Helmet Module"
+	desc = "Designed for mounting on a modular helmet. The Artemis module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
+	icon_state = "artemis_head"
+	item_state = "artemis_head_mk2_a"
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "artemis_head_mk2_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "artemis_head_mk2_xn", /obj/item/clothing/head/modular/marine/m10x/heavy = "artemis_head_mk2", /obj/item/clothing/head/modular/marine/infantry = "artemis_head_mk2_xn")
+	var/eye_protection_mod = 1
+
+/obj/item/armor_module/module/binoculars/artemis_mark_two/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	parent.eye_protection += eye_protection_mod
+	parent.AddComponent(/datum/component/blur_protection)
+
+/obj/item/armor_module/module/binoculars/artemis_mark_two/on_detach(obj/item/detaching_from, mob/user)
+	parent.eye_protection -= eye_protection_mod
+	var/datum/component/blur_protection/blur_p = parent?.GetComponent(/datum/component/blur_protection)
+	blur_p?.RemoveComponent()
+	return ..()
+
+/obj/item/armor_module/module/artemis
+	name = "\improper Mark 1 Artemis Helmet Module"
+	desc = "Designed for mounting on a modular helmet. The Artemis module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "artemis_head"
+	item_state = "artemis_head_a"
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "artemis_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "artemis_head_xn", /obj/item/clothing/head/modular/marine/m10x/heavy = "artemis_head", /obj/item/clothing/head/modular/marine/infantry = "artemis_head_xn")
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
+	prefered_slot = SLOT_HEAD
+
+/obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	parent.AddComponent(/datum/component/blur_protection)
+
+/obj/item/armor_module/module/artemis/on_detach(obj/item/detaching_from, mob/user)
+	var/datum/component/blur_protection/blur_p = parent?.GetComponent(/datum/component/blur_protection)
+	blur_p?.RemoveComponent()
+	return ..()
+
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
 	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console."

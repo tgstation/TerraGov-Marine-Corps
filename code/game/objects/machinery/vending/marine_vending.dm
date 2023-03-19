@@ -1241,6 +1241,7 @@
 			/obj/item/armor_module/storage/grenade = -1,
 			/obj/item/armor_module/module/welding = -1,
 			/obj/item/armor_module/module/binoculars = -1,
+			/obj/item/armor_module/module/artemis = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
 			/obj/item/armor_module/module/antenna = -1,
 			/obj/item/armor_module/module/mimir_environment_protection/mark1 = -1,

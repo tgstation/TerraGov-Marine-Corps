@@ -307,6 +307,7 @@
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
+	#define COMPONENT_CLOTHING_BLUR_PROTECTION (1<<1)
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
 
@@ -462,6 +463,9 @@
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
 #define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/alien/weeds/Initialize()
 #define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/alien/weeds/Destroy()
+
+#define COMSIG_LIVING_UPDATE_PLANE_BLUR "living_update_plane_blur"
+	#define COMPONENT_CANCEL_BLUR (1<<0)
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"

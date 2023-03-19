@@ -61,8 +61,9 @@
 /atom/movable/screen/plane_master/floor/backdrop(mob/living/mymob)
 	. = ..()
 	clear_filters()
-	if(istype(mymob) && mymob.eye_blurry)
-		add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
+	if(!istype(mymob) || !mymob.eye_blurry || SEND_SIGNAL(mymob, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
+		return
+	add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
 
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/game_world
@@ -75,8 +76,9 @@
 	. = ..()
 	clear_filters()
 	add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
-	if(istype(mymob) && mymob.eye_blurry)
-		add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
+	if(!istype(mymob) || !mymob.eye_blurry || SEND_SIGNAL(mymob, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
+		return
+	add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
 
 /**
  * Plane master handling byond internal blackness
