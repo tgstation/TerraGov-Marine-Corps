@@ -1,3 +1,8 @@
+/datum/chemical_reaction/saline_glucose
+	name = "Saline-Glucose" //Chem to restore blood.
+	results = list(/datum/reagent/medicine/saline_glucose = 3)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 1, /datum/reagent/consumable/sugar = 1)
+
 /datum/chemical_reaction/tricordrazine
 	name = "Tricordrazine"
 	results = list(/datum/reagent/medicine/tricordrazine = 2)

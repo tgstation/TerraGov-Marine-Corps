@@ -304,3 +304,24 @@
   - rscadd: Jerrycans are now in the vehicles category in req for 100 points.
   ivanmixo:
   - bugfix: Fixed non-normal hive pheros not working
+2023-03-18:
+  Naaanii:
+  - balance: lowers MR surgery skill
+  - bugfix: MRs now have their own skill set instead of inheriting it from doctors
+  TiviPlus:
+  - rscdel: Removed you being notified of nearby players being hit by bullets
+  - rscadd: Added a minimap "You are here" indicator
+  Xander3359:
+  - balance: Hypospray belt can hold 3 more slots.
+  - rscadd: New chem, saline glucose, restores blood at a rate of 1.2 units (QC is
+      0.2, Nano is 2.4)
+  - rscdel: Iron no longer regens blood.
+  - rscadd: Saline-Glucose has replaced iron in the cryomix.
+  - refactor: Isotonics are now just 15u of saline-glucose. Pills hold 1 dose, injectors
+      hold 2 doses.
+  ivanmixo:
+  - bugfix: Reverted a flag and fixed some evolution issues with certain xeno castes
+2023-03-19:
+  Lumipharon:
+  - code_imp: Removed various items from the codebase that are entirely unused
+  - imageadd: Ported TG sprites for various very old suits and hats
