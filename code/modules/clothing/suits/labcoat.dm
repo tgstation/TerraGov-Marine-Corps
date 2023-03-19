@@ -1,8 +1,8 @@
 /obj/item/clothing/suit/storage/labcoat
 	name = "labcoat"
 	desc = "A suit that protects against minor chemical spills."
-	icon_state = "labcoat_open"
-	item_state = "labcoat_open"
+	icon_state = "labcoat"
+	item_state = "labcoat"
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
 	pockets = /obj/item/storage/internal/modular/medical
