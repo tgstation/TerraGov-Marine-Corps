@@ -41,17 +41,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
-	pockets = /obj/item/storage/internal/suit/marine
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-
-/obj/item/storage/internal/suit/marine
-	bypass_w_limit = list(
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun,
-	)
-	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/Initialize()
 	. = ..()
@@ -79,11 +69,6 @@
 		if(new_overlay)
 			new_overlay = mutable_appearance('icons/mob/suit_1.dmi', new_overlay.icon_state)
 			standing.overlays += new_overlay
-
-/obj/item/clothing/suit/storage/marine/Destroy()
-	if(pockets)
-		QDEL_NULL(pockets)
-	return ..()
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -290,11 +275,6 @@
 	icon_state = "guardSLarmor"
 	soft_armor = list(MELEE = 85, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 85, BIO = 25, FIRE = 85, ACID = 85)
 	light_range = 6 // better light
-	pockets = /obj/item/storage/internal/suit/imperial
-
-/obj/item/storage/internal/suit/imperial
-	storage_slots = 3
-	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/imperial/medicae
 	name = "\improper Imperial Guard medicae armour"
@@ -315,7 +295,6 @@
 	//icon_state
 	soft_armor = list(MELEE = 75, BULLET = 60, LASER = 55, ENERGY = 40, BOMB = 45, BIO = 15, FIRE = 40, ACID = 40)
 	light_range = 6
-	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/clothing/suit/storage/marine/imperial/commissar
 	name = "\improper commissar coat"
@@ -460,7 +439,6 @@
 	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp)
 
 /obj/item/clothing/suit/storage/faction/freelancer/leader
-	pockets = null
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_MODULE,
@@ -495,7 +473,6 @@
 	)
 
 /obj/item/clothing/suit/storage/faction/freelancer/medic
-	pockets = null
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_MODULE,

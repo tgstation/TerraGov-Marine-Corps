@@ -648,19 +648,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(SLOT_IN_SUIT)
 			if(!H.wear_suit)
 				return FALSE
-			if(istype(H.wear_suit, /obj/item/clothing/suit/modular))
-				var/obj/item/clothing/suit/modular/T = H.wear_suit
+			if(istype(H.wear_suit, /obj/item/clothing/suit))
+				var/obj/item/clothing/suit/T = H.wear_suit
 				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 					return FALSE
 				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			if(istype(H.wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
-				var/obj/item/clothing/suit/storage/T = H.wear_suit
-				if(!T.pockets)
-					return FALSE
-				var/obj/item/storage/internal/S = T.pockets
 				if(S.can_be_inserted(src, warning))
 					return TRUE
 		if(SLOT_IN_HEAD)

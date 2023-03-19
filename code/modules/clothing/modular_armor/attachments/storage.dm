@@ -105,6 +105,12 @@
 		/obj/item/ammo_magazine/handful,
 	)
 
+/obj/item/armor_module/storage/general/irremovable
+	desc = "General storage module. Limited capacity but can hold some larger items like pistols or magazines."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+
 /obj/item/armor_module/storage/general/som
 	name = "General Purpose Storage module"
 	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, pistols or magazines."
@@ -214,6 +220,12 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
+
+/obj/item/armor_module/storage/medical/irremovable
+	desc = "Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/medical/freelancer/Initialize()
 	. = ..()

@@ -112,8 +112,8 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/modular_armor))
+				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)
@@ -175,8 +175,8 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/modular_armor))
+				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)

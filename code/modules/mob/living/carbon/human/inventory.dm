@@ -373,15 +373,10 @@
 			var/obj/item/storage/S = back
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
-			if(istype(wear_suit, /obj/item/clothing/suit/modular))
-				var/obj/item/clothing/suit/modular/T = wear_suit
+			if(istype(wear_suit, /obj/item/clothing/suit))
+				var/obj/item/clothing/suit/T = wear_suit
 				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 				var/obj/item/storage/S = U.storage
-				S.handle_item_insertion(W, FALSE, src)
-				S.close(src)
-			if(istype(wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
-				var/obj/item/clothing/suit/storage/T = wear_suit
-				var/obj/item/storage/internal/S = T.pockets
 				S.handle_item_insertion(W, FALSE, src)
 				S.close(src)
 		if(SLOT_IN_BELT)
