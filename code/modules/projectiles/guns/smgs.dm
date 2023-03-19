@@ -523,7 +523,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/icc_machinepistol
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_machinepistol)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_machinepistol, /obj/item/ammo_magazine/smg/icc_machinepistol/hp)
+	fire_sound = "mp38_fire"
+	unload_sound = 'sound/weapons/guns/interact/mp38_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp38_reload.ogg'
 
 	w_class = WEIGHT_CLASS_NORMAL
 	attachable_allowed = list(
