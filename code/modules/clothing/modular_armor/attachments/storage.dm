@@ -221,6 +221,12 @@
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
 
+/obj/item/armor_module/storage/medical/irremovable
+	desc = "Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+
 /obj/item/armor_module/storage/medical/freelancer/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(storage)
