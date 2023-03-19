@@ -318,9 +318,9 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 25
+	throwforce = 50
 	throw_speed = 5
-	throw_range = 7
+	throw_range = 4
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	flags_equip_slot = ITEM_SLOT_POCKET
@@ -328,7 +328,7 @@
 	max_amount = 5
 	amount = 5
 	///Delay between throwing.
-	var/throw_delay = 0.2 SECONDS
+	var/throw_delay = 0.4 SECONDS
 	///Current Target that knives are being thrown at. This is for aiming
 	var/current_target
 	///The person throwing knives
