@@ -73,8 +73,8 @@
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/handle_weeds_adjacent_removed)
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, .proc/handle_weeds_on_movement)
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, PROC_REF(handle_weeds_on_movement))
 	handle_weeds_on_movement()
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health

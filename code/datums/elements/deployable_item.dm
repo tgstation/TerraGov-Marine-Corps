@@ -22,7 +22,7 @@
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
-	RegisterSignal(attached_item, COMSIG_ITEM_EQUIPPED, .proc/register_for_deploy_signal)
+	RegisterSignal(attached_item, COMSIG_ITEM_EQUIPPED, PROC_REF(register_for_deploy_signal))
 
 /datum/element/deployable_item/Detach(datum/source, force)
 	. = ..()
@@ -33,8 +33,8 @@
 	SIGNAL_HANDLER
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
-	RegisterSignal(item_equipped, COMSIG_ITEM_AFTERATTACK_ALTERNATE, .proc/deploy)
-	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, .proc/unregister_signals)
+	RegisterSignal(item_equipped, COMSIG_ITEM_AFTERATTACK_ALTERNATE, PROC_REF(deploy))
+	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, PROC_REF(unregister_signals))
 
 ///Unregister and stop waiting for click to deploy
 /datum/element/deployable_item/proc/unregister_signals(obj/item/item_unequipped, mob/user)
@@ -52,7 +52,7 @@
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
 	if(!(item_in_active_hand))
 		return
-	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, target)
+	INVOKE_ASYNC(src, PROC_REF(finish_deploy), item_in_active_hand, user, target)
 	return COMSIG_KB_ACTIVATED
 
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
@@ -106,12 +106,12 @@
 		item_to_deploy.forceMove(deployed_machine)
 
 	item_to_deploy.toggle_deployment_flag(TRUE)
-	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
+	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, PROC_REF(undeploy))
 
 ///Wrapper for proc/finish_undeploy
 /datum/element/deployable_item/proc/undeploy(datum/source, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/finish_undeploy, source, user)
+	INVOKE_ASYNC(src, PROC_REF(finish_undeploy), source, user)
 
 //Handles the conversion of Machine into Item. 'source' should be the Machine. User is the one undeploying. It can be undeployed without a user, if so, the var 'location' is required. If 'source' is not /obj/machinery/deployable then 'undeploying' should be the item to be undeployed from the machine.
 /datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user)

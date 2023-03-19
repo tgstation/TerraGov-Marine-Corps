@@ -248,7 +248,7 @@
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)

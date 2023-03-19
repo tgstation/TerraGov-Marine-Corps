@@ -177,7 +177,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	to_chat(user, span_danger("You focus your target marker on [target]!"))
 	targetmarker_primed = FALSE
 	targetmarker_on = TRUE
-	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
+	RegisterSignal(src, COMSIG_PROJ_SCANTURF, PROC_REF(scan_turf_for_target))
 	START_PROCESSING(SSobj, src)
 	accuracy_mult += 0.50 //We get a big accuracy bonus vs the lasered target
 
@@ -203,7 +203,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
-	RegisterSignal(user, COMSIG_ITEM_UNZOOM, .proc/laser_off)
+	RegisterSignal(user, COMSIG_ITEM_UNZOOM, PROC_REF(laser_off))
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))

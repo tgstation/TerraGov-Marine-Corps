@@ -18,7 +18,7 @@
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	amount = amt
@@ -37,7 +37,7 @@
 		amount += other.amount
 		qdel(other)
 	fuel_spread()
-	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, .proc/ignite_check_wrapper)
+	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, PROC_REF(ignite_check_wrapper))
 
 ///called when someonething moves over the fuel
 /obj/effect/decal/cleanable/liquid_fuel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
@@ -99,7 +99,7 @@
 	for(var/D in CARDINAL_DIRS)
 		var/turf/T = get_step(S, D)
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
-			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
+			INVOKE_NEXT_TICK(other, PROC_REF(ignite_fuel))	//Spread effect
 	qdel(src)
 
 ///Ignites when something hot enters our loc, either via crossed or signal wrapper

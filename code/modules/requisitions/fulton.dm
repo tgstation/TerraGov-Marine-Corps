@@ -82,9 +82,9 @@
 	baloon.icon_state = initial(baloon.icon_state)
 	holder_obj.vis_contents += baloon
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_deploy.ogg', 50, TRUE), 0.4 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 7.4 SECONDS)
-	addtimer(CALLBACK(src, .proc/cleanup_extraction), 8 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), get_turf(holder_obj), 'sound/items/fultext_deploy.ogg', 50, TRUE), 0.4 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 7.4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cleanup_extraction)), 8 SECONDS)
 
 	flick("fulton_expand", baloon)
 	baloon.icon_state = "fulton_balloon"

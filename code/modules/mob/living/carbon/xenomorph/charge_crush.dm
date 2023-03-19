@@ -65,8 +65,8 @@
 /datum/action/xeno_action/ready_charge/proc/charge_on(verbose = TRUE)
 	var/mob/living/carbon/xenomorph/charger = owner
 	charge_ability_on = TRUE
-	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
-	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
+	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, PROC_REF(update_charging))
+	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
 	set_toggle(TRUE)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
@@ -123,7 +123,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), .proc/do_crush)
+	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -338,7 +338,7 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, .proc/toggle_charge_type)
+	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, PROC_REF(toggle_charge_type))
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)

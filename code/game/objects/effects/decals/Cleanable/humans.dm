@@ -19,7 +19,7 @@
 /obj/effect/decal/cleanable/blood/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	update_icon()
@@ -38,7 +38,7 @@
 	. = ..()
 	if(QDELETED(src))
 		CRASH("[type] already deleted on LateInitialize. Loc: ([x], [y], [z])")
-	drying_timer = addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount + 1), TIMER_STOPPABLE)
+	drying_timer = addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount + 1), TIMER_STOPPABLE)
 
 
 /obj/effect/decal/cleanable/blood/Destroy()

@@ -29,7 +29,7 @@ KEYBINDINGS
 
 /datum/action/New(Target)
 	target = Target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clean_action))
 	button = new
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
@@ -139,7 +139,7 @@ KEYBINDINGS
 /datum/action/proc/keybind_activation()
 	SIGNAL_HANDLER
 	if(can_use_action())
-		INVOKE_ASYNC(src, .proc/action_activate)
+		INVOKE_ASYNC(src, PROC_REF(action_activate))
 	return COMSIG_KB_ACTIVATED
 
 ///Signal Handler for alternate actions
@@ -181,7 +181,7 @@ KEYBINDINGS
 	for(var/type in keybinding_signals)
 		var/signal = keybinding_signals[type]
 		if(signal)
-			RegisterSignal(owner, signal, .proc/keybind_trigger)
+			RegisterSignal(owner, signal, PROC_REF(keybind_trigger))
 			var/datum/keybinding/our_kb = GLOB.keybindings_by_signal[signal]
 			if(M.client && our_kb)
 				update_map_text(our_kb.get_keys_formatted(M.client), signal)

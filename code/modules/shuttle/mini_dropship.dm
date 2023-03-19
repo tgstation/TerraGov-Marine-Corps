@@ -204,7 +204,7 @@
 
 	if(!ui)
 		ui_user = user
-		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), .proc/clean_ui_user)
+		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clean_ui_user))
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 

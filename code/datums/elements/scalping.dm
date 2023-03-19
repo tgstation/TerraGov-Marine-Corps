@@ -1,6 +1,6 @@
 /datum/element/scalping/Attach(datum/target, _result)
 	. = ..()
-	RegisterSignal(target, COMSIG_ITEM_ATTACK, .proc/_on_attack)
+	RegisterSignal(target, COMSIG_ITEM_ATTACK, PROC_REF(_on_attack))
 
 /datum/element/scalping/Detach(datum/source, force)
 	. = ..()
@@ -8,7 +8,7 @@
 
 /datum/element/scalping/proc/_on_attack(datum/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/on_attack, source, M, user)
+	INVOKE_ASYNC(src, PROC_REF(on_attack), source, M, user)
 
 /datum/element/scalping/proc/on_attack(datum/source, mob/living/M, mob/living/user)
 	if(!isxeno(M) || (M.stat != DEAD))

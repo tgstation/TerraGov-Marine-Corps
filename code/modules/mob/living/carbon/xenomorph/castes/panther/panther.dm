@@ -27,7 +27,7 @@
 
 /mob/living/carbon/xenomorph/panther/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/adrenalin), 1 SECONDS, TIMER_LOOP)
+	addtimer(CALLBACK(src, PROC_REF(adrenalin)), 1 SECONDS, TIMER_LOOP)
 
 /mob/living/carbon/xenomorph/panther/proc/adrenalin()
     if(m_intent == MOVE_INTENT_RUN)

@@ -57,7 +57,7 @@
 	COOLDOWN_START(src, process_cooldown, cooldown_time)
 	if(processiconstate && icon_state != processiconstate)//avoid resetting the animation
 		icon_state = processiconstate
-	addtimer(CALLBACK(src, .proc/finish_process), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_process)), cooldown_time)
 
 ///Once the timer for processing is over this resets the machine and spits out the new result
 /obj/machinery/factory/proc/finish_process()

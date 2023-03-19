@@ -33,7 +33,7 @@
 				if(!pod?.occupant)
 					continue
 				var/predroptime = rand(5, 1 SECONDS)	//Randomize it a bit so its staggered
-				addtimer(CALLBACK(pod, /obj/structure/droppod/.proc/launchpod, pod.occupant), predroptime)
+				addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), pod.occupant), predroptime)
 			LAZYCLEARLIST(linked_pods)//Clear references for the next drop
 
 /obj/machinery/computer/droppod_control/ui_data(mob/user)

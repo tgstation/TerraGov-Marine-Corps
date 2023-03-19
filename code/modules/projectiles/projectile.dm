@@ -111,7 +111,7 @@
 /obj/projectile/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -487,7 +487,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				SEND_SIGNAL(turf_crossed_by, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
 				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 					return
-				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
@@ -553,7 +553,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			SEND_SIGNAL(next_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
 			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 				return
-			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			ammo.do_at_max_range(next_turf, src)
@@ -987,9 +987,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	y_offset = round(cos(dir_angle), 0.01)
 	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN || (flags_projectile_behavior & PROJECTILE_FROZEN))
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
-		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
-		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
+		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
+		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
+		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
 		return
 	qdel(src)
 
@@ -1316,7 +1316,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		rotate.Turn(angle)
 		I.transform = rotate
 		add_overlay(I)
-		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(cut_overlay), I), 3, TIMER_CLIENT_TIME)
 
 
 

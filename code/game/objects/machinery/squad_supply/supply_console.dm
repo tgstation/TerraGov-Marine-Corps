@@ -74,7 +74,7 @@
 			if(!istype(supply_beacon_choice))
 				return
 			supply_beacon = supply_beacon_choice
-			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, .proc/clean_supply_beacon)
+			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, PROC_REF(clean_supply_beacon))
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])
@@ -153,7 +153,7 @@
 		C.anchored = TRUE //to avoid accidental pushes
 	playsound(supply_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE)
 	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] [span_boldnotice("The [supply_pad.name] begins to beep!")]")
-	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(fire_supplydrop), supplies, x_offset, y_offset), 10 SECONDS)
 
 ///Make the supplies teleport
 /obj/machinery/computer/supplydrop_console/proc/fire_supplydrop(list/supplies, x_offset, y_offset)

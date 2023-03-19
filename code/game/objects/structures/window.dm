@@ -39,7 +39,7 @@
 		setDir(start_dir)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -235,7 +235,7 @@
 	update_icon()
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(src, direction))
-			INVOKE_NEXT_TICK(W, /atom/movable.proc/update_icon)
+			INVOKE_NEXT_TICK(W, TYPE_PROC_REF(/atom/movable, update_icon))
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
 /obj/structure/window/update_icon()

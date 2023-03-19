@@ -29,7 +29,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
 	X.xeno_abilities += src
-	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
+	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, PROC_REF(on_xeno_upgrade))
 
 /datum/action/xeno_action/remove_action(mob/living/L)
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
@@ -160,7 +160,7 @@
 	if(cooldown_id || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	last_use = world.time
-	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
+	cooldown_id = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 
@@ -193,7 +193,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/action_activate)
+	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

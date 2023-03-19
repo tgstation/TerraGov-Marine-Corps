@@ -541,7 +541,7 @@
 
 /obj/machinery/light/proc/explode()
 	broken()	// break it first to give a warning
-	addtimer(CALLBACK(src, .proc/delayed_explosion), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
 	explosion(loc, 0, 1, 3, 2)

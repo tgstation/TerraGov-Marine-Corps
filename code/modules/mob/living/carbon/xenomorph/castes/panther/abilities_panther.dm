@@ -123,9 +123,9 @@
 
 	lunge_target = A
 
-	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
 
 	if(lunge_target.Adjacent(X)) //They're already in range, pat their head, we messed up.
 		playsound(X,'sound/weapons/thudswoosh.ogg', 75, 1)
@@ -147,7 +147,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	INVOKE_ASYNC(src, .proc/pantherfling, lunge_target)
+	INVOKE_ASYNC(src, PROC_REF(pantherfling), lunge_target)
 
 /// Null lunge target and reset throw vars
 /datum/action/xeno_action/activable/adrenalinejump/proc/clean_lunge_target()
@@ -226,7 +226,7 @@
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
 	set_toggle(TRUE)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/rush_on_moved)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(rush_on_moved))
 
 
 /datum/action/xeno_action/adrenaline_rush/proc/rush_off(silent = FALSE)
@@ -309,15 +309,15 @@
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
+		COMSIG_LIVING_STATUS_STAGGER), PROC_REF(evasion_debuff_check))
 
-	RegisterSignal(R, COMSIG_MOVABLE_MOVED, .proc/handle_evasion)
-	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, .proc/evasion_dodge) //This is where we actually check to see if we dodge the projectile.
-	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_MOVABLE_MOVED, PROC_REF(handle_evasion))
+	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge)) //This is where we actually check to see if we dodge the projectile.
+	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, PROC_REF(evasion_burn_check)) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit)) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge)) //Register status effects and fire which impact evasion.
 
-	RegisterSignal(owner, list(COMSIG_LIVING_ADD_VENTCRAWL), .proc/evasion_deactivate)
+	RegisterSignal(owner, list(COMSIG_LIVING_ADD_VENTCRAWL), PROC_REF(evasion_deactivate))
 
 	set_toggle(TRUE)
 	evade_active = TRUE //evasion is currently active

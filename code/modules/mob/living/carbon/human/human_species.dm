@@ -49,7 +49,7 @@
 	. = ..()
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
 	outfit = new outfit()
-	INVOKE_ASYNC(outfit, /datum/outfit.proc/equip, src)
+	INVOKE_ASYNC(outfit, TYPE_PROC_REF(/datum/outfit, equip), src)
 	a_intent = INTENT_HARM
 
 /mob/living/carbon/human/species/robot

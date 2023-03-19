@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
 				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 2 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(Reboot)), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 				for(var/client/C AS in GLOB.clients)
 					C.mob?.update_sight() // To reveal ghosts

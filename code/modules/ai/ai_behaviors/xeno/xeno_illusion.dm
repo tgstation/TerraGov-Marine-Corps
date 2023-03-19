@@ -35,7 +35,7 @@
 	appearance = original_mob.appearance
 	desc = original_mob.desc
 	name = original_mob.name
-	RegisterSignal(original_mob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/destroy_illusion)
+	RegisterSignal(original_mob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), PROC_REF(destroy_illusion))
 	QDEL_IN(src, life_time)
 
 ///Delete this illusion when the original xeno is ded
@@ -51,7 +51,7 @@
 	remove_filter("illusion_hit")
 	deltimer(timer_effect)
 	add_filter("illusion_hit", 2, ripple_filter(10, 5))
-	timer_effect = addtimer(CALLBACK(src, .proc/remove_hit_filter), 0.5 SECONDS)
+	timer_effect = addtimer(CALLBACK(src, PROC_REF(remove_hit_filter)), 0.5 SECONDS)
 	return FALSE
 
 /mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)

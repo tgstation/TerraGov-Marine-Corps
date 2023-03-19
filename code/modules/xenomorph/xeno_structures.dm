@@ -10,7 +10,7 @@
 /obj/structure/xeno/Initialize(location, hivenumber)
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
-		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		GLOB.xeno_critical_structures += src
@@ -78,12 +78,12 @@
 	var/datum/effect_system/smoke_spread/smoke
 	///connection list for huggers
 	var/static/list/listen_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/trigger_trap,
+		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
 	)
 
 /obj/structure/xeno/trap/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/trap/ex_act(severity)
@@ -480,10 +480,10 @@ TUNNEL
 /obj/structure/xeno/acidwell/Initialize(loc, creator)
 	. = ..()
 	src.creator = creator
-	RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clear_creator)
+	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -753,7 +753,7 @@ TUNNEL
 
 	if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN)
 		for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
-			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
+			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(resin_silo_proxy_alert))
 
 	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
@@ -774,7 +774,7 @@ TUNNEL
 	if(!locate(/obj/alien/weeds) in center_turf)
 		new /obj/alien/weeds/node(center_turf)
 	if(GLOB.hive_datums[hivenumber])
-		RegisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		RegisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length_char(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
 		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
@@ -788,7 +788,7 @@ TUNNEL
 	if(GLOB.hive_datums[hivenumber])
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
-		INVOKE_NEXT_TICK(SSticker.mode, /datum/game_mode.proc/update_silo_death_timer, GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
+		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
@@ -836,7 +836,7 @@ TUNNEL
 	update_minimap_icon()
 	GLOB.hive_datums[hivenumber].xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
-	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_HEALTH_ALERT_COOLDOWN) //clear warning
+	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_HEALTH_ALERT_COOLDOWN) //clear warning
 
 ///Alerts the Hive when hostiles get too close to their resin silo
 /obj/structure/xeno/silo/proc/resin_silo_proxy_alert(datum/source, atom/movable/hostile, direction)
@@ -861,7 +861,7 @@ TUNNEL
 	update_minimap_icon()
 	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
-	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
 ///Clears the warning for minimap if its warning for hostiles
 /obj/structure/xeno/silo/proc/clear_warning()
@@ -928,8 +928,8 @@ TUNNEL
 	LAZYADDASSOC(GLOB.xeno_resin_turrets_by_hive, hivenumber, src)
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
-	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
+	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, PROC_REF(shoot))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(destroy_on_hijack))
 	if(light_initial_color)
 		set_light(2, 2, light_initial_color)
 	update_minimap_icon()
@@ -1040,7 +1040,7 @@ TUNNEL
 /obj/structure/xeno/xeno_turret/proc/set_hostile(_hostile)
 	if(hostile != _hostile)
 		hostile = _hostile
-		RegisterSignal(hostile, COMSIG_PARENT_QDELETING, .proc/unset_hostile)
+		RegisterSignal(hostile, COMSIG_PARENT_QDELETING, PROC_REF(unset_hostile))
 
 ///Setter for last_hostile with hard del in mind
 /obj/structure/xeno/xeno_turret/proc/set_last_hostile(_last_hostile)
@@ -1292,7 +1292,7 @@ TUNNEL
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 	for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
-		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/spawner_proxy_alert)
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(spawner_proxy_alert))
 	update_minimap_icon()
 
 /obj/structure/xeno/spawner/examine(mob/user)
@@ -1324,7 +1324,7 @@ TUNNEL
 	update_minimap_icon()
 	GLOB.hive_datums[hivenumber].xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, spawner_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
-	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
 ///Alerts the Hive when hostiles get too close to their spawner
 /obj/structure/xeno/spawner/proc/spawner_proxy_alert(datum/source, atom/movable/hostile, direction)
@@ -1350,7 +1350,7 @@ TUNNEL
 	update_minimap_icon()
 	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, spawner_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
-	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
 ///Clears the warning for minimap if its warning for hostiles
 /obj/structure/xeno/spawner/proc/clear_warning()
@@ -1395,7 +1395,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
+	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 
 /obj/structure/xeno/plant/can_interact(mob/user)
 	. = ..()
@@ -1413,7 +1413,7 @@ TUNNEL
 /obj/structure/xeno/plant/proc/on_use(mob/user)
 	mature = FALSE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
+	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 	return TRUE
 
 ///Called when the plant reaches maturity
@@ -1622,8 +1622,8 @@ TUNNEL
 			to_chat(X, span_xenowarning("The pollen from [src] reacts with our scales, we are blending with our surroundings!"))
 			camouflaged_xenos.Add(X)
 	on_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/unveil), active_camouflage_duration)
-	addtimer(CALLBACK(src, .proc/ready), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(unveil)), active_camouflage_duration)
+	addtimer(CALLBACK(src, PROC_REF(ready)), cooldown)
 
 ///Called when veil() can be used once again
 /obj/structure/xeno/plant/stealth_plant/proc/ready()

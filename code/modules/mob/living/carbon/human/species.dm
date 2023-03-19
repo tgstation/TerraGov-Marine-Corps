@@ -375,7 +375,7 @@
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.set_skills(getSkillsType(/datum/skills/vatgrown/early))
-	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(handle_age), H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
 	. = ..()

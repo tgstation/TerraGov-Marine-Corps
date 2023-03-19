@@ -24,7 +24,7 @@
 		closed_layer = ABOVE_MOB_LAYER
 	layer = closed_layer
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -63,7 +63,7 @@
 	icon_state = "railing0"
 	layer = open_layer
 
-	addtimer(CALLBACK(src, .proc/do_open), 12)
+	addtimer(CALLBACK(src, PROC_REF(do_open)), 12)
 	return TRUE
 
 
@@ -93,7 +93,7 @@
 	if(current_turf)
 		current_turf.flags_atom |= AI_BLOCKED
 
-	addtimer(CALLBACK(src, .proc/do_close), 12)
+	addtimer(CALLBACK(src, PROC_REF(do_close)), 12)
 	return TRUE
 
 /obj/machinery/door/poddoor/railing/proc/do_close()

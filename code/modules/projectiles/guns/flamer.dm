@@ -192,7 +192,7 @@
 	if(!burn_list(turfs_to_ignite))
 		return
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
+	addtimer(CALLBACK(src, PROC_REF(recursive_flame_straight), iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
 
 ///Flames recursively a cone.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source, walls_penetrated_wide)
@@ -220,7 +220,7 @@
 
 	burn_list(turfs_by_iteration)
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
+	addtimer(CALLBACK(src, PROC_REF(recursive_flame_cone), iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
@@ -377,7 +377,7 @@
 	if(gun_user?.skills.getRating(SKILL_FIREARMS) < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
-				INVOKE_ASYNC(src, .proc/do_windup)
+				INVOKE_ASYNC(src, PROC_REF(do_windup))
 				return
 			if(WEAPON_WINDUP_CHECKING)
 				return
@@ -474,7 +474,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	START_PROCESSING(SSobj, src)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

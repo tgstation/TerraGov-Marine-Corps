@@ -27,15 +27,15 @@
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()
 	set_cockpit_overlay("cockpit_closed")
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/cas_usable)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(cas_usable))
 
 /obj/structure/caspart/caschair/Destroy()
 	owner?.chair = null
 	owner = null
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	if(occupant)
-		INVOKE_ASYNC(src, .proc/eject_user, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(eject_user), TRUE)
 	QDEL_NULL(cockpit)
 	return ..()
 
@@ -95,9 +95,9 @@
 			user.forceMove(src)
 			occupant = user
 			interact(occupant)
-			RegisterSignal(occupant, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+			RegisterSignal(occupant, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 			set_cockpit_overlay("cockpit_closing")
-			addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_closed"), 7)
+			addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_closed"), 7)
 
 /obj/structure/caspart/caschair/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/jerrycan))
@@ -124,7 +124,7 @@
 	if(owner.state)
 		ui_interact(occupant)
 		return
-	INVOKE_ASYNC(src, .proc/eject_user)
+	INVOKE_ASYNC(src, PROC_REF(eject_user))
 
 ///Eject the user, use forced = TRUE to do so instantly
 /obj/structure/caspart/caschair/proc/eject_user(forced = FALSE)
@@ -136,7 +136,7 @@
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 	set_cockpit_overlay("cockpit_opening")
-	addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
+	addtimer(CALLBACK(src, PROC_REF(set_cockpit_overlay), "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
 	occupant.forceMove(get_step(loc, WEST))
@@ -200,7 +200,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/Initialize()
 	. = ..()
 	off_action = new
-	RegisterSignal(src, COMSIG_SHUTTLE_SETMODE, .proc/update_state)
+	RegisterSignal(src, COMSIG_SHUTTLE_SETMODE, PROC_REF(update_state))
 
 /obj/docking_port/mobile/marine_dropship/casplane/Destroy(force)
 	STOP_PROCESSING(SSslowprocess, src)
@@ -317,7 +317,7 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
-	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/fire_weapons_at)
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(fire_weapons_at))
 	user.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 
 ///Ends the CAS mission

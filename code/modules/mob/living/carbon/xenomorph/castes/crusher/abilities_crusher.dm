@@ -154,7 +154,7 @@
 		playsound(A, pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 
 	add_cooldown()
-	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob, update_icons)), 3)
 
 /datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
 	return TRUE

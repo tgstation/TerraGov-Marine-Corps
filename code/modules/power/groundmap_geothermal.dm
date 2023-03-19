@@ -28,7 +28,7 @@
 
 /obj/machinery/power/geothermal/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/activate_corruption)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "generator")
 	GLOB.geothermal_generator_ammount++

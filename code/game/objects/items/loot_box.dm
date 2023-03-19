@@ -153,7 +153,7 @@
 //Alien supply drop, how'd they get a bluespace teleporter?
 /obj/effect/supply_drop/xenomorph/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/spawn_larva), 1)
+	addtimer(CALLBACK(src, PROC_REF(spawn_larva)), 1)
 
 /obj/effect/supply_drop/xenomorph/proc/spawn_larva()
 	var/mob/picked = get_alien_candidate()

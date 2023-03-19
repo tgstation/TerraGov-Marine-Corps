@@ -250,10 +250,10 @@
 		return
 
 	on = FALSE
-	addtimer(CALLBACK(src, .proc/cooldown), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), cooldown)
 	icon_state = state_off
 
-	INVOKE_ASYNC(src, .proc/captureimage, target, user, flag, picture_size_x - 1, picture_size_y - 1)
+	INVOKE_ASYNC(src, PROC_REF(captureimage), target, user, flag, picture_size_x - 1, picture_size_y - 1)
 
 
 /obj/item/camera/proc/cooldown()

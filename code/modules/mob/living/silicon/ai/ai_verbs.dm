@@ -268,7 +268,7 @@
 
 	var/delay = 1 SECONDS
 	for(var/i in laws)
-		addtimer(CALLBACK(src, /atom/movable/.proc/say, "[radiomod] [i]"), delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "[radiomod] [i]"), delay)
 		delay += 1 SECONDS
 
 

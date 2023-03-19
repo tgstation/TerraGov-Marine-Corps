@@ -139,8 +139,8 @@
 	if(!gun)
 		CRASH("[src] has been deployed and attempted interaction with [operator] without having a gun. This shouldn't happen.")
 
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
@@ -260,7 +260,7 @@
 	update_pixels(user, TRUE)
 
 	if(current_scope && current_scope.deployed_scope_rezoom)
-		INVOKE_ASYNC(current_scope, /obj/item/attachable/scope.proc/activate, operator)
+		INVOKE_ASYNC(current_scope, TYPE_PROC_REF(/obj/item/attachable/scope, activate), operator)
 
 	return FALSE
 

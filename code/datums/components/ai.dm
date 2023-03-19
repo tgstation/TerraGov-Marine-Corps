@@ -49,7 +49,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		ai_behavior.cleanup_signals()
 		ai_behavior.atom_to_walk_to = null
 		if(register_for_logout)
-			RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/start_ai)
+			RegisterSignal(parent, COMSIG_MOB_LOGOUT, PROC_REF(start_ai))
 			return
 		ai_behavior = null
 
@@ -70,9 +70,9 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.start_ai()
-	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/RemoveComponent)
-	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/clean_up)
-	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
+	RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(RemoveComponent))
+	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
+	RegisterSignal(parent, COMSIG_COMBAT_LOG, PROC_REF(handle_combat_log))
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	GLOB.ai_instances_active += src
 

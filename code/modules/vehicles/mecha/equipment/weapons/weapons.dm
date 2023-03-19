@@ -46,7 +46,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
+	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, PROC_REF(set_bursting)), CALLBACK(src, PROC_REF(reset_fire)), CALLBACK(src, PROC_REF(fire)))
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
 
@@ -69,7 +69,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30, TRUE)
-		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/do_after_checks, current_target)))
+		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -78,12 +78,12 @@
 		return
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
-		if(!INVOKE_ASYNC(src, .proc/fire) || windup_checked == WEAPON_WINDUP_CHECKING)
+		if(!INVOKE_ASYNC(src, PROC_REF(fire)) || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
-	RegisterSignal(source, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
@@ -106,7 +106,7 @@
 		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
 	current_target = object
 	if(current_target)
-		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
 
 ///Stops the Autofire component and resets the current cursor.
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/stop_fire(mob/living/source, atom/object, location, control, params)
@@ -183,7 +183,7 @@
 		set_light_range(muzzle_flash_lum)
 		set_light_color(muzzle_flash_color)
 		set_light_on(TRUE)
-		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
 
 	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
 	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
@@ -198,7 +198,7 @@
 	chassis.vis_contents += muzzle_flash
 	muzzle_flash.applied = TRUE
 
-	addtimer(CALLBACK(src, .proc/remove_flash, muzzle_flash), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_flash), muzzle_flash), 0.2 SECONDS)
 	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_light_range(lightrange)
@@ -413,4 +413,4 @@
 	var/turf/T = get_turf(src)
 	message_admins("[ADMIN_LOOKUPFLW(user)] fired a [F] in [ADMIN_VERBOSEJMP(T)]")
 	log_game("[key_name(user)] fired a [F] in [AREACOORD(T)]")
-	addtimer(CALLBACK(F, /obj/item/explosive/grenade/flashbang.proc/prime), det_time)
+	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/explosive/grenade/flashbang, prime)), det_time)

@@ -2,8 +2,8 @@
 	if(!target.embed_item(src, target_zone, silent))
 		return FALSE
 	embedded_into = target
-	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, .proc/embedded_on_carrier_move)
-	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), .proc/embedded_on_move)
+	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
+	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
 	return TRUE
 
 
@@ -91,7 +91,7 @@
 		owner.verbs += /mob/living/proc/yank_out_object
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
-	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, /obj/item/.proc/embedded_on_limb_destruction)
+	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, TYPE_PROC_REF(/obj/item, embedded_on_limb_destruction))
 	return TRUE
 
 

@@ -11,7 +11,7 @@
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/wall_speed)
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(wall_speed))
 	src.wall_speed_amount = wall_speed_amount
 
 /datum/element/wall_speedup/Detach(datum/source, force)

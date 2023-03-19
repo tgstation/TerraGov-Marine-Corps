@@ -76,7 +76,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
 	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_vomit)), 5 SECONDS)
 
 
 /mob/living/carbon/proc/do_vomit()
@@ -378,7 +378,7 @@
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
-		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
+		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, TYPE_PROC_REF(/mob/living/carbon/human, oncritdrag))
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)

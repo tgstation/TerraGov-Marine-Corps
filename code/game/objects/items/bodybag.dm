@@ -73,7 +73,7 @@
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
 	. = ..()
 	foldedbag_instance = foldedbag
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acidspray_act))
 
 /obj/structure/closet/bodybag/Destroy()
 	open()
@@ -84,7 +84,7 @@
 			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
 		QDEL_NULL(foldedbag_instance)
 
-	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acidspray_act))
 	return ..()
 
 
@@ -313,7 +313,7 @@
 	. = ..()
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
@@ -450,7 +450,7 @@
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)

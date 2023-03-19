@@ -179,7 +179,7 @@
 	var/atom/movable/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
-	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
+	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/mob/living, do_jitter_animation), 1000)
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()

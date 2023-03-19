@@ -71,9 +71,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
 	if(isliving(target))
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/LivingWaddle)
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(LivingWaddle))
 	else
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/Waddle)
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(Waddle))
 
 /datum/element/waddling/Detach(datum/source, force)
 	. = ..()

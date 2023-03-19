@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(create_weed), T, creating[T]), rand(1, 3 SECONDS))
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T

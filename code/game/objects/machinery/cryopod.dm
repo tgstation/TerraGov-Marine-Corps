@@ -120,7 +120,7 @@
 	radio = new(src)
 	radio.set_frequency(frequency)
 	update_icon()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 /obj/machinery/cryopod/proc/shuttle_crush()
 	SIGNAL_HANDLER
