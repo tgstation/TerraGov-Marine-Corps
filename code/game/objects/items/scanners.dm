@@ -251,7 +251,7 @@ REAGENT SCANNER
 	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
 /obj/item/healthanalyzer/gloves
-	name = "advanced medical combat gloves"
+	name = "\improper HF2 Medical Gloves"
 	desc = "Advanced medical gloves, these include a built-in analyzer to quickly scan patients."
 	icon_state = "medscan_gloves"
 	item_state = "medscan_gloves"
