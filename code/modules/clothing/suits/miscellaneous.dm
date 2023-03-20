@@ -347,7 +347,7 @@
 /obj/item/clothing/suit/replica
 	name = "replica armor"
 	desc = "A replica of the armour of choice for colonial militia."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',

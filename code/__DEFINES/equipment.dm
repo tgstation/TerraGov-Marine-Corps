@@ -147,9 +147,8 @@
 //Marine helmet only, use for flags_marine_helmet.
 #define HELMET_SQUAD_OVERLAY (1<<0)
 #define HELMET_GARB_OVERLAY (1<<1)
-#define HELMET_DAMAGE_OVERLAY (1<<2)
-#define HELMET_STORE_GARB (1<<3)
-#define HELMET_IS_DAMAGED (1<<4)
+#define HELMET_STORE_GARB (1<<2)
+#define HELMET_IS_DAMAGED (1<<3)
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS

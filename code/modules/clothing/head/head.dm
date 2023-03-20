@@ -1,6 +1,6 @@
 /obj/item/clothing/head
 	name = "head"
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/headwear/hats.dmi'
 	flags_armor_protection = HEAD
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_SMALL
@@ -17,7 +17,7 @@
 /obj/item/clothing/head/beanie
 	name = "\improper TGMC beanie"
 	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -30,7 +30,7 @@
 /obj/item/clothing/head/tgmcberet
 	name = "\improper Dark gray beret"
 	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -99,7 +99,7 @@
 	name = "\improper TGMC cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -153,7 +153,7 @@
 	name = "\improper ornamented cap"
 	desc = "An ornamented cap with a visor. This one seems to be torn at the back."
 	icon_state = "ornamented_cap"
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
@@ -163,13 +163,13 @@
 	name = "\improper TGMC slouch hat"
 	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "slouch_hat"
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 
 /obj/item/clothing/head/headband
 	name = "\improper Cyan headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -197,7 +197,7 @@
 	name = "\improper TGMC headset"
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
 	icon_state = "headset"
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -287,7 +287,7 @@
 /obj/item/clothing/head/uppcap
 	name = "\improper armored USL cap"
 	desc = "Standard USL head gear for covert operations and low-ranking pirates alike."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "upp_cap"
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
@@ -310,7 +310,7 @@
 /obj/item/clothing/head/frelancer
 	name = "\improper armored Freelancer helmet"
 	desc = "A sturdy freelancer's helmet."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -336,7 +336,7 @@
 /obj/item/clothing/head/militia
 	name = "\improper armored militia cowl"
 	desc = "A large hood in service with some militias, meant for obscurity on the frontier. Offers some head protection due to the study fibers utilized in production."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -370,7 +370,7 @@
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 	flags_armor_features = ARMOR_NO_DECAP
@@ -382,6 +382,6 @@
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "straw_hat"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)

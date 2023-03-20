@@ -4,8 +4,8 @@
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "3"
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = ""
 	item_state = "armor"
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
@@ -64,7 +64,7 @@
 	overlays -= I
 	qdel(I)
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
-		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+		I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else
@@ -218,6 +218,7 @@
 /obj/item/clothing/suit/storage/marine/veteran/pmc
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "pmc_armor"
 	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -236,7 +237,6 @@
 		/obj/item/weapon/combat_knife,
 	)
 	flags_item_map_variant = NONE
-
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	name = "\improper M4 pattern PMC leader armor"
@@ -279,6 +279,7 @@
 /obj/item/clothing/suit/storage/marine/imperial
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "guardarmor"
 	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 0, FIRE = 60, ACID = 60)
 	flags_item_map_variant = NONE
@@ -327,7 +328,7 @@
 /*===========================U.S.L================================*/
 
 /obj/item/clothing/suit/storage/faction
-	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
@@ -372,7 +373,7 @@
 	overlays -= I
 	qdel(I)
 	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
-		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+		I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else armor_overlays["lamp"] = null
@@ -515,7 +516,6 @@
 /obj/item/clothing/suit/storage/faction/militia
 	name = "\improper colonial militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. "
-	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "rebel_armor"
 	item_icons = list(
 		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
@@ -571,6 +571,7 @@
 /obj/item/clothing/suit/storage/marine/veteran/mercenary
 	name = "\improper K12 ceramic plated armor"
 	desc = "A set of grey, heavy ceramic armor with dark blue highlights. It is the standard uniform of a unknown mercenary group working in the sector"
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "mercenary_heavy_armor"
 	soft_armor = list(MELEE = 75, BULLET = 62, LASER = 42, ENERGY = 38, BOMB = 40, BIO = 15, FIRE = 38, ACID = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -634,6 +635,7 @@
 /obj/item/clothing/suit/storage/marine/som
 	name = "\improper S12 hauberk"
 	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. It's light but practically gives no armor."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "som_armor"
 	item_state = "som_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -662,6 +664,7 @@
 /obj/item/clothing/suit/storage/marine/icc
 	name = "\improper Modelle/16 combat armor"
 	desc = "A piece of ICC body armor, worn durning boarding actions by personnel in close quarters, as most ICC personnel serve dual purpose roles as ad-hoc marines, due to personnel shortages. Protects well from most sources, particularly explosions."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "icc"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
