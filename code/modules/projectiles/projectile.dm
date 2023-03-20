@@ -1350,7 +1350,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 
-	if(!client)
+	if(client?.prefs.mute_self_combat_messages)
 		return
 
 	var/list/victim_feedback = list()
@@ -1372,15 +1372,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
 
-	if(!client.prefs.mute_self_combat_messages)
-		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
+	to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	if(!client)
+	if(client?.prefs.mute_self_combat_messages)
 		return
 
 	var/list/victim_feedback
@@ -1399,8 +1398,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
 
-	if(!client.prefs.mute_self_combat_messages)
-		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
+	to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)
