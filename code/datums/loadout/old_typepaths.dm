@@ -8,3 +8,12 @@
 /obj/item/clothing/head/modular/marine/m10x/tech
 /obj/item/clothing/head/modular/marine/m10x/corpsman
 /obj/item/clothing/head/modular/marine/m10x/standard
+
+
+//Changing item_representation typepaths also breaks loadouts horribly, so this proc exists to convert legacy typepaths.
+
+/datum/item_representation/modular_armor
+	///List of attachments on the armor.
+	var/list/datum/item_representation/armor_module/attachments = list()
+	///Icon_state suffix for the saved icon_state varient.
+	var/current_variant

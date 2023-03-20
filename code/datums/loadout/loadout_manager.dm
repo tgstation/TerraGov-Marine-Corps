@@ -187,6 +187,14 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
+				else if(istype(armor, /datum/item_representation/modular_armor))
+					var/datum/item_representation/modular_armor/old_armor = loadout.item_list[slot_wear_suit_str]
+					var/datum/item_representation/armor_suit/modular_armor/new_armor = new
+					new_armor.item_type = old_armor.item_type
+					new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
+					new_armor.current_variant = old_armor.current_variant
+					new_armor.attachments = old_armor.attachments
+					loadout.item_list[slot_wear_suit_str] = new_armor
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
 					if(loadout.version < 9)
