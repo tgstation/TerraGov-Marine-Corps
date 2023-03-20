@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 		E.germ_level += user.germ_level * 0.33
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
-		E.germ_level += 75
+		E.germ_level += 50
 	else if(locate(/obj/structure/table/, E.owner.loc))
 		E.germ_level += 100
 
