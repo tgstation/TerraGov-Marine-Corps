@@ -168,19 +168,21 @@
 /datum/job/icc/medic
 	title = "ICC Medic"
 	paygrade = "ICC2"
-	outfit = /datum/outfit/job/icc/medic
 	skills_type = /datum/skills/combat_medic/crafty
+	multiple_outfits = TRUE
+	outfit = /datum/outfit/job/icc/medic/icc_machinepistol
+	outfits = list(
+		outfit = /datum/outfit/job/icc/medic/icc_machinepistol,
+		outfit = /datum/outfit/job/icc/medic/icc_sharpshooter,
+	)
 
 /datum/outfit/job/icc/medic
 	name = "ICC Medic"
-	jobtype = /datum/job/icc/guard
+	jobtype = /datum/job/icc/medic
 
 	id = /obj/item/card/id/silver
 	gloves = /obj/item/clothing/gloves/marine/icc
-	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 	back = /obj/item/storage/backpack/lightpack/icc
-	l_store = /obj/item/storage/pouch/magazine/large/icc
-	r_store = /obj/item/storage/pouch/magazine/large/icc
 	belt = /obj/item/storage/belt/lifesaver/icc/ert
 	glasses = /obj/item/clothing/glasses/hud/health
 
@@ -196,18 +198,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_L_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
@@ -215,6 +206,40 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
+
+/datum/outfit/job/icc/medic/icc_machinepistol
+	suit_store = /obj/item/weapon/gun/smg/icc_machinepistol/medic
+	l_store = /obj/item/storage/pouch/magazine/large/icc
+	r_store = /obj/item/storage/pouch/magazine/large/icc
+
+/datum/outfit/job/icc/medic/icc_machinepistol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol/hp, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol/hp, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol/hp, SLOT_IN_L_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_machinepistol, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/icc/medic/icc_sharpshooter
+	suit_store = /obj/item/weapon/gun/rifle/icc_sharpshooter/medic
+	l_store = /obj/item/storage/pouch/magazine/large/icc
+	r_store = /obj/item/storage/pouch/magazine/large/icc
+
+/datum/outfit/job/icc/medic/icc_sharpshooter/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_R_POUCH)
 
 /datum/job/icc/leader
 	title = "ICC Leader"

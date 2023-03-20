@@ -564,6 +564,9 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
+/obj/item/weapon/gun/smg/icc_machinepistol/medic
+	starting_attachment_types = list(/obj/item/attachable/foldable/icc_machinepistol, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+
 //-------------------------------------------------------
 // L-40, ICC PDW
 

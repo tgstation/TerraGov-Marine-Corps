@@ -2120,7 +2120,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable,
 	)
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_sharpshooter)
 
@@ -2137,6 +2137,9 @@
 	accuracy_mult = 1.15
 	scatter = 0
 	movement_acc_penalty_mult = 5
+
+/obj/item/weapon/gun/rifle/icc_sharpshooter/medic
+	starting_attachment_types = list(/obj/item/attachable/stock/icc_sharpshooter, /obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/heavy_barrel)
 
 //-------------------------------------------------------
 // L-15 ICC Battlecarbine
