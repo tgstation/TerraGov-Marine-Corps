@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
 		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
+		playsound(target, "incendiary_explosion", 40)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -376,6 +376,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
+
+/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1)
 
 /datum/ammo/bullet/pistol/mech
 	name = "super-heavy pistol bullet"
@@ -1743,15 +1746,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/rocket/unguided
+/datum/ammo/rocket/he
+	name = "high explosive rocket"
+	icon_state = "rocket_he"
+	hud_state = "rocket_he"
+	accurate_range = 20
+	max_range = 14
+	damage = 200
+	penetration = 100
+	sundering = 100
+
+/datum/ammo/rocket/drop_nade(turf/T)
+	explosion(T, 0, 4, 6, 2)
+
+/datum/ammo/rocket/he/unguided
 	damage = 100
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
-/datum/ammo/rocket/unguided/drop_nade(turf/T)
+/datum/ammo/rocket/he/unguided/drop_nade(turf/T)
 	explosion(T, 0, 7, 0, 2)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
+	icon_state = "rocket_ap"
 	hud_state = "rocket_ap"
 	damage = 340
 	accurate_range = 15
@@ -1802,6 +1819,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
+	icon_state = "rocket_wp"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
 	armor_type = "fire"
@@ -1812,7 +1830,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 75
 	max_range = 20
 	sundering = 100
-	//The radius for the non explosion effects
+	///The radius for the non explosion effects
 	var/effect_radius = 3
 
 /datum/ammo/rocket/wp/drop_nade(turf/T)
@@ -1848,7 +1866,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/wp/quad/som
 	name = "white phosphorous RPG"
 	hud_state = "rpg_fire"
+	icon_state = "rpg_incendiary"
 	flags_ammo_behavior = AMMO_ROCKET
+	effect_radius = 5
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
@@ -1957,8 +1977,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 
 /datum/ammo/rocket/som
-	name = "low impact RPG"
-	hud_state = "rpg_le"
+	name = "high explosive RPG"
+	icon_state = "rpg_he"
+	hud_state = "rpg_he"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
 	max_range = 20
@@ -1971,6 +1992,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/light
 	name = "low impact RPG"
+	icon_state = "rpg_le"
 	hud_state = "rpg_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
@@ -1982,6 +2004,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/thermobaric
 	name = "thermobaric RPG"
+	icon_state = "rpg_thermobaric"
 	hud_state = "rpg_thermobaric"
 	damage = 30
 
@@ -1990,6 +2013,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/som/heat //Anti tank, or mech
 	name = "HEAT RPG"
+	icon_state = "rpg_heat"
 	hud_state = "rpg_heat"
 	damage = 200
 	penetration = 100
@@ -1999,13 +2023,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
 	if(ismecha(O))
-		P.damage *= 2 //this is specifically designed to hurt mechs
+		P.damage *= 3 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
 	explosion(T, 0, 1, 0, 1)
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
+	icon_state = "rpg_rad"
 	hud_state = "rpg_rad"
 	damage = 50
 	penetration = 10
@@ -2749,6 +2774,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "superheated pulsed laser bolt"
 	damage = 15
 	penetration = 10
+	hitscan_effect_icon = "beam_particle"
+
+/datum/ammo/energy/lasgun/marine/mech/lance_strike
+	name = "particle lance"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SNIPER|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
+	damage_type = BRUTE
+	damage = 100
+	armor_type = MELEE
+	penetration = 25
+	sundering = 8
+	damage_falloff = -12.5 //damage increases per turf crossed
+	max_range = 4
+	on_pierce_multiplier = 0.5
+	hitscan_effect_icon = "lance"
+
+/datum/ammo/energy/lasgun/marine/mech/lance_strike/super
+	damage = 120
+	damage_falloff = -8
+	max_range = 5
 
 // Plasma //
 /datum/ammo/energy/plasma
@@ -3205,7 +3249,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	drop_nade(get_turf(proj), proj.firer)
+	var/turf/target_turf = get_turf(victim)
+	drop_nade(target_turf.density ? get_turf(proj) : target_turf, proj.firer)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
@@ -3226,6 +3271,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
+	if(ismecha(O))
+		P.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/T = get_turf(O)
 	drop_nade(T.density ? P.loc : T, P.firer)
 

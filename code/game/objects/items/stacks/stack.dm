@@ -195,10 +195,10 @@
 	if(user.do_actions)
 		return
 	var/building_time = R.time
-	if(R.skill_req && user.skills.getRating("construction") < R.skill_req)
-		building_time += R.time * ( R.skill_req - user.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
-	if(R.skill_req && user.skills.getRating("construction") > R.skill_req)
-		building_time -= clamp(R.time * ( user.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
+	if(R.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) < R.skill_req)
+		building_time += R.time * ( R.skill_req - user.skills.getRating(SKILL_CONSTRUCTION) ) * 0.5 // +50% time each skill point lacking.
+	if(R.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) > R.skill_req)
+		building_time -= clamp(R.time * ( user.skills.getRating(SKILL_CONSTRUCTION) - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
 	if(building_time)
 		balloon_alert_to_viewers("building [R.title]")
 		if(!do_after(user, building_time, TRUE, src, (building_time > R.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))

@@ -177,8 +177,10 @@
 		return
 	var/obj/item/clothing/shoes/marine/marine_shoes = .
 	marine_shoes.pockets.delete_contents()
-	var/obj/item/item_in_pocket = boot_content.instantiate_object(seller, master, user)
-	if(!item_in_pocket)
+	if(!boot_content)
 		return
+	var/obj/item/item_in_pocket = boot_content.instantiate_object(seller, master, user)
 	if(marine_shoes.pockets.can_be_inserted(item_in_pocket))
 		marine_shoes.pockets.handle_item_insertion(item_in_pocket)
+	else
+		qdel(item_in_pocket)

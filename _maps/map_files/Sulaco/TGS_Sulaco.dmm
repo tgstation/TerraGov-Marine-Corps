@@ -1367,30 +1367,6 @@
 /area/sulaco/medbay/storage)
 "aey" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1848,7 +1824,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/ce)
 "aic" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/prison/darkyellow/corner{
 	dir = 4
 	},
@@ -8144,7 +8120,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/maintenance/lower_maint2)
 "aPk" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aPn" = (
@@ -9972,7 +9948,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bcF" = (
-/obj/machinery/r_n_d/server/core/alt,
+/obj/machinery/prop/r_n_d/server/alt,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bcG" = (
@@ -20315,7 +20291,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -24816,7 +24792,7 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/hangar)
 "uQQ" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "uRy" = (

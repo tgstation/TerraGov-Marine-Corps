@@ -10,10 +10,40 @@
 	adjustment_variants = list(
 		"Down" = "_d",
 		"Half" = "_h",
+		"Rolled" = "_r",
 	)
 
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+//Squad colored turtlenecks
+/obj/item/clothing/under/marine/squad/neck
+	name = "\improper TGMC Delta turtleneck"
+	desc = "A standard issued TGMC turtleneck colored blue."
+	icon_state = "delta_merc"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
+
+/obj/item/clothing/under/marine/squad/neck/delta
+	name = "\improper TGMC Delta turtleneck"
+	desc = "A standard issued TGMC turtleneck colored blue, with a slight hint of bravery."
+	icon_state = "delta_merc"
+
+/obj/item/clothing/under/marine/squad/neck/charile
+	name = "\improper TGMC Charile turtleneck"
+	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
+	icon_state = "charile_merc"
+
+/obj/item/clothing/under/marine/squad/neck/bravo
+	name = "\improper TGMC Bravo turtleneck"
+	desc = "A standard issued TGMC turtleneck colored yellow, you suddenly get thoughts of how to improve the FOB, if slightly."
+	icon_state = "bravo_merc"
+
+/obj/item/clothing/under/marine/squad/neck/alpha
+	name = "\improper TGMC Alpha turtleneck"
+	desc = "A standard issued TGMC turtleneck colored red, you feel as if you can face the world and all it has to bring against you."
+	icon_state = "alpha_merc"
 
 // camo things stuff yeah!
 
@@ -253,18 +283,26 @@
 	item_state = "commissar_uniform"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/under/marine/veteran/PMC
+/obj/item/clothing/under/marine/veteran/pmc
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/under/marine/veteran/PMC/leader
+/obj/item/clothing/under/marine/veteran/pmc/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/veteran/pmc/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+/obj/item/clothing/under/marine/veteran/pmc/leader
 	name = "\improper PMC command fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_jumpsuit"
 
-/obj/item/clothing/under/marine/veteran/PMC/commando
+/obj/item/clothing/under/marine/veteran/pmc/leader/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/veteran/pmc/commando
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"

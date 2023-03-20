@@ -113,7 +113,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 30)
 
 	//blowtorch specific stuff
 	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
@@ -311,31 +310,23 @@
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
 	max_fuel = 40
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 60)
-
 
 /obj/item/tool/weldingtool/hugetank
 	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
-
 
 /obj/item/tool/weldingtool/experimental
 	name = "experimental blowtorch"
 	max_fuel = 40 //?
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
 	var/last_gen = 0
-
-
 
 /obj/item/tool/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
 	var/gen_amount = ((world.time-last_gen)/25)
 	reagents += (gen_amount)
 	if(reagents > max_fuel)
 		reagents = max_fuel
-
 
 /obj/item/tool/crowbar
 	name = "crowbar"
@@ -465,7 +456,6 @@
 	throw_speed = 2
 	throw_range = 9
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	/// This is the cell we ar charging
 	var/obj/item/cell/cell
 	///Are we currently recharging something.

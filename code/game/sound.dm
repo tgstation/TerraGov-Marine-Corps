@@ -185,6 +185,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 				'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 		if("vending")
 			S = pick('sound/machines/vending_cans.ogg', 'sound/machines/vending_drop.ogg')
+		if("incendiary_explosion")
+			S = pick('sound/effects/incendiary_explosion_1.ogg', 'sound/effects/incendiary_explosion_2.ogg', 'sound/effects/incendiary_explosion_3.ogg')
+		if("molotov")
+			S = pick('sound/effects/molotov_detonate_1.ogg', 'sound/effects/molotov_detonate_2.ogg', 'sound/effects/molotov_detonate_3.ogg')
+		if("flashbang")
+			S = pick('sound/effects/flashbang_explode_1.ogg', 'sound/effects/flashbang_explode_2.ogg')
 		// Weapons/bullets
 		if("ballistic_hit")
 			S = pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact3.ogg')
@@ -222,6 +228,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/weapons/guns/fire/rpg_1.ogg', 'sound/weapons/guns/fire/rpg_2.ogg', 'sound/weapons/guns/fire/rpg_3.ogg')
 		if("ac_fire")
 			S = pick('sound/weapons/guns/fire/autocannon_1.ogg', 'sound/weapons/guns/fire/autocannon_2.ogg', 'sound/weapons/guns/fire/autocannon_3.ogg')
+		if("svd_fire")
+			S = pick('sound/weapons/guns/fire/svd1.ogg', 'sound/weapons/guns/fire/svd2.ogg', 'sound/weapons/guns/fire/svd3.ogg')
 
 		// Xeno
 		if("acid_hit")

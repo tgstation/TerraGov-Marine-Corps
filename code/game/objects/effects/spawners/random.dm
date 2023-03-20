@@ -843,7 +843,7 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/rifle/standard_dmr,
 		/obj/item/weapon/gun/rifle/standard_br,
-		/obj/item/weapon/gun/rifle/chambered,
+		/obj/item/weapon/gun/rifle/chambered/unscoped,
 		/obj/item/weapon/gun/shotgun/pump/bolt/unscoped,
 		/obj/item/weapon/gun/shotgun/double/martini,
 		/obj/item/weapon/gun/pistol/standard_pistol,
@@ -1676,7 +1676,7 @@
 
 /obj/effect/spawner/random/structure/random_broken_computer/rdconsole
 	loot = list(
-		/obj/machinery/computer/rdconsole = 85,
+		/obj/machinery/prop/computer/rdconsole = 85,
 		/obj/effect/spawner/random/structure/random_broken_computer = 15,
 	)
 

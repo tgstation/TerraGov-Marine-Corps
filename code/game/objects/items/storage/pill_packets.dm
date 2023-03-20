@@ -69,6 +69,12 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 	pip_color = COLOR_PACKET_PARACETAMOL
 
+/obj/item/storage/pill_bottle/packet/isotonic
+	name = "Isotonic pill packet"
+	desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration. Once you take them out they don't go back in."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	pip_color = COLOR_PACKET_ISOTONIC
+
 /obj/item/storage/pill_bottle/packet/leporazine
 	name = "Leporazine pill packet"
 	desc = "This packet contains leporazine pills. Rapidly stablizes the patients internal temperature. Once you take them out they don't go back in.."

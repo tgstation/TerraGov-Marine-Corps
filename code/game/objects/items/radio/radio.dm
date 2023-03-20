@@ -51,8 +51,6 @@
 	/// If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
 	var/independent = FALSE
 
-	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
-
 	/// associative list of the encrypted radio channels this radio is currently set to listen/broadcast to, of the form: list(channel name = TRUE or FALSE)
 	var/list/channels = list()
 	/// associative list of the encrypted radio channels this radio can listen/broadcast to, of the form: list(channel name = channel frequency)
@@ -333,7 +331,7 @@
 
 /// Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(input_frequency, list/levels)
-	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
+	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
 			return FALSE

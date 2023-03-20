@@ -17,7 +17,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
 	item_state = "headset"
-	materials = list(/datum/material/metal = 75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -767,7 +766,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_COLONIST
 
 
-/obj/item/radio/headset/distress/PMC
+/obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom

@@ -184,7 +184,6 @@
 	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
-	materials = list(/datum/material/metal = 200)
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20
@@ -274,7 +273,6 @@
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
-	materials = list(/datum/material/metal = 200)
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20

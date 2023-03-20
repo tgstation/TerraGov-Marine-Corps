@@ -30,6 +30,8 @@ SUBSYSTEM_DEF(vote)
 	var/vote_happening = FALSE
 	/// The timer id of the shipmap vote
 	var/shipmap_timer_id
+	/// Pop up this vote screen on everyone's screen?
+	var/forced_popup = FALSE
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -214,7 +216,7 @@ SUBSYSTEM_DEF(vote)
 		choices_by_ckey[usr.ckey] = list(vote)
 
 /// Start the vote, and prepare the choices to send to everyone
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE)
+/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE, popup_override = FALSE)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
 		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
@@ -224,6 +226,8 @@ SUBSYSTEM_DEF(vote)
 		var/ckey = ckey(initiator_key)
 		if(GLOB.admin_datums[ckey])
 			lower_admin = TRUE
+
+	forced_popup = popup_override
 
 	if(!mode)
 		if(started_time && !ignore_delay)
@@ -318,6 +322,7 @@ SUBSYSTEM_DEF(vote)
 						break
 					choices.Add(option)
 				multiple_vote = tgui_alert(usr, "Allow multiple voting?", "Multiple voting", list("Yes", "No")) == "Yes" ? TRUE : FALSE
+				forced_popup = tgui_alert(usr, "Pop the screen up for everyone?", "Pop up?", list("Yes", "No")) == "Yes" ? TRUE : FALSE
 			else
 				return FALSE
 		if(!length(choices))
@@ -349,6 +354,8 @@ SUBSYSTEM_DEF(vote)
 				V.name = "Vote: [question]"
 			C.player_details.player_actions += V
 			V.give_action(C.mob)
+			if(forced_popup)
+				SSvote.ui_interact(C.mob)
 		return TRUE
 	return FALSE
 
@@ -359,9 +366,9 @@ SUBSYSTEM_DEF(vote)
 
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
-	initiate_vote("gamemode", null, TRUE)
-	shipmap_timer_id = addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
-	addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
+	initiate_vote("gamemode", null, TRUE, TRUE)
+	shipmap_timer_id = addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state

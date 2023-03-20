@@ -145,6 +145,7 @@
 #define XENO_HIVE_BETA "beta_hive"
 #define XENO_HIVE_ZETA "zeta_hive"
 #define XENO_HIVE_ADMEME "admeme_hive"
+#define XENO_HIVE_FALLEN "fallen_hive"
 
 // =============================
 // xeno tiers
@@ -339,18 +340,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HAS_LIPS (1<<9)
 #define HAS_UNDERWEAR (1<<10)
 #define HAS_NO_HAIR (1<<11)
-#define IS_PLANT (1<<12)
-#define IS_SYNTHETIC (1<<13)
-#define NO_STAMINA (1<<14)
-#define DETACHABLE_HEAD (1<<15)
-#define USES_ALIEN_WEAPONS (1<<16)
-#define NO_DAMAGE_OVERLAY (1<<17)
-#define CAN_VENTCRAWL (1<<18)
-#define HEALTH_HUD_ALWAYS_DEAD (1<<19)
-#define PARALYSE_RESISTANT (1<<20)
-#define ROBOTIC_LIMBS (1<<21)
-#define GREYSCALE_BLOOD (1<<22)
-#define IS_INSULATED (1<<23)
+#define IS_SYNTHETIC (1<<12)
+#define NO_STAMINA (1<<13)
+#define DETACHABLE_HEAD (1<<14)
+#define USES_ALIEN_WEAPONS (1<<15)
+#define NO_DAMAGE_OVERLAY (1<<16)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<17)
+#define PARALYSE_RESISTANT (1<<18)
+#define ROBOTIC_LIMBS (1<<19)
+#define GREYSCALE_BLOOD (1<<20)
+#define IS_INSULATED (1<<21)
 
 //=================================================
 
@@ -501,6 +500,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
 
+//TODO a lot of caste and caste_can flags should just be traits using caste_traits instead
 #define CASTE_INNATE_HEALING (1<<0) // Xenomorphs heal outside of weeds. Larvas, for example.
 #define CASTE_FIRE_IMMUNE (1<<1)
 #define CASTE_EVOLUTION_ALLOWED (1<<2)
@@ -517,6 +517,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
 #define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
+#define CASTE_DOES_NOT_AGE (1<<16) //This caste doesn't age
 
 // Xeno defines that affect evolution, considering making a new var for these
 #define CASTE_LEADER_TYPE (1<<16) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions
@@ -525,14 +526,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_INSTANT_EVOLUTION (1<<19) //Whether we require no evolution progress to evolve to this caste
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
-#define CASTE_CAN_VENT_CRAWL (1<<1)
-#define CASTE_CAN_BE_QUEEN_HEALED (1<<2)
-#define CASTE_CAN_BE_GIVEN_PLASMA (1<<3)
-#define CASTE_CAN_BE_LEADER (1<<4)
-#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<5) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_CAN_HOLD_JELLY (1<<6)//whether we can hold fireproof jelly in our hands
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<7) //Can corrupt a generator
-#define CASTE_CAN_RIDE_CRUSHER (1<<8) //Can ride a crusher
+#define CASTE_CAN_BE_QUEEN_HEALED (1<<1)
+#define CASTE_CAN_BE_GIVEN_PLASMA (1<<2)
+#define CASTE_CAN_BE_LEADER (1<<3)
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_CAN_HOLD_JELLY (1<<5)//whether we can hold fireproof jelly in our hands
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<6) //Can corrupt a generator
+#define CASTE_CAN_RIDE_CRUSHER (1<<7) //Can ride a crusher
 
 #define HIVE_STATUS_SHOW_EMPTY (1<<0)
 #define HIVE_STATUS_COMPACT_MODE (1<<1)
