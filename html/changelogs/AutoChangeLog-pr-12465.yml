@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "Add keybind for activate autorepair for combat robots"
