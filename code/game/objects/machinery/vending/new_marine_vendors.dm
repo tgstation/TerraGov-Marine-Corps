@@ -832,6 +832,12 @@
 		/obj/item/clothing/suit/modular/jaeger/heavy/eod,
 	)
 
+/obj/effect/vendor_bundle/xenonauten_light
+	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x,
+		/obj/item/clothing/suit/modular/xenonauten/light,
+	)
 
 /obj/effect/vendor_bundle/xenonauten_medium
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
