@@ -370,13 +370,15 @@
 	base_icon_state = "woodwall"
 	walltype = "woodwall"
 	explosion_block = 1
+
 // Reinforced Wood Wall
+
 /turf/closed/wall/wood/reinforced
-    name = "wood wall reinforced"
-    desc = "A reinforced wooden wall"
-    icon = 'icons/turf/walls/woodrwall.dmi'
-    icon_state = "woodrwall-0"
-    base_icon_state = "woodrwall"
-    walltype = "woodrwall"
-    max_integrity = 3000
-    explosion_block = 4
+	name = "wood wall reinforced"
+	desc = "A reinforced wooden wall"
+	icon = 'icons/turf/walls/woodrwall.dmi'
+	icon_state = "woodrwall-0"
+	base_icon_state = "woodrwall"
+	walltype = "woodrwall"
+	max_integrity = 3000
+	explosion_block = 4
