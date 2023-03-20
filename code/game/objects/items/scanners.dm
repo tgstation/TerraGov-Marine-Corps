@@ -273,7 +273,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/gloves/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(user.gloves == src)
-		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_unarmed_attack)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
