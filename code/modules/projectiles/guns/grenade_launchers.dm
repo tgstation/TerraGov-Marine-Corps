@@ -122,6 +122,42 @@ The Grenade Launchers
 	max_chamber_items = 5
 
 
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/flare_launcher
+	name = "\improper Heimdallr Flare Cannon System"
+	desc = "The Heimdall is the first piece of equipment to originate from in-field Xenoresearch via its experimental shoulder attachment points, and be approved for stocking on TGMC vessels. Contains a shoulder-mounted flare launcher which can stock up to 14 flares before needing to reload."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "heimdallr"
+	item_state = "heimdallr"
+	base_gun_icon = "heimdallr"
+	placed_overlay_iconstate = "heimdallr"
+	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/flare.ogg'
+	fire_animation = null
+	flags_equip_slot = null
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF
+	flags_item = null
+	max_shells = 7 //codex
+	wield_delay = 0 SECONDS //null
+	aim_slowdown = 0
+	attachable_allowed = list(
+		/obj/item/attachable/shoulder_mount/flare_cannon,
+	)
+	starting_attachment_types = list(/obj/item/attachable/shoulder_mount/flare_cannon)
+	fire_delay = 1 SECONDS
+	max_chamber_items = 7
+	allowed_ammo_types = list(
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare/cas,
+	)
+
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/able_to_fire(mob/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return ..()
+	return FALSE
+
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/flare_launcher/update_icon_state()
+	return
+
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."

@@ -1567,6 +1567,24 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	master_gun.stop_fire()
 
+/obj/item/attachable/shoulder_mount/flare_cannon
+	name = "flare attachment point"
+	icon = 'icons/mob/modular/shoulder_gun.dmi'
+	icon_state = "nothing"
+	slot = ATTACHMENT_SLOT_RAIL
+	flags_attach_features = null
+	pixel_shift_x = 0
+	in_hand_items_blacklist = list()
+
+/obj/item/attachable/shoulder_mount/flare_cannon/reload_gun(datum/source, obj/item/attacking_item, mob/living/user)
+	if(isstorage(attacking_item))
+		var/obj/item/storage/box = attacking_item
+		for(var/obj/item/explosive/grenade/flare/i in box.contents)
+			INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, i, user)
+		to_chat(user, span_notice("You restock [master_gun] with [box]'s contents."))
+		return
+	..()
+
 /obj/item/attachable/flamer_nozzle
 	name = "standard flamer nozzle"
 	desc = "The standard flamer nozzle. This one fires a stream of fire for direct and accurate flames. Though not as area filling as its counterpart, this one excels at directed frontline combat."
