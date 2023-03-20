@@ -316,26 +316,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			to_chat(M, "<br><br><h1>[span_danger("Failed to find a valid location for End of Round Deathmatch. Please do not grief.")]</h1><br><br>")
 			continue
 
-		var/mob/living/L
-		if(!isliving(M) || isAI(M))
-			L = new /mob/living/carbon/human(picked)
-			M.mind.transfer_to(L, TRUE)
-		else
-			L = M
-			INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
-
-		L.mind.bypass_ff = TRUE
-		L.revive()
-
-		if(isxeno(L))
-			var/mob/living/carbon/xenomorph/X = L
+		if(isxeno(M))
+			var/mob/living/carbon/xenomorph/X = M
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			INVOKE_ASYNC(X, /atom/movable/.proc/forceMove, picked)
 
-		else if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
 			do_eord_respawn(H)
 
-		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
+		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
 
