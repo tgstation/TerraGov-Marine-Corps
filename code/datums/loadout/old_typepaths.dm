@@ -10,7 +10,7 @@
 /obj/item/clothing/head/modular/marine/m10x/standard
 
 
-//Changing item_representation typepaths also breaks loadouts horribly, so this proc exists to convert legacy typepaths.
+//Changing item_representation typepaths also breaks loadouts horribly.
 
 /datum/item_representation/modular_armor
 	///List of attachments on the armor.
