@@ -1202,6 +1202,14 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"hk" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "hm" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = -13;
@@ -1575,6 +1583,13 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_male)
+"jg" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/spaceport2)
 "jh" = (
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating/warning{
@@ -1782,6 +1797,16 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
+"kw" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/spaceport2)
 "kx" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = 10;
@@ -3213,6 +3238,13 @@
 	dir = 8
 	},
 /area/lv624/lazarus/hydroponics)
+"sL" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "sM" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/dark,
@@ -3700,6 +3732,13 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research)
+"vD" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "vE" = (
 /obj/machinery/light{
 	dir = 1
@@ -4715,6 +4754,14 @@
 "Bt" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
+"Bv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/marking/bot,
+/area/lv624/lazarus/quartstorage/outdoors)
 "By" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 5;
@@ -5328,6 +5375,16 @@
 "EP" = (
 /turf/closed/wall/wood,
 /area/lv624/lazarus/bar)
+"EQ" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/spaceport)
 "ER" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/dirt,
@@ -5365,6 +5422,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
+"Fi" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "Fj" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable,
@@ -5495,6 +5559,14 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"Gi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/quartstorage/outdoors)
 "Gl" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -5522,6 +5594,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
+"Gs" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/spaceport2)
 "Gt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -5548,6 +5627,13 @@
 /obj/item/stack/sheet/metal/small_stack,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"GA" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/spaceport)
 "GF" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
@@ -5663,6 +5749,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
+"He" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/ground/grass/weedable,
+/area/lv624/lazarus/spaceport)
 "Hh" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor,
@@ -6820,6 +6913,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"Na" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/spaceport)
 "Nb" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass/weedable,
@@ -6994,6 +7094,13 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle9)
+"NV" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "NW" = (
 /obj/effect/turf_decal/siding{
 	dir = 1
@@ -7766,6 +7873,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
+"Sh" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/spaceport2)
 "Si" = (
 /obj/structure/bed/stool,
 /obj/effect/landmark/start/job/survivor,
@@ -8075,6 +8190,14 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"TS" = (
+/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "TT" = (
 /obj/machinery/light,
 /obj/structure/flora/ausbushes/grassybush{
@@ -9528,7 +9651,7 @@ fn
 LY
 di
 Re
-fn
+Gs
 xg
 uw
 uw
@@ -9836,14 +9959,14 @@ fn
 fn
 fn
 fn
-fn
+jg
 fn
 fn
 fn
 fn
 fn
 Yn
-Yn
+Sh
 Yn
 Yn
 Yn
@@ -9950,7 +10073,7 @@ eH
 ZD
 FB
 hH
-eH
+kw
 ZD
 FB
 hH
@@ -13604,7 +13727,7 @@ wh
 wh
 ah
 bN
-ua
+vD
 qI
 FC
 ah
@@ -13918,7 +14041,7 @@ ah
 ua
 ua
 ua
-nR
+TS
 ah
 wh
 wh
@@ -14019,7 +14142,7 @@ wh
 (47,1,1) = {"
 wh
 ah
-nR
+hk
 ua
 qI
 ua
@@ -14229,7 +14352,7 @@ wh
 ah
 ua
 ua
-ua
+sL
 ua
 ah
 wh
@@ -18890,7 +19013,7 @@ Kz
 Xf
 Cl
 so
-Kz
+EQ
 rw
 dZ
 so
@@ -19095,7 +19218,7 @@ hQ
 vw
 vw
 vw
-ZV
+He
 QT
 uv
 WK
@@ -19204,7 +19327,7 @@ vw
 hM
 Ds
 tI
-ud
+GA
 gT
 ud
 pe
@@ -19269,7 +19392,7 @@ Rh
 Wy
 lm
 LR
-pu
+Gi
 Ml
 pu
 pu
@@ -19365,7 +19488,7 @@ wh
 FC
 WX
 WX
-WX
+Fi
 WX
 WX
 Qx
@@ -19377,7 +19500,7 @@ LR
 XI
 LR
 Yb
-gl
+Bv
 UW
 LR
 Wy
@@ -19405,7 +19528,7 @@ ce
 ce
 yT
 ce
-ce
+Na
 hQ
 hQ
 hQ
@@ -19575,7 +19698,7 @@ FC
 FC
 WX
 WX
-WX
+NV
 WX
 QO
 Kk
