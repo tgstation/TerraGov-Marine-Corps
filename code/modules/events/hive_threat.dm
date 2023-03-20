@@ -29,7 +29,7 @@
 	hive_target = target
 	ADD_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
 	hive_target.med_hud_set_status()
-	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, .proc/handle_reward)
+	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, PROC_REF(handle_reward))
 	xeno_message("The Queen Mother senses that [hive_target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!", force = TRUE)
 	SEND_SOUND(GLOB.alive_xeno_list, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 
@@ -58,7 +58,7 @@
 				continue
 			receiving_xeno.upgrade_stored = tier_two.upgrade_threshold
 	SEND_SOUND(GLOB.alive_xeno_list, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
-	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(remove_blessing)), 2 MINUTES)
 
 ///debuffs the hive when the blessing expires
 /datum/round_event/hive_threat/proc/remove_blessing()

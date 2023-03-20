@@ -85,7 +85,7 @@
 	if(ispath(item_type, /obj/item/weapon/gun))
 		return /datum/item_representation/gun
 	if(ispath(item_type, /obj/item/clothing/suit/modular))
-		return /datum/item_representation/modular_armor
+		return /datum/item_representation/armor_suit/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/greyscale))
 		return /datum/item_representation/armor_module/colored
 	if(ispath(item_type, /obj/item/armor_module/armor))
@@ -94,8 +94,8 @@
 		return /datum/item_representation/armor_module/storage
 	if(ispath(item_type, /obj/item/storage))
 		return /datum/item_representation/storage
-	if(ispath(item_type, /obj/item/clothing/suit/storage))
-		return /datum/item_representation/suit_with_storage
+	if(ispath(item_type, /obj/item/clothing/suit))
+		return /datum/item_representation/armor_suit
 	if(ispath(item_type, /obj/item/clothing/head/modular))
 		return /datum/item_representation/modular_helmet
 	if(ispath(item_type, /obj/item/clothing/under))

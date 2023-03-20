@@ -800,7 +800,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
 
-#define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
+#define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, TYPE_PROC_REF(/mob/living, updatehealth)), 1, TIMER_UNIQUE))
 
 #define GRAB_PIXEL_SHIFT_PASSIVE 6
 #define GRAB_PIXEL_SHIFT_AGGRESSIVE 12

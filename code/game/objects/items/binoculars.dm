@@ -318,7 +318,7 @@
 		linked_mortars -= mortar
 		return FALSE
 	linked_mortars += mortar
-	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.

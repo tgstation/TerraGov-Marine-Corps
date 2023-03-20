@@ -7,8 +7,8 @@
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
-	RegisterSignal(target, COMSIG_MOB_MOUSEDOWN, .proc/start_gesture)
-	RegisterSignal(target, COMSIG_MOB_MOUSEUP, .proc/end_gesture)
+	RegisterSignal(target, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_gesture))
+	RegisterSignal(target, COMSIG_MOB_MOUSEUP, PROC_REF(end_gesture))
 
 /datum/element/gesture/Detach(datum/source, force)
 	UnregisterSignal(source, list(

@@ -153,13 +153,13 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	if(href_list["adj_pressure"])
 		var/change = text2num(href_list["adj_pressure"])
 		pressure_setting = between(0, pressure_setting + change, 50*ONE_ATMOSPHERE)
-		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
+		INVOKE_NEXT_TICK(src, PROC_REF(updateUsrDialog))
 		return
 
 	if(href_list["adj_input_flow_rate"])
 		var/change = text2num(href_list["adj_input_flow_rate"])
 		input_flow_setting = between(0, input_flow_setting + change, ATMOS_DEFAULT_VOLUME_PUMP + 500) //default flow rate limit for air injectors
-		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
+		INVOKE_NEXT_TICK(src, PROC_REF(updateUsrDialog))
 		return
 
 	if(!radio_connection)
@@ -194,7 +194,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
-	addtimer(CALLBACK(src, .proc/updateUsrDialog), 5)
+	addtimer(CALLBACK(src, PROC_REF(updateUsrDialog)), 5)
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/machines/computer.dmi'
@@ -266,13 +266,13 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 	if(href_list["adj_pressure"])
 		var/change = text2num(href_list["adj_pressure"])
 		pressure_setting = between(0, pressure_setting + change, 10*ONE_ATMOSPHERE)
-		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
+		INVOKE_NEXT_TICK(src, PROC_REF(updateUsrDialog))
 		return
 
 	if(href_list["adj_input_flow_rate"])
 		var/change = text2num(href_list["adj_input_flow_rate"])
 		input_flow_setting = between(0, input_flow_setting + change, ATMOS_DEFAULT_VOLUME_PUMP + 500) //default flow rate limit for air injectors
-		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
+		INVOKE_NEXT_TICK(src, PROC_REF(updateUsrDialog))
 		return
 
 	if(!radio_connection)
@@ -307,7 +307,7 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
-	addtimer(CALLBACK(src, .proc/updateUsrDialog), 5)
+	addtimer(CALLBACK(src, PROC_REF(updateUsrDialog)), 5)
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/machines/computer.dmi'

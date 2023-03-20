@@ -57,8 +57,8 @@
 		update_icon()
 		update_adjacent()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -619,7 +619,7 @@
 /obj/structure/rack/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

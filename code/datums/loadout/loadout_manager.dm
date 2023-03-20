@@ -41,7 +41,7 @@
 /// Wrapper proc to set the host of our ui datum, aka the loadout vendor that's showing us the loadouts
 /datum/loadout_manager/proc/set_host(_loadout_vendor)
 	loadout_vendor = _loadout_vendor
-	RegisterSignal(loadout_vendor, COMSIG_PARENT_QDELETING, .proc/close_ui)
+	RegisterSignal(loadout_vendor, COMSIG_PARENT_QDELETING, PROC_REF(close_ui))
 
 /// Wrapper proc to handle loadout vendor being qdeleted while we have loadout manager opened
 /datum/loadout_manager/proc/close_ui()
@@ -112,8 +112,8 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/modular_armor))
+				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)
@@ -175,8 +175,8 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/modular_armor))
+				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)

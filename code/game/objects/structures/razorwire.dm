@@ -34,9 +34,9 @@
 /obj/structure/razorwire/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXITED = .proc/on_exited,
-		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddElement(/datum/element/egrill)
@@ -89,9 +89,9 @@
 	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
-	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, .proc/do_razorwire_untangle)
-	RegisterSignal(entangled, COMSIG_MOVABLE_PULL_MOVED, .proc/razorwire_untangle)
+	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
+	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, PROC_REF(do_razorwire_untangle))
+	RegisterSignal(entangled, COMSIG_MOVABLE_PULL_MOVED, PROC_REF(razorwire_untangle))
 
 
 /obj/structure/razorwire/resisted_against(datum/source)

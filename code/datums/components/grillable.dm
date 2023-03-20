@@ -26,8 +26,8 @@
 	src.positive_result = positive_result
 	src.use_large_steam_sprite = use_large_steam_sprite
 
-	RegisterSignal(parent, COMSIG_ITEM_GRILLED, .proc/OnGrill)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/OnExamine)
+	RegisterSignal(parent, COMSIG_ITEM_GRILLED, PROC_REF(OnGrill))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(OnExamine))
 
 // Inherit the new values passed to the component
 /datum/component/grillable/InheritComponent(datum/component/grillable/new_comp, original, cook_result, required_cook_time, positive_result, use_large_steam_sprite)
@@ -58,8 +58,8 @@
 ///Ran when an object starts grilling on something
 /datum/component/grillable/proc/StartGrilling(atom/grill_source)
 	currently_grilling = TRUE
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/OnMoved)
-	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/AddGrilledItemOverlay)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(OnMoved))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(AddGrilledItemOverlay))
 
 	var/atom/A = parent
 	A.update_icon()

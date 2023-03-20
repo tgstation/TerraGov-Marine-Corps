@@ -194,7 +194,7 @@
 		if(user.handcuffed) //Keep the cuffs on.
 			user.drop_all_held_items()
 		user.update_action_buttons() //Certain action buttons will no longer be usable.
-		RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/on_removal)
+		RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(on_removal))
 	return ..()
 
 

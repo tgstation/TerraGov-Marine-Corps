@@ -1,19 +1,19 @@
 ///Called on /mob/living/Initialize(), for the mob to register to relevant signals.
 /mob/living/proc/register_init_signals()
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_loss)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), PROC_REF(on_knockedout_trait_gain))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), PROC_REF(on_knockedout_trait_loss))
 
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_LEGLESS), .proc/on_legless_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_LEGLESS), .proc/on_legless_trait_loss)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_LEGLESS), PROC_REF(on_legless_trait_gain))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_LEGLESS), PROC_REF(on_legless_trait_loss))
 
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_FAKEDEATH), .proc/on_fakedeath_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_FAKEDEATH), .proc/on_fakedeath_trait_loss)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_FAKEDEATH), PROC_REF(on_fakedeath_trait_gain))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_FAKEDEATH), PROC_REF(on_fakedeath_trait_loss))
 
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_FLOORED), .proc/on_floored_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_FLOORED), .proc/on_floored_trait_loss)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_FLOORED), PROC_REF(on_floored_trait_gain))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_FLOORED), PROC_REF(on_floored_trait_loss))
 
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_IMMOBILE), .proc/on_immobile_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_IMMOBILE), .proc/on_immobile_trait_loss)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_IMMOBILE), PROC_REF(on_immobile_trait_gain))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_IMMOBILE), PROC_REF(on_immobile_trait_loss))
 
 
 ///Called when TRAIT_KNOCKEDOUT is added to the mob.

@@ -46,8 +46,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	interaction_actions = list()
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/allow_drop)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_launching))
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
 	GLOB.droppod_list += src
 	update_icon()
 
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	update_icon()
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, .proc/finish_drop, user), DROPPOD_TRANSIT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), DROPPOD_TRANSIT_TIME)
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
 	pixel_y = 500
 	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
-	addtimer(CALLBACK(src, .proc/dodrop, targetturf, user), falltime)
+	addtimer(CALLBACK(src, PROC_REF(dodrop), targetturf, user), falltime)
 
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	explosion(targetturf,-1,-1,2,-1)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
-	addtimer(CALLBACK(src, .proc/completedrop, user), 7) //dramatic effect
+	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
 /obj/structure/droppod/proc/completedrop(mob/user)
@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!.)
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DROPPOD_TARGETTING))
-		addtimer(CALLBACK(src, /atom.proc/balloon_alert, buckled_mobs[1], "Target Assignment cooldown"), 7)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment cooldown"), 7)
 		return
 	// this isnt the cheapest thing in the world so lets not let players spam it
 	TIMER_COOLDOWN_START(src, COOLDOWN_DROPPOD_TARGETTING, 10 SECONDS)
@@ -258,7 +258,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!checklanding(null, attemptdrop))
 			block -= attemptdrop
 	if(length(block) <= 10)
-		addtimer(CALLBACK(src, /atom.proc/balloon_alert, buckled_mobs[1], "Target Assignment failed"), 7)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment failed"), 7)
 		return
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		for(var/mob/dropper AS in pod.buckled_mobs)
 			dropper.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>COMMENCING MASS DEPLOYMENT", /atom/movable/screen/text/screen_text/command_order)
 		var/predroptime = rand(4 SECONDS, 5 SECONDS) //Randomize it a bit so its staggered
-		addtimer(CALLBACK(pod, /obj/structure/droppod/.proc/launchpod, pod.buckled_mobs[1], TRUE), predroptime)
+		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), pod.buckled_mobs[1], TRUE), predroptime)
 
 
 /datum/action/innate/launch_droppod

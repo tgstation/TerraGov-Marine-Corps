@@ -116,7 +116,7 @@
 		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
 	dcell = new_cell
 	if(dcell)
-		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
+		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, PROC_REF(on_cell_deletion))
 
 
 ///Called by the deletion of the referenced powercell.
@@ -344,7 +344,7 @@
 /obj/item/defibrillator/gloves/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(user.gloves == src)
-		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_unarmed_attack)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 

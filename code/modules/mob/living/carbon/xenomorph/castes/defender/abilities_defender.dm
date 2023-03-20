@@ -40,7 +40,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
-		addtimer(CALLBACK(H, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
 			var/damage = X.xeno_caste.melee_damage
 			var/affecting = H.get_limb(ran_zone(null, 0))
@@ -56,7 +56,7 @@
 		to_chat(H, span_xenowarning("We are struck by \the [X]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
-	addtimer(CALLBACK(X, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	if(X.crest_defense)
 		X.use_plasma(plasma_cost)
@@ -137,7 +137,7 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/defender/defender = X
@@ -156,9 +156,9 @@
 	X.emote("roar")
 	succeed_activate()
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit,)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/charge_complete)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit),)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	X.throw_at(A, range, 70, X)
 
@@ -178,7 +178,7 @@
 		return FALSE
 	action_activate()
 	LAZYINCREMENT(owner.do_actions, target)
-	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
+	addtimer(CALLBACK(src, PROC_REF(decrease_do_action), target), windup_time)
 	return TRUE
 
 ///Decrease the do_actions of the owner
@@ -413,15 +413,15 @@
 		return
 	if(!can_use_action(TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
 
-	spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
 	add_cooldown()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), PROC_REF(stop_spin))
 
 /// runs a spin, then starts the timer for a new spin if needed
 /datum/action/xeno_action/centrifugal_force/proc/do_spin()
@@ -453,7 +453,7 @@
 	step_tick = !step_tick
 
 	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
-		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+		spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
 		return
 	stop_spin()
 

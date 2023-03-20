@@ -68,7 +68,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
-	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	L.drop_all_held_items()
 	L.Paralyze(1)
 	visible_message(span_xenowarning("\The [src] grabs [L] by the throat!"), \
@@ -114,7 +114,7 @@
 			if(A.type in empowerable_actions)
 				A.add_empowered_frame()
 				A.update_button_icon()
-	addtimer(CALLBACK(src, .proc/clear_combo), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(clear_combo)), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 	return TRUE
 
 ///Removes all combo stacks from the warrior, removes the frame around the ability buttons.
