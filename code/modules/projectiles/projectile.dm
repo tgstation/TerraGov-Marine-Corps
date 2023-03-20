@@ -1337,6 +1337,22 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
+	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
+		emote("scream")
+
+	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
+		return
+
+	var/mob/living/carbon/human/firingMob = proj.firer
+	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction && proj.ammo.damage_type != STAMINA)
+		var/turf/T = get_turf(firingMob)
+		firingMob.ff_check(damage, src)
+		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
+		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
+
+	if(!client)
+		return
+
 	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
@@ -1359,21 +1375,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!client.prefs.mute_self_combat_messages)
 		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
-	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
-		emote("scream")
-
-	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
-		return
-	var/mob/living/carbon/human/firingMob = proj.firer
-	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction && proj.ammo.damage_type != STAMINA)
-		var/turf/T = get_turf(firingMob)
-		firingMob.ff_check(damage, src)
-		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
-		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
-
-
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
+	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
+		emote(prob(70) ? "hiss" : "roar")
+
+	if(!client)
+		return
+
 	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback = list("We've been shot in the [parse_zone(proj.def_zone)] by [proj]!")
@@ -1389,9 +1398,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
-
-	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
-		emote(prob(70) ? "hiss" : "roar")
 
 	if(!client.prefs.mute_self_combat_messages)
 		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
