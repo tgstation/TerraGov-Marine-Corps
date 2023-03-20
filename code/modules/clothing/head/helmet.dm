@@ -113,7 +113,7 @@
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "helmet"
@@ -281,6 +281,11 @@
 =======================================================================*/
 
 /obj/item/clothing/head/helmet/marine/veteran
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	flags_item = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
@@ -336,7 +341,12 @@
 /obj/item/clothing/head/helmet/marine/imperial
 	name = "\improper Imperial Guard flak helmet"
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "guardhelm"
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	item_state = "guardhelm"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 85, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
@@ -363,7 +373,7 @@
 	desc = "A skirted helmet designed for use with the UM/UH system."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet1"
@@ -373,11 +383,6 @@
 
 /obj/item/clothing/head/helmet/UPP/heavy
 	name = "\improper UH7 helmet"
-	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
-	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet_heavy"
 	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)
 	resistance_flags = UNACIDABLE
@@ -390,7 +395,7 @@
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "spec"
@@ -404,7 +409,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/mercenary
 	name = "\improper K12 ceramic helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
-	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "mercenary_heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	soft_armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 60)
@@ -434,6 +438,10 @@
 	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "som_helmet"
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	item_state = "som_helmet"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -471,6 +479,10 @@
 	desc = "A regular ICCAF helmet, used by all branches of its forces. It is made to fit in both a utility and combat role with noticeably high resistance to explosions and bullets. "
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "icc"
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	item_state = "icc"
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 

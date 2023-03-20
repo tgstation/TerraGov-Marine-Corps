@@ -7,6 +7,11 @@
 	siemens_coefficient = 0.9
 	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
 	icon_state = "marine_jumpsuit"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	has_sensor = 2
 	adjustment_variants = list(
 		"Down" = "_d",
@@ -84,14 +89,6 @@
 	adjustment_variants = list()
 	has_sensor = 2
 	flags_item_map_variant = null
-
-
-/obj/item/clothing/under/marine/sniper
-	name = "\improper TGMC sniper snow uniform"
-	icon_state = "s_marine_sniper"
-	item_state = "s_marine_sniper"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
@@ -260,6 +257,11 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "guardjumpsuit"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	item_state = "guardjumpsuit"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
@@ -273,6 +275,11 @@
 
 /obj/item/clothing/under/marine/veteran //none of these are actual used by marines
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/veteran/pmc
@@ -416,6 +423,11 @@
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	item_state = "som_uniform"
 	has_sensor = FALSE
 
@@ -455,6 +467,11 @@
 	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "icc"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	item_state = "icc"
 	has_sensor = FALSE
 

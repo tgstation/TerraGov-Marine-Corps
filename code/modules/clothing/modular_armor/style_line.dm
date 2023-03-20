@@ -7,6 +7,11 @@
 	flags_item_map_variant = NONE
 	allowed_uniform_type = /obj/item/clothing/under
 	icon = 'icons/obj/clothing/suits/marine_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_suits.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	attachments_allowed = list(
 // Armor Modules
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -51,11 +56,6 @@
 	desc = "A fashionable jacket. Get them with style."
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
-	)
 	icon_state_variants = list(
 		"normal",
 		"webbing",
@@ -67,9 +67,6 @@
 	desc = "A light, loose-fitting colorable long coat, for those that want to have more style."
 	icon_state = "duster"
 	item_state = "duster"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-	)
 	icon_state_variants = list(
 		"drab",
 		"snow",

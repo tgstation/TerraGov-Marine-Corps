@@ -145,7 +145,7 @@
 /obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(lit)
-		standing.overlays += mutable_appearance('icons/mob/back.dmi',"+jetpack_lit")
+		standing.overlays += mutable_appearance('icons/mob/clothing/back.dmi',"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()

@@ -8,9 +8,10 @@
 	icon_state = ""
 	item_state = "armor"
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
@@ -77,7 +78,7 @@
 	for(var/i in armor_overlays)
 		new_overlay = armor_overlays[i]
 		if(new_overlay)
-			new_overlay = mutable_appearance('icons/mob/suit_1.dmi', new_overlay.icon_state)
+			new_overlay = mutable_appearance(item_icons[slot_wear_suit_str], new_overlay.icon_state)
 			standing.overlays += new_overlay
 
 /obj/item/clothing/suit/storage/marine/Destroy()
@@ -213,12 +214,17 @@
 /*=============================PMCS==================================*/
 
 /obj/item/clothing/suit/storage/marine/veteran
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
-	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "pmc_armor"
 	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -280,6 +286,11 @@
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "guardarmor"
 	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 0, FIRE = 60, ACID = 60)
 	flags_item_map_variant = NONE
@@ -330,9 +341,10 @@
 /obj/item/clothing/suit/storage/faction
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -517,10 +529,6 @@
 	name = "\improper colonial militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. "
 	icon_state = "rebel_armor"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -571,7 +579,6 @@
 /obj/item/clothing/suit/storage/marine/veteran/mercenary
 	name = "\improper K12 ceramic plated armor"
 	desc = "A set of grey, heavy ceramic armor with dark blue highlights. It is the standard uniform of a unknown mercenary group working in the sector"
-	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	icon_state = "mercenary_heavy_armor"
 	soft_armor = list(MELEE = 75, BULLET = 62, LASER = 42, ENERGY = 38, BOMB = 40, BIO = 15, FIRE = 38, ACID = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -636,6 +643,11 @@
 	name = "\improper S12 hauberk"
 	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. It's light but practically gives no armor."
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "som_armor"
 	item_state = "som_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -665,6 +677,11 @@
 	name = "\improper Modelle/16 combat armor"
 	desc = "A piece of ICC body armor, worn durning boarding actions by personnel in close quarters, as most ICC personnel serve dual purpose roles as ad-hoc marines, due to personnel shortages. Protects well from most sources, particularly explosions."
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "icc"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
