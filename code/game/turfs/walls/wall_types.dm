@@ -370,9 +370,7 @@
 	base_icon_state = "woodwall"
 	walltype = "woodwall"
 	explosion_block = 1
-
 // Reinforced Wood Wall
-
 /turf/closed/wall/wood/reinforced
     name = "wood wall reinforced"
     desc = "A reinforced wooden wall"
