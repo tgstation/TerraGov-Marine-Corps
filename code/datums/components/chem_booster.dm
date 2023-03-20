@@ -254,12 +254,11 @@
 		vali_necro_timer = world.time - processing_start
 		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
-			for(var/X in shuffle(wearer.limbs))
-				var/datum/limb/L = X
-				if(L.germ_level > 700)
+			for(var/datum/limb/limb_to_ruin AS in shuffle(wearer.limbs))
+				if(limb_to_ruin.limb_status & LIMB_NECROTIZED)
 					continue
-				L.germ_level += max(INFECTION_LEVEL_THREE + 50 - L.germ_level, 200)
-				necrotized_counter -= 1
+				limb_to_ruin.add_limb_flags(LIMB_NECROTIZED)
+				necrotized_counter--
 				if(necrotized_counter < 1)
 					break
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))

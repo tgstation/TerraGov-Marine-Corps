@@ -325,3 +325,16 @@
   Lumipharon:
   - code_imp: Removed various items from the codebase that are entirely unused
   - imageadd: Ported TG sprites for various very old suits and hats
+2023-03-20:
+  Lumipharon:
+  - balance: legacy armour such as B18 now uses irremovable general storage modules,
+      so can fit a few extra item types
+  - code_imp: Updated legacy armour code to use storage attachments instead of the
+      pockets var
+  Xander3359:
+  - rscadd: Bull abilities have their stats in the end-round popup. Marines Crushed,
+      gored and headbutted.
+  ivanmixo:
+  - code_imp: Updated the syntax for proc references to be 515 compatible
+  tyeagg:
+  - rscadd: particles for rl backblast

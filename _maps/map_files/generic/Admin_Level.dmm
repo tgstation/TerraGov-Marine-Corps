@@ -22,6 +22,13 @@
 	},
 /turf/open/floor/grass,
 /area/centcom/valhalla/hydroponics)
+"ade" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/button/valhalla/marine_button{
+	link = "xenoclose2"
+	},
+/turf/open/floor/plating,
+/area/centcom/valhalla/security/brig)
 "adx" = (
 /obj/structure/table,
 /obj/item/toy/dice,
@@ -2585,6 +2592,13 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
+"dur" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/button/valhalla/marine_button{
+	link = "xenofar2"
+	},
+/turf/open/floor/plating,
+/area/centcom/valhalla/security/brig)
 "dve" = (
 /turf/closed/wall,
 /area/centcom/valhalla/starboard_hallway)
@@ -4658,9 +4672,6 @@
 /obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
-/obj/machinery/button/valhalla/marine_button{
-	link = "close2"
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig)
 "ggF" = (
@@ -4695,9 +4706,6 @@
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/windowstake{
 	dir = 4
-	},
-/obj/machinery/button/valhalla/marine_button{
-	link = "far2"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig)
@@ -26164,7 +26172,7 @@ aMq
 bbR
 fbp
 geA
-hdk
+ade
 hDu
 ioO
 ivu
@@ -26578,7 +26586,7 @@ dXi
 eFA
 fbp
 ghB
-hdk
+dur
 hGL
 ivs
 jdS

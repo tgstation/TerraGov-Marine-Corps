@@ -185,12 +185,6 @@
 		I.store_in_cryo()
 	return ..()
 
-/obj/item/clothing/suit/storage/store_in_cryo()
-	for(var/obj/item/I AS in pockets)
-		pockets.remove_from_storage(I, loc)
-		I.store_in_cryo()
-	return ..()
-
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -314,4 +308,4 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
