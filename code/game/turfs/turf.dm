@@ -558,8 +558,7 @@
 
 /turf/open/ground/grass/weedable/is_weedable()
 	return TRUE
-
-
+	
 /**
  * Checks for whether we can build advanced xeno structures here
  * Returns TRUE if present, FALSE otherwise
