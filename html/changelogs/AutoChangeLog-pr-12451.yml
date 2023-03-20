@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "legacy armour such as B18 now uses irremovable general storage modules, so can fit a few extra item types"
-  - code_imp: "Updated legacy armour code to use storage attachments instead of the pockets var"
