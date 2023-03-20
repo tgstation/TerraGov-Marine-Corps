@@ -740,6 +740,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 32.5
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/icc_confrontationrifle
+	name = "armor-piercing heavy rifle bullet"
+	hud_state = "rifle_ap"
+	damage = 50
+	penetration = 40
+	sundering = 3.5
+
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"
 	damage = 25

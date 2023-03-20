@@ -606,12 +606,12 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw)
 
-	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 20, "under_x" = 3120, "under_y" = 13, "stock_x" = 9, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 20, "under_x" = 31, "under_y" = 13, "stock_x" = 9, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
@@ -630,3 +630,6 @@
 	scatter = 3
 	scatter_unwielded = 8
 	damage_falloff_mult = 1.5
+
+/obj/item/weapon/gun/smg/icc_pdw/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)

@@ -485,3 +485,14 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
 	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//ML-12 Confrontation Rifle
+/obj/item/ammo_magazine/rifle/icc_confrontationrifle
+	name = "\improper ML-12 battlecarbine rifle magazine (10x28mm)"
+	desc = "A magazine filled with 10x28mm armor-piercing rifle rounds for the ML-12."
+	caliber = CALIBER_10X28_CASELESS
+	icon_state = "ml12"
+	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
+	max_rounds = 25
+	icon_state_mini = "mag_rifle"

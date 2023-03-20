@@ -81,9 +81,10 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km/black, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km/black, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km/black, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km/black, SLOT_IN_BELT)
 
 /datum/outfit/job/icc/standard/icc_pdw
-	suit_store = /obj/item/weapon/gun/smg/icc_pdw
+	suit_store = /obj/item/weapon/gun/smg/icc_pdw/standard
 
 /datum/outfit/job/icc/standard/icc_pdw/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -92,9 +93,10 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_pdw, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_pdw, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_pdw, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/icc_pdw, SLOT_IN_BELT)
 
 /datum/outfit/job/icc/standard/icc_battlecarbine
-	suit_store = /obj/item/weapon/gun/rifle/icc_battlecarbine
+	suit_store = /obj/item/weapon/gun/rifle/icc_battlecarbine/standard
 
 /datum/outfit/job/icc/standard/icc_battlecarbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -103,7 +105,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_battlecarbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_battlecarbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_battlecarbine, SLOT_IN_BELT)
-
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_battlecarbine, SLOT_IN_BELT)
 
 //ICC Guard
 /datum/job/icc/guard
@@ -217,19 +219,23 @@
 /datum/job/icc/leader
 	title = "ICC Leader"
 	paygrade = "ICC2"
-	outfit = /datum/outfit/job/icc/leader
+	outfit = /datum/outfit/job/icc/leader/trenchgun
 	skills_type = /datum/skills/sl/icc
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/icc/leader/trenchgun,
+		/datum/outfit/job/icc/leader/icc_confrontationrifle,
+	)
+
 
 /datum/outfit/job/icc/leader
 	name = "ICC Leader"
-	jobtype = /datum/job/icc/guard
+	jobtype = /datum/job/icc/leader
 
 	shoes = /obj/item/clothing/shoes/marine/icc/knife
 	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
-	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
-	belt = /obj/item/storage/belt/shotgun/icc/mixed
 	back = /obj/item/storage/backpack/lightpack/icc/guard
 	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	r_store = /obj/item/storage/pouch/construction/icc/full
@@ -255,3 +261,19 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 
+/datum/outfit/job/icc/leader/trenchgun
+	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
+	belt = /obj/item/storage/belt/shotgun/icc/mixed
+
+/datum/outfit/job/icc/leader/icc_confrontationrifle
+	belt = /obj/item/storage/belt/marine/icc
+	suit_store = /obj/item/weapon/gun/rifle/icc_confrontationrifle/leader
+
+/datum/outfit/job/icc/leader/icc_confrontationrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
