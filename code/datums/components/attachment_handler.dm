@@ -138,12 +138,6 @@
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data[ATTACH_DELAY]
 
-	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_HANDS))
-		var/obj/item/in_hand = user.get_inactive_held_item()
-		if(in_hand != parent)
-			to_chat(user, span_warning("It's slow, trying to attach [attachment] without holding [parent]."))
-			attach_delay *= 2
-
 	var/skill_used = attachment_data[ATTACH_SKILL]
 	var/skill_upper_threshold = attachment_data[ATTACH_SKILL_UPPER_THRESHOLD]
 
