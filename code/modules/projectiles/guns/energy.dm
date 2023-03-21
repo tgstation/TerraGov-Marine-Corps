@@ -559,8 +559,8 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 15
-	gun_firemode = GUN_FIREMODE_AUTOBURST
-	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
