@@ -297,7 +297,7 @@
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
 	color = "#ffbf58" //Mustard orange?
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
@@ -315,23 +315,23 @@
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	smoke_can_spread_through = TRUE
 	color = "#0287A1"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
 	smoke_can_spread_through = TRUE
 	color = "#abf775"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Toxic smoke when the Defiler successfully uses Defile
 /obj/effect/particle_effect/smoke/xeno/sanguinal
 	color = "#bb0a1e" //Blood red
 	smoke_can_spread_through = TRUE
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno ozelomelyn in smoke form for Defiler.
 /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 	color = "#f1ddcf" //A pinkish for now.
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 /////////////////////////////////////////////
 // Smoke spreads
