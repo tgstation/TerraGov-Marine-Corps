@@ -46,4 +46,4 @@ SUBSYSTEM_DEF(greyscale)
 	type = "[type]"
 	if(istype(colors)) // It's the color list format
 		colors = colors.Join()
-	return configurations[type].Generate(colors)
+	return configurations[type]?.Generate(colors)

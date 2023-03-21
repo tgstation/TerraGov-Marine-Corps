@@ -130,11 +130,13 @@
 	Returns TURE if it was able to put the thing into one of our hands.
 */
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
-	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(!W)
 		return FALSE
+
+	W.do_pickup_animation(src)
+
 	if(put_in_active_hand(W))
 		return TRUE
 	if(put_in_inactive_hand(W))

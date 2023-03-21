@@ -59,8 +59,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	set_text()
 
 /atom/movable/screen/text/lobby/owners_char/set_text()
-	maptext = "<span class=menutext>Персонаж: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Неизвестный пользователь"]</span>"
-	if(!registered)
+	maptext = "<span class=menutext>Персонаж: [hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Неизвестный пользователь"]</span>"
+	if(!registered && hud)
 		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
 		registered = TRUE
 
@@ -126,8 +126,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/ready/set_text()
-	var/mob/new_player/player = hud.mymob
-	maptext = "<span class=menutext>Вы: [player.ready ? "" : "не "]готовы</span>"
+	var/mob/new_player/player = hud?.mymob
+	maptext = "<span class=menutext>Вы: [player?.ready ? "" : "не "]готовы</span>"
 
 /atom/movable/screen/text/lobby/clickable/ready/Click()
 	. = ..()
@@ -172,8 +172,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 
 ///This proc is invoked async to avoid sleeping in Initialize and fetches polls from the DB
 /atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()
-	var/mob/new_player/player = hud.mymob
-	var/hasnewpolls = player.check_playerpolls()
+	var/mob/new_player/player = hud?.mymob
+
+	var/hasnewpolls = player?.check_playerpolls()
 	if(isnull(hasnewpolls))
 		maptext = "<span class=menutext>No Database!</span>"
 		return

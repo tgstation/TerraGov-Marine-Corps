@@ -180,6 +180,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(slot == SLOT_EARS)
 		if(GLOB.faction_to_data_hud[user.faction] != hud_type && user.faction != FACTION_NEUTRAL)
 			safety_protocol(user)
+			return ..()
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()

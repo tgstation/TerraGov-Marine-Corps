@@ -471,7 +471,6 @@
 
 /datum/status_effect/stacking/intoxicated/on_remove()
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
-	debuff_owner = null
 	QDEL_NULL(particle_holder)
 	return ..()
 
@@ -484,7 +483,7 @@
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	particle_holder?.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
 		debuff_owner.adjust_stagger(1)

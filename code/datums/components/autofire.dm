@@ -99,12 +99,12 @@
 
 ///Hard reset the autofire, happens when the shooter fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/autofire/proc/hard_reset()
-	callback_reset_fire.Invoke() //resets the gun
+	callback_reset_fire?.Invoke() //resets the gun
 	shots_fired = 0
 	have_to_reset_at_burst_end = FALSE
 	if(bursting)
 		bursting = FALSE
-		callback_bursting.Invoke(FALSE)
+		callback_bursting?.Invoke(FALSE)
 	shooting = FALSE
 
 ///Ask the shooter to fire and schedule the next shot if need
@@ -113,21 +113,21 @@
 		return
 	if(next_fire > world.time)//This mean duplication somewhere, we abort now
 		return
-	if(!(callback_fire.Invoke() & AUTOFIRE_CONTINUE))//reset fire if we want to stop
+	if(callback_fire && !(callback_fire.Invoke() & AUTOFIRE_CONTINUE))//reset fire if we want to stop
 		hard_reset()
 		return
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
-				callback_bursting.Invoke(FALSE)
+				callback_bursting?.Invoke(FALSE)
 				bursting = FALSE
 				stop_firing()
 				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
-					callback_reset_fire.Invoke()
+					callback_reset_fire?.Invoke()
 					have_to_reset_at_burst_end = FALSE
 				return
-			callback_bursting.Invoke(TRUE)
+			callback_bursting?.Invoke(TRUE)
 			bursting = TRUE
 			next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOBURST)
@@ -135,14 +135,14 @@
 			if(shots_fired == burst_shots_to_fire)
 				next_fire = world.time + auto_burst_fire_shot_delay
 				shots_fired = 0
-				callback_bursting.Invoke(FALSE)
+				callback_bursting?.Invoke(FALSE)
 				bursting = FALSE
 				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
-					callback_reset_fire.Invoke()
+					callback_reset_fire?.Invoke()
 					stop_firing()
 					have_to_reset_at_burst_end = FALSE
 			else
-				callback_bursting.Invoke(TRUE)
+				callback_bursting?.Invoke(TRUE)
 				bursting = TRUE
 				next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOMATIC)

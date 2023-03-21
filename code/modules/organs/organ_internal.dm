@@ -256,6 +256,10 @@
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
+
+	if(!carbon_mob)
+		return
+
 	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/owner_added_reagent)
 	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, .proc/owner_removed_reagent)
 

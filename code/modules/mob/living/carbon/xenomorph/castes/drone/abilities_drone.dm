@@ -158,7 +158,7 @@
 		return TRUE
 	if(!HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		return FALSE
-	if(!essence_link_action.existing_link.was_within_range)
+	if(!essence_link_action.existing_link?.was_within_range)
 		return FALSE
 	if(essence_link_action.existing_link.stacks < essence_link_action.existing_link.max_stacks)
 		return FALSE

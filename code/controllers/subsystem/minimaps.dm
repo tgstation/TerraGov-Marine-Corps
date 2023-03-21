@@ -221,10 +221,10 @@ SUBSYSTEM_DEF(minimaps)
 		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
 		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
 	if(ismovableatom(target))
-		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change)
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
+		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change, TRUE)
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move, TRUE)
 	removal_cbs[target] = CALLBACK(src, .proc/removeimage, blip, target)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_marker)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_marker, TRUE)
 
 
 
@@ -318,6 +318,8 @@ SUBSYSTEM_DEF(minimaps)
 ///updates the screen loc of the locator so that it's on the movers location on the minimap
 /atom/movable/screen/minimap_locator/proc/update(atom/movable/mover, atom/oldloc, direction)
 	SIGNAL_HANDLER
+	if(!SSminimaps.minimaps_by_z["[mover.z]"])
+		return
 	var/x_coord = mover.x * 2
 	var/y_coord = mover.y * 2
 	x_coord += SSminimaps.minimaps_by_z["[mover.z]"].x_offset
@@ -386,9 +388,12 @@ SUBSYSTEM_DEF(minimaps)
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
 
 /datum/action/minimap/remove_action(mob/M)
+	if(!M)
+		return
+
 	. = ..()
 	if(minimap_displayed)
-		owner.client.screen -= map
+		owner?.client.screen -= map
 		minimap_displayed = FALSE
 	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
 

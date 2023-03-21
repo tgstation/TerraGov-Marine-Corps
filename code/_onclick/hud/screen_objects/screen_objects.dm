@@ -703,7 +703,7 @@
 ///Stop the arrow to avoid runtime and hard del
 /atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
-	tracker.client.screen -= src
+	tracker.client?.screen -= src
 	deltimer(del_timer)
 	qdel(src)
 
