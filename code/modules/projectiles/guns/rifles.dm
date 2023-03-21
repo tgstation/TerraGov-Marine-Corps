@@ -2158,10 +2158,10 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mdr.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mdr_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mdr_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
 	max_shells = 30 //codex
 	force = 20
@@ -2229,10 +2229,10 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	fire_sound = 'sound/weapons/guns/fire/t18b.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ml12.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ml12_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ml12_reload.ogg'
 	caliber = CALIBER_10X28_CASELESS //codex
 	max_shells = 25 //codex
 	force = 20
