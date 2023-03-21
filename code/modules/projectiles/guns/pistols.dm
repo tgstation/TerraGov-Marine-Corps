@@ -636,6 +636,32 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
+// PL-5 ICC Duty Pistol
+
+/obj/item/weapon/gun/pistol/icc_dpistol
+	name = "\improper PL-5B2 duty pistol"
+	desc = "The PL-5 is a true and tested ICCAF handgun, used for a very long time with minimal changes to the core design, best used at close quarters with its higher than usual magazine size for its caliber. It is chambered in .45 ACP."
+	icon_state = "pl5"
+	item_state = "pl5"
+	icon = 'icons/Marine/gun64.dmi'
+	caliber = CALIBER_45ACP //codex
+	max_shells = 18 //codex
+	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
+	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/icc_dpistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/icc_dpistol)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.75
+	damage_falloff_mult = 1.25
+	recoil = -2
+	recoil_unwielded = -1
+
+//-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 
 /obj/item/weapon/gun/pistol/chimp

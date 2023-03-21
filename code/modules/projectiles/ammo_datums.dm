@@ -602,13 +602,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 3
 
+/datum/ammo/bullet/smg/ap/hv
+	name = "high velocity armor-piercing submachinegun bullet"
+	shell_speed = 4
+
+/datum/ammo/bullet/smg/hollow
+	name = "hollow-point submachinegun bullet"
+	hud_state = "pistol_squash"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	damage = 35
+	penetration = 0
+	damage_falloff = 3
+	shrapnel_chance = 45
+
 /datum/ammo/bullet/smg/incendiary
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 18
 	penetration = 0
-
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
@@ -757,6 +769,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	damage = 32.5
 	sundering = 1.25
+
+/datum/ammo/bullet/rifle/icc_confrontationrifle
+	name = "armor-piercing heavy rifle bullet"
+	hud_state = "rifle_ap"
+	damage = 50
+	penetration = 40
+	sundering = 3.5
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"

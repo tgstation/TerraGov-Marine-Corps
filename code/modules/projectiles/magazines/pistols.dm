@@ -209,6 +209,16 @@
 	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------
+//PL-5
+
+/obj/item/ammo_magazine/pistol/icc_dpistol
+	name = "\improper PL-5 magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = CALIBER_45ACP
+	icon_state = "pl5"
+	max_rounds = 18
+
+//-------------------------------------------------------
 
 //A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
 
