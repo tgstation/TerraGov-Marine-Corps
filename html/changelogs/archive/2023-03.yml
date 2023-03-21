@@ -338,3 +338,19 @@
   - code_imp: Updated the syntax for proc references to be 515 compatible
   tyeagg:
   - rscadd: particles for rl backblast
+2023-03-21:
+  Lumipharon:
+  - bugfix: fixed the icon of basic lab coats
+  QualityVan:
+  - balance: Necrosis removal surgery won't entirely clear out germs on its own. Dose
+      spacea if the necro is due to infections.
+  - qol: Vali causes necrosis directly if you keep it active for too long instead
+      of filling your limbs with germs
+  Xander3359:
+  - code_imp: cleans up ammo_datum.dm
+  - rscadd: '"Overwrite loadout" button in Loadout Vendor'
+  - bugfix: Fixes xenonauten light armor not vending in GHMME.
+  ivanmixo:
+  - bugfix: Fixed valhalla buttons
+  novaepee:
+  - rscadd: Add keybind for activate autorepair for combat robots

@@ -994,6 +994,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/icc_pdw
+	name = "\improper L-40 stock"
+	desc = "A irremovable L-40 stock."
+	icon_state = "l40stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/icc_sharpshooter
+	name = "\improper L-1 stock"
+	desc = "A irremovable L-11 stock."
+	icon_state = "l11stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
 	desc = "A specialized stock for the SH-35."
@@ -1302,6 +1316,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.3
 	recoil_mod = -2
 	scatter_mod = -8
+
+/obj/item/attachable/foldable/icc_machinepistol
+	name = "\improper PL-38 machinepistol stock"
+	desc = "A submachinegun stock found on ICC subguns, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	flags_attach_features = ATTACH_ACTIVATION
+	icon = 'icons/Marine/attachments_64.dmi'
+	wield_delay_mod = 0.1 SECONDS
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "pl38stock"
+	accuracy_mod = 0.3
+	recoil_mod = -2
+	scatter_mod = -8
+	accuracy_unwielded_mod = -0.1
+	scatter_unwielded_mod = 4
 
 /obj/item/attachable/foldable/t35stock
 	name = "\improper SH-35 stock"

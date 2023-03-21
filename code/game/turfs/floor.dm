@@ -547,6 +547,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		return
 	if(wet == old_wet_level)
 		wet = 0
+		qdel(GetComponent(/datum/component/slippery))
 		if(wet_overlay)
 			overlays -= wet_overlay
 			wet_overlay = null
