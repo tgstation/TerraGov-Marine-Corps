@@ -265,6 +265,8 @@
 			/obj/item/storage/pill_bottle/tricordrazine = -1,
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/inaprovaline = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
 			/obj/item/storage/pill_bottle/alkysine = -1,
