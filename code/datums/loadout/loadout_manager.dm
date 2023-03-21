@@ -149,7 +149,9 @@
 				var/datum/item_representation/boot/footwear = loadout.item_list[slot_shoes_str]
 				if(loadout.version < 11)
 					if("[footwear.item_type]" == "/obj/item/clothing/shoes/marine/full")
-						loadout.empty_slot(slot_shoes_str)
+						var/obj/item/clothing/shoes/marine/full/new_boots = new (loadout_vendor)
+						loadout.item_list[slot_shoes_str] = new /datum/item_representation/boot(new_boots)
+						qdel(new_boots)
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
@@ -237,6 +239,7 @@
 					if("[footwear.item_type]" == "/obj/item/clothing/shoes/marine/full")
 						var/obj/item/clothing/shoes/marine/full/new_boots = new (loadout_vendor)
 						loadout.item_list[slot_shoes_str] = new /datum/item_representation/boot(new_boots)
+						qdel(new_boots)
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."

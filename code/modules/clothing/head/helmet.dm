@@ -343,11 +343,6 @@
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
 	soft_armor = list(MELEE = 85, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 85, BIO = 50, FIRE = 80, ACID = 80)
-	//pockets = /obj/item/storage/internal/imperialhelmet
-
-//obj/item/storage/internal/imperialhelmet
-//	max_w_class = 2
-//	max_storage_space = 6
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace helmet"

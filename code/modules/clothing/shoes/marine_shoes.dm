@@ -19,16 +19,6 @@
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
-/obj/item/clothing/shoes/marine/Initialize()
-	. = ..()
-	//if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-	//	return
-	//if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-	//	return
-	//var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	//RegisterSignal(armor_storage.storage, COMSIG_ATOM_UPDATE_ICON, /atom/proc/update_icon)
-	//update_icon()
-
 /obj/item/clothing/shoes/marine/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
