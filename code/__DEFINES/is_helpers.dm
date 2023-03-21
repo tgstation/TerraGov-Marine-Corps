@@ -183,6 +183,8 @@
 
 #define isgreyscaleattachment(A) (istype(A, /obj/item/armor_module/greyscale))
 
+#define ishat(A) (istype(A, /obj/item/clothing/head))
+
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))

@@ -17,3 +17,11 @@
 	var/list/datum/item_representation/armor_module/attachments = list()
 	///Icon_state suffix for the saved icon_state varient.
 	var/current_variant
+
+/datum/item_representation/modular_helmet
+	///The attachments installed.
+	var/list/datum/item_representation/armor_module/attachments = list()
+	///The color of the helmet
+	var/greyscale_colors
+	///Icon_state suffix for the saved icon_state varient.
+	var/current_variant

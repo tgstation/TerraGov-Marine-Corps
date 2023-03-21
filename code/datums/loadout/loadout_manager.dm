@@ -99,7 +99,7 @@
 				to_chat(ui.user, span_warning("The loadouts was found but is from a past version, and cannot be imported."))
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
-				var/datum/item_representation/modular_helmet/helmet = loadout.item_list[slot_head_str]
+				var/datum/item_representation/hat/modular_helmet/helmet = loadout.item_list[slot_head_str]
 				if(istype(helmet, /datum/item_representation/modular_helmet))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
@@ -112,8 +112,17 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
+					if(loadout.version < 11)
+						var/datum/item_representation/modular_helmet/old_helmet = loadout.item_list[slot_head_str]
+						var/datum/item_representation/hat/modular_helmet/new_helmet = new
+						new_helmet.item_type = old_helmet.item_type
+						new_helmet.bypass_vendor_check = old_helmet.bypass_vendor_check
+						new_helmet.greyscale_colors = old_helmet.greyscale_colors
+						new_helmet.current_variant = old_helmet.current_variant
+						new_helmet.attachments = old_helmet.attachments
+						loadout.item_list[slot_head_str] = new_helmet
 				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
+				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)
@@ -124,11 +133,23 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
+					if(loadout.version < 11)
+						var/datum/item_representation/modular_armor/old_armor = loadout.item_list[slot_wear_suit_str]
+						var/datum/item_representation/armor_suit/modular_armor/new_armor = new
+						new_armor.item_type = old_armor.item_type
+						new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
+						new_armor.current_variant = old_armor.current_variant
+						new_armor.attachments = old_armor.attachments
+						loadout.item_list[slot_wear_suit_str] = new_armor
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
 					if(loadout.version < 9)
 						uniform.current_variant = null
 						uniform.attachments = list()
+				var/datum/item_representation/boot/footwear = loadout.item_list[slot_shoes_str]
+				if(loadout.version < 11)
+					if("[footwear.item_type]" == "/obj/item/clothing/shoes/marine/full")
+						loadout.empty_slot(slot_shoes_str)
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
@@ -138,6 +159,8 @@
 					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
 				if(loadout.version < 10)
 					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
+				if(loadout.version < 11)
+					message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
@@ -162,7 +185,7 @@
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
-				var/datum/item_representation/modular_helmet/helmet = loadout.item_list[slot_head_str]
+				var/datum/item_representation/hat/modular_helmet/helmet = loadout.item_list[slot_head_str]
 				if(istype(helmet, /datum/item_representation/modular_helmet))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
@@ -175,8 +198,17 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
+					if(loadout.version < 11)
+						var/datum/item_representation/modular_helmet/old_helmet = loadout.item_list[slot_head_str]
+						var/datum/item_representation/hat/modular_helmet/new_helmet = new
+						new_helmet.item_type = old_helmet.item_type
+						new_helmet.bypass_vendor_check = old_helmet.bypass_vendor_check
+						new_helmet.greyscale_colors = old_helmet.greyscale_colors
+						new_helmet.current_variant = old_helmet.current_variant
+						new_helmet.attachments = old_helmet.attachments
+						loadout.item_list[slot_head_str] = new_helmet
 				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
+				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)
@@ -187,7 +219,6 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				else if(istype(armor, /datum/item_representation/modular_armor)) //please forgive this guh
 					if(loadout.version < 11)
 						var/datum/item_representation/modular_armor/old_armor = loadout.item_list[slot_wear_suit_str]
 						var/datum/item_representation/armor_suit/modular_armor/new_armor = new

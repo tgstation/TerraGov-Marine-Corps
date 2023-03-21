@@ -316,7 +316,7 @@
 
 /obj/item/armor_module/storage/boot/on_detach(obj/item/detaching_from, mob/user)
 	parent.UnregisterSignal(storage, COMSIG_ATOM_UPDATE_ICON)
-	var/current_parent = parent
+	var/obj/item/clothing/current_parent = parent
 	. = ..()
 	current_parent.update_icon()
 
