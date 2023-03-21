@@ -103,7 +103,7 @@
 				to_chat(h_user, "Medium electrical sparks as you touch the [src], severely burning your hand!")
 				h_user.adjustFireLoss(rand(10,25))
 				h_user.Unconscious(10 SECONDS)
-			INVOKE_ASYNC(src, .proc/empulse, loc, 2, 4)
+			INVOKE_ASYNC(src, PROC_REF(empulse), loc, 2, 4)
 			charge = 0
 
 		if (36 to 60)
@@ -119,7 +119,7 @@
 				to_chat(h_user, "Strong electrical arc sparks between you and [src], knocking you out for a while!")
 				h_user.adjustFireLoss(rand(35,75))
 				h_user.Unconscious(24 SECONDS)
-			INVOKE_ASYNC(src, .proc/empulse, loc, 8, 16)
+			INVOKE_ASYNC(src, PROC_REF(empulse), loc, 8, 16)
 			charge = 0
 			apcs_overload(1, 10)
 			visible_message("Caution. Output regulators malfunction. Uncontrolled discharge detected.")
@@ -133,7 +133,7 @@
 			// Remember, we have few gigajoules of electricity here.. Turn them into crispy toast.
 			h_user.adjustFireLoss(rand(150,195))
 			h_user.Unconscious(50 SECONDS)
-			INVOKE_ASYNC(src, .proc/empulse, loc, 32, 64)
+			INVOKE_ASYNC(src, PROC_REF(empulse), loc, 32, 64)
 			charge = 0
 			apcs_overload(5, 25)
 			visible_message("Caution. Output regulators malfunction. Significant uncontrolled discharge detected.")

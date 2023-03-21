@@ -45,7 +45,7 @@
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleep_console/proc/clean_connected()
@@ -170,7 +170,7 @@
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 /obj/machinery/sleeper/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -186,7 +186,7 @@
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleeper/proc/clean_connected()

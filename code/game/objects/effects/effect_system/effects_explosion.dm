@@ -14,7 +14,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/particle_effect/expl_particles/LateInitialize()
-	INVOKE_ASYNC(src, .proc/expl_particles_spread)
+	INVOKE_ASYNC(src, PROC_REF(expl_particles_spread))
 
 /obj/effect/particle_effect/proc/expl_particles_spread()
 	var/direct = pick(GLOB.alldirs)
@@ -69,4 +69,4 @@
 	S.start()
 /datum/effect_system/explosion/smoke/start()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/create_smoke), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(create_smoke)), 0.5 SECONDS)

@@ -118,9 +118,9 @@
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	lunge_target = A
 
-	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
 	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
 		lunge_grab(X, lunge_target)
 	else
@@ -137,7 +137,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	INVOKE_ASYNC(src, .proc/lunge_grab, source, lunge_target)
+	INVOKE_ASYNC(src, PROC_REF(lunge_grab), source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
 /datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)

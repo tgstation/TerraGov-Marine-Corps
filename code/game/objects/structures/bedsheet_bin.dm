@@ -99,9 +99,12 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)
-		if(0)				icon_state = "linenbin-empty"
-		if(1 to amount / 2)	icon_state = "linenbin-half"
-		else				icon_state = "linenbin-full"
+		if(0)
+			icon_state = "linenbin-empty"
+		if(1 to 10)
+			icon_state = "linenbin-half"
+		else
+			icon_state = "linenbin-full"
 
 
 /obj/structure/bedsheetbin/attackby(obj/item/I, mob/user, params)
@@ -109,6 +112,9 @@ LINEN BINS
 
 	if(istype(I, /obj/item/bedsheet))
 		if(!user.drop_held_item())
+			return
+		if(amount+1 > 20) //no more than 20 per bin
+			to_chat(user, span_notice("[src] is too full!"))
 			return
 
 		I.forceMove(src)

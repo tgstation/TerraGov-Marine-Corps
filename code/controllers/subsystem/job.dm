@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(job)
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
-	sortTim(occupations, /proc/cmp_job_display_asc)
+	sortTim(occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 
 	for(var/j in occupations)
 		var/datum/job/job = j
@@ -314,7 +314,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(2 SECONDS)
 	for(var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
@@ -365,10 +365,10 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/add_active_occupation(datum/job/occupation)
 	active_joinable_occupations += occupation
 	if(length(active_joinable_occupations) > 1)
-		sortTim(active_joinable_occupations, /proc/cmp_job_display_asc)
+		sortTim(active_joinable_occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 	active_joinable_occupations_by_category[occupation.job_category] += list(occupation)
 	if(length(active_joinable_occupations_by_category[occupation.job_category]) > 1)
-		sortTim(active_joinable_occupations_by_category[occupation.job_category], /proc/cmp_job_display_asc)
+		sortTim(active_joinable_occupations_by_category[occupation.job_category], GLOBAL_PROC_REF(cmp_job_display_asc))
 
 /datum/controller/subsystem/job/proc/remove_active_occupation(datum/job/occupation)
 	active_joinable_occupations -= occupation

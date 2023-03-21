@@ -43,7 +43,7 @@
 
 /obj/structure/closet/Initialize(mapload, ...)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -441,8 +441,8 @@
 	destination.mob_size_counter += mob_size
 	stop_pulling()
 	smokecloak_off()
-	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, .proc/on_closet_dump)
+	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
+	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, PROC_REF(on_closet_dump))
 	return TRUE
 
 

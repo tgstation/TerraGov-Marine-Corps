@@ -272,3 +272,85 @@
   - code_imp: Updates SSminimaps to account for BYOND error being fixed
   tyeagg:
   - rscadd: add shuttle dust particles when shuttle landing
+2023-03-16:
+  FosterGrime-Heymynameslouie:
+  - qol: infinite pre filled ammo boxes in op vendor
+  Naaanii:
+  - rscadd: Added Garand thumb mechanic. (1% chance to deal 1 brute when reloading
+      a Garand)
+  - rscadd: Adds more options of pizzas to spawn with the pizza ERT.
+  QualityVan:
+  - qol: Cauteries can't infect you. They already couldn't, but now they extra can't.
+  - balance: Spaceacillin OD doesn't prevent necrosis from forming
+  TiviPlus:
+  - rscadd: Revamped drop pod interactivity
+  - rscadd: Added Leader drop pods that can control other drop pods
+  - bugfix: Fixed drop pods sometimes sending you into space
+  - imageadd: Leader pod sprite by Revalation
+  - code_imp: Cleaned up drop pod code a little
+  Xander3359:
+  - bugfix: You can pull out a powerfist while holding something in your off-hand
+      (oops)
+  ivanmixo:
+  - bugfix: Fixes a runtime related to parallax
+  - rscadd: Added the slippery component
+  - refactor: Refactored the way slips work
+  - rscadd: You can now spawn as a xenomorph in valhalla, and can spawn dummy humans
+      which you can also select outfits for.
+  - bugfix: Fixed pre shutter mazing trying to access owner before it's assigned
+  - rscdel: Disabled wall weeds
+2023-03-17:
+  Xander3359:
+  - rscadd: Jerrycans are now in the vehicles category in req for 100 points.
+  ivanmixo:
+  - bugfix: Fixed non-normal hive pheros not working
+2023-03-18:
+  Naaanii:
+  - balance: lowers MR surgery skill
+  - bugfix: MRs now have their own skill set instead of inheriting it from doctors
+  TiviPlus:
+  - rscdel: Removed you being notified of nearby players being hit by bullets
+  - rscadd: Added a minimap "You are here" indicator
+  Xander3359:
+  - balance: Hypospray belt can hold 3 more slots.
+  - rscadd: New chem, saline glucose, restores blood at a rate of 1.2 units (QC is
+      0.2, Nano is 2.4)
+  - rscdel: Iron no longer regens blood.
+  - rscadd: Saline-Glucose has replaced iron in the cryomix.
+  - refactor: Isotonics are now just 15u of saline-glucose. Pills hold 1 dose, injectors
+      hold 2 doses.
+  ivanmixo:
+  - bugfix: Reverted a flag and fixed some evolution issues with certain xeno castes
+2023-03-19:
+  Lumipharon:
+  - code_imp: Removed various items from the codebase that are entirely unused
+  - imageadd: Ported TG sprites for various very old suits and hats
+2023-03-20:
+  Lumipharon:
+  - balance: legacy armour such as B18 now uses irremovable general storage modules,
+      so can fit a few extra item types
+  - code_imp: Updated legacy armour code to use storage attachments instead of the
+      pockets var
+  Xander3359:
+  - rscadd: Bull abilities have their stats in the end-round popup. Marines Crushed,
+      gored and headbutted.
+  ivanmixo:
+  - code_imp: Updated the syntax for proc references to be 515 compatible
+  tyeagg:
+  - rscadd: particles for rl backblast
+2023-03-21:
+  Lumipharon:
+  - bugfix: fixed the icon of basic lab coats
+  QualityVan:
+  - balance: Necrosis removal surgery won't entirely clear out germs on its own. Dose
+      spacea if the necro is due to infections.
+  - qol: Vali causes necrosis directly if you keep it active for too long instead
+      of filling your limbs with germs
+  Xander3359:
+  - code_imp: cleans up ammo_datum.dm
+  - rscadd: '"Overwrite loadout" button in Loadout Vendor'
+  - bugfix: Fixes xenonauten light armor not vending in GHMME.
+  ivanmixo:
+  - bugfix: Fixed valhalla buttons
+  novaepee:
+  - rscadd: Add keybind for activate autorepair for combat robots

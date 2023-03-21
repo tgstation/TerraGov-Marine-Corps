@@ -56,9 +56,9 @@
 		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
 	else
-		RegisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), .proc/can_use_jetpack)
+		RegisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), PROC_REF(can_use_jetpack))
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
+		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 		action.set_toggle(TRUE)
 	selected = !selected
 
@@ -101,7 +101,7 @@
 	update_icon()
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
 	human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
-	addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
+	addtimer(CALLBACK(src,PROC_REF(reset_flame), human_user), hovering_time)
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
@@ -128,7 +128,7 @@
 	if(fuel_left < FUEL_USE)
 		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
 		return
-	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
+	INVOKE_ASYNC(src, PROC_REF(use_jetpack), A, human_user)
 
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()

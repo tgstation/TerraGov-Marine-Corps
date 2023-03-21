@@ -14,7 +14,7 @@
 	announce_when = 0
 
 /datum/round_event/ion_storm/start()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fix_comms), 1 MINUTES)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(fix_comms)), 1 MINUTES)
 	for(var/obj/machinery/telecomms/C AS in GLOB.telecomms_list)
 		if(C.machine_stat & (NOPOWER|BROKEN|DISABLED))
 			continue
@@ -32,7 +32,7 @@
 
 /datum/round_event/ion_storm/proc/disable_comms(/obj/machinery/telecomms/C)
 	var/comms_knockout_timer = pick(1,1.5,1.7,2,2.3,2.5,3,4,8)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fix_comms), comms_knockout_timer MINUTES)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(fix_comms)), comms_knockout_timer MINUTES)
 
 /datum/round_event/ion_storm/proc/fix_comms()
 	for(var/obj/machinery/telecomms/C AS in GLOB.telecomms_list)

@@ -84,7 +84,7 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
-		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
+		RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_owner))
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -491,7 +491,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 //LEVEL III
-	if(germ_level >= INFECTION_LEVEL_THREE && spaceacillin < 25 && polyhexanide <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
+	if(germ_level >= INFECTION_LEVEL_THREE && !polyhexanide)	//Need a chem with real drawbacks to stay safe at this point
 		if (!(limb_status & LIMB_NECROTIZED))
 			add_limb_flags(LIMB_NECROTIZED)
 			to_chat(owner, span_notice("You can't feel your [display_name] anymore..."))
@@ -952,7 +952,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	target.balloon_alert_to_viewers("Splinting [display_name]...")
 
-	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, .proc/extra_splint_checks, applied_health)))
+	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_splint_checks), applied_health)))
 		return FALSE
 
 	target.balloon_alert_to_viewers("Splinted [display_name]")

@@ -35,7 +35,7 @@
 	. = ..()
 	equipped_user = user
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/can_use)
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, PROC_REF(can_use))
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
@@ -53,10 +53,10 @@
 		action.set_toggle(FALSE)
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
-		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/can_use)
+		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(can_use))
 		action.set_toggle(TRUE)
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
+		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 	selected = !selected
 
 ///Signal handler for making it impossible to use middleclick to use the blink drive
@@ -88,7 +88,7 @@
 		human_user.balloon_alert(human_user, "no charge")
 		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
 		return
-	INVOKE_ASYNC(src, .proc/teleport, A, human_user)
+	INVOKE_ASYNC(src, PROC_REF(teleport), A, human_user)
 
 ///Handles the actual teleportation
 /obj/item/blink_drive/proc/teleport(atom/A, mob/user)
@@ -139,7 +139,7 @@
 	COOLDOWN_START(src, blink_stability_cooldown, 1 SECONDS)
 	charges --
 	deltimer(charge_timer)
-	charge_timer = addtimer(CALLBACK(src, .proc/recharge), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)
+	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)
 	update_icon()
 
 ///Recharges the drive, and sets another timer if not maxed out
@@ -147,7 +147,7 @@
 	charges ++
 	playsound(src, 'sound/items/blink_recharge.ogg', 25, 1)
 	if(charges < BLINK_DRIVE_MAX_CHARGES)
-		charge_timer = addtimer(CALLBACK(src, .proc/recharge), BLINK_DRIVE_CHARGE_TIME, TIMER_STOPPABLE)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME, TIMER_STOPPABLE)
 	else
 		charge_timer = null
 	update_icon()

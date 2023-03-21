@@ -21,7 +21,6 @@
 	loadouts_data = new_loadouts_data
 	user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
 
-
 ///Add the name and the job of a datum/loadout into the list of all loadout data
 /datum/loadout_manager/proc/add_loadout(datum/loadout/next_loadout)
 	loadouts_data += list(list(next_loadout.job, next_loadout.name))
@@ -41,7 +40,7 @@
 /// Wrapper proc to set the host of our ui datum, aka the loadout vendor that's showing us the loadouts
 /datum/loadout_manager/proc/set_host(_loadout_vendor)
 	loadout_vendor = _loadout_vendor
-	RegisterSignal(loadout_vendor, COMSIG_PARENT_QDELETING, .proc/close_ui)
+	RegisterSignal(loadout_vendor, COMSIG_PARENT_QDELETING, PROC_REF(close_ui))
 
 /// Wrapper proc to handle loadout vendor being qdeleted while we have loadout manager opened
 /datum/loadout_manager/proc/close_ui()
@@ -76,6 +75,10 @@
 			if(isnull(loadout_name))
 				return
 			var/loadout_job = params["loadout_job"]
+			for(var/loadout_data in loadouts_data)
+				if(loadout_data[1] == loadout_job && loadout_data[2] == loadout_name)
+					to_chat(ui.user, span_warning("Loadout [loadout_name] for [loadout_job] already exists. Try another name"))
+					return
 			var/datum/loadout/loadout = create_empty_loadout(loadout_name, loadout_job)
 			loadout.save_mob_loadout(ui.user)
 			ui.user.client.prefs.save_loadout(loadout)
@@ -112,8 +115,8 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/modular_armor))
+				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)
@@ -175,8 +178,8 @@
 							if(!istype(module, /datum/item_representation/armor_module/colored))
 								continue
 							module.greyscale_colors = initial(module.item_type.greyscale_colors)
-				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
-				if(istype(armor, /datum/item_representation/modular_armor))
+				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/armor_suit/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 					if(loadout.version < 8)

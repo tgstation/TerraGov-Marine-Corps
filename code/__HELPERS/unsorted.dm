@@ -23,9 +23,22 @@
 
 #define UNTIL(X) while(!(X)) stoplag()
 
-//datum may be null, but it does need to be a typed var
+/**
+ * NAMEOF: Compile time checked variable name to string conversion
+ * evaluates to a string equal to "X", but compile errors if X isn't a var on datum.
+ * datum may be null, but it does need to be a typed var.
+ **/
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
+/**
+ * NAMEOF that actually works in static definitions because src::type requires src to be defined
+ */
+
+#if DM_VERSION >= 515
+#define NAMEOF_STATIC(datum, X) (nameof(type::##X))
+#else
+#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
+#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -697,6 +710,14 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
+///Converts a screen loc param to a x,y coordinate pixel on the screen
+/proc/params2screenpixel(scr_loc)
+	var/list/x_and_y = splittext(scr_loc, ",")
+	var/list/x_dirty = splittext(x_and_y[1], ":")
+	var/list/y_dirty = splittext(x_and_y[2], ":")
+	var/x = (text2num(x_dirty[1])-1)*32 + text2num(x_dirty[2])
+	var/y = (text2num(y_dirty[1])-1)*32 + text2num(y_dirty[2])
+	return list(x, y)
 
 //Returns TRUE if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/I)
@@ -919,7 +940,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	for(var/area/A in world)
 		GLOB.sorted_areas.Add(A)
 
-	sortTim(GLOB.sorted_areas, /proc/cmp_name_asc)
+	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -1076,11 +1097,11 @@ will handle it, but:
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, fade_out), I), duration - 0.5 SECONDS)
 
 /proc/fade_out(image/I, list/show_to)
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
-	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, remove_images_from_clients), I, show_to), 0.5 SECONDS)
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input

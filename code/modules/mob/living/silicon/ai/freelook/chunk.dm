@@ -50,7 +50,7 @@
  */
 /datum/camerachunk/proc/hasChanged(update_now = FALSE)
 	if(seenby.len || update_now)
-		addtimer(CALLBACK(src, .proc/update), UPDATE_BUFFER_TIME, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(update)), UPDATE_BUFFER_TIME, TIMER_UNIQUE)
 	else
 		changed = TRUE
 

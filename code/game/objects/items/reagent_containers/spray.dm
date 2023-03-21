@@ -93,7 +93,7 @@
 	if(isturf(usr.loc))
 		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
 		reagents.reaction(usr.loc)
-		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner

@@ -9,7 +9,7 @@
 	. = ..()
 	if(!isxeno(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_suffered)
+	RegisterSignal(target, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_suffered))
 	src.damage_plasma_multiplier = damage_plasma_multiplier
 
 /datum/element/plasma_on_attacked/Detach(datum/source, force)

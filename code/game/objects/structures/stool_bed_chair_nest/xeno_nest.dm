@@ -94,7 +94,7 @@
 		buckled_mob.visible_message(span_warning("\The [buckled_mob] struggles to break free of \the [src]."),
 			span_warning("You struggle to break free from \the [src]."),
 			span_notice("You hear squelching."))
-		addtimer(CALLBACK(src, .proc/unbuckle_time_message, user), NEST_RESIST_TIME)
+		addtimer(CALLBACK(src, PROC_REF(unbuckle_time_message), user), NEST_RESIST_TIME)
 		return FALSE
 	if(resisting_time + NEST_RESIST_TIME > world.time)
 		to_chat(buckled_mob, span_warning("You're already trying to free yourself. Give it some time."))
