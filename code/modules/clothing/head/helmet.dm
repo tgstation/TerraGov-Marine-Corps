@@ -161,13 +161,6 @@
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
 
-
-//obj/item/clothing/head/helmet/marine/on_pocket_insertion()
-//	update_icon()
-
-//obj/item/clothing/head/helmet/marine/on_pocket_removal()
-//	update_icon()
-
 /obj/item/clothing/head/helmet/marine/update_icon()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return
