@@ -374,7 +374,7 @@
 // Reinforced Wood Wall
 
 /turf/closed/wall/wood/reinforced
-	name = "wood wall reinforced"
+	name = "reinforced wood wall"
 	desc = "A reinforced wooden wall"
 	icon = 'icons/turf/walls/woodrwall.dmi'
 	icon_state = "woodrwall-0"
