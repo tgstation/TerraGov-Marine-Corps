@@ -99,13 +99,13 @@ REAGENT SCANNER
 	if(isxeno(M))
 		balloon_alert(user, "Unknown entity")
 		return
-	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
+	if(M.species.species_flags & NO_SCAN)
 		balloon_alert(user, "Not Organic")
 		return
 	balloon_alert_to_viewers("Analyzed Vitals")
 	patient = M
 	current_user = user
-	if(show_patient == TRUE)
+	if(show_patient)
 		ui_interact(M)
 	else
 		ui_interact(user)
