@@ -234,6 +234,24 @@
 	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
+/obj/item/storage/holster/blade/harvester_claymore
+	name = "\improper HP-S Claymore sheath"
+	desc = "A large kevlar scabbard used to sheath the HP-S Harvester Claymore."
+	icon_state = "vali_great_sheath"
+	base_icon = "vali_great_sheath"
+	flags_equip_slot = ITEM_SLOT_BACK
+	holsterable_allowed = list(
+		/obj/item/weapon/twohanded/glaive/harvester,
+	)
+	can_hold = list(
+		/obj/item/weapon/twohanded/glaive/harvester,
+	)
+
+/obj/item/storage/holster/blade/harvester_claymore/full/Initialize()
+	. = ..()
+	var/obj/item/new_item = new /obj/item/weapon/twohanded/glaive/harvester(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+
 /obj/item/storage/holster/blade/katana
 	name = "\improper katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
