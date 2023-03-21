@@ -1256,17 +1256,17 @@ TUNNEL
 	var/warning
 	COOLDOWN_DECLARE(spawner_damage_alert_cooldown)
 	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
+	var/linked_minions = list()
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_spawners_by_hive, hivenumber, src)
-	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 	for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(spawner_proxy_alert))
 	update_minimap_icon()
-	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/xeno/spawner/examine(mob/user)
 	. = ..()
@@ -1316,7 +1316,7 @@ TUNNEL
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
-		if(X.hive == hivenumber) //Trigger proxy alert only for hostile xenos
+		if(X.hivenumber == hivenumber) //Trigger proxy alert only for hostile xenos
 			return
 
 	warning = TRUE
@@ -1338,6 +1338,19 @@ TUNNEL
 /obj/structure/xeno/spawner/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner[warning ? "_warn" : "_passive"]")
+
+/obj/structure/xeno/spawner/proc/on_spawn(list/squad)
+	if(!isxeno(squad[length(squad)]))
+		CRASH("Xeno spawner somehow tried to spawn a non xeno (tried to spawn [squad[length(squad)]])")
+	var/mob/living/carbon/xenomorph/X = squad[length(squad)]
+	X.transfer_to_hive(hivenumber)
+	linked_minions = squad
+	if(hivenumber == XENO_HIVE_FALLEN) //snowflake so valhalla isnt filled with minions after you're done
+		RegisterSignal(src, COMSIG_PARENT_QDELETING, PROC_REF(kill_linked_minions))
+
+/obj/structure/xeno/spawner/proc/kill_linked_minions()
+	for(var/mob/living/carbon/xenomorph/linked in linked_minions)
+		linked.death(TRUE)
 
 ///Those structures need time to grow and are supposed to be extremely weak healh-wise
 /obj/structure/xeno/plant
