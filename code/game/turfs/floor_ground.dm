@@ -110,7 +110,7 @@
 	mediumxenofootstep = FOOTSTEP_GRASS
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 /turf/open/ground/grass/weedable
-
+	name = "soft grass"
 /turf/open/ground/grasspatch
 	name = "grass"
 	icon = 'icons/turf/floors.dmi'
