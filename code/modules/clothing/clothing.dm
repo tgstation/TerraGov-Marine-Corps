@@ -58,6 +58,14 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
+/obj/item/clothing/on_pocket_insertion()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/on_pocket_removal()
+	. = ..()
+	update_icon()
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return

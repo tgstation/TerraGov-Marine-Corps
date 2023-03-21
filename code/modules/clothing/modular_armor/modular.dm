@@ -139,14 +139,6 @@
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
 
-/obj/item/clothing/suit/modular/on_pocket_insertion()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/suit/modular/on_pocket_removal()
-	. = ..()
-	update_icon()
-
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
@@ -341,14 +333,6 @@
 		if(MAP_ARMOR_STYLE_DESERT)
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
-
-/obj/item/clothing/head/modular/on_pocket_insertion()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/head/modular/on_pocket_removal()
-	. = ..()
-	update_icon()
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()

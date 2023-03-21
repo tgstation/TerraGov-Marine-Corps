@@ -19,6 +19,10 @@
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
+/obj/item/clothing/shoes/marine/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/clothing/shoes/marine/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])

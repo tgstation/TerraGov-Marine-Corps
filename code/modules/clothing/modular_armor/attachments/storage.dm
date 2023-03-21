@@ -309,17 +309,6 @@
 	storage =  /obj/item/storage/internal/shoes/boot_knife
 	flags_attach_features = ATTACH_APPLY_ON_MOB
 
-/obj/item/armor_module/storage/boot/on_attach(obj/item/attaching_to, mob/user)
-	. = ..()
-	parent.RegisterSignal(storage, COMSIG_ATOM_UPDATE_ICON, /atom/proc/update_icon)
-	parent.update_icon()
-
-/obj/item/armor_module/storage/boot/on_detach(obj/item/detaching_from, mob/user)
-	parent.UnregisterSignal(storage, COMSIG_ATOM_UPDATE_ICON)
-	var/obj/item/clothing/current_parent = parent
-	. = ..()
-	current_parent.update_icon()
-
 /obj/item/storage/internal/shoes/boot_knife
 	max_storage_space = 3
 	storage_slots = 1
