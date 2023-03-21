@@ -145,6 +145,7 @@ The Grenade Launchers
 	starting_attachment_types = list(/obj/item/attachable/shoulder_mount/flare_cannon)
 	fire_delay = 1 SECONDS
 	max_chamber_items = 7
+	default_ammo_type = /obj/item/explosive/grenade/flare
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,

@@ -1580,7 +1580,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(isstorage(attacking_item))
 		var/obj/item/storage/box = attacking_item
 		for(var/obj/item/explosive/grenade/flare/i in box.contents)
-			INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, i, user)
+			INVOKE_ASYNC(master_gun, PROC_REF(/obj/item/weapon/gun/reload), i, user)
 		to_chat(user, span_notice("You restock [master_gun] with [box]'s contents."))
 		return
 	..()
