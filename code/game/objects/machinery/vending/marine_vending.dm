@@ -1104,6 +1104,7 @@
 		),
 		"Misc" = list(
 			/obj/item/defibrillator = 8,
+			/obj/item/healthanalyzer/gloves = 8,
 			/obj/item/healthanalyzer = 16,
 			/obj/item/bodybag/cryobag = 24,
 		),
@@ -1150,6 +1151,7 @@
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = -1,
+			/obj/item/healthanalyzer/gloves = -1,
 			/obj/item/bodybag/cryobag = -1,
 		),
 		"Valhalla" = list(
