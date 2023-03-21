@@ -201,6 +201,10 @@
 					if(loadout.version < 9)
 						uniform.current_variant = null
 						uniform.attachments = list()
+				var/datum/item_representation/boot/footwear = loadout.item_list[slot_shoes_str]
+				if(loadout.version < 11)
+					if("[footwear.item_type]" == "/obj/item/clothing/shoes/marine/full")
+						loadout.empty_slot(slot_shoes_str)
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
@@ -209,7 +213,9 @@
 				if(loadout.version < 9)
 					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
 				if(loadout.version < 10)
-					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
+					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 19 to 10)"
+				if(loadout.version < 11)
+					message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
