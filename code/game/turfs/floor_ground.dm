@@ -109,6 +109,7 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	
 /turf/open/ground/grass/weedable
 	name = "soft grass"
 /turf/open/ground/grasspatch
