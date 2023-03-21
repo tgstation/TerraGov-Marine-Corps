@@ -6,6 +6,19 @@
 	name = "broken armor module"
 	desc = "You better be debugging."
 
+
+/**
+ * PT belt
+ */
+
+/obj/item/armor_module/module/pt_belt
+	name = "\improper physical training reflective belt"
+	desc = "Sergeant Major ordered marines to wear reflective belt to ensure marines' safety. You can speculate what danger entail a PT belt."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "pt_belt"
+	item_state = "pt_belt_a"
+	slot = ATTACHMENT_SLOT_BELT
+
 /**
  * Shoulder lamp strength module
  */
@@ -237,7 +250,7 @@
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	var/datum/component/chem_booster/chemsystem = parent.AddComponent(/datum/component/chem_booster)
-	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED, .proc/update_module_icon)
+	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED, PROC_REF(update_module_icon))
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
 	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
@@ -304,9 +317,9 @@
 
 /obj/item/armor_module/module/eshield/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_equip)
-	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/handle_unequip)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_equip))
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(handle_unequip))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(parent_examine))
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
@@ -330,7 +343,7 @@
 		START_PROCESSING(SSobj, src)
 		playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
 
-	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
+	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, PROC_REF(handle_shield))
 
 ///Handles removing the shield when the parent is unequipped
 /obj/item/armor_module/module/eshield/proc/handle_unequip(datum/source, mob/unequipper, slot)
@@ -347,7 +360,7 @@
 	SIGNAL_HANDLER
 	if(!shield_health)
 		return
-	affecting_shields += CALLBACK(src, .proc/intercept_damage)
+	affecting_shields += CALLBACK(src, PROC_REF(intercept_damage))
 
 ///Handles the interception of damage.
 /obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
@@ -370,9 +383,9 @@
 		spark_system.start()
 	else
 		shield_health = 0
-		recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
+		recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
 		return -shield_left
-	recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown, TIMER_STOPPABLE)
+	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown, TIMER_STOPPABLE)
 	return 0
 
 ///Starts the shield recharging after it has been broken.
@@ -432,7 +445,7 @@
 	name = "\improper Light Armor Equalizer"
 	icon_state = "style_light"
 	item_state = "style_light_a"
-	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/armor_module/module/style/medium_armor
@@ -446,7 +459,7 @@
 	name = "\improper Heavy Armor Equalizer"
 	icon_state = "style_heavy"
 	item_state = "style_heavy_a"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /**
@@ -463,6 +476,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 	///Mod for extra eye protection when activated.
 	var/eye_protection_mod = 2
 
@@ -533,6 +547,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
@@ -545,7 +560,7 @@
 	parent.update_icon()
 	user.update_inv_head()
 	if(active)
-		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/zoom_item_turnoff)
+		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(zoom_item_turnoff))
 		return
 	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 
@@ -591,6 +606,7 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
@@ -605,7 +621,7 @@
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum

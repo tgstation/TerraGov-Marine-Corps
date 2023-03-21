@@ -212,7 +212,7 @@
 
 /obj/machinery/floodlight/colony/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, .proc/floodswitch_powered)
+	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, PROC_REF(floodswitch_powered))
 
 /obj/machinery/floodlight/colony/Destroy()
 	turn_light(null, FALSE)

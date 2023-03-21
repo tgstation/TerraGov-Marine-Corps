@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	to_chat(usr, span_notice("You begin reloading the [slot] module."))
 
-	addtimer(CALLBACK(src, .proc/finish_reloading_hp, usr, HP, A, slot), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_reloading_hp), usr, HP, A, slot), 2 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/proc/finish_reloading_hp(mob/living/user, obj/item/hardpoint/HP, obj/item/ammo_magazine/A, slot)
 	if(!can_use_hp(usr))

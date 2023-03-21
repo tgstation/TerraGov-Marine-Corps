@@ -283,7 +283,7 @@
 	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
-		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
 
 /obj/structure/bed/chair/dropship/passenger/Initialize()

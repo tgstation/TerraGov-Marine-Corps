@@ -116,8 +116,8 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
-			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
-			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
+			.["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
+			.["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
@@ -151,7 +151,11 @@
 					"female" = GLOB.underwear_f,
 					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
-				"undershirt" = GLOB.undershirt_t,
+				"undershirt" = list(
+					"male" = GLOB.undershirt_m,
+					"female" = GLOB.undershirt_f,
+					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
+				),
 				"backpack" = GLOB.backpacklist,
 				)
 			.["gearsets"] = list()
@@ -336,7 +340,13 @@
 			underwear = new_underwear
 
 		if("undershirt")
-			var/new_undershirt = GLOB.undershirt_t.Find(params["newValue"])
+			var/list/undershirt_options
+			if(gender == MALE)
+				undershirt_options = GLOB.undershirt_m
+			else
+				undershirt_options = GLOB.undershirt_f
+
+			var/new_undershirt = undershirt_options.Find(params["newValue"])
 			if(!new_undershirt)
 				return
 			undershirt = new_undershirt

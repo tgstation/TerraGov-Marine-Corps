@@ -880,7 +880,7 @@
 	},
 /area/magmoor/cave/north)
 "aIw" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research)
 "aJd" = (
@@ -11650,7 +11650,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "iyA" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /obj/machinery/alarm,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/tcomms,
@@ -25539,7 +25539,7 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "sEJ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -25608,7 +25608,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "sHu" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -25801,7 +25801,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "sQB" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/floor/bcircuit/off,
 /area/magmoor/research/serverroom)
 "sQI" = (
@@ -27756,7 +27756,7 @@
 	},
 /area/magmoor/medical/lobby)
 "uiL" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "uiY" = (
@@ -29912,7 +29912,7 @@
 	},
 /area/magmoor/research)
 "vPb" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
@@ -30098,7 +30098,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
 "vUz" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/purple{
 	dir = 8
 	},

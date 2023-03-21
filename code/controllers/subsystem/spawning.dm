@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(spawning)
 /datum/controller/subsystem/spawning/proc/reset_ai()
 	for(var/obj/effect/ai_node/spawner/spawner AS in spawnerdata)
 		unregisterspawner(spawner)
-		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, /obj/effect/ai_node/spawner.proc/postspawn) : null)
+		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, TYPE_PROC_REF(/obj/effect/ai_node/spawner, postspawn)) : null)
 
 
 /**
@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(spawning)
  */
 /datum/controller/subsystem/spawning/proc/registerspawner(atom/spawner, delaytime = 30 SECONDS, spawntypes, maxmobs = 10, spawnamount = 1, datum/callback/postspawn)
 	spawnerdata[spawner] = new /datum/spawnerdata(delaytime/wait, spawntypes, maxmobs, spawnamount, postspawn)
-	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, .proc/unregisterspawner)
+	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, PROC_REF(unregisterspawner))
 
 /**
  * Unregisters an atom with the subsystem
@@ -83,9 +83,9 @@ SUBSYSTEM_DEF(spawning)
 			var/spawntype = pick(spawnerdata[spawner].spawntypes)
 			var/mob/newmob = new spawntype(spawnpoint)
 
-			var/datum/callback/deathcb = CALLBACK(src, .proc/decrement_spawnedmobs, newmob, spawner)
+			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
 			callbacks_by_mob[newmob] = deathcb
-			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/remove_mob)
+			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
 			spawnerdata[spawner].spawnedmobs += newmob
 			squad += newmob
 			totalspawned++

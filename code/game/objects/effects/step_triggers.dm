@@ -10,7 +10,7 @@
 /obj/effect/step_trigger/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -23,7 +23,7 @@
 		return
 	if(isobserver(H) && !affect_ghosts)
 		return
-	INVOKE_ASYNC(src, .proc/Trigger, H)
+	INVOKE_ASYNC(src, PROC_REF(Trigger), H)
 
 
 

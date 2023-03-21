@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscadd: "Adds tracker shells to regular weapon vendors."
+  - balance: "Tracking fluid now layers over weeds."

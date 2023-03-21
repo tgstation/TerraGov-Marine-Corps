@@ -22,4 +22,3 @@
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	materials = list(/datum/material/metal = 30000, /datum/material/glass = 15000)

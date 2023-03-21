@@ -28,7 +28,7 @@
 	vehicle.on_link(src)
 	AddComponent(/datum/component/remote_control, target, vehicle.turret_type, vehicle.can_interact)
 	to_chat(user, span_notice("You link [target] to [src]."))
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_vehicle))
 	return ..()
 
 /obj/item/unmanned_vehicle_remote/attack_self(mob/user)
@@ -39,6 +39,8 @@
 ///Wrapper to clear reference on target vehicle deletion
 /obj/item/unmanned_vehicle_remote/proc/clear_vehicle()
 	SIGNAL_HANDLER
+	if(!vehicle)
+		return
 	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
 	vehicle.on_unlink(src)
 	vehicle = null

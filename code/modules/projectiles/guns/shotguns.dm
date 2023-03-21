@@ -321,9 +321,9 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "trenchgun"
 	item_state = "trenchgun"
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/trenchgun.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -774,7 +774,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight/under,
 	)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 38, "under_y" = 12, "stock_x" = 14, "stock_y" = 16)
 
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15

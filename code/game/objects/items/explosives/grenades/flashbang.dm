@@ -3,7 +3,7 @@
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
 	item_state = "flashbang2"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
+	arm_sound = 'sound/weapons/armbombpin_2.ogg'
 	///This is a cluster weapon, or part of one
 	var/banglet = FALSE
 	///The range where the maximum effects are applied
@@ -24,7 +24,7 @@
 
 /obj/item/explosive/grenade/flashbang/prime()
 	var/turf/target_turf = get_turf(src)
-	playsound(target_turf, 'sound/effects/bang.ogg', 50, 1)
+	playsound(target_turf, "flashbang", 65)
 	for(var/mob/living/carbon/victim in hearers(max_range, target_turf))
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			bang(target_turf, victim)
@@ -133,7 +133,7 @@
 	var/stepdist = rand(1,4)//How far to step
 	var/temploc = loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
-	addtimer(CALLBACK(src, .proc/prime), rand(1.5,6) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(prime)), rand(1.5,6) SECONDS)
 
 /obj/item/explosive/grenade/flashbang/clusterbang/segment/prime()
 	var/clusters = rand(4,8)
@@ -156,7 +156,7 @@
 	var/stepdist = rand(1,3)
 	var/temploc = loc
 	walk_away(src,temploc,stepdist)
-	addtimer(CALLBACK(src, .proc/prime), rand(1.5,6) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(prime)), rand(1.5,6) SECONDS)
 
 
 //Slows and staggers instead of hardstunning, balanced for HvH
@@ -165,7 +165,6 @@
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
 	item_state = "flashbang2"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	inner_range = 3
 	det_time = 2 SECONDS
 	mp_only = FALSE

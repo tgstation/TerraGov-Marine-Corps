@@ -156,6 +156,17 @@
 	aim_speed_mod = 0.2
 	wield_delay_mod = 0.2
 
+// RPD
+
+/obj/item/ammo_magazine/rifle/lmg_d
+	name = "\improper lMG-D drum magazine (7.62x39mm)"
+	desc = "A 100 round 7.62x39mm Kalashnikov drum, won't fit on most kalasnikov rifles, as it is made for the beltfed variant."
+	caliber = CALIBER_762X39
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km
+	icon_state = "rpd"
+	bonus_overlay = "rpd_100"
+	max_rounds = 100
+
 //-------------------------------------------------------
 //M16 RIFLE
 
@@ -339,7 +350,7 @@
 	desc = "A box magazine for the ALF-51B machinecarbine."
 	icon_state = "t60"
 	caliber = CALIBER_10X25_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle/heavy
+	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 80
 	reload_delay = 1 SECONDS
@@ -450,3 +461,38 @@
 	max_rounds = 200
 	reload_delay = 3 SECONDS
 	icon_state_mini = "mag_gpmg"
+
+//-------------------------------------------------------
+//L-11 Sharpshooter Rifle
+
+/obj/item/ammo_magazine/rifle/icc_sharpshooter
+	name = "\improper L-11 sharpshooter rifle magazine (10x27mm)"
+	desc = "A 10mm DMR magazine."
+	caliber = CALIBER_10x27_CASELESS
+	icon_state = "l11"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	max_rounds = 20
+	icon_state_mini = "mag_dmr"
+
+//-------------------------------------------------------
+//L-15 Battlecarbine
+/obj/item/ammo_magazine/rifle/icc_battlecarbine
+	name = "\improper L-15 battlecarbine rifle magazine (10x25mm)"
+	desc = "A magazine filled with 10x25mm rifle rounds for the L-15."
+	caliber = CALIBER_10X25_CASELESS
+	icon_state = "l15"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	max_rounds = 30
+	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//ML-12 Confrontation Rifle
+/obj/item/ammo_magazine/rifle/icc_confrontationrifle
+	name = "\improper ML-12 battlecarbine rifle magazine (10x28mm)"
+	desc = "A magazine filled with 10x28mm armor-piercing rifle rounds for the ML-12."
+	caliber = CALIBER_10X28_CASELESS
+	icon_state = "ml12"
+	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
+	max_rounds = 25
+	icon_state_mini = "mag_rifle"

@@ -276,7 +276,7 @@
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/engi/valhalla
-	vendor_role = /datum/job/fallen/engineer
+	vendor_role = /datum/job/fallen/marine/engineer
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -316,7 +316,7 @@
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/medic/valhalla
-	vendor_role = /datum/job/fallen/corpsman
+	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -356,7 +356,7 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/smartgun/valhalla
-	vendor_role = /datum/job/fallen/smartgunner
+	vendor_role = /datum/job/fallen/marine/smartgunner
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -396,7 +396,7 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/clothes/leader/valhalla
-	vendor_role = /datum/job/fallen/leader
+	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -428,7 +428,6 @@
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
-		/obj/item/storage/belt/gun/pistol/m4a3/fieldcommander = list(CAT_BEL, "1911-custom belt", 0, "black"),
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
 		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
@@ -519,7 +518,7 @@
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/medic/valhalla
-	vendor_role = /datum/job/fallen/corpsman
+	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -540,7 +539,7 @@
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/engi/valhalla
-	vendor_role = /datum/job/fallen/engineer
+	vendor_role = /datum/job/fallen/marine/engineer
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -561,7 +560,7 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
 /obj/machinery/marine_selector/gear/smartgun/valhalla
-	vendor_role = /datum/job/fallen/smartgunner
+	vendor_role = /datum/job/fallen/marine/smartgunner
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -582,7 +581,7 @@
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
 
 /obj/machinery/marine_selector/gear/leader/valhalla
-	vendor_role = /datum/job/fallen/leader
+	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
@@ -833,6 +832,12 @@
 		/obj/item/clothing/suit/modular/jaeger/heavy/eod,
 	)
 
+/obj/effect/vendor_bundle/xenonauten_light
+	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x,
+		/obj/item/clothing/suit/modular/xenonauten/light,
+	)
 
 /obj/effect/vendor_bundle/xenonauten_medium
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."

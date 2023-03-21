@@ -10,7 +10,6 @@
 	var/damtype = BRUTE
 	///The amount of armor penetration the object has when attacking something
 	var/penetration = 0
-	var/list/materials
 
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor

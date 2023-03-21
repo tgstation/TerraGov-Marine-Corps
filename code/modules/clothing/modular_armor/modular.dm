@@ -53,6 +53,7 @@
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_BELT,
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/chest/marine,
@@ -181,16 +182,6 @@
 		return
 	turn_light(user, !light_on)
 	return TRUE
-
-/obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()
-
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
 	if(!light_range) // No light no ability

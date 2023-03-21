@@ -503,11 +503,9 @@
 		/obj/item/clothing/head/headband/red,
 		/obj/item/clothing/head/headband/snake,
 		/obj/item/clothing/head/helmet,
-		/obj/item/clothing/head/helmet/durag/jungle,
 		/obj/item/clothing/head/helmet/gladiator,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/clothing/head/helmet/space/rig,
-		/obj/item/clothing/head/helmet/space/syndicate,
 		/obj/item/clothing/under/rank/head_of_security/alt,
 		/obj/item/clothing/head/powdered_wig,
 		/obj/item/clothing/head/radiation,
@@ -1676,7 +1674,7 @@
 
 /obj/effect/spawner/random/structure/random_broken_computer/rdconsole
 	loot = list(
-		/obj/machinery/computer/rdconsole = 85,
+		/obj/machinery/prop/computer/rdconsole = 85,
 		/obj/effect/spawner/random/structure/random_broken_computer = 15,
 	)
 

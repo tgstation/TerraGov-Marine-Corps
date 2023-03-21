@@ -36,12 +36,6 @@
 	desc = "<i>'I guess it's a redhead.'</i>"
 	flags_armor_protection = NONE
 
-/obj/item/clothing/head/mailman
-	name = "station cap"
-	icon_state = "mailman"
-	desc = "<i>Choo-choo</i>!"
-	flags_armor_protection = NONE
-
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
 	desc = "These were once used by Plague doctors. They're pretty much useless."
@@ -111,22 +105,6 @@
 	item_state = "justicered"
 	flags_inventory = COVERMOUTH|COVEREYES
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-
-/obj/item/clothing/head/justice/blue
-	icon_state = "justiceblue"
-	item_state = "justiceblue"
-
-/obj/item/clothing/head/justice/yellow
-	icon_state = "justiceyellow"
-	item_state = "justiceyellow"
-
-/obj/item/clothing/head/justice/green
-	icon_state = "justicegreen"
-	item_state = "justicegreen"
-
-/obj/item/clothing/head/justice/pink
-	icon_state = "justicepink"
-	item_state = "justicepink"
 
 /obj/item/clothing/head/flatcap
 	name = "flat cap"

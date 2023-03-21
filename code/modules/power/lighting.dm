@@ -541,7 +541,7 @@
 
 /obj/machinery/light/proc/explode()
 	broken()	// break it first to give a warning
-	addtimer(CALLBACK(src, .proc/delayed_explosion), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
 	explosion(loc, 0, 1, 3, 2)
@@ -572,7 +572,6 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	materials = list(/datum/material/glass = 100)
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
@@ -586,7 +585,6 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	materials = list(/datum/material/glass = 100)
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire

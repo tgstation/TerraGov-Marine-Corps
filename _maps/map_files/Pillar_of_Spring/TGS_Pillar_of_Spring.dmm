@@ -418,7 +418,7 @@
 "aDC" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "aDG" = (
 /turf/open/floor/mainship/terragov/north{
@@ -815,13 +815,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"aYI" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "aZk" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1804,9 +1797,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"cgH" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/hallways/hangar)
 "chT" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
@@ -1932,7 +1922,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "crh" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "csh" = (
@@ -7537,9 +7527,6 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
-"jZA" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/numbertwobunks)
 "jZZ" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -8910,9 +8897,6 @@
 /obj/machinery/microwave,
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
-"lDs" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/tankerbunks)
 "lDR" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2
@@ -9241,6 +9225,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
+"lTe" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "lTt" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10478,6 +10469,11 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"nyb" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "nyy" = (
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
@@ -13471,7 +13467,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
 "rqW" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "rqX" = (
@@ -13639,6 +13635,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"rCl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "rCA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -13957,6 +13959,11 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"sbg" = (
+/obj/structure/dropprop,
+/obj/structure/droppod/leader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "sbr" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -46099,7 +46106,7 @@ jJD
 jJD
 vTb
 tVP
-aYI
+lTe
 dQG
 gpC
 gcd
@@ -46324,7 +46331,7 @@ swG
 bTS
 bTS
 bTS
-bTS
+sbg
 uQQ
 ufq
 ufq
@@ -47609,7 +47616,7 @@ ufq
 bTS
 bTS
 bTS
-bTS
+sbg
 jqG
 ufq
 ufq
@@ -50796,9 +50803,9 @@ vOw
 qwg
 dny
 dny
-qwg
-dny
-dny
+rCl
+nyb
+nyb
 lvw
 dcY
 wPV
@@ -51822,7 +51829,7 @@ vsI
 iHY
 uBM
 kfm
-kfm
+ltw
 kfm
 ltw
 soK
@@ -54592,7 +54599,7 @@ fAJ
 gxA
 cUW
 mpS
-jZA
+uyy
 jaA
 hRK
 uyy
@@ -54849,7 +54856,7 @@ fAJ
 roN
 cUW
 vYB
-jZA
+uyy
 feU
 ujQ
 uyy
@@ -55106,8 +55113,8 @@ fAJ
 pqh
 tbT
 oKe
-jZA
-jZA
+uyy
+uyy
 wql
 uyy
 oKm
@@ -55340,7 +55347,7 @@ wPV
 wPV
 wPV
 bIO
-cgH
+tyN
 uzm
 hEa
 gSJ
@@ -55363,7 +55370,7 @@ fAJ
 iTf
 cUW
 oKe
-jZA
+uyy
 uNy
 tzF
 uyy
@@ -55597,11 +55604,11 @@ esN
 esN
 esN
 wPV
-cgH
-cgH
-cgH
+tyN
+tyN
+tyN
 gUp
-ifT
+xLu
 xLu
 xLu
 qjj
@@ -55620,7 +55627,7 @@ fAJ
 roN
 cUW
 vYB
-jZA
+uyy
 tzF
 tzF
 uyy
@@ -55877,7 +55884,7 @@ fAJ
 aym
 tCO
 oKe
-jZA
+uyy
 hpS
 lHu
 tzF
@@ -56134,7 +56141,7 @@ fAJ
 qwW
 cRF
 qwW
-jZA
+uyy
 bZE
 dYs
 qKf
@@ -57930,7 +57937,7 @@ viN
 viN
 viN
 aTO
-lDs
+viN
 pdj
 xvv
 nJG
@@ -58444,7 +58451,7 @@ esN
 esN
 esN
 unX
-lDs
+viN
 uOd
 mux
 nJG
@@ -58701,7 +58708,7 @@ nWT
 nWT
 esN
 unX
-lDs
+viN
 dct
 qSz
 nJG
@@ -58958,9 +58965,9 @@ nWT
 nWT
 esN
 unX
-lDs
-lDs
-lDs
+viN
+viN
+viN
 nJG
 nJG
 nJG

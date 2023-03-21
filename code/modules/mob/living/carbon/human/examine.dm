@@ -217,7 +217,7 @@
 				msg += "[span_deadsay("[t_He] [t_has] gone cold.")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
-		addtimer(CALLBACK(src, .proc/take_pulse, user), 15)
+		addtimer(CALLBACK(src, PROC_REF(take_pulse), user), 15)
 
 	msg += "<span class='warning'>"
 

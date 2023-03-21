@@ -84,7 +84,7 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
-		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
+		RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_owner))
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -491,7 +491,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 //LEVEL III
-	if(germ_level >= INFECTION_LEVEL_THREE && spaceacillin < 25 && polyhexanide <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
+	if(germ_level >= INFECTION_LEVEL_THREE && !polyhexanide)	//Need a chem with real drawbacks to stay safe at this point
 		if (!(limb_status & LIMB_NECROTIZED))
 			add_limb_flags(LIMB_NECROTIZED)
 			to_chat(owner, span_notice("You can't feel your [display_name] anymore..."))
@@ -928,7 +928,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what [owner.p_they()] [owner.p_were()] holding in their [hand_name]!")
 			return
 	if(is_malfunctioning())
-		if(prob(5))
+		if(prob(20))
 			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, [owner.p_their()] [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
@@ -952,7 +952,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	target.balloon_alert_to_viewers("Splinting [display_name]...")
 
-	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, .proc/extra_splint_checks, applied_health)))
+	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_splint_checks), applied_health)))
 		return FALSE
 
 	target.balloon_alert_to_viewers("Splinted [display_name]")

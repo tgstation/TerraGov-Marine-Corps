@@ -170,6 +170,13 @@
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
 
+	allowed = list(
+		/obj/item/instrument,
+		/obj/item/storage/holster/blade,
+		/obj/item/weapon/claymore,
+		/obj/item/weapon/twohanded,
+	)
+
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
@@ -187,7 +194,7 @@
 		if(user.handcuffed) //Keep the cuffs on.
 			user.drop_all_held_items()
 		user.update_action_buttons() //Certain action buttons will no longer be usable.
-		RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/on_removal)
+		RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(on_removal))
 	return ..()
 
 

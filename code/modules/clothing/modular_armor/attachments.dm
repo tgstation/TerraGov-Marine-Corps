@@ -15,11 +15,11 @@
 	///Icon sheet of the attachment overlays
 	var/attach_icon = null
 	///Proc typepath that is called when this is attached to something.
-	var/on_attach = .proc/on_attach
+	var/on_attach = PROC_REF(on_attach)
 	///Proc typepath that is called when this is detached from something.
-	var/on_detach = .proc/on_detach
+	var/on_detach = PROC_REF(on_detach)
 	///Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.
-	var/can_attach = .proc/can_attach
+	var/can_attach = PROC_REF(can_attach)
 	///Pixel shift for the item overlay on the X axis.
 	var/pixel_shift_x = 0
 	///Pixel shift for the item overlay on the Y axis.
@@ -59,6 +59,9 @@
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list()
 
+	///The signal for this module if it can toggled
+	var/toggle_signal
+
 /obj/item/armor_module/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
@@ -76,7 +79,7 @@
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
 	base_icon = icon_state
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
@@ -109,6 +112,8 @@
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
+	if(toggle_signal)
+		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
@@ -122,14 +127,13 @@
 ///Colors the armor when the parent is right clicked with facepaint.
 /obj/item/armor_module/proc/handle_color(datum/source, obj/paint, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom.proc/attackby, paint, user)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attackby), paint, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/proc/extra_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += "Right click [parent] with paint to color [src]"
-
 
 /**
  *  These are the basic type for modules with set variant icons.
@@ -148,11 +152,20 @@
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_DESERT_VARIANT
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	///List of icon_state suffixes for armor varients.
-	var/list/icon_state_variants = list()
+	var/list/icon_state_variants = list(
+		"black",
+		"jungle",
+		"desert",
+		"snow",
+		"alpha",
+		"bravo",
+		"charlie",
+		"delta",
+	)
 	///Current varient selected.
-	var/current_variant
+	var/current_variant = "black"
 
 /obj/item/armor_module/armor/update_icon()
 	. = ..()
@@ -164,8 +177,8 @@
 	. = ..()
 	if(!secondary_color)
 		return
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
@@ -229,8 +242,8 @@
 	. = ..()
 	if(!secondary_color)
 		return
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/greyscale/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))

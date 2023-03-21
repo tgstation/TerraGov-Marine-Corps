@@ -637,8 +637,8 @@
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
-	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
+	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
 	process() //Ping immediately after parameters have been set
 
 ///Stop the arrow to avoid runtime and hard del
@@ -651,7 +651,7 @@
 /atom/movable/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	del_timer = addtimer(CALLBACK(src, .proc/kill_arrow), duration, TIMER_STOPPABLE)
+	del_timer = addtimer(CALLBACK(src, PROC_REF(kill_arrow)), duration, TIMER_STOPPABLE)
 
 /atom/movable/screen/arrow/process() //We ping the target, revealing its direction with an arrow
 	if(!target || !tracker)

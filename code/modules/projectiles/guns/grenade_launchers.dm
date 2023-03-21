@@ -34,6 +34,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/explosive/grenade/smokebomb/som,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
 		/obj/item/explosive/grenade/smokebomb/neuro,
@@ -150,6 +151,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/explosive/grenade/smokebomb/som,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
 		/obj/item/explosive/grenade/smokebomb/neuro,
@@ -181,6 +183,9 @@ The Grenade Launchers
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
 	default_ammo_type = /obj/item/explosive/grenade/som
+
+/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable
+	flags_attach_features = ATTACH_REMOVABLE
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"

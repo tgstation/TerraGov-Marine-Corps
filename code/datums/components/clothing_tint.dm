@@ -20,10 +20,10 @@
 
 /datum/component/clothing_tint/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped_to_slot)
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/removed_from_slot)
-	RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTION, .proc/toggle_tint)
-	RegisterSignal(parent, COMSIG_CLOTHING_MECHANICS_INFO, .proc/mechanics_info)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped_to_slot))
+	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(removed_from_slot))
+	RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTION, PROC_REF(toggle_tint))
+	RegisterSignal(parent, COMSIG_CLOTHING_MECHANICS_INFO, PROC_REF(mechanics_info))
 
 /datum/component/clothing_tint/UnregisterFromParent()
 	. = ..()

@@ -73,8 +73,8 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	intoxication_stacks = SENTINEL_TOXIC_SLASH_STACKS_PER + xeno_owner.xeno_caste.additional_stacks
 	remaining_slashes = SENTINEL_TOXIC_SLASH_COUNT
-	ability_duration = addtimer(CALLBACK(src, .proc/toxic_slash_deactivate, xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/toxic_slash)
+	ability_duration = addtimer(CALLBACK(src, PROC_REF(toxic_slash_deactivate), xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(toxic_slash))
 	xeno_owner.balloon_alert(xeno_owner, "Toxic Slash active")
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien_drool2.ogg', 25)
 	action_icon_state = "neuroclaws_on"
@@ -189,6 +189,8 @@
 	debuff.stacks -= round(debuff.stacks * 0.7)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.sentinel_drain_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_drain_stings")
 
 /datum/action/xeno_action/activable/drain_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

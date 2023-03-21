@@ -9492,7 +9492,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/processing)
 "bVY" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /obj/structure/sign/safety/high_radiation,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
@@ -32785,15 +32785,6 @@
 /area/deltastation/medical/chemistry)
 "gBv" = (
 /obj/structure/table/reinforced,
-/obj/item/disk/tech_disk{
-	pixel_x = -6
-	},
-/obj/item/disk/tech_disk{
-	pixel_x = 6
-	},
-/obj/item/disk/tech_disk{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
@@ -44719,10 +44710,6 @@
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/escape)
 "jbd" = (
-/obj/item/hand_tele{
-	pixel_x = -5;
-	pixel_y = -7
-	},
 /obj/effect/landmark/corpsespawner/marine/engineer/regular,
 /obj/item/prop/dogtag/pfcjim{
 	desc = "This marine was pretty foolish for trying to explore space without protection. Did they really think shields were vacuum-proof?";
@@ -65139,12 +65126,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
-"noy" = (
-/obj/structure/closet/crate/secure/gear,
-/obj/item/clothing/head/helmet/space/syndicate/black/engie,
-/obj/item/clothing/suit/space/syndicate/black/engie,
-/turf/open/floor/engine,
-/area/deltastation/asteroidcaves/ship/two)
 "noz" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -67400,9 +67381,6 @@
 	},
 /area/deltastation/engineering/atmos)
 "nNF" = (
-/obj/machinery/computer/rdservercontrol{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/alarm{
 	dir = 4
@@ -67412,6 +67390,9 @@
 /area/deltastation/science/server)
 "nNR" = (
 /obj/structure/cable,
+/obj/machinery/prop/computer/rdservercontrol{
+	dir = 4
+	},
 /obj/effect/spawner/random/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/security/range)
@@ -87504,7 +87485,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/aft)
 "rLI" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /obj/machinery/light,
 /obj/machinery/light_switch{
 	pixel_x = -20
@@ -114729,6 +114710,12 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
+"xgM" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/clothing/head/helmet/space/syndicate/black/engie,
+/obj/item/clothing/suit/space/syndicate/black/engie,
+/turf/open/floor/engine,
+/area/deltastation/asteroidcaves/ship/two)
 "xgO" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -118513,15 +118500,6 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/paperbin,
-/obj/item/disk/tech_disk{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/disk/tech_disk{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/disk/tech_disk,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/qm)
 "xRG" = (
@@ -146586,8 +146564,8 @@ mUx
 wxm
 uyW
 uyW
-noy
-noy
+xgM
+xgM
 uyW
 uyW
 wxm

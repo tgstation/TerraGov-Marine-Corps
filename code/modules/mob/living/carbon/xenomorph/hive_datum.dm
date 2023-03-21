@@ -304,6 +304,7 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
+
 /**
  * The total amount of xenomorphs that are considered for evolving purposes,
  * subtypes also consider stored larva, not just the current amount of living xenos
@@ -392,7 +393,7 @@
 	xenos_by_upgrade[X.upgrade] += X
 	if(X.z)
 		LAZYADD(xenos_by_zlevel["[X.z]"], X)
-	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
+	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(xeno_z_changed))
 
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
@@ -635,7 +636,7 @@
 	if(caste.death_evolution_delay <= 0)
 		return
 	if(!caste_death_timers[caste.caste_type_path])
-		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, .proc/end_caste_death_timer, caste), caste.death_evolution_delay , TIMER_STOPPABLE)
+		caste_death_timers[caste.caste_type_path] = addtimer(CALLBACK(src, PROC_REF(end_caste_death_timer), caste), caste.death_evolution_delay , TIMER_STOPPABLE)
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
@@ -655,9 +656,8 @@
 
 /// Gets the total time that the death timer for the hivemind conduit will last
 /datum/hive_status/proc/get_total_hivemind_conduit_time()
-	var/mob/living/carbon/xenomorph/xeno = GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/queen]
-	var/datum/xeno_caste/caste = xeno.xeno_caste
-	return initial(caste.death_evolution_delay)
+	var/datum/xeno_caste/xeno = GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/queen]["basetype"]
+	return initial(xeno.death_evolution_delay)
 
 /datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
 	if(living_xeno_ruler == ruler)
@@ -828,7 +828,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
 	hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
-	addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/update_silo_death_timer, src), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), src), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
@@ -847,7 +847,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 
-	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), DISTRESS_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
+	D.orphan_hive_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode, orphan_hivemind_collapse)), DISTRESS_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
 
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
@@ -972,7 +972,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
 	SSticker.mode.update_silo_death_timer(src)
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
-	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
+	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
 
 	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
 		if(!is_ground_level(structure.z) || structure.xeno_structure_flags & DEPART_DESTRUCTION_IMMUNE)
@@ -1001,7 +1001,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(isxenohivemind(boarder))
 			continue
-		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
+		INVOKE_ASYNC(boarder, TYPE_PROC_REF(/mob/living, gib))
 		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
 			continue
 		left_behind++
@@ -1031,7 +1031,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		remove_from_larva_candidate_queue(observer)
 		return FALSE
 	LAZYADD(candidate, observer)
-	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
+	RegisterSignal(observer, COMSIG_PARENT_QDELETING, PROC_REF(clean_observer))
 	observer.larva_position =  LAZYLEN(candidate)
 	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
 	return TRUE
@@ -1418,6 +1418,21 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/king/admeme
 	hivenumber = XENO_HIVE_ADMEME
+
+/datum/hive_status/corrupted/fallen
+	name = "Fallen"
+	hivenumber = XENO_HIVE_FALLEN
+	prefix = "Fallen "
+	color = "#8046ba"
+
+/datum/hive_status/corrupted/fallen/can_xeno_message()
+	return FALSE
+
+/mob/living/carbon/xenomorph/queen/Corrupted/fallen
+	hivenumber = XENO_HIVE_FALLEN
+
+/mob/living/carbon/xenomorph/king/Corrupted/fallen
+	hivenumber = XENO_HIVE_FALLEN
 
 // ***************************************
 // *********** Xeno hive compare helpers

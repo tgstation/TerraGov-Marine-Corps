@@ -26,6 +26,6 @@ SUBSYSTEM_DEF(weeds_decay)
 				decay_chance -= rand(15, 20)
 
 		if(prob(decay_chance))
-			addtimer(CALLBACK(weed, /obj/alien/weeds.proc/check_for_parent_node), rand(3, 10 SECONDS))
+			addtimer(CALLBACK(weed, TYPE_PROC_REF(/obj/alien/weeds, check_for_parent_node)), rand(3, 10 SECONDS))
 			decaying_list -= weed
 

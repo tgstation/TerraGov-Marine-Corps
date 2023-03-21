@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - bugfix: "Beheaded synths can ghost and return to their head later"
-  - bugfix: "Beheaded mobs keep their old known languages"

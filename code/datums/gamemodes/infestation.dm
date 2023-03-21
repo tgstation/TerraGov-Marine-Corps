@@ -166,10 +166,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return TRUE
 	return FALSE
 
+
 /datum/game_mode/infestation/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 	var/sound/xeno_track
 	var/sound/human_track
 	var/sound/ghost_track
@@ -224,20 +224,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
-	announce_xenomorphs()
-	announce_medal_awards()
-	announce_round_stats()
-
-/// Announce to players the name of the surviving hive ruler
-/datum/game_mode/infestation/proc/announce_xenomorphs()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
-		return
-
-	var/dat = span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
-
-	to_chat(world, dat)
-
 /datum/game_mode/infestation/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
@@ -258,7 +244,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 /datum/game_mode/infestation/pre_setup()
 	. = ..()
-	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
+	addtimer(CALLBACK(SSticker.mode, PROC_REF(map_announce)), 5 SECONDS)
 
 ///Announce the next map
 /datum/game_mode/infestation/proc/map_announce()
@@ -287,7 +273,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/infestation/proc/on_nuclear_explosion(datum/source, z_level)
 	SIGNAL_HANDLER
 	planet_nuked = INFESTATION_NUKE_INPROGRESS
-	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
+	INVOKE_ASYNC(src, PROC_REF(play_cinematic), z_level)
 
 /datum/game_mode/infestation/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	SIGNAL_HANDLER
@@ -312,7 +298,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, INFESTATION_NUKE_COMPLETED), nuketime)
-	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
+	addtimer(CALLBACK(src, PROC_REF(do_nuke_z_level), z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_CRASH_NUKE, world)
 

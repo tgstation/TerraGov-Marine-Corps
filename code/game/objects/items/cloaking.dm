@@ -45,7 +45,7 @@
 		if(SEND_SIGNAL(user, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
 			to_chat(user, span_warning("You are already cloaked!"))
 			return
-		RegisterSignal(user, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
+		RegisterSignal(user, COMSIG_MOB_ENABLE_STEALTH, PROC_REF(on_other_activate))
 		user.alpha = 25
 		to_chat(user, span_notice("You activate the [src]."))
 		spark_system.start()

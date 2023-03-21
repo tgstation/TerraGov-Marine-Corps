@@ -240,7 +240,7 @@
 	if(automatic_cycle_on && destination == new_dock)
 		if(cycle_timer)
 			deltimer(cycle_timer)
-		cycle_timer = addtimer(CALLBACK(src, .proc/prepare_going_to_previous_destination), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
+		cycle_timer = addtimer(CALLBACK(src, PROC_REF(prepare_going_to_previous_destination)), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
 
 	return ..()
 
@@ -248,7 +248,7 @@
 /obj/docking_port/mobile/marine_dropship/proc/prepare_going_to_previous_destination()
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
-	cycle_timer = addtimer(CALLBACK(src, .proc/go_to_previous_destination), 20 SECONDS, TIMER_STOPPABLE)
+	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
 	priority_announce("Dropship taking off in 20 seconds towards [previous.name]", "Dropship Automatic Departure")
 
 ///Send the dropship to its previous dock
@@ -301,11 +301,11 @@
 		if(SHUTTLE_RECHARGING)
 			set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 			playsound(loc,'sound/effects/alert.ogg', 50)
-			addtimer(CALLBACK(src, .proc/request_to, S), 15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(request_to), S), 15 SECONDS)
 
 
 /obj/docking_port/mobile/marine_dropship/proc/do_start_hijack_timer(hijack_time = LOCKDOWN_TIME)
-	addtimer(CALLBACK(src, .proc/reset_hijack), hijack_time)
+	addtimer(CALLBACK(src, PROC_REF(reset_hijack)), hijack_time)
 
 
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
@@ -368,7 +368,8 @@
 	if(!port)
 		to_chat(src, span_warning("Something went wrong."))
 		return
-
+	message_admins("[ADMIN_TPMONTY(src)] has summoned the dropship")
+	log_admin("[key_name(src)] has summoned the dropship")
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
 	priority_announce("Unknown interference with dropship control. Shutting down autopilot",  "Dropship malfunction")
 
@@ -376,6 +377,9 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
+	if(user.do_actions)
+		user.balloon_alert(user, span_warning("Busy"))
+		return FALSE
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
 		return FALSE
@@ -412,8 +416,6 @@
 			return FALSE
 		to_chat(user, span_xenodanger("We crack open the metal bird's shell."))
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
-			return FALSE
-		if(user.do_actions)
 			return FALSE
 		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
 		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
@@ -822,7 +824,7 @@
 
 	D.lockdown_all()
 
-	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(unpress)), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 // half-tile structure pieces
 /obj/structure/dropship_piece

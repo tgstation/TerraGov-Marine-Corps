@@ -33,7 +33,7 @@
 			EXTRA_VARS = extra_vars, //List of extra vars for other uses.
 		)
 
-	RegisterSignal(target, COMSIG_ITEM_IS_ATTACHING, .proc/on_attaching)
+	RegisterSignal(target, COMSIG_ITEM_IS_ATTACHING, PROC_REF(on_attaching))
 
 /datum/element/attachment/Detach(datum/source, force)
 	UnregisterSignal(source, COMSIG_ITEM_IS_ATTACHING)

@@ -40,8 +40,8 @@
 	. = ..()
 	core = new(loc)
 	core.parent = src
-	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
-	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
+	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
+	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
@@ -118,7 +118,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
-	addtimer(CALLBACK(src, .proc/do_change_form), TIME_TO_TRANSFORM)
+	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
@@ -186,7 +186,7 @@
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	flick("Hivemind_materialisation_fast_reverse", src)
-	addtimer(CALLBACK(src, .proc/end_teleport, T), TIME_TO_TRANSFORM / 2)
+	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM / 2)
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
@@ -321,7 +321,7 @@
 	new /obj/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 	for(var/turfs in RANGE_TURFS(XENO_HIVEMIND_DETECTION_RANGE, src))
-		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/hivemind_proxy_alert)
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(hivemind_proxy_alert))
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
 /obj/structure/xeno/hivemindcore/Destroy()
