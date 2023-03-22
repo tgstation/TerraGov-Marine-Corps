@@ -297,16 +297,27 @@
 	if(SSmonitor.human_on_ground <= 5)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
-	var/input
+	var/starting_point
 	if(length(GLOB.active_cas_targets))
-		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
-	else
-		input = GLOB.minidropship_start_loc
-	if(!input)
+		starting_point = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+
+	else if(length(GLOB.humans_by_zlevel["2"])) //if we don't have a cas target we pick a random human on ground as our starting pos
+		for(var/mob/living/carbon/human/H in GLOB.humans_by_zlevel["2"])
+			if(!istype(H.wear_ear, /obj/item/radio/headset/mainship))
+				continue //if they don't have a marine headset they aren't a valid target
+			var/obj/item/radio/headset/mainship/cam_headset = H.wear_ear
+			if(cam_headset.camera.status) //if their camera is off they aren't a valid camera
+				starting_point = get_turf(H)
+				break //we found a valid target, we're done
+
+	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
+		starting_point = GLOB.minidropship_start_loc
+
+	if(!starting_point)
 		return
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
-	eyeobj.setLoc(get_turf(input))
+	eyeobj.setLoc(get_turf(starting_point))
 
 ///Gives user control of the eye and allows them to start shooting
 /obj/docking_port/mobile/marine_dropship/casplane/proc/give_eye_control(mob/user)
