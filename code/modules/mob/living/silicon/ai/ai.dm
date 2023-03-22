@@ -56,6 +56,9 @@
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
+	///Referenec to the AIs minimap.
+	var/datum/action/minimap/ai/mini
+
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
@@ -96,7 +99,7 @@
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
-	var/datum/action/minimap/ai/mini = new
+	mini = new
 	var/datum/action/innate/squad_message/squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
@@ -120,6 +123,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
+	QDEL_NULL(mini)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint

@@ -381,6 +381,8 @@ SUBSYSTEM_DEF(minimaps)
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
 	var/atom/movable/screen/minimap/map
+	///Overrides what the locator tracks aswell what z the map displays as opposed to always tracking the minimap's owner. Default behavior when null.
+	var/atom/movable/locator_override
 	///Minimap "You are here" indicator for when it's up
 	var/atom/movable/screen/minimap_locator/locator
 	///This is mostly for the AI & other things which do not move groundside.
@@ -392,6 +394,7 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/action/minimap/Destroy()
 	map = null
+	locator_override = null
 	QDEL_NULL(locator)
 	return ..()
 
@@ -399,44 +402,94 @@ SUBSYSTEM_DEF(minimaps)
 	. = ..()
 	if(!map)
 		return
+	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client.screen -= map
 		owner.client.screen -= locator
-		locator.UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	else
 		owner.client.screen += map
 		owner.client.screen += locator
-		locator.update(owner)
-		locator.RegisterSignal(owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
+		locator.update(tracking)
+		locator.RegisterSignal(tracking, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
 	minimap_displayed = !minimap_displayed
+
+///Overrides the minimap locator to a given atom
+/datum/action/minimap/proc/override_locator(atom/movable/to_track)
+	var/atom/movable/tracking = locator_override ? locator_override : owner
+	var/atom/movable/new_track = to_track ? to_track : owner
+	if(locator_override)
+		UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+	if(owner)
+		UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
+	if(!minimap_displayed)
+		locator_override = to_track
+		if(to_track)
+			RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+		if(owner)
+			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+			if(tracking.z != new_track.z)
+				on_owner_z_change(new_track, tracking.z, new_track.z)
+		return
+	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+	locator_override = to_track
+	if(to_track)
+		RegisterSignal(to_track, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/datum/action/minimap, clear_locator_override))
+	RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+	if(tracking.z != new_track.z)
+		on_owner_z_change(new_track, tracking.z, new_track.z)
+	locator.RegisterSignal(new_track, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
+	locator.update(new_track)
+
+///CLears the locator override in case the override target is deleted
+/datum/action/minimap/proc/clear_locator_override()
+	SIGNAL_HANDLER
+	UnregisterSignal(locator_override, COMSIG_PARENT_QDELETING)
+	if(owner)
+		UnregisterSignal(locator_override, COMSIG_MOVABLE_Z_CHANGED)
+		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED)
+		if(locator_override.z != owner.z)
+			on_owner_z_change(owner, locator_override.z, owner.z)
+	if(minimap_displayed)
+		locator.UnregisterSignal(locator_override, COMSIG_MOVABLE_MOVED)
+		locator.RegisterSignal(owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
+		locator.update(owner)
+	locator_override = null
 
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
-
 	if(default_overwatch_level)
+		RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
+		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
+			return
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
-	else
-		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
-	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
-	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
-	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
+	var/atom/movable/tracking = locator_override ? locator_override : M
+	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
+	if(!SSminimaps.minimaps_by_z["[tracking.z]"] || !SSminimaps.minimaps_by_z["[tracking.z]"].hud_image)
+		return
+	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
 
 /datum/action/minimap/remove_action(mob/M)
-	. = ..()
+	var/atom/movable/tracking = locator_override ? locator_override : M
 	if(minimap_displayed)
 		owner.client.screen -= map
+		owner.client.screen -= locator
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 		minimap_displayed = FALSE
-	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
+	UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
+	UnregisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP)
+	return ..()
 
 /**
  * Updates the map when the owner changes zlevel
  */
 /datum/action/minimap/proc/on_owner_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
+	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client.screen -= map
-		minimap_displayed = FALSE
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		return
@@ -444,6 +497,14 @@ SUBSYSTEM_DEF(minimaps)
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
+	if(minimap_displayed && !map)
+		owner.client.screen -= locator
+		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+		minimap_displayed = FALSE
+	else if(minimap_displayed)
+		owner.client.screen += map
+
+
 
 /datum/action/minimap/xeno
 	minimap_flags = MINIMAP_FLAG_XENO
@@ -456,10 +517,9 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
 
-/datum/action/minimap/ai
+/datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
-	default_overwatch_level = 2
 
 /datum/action/minimap/marine/rebel
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
