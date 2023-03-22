@@ -121,6 +121,19 @@
 						new_helmet.current_variant = old_helmet.current_variant
 						new_helmet.attachments = old_helmet.attachments
 						loadout.item_list[slot_head_str] = new_helmet
+				else if(loadout.version < 11)
+					var/datum/item_representation/old_hat = loadout.item_list[slot_head_str]
+					var/datum/item_representation/hat/modular_helmet/new_hat = new
+					if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot")
+						new_hat.item_type = /obj/item/clothing/head/modular/robot
+					if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/light")
+						new_hat.item_type = /obj/item/clothing/head/modular/robot/light
+					if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/heavy")
+						new_hat.item_type = /obj/item/clothing/head/modular/robot/heavy
+					new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
+					new_hat.current_variant = "black"
+					loadout.item_list[slot_head_str] = new_hat
+
 				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
 				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
@@ -141,11 +154,26 @@
 						new_armor.current_variant = old_armor.current_variant
 						new_armor.attachments = old_armor.attachments
 						loadout.item_list[slot_wear_suit_str] = new_armor
+				else if(istype(armor, /datum/item_representation/suit_with_storage))
+					if(loadout.version < 11)
+						var/datum/item_representation/suit_with_storage/old_armor = loadout.item_list[slot_wear_suit_str]
+						var/datum/item_representation/armor_suit/modular_armor/new_armor = new
+						if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot")
+							new_armor.item_type = /obj/item/clothing/suit/modular/robot
+						if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/light")
+							new_armor.item_type = /obj/item/clothing/suit/modular/robot/light
+						if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/heavy")
+							new_armor.item_type = /obj/item/clothing/suit/modular/robot/heavy
+						new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
+						new_armor.current_variant = "black"
+						loadout.item_list[slot_wear_suit_str] = new_armor
+
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
 					if(loadout.version < 9)
 						uniform.current_variant = null
 						uniform.attachments = list()
+
 				var/datum/item_representation/boot/footwear = loadout.item_list[slot_shoes_str]
 				if(footwear)
 					if(loadout.version < 11)
@@ -153,6 +181,7 @@
 							var/obj/item/clothing/shoes/marine/full/new_boots = new (loadout_vendor)
 							loadout.item_list[slot_shoes_str] = new /datum/item_representation/boot(new_boots)
 							qdel(new_boots)
+
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
@@ -164,6 +193,7 @@
 					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 9 to 10)"
 				if(loadout.version < 11)
 					message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
+
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
@@ -172,11 +202,13 @@
 				delete_loadout(ui.user, name, job)
 				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
+
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
+
 		if("selectLoadout")
 			var/job = params["loadout_job"]
 			var/name = params["loadout_name"]
@@ -222,6 +254,7 @@
 					new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
 					new_hat.current_variant = "black"
 					loadout.item_list[slot_head_str] = new_hat
+
 				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
 				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
@@ -255,11 +288,13 @@
 						new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
 						new_armor.current_variant = "black"
 						loadout.item_list[slot_wear_suit_str] = new_armor
+
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
 					if(loadout.version < 9)
 						uniform.current_variant = null
 						uniform.attachments = list()
+
 				var/datum/item_representation/boot/footwear = loadout.item_list[slot_shoes_str]
 				if(footwear)
 					if(loadout.version < 11)
@@ -267,6 +302,7 @@
 							var/obj/item/clothing/shoes/marine/full/new_boots = new (loadout_vendor)
 							loadout.item_list[slot_shoes_str] = new /datum/item_representation/boot(new_boots)
 							qdel(new_boots)
+
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
@@ -278,6 +314,7 @@
 					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system. (version 19 to 10)"
 				if(loadout.version < 11)
 					message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
+
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
@@ -285,6 +322,7 @@
 				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
 				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
+
 			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
