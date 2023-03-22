@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(silo)
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	//The larval spawn is based on the amount of silo, ponderated with a define. Larval follow a f(x) = (x + a)/(1 + a) * something law, which is smoother that f(x) = x * something
-	current_larva_spawn_rate = length(GLOB.xeno_resin_silos) ? SILO_OUTPUT_PONDERATION + length(GLOB.xeno_resin_silos) : 0
+	current_larva_spawn_rate = length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) ? SILO_OUTPUT_PONDERATION + length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) : 0
 	//We then are normalising with the number of alive marines, so the balance is roughly the same whether or not we are in high pop
 	current_larva_spawn_rate *= SILO_BASE_OUTPUT_PER_MARINE * length(GLOB.humans_by_zlevel[SSmonitor.gamestate == SHIPSIDE ? "3" : "2"])
 	//We normalize the larval output for one silo, so the value for silo = 1 is independant of SILO_OUTPUT_PONDERATION
