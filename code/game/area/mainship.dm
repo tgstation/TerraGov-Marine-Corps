@@ -464,6 +464,17 @@
 	icon_state = "departures"
 	minimap_color = MINIMAP_AREA_ESCAPE
 
+/area/mainship/living/evacuation/pod
+	requires_power = FALSE
+
+/area/mainship/living/evacuation/pod/one
+
+/area/mainship/living/evacuation/pod/two
+
+/area/mainship/living/evacuation/pod/three
+
+/area/mainship/living/evacuation/pod/four
+
 /area/mainship/medical/lounge
 	name = "Medical Lounge"
 	icon_state = "medical"
