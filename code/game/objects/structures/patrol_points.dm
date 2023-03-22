@@ -63,7 +63,7 @@
 		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
 
 	if(user.faction == FACTION_TERRAGOV)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/lt)
 	else
 		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 	update_icon()
@@ -107,3 +107,16 @@
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)
 	QDEL_IN(src, 5)
+
+/obj/structure/patrol_point/ud
+	name = "UD-4L Cheyenne Dropship"
+	desc = "A versatile dropship and tactical transport employed in a primary role in the USCM."
+	icon = 'icons/Marine/ud.dmi'
+	icon_state = "ud"
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	layer = LADDER_LAYER
+
+/obj/structure/patrol_point/ud/examine(mob/user)
+	. = ..()
+	. += span_notice("Click to enter dropship.")

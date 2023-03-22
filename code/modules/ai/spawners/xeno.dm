@@ -106,3 +106,36 @@
 	spawnamount = 4
 	spawndelay = 10 SECONDS
 	maxamount = 10
+
+/particles/xeno_drool
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "rectangle_long"
+	width = 100
+	height = 100
+	count = 5
+	spawning = 1
+	lifespan = 10
+	fade = 25
+	position = generator(GEN_BOX, list(-16, 32), list(16, 32), NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.2), list(0, 0.2))
+	gravity = list(0, -1)
+
+/obj/effect/ai_node/spawner/xeno/drone/ambush
+	spawntypes = /mob/living/carbon/xenomorph/drone/ai
+	spawnamount = 3
+	spawndelay = 30 SECONDS
+	maxamount = 10
+	use_postspawn = TRUE
+	icon_state = "invis"
+	invisibility = 0
+
+/obj/effect/ai_node/spawner/Initialize()
+	. = ..()
+	particles = new /particles/xeno_drool
+
+/obj/effect/ai_node/spawner/xeno/drone/ambush/postspawn(list/squad)
+	playsound(loc, 'sound/effects/alien_ambush.ogg', 75, TRUE)
+	for(var/mob/living/carbon/xenomorph/drone/ai/xeno AS in squad)
+		xeno.pixel_y = 45
+		xeno.alpha = 50
+		animate(xeno, 0.4 SECONDS, pixel_y = 0, alpha = 255)

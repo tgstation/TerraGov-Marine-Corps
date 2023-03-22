@@ -22,7 +22,6 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
-	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/dirt/dug
 	icon_state = "desert_dug"
@@ -147,7 +146,6 @@
 	name = "shallow snow"
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_1"
-	minimap_color = MINIMAP_SNOW
 
 /turf/open/floor/plating/ground/fakesnow/alt
 	name = "deep snow"
@@ -160,7 +158,6 @@
 	mediumxenofootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
-	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/floor/plating/ground/mars/random/cave
 
@@ -231,7 +228,6 @@
 	shoefootstep = FOOTSTEP_ICE
 	barefootstep = FOOTSTEP_ICE
 	mediumxenofootstep = FOOTSTEP_ICE
-	minimap_color = MINIMAP_ICE
 
 //Randomize ice floor sprite
 /turf/open/floor/plating/ground/ice/Initialize()

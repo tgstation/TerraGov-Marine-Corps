@@ -29,7 +29,6 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
-	minimap_color = MINIMAP_WATER
 	smoothing_groups = list(
 		SMOOTH_GROUP_RIVER,
 	)

@@ -445,3 +445,10 @@
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
+
+//kemerdekaan
+
+/area/mainship/kemerdekaan
+	name = "USS Kemerdekaan"
+	icon_state = "req"
+	requires_power = FALSE

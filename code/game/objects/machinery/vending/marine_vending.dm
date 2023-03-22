@@ -1486,6 +1486,44 @@
 
 	prices = list()
 
+/obj/machinery/vending/uniform_supply/limited
+	desc = "Am automated equipment rack hooked up to a colossal storage of clothing and accessories."
+	products = list(
+		"Headwear" = list(
+			/obj/item/clothing/head/modular/style/beret = -1,
+			/obj/item/clothing/head/modular/style/classic_beret = -1,
+			/obj/item/clothing/head/modular/style/boonie = -1,
+			/obj/item/clothing/head/modular/style/cap = -1,
+			/obj/item/clothing/head/modular/style/slouchhat = -1,
+			/obj/item/clothing/head/modular/style/ushanka = -1,
+			/obj/item/clothing/head/modular/style/campaignhat = -1,
+			/obj/item/clothing/head/modular/style/beanie = -1,
+			/obj/item/clothing/head/modular/style/headband = -1,
+			/obj/item/clothing/head/modular/style/bandana = -1,
+			/obj/item/clothing/glasses/mgoggles = -1,
+			/obj/item/clothing/glasses/mgoggles/prescription = -1,
+		),
+		"Masks" = list(
+			/obj/item/clothing/mask/rebreather/scarf = -1,
+			/obj/item/clothing/mask/bandanna/skull = -1,
+			/obj/item/clothing/mask/bandanna/green = -1,
+			/obj/item/clothing/mask/bandanna/white = -1,
+			/obj/item/clothing/mask/bandanna/black = -1,
+			/obj/item/clothing/mask/bandanna = -1,
+			/obj/item/clothing/mask/bandanna/alpha = -1,
+			/obj/item/clothing/mask/bandanna/bravo = -1,
+			/obj/item/clothing/mask/bandanna/charlie = -1,
+			/obj/item/clothing/mask/bandanna/delta = -1,
+			/obj/item/clothing/mask/rebreather = -1,
+			/obj/item/clothing/mask/breath = -1,
+			/obj/item/clothing/mask/gas/modular/skimask = -1,
+			/obj/item/clothing/mask/gas/modular/coofmask = -1,
+			/obj/item/clothing/mask/gas = -1,
+			/obj/item/clothing/mask/gas/tactical = -1,
+			/obj/item/clothing/mask/gas/tactical/coif = -1,
+		),
+	)
+
 /obj/machinery/vending/uniform_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE

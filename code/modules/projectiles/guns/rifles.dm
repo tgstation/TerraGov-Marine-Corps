@@ -2068,3 +2068,49 @@
 
 /obj/item/weapon/gun/rifle/som_mg/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/rifle/smartgun_uscm
+	name = "\improper M56 smart gun"
+	desc = "The M56 smart gun is the core of a colonial marine squad's fighting power"
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "m56"
+	item_state = "m56"
+	caliber = CALIBER_10x26_CASELESS //codex
+	max_shells = 300 //codex
+	force = 30
+	aim_slowdown = 0.95
+	wield_delay = 1.3 SECONDS
+	fire_sound = "gun_pulse_sg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_smartmachinegun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel)
+	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+	fire_delay = 0.15 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.1
+	scatter = -5
+	scatter_unwielded = 40
+	movement_acc_penalty_mult = 4
+
+	placed_overlay_iconstate = "smartgun"

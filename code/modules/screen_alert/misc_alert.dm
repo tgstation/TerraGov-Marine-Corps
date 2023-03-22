@@ -30,6 +30,9 @@
 /atom/movable/screen/text/screen_text/picture/blackop
 	image_to_play = "blackops"
 
+/atom/movable/screen/text/screen_text/picture/st
+	image_to_play = "st"
+
 /atom/movable/screen/text/screen_text/picture/potrait
 	screen_loc = "LEFT,TOP-3"
 	image_to_play = "overwatch"
@@ -39,3 +42,6 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/lt
+	image_to_play = "lt"

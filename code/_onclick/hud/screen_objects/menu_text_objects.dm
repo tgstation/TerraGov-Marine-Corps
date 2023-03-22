@@ -12,7 +12,7 @@
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
-	maptext_x = 24
+	maptext_x = 18
 	maptext_y = 9
 
 /**
@@ -35,17 +35,18 @@
 /atom/movable/screen/text/lobby/clickable
 	maptext = "if you see this a coder was stinky"
 	icon = 'icons/UI_Icons/lobby_button.dmi' //hitbox prop
+	icon_state = "base"
 	mouse_opacity = MOUSE_OPACITY_ICON
 
 /atom/movable/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	. = ..()
-	color = COLOR_ORANGE
+	icon_state = "base_hover"
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_click.ogg', 50)
 
 /atom/movable/screen/text/lobby/clickable/MouseExited(location, control, params)
 	. = ..()
-	color = initial(color)
+	icon_state = initial(icon_state)
 
 /atom/movable/screen/text/lobby/clickable/Click()
 	var/mob/new_player/player = usr
@@ -54,7 +55,6 @@
 
 /atom/movable/screen/text/lobby/clickable/setup_character
 	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: ...</span>"
-	icon_state = "setup"
 	///Bool, whether we registered to listen for charachter updates already
 	var/registered = FALSE
 	maptext_y = 11
@@ -78,7 +78,6 @@
 
 /atom/movable/screen/text/lobby/clickable/join_game
 	maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
-	icon_state = "join"
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
 	. = ..()
@@ -88,7 +87,6 @@
 
 /atom/movable/screen/text/lobby/clickable/observe
 	maptext = "<span class='maptext' style=font-size:8px>OBSERVE</span>"
-	icon_state = "observe"
 
 /atom/movable/screen/text/lobby/clickable/observe/Click()
 	. = ..()
@@ -97,7 +95,6 @@
 
 /atom/movable/screen/text/lobby/clickable/ready
 	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: NOT READY</span>"
-	icon_state = "unready"
 
 /atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
 	. = ..()
@@ -114,12 +111,10 @@
 	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.toggle_ready()
-	icon_state = player.ready ? "ready" : "unready"
 	set_text()
 
 /atom/movable/screen/text/lobby/clickable/manifest
 	maptext = "<span class='maptext' style=font-size:8px>VIEW MANIFEST</span>"
-	icon_state = "manifest"
 
 /atom/movable/screen/text/lobby/clickable/manifest/Click()
 	. = ..()
@@ -128,7 +123,6 @@
 
 /atom/movable/screen/text/lobby/clickable/background
 	maptext = "<span class='maptext' style=font-size:8px>BACKGROUND</span>"
-	icon_state = "background"
 
 /atom/movable/screen/text/lobby/clickable/background/Click()
 	. = ..()
@@ -138,7 +132,6 @@
 
 /atom/movable/screen/text/lobby/clickable/changelog
 	maptext = "<span class='maptext' style=font-size:8px>CHANGELOG</span>"
-	icon_state = "changelog"
 
 /atom/movable/screen/text/lobby/clickable/changelog/Click()
 	. = ..()
@@ -147,7 +140,6 @@
 
 /atom/movable/screen/text/lobby/clickable/polls
 	maptext = "<span class='maptext' style=font-size:8px>POLLS</span>"
-	icon_state = "poll"
 
 /atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
 	. = ..()

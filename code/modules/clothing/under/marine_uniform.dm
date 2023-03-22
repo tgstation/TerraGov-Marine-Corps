@@ -517,3 +517,8 @@
 	if(!isrobot(M))
 		to_chat(M, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE
+
+/obj/item/clothing/under/marine/uscm
+	name = "\improper USCM uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
+	icon_state = "uscm"

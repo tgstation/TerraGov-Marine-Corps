@@ -11,7 +11,7 @@
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
-	minimap_color = MINIMAP_DOOR
+	minimap_color = MINIMAP_SOLID
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER

@@ -161,6 +161,15 @@
 /turf/open/floor/mainship/ntlogo/nt3
 	icon_state = "nt3"
 
+/turf/open/floor/mainship/wylogo
+	icon_state = "wy1"
+
+/turf/open/floor/mainship/wylogo/wy2
+	icon_state = "wy2"
+
+/turf/open/floor/mainship/wylogo/wy3
+	icon_state = "wy3"
+
 //Cargo elevator
 /turf/open/floor/mainship/empty
 	name = "empty space"
@@ -212,6 +221,15 @@
 
 /turf/open/floor/mainship/som/sw
 	icon_state = "somsw"
+
+/turf/open/floor/mainship/uscm
+	icon_state = "uscm_c"
+
+/turf/open/floor/mainship/uscm/ns
+	icon_state = "uscm_dir1"
+
+/turf/open/floor/mainship/uscm/ew
+	icon_state = "uscm_dir2"
 
 // RESEARCH STUFF
 

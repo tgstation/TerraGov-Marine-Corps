@@ -1,0 +1,9263 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"ag" = (
+/obj/structure/prop/mainship/name_stencil,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"am" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"au" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"aL" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"aQ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/bedsheetbin,
+/turf/open/floor/mainship/mono,
+/area/space)
+"bg" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/mainship/patrol_base/telecomms)
+"bs" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"bD" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"bI" = (
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"bX" = (
+/obj/structure/prop/mainship/name_stencil/M,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"ch" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"cA" = (
+/obj/machinery/cryopod/right{
+	layer = 3
+	},
+/obj/machinery/cryopod/right{
+	pixel_y = 16
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"cN" = (
+/obj/machinery/quick_vendor,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"cO" = (
+/obj/structure/prop/mainship/sensor_computer2,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"cT" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"dk" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"dl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"dt" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/mono,
+/area/space)
+"dM" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"dQ" = (
+/obj/structure/filingcabinet/security,
+/turf/open/floor/mainship/red{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"ej" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"eH" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"eM" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 8
+	},
+/area/space)
+"eS" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"eT" = (
+/turf/open/floor/mainship/wylogo,
+/area/mainship/patrol_base)
+"fp" = (
+/obj/machinery/elevator_strut/bottom,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"fM" = (
+/obj/machinery/telecomms/server/presets/alpha,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"fQ" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 10
+	},
+/area/space)
+"fT" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"fZ" = (
+/obj/machinery/quick_vendor,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ga" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/red,
+/area/mainship/patrol_base)
+"gd" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"ge" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"gk" = (
+/turf/open/floor/concrete/lines{
+	dir = 1
+	},
+/area/space)
+"gl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"gp" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"gG" = (
+/obj/structure/patrol_point{
+	id = "TGMC_24"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"gL" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 6
+	},
+/area/space)
+"hk" = (
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/tadpole/cockpit/right{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"hV" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ic" = (
+/obj/structure/dropship_piece/two/weapon/leftleft{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/closed/shuttle/dropship2/rearcorner/alt{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"il" = (
+/turf/open/floor/mainship/red{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"it" = (
+/obj/structure/prop/mainship/name_stencil/G,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"iy" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/donut_box,
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"iV" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 4
+	},
+/area/space)
+"jb" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23;
+	pixel_y = -14
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"jh" = (
+/obj/structure/prop/vehicle/tank/east/turret/complete{
+	pixel_y = 10
+	},
+/turf/open/space/basic,
+/area/space)
+"jp" = (
+/turf/open/floor/plating/ground/concrete/edge,
+/area/mainship/patrol_base)
+"jr" = (
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"jC" = (
+/obj/structure/prop/mainship/sensor_computer2,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"jG" = (
+/obj/machinery/telecomms/server/presets/bravo,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"jI" = (
+/obj/structure/prop/mainship/prop_sec,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"jW" = (
+/obj/structure/cargo_container{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"kl" = (
+/turf/closed/shuttle/dropship2/glasstwo{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"kA" = (
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"kH" = (
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"kN" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"kP" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"kQ" = (
+/turf/open/floor/mainship/wylogo/wy2,
+/area/space)
+"kT" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"lk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
+"lm" = (
+/obj/machinery/photocopier,
+/obj/machinery/light,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"ln" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"lu" = (
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"lv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"lM" = (
+/obj/vehicle/train/cargo/engine,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"lQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"lS" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"lX" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/structure/prop/mainship/prop_so{
+	dir = 4
+	},
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"lY" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"mH" = (
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/space)
+"mL" = (
+/obj/structure/patrol_point{
+	id = "TGMC_12"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"nm" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"nz" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"nF" = (
+/turf/closed/shuttle/dropship2/glassone{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"nH" = (
+/obj/structure/sign/double/map/right,
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base)
+"nJ" = (
+/turf/open/floor/mainship/black/corner{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"nQ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/structure/prop/mainship/prop_sec{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"nR" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"oq" = (
+/obj/structure/prop/mainship/sensor_computer1,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"or" = (
+/obj/structure/ship_ammo/rocket/banshee,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"oK" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"oO" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"oP" = (
+/turf/open/floor/mainship_hull,
+/area/space)
+"pb" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"pg" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 9
+	},
+/area/space)
+"pk" = (
+/turf/open/floor/mainship/black/corner,
+/area/mainship/patrol_base)
+"pB" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"pL" = (
+/obj/machinery/quick_vendor,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"pS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/mainship/purple{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"qa" = (
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"qb" = (
+/obj/machinery/telecomms/server/presets/charlie,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qe" = (
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qk" = (
+/obj/structure/cargo_container{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"qp" = (
+/turf/open/floor/mainship/wylogo,
+/area/space)
+"qL" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qY" = (
+/obj/structure/prop/mainship/prop_sec,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"qZ" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 5
+	},
+/area/space)
+"ra" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"rg" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"rj" = (
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/space)
+"rk" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"rv" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/patrol_base)
+"rz" = (
+/obj/structure/dropship_piece/two/weapon/rightright{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23
+	},
+/turf/closed/shuttle/dropship2/rearcorner{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"rF" = (
+/turf/open/floor/mainship/purple{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"rH" = (
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"rR" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/structure/prop/mainship/prop_sec{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"rT" = (
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"rW" = (
+/obj/structure/catwalk,
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"sc" = (
+/obj/machinery/cryopod/right{
+	pixel_y = 16;
+	layer = 4
+	},
+/obj/machinery/cryopod/right{
+	layer = 5
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"sg" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"sh" = (
+/obj/structure/prop/vehicle/apc{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/decoration{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/damagedframe{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/wheelsone{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/dualcannonone{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/space)
+"sk" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"ss" = (
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"st" = (
+/obj/machinery/quick_vendor,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"sA" = (
+/obj/machinery/cic_maptable,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"sF" = (
+/obj/structure/patrol_point{
+	id = "TGMC_11"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"sN" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"sR" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"sW" = (
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/space)
+"ta" = (
+/obj/structure/prop/mainship/prop_so{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"tp" = (
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/corner,
+/area/mainship/patrol_base)
+"tq" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"tr" = (
+/obj/structure/patrol_point{
+	id = "TGMC_22"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ts" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"tu" = (
+/obj/structure/prop/vehicle/apc/dualcannonone,
+/turf/open/floor/concrete/lines,
+/area/space)
+"tK" = (
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/tadpole/cockpit/left{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"tU" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ua" = (
+/obj/structure/prop/vehicle/apc{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/dualcannonzero{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/wheelszero{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/decoration/frontturretzero{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"uc" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"ud" = (
+/obj/structure/prop/mainship/mission_planning_system,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"ug" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 10
+	},
+/area/space)
+"up" = (
+/obj/machinery/computer/security/marinemainship{
+	pixel_y = 18
+	},
+/turf/open/floor/mainship/blue{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"ur" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"uy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"uz" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"uT" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"vf" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"vh" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"vo" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"vr" = (
+/turf/open/floor/concrete,
+/area/space)
+"vC" = (
+/obj/structure/closet/secure_closet/personal{
+	pixel_x = 9;
+	density = 0
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"vL" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"we" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"wg" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"wo" = (
+/obj/structure/patrol_point{
+	id = "TGMC_21"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"wr" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue/full,
+/area/mainship/patrol_base)
+"wz" = (
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"xe" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"xk" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"xr" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
+/area/space)
+"xt" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"xz" = (
+/obj/structure/prop/mainship/name_stencil/C,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"xC" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"xO" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"xQ" = (
+/turf/open/floor/concrete/lines,
+/area/space)
+"yf" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"ym" = (
+/obj/vehicle/train/cargo/trolley,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"yp" = (
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/patrol_base)
+"yx" = (
+/obj/machinery/computer3/server,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"yy" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"yA" = (
+/obj/machinery/cic_maptable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"yG" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"yH" = (
+/obj/structure/janitorialcart,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"yS" = (
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"zo" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"zV" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"zW" = (
+/obj/structure/prop/mainship/prop_tech,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"Ad" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Ao" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/space)
+"AE" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"AG" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Bl" = (
+/obj/effect/landmark/start/job/squadleader,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Bs" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"BA" = (
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"BD" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"BF" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"BH" = (
+/obj/machinery/quick_vendor,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"BI" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"BZ" = (
+/obj/structure/largecrate,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"Cd" = (
+/obj/structure/bed/chair/office/dark,
+/obj/structure/prop/mainship/prop_so,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"Ci" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"Cj" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"Ck" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
+"CR" = (
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"Dl" = (
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"DK" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"DQ" = (
+/obj/machinery/light,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/patrol_base)
+"Ee" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"Eh" = (
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"Ek" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"Eo" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"Eq" = (
+/turf/open/floor/mainship/uscm{
+	dir = 1
+	},
+/area/space)
+"EU" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"EX" = (
+/obj/structure/table/mainship/nometal,
+/obj/structure/prop/radio_prop,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"Fc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"Fh" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"Fi" = (
+/turf/open/floor/mainship/uscm/ns,
+/area/space)
+"Fj" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Fk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"Fo" = (
+/obj/structure/prop/mainship/prop_tech,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Fw" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/mainship/patrol_base)
+"Fz" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"FP" = (
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"FX" = (
+/obj/structure/closet/secure_closet/personal{
+	pixel_y = 17;
+	pixel_x = 7;
+	density = 0
+	},
+/obj/structure/closet/secure_closet/personal{
+	pixel_y = 17;
+	pixel_x = -7;
+	density = 0
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"GL" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/outer/reinforced,
+/area/mainship/patrol_base)
+"GQ" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Ho" = (
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"Hy" = (
+/turf/open/floor/mainship/uscm/ns,
+/area/mainship/patrol_base)
+"HG" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Ic" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"If" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/space)
+"Ig" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/obj/machinery/light,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"Ih" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Ii" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Iu" = (
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"IC" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"IE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"IH" = (
+/turf/open/floor/prison/plate,
+/area/space)
+"IJ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Jb" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Jc" = (
+/obj/structure/bed/chair/office/dark,
+/obj/machinery/computer/security/marinemainship{
+	pixel_y = 18
+	},
+/turf/open/floor/mainship/blue{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"Jg" = (
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"JB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"JJ" = (
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"JR" = (
+/turf/open/floor/mainship/wylogo/wy3,
+/area/space)
+"JY" = (
+/obj/structure/ship_ammo/rocket/banshee,
+/obj/machinery/light,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"Kd" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"Ki" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Kz" = (
+/turf/open/floor/mainship/wylogo/wy2,
+/area/mainship/patrol_base)
+"KE" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23;
+	pixel_y = -14
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"KF" = (
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"KI" = (
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"KO" = (
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"KS" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"Lf" = (
+/turf/open/floor/mainship/mono,
+/area/space)
+"Ll" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Lm" = (
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"Lo" = (
+/obj/structure/sign/double/map/left,
+/turf/closed/wall/mainship/outer/reinforced,
+/area/mainship/patrol_base)
+"LG" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/space)
+"LH" = (
+/obj/structure/prop/mainship/prop_tech{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"LP" = (
+/obj/effect/landmark/start/job/squadleader,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"LS" = (
+/turf/open/floor/mainship/purple{
+	dir = 8
+	},
+/area/space)
+"Ma" = (
+/obj/structure/patrol_point{
+	id = "TGMC_14"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Me" = (
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"Mn" = (
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Mq" = (
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"My" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
+"MB" = (
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"MF" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"MP" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"MS" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"MT" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"Nd" = (
+/obj/machinery/vending/uniform_supply/limited{
+	pixel_x = -13;
+	density = 0
+	},
+/obj/machinery/vending/tool{
+	pixel_x = 11;
+	density = 0
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"Ns" = (
+/obj/structure/largecrate,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"NF" = (
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"NU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/structure/table/mainship/nometal,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"NW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"NZ" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"On" = (
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Ow" = (
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"OB" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"OF" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/space)
+"OI" = (
+/obj/structure/shuttle/engine/propulsion{
+	opacity = 0
+	},
+/turf/open/space/basic,
+/area/space)
+"Pe" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 5
+	},
+/area/space)
+"Pp" = (
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"Pq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1;
+	opacity = 0
+	},
+/turf/open/space/basic,
+/area/space)
+"Ps" = (
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"Py" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"PB" = (
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"PK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"PP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"PQ" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base,
+/turf/open/floor/mainship/blue/full,
+/area/mainship/patrol_base)
+"PX" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Qr" = (
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"Qw" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"QD" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"QM" = (
+/obj/machinery/elevator_strut/bottom,
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"QO" = (
+/obj/structure/patrol_point{
+	id = "TGMC_23"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"QS" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer3/laptop,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Rc" = (
+/obj/machinery/quick_vendor,
+/turf/open/floor/mainship/mono,
+/area/space)
+"Rr" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Rt" = (
+/obj/structure/prop/mainship/mapping_computer,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"RC" = (
+/turf/open/floor/mainship/floor,
+/area/space)
+"RL" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/space)
+"RM" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"RW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Sd" = (
+/obj/structure/bedsheetbin,
+/turf/open/floor/mainship/mono,
+/area/space)
+"Sl" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/mainship/red,
+/area/mainship/patrol_base)
+"Sn" = (
+/obj/structure/dropship_piece/tadpole/tadpole_nose{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/closed/shuttle/dropship2/singlewindow{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Sq" = (
+/obj/structure/cargo_container{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"St" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Sw" = (
+/turf/open/space/basic,
+/area/space)
+"SD" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
+"SG" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 9
+	},
+/area/space)
+"SO" = (
+/obj/structure/closet/secure_closet/personal{
+	pixel_x = -9;
+	density = 0
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"SQ" = (
+/obj/structure/cargo_container/nt{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"SS" = (
+/obj/structure/largecrate/random/barrel/blue,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ST" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"SU" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"SY" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 1
+	},
+/area/space)
+"TD" = (
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard_finished,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"TK" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"TL" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/space)
+"TO" = (
+/turf/open/floor/mainship/wylogo/wy3,
+/area/mainship/patrol_base)
+"Ua" = (
+/obj/structure/prop/vehicle/tank/east/turret/complete{
+	pixel_x = -129;
+	pixel_y = -22
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/space)
+"Ub" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
+"Uj" = (
+/obj/structure/prop/mainship/prop_tech,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"Ut" = (
+/obj/machinery/shower,
+/obj/structure/curtain/open/shower,
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
+"Uw" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"UP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"UQ" = (
+/obj/structure/prop/mainship/sensor_computer1,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"UX" = (
+/turf/open/floor/mainship/red/corner,
+/area/mainship/patrol_base)
+"Vc" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 5
+	},
+/area/mainship/patrol_base)
+"Vq" = (
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Vu" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/purple/full,
+/area/mainship/patrol_base)
+"Vy" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"VE" = (
+/turf/open/floor/mainship_hull/dir,
+/area/space)
+"VH" = (
+/obj/structure/prop/vehicle/crane/cranecargo,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"VI" = (
+/obj/effect/landmark/start/job/squadengineer,
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"VY" = (
+/obj/machinery/vending/uniform_supply/limited{
+	pixel_y = 16;
+	pixel_x = -13
+	},
+/obj/machinery/vending/tool{
+	pixel_x = 11;
+	pixel_y = 16
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"Wf" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Wr" = (
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Wy" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"WQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Xe" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Xr" = (
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"XE" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"XJ" = (
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"XU" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"XV" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange/full,
+/area/mainship/patrol_base)
+"Yh" = (
+/obj/structure/patrol_point{
+	id = "TGMC_13"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"Yi" = (
+/obj/structure/closet/secure_closet/personal{
+	layer = 1.8;
+	pixel_y = -14;
+	pixel_x = -7;
+	density = 0
+	},
+/obj/structure/closet/secure_closet/personal{
+	layer = 1.8;
+	pixel_y = -14;
+	pixel_x = 7;
+	density = 0
+	},
+/turf/open/floor/prison/sterilewhite/full,
+/area/space)
+"Yy" = (
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
+"YF" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"Zf" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Zl" = (
+/turf/open/floor/mainship/uscm/ns{
+	dir = 1
+	},
+/area/space)
+"Zw" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
+"ZN" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"ZX" = (
+/turf/open/floor/mainship/uscm{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+
+(1,1,1) = {"
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(2,1,1) = {"
+bg
+fM
+jG
+qb
+qL
+wg
+BI
+Fz
+Ic
+KF
+Mq
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(3,1,1) = {"
+bg
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+cA
+sc
+RL
+cA
+sc
+RL
+cA
+sc
+RL
+cA
+sc
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(4,1,1) = {"
+bg
+xt
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+rW
+rW
+JJ
+rW
+rW
+JJ
+rW
+rW
+JJ
+rW
+rW
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(5,1,1) = {"
+bg
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+JJ
+IH
+JJ
+IH
+JJ
+IH
+JJ
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(6,1,1) = {"
+bg
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+JJ
+vC
+JJ
+IH
+JJ
+vC
+JJ
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(7,1,1) = {"
+bg
+fT
+lu
+qe
+rT
+yS
+CR
+FP
+Iu
+KI
+NF
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+Yi
+RL
+FX
+IH
+Yi
+RL
+FX
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(8,1,1) = {"
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+Yi
+RL
+FX
+IH
+Yi
+RL
+FX
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(9,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+Yi
+RL
+FX
+IH
+Yi
+RL
+FX
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(10,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+Yi
+RL
+FX
+IH
+Yi
+RL
+FX
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(11,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+IH
+JJ
+SO
+JJ
+IH
+JJ
+SO
+JJ
+IH
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(12,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+IH
+JJ
+IH
+JJ
+IH
+JJ
+IH
+JJ
+IH
+RL
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(13,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+RL
+RL
+RL
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+RL
+RL
+RL
+RL
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(14,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+JJ
+JJ
+JJ
+Yy
+SD
+My
+RL
+Ut
+SD
+My
+RL
+Ut
+Ck
+Yy
+JJ
+JJ
+JJ
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(15,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+JJ
+JJ
+RL
+Yy
+Yy
+My
+RL
+Ut
+Yy
+My
+RL
+Ut
+Yy
+Yy
+RL
+JJ
+JJ
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(16,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+JJ
+JJ
+RL
+Yy
+Yy
+My
+RL
+Ut
+Yy
+My
+RL
+Ut
+Yy
+Yy
+RL
+JJ
+JJ
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(17,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+JJ
+JJ
+JJ
+RL
+Yy
+SD
+My
+RL
+Ut
+SD
+My
+RL
+Ut
+Ck
+Yy
+RL
+JJ
+JJ
+JJ
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(18,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+RL
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+RL
+RL
+RL
+RL
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(19,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+vr
+vr
+vr
+xQ
+Lf
+Lf
+RL
+aQ
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+aQ
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(20,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+vr
+vr
+vr
+xQ
+Lf
+Lf
+RL
+Sd
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Sd
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(21,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+vr
+vr
+vr
+xQ
+Lf
+Lf
+RL
+RL
+RL
+RL
+RL
+Lf
+Lf
+Lf
+RL
+RL
+RL
+RL
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(22,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+RL
+RL
+RL
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+Rc
+pL
+Rc
+BF
+Ci
+Ci
+Ci
+BF
+Rc
+pL
+Rc
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(23,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+Ao
+Ao
+Ao
+pB
+ug
+Fi
+gL
+pB
+mH
+mH
+mH
+xr
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(24,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+sh
+tu
+Lf
+Lf
+RL
+VY
+Lf
+Lf
+Ci
+eM
+Eq
+iV
+Ci
+Lf
+Lf
+Nd
+xr
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(25,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+LG
+LG
+LG
+Ci
+SG
+Zl
+qZ
+Ci
+TL
+TL
+TL
+xr
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(26,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+Rc
+Rc
+Rc
+bD
+lY
+Lf
+dt
+bD
+Rc
+Rc
+Rc
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(27,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+Rc
+Rc
+Rc
+bD
+lY
+Lf
+dt
+bD
+Rc
+Rc
+Rc
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(28,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+LS
+LS
+LS
+Ci
+RC
+qp
+RC
+Ci
+If
+If
+If
+xr
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(29,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+Lf
+Lf
+Lf
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+VY
+Lf
+Lf
+Ci
+RC
+kQ
+RC
+Ci
+Lf
+Lf
+Nd
+xr
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(30,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+RL
+RL
+RL
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+sW
+sW
+sW
+Ub
+RC
+JR
+RC
+Ub
+rj
+rj
+rj
+xr
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(31,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+Rc
+st
+Rc
+BF
+Ci
+Ci
+Ci
+BF
+Rc
+st
+Rc
+RL
+oP
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(32,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+RL
+RL
+RL
+RL
+RL
+Lf
+Lf
+Lf
+RL
+RL
+RL
+RL
+RL
+RL
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(33,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+RL
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(34,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+gk
+vr
+xQ
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+RL
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(35,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+gk
+vr
+xQ
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+oP
+oP
+VE
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(36,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+gk
+vr
+xQ
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(37,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(38,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(39,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(40,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(41,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(42,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+Lf
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(43,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+RL
+RL
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+vr
+Lf
+RL
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(44,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(45,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(46,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(47,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(48,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(49,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(50,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(51,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(52,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(53,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(54,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(55,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(56,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(57,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(58,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(59,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(60,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(61,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(62,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Pq
+pg
+fQ
+OI
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(63,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+pg
+pg
+fQ
+fQ
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(64,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Pe
+Pe
+OF
+OF
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(65,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Pq
+Pe
+Ua
+OI
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(66,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(67,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+pg
+Vy
+Vy
+ag
+Vy
+Vy
+it
+Vy
+Vy
+bX
+Vy
+Vy
+xz
+Vy
+fQ
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(68,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Vy
+Vy
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+Vy
+Vy
+fQ
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(69,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+oP
+oP
+oP
+oP
+Fw
+Fw
+Uw
+Uw
+Fw
+Fw
+Uw
+Uw
+Fw
+Fw
+oP
+oP
+oP
+oP
+oP
+oP
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(70,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+lQ
+sg
+sg
+PB
+PB
+sg
+sg
+dl
+Fw
+Fw
+Fw
+Fw
+Fw
+oP
+oP
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(71,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Wr
+Wr
+Wr
+Wr
+XJ
+vL
+yy
+kA
+kA
+kA
+vh
+Lm
+Wr
+Wr
+Wr
+Wr
+Fw
+oP
+oP
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(72,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+bs
+Ll
+Ll
+Ll
+XJ
+kA
+kA
+kA
+kA
+kA
+kA
+Lm
+ss
+ss
+ss
+VI
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(73,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Wr
+Wr
+Wr
+Wr
+XJ
+vL
+kA
+xC
+GL
+xC
+vL
+Lm
+Wr
+Wr
+Wr
+Wr
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(74,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+LP
+Bl
+Bl
+Bl
+XJ
+kA
+kA
+xC
+GL
+xC
+kA
+Lm
+Qw
+Qw
+Qw
+vf
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(75,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Wr
+Wr
+Wr
+Wr
+XJ
+vL
+kA
+uy
+kA
+kA
+vL
+Lm
+Wr
+Wr
+Wr
+Wr
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(76,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+KO
+qa
+Ih
+NZ
+kA
+pk
+jr
+Ho
+Fw
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(77,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+oP
+oP
+Lo
+Fw
+Jb
+kA
+NZ
+kA
+Zw
+Fw
+Fw
+Fw
+kA
+kA
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(78,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+oP
+oP
+nH
+Fw
+gp
+Ps
+NZ
+tp
+rg
+Fw
+kA
+kA
+kA
+GQ
+lS
+Sq
+SQ
+Ee
+Ee
+Sq
+SQ
+XE
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(79,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Fw
+Fw
+Fw
+Fw
+Fw
+PX
+NZ
+YF
+Fw
+Fw
+Fw
+Fw
+Fw
+SS
+uz
+jW
+xO
+ac
+ac
+jW
+xO
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(80,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Fw
+fZ
+BH
+fZ
+uT
+NZ
+kN
+NZ
+sk
+fZ
+BH
+fZ
+Fw
+ur
+uz
+qk
+AE
+ac
+ac
+qk
+AE
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(81,1,1) = {"
+Sw
+Sw
+Sw
+jh
+Sw
+SY
+oP
+Uw
+Py
+Py
+Py
+EU
+Kd
+Hy
+aL
+EU
+Eh
+Eh
+Eh
+Uw
+xk
+uz
+ac
+LH
+ac
+ac
+ac
+ac
+yp
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(82,1,1) = {"
+Pq
+pg
+fQ
+OI
+Sw
+SY
+oP
+Uw
+kA
+kA
+Ih
+NZ
+nz
+ZX
+we
+NZ
+kA
+kA
+kA
+Uw
+cT
+uz
+ac
+ym
+ac
+ac
+ac
+ac
+ra
+RM
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(83,1,1) = {"
+pg
+pg
+fQ
+fQ
+Sw
+SY
+oP
+Uw
+ST
+ST
+ST
+NZ
+pb
+Rr
+Vc
+NZ
+nR
+nR
+nR
+Uw
+kA
+uz
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+am
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(84,1,1) = {"
+Pe
+Pe
+OF
+OF
+Sw
+SY
+oP
+Fw
+fZ
+fZ
+fZ
+ej
+Wf
+kA
+XU
+ej
+fZ
+fZ
+fZ
+Fw
+OB
+uz
+ac
+lM
+ac
+ac
+ac
+ac
+ac
+am
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(85,1,1) = {"
+Pq
+Pe
+OF
+OI
+Sw
+SY
+oP
+Fw
+fZ
+fZ
+fZ
+ej
+Wf
+kA
+XU
+ej
+fZ
+fZ
+fZ
+Fw
+jI
+uz
+ac
+jp
+ch
+ch
+ch
+ch
+ch
+au
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(86,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Uw
+rF
+rF
+pS
+NZ
+Xr
+eT
+Xr
+NZ
+tq
+tq
+tq
+Uw
+kA
+VH
+Uj
+yp
+PK
+kA
+kA
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(87,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Uw
+kA
+kA
+kA
+NZ
+Xr
+Kz
+Xr
+NZ
+kA
+kA
+kA
+Uw
+kA
+uz
+ac
+DQ
+Fw
+IE
+kA
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(88,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Uw
+bI
+bI
+bI
+yf
+Xr
+TO
+Xr
+yf
+rH
+rH
+rH
+Uw
+kA
+uz
+ac
+yp
+JB
+kA
+kA
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(89,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Fw
+fZ
+cN
+fZ
+Wy
+NZ
+NZ
+NZ
+NU
+fZ
+cN
+fZ
+Fw
+kA
+uz
+ac
+ra
+Ee
+Ee
+XE
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(90,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+gl
+NZ
+eS
+Fw
+Fw
+Fw
+Fw
+Fw
+IE
+uz
+ac
+ac
+ua
+ac
+yp
+zo
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(91,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+Fw
+up
+Cd
+Cj
+Uw
+Mn
+NZ
+Ow
+rv
+rv
+XV
+XV
+Fw
+kA
+uz
+ac
+ac
+ac
+ac
+yp
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(92,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+PQ
+On
+kA
+sA
+Uw
+Mn
+qY
+Ow
+rv
+rv
+XV
+XV
+Uw
+AG
+uz
+ac
+ac
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(93,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+Fw
+oq
+ta
+eH
+GL
+Mn
+Rt
+Ow
+rv
+rv
+XV
+XV
+Uw
+AG
+uz
+ac
+ac
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(94,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+Fw
+Zf
+kT
+Qr
+Ki
+QD
+EX
+Ow
+kA
+kA
+kA
+Fj
+Fw
+hV
+uz
+ac
+jp
+ch
+ch
+zV
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(95,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+Fw
+cO
+kA
+lm
+GL
+Mn
+yA
+Ow
+wr
+wr
+Vu
+Vu
+Uw
+UP
+TD
+ac
+yp
+IC
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(96,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+PQ
+On
+kA
+lX
+Uw
+Mn
+NZ
+Ow
+wr
+wr
+Vu
+Vu
+Uw
+xe
+uz
+ac
+yp
+IC
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(97,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+kA
+kA
+kA
+Fw
+Jc
+Ek
+ud
+Uw
+Vq
+NZ
+Me
+wr
+wr
+Vu
+Vu
+Fw
+kA
+ge
+ac
+yp
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(98,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+dM
+oO
+Ig
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+vo
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(99,1,1) = {"
+Sw
+Sw
+Fw
+Fw
+fp
+IJ
+dk
+dk
+dk
+dk
+IJ
+fp
+ZN
+NZ
+nJ
+Dl
+MF
+lS
+Jg
+Jg
+RM
+gd
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(100,1,1) = {"
+Sw
+Sw
+Fw
+Xe
+Fc
+wz
+wz
+wz
+wz
+wz
+wz
+wz
+nm
+NZ
+kA
+zW
+SU
+uz
+Eo
+MS
+am
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(101,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+wz
+ic
+St
+Ad
+KE
+kH
+wz
+nm
+NZ
+NZ
+NZ
+SU
+uz
+ac
+MS
+am
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(102,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+tK
+nF
+kA
+sF
+mL
+Ii
+wz
+nm
+KS
+HG
+Ow
+SU
+uz
+ac
+ac
+am
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(103,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+Sn
+yx
+TK
+Bs
+NZ
+sN
+wz
+RW
+KS
+lv
+Ow
+SU
+uz
+Fh
+BZ
+am
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(104,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+hk
+kl
+kA
+Yh
+Ma
+Ii
+wz
+nm
+NZ
+kA
+yH
+ln
+BD
+Ns
+Ns
+au
+ch
+ch
+zV
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(105,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+wz
+rz
+St
+Ad
+jb
+BA
+wz
+nm
+NZ
+kA
+sR
+Fw
+Uw
+Uw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(106,1,1) = {"
+Sw
+Sw
+Fw
+WQ
+Fc
+Fc
+Fc
+Fc
+Fc
+Fc
+Fc
+Fc
+nm
+NZ
+kA
+Ow
+Fw
+uc
+iy
+MT
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(107,1,1) = {"
+Sw
+Sw
+Fw
+WQ
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+DK
+nm
+NZ
+kA
+JY
+Fw
+UQ
+rR
+kP
+rk
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(108,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+wz
+ic
+St
+Ad
+KE
+kH
+wz
+nm
+NZ
+Fo
+Ow
+Uw
+ts
+kA
+kA
+Sl
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(109,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+tK
+nF
+kA
+wo
+tr
+Ii
+wz
+nm
+KS
+HG
+or
+Uw
+jC
+nQ
+kA
+ga
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(110,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+Sn
+yx
+TK
+Bs
+NZ
+sN
+wz
+RW
+NZ
+lv
+YF
+Fw
+QS
+kA
+UX
+il
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(111,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+hk
+kl
+kA
+QO
+gG
+Ii
+wz
+nm
+NZ
+pk
+Ho
+yG
+Pp
+ST
+dQ
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(112,1,1) = {"
+Sw
+Sw
+Fw
+oK
+wz
+wz
+rz
+St
+Ad
+jb
+BA
+wz
+nm
+NZ
+Ow
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(113,1,1) = {"
+Sw
+Sw
+Fw
+MP
+QM
+wz
+wz
+wz
+wz
+wz
+wz
+QM
+nm
+NZ
+Ow
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(114,1,1) = {"
+Sw
+Sw
+Fw
+Fw
+tU
+PP
+tU
+tU
+tU
+tU
+PP
+tU
+NW
+jr
+Ho
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(115,1,1) = {"
+Sw
+Sw
+Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
