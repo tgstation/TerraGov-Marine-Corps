@@ -71,10 +71,10 @@ SUBSYSTEM_DEF(monitor)
 
 	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		//Balance spawners output
-		for(var/silo in GLOB.xeno_resin_silos)
+		for(var/silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
-		for(var/spawner in GLOB.xeno_spawner)
+		for(var/spawner in GLOB.xeno_spawners_by_hive[XENO_HIVE_NORMAL])
 			SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 
@@ -113,21 +113,21 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.elder_T4 * ELDER_T4_WEIGHT
 			. += stats.king * KING_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
+			. += (length(GLOB.alive_human_list) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += length(GLOB.alive_xeno_list) * XENOS_LIFE_WEIGHT
 			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-			. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-			. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
-			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
-			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.sadar_in_use) * SADAR_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.b17_in_use) * B17_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.b18_in_use) * B18_PRICE * REQ_POINTS_WEIGHT
+			. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * SPAWNING_POOL_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
-			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
 		if(SHUTTERS_CLOSED)
-			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
-			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_xeno_list) * XENOS_LIFE_WEIGHT_PREGAME
 		if(SHIPSIDE)
-			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_SHIPSIDE
-			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_xeno_list) * XENOS_LIFE_WEIGHT_SHIPSIDE
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/balance_xeno_team()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos) == 0)
+	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) == 0)
 		return 1
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/xeno_alive_plus_burrowed = length(HN.get_total_xeno_number()) + (xeno_job.total_positions - xeno_job.current_positions)

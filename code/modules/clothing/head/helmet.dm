@@ -122,10 +122,15 @@
 	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	///marine helmet behaviour flags
 	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_STORE_GARB
-	///reference to helmet storage object
-	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
 	/// items that fit in the helmet: strict type = iconstate to show
 	var/static/list/allowed_helmet_items = list(
 		/obj/item/tool/lighter/random = "helmet_lighter_",
@@ -152,50 +157,24 @@
 		/obj/item/clothing/head/hairflower = "flower_pin",
 	)
 
-/obj/item/storage/internal/marinehelmet
-	storage_slots = 2
-	max_w_class = WEIGHT_CLASS_TINY
-	bypass_w_limit = list(
-		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/snacks,
-	)
-	cant_hold = list(
-		/obj/item/stack,
-	)
-	max_storage_space = 2
-
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
-	pockets = new pockets(src)
-
-
-/obj/item/clothing/head/helmet/marine/attack_hand(mob/living/user)
-	if(pockets.handle_attack_hand(user))
-		return ..()
-
-/obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
-	if(pockets.handle_mousedrop(usr, over_object))
-		..()
-
-/obj/item/clothing/head/helmet/marine/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	return pockets.attackby(I, user, params)
-
-/obj/item/clothing/head/helmet/marine/on_pocket_insertion()
-	update_icon()
-
-/obj/item/clothing/head/helmet/marine/on_pocket_removal()
-	update_icon()
 
 /obj/item/clothing/head/helmet/marine/update_icon()
-	if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+
+	if(length(armor_storage.storage.contents) && (flags_marine_helmet & HELMET_GARB_OVERLAY))
 		if(!helmet_overlays["band"])
 			var/image/I = image('icons/obj/clothing/headwear/marine_hats.dmi', src, "helmet_band")
 			helmet_overlays["band"] = I
 
 		if(!helmet_overlays["item"])
-			var/obj/O = pockets.contents[1]
+			var/obj/O = armor_storage.storage.contents[1]
 			if(O.type in allowed_helmet_items)
 				var/image/I = image('icons/obj/clothing/headwear/marine_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
 				helmet_overlays["item"] = I
@@ -356,11 +335,6 @@
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
 	soft_armor = list(MELEE = 85, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 85, BIO = 50, FIRE = 80, ACID = 80)
-	pockets = /obj/item/storage/internal/imperialhelmet
-
-/obj/item/storage/internal/imperialhelmet
-	max_w_class = 2
-	max_storage_space = 6
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace helmet"

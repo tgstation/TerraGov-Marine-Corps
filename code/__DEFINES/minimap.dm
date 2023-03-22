@@ -39,8 +39,11 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_CAVES "#3f3c3cef"
 #define MINIMAP_AREA_JUNGLE "#2b5b2bee"
 #define MINIMAP_AREA_COLONY "#6c6767d8"
-#define MINIMAP_AREA_LZ "#ebe5e5e3"
-#define MINIMAP_AREA_CONTESTED_ZONE "#0603c4ee"
+#define MINIMAP_AREA_LZ "#ebe5e5b6"
+#define MINIMAP_AREA_REQ "#936824bb"
+#define MINIMAP_AREA_PREP "#5b92e5c9"
+#define MINIMAP_AREA_ESCAPE "#446791ab"
+#define MINIMAP_AREA_LIVING "#2a9201cb"
 
 //Prison
 #define MINIMAP_AREA_CELL_MAX "#570101ee"

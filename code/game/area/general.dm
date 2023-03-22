@@ -833,6 +833,8 @@
 	ambience = list('sound/ambience/ambimalf.ogg')
 
 //MedBay
+/area/medical
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/medical/medbay
 	name = "Abandoned Medbay"
@@ -956,6 +958,8 @@
 	icon_state = "exam_room"
 
 //Security
+/area/security
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/security/main
 	name = "Abandoned Security Office"
@@ -1079,6 +1083,8 @@
 	icon_state = "garden"
 
 //rnd (Research and Development
+/area/rnd
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/rnd/research
 	name = "Abandoned Research and Development"
