@@ -306,7 +306,7 @@
 			if(!istype(H.wear_ear, /obj/item/radio/headset/mainship))
 				continue //if they don't have a marine headset they aren't a valid target
 			var/obj/item/radio/headset/mainship/cam_headset = H.wear_ear
-			if(cam_headset.camera.status) //if their camera is off they aren't a valid camera
+			if(cam_headset.camera.status) //if their camera is off they aren't a valid target
 				starting_point = get_turf(H)
 				break //we found a valid target, we're done
 
