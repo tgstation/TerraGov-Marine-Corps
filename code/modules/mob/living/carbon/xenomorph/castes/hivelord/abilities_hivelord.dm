@@ -143,7 +143,7 @@
 	T.balloon_alert(X, "Tunnel dug")
 	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
-	var/obj/structure/xeno/tunnel/newt = new(T, X.hivenumber)
+	var/obj/structure/xeno/tunnel/newt = new(T, X.get_xeno_hivenumber())
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
@@ -217,8 +217,7 @@
 	succeed_activate()
 
 	playsound(owner, "alien_resin_build", 25)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, xeno_owner.hivenumber)
+	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
 

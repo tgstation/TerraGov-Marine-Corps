@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T)
+	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
