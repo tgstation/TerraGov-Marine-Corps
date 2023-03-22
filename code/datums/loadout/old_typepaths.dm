@@ -9,8 +9,19 @@
 /obj/item/clothing/head/modular/marine/m10x/corpsman
 /obj/item/clothing/head/modular/marine/m10x/standard
 
+/obj/item/clothing/head/helmet/marine/robot
+/obj/item/clothing/head/helmet/marine/robot/light
+/obj/item/clothing/head/helmet/marine/robot/heavy
+
+/obj/item/clothing/suit/storage/marine/robot
+/obj/item/clothing/suit/storage/marine/robot/light
+/obj/item/clothing/suit/storage/marine/robot/heavy
 
 //Changing item_representation typepaths also breaks loadouts horribly.
+
+/datum/item_representation/suit_with_storage
+	///The storage of the suit
+	var/datum/item_representation/storage/pockets
 
 /datum/item_representation/modular_armor
 	///List of attachments on the armor.

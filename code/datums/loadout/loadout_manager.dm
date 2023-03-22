@@ -210,6 +210,18 @@
 						new_helmet.current_variant = old_helmet.current_variant
 						new_helmet.attachments = old_helmet.attachments
 						loadout.item_list[slot_head_str] = new_helmet
+				else if(loadout.version < 11)
+					var/datum/item_representation/old_hat = loadout.item_list[slot_head_str]
+					var/datum/item_representation/hat/modular_helmet/new_hat = new
+					if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot")
+						new_hat.item_type = /obj/item/clothing/head/modular/robot
+					if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/light")
+						new_hat.item_type = /obj/item/clothing/head/modular/robot/light
+					if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/heavy")
+						new_hat.item_type = /obj/item/clothing/head/modular/robot/heavy
+					new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
+					new_hat.current_variant = "black"
+					loadout.item_list[slot_head_str] = new_hat
 				var/datum/item_representation/armor_suit/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
 				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
@@ -229,6 +241,19 @@
 						new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
 						new_armor.current_variant = old_armor.current_variant
 						new_armor.attachments = old_armor.attachments
+						loadout.item_list[slot_wear_suit_str] = new_armor
+				else if(istype(armor, /datum/item_representation/suit_with_storage))
+					if(loadout.version < 11)
+						var/datum/item_representation/suit_with_storage/old_armor = loadout.item_list[slot_wear_suit_str]
+						var/datum/item_representation/armor_suit/modular_armor/new_armor = new
+						if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot")
+							new_armor.item_type = /obj/item/clothing/suit/modular/robot
+						if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/light")
+							new_armor.item_type = /obj/item/clothing/suit/modular/robot/light
+						if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/heavy")
+							new_armor.item_type = /obj/item/clothing/suit/modular/robot/heavy
+						new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
+						new_armor.current_variant = "black"
 						loadout.item_list[slot_wear_suit_str] = new_armor
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
