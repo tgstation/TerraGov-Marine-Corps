@@ -156,7 +156,7 @@
 /area/mainship/command/telecomms)
 "aaE" = (
 /turf/open/floor/plating,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation/pod/three)
 "aaG" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/mainship/red{
@@ -1353,7 +1353,7 @@
 "alj" = (
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/pod/four)
 "alw" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical)
@@ -2346,7 +2346,7 @@
 /area/mainship/hull/port_hull)
 "aVB" = (
 /turf/open/floor/plating,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/pod/two)
 "aVG" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -5402,7 +5402,7 @@
 "bDr" = (
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation/pod/one)
 "bDw" = (
 /obj/structure/sink{
 	dir = 4
@@ -7139,6 +7139,10 @@
 	dir = 8
 	},
 /area/mainship/living/port_emb)
+"bVW" = (
+/obj/machinery/door/airlock/mainship/evacuation,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/evacuation/pod/four)
 "bWd" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
@@ -7770,7 +7774,7 @@
 /area/mainship/squads/alpha)
 "chJ" = (
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/two)
 "cik" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -8203,7 +8207,7 @@
 "cLn" = (
 /obj/machinery/door/airlock/mainship/evacuation,
 /turf/open/floor/mainship/mono,
-/area/mainship/powered)
+/area/mainship/living/evacuation/pod/two)
 "cMO" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/paper_bin{
@@ -8956,7 +8960,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation)
 "dYv" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/faxmachine,
@@ -8971,7 +8975,7 @@
 /area/mainship/hull/port_hull)
 "dYA" = (
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation)
 "dZB" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -10419,7 +10423,7 @@
 "gyM" = (
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/pod/two)
 "gyX" = (
 /turf/open/floor/mainship/white{
 	dir = 8
@@ -13814,7 +13818,7 @@
 "mrT" = (
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation/pod/three)
 "msT" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -14636,6 +14640,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"nKm" = (
+/obj/machinery/door/airlock/mainship/evacuation,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/evacuation/pod/one)
 "nKK" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
@@ -14763,6 +14771,9 @@
 	dir = 10
 	},
 /area/mainship/shipboard/starboard_point_defense)
+"nRA" = (
+/turf/open/floor/plating,
+/area/mainship/living/evacuation/pod/four)
 "nRV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15041,7 +15052,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/two)
 "ooo" = (
 /turf/open/floor/mainship/silver{
 	dir = 10
@@ -15637,7 +15648,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation)
 "pvn" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /obj/machinery/light/mainship{
@@ -17183,6 +17194,10 @@
 	dir = 10
 	},
 /area/mainship/command/cic)
+"rWC" = (
+/obj/machinery/door/airlock/mainship/evacuation,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/evacuation/pod/three)
 "rWR" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/mainship/nometal,
@@ -17897,6 +17912,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
+"tmm" = (
+/turf/open/floor/plating,
+/area/mainship/living/evacuation/pod/one)
 "tmp" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
@@ -18455,7 +18473,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/two)
 "uns" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
@@ -36593,11 +36611,11 @@ aaa
 aai
 tDH
 aap
-aaE
-aaE
-aaE
-aaE
-aaE
+tmm
+tmm
+tmm
+tmm
+tmm
 aap
 bXL
 inF
@@ -36850,11 +36868,11 @@ aaa
 aai
 rbR
 aap
-aaE
-aaE
-aaE
-aaE
-aaE
+tmm
+tmm
+tmm
+tmm
+tmm
 aap
 acg
 inF
@@ -37107,11 +37125,11 @@ bfU
 aai
 beX
 aap
-aaE
-aaE
-aaE
-aaE
-aaE
+tmm
+tmm
+tmm
+tmm
+tmm
 aap
 bYY
 inF
@@ -37364,11 +37382,11 @@ tDH
 tDH
 aal
 aap
-aaE
-aaE
+tmm
+tmm
 bDr
-aaE
-aaE
+tmm
+tmm
 aap
 acg
 inF
@@ -37623,7 +37641,7 @@ bfq
 aap
 aap
 aap
-cLn
+nKm
 aap
 aap
 aap
@@ -71805,7 +71823,7 @@ vyf
 aap
 aap
 aap
-cLn
+rWC
 aap
 aap
 bhO
@@ -71829,7 +71847,7 @@ bMS
 bhO
 aVs
 aVs
-cLn
+bVW
 aVs
 aVs
 aVs
@@ -72084,11 +72102,11 @@ aAV
 ivT
 iIc
 bhO
-aVB
-aVB
+nRA
+nRA
 alj
-aVB
-aVB
+nRA
+nRA
 aVs
 phl
 aVs
@@ -72341,11 +72359,11 @@ bJX
 ivT
 bMV
 bhO
-aVB
-aVB
-aVB
-aVB
-aVB
+nRA
+nRA
+nRA
+nRA
+nRA
 aVs
 tUM
 aVs
@@ -72598,11 +72616,11 @@ bjs
 ivT
 oXT
 bhO
-aVB
-aVB
-aVB
-aVB
-aVB
+nRA
+nRA
+nRA
+nRA
+nRA
 aVs
 uaA
 jwN
@@ -72855,11 +72873,11 @@ bKa
 qAW
 btq
 bhO
-aVB
-aVB
-aVB
-aVB
-aVB
+nRA
+nRA
+nRA
+nRA
+nRA
 aVs
 tUM
 aVs
