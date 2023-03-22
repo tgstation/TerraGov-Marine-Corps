@@ -142,7 +142,7 @@
 
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip(mob/user)
-	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
+	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform) in contents
 	if(found)
 		return found.do_quick_equip(user)
 	return src
