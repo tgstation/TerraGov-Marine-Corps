@@ -61,7 +61,7 @@
 	var/obj/item/explosive/mine/located_mine = locate(/obj/item/explosive/mine) in get_turf(throwed_mine)
 	if(located_mine?.armed)
 		return
-	throwed_mine.deploy_mine(null, iff_signal)
+	throwed_mine.deploy(null, iff_signal)
 
 /obj/machinery/deployable/minelayer/attackby(obj/item/I, mob/user, params)
 	. = ..()

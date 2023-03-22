@@ -1734,6 +1734,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/coilgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 0.1, slowdown = 1, knockback = 3)
 
+//See mine.dm for actual values per mine; bonus projectiles and scatter have to be set here
+/datum/ammo/bullet/claymore_shrapnel
+	name = "claymore shrapnel"
+	icon_state = "flechette"
+	damage = 20
+	penetration = 15
+	sundering = 10	//Low pen to not insta kill armored humans, but high sunder to leave heavily armored benos shredded
+	damage_falloff = 0
+	shell_speed = 0.3
+	bonus_projectiles_type = /datum/ammo/bullet/claymore_shrapnel/additional
+	bonus_projectiles_amount = 20
+	bonus_projectiles_scatter = 5
+	shrapnel_chance = 80
+	accuracy = 100	//It's entirely based on scatter, no need to add RNG accuracy
+
+/datum/ammo/bullet/claymore_shrapnel/additional
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/claymore_shrapnel/pmc
+	bonus_projectiles_scatter = 3
 
 /*
 //================================================
@@ -2331,7 +2351,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
-	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+	mine.deploy(null, TGMC_LOYALIST_IFF)
 
 /datum/ammo/mortar/rocket/mlrs
 	shell_speed = 2.5

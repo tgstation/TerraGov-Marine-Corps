@@ -1186,6 +1186,9 @@ will handle it, but:
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
+ *
+ *	This proc uses Get_Angle(), which takes the object's actual sprite dimensions into account
+ *	This creates unintended results, so always use a turf reference for the atom/center; get_turf(the_object_being_used)
  */
 /proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
 	var/right_angle = cone_direction + cone_width/2
@@ -1250,6 +1253,9 @@ will handle it, but:
  *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects like projectiles
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
  *	air_pass - whether to bypass non airtight atoms
+ *
+ *	This proc uses Get_Angle(), which takes the object's actual sprite dimensions into account
+ *	This creates unintended results, so always use a turf reference for the atom/center; get_turf(the_object_being_used)
  */
 /proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	var/right_angle = cone_direction + cone_width/2
