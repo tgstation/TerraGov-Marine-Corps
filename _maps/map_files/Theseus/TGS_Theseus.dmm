@@ -7774,7 +7774,7 @@
 /area/mainship/squads/alpha)
 "chJ" = (
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/two)
 "cik" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -8960,7 +8960,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation)
 "dYv" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/faxmachine,
@@ -8975,7 +8975,7 @@
 /area/mainship/hull/port_hull)
 "dYA" = (
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation)
 "dZB" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -15052,7 +15052,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/two)
 "ooo" = (
 /turf/open/floor/mainship/silver{
 	dir = 10
@@ -15648,7 +15648,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/starboard_hull)
+/area/mainship/living/evacuation)
 "pvn" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /obj/machinery/light/mainship{
@@ -18473,7 +18473,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hull/port_hull)
+/area/mainship/living/evacuation/two)
 "uns" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)

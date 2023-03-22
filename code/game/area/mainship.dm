@@ -464,6 +464,8 @@
 	icon_state = "departures"
 	minimap_color = MINIMAP_AREA_ESCAPE
 
+/area/mainship/living/evacuation/two //some ships have entirely separate evac areas
+
 /area/mainship/living/evacuation/pod
 	requires_power = FALSE
 
