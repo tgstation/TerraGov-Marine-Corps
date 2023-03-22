@@ -28,8 +28,8 @@
 	return /mob/living/carbon/xenomorph/larva
 
 /datum/job/xenomorph/return_spawn_turf()
-	if(length_char(GLOB.xeno_resin_silos))
-		return pick(GLOB.xeno_resin_silos)
+	if(length_char(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
+		return pick(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
 /datum/job/xenomorph/radio_help_message(mob/M)

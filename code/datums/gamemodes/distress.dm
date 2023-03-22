@@ -35,8 +35,6 @@
 	. = ..()
 	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2000)
 
-	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
@@ -72,7 +70,7 @@
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
 		return
-	if(GLOB.xeno_resin_silos.len)
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
 		if(siloless_hive_timer)
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
