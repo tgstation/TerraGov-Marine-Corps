@@ -8,29 +8,29 @@
 	///The quick equip slot the keybind will equip to, checked by the reciever of the keybind signal.
 	var/quick_equip_slot
 
-/datum/keybinding/human/quick_equip/quick_equip_1
+/datum/keybinding/human/quick_equip/quick_equip_primary
 	hotkey_keys = list("E")
 	name = "quick_equip_1"
 	full_name = "Quick equip 1"
 	quick_equip_slot = 1
 
-/datum/keybinding/human/quick_equip/quick_equip_2
+/datum/keybinding/human/quick_equip/quick_equip_secondary
 	hotkey_keys = list("ShiftE")
 	name = "quick_equip_2"
 	full_name = "Quick equip 2"
 	quick_equip_slot = 2
 
-/datum/keybinding/human/quick_equip/quick_equip_3
+/datum/keybinding/human/quick_equip/quick_equip_tertiary
 	name = "quick_equip_3"
 	full_name = "Quick equip 3"
 	quick_equip_slot = 3
 
-/datum/keybinding/human/quick_equip/quick_equip_4
+/datum/keybinding/human/quick_equip/quick_equip_quaternary
 	name = "quick_equip_4"
 	full_name = "Quick equip 4"
 	quick_equip_slot = 4
 
-/datum/keybinding/human/quick_equip/quick_equip_5
+/datum/keybinding/human/quick_equip/quick_equip_quinary
 	name = "quick_equip_5"
 	full_name = "Quick equip 5"
 	quick_equip_slot = 5
