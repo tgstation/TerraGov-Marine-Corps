@@ -101,20 +101,20 @@
 
 			reagents.handle_reactions()
 			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
-									span_notice("You take a blood sample from [A]."), null, 4)
+								span_notice("You take a blood sample from [A]."), null, 4)
 
-		else if(istype(A, /obj)) //if not mob
-			if(!A.reagents.total_volume)
-				to_chat(user, "<span class='warning'>[A] is empty.")
-				return
+	else if(istype(A, /obj)) //if not mob
+		if(!A.reagents.total_volume)
+			to_chat(user, "<span class='warning'>[A] is empty.")
+			return
 
-			if(!A.is_drawable())
-				to_chat(user, span_warning("You cannot directly remove reagents from this object."))
-				return
+		if(!A.is_drawable())
+			to_chat(user, span_warning("You cannot directly remove reagents from this object."))
+			return
 
-			draw_reagent(A, user)
-			on_reagent_change()
-			return TRUE
+		draw_reagent(A, user)
+	on_reagent_change()
+	return TRUE
 
 
 	if(!reagents.total_volume)
