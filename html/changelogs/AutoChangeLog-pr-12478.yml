@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed a loadout screen BSOD"
+  - code_imp: "removed the pocket var from boots and some hats, replacing them with irremovable attachments."
+  - code_imp: "Loadout version progressed to 11."

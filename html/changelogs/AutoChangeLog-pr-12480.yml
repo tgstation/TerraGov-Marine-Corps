@@ -1,0 +1,4 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - bugfix: "Added missing things to the valhalla medplus."

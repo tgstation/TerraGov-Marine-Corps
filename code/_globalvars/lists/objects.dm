@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
 
-GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/xeno/tunnel
+GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)						//list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(mainship_lights)					//list of mainship lights, used for altering intensity and color during red and delta security levels
@@ -40,15 +40,14 @@ GLOBAL_LIST_EMPTY(ai_status_displays)
 GLOBAL_LIST_EMPTY(alert_consoles)			// Station alert consoles, /obj/machinery/computer/station_alert
 
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
-GLOBAL_LIST_EMPTY(xeno_resin_silos)
-GLOBAL_LIST_EMPTY(xeno_turret_turfs)
-GLOBAL_LIST_EMPTY(xeno_resin_turrets)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
-GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
-GLOBAL_LIST_EMPTY(xeno_spawner)
-GLOBAL_LIST_EMPTY(xeno_structure)
-GLOBAL_LIST_EMPTY(xeno_critical_structure)
+GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
+GLOBAL_LIST_EMPTY(xeno_resin_silos_by_hive)
+GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
+GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
+GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
+GLOBAL_LIST_EMPTY(xeno_critical_structures)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)

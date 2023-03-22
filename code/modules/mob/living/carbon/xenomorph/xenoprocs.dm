@@ -18,10 +18,11 @@
 
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/xeno/tunnel/T AS in GLOB.xeno_tunnels)
-		if(user.issamexenohive(T))
-			var/distance = get_dist(user, T)
-			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
+	for(var/hive AS in GLOB.xeno_tunnels_by_hive)
+		for(var/obj/structure/xeno/tunnel/T in GLOB.xeno_tunnels_by_hive[hive])
+			if(user.issamexenohive(T))
+				var/distance = get_dist(user, T)
+				dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
 
 	var/datum/browser/popup = new(user, "tunnelstatus", "<div align='center'>Tunnel List</div>", 600, 600)
 	popup.set_content(dat)
@@ -64,8 +65,8 @@
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(num2text(resin_silo.number_silo) == silo_number)
 				set_tracked(resin_silo)
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
