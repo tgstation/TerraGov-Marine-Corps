@@ -301,14 +301,12 @@
 	if(length(GLOB.active_cas_targets))
 		starting_point = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
 
-	else if(length(GLOB.humans_by_zlevel["2"])) //if we don't have a cas target we pick a random human on ground as our starting pos
-		for(var/mob/living/carbon/human/H in GLOB.humans_by_zlevel["2"])
-			if(!istype(H.wear_ear, /obj/item/radio/headset/mainship))
-				continue //if they don't have a marine headset they aren't a valid target
-			var/obj/item/radio/headset/mainship/cam_headset = H.wear_ear
-			if(cam_headset.camera.status) //if their camera is off they aren't a valid target
-				starting_point = get_turf(H)
-				break //we found a valid target, we're done
+	else //if we don't have any targets use the minimap to select a starting position
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		user.client.screen += map
+		var/list/polled_coords = map.get_coords_from_click(user)
+		user.client.screen -= map
+		starting_point = locate(polled_coords[1], polled_coords[2], 2)
 
 	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
 		starting_point = GLOB.minidropship_start_loc
