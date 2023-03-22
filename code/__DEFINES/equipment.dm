@@ -203,6 +203,7 @@
 #define SLOT_IN_R_POUCH 30
 #define SLOT_IN_HEAD 31
 #define SLOT_IN_BELT 32
+#define SLOT_IN_UNIFORM_HOLSTER 33
 //=================================================
 
 
@@ -225,6 +226,7 @@
 #define slot_l_store_str "slot_l_store"
 #define slot_r_store_str "slot_r_store"
 #define slot_tie_str "slot_tie"
+#define slot_uniform_holster_str "slot_uniform_holster"
 
 ///Correspondance between slot strings and slot numbers
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
@@ -246,6 +248,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_l_store" = SLOT_L_STORE,
 	"slot_r_store" = SLOT_R_STORE,
 	"slot_tie" = SLOT_ACCESSORY,
+	"slot_uniform_holster" = SLOT_IN_UNIFORM_HOLSTER,
 ))
 
 //I hate that this has to exist
@@ -364,7 +367,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_L_POUCH,\
 	SLOT_IN_R_POUCH,\
 	SLOT_IN_HEAD,\
-	SLOT_IN_ACCESSORY,\
+	SLOT_IN_UNIFORM_HOLSTER,\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
@@ -375,14 +378,15 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_STORAGE,\
 	SLOT_IN_SUIT,\
 	SLOT_IN_BELT,\
-	SLOT_IN_BACKPACK\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_ACCESSORY\
 	)
 
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
-	SLOT_IN_ACCESSORY,\
+	SLOT_IN_UNIFORM_HOLSTER,\
 	SLOT_S_STORE,\
 	SLOT_IN_L_POUCH,\
 	SLOT_IN_R_POUCH,\
@@ -392,6 +396,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_L_STORE,\
 	SLOT_R_STORE,\
 	SLOT_BACK,\
+	SLOT_IN_ACCESSORY,\
 	SLOT_IN_BOOT,\
 	SLOT_IN_HEAD\
 	)
@@ -428,6 +433,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_R_POUCH,\
 	SLOT_IN_HEAD,\
 	SLOT_IN_BELT,\
+	SLOT_IN_UNIFORM_HOLSTER,\
 )
 
 #define ITEM_NOT_EQUIPPED 0
@@ -443,6 +449,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"Helmet",\
 	"Left Pocket",\
 	"Right Pocket",\
+	"Uniform Holster",\
 	"Webbing",\
 	"Belt",\
 	"Belt Holster",\
@@ -468,6 +475,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_L_STORE
 		if("Right Pocket")
 			return SLOT_R_STORE
+		if("Uniform Holster")
+			return SLOT_IN_UNIFORM_HOLSTER
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
 		if("Belt")
@@ -497,6 +506,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Left Pocket"
 		if(SLOT_R_STORE)
 			return "Right Pocket"
+		if(SLOT_IN_UNIFORM_HOLSTER)
+			return "Uniform Holster"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
 		if(SLOT_IN_BELT)

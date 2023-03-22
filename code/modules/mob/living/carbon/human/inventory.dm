@@ -96,6 +96,8 @@
 			return has_limb(CHEST)
 		if(SLOT_ACCESSORY)
 			return has_limb(CHEST)
+		if(SLOT_IN_UNIFORM_HOLSTER)
+			return has_limb(CHEST)
 		if(SLOT_IN_BOOT)
 			return has_limb(FOOT_RIGHT) && has_limb(FOOT_LEFT)
 		if(SLOT_IN_BACKPACK)

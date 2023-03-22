@@ -935,6 +935,7 @@
 		equip_slots |= SLOT_IN_L_POUCH
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
+		equip_slots |= SLOT_IN_UNIFORM_HOLSTER
 		equip_slots |= SLOT_IN_ACCESSORY
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
