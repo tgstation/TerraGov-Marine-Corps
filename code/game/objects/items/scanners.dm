@@ -102,7 +102,6 @@ REAGENT SCANNER
 	if(M.species.species_flags & NO_SCAN)
 		balloon_alert(user, "Not Organic")
 		return
-	balloon_alert(user, "Analyzed Vitals")
 	patient = M
 	current_user = user
 	if(show_patient)
