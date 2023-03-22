@@ -33,7 +33,7 @@
 /obj/item/clothing/under/marine/squad/neck/charile
 	name = "\improper TGMC Charile turtleneck"
 	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
-	icon_state = "charile_merc"
+	icon_state = "charlie_merc"
 
 /obj/item/clothing/under/marine/squad/neck/bravo
 	name = "\improper TGMC Bravo turtleneck"
