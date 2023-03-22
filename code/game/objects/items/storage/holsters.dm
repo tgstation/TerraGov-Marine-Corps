@@ -250,7 +250,7 @@
 /obj/item/storage/holster/blade/harvester_claymore/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/twohanded/glaive/harvester(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/katana
 	name = "\improper katana scabbard"
