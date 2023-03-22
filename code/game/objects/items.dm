@@ -659,27 +659,26 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(SLOT_IN_HEAD)
 			if(!H.head)
 				return FALSE
-			if(istype(H.head, /obj/item/clothing/head/modular))
-				var/obj/item/clothing/head/modular/T = H.head
-				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-					return FALSE
-				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			if(istype(H.head, /obj/item/clothing/head/helmet/marine)) //old hats use the pocket var instead of storage attachments
-				var/obj/item/clothing/head/helmet/marine/T = H.head
-				if(!T.pockets)
-					return FALSE
-				var/obj/item/storage/internal/S = T.pockets
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-		if(SLOT_IN_BOOT)
-			var/obj/item/clothing/shoes/marine/S = H.shoes
-			if(!istype(S) || !S.pockets)
+			if(!istype(H.shoes, /obj/item/clothing/head))
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
+			var/obj/item/clothing/head/headwear = H.head
+			if(!headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+				return FALSE
+			var/obj/item/armor_module/storage/storage_module = headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+			var/obj/item/storage/storage = storage_module.storage
+			if(storage.can_be_inserted(src, warning))
+				return TRUE
+		if(SLOT_IN_BOOT)
+			if(H.shoes)
+				return FALSE
+			if(!istype(H.shoes, /obj/item/clothing/shoes))
+				return FALSE
+			var/obj/item/clothing/shoes/footwear = H.shoes
+			if(!footwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+				return FALSE
+			var/obj/item/armor_module/storage/storage_module = footwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+			var/obj/item/storage/storage = storage_module.storage
+			if(storage.can_be_inserted(src, warning))
 				return TRUE
 	return FALSE //Unsupported slot
 

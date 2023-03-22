@@ -302,11 +302,46 @@
 		/obj/item/reagent_containers/food/drinks/cans,
 	)
 
+/obj/item/armor_module/storage/boot
+	name = "boot storage module"
+	desc = "A small set of straps to hold something in your boot."
+	icon_state = ""
+	storage =  /obj/item/storage/internal/shoes/boot_knife
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+
+/obj/item/storage/internal/shoes/boot_knife
+	max_storage_space = 3
+	storage_slots = 1
+	draw_mode = TRUE
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol,
+		/obj/item/weapon/gun/shotgun/double/derringer,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/stack/throwing_knife,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/item/armor_module/storage/boot/full/Initialize()
+	. = ..()
+	new /obj/item/attachable/bayonetknife(storage)
+
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
-	icon_state = "invisible" //It is invisible
+	icon_state = ""
 	storage =  /obj/item/storage/internal/marinehelmet
-	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
+
+/obj/item/storage/internal/marinehelmet
+	max_storage_space = 2
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_TINY
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses,
+		/obj/item/reagent_containers/food/snacks,
+	)
+	cant_hold = list(
+		/obj/item/stack,
+	)
