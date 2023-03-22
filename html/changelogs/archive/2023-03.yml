@@ -354,3 +354,16 @@
   - bugfix: Fixed valhalla buttons
   novaepee:
   - rscadd: Add keybind for activate autorepair for combat robots
+2023-03-22:
+  Lumipharon:
+  - bugfix: Fixed an issue with targeting mounted guns when manned
+  - bugfix: Fixed a couple of minor  COPE sentry issues
+  Naaanii:
+  - rscadd: Adds tracker shells to regular weapon vendors.
+  - balance: Tracking fluid now layers over weeds.
+  Xander3359:
+  - rscadd: Healthscanner gloves, there are 8 available in the marine med, medics
+      can purchase them for 2 points from their vendor.
+  - imageadd: Healthscanner glove sprites.
+  ivanmixo:
+  - bugfix: Fixes slippery floors being slippery forever

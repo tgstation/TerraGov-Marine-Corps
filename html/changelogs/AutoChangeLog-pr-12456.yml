@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Healthscanner gloves, there are 8 available in the marine med, medics can purchase them for 2 points from their vendor."
-  - imageadd: "Healthscanner glove sprites."
