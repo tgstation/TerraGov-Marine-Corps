@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_PREP "#5b92e5c9"
 #define MINIMAP_AREA_ESCAPE "#446791ab"
 #define MINIMAP_AREA_LIVING "#2a9201cb"
+#define MINIMAP_AREA_LIVING_CAVE "#195700cb"
 
 //Prison
 #define MINIMAP_AREA_CELL_MAX "#570101ee"
