@@ -31,7 +31,7 @@
 	new /obj/item/storage/pouch/tools(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
-	new /obj/item/clothing/under/whites(src)
+	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
 
@@ -116,7 +116,7 @@
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
-	new /obj/item/clothing/under/whites(src)
+	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/tool/shovel/etool(src)
 	new /obj/item/clothing/head/modular/m10x(src)

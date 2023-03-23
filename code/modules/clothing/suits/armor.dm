@@ -45,14 +45,6 @@
 		/obj/item/storage/holster/blade
 	)
 
-
-/obj/item/clothing/suit/armor/vest/dutch
-	name = "armored jacket"
-	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "dutch_armor"
-	flags_armor_protection = CHEST|GROIN
-
 /obj/item/clothing/suit/armor/vest/admiral
 	name = "admiral's jacket"
 	desc = "An armoured jacket with gold regalia"

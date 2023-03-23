@@ -386,7 +386,7 @@
 /obj/item/clothing/mask/gas/modular
 	name = "style mask"
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
-	icon = 'icons/mob/modular/style_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/style_hats.dmi'
 	breathy = FALSE
 	item_icons = list(
 		slot_wear_mask_str = 'icons/mob/modular/style_hats_mob.dmi',
