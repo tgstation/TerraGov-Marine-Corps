@@ -26,13 +26,13 @@
 
 /obj/item/clothing/under/marine/ru/black/delta
 	name = "Delta squad turtleneck"
-	desc = "Tacticool looking, squad issued uniform. This one belongs to Bravo, smells like gunpowder."
+	desc = "Tacticool looking, squad issued uniform. This one belongs to Delta, smells like gunpowder."
 	icon_state = "delta_merc"
 	item_state = "delta_merc"
 
 /obj/item/clothing/under/marine/ru/black/charlie
 	name = "Charlie squad turtleneck"
-	desc = "Tacticool looking, squad issued uniform. This one belongs to Bravo, smells like perfume."
+	desc = "Tacticool looking, squad issued uniform. This one belongs to Charlie, smells like perfume."
 	icon_state = "charlie_merc"
 	item_state = "charlie_merc"
 
