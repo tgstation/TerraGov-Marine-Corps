@@ -34,7 +34,7 @@
 
 /client/verb/fix_layout()
 	set name = "Исправить раскладку"
-	set category = "Special verbs"
+	set category = "OOC"
 
 	set_macros()
 	to_chat(src, span_warning("Перерегистрация макросов выполнена."))
