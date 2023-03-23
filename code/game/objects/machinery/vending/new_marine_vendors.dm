@@ -759,7 +759,7 @@
 	name = "Full set of TGMC white dress uniform"
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	gear_to_spawn = list(
-		/obj/item/clothing/under/whites,
+		/obj/item/clothing/under/marine/whites,
 		/obj/item/clothing/suit/white_dress_jacket,
 		/obj/item/clothing/head/white_dress,
 		/obj/item/clothing/shoes/white,
@@ -770,7 +770,7 @@
 	name = "Full set of TGMC service uniform"
 	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	gear_to_spawn = list(
-		/obj/item/clothing/under/service,
+		/obj/item/clothing/under/marine/service,
 		/obj/item/clothing/head/garrisoncap,
 		/obj/item/clothing/head/servicecap,
 		/obj/item/clothing/shoes/marine/full,

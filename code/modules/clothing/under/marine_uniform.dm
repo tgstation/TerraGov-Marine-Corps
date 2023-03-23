@@ -231,7 +231,7 @@
 	desc = "A set of formal, yet comfy, clothing worn by scholars and researchers alike."
 	icon_state = "research_jumpsuit"
 
-/obj/item/clothing/under/whites
+/obj/item/clothing/under/marine/whites
 	name = "\improper TGMC white dress uniform"
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
@@ -239,7 +239,7 @@
 	item_state = "marine_whites" //with thanks to Manezinho
 	adjustment_variants = list()
 
-/obj/item/clothing/under/service
+/obj/item/clothing/under/marine/service
 	name = "\improper TGMC service uniform"
 	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	siemens_coefficient = 0.9
