@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Makes structures exist per hive, which prevents different hives from sharing larva gen rates"
