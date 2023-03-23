@@ -579,3 +579,19 @@
 
 //----WARLOCK END----//
 //============//
+//----SLIME START----//
+
+/mob/living/carbon/xenomorph/slime/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/slime/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/slime/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/slime/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----SLIME END----//
+//============//

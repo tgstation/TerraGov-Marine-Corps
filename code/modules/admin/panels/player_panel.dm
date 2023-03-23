@@ -466,14 +466,15 @@
 		<a href='?src=[ref];transform=combat_robot;mob=[REF(M)]'>Combat_Robot</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
-		<a href='?src=[ref];transform=zombie;mob=[REF(M)]'>Zombie</a> |
+		<a href='?src=[ref];transform=zombie;mob=[REF(M)]'>Zombie</a>
 		<br> Alien Tier 0:
-		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> |
+		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> |
+		<a href='?src=[ref];transform=slime;mob=[REF(M)]'>Slime</a>
 		<br> Alien Tier 2:
 		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
 		<a href='?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
@@ -488,14 +489,14 @@
 		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
 		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
 		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a>
-		<a href='?src=[ref];transform=gorger;mob=[REF(M)]'>Gorger</a>
+		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> |
+		<a href='?src=[ref];transform=gorger;mob=[REF(M)]'>Gorger</a> |
 		<a href='?src=[ref];transform=warlock;mob=[REF(M)]'>Warlock</a>
 		<br> Alien Tier 4:
 		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> |
 		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
 		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
-		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
+		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a>
 		<br>
 	"}
 

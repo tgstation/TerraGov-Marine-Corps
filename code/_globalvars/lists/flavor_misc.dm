@@ -142,6 +142,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"xenoking",
 	"xenoqueen",
 	"xenoshrike",
+	"slime",
 	"xray_engi",
 	"xray_leader",
 	"xray_medic",
