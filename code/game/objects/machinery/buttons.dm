@@ -268,6 +268,9 @@
 	if(!xeno_wanted)
 		return
 	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(user, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
 /obj/machinery/button/valhalla/xeno_button
@@ -292,6 +295,9 @@
 		return
 
 	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(X, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return
