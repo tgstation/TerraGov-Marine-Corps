@@ -20,13 +20,6 @@
 	taste_description = "sludge"
 	description = "A white blood-like liquid used by all Synthetics."
 
-/datum/reagent/blood/xeno_blood
-	name = "Acid Blood"
-	color = "#dffc00"
-	taste_description = "acid"
-	description = "A corrosive yellow-ish liquid..."
-
-
 /datum/reagent/water
 	name = "Water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
