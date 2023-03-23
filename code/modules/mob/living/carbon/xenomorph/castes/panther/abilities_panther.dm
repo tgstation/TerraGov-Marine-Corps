@@ -53,7 +53,7 @@
 		to_chat(H, span_xenowarning("We are hit by \the [X]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_tail_attack.ogg', 50, 1)
 
-	addtimer(CALLBACK(X, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	add_cooldown()
 
@@ -452,7 +452,7 @@
 	span_xenodanger("We effortlessly dodge the !"))
 
 	X.add_filter("runner_evasion", 2, gauss_blur_filter(5))
-	addtimer(CALLBACK(X, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	X.do_jitter_animation(4000)
 
 	var/turf/T = get_turf(X) //location of after image SFX

@@ -42,7 +42,7 @@
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/can_use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, PROC_REF(can_use_jetpack))
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
