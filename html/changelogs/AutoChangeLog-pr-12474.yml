@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Attempted to clean up some DMI mess for uniforms, suits and hats"
+  - bugfix: "Sectoids no longer show in incorrect helmet sprite"
