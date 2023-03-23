@@ -12,7 +12,7 @@
 
 /obj/item/pinpointer/Initialize()
 	. = ..()
-	tracked_list = GLOB.xeno_critical_structure
+	tracked_list = GLOB.xeno_critical_structures
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))

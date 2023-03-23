@@ -183,7 +183,7 @@
 /obj/machinery/researchcomp/proc/start_research(mob/living/user, research_time)
 	icon_state = "chamber_active_loaded"
 	researching = TRUE
-	addtimer(CALLBACK(src, .proc/finish_research), research_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_research)), research_time)
 
 ///Handles the research process completing
 /obj/machinery/researchcomp/proc/finish_research()

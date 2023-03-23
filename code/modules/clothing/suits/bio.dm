@@ -25,17 +25,6 @@
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0.9
 
-
-//Standard biosuit, orange stripe
-/obj/item/clothing/head/bio_hood/general
-	icon_state = "bio_general"
-	flags_armor_protection = HEAD|FACE|EYES
-
-/obj/item/clothing/suit/bio_suit/general
-	icon_state = "bio_general"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT
-
 //Virology biosuit, green stripe
 /obj/item/clothing/head/bio_hood/virology
 	icon_state = "bio_virology"

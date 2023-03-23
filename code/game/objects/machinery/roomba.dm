@@ -45,8 +45,8 @@
 
 /obj/machinery/roomba/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_AREA_EXITED, .proc/turn_around)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/suck_items)
+	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(suck_items))
 	start_processing()
 
 /obj/machinery/roomba/Destroy()
@@ -97,7 +97,7 @@
 		return
 	visible_message(span_warning("The [src] beeps angrily as it get stuck!"))
 	stop_processing()
-	addtimer(CALLBACK(src, .proc/reactivate), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reactivate)), 20 SECONDS)
 
 /obj/machinery/roomba/proc/reactivate()
 	stuck_counter = 0
@@ -142,7 +142,7 @@
 	claymore = I
 	claymore.armed = TRUE
 	var/static/list/explosive_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/attempt_mine_explode
+		COMSIG_ATOM_ENTERED = PROC_REF(attempt_mine_explode)
 	)
 	AddElement(/datum/element/connect_loc, explosive_connections)
 

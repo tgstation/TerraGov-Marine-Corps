@@ -31,7 +31,7 @@
 	new /obj/item/storage/pouch/tools(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
-	new /obj/item/clothing/under/whites(src)
+	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
 
@@ -116,7 +116,7 @@
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
-	new /obj/item/clothing/under/whites(src)
+	new /obj/item/clothing/under/marine/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/tool/shovel/etool(src)
 	new /obj/item/clothing/head/modular/m10x(src)
@@ -142,7 +142,7 @@
 		new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	else
 		new /obj/item/armor_module/storage/uniform/webbing(src)
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tool/extinguisher(src)

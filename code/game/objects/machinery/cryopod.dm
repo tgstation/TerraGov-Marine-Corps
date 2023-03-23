@@ -120,7 +120,7 @@
 	radio = new(src)
 	radio.set_frequency(frequency)
 	update_icon()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 /obj/machinery/cryopod/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -182,12 +182,6 @@
 
 /obj/item/storage/store_in_cryo()
 	for(var/obj/item/I AS in src)
-		I.store_in_cryo()
-	return ..()
-
-/obj/item/clothing/suit/storage/store_in_cryo()
-	for(var/obj/item/I AS in pockets)
-		pockets.remove_from_storage(I, loc)
 		I.store_in_cryo()
 	return ..()
 
@@ -314,4 +308,4 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()

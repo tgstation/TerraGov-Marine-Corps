@@ -1,3 +1,8 @@
+/datum/chemical_reaction/saline_glucose
+	name = "Saline-Glucose" //Chem to restore blood.
+	results = list(/datum/reagent/medicine/saline_glucose = 3)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 1, /datum/reagent/consumable/sugar = 1)
+
 /datum/chemical_reaction/tricordrazine
 	name = "Tricordrazine"
 	results = list(/datum/reagent/medicine/tricordrazine = 2)
@@ -172,11 +177,6 @@
 	required_reagents = list(/datum/reagent/medicine/lemoline = 1, /datum/reagent/consumable/larvajelly = 1)
 
 // Cloning chemicals
-/datum/chemical_reaction/expanded_biomass
-	name = "Biomass"
-	results = list(/datum/reagent/medicine/biomass/xeno = 10)
-	required_reagents = list(/datum/reagent/blood/xeno_blood = 10, /datum/reagent/medicine/biomass = 1)
-
 /datum/chemical_reaction/dupl_bicaridine
 	name = "Duplicate Bicaridine"
 	results = list(/datum/reagent/medicine/bicaridine = 2)

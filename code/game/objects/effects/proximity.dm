@@ -24,7 +24,7 @@
 	else if(hasprox_receiver == host) //Default case
 		hasprox_receiver = H
 	host = H
-	RegisterSignal(host, COMSIG_MOVABLE_MOVED, .proc/HandleMove)
+	RegisterSignal(host, COMSIG_MOVABLE_MOVED, PROC_REF(HandleMove))
 	last_host_loc = host.loc
 	SetRange(current_range,TRUE)
 
@@ -107,7 +107,7 @@
 	monitor = _monitor
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

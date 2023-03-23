@@ -21,7 +21,7 @@
 /obj/machinery/tank_part_fabricator/proc/set_busy(business = TRUE, timer)
 	busy = business
 	if(timer)
-		addtimer(CALLBACK(src, .proc/set_busy, !business), timer)
+		addtimer(CALLBACK(src, PROC_REF(set_busy), !business), timer)
 	update_icon()
 	updateUsrDialog()
 
@@ -170,7 +170,7 @@
 	visible_message(span_notice("[src] starts printing something."))
 	tank_points -= cost
 	set_busy()
-	addtimer(CALLBACK(src, .proc/dispense_tank_part, part_type), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(dispense_tank_part), part_type), 10 SECONDS)
 
 /obj/machinery/tank_part_fabricator/proc/dispense_tank_part(part_type)
 	set_busy(FALSE)

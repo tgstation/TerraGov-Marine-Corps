@@ -504,12 +504,15 @@
 			slowdown_multiplier *= 2 //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
-		if(0 to 1 && prob(10))
-			to_chat(L, span_warning("You feel your legs tense up.") )
-		if(2 to 3.9 && prob(20))
-			to_chat(L, span_warning("You feel your legs go numb.") )
-		if(4 to INFINITY && prob(30))
-			to_chat(L, span_danger("You can barely feel your legs!") )
+		if(0 to 1)
+			if(prob(10))
+				to_chat(L, span_warning("You feel your legs tense up.") )
+		if(2 to 3.9)
+			if(prob(20))
+				to_chat(L, span_warning("You feel your legs go numb.") )
+		if(4 to INFINITY)
+			if(prob(30))
+				to_chat(L, span_danger("You can barely feel your legs!") )
 
 	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.5 * slowdown_multiplier)
 
@@ -530,7 +533,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_add(mob/living/L, metabolism, affecting)
-	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(transvitox_human_damage_taken))
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
 	var/fire_loss = L.getFireLoss(TRUE)
@@ -642,7 +645,7 @@
 	overdose_crit_threshold = 50
 
 /datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
-	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/zombify)
+	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(zombify))
 
 /datum/reagent/zombium/on_overdose_stop(mob/living/L, metabolism)
 	UnregisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE)
@@ -666,7 +669,7 @@
 	if(!H.has_working_organs())
 		return
 	H.do_jitter_animation(1000)
-	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
 
 
 //SOM nerve agent

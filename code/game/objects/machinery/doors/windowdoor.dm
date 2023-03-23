@@ -35,7 +35,7 @@
 		icon_state = "[icon_state]"
 		base_state = icon_state
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -61,7 +61,7 @@
 /obj/machinery/door/window/proc/open_and_close()
 	open()
 	var/time_to_close = check_access(null) ? 5 SECONDS : 2 SECONDS
-	addtimer(CALLBACK(src, .proc/close), time_to_close)
+	addtimer(CALLBACK(src, PROC_REF(close)), time_to_close)
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)
@@ -105,7 +105,7 @@
 	icon_state = "[base_state]open"
 	do_animate("opening")
 	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
-	addtimer(CALLBACK(src, .proc/finish_open), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/window/finish_open()
@@ -130,7 +130,7 @@
 
 	density = TRUE
 
-	addtimer(CALLBACK(src, .proc/finish_close), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/window/finish_close()

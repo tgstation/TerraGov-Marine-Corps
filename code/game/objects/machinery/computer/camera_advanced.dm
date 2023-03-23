@@ -313,8 +313,8 @@
 
 /mob/camera/aiEye/remote/hud/overwatch/Initialize()
 	..()
-	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
-	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
+	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
+	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 ///Add to our current aura list and update overlays.
 /mob/camera/aiEye/remote/hud/overwatch/proc/add_emitted_auras(source, list/new_auras)

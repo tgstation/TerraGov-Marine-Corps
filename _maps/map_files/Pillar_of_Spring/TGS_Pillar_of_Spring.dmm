@@ -297,7 +297,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hallways/starboard_hallway)
+/area/mainship/living/evacuation)
 "avK" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/bronze,
@@ -632,7 +632,7 @@
 /area/mainship/squads/req)
 "aNM" = (
 /turf/open/floor/plating/mainship,
-/area/mainship/hallways/starboard_hallway)
+/area/mainship/living/evacuation)
 "aNP" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
@@ -6102,7 +6102,7 @@
 "hZr" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/mainship,
-/area/mainship/hallways/starboard_hallway)
+/area/mainship/living/evacuation)
 "hZt" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -9889,7 +9889,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/mainship/hallways/starboard_hallway)
+/area/mainship/living/evacuation)
 "mNK" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -14599,7 +14599,7 @@
 "sUb" = (
 /obj/structure/sign/evac,
 /turf/open/floor/plating/mainship,
-/area/mainship/hallways/starboard_hallway)
+/area/mainship/living/evacuation)
 "sUe" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4

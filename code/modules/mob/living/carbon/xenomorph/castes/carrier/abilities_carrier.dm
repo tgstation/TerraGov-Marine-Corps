@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T, owner)
+	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/do_activate)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(do_activate))
 
 /datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /// Helper proc for action acitvation via signal
 /datum/action/xeno_action/carrier_panic/proc/do_activate()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/action_activate)
+	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	while(xeno_carrier.huggers > 0)
 		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier))
 		step_away(new_hugger, xeno_carrier, 1)
-		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
+		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--
 	succeed_activate(INFINITY) //Consume all remaining plasma
 	add_cooldown()
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))
@@ -389,7 +389,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()

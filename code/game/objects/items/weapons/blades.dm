@@ -336,8 +336,8 @@
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/post_throw)
-	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, .proc/stop_fire), _callback_fire = CALLBACK(src, .proc/throw_knife))
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
+	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(stop_fire)), _callback_fire = CALLBACK(src, PROC_REF(throw_knife)))
 
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
@@ -349,9 +349,9 @@
 	if(user.get_active_held_item() != src && user.get_inactive_held_item() != src)
 		return
 	living_user = user
-	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-	RegisterSignal(user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
+	RegisterSignal(user, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()

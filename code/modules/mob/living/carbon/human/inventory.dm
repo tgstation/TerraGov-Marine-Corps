@@ -2,13 +2,13 @@
 /mob/living/carbon/human/proc/async_do_quick_equip()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip)
+	INVOKE_ASYNC(src, PROC_REF(do_quick_equip))
 
 ///async signal wrapper for do_quick_equip
 /mob/living/carbon/human/proc/async_do_quick_equip_alt()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, .proc/do_quick_equip, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(do_quick_equip), TRUE)
 
 /// runs equip, if passed use_alternate = TRUE will try to use the alternate preference slot
 /mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)
@@ -373,32 +373,24 @@
 			var/obj/item/storage/S = back
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
-			if(istype(wear_suit, /obj/item/clothing/suit/modular))
-				var/obj/item/clothing/suit/modular/T = wear_suit
-				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/S = U.storage
-				S.handle_item_insertion(W, FALSE, src)
-				S.close(src)
-			if(istype(wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
-				var/obj/item/clothing/suit/storage/T = wear_suit
-				var/obj/item/storage/internal/S = T.pockets
-				S.handle_item_insertion(W, FALSE, src)
-				S.close(src)
+			if(istype(wear_suit, /obj/item/clothing/suit))
+				var/obj/item/clothing/suit/suit = wear_suit
+				if(!suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/storage_module = suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/storage = storage_module.storage
+				storage.handle_item_insertion(W, FALSE, src)
 		if(SLOT_IN_BELT)
 			var/obj/item/storage/belt/S = belt
 			S.handle_item_insertion(W, FALSE, src)
 		if(SLOT_IN_HEAD)
-			if(istype(head, /obj/item/clothing/head/modular))
-				var/obj/item/clothing/head/modular/T = head
-				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/S = U.storage
-				S.handle_item_insertion(W, FALSE, src)
-				S.close(src)
-			if(istype(head, /obj/item/clothing/head/helmet/marine)) //old hats use pocket var instead of storage attachments
-				var/obj/item/clothing/head/helmet/marine/T = head
-				var/obj/item/storage/internal/S = T.pockets
-				S.handle_item_insertion(W, FALSE, src)
-				S.close(src)
+			if(istype(head, /obj/item/clothing/head))
+				var/obj/item/clothing/head/headwear = head
+				if(!headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/storage_module = headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/storage = storage_module.storage
+				storage.handle_item_insertion(W, FALSE, src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)

@@ -32,8 +32,6 @@
 	. = ..()
 	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2 * SILO_PRICE + 4 * XENO_TURRET_PRICE)
 
-	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
@@ -69,7 +67,7 @@
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
 		return
-	if(GLOB.xeno_resin_silos.len)
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
 		if(siloless_hive_timer)
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
@@ -80,7 +78,7 @@
 		return
 
 	silo_owner.xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	siloless_hive_timer = addtimer(CALLBACK(src, .proc/siloless_hive_collapse), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
+	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
 
 ///called by [/proc/update_silo_death_timer] after [DISTRESS_SILO_COLLAPSE] elapses to end the round
 /datum/game_mode/infestation/distress/proc/siloless_hive_collapse()
