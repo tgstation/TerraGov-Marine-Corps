@@ -4911,7 +4911,7 @@
 "zu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/prison/bright_clean/two,
-/area/prison/monorail/west)
+/area/icy_caves/caves/northwestmonorail)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
