@@ -1,4 +1,3 @@
-GLOBAL_LIST_EMPTY(deployable_items)
 
 /datum/element/deployable_item
 	element_flags = ELEMENT_BESPOKE
@@ -20,7 +19,6 @@ GLOBAL_LIST_EMPTY(deployable_items)
 	undeploy_time = _undeploy_time
 
 	var/obj/item/attached_item = target
-	LAZYADD(GLOB.deployable_items[attached_item.type], attached_item)
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
@@ -29,36 +27,32 @@ GLOBAL_LIST_EMPTY(deployable_items)
 /datum/element/deployable_item/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source, COMSIG_ITEM_EQUIPPED)
-	LAZYREMOVE(GLOB.deployable_items[source.type], source)
 
 ///Register click signals to be ready for deploying
 /datum/element/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
 	SIGNAL_HANDLER
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/deploy, TRUE) //You can hold more than one deployable item at once
+	RegisterSignal(item_equipped, COMSIG_ITEM_AFTERATTACK_ALTERNATE, .proc/deploy)
 	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, .proc/unregister_signals)
 
 ///Unregister and stop waiting for click to deploy
 /datum/element/deployable_item/proc/unregister_signals(obj/item/item_unequipped, mob/user)
 	SIGNAL_HANDLER
-	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
+	UnregisterSignal(item_unequipped, COMSIG_ITEM_AFTERATTACK_ALTERNATE)
 	UnregisterSignal(item_unequipped, COMSIG_ITEM_UNEQUIPPED)
 
 ///Wrapper for proc/finish_deploy
-/datum/element/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
+/datum/element/deployable_item/proc/deploy(atom/source, atom/target, mob/user, has_proximity, click_parameters)
 	SIGNAL_HANDLER
-	if(!isturf(location))
+	if(!target || !isturf(target) || get_turf(user) == target || !(user.Adjacent(target)))
 		return
-	if(ISDIAGONALDIR(get_dir(user,location)))
+	if(ISDIAGONALDIR(get_dir(user, target)))
 		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(!(item_in_active_hand) || !(item_in_active_hand in GLOB.deployable_items[item_in_active_hand.type]))
+	if(!(item_in_active_hand))
 		return
-	var/list/modifiers = params2list(params)
-	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
-		return
-	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, location)
+	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, target)
 	return COMSIG_KB_ACTIVATED
 
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
