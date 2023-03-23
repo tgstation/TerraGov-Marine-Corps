@@ -254,3 +254,12 @@ GLOBAL_LIST_EMPTY(cinematics)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "planet_end"
+
+/datum/cinematic/briefing
+	icon = 'icons/misc/briefing.dmi'
+	id = CINEMATIC_BRIEFING
+	runtime = 7 SECONDS
+	cleanup_time = 15 SECONDS
+
+/datum/cinematic/crash_nuke/content()
+	screen.icon_state = "initial"

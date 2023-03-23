@@ -121,8 +121,8 @@
 
 //marine hats
 /obj/item/clothing/head/modular/style/beret
-	name = "TGMC beret"
-	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	name = "USCM beret"
+	desc = "A hat used by the USCM, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon_state = "tgmc_beret"
 
 	icon_state_variants = list(
@@ -157,8 +157,8 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/boonie
-	name = "TGMC boonie"
-	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
+	name = "USCM boonie"
+	desc = "A boonie hat used by the USCM, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
 	icon_state = "boonie"
 
 	icon_state_variants = list(
@@ -175,8 +175,8 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/cap
-	name = "TGMC cap"
-	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
+	name = "USCM cap"
+	desc = "A common patrol cap used by the USCM, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
 	icon_state = "tgmccap"
 
 	icon_state_variants = list(
@@ -193,8 +193,8 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/slouchhat
-	name = "TGMC slouch hat"
-	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
+	name = "USCM slouch hat"
+	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE USCM' markings under the hat."
 	icon_state = "slouchhat"
 
 	icon_state_variants = list(
@@ -211,8 +211,8 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/ushanka
-	name = "TGMC ushanka"
-	desc = "A comfortable ushanka used by the TGMC. Will keep you warm in even the most harshest artic enviroments."
+	name = "USCM ushanka"
+	desc = "A comfortable ushanka used by the USCM. Will keep you warm in even the most harshest artic enviroments."
 	icon_state = "tgmcushanka"
 
 	icon_state_variants = list(
@@ -229,7 +229,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/campaignhat
-	name = "TGMC campaign hat"
+	name = "USCM campaign hat"
 	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
 	icon_state = "campaignhat"
 
@@ -247,7 +247,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/beanie
-	name = "TGMC beanie"
+	name = "USCM beanie"
 	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
 	icon_state = "beanie"
 
@@ -265,7 +265,7 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/headband
-	name = "TGMC headband"
+	name = "USCM headband"
 	desc = "A headband. Will keep the sweat off your eyes and also keep you looking cool."
 	icon_state = "headband"
 
@@ -283,8 +283,8 @@
 	current_variant = "black"
 
 /obj/item/clothing/head/modular/style/bandana
-	name = "TGMC bandana"
-	desc = "A bandana that goes on your head. Has TGMC markings on the back tie, and it seems that the knot will never come undone somehow."
+	name = "USCM bandana"
+	desc = "A bandana that goes on your head. Has USCM markings on the back tie, and it seems that the knot will never come undone somehow."
 	icon_state = "headbandana"
 
 	icon_state_variants = list(

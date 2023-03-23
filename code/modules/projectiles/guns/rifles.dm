@@ -2075,7 +2075,13 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m56"
 	item_state = "m56"
-	caliber = CALIBER_10x26_CASELESS //codex
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	muzzle_flash_offset = 21
 	max_shells = 300 //codex
 	force = 30
 	aim_slowdown = 0.95

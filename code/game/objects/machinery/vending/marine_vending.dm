@@ -1491,7 +1491,6 @@
 	products = list(
 		"Headwear" = list(
 			/obj/item/clothing/head/modular/style/beret = -1,
-			/obj/item/clothing/head/modular/style/classic_beret = -1,
 			/obj/item/clothing/head/modular/style/boonie = -1,
 			/obj/item/clothing/head/modular/style/cap = -1,
 			/obj/item/clothing/head/modular/style/slouchhat = -1,

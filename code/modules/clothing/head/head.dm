@@ -96,7 +96,7 @@
 
 
 /obj/item/clothing/head/tgmccap
-	name = "\improper TGMC cap"
+	name = "\improper USCM cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/cm_hats.dmi'

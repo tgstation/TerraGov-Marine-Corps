@@ -37,3 +37,6 @@ endmap
 
 map combat_patrol_base
 endmap
+
+map kemerdekaan
+endmap

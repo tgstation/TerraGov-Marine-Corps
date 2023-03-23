@@ -22,7 +22,7 @@
 #define MAP_MINERVA "Minerva"
 #define MAP_TWIN_PILLARS "Twin Pillars"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
-
+#define MAP_KEMERDEKAAN "Kemerdekaan"
 
 #define SEE_INVISIBLE_MINIMUM 5
 
@@ -117,6 +117,7 @@
 #define CINEMATIC_NUKE_NO_CORE 9
 #define CINEMATIC_NUKE_FAR 10
 #define CINEMATIC_CRASH_NUKE 11
+#define CINEMATIC_BRIEFING 12
 
 #define WORLD_VIEW "15x15"
 #define WORLD_VIEW_NUM 7

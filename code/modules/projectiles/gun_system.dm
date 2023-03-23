@@ -32,6 +32,8 @@
 	var/muzzle_flash_lum = 3
 	///Color of the muzzle flash effect.
 	var/muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
+	///Offset of muzzle flash effect.
+	var/muzzle_flash_offset = 8
 
 /*
  *  Firing Vars
@@ -890,30 +892,30 @@
 		switch(firing_angle)
 			if(0, 360)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_y = muzzle_flash_offset
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(1 to 44)
 				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_y = muzzle_flash_offset
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(45)
-				muzzle_flash.pixel_x = 8
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_x = muzzle_flash_offset
+				muzzle_flash.pixel_y = muzzle_flash_offset
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(46 to 89)
-				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_x = muzzle_flash_offset
 				muzzle_flash.pixel_y = round(4 * ((90 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(90)
-				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_x = muzzle_flash_offset
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(91 to 134)
-				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_x = muzzle_flash_offset
 				muzzle_flash.pixel_y = round(-3 * ((firing_angle - 90) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(135)
-				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_x = muzzle_flash_offset
 				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(136 to 179)
@@ -929,28 +931,28 @@
 				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(225)
-				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_x = -(muzzle_flash_offset)
 				muzzle_flash.pixel_y = -6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(226 to 269)
-				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_x = -(muzzle_flash_offset)
 				muzzle_flash.pixel_y = round(-6 * ((270 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(270)
-				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_x = -(muzzle_flash_offset)
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(271 to 314)
-				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_x = -(muzzle_flash_offset)
 				muzzle_flash.pixel_y = round(8 * ((firing_angle - 270) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(315)
-				muzzle_flash.pixel_x = -6
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_x = -(muzzle_flash_offset)
+				muzzle_flash.pixel_y = muzzle_flash_offset
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(316 to 359)
 				muzzle_flash.pixel_x = round(-6 * ((360 - firing_angle) / 45))
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_y = muzzle_flash_offset
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 
 		muzzle_flash.transform = null

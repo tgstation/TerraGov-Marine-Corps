@@ -1,7 +1,7 @@
 {
     "map_name": "USS Kemerdekaan",
-    "map_path": "map_files/Kemerdekaan",
-    "map_file": "Kemerdekaan.dmm",
+    "map_path": "map_files/kemerdekaan",
+    "map_file": "kemerdekaan.dmm",
     "traits": [{"Marine Main Ship": true}],
     "squads": 2
 }
