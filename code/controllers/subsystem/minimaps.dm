@@ -492,16 +492,16 @@ SUBSYSTEM_DEF(minimaps)
 		owner.client.screen -= map
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
+		if(minimap_displayed)
+			owner.client.screen -= locator
+			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+			minimap_displayed = FALSE
 		return
-	if(default_overwatch_level)
+	if(default_overwatch_level) //This is mildly scuffed at the moment.
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
-	if(minimap_displayed && !map)
-		owner.client.screen -= locator
-		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
-		minimap_displayed = FALSE
-	else if(minimap_displayed)
+	if(minimap_displayed)
 		owner.client.screen += map
 
 
