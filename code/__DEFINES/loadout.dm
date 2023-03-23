@@ -214,11 +214,12 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	),
 	FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
-		/obj/machinery/vending/uniform_supply,
-		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/uniform_supply/valhalla,
+		/obj/machinery/vending/armor_supply/valhalla,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/valhalla,
-		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/nopower,
+		/obj/machinery/vending/tool/nopower,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,

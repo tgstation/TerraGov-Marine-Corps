@@ -130,7 +130,7 @@
 			var/item_category = L[1]
 			var/cost = L[3]
 
-			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
+			if(faction != FACTION_VALHALLA && faction != FACTION_NEUTRAL && SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
 				to_chat(usr, span_warning("This item is banned by the Space Geneva Convention."))
 				if(icon_deny)
 					flick(icon_deny, src)

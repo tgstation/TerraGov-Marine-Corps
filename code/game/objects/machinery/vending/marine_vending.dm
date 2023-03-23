@@ -406,6 +406,7 @@
 /obj/machinery/vending/weapon/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -810,6 +811,7 @@
 
 /obj/machinery/vending/cigarette/nopower
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
@@ -1080,6 +1082,7 @@
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 	products = list(
 		"Pill Packet" = list(
 			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
@@ -1266,6 +1269,7 @@
 /obj/machinery/vending/armor_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
@@ -1424,6 +1428,7 @@
 /obj/machinery/vending/uniform_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
@@ -1445,6 +1450,7 @@
 /obj/machinery/vending/dress_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
@@ -1452,6 +1458,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
@@ -1555,6 +1562,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/revolver/small = -1,
@@ -1654,3 +1662,4 @@
 
 /obj/machinery/vending/tool/nopower
 	use_power = NO_POWER_USE
+	faction = FACTION_VALHALLA
