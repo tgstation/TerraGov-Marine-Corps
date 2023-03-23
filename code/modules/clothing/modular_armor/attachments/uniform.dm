@@ -111,7 +111,6 @@
 	name = "shoulder holster"
 	desc = "A handgun holster"
 	icon_state = "holster"
-	holster
 	storage = /obj/item/storage/internal/holster
 
 /obj/item/armor_module/storage/uniform/holster/freelancer

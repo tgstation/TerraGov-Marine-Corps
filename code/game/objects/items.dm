@@ -567,6 +567,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 			return FALSE
+		if(SLOT_IN_UNIFORM_HOLSTER)
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
+				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			return FALSE
 		if(SLOT_IN_ACCESSORY)
 			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
 				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]

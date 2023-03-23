@@ -331,6 +331,8 @@
 		return FALSE
 
 	//Each inventory slot can have more than one define associated with it. This refines the slot down to the item types actually associated with the define.
+	if(slot == SLOT_IN_UNIFORM_HOLSTER && (!(istype(I, /obj/item/clothing/under) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/holster))))
+		return FALSE
 	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
 		return FALSE
 	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))
