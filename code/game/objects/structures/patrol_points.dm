@@ -115,7 +115,10 @@
 	icon_state = "ud"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = LADDER_LAYER
+	layer = ABOVE_MOB_LAYER
+	pixel_x = -48
+	bound_height = 224
+	density = TRUE
 
 /obj/structure/patrol_point/ud/examine(mob/user)
 	. = ..()

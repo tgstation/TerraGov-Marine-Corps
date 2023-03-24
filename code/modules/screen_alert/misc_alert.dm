@@ -45,3 +45,5 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/lt
 	image_to_play = "lt"
+	layer = ABOVE_SPLASHSCREEN_LAYER
+	plane = ABOVE_SPLASHSCREEN_PLANE

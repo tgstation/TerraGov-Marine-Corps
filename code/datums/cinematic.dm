@@ -21,17 +21,19 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 
 /atom/movable/screen/cinematic
+	name = "test"
 	icon = 'icons/effects/station_explosion.dmi'
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
 	layer = SPLASHSCREEN_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = "CENTER-7,CENTER-7"
+	mouse_opacity = MOUSE_OPACITY_ICON
 
 
 /datum/cinematic
 	var/id = CINEMATIC_DEFAULT
 	var/list/watching = list() //List of clients watching this
+	var/list/watching_mobs = list() //List of mobs watching this
 	var/list/locked = list() //Who had notransform set during the cinematic
 	var/is_global = FALSE //Global cinematics will override mob-specific ones
 	var/atom/movable/screen/cinematic/screen
@@ -81,6 +83,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 			locked += M
 			if(M.client)
 				watching += M.client
+				watching_mobs += M
 				M.client.screen += screen
 		else if(is_global)
 			M.notransform = TRUE
@@ -256,10 +259,30 @@ GLOBAL_LIST_EMPTY(cinematics)
 	screen.icon_state = "planet_end"
 
 /datum/cinematic/briefing
-	icon = 'icons/misc/briefing.dmi'
 	id = CINEMATIC_BRIEFING
-	runtime = 7 SECONDS
-	cleanup_time = 15 SECONDS
+	runtime = 1 MINUTES
+	cleanup_time = 1 MINUTES
+	stop_ooc = FALSE
 
-/datum/cinematic/crash_nuke/content()
-	screen.icon_state = "initial"
+/datum/cinematic/briefing/content()
+	screen.screen_loc = "CENTER-9,CENTER-7"
+	screen.icon = 'icons/misc/briefing.dmi'
+	flick("initial", screen)
+	addtimer(CALLBACK(src, .proc/initializingseq), 19)
+	addtimer(CALLBACK(src, .proc/map_zoom), 68)
+	addtimer(CALLBACK(src, .proc/planet_zoom), 118)
+
+/datum/cinematic/briefing/proc/initializingseq()
+	flick("initializing", screen)
+	for(var/mob/watcher AS in watching_mobs)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "Listen up marines, briefing starting!", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+
+/datum/cinematic/briefing/proc/map_zoom()
+	flick("zoom", screen)
+	for(var/mob/watcher AS in watching_mobs)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "We have been sent to respond to the distress signal sent 8 days ago by the Patricks Rest colony.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+
+/datum/cinematic/briefing/proc/planet_zoom()
+	flick("planetzoom", screen)
+	for(var/mob/watcher AS in watching_mobs)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "You will deploy on Garuda-1 as soon as this briefing is over", /atom/movable/screen/text/screen_text/picture/potrait/lt)

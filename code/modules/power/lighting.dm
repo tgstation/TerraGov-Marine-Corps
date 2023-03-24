@@ -150,6 +150,9 @@
 /obj/machinery/light/mainship
 	base_state = "tube"
 
+/obj/machinery/light/mainship/blue
+	bulb_colour = COLOR_DISABLER_BLUE
+
 /obj/machinery/light/mainship/Initialize()
 	. = ..()
 	GLOB.mainship_lights += src
@@ -733,6 +736,11 @@
 	light_mask_type = /atom/movable/lighting_mask/rotating_conical
 	light_power = 6
 	light_range = 4
+
+/obj/machinery/floor_warn_light/yellow
+	icon_state = "rotating_alarm_yellow"
+	desc = "A spinning light."
+	light_color = COLOR_LIGHT_ORANGE
 
 /obj/machinery/floor_warn_light/self_destruct
 	name = "self destruct alarm light"
