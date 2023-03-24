@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscdel: "Deletes the unobtainable chem xeno_blood"
