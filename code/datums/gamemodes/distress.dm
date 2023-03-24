@@ -40,9 +40,6 @@
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
 		if(isxenolarva(xeno)) // Larva
 			xeno.evolution_stored = xeno.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
-		else // Handles Shrike etc
-			xeno.upgrade_stored = xeno.xeno_caste.upgrade_threshold
-
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
 	. = ..()
