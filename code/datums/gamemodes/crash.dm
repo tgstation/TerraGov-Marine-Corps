@@ -102,7 +102,7 @@
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 
-	for(var/i in GLOB.alive_xeno_list)
+	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
 			X.evolution_stored = X.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.

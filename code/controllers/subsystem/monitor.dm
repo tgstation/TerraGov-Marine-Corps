@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(monitor)
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	var/total_living_players = GLOB.alive_human_list.len + GLOB.alive_xeno_list.len
+	var/total_living_players = length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) + length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
 	maximum_connected_players_count = max(get_active_player_count(), maximum_connected_players_count)
 	if(gamestate == GROUNDSIDE)
@@ -113,8 +113,8 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.elder_T4 * ELDER_T4_WEIGHT
 			. += stats.king * KING_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-			. += (length(GLOB.alive_human_list) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-			. += length(GLOB.alive_xeno_list) * XENOS_LIFE_WEIGHT
+			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT
 			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
 			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
 			. += length(stats.sadar_in_use) * SADAR_PRICE * REQ_POINTS_WEIGHT
@@ -123,18 +123,18 @@ SUBSYSTEM_DEF(monitor)
 			. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * SPAWNING_POOL_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 		if(SHUTTERS_CLOSED)
-			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_PREGAME
-			. += length(GLOB.alive_xeno_list) * XENOS_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * HUMAN_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_PREGAME
 		if(SHIPSIDE)
-			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_SHIPSIDE
-			. += length(GLOB.alive_xeno_list) * XENOS_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * HUMAN_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_SHIPSIDE
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
 	human_on_ground = 0
 	human_in_FOB = 0
 	human_on_ship = 0
-	for(var/human in GLOB.alive_human_list)
+	for(var/human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/balance_xeno_team()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) == 0)
+	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) == 0)
 		return 1
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/xeno_alive_plus_burrowed = length(HN.get_total_xeno_number()) + (xeno_job.total_positions - xeno_job.current_positions)
@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(monitor)
  * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff
  */
 /datum/controller/subsystem/monitor/proc/apply_balance_changes()
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		xeno.apply_health_stat_buff()
 	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
 		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])
