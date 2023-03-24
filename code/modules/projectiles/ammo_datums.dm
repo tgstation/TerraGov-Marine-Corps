@@ -1742,7 +1742,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	sundering = 10	//Low pen to not insta kill armored humans, but high sunder to leave heavily armored benos shredded
 	damage_falloff = 0
-	shell_speed = 0.3
+	shell_speed = 1
 	bonus_projectiles_type = /datum/ammo/bullet/claymore_shrapnel/additional
 	bonus_projectiles_amount = 20
 	bonus_projectiles_scatter = 5

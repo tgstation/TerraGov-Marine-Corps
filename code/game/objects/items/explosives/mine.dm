@@ -37,6 +37,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/buffer_range = 0
 	///Determines how wide the cone for detecting victims is
 	var/angle = 0
+	///How long this mine is active once detonated; for things like slow or radiation fields
+	var/duration = 0
 	///Time before the mine explodes
 	var/detonation_delay = 0
 	///Time it takes to disable this mine
@@ -51,6 +53,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/discern_living = TRUE
 	///If TRUE, damage will cause this mine to explode; EMPs will disable volatile mines
 	var/volatile = FALSE
+	///Mine will not delete itself upon detonation if TRUE
+	var/reusable = FALSE
 
 	/* -- Explosion data -- */
 	///How large the devestation impact is
@@ -208,31 +212,46 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/obj/item/card/id/id = L.get_idcard()
 	if(id?.iff_signal & iff_signal)
 		return FALSE
+	trigger_explosion()
+
+///Trigger the mine; needs to be a separate proc so that we can use a timer
+/obj/item/explosive/mine/proc/trigger_explosion()
+	if(triggered)
+		return FALSE
+	triggered = TRUE
 	visible_message(span_danger("[icon2html(src, viewers(src))] \The [src] [detonation_message]."))
 	playsound(loc, detonation_sound, 50, sound_range = 7)
 	if(detonation_delay)
-		addtimer(CALLBACK(src, PROC_REF(trigger_explosion)), detonation_delay)
-		return TRUE
-	trigger_explosion()
-	return TRUE
+		return addtimer(CALLBACK(src, PROC_REF(explode)), detonation_delay)
+	explode()
 
-///Trigger an actual explosion and delete the mine.
-/obj/item/explosive/mine/proc/trigger_explosion()
-	if(triggered)
-		return
-	triggered = TRUE
+///Proc that actually causes the explosion
+/obj/item/explosive/mine/proc/explode()
+	if(!triggered)
+		return FALSE
 	if(light_explosion_range || heavy_explosion_range || uber_explosion_range)
 		//Directional-based explosives (like claymores) will spawn the explosion in front instead of on themselves
 		explosion((buffer_range && !pressure_activated) ? get_step(src, dir) : loc, uber_explosion_range, heavy_explosion_range, light_explosion_range, \
 		blinding_range, throw_range = launch_distance, color = explosion_color)
 	if(fire_range)
 		flame_radius(fire_range, (buffer_range && !pressure_activated) ? get_step(src, dir) : loc, fire_intensity, fire_duration, fire_damage, fire_stacks, colour = fire_color)
-	if(shrapnel_range && shrapnel_type)
+	if(shrapnel_range && shrapnel_type)	//Spawn projectiles, their associated data, and then launch it the direction it is facing
 		var/obj/projectile/projectile_to_fire = new /obj/projectile(get_turf(src))
 		projectile_to_fire.generate_bullet(shrapnel_type)
 		projectile_to_fire.fire_at(get_step(src, dir), src, src, shrapnel_range, projectile_to_fire.ammo.shell_speed)
+	if(duration)	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
+		extra_effects(duration)
+		if(reusable)
+			return addtimer(CALLBACK(src, PROC_REF(disarm)), duration)
+		return addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration)
+	if(reusable)
+		return disarm()
 	QDEL_LIST(triggers)
 	qdel(src)
+
+///Shove any code for special effects caused by this mine here
+/obj/item/explosive/mine/proc/extra_effects(duration = 1 SECONDS)
+	return
 
 ///If this mine is volatile, explode! Easier to copy paste this into several places
 /obj/item/explosive/mine/proc/volatility_check()
