@@ -315,16 +315,22 @@
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
+	obj_flags = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddElement(/datum/element/limb_support, supporting_limbs)
-	SSmonitor.stats.b18_in_use += src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	SSmonitor.stats.b18_in_use -= src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b18_in_use -= src
 	return ..()
+
+/obj/item/clothing/suit/storage/marine/specialist/valhalla
+	obj_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -336,13 +342,16 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	obj_flags = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	SSmonitor.stats.b17_in_use += src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	SSmonitor.stats.b17_in_use -= src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b17_in_use -= src
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/M3T
@@ -352,6 +361,11 @@
 	soft_armor = list(MELEE = 60, BULLET = 55, LASER = 45, ENERGY = 30, BOMB = 55, BIO = 35, FIRE = 30, ACID = 30)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
+
+/obj/item/clothing/suit/storage/marine/B17/valhalla
+	obj_flags = NONE
+
+////////////////////////////////
 
 /obj/item/clothing/suit/storage/marine/M3S
 	name = "\improper M3-S light armor"

@@ -299,14 +299,51 @@ SUBSYSTEM_DEF(minimaps)
 	layer = ABOVE_HUD_LAYER
 	screen_loc = "1,1"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
+	var/list/mob/choices_by_mob
 
 /atom/movable/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
+	choices_by_mob = list()
 	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
 	SSminimaps.add_to_updaters(src, flags, target)
 
+/**
+ * lets the user get coordinates by clicking the actual map
+ * Returns a list(x_coord, y_coord)
+ * note: sleeps until the user makes a choice or they disconnect
+ */
+/atom/movable/screen/minimap/proc/get_coords_from_click(mob/user)
+	//lord forgive my shitcode
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_click))
+	while(!choices_by_mob[user] && user.client)
+		stoplag(1)
+	UnregisterSignal(user, COMSIG_MOB_CLICKON)
+	. = choices_by_mob[user]
+	choices_by_mob -= user
+
+/**
+ * Handles fetching the targetted coordinates when the mob tries to click on this map
+ * does the following:
+ * turns map targetted pixel into a list(x, y)
+ * gets z level of this map
+ * x and y minimap centering is reverted, then the x2 scaling of the map is removed
+ * round up to correct if an odd pixel was clicked and make sure its valid
+ */
+/atom/movable/screen/minimap/proc/on_click(datum/source, atom/A, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	// we only care about absolute coords because the map is fixed to 1,1 so no client stuff
+	var/list/pixel_coords = params2screenpixel(modifiers["screen-loc"])
+	var/zlevel = SSminimaps.updators_by_datum[src].ztarget
+	var/x = (pixel_coords[1] - SSminimaps.minimaps_by_z["[zlevel]"].x_offset) / 2
+	var/y = (pixel_coords[2] - SSminimaps.minimaps_by_z["[zlevel]"].y_offset) / 2
+	var/c_x = clamp(CEILING(x, 1), 1, world.maxx)
+	var/c_y = clamp(CEILING(y, 1), 1, world.maxy)
+	choices_by_mob[source] = list(c_x, c_y)
+	return COMSIG_MOB_CLICK_CANCELED
 
 /atom/movable/screen/minimap_locator
 	name = "You are here"

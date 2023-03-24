@@ -31,7 +31,7 @@
 	hive_target.med_hud_set_status()
 	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, PROC_REF(handle_reward))
 	xeno_message("The Queen Mother senses that [hive_target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!", force = TRUE)
-	SEND_SOUND(GLOB.alive_xeno_list, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+	SEND_SOUND(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 
 //manages the hive reward and clean up
 /datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer)
@@ -45,7 +45,7 @@
 
 ///Actually applies the buff to the hive
 /datum/round_event/hive_threat/proc/bless_hive(mob/living/carbon/xenomorph/drainer)
-	for(var/mob/living/carbon/xenomorph/receiving_xeno AS in GLOB.alive_xeno_list)
+	for(var/mob/living/carbon/xenomorph/receiving_xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, -0.2)
 		receiving_xeno.gain_plasma(receiving_xeno.xeno_caste.plasma_max)
 		receiving_xeno.salve_healing()
@@ -57,11 +57,11 @@
 			if(!tier_two)
 				continue
 			receiving_xeno.upgrade_stored = tier_two.upgrade_threshold
-	SEND_SOUND(GLOB.alive_xeno_list, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+	SEND_SOUND(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 	addtimer(CALLBACK(src, PROC_REF(remove_blessing)), 2 MINUTES)
 
 ///debuffs the hive when the blessing expires
 /datum/round_event/hive_threat/proc/remove_blessing()
 	xeno_message("We feel the Queen Mother's blessing fade", force = TRUE)
-	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		receiving_xeno.remove_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE)
