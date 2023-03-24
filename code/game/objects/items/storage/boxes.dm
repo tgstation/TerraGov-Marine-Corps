@@ -338,32 +338,36 @@
 
 ////////// MARINES BOXES //////////////////////////
 
-
+//Generic land mine storage box, holds less
 /obj/item/storage/box/explosive_mines
-	name = "\improper M20 mine box"
-	desc = "A secure box holding anti-personel proximity mines."
+	name = "general mine box"
+	desc = "Holds any type of explosive mine."
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 10
-	spawn_type = /obj/item/explosive/mine
-	spawn_number = 5
+	max_storage_space = 8
+	can_hold = list(/obj/item/explosive/mine)
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
 
-/obj/item/storage/box/explosive_mines/large
-	name = "\improper M20 mine box"
-	desc = "A large secure box holding anti-personel proximity mines."
-	icon_state = "minebox"
+/obj/item/storage/box/explosive_mines/claymore
+	name = "\improper M20 claymore box"
+	desc = "A secure box holding anti-personnel claymore mines"
+	spawn_type = /obj/item/explosive/mine/claymore
+	max_storage_space = 10
+	spawn_number = 5
+	can_hold = list(/obj/item/explosive/mine/claymore)
+
+/obj/item/storage/box/explosive_mines/claymore/large
+	name = "large M20 claymore box"
 	max_storage_space = 20
-	spawn_type = /obj/item/explosive/mine
 	spawn_number = 10
 
-/obj/item/storage/box/explosive_mines/pmc
+/obj/item/storage/box/explosive_mines/claymore/pmc
 	name = "\improper M20P mine box"
-	spawn_type = /obj/item/explosive/mine/pmc
+	spawn_type = /obj/item/explosive/mine/claymore/pmc
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
