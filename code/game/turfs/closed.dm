@@ -23,7 +23,7 @@
 	. = ..()
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
-		if(isopenturf(turf_to_check))
+		if(!turf_to_check.density)
 			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
 			switch(direction)
 				if(NORTH)
@@ -151,7 +151,7 @@
 	. = ..()
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
-		if(isopenturf(turf_to_check) && !isspaceturf(turf_to_check))
+		if(!turf_to_check.density && !isspaceturf(turf_to_check))
 			minimap_color = MINIMAP_SOLID
 
 //desertdam rock
