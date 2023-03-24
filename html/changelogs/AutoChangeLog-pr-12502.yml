@@ -1,0 +1,4 @@
+author: "ClosetedSkeletonGH"
+delete-after: True
+changes:
+  - rscadd: "Many many more option's for robot random-name generation"
