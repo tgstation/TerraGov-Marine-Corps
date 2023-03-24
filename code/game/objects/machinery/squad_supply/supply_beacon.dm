@@ -47,7 +47,7 @@
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
-	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
+	message_admins("[ADMIN_TPMONTY(usr)] set up a supply beacon.")
 	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
