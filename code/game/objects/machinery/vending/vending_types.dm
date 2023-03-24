@@ -188,6 +188,7 @@
 			/obj/item/storage/pill_bottle/bicaridine = 15,
 			/obj/item/storage/pill_bottle/kelotane = 15,
 			/obj/item/storage/pill_bottle/tramadol = 15,
+			/obj/item/storage/pill_bottle/oxycodone = 15,
 			/obj/item/storage/pill_bottle/tricordrazine = 15,
 			/obj/item/storage/pill_bottle/dylovene = 15,
 			/obj/item/storage/pill_bottle/inaprovaline = 15,

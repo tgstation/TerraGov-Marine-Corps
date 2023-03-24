@@ -373,6 +373,15 @@
 	greyscale_colors = "#8a8686#ffffff"
 	description_overlay = "Ta"
 
+/obj/item/storage/pill_bottle/oxycodone
+	name = "oxycodone pill bottle"
+	desc = "Contains pills capable of suppressing extreme amounts of pain."
+	icon_state = "pill_canistercomplete"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/oxycodone
+	greyscale_colors = "#e5e5e5#ffffff"
+	greyscale_config = /datum/greyscale_config/pillbottlebox
+	description_overlay = "Ox"
+
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
