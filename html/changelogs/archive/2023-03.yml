@@ -367,3 +367,30 @@
   - imageadd: Healthscanner glove sprites.
   ivanmixo:
   - bugfix: Fixes slippery floors being slippery forever
+2023-03-23:
+  Lumipharon:
+  - bugfix: fixed a loadout screen BSOD
+  - code_imp: removed the pocket var from boots and some hats, replacing them with
+      irremovable attachments.
+  - code_imp: Loadout version progressed to 11.
+  - qol: Added colours to the shipside minimap
+  Xander3359:
+  - bugfix: Added missing things to the valhalla medplus.
+  ivanmixo:
+  - bugfix: Makes structures exist per hive, which prevents different hives from sharing
+      larva gen rates
+  - bugfix: Fixes runtime from clientless mobs behind hit with projectiles
+  - balance: Made defiler smoke (and neuro) pacify huggers
+  - bugfix: Fixed charlie turtleneck missing a sprite
+2023-03-24:
+  ClosetedSkeletonGH:
+  - rscadd: Adds helljumper to old jaeger lego options
+  Lumipharon:
+  - code_imp: Attempted to clean up some DMI mess for uniforms, suits and hats
+  - bugfix: Sectoids no longer show in incorrect helmet sprite
+  QualityVan:
+  - bugfix: Defibbing robots is more reliable
+  Xander3359:
+  - rscdel: Deletes the unobtainable chem xeno_blood
+  ivanmixo:
+  - qol: Made cas' eye starting position selectable via minimap

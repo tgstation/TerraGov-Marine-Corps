@@ -269,8 +269,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
-				to_chat(GLOB.alive_xeno_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
-				for(var/i in GLOB.alive_xeno_list)
+				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
+				for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")

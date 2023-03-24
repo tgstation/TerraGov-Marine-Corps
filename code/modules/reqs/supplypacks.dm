@@ -955,7 +955,7 @@ CLOTHING
 /datum/supply_packs/clothing/officer_outfits
 	name = "officer outfits"
 	contains = list(
-		/obj/item/clothing/under/rank/ro_suit,
+		/obj/item/clothing/under/marine/officer/ro_suit,
 		/obj/item/clothing/under/marine/officer/bridge,
 		/obj/item/clothing/under/marine/officer/bridge,
 		/obj/item/clothing/under/marine/officer/exec,

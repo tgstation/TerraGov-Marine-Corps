@@ -58,6 +58,14 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
+/obj/item/clothing/on_pocket_insertion()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/on_pocket_removal()
+	. = ..()
+	update_icon()
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
@@ -104,7 +112,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
-	icon = 'icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits/suits.dmi'
 	name = "suit"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
@@ -251,3 +259,12 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
+
+/obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return ..()
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return ..()
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	if(armor_storage.storage.handle_mousedrop(usr, over_object))
+		return ..()

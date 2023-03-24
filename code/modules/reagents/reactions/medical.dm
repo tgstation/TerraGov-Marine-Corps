@@ -177,11 +177,6 @@
 	required_reagents = list(/datum/reagent/medicine/lemoline = 1, /datum/reagent/consumable/larvajelly = 1)
 
 // Cloning chemicals
-/datum/chemical_reaction/expanded_biomass
-	name = "Biomass"
-	results = list(/datum/reagent/medicine/biomass/xeno = 10)
-	required_reagents = list(/datum/reagent/blood/xeno_blood = 10, /datum/reagent/medicine/biomass = 1)
-
 /datum/chemical_reaction/dupl_bicaridine
 	name = "Duplicate Bicaridine"
 	results = list(/datum/reagent/medicine/bicaridine = 2)

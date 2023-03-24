@@ -547,7 +547,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/under/rank/medical/purple = list(CAT_STD, "Medical scrubs (purple)", 0, "black"),
 		/obj/item/clothing/under/marine/officer/engi = list(CAT_STD, "Engineering uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/logistics = list(CAT_STD, "Officer uniform", 0, "black"),
-		/obj/item/clothing/under/whites = list(CAT_STD, "TGMC dress uniform", 0, "black"),
+		/obj/item/clothing/under/marine/whites = list(CAT_STD, "TGMC dress uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/pilot = list(CAT_STD, "Pilot bodysuit", 0, "black"),
 		/obj/item/clothing/under/marine/mp = list(CAT_STD, "Military police uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/warden = list(CAT_STD, "Marine Officer uniform", 0, "black"),
@@ -719,6 +719,6 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 10
+#define CURRENT_LOADOUT_VERSION 11
 
 GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10))
