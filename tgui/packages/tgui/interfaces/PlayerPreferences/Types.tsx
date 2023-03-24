@@ -35,6 +35,7 @@ type GameSettingData = {
   scaling_method: string;
   pixel_size: number;
   parallax: number;
+  quick_equip: string[];
 };
 
 type GearCustomizationData = {

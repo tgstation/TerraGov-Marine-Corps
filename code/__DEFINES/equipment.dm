@@ -381,6 +381,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
+	SLOT_IN_BACKPACK, \
 	SLOT_IN_ACCESSORY,\
 	SLOT_S_STORE,\
 	SLOT_IN_L_POUCH,\
@@ -393,7 +394,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_BACK,\
 	SLOT_IN_BOOT,\
 	SLOT_IN_HEAD\
-	)
+)
 
 #define SLOT_ALL list(\
 	SLOT_WEAR_ID,\
@@ -461,6 +462,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_BACK
 		if("Boot")
 			return SLOT_IN_BOOT
+		if("Backpack")
+			return SLOT_IN_BACKPACK
 		if("Helmet")
 			return SLOT_IN_HEAD
 		if("Left Pocket")
@@ -490,6 +493,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Back"
 		if(SLOT_IN_BOOT)
 			return "Boot"
+		if(SLOT_IN_BACKPACK)
+			return "Backpack"
 		if(SLOT_IN_HEAD)
 			return "Helmet"
 		if(SLOT_L_STORE)
