@@ -1,21 +1,15 @@
 ///async signal wrapper for do_quick_equip
-/mob/living/carbon/human/proc/async_do_quick_equip()
+/mob/living/carbon/human/proc/async_do_quick_equip(atom/source, datum/keybinding/human/quick_equip/equip_slot)
 	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, PROC_REF(do_quick_equip))
+	INVOKE_ASYNC(src, PROC_REF(do_quick_equip), initial(equip_slot.quick_equip_slot))
+	return COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
-///async signal wrapper for do_quick_equip
-/mob/living/carbon/human/proc/async_do_quick_equip_alt()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	INVOKE_ASYNC(src, PROC_REF(do_quick_equip), TRUE)
-
-/// runs equip, if passed use_alternate = TRUE will try to use the alternate preference slot
-/mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)
+/// runs equip, quick_equip_used is the # in INVOKE_ASYNC
+/mob/living/carbon/human/proc/do_quick_equip(quick_equip_slot = 0)
 	if(incapacitated() || lying_angle)
 		return
 
-	var/slot_requested = use_alternate ?  client?.prefs?.preferred_slot_alt : client?.prefs?.preferred_slot
+	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot]
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
