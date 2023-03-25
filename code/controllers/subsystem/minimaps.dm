@@ -464,13 +464,13 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
+	var/atom/movable/tracking = locator_override ? locator_override : M
+	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 	if(default_overwatch_level)
 		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
 			return
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
-	var/atom/movable/tracking = locator_override ? locator_override : M
-	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 	if(!SSminimaps.minimaps_by_z["[tracking.z]"] || !SSminimaps.minimaps_by_z["[tracking.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
@@ -494,14 +494,22 @@ SUBSYSTEM_DEF(minimaps)
 	if(minimap_displayed)
 		owner.client.screen -= map
 	map = null
+	if(default_overwatch_level)
+		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
+			if(minimap_displayed)
+				owner.client.screen -= locator
+				locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+				minimap_displayed = FALSE
+			return
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		if(minimap_displayed)
+			owner.client.screen += map
+		return
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		if(minimap_displayed)
 			owner.client.screen -= locator
 			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 			minimap_displayed = FALSE
-		return
-	if(default_overwatch_level) //This is mildly scuffed at the moment.
-		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
 	if(minimap_displayed)
