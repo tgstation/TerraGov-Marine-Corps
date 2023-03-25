@@ -44,6 +44,8 @@
 			return (flags_equip_slot & ITEM_SLOT_EYES)
 		if(slot_head_str)
 			return (flags_equip_slot & ITEM_SLOT_HEAD)
+		if(slot_helmet_str)
+			return (flags_equip_slot & ITEM_SLOT_HEAD)
 		if(slot_w_uniform_str)
 			return (flags_equip_slot & ITEM_SLOT_ICLOTHING)
 		if(slot_l_store_str)

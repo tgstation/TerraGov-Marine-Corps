@@ -211,6 +211,7 @@
 #define slot_r_hand_str "slot_r_hand"
 #define slot_w_uniform_str "slot_w_uniform"
 #define slot_head_str "slot_head"
+#define slot_helmet_str "slot_helmet"
 #define slot_wear_suit_str "slot_suit"
 #define slot_ear_str "slot_ear"
 #define slot_belt_str "slot_belt"
@@ -232,6 +233,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_r_hand" = SLOT_R_HAND,
 	"slot_w_uniform" = SLOT_W_UNIFORM,
 	"slot_head" = SLOT_HEAD,
+	"slot_helmet" = SLOT_IN_HEAD,
 	"slot_suit" = SLOT_WEAR_SUIT,
 	"slot_ear" = SLOT_EARS,
 	"slot_belt" = SLOT_BELT,

@@ -659,7 +659,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(SLOT_IN_HEAD)
 			if(!H.head)
 				return FALSE
-			if(!istype(H.shoes, /obj/item/clothing/head))
+			if(!istype(H.head, /obj/item/clothing/head))
 				return FALSE
 			var/obj/item/clothing/head/headwear = H.head
 			if(!headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
