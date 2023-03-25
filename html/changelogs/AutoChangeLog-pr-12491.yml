@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "TGMC interdictors have cleansed the sector of the excessive amount of xeno infested ERT ships, returning them to normal levels"
-  - bugfix: "Fixed some minor issues where valhalla or admin xenos were being counted as real xenos"
