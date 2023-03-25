@@ -1,5 +1,5 @@
 /datum/xeno_caste/slime
-	caste_name = "Warlock"
+	caste_name = "Slime"
 	display_name = "Slime"
 	upgrade_name = ""
 	caste_desc = "A creature whose body is made of an oozy substance that melts anything it touches."
@@ -7,7 +7,7 @@
 
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "warlock"
+	wound_type = null
 	melee_damage = 16
 	speed = -0.2
 	plasma_max = 125
@@ -17,20 +17,22 @@
 	upgrade_threshold = TIER_ONE_YOUNG_THRESHOLD
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/hunter,
-		/mob/living/carbon/xenomorph/spitter,
 		/mob/living/carbon/xenomorph/wraith,
 	)
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
-	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE)
+	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 0, ACID = 0)
 	sunder_max = 0
 	minimap_icon = "warlock"
+	additional_stacks = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/slime_pounce,
+		/datum/action/xeno_action/spread_thorns,
+		/datum/action/xeno_action/activable/extend_thorn,
 	)
 
 /datum/xeno_caste/slime/young
@@ -45,6 +47,7 @@
 	plasma_gain = 15
 	max_health = 250
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
+	additional_stacks = 1
 
 /datum/xeno_caste/slime/elder
 	upgrade_name = "Elder"
@@ -56,6 +59,7 @@
 	max_health = 275
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 0, ENERGY = 0, BOMB = 55, BIO = 0, FIRE = 0, ACID = 0)
+	additional_stacks = 2
 
 /datum/xeno_caste/slime/ancient
 	upgrade_name = "Ancient"
@@ -68,6 +72,7 @@
 	max_health = 300
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, FIRE = 0, ACID = 0)
+	additional_stacks = 3
 
 /datum/xeno_caste/slime/primordial
 	upgrade_name = "Primordial"
@@ -79,3 +84,4 @@
 	plasma_gain = 20
 	max_health = 300
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, FIRE = 0, ACID = 0)
+	additional_stacks = 3

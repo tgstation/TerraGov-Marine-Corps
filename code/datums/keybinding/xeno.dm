@@ -894,3 +894,10 @@
 	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/slime_pounce
+	name = "Pounce (Slime)"
+	full_name = "Slime: Pounce"
+	description = "Leap towards your target, attaching to it."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_POUNCE
+	hotkey_keys = list("Z")
