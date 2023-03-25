@@ -197,7 +197,7 @@
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
-	var/datum/action/minimap/marine/cas_mini
+	var/datum/action/minimap/marine/external/cas_mini
 
 /obj/docking_port/mobile/marine_dropship/casplane/Initialize()
 	. = ..()

@@ -387,6 +387,9 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/screen/minimap_locator/locator
 	///This is mostly for the AI & other things which do not move groundside.
 	var/default_overwatch_level = 0
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_MINIMAP,
+	)
 
 /datum/action/minimap/New(Target)
 	. = ..()
@@ -408,6 +411,9 @@ SUBSYSTEM_DEF(minimaps)
 		owner.client.screen -= locator
 		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	else
+		if(locate(/atom/movable/screen/minimap) in owner.client.screen) //This seems like the most effective way to do this without some wacky code
+			to_chat(owner, span_warning("You already have a minimap open!"))
+			return
 		owner.client.screen += map
 		owner.client.screen += locator
 		locator.update(tracking)
@@ -459,14 +465,12 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
 	if(default_overwatch_level)
-		RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
 		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
 			return
 		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
 		return
 	var/atom/movable/tracking = locator_override ? locator_override : M
 	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
-	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, PROC_REF(action_activate))
 	if(!SSminimaps.minimaps_by_z["[tracking.z]"] || !SSminimaps.minimaps_by_z["[tracking.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
@@ -479,7 +483,6 @@ SUBSYSTEM_DEF(minimaps)
 		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 		minimap_displayed = FALSE
 	UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
-	UnregisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP)
 	return ..()
 
 /**
@@ -516,6 +519,11 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/marine
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/marine/external //Avoids keybind conflicts between inherent mob minimap and bonus minimap from consoles, CAS or similar.
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP,
+	)
 
 /datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
 	minimap_flags = MINIMAP_FLAG_MARINE

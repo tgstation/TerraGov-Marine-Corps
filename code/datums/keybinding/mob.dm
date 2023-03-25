@@ -322,8 +322,14 @@
 /datum/keybinding/mob/toggle_minimap
 	name = "toggle_minimap"
 	full_name = "Toggle minimap"
-	description = "Toggle the minimap screen"
+	description = "Toggle your character's inherent or headset-based minimap screen"
 	keybind_signal = COMSIG_KB_TOGGLE_MINIMAP
+
+/datum/keybinding/mob/toggle_external_minimap
+	name = "toggle_external_minimap"
+	full_name = "Toggle external minimap"
+	description = "Toggle external minimap screens received from e.g. consoles or similar objects"
+	keybind_signal = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP
 
 /datum/keybinding/mob/toggle_self_harm
 	name = "toggle_self_harm"
