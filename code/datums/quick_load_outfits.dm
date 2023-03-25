@@ -360,7 +360,7 @@
 
 /datum/outfit/quick/tgmc/marine/standard_shotgun
 	name = "SH-35 Scout"
-	desc = "For getting too close for comfort. Equipped with a SH-35 shotgun with buckshot and flechette rounds, a MP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'arrowhead' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
+	desc = "For getting too close for comfort. Equipped with a SH-35 shotgun with buckshot and flechette rounds, a MP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'svallin' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
 
 	belt = /obj/item/storage/belt/shotgun
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
@@ -386,7 +386,7 @@
 
 /datum/outfit/quick/tgmc/marine/standard_lasercarbine
 	name = "Laser Carbine Scout"
-	desc = "Highly mobile light infantry. Equipped with a laser carbine with UGL and a laser pistol sidearm, plenty of grenades and light armor with a cutting edge 'arrowhead' shield module. Excellent mobility, but not suited for sustained combat."
+	desc = "Highly mobile light infantry. Equipped with a laser carbine with UGL and a laser pistol sidearm, plenty of grenades and light armor with a cutting edge 'svallin' shield module. Excellent mobility, but not suited for sustained combat."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
@@ -410,7 +410,7 @@
 
 /datum/outfit/quick/tgmc/marine/light_carbine
 	name = "AR-18 Scout"
-	desc = "High damage and high speed. Equipped with an AR-18 carbine with UGL, light armor with a cutting edge 'arrowhead' shield module, and plenty of grenades and ammunition. Great mobility and damage output, but low magazine capacity and weak armor without the shield active means this loadout is best suited to hit and run tactics."
+	desc = "High damage and high speed. Equipped with an AR-18 carbine with UGL, light armor with a cutting edge 'svallin' shield module, and plenty of grenades and ammunition. Great mobility and damage output, but low magazine capacity and weak armor without the shield active means this loadout is best suited to hit and run tactics."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/scout
@@ -460,7 +460,7 @@
 
 /datum/outfit/quick/tgmc/marine/machete
 	name = "Assault Marine"
-	desc = "This doesn't look standard issue... Equipped with a SMG-25 submachine gun, machete and jetpack, along with light armor upgraded with a 'arrowhead' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
+	desc = "This doesn't look standard issue... Equipped with a SMG-25 submachine gun, machete and jetpack, along with light armor upgraded with a 'svallin' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	back = /obj/item/jetpack_marine
@@ -478,7 +478,7 @@
 
 /datum/outfit/quick/tgmc/marine/scout
 	name = "BR-8 Scout"
-	desc = "IFF scout. Equipped with a BR-8 with a good amount of grenades and light armor with a cutting edge 'arrowhead' shield module. Provides for good mobility and powerful IFF damage, but the BR-8 is difficult to bring to bear at close range, and light armor wilts under sustained fire."
+	desc = "IFF scout. Equipped with a BR-8 with a good amount of grenades and light armor with a cutting edge 'svallin' shield module. Provides for good mobility and powerful IFF damage, but the BR-8 is difficult to bring to bear at close range, and light armor wilts under sustained fire."
 	quantity = 2
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
