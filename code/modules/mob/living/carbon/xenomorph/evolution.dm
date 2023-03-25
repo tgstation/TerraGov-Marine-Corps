@@ -21,10 +21,10 @@
 	var/tiers_to_pick_from
 	switch(tier)
 		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-			if(isxenoshrike(src))
+			if(isxenoshrike(src) && hive.living_xeno_queen)
 				tiers_to_pick_from = GLOB.xeno_types_tier_one
 			else
-				to_chat(src, span_warning("Your tier does not allow you to regress."))
+				to_chat(src, span_warning("Your tier does not allow you to regress[isxenoshrike(src) ? " without a living Queen" : ""]."))
 				return
 		if(XENO_TIER_ONE)
 			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
@@ -57,7 +57,7 @@
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
 	if(!generic_evolution_checks())
 		return
-	
+
 	if(caste_type == /mob/living/carbon/xenomorph/hivemind && tgui_alert(src, "You are about to evolve into a hivemind, which places its core on the tile you're on when evolving. This core cannot be moved and you cannot regress. Are you sure you would like to place your core here?", "Evolving to hivemind", list("Yes", "No"), FALSE) == "No")
 		return
 
