@@ -19,9 +19,11 @@
 
 /mob/living/carbon/human/species/synthetic
 	race = "Synthetic"
+	m_intent = MOVE_INTENT_WALK
 
 /mob/living/carbon/human/species/early_synthetic
 	race = "Early Synthetic"
+	m_intent = MOVE_INTENT_WALK
 
 /mob/living/carbon/human/species/moth
 	race = "Moth"
@@ -55,6 +57,7 @@
 /mob/living/carbon/human/species/robot
 	race = "Combat Robot"
 	bubble_icon = "robot"
+	m_intent = MOVE_INTENT_WALK
 
 /mob/living/carbon/human/species/robot/alpharii
 	race = "Hammerhead Combat Robot"
