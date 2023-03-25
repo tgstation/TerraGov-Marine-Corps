@@ -735,10 +735,22 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Slime defines
 #define SLIME_ATTACK_INTOXICATION_STACKS 0 // The amount of Intoxication stacks inflicted with each normal attack.
-#define SLIME_POUNCE_INTOXICATION_STACKS 0 // The amount of Intoxication stacks inflicted when a Slime is attached to a living mob via Pounce.
-#define SLIME_POUNCE_INFLICTION_RATE 2 SECONDS // The amount of time between each infliction on the living mob a Slime attached to via Pounce.
-#define SLIME_POUNCE_RESIST_CHANNEL 1 SECONDS // The amount of time that it takes to Resist against a Slime attached via Pounce, and throw it off.
-#define SLIME_POUNCE_UNBUCKLE_STUN_DURATION 1 SECONDS // The amount of time during which a Slime is stunned when deattaching from a mob after a Pounce.
+#define SLIME_POUNCE_RANGE 5 // The range of a Slime's Pounce.
+#define SLIME_POUNCE_SPEED 1 // How fast a Slime's Pounce happens.
+#define SLIME_POUNCE_ATTACHED_SLOWDOWN 0.3 // Multiplicative slowdown added to a victim when a Slime is attached to it via Pounce.
+#define SLIME_POUNCE_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted when a Slime is attached to a victim via Pounce.
+#define SLIME_POUNCE_INFLICTION_RATE 2 SECONDS // Amount of time between each infliction on the victim a Slime attached to via Pounce.
+#define SLIME_POUNCE_RESIST_CHANNEL 1 SECONDS // Amount of time that it takes to Resist against a Slime attached via Pounce, and throw it off.
+#define SLIME_POUNCE_UNBUCKLE_STUN_DURATION 1 SECONDS // Amount of time during which a Slime is stunned when deattaching from a victim after a Pounce.
+#define SLIME_SPREAD_TENDRILS_WINDUP 0.6 SECONDS // Amount of time that it takes to finish a Spread Tendrils wind-up channel.
+#define SLIME_SPREAD_TENDRILS_RANGE 2 // Range in tiles for the Spread Tendrils ability.
+#define SLIME_SPREAD_TENDRILS_CRITICAL_MULTIPLIER 1.5 // Multiplier applied to Spread Tendrils's damage and effect duration for victims on the same tile as the Slime.
+#define SLIME_SPREAD_TENDRILS_EFFECT_DURATION 1.5 SECONDS // Amount of time during which a victim hit by Spread Tendrils is immobilized or stunned.
+#define SLIME_EXTEND_TENDRIL_RANGE 3 // Range in tiles for the Extend Tendril ability.
+#define SLIME_EXTEND_TENDRIL_PULL_RANGE 2 // How many tiles a victim will be pulled towards the Slime.
+#define SLIME_EXTEND_TENDRIL_CRITICAL_MULTIPLIER 1.5 // Multiplier applied to Extend Tendril's damage and effect duration for victims at maximum range.
+#define SLIME_EXTEND_TENDRIL_EFFECT_DURATION 1.5 SECONDS // Amount of time during which a target hit by Extend Tendril is immobilized or stunned.
+#define SLIME_EXTEND_TENDRIL_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted to a victim hit by Extend Tendril.
 
 //misc
 

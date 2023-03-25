@@ -9,7 +9,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = null
 	melee_damage = 16
-	speed = -0.2
+	speed = -0.1
 	plasma_max = 125
 	plasma_gain = 12
 	max_health = 225
@@ -31,8 +31,8 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/slime_pounce,
-		/datum/action/xeno_action/spread_thorns,
-		/datum/action/xeno_action/activable/extend_thorn,
+		/datum/action/xeno_action/spread_tendrils,
+		/datum/action/xeno_action/activable/extend_tendril,
 	)
 
 /datum/xeno_caste/slime/young
@@ -42,7 +42,7 @@
 /datum/xeno_caste/slime/mature
 	upgrade_name = "Mature"
 	upgrade = XENO_UPGRADE_ONE
-	speed = -0.3
+	speed = -0.2
 	plasma_max = 150
 	plasma_gain = 15
 	max_health = 250
@@ -53,7 +53,7 @@
 	upgrade_name = "Elder"
 	upgrade = XENO_UPGRADE_TWO
 	melee_damage = 17
-	speed = -0.4
+	speed = -0.3
 	plasma_max = 175
 	plasma_gain = 17
 	max_health = 275
@@ -66,7 +66,7 @@
 	ancient_message = "Let us consume everything."
 	upgrade = XENO_UPGRADE_THREE
 	melee_damage = 18
-	speed = -0.5
+	speed = -0.4
 	plasma_max = 200
 	plasma_gain = 20
 	max_health = 300
@@ -79,7 +79,7 @@
 	ancient_message = "All will be eroded to oblivion."
 	upgrade = XENO_UPGRADE_FOUR
 	melee_damage = 18
-	speed = -0.5
+	speed = -0.4
 	plasma_max = 200
 	plasma_gain = 20
 	max_health = 300

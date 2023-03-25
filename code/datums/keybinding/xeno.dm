@@ -901,3 +901,23 @@
 	description = "Leap towards your target, attaching to it."
 	keybind_signal = COMSIG_XENOABILITY_SLIME_POUNCE
 	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/slime_pounce_alternate
+	name = "Passive Pounce (Slime)"
+	full_name = "Slime: Toggle Harmful Pounce"
+	description = "Toggle the harmful effects of Pounce on or off."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_POUNCE_ALTERNATE
+
+/datum/keybinding/xeno/spread_tendrils
+	name = "Spread Tendrils"
+	full_name = "Slime: Spread Tendrils"
+	description = "Spread hardened, thorn-like tendrils, damaging nearby enemies."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_SPREAD_TENDRILS
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/extend_tendril
+	name = "Extend Tendril"
+	full_name = "Slime: Extend Tendril"
+	description = "Extend a hardened, thorn-like tendril that will deal damage to a target, pulling them closer to you and immobilizing them briefly."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_EXTEND_TENDRIL
+	hotkey_keys = list("Q")
