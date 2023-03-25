@@ -669,7 +669,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(storage.can_be_inserted(src, warning))
 				return TRUE
 		if(SLOT_IN_BOOT)
-			if(H.shoes)
+			if(!H.shoes)
 				return FALSE
 			if(!istype(H.shoes, /obj/item/clothing/shoes))
 				return FALSE
