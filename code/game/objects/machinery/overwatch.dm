@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	///datum used when sending a rally order
 	var/datum/action/innate/order/rally_order/send_rally_order
 	///Groundside minimap for overwatch
-	var/datum/action/minimap/cic_mini
+	var/datum/action/minimap/marine/cic_mini
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
