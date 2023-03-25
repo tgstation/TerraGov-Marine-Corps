@@ -23,7 +23,7 @@
 /datum/chemical_reaction/dermalime
 	name = "Dermaline"
 	results = list(/datum/reagent/medicine/dermaline = 3)
-	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1)
 
 /datum/chemical_reaction/dexalinplus
 	name = "Dexalin Plus"
@@ -38,12 +38,12 @@
 /datum/chemical_reaction/meralyne
 	name = "Meralyne"
 	results = list(/datum/reagent/medicine/meralyne = 3)
-	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1)
 
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
 	results = list(/datum/reagent/medicine/ryetalyn = 2)
-	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/cryoxadone
 	name = "Cryoxadone"
@@ -121,7 +121,7 @@
 /datum/chemical_reaction/synaptizine
 	name = "Synaptizine"
 	results = list(/datum/reagent/medicine/synaptizine = 3)
-	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/leporazine
 	name = "Leporazine"
@@ -132,7 +132,7 @@
 /datum/chemical_reaction/hyronalin
 	name = "Hyronalin"
 	results = list(/datum/reagent/medicine/hyronalin = 2)
-	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1)
 
 /datum/chemical_reaction/arithrazine
 	name = "Arithrazine"
@@ -158,7 +158,7 @@
 /datum/chemical_reaction/quickclotplus
 	name = "Quick-Clot Plus"
 	results = list(/datum/reagent/medicine/quickclotplus = 1)
-	required_reagents = list(/datum/reagent/medicine/quickclot = 2, /datum/reagent/medicine/lemoline = 2, /datum/reagent/iron = 2)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 2, /datum/reagent/iron = 2)
 
 /datum/chemical_reaction/hypervene //New purge chem.
 	name = "Hypervene"
@@ -205,7 +205,7 @@
 /datum/chemical_reaction/quietus
 	name = "Quietus"
 	results = list(/datum/reagent/medicine/research/quietus = 1)
-	required_reagents = list(/datum/reagent/toxin/chloralhydrate = 3, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 3)
+	required_reagents = list(/datum/reagent/toxin/chloralhydrate = 3, /datum/reagent/medicine/dylovene = 1)
 
 /datum/chemical_reaction/somolent
 	name = "Somolent"
@@ -216,9 +216,9 @@
 /datum/chemical_reaction/medicalnanites
 	name = "Medical Nanites"
 	results = list(/datum/reagent/medicine/research/medicalnanites = 1)
-	required_reagents = list(/datum/reagent/toxin/nanites = 10, /datum/reagent/radium = 5, /datum/reagent/iron = 100, /datum/reagent/medicine/lemoline = 5)
+	required_reagents = list(/datum/reagent/toxin/nanites = 10, /datum/reagent/radium = 5, /datum/reagent/iron = 100)
 
 /datum/chemical_reaction/stimulum
 	name = "Stimulum"
 	results = list(/datum/reagent/medicine/research/stimulon = 1)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20)
