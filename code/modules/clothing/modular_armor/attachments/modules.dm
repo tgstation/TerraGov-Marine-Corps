@@ -272,7 +272,7 @@
 	icon_state = initial(icon_state)
 
 /obj/item/armor_module/module/eshield
-	name = "Svalinn Energy Shield System"
+	name = "Arrowhead Energy Shield System"
 	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and leave the user vulnerable."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_eshield"
@@ -423,7 +423,7 @@
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
 	name = "Aegis Energy Dispersion Module"
-	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
+	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Arrowhead' shield system which was developed around the same time."
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
@@ -571,29 +571,29 @@
 		activate(user)
 	return COMSIG_MOB_CLICK_CANCELED
 
-/obj/item/armor_module/module/binoculars/heimdall_mark_two // a little cheating with subtypes
-	name = "\improper Mark 2 Heimdall Helmet Module"
-	desc = "Designed for mounting on a modular helmet. The Heimdall module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
-	icon_state = "heimdall_head"
-	item_state = "heimdall_head_mk2_a"
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "heimdall_head_mk2_xn", /obj/item/clothing/head/modular/marine/old/open = "heimdall_head_mk2_xn", /obj/item/clothing/head/modular/m10x/heavy = "heimdall_head_mk2")
+/obj/item/armor_module/module/binoculars/artemis_mark_two // a little cheating with subtypes
+	name = "\improper Mark 2 Artemis Helmet Module"
+	desc = "Designed for mounting on a modular helmet. The Artemis module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
+	icon_state = "artemis_head"
+	item_state = "artemis_head_mk2_a"
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "artemis_head_mk2_xn", /obj/item/clothing/head/modular/marine/old/open = "artemis_head_mk2_xn", /obj/item/clothing/head/modular/m10x/heavy = "artemis_head_mk2")
 
-/obj/item/armor_module/module/binoculars/heimdall_mark_two/on_attach(obj/item/attaching_to, mob/user)
+/obj/item/armor_module/module/binoculars/artemis_mark_two/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
 
-/obj/item/armor_module/module/heimdall
-	name = "\improper Mark 1 Heimdall Helmet Module"
-	desc = "Designed for mounting on a modular helmet. The Heimdall module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances."
+/obj/item/armor_module/module/artemis
+	name = "\improper Mark 1 Artemis Helmet Module"
+	desc = "Designed for mounting on a modular helmet. The Artemis module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	icon_state = "heimdall_head"
-	item_state = "heimdall_head_a"
+	icon_state = "artemis_head"
+	item_state = "artemis_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "heimdall_head_xn", /obj/item/clothing/head/modular/marine/old/open = "heimdall_head_xn", /obj/item/clothing/head/modular/m10x/heavy = "heimdall_head")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "artemis_head_xn", /obj/item/clothing/head/modular/marine/old/open = "artemis_head_xn", /obj/item/clothing/head/modular/m10x/heavy = "artemis_head")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	prefered_slot = SLOT_HEAD
 
-/obj/item/armor_module/module/heimdall/on_attach(obj/item/attaching_to, mob/user)
+/obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.AddComponent(/datum/component/blur_protection)
 
