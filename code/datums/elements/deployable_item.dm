@@ -22,28 +22,14 @@
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
-	RegisterSignal(attached_item, COMSIG_ITEM_EQUIPPED, PROC_REF(register_for_deploy_signal))
+	RegisterSignal(attached_item, COMSIG_ITEM_RIGHTCLICKON, PROC_REF(deploy))
 
 /datum/element/deployable_item/Detach(datum/source, force)
 	. = ..()
-	UnregisterSignal(source, COMSIG_ITEM_EQUIPPED)
-
-///Register click signals to be ready for deploying
-/datum/element/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
-	SIGNAL_HANDLER
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
-		return
-	RegisterSignal(item_equipped, COMSIG_ITEM_AFTERATTACK_ALTERNATE, PROC_REF(deploy))
-	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, PROC_REF(unregister_signals))
-
-///Unregister and stop waiting for click to deploy
-/datum/element/deployable_item/proc/unregister_signals(obj/item/item_unequipped, mob/user)
-	SIGNAL_HANDLER
-	UnregisterSignal(item_unequipped, COMSIG_ITEM_AFTERATTACK_ALTERNATE)
-	UnregisterSignal(item_unequipped, COMSIG_ITEM_UNEQUIPPED)
+	UnregisterSignal(source, COMSIG_ITEM_RIGHTCLICKON, PROC_REF(deploy))
 
 ///Wrapper for proc/finish_deploy
-/datum/element/deployable_item/proc/deploy(atom/source, atom/target, mob/user, has_proximity, click_parameters)
+/datum/element/deployable_item/proc/deploy(atom/source, atom/target, mob/user)
 	SIGNAL_HANDLER
 	if(!target || !isturf(target) || get_turf(user) == target || !(user.Adjacent(target)))
 		return
@@ -80,8 +66,6 @@
 			location.balloon_alert(user, "No room to deploy")
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
-
-		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 
 		direction_to_deploy = newdir
 
