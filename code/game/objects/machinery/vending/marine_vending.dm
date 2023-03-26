@@ -1288,6 +1288,7 @@
 			/obj/item/armor_module/armor/chest/marine/eva = -1,
 			/obj/item/armor_module/armor/chest/marine/assault = -1,
 			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
+			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
 		),
 		"Jaeger Mk.I armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
@@ -1296,6 +1297,7 @@
 			/obj/item/armor_module/armor/arms/marine/eva = -1,
 			/obj/item/armor_module/armor/arms/marine/assault = -1,
 			/obj/item/armor_module/armor/arms/marine/eod = -1,
+			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
 		),
 		"Jaeger Mk.I legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
@@ -1305,6 +1307,7 @@
 			/obj/item/armor_module/armor/legs/marine/assault = -1,
 			/obj/item/armor_module/armor/legs/marine/eod = -1,
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
+			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
 		),
 		"Jaeger Mk.I helmets" = list(
 			/obj/item/clothing/head/modular/marine/old/skirmisher = -1,
@@ -1458,13 +1461,13 @@
 		),
 		"Service Dress" = list(
 			/obj/effect/vendor_bundle/white_dress = -1,
-			/obj/item/clothing/under/whites = -1,
+			/obj/item/clothing/under/marine/whites = -1,
 			/obj/item/clothing/suit/white_dress_jacket = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
 			/obj/effect/vendor_bundle/service_uniform = -1,
-			/obj/item/clothing/under/service = -1,
+			/obj/item/clothing/under/marine/service = -1,
 			/obj/item/clothing/head/garrisoncap = -1,
 			/obj/item/clothing/head/servicecap = -1,
 			/obj/item/clothing/under/marine/black_suit = -1,
@@ -1507,7 +1510,7 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		/obj/item/clothing/under/whites = -1,
+		/obj/item/clothing/under/marine/whites = -1,
 		/obj/item/clothing/head/white_dress = -1,
 		/obj/item/clothing/shoes/white = -1,
 		/obj/item/clothing/gloves/white = -1,

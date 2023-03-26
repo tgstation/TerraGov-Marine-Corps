@@ -362,7 +362,7 @@
 	desc = "A tan suit with a yellow tie. Smart, but casual."
 	icon_state = "tan_suit"
 
-/obj/item/clothing/under/serviceoveralls
+/obj/item/clothing/under/marine/serviceoveralls
 	name = "Workman outfit"
 	desc = "The very image of a working man. Not that you're probably doing work."
 	icon_state = "mechanic_s"

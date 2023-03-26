@@ -297,16 +297,25 @@
 	if(SSmonitor.human_on_ground <= 5)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
-	var/input
+	var/starting_point
 	if(length(GLOB.active_cas_targets))
-		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
-	else
-		input = GLOB.minidropship_start_loc
-	if(!input)
+		starting_point = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+
+	else //if we don't have any targets use the minimap to select a starting position
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		user.client.screen += map
+		var/list/polled_coords = map.get_coords_from_click(user)
+		user.client.screen -= map
+		starting_point = locate(polled_coords[1], polled_coords[2], 2)
+
+	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
+		starting_point = GLOB.minidropship_start_loc
+
+	if(!starting_point)
 		return
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
-	eyeobj.setLoc(get_turf(input))
+	eyeobj.setLoc(get_turf(starting_point))
 
 ///Gives user control of the eye and allows them to start shooting
 /obj/docking_port/mobile/marine_dropship/casplane/proc/give_eye_control(mob/user)

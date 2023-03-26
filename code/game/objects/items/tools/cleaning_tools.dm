@@ -59,7 +59,7 @@
 	desc = "This cone is trying to warn you of something!"
 	icon_state = "cone"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(slot_head_str = 'icons/mob/head_0.dmi')
+	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/head_0.dmi')
 	force = 1
 	throwforce = 3
 	throw_speed = 1

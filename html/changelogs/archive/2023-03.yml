@@ -367,3 +367,52 @@
   - imageadd: Healthscanner glove sprites.
   ivanmixo:
   - bugfix: Fixes slippery floors being slippery forever
+2023-03-23:
+  Lumipharon:
+  - bugfix: fixed a loadout screen BSOD
+  - code_imp: removed the pocket var from boots and some hats, replacing them with
+      irremovable attachments.
+  - code_imp: Loadout version progressed to 11.
+  - qol: Added colours to the shipside minimap
+  Xander3359:
+  - bugfix: Added missing things to the valhalla medplus.
+  ivanmixo:
+  - bugfix: Makes structures exist per hive, which prevents different hives from sharing
+      larva gen rates
+  - bugfix: Fixes runtime from clientless mobs behind hit with projectiles
+  - balance: Made defiler smoke (and neuro) pacify huggers
+  - bugfix: Fixed charlie turtleneck missing a sprite
+2023-03-24:
+  ClosetedSkeletonGH:
+  - rscadd: Adds helljumper to old jaeger lego options
+  Lumipharon:
+  - code_imp: Attempted to clean up some DMI mess for uniforms, suits and hats
+  - bugfix: Sectoids no longer show in incorrect helmet sprite
+  QualityVan:
+  - bugfix: Defibbing robots is more reliable
+  Xander3359:
+  - rscdel: Deletes the unobtainable chem xeno_blood
+  ivanmixo:
+  - qol: Made cas' eye starting position selectable via minimap
+2023-03-25:
+  ClosetedSkeletonGH:
+  - rscadd: Many many more option's for robot random-name generation
+  Lumipharon:
+  - balance: Standard smoke grenades now extinguish fire
+  - bugfix: TGMC interdictors have cleansed the sector of the excessive amount of
+      xeno infested ERT ships, returning them to normal levels
+  - bugfix: Fixed some minor issues where valhalla or admin xenos were being counted
+      as real xenos
+  Naaanii:
+  - balance: Roundstart larvae can instantly evolve.
+  Xander3359:
+  - rscadd: There are now 5 quick equip keybinds.
+  - rscdel: preferred_slot client verb as it has become unecessary.
+  - code_imp: Some cleanup in a few files I touched upon, nothing major.
+  ivanmixo:
+  - bugfix: Shuttle landing shadow doesn't block clicks anymore
+2023-03-26:
+  Naaanii:
+  - spellcheck: updated beacon admin log to say 'supply' instead of 'orbital strike'
+  ivanmixo:
+  - balance: Moved green disk to engineering on LV

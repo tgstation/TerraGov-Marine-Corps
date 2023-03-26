@@ -408,7 +408,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(wear_suit?.flags_inv_hide & HIDEJUMPSUIT)
 		return
 
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(species_type = species.name, slot_name = slot_w_uniform_str, default_icon = 'icons/mob/uniform_0.dmi', default_layer = UNIFORM_LAYER)
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(species_type = species.name, slot_name = slot_w_uniform_str, default_icon = 'icons/mob/clothing/uniforms/uniform_0.dmi', default_layer = UNIFORM_LAYER)
 
 	apply_overlay(UNIFORM_LAYER)
 	species?.update_inv_w_uniform(src)
@@ -434,7 +434,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 			gloves.screen_loc = ui_gloves
 			client.screen += gloves
-		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(species_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/hands.dmi', default_layer = GLOVES_LAYER)
+		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(species_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/clothing/hands.dmi', default_layer = GLOVES_LAYER)
 		apply_overlay(GLOVES_LAYER)
 		return
 
@@ -466,11 +466,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		glasses.screen_loc = ui_glasses
 		client.screen += glasses
 	if(glasses.goggles)
-		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(species_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
+		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(species_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/clothing/eyes.dmi', default_layer = GOGGLES_LAYER)
 		apply_overlay(GOGGLES_LAYER)
 
 	else
-		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(species_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GLASSES_LAYER)
+		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(species_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/clothing/eyes.dmi', default_layer = GLASSES_LAYER)
 		apply_overlay(GLASSES_LAYER)
 
 /mob/living/carbon/human/update_inv_ears()
@@ -484,7 +484,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if((head?.flags_inv_hide & HIDEEARS) || (wear_mask?.flags_inv_hide & HIDEEARS))
 		return
 
-	overlays_standing[EARS_LAYER] = wear_ear.make_worn_icon(species_type = species.name, slot_name = slot_ear_str, default_icon = 'icons/mob/ears.dmi', default_layer = EARS_LAYER)
+	overlays_standing[EARS_LAYER] = wear_ear.make_worn_icon(species_type = species.name, slot_name = slot_ear_str, default_icon = 'icons/mob/clothing/ears.dmi', default_layer = EARS_LAYER)
 	apply_overlay(EARS_LAYER)
 
 /mob/living/carbon/human/update_inv_shoes()
@@ -497,7 +497,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	if(shoes)
-		overlays_standing[SHOES_LAYER] = shoes.make_worn_icon(species_type = species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/feet.dmi', default_layer = SHOES_LAYER)
+		overlays_standing[SHOES_LAYER] = shoes.make_worn_icon(species_type = species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/clothing/feet.dmi', default_layer = SHOES_LAYER)
 	else if(feet_blood_color)
 		var/mutable_appearance/bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "shoeblood")
 		bloodsies.color = feet_blood_color
@@ -528,7 +528,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		head.screen_loc = ui_head
 		client.screen += head
 
-	overlays_standing[HEAD_LAYER] = head.make_worn_icon(species_type = species.name, slot_name = slot_head_str, default_icon = 'icons/mob/head_0.dmi', default_layer = HEAD_LAYER)
+	overlays_standing[HEAD_LAYER] = head.make_worn_icon(species_type = species.name, slot_name = slot_head_str, default_icon = 'icons/mob/clothing/headwear/head_0.dmi', default_layer = HEAD_LAYER)
 
 	apply_overlay(HEAD_LAYER)
 	species?.update_inv_head(src)
@@ -542,7 +542,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		belt.screen_loc = ui_belt
 		client.screen += belt
 
-	overlays_standing[BELT_LAYER] = belt.make_worn_icon(species_type = species.name, slot_name = slot_belt_str, default_icon = 'icons/mob/belt.dmi', default_layer = BELT_LAYER)
+	overlays_standing[BELT_LAYER] = belt.make_worn_icon(species_type = species.name, slot_name = slot_belt_str, default_icon = 'icons/mob/clothing/belt.dmi', default_layer = BELT_LAYER)
 
 	apply_overlay(BELT_LAYER)
 
@@ -557,7 +557,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		wear_suit.screen_loc = ui_oclothing
 		client.screen += wear_suit
 
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(species_type = species.name, slot_name = slot_wear_suit_str, default_icon = 'icons/mob/suit_0.dmi', default_layer = SUIT_LAYER)
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(species_type = species.name, slot_name = slot_wear_suit_str, default_icon = 'icons/mob/clothing/suits/suit_0.dmi', default_layer = SUIT_LAYER)
 
 	apply_overlay(SUIT_LAYER)
 
@@ -584,7 +584,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		wear_mask.screen_loc = ui_mask
 		client.screen += wear_mask
 
-	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(species_type = species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/mask.dmi', default_layer = FACEMASK_LAYER)
+	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(species_type = species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/clothing/mask.dmi', default_layer = FACEMASK_LAYER)
 
 	apply_overlay(FACEMASK_LAYER)
 
@@ -597,7 +597,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		back.screen_loc = ui_back
 		client.screen += back
 
-	overlays_standing[BACK_LAYER] = back.make_worn_icon(species_type = species.name, slot_name = slot_back_str, default_icon = 'icons/mob/back.dmi', default_layer = BACK_LAYER)
+	overlays_standing[BACK_LAYER] = back.make_worn_icon(species_type = species.name, slot_name = slot_back_str, default_icon = 'icons/mob/clothing/back.dmi', default_layer = BACK_LAYER)
 
 	apply_overlay(BACK_LAYER)
 

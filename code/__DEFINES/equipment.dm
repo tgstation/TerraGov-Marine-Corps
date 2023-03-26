@@ -147,9 +147,8 @@
 //Marine helmet only, use for flags_marine_helmet.
 #define HELMET_SQUAD_OVERLAY (1<<0)
 #define HELMET_GARB_OVERLAY (1<<1)
-#define HELMET_DAMAGE_OVERLAY (1<<2)
-#define HELMET_STORE_GARB (1<<3)
-#define HELMET_IS_DAMAGED (1<<4)
+#define HELMET_STORE_GARB (1<<2)
+#define HELMET_IS_DAMAGED (1<<3)
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS
@@ -382,6 +381,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
+	SLOT_IN_BACKPACK, \
 	SLOT_IN_ACCESSORY,\
 	SLOT_S_STORE,\
 	SLOT_IN_L_POUCH,\
@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_BACK,\
 	SLOT_IN_BOOT,\
 	SLOT_IN_HEAD\
-	)
+)
 
 #define SLOT_ALL list(\
 	SLOT_WEAR_ID,\
@@ -462,6 +462,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_BACK
 		if("Boot")
 			return SLOT_IN_BOOT
+		if("Backpack")
+			return SLOT_IN_BACKPACK
 		if("Helmet")
 			return SLOT_IN_HEAD
 		if("Left Pocket")
@@ -491,6 +493,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Back"
 		if(SLOT_IN_BOOT)
 			return "Boot"
+		if(SLOT_IN_BACKPACK)
+			return "Backpack"
 		if(SLOT_IN_HEAD)
 			return "Helmet"
 		if(SLOT_L_STORE)
