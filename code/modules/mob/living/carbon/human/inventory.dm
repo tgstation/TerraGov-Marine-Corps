@@ -270,7 +270,7 @@
 	W.layer = ABOVE_HUD_LAYER
 	W.plane = ABOVE_HUD_PLANE
 
-	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
+	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
 	switch(slot)
 		if(SLOT_BACK)
@@ -391,7 +391,7 @@
 
 	var/obj/item/storage/storage_item
 
-	if(isstorage(selected_slot)) //item in slot is a storage item
+	if(isstorage(selected_slot))
 		storage_item = selected_slot
 
 	else if(isclothing(selected_slot))

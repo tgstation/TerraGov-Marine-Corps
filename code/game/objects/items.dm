@@ -350,11 +350,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
-// called after an item is placed in an equipment slot
-// user is mob that equipped it
-// slot uses the slot_X defines found in setup.dm
-// for items that can be placed in multiple slots
-// note this isn't called during the initial dressing of a player
+/**
+ * called after an item is placed in an equipment slot
+ * user is mob that equipped it
+ * slot uses the slot_X defines found in setup.dm
+ * for items that can be placed in multiple slots
+ * note this isn't called during the initial dressing of a player
+ */
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
@@ -424,11 +426,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		return
 	flags_item &= ~CAN_BUMP_ATTACK
 
-// The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
-// If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
-// Set disable_warning to 1 if you wish it to not give you outputs.
-// warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-
+/**
+ * The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
+ * If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
+ * Set disable_warning to 1 if you wish it to not give you outputs.
+ * warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
+ */
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)
 		return FALSE
@@ -443,7 +446,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	if(!ishuman(M))
 		return FALSE
-	//START HUMAN
+
 	var/mob/living/carbon/human/H = M
 	var/list/mob_equip = list()
 	if(H.species.hud?.equip_slots)
@@ -569,11 +572,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				if(warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return FALSE
-			if(is_type_in_list(src, H.wear_suit.allowed)) //why was there a pen check here?
+			if(is_type_in_list(src, H.wear_suit.allowed))
 				return TRUE
 			return FALSE
 
-		////////storage slot defines
+		//storage slot defines
 		if(SLOT_IN_ACCESSORY)
 			selected_slot = H.w_uniform
 		if(SLOT_IN_BACKPACK)
@@ -618,7 +621,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/obj/item/storage/storage_item
 
-	if(isstorage(selected_slot)) //item in slot is a storage item
+	if(isstorage(selected_slot))
 		storage_item = selected_slot
 
 	else if(isclothing(selected_slot))
