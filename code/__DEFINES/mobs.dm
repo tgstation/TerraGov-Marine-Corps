@@ -752,7 +752,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SLIME_EXTEND_TENDRIL_RANGE 3 // Range in tiles for the Extend Tendril ability.
 #define SLIME_EXTEND_TENDRIL_PULL_RANGE 1 // How many tiles a victim hit by Extend Tendril will be pulled towards the Slime.
 #define SLIME_EXTEND_TENDRIL_CRITICAL_MULTIPLIER 2 // Multiplier applied to Extend Tendril's damage and effect duration for victims at maximum range.
-#define SLIME_EXTEND_TENDRIL_EFFECT_DURATION 0.5 SECONDS // Amount of time during which a target hit by Extend Tendril is immobilized or stunned.
+#define SLIME_EXTEND_TENDRIL_EFFECT_DURATION 0.8 SECONDS // Amount of time during which a target hit by Extend Tendril is immobilized or stunned.
 #define SLIME_EXTEND_TENDRIL_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted to a victim hit by Extend Tendril.
 #define SLIME_TOXIC_BURST_WINDUP 2 SECONDS // Amount of time that it takes to finish a Toxic Burst wind-up channel.
 

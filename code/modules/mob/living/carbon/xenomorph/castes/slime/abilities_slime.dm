@@ -91,7 +91,7 @@
 	name = "Pounce"
 	ability_name = "Pounce"
 	action_icon_state = "pounce"
-	desc = "Leap towards your target, attaching to it."
+	desc = "Leap towards your target, attaching to it. Will inflict Intoxication to non-allied victims and slow them down."
 	cooldown_timer = 1.5 SECONDS
 	plasma_cost = 20
 	use_state_flags = XACT_USE_BUCKLED|XACT_USE_CLOSEDTURF
@@ -430,7 +430,7 @@
 	name = "Toxic Burst"
 	ability_name = "Toxic Burst"
 	action_icon_state = "toxic_burst"
-	desc = "Attack a victim you're attached to, consuming all Intoxication stacks and dealing an amount of damage proportional to the amount of stacks."
+	desc = "Attack a victim you're attached to, consuming the Intoxication debuff and dealing an amount of damage proportional to the amount of stacks."
 	cooldown_timer = 60 SECONDS
 	plasma_cost = 50
 	use_state_flags = XACT_USE_BUCKLED
@@ -472,9 +472,9 @@
 	var/mob/living/living_target = slime_pounce_action.attached_atom
 	var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 	var/damage = ((SENTINEL_INTOXICATED_BASE_DAMAGE + round(debuff.stacks / 10)) * debuff.stacks) / 2
-	var/effect_duration = damage / 10
+	var/effect_duration = damage / 30
 	living_target.apply_damage(damage, BURN, blocked = ACID)
-	living_target.Knockdown(effect_duration * 2)
+	living_target.Knockdown(min(0.1, effect_duration))
 	living_target.do_jitter_animation(effect_duration)
 	living_target.emote("scream")
 	living_target.remove_status_effect(STATUS_EFFECT_INTOXICATED)
