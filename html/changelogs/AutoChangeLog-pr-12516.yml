@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - qol: "Readds the original psychic shield keybind behavior as an alternate keybind option."
