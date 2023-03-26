@@ -453,6 +453,8 @@
 			return shoes
 		if(SLOT_IN_B_HOLSTER)
 			return back
+		if(SLOT_IN_BELT)
+			return belt
 		if(SLOT_IN_HOLSTER)
 			return belt
 		if(SLOT_IN_STORAGE)
