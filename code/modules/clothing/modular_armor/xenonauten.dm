@@ -194,3 +194,8 @@
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+
+/obj/item/clothing/suit/modular/xenonauten/uscm
+	name = "\improper M3 pattern personal armor"
+	desc = "The standard configuration M3 Pattern Body Armor. What else do you need to know about it? Well, since you asked - With design inspiration drawn off the French cuirasse, the M3 is built out of a light-weight titanium alloy, with several layers to account for spalling. Robust, and designed to function as the perfect armor for the shock-and-awe of the Colonial Marines. A TNR-Shoulder Lamp rests off its side, illuminating the way forward for you."
+	flags_armor_features = ARMOR_LAMP_OVERLAY

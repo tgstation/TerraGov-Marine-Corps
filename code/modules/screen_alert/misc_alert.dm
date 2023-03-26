@@ -47,3 +47,8 @@
 	image_to_play = "lt"
 	layer = ABOVE_SPLASHSCREEN_LAYER
 	plane = ABOVE_SPLASHSCREEN_PLANE
+	fade_out_delay = 1 SECONDS
+	fade_out_time = 0.5 SECONDS
+
+/atom/movable/screen/text/screen_text/picture/potrait/queen
+	image_to_play = "queen"

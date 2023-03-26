@@ -52,6 +52,21 @@
 /obj/structure/cargo_container/hd_blue
 	icon_state = "HD_blue"
 
+/obj/structure/cargo_container/tr_red
+	icon_state = "trijent_red"
+
+/obj/structure/cargo_container/tr_green
+	icon_state = "trijent_green"
+
+/obj/structure/cargo_container/wy
+	icon_state = "wy"
+
+/obj/structure/cargo_container/lockmart
+	icon_state = "lockmart"
+
+/obj/structure/cargo_container/seegson
+	icon_state = "seegson"
+
 /obj/structure/cargo_container/gorg
 	icon_state = "gorg"
 	bound_height = 32

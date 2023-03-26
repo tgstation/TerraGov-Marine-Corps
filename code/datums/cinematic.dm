@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	plane = SPLASHSCREEN_PLANE
 	layer = SPLASHSCREEN_LAYER
 	screen_loc = "CENTER-7,CENTER-7"
-	mouse_opacity = MOUSE_OPACITY_ICON
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
 /datum/cinematic
@@ -260,17 +260,18 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/briefing
 	id = CINEMATIC_BRIEFING
-	runtime = 1 MINUTES
-	cleanup_time = 1 MINUTES
+	runtime = 600
+	cleanup_time = 600
 	stop_ooc = FALSE
 
 /datum/cinematic/briefing/content()
 	screen.screen_loc = "CENTER-9,CENTER-7"
 	screen.icon = 'icons/misc/briefing.dmi'
 	flick("initial", screen)
-	addtimer(CALLBACK(src, .proc/initializingseq), 19)
-	addtimer(CALLBACK(src, .proc/map_zoom), 68)
-	addtimer(CALLBACK(src, .proc/planet_zoom), 118)
+	addtimer(CALLBACK(src, .proc/initializingseq), 29)
+	addtimer(CALLBACK(src, .proc/map_zoom), 78)
+	addtimer(CALLBACK(src, .proc/planet_zoom), 180)
+	addtimer(CALLBACK(src, .proc/colony), 292)
 
 /datum/cinematic/briefing/proc/initializingseq()
 	flick("initializing", screen)
@@ -280,9 +281,16 @@ GLOBAL_LIST_EMPTY(cinematics)
 /datum/cinematic/briefing/proc/map_zoom()
 	flick("zoom", screen)
 	for(var/mob/watcher AS in watching_mobs)
-		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "We have been sent to respond to the distress signal sent 8 days ago by the Patricks Rest colony.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
-
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "We have been sent to deal with the xenomorph infestation on Odella-51.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "I hope the Hadleys Hope incident is still fresh in your mind, these bugs are tough and not to be underestimated.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
 /datum/cinematic/briefing/proc/planet_zoom()
 	flick("planetzoom", screen)
 	for(var/mob/watcher AS in watching_mobs)
-		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "You will deploy on Garuda-1 as soon as this briefing is over", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "We are presented with a rather special opportunity to field test the experimental psychic inhibitors WY sent us against the xenomorphs", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "You will deploy on Garuda-1 to the Patricks Rest colony with Garuda-2 and the ship available to provide fire support", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+
+/datum/cinematic/briefing/proc/colony()
+	flick("colony", screen)
+	for(var/mob/watcher AS in watching_mobs)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "The colony is a CQC environment with allot of tight cave entrances, a grenade or C4 would collapse these.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "The psychic inhibitors will need to be placed in 4 places around the colony you will deploy near one of these and find a spot fit for defense.", /atom/movable/screen/text/screen_text/picture/potrait/lt)

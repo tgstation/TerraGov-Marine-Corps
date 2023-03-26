@@ -123,3 +123,7 @@
 /obj/structure/patrol_point/ud/examine(mob/user)
 	. = ..()
 	. += span_notice("Click to enter dropship.")
+
+/obj/structure/patrol_point/ud/Initialize()
+	..()
+	id = ("TGMC_" + rand(25, 28))

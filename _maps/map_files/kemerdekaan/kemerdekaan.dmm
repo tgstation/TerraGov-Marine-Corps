@@ -3,7 +3,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "ae" = (
-/obj/structure/cargo_container{
+/obj/structure/cargo_container/lockmart{
 	dir = 1
 	},
 /turf/open/floor/concrete,
@@ -30,6 +30,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"an" = (
+/obj/machinery/cic_maptable,
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/mono,
+/area/mainship/kemerdekaan)
 "au" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -271,6 +276,7 @@
 /obj/machinery/light/mainship/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/prison/sterilewhite/full,
 /area/mainship/kemerdekaan)
 "fB" = (
@@ -492,7 +498,10 @@
 /area/mainship/patrol_base)
 "jQ" = (
 /obj/machinery/floor_warn_light/yellow,
-/turf/open/floor/plating/plating_catwalk,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "jW" = (
 /obj/structure/cargo_container{
@@ -582,6 +591,9 @@
 /area/mainship/patrol_base)
 "ly" = (
 /obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "lz" = (
@@ -747,7 +759,8 @@
 /area/mainship/patrol_base/telecomms)
 "qc" = (
 /obj/structure/prop/vehicle/crawler/crawler_fuel,
-/turf/open/floor/plating/plating_catwalk,
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "qe" = (
 /obj/machinery/telecomms/bus/preset_one,
@@ -768,10 +781,24 @@
 	dir = 4
 	},
 /area/mainship/kemerdekaan)
+"qF" = (
+/obj/machinery/floor_warn_light/yellow,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/kemerdekaan)
 "qL" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qP" = (
+/obj/machinery/gear,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/kemerdekaan)
 "qY" = (
 /obj/structure/prop/mainship/prop_sec,
 /turf/open/floor/plating/plating_catwalk,
@@ -865,6 +892,8 @@
 /area/mainship/patrol_base/telecomms)
 "rW" = (
 /obj/structure/catwalk,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/prison/sterilewhite/full,
 /area/mainship/kemerdekaan)
 "sc" = (
@@ -952,6 +981,9 @@
 /obj/structure/ship_ammo/heavygun{
 	pixel_x = -14
 	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "sN" = (
@@ -961,6 +993,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
+"sO" = (
+/obj/machinery/floor_warn_light/yellow,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/kemerdekaan)
 "sR" = (
 /obj/structure/prop/vehicle/crawler/crawler_fuel,
 /turf/open/floor/mainship/black,
@@ -1084,13 +1123,16 @@
 	},
 /area/mainship/patrol_base)
 "uE" = (
-/obj/structure/cargo_container/hd{
+/obj/structure/cargo_container/wy{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "uH" = (
 /obj/structure/dropship_equipment/weapon/heavygun,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "uK" = (
@@ -1133,6 +1175,12 @@
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"vk" = (
+/obj/structure/catwalk,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/prison/sterilewhite/full,
+/area/mainship/kemerdekaan)
 "vo" = (
 /obj/machinery/light{
 	dir = 1
@@ -1202,6 +1250,11 @@
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
+/turf/open/floor/mainship/mono,
+/area/mainship/kemerdekaan)
+"wH" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "wK" = (
@@ -1331,6 +1384,12 @@
 /obj/structure/prop/mainship/doorblocker/patrol_base,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"zT" = (
+/obj/structure/catwalk,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/prison/sterilewhite/full,
+/area/mainship/kemerdekaan)
 "zV" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -1389,6 +1448,9 @@
 /area/mainship/kemerdekaan)
 "Bx" = (
 /obj/structure/ship_ammo/minirocket,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "BA" = (
@@ -1503,8 +1565,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/kemerdekaan)
 "Cl" = (
-/obj/structure/cargo_container/hd,
+/obj/structure/cargo_container/wy,
 /turf/open/floor/mainship/mono,
+/area/mainship/kemerdekaan)
+"Cv" = (
+/obj/machinery/floodlight/landing,
+/turf/open/floor/concrete,
 /area/mainship/kemerdekaan)
 "CR" = (
 /obj/machinery/telecomms/bus/preset_four,
@@ -1563,6 +1629,9 @@
 /area/mainship/kemerdekaan)
 "Ew" = (
 /obj/machinery/floor_warn_light/yellow,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "EM" = (
@@ -1699,7 +1768,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "HR" = (
-/obj/structure/cargo_container{
+/obj/structure/cargo_container/lockmart{
 	dir = 4
 	},
 /turf/open/floor/concrete,
@@ -2033,7 +2102,7 @@
 	},
 /area/mainship/patrol_base)
 "Nt" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/lockmart,
 /turf/open/floor/concrete,
 /area/mainship/kemerdekaan)
 "NF" = (
@@ -2273,6 +2342,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
+"RS" = (
+/obj/structure/catwalk,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/prison/sterilewhite/full,
+/area/mainship/kemerdekaan)
 "RW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -2303,6 +2378,9 @@
 /area/mainship/patrol_base)
 "Sp" = (
 /obj/machinery/gear,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "Sq" = (
@@ -2581,7 +2659,7 @@
 /turf/open/floor/mainship/research,
 /area/mainship/patrol_base)
 "Xt" = (
-/obj/structure/cargo_container/hd{
+/obj/structure/cargo_container/wy{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2917,14 +2995,14 @@ Sw
 Sw
 Sw
 RL
-rW
-rW
+zT
+zT
 fs
-rW
-rW
+vk
+vk
 fs
-rW
-rW
+RS
+RS
 fs
 rW
 rW
@@ -4778,7 +4856,7 @@ Lf
 RL
 hl
 EV
-vr
+an
 EV
 fW
 fW
@@ -4786,7 +4864,7 @@ fW
 fW
 fW
 EV
-vr
+an
 EV
 Yq
 RL
@@ -5150,7 +5228,7 @@ Lf
 RL
 hl
 EV
-vr
+an
 EV
 fW
 fW
@@ -5158,7 +5236,7 @@ fW
 fW
 fW
 EV
-vr
+an
 EV
 Yq
 RL
@@ -5396,15 +5474,15 @@ Hk
 Gj
 jQ
 Sp
-Lf
+wd
 uH
 sJ
-Lf
-Lf
-Zy
-Lf
-Zy
-Lf
+wd
+wd
+cf
+wd
+cf
+wd
 Sp
 Ew
 fW
@@ -5456,7 +5534,7 @@ Rz
 Hj
 Hk
 Gj
-fW
+kU
 iQ
 YI
 YI
@@ -5468,7 +5546,7 @@ YI
 YI
 YI
 aE
-Lf
+eW
 Zr
 Hl
 RL
@@ -5518,7 +5596,7 @@ Rz
 OK
 Hk
 Gj
-fW
+kU
 Rz
 Hk
 Hk
@@ -5530,7 +5608,7 @@ Hk
 Hk
 Hk
 Gj
-Lf
+eW
 Mf
 Uk
 Qu
@@ -5580,7 +5658,7 @@ Rz
 Nt
 Hk
 Gj
-fW
+kU
 Rz
 Hk
 Hk
@@ -5592,7 +5670,7 @@ Hk
 Hk
 Hk
 Gj
-Lf
+eW
 BJ
 Uk
 Qu
@@ -5642,13 +5720,13 @@ Rz
 ae
 Hk
 Gj
-Vr
+wH
 Rz
 Hk
 Hk
 Hk
 Hk
-Hk
+Cv
 Hk
 Hk
 NJ
@@ -5704,7 +5782,7 @@ Rz
 HR
 Hk
 Gj
-fW
+kU
 Rz
 Hk
 Hk
@@ -5716,7 +5794,7 @@ Hk
 Hk
 Hk
 Gj
-Lf
+eW
 fW
 Lf
 Qu
@@ -5778,7 +5856,7 @@ Hk
 Hk
 Hk
 Gj
-Lf
+eW
 fW
 Lf
 Qu
@@ -5828,7 +5906,7 @@ Lf
 Lf
 Lf
 Lf
-fW
+kU
 FS
 Pi
 Pi
@@ -5840,7 +5918,7 @@ Pi
 Pi
 Pi
 XS
-Lf
+eW
 fW
 Lf
 RL
@@ -5890,19 +5968,19 @@ Lf
 Lf
 Lf
 Lf
-jQ
-Sp
-Lf
+qF
+qP
+RQ
 Bx
 Bx
-Lf
-Lf
-Lf
-Lf
-Lf
-Lf
-Sp
-Ew
+RQ
+RQ
+RQ
+RQ
+RQ
+RQ
+qP
+sO
 fW
 Lf
 RL
