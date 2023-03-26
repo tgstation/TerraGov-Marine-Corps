@@ -8,7 +8,7 @@ TO DO:
 	name = "tendril blood"
 	icon_state = "tendril_blood"
 	duration = 0.5 SECONDS
-	layer = ABOVE_MOB_LAYER
+	layer = TANK_BARREL_LAYER
 
 /obj/effect/temp_visual/tendril_blood/Initialize()
 	. = ..()
@@ -17,6 +17,7 @@ TO DO:
 /obj/effect/ebeam/slime_tendril
 	name = "slimy tendril"
 	alpha = 200
+	layer = ABOVE_MOB_LAYER
 
 // ***************************************
 // *********** Pounce (Slime)
@@ -77,6 +78,8 @@ TO DO:
 /datum/action/xeno_action/activable/slime_pounce/proc/atom_hit(datum/source, atom/hit_atom)
 	throw_complete()
 	attached_atom = hit_atom
+	owner.balloon_alert_to_viewers("Attached")
+	owner.layer = ABOVE_MOB_LAYER
 	RegisterSignal(owner, list(
 		COMSIG_ATOM_EX_ACT, // Hit by an explosion.
 		COMSIG_MOB_DEATH, // Slime died.
@@ -222,6 +225,7 @@ TO DO:
 		owner.forceMove(previous_turf)
 		previous_turf = null
 	attached_atom = null
+	owner.layer = MOB_LAYER
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.Knockdown(SLIME_POUNCE_UNBUCKLE_EFFECT_DURATION)
 	xeno_owner.balloon_alert_to_viewers("Deattached")

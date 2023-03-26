@@ -734,7 +734,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //Slime defines
-#define SLIME_MOVEMENT_ACID_DURATION 0.4 SECONDS // The duration of the acid puddles left behind when a Slime moves.
+#define SLIME_MOVEMENT_ACID_DURATION 0.3 SECONDS // The duration of the acid puddles left behind when a Slime moves.
 #define SLIME_MOVEMENT_ACID_DAMAGE 10 // The damage of the acid puddles left behind when a Slime moves.
 #define SLIME_ATTACK_INTOXICATION_STACKS 0 // The amount of Intoxication stacks inflicted with each normal attack.
 #define SLIME_POUNCE_RANGE 5 // The range of a Slime's Pounce.
