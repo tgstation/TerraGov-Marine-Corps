@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Orphan hivemind collapse can no longer trigger before shutters are open"
