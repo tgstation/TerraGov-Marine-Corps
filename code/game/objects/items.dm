@@ -644,9 +644,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	else if(isclothing(selected_slot))
 		var/obj/item/clothing/selected_clothing = selected_slot
-		for(var/attachment in selected_clothing.attachments_by_slot) //this can be an AS in
-			if(istype(attachment, /obj/item/armor_module/storage))
-				var/obj/item/armor_module/storage/storage_attachment = attachment
+		for(var/attachment_slot in selected_clothing.attachments_by_slot)
+			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
+				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
 				storage_item = storage_attachment.storage
 				break
 

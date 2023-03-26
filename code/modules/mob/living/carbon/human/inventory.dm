@@ -255,22 +255,22 @@
 		l_hand = null
 		W.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
-		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/datum/action/A AS in W.actions)
-			A.remove_action(src)
 
 	else if(W == r_hand)
 		r_hand = null
 		W.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
-		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/datum/action/A AS in W.actions)
-			A.remove_action(src)
+
+	//removes item's actions, may be readded once re-equipped to the new slot
+	for(var/datum/action/A AS in W.actions)
+		A.remove_action(src)
 
 	W.screen_loc = null
 	W.loc = src
 	W.layer = ABOVE_HUD_LAYER
 	W.plane = ABOVE_HUD_PLANE
+
+	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
 
 	switch(slot)
 		if(SLOT_BACK)
@@ -360,57 +360,52 @@
 			W.equipped(src, slot)
 			update_inv_s_store()
 		if(SLOT_IN_BOOT)
-			var/obj/item/clothing/shoes/marine/B = shoes
-			B.attackby(W, src)
+			selected_slot = shoes
 		if(SLOT_IN_BACKPACK)
-			var/obj/item/storage/S = back
-			S.handle_item_insertion(W, TRUE, src)
+			selected_slot = back
 		if(SLOT_IN_SUIT)
-			if(istype(wear_suit, /obj/item/clothing/suit))
-				var/obj/item/clothing/suit/suit = wear_suit
-				if(!suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-					return FALSE
-				var/obj/item/armor_module/storage/storage_module = suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/storage = storage_module.storage
-				storage.handle_item_insertion(W, FALSE, src)
+			selected_slot = wear_suit
 		if(SLOT_IN_BELT)
-			var/obj/item/storage/belt/S = belt
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = belt
 		if(SLOT_IN_HEAD)
-			if(istype(head, /obj/item/clothing/head))
-				var/obj/item/clothing/head/headwear = head
-				if(!headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-					return FALSE
-				var/obj/item/armor_module/storage/storage_module = headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/storage = storage_module.storage
-				storage.handle_item_insertion(W, FALSE, src)
+			selected_slot = head
 		if(SLOT_IN_HOLSTER)
-			var/obj/item/storage/S = belt
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = belt
 		if(SLOT_IN_B_HOLSTER)
-			var/obj/item/storage/S = back
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = back
 		if(SLOT_IN_S_HOLSTER)
-			var/obj/item/storage/S = s_store
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = s_store
 		if(SLOT_IN_STORAGE)
-			var/obj/item/storage/S = s_active
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = s_active
 		if(SLOT_IN_L_POUCH)
-			var/obj/item/storage/S = l_store
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = l_store
 		if(SLOT_IN_R_POUCH)
-			var/obj/item/storage/S = r_store
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = r_store
 		if(SLOT_IN_ACCESSORY)
-			var/obj/item/armor_module/storage/U = w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
-			var/obj/item/storage/S = U.storage
-			S.handle_item_insertion(W, FALSE, src)
+			selected_slot = w_uniform
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 
-	return TRUE
+	if(!selected_slot)
+		return FALSE
 
+	var/obj/item/storage/storage_item
+
+	if(isstorage(selected_slot)) //item in slot is a storage item
+		storage_item = selected_slot
+
+	else if(isclothing(selected_slot))
+		var/obj/item/clothing/selected_clothing = selected_slot
+		for(var/attachment_slot in selected_clothing.attachments_by_slot)
+			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
+				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
+				storage_item = storage_attachment.storage
+				break
+
+	if(!storage_item)
+		return FALSE
+
+	return storage_item.handle_item_insertion(W, FALSE, src)
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
