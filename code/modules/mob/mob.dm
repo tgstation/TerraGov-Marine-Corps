@@ -339,7 +339,9 @@
 	if(!I)
 		return FALSE
 
-	//Each inventory slot can have more than one define associated with it. This refines the slot down to the item types actually associated with the define.
+	//This is quite horrible, there's probably a better way to do it.
+	//Each actual inventory slot has more than one slot define associated with it.
+	//The defines below are for specific items in specific slots, which allows for a much more specific draw order, i.e. drawing a weapon from a slot which would otherwise be lower in the order
 	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
 		return FALSE
 	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))

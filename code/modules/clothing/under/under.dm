@@ -142,9 +142,10 @@
 
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip(mob/user)
-	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
-	if(found)
-		return found.do_quick_equip(user)
+	for(var/attachment_slot in attachments_by_slot)
+		if(istype(attachments_by_slot[attachment_slot], /obj/item/armor_module/storage/uniform/holster))
+			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
+			return storage_attachment.storage.do_quick_equip(user)
 	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)

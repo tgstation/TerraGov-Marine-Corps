@@ -332,13 +332,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		current_acid = null
 	return
 
-///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
+///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
 /obj/item/proc/do_quick_equip(mob/user)
-	var/obj/item/found = locate(/obj/item/storage) in contents
-	if(!found)
-		found = locate(/obj/item/armor_module/storage) in contents
-	if(found)
-		return found.do_quick_equip(user)
 	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
