@@ -322,44 +322,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			to_chat(M, "<br><br><h1>[span_danger("Failed to find a valid location for End of Round Deathmatch. Please do not grief.")]</h1><br><br>")
 			continue
 
-		var/mob/living/L
-		if(!isliving(M) || isAI(M))
-			L = new /mob/living/carbon/human(picked)
-			M.mind.transfer_to(L, TRUE)
-		else
-			L = M
-			INVOKE_ASYNC(L, TYPE_PROC_REF(/atom/movable, forceMove), picked)
-
-		L.mind.bypass_ff = TRUE
-		L.revive()
-
-		if(isxeno(L))
-			var/mob/living/carbon/xenomorph/X = L
+		if(isxeno(M))
+			var/mob/living/carbon/xenomorph/X = M
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			INVOKE_ASYNC(X, TYPE_PROC_REF(/atom/movable, forceMove), picked)
 
-		else if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(!H.w_uniform)
-				var/job = pick(
-					/datum/job/clf/leader,
-					/datum/job/clf/standard,
-					/datum/job/freelancer/leader,
-					/datum/job/freelancer/grenadier,
-					/datum/job/freelancer/standard,
-					/datum/job/upp/leader,
-					/datum/job/upp/heavy,
-					/datum/job/upp/standard,
-					/datum/job/som/ert/leader,
-					/datum/job/som/ert/veteran,
-					/datum/job/som/ert/standard,
-					/datum/job/pmc/leader,
-					/datum/job/pmc/standard,
-				)
-				var/datum/job/J = SSjob.GetJobType(job)
-				H.apply_assigned_role_to_spawn(J)
-				H.regenerate_icons()
+		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			do_eord_respawn(H)
 
-		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
+		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
 
