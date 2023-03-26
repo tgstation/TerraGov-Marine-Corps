@@ -11,7 +11,7 @@
 
 	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot]
 	var/obj/item/I = get_active_held_item()
-	if(!I)
+	if(!I) //draw item
 		if(next_move > world.time)
 			return
 		if(slot_requested)
@@ -22,10 +22,9 @@
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + 1
 				return
-	else
-		if(s_active && s_active.can_be_inserted(I))
-			s_active.handle_item_insertion(I, FALSE, src)
-			return
+	else //store item
+		if(s_active && s_active.attackby(I, src)) //stored in currently open storage
+			return TRUE
 		if(slot_requested)
 			if(equip_to_slot_if_possible(I, slot_requested, FALSE, FALSE, FALSE))
 				return

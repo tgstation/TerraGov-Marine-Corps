@@ -465,6 +465,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
 		return FALSE
 
+	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
+
 	switch(slot)
 		if(SLOT_L_HAND)
 			if(H.l_hand)
@@ -474,6 +476,18 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(H.r_hand)
 				return FALSE
 			return TRUE
+		if(SLOT_HANDCUFFED)
+			if(H.handcuffed)
+				return FALSE
+			if(!istype(src, /obj/item/restraints/handcuffs))
+				return FALSE
+			return TRUE
+		if(SLOT_IN_STORAGE) //open storage
+			if(!H.s_active)
+				return FALSE
+			selected_slot = H.s_active
+
+		//actual slots
 		if(SLOT_WEAR_MASK)
 			if(H.wear_mask)
 				return FALSE
@@ -486,12 +500,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(!(flags_equip_slot & ITEM_SLOT_BACK))
 				return FALSE
 			return TRUE
-		if(SLOT_WEAR_SUIT)
-			if(H.wear_suit)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
-				return FALSE
-			return TRUE
 		if(SLOT_GLOVES)
 			if(H.gloves)
 				return FALSE
@@ -502,16 +510,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(H.shoes)
 				return FALSE
 			if(!(flags_equip_slot & ITEM_SLOT_FEET))
-				return FALSE
-			return TRUE
-		if(SLOT_BELT)
-			if(H.belt)
-				return FALSE
-			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-				if(warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_BELT))
 				return FALSE
 			return TRUE
 		if(SLOT_GLASSES)
@@ -544,6 +542,28 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(!(flags_equip_slot & ITEM_SLOT_ID))
 				return FALSE
 			return TRUE
+
+		//direct slots with prerequisites
+		if(SLOT_WEAR_SUIT)
+			if(H.wear_suit)
+				return FALSE
+			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(warning)
+					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
+				return FALSE
+			return TRUE
+		if(SLOT_BELT)
+			if(H.belt)
+				return FALSE
+			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(warning)
+					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_BELT))
+				return FALSE
+			return TRUE
 		if(SLOT_L_STORE)
 			if(H.l_store)
 				return FALSE
@@ -553,8 +573,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
-			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET)) //smaller or tiny items can all go in pocket slots, but only flagged larger items can
 				return TRUE
+			return FALSE
 		if(SLOT_R_STORE)
 			if(H.r_store)
 				return FALSE
@@ -567,121 +588,74 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 			return FALSE
-		if(SLOT_IN_ACCESSORY)
-			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
-				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
-				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			return FALSE
-		if(SLOT_S_STORE)
+		if(SLOT_S_STORE) //suit storage uniquely depends on the suit allowed list, so is a bit snowflake
 			if(H.s_store)
 				return FALSE
 			if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
 				if(warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return FALSE
-			if(!H.wear_suit.allowed)
-				if(warning)
-					to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
-				return FALSE
-			if(istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+			if(is_type_in_list(src, H.wear_suit.allowed)) //why was there a pen check here?
 				return TRUE
 			return FALSE
-		if(SLOT_HANDCUFFED)
-			if(H.handcuffed)
-				return FALSE
-			if(!istype(src, /obj/item/restraints/handcuffs))
-				return FALSE
-			return TRUE
+
+		////////storage slot defines
+		if(SLOT_IN_ACCESSORY)
+			selected_slot = H.w_uniform
 		if(SLOT_IN_BACKPACK)
-			if (!H.back || !istype(H.back, /obj/item/storage/backpack))
-				return FALSE
-			var/obj/item/storage/backpack/B = H.back
-			if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
-				return FALSE
-			return TRUE
+			selected_slot = H.back
+		if(SLOT_IN_BELT)
+			selected_slot = H.belt
+		if(SLOT_IN_L_POUCH)
+			selected_slot = H.l_store
+		if(SLOT_IN_R_POUCH)
+			selected_slot = H.r_store
+		if(SLOT_IN_SUIT)
+			selected_slot = H.wear_suit
+		if(SLOT_IN_HEAD)
+			selected_slot = H.head
+		if(SLOT_IN_BOOT)
+			selected_slot = H.shoes
+
+		//holsters - need to check for specific item types
 		if(SLOT_IN_B_HOLSTER)
 			if(!H.back || !istype(H.back, /obj/item/storage/holster))
 				return FALSE
-			var/obj/item/storage/S = H.back
-			if(!S.can_be_inserted(src, warning))
-				return FALSE
-			return TRUE
-		if(SLOT_IN_BELT)
-			if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
-				return FALSE
-			var/obj/item/storage/belt/S = H.belt
-			if(!S.can_be_inserted(src, warning))
-				return FALSE
-			return TRUE
+			selected_slot = H.back
 		if(SLOT_IN_HOLSTER)
-			if((H.belt && istype(H.belt,/obj/item/storage/holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
-				var/obj/item/storage/S = H.belt
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			return FALSE
+			if(!H.belt || (!istype(H.belt,/obj/item/storage/holster) && !istype(H.belt,/obj/item/storage/belt/gun)))
+				return FALSE
+			selected_slot = H.belt
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) || (H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
-				var/obj/item/storage/S = H.s_store
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			return FALSE
-		if(SLOT_IN_STORAGE)
-			if(!H.s_active)
+			if(!H.s_store || (!istype(H.s_store, /obj/item/storage/holster) && !istype(H.s_store,/obj/item/storage/belt/gun)))
 				return FALSE
-			var/obj/item/storage/S = H.s_active
-			if(S.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_L_POUCH)
-			if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
-				return FALSE
-			var/obj/item/storage/S = H.l_store
-			if(S.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_R_POUCH)
-			if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
-				return FALSE
-			var/obj/item/storage/S = H.r_store
-			if(S.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_SUIT)
-			if(!H.wear_suit)
-				return FALSE
-			if(istype(H.wear_suit, /obj/item/clothing/suit))
-				var/obj/item/clothing/suit/T = H.wear_suit
-				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-					return FALSE
-				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-		if(SLOT_IN_HEAD)
-			if(!H.head)
-				return FALSE
-			if(!istype(H.shoes, /obj/item/clothing/head))
-				return FALSE
-			var/obj/item/clothing/head/headwear = H.head
-			if(!headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-				return FALSE
-			var/obj/item/armor_module/storage/storage_module = headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-			var/obj/item/storage/storage = storage_module.storage
-			if(storage.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_BOOT)
-			if(H.shoes)
-				return FALSE
-			if(!istype(H.shoes, /obj/item/clothing/shoes))
-				return FALSE
-			var/obj/item/clothing/shoes/footwear = H.shoes
-			if(!footwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-				return FALSE
-			var/obj/item/armor_module/storage/storage_module = footwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-			var/obj/item/storage/storage = storage_module.storage
-			if(storage.can_be_inserted(src, warning))
-				return TRUE
-	return FALSE //Unsupported slot
+			selected_slot = H.s_store
 
+		else
+			return FALSE //Unsupported slot
+
+	if(!selected_slot)
+		return FALSE
+
+	var/obj/item/storage/storage_item
+
+	if(isstorage(selected_slot)) //item in slot is a storage item
+		storage_item = selected_slot
+
+	else if(isclothing(selected_slot))
+		var/obj/item/clothing/selected_clothing = selected_slot
+		for(var/attachment in selected_clothing.attachments_by_slot) //this can be an AS in
+			if(istype(attachment, /obj/item/armor_module/storage))
+				var/obj/item/armor_module/storage/storage_attachment = attachment
+				storage_item = storage_attachment.storage
+				break
+
+	if(!storage_item)
+		return FALSE
+
+	if(!(storage_item.can_be_inserted(src, warning)))
+		return FALSE
+	return TRUE
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
