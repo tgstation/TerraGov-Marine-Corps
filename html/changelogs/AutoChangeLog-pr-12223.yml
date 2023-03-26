@@ -1,6 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "There are now 5 quick equip keybinds."
-  - rscdel: "preferred_slot client verb as it has become unecessary."
-  - code_imp: "Some cleanup in a few files I touched upon, nothing major."

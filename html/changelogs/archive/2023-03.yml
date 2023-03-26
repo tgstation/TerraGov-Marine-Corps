@@ -394,3 +394,25 @@
   - rscdel: Deletes the unobtainable chem xeno_blood
   ivanmixo:
   - qol: Made cas' eye starting position selectable via minimap
+2023-03-25:
+  ClosetedSkeletonGH:
+  - rscadd: Many many more option's for robot random-name generation
+  Lumipharon:
+  - balance: Standard smoke grenades now extinguish fire
+  - bugfix: TGMC interdictors have cleansed the sector of the excessive amount of
+      xeno infested ERT ships, returning them to normal levels
+  - bugfix: Fixed some minor issues where valhalla or admin xenos were being counted
+      as real xenos
+  Naaanii:
+  - balance: Roundstart larvae can instantly evolve.
+  Xander3359:
+  - rscadd: There are now 5 quick equip keybinds.
+  - rscdel: preferred_slot client verb as it has become unecessary.
+  - code_imp: Some cleanup in a few files I touched upon, nothing major.
+  ivanmixo:
+  - bugfix: Shuttle landing shadow doesn't block clicks anymore
+2023-03-26:
+  Naaanii:
+  - spellcheck: updated beacon admin log to say 'supply' instead of 'orbital strike'
+  ivanmixo:
+  - balance: Moved green disk to engineering on LV
