@@ -411,3 +411,8 @@
   - code_imp: Some cleanup in a few files I touched upon, nothing major.
   ivanmixo:
   - bugfix: Shuttle landing shadow doesn't block clicks anymore
+2023-03-26:
+  Naaanii:
+  - spellcheck: updated beacon admin log to say 'supply' instead of 'orbital strike'
+  ivanmixo:
+  - balance: Moved green disk to engineering on LV
