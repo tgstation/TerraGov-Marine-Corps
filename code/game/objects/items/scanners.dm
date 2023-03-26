@@ -80,21 +80,34 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	analyze_vitals(M, user, TRUE)
+
+///Health scans a target. M is the thing being scanned, user is the person doing the scanning, show_patient will show the UI to the scanee when TRUE.
+/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/M, mob/living/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
 		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
-	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
-		to_chat(user, span_warning("Error: Cannot read vitals!"))
+	if(!iscarbon(M))
+		balloon_alert(user, "Cannot scan")
 		return
 	if(isxeno(M))
-		to_chat(user, span_warning("[src] can't make sense of this creature!"))
+		balloon_alert(user, "Unknown entity")
 		return
-	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
+	if(M.species.species_flags & NO_SCAN)
+		balloon_alert(user, "Not Organic")
+		return
 	patient = M
 	current_user = user
-	ui_interact(user)
+	if(show_patient)
+		ui_interact(M)
+	else
+		ui_interact(user)
 	update_static_data(user)
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return
