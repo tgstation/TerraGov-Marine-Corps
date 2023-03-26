@@ -24,9 +24,11 @@
 	switch(stat)
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
+			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
 			see_in_dark = xeno_caste.conscious_see_in_dark
 		if(UNCONSCIOUS)
 			GLOB.alive_xeno_list += src
+			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
 			see_in_dark = xeno_caste.unconscious_see_in_dark
 		if(DEAD)
 			see_in_dark = xeno_caste.unconscious_see_in_dark
@@ -246,6 +248,7 @@
 	if(is_zoomed) zoom_out()
 
 	GLOB.alive_xeno_list -= src
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
