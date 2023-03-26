@@ -49,7 +49,6 @@
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
-	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
@@ -123,6 +122,7 @@
 	else	//So we can just get a goshdarn name.
 		name += " ([H])"
 	GLOB.active_orbital_beacons += src
+	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
@@ -167,6 +167,7 @@
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	message_admins("[ADMIN_TPMONTY(usr)] set up a supply beacon.")
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
