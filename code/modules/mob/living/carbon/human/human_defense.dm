@@ -141,7 +141,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return FALSE
 	var/hit_area = affecting.display_name
 
-	var/damage = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
+	var/damage = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
 	if(user != src)
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
@@ -199,7 +199,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(damage) && stat == CONSCIOUS)
+				if(prob(applied_damage) && stat == CONSCIOUS)
 					Paralyze(modify_by_armor(16, MELEE, def_zone = affecting))
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
@@ -217,7 +217,7 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((damage + 10)) && !incapacitated())
+				if(prob((applied_damage + 5)) && !incapacitated())
 					apply_effect(modify_by_armor(6, MELEE, def_zone = def_zone), WEAKEN)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
@@ -343,6 +343,11 @@ Contains most of the procs that are called when a mob is attacked by something
 			msg_admin_ff("[ADMIN_TPMONTY(living_thrower)] hit [ADMIN_TPMONTY(src)] with \the [thrown_item] (thrown) in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 
 
+/mob/living/carbon/human/resist_fire(datum/source)
+	spin(30, 1.5)
+	return ..()
+
+
 /mob/living/carbon/human/proc/bloody_hands(mob/living/source, amount = 2)
 	if (istype(gloves))
 		gloves.add_mob_blood(source)
@@ -425,8 +430,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!hasorgans(src))
-		return ..()
 
 	if(user.a_intent != INTENT_HELP)
 		return ..()
@@ -461,8 +464,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	add_overlay(GLOB.welding_sparks)
 	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
-		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
-			user.cut_overlay(GLOB.welding_sparks)
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))

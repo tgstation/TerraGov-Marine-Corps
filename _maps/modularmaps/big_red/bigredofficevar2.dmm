@@ -202,11 +202,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
-"dT" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/bigredv2/outside/e)
 "dV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -552,7 +547,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/e)
 "qL" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "qN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1193,7 +1188,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "JK" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "JT" = (
@@ -1513,7 +1508,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/e)
 "TX" = (
-/turf/open/floor/plating/ground/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/e)
 "Uz" = (
 /turf/closed/wall/mainship,
@@ -2197,7 +2192,7 @@ PN
 lh
 "}
 (19,1,1) = {"
-dT
+TX
 jZ
 xf
 NB
@@ -2322,7 +2317,7 @@ lM
 Ws
 "}
 (24,1,1) = {"
-dT
+TX
 jZ
 br
 br
@@ -2347,7 +2342,7 @@ mv
 Ws
 "}
 (25,1,1) = {"
-dT
+TX
 jZ
 br
 br
@@ -2372,7 +2367,7 @@ Tx
 Fp
 "}
 (26,1,1) = {"
-dT
+TX
 dK
 br
 NB
@@ -2397,7 +2392,7 @@ Tx
 lh
 "}
 (27,1,1) = {"
-dT
+TX
 jZ
 xf
 br
@@ -2422,7 +2417,7 @@ Tx
 Fp
 "}
 (28,1,1) = {"
-dT
+TX
 NH
 wi
 wi

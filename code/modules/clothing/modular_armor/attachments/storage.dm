@@ -11,6 +11,7 @@
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
 	w_class = WEIGHT_CLASS_BULKY
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/style = "")
 	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
 	///If TRUE it will add extra overlays for the items within.
@@ -30,9 +31,9 @@
 	. = ..()
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
-	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, .proc/open_storage)	//Open storage if the armor is alt right clicked
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(insert_item))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
@@ -57,7 +58,7 @@
 		return
 	if(parent.loc != user)
 		return
-	INVOKE_ASYNC(storage, /atom.proc/attackby, I, user)
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/atom, attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
@@ -103,6 +104,18 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 	)
+
+/obj/item/armor_module/storage/general/irremovable
+	desc = "General storage module. Limited capacity but can hold some larger items like pistols or magazines."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+
+/obj/item/armor_module/storage/general/som
+	name = "General Purpose Storage module"
+	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, pistols or magazines."
+	icon_state = "mod_general_bag_som"
+	item_state = "mod_general_bag_som_a"
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -193,15 +206,26 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
-		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list()
+
+/obj/item/armor_module/storage/engineering/som
+	name = "Engineering Storage module"
+	desc = "Designed for mounting on SOM combat armor. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool."
+	icon_state = "mod_engineer_bag_som"
+	item_state = "mod_engineer_bag_som_a"
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
+
+/obj/item/armor_module/storage/medical/irremovable
+	desc = "Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
+	icon_state = ""
+	item_state = ""
+	flags_attach_features = ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/storage/medical/freelancer/Initialize()
 	. = ..()
@@ -210,14 +234,6 @@
 	new /obj/item/storage/pill_bottle/meralyne(storage)
 	new /obj/item/storage/pill_bottle/dermaline(storage)
 	new /obj/item/storage/pill_bottle/tramadol(storage)
-
-/obj/item/armor_module/storage/medical/basic/Initialize()
-	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(storage)
-	new /obj/item/storage/pill_bottle/packet/kelotane(storage)
-	new /obj/item/storage/pill_bottle/packet/tramadol(storage)
-	new /obj/item/stack/medical/splint(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(storage)
 
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
@@ -235,8 +251,13 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
-		/obj/item/tool/surgery/solderingtool,
 	)
+
+/obj/item/armor_module/storage/medical/som
+	name = "Medical Storage module"
+	desc = "Designed for mounting on SOM combat armor. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
+	icon_state = "mod_medic_bag_som"
+	item_state = "mod_medic_bag_som_a"
 
 /obj/item/armor_module/storage/injector
 	name = "Injector Storage module"
@@ -281,11 +302,46 @@
 		/obj/item/reagent_containers/food/drinks/cans,
 	)
 
+/obj/item/armor_module/storage/boot
+	name = "boot storage module"
+	desc = "A small set of straps to hold something in your boot."
+	icon_state = ""
+	storage =  /obj/item/storage/internal/shoes/boot_knife
+	flags_attach_features = ATTACH_APPLY_ON_MOB
+
+/obj/item/storage/internal/shoes/boot_knife
+	max_storage_space = 3
+	storage_slots = 1
+	draw_mode = TRUE
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol,
+		/obj/item/weapon/gun/shotgun/double/derringer,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/stack/throwing_knife,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/item/armor_module/storage/boot/full/Initialize()
+	. = ..()
+	new /obj/item/attachable/bayonetknife(storage)
+
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
-	icon_state = "invisible" //It is invisible
+	icon_state = ""
 	storage =  /obj/item/storage/internal/marinehelmet
-	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
+
+/obj/item/storage/internal/marinehelmet
+	max_storage_space = 2
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_TINY
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses,
+		/obj/item/reagent_containers/food/snacks,
+	)
+	cant_hold = list(
+		/obj/item/stack,
+	)

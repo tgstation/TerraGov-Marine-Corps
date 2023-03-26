@@ -1,8 +1,7 @@
 /datum/game_mode/combat_patrol
 	name = "Combat Patrol"
 	config_tag = "Combat Patrol"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR //MODE_NO_PERMANENT_WOUNDS is for nerds
-	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
+	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	time_between_round = 0 HOURS
@@ -21,6 +20,7 @@
 	)
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
@@ -33,7 +33,9 @@
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
+	///Delay from shutter drop until game timer starts
+	var/game_timer_delay = 5 MINUTES
+
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -47,7 +49,6 @@
 				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
-	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/combat_patrol/scale_roles()
 	. = ..()
@@ -83,9 +84,9 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_timer)), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///plays the intro sequence
@@ -107,7 +108,7 @@
 	if(D.game_timer)
 		return
 
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), max_game_time, TIMER_STOPPABLE)
+	D.game_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_end)), max_game_time, TIMER_STOPPABLE)
 
 /datum/game_mode/combat_patrol/game_end_countdown()
 	if(!game_timer)
@@ -194,7 +195,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/combat_patrol/proc/respawn_wave()
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	D.wave_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), wave_timer_length, TIMER_STOPPABLE)
+	D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
@@ -204,7 +205,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
-/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
+/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND), count_flags)
 	var/list/som_alive = list()
 	var/list/som_dead = list()
 	var/list/tgmc_alive = list()
@@ -285,12 +286,9 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-
-	announce_medal_awards()
-	announce_round_stats()
 
 /datum/game_mode/combat_patrol/announce_round_stats()
 	//sets up some stats which are added if applicable

@@ -265,9 +265,9 @@
 		fall_time = 0.5 SECONDS
 	impact_cam.forceMove(get_turf(target))
 	current_shots++
-	addtimer(CALLBACK(src, .proc/falling, target, shell), fall_time)
-	addtimer(CALLBACK(src, .proc/return_cam), fall_time + 2 SECONDS)
-	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
+	addtimer(CALLBACK(src, PROC_REF(falling), target, shell), fall_time)
+	addtimer(CALLBACK(src, PROC_REF(return_cam)), fall_time + 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cool_off)), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
@@ -326,16 +326,14 @@
 		user.balloon_alert(user, "The gun needs to be aimed first.")
 		return
 
-	var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-	if(get_dist(loc, selfown) < minimum_range)
+	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_y"], z)
+	if(get_dist(loc, target) < minimum_range)
 		user.balloon_alert(user, "The target is too close to the gun.")
 		return
-
-	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
-	setDir(get_dir(src, target))
 	if(!isturf(target))
 		user.balloon_alert(user, "You cannot fire the gun to this target.")
 		return
+	setDir(get_dir(src, target))
 
 	var/area/A = get_area(target)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
@@ -364,7 +362,7 @@
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
 		in_chamber = chamber_items[next_chamber_position]
-		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), fire_delay * i)
+		addtimer(CALLBACK(src, PROC_REF(begin_fire), impact_turf, in_chamber), fire_delay * i)
 		next_chamber_position--
 		chamber_items -= in_chamber
 		QDEL_NULL(in_chamber)
@@ -395,7 +393,7 @@
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, type, 1 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, 1 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -454,7 +452,7 @@
 		/obj/item/mortal_shell/flare,
 	)
 	tally_type = TALLY_HOWITZER
-	cool_off_time = 2 SECONDS
+	cool_off_time = 10 SECONDS
 	reload_time = 1 SECONDS
 	max_spread = 8
 

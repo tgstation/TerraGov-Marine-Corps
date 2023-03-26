@@ -128,9 +128,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_order)
-	RegisterSignal(user, COMSIG_ORDER_SELECTED, .proc/set_order)
-	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/attempt_spotlight)
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, PROC_REF(send_order))
+	RegisterSignal(user, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
+	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_spotlight))
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
@@ -536,14 +536,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
 
-	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
-	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 3.1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(send_to_squads), "Transmitting beacon feed..."), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(send_to_squads), "Calibrating trajectory window..."), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, usr), 3.1 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message(span_boldnotice("Orbital bombardment has fired! Impact imminent!"))
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
-	addtimer(CALLBACK(src, .proc/do_land_bombard, T, user), 2.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_land_bombard), T, user), 2.5 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(turf/T, user)
 	busy = FALSE
@@ -747,7 +747,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /mob/living/carbon/human/verb/issue_order(command_aura as null|text)
 	set hidden = TRUE
 
-	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
+	if(skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
 		to_chat(src, span_warning("You are not competent enough in leadership to issue an order."))
 		return
 
@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	var/aura_strength = skills.getRating("leadership") - 1
+	var/aura_strength = skills.getRating(SKILL_LEADERSHIP) - 1
 	var/aura_target = pick_order_target()
 	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 30 SECONDS, faction)
 
@@ -799,7 +799,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			say(message)
 			add_emote_overlay(focus)
 
-	command_aura_cooldown = addtimer(CALLBACK(src, .proc/end_command_aura_cooldown), 45 SECONDS)
+	command_aura_cooldown = addtimer(CALLBACK(src, PROC_REF(end_command_aura_cooldown)), 45 SECONDS)
 
 	update_action_buttons()
 
@@ -816,7 +816,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
-	skill_name = "leadership"
+	skill_name = SKILL_LEADERSHIP
 	action_icon = 'icons/mob/order_icons.dmi'
 	skill_min = SKILL_LEAD_TRAINED
 	var/order_type = null
@@ -865,9 +865,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
-	skill_name = "leadership"
+	skill_name = SKILL_LEADERSHIP
 	skill_min = SKILL_LEAD_TRAINED
 	var/orders_visible = TRUE
+	action_icon_state = "hide_order"
 
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
@@ -875,11 +876,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	if(orders_visible)
 		orders_visible = FALSE
+		action_icon_state = "show_order"
 		for(var/datum/action/skill/path in owner.actions)
 			if(istype(path, /datum/action/skill/issue_order))
 				path.remove_action(H)
 	else
 		orders_visible = TRUE
+		action_icon_state = "hide_order"
 		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
 		for(var/path in subtypeactions)
 			var/datum/action/skill/issue_order/A = new path()

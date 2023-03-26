@@ -84,12 +84,12 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
-	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
-	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, PROC_REF(send_order))
+	RegisterSignal(src, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(receive_laser_ob))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, PROC_REF(shuttle_takeoff_notification))
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
@@ -287,7 +287,7 @@
 	show_message(rendered, 2)
 
 
-/mob/living/silicon/ai/reset_perspective(atom/A, has_static = TRUE)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye, has_static = TRUE)
 	if(has_static)
 		sight = initial(sight)
 		eyeobj?.use_static = initial(eyeobj?.use_static)
@@ -298,14 +298,14 @@
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
 		light_cameras()
-	if(istype(A, /obj/machinery/camera))
-		current = A
+	if(istype(new_eye, /obj/machinery/camera))
+		current = new_eye
 	if(client)
-		if(ismovableatom(A))
-			if(A != GLOB.ai_camera_room_landmark)
+		if(ismovableatom(new_eye))
+			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
+			client.eye = new_eye
 		else
 			end_multicam()
 			if(isturf(loc))
@@ -407,7 +407,7 @@
 		linked_artillery = null
 		return FALSE
 	linked_artillery = mortar
-	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, PROC_REF(clean_artillery_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.
@@ -461,7 +461,7 @@
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
-	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, PROC_REF(clear_vehicle))
 	vehicle.on_link()
 	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

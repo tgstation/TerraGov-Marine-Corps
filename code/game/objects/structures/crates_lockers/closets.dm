@@ -17,6 +17,7 @@
 	coverage = 40
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
+	var/drop_material = /obj/item/stack/sheet/metal
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
@@ -42,7 +43,7 @@
 
 /obj/structure/closet/Initialize(mapload, ...)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -223,7 +224,8 @@
 		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
 			to_chat(user, span_notice("You need more welding fuel to complete this task."))
 			return TRUE
-		new /obj/item/stack/sheet/metal(drop_location())
+		if(drop_material)
+			new drop_material(drop_location())
 		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
 		qdel(src)
 		return TRUE
@@ -439,8 +441,8 @@
 	destination.mob_size_counter += mob_size
 	stop_pulling()
 	smokecloak_off()
-	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, .proc/on_closet_dump)
+	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
+	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, PROC_REF(on_closet_dump))
 	return TRUE
 
 

@@ -7,7 +7,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
 	light_range = 5
 	light_power = 3 //luminosity when on
@@ -234,7 +233,7 @@
 		force = on_damage
 		heat = 1500
 		damtype = BURN
-		addtimer(CALLBACK(src, .proc/turn_off), fuel)
+		addtimer(CALLBACK(src, PROC_REF(turn_off)), fuel)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = usr
 			C.toggle_throw_mode()
@@ -246,7 +245,7 @@
 	turn_light(null, TRUE)
 	force = on_damage
 	damtype = BURN
-	addtimer(CALLBACK(src, .proc/turn_off), fuel)
+	addtimer(CALLBACK(src, PROC_REF(turn_off)), fuel)
 
 /obj/item/flashlight/slime
 	gender = PLURAL

@@ -155,85 +155,6 @@
 		usr.a_intent_change(INTENT_DISARM)
 
 
-/atom/movable/screen/internals
-	name = "toggle internals"
-	icon_state = "internal0"
-	screen_loc = ui_internal
-
-
-/atom/movable/screen/internals/Click()
-	if(!iscarbon(usr))
-		return
-
-	var/mob/living/carbon/C = usr
-	if(C.incapacitated())
-		return
-
-	if(C.internal)
-		C.internal = null
-		C.balloon_alert(C, "No longer running on internals")
-		icon_state = "internal0"
-		return
-
-	if(!istype(C.wear_mask, /obj/item/clothing/mask))
-		C.balloon_alert(C, "You are not wearing a mask")
-		return TRUE
-
-	var/list/nicename = null
-	var/list/tankcheck = null
-	var/breathes = "oxygen"    //default, we'll check later
-
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		breathes = H.species.breath_type
-		nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
-		tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
-
-	else
-		nicename = list("Right Hand", "Left Hand", "Back")
-		tankcheck = list(C.r_hand, C.l_hand, C.back)
-
-	var/best = 0
-	var/bestpressure = 0
-
-	for(var/i = 1 to length(tankcheck))
-		if(!istype(tankcheck[i], /obj/item/tank))
-			continue
-
-		var/obj/item/tank/t = tankcheck[i]
-		var/goodtank
-		if(t.gas_type == GAS_TYPE_N2O) //anesthetic
-			goodtank = TRUE
-		else
-			switch(breathes)
-
-				if("nitrogen")
-					if(t.gas_type == GAS_TYPE_NITROGEN)
-						goodtank = TRUE
-
-				if("oxygen")
-					if(t.gas_type == GAS_TYPE_OXYGEN || t.gas_type == GAS_TYPE_AIR)
-						goodtank = TRUE
-
-				if("carbon dioxide")
-					if(t.gas_type == GAS_TYPE_CO2)
-						goodtank = TRUE
-		if(goodtank)
-			if(t.pressure >= 20 && t.pressure > bestpressure)
-				best = i
-				bestpressure = t.pressure
-
-	if(best)
-		C.balloon_alert(C, "Running on internals from [tankcheck[best]] from [nicename[best]]")
-		C.internal = tankcheck[best]
-
-
-	if(C.internal)
-		icon_state = "internal1"
-	else
-		C.balloon_alert(C, "You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank")
-
-
 /atom/movable/screen/mov_intent
 	name = "run/walk toggle"
 	icon = 'icons/mob/screen/midnight.dmi'
@@ -568,65 +489,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 
-/atom/movable/screen/firearms
-
-/atom/movable/screen/firearms/Click()
-	return get_active_firearm(usr)
-
-/atom/movable/screen/firearms/attachment
-	name = "Activate weapon attachment"
-	icon_state = "gun_attach"
-	screen_loc = ui_gun_attachment
-
-/atom/movable/screen/firearms/attachment/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.activate_attachment_verb()
-
-/atom/movable/screen/firearms/flashlight
-	name = "Toggle Rail Flashlight"
-	icon_state = "gun_raillight"
-	screen_loc = ui_gun_railtoggle
-
-/atom/movable/screen/firearms/flashlight/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	if(!G)
-		return
-	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
-	if(F?.activate(usr))
-		playsound(usr, F.activation_sound, 15, 1)
-
-/atom/movable/screen/firearms/magazine
-	name = "Eject magazine"
-	icon_state = "gun_loaded"
-	screen_loc = ui_gun_eject
-
-/atom/movable/screen/firearms/magazine/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.empty_mag()
-
-/atom/movable/screen/firearms/firemode
-	name = "Toggle fire mode"
-	icon_state = "gun_burst"
-	screen_loc = ui_gun_burst
-
-/atom/movable/screen/firearms/firemode/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.toggle_firemode()
-
-/atom/movable/screen/firearms/unique
-	name = "Use unique action"
-	icon_state = "gun_unique"
-	screen_loc = ui_gun_unique
-
-/atom/movable/screen/firearms/unique/Click()
-	. = ..()
-	var/obj/item/weapon/gun/G = .
-	G?.use_unique_action()
-
 /atom/movable/screen/drop
 	name = "drop"
 	icon = 'icons/mob/screen/midnight.dmi'
@@ -764,6 +626,8 @@
 	var/atom/target
 	///The duration of the effect
 	var/duration
+	///holder for the deletation timer
+	var/del_timer
 
 /atom/movable/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
@@ -773,19 +637,21 @@
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
-	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
+	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
 	process() //Ping immediately after parameters have been set
 
 ///Stop the arrow to avoid runtime and hard del
 /atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
+	tracker.client.screen -= src
+	deltimer(del_timer)
 	qdel(src)
 
 /atom/movable/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration)
+	del_timer = addtimer(CALLBACK(src, PROC_REF(kill_arrow)), duration, TIMER_STOPPABLE)
 
 /atom/movable/screen/arrow/process() //We ping the target, revealing its direction with an arrow
 	if(!target || !tracker)

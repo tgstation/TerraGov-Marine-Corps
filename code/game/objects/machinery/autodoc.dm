@@ -63,12 +63,12 @@
 
 /obj/machinery/autodoc/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 
 /obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	INVOKE_ASYNC(src, .proc/do_eject)
+	INVOKE_ASYNC(src, PROC_REF(do_eject))
 	if(connected)
 		connected.connected = null
 		connected = null
@@ -717,15 +717,15 @@
 			return
 		else
 			visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-	if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
+	if(usr.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
 		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
 		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
 	if(surgery)
 		surgery = 0
-		if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
+		if(usr.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
 			visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
 			occupant.take_limb_damage(rand(30,50),rand(30,50))
 			log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
@@ -746,10 +746,10 @@
 		to_chat(dragger, span_notice("[src] is non-functional!"))
 		return
 
-	if(dragger.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
+	if(dragger.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
 		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
 		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -772,7 +772,7 @@
 			qdel(O)
 		if(automaticmode)
 			say("Automatic mode engaged, initialising procedures.")
-			addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 ///Callback to start auto mode on someone entering
 /obj/machinery/autodoc/proc/auto_start()
@@ -892,10 +892,10 @@
 		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
+	if(user.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
 		span_notice("You fumble around figuring out how to put [M] into [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
@@ -921,7 +921,7 @@
 
 	if(automaticmode)
 		say("Automatic mode engaged, initialising procedures.")
-		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 
 /////////////////////////////////////////////////////////////

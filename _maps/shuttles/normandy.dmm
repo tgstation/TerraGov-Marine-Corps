@@ -143,9 +143,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "xX" = (
-/turf/closed/shuttle/dropship2/transparent{
-	dir = 1;
-	icon_state = "109"
+/turf/closed/shuttle/dropship2/singlewindow{
+	dir = 1
 	},
 /area/shuttle/dropship/normandy)
 "yx" = (

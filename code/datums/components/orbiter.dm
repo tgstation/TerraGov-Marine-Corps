@@ -18,12 +18,12 @@
 	begin_orbit(orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /datum/component/orbiter/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, .proc/orbiter_glide_size_update)
+	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(orbiter_glide_size_update))
 	var/atom/target = parent
 
 	target.orbiters = src
 	if(ismovableatom(target))
-		tracker = new(target, CALLBACK(src, .proc/move_react))
+		tracker = new(target, CALLBACK(src, PROC_REF(move_react)))
 
 /datum/component/orbiter/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
@@ -62,7 +62,7 @@
 			orbiter.orbiting.end_orbit(orbiter)
 	orbiters[orbiter] = TRUE
 	orbiter.orbiting = src
-	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, .proc/orbiter_move_react)
+	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, PROC_REF(orbiter_move_react))
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_BEGIN, orbiter)
 
 	var/matrix/initial_transform = matrix(orbiter.transform)

@@ -97,6 +97,15 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
+/obj/effect/attach_point/weapon/cas/left
+	icon_state = "30"
+
+/obj/effect/attach_point/weapon/cas/left/alt
+	icon_state = "31"
+
+/obj/effect/attach_point/weapon/cas/right
+	icon_state = "16"
+
 /obj/effect/attach_point/weapon/minidropship
 	ship_tag = SHUTTLE_TADPOLE
 	pixel_y = 32
@@ -381,7 +390,7 @@
 	if(!deployed_turret)
 		var/obj/new_gun = new sentry_type(src)
 		deployed_turret = new_gun.loc
-		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, .proc/clean_refs)
+		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, PROC_REF(clean_refs))
 
 ///This cleans the deployed_turret ref when the sentry is destroyed.
 /obj/structure/dropship_equipment/sentry_holder/proc/clean_refs(atom/source, disassembled)
@@ -537,7 +546,7 @@
 	. = ..()
 	if(deployed_minigun)
 		return
-	var/obj/item/weapon/gun/minigun_nest/new_gun = new(src)
+	var/obj/item/weapon/gun/standard_minigun/nest/new_gun = new(src)
 	deployed_minigun = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_minigun. Therefore new_gun.loc = deployed_minigun.
 
 /obj/structure/dropship_equipment/minigun_holder/examine(mob/user)
@@ -563,47 +572,6 @@
 /obj/structure/dropship_equipment/minigun_holder/Destroy()
 	if(deployed_minigun)
 		QDEL_NULL(deployed_minigun)
-	return ..()
-
-/obj/structure/dropship_equipment/dualcannon_holder
-	name = "dualcannon deployment system"
-	desc = "A box that deploys a modified ATR-22 crewserved dualcannon. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
-	icon_state = "ac_system"
-	point_cost = 0 //this removes it from the fabricator
-	///machine type for the internal gun and for checking if the gun is deployed
-	var/obj/machinery/deployable/mounted/deployed_dualcannon
-
-/obj/structure/dropship_equipment/dualcannon_holder/Initialize()
-	. = ..()
-	if(deployed_dualcannon)
-		return
-	var/obj/item/weapon/gun/dual_cannon/new_gun = new(src)
-	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_dualcannon. Therefore new_gun.loc = deployed_dualcannon.
-
-/obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
-	. = ..()
-	if(!deployed_dualcannon)
-		. += "Its dualcannon is missing."
-
-/obj/structure/dropship_equipment/dualcannon_holder/update_equipment()
-	if(!deployed_dualcannon)
-		return
-	if(ship_base)
-		deployed_dualcannon.loc = loc
-	else
-		deployed_dualcannon.loc = src
-	update_icon()
-
-/obj/structure/dropship_equipment/dualcannon_holder/update_icon_state()
-	if(ship_base)
-		icon_state = "mg_system_deployed"
-	else
-		icon_state = "ac_system"
-
-/obj/structure/dropship_equipment/dualcannon_holder/Destroy()
-	if(deployed_dualcannon)
-		QDEL_NULL(deployed_dualcannon)
 	return ..()
 
 /obj/structure/dropship_equipment/heavylaser_holder
@@ -883,7 +851,7 @@
 	for(var/turf/impact in predicted_dangerous_turfs)
 		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
 
-	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
+	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir), ammo_travelling_time)
 	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/weapon/heavygun
@@ -1019,7 +987,7 @@
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
-		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, .proc/attackby_wrapper)//if something (like a powerloader) clicks on the deployed thing relay it
+		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_wrapper))//if something (like a powerloader) clicks on the deployed thing relay it
 
 /obj/structure/dropship_equipment/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
 	attackby(I, user, params)

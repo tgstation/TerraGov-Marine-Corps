@@ -139,11 +139,37 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/light_rr_missile
+	refill_amount = 15
 
 /obj/item/factory_refill/normal_rr_missile_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/normal_rr_missile
+	refill_amount = 15
+
+/obj/item/factory_refill/heat_rr_missile_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/heat_rr_missile
+	refill_amount = 15
+
+/obj/item/factory_refill/smoke_rr_missile_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/smoke_rr_missile
+	refill_amount = 15
+
+/obj/item/factory_refill/cloak_rr_missile_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/cloak_rr_missile
+	refill_amount = 15
+
+/obj/item/factory_refill/tfoot_rr_missile_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/tfoot_rr_missile
+	refill_amount = 15
 
 /obj/item/factory_refill/claymore_refill
 	name = "box of rounded metal plates"
@@ -279,6 +305,7 @@
 	desc = "A box of round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/module_surt
 	refill_amount = 10
+
 /obj/item/factory_refill/mortar_shell_he_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
@@ -296,6 +323,7 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/mortar_shell_tfoot
 	refill_amount = 30
+
 /obj/item/factory_refill/mortar_shell_flare_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
@@ -307,3 +335,9 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/mlrs_rocket
 	refill_amount = 6
+
+/obj/item/factory_refill/thermobaric_wp_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/thermobaric_wp
+	refill_amount = 15

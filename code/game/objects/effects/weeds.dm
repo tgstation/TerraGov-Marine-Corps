@@ -55,7 +55,7 @@
 	for(var/mob/living/L in range(1, src))
 		SEND_SIGNAL(L, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED)
 	SEND_SIGNAL(loc, COMSIG_TURF_WEED_REMOVED)
-	INVOKE_NEXT_TICK(src, .proc/update_neighbours, loc)
+	INVOKE_NEXT_TICK(src, PROC_REF(update_neighbours), loc)
 	return ..()
 
 /obj/alien/weeds/examine(mob/user)
@@ -111,7 +111,7 @@
 	if(parent_node)
 		UnregisterSignal(parent_node, COMSIG_PARENT_QDELETING)
 	parent_node = node
-	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, .proc/clean_parent_node)
+	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, PROC_REF(clean_parent_node))
 
 ///Clean the parent node var
 /obj/alien/weeds/proc/clean_parent_node()
@@ -128,7 +128,7 @@
 /obj/alien/weeds/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -172,7 +172,12 @@
 /obj/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	plane = GAME_PLANE
+	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
+	base_icon_state = "weedwall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_WEEDS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS)
 
 /obj/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
@@ -185,9 +190,10 @@
 	layer = ABOVE_TABLE_LAYER
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
-	var/obj/structure/window/framed/F = locate() in loc
-	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
@@ -199,9 +205,10 @@
 	layer = ABOVE_TABLE_LAYER
 
 /obj/alien/weeds/weedwall/frame/update_icon_state()
-	var/obj/structure/window_frame/WF = locate() in loc
-	icon_state = WF?.junction ? "weedframe[WF.junction]" : initial(icon_state)
-	icon_state += color_variant
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
@@ -209,6 +216,23 @@
 		return ..()
 	return WF.MouseDrop_T(dropping, user)
 
+/obj/alien/weeds/weedwall/frame/specialclick(mob/living/carbon/user)
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.specialclick(user)
+
+/obj/alien/weeds/weedwall/frame/attackby(obj/item/I, mob/user, params) //yes, this blocks attacking the weed itself, but if you destroy the frame you destroy the weed!
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.attackby(I, user, params)
+
+/obj/alien/weeds/weedwall/frame/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 
 // =================
 // weed node - grows other weeds
@@ -283,7 +307,7 @@
 /obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

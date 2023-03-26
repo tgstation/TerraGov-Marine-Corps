@@ -39,7 +39,7 @@
 	if(istype(A, /area/shuttle/dropship))
 		to_chat(H, span_warning("You have to be outside the dropship to use this or it won't transmit."))
 		return FALSE
-	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
+	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP))
 	H.visible_message(span_notice("[H] starts setting up [src] on the ground."),
 	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -47,7 +47,7 @@
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
-	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
+	message_admins("[ADMIN_TPMONTY(usr)] set up a supply beacon.")
 	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
@@ -72,7 +72,7 @@
 
 /// Deactivate this beacon and put it in the hand of the human
 /obj/item/beacon/proc/deactivate(mob/living/carbon/human/H)
-	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating("leadership")) //Half as long as setting it up.
+	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP)) //Half as long as setting it up.
 	H.visible_message(span_notice("[H] starts removing [src] from the ground."),
 	span_notice("You start removing [src] from the ground, deactivating it."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -125,7 +125,7 @@
 	if(!.)
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()

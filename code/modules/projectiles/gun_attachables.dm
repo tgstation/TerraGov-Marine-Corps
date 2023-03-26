@@ -31,7 +31,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/pixel_shift_y = 16
 
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	///ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.
@@ -116,8 +115,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]
 	var/flags_attach_features = ATTACH_REMOVABLE
 
-	///only used by bipod, denotes whether the bipod is currently deployed
-	var/bipod_deployed = FALSE
 	///only used by lace, denotes whether the lace is currently deployed
 	var/lace_deployed = FALSE
 
@@ -141,7 +138,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/master_gun
 
 	///Skill used to attach src to something.
-	var/attach_skill = "firearms"
+	var/attach_skill = SKILL_FIREARMS
 	///Skill threshold where the time to attach is halved.
 	var/attach_skill_upper_threshold = SKILL_FIREARMS_TRAINED
 	///Sound played on attach
@@ -154,7 +151,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	AddElement(/datum/element/attachment, slot, icon, PROC_REF(on_attach), PROC_REF(on_detach), PROC_REF(activate), PROC_REF(can_attach), pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
 
 ///Called when the attachment is attached to something. If it is a gun it will update the guns stats.
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
@@ -562,7 +559,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	light_mod = 6
 	light_system = MOVABLE_LIGHT
 	slot = ATTACHMENT_SLOT_RAIL
-	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
@@ -578,20 +574,23 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
+
 	if(!toggle_on && light_on)
 		icon_state = initial(icon_state)
-		master_gun.set_light_range(0)
-		master_gun.set_light_power(0)
-		master_gun.set_light_on(FALSE)
 		light_on = FALSE
-		REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
+		master_gun.set_light_range(master_gun.light_range - light_mod)
+		master_gun.set_light_power(master_gun.light_power - (light_mod * 0.5))
+		if(master_gun.light_range <= 0) //does the gun have another light source
+			master_gun.set_light_on(FALSE)
+			REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else if(toggle_on & !light_on)
 		icon_state = initial(icon_state) +"_on"
-		master_gun.set_light_range(light_mod)
-		master_gun.set_light_power(3)
-		master_gun.set_light_on(TRUE)
 		light_on = TRUE
-		ADD_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
+		master_gun.set_light_range(master_gun.light_range + light_mod)
+		master_gun.set_light_power(master_gun.light_power + (light_mod * 0.5))
+		if(!HAS_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON))
+			master_gun.set_light_on(TRUE)
+			ADD_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else
 		return
 
@@ -709,7 +708,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
-
 /obj/item/attachable/scope/unremovable/flaregun
 	name = "long range ironsights"
 	desc = "An unremovable set of long range ironsights for a flaregun."
@@ -726,21 +724,29 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/unremovable/heavymachinegun
 	name = "HMG-08 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
 	icon_state = "sniperscope_invisible"
-	flags_attach_features = ATTACH_ACTIVATION
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
+
+/obj/item/attachable/scope/unremovable/mmg
+	name = "MG-27 rail scope"
+	icon_state = "miniscope"
+	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	wield_delay_mod = 0.2 SECONDS
+	aim_speed_mod = 0.2
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
+	zoom_slowdown = 0.3
+	zoom_tile_offset = 5
+	zoom_viewsize = 0
 
 /obj/item/attachable/scope/unremovable/standard_atgun
 	name = "AT-36 long range scope"
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
-	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 
@@ -754,7 +760,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 //all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
-	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 	zoom_viewsize = 2
@@ -780,19 +785,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	if(ismob(source))
-		INVOKE_ASYNC(src, .proc/activate, source, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(activate), source, TRUE)
 	else
-		INVOKE_ASYNC(src, .proc/activate, user, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(activate), user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
 	if(zoom_allow_movement)
 		user.add_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN, TRUE, 0, NONE, TRUE, zoom_slowdown)
-		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
+		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
 	if(!(master_gun.flags_gun_features & IS_DEPLOYED))
-		RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
-	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+		RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
+	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
 		update_remote_sight(user)
@@ -928,6 +933,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/mpi_km/black
+	name = "MPi-KM polymer stock"
+	desc = "A black polymer stock, made to fit the MPi-KM."
+	icon_state = "ak47stock_black"
+
+/obj/item/attachable/stock/lmg_d
+	name = "lMG-D wooden stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit lMG-D."
+	icon_state = "ak47stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/tx15
 	name = "\improper SH-15 stock"
 	desc = "The standard stock for the SH-15. Cannot be removed."
@@ -960,6 +977,34 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper SR-127 stock"
 	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/garand
+	name = "\improper C1 stock"
+	desc = "A irremovable C1 stock."
+	icon_state = "garandstock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/trenchgun
+	name = "\improper L-4043 stock"
+	desc = "A irremovable L-4043 stock."
+	icon_state = "trenchstock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/icc_pdw
+	name = "\improper L-40 stock"
+	desc = "A irremovable L-40 stock."
+	icon_state = "l40stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/icc_sharpshooter
+	name = "\improper L-1 stock"
+	desc = "A irremovable L-11 stock."
+	icon_state = "l11stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1031,6 +1076,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper BR-64 stock"
 	desc = "A specialized stock for the BR-64."
 	icon_state = "t64stock"
+
+//You can remove the stock on the Magnum. So it has stats and is removeable.
+
+/obj/item/attachable/stock/t76
+	name = "T-76 magnum stock"
+	desc = "A R-76 magnum stock. Makes about all your handling better outside of making it harder to wield. Recommended to be kept on the R-76 at all times if you value your shoulder."
+	icon_state = "t76stock"
+	flags_attach_features = ATTACH_REMOVABLE
+	melee_mod = 5
+	scatter_mod = -1
+	size_mod = 2
+	aim_speed_mod = 0.05
+	recoil_mod = -2
+	pixel_shift_x = 30
+	pixel_shift_y = 14
 
 //Underbarrel
 
@@ -1152,17 +1212,48 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///How long it takes to fold or unfold
 	var/deploy_time
 	///whether the attachment is currently folded or not
-	var/folded = FALSE
+	var/folded = TRUE
 
 /obj/item/attachable/foldable/on_attach(attaching_item, mob/user)
-	. = ..()
-	activate()
+	if(!istype(attaching_item, /obj/item/weapon/gun))
+		return //Guns only
+
+	master_gun = attaching_item
+
+	if(attachment_action_type)
+		var/datum/action/action_to_update = new attachment_action_type(src, master_gun)
+		if(isliving(master_gun.loc))
+			var/mob/living/living_user = master_gun.loc
+			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
+				action_to_update.give_action(living_user)
+
+	//custom attachment icons for specific guns
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(master_gun, selection))
+				icon_state = variants_by_parent_type[selection]
+
+	update_icon()
+
+/obj/item/attachable/foldable/on_detach(detaching_item, mob/user)
+	if(!isgun(detaching_item))
+		return
+
+	if(!folded)
+		activate()
+
+	for(var/datum/action/action_to_update AS in master_gun.actions)
+		if(action_to_update.target != src)
+			continue
+		qdel(action_to_update)
+		break
+
+	master_gun = null
+	icon_state = initial(icon_state)
+	update_icon()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
 	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
-		return FALSE
-
-	if(turn_off && folded == TRUE) //force it to off for dettach purposes
 		return FALSE
 
 	folded = !folded
@@ -1214,6 +1305,33 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 4
 
+/obj/item/attachable/foldable/som_carbine
+	name = "\improper V-34 carbine stock"
+	desc = "A side folding stock built into the V-34 carbine. The gun is designed to be fired with the stock deployed, but can be done without, with some difficulty."
+	flags_attach_features = ATTACH_ACTIVATION
+	wield_delay_mod = 0.1 SECONDS
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "v34stock"
+	accuracy_mod = 0.3
+	recoil_mod = -2
+	scatter_mod = -8
+
+/obj/item/attachable/foldable/icc_machinepistol
+	name = "\improper PL-38 machinepistol stock"
+	desc = "A submachinegun stock found on ICC subguns, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	flags_attach_features = ATTACH_ACTIVATION
+	icon = 'icons/Marine/attachments_64.dmi'
+	wield_delay_mod = 0.1 SECONDS
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "pl38stock"
+	accuracy_mod = 0.3
+	recoil_mod = -2
+	scatter_mod = -8
+	accuracy_unwielded_mod = -0.1
+	scatter_unwielded_mod = 4
+
 /obj/item/attachable/foldable/t35stock
 	name = "\improper SH-35 stock"
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
@@ -1232,8 +1350,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2
 	melee_mod = -10
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
-	attachment_action_type = /datum/action/item_action/toggle
 	deploy_time = 1 SECONDS
 	accuracy_mod = 0.3
 	recoil_mod = -2
@@ -1242,32 +1358,37 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_mode_delay_mod = -0.5
 
 /obj/item/attachable/foldable/bipod/activate(mob/living/user, turn_off)
+	if(folded && !(master_gun.flags_item & WIELDED)) //no one handed bipod use
+		if(user)
+			balloon_alert(user, "Unwielded")
+		return
+
 	. = ..()
 
+	if(folded)
+		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD))
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		to_chat(user, span_notice("You retract [src]."))
+		return
+
 	if(user)
-		if(folded)
-			to_chat(user, span_notice("You retract [src]."))
-			UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
-			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		else
-			to_chat(user, span_notice("You deploy [src]."))
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
-			RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
+		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD), PROC_REF(retract_bipod))
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(retract_bipod))
+		to_chat(user, span_notice("You deploy [src]."))
 
 ///Signal handler for forced undeployment
 /obj/item/attachable/foldable/bipod/proc/retract_bipod(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	deploy_time = 0
-	INVOKE_ASYNC(src, .proc/activate, (istype(user) ? user : source), TRUE)
+	INVOKE_ASYNC(src, PROC_REF(activate), (istype(user) ? user : source), TRUE)
 	deploy_time = initial(deploy_time)
-	to_chat(source, span_warning("Losing support, the bipod retracts!"))
-	//playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
+	to_chat(user, span_warning("Losing support, the bipod retracts!"))
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "build_a_sentry_attachment"
-	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it the rail of a gun and deploy. Its that easy!"
+	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
 	pixel_shift_y = 18
@@ -1304,17 +1425,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/prison,
 		)
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployable_item, master_gun.type, deploy_time, undeploy_time)
+	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
 	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
+	detaching_gun.RemoveElement(/datum/element/deployable_item, detaching_gun.deployable_item, deploy_time, undeploy_time)
 	detaching_gun.ignored_terrains = null
 	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployable_item, master_gun.type, deploy_time, undeploy_time)
 
 
 /obj/item/attachable/shoulder_mount
@@ -1337,8 +1458,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/attaching_gun = attaching_item
 	ENABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST|ATTACH_APPLY_ON_MOB)
 	attaching_gun.AddElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, attachment_layer = COLLAR_LAYER)
-	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_ATTACHED, .proc/handle_armor_attach)
-	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_DETACHED, .proc/handle_armor_detach)
+	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_ATTACHED, PROC_REF(handle_armor_attach))
+	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_DETACHED, PROC_REF(handle_armor_detach))
 
 /obj/item/attachable/shoulder_mount/on_detach(detaching_item, mob/user)
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
@@ -1363,8 +1484,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
 		update_icon()
 		master_gun.set_gun_user(user)
-		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/handle_firing)
-		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, /obj/item/weapon/gun.proc/change_target)
+		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(handle_firing))
+		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, TYPE_PROC_REF(/obj/item/weapon/gun, change_target))
 		. = TRUE
 	for(var/datum/action/item_action/toggle/action_to_update AS in actions)
 		action_to_update.set_toggle(.)
@@ -1376,10 +1497,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!istype(attaching_item, /obj/item/clothing/suit/modular))
 		return
 	master_gun.set_gun_user(null)
-	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED, .proc/handle_activations)
-	RegisterSignal(attaching_item, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/switch_mode)
-	RegisterSignal(attaching_item, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/reload_gun)
-	RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, .proc/after_fire)
+	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_activations))
+	RegisterSignal(attaching_item, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(switch_mode))
+	RegisterSignal(attaching_item, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(reload_gun))
+	RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, PROC_REF(after_fire))
 	master_gun.base_gun_icon = master_gun.placed_overlay_iconstate
 	master_gun.update_icon()
 
@@ -1455,13 +1576,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Reloads the gun
 /obj/item/attachable/shoulder_mount/proc/reload_gun(datum/source, obj/item/attacking_item, mob/living/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, attacking_item, user)
+	INVOKE_ASYNC(master_gun, TYPE_PROC_REF(/obj/item/weapon/gun, reload), attacking_item, user)
 
 ///Performs the unique action after firing and checks to see if the user is still able to fire.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(master_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
-		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/do_unique_action, master_gun.gun_user)
+		INVOKE_ASYNC(master_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action), master_gun.gun_user)
 	var/mob/living/user = master_gun.gun_user
 	var/active_hand = user.get_active_held_item()
 	var/inactive_hand = user.get_inactive_held_item()
@@ -1525,17 +1646,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
 	icon_state = "flame_wide"
-	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
-	burn_time_mod = 0.8
+	burn_time_mod = 0.3
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red
 	name = "red spray flamer nozzle"
 	desc = "It is red, therefore its obviously more effective."
 	icon_state = "flame_wide_red"
-	range_modifier = 0
+	range_modifier = 3
 
 ///Flamer ammo is a normal ammo datum, which means we can shoot it if we want
 /obj/item/attachable/flamer_nozzle/long

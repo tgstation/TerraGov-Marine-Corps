@@ -33,6 +33,7 @@
 /datum/action/observer_action/join_larva_queue
 	name = "Join Larva Queue"
 	action_icon_state = "larva_queue"
+	action_type = ACTION_TOGGLE
 
 /datum/action/observer_action/join_larva_queue/action_activate()
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]

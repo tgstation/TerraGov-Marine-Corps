@@ -11,7 +11,7 @@
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
-	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(human_z_changed))
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -39,12 +39,11 @@
 
 	randomize_appearance()
 
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
-	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/async_do_quick_equip)
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIPALT, .proc/async_do_quick_equip_alt)
-	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
-	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
+	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
+	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
@@ -169,8 +168,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE)
-	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE, max_limbs = 4)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -346,7 +345,7 @@
 						to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
+			if(!usr.do_actions || usr.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -390,41 +389,6 @@
 				// Update strip window
 				if(usr.interactee == src && Adjacent(usr))
 					show_inv(usr)
-
-
-	if(href_list["internal"])
-
-		if(!usr.do_actions)
-			log_combat(usr, src, "attempted to toggle internals")
-			if(internal)
-				usr.visible_message(span_danger("[usr] is trying to disable [src]'s internals"), null, null, 3)
-			else
-				usr.visible_message(span_danger("[usr] is trying to enable [src]'s internals."), null, null, 3)
-
-			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
-				if (internal)
-					internal = null
-					if (hud_used && hud_used.internals)
-						hud_used.internals.icon_state = "internal0"
-					visible_message("[src] is no longer running on internals.", null, null, 1)
-				else
-					if(istype(wear_mask, /obj/item/clothing/mask))
-						if (istype(back, /obj/item/tank))
-							internal = back
-						else if (istype(s_store, /obj/item/tank))
-							internal = s_store
-						else if (istype(belt, /obj/item/tank))
-							internal = belt
-						if (internal)
-							visible_message(span_notice("[src] is now running on internals."), null, null, 1)
-							if (hud_used && hud_used.internals)
-								hud_used.internals.icon_state = "internal1"
-
-				// Update strip window
-				if(usr.interactee == src && Adjacent(usr))
-					show_inv(usr)
-
-
 
 	if(href_list["splints"])
 
@@ -755,7 +719,7 @@
 		return NONE
 	if(stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		INVOKE_ASYNC(src, .proc/fireman_carry, grabbed)
+		INVOKE_ASYNC(src, PROC_REF(fireman_carry), grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
@@ -769,7 +733,7 @@
 		return
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
-	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
@@ -950,10 +914,10 @@
 
 	species.handle_post_spawn(src)
 
-	INVOKE_ASYNC(src, .proc/regenerate_icons)
-	INVOKE_ASYNC(src, .proc/update_body)
-	INVOKE_ASYNC(src, .proc/update_hair)
-	INVOKE_ASYNC(src, .proc/restore_blood)
+	INVOKE_ASYNC(src, PROC_REF(regenerate_icons))
+	INVOKE_ASYNC(src, PROC_REF(update_body))
+	INVOKE_ASYNC(src, PROC_REF(update_hair))
+	INVOKE_ASYNC(src, PROC_REF(restore_blood))
 
 	if(!(species.species_flags & NO_STAMINA))
 		AddComponent(/datum/component/stamina_behavior)
@@ -970,7 +934,7 @@
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
+	if((shoes?.flags_inventory & NOSLIPPING) && !override_noslip) //If our shoes are noslip just return immediately unless we don't care about the noslip
 		return FALSE
 	return ..()
 
@@ -998,11 +962,12 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
-			if(!isattachmentflashlight(lit_rail_flashlight))
-				continue
-			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
-			light_off++
+			for(var/attachment_slot in lit_gun.attachments_by_slot)
+				var/obj/item/attachable/flashlight/lit_flashlight = lit_gun.attachments_by_slot[attachment_slot]
+				if(!isattachmentflashlight(lit_flashlight))
+					continue
+				lit_flashlight.turn_light(src, FALSE)
+				light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.light_on)
@@ -1241,7 +1206,7 @@
 	if(QDELETED(H.camera))
 		return
 
-	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_camera_update), oldloc, H), 1 SECONDS)
 
 
 /mob/living/carbon/human/get_language_holder()

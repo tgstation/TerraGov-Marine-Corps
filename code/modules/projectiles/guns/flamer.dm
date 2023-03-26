@@ -35,7 +35,7 @@
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 2 SECONDS
@@ -192,7 +192,7 @@
 	if(!burn_list(turfs_to_ignite))
 		return
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
+	addtimer(CALLBACK(src, PROC_REF(recursive_flame_straight), iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
 
 ///Flames recursively a cone.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source, walls_penetrated_wide)
@@ -220,7 +220,7 @@
 
 	burn_list(turfs_by_iteration)
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
+	addtimer(CALLBACK(src, PROC_REF(recursive_flame_cone), iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
@@ -272,7 +272,7 @@
 			if(human_caught.hard_armor.getRating(FIRE) >= 100)
 				continue
 
-		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -374,10 +374,10 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
 		return
-	if(gun_user?.skills.getRating("firearms") < 0)
+	if(gun_user?.skills.getRating(SKILL_FIREARMS) < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
-				INVOKE_ASYNC(src, .proc/do_windup)
+				INVOKE_ASYNC(src, PROC_REF(do_windup))
 				return
 			if(WEAPON_WINDUP_CHECKING)
 				return
@@ -402,12 +402,14 @@
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
-	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
-	if(F)
-		qdel(F)
+	var/obj/flamer_fire/old_fire = locate(/obj/flamer_fire) in src
+	if(old_fire)
+		var/new_fire_level = min(fire_lvl + old_fire.firelevel, fire_lvl * 2)
+		var/new_burn_level = min(burn_lvl + old_fire.burnlevel, burn_lvl * 1.5)
+		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
+		return
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
-
 	for(var/obj/structure/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
@@ -458,37 +460,21 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
-	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
-	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
+	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
+	var/firelevel = 12
+	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
+	var/burnlevel = 10
+	///The color the flames and associated particles appear
 	var/flame_color = "red"
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
-
-	if(!GLOB.flamer_particles[f_color])
-		GLOB.flamer_particles[f_color] = new /particles/flamer_fire(f_color)
-	particles = GLOB.flamer_particles[f_color]
-
-	if(f_color)
-		flame_color = f_color
-
-	icon_state = "[flame_color]_2"
-	if(fire_lvl)
-		firelevel = fire_lvl
-	if(burn_lvl)
-		burnlevel = burn_lvl
-	if(fire_stacks || fire_damage)
-		for(var/mob/living/C in get_turf(src))
-			C.flamer_fire_act(fire_stacks)
-
-			C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
-			if(C.IgniteMob())
-				C.visible_message(span_danger("[C] bursts into flames!"), isxeno(C) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
+	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 
 	START_PROCESSING(SSobj, src)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -497,20 +483,10 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs) //Only way to get it to reliable do it when you walk into it.
+///Effects applied to a mob that crosses a burning turf
+/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs)
 	if(istype(M))
-		M.flamer_fire_crossed(burnlevel, firelevel)
-
-// override this proc to give different walking-over-fire effects
-/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(status_flags & (INCORPOREAL|GODMODE))
-		return FALSE
-	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
-		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-		IgniteMob()
-	fire_mod *= get_fire_resist()
-	take_overall_damage(round(burnlevel*0.5)* fire_mod, BURN, updating_health = TRUE)
-	to_chat(src, span_danger("You are burned!"))
+		M.flamer_fire_act(burnlevel)
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -520,22 +496,31 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	firelevel -= 20 //Water level extinguish
 	updateicon()
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
+		playsound(S, 'sound/effects/smoke_extinguish.ogg', 20)
 		qdel(src)
 
-/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(hard_armor.getRating(FIRE) >= 100)
-		take_overall_damage(round(burnlevel * 0.2) * fire_mod, BURN, FIRE, updating_health = TRUE)
-		return
-	. = ..()
-	if(isxeno(pulledby))
-		var/mob/living/carbon/xenomorph/X = pulledby
-		X.flamer_fire_crossed(burnlevel, firelevel)
+///Sets the fire object to the correct colour and fire values, and applies the initial effects to any mob on the turf
+/obj/flamer_fire/proc/set_fire(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	if(f_color && (flame_color != f_color))
+		flame_color = f_color
 
-/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	return ..()
+	if(!GLOB.flamer_particles[flame_color])
+		GLOB.flamer_particles[flame_color] = new /particles/flamer_fire(flame_color)
 
+	particles = GLOB.flamer_particles[flame_color]
+	icon_state = "[flame_color]_2"
+
+	if(fire_lvl)
+		firelevel = fire_lvl
+	if(burn_lvl)
+		burnlevel = burn_lvl
+
+	if(!fire_stacks && !fire_damage)
+		return
+
+	for(var/mob/living/C in get_turf(src))
+		C.flamer_fire_act(fire_stacks)
+		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
 	var/light_color = "LIGHT_COLOR_LAVA"
@@ -584,47 +569,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		A.flamer_fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
-
-
-// override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel)
-	if(!burnlevel)
-		return
-	var/fire_mod = get_fire_resist()
-	if(fire_mod <= 0)
-		return
-	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
-		return
-	if(hard_armor.getRating("fire") >= 100)
-		to_chat(src, span_warning("Your suit protects you from most of the flames."))
-		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
-		return
-	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-	burnlevel *= fire_mod //Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
-	IgniteMob()
-	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
-	to_chat(src, span_warning("You are burned!"))
-
-
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	. = ..()
-	updatehealth()
-
-/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
-	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
-
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
-	if(stat)
-		return
-	plasma_stored = xeno_caste.plasma_max
-	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
-	if(charge)
-		charge.clear_cooldown() //Reset charge cooldown
-	to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
-	if(prob(70))
-		emote("roar")
 
 /obj/item/weapon/gun/flamer/hydro_cannon
 	name = "underslung hydrocannon"

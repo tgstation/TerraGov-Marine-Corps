@@ -1402,3 +1402,37 @@
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
+
+/client/proc/show_traitor_panel(mob/target_mob in GLOB.mob_list)
+	set category = "Admin"
+	set name = "Show Objective Panel"
+	var/datum/mind/target_mind = target_mob.mind
+	if(!target_mind)
+		to_chat(usr, "This mob has no mind!", confidential = TRUE)
+		return
+	if(!istype(target_mob) && !istype(target_mind))
+		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+		return
+	target_mind.traitor_panel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Objective Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/validate_objectives()
+	set category = "Debug"
+	set name = "Check All Objectives Completion"
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+
+		to_chat(usr,"[A.owner.key]")
+		to_chat(usr,"[A.owner.name]")
+		to_chat(usr,"[A.type]")
+		to_chat(usr,"[A.name]")
+
+		if(A.objectives.len)
+			for(var/datum/objective/O in A.objectives)
+				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				to_chat(usr,"--------------------------------")
+				to_chat(usr,"[O.type]")
+				to_chat(usr,"---------------------------------")
+				to_chat(usr,"[O.explanation_text] = [result]")
+				to_chat(usr,"----------------------------------")

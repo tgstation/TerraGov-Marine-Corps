@@ -39,6 +39,9 @@
 
 	var/bypass_ff = FALSE
 
+	/// List of antag datums on this mind
+	var/list/antag_datums
+	var/assigned_role
 
 /datum/mind/New(key)
 	src.key = key
@@ -102,3 +105,139 @@
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
+	SSticker.minds += mind
+
+/datum/mind/Topic(href, href_list)
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/self_antagging = usr == current
+
+	if(href_list["add_antag"])
+		add_antag_wrapper(text2path(href_list["add_antag"]),usr)
+	if(href_list["remove_antag"])
+		var/datum/antagonist/A = locate(href_list["remove_antag"]) in antag_datums
+		if(!istype(A))
+			to_chat(usr,"<span class='warning'>Invalid antagonist ref to be removed.</span>")
+			return
+		A.admin_remove(usr)
+
+	else if (href_list["memory_edit"])
+		var/new_memo = stripped_multiline_input(usr, "Write new memory", "Memory", memory, MAX_MESSAGE_LEN)
+		if (isnull(new_memo))
+			return
+		memory = new_memo
+
+	else if (href_list["obj_edit"] || href_list["obj_add"])
+		var/objective_pos //Edited objectives need to keep same order in antag objective list
+		var/def_value
+		var/datum/antagonist/target_antag
+		var/datum/objective/old_objective //The old objective we're replacing/editing
+		var/datum/objective/new_objective //New objective we're be adding
+
+		if(href_list["obj_edit"])
+			for(var/datum/antagonist/A in antag_datums)
+				old_objective = locate(href_list["obj_edit"]) in A.objectives
+				if(old_objective)
+					target_antag = A
+					objective_pos = A.objectives.Find(old_objective)
+					break
+			if(!old_objective)
+				to_chat(usr,"Invalid objective.")
+				return
+		else
+			if(href_list["target_antag"])
+				var/datum/antagonist/X = locate(href_list["target_antag"]) in antag_datums
+				if(X)
+					target_antag = X
+			if(!target_antag)
+				switch(antag_datums.len)
+					if(0)
+						target_antag = add_antag_datum(/datum/antagonist/custom)
+					if(1)
+						target_antag = antag_datums[1]
+					else
+						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in sortList(antag_datums) + "(new custom antag)"
+						if (QDELETED(target))
+							return
+						else if(target == "(new custom antag)")
+							target_antag = add_antag_datum(/datum/antagonist/custom)
+						else
+							target_antag = target
+
+		if(!GLOB.admin_objective_list)
+			generate_admin_objective_list()
+
+		if(old_objective)
+			if(old_objective.name in GLOB.admin_objective_list)
+				def_value = old_objective.name
+
+		var/selected_type = input("Select objective type:", "Objective type", def_value) as null|anything in GLOB.admin_objective_list
+		selected_type = GLOB.admin_objective_list[selected_type]
+		if (!selected_type)
+			return
+
+		if(!old_objective)
+			//Add new one
+			new_objective = new selected_type
+			new_objective.owner = src
+			new_objective.admin_edit(usr)
+			target_antag.objectives += new_objective
+			message_admins("[key_name_admin(usr)] added a new objective for [current]: [new_objective.explanation_text]")
+			log_admin("[key_name(usr)] added a new objective for [current]: [new_objective.explanation_text]")
+		else
+			if(old_objective.type == selected_type)
+				//Edit the old
+				old_objective.admin_edit(usr)
+				new_objective = old_objective
+			else
+				//Replace the old
+				new_objective = new selected_type
+				new_objective.owner = src
+				new_objective.admin_edit(usr)
+				target_antag.objectives -= old_objective
+				target_antag.objectives.Insert(objective_pos, new_objective)
+			message_admins("[key_name_admin(usr)] edited [current]'s objective to [new_objective.explanation_text]")
+			log_admin("[key_name(usr)] edited [current]'s objective to [new_objective.explanation_text]")
+
+	else if (href_list["obj_delete"])
+		var/datum/objective/objective
+		for(var/datum/antagonist/A in antag_datums)
+			objective = locate(href_list["obj_delete"]) in A.objectives
+			if(istype(objective))
+				A.objectives -= objective
+				objective.handle_removal()
+				break
+		if(!objective)
+			to_chat(usr,"Invalid objective.")
+			return
+		//qdel(objective) Needs cleaning objective destroys
+		message_admins("[key_name_admin(usr)] removed an objective for [current]: [objective.explanation_text]")
+		log_admin("[key_name(usr)] removed an objective for [current]: [objective.explanation_text]")
+
+	else if(href_list["obj_completed"])
+		var/datum/objective/objective
+		for(var/datum/antagonist/A in antag_datums)
+			objective = locate(href_list["obj_completed"]) in A.objectives
+			if(istype(objective))
+				objective = objective
+				break
+		if(!objective)
+			to_chat(usr,"Invalid objective.")
+			return
+		objective.completed = !objective.completed
+		log_admin("[key_name(usr)] toggled the win state for [current]'s objective: [objective.explanation_text]")
+
+	else if (href_list["common"])
+		switch(href_list["common"])
+			if("undress")
+				for(var/obj/item/W in current)
+					current.dropItemToGround(W, TRUE) //The 1 forces all items to drop, since this is an admin undress.
+
+	else if (href_list["obj_announce"])
+		announce_objectives()
+
+	//Something in here might have changed your mob
+	if(self_antagging && (!usr || !usr.client) && current.client)
+		usr = current
+	traitor_panel()

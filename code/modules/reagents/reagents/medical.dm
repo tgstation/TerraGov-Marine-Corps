@@ -156,9 +156,10 @@
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 3)
+	L.adjustStaminaLoss(5*effect_str)
 	L.set_drugginess(10)
 	L.jitter(3)
+	L.AdjustConfused(6)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
@@ -273,6 +274,27 @@
 
 /datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(3*effect_str, 0, 3*effect_str)
+
+/datum/reagent/medicine/saline_glucose
+	name = "Saline-Glucose"
+	description = "Saline-Glucose can be used to restore blood in a pinch."
+	color = "#d4f1f9"
+	custom_metabolism = REAGENTS_METABOLISM * 2
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	taste_description = "salty water"
+	scannable = TRUE
+
+/datum/reagent/medicine/saline_glucose/on_mob_life(mob/living/L, metabolism)
+	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+		L.blood_volume += 1.2
+	return ..()
+
+/datum/reagent/medicine/saline_glucose/overdose_process(mob/living/L, metabolism)
+	L.apply_damages(1, 0, 1)
+
+/datum/reagent/medicine/saline_glucose/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damages(1, 0, 1)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -785,7 +807,7 @@
 	for(var/datum/limb/possible_limb AS in body.limbs)
 		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
 			target_IB = possible_IB
-			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, .proc/clear_wound)
+			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, PROC_REF(clear_wound))
 			break
 		if(target_IB)
 			break

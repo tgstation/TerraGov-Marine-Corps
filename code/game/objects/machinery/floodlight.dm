@@ -56,6 +56,9 @@
 	use_power = FALSE
 	brightness_on = 10
 
+/obj/machinery/floodlight/outpost/oscar
+	brightness_on = 30
+
 /obj/machinery/floodlight/outpost/Initialize()
 	. = ..()
 	set_light(brightness_on)
@@ -209,7 +212,7 @@
 
 /obj/machinery/floodlight/colony/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, .proc/floodswitch_powered)
+	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, PROC_REF(floodswitch_powered))
 
 /obj/machinery/floodlight/colony/Destroy()
 	turn_light(null, FALSE)

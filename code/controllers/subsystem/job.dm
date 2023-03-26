@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(job)
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
-	sortTim(occupations, /proc/cmp_job_display_asc)
+	sortTim(occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 
 	for(var/j in occupations)
 		var/datum/job/job = j
@@ -109,6 +109,7 @@ SUBSYSTEM_DEF(job)
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
 		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
 	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
+	player.mind.assigned_role = job
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")
 	return TRUE
@@ -206,7 +207,7 @@ SUBSYSTEM_DEF(job)
 			RejectPlayer(player)
 		//Choose a faction in advance if needed
 		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
-			if(SSticker.mode.flags_round_type & MODE_SOM_OPFOR)
+			if(FACTION_SOM in SSticker.mode.factions)
 				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_SOM : FACTION_TERRAGOV
 			else
 				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
@@ -313,7 +314,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(2 SECONDS)
 	for(var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
@@ -364,10 +365,10 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/add_active_occupation(datum/job/occupation)
 	active_joinable_occupations += occupation
 	if(length(active_joinable_occupations) > 1)
-		sortTim(active_joinable_occupations, /proc/cmp_job_display_asc)
+		sortTim(active_joinable_occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 	active_joinable_occupations_by_category[occupation.job_category] += list(occupation)
 	if(length(active_joinable_occupations_by_category[occupation.job_category]) > 1)
-		sortTim(active_joinable_occupations_by_category[occupation.job_category], /proc/cmp_job_display_asc)
+		sortTim(active_joinable_occupations_by_category[occupation.job_category], GLOBAL_PROC_REF(cmp_job_display_asc))
 
 /datum/controller/subsystem/job/proc/remove_active_occupation(datum/job/occupation)
 	active_joinable_occupations -= occupation

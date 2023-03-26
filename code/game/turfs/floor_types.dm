@@ -281,12 +281,14 @@
 
 /turf/open/floor/marking/asteroidwarning
 	icon_state = "asteroidwarning"
+	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
 /turf/open/floor/grimy
 	icon_state = "grimy"
 
 /turf/open/floor/asteroidfloor
 	icon_state = "asteroidfloor"
+	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
 
 
@@ -310,6 +312,8 @@
 /turf/open/floor/light/LateInitialize(mapload)
 	update_icon()
 
+/turf/open/floor/light/plating
+	icon_state = "plating"
 
 /turf/open/floor/wood
 	name = "floor"
@@ -804,25 +808,20 @@
 
 /turf/open/floor/carpet
 	name = "Carpet"
-	icon_state = "carpet"
+	icon = 'icons/turf/floors/carpet.dmi'
+	base_icon_state = "carpet"
+	icon_state = "carpet-0"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CARPET)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET)
 	shoefootstep = FOOTSTEP_CARPET
 	barefootstep = FOOTSTEP_CARPET
 	mediumxenofootstep = FOOTSTEP_CARPET
-
 
 /turf/open/floor/carpet/Initialize()
 	. = ..()
 	floor_tile = new /obj/item/stack/tile/carpet
 	return INITIALIZE_HINT_LATELOAD
-
-
-/turf/open/floor/carpet/LateInitialize(mapload)
-	update_icon()
-	for(var/direction in list(1,2,4,8,5,6,9,10))
-		if(!istype(get_step(src, direction), /turf/open/floor))
-			continue
-		var/turf/open/floor/FF = get_step(src,direction)
-		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"

@@ -2,6 +2,7 @@
 	gender = pick(MALE, FEMALE)
 	species = pick(get_playable_species())
 	synthetic_type = pick(SYNTH_TYPES)
+	robot_type = pick(ROBOT_TYPES)
 	ethnicity = random_ethnicity()
 
 	h_style = random_hair_style(gender, species)
@@ -16,7 +17,7 @@
 	randomize_eyes_color()
 	randomize_species_specific()
 	underwear = rand(1, GLOB.underwear_m.len)
-	undershirt = rand(1, GLOB.undershirt_t.len)
+	undershirt = rand(1, GLOB.undershirt_f.len)
 	backpack = 2
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)

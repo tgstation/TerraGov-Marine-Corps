@@ -39,7 +39,6 @@
 	var/atom/movable/screen/oxygen_icon
 	var/atom/movable/screen/pressure_icon
 	var/atom/movable/screen/toxin_icon
-	var/atom/movable/screen/internals
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/stamina_hud/staminas
 	var/atom/movable/screen/fire_icon
@@ -118,7 +117,6 @@
 	oxygen_icon = null
 	pressure_icon = null
 	toxin_icon = null
-	internals = null
 	healths = null
 	staminas = null
 	fire_icon = null

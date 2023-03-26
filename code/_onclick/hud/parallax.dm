@@ -132,8 +132,8 @@
 	C.parallax_movedir = new_parallax_movedir
 	if (C.parallax_animate_timer)
 		deltimer(C.parallax_animate_timer)
-	var/datum/callback/CB = CALLBACK(src, .proc/update_parallax_motionblur, C, animatedir, new_parallax_movedir, newtransform)
-	if(skip_windups)
+	var/datum/callback/CB = CALLBACK(src, PROC_REF(update_parallax_motionblur), C, animatedir, new_parallax_movedir, newtransform)
+	if(skip_windups || !shortesttimer) //shorttest timer can be null/0 if we don't have any parallax layers (ie the pref is off)
 		CB.Invoke()
 	else
 		C.parallax_animate_timer = addtimer(CB, min(shortesttimer, PARALLAX_LOOP_TIME), TIMER_CLIENT_TIME|TIMER_STOPPABLE)
@@ -192,36 +192,33 @@
 	C.previous_turf = posobj
 	C.last_parallax_shift = world.time
 
-	for(var/thing in C.parallax_layers)
-		var/atom/movable/screen/parallax_layer/L = thing
-		L.update_status(screenmob)
-		if (L.view_sized != C.view)
-			L.update_o(C.view)
+	for(var/atom/movable/screen/parallax_layer/parallax_layer as anything in C.parallax_layers)
+		parallax_layer.update_status(screenmob)
+		if (parallax_layer.view_sized != C.view)
+			parallax_layer.update_o(C.view)
 
-		if(L.absolute)
-			L.offset_x = -(posobj.x - SSparallax.planet_x_offset) * L.speed
-			L.offset_y = -(posobj.y - SSparallax.planet_y_offset) * L.speed
+		if(parallax_layer.absolute)
+			parallax_layer.offset_x = -(posobj.x - SSparallax.planet_x_offset) * parallax_layer.speed
+			parallax_layer.offset_y = -(posobj.y - SSparallax.planet_y_offset) * parallax_layer.speed
 		else
-			L.offset_x -= offset_x * L.speed
-			L.offset_y -= offset_y * L.speed
+			parallax_layer.offset_x -= offset_x * parallax_layer.speed
+			parallax_layer.offset_y -= offset_y * parallax_layer.speed
 
-			if(L.offset_x > 240)
-				L.offset_x -= 480
-			if(L.offset_x < -240)
-				L.offset_x += 480
-			if(L.offset_y > 240)
-				L.offset_y -= 480
-			if(L.offset_y < -240)
-				L.offset_y += 480
+			if(parallax_layer.offset_x > 240)
+				parallax_layer.offset_x -= 480
+			if(parallax_layer.offset_x < -240)
+				parallax_layer.offset_x += 480
+			if(parallax_layer.offset_y > 240)
+				parallax_layer.offset_y -= 480
+			if(parallax_layer.offset_y < -240)
+				parallax_layer.offset_y += 480
 
-		L.screen_loc = "CENTER-7:[round(L.offset_x,1)],CENTER-7:[round(L.offset_y,1)]"
+		parallax_layer.screen_loc = "CENTER-7:[round(parallax_layer.offset_x,1)],CENTER-7:[round(parallax_layer.offset_y,1)]"
 
 /atom/movable/proc/update_parallax_contents()
-	if(length(client_mobs_in_contents))
-		for(var/thing in client_mobs_in_contents)
-			var/mob/M = thing
-			if(M?.client && M.hud_used && length(M.client.parallax_layers))
-				M.hud_used.update_parallax()
+	for(var/mob/client_mob as anything in client_mobs_in_contents)
+		if(length(client_mob?.client?.parallax_layers) && client_mob.hud_used)
+			client_mob.hud_used.update_parallax()
 
 /mob/proc/update_parallax_teleport() //used for arrivals shuttle
 	if(client?.eye && hud_used && length(client.parallax_layers))

@@ -58,6 +58,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
+	//Robot specific preferences
+	var/robot_type = "Basic"
+
 	//Xenomorph specific preferences
 	var/xeno_name = "Undefined"
 
@@ -76,8 +79,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Your preferred squad, when playing SOM
 	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	var/preferred_slot = SLOT_S_STORE
-	var/preferred_slot_alt = SLOT_BACK
+	///Quick equip slots, up to [MAX_QUICK_EQUIP_SLOTS]. One per quick equip hotkey.
+	var/list/quick_equip = list()
 	var/list/gear
 	var/list/job_preferences = list()
 

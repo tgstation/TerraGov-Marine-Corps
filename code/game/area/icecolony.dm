@@ -188,6 +188,9 @@
 	icon_state = "mining_living"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
+/area/ice_colony/exterior/underground/caves/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
 
 /*
 *  ---------------------
@@ -209,6 +212,7 @@
 /area/ice_colony/surface/bar
 	name = "Anti-Freeze"
 	icon_state = "bar"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/ice_colony/surface/bar/bar
 	name = "Anti-Freeze Bar"
@@ -286,6 +290,7 @@
 /area/ice_colony/surface/dorms
 	name = "Dormitories"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/ice_colony/surface/dorms/canteen
 	name = "Dormitories Canteen"
@@ -331,15 +336,16 @@
 /area/ice_colony/surface/excavation
 	name = "Excavation Outpost"
 	icon_state = "mining_outpost"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/ice_colony/surface/excavationbarracks
 	name = "Excavation Barracks"
 	icon_state = "mining_outpost"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/ice_colony/surface/excavation/storage
 	name = "Excavation Outpost External Storage"
 	icon_state = "mining_storage"
-	minimap_color = MINIMAP_AREA_ENGI
 
 /*
 * Surface - Garage
@@ -369,7 +375,7 @@
 /area/ice_colony/surface/hangar
 	name = "Aerodrome Hangar"
 	icon_state = "hangar"
-	minimap_color = MINIMAP_AREA_SEC
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/ice_colony/surface/hangar/hallway
 	name = "Aerodrome Hangar Hallway"
@@ -385,7 +391,7 @@
 /area/ice_colony/surface/hangar/checkpoint
 	name = "Aerodrome Hangar Security Checkpoint"
 	icon_state = "security"
-	minimap_color = MINIMAP_AREA_SEC_CAVE
+	minimap_color = MINIMAP_AREA_SEC
 
 /*
 * Surface - Hydroponics
@@ -395,6 +401,7 @@
 	name = "Ice Colony Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/ice_colony/surface/hydroponics/lobby
 	name = "Hydroponics Relaxation Module"
@@ -415,6 +422,7 @@
 /area/ice_colony/surface/mining
 	name = "Mining Outpost"
 	icon_state = "mining_production"
+	minimap_color = MINIMAP_AREA_REQ
 
 /*
 * Surface - Power
@@ -470,6 +478,7 @@
 /area/ice_colony/surface/storage_unit/research
 	name = "Storage Unit Research"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/ice_colony/surface/storage_unit/telecomms
 	name = "Storage Unit T-Comms"
@@ -507,6 +516,7 @@
 /area/ice_colony/underground/crew
 	name = "Underground Crew Area"
 	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/ice_colony/underground/crew/dorm_l
 	name = "West Dormitory"
@@ -704,6 +714,7 @@
 /area/ice_colony/underground/requesition
 	name = "Underground Requesitions"
 	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/ice_colony/underground/requesition/lobby
 	name = "Underground Requesitions Lobby"
@@ -786,6 +797,7 @@
 
 /area/ice_colony/underground/responsehangar
 	name = "Colony Response Team Hangar"
+	minimap_color = MINIMAP_AREA_SHIP
 
 /area/ice_colony/underground/westroadtunnel
 	name = "West Road Tunnel"

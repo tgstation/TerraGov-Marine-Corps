@@ -7,13 +7,13 @@
 	///the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target
 	var/visual_type
 	///What skill is needed to have this action
-	var/skill_name = "leadership"
+	var/skill_name = SKILL_LEADERSHIP
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_EXPERT
 
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_ORDER_SENT, .proc/update_button_icon)
+	RegisterSignal(M, COMSIG_ORDER_SENT, PROC_REF(update_button_icon))
 
 /datum/action/innate/order/remove_action(mob/M)
 	. = ..()
@@ -23,7 +23,7 @@
 	active = TRUE
 	set_toggle(TRUE)
 	SEND_SIGNAL(owner, COMSIG_ORDER_SELECTED, src)
-	RegisterSignal(owner, COMSIG_ORDER_SELECTED, .proc/Deactivate_signal_handler)
+	RegisterSignal(owner, COMSIG_ORDER_SELECTED, PROC_REF(Deactivate_signal_handler))
 
 /// Signal handler for deactivating the order
 /datum/action/innate/order/proc/Deactivate_signal_handler()

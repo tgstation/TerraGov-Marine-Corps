@@ -151,6 +151,18 @@
 /obj/effect/turf_decal/plaque
 	icon_state = "plaque"
 
+/obj/effect/turf_decal/plaque/one
+	icon_state = "ss13logoone"
+
+/obj/effect/turf_decal/plaque/two
+	icon_state = "ss13logotwo"
+
+/obj/effect/turf_decal/plaque/three
+	icon_state = "ss13logothree"
+
+/obj/effect/turf_decal/plaque/four
+	icon_state = "ss13logofour"
+
 /// NTSS RAVEN EMERGENCY SHUTTLE LOGO ///
 
 /obj/effect/turf_decal/raven_ship_sign

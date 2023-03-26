@@ -30,11 +30,11 @@
 	reagent_select_action = new
 	LAZYADD(item_parent.actions, reagent_select_action)
 
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, .proc/activate_blade)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/attack)
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby)
-	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, .proc/select_reagent)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, PROC_REF(activate_blade))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(attack))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
@@ -154,12 +154,12 @@
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/attackby_async, source, cont, user)
+	INVOKE_ASYNC(src, PROC_REF(attackby_async), source, cont, user)
 
 ///Signal handler calling activation of the harvester
 /datum/component/harvester/proc/activate_blade(datum/source, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/activate_blade_async, source, user)
+	INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
 
 ///Signal handler calling when user attacks
 /datum/component/harvester/proc/attack(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
@@ -189,7 +189,7 @@
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(target))
 				return
-			INVOKE_ASYNC(src, .proc/attack_async, source, target, user, weapon)
+			INVOKE_ASYNC(src, PROC_REF(attack_async), source, target, user, weapon)
 			. = COMPONENT_ITEM_NO_ATTACK
 
 	if(!loaded_reagents[loaded_reagent])

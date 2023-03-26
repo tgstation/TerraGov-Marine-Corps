@@ -9,7 +9,6 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	materials = list(/datum/material/metal = 1000)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 

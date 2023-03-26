@@ -145,9 +145,10 @@
 //MARINE SHIP GRILLE
 
 /obj/structure/grille/smoothing
-	icon_state = "grille0"
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	icon = 'icons/obj/smooth_objects/grille.dmi'
+	icon_state = "grille-0"
+	base_icon_state = "grille"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_GRILLE)
+	canSmoothWith = list(SMOOTH_GROUP_GRILLE)
 
-/obj/structure/grille/smoothing/update_icon()
-	smooth_self()

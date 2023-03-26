@@ -117,7 +117,7 @@
 
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
-	addtimer(CALLBACK(src, /obj/vehicle/sealed/mecha.proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 
@@ -246,7 +246,7 @@
 		to_chat(user, span_notice("You close the hatch to the power unit."))
 
 /obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 100, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 3 SECONDS)
+	return welder_repair_act(user, I, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
 
 /obj/vehicle/sealed/mecha/proc/full_repair(charge_cell)
 	obj_integrity = max_integrity

@@ -64,12 +64,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
-"q" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river2)
 "r" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
@@ -142,12 +136,6 @@
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
-"H" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "I" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -209,12 +197,6 @@
 /obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor,
 /area/lv624/ground/river2)
-"U" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/river2)
 "V" = (
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
@@ -238,8 +220,8 @@ P
 P
 P
 P
-q
-U
+h
+h
 "}
 (2,1,1) = {"
 c
@@ -323,5 +305,5 @@ P
 P
 P
 C
-H
+h
 "}

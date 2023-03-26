@@ -15,54 +15,43 @@
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(!istype(M))
-		to_chat(user, span_warning("\The [src] cannot be applied to [M]!"))
-		return TRUE
+/obj/item/stack/medical/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(.)
+		return
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
-		return TRUE
+	if(!ishuman(M))
+		M.balloon_alert(user, "not a human")
+		return FALSE
+	var/mob/living/carbon/human/target = M
 
 	if(!ishuman(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
-		return TRUE
+		target.balloon_alert(user, "not dextrous enough")
+		return FALSE
 
-	var/mob/living/carbon/human/H = M
-	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
+	if(user.do_actions)
+		target.balloon_alert(user, "already busy")
+		return
+
+	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 
 	if(!affecting)
-		return TRUE
-
-	if(affecting.body_part == HEAD)
-		if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-			to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-			return TRUE
-	else
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-			to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-			return TRUE
+		return FALSE
 
 	if(!can_affect_limb(affecting))
-		to_chat(user, span_warning("This isn't useful at all on [affecting.limb_status & LIMB_ROBOT ? "a robotic": "an organic"] limb."))
-		return TRUE
-
-	H.UpdateDamageIcon()
-
-	if(user.skills.getRating("medical") < skill_level_needed)
-		if(user.do_actions || !do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-			to_chat(user, span_warning("You're busy with something else right now!"))
-			return TRUE
+		target.balloon_alert(user, "Limb is [affecting.limb_status & LIMB_ROBOT ? "robotic": "organic"]!")
+		return FALSE
 
 	return affecting
 
 ///Checks for whether the limb is appropriately organic/robotic
 /obj/item/stack/medical/proc/can_affect_limb(datum/limb/affecting)
-	if(affecting.limb_status & LIMB_ROBOT)
-		return FALSE
-	return TRUE
+	return !(affecting.limb_status & LIMB_ROBOT)
 
 /obj/item/stack/medical/heal_pack
 	name = "platonic gauze"
+	amount = 40
+	max_amount = 40
 	///How much brute damage this pack heals when applied to a limb
 	var/heal_brute = 0
 	///How much burn damage this pack heals when applied to a limb
@@ -71,44 +60,51 @@
 	var/heal_flags = NONE
 
 
-/obj/item/stack/medical/heal_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/heal_pack/attack(mob/living/M, mob/living/user)
 	. = ..()
-	if(. == TRUE)
+	if(!.) // note this true/false is inverted because we want to get the limb
 		return
 
 	var/datum/limb/affecting = .
 	var/mob/living/carbon/human/patient = M //If we've got to this point, the parent proc already checked they're human
-	if(affecting.surgery_open_stage) //Checks if mob is lying down on table for surgery
-		if(patient.can_be_operated_on())
-			do_surgery(patient, user, src)
-		else
-			to_chat(user, span_notice("\The [affecting.display_name] is cut open, you'll need more than a bandage!"))
+
+	if(affecting.limb_status & LIMB_DESTROYED)
+		patient.balloon_alert(user, "limb destroyed")
 		return
 
-	var/unskilled_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
-	var/affected = heal_limb(affecting, unskilled_penalty)
-
-	generate_treatment_messages(user, patient, affecting, affected)
-	if(!affected)
-		return
-	use(1)
-
-	//For fast use. If you're already treating and apply to another part, don't try to start cycling again
-	if(user.do_actions)
-		return
-
-	//After patching the first limb, start looping through the rest with a delay on each.
-	for(affecting AS in patient.limbs)
-		if(!can_affect_limb(affecting))
-			continue
-		//Always delay on the first try, otherwise only delay if you patched the last iterated limb.
-		if(affected && !do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			to_chat(user, span_notice("You stop tending to [patient]'s wounds."))
+	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
+	var/list/patient_limbs = patient.limbs.Copy()
+	patient_limbs -= affecting
+	while(affecting)
+		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
+			patient.balloon_alert(user, "Stopped tending")
 			return
-		affected = heal_limb(affecting, unskilled_penalty)
-		if(affected) //Limbs you don't treat just pass by silently
-			generate_treatment_messages(user, patient, affecting, affected)
-	to_chat(user, span_notice("You finish tending to [patient]'s wounds."))
+		var/affected = heal_limb(affecting, unskilled_penalty)
+		generate_treatment_messages(user, patient, affecting, affected)
+		use(1)
+		affecting = null
+		while(!affecting)
+			var/candidate = popleft(patient_limbs)
+			if(can_heal_limb(candidate))
+				affecting = candidate
+				break
+			if(!length(patient_limbs))
+				break
+	patient.balloon_alert(user, "Finished tending")
+
+/// return TRUE if a given limb can be healed by src, FALSE otherwise
+/obj/item/stack/medical/heal_pack/proc/can_heal_limb(datum/limb/affecting)
+	if(affecting.limb_status & LIMB_DESTROYED)
+		return FALSE
+	if(!can_affect_limb(affecting))
+		return FALSE
+	if(heal_flags & BANDAGE && !affecting.is_bandaged())
+		return TRUE
+	if(heal_flags & SALVE && !affecting.is_salved())
+		return TRUE
+	if(heal_flags & DISINFECT && !affecting.is_disinfected())
+		return TRUE
+	return FALSE
 
 ///Applies the heal_pack to a specified limb. Unskilled penalty is a multiplier between 0 and 1 on brute/burn healing effectiveness
 /obj/item/stack/medical/heal_pack/proc/heal_limb(datum/limb/affecting, unskilled_penalty)
@@ -239,42 +235,25 @@
 	var/applied_splint_health = 15
 
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
+/obj/item/stack/medical/splint/attack(mob/living/M, mob/living/user)
 	. = ..()
-	if(. == TRUE)
-		return TRUE
-
-	if(user.do_actions)
+	if(!.) // note this true/false is inverted because we want to get the limb
 		return
 
-	if(ishuman(M))
-		var/datum/limb/affecting = .
-		var/limb = affecting.display_name
+	if(user.skills.getRating(SKILL_MEDICAL) < skill_level_needed)
+		if(user.do_actions)
+			M.balloon_alert(user, "already busy")
+			return FALSE
+		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+			return FALSE
 
-		if(!(affecting.name in list("l_arm", "r_arm", "l_leg", "r_leg", "r_hand", "l_hand", "r_foot", "l_foot", "chest", "groin", "head")))
-			to_chat(user, span_warning("You can't apply a splint there!"))
-			return
+	var/datum/limb/affecting = .
+	if(M == user && ((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT)))
+		user.balloon_alert(user, "You are using that arm!")
+		return
+	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
+		use(1)
 
-		if(affecting.limb_status & LIMB_DESTROYED)
-			to_chat(user, span_warning("[user == M ? "You don't" : "[M] doesn't"] have \a [limb]!"))
-			return
-
-		if(affecting.limb_status & LIMB_SPLINTED)
-			to_chat(user, span_warning("[user == M ? "Your" : "[M]'s"] [limb] is already splinted!"))
-			return
-
-		if(M != user)
-			user.visible_message(span_warning("[user] starts to apply [src] to [M]'s [limb]."),
-			span_notice("You start to apply [src] to [M]'s [limb], hold still."))
-		else
-			if((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT))
-				to_chat(user, span_warning("You can't apply a splint to the arm you're using!"))
-				return
-			user.visible_message(span_warning("[user] starts to apply [src] to [user.p_their()] [limb]."),
-			span_notice("You start to apply [src] to your [limb], hold still."))
-
-		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
-			use(1)
 
 #undef BANDAGE
 #undef SALVE

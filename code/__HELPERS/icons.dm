@@ -804,7 +804,7 @@ ColorTone(rgb, tone)
 						break
 				layers[current] = current_layer
 
-		//sortTim(layers, /proc/cmp_image_layer_asc)
+		//sortTim(layers, GLOBAL_PROC_REF(cmp_image_layer_asc))
 
 		var/icon/add // Icon of overlay being added
 
@@ -1116,7 +1116,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	appearing_part.filters = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0,flags=MASK_INVERSE)
 	animate(appearing_part.filters[1],y=-32,time=time)
 	transformation_objects += appearing_part
-	//Transform effect thing - todo make appearance passed in
+	//Transform effect thing
 	if(transform_appearance)
 		var/obj/transform_effect = new
 		transform_effect.appearance = transform_appearance

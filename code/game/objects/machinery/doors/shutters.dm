@@ -24,7 +24,7 @@
 	do_animate("opening")
 	icon_state = "shutter0"
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
-	addtimer(CALLBACK(src, .proc/do_open), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_open)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/poddoor/shutters/proc/do_open()
@@ -35,7 +35,7 @@
 	if(operating)
 		operating = FALSE
 	if(autoclose)
-		addtimer(CALLBACK(src, .proc/autoclose), 150)
+		addtimer(CALLBACK(src, PROC_REF(autoclose)), 150)
 
 /obj/machinery/door/poddoor/shutters/close()
 	if(operating)
@@ -48,7 +48,7 @@
 	if(visible)
 		set_opacity(TRUE)
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
-	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_close)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/poddoor/shutters/proc/do_close()
@@ -73,12 +73,10 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
-	smoothing_behavior = NO_SMOOTHING
-	smoothing_groups = NONE
 
 
 /obj/machinery/door/poddoor/shutters/timed_late/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/open)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
 	return ..()
 
 
@@ -117,7 +115,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_CANTERBURY
+	smoothing_groups = list(SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open

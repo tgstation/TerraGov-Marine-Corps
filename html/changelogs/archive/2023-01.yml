@@ -219,3 +219,162 @@
   Zar000:
   - imageadd: added roooouny
   - admin: ya can rounify all xenos with 1 simple click in Fun tab
+2023-01-17:
+  'Code: Lumi Sprites: Crow & Saro':
+  - rscadd: 'HvH: Added a blink drive and e-sword to the SOM arsenal'
+  - refactor: Cleaned up some esword code
+2023-01-18:
+  Lewdcifer:
+  - balance: All shoes now have the same armor unless specified otherwise.
+  Lumipharon:
+  - bugfix: 'Sensor Capture: Fixed an issue where the game could end unexpectedly'
+  Pariah919:
+  - balance: Mech Heavy Cannon and sniper no longer have sunder.
+  novaepee:
+  - rscadd: PFC Jim Pizza is now in busness replacing MRE pizza that reqtorio makes
+  - code_imp: replace MRE pizza for the frantise that is PFC Jim Pizza
+  novaepee, Al-1ce:
+  - spellcheck: 2023 tips update
+2023-01-19:
+  GrayRachnid:
+  - bugfix: fixed mecha tactical smoke, now properly launches cloaking smoke.
+  Lewdcifer:
+  - rscadd: Added the ornamented cap.
+  Lumipharon:
+  - balance: Increased mech repair and fumble time to 4 seconds
+  - bugfix: fixed mortar offsets
+  - bugfix: fixed some gun light bugs
+  - balance: Multi shot ammo such as buckshot or airburst rounds now properly target
+      whatever you're clicking
+  novaepee, jackie:
+  - imageadd: New mob and object sprite for vali weapons
+2023-01-20:
+  Naaanii:
+  - rscadd: Added stuff to valhalla.
+  Tupina:
+  - imageadd: New and updated AmmoHUD sprites
+  - imagedel: Unused ammoHUD sprites
+  chizzy376:
+  - bugfix: fixed reqtorio pamphlet's razor recipe
+  novaepee:
+  - bugfix: space area in starboard maint
+  - bugfix: missing wire in starboard maint
+  - bugfix: remove black table next to alamo
+  tyeagg:
+  - rscdel: Removed old cm gun actions
+2023-01-21:
+  GrayRachnid:
+  - balance: The CSE should not be having Captain/FC level leadership
+  Lewdcifer:
+  - rscadd: Introducing the Style line of equipment, designed to prioritize style
+      without compromising gameplay.
+  - rscadd: Includes modular armors that accept existing storage and armor modules,
+      available under their own category in standard armor vendors.
+  - rscadd: 'Three new armor modules have been added: the Equalizer modules. These
+      only work with the Style line, and will alter their stats to match those of
+      existing armor presets (light, medium, heavy).'
+  - rscadd: All options have existing variants, accessible by using green facepaint
+      on them.
+  - rscadd: A new armor addition to the game, the Duster, is part of this line of
+      equipment.
+  - refactor: The reinforced leather jacket and its webbing variant have been turned
+      into a single item and merged into the Style line. Its webbing variant can be
+      accessed by using green facepaint.
+  Lumipharon:
+  - rscadd: Added BR-64 loadouts to HvH
+  - balance: 'HvH: All loadouts now have advanced combat injectors instead of combat
+      injectors'
+  - balance: 'HvH: Buffed the V-41 damage and added slowdown on hit'
+  chizzy376:
+  - bugfix: No more violins from Reqtorio AMR incendiary rounds
+  novaepee:
+  - bugfix: reverse grip in vali sword on right hand
+2023-01-22:
+  David-Stormwell:
+  - rscadd: 'A Marine full-piece suit has been added to the dress tab of the clothing
+      vendor! Sprites courtesy of _a Ghost_
+
+      \:cl:'
+2023-01-23:
+  Lumipharon:
+  - imageadd: added some bald hairstyles
+  - bugfix: fixed a timer bug with sensor towers.
+  - bugfix: eswords no longer block almost all incoming damage
+  - bugfix: fixed a bug with King's summon
+  - bugfix: fixed a minor MG-42 sprite issue
+  RipGrayson:
+  - bugfix: Removed some misplaced hull windows on Big Red.
+  - bugfix: Fixed an oversight with podding on Chigusa.
+  chizzy376:
+  - bugfix: Creating surt modules through reqtorio should no longer disappoint you
+      with 10 violins
+2023-01-24:
+  Lumipharon:
+  - balance: Added some more loadouts to SOM ERTs
+  - bugfix: Fixed a bug with mimir traits
+  - balance: Melee stuns now respect armour when calculating probability
+  - bugfix: fixed random map spawners
+  Pariah919:
+  - rscadd: Added new AGLS mounted grenade launcher.
+  novaepee:
+  - rscadd: 4 floodlights to all shipside maps
+  - balance: xenomorphs will have a harder time engaging marine fixed positions due
+      to more lights
+2023-01-25:
+  Lumipharon:
+  - bugfix: fixed an exploit with mounted weapons
+  - balance: Beanbag slugs no longer has a comically long stun duration
+  - bugfix: Added god mode checks to debuff status effects, snatch and defile
+2023-01-26:
+  Pariah919:
+  - balance: GPMG has been buffed. It now deals 27.5 damage and .75 sunder on its
+      bullet, from 20 damage and .75 sunder. Its total damage profile is now 27.5
+      damage, 10 penetration (Unchanged) and .75 sunder.
+  - balance: MMG now can attach underbarrel flashlight, and has halved damage falloff
+      to .5 falloff per tile rather than 1.
+2023-01-27:
+  Calyxman:
+  - rscadd: Added 7 new male preburst scream sounds from VA The God Of Clowns
+  - rscadd: Added 3 new male pain scream sounds from VA The God Of Clowns
+  - rscadd: Added 2 new male scream sounds from VA The God Of Clowns
+  - rscadd: Added 1 new male gored gurgle sound from VA The God Of Clowns
+  FosterGrime-Heymynameslouie:
+  - rscadd: infinite crates via op vendor in req
+  - rscdel: removed welding crates for 1 metal sheet on crates from op vendor
+  - qol: made req supply chain easier
+2023-01-29:
+  Lumipharon:
+  - imageadd: Updated some pistol belt sprites
+  Pariah919:
+  - balance: King HP scaling changed from 450->500->600->700 to 575->600->625->650.
+  Tupina:
+  - balance: Reduces mech assault leg health from 500 hp -> 310 hp
+  - balance: Reduces mech vanguard leg health from 700 hp -> 440 hp
+  - balance: Reduces mech recon part health from 200 hp -> 180 hp (900 total including
+      legs)
+  - balance: Reduces mech assault part health from 350 hp -> 260 hp (1350 total including
+      legs)
+  - balance: Reduces mech vanguard part health from 550 hp -> 340 hp (1800 total including
+      legs)
+2023-01-30:
+  Neocloudy:
+  - code_imp: Added new vendor tags and categories for synthetic vendor items.
+  - qol: Items in the synthetic vendor are labelled properly with tags like Cosmetic,
+      Provides Armor, etc
+  QualityVan:
+  - balance: Surgery tool cost reduced by 99% to prevent quick infinite free metal
+      by vending pouches.
+  RipGrayson:
+  - rscadd: Created a lint to guard against icon_state varedits being introduced to
+      our maps.
+  - code_imp: Purged all icon_state varedits from our maps.
+  - bugfix: Fixed an oversight where the escape pod walls were not solid.
+  chizzy376:
+  - bugfix: added a missing "is" to clone vat's error message when removing a beaker
+2023-01-31:
+  Pariah919:
+  - balance: Mech Rocket launcher no longer has heavy explosion, it now has 1 more
+      tile of light explosive range.
+  XSlayer300:
+  - soundadd: Replaced most mech-related sounds with new ones.
+  - sounddel: Removed most of the unused sounds that were from the original mech PR.

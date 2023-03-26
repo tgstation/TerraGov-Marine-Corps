@@ -7,7 +7,6 @@
 	name = "voice analyzer"
 	desc = "A small electronic device able to record a voice sample, and send a signal when that sample is repeated."
 	icon_state = "voice"
-	materials = list(/datum/material/metal = 500, /datum/material/glass = 50)
 	attachable = TRUE
 	verb_say = "beeps"
 	verb_ask = "beeps"
@@ -24,11 +23,9 @@
 	. = ..()
 	become_hearing_sensitive()
 
-
 /obj/item/assembly/voice/examine(mob/user)
 	. = ..()
 	. += span_notice("Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode.")
-
 
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
@@ -39,8 +36,7 @@
 		record_speech(speaker, raw_message, message_language)
 	else
 		if(check_activation(speaker, raw_message))
-			addtimer(CALLBACK(src, .proc/pulse, 0), 10)
-
+			addtimer(CALLBACK(src, PROC_REF(pulse), 0), 10)
 
 /obj/item/assembly/voice/proc/record_speech(atom/movable/speaker, raw_message, datum/language/message_language)
 	switch(mode)
@@ -58,8 +54,7 @@
 			say("Your voice pattern is saved.", message_language)
 		if(VOICE_SENSOR_MODE)
 			if(length(raw_message))
-				addtimer(CALLBACK(src, .proc/pulse, 0), 10)
-
+				addtimer(CALLBACK(src, PROC_REF(pulse), 0), 10)
 
 /obj/item/assembly/voice/proc/check_activation(atom/movable/speaker, raw_message)
 	. = FALSE
@@ -77,7 +72,6 @@
 			if(length(raw_message))
 				. = TRUE
 
-
 /obj/item/assembly/voice/multitool_act(mob/living/user, obj/item/I)
 	mode %= length(modes)
 	mode++
@@ -86,7 +80,6 @@
 	recorded = ""
 	return TRUE
 
-
 /obj/item/assembly/voice/activate()
 	if(!secured || holder)
 		return FALSE
@@ -94,18 +87,15 @@
 	say("[listening ? "Now" : "No longer"] recording input.")
 	return TRUE
 
-
 /obj/item/assembly/voice/attack_self(mob/user)
 	if(!user)
 		return FALSE
 	activate()
 	return TRUE
 
-
 /obj/item/assembly/voice/toggle_secure()
 	. = ..()
 	listening = FALSE
-
 
 #undef INCLUSIVE_MODE
 #undef EXCLUSIVE_MODE

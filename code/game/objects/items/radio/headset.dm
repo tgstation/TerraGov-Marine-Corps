@@ -17,7 +17,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
 	item_state = "headset"
-	materials = list(/datum/material/metal = 75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -26,13 +25,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/Initialize()
-	. = ..()
 	if(keyslot)
 		keyslot = new keyslot(src)
 	if(keyslot2)
 		keyslot2 = new keyslot2(src)
-	recalculateChannels()
+	. = ..()
+	possibly_deactivate_in_loc()
 
+/obj/item/radio/headset/proc/possibly_deactivate_in_loc()
+	if(ismob(loc))
+		set_listening(should_be_listening)
+	else
+		set_listening(FALSE, actual_setting = FALSE)
+
+/obj/item/radio/headset/Moved(atom/OldLoc, Dir)
+	. = ..()
+	possibly_deactivate_in_loc()
 
 /obj/item/radio/headset/Destroy()
 	if(keyslot2)
@@ -112,17 +120,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
 			if(!(ch_name in channels))
-				channels[ch_name] = keyslot2.channels[ch_name]
+				LAZYSET(channels, ch_name, keyslot2.channels[ch_name])
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
-
-
-/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans, datum/language/language)
-	if(!listening)
-		return ITALICS | REDUCE_RANGE
-	return ..()
-
 
 /obj/item/radio/headset/AltClick(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
@@ -131,17 +132,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(command)
 		use_command = !use_command
 		to_chat(user, span_notice("You toggle high-volume mode [use_command ? "on" : "off"]."))
-
-
-/obj/item/radio/headset/can_receive(freq, level)
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.wear_ear == src)
-			return ..()
-	else if(issilicon(loc))
-		return ..()
-	return FALSE
-
 
 /obj/item/radio/headset/attack_self(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
@@ -185,7 +175,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
-
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		if(GLOB.faction_to_data_hud[user.faction] != hud_type && user.faction != FACTION_NEUTRAL)
@@ -193,19 +182,20 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
-		RegisterSignal(user, COMSIG_MOB_REVIVE, .proc/update_minimap_icon)
-		RegisterSignal(user, COMSIG_MOB_DEATH, .proc/set_dead_on_minimap)
-		RegisterSignal(user, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/set_undefibbable_on_minimap)
+		RegisterSignal(user, COMSIG_MOB_REVIVE, PROC_REF(update_minimap_icon))
+		RegisterSignal(user, COMSIG_MOB_DEATH, PROC_REF(set_dead_on_minimap))
+		RegisterSignal(user, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(set_undefibbable_on_minimap))
 	if(camera)
 		camera.c_tag = user.name
 		if(user.assigned_squad)
 			camera.network |= lowertext(user.assigned_squad.name)
+	possibly_deactivate_in_loc()
 	return ..()
 
 /// Make the headset lose its keysloy
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
-	playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
 	user.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
@@ -266,7 +256,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	remove_minimap()
 	var/datum/action/minimap/mini = new minimap_type
 	mini.give_action(wearer)
-	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
+	INVOKE_NEXT_TICK(src, PROC_REF(update_minimap_icon)) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
@@ -776,7 +766,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_COLONIST
 
 
-/obj/item/radio/headset/distress/PMC
+/obj/item/radio/headset/distress/pmc
 	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom
@@ -813,6 +803,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/sectoid
 	frequency = FREQ_SECTOID
 
+
+/obj/item/radio/headset/distress/icc
+	name = "shiphands headset"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
 
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"

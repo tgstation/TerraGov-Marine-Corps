@@ -186,6 +186,11 @@ export const CharacterCustomization = (props, context) => {
                 action={'ethnicity'}
               />
               <SelectFieldPreference
+                label={'Robot model'}
+                value={'robot_type'}
+                action={'robot_type'}
+              />
+              <SelectFieldPreference
                 label={'Citizenship'}
                 value={'citizenship'}
                 action={'citizenship'}

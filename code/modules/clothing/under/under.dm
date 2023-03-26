@@ -1,6 +1,6 @@
 
 /obj/item/clothing/under
-	icon = 'icons/obj/clothing/uniforms.dmi'
+	icon = 'icons/obj/clothing/uniforms/uniforms.dmi'
 	name = "under"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
@@ -30,11 +30,12 @@
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
 		/obj/item/armor_module/storage/uniform/holster/highpower,
-		/obj/item/armor_module/armor/badge,
-		/obj/item/armor_module/armor/cape,
-		/obj/item/armor_module/armor/cape/half,
-		/obj/item/armor_module/armor/cape/short,
-		/obj/item/armor_module/armor/cape/scarf,
+		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/greyscale/cape,
+		/obj/item/armor_module/greyscale/cape/half,
+		/obj/item/armor_module/greyscale/cape/short,
+		/obj/item/armor_module/greyscale/cape/scarf,
+		/obj/item/armor_module/module/pt_belt,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -68,6 +69,7 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 		ATTACHMENT_SLOT_CAPE,
+		ATTACHMENT_SLOT_BELT,
 	)
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(

@@ -96,6 +96,13 @@
 	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
 	faction = FACTION_SOM
 
+/obj/item/reagent_containers/food/snacks/req_pizza
+	name = "\improper TGMC PFC Jim pizza"
+	desc = "You think that is a pizza. You definitely shouldn't eat this, but you can sell this for a PROFIT! While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it sat in the ASRS for a while? Oh well, time to sell it to some poor customer in space."
+	icon_state = "mushroompizza"
+	list_reagents = list(/datum/reagent/iron = 8)
+	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
+
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
 	//trash = /obj/item/trash/TGMCtray
@@ -134,11 +141,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
-
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
-	desc = "This is supposedly a pizza MRE, fit for marine consumption. While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it's sat in the ASRS for a while?"
-	list_reagents = list(/datum/reagent/iron = 8)
-	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"
@@ -281,7 +283,7 @@
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
 	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
-	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
+	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), PROC_REF(detach_item))
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
 

@@ -178,4 +178,4 @@
 	icon_state = "smoke_gas"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
-	smoke_type = /obj/effect/particle_effect/smoke/tactical
+	smoke_type = /datum/effect_system/smoke_spread/tactical

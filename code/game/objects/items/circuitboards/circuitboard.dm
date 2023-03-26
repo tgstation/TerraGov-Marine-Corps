@@ -5,7 +5,6 @@
 	icon_state = "id_mod"
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 50, /datum/material/glass = 50)
 	var/build_path = null
 
 //Called when the circuitboard is used to contruct a new machine.

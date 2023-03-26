@@ -58,7 +58,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_BUSY
 	///The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
@@ -107,7 +106,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
 	active_shield = new(target_turf, owner)
-	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
 	cancel_shield()
@@ -165,7 +164,7 @@
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, "alien_roar", 50)
+	playsound(owner, 'sound/voice/alien_roar_warlock.ogg', 25)
 
 	GLOB.round_statistics.psy_shield_blasts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
@@ -288,7 +287,7 @@
 		return fail_activate()
 
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
-	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
 
@@ -311,7 +310,7 @@
 
 	action_icon_state = "psy_crush_activate"
 	update_button_icon()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
@@ -351,7 +350,7 @@
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.6 SECONDS, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.6 SECONDS, TIMER_STOPPABLE)
 		return
 
 	stop_crush()
@@ -373,7 +372,7 @@
 	apply_filters(target_turfs)
 	orb.icon_state = "crush_hard" //used as a check in stop_crush
 	flick("crush_hard", orb)
-	addtimer(CALLBACK(src, .proc/remove_all_filters), 1 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(remove_all_filters)), 1 SECONDS, TIMER_STOPPABLE)
 
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/victim in effected_turf)
@@ -558,7 +557,7 @@
 	add_cooldown()
 	update_button_icon()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
-	addtimer(CALLBACK(src, .proc/end_channel), 5)
+	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/xeno_action/activable/psy_blast/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner

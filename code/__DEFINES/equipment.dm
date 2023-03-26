@@ -76,6 +76,7 @@
 #define DEPLOYED_NO_PICKUP  (1<<16) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<17) //Disables deployed item rotation abilities to rotate.
 #define DEPLOYED_WRENCH_DISASSEMBLE (1<<18) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define FULLY_WIELDED (1<<19) //If the item is properly wielded. Used for guns
 
 //==========================================================================================
 
@@ -93,6 +94,7 @@
 #define HIDETOPHAIR (1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR (1<<9)		// temporarily removes the user's hair, facial and otherwise.
 #define HIDEFACE (1<<10)	//Dictates whether we appear as unknown.
+#define HIDE_EXCESS_HAIR (1<<11)	//masks hair so it doesn't poke out of the top or front of helmets.
 
 
 //==========================================================================================
@@ -106,8 +108,7 @@
 //HELMET AND MASK======================================================================================
 #define COVEREYES (1<<1) // Covers the eyes/protects them.
 #define COVERMOUTH (1<<2) // Covers the mouth.
-#define ALLOWINTERNALS (1<<3)	//mask allows internals
-#define BLOCKGASEFFECT (1<<4) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define BLOCKGASEFFECT (1<<3) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
@@ -146,9 +147,8 @@
 //Marine helmet only, use for flags_marine_helmet.
 #define HELMET_SQUAD_OVERLAY (1<<0)
 #define HELMET_GARB_OVERLAY (1<<1)
-#define HELMET_DAMAGE_OVERLAY (1<<2)
-#define HELMET_STORE_GARB (1<<3)
-#define HELMET_IS_DAMAGED (1<<4)
+#define HELMET_STORE_GARB (1<<2)
+#define HELMET_IS_DAMAGED (1<<3)
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS
@@ -381,11 +381,13 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
+	SLOT_IN_BACKPACK, \
 	SLOT_IN_ACCESSORY,\
 	SLOT_S_STORE,\
 	SLOT_IN_L_POUCH,\
 	SLOT_IN_R_POUCH,\
 	SLOT_BELT,\
+	SLOT_IN_BELT,\
 	SLOT_WEAR_SUIT,\
 	SLOT_IN_STORAGE,\
 	SLOT_L_STORE,\
@@ -393,7 +395,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_BACK,\
 	SLOT_IN_BOOT,\
 	SLOT_IN_HEAD\
-	)
+)
 
 #define SLOT_ALL list(\
 	SLOT_WEAR_ID,\
@@ -443,7 +445,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"Left Pocket",\
 	"Right Pocket",\
 	"Webbing",\
-	"Belt",\
+	"Belt Inside",\
 	"Belt Holster",\
 	"Suit Storage Holster",\
 	"Back Holster",\
@@ -461,6 +463,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_BACK
 		if("Boot")
 			return SLOT_IN_BOOT
+		if("Backpack")
+			return SLOT_IN_BACKPACK
 		if("Helmet")
 			return SLOT_IN_HEAD
 		if("Left Pocket")
@@ -469,7 +473,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_R_STORE
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
-		if("Belt")
+		if("Belt Inside")
 			return SLOT_IN_BELT
 		if("Belt Holster")
 			return SLOT_IN_HOLSTER
@@ -486,10 +490,14 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Inside"
 		if(SLOT_BELT)
 			return "Belt"
+		if(SLOT_IN_BELT)
+			return "Belt Inside"
 		if(SLOT_BACK)
 			return "Back"
 		if(SLOT_IN_BOOT)
 			return "Boot"
+		if(SLOT_IN_BACKPACK)
+			return "Backpack"
 		if(SLOT_IN_HEAD)
 			return "Helmet"
 		if(SLOT_L_STORE)
@@ -498,8 +506,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Right Pocket"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
-		if(SLOT_IN_BELT)
-			return "Belt"
 		if(SLOT_IN_HOLSTER)
 			return "Belt Holster"
 		if(SLOT_IN_S_HOLSTER)

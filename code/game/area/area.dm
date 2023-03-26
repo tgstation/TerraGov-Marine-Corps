@@ -60,6 +60,9 @@
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
 
+	///Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
+	var/area_limited_icon_smoothing = FALSE
+
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.

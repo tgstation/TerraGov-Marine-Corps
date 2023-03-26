@@ -44,7 +44,7 @@
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 	update_boiler_glow()
-	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
+	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))
 
 // ***************************************
 // *********** Gibbing behaviour

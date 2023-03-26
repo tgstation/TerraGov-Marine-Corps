@@ -118,8 +118,9 @@
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
-		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
+		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
 		return TRUE
 
@@ -195,12 +196,28 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
+/mob/living/flamer_fire_act(burnlevel)
+	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+		return
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return
+
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
+	to_chat(src, span_warning("You are burned!"))
+
+	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+		return
+
+	adjust_fire_stacks(burnlevel)
+	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
 	Paralyze(30)
-	spin(30, 1.5)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
@@ -267,7 +284,7 @@
 	var/list/affecting_shields = list()
 	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
 	if(length(affecting_shields) > 1)
-		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
+		sortTim(affecting_shields, GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
 		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)

@@ -107,6 +107,7 @@
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
+#define VALHALLA_TRAIT "valhalla"
 
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
@@ -135,6 +136,8 @@
 #define TRAIT_PSY_LINKED "psy_linked"
 #define TRAIT_TIME_SHIFTED "time_shifted"
 #define TRAIT_LEASHED "leashed"
+#define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
+
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
@@ -146,9 +149,10 @@
 #define TRAIT_LEGLESS "legless" //Has lost all the appendages needed to stay standing up.
 #define TRAIT_NOPLASMAREGEN "noplasmaregen"//xeno plasma wont recharge
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
+#define TRAIT_IMMEDIATE_DEFIB "immediate_defib"//immediately revives when defibbed, rather than just healing
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
-#define TRAIT_HIVE_TARGET "hive_target"//mob is targetted for draining by the hive
+#define TRAIT_HIVE_TARGET "hive_target"//mob is targeted for draining by the hive
 #define TRAIT_RESEARCHED "researched" // Whether the thing has been researched/probed
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
 #define TRAIT_STAGGER_RESISTANT	"stagger_resistant" //Resistance to certain sources of stagger
@@ -157,10 +161,20 @@
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
-#define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
+#define TRAIT_VALHALLA_XENO "valhalla_xeno"
+
+//important_recursive_contents traits
+/*
+ * Used for movables that need to be updated, via COMSIG_ENTER_AREA and COMSIG_EXIT_AREA, when transitioning areas.
+ * Use [/atom/movable/proc/become_area_sensitive(trait_source)] to properly enable it. How you remove it isn't as important.
+ */
+#define TRAIT_AREA_SENSITIVE "area-sensitive"
+#define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive. Every hearing sensitive atom has this trait
+
 #define TRAIT_DROOLING "drooling" //target is drooling
 #define TRAIT_INTOXICATION_IMMUNE "intoxication_immune" // Immune to the Intoxication debuff.
 #define TRAIT_INTOXICATION_RESISTANT "intoxication_resistant" // Resistant to the Intoxication debuff. Maximum amount of stacks limited.
+#define TRAIT_PAIN_IMMUNE "pain_immune" // We don't feel pain.
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something
@@ -191,3 +205,7 @@
 
 //this mech is melee core boosted
 #define TRAIT_MELEE_CORE "melee_core"
+
+//added to escaped humans
+#define TRAIT_HAS_ESCAPED "escaped_marine"
+#define TRAIT_HAS_BEEN_TARGETED "been_targeted"

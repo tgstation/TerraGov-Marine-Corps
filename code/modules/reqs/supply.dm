@@ -83,11 +83,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
-			RegisterSignal(G, COMSIG_PARENT_QDELETING, .proc/clean_gear)
+			RegisterSignal(G, COMSIG_PARENT_QDELETING, PROC_REF(clean_gear))
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
-			RegisterSignal(R, COMSIG_PARENT_QDELETING, .proc/clean_railing)
+			RegisterSignal(R, COMSIG_PARENT_QDELETING, PROC_REF(clean_railing))
 			R.linked_pad = src
 			R.open()
 
@@ -157,14 +157,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if(firstpack.containertype)
 			A.name = "Order #[SO.id] for [SO.orderer]"
 
-		//supply manifest generation begin
-
-		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(A)
-		slip.info = "<h3>Automatic Storage Retrieval Manifest</h3><hr><br>"
-		slip.info +="Order #[SO.id]<br>"
-		slip.info +="[length(SO.pack)] PACKAGES IN THIS SHIPMENT<br>"
-		slip.info +="CONTENTS:<br><ul>"
-		slip.update_icon()
 
 		var/list/contains = list()
 		//spawn the stuff, finish generating the manifest while you're at it
@@ -187,12 +179,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				continue
 			if(!firstpack.containertype)
 				break
-			var/atom/B2 = new typepath(A)
-			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
-
-		//manifest finalisation
-		slip.info += "</ul><br>"
-		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+			new typepath(A)
 
 		SSpoints.shoppinglist[faction] -= "[SO.id]"
 		SSpoints.shopping_history += SO
@@ -308,7 +295,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
 	src.source_object = source_object
-	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, .proc/clean_ui)
+	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, PROC_REF(clean_ui))
 
 ///Signal handler to delete the ui when the source object is deleting
 /datum/supply_ui/proc/clean_ui()
@@ -654,7 +641,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return FALSE
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum

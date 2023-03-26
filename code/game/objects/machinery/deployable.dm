@@ -85,3 +85,16 @@
 	if(!CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
 		return ..()
 	disassemble(user)
+
+/obj/machinery/deployable/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
+	if(soft_armor.getRating(BOMB) >= 100)
+		return FALSE
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			take_damage(200, damage_flag = BOMB, effects = TRUE)
+		if(EXPLODE_LIGHT)
+			take_damage(100, damage_flag = BOMB, effects = TRUE)

@@ -13,6 +13,8 @@
 #define reverseList(L) reverseRange(L.Copy())
 #define LAZYADDASSOCSIMPLE(L, K, V) if(!L) { L = list(); } L[K] += V;
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 #define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
 #define LAZYINCREMENT(L, K) if(!L) { L = list(); } L[K]++;
@@ -586,3 +588,21 @@
 	while(islist(result))
 		result = pickweight(result)
 	return result
+
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	var/start_len = list_to_clear.len
+	var/list/new_list = new(start_len)
+	list_to_clear -= new_list
+	return list_to_clear.len < start_len
+
+///sort any value in a list
+/proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)
+	return sortTim(list_to_sort.Copy(), cmp)
+
+///uses sort_list() but uses the var's name specifically. This should probably be using mergeAtom() instead
+/proc/sort_names(list/list_to_sort, order=1)
+	return sortTim(list_to_sort.Copy(), order >= 0 ? GLOBAL_PROC_REF(cmp_name_asc) : GLOBAL_PROC_REF(cmp_name_dsc))

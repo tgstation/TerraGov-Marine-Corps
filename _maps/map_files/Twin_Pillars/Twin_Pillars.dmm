@@ -667,7 +667,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
 "aFi" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "aFy" = (
@@ -901,7 +901,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct/rebel)
 "aQA" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "aRy" = (
@@ -1131,7 +1131,7 @@
 /area/mainship/hallways/starboard_umbilical)
 "bdE" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -1799,11 +1799,11 @@
 /area/mainship/hull/lower_hull)
 "bOh" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
@@ -4038,11 +4038,11 @@
 /area/mainship/command/self_destruct/rebel)
 "dNQ" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/tool/pickaxe,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
@@ -7161,9 +7161,7 @@
 /area/mainship/hull/lower_hull)
 "gAr" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct/rebel)
 "gAB" = (
 /obj/structure/closet/cabinet,
@@ -7432,7 +7430,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "gLP" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "gMl" = (
@@ -8761,9 +8759,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
 "hVl" = (
-/obj/structure/prop/mainship/missile_tube{
-	icon_state = "missiletubesouth"
-	},
+/obj/structure/prop/mainship/missile_tube/south,
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
@@ -9649,7 +9645,7 @@
 /area/mainship/medical/medical_science/rebel)
 "iOM" = (
 /turf/closed/shuttle/ert/engines/left{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "iON" = (
@@ -10104,11 +10100,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jod" = (
@@ -10892,9 +10883,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct/rebel)
 "jVD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15700,11 +15689,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "ojp" = (
@@ -16458,9 +16442,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/rebel)
 "oNG" = (
-/obj/structure/prop/mainship/missile_tube{
-	icon_state = "missiletubesouth"
-	},
+/obj/structure/prop/mainship/missile_tube/south,
 /turf/open/floor/mainship_hull,
 /area/space)
 "oNH" = (
@@ -16974,7 +16956,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "pfY" = (
-/obj/machinery/autolathe,
+/obj/effect/spawner/random/structure/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "pgk" = (
@@ -20148,7 +20130,7 @@
 /area/mainship/medical/medical_science/rebel)
 "rWC" = (
 /turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "rWF" = (
@@ -20306,9 +20288,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "seg" = (
-/obj/structure/prop/mainship/missile_tube{
-	icon_state = "missiletubesouth"
-	},
+/obj/structure/prop/mainship/missile_tube/south,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -23058,9 +23038,7 @@
 /area/mainship/medical/lower_medical/rebel)
 "usq" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "usG" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
@@ -24442,7 +24420,7 @@
 /area/mainship/shipboard/port_missiles)
 "vHQ" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar/rebel)
@@ -24957,9 +24935,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "wia" = (
 /obj/machinery/door/firedoor/mainship{

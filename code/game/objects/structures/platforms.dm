@@ -39,7 +39,7 @@
 			I.pixel_x = -16
 	overlays += I
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -114,6 +114,13 @@
 
 /obj/structure/platform_decoration/platform2_deco
 	icon_state = "platform2_deco"
+
+/obj/structure/platform/trench
+	icon_state = "platformtrench"
+	name = "trench wall"
+	desc = "A group of roughly cut planks forming the side of a dug in trench."
+	obj_integrity = 400
+	max_integrity = 400
 
 /obj/structure/fakeplatform
 	name = "platform"

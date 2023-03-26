@@ -58,6 +58,14 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
+/obj/item/clothing/on_pocket_insertion()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/on_pocket_removal()
+	. = ..()
+	update_icon()
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
@@ -104,7 +112,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
-	icon = 'icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits/suits.dmi'
 	name = "suit"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
@@ -113,7 +121,7 @@
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
+	attachments_allowed = list(/obj/item/armor_module/greyscale/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/shield_state = "shield-blue"
@@ -150,6 +158,14 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
+/obj/item/clothing/suit/MouseDrop(over_object, src_location, over_location)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return ..()
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return ..()
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	if(armor_storage.storage.handle_mousedrop(usr, over_object))
+		return ..()
 
 /////////////////////////////////////////////////////////
 //Gloves
@@ -237,9 +253,18 @@
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
-
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 
 /obj/item/clothing/shoes/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
+
+/obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return ..()
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return ..()
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	if(armor_storage.storage.handle_mousedrop(usr, over_object))
+		return ..()

@@ -8,7 +8,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	icon = 'icons/obj/items/items.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	materials = list(/datum/material/metal = 50)
 	light_system = MOVABLE_LIGHT
 	flags_pass = PASSTABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
@@ -286,6 +285,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
 
+///When hit by a thrown object, play the associated hitsound of the object
+/obj/item/throw_impact(atom/hit_atom, speed, bounce)
+	. = ..()
+	if(isliving(hit_atom))
+		playsound(src, hitsound, 50)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
@@ -644,45 +648,37 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(SLOT_IN_SUIT)
 			if(!H.wear_suit)
 				return FALSE
-			if(istype(H.wear_suit, /obj/item/clothing/suit/modular))
-				var/obj/item/clothing/suit/modular/T = H.wear_suit
+			if(istype(H.wear_suit, /obj/item/clothing/suit))
+				var/obj/item/clothing/suit/T = H.wear_suit
 				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 					return FALSE
 				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			if(istype(H.wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
-				var/obj/item/clothing/suit/storage/T = H.wear_suit
-				if(!T.pockets)
-					return FALSE
-				var/obj/item/storage/internal/S = T.pockets
 				if(S.can_be_inserted(src, warning))
 					return TRUE
 		if(SLOT_IN_HEAD)
 			if(!H.head)
 				return FALSE
-			if(istype(H.head, /obj/item/clothing/head/modular))
-				var/obj/item/clothing/head/modular/T = H.head
-				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-					return FALSE
-				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			if(istype(H.head, /obj/item/clothing/head/helmet/marine)) //old hats use the pocket var instead of storage attachments
-				var/obj/item/clothing/head/helmet/marine/T = H.head
-				if(!T.pockets)
-					return FALSE
-				var/obj/item/storage/internal/S = T.pockets
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-		if(SLOT_IN_BOOT)
-			var/obj/item/clothing/shoes/marine/S = H.shoes
-			if(!istype(S) || !S.pockets)
+			if(!istype(H.shoes, /obj/item/clothing/head))
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
+			var/obj/item/clothing/head/headwear = H.head
+			if(!headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+				return FALSE
+			var/obj/item/armor_module/storage/storage_module = headwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+			var/obj/item/storage/storage = storage_module.storage
+			if(storage.can_be_inserted(src, warning))
+				return TRUE
+		if(SLOT_IN_BOOT)
+			if(H.shoes)
+				return FALSE
+			if(!istype(H.shoes, /obj/item/clothing/shoes))
+				return FALSE
+			var/obj/item/clothing/shoes/footwear = H.shoes
+			if(!footwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+				return FALSE
+			var/obj/item/armor_module/storage/storage_module = footwear.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+			var/obj/item/storage/storage = storage_module.storage
+			if(storage.can_be_inserted(src, warning))
 				return TRUE
 	return FALSE //Unsupported slot
 
@@ -874,7 +870,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
 		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
-	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(zoom_check_return))
 	onzoom(user)
 
 ///applies the offset of the zooming, using animate for smoothing.
@@ -917,11 +913,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
 	if(zoom_allow_movement)
-		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
+		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
-	RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
+	RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 
 
 ///called when zoom is deactivated.
@@ -1094,7 +1090,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
-		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
 			if(do_mob(user, target, delay, extra_checks=tool_check))
@@ -1355,6 +1351,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.swap_hand()
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
+
+///Handles registering if an item is flagged as deployed or not
+/obj/item/proc/toggle_deployment_flag(deployed)
+	if(deployed)
+		ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	else
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
 
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)

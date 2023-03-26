@@ -12,7 +12,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "gZ" = (
@@ -23,7 +23,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red/anticorner/contrasted{
+/obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted{
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
@@ -35,12 +35,12 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/starboard/lesser)
 "kG" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "mF" = (
 /obj/structure/prop/oresilo,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "nD" = (
@@ -108,13 +108,13 @@
 /turf/open/floor/gcircuit,
 /area/security/nuke_storage)
 "ul" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "vQ" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -132,11 +132,6 @@
 "wp" = (
 /obj/structure/safe,
 /obj/item/clothing/tie/stethoscope,
-/obj/item/book{
-	desc = "An undeniably handy book.";
-	icon_state = "bookknock";
-	name = "\improper A Simpleton's Guide to Safe-cracking with Stethoscopes"
-	},
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/spacecash/c100,
 /obj/item/spacecash/c100,
@@ -150,11 +145,11 @@
 /obj/item/spacecash/c500,
 /obj/machinery/light/small,
 /obj/item/weapon/gun/pistol/c99,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "yJ" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
@@ -164,7 +159,7 @@
 	dir = 4;
 	network = list("vault")
 	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "zg" = (
@@ -172,7 +167,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "AF" = (
@@ -188,7 +183,7 @@
 	name = "Vault Door"
 	},
 /obj/structure/sign/securearea,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -201,11 +196,11 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "ER" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/structure/random_broken_computer,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
@@ -213,7 +208,7 @@
 /obj/machinery/flasher{
 	id = "brig1"
 	},
-/obj/effect/turf_decal/tile/red/anticorner/contrasted{
+/obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4,
@@ -230,7 +225,7 @@
 "Hv" = (
 /obj/machinery/light/small,
 /obj/structure/closet/crate/critter,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -245,7 +240,7 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/security/nuke_storage)
 "Kp" = (
@@ -256,10 +251,8 @@
 /area/space)
 "LD" = (
 /obj/structure/cable,
-/obj/machinery/nuclearbomb{
-	layer = 2
-	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/nuclearbomb,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/security/nuke_storage)
 "Nc" = (
@@ -278,7 +271,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
 "PT" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4{
 	dir = 1
 	},
@@ -297,7 +290,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "Vault Door"
 	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},

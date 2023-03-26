@@ -1,35 +1,29 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aC" = (
-/obj/structure/caspart{
-	icon_state = "46"
+/obj/structure/caspart/fourteen{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "aL" = (
-/turf/closed/shuttle/cas{
-	icon_state = "21"
-	},
+/turf/closed/shuttle/cas/ten,
 /area/shuttle/cas)
 "cM" = (
-/obj/structure/caspart{
-	icon_state = "61"
+/obj/structure/caspart/seventeen{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "dY" = (
-/obj/structure/caspart{
-	icon_state = "15"
-	},
 /obj/effect/attach_point/weapon/cas{
 	equipment_offset_x = -5;
 	equipment_offset_y = 12
 	},
+/obj/structure/caspart/four,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "ei" = (
-/obj/structure/caspart{
-	icon_state = "12"
-	},
+/obj/structure/caspart/three,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "fv" = (
@@ -37,14 +31,14 @@
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "hf" = (
-/obj/structure/caspart{
-	icon_state = "49"
+/obj/structure/caspart/fourteen{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "jf" = (
-/obj/structure/caspart{
-	icon_state = "70"
+/obj/structure/caspart/nineteen{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -52,112 +46,103 @@
 /turf/closed/shuttle/cas/rightwingfar,
 /area/shuttle/cas)
 "kK" = (
-/obj/structure/caspart{
-	icon_state = "66"
+/obj/structure/caspart/nineteen{
+	dir = 6
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "lA" = (
-/obj/structure/caspart{
-	icon_state = "69"
+/obj/structure/caspart/twentytwo{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "mO" = (
-/obj/structure/caspart{
-	icon_state = "72"
+/obj/structure/caspart/nineteen{
+	dir = 10
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "nB" = (
-/obj/structure/caspart{
-	icon_state = "37"
+/obj/structure/caspart/twelve{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "or" = (
-/turf/closed/shuttle/cas{
-	icon_state = "44"
+/turf/closed/shuttle/cas/twentyone{
+	dir = 8
 	},
 /area/shuttle/cas)
 "pF" = (
-/obj/effect/attach_point/weapon/cas{
+/obj/effect/attach_point/weapon/cas/right{
 	equipment_offset_x = -5;
-	equipment_offset_y = 10;
-	icon_state = "16"
+	equipment_offset_y = 10
 	},
-/obj/structure/caspart{
-	icon_state = "16"
+/obj/structure/caspart/four{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "sD" = (
-/obj/structure/caspart{
-	icon_state = "59"
-	},
+/obj/structure/caspart/seventeen,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "sV" = (
-/obj/structure/caspart{
-	icon_state = "26"
+/obj/structure/caspart/seven{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "vr" = (
-/obj/structure/caspart{
-	icon_state = "48"
+/obj/structure/caspart/fourteen{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "vH" = (
-/turf/closed/shuttle/cas{
-	icon_state = "62"
+/turf/closed/shuttle/cas/twentytwo{
+	dir = 4
 	},
 /area/shuttle/cas)
 "wg" = (
-/obj/structure/caspart{
-	icon_state = "68"
+/obj/structure/caspart/nineteen{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "yO" = (
-/obj/structure/caspart{
-	icon_state = "31"
-	},
-/obj/effect/attach_point/weapon/cas{
+/obj/effect/attach_point/weapon/cas/left/alt{
 	equipment_offset_x = 5;
-	equipment_offset_y = 12;
-	icon_state = "31"
+	equipment_offset_y = 12
+	},
+/obj/structure/caspart/five{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Cy" = (
-/obj/structure/caspart{
-	icon_state = "11"
+/obj/structure/caspart/twentyone{
+	dir = 1
 	},
 /turf/open/floor/plating/dmg1,
 /area/shuttle/cas)
 "CG" = (
-/obj/structure/caspart{
-	icon_state = "53"
+/obj/structure/caspart/sixteen{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "DO" = (
-/obj/structure/caspart{
-	icon_state = "51"
-	},
+/obj/structure/caspart/sixteen,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "DR" = (
-/obj/structure/caspart{
-	icon_state = "30"
-	},
-/obj/effect/attach_point/weapon/cas{
+/obj/effect/attach_point/weapon/cas/left{
 	equipment_offset_x = 5;
-	equipment_offset_y = 12;
-	icon_state = "30"
+	equipment_offset_y = 12
 	},
+/obj/structure/caspart/five,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Eh" = (
@@ -166,8 +151,8 @@
 /area/shuttle/cas)
 "EQ" = (
 /obj/docking_port/mobile/marine_dropship/casplane,
-/turf/closed/shuttle/cas{
-	icon_state = "43"
+/turf/closed/shuttle/cas/twentyone{
+	dir = 4
 	},
 /area/shuttle/cas)
 "Fj" = (
@@ -175,30 +160,22 @@
 /turf/open/floor/plating/dmg1,
 /area/shuttle/cas)
 "FT" = (
-/turf/closed/shuttle/cas{
-	icon_state = "47"
-	},
+/turf/closed/shuttle/cas/fifteen,
 /area/shuttle/cas)
 "GG" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/shuttle/cas{
-	icon_state = "55"
+/turf/closed/shuttle/cas/twentytwo{
+	dir = 1
 	},
 /area/shuttle/cas)
 "Ha" = (
-/turf/closed/shuttle/cas{
-	icon_state = "74"
+/turf/closed/shuttle/cas/eighteen{
+	dir = 4
 	},
-/area/shuttle/cas)
-"Hd" = (
-/obj/structure/caspart{
-	icon_state = "71"
-	},
-/turf/open/floor/plating,
 /area/shuttle/cas)
 "IC" = (
-/obj/structure/caspart{
-	icon_state = "27"
+/obj/structure/caspart/three{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -206,14 +183,14 @@
 /turf/closed/shuttle/cas/centertop,
 /area/shuttle/cas)
 "Jf" = (
-/obj/structure/caspart{
-	icon_state = "57"
+/obj/structure/caspart/fifteen{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Jp" = (
-/obj/structure/caspart{
-	icon_state = "25"
+/obj/structure/caspart/thirteen{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -221,20 +198,20 @@
 /turf/closed/shuttle/cas/rightwingclose,
 /area/shuttle/cas)
 "LN" = (
-/obj/structure/caspart{
-	icon_state = "58"
+/obj/structure/caspart/seventeen{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "MF" = (
-/obj/structure/caspart{
-	icon_state = "38"
+/obj/structure/caspart/seven{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Nt" = (
-/obj/structure/caspart{
-	icon_state = "73"
+/obj/structure/caspart/nineteen{
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -249,23 +226,19 @@
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "OM" = (
-/obj/structure/caspart{
-	icon_state = "67"
-	},
+/obj/structure/caspart/nineteen,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Qb" = (
-/turf/closed/shuttle/cas{
-	icon_state = "75"
+/turf/closed/shuttle/cas/eighteen{
+	dir = 8
 	},
 /area/shuttle/cas)
 "Qv" = (
 /turf/closed/shuttle/cas/rightwingmid,
 /area/shuttle/cas)
 "QP" = (
-/obj/structure/caspart{
-	icon_state = "45"
-	},
+/obj/structure/caspart/fourteen,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Ss" = (
@@ -273,8 +246,8 @@
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "SA" = (
-/obj/structure/caspart{
-	icon_state = "60"
+/obj/structure/caspart/fifteen{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -282,19 +255,17 @@
 /turf/closed/shuttle/cas/computer,
 /area/shuttle/cas)
 "TX" = (
-/obj/structure/caspart{
-	icon_state = "56"
+/obj/structure/caspart/seventeen{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Us" = (
-/turf/closed/shuttle/cas{
-	icon_state = "52"
-	},
+/turf/closed/shuttle/cas/twentytwo,
 /area/shuttle/cas)
 "Vj" = (
-/obj/structure/caspart{
-	icon_state = "65"
+/obj/structure/caspart/nineteen{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/shuttle/cas)
@@ -306,31 +277,27 @@
 /turf/closed/shuttle/cas/leftwingclose,
 /area/shuttle/cas)
 "XU" = (
-/turf/closed/shuttle/cas{
-	icon_state = "41"
+/turf/closed/shuttle/cas/ten{
+	dir = 1
 	},
 /area/shuttle/cas)
 "Yq" = (
-/turf/closed/shuttle/cas{
-	icon_state = "63"
-	},
+/turf/closed/shuttle/cas/eighteen,
 /area/shuttle/cas)
 "YD" = (
-/turf/closed/shuttle/cas{
-	icon_state = "42"
+/turf/closed/shuttle/cas/eleven{
+	dir = 1
 	},
 /area/shuttle/cas)
 "Zj" = (
 /turf/template_noop,
 /area/template_noop)
 "Zw" = (
-/turf/closed/shuttle/cas{
-	icon_state = "22"
-	},
+/turf/closed/shuttle/cas/eleven,
 /area/shuttle/cas)
 "ZB" = (
-/turf/closed/shuttle/cas{
-	icon_state = "64"
+/turf/closed/shuttle/cas/eighteen{
+	dir = 1
 	},
 /area/shuttle/cas)
 
@@ -388,7 +355,7 @@ QP
 Ss
 Jf
 ZB
-Hd
+OM
 "}
 (5,1,1) = {"
 Zj

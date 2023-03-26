@@ -93,7 +93,7 @@
 
 			visible_message(span_warning("[target] has been splashed with something by [user]!"))
 			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 			return
 
 
@@ -101,7 +101,7 @@
 			to_chat(user, span_notice("You splash the solution onto [target]."))
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 			return
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)
@@ -131,7 +131,6 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
-	materials = list(/datum/material/glass = 500)
 	attack_speed = 4
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change()
@@ -178,7 +177,6 @@
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 120 units."
 	icon_state = "beakerlarge"
-	materials = list(/datum/material/glass = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,30,40,60,120)
@@ -187,7 +185,6 @@
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	icon_state = "beakernoreact"
-	materials = list(/datum/material/glass = 500)
 	volume = 60
 	init_reagent_flags = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
@@ -196,7 +193,6 @@
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology. Can hold up to 300 units."
 	icon_state = "beakerbluespace"
-	materials = list(/datum/material/glass = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,30,40,60,120,300)
@@ -205,7 +201,6 @@
 	name = "vial"
 	desc = "A small glass vial. Can hold up to 30 units."
 	icon_state = "vial"
-	materials = list(/datum/material/glass = 250)
 	volume = 30
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
@@ -220,7 +215,7 @@
 
 
 /obj/item/reagent_containers/glass/beaker/cryomix
-	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/iron = 5, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5, /datum/reagent/medicine/bihexajuline = 5)
+	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/medicine/saline_glucose = 5, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5, /datum/reagent/medicine/bihexajuline = 5)
 
 
 /obj/item/reagent_containers/glass/beaker/cryomix/Initialize()
@@ -243,7 +238,6 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
-	materials = list(/datum/material/metal = 200)
 	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
