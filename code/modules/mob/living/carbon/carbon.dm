@@ -76,7 +76,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
 	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_vomit)), 5 SECONDS)
 
 
 /mob/living/carbon/proc/do_vomit()
@@ -259,23 +259,21 @@
 		return
 	. = ..()
 
-/mob/living/carbon/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/slip(slip_source_name, stun_time, paralyze_time, run_only, override_noslip, slide_steps)
 	set waitfor = 0
-	if(buckled) return FALSE //can't slip while buckled
-	if(run_only && (m_intent != MOVE_INTENT_RUN)) return FALSE
-	if(lying_angle)
-		return FALSE //can't slip if already lying down.
+	if(buckled || (run_only && (m_intent != MOVE_INTENT_RUN)) || lying_angle)
+		return FALSE //can't slip while buckled, if the slip is run only and we're not running or while resting
+
 	stop_pulling()
-	to_chat(src, span_warning("You slipped on \the [slip_source_name? slip_source_name : "floor"]!"))
-	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	Stun(stun_level)
-	Paralyze(weaken_level)
+	visible_message(span_warning("[src] slipped on \the [slip_source_name]!"), span_warning("You slipped on \the [slip_source_name]!"))
+	playsound(src, 'sound/misc/slip.ogg', 25, 1)
+	Stun(stun_time)
+	Paralyze(paralyze_time)
 	. = TRUE
 	if(slide_steps && lying_angle)//lying check to make sure we downed the mob
 		var/slide_dir = dir
-		for(var/i=1, i<=slide_steps, i++)
+		for(var/i in 1 to slide_steps)
 			step(src, slide_dir)
-			sleep(0.2 SECONDS)
 			if(!lying_angle)
 				break
 
@@ -380,7 +378,7 @@
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
-		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
+		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, TYPE_PROC_REF(/mob/living/carbon/human, oncritdrag))
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)

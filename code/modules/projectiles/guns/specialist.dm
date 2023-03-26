@@ -177,7 +177,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	to_chat(user, span_danger("You focus your target marker on [target]!"))
 	targetmarker_primed = FALSE
 	targetmarker_on = TRUE
-	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
+	RegisterSignal(src, COMSIG_PROJ_SCANTURF, PROC_REF(scan_turf_for_target))
 	START_PROCESSING(SSobj, src)
 	accuracy_mult += 0.50 //We get a big accuracy bonus vs the lasered target
 
@@ -203,7 +203,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		to_chat(user, span_warning("You must be zoomed in to use your target marker!"))
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
-	RegisterSignal(user, COMSIG_ITEM_UNZOOM, .proc/laser_off)
+	RegisterSignal(user, COMSIG_ITEM_UNZOOM, PROC_REF(laser_off))
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
@@ -421,16 +421,23 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
 
+	obj_flags = AUTOBALANCE_CHECK
+
 /obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
-	SSmonitor.stats.miniguns_in_use += src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.miniguns_in_use += src
 
 /obj/item/weapon/gun/minigun/Destroy()
-	SSmonitor.stats.miniguns_in_use -= src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.miniguns_in_use -= src
 	return ..()
 
 /obj/item/weapon/gun/minigun/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/minigun/valhalla
+	obj_flags = NONE
 
 // SG minigun
 
@@ -456,6 +463,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
+
+	obj_flags = NONE
 
 /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	starting_attachment_types = list(/obj/item/attachable/motiondetector)
@@ -524,6 +533,22 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	wield_delay_mod	= 0.2 SECONDS
 
+/particles/backblast
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	width = 500
+	height = 500
+	count = 100
+	spawning = 100
+	lifespan = 0.7 SECONDS
+	fade = 8 SECONDS
+	grow = 0.1
+	drift = generator(GEN_CIRCLE, 0, 10)
+	scale = 0.5
+	spin = generator(GEN_NUM, -20, 20)
+	velocity = list(50, 0)
+	friction = generator(GEN_NUM, 0.1, 0.5)
+
 //-------------------------------------------------------
 //M5 RPG
 
@@ -563,17 +588,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
 	///the smoke effect after firing
-	var/datum/effect_system/smoke_spread/smoke
+	var/obj/effect/abstract/particle_holder/backblast
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
-
-/obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
-	. = ..()
-	smoke = new(src, FALSE)
-
-/obj/item/weapon/gun/launcher/rocket/Destroy()
-	QDEL_NULL(smoke)
-	return ..()
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
@@ -581,8 +598,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/turf/blast_source = get_turf(src)
 	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
 	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
-	smoke.set_up(0, backblast_loc)
-	smoke.start()
+	var/angle = Get_Angle(loc, target)
+	var/x_component = sin(angle) * -30
+	var/y_component = cos(angle) * -30
+	backblast = new(blast_source, /particles/backblast)
+	backblast.particles.velocity = list(x_component, y_component)
+	QDEL_NULL_IN(src, backblast, 0.7 SECONDS)
+
 	if(!backblastdamage)
 		return
 	for(var/mob/living/carbon/victim in backblast_loc)
@@ -646,13 +668,20 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 
+	obj_flags = AUTOBALANCE_CHECK
+
 /obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
-	SSmonitor.stats.sadar_in_use += src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.sadar_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
-	SSmonitor.stats.sadar_in_use -= src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.sadar_in_use -= src
 	return ..()
+
+/obj/item/weapon/gun/launcher/rocket/sadar/valhalla
+	obj_flags = NONE
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN

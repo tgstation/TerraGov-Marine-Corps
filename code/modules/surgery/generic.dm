@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic
-	can_infect = 1
+	can_infect = TRUE
 	var/open_step
 
 /datum/surgery_step/generic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
@@ -72,6 +72,7 @@
 	min_duration = 60
 	max_duration = 80
 	open_step = 0
+	can_infect = FALSE
 
 /datum/surgery_step/generic/cut_with_laser/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts the bloodless incision on [target]'s [affected.display_name] with \the [tool]."), \
@@ -246,6 +247,7 @@
 
 	min_duration = CAUTERY_MIN_DURATION
 	max_duration = CAUTERY_MAX_DURATION
+	can_infect = FALSE
 
 /datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
@@ -265,7 +267,6 @@
 	span_notice("You cauterize the incision on [target]'s [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 0
-	affected.germ_level = 0
 	affected.remove_limb_flags(LIMB_BLEEDING)
 	DISABLE_BITFIELD(affected.limb_wound_status, LIMB_WOUND_CLAMPED) //Once the incision is closed, any clamping we did doesn't matter
 

@@ -5,7 +5,7 @@
 		stop_pulling()
 		handcuffed = restraints
 		restraints.equipped(src, SLOT_HANDCUFFED)
-		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	else if(handcuffed)
 		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 		handcuffed = null

@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Dead space on the minimap no longer shows up, improvement readability"
+  - qol: "Added more coloured areas to groundside and Sulaco minimaps"

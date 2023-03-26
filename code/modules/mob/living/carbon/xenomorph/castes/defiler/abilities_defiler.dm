@@ -381,7 +381,7 @@
 	return succeed_activate()
 
 /datum/action/xeno_action/select_reagent/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/select_reagent_radial)
+	INVOKE_ASYNC(src, PROC_REF(select_reagent_radial))
 	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/select_reagent/proc/select_reagent_radial()
@@ -432,10 +432,10 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/reagent_slash)
+	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(reagent_slash))
 
 	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
-	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(reagent_slash_deactivate), X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	reagent_slash_reagent = X.selected_reagent
 
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
@@ -561,7 +561,7 @@
 /datum/action/xeno_action/activable/tentacle/use_ability(atom/movable/target)
 	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
 	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
-	RegisterSignal(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), .proc/finish_grab)
+	RegisterSignal(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
 	tentacle_end.throw_at(target, TENTACLE_ABILITY_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
 	succeed_activate()
 	add_cooldown()
@@ -579,7 +579,7 @@
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
 	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
 	target.balloon_alert_to_viewers("Grabbed!")
-	RegisterSignal(target, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)
+	RegisterSignal(target, COMSIG_MOVABLE_POST_THROW, PROC_REF(delete_beam))
 	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(target))
 		var/mob/living/loser = target

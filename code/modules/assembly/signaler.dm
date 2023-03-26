@@ -88,7 +88,7 @@ Code:
 			to_chat(usr, span_warning("[src] is still recharging..."))
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
-		INVOKE_ASYNC(src, .proc/signal)
+		INVOKE_ASYNC(src, PROC_REF(signal))
 
 	updateUsrDialog()
 

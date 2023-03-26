@@ -22444,6 +22444,11 @@
 /obj/item/ashtray/glass,
 /turf/open/floor/prison,
 /area/sulaco/bar)
+"rTz" = (
+/obj/structure/dropprop,
+/obj/structure/droppod/leader,
+/turf/open/floor/prison/cleanmarked,
+/area/sulaco/hangar/droppod)
 "rTP" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
 /obj/machinery/camera/autoname,
@@ -62398,7 +62403,7 @@ bWf
 rFM
 rFM
 rFM
-rFM
+rTz
 rvS
 vhM
 xca
@@ -63683,7 +63688,7 @@ bWf
 rFM
 rFM
 rFM
-rFM
+rTz
 uIO
 djX
 xca

@@ -1,0 +1,6 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - rscadd: "RMB with health analyzer will show the patient their health."
+  - rscadd: "Health scanner balloon alerts."
+  - bugfix: "Runtime involved when health scanning non-carbons."

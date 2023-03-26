@@ -73,7 +73,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
-		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
+		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
 	if(length(GLOB.ready_players) < required_players && !bypass_checks)
 		to_chat(world, "<b>Unable to start [name].</b> Not enough players, [required_players] players needed.")
@@ -124,10 +124,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 ///Gamemode setup run after the game has started
 /datum/game_mode/proc/post_setup()
-	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(flags_round_type & MODE_SILO_RESPAWN)
 		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HN.RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), /datum/hive_status/normal.proc/set_siloless_collapse_timer)
+		HN.RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), TYPE_PROC_REF(/datum/hive_status/normal, set_siloless_collapse_timer))
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -180,7 +180,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		livings += living
 
 	if(length(livings))
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 1 SECONDS, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 1 SECONDS, TIMER_CLIENT_TIME)
 
 /datum/game_mode/proc/release_characters(list/livings)
 	for(var/I in livings)
@@ -203,7 +203,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
 	display_report()
-	addtimer(CALLBACK(src, .proc/end_of_round_deathmatch), ROUNDEND_EORG_DELAY)
+	addtimer(CALLBACK(src, PROC_REF(end_of_round_deathmatch)), ROUNDEND_EORG_DELAY)
 	//end_of_round_deathmatch()
 	return TRUE
 
@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	set waitfor = FALSE
 
 	if(flags_round_type & MODE_LATE_OPENING_SHUTTER_TIMER)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	source.verbs |= /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, PROC_REF(grant_eord_respawn)) // New mobs can now respawn into EORD
 	var/list/spawns = GLOB.deathmatch.Copy()
 
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
@@ -322,44 +322,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			to_chat(M, "<br><br><h1>[span_danger("Failed to find a valid location for End of Round Deathmatch. Please do not grief.")]</h1><br><br>")
 			continue
 
-		var/mob/living/L
-		if(!isliving(M) || isAI(M))
-			L = new /mob/living/carbon/human(picked)
-			M.mind.transfer_to(L, TRUE)
-		else
-			L = M
-			INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
-
-		L.mind.bypass_ff = TRUE
-		L.revive()
-
-		if(isxeno(L))
-			var/mob/living/carbon/xenomorph/X = L
+		if(isxeno(M))
+			var/mob/living/carbon/xenomorph/X = M
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			INVOKE_ASYNC(X, TYPE_PROC_REF(/atom/movable, forceMove), picked)
 
-		else if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(!H.w_uniform)
-				var/job = pick(
-					/datum/job/clf/leader,
-					/datum/job/clf/standard,
-					/datum/job/freelancer/leader,
-					/datum/job/freelancer/grenadier,
-					/datum/job/freelancer/standard,
-					/datum/job/upp/leader,
-					/datum/job/upp/heavy,
-					/datum/job/upp/standard,
-					/datum/job/som/ert/leader,
-					/datum/job/som/ert/veteran,
-					/datum/job/som/ert/standard,
-					/datum/job/pmc/leader,
-					/datum/job/pmc/standard,
-				)
-				var/datum/job/J = SSjob.GetJobType(job)
-				H.apply_assigned_role_to_spawn(J)
-				H.regenerate_icons()
+		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			do_eord_respawn(H)
 
-		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
+		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
 
@@ -463,6 +435,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.ravager_endures)
 		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
+	if(GLOB.round_statistics.bull_crush_hit)
+		parts += "[GLOB.round_statistics.bull_crush_hit] number of times Bulls crushed marines."
+	if(GLOB.round_statistics.bull_gore_hit)
+		parts += "[GLOB.round_statistics.bull_gore_hit] number of times Bulls gored marines."
+	if(GLOB.round_statistics.bull_headbutt_hit)
+		parts += "[GLOB.round_statistics.bull_headbutt_hit] number of times Bulls headbutted marines."
 	if(GLOB.round_statistics.hunter_marks)
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.ravager_rages)
@@ -888,7 +866,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		all_antagonists |= A
 	var/currrent_category
 	var/datum/antagonist/previous_category
-	sortTim(all_antagonists, /proc/cmp_antag_category)
+	sortTim(all_antagonists, GLOBAL_PROC_REF(cmp_antag_category))
 	for(var/datum/antagonist/A in all_antagonists)
 		if(!A.show_in_roundend)
 			continue

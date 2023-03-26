@@ -171,7 +171,7 @@
 
 	victim.emote_burstscream()
 
-	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
 
 /mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)

@@ -222,7 +222,7 @@
  */
 /obj/vehicle/unmanned/proc/on_link(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
-	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
+	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, PROC_REF(on_remote_toggle))
 	controlled = TRUE
 
 /**
@@ -273,7 +273,7 @@
 		flash.transform = null
 		flash.transform = turn(flash.transform, angle)
 		vis_contents += flash
-		addtimer(CALLBACK(src, .proc/delete_muzzle_flash), 0.2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(delete_muzzle_flash)), 0.2 SECONDS)
 		hud_set_uav_ammo()
 	return TRUE
 

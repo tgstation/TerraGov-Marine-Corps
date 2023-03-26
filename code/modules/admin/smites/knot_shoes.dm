@@ -26,7 +26,7 @@
 	if(tied == SHOES_TIED)
 		UnregisterSignal(src, COMSIG_SHOES_STEP_ACTION)
 	else
-		RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, .proc/check_trip, override=TRUE)
+		RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(check_trip), override=TRUE)
 		
 
 /obj/item/clothing/shoes/proc/check_trip() //check the state of our shoe laces

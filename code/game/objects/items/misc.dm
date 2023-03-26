@@ -38,15 +38,7 @@
 
 /obj/item/bananapeel/Initialize()
 	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/item/bananapeel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
-	if (iscarbon(AM))
-		var/mob/living/carbon/C = AM
-		C.slip(name, 4, 2)
+	AddComponent(/datum/component/slippery, 0.4 SECONDS, 0.2 SECONDS)
 
 /obj/item/cane
 	name = "cane"

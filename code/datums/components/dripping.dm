@@ -22,7 +22,7 @@
 		if(DRIP_ON_WALK)
 			drip_counter = 1
 			src.drip_limit = drip_limit
-			RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/drip_on_walk)
+			RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(drip_on_walk))
 		if(DRIP_ON_TIME)
 			drip_counter = world.time
 			src.drip_limit = world.time + drip_limit

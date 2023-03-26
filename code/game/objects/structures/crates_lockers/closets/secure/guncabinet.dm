@@ -83,22 +83,9 @@
 	new /obj/item/storage/box/visual/grenade/impact(src)
 	new /obj/item/storage/box/explosive_mines(src)
 
-
-/obj/structure/closet/secure_closet/guncabinet/spec_boxes/PopulateContents()
-	new /obj/item/storage/box/spec/demolitionist(src)
-	new /obj/item/storage/box/spec/heavy_grenadier(src)
-	new /obj/item/storage/box/spec/heavy_gunner(src)
-	new /obj/item/storage/box/spec/pyro(src)
-	new /obj/item/storage/box/spec/scout(src)
-	new /obj/item/storage/box/spec/scoutshotgun(src)
-	new /obj/item/storage/box/spec/sniper(src)
-	new /obj/item/storage/box/spec/tracker(src)
-
-
 /obj/structure/closet/secure_closet/guncabinet/highpower/PopulateContents()
 	new /obj/item/weapon/gun/pistol/highpower(src)
 	new /obj/item/ammo_magazine/pistol/highpower(src)
-
 
 /obj/structure/closet/secure_closet/guncabinet/incendiary
 	req_access = list(ACCESS_MARINE_RESEARCH)

@@ -13646,12 +13646,6 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "iMx" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/clothing/head/helmet/marine/scout{
-	desc = "A custom helmet designed for USCM Scouts. Looks like this one has seen some action.";
-	name = "\improper Battered M3-S light helmet";
-	pixel_x = -8;
-	pixel_y = 13
-	},
 /obj/item/weapon/gun/pistol/m1911,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
