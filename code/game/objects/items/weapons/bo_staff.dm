@@ -15,10 +15,10 @@
 	flags_item = TWOHANDED
 	force_wielded = 25
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
-	attack_speed = 3
-	attack_speed_alternate = 11
+	attack_speed = 6
+	attack_speed_alternate = 14
 
-	hitsound = 'sound/weapons/wood_hit.ogg'
+	hitsound = 'sound/weapons/wood_hit2.ogg'
 
 	///How much time has passed since the last time the user hit a mob
 	var/last_hit_time
@@ -46,7 +46,6 @@
 	if(target.stat == DEAD || target == user)
 		return ..()
 
-	combo_status(user)
 	input_list += LEFT_HIT
 
 	if(check_input(target, user))
@@ -60,8 +59,6 @@
 	if(target.stat == DEAD || target == user)
 		return ..()
 
-	combo_status(user)
-	last_hit_time = world.time
 	input_list += RIGHT_HIT
 
 	if(check_input(target, user))
@@ -71,10 +68,11 @@
 		last_hit_time = addtimer(CALLBACK(src, PROC_REF(reset_inputs), user, FALSE), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return ..()
 
-///Update manually to the maximum combo chain. Checks if you've gone over the maximum combo
+///Update manually to the maximum combo chain if more combos get added. Checks if you've gone over the maximum combo
 /obj/item/weapon/twohanded/martialstaff/proc/combo_status(mob/user)
 	if(length(input_list) > 3)
 		reset_inputs(user, TRUE)
+		deltimer(last_hit_time)
 
 /obj/item/weapon/twohanded/martialstaff/proc/check_input(mob/living/target, mob/user)
 	for(var/combo in combo_list)
@@ -82,6 +80,8 @@
 		if(compare_list(input_list,combo_specifics[COMBO_STEPS]))
 			INVOKE_ASYNC(src, combo_specifics[COMBO_PROC], target, user)
 			return TRUE
+	if(length(input_list) >= 3)
+		reset_inputs(user, TRUE)
 	return FALSE
 
 /obj/item/weapon/twohanded/martialstaff/proc/reset_inputs(mob/user, deltimer)
@@ -100,6 +100,6 @@
 	balloon_alert(user, "Jab Attack")
 	target.apply_damage(damage = 25)
 	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
-	playsound(src, "sound/weapons/punch3.ogg", 40)
+	playsound(src, "sound/weapons/punch3.ogg", 25)
 
 
