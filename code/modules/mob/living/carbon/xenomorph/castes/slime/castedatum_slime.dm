@@ -18,9 +18,10 @@
 	upgrade_threshold = TIER_ONE_YOUNG_THRESHOLD
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/wraith,
+		/mob/living/carbon/xenomorph/spitter,
 	)
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
-	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_STUNIMMUNE, TRAIT_STAGGER_RESISTANT)
+	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 0, ENERGY = 0, BOMB = 45, BIO = 95, FIRE = 0, ACID = 95)
 	sunder_max = 0
 	minimap_icon = "warlock"
@@ -30,34 +31,11 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/acidic_trail,
 		/datum/action/xeno_action/activable/slime_pounce,
 		/datum/action/xeno_action/spread_tendrils,
 		/datum/action/xeno_action/activable/extend_tendril,
 	)
-
-/datum/xeno_caste/slime/on_caste_applied(mob/xenomorph)
-	. = ..()
-	RegisterSignal(xenomorph, COMSIG_MOVABLE_MOVED, PROC_REF(move_bonus))
-	RegisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(attack_bonus))
-
-/datum/xeno_caste/slime/on_caste_removed(mob/xenomorph)
-	. = ..()
-	UnregisterSignal(xenomorph, list(COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_ATTACK_LIVING))
-
-/datum/xeno_caste/slime/proc/move_bonus(atom/movable/mover, atom/oldloc, direction)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno_owner = mover
-	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), SLIME_MOVEMENT_ACID_DURATION, SLIME_MOVEMENT_ACID_DAMAGE)
-	for(var/obj/O in get_turf(xeno_owner))
-		O.acid_spray_act(xeno_owner)
-
-/datum/xeno_caste/slime/proc/attack_bonus(datum/source, mob/living/living_target)
-	SIGNAL_HANDLER
-	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
-		var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
-		debuff.add_stacks(debuff.stacks)
-		return
-	living_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, SLIME_ATTACK_INTOXICATION_STACKS + additional_stacks)
 
 /datum/xeno_caste/slime/young
 	upgrade_name = "Young"
@@ -112,6 +90,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/acidic_trail,
 		/datum/action/xeno_action/activable/slime_pounce,
 		/datum/action/xeno_action/spread_tendrils,
 		/datum/action/xeno_action/activable/extend_tendril,

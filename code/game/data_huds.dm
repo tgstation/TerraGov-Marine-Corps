@@ -424,8 +424,9 @@
 		holder.icon_state = "sundering0"
 		return
 
-	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
-	holder.icon_state = "sundering[amount]"
+	if(xeno_caste.sunder_max > 0)
+		var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
+		holder.icon_state = "sundering[amount]"
 
 ///Set fire stacks on the hud
 /mob/living/proc/hud_set_firestacks()

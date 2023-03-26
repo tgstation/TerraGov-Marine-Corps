@@ -895,6 +895,18 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/acidic_steps
+	name = "Acidic Steps"
+	full_name = "Slime: Acidic Steps"
+	description = "Toggle ability. Leave a trail of acidic puddles when moving."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_ACIDIC_TRAIL
+
+/datum/keybinding/xeno/acidic_slashes
+	name = "Acidic Slashes"
+	full_name = "Slime: Acidic Slashes"
+	description = "Toggle ability. Imbue your slashes with an acid that inflicts the Intoxication debuff."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_ACIDIC_TRAIL_ALTERNATE
+
 /datum/keybinding/xeno/slime_pounce
 	name = "Pounce (Slime)"
 	full_name = "Slime: Pounce"

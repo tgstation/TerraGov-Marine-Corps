@@ -737,7 +737,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SLIME_MOVEMENT_ACID_DURATION 0.3 SECONDS // The duration of the acid puddles left behind when a Slime moves.
 #define SLIME_MOVEMENT_ACID_DAMAGE 10 // The damage of the acid puddles left behind when a Slime moves.
 #define SLIME_ATTACK_INTOXICATION_STACKS 0 // The amount of Intoxication stacks inflicted with each normal attack.
-#define SLIME_POUNCE_RANGE 5 // The range of a Slime's Pounce.
+#define SLIME_POUNCE_RANGE 4 // The range of a Slime's Pounce.
 #define SLIME_POUNCE_SPEED 1 // How fast a Slime's Pounce happens.
 #define SLIME_POUNCE_ATTACHED_SLOWDOWN 0.3 // Multiplicative slowdown added to a victim when a Slime is attached to it via Pounce.
 #define SLIME_POUNCE_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted when a Slime is attached to a victim via Pounce.
@@ -748,7 +748,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SLIME_SPREAD_TENDRILS_RANGE 2 // Range in tiles for the Spread Tendrils ability.
 #define SLIME_SPREAD_TENDRILS_PULL_RANGE 1 // How many tiles a victim hit by Spread Tendrils will be pulled towards the Slime.
 #define SLIME_SPREAD_TENDRILS_CRITICAL_MULTIPLIER 2 // Multiplier applied to Spread Tendrils's damage and effect duration for victims on the same tile as the Slime.
-#define SLIME_SPREAD_TENDRILS_EFFECT_DURATION 0.5 SECONDS // Amount of time during which a victim hit by Spread Tendrils is immobilized or stunned.
+#define SLIME_SPREAD_TENDRILS_EFFECT_DURATION 0.8 SECONDS // Amount of time during which a victim hit by Spread Tendrils is immobilized or stunned.
 #define SLIME_EXTEND_TENDRIL_RANGE 3 // Range in tiles for the Extend Tendril ability.
 #define SLIME_EXTEND_TENDRIL_PULL_RANGE 1 // How many tiles a victim hit by Extend Tendril will be pulled towards the Slime.
 #define SLIME_EXTEND_TENDRIL_CRITICAL_MULTIPLIER 2 // Multiplier applied to Extend Tendril's damage and effect duration for victims at maximum range.

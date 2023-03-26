@@ -1,9 +1,3 @@
-/*
-TO DO:
-- Fix the normal slash override, it's not working at all.
-- More visual effects and sound effects everywhere.
-*/
-
 /obj/effect/temp_visual/tendril_blood
 	name = "tendril blood"
 	icon_state = "tendril_blood"
@@ -20,6 +14,77 @@ TO DO:
 	layer = ABOVE_MOB_LAYER
 
 // ***************************************
+// *********** Acidic Trail
+// ***************************************
+/datum/action/xeno_action/acidic_trail
+	name = "Acidic Trail"
+	ability_name = "Acidic Trail"
+	action_icon_state = "acidic_trail"
+	desc = "Left click toggles a trail of acidic puddles when moving. Right click toggles an acid that will imbue your slashes with Intoxication."
+	cooldown_timer = 0.5 SECONDS
+	plasma_cost = 0
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_CLOSEDTURF
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SLIME_ACIDIC_TRAIL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SLIME_ACIDIC_TRAIL_ALTERNATE,
+	)
+	/// Whether the trail of acidic puddles when moving is active or not.
+	var/acidic_steps = TRUE
+	/// Whether the acid that imbues your slashes with Intoxication is active or not.
+	var/acidic_slashes = TRUE
+
+/datum/action/xeno_action/acidic_trail/give_action(mob/living/L)
+	. = ..()
+	if(acidic_steps)
+		RegisterSignal(L, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps))
+	if(acidic_slashes)
+		RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(acid_slashes))
+
+/datum/action/xeno_action/acidic_trail/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(L, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+/datum/action/xeno_action/acidic_trail/action_activate()
+	if(acidic_steps)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		owner.balloon_alert(owner, "Acidic Steps OFF")
+		acidic_steps = FALSE
+		return
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps))
+	owner.balloon_alert(owner, "Acidic Steps ON")
+	acidic_steps = TRUE
+
+/datum/action/xeno_action/acidic_trail/proc/acid_steps(atom/movable/mover, atom/oldloc, direction)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/xeno_owner = mover
+	new /obj/effect/xenomorph/spray/slime(get_turf(xeno_owner), SLIME_MOVEMENT_ACID_DURATION, SLIME_MOVEMENT_ACID_DAMAGE)
+	for(var/obj/O in get_turf(xeno_owner))
+		O.acid_spray_act(xeno_owner)
+
+/obj/effect/xenomorph/spray/slime
+	layer = UNDERFLOOR_OBJ_LAYER
+
+/datum/action/xeno_action/acidic_trail/alternate_action_activate()
+	if(acidic_slashes)
+		UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+		owner.balloon_alert(owner, "Acidic Slashes OFF")
+		acidic_slashes = FALSE
+		return
+	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(acid_slashes))
+	owner.balloon_alert(owner, "Acidic Slashes ON")
+	acidic_slashes = TRUE
+
+/datum/action/xeno_action/acidic_trail/proc/acid_slashes(datum/source, mob/living/living_target)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/xeno_owner = source
+	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		debuff.add_stacks(debuff.stacks)
+		return
+	living_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, SLIME_ATTACK_INTOXICATION_STACKS + xeno_owner.xeno_caste.additional_stacks)
+
+// ***************************************
 // *********** Pounce (Slime)
 // ***************************************
 /datum/action/xeno_action/activable/slime_pounce
@@ -27,8 +92,8 @@ TO DO:
 	ability_name = "Pounce"
 	action_icon_state = "pounce"
 	desc = "Leap towards your target, attaching to it."
-	cooldown_timer = 1 SECONDS
-	plasma_cost = 15
+	cooldown_timer = 1.5 SECONDS
+	plasma_cost = 20
 	use_state_flags = XACT_USE_BUCKLED|XACT_USE_CLOSEDTURF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SLIME_POUNCE,
@@ -238,7 +303,7 @@ TO DO:
 	ability_name = "Spread Tendrils"
 	action_icon_state = "spread_tendrils"
 	desc = "Spread hardened, thorn-like tendrils, dealing damage to surrounding enemies and immobilizing them briefly. Increased intensity for victims in the same tile as you."
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 20 SECONDS
 	plasma_cost = 25
 	use_state_flags = XACT_USE_BUCKLED|XACT_USE_CLOSEDTURF
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
@@ -287,7 +352,7 @@ TO DO:
 	ability_name = "Extend Tendril"
 	action_icon_state = "tail_attack"
 	desc = "Extend a hardened, thorn-like tendril that will deal damage to a target, pulling them closer to you and immobilizing them briefly."
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 20 SECONDS
 	plasma_cost = 25
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED|XACT_USE_CLOSEDTURF
@@ -364,7 +429,7 @@ TO DO:
 /datum/action/xeno_action/toxic_burst
 	name = "Toxic Burst"
 	ability_name = "Toxic Burst"
-	action_icon_state = "4"
+	action_icon_state = "toxic_burst"
 	desc = "Attack a victim you're attached to, consuming all Intoxication stacks and dealing an amount of damage proportional to the amount of stacks."
 	cooldown_timer = 60 SECONDS
 	plasma_cost = 50
@@ -410,8 +475,6 @@ TO DO:
 	var/effect_duration = damage / 10
 	living_target.apply_damage(damage, BURN, blocked = ACID)
 	living_target.Knockdown(effect_duration * 2)
-	living_target.adjust_slowdown(effect_duration)
-	living_target.adjust_stagger(effect_duration)
 	living_target.do_jitter_animation(effect_duration)
 	living_target.emote("scream")
 	living_target.remove_status_effect(STATUS_EFFECT_INTOXICATED)
