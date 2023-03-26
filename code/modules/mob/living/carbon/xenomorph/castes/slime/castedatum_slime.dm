@@ -23,7 +23,6 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 0, ENERGY = 0, BOMB = 45, BIO = 95, FIRE = 0, ACID = 95)
-	sunder_max = 0
 	minimap_icon = "slime"
 	additional_stacks = 0
 	actions = list(
