@@ -39,7 +39,7 @@
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_PARENT_ATTACKBY))
 	storage.master_item = src
 	return ..()
 
