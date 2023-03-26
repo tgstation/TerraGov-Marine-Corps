@@ -360,6 +360,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO | TWOHANDED
 
+// Lists the information in the codex
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
 	Kelotane - produce a cone of flames<BR>
