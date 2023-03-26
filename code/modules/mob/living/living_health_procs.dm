@@ -259,6 +259,7 @@
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
 	GLOB.alive_xeno_list += src
+	LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
 	GLOB.dead_xeno_list -= src
 
 /mob/living/proc/revive(admin_revive = FALSE)
