@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "Fix long hair getting its top cut off by helmet"
