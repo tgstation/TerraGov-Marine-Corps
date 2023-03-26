@@ -660,7 +660,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
+		/obj/item/attachable/scope/laser_sniper_scope,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
@@ -670,8 +670,8 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 15,"rail_x" = 21, "rail_y" = 21, "under_x" = 28, "under_y" = 11, "stock_x" = 22, "stock_y" = 12)
+	starting_attachment_types = list(/obj/item/attachable/scope/laser_sniper_scope)
 
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.7

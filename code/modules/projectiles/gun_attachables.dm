@@ -840,7 +840,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.see_in_dark = 2
 	return TRUE
 
-/obj/item/attachable/scope/unremovable/laser_sniper_scope
+/obj/item/attachable/scope/laser_sniper_scope
 	name = "Terra Experimental laser sniper rifle rail scope"
 	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	icon_state = "tes"
