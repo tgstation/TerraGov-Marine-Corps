@@ -49,6 +49,15 @@
 		var/step_string = english_list(combo_specifics[COMBO_STEPS])
 		combo_strings += span_notice("<b>[combo]</b> - [step_string]")
 
+/obj/item/weapon/twohanded/martialstaff/update_overlays()
+	. = ..()
+
+	//From pill packet code. Dunno if this is what I want, basically want a fire icon to appear on the sprite on hit, blue for left click, red for right click.
+	var/image/overlay = image('icons/obj/items/chemistry.dmi', src, "packet_canister[contents.len]")
+	overlay.color = pip_color
+	. += overlay
+
+
 /obj/item/weapon/twohanded/martialstaff/examine(mob/user)
 	. = ..()
 	. += combo_strings
@@ -58,6 +67,7 @@
 		return ..()
 
 	input_list += LEFT_HIT
+	update_overlays()
 
 	if(check_input(target, user))
 		reset_inputs(null, TRUE)
