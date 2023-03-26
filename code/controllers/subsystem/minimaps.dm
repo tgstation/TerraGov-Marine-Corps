@@ -373,6 +373,9 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap
 	name = "Toggle Minimap"
 	action_icon_state = "minimap"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_MINIMAP,
+	)
 	///Flags to allow the owner to see others of this type
 	var/minimap_flags = MINIMAP_FLAG_ALL
 	///marker flags this will give the target, mostly used for marine minimaps
@@ -385,11 +388,8 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/locator_override
 	///Minimap "You are here" indicator for when it's up
 	var/atom/movable/screen/minimap_locator/locator
-	///This is mostly for the AI & other things which do not move groundside.
+	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_MINIMAP,
-	)
 
 /datum/action/minimap/New(Target)
 	. = ..()
