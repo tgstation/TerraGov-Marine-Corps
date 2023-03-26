@@ -57,6 +57,7 @@
 	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
 	use_state_flags = XACT_USE_BUSY
 	///The actual shield object created by this ability
@@ -71,6 +72,12 @@
 /datum/action/xeno_action/activable/psychic_shield/on_cooldown_finish()
 	owner.balloon_alert(owner, "Shield ready")
 	return ..()
+
+//Overrides parent.
+/datum/action/xeno_action/activable/psychic_shield/alternate_action_activate()
+	if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		INVOKE_ASYNC(src, PROC_REF(use_ability))
+	
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
