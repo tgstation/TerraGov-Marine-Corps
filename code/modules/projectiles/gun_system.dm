@@ -583,7 +583,7 @@
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			. += span_notice("Use Ctrl-Click on a tile to deploy.")
+			. += span_notice("Use Right Click on a tile to deploy.")
 		return
 	if(!CHECK_BITFIELD(flags_item, DEPLOYED_NO_ROTATE))
 		. += span_notice("Left or Right Click on a nearby tile to aim towards it.")

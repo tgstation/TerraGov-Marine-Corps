@@ -381,7 +381,7 @@
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper TA-50S mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Ctrl+Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Right Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
 	max_integrity = 200
