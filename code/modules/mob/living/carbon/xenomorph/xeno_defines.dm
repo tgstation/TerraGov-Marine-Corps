@@ -23,6 +23,8 @@
 	// *** Melee Attacks *** //
 	///The amount of damage a xenomorph caste will do with a 'slash' attack.
 	var/melee_damage = 10
+	/// The damage type a xenomorph caste will do with a 'slash' attack.
+	var/melee_damage_type = BRUTE
 	///number of ticks between attacks for a caste.
 	var/attack_delay = CLICK_CD_MELEE
 

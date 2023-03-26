@@ -117,7 +117,7 @@
 	addtimer(CALLBACK(hugger, TYPE_PROC_REF(/atom/movable, forceMove), loc), 1 SECONDS)
 	hugger.go_active()
 
-/obj/alien/egg/hugger/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/alien/egg/hugger/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = xenomorph.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(xenomorph.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -204,7 +204,7 @@
 	NS.set_up(spread, get_turf(src))
 	NS.start()
 
-/obj/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = xenomorph.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(maturity_stage > stage_ready_to_burst)
 		xenomorph.visible_message(span_xenonotice("\The [xenomorph] clears the hatched egg."), \
 		span_xenonotice("We clear the broken egg."))

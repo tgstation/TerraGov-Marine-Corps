@@ -204,7 +204,7 @@
 	hugger = null
 	set_trap_type(null)
 
-/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -346,7 +346,7 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!istype(X) || X.stat || X.lying_angle || X.status_flags & INCORPOREAL)
 		return
 
@@ -538,7 +538,7 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
 		balloon_alert(X, "Removing...")
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
@@ -679,7 +679,7 @@ TUNNEL
 	if(chargesleft >= maxcharges)
 		return PROCESS_KILL
 
-/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -1218,7 +1218,7 @@ TUNNEL
 	return ..()
 
 // Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.
-/obj/structure/xeno/pherotower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/pherotower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	var/phero_choice = show_radial_menu(X, src, GLOB.pheromone_images_list, radius = 35, require_near = TRUE)
 
 	if(!phero_choice)
@@ -1400,7 +1400,7 @@ TUNNEL
 		return ..()
 	return on_use(user)
 
-/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if((X.status_flags & INCORPOREAL))
 		return FALSE
 

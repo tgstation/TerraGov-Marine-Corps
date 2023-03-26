@@ -803,6 +803,7 @@
 #define COMSIG_XENOABILITY_SLIME_POUNCE_ALTERNATE "xenoability_slime_pounce_alternate"
 #define COMSIG_XENOABILITY_SLIME_SPREAD_TENDRILS "xenoability_slime_spread_tendrils"
 #define COMSIG_XENOABILITY_SLIME_EXTEND_TENDRIL "xenoability_extend_tendril"
+#define COMSIG_XENOABILITY_SLIME_TOXIC_BURST "xenoability_toxic_burst"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

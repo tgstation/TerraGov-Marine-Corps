@@ -114,7 +114,7 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	apply_damage(damage, X.xeno_caste.melee_damage_type, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
 
 	return TRUE
 
@@ -183,7 +183,7 @@
 		return FALSE
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
-/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = X.xeno_caste.melee_damage_type, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 

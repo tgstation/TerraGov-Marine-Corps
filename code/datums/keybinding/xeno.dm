@@ -900,7 +900,7 @@
 	full_name = "Slime: Pounce"
 	description = "Leap towards your target, attaching to it."
 	keybind_signal = COMSIG_XENOABILITY_SLIME_POUNCE
-	hotkey_keys = list("Z")
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/slime_pounce_alternate
 	name = "Passive Pounce (Slime)"
@@ -920,4 +920,11 @@
 	full_name = "Slime: Extend Tendril"
 	description = "Extend a hardened, thorn-like tendril that will deal damage to a target, pulling them closer to you and immobilizing them briefly."
 	keybind_signal = COMSIG_XENOABILITY_SLIME_EXTEND_TENDRIL
-	hotkey_keys = list("Q")
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/toxic_burst
+	name = "Toxic Burst"
+	full_name = "Slime: Toxic Burst"
+	description = "Attack a victim you're attached to, consuming all Intoxication stacks and dealing an amount of damage proportional to the amount of stacks."
+	keybind_signal = COMSIG_XENOABILITY_SLIME_EXTEND_TENDRIL
+	hotkey_keys = list("E")
