@@ -926,5 +926,5 @@
 	name = "Toxic Burst"
 	full_name = "Slime: Toxic Burst"
 	description = "Attack a victim you're attached to, consuming all Intoxication stacks and dealing an amount of damage proportional to the amount of stacks."
-	keybind_signal = COMSIG_XENOABILITY_SLIME_EXTEND_TENDRIL
+	keybind_signal = COMSIG_XENOABILITY_SLIME_TOXIC_BURST
 	hotkey_keys = list("E")

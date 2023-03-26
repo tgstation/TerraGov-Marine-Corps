@@ -18,10 +18,6 @@ TO DO:
 	name = "slimy tendril"
 	alpha = 200
 
-/obj/effect/ebeam/slime_tendril/Initialize()
-	. = ..()
-	animate(src, alpha = 65, time = 0.4)
-
 // ***************************************
 // *********** Pounce (Slime)
 // ***************************************

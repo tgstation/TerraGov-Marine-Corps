@@ -734,7 +734,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //Slime defines
-#define SLIME_MOVEMENT_ACID_DURATION 2 SECONDS // The duration of the acid puddles left behind when a Slime moves.
+#define SLIME_MOVEMENT_ACID_DURATION 0.4 SECONDS // The duration of the acid puddles left behind when a Slime moves.
 #define SLIME_MOVEMENT_ACID_DAMAGE 10 // The damage of the acid puddles left behind when a Slime moves.
 #define SLIME_ATTACK_INTOXICATION_STACKS 0 // The amount of Intoxication stacks inflicted with each normal attack.
 #define SLIME_POUNCE_RANGE 5 // The range of a Slime's Pounce.
@@ -754,7 +754,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SLIME_EXTEND_TENDRIL_CRITICAL_MULTIPLIER 2 // Multiplier applied to Extend Tendril's damage and effect duration for victims at maximum range.
 #define SLIME_EXTEND_TENDRIL_EFFECT_DURATION 0.5 SECONDS // Amount of time during which a target hit by Extend Tendril is immobilized or stunned.
 #define SLIME_EXTEND_TENDRIL_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted to a victim hit by Extend Tendril.
-#define SLIME_TOXIC_BURST_WINDUP 1.2 SECONDS // Amount of time that it takes to finish a Toxic Burst wind-up channel.
+#define SLIME_TOXIC_BURST_WINDUP 2 SECONDS // Amount of time that it takes to finish a Toxic Burst wind-up channel.
 
 //misc
 
