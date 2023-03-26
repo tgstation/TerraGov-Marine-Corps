@@ -20,11 +20,11 @@
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/parent_item = parent
 	if(shield_flags & SHIELD_TOGGLE)
-		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, .proc/toggle_shield)
+		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, PROC_REF(toggle_shield))
 		active = parent_item.active
 	if(active)
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/shield_equipped)
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/shield_dropped)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
 		if(ismob(parent_item.loc))
 			shield_init(parent_item.loc)
 
@@ -65,11 +65,11 @@
 
 /datum/component/shield/proc/setup_callbacks(shield_flags)
 	if(shield_flags & SHIELD_PURE_BLOCKING)
-		intercept_damage_cb = CALLBACK(src, .proc/item_pure_block_chance)
+		intercept_damage_cb = CALLBACK(src, PROC_REF(item_pure_block_chance))
 	else
-		intercept_damage_cb = CALLBACK(src, .proc/item_intercept_attack)
+		intercept_damage_cb = CALLBACK(src, PROC_REF(item_intercept_attack))
 	if(shield_flags & SHIELD_PARENT_INTEGRITY)
-		transfer_damage_cb = CALLBACK(src, .proc/transfer_damage_to_parent)
+		transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_parent))
 
 /datum/component/shield/proc/shield_init(mob/holder_mob) // If we confess our sins (like this proc), he is faithful and just and will forgive us our sins and purify us from all unrighteousness.
 	var/slot
@@ -119,8 +119,8 @@
 		return
 	active = new_state
 	if(active)
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/shield_equipped)
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/shield_dropped)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
 		if(affected)
 			activate_with_user()
 		return
@@ -162,7 +162,7 @@
 		activate_with_user()
 
 /datum/component/shield/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, .proc/on_attack_cb_shields_call)
+	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, PROC_REF(on_attack_cb_shields_call))
 
 /datum/component/shield/proc/deactivate_with_user()
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
@@ -269,8 +269,8 @@
 
 
 /datum/component/shield/overhealth/setup_callbacks(shield_flags)
-	intercept_damage_cb = CALLBACK(src, .proc/overhealth_intercept_attack)
-	transfer_damage_cb = CALLBACK(src, .proc/transfer_damage_to_overhealth)
+	intercept_damage_cb = CALLBACK(src, PROC_REF(overhealth_intercept_attack))
+	transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_overhealth))
 
 
 /datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent)

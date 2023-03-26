@@ -78,9 +78,9 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 		r_hair = hex2num(copytext(species.hair_color, 2, 4))
 		g_hair = hex2num(copytext(species.hair_color, 4, 6))
 		b_hair = hex2num(copytext(species.hair_color, 6, 8))
-	INVOKE_ASYNC(src, .proc/regenerate_icons)
-	INVOKE_ASYNC(src, .proc/update_body)
-	INVOKE_ASYNC(src, .proc/restore_blood)
+	INVOKE_ASYNC(src, PROC_REF(regenerate_icons))
+	INVOKE_ASYNC(src, PROC_REF(update_body))
+	INVOKE_ASYNC(src, PROC_REF(restore_blood))
 	return TRUE
 
 /mob/living/carbon/human/dummy/hud_set_job()

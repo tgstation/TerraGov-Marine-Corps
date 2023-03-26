@@ -194,7 +194,7 @@
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
 		O.set_opacity(FALSE)
-	addtimer(CALLBACK(src, .proc/finish_open), openspeed)
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), openspeed)
 	return TRUE
 
 /obj/machinery/door/proc/finish_open()
@@ -206,7 +206,7 @@
 		operating = FALSE
 
 	if(autoclose)
-		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
+		addtimer(CALLBACK(src, PROC_REF(autoclose)), normalspeed ? 150 + openspeed : 5)
 
 /obj/machinery/door/proc/close()
 	if(density)
@@ -218,7 +218,7 @@
 	density = TRUE
 	layer = closed_layer
 	do_animate("closing")
-	addtimer(CALLBACK(src, .proc/finish_close), openspeed)
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed)
 
 /obj/machinery/door/proc/finish_close()
 	update_icon()

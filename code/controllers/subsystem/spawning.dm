@@ -13,17 +13,17 @@ SUBSYSTEM_DEF(spawning)
 	///Assoc list of spawners and their assosicated data
 	var/list/datum/spawnerdata/spawnerdata = list()
 	///Assoc list [mob] = removalcb
-	var/list/datum/callback/callbacks_by_mob = list()
+	var/list/datum/callback/death_callbacks_by_mob = list()
 
 /datum/controller/subsystem/spawning/Recover()
 	spawnerdata = SSspawning.spawnerdata
-	callbacks_by_mob = SSspawning.callbacks_by_mob
+	death_callbacks_by_mob = SSspawning.death_callbacks_by_mob
 
 ///Admin proc to unregister and reregister AI node spawners for example for varedits on WO
 /datum/controller/subsystem/spawning/proc/reset_ai()
 	for(var/obj/effect/ai_node/spawner/spawner AS in spawnerdata)
 		unregisterspawner(spawner)
-		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, /obj/effect/ai_node/spawner.proc/postspawn) : null)
+		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, TYPE_PROC_REF(/obj/effect/ai_node/spawner, postspawn)) : null)
 
 
 /**
@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(spawning)
  */
 /datum/controller/subsystem/spawning/proc/registerspawner(atom/spawner, delaytime = 30 SECONDS, spawntypes, maxmobs = 10, spawnamount = 1, datum/callback/postspawn)
 	spawnerdata[spawner] = new /datum/spawnerdata(delaytime/wait, spawntypes, maxmobs, spawnamount, postspawn)
-	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, .proc/unregisterspawner)
+	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, PROC_REF(unregisterspawner))
 
 /**
  * Unregisters an atom with the subsystem
@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(spawning)
  */
 /datum/controller/subsystem/spawning/proc/unregisterspawner(atom/spawner)
 	SIGNAL_HANDLER
-	callbacks_by_mob -= spawnerdata[spawner].spawnedmobs
+	death_callbacks_by_mob -= spawnerdata[spawner].spawnedmobs
 	spawnerdata -= spawner
 	UnregisterSignal(spawner, COMSIG_PARENT_QDELETING)
 
@@ -53,7 +53,8 @@ SUBSYSTEM_DEF(spawning)
 ///Essentially a wrapper for accessing a dying/delting mobs callback to remove it
 /datum/controller/subsystem/spawning/proc/remove_mob(mob/source)
 	SIGNAL_HANDLER
-	callbacks_by_mob[source].Invoke()
+	if(source in death_callbacks_by_mob) //due to signals being async we might've been removed from the list already in unregisterspawner()
+		death_callbacks_by_mob[source].Invoke()
 	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH))
 
 /**
@@ -64,7 +65,7 @@ SUBSYSTEM_DEF(spawning)
  */
 /datum/controller/subsystem/spawning/proc/decrement_spawnedmobs(mob/remover, atom/spawner)
 	spawnerdata[spawner].spawnedmobs -= remover
-	callbacks_by_mob -= remover
+	death_callbacks_by_mob -= remover
 	totalspawned--
 
 /datum/controller/subsystem/spawning/fire(resumed)
@@ -83,9 +84,9 @@ SUBSYSTEM_DEF(spawning)
 			var/spawntype = pick(spawnerdata[spawner].spawntypes)
 			var/mob/newmob = new spawntype(spawnpoint)
 
-			var/datum/callback/deathcb = CALLBACK(src, .proc/decrement_spawnedmobs, newmob, spawner)
-			callbacks_by_mob[newmob] = deathcb
-			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/remove_mob)
+			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
+			death_callbacks_by_mob[newmob] = deathcb
+			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
 			spawnerdata[spawner].spawnedmobs += newmob
 			squad += newmob
 			totalspawned++

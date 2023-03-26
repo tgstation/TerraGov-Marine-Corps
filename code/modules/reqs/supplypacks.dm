@@ -955,7 +955,7 @@ CLOTHING
 /datum/supply_packs/clothing/officer_outfits
 	name = "officer outfits"
 	contains = list(
-		/obj/item/clothing/under/rank/ro_suit,
+		/obj/item/clothing/under/marine/officer/ro_suit,
 		/obj/item/clothing/under/marine/officer/bridge,
 		/obj/item/clothing/under/marine/officer/bridge,
 		/obj/item/clothing/under/marine/officer/exec,
@@ -1626,6 +1626,11 @@ VEHICLES
 	name = "Sidecar motorbike upgrade"
 	cost = 200
 	contains = list(/obj/item/sidecar)
+
+/datum/supply_packs/vehicles/jerrycan
+	name = "Jerry Can"
+	cost = 100
+	contains = list(/obj/item/reagent_containers/jerrycan)
 
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"

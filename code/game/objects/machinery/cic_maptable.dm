@@ -28,7 +28,7 @@
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
 	user.client.screen += map
 	if(isobserver(user))
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_move)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 
 //Bugfix to handle cases for ghosts/observers that dont automatically close uis on move.

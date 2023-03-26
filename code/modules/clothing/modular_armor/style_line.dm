@@ -6,7 +6,12 @@
 	desc = "They got that drip, doe."
 	flags_item_map_variant = NONE
 	allowed_uniform_type = /obj/item/clothing/under
-	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon = 'icons/obj/clothing/suits/marine_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_suits.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	attachments_allowed = list(
 // Armor Modules
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -49,14 +54,8 @@
 /obj/item/clothing/suit/modular/style/leather_jacket
 	name = "\improper leather jacket"
 	desc = "A fashionable jacket. Get them with style."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
-	)
 	icon_state_variants = list(
 		"normal",
 		"webbing",
@@ -68,9 +67,6 @@
 	desc = "A light, loose-fitting colorable long coat, for those that want to have more style."
 	icon_state = "duster"
 	item_state = "duster"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-	)
 	icon_state_variants = list(
 		"drab",
 		"snow",
@@ -88,7 +84,7 @@
 /obj/item/clothing/head/modular/style
 	name = "\improper Nice Hat"
 	desc = "Nice hat bro. How did you find this?"
-	icon = 'icons/mob/modular/style_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/style_hats.dmi'
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/style_hats_mob.dmi',

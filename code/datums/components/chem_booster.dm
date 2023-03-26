@@ -28,10 +28,10 @@
 	var/resource_drain_amount = 10
 	///Actions that the component provides
 	var/list/datum/action/component_actions = list(
-		/datum/action/chem_booster/configure = .proc/configure,
-		/datum/action/chem_booster/connect_weapon = .proc/connect_weapon,
-		/datum/action/chem_booster/power = .proc/on_off,
-		/datum/action/suit_autodoc/scan = .proc/scan_user
+		/datum/action/chem_booster/configure = PROC_REF(configure),
+		/datum/action/chem_booster/connect_weapon = PROC_REF(connect_weapon),
+		/datum/action/chem_booster/power = PROC_REF(on_off),
+		/datum/action/suit_autodoc/scan = PROC_REF(scan_user)
 	)
 	///Instant analyzer for the chemsuit
 	var/obj/item/healthanalyzer/integrated/analyzer
@@ -111,9 +111,9 @@
 
 /datum/component/chem_booster/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
@@ -203,7 +203,7 @@
  */
 /datum/component/chem_booster/proc/configure(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/show_radial)
+	INVOKE_ASYNC(src, PROC_REF(show_radial))
 
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
@@ -254,15 +254,14 @@
 		vali_necro_timer = world.time - processing_start
 		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
-			for(var/X in shuffle(wearer.limbs))
-				var/datum/limb/L = X
-				if(L.germ_level > 700)
+			for(var/datum/limb/limb_to_ruin AS in shuffle(wearer.limbs))
+				if(limb_to_ruin.limb_status & LIMB_NECROTIZED)
 					continue
-				L.germ_level += max(INFECTION_LEVEL_THREE + 50 - L.germ_level, 200)
-				necrotized_counter -= 1
+				limb_to_ruin.add_limb_flags(LIMB_NECROTIZED)
+				necrotized_counter--
 				if(necrotized_counter < 1)
 					break
-		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
+		UnregisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 		wearer.balloon_alert(wearer, "Halting green blood injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
@@ -270,7 +269,7 @@
 
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
+	RegisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
@@ -313,11 +312,11 @@
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, /obj/item/healthanalyzer/.proc/attack, wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item/healthanalyzer, attack), wearer, wearer, TRUE)
 
 /datum/component/chem_booster/proc/vali_connect(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/connect_weapon, wearer)
+	INVOKE_ASYNC(src, PROC_REF(connect_weapon), wearer)
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
@@ -363,8 +362,8 @@
 
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
-	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, .proc/drain_resource)
-	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/vali_connect)
+	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
+	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.

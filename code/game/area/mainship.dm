@@ -7,6 +7,9 @@
 	icon_state = "mainship"
 	ceiling = CEILING_METAL
 
+/area/mainship/command
+	minimap_color = MINIMAP_AREA_COMMAND
+
 /area/mainship/command/bridge
 	name = "Bridge"
 	icon_state = "bridge"
@@ -32,6 +35,7 @@
 /area/mainship/command/self_destruct
 	name = "Self-Destruct Core Room"
 	icon_state = "selfdestruct"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/mainship/command/self_destruct/rebel
 
@@ -40,6 +44,9 @@
 	icon_state = "corporatespace"
 
 /area/mainship/command/corporateliaison/rebel
+
+/area/mainship/engineering
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mainship/engineering/upper_engineering
 	name = "Upper Engineering"
@@ -91,21 +98,23 @@
 
 /area/mainship/engineering/port_atmos/rebel
 
+/area/mainship/shipboard
+	minimap_color = MINIMAP_AREA_SEC
+
 /area/mainship/shipboard/navigation
 	name = "Astronavigational Deck"
 	icon_state = "astronavigation"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/shipboard/starboard_missiles
 	name = "Missile Tubes Starboard"
 	icon_state = "starboardmissile"
-
 
 /area/mainship/shipboard/starboard_missiles/rebel
 
 /area/mainship/shipboard/port_missiles
 	name = "Missile Tubes Port"
 	icon_state = "portmissile"
-
 
 /area/mainship/shipboard/port_missiles/rebel
 
@@ -150,12 +159,14 @@
 /area/mainship/hallways/hangar
 	name = "Hangar"
 	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/mainship/hallways/hangar/rebel
 
 /area/mainship/living/tankerbunks
 	name = "Vehicle Crew Bunks"
 	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/hallways/exoarmor
 	name = "Vehicle Armor Storage"
@@ -164,6 +175,7 @@
 /area/mainship/hallways/repair_bay
 	name = "Vehicle Repair Bay"
 	icon_state = "dropshiprepair"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mainship/hallways/mission_planner
 	name = "Dropship Central Computer Room"
@@ -172,22 +184,25 @@
 /area/mainship/hallways/starboard_umbilical
 	name = "Umbilical Starboard"
 	icon_state = "starboardumbilical"
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/mainship/hallways/starboard_umbilical/rebel
 
 /area/mainship/hallways/port_umbilical
 	name = "Umbilical Port"
 	icon_state = "portumbilical"
+	minimap_color = MINIMAP_AREA_CAVES
+
+/area/mainship/hallways/port_umbilical/rebel
 
 /area/mainship/hallways/aft_umbilical
 	name = "Umbilical Aft"
 	icon_state = "aft"
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/mainship/hallways/bow_hallway
 	name = "Hallway Bow"
 	icon_state = "bow"
-
-/area/mainship/hallways/port_umbilical/rebel
 
 /area/mainship/hallways/aft_hallway
 	name = "Hallway Aft"
@@ -213,6 +228,9 @@
 
 /area/mainship/hallways/starboard_hallway/rebel
 
+/area/mainship/hull
+	minimap_color = MINIMAP_AREA_CAVES
+
 /area/mainship/hull/lower_hull
 	name = "Hull Lower"
 	icon_state = "lowerhull"
@@ -230,6 +248,9 @@
 /area/mainship/hull/starboard_hull
 	name = "Hull Starboard"
 	icon_state = "upperhull"
+
+/area/mainship/living
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mainship/living/cryo_cells
 	name = "Cryo Cells"
@@ -276,10 +297,12 @@
 /area/mainship/living/officer_rnr
 	name = "Officer's Lounge"
 	icon_state = "officerrnr"
+	//minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/officer_study
 	name = "Officer's Study"
 	icon_state = "officerstudy"
+	//minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/cafeteria
 	name = "Cafeteria"
@@ -306,34 +329,42 @@
 /area/mainship/living/captain_mess
 	name = "Captain's Mess"
 	icon_state = "briefing"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/pilotbunks
 	name = "Pilot's Bunks"
 	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/pilotbunks/rebel
 
 /area/mainship/living/bridgebunks
 	name = "Staff Officer Bunks"
 	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/bridgebunks/rebel
 
 /area/mainship/living/commandbunks
 	name = "Captain's Bunk"
 	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/commandbunks/rebel
 
 /area/mainship/living/numbertwobunks
 	name = "Executive Officer's Bunk"
 	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/numbertwobunks/rebel
 
 /area/mainship/living/chapel
 	name = "Chapel"
 	icon_state = "officerrnr"
+
+/area/mainship/medical
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/mainship/medical/lower_medical
 	name = "Medical Lower"
@@ -385,6 +416,9 @@
 	name = "Medical Surgical Hallway"
 	icon_state = "medical"
 
+/area/mainship/squads
+	minimap_color = MINIMAP_AREA_PREP
+
 /area/mainship/squads/alpha
 	name = "Squad Alpha Preparation"
 	icon_state = "alpha"
@@ -412,6 +446,7 @@
 /area/mainship/squads/req
 	name = "Requisitions"
 	icon_state = "req"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/mainship/squads/req/rebel
 
@@ -427,6 +462,20 @@
 /area/mainship/living/evacuation
 	name = "Evacuation"
 	icon_state = "departures"
+	minimap_color = MINIMAP_AREA_ESCAPE
+
+/area/mainship/living/evacuation/two //some ships have entirely separate evac areas
+
+/area/mainship/living/evacuation/pod
+	requires_power = FALSE
+
+/area/mainship/living/evacuation/pod/one
+
+/area/mainship/living/evacuation/pod/two
+
+/area/mainship/living/evacuation/pod/three
+
+/area/mainship/living/evacuation/pod/four
 
 /area/mainship/medical/lounge
 	name = "Medical Lounge"

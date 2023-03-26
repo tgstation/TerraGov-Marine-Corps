@@ -56,7 +56,7 @@
 
 /obj/item/spy_bug/Initialize()
 	. = ..()
-	tracker = new /datum/movement_detector(src, CALLBACK(src, .proc/update_view))
+	tracker = new /datum/movement_detector(src, CALLBACK(src, PROC_REF(update_view)))
 
 	cam_screen = new
 	cam_screen.name = "screen"

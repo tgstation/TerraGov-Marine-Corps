@@ -3,8 +3,8 @@
 	if(!istype(target, /obj/structure/window))
 		return ELEMENT_INCOMPATIBLE
 
-	RegisterSignal(target, ELEMENT_CLOSE_SHUTTER_LINKED, .proc/spawn_shutter)
-	RegisterSignal(target, COMSIG_OBJ_DECONSTRUCT, .proc/spawn_shutter_first)
+	RegisterSignal(target, ELEMENT_CLOSE_SHUTTER_LINKED, PROC_REF(spawn_shutter))
+	RegisterSignal(target, COMSIG_OBJ_DECONSTRUCT, PROC_REF(spawn_shutter_first))
 
 /datum/element/windowshutter/Detach(datum/target, force)
 	. = ..()
@@ -29,7 +29,7 @@
 			P.setDir(SOUTH)
 		else
 			P.setDir(EAST)
-	addtimer(CALLBACK(P, /obj/machinery/door.proc/close), 16)
+	addtimer(CALLBACK(P, TYPE_PROC_REF(/obj/machinery/door, close)), 16)
 	Detach(source)
 
 /datum/element/windowshutter/cokpitshutters/spawn_shutter(datum/source)
@@ -45,5 +45,5 @@
 			P.setDir(SOUTH)
 		else
 			P.setDir(EAST)
-	addtimer(CALLBACK(P, /obj/machinery/door.proc/close), 16)
+	addtimer(CALLBACK(P, TYPE_PROC_REF(/obj/machinery/door, close)), 16)
 	Detach(source)

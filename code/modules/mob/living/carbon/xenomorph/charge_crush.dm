@@ -65,8 +65,8 @@
 /datum/action/xeno_action/ready_charge/proc/charge_on(verbose = TRUE)
 	var/mob/living/carbon/xenomorph/charger = owner
 	charge_ability_on = TRUE
-	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
-	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
+	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, PROC_REF(update_charging))
+	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
 	set_toggle(TRUE)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
@@ -123,7 +123,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), .proc/do_crush)
+	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -338,7 +338,7 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, .proc/toggle_charge_type)
+	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, PROC_REF(toggle_charge_type))
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)
@@ -576,6 +576,8 @@
 			charger.visible_message(span_danger("[charger] rams [src]!"),
 			span_xenodanger("We ram [src]!"))
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
+			GLOB.round_statistics.bull_crush_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_crush_hit")
 			return PRECRUSH_PLOWED
 
 		if(CHARGE_BULL_GORE)
@@ -588,6 +590,9 @@
 					throw_at(destination, 1, 1, charger, FALSE)
 				charger.visible_message(span_danger("[charger] gores [src]!"),
 					span_xenowarning("We gore [src] and skid to a halt!"))
+				GLOB.round_statistics.bull_gore_hit++
+				SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_gore_hit")
+
 
 		if(CHARGE_BULL_HEADBUTT)
 			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
@@ -605,6 +610,8 @@
 
 			charger.visible_message(span_danger("[charger] rams into [src] and flings [p_them()] away!"),
 				span_xenowarning("We ram into [src] and skid to a halt!"))
+			GLOB.round_statistics.bull_headbutt_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_headbutt_hit")
 
 	charge_datum.do_stop_momentum(FALSE)
 	return PRECRUSH_STOPPED

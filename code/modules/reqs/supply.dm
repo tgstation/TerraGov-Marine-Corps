@@ -83,11 +83,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
-			RegisterSignal(G, COMSIG_PARENT_QDELETING, .proc/clean_gear)
+			RegisterSignal(G, COMSIG_PARENT_QDELETING, PROC_REF(clean_gear))
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
-			RegisterSignal(R, COMSIG_PARENT_QDELETING, .proc/clean_railing)
+			RegisterSignal(R, COMSIG_PARENT_QDELETING, PROC_REF(clean_railing))
 			R.linked_pad = src
 			R.open()
 
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
 	src.source_object = source_object
-	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, .proc/clean_ui)
+	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, PROC_REF(clean_ui))
 
 ///Signal handler to delete the ui when the source object is deleting
 /datum/supply_ui/proc/clean_ui()
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return FALSE
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum
