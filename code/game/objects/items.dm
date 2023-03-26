@@ -466,6 +466,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		return FALSE
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
+	var/equip_to_slot = FALSE
 
 	switch(slot)
 		if(SLOT_L_HAND)
@@ -491,57 +492,39 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(SLOT_WEAR_MASK)
 			if(H.wear_mask)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_MASK))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_BACK)
 			if(H.back)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_BACK))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_GLOVES)
 			if(H.gloves)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_SHOES)
 			if(H.shoes)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_FEET))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_GLASSES)
 			if(H.glasses)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_EYES))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_HEAD)
 			if(H.head)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_HEAD))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_EARS)
 			if(H.wear_ear)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_EARS))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_W_UNIFORM)
 			if(H.w_uniform)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_WEAR_ID)
 			if(H.wear_id)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_ID))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 
 		//direct slots with prerequisites
 		if(SLOT_WEAR_SUIT)
@@ -551,9 +534,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				if(warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_BELT)
 			if(H.belt)
 				return FALSE
@@ -561,9 +542,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				if(warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_BELT))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_L_STORE)
 			if(H.l_store)
 				return FALSE
@@ -573,9 +552,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
-			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET)) //smaller or tiny items can all go in pocket slots, but only flagged larger items can
+			if(w_class <= 2) //smaller or tiny items can all go in pocket slots, larger items require the flag to fit
 				return TRUE
-			return FALSE
+			equip_to_slot = TRUE
 		if(SLOT_R_STORE)
 			if(H.r_store)
 				return FALSE
@@ -585,9 +564,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
-			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+			if(w_class <= 2)
 				return TRUE
-			return FALSE
+			equip_to_slot = TRUE
 		if(SLOT_S_STORE) //suit storage uniquely depends on the suit allowed list, so is a bit snowflake
 			if(H.s_store)
 				return FALSE
@@ -633,6 +612,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 		else
 			return FALSE //Unsupported slot
+
+	if(equip_to_slot)
+		if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+			return FALSE
+		return TRUE
 
 	if(!selected_slot)
 		return FALSE
