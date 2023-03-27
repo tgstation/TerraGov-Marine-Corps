@@ -1200,6 +1200,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	damage_falloff = 0.1
 
+/datum/ammo/bullet/smarttargetrifle
+	name = "smart marksman bullet"
+	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	damage = 40
+	penetration = 30
+	sundering = 5
+	accurate_range = 25
+	accurate_range_min = 3
+
+/datum/ammo/bullet/spottingrifle
+	name = "smart spotting bullet"
+	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	damage = 70
+	penetration = 20
+	sundering = 5
+
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	bullet_color = COLOR_SOFT_RED

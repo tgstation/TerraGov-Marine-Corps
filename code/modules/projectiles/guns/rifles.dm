@@ -1230,6 +1230,73 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/verticalgrip)
 
 //-------------------------------------------------------
+//SG Smart Machine Gun (It's more of a rifle than the SG.)
+
+/obj/item/weapon/gun/rifle/standard_smarttargetrifle
+	name = "\improper SG-62 Kauser-KT smart target rifle"
+	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the TerraGov Marine Corps, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialzed ordanance, this is a gun with many answers to many situations.. if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "sg62"
+	item_state = "sg62"
+	caliber = CALIBER_10x27_CASELESS //codex
+	max_shells = 40 //codex
+	aim_slowdown = 0.85
+	wield_delay = 0.65 SECONDS
+	fire_sound = "gun_smartgun"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_smarttargetrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smarttargetrifle)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope,
+		/obj/item/weapon/gun/rifle/standard_spottingrifle,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle)
+
+	fire_delay = 0.55 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.4
+	accuracy_mult = 1.25
+	scatter = -5
+	scatter_unwielded = 20
+	movement_acc_penalty_mult = 8
+
+	placed_overlay_iconstate = "smartgun"
+
+/obj/item/weapon/gun/rifle/standard_spottingrifle
+	name = "SR-153 spotting rifle"
+	desc = "An underslung spotting rifle, generally found ontop of another gun.."
+	icon_state = "pepperball_mini"
+	caliber = CALIBER_12x7
+	slot = ATTACHMENT_SLOT_UNDER
+	max_shells = 5
+	default_ammo_type =/obj/item/ammo_magazine/standard_spottingrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_spottingrifle)
+	force = 5
+	attachable_allowed = list()
+	actions_types = list()
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER
+	flags_attach_features = NONE
+	fire_delay = 2 SECONDS
+	pixel_shift_x = 18
+	pixel_shift_y = 16
+
+//-------------------------------------------------------
 //Sectoid Rifle
 
 /obj/item/weapon/gun/rifle/sectoid_rifle

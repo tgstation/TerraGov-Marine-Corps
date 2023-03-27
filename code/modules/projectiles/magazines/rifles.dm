@@ -279,6 +279,33 @@
 	icon_state_mini = "mag_sg29"
 
 //-------------------------------------------------------
+//SMART TARGET RIFLE AMMUNITION
+
+/obj/item/ammo_magazine/standard_smarttargetrifle
+	name = "\improper SG-62 magazine (10x27mm HV)"
+	desc = "A magazine filled with 10x27mm specialized smart rounds."
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "sg62"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/smarttargetrifle
+	max_rounds = 40
+	reload_delay = 0.5 SECONDS
+	icon_state_mini = "mag_sg29"
+
+//-------------------------------------------------------
+//SPOTTING RIFLE AMMUNITION
+
+/obj/item/ammo_magazine/standard_spottingrifle
+	name = "\improper SR-153 magazine (12x7mm)"
+	desc = "A magazine filled with 12x7mm lethal smart rounds, these will do nothing other than pack a big punch."
+	caliber = CALIBER_12x7
+	icon_state = "sg62"
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/spottingrifle
+	max_rounds = 5
+	icon_state_mini = "mag_sg29"
+
+//-------------------------------------------------------
 //Sectoid Rifle
 
 /obj/item/ammo_magazine/rifle/sectoid_rifle
