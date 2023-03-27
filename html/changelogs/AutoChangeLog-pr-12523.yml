@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "left click draws items out of boots again, alt right click will open storage instead"
