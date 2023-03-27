@@ -142,18 +142,6 @@
 
 // Big Red
 
-
-/turf/open/floor/plating/ground/fakesnow
-	name = "shallow snow"
-	icon = 'icons/turf/snow2.dmi'
-	icon_state = "snow_1"
-	minimap_color = MINIMAP_SNOW
-
-/turf/open/floor/plating/ground/fakesnow/alt
-	name = "deep snow"
-	icon = 'icons/turf/snow2.dmi'
-	icon_state = "snow_2"
-
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
 	icon_state = "mars_sand"
@@ -163,7 +151,6 @@
 	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/floor/plating/ground/mars/random/cave
-
 	name = "cave"
 	icon_state = "mars_cave"
 
