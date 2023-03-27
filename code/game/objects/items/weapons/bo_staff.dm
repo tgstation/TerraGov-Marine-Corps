@@ -24,11 +24,21 @@
 
 	hitsound = 'sound/weapons/wood_hit2.ogg'
 
+
+	var/list/mutable_appearance/fire_overlay = list()
 	///How far can we throw things with toss/flip
 	var/toss_distance
 
 	///How much time has passed since the last time the user hit a mob
 	var/last_hit_time
+
+	///Color of the flame that gets overlayed on top of the in-hand sprite
+	var/flame_color = LIGHT_COLOR_WHITE
+	///Color of the flame that gets overlayed on top of the in-hand sprite after a light attack
+	var/flame_color_light = COLOR_CYAN
+	///Color of the flame that gets overlayed on top of the in-hand sprite after a heavy attack
+	var/flame_color_heavy = COLOR_MAROON
+
 	///Tracks what hits the user has used
 	var/list/input_list = list()
 	///Used to update description when combos are added to combo_list
@@ -49,57 +59,71 @@
 		var/step_string = english_list(combo_specifics[COMBO_STEPS])
 		combo_strings += span_notice("<b>[combo]</b> - [step_string]")
 
-/obj/item/weapon/twohanded/martialstaff/update_overlays()
-	. = ..()
-
-	//From pill packet code. Dunno if this is what I want, basically want a fire icon to appear on the sprite on hit, blue for left click, red for right click.
-	var/image/overlay = image('icons/obj/items/chemistry.dmi', src, "packet_canister[contents.len]")
-	overlay.color = pip_color
-	. += overlay
-
-
 /obj/item/weapon/twohanded/martialstaff/examine(mob/user)
 	. = ..()
 	. += combo_strings
 
-/obj/item/weapon/twohanded/martialstaff/attack(mob/living/carbon/xenomorph/target, mob/user, has_proximity, click_parameters)
+/obj/item/weapon/twohanded/martialstaff/attack(mob/living/carbon/xenomorph/target, mob/user)
+	. = ..()
 	if(target.stat == DEAD || target == user)
-		return ..()
+		return
 
-	input_list += LEFT_HIT
-	update_overlays()
-
-	if(check_input(target, user))
+	if(check_input(target, user, LEFT_HIT))
 		reset_inputs(null, TRUE)
-		return TRUE
 	else
 		last_hit_time = addtimer(CALLBACK(src, PROC_REF(reset_inputs), user, FALSE), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-		return ..()
 
 /obj/item/weapon/twohanded/martialstaff/attack_alternate(mob/living/carbon/xenomorph/target, mob/user, has_proximity, click_parameters)
+	. = ..()
 	if(target.stat == DEAD || target == user)
-		return ..()
+		return
 
-	input_list += RIGHT_HIT
-
-	if(check_input(target, user))
+	if(check_input(target, user, RIGHT_HIT))
 		reset_inputs(null, TRUE)
-		return TRUE
 	else
 		last_hit_time = addtimer(CALLBACK(src, PROC_REF(reset_inputs), user, FALSE), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-		return ..()
 
-/obj/item/weapon/twohanded/martialstaff/proc/check_input(mob/living/target, mob/user)
+/obj/item/weapon/twohanded/martialstaff/proc/check_input(mob/living/target, mob/user, hit_side)
+	input_list += hit_side
+
 	for(var/combo in combo_list)
 		var/list/combo_specifics = combo_list[combo]
-		if(compare_list(input_list,combo_specifics[COMBO_STEPS]))
+		if(compare_list(input_list, combo_specifics[COMBO_STEPS]))
 			INVOKE_ASYNC(src, combo_specifics[COMBO_PROC], target, user)
 			return TRUE
+
 	if(length(input_list) >= 3)
 		reset_inputs(user, TRUE)
+	else
+		add_fire_overlay(hit_side)
 	return FALSE
 
+/**
+ * Adds the fire overlay to the staff
+ * Arguments:
+ * * is_right_click - Whether this was called by a right-click or not, to give a different flame color.
+ * Returns nothing
+ */
+/obj/item/weapon/twohanded/martialstaff/proc/add_fire_overlay(hit_side)
+	var/existing_overlay = !!length(fire_overlay)
+	var/mutable_appearance/new_overlay = mutable_appearance('icons/effects/effects.dmi', "flame")
+	new_overlay.color = (hit_side == RIGHT_HIT) ? flame_color_heavy : flame_color_light
+	if(existing_overlay)
+		new_overlay.icon_state = "flame1"
+		new_overlay.pixel_y = 16
+	add_overlay(list(new_overlay))
+	fire_overlay.Add(new_overlay)
+
+/**
+ * Resets the inputs and overlays from the staff
+ * Arguments:
+ * * user - The person holding the staff
+ * * deltimer - Whether the timer should be deleted or not.
+ * Returns nothing.
+ */
 /obj/item/weapon/twohanded/martialstaff/proc/reset_inputs(mob/user, deltimer)
+	cut_overlay(fire_overlay)
+	fire_overlay.Cut()
 	input_list.Cut()
 	if(user)
 		balloon_alert(user, "you return to neutral stance")
