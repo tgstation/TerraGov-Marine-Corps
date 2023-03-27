@@ -635,9 +635,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!storage_item)
 		return FALSE
 
-	if(!(storage_item.can_be_inserted(src, warning)))
-		return FALSE
-	return TRUE
+	return storage_item.can_be_inserted(src, warning)
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
