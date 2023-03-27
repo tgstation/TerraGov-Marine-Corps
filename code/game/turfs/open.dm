@@ -103,6 +103,8 @@
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
+		if(isxenoslime(xeno))
+			SEND_SIGNAL(xeno, COMSIG_XENOMORPH_WATER, xeno)
 		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
 	else
 		C.next_move_slowdown += 1.75

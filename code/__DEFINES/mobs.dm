@@ -734,23 +734,23 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //Slime defines
-#define SLIME_MOVEMENT_ACID_DURATION 0.3 SECONDS // The duration of the acid puddles left behind when a Slime moves.
-#define SLIME_MOVEMENT_ACID_DAMAGE 10 // The damage of the acid puddles left behind when a Slime moves.
+#define SLIME_MOVEMENT_ACID_DURATION 0.1 SECONDS // The duration of the acid puddles left behind when we move.
+#define SLIME_MOVEMENT_ACID_DAMAGE 10 // The damage of the acid puddles left behind when we move.
 #define SLIME_ATTACK_INTOXICATION_STACKS 0 // The amount of Intoxication stacks inflicted with each normal attack.
-#define SLIME_POUNCE_RANGE 4 // The range of a Slime's Pounce.
-#define SLIME_POUNCE_SPEED 1 // How fast a Slime's Pounce happens.
-#define SLIME_POUNCE_ATTACHED_SLOWDOWN 0.3 // Multiplicative slowdown added to a victim when a Slime is attached to it via Pounce.
-#define SLIME_POUNCE_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted when a Slime is attached to a victim via Pounce.
-#define SLIME_POUNCE_INFLICTION_RATE 2 SECONDS // Amount of time between each infliction on the victim a Slime attached to via Pounce.
-#define SLIME_POUNCE_RESIST_CHANNEL 1 SECONDS // Amount of time that it takes to Resist against a Slime attached via Pounce, and throw it off.
-#define SLIME_POUNCE_UNBUCKLE_EFFECT_DURATION 0.5 SECONDS // Amount of time during which a Slime is effected when deattaching from a victim after a Pounce.
+#define SLIME_POUNCE_RANGE 4 // The range of Pounce.
+#define SLIME_POUNCE_SPEED 0.5 // How fast a Pounce happens.
+#define SLIME_POUNCE_ATTACHED_SLOWDOWN 0.3 // Multiplicative slowdown added to a victim when we're attached to it.
+#define SLIME_POUNCE_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted when we're attached to a victim.
+#define SLIME_POUNCE_INFLICTION_RATE 2 SECONDS // Amount of time between each infliction on the victim we're attached to.
+#define SLIME_POUNCE_RESIST_CHANNEL 1 SECONDS // Amount of time that it takes an attached victim to Resist and throw us off.
+#define SLIME_POUNCE_UNBUCKLE_EFFECT_DURATION 0.6 SECONDS // Amount of time during which we'reeffected when deattaching from a victim.
 #define SLIME_SPREAD_TENDRILS_WINDUP 0.6 SECONDS // Amount of time that it takes to finish a Spread Tendrils wind-up channel.
 #define SLIME_SPREAD_TENDRILS_RANGE 2 // Range in tiles for the Spread Tendrils ability.
-#define SLIME_SPREAD_TENDRILS_PULL_RANGE 1 // How many tiles a victim hit by Spread Tendrils will be pulled towards the Slime.
-#define SLIME_SPREAD_TENDRILS_CRITICAL_MULTIPLIER 2 // Multiplier applied to Spread Tendrils's damage and effect duration for victims on the same tile as the Slime.
+#define SLIME_SPREAD_TENDRILS_PULL_RANGE 1 // How many tiles a victim hit by Spread Tendrils will be pulled towards us.
+#define SLIME_SPREAD_TENDRILS_CRITICAL_MULTIPLIER 2 // Multiplier applied to Spread Tendrils's damage and effect duration for victims on the same tile as us.
 #define SLIME_SPREAD_TENDRILS_EFFECT_DURATION 0.8 SECONDS // Amount of time during which a victim hit by Spread Tendrils is immobilized or stunned.
 #define SLIME_EXTEND_TENDRIL_RANGE 3 // Range in tiles for the Extend Tendril ability.
-#define SLIME_EXTEND_TENDRIL_PULL_RANGE 1 // How many tiles a victim hit by Extend Tendril will be pulled towards the Slime.
+#define SLIME_EXTEND_TENDRIL_PULL_RANGE 2 // How many tiles a victim hit by Extend Tendril will be pulled towards us.
 #define SLIME_EXTEND_TENDRIL_CRITICAL_MULTIPLIER 2 // Multiplier applied to Extend Tendril's damage and effect duration for victims at maximum range.
 #define SLIME_EXTEND_TENDRIL_EFFECT_DURATION 0.8 SECONDS // Amount of time during which a target hit by Extend Tendril is immobilized or stunned.
 #define SLIME_EXTEND_TENDRIL_INTOXICATION_STACKS 0 // Amount of Intoxication stacks inflicted to a victim hit by Extend Tendril.

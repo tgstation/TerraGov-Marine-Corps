@@ -565,6 +565,8 @@
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
+#define COMSIG_XENOMORPH_WATER "xeno_slime_water"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
@@ -799,13 +801,13 @@
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
-#define COMSIG_XENOABILITY_SLIME_ACIDIC_TRAIL "xenoability_acidic_trail"
-#define COMSIG_XENOABILITY_SLIME_ACIDIC_TRAIL_ALTERNATE "xenoability_acidic_trail_alternate"
-#define COMSIG_XENOABILITY_SLIME_POUNCE "xenoability_slime_pounce"
-#define COMSIG_XENOABILITY_SLIME_POUNCE_ALTERNATE "xenoability_slime_pounce_alternate"
-#define COMSIG_XENOABILITY_SLIME_SPREAD_TENDRILS "xenoability_slime_spread_tendrils"
-#define COMSIG_XENOABILITY_SLIME_EXTEND_TENDRIL "xenoability_extend_tendril"
-#define COMSIG_XENOABILITY_SLIME_TOXIC_BURST "xenoability_toxic_burst"
+#define COMSIG_XENOABILITY_ACIDIC_TRAIL "xenoability_acidic_trail"
+#define COMSIG_XENOABILITY_ACIDIC_TRAIL_ALTERNATE "xenoability_acidic_trail_alternate"
+#define COMSIG_XENOABILITY_ATTACH_POUNCE "xenoability_slime_pounce"
+#define COMSIG_XENOABILITY_ATTACH_POUNCE_ALTERNATE "xenoability_slime_pounce_alternate"
+#define COMSIG_XENOABILITY_SPREAD_TENDRILS "xenoability_slime_spread_tendrils"
+#define COMSIG_XENOABILITY_EXTEND_TENDRIL "xenoability_extend_tendril"
+#define COMSIG_XENOABILITY_TOXIC_BURST "xenoability_toxic_burst"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

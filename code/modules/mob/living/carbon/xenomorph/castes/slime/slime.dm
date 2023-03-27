@@ -32,7 +32,5 @@
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
 
-/mob/living/carbon/xenomorph/slime/throw_impact(atom/hit_atom, speed)
-	if(isturf(hit_atom))
-		set_throwing(FALSE)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+/mob/living/carbon/xenomorph/slime/throw_impact(atom/hit_atom, speed, bounce)
+	return ..(hit_atom, speed, FALSE)

@@ -268,7 +268,7 @@
 	ScrapeAway()
 
 
-/turf/closed/wall/ex_act(severity)
+/turf/closed/wall/ex_act(severity, epicenter_dist, impact_range)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	switch(severity)
@@ -281,6 +281,7 @@
 				dismantle_wall(TRUE, TRUE)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250))
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)

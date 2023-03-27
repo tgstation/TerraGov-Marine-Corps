@@ -31,7 +31,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/acidic_trail,
-		/datum/action/xeno_action/activable/slime_pounce,
+		/datum/action/xeno_action/activable/attach_pounce,
 		/datum/action/xeno_action/spread_tendrils,
 		/datum/action/xeno_action/activable/extend_tendril,
 	)
@@ -47,6 +47,7 @@
 	plasma_gain = 15
 	max_health = 250
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
+	additional_stacks = 1
 
 /datum/xeno_caste/slime/elder
 	upgrade_name = "Elder"
@@ -58,7 +59,7 @@
 	max_health = 275
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 	soft_armor = list(MELEE = 48, BULLET = 48, LASER = 0, ENERGY = 0, BOMB = 48, BIO = 98, FIRE = 0, ACID = 98)
-	additional_stacks = 1
+	additional_stacks = 2
 
 /datum/xeno_caste/slime/ancient
 	upgrade_name = "Ancient"
@@ -71,7 +72,7 @@
 	max_health = 300
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 100)
-	additional_stacks = 2
+	additional_stacks = 3
 
 /datum/xeno_caste/slime/primordial
 	upgrade_name = "Primordial"
@@ -90,8 +91,8 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/acidic_trail,
-		/datum/action/xeno_action/activable/slime_pounce,
+		/datum/action/xeno_action/activable/attach_pounce,
 		/datum/action/xeno_action/spread_tendrils,
 		/datum/action/xeno_action/activable/extend_tendril,
-		/datum/action/xeno_action/toxic_burst,
+		/datum/action/xeno_action/activable/toxic_burst,
 	)
