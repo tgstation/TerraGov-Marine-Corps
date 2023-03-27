@@ -31,7 +31,7 @@
 	. = ..()
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(insert_item))
 	storage.master_item = parent
@@ -43,7 +43,15 @@
 	storage.master_item = src
 	return ..()
 
-///Opens the internal storage when the parent is clicked on.
+///Triggers attack hand interaction for storage when the parent is clicked on.
+/obj/item/armor_module/storage/proc/access_storage(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, handle_attack_hand), user)
+	return COMPONENT_NO_ATTACK_HAND
+
+///Opens the internal storage when the parent is alt right clicked on.
 /obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc != user)
