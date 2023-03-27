@@ -17,7 +17,7 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 200
+	plasma_max = 300
 	plasma_gain = 10
 
 	// *** Health *** //
@@ -76,7 +76,7 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 300
+	plasma_max = 400
 	plasma_gain = 15
 
 	// *** Health *** //
@@ -105,7 +105,7 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 500
 	plasma_gain = 30
 
 	// *** Health *** //
@@ -134,7 +134,7 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 500
 	plasma_gain = 30
 
 	// *** Health *** //
@@ -163,11 +163,11 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 500
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 450
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
