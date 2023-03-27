@@ -835,6 +835,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	if(!(SSticker.mode?.flags_round_type & MODE_XENO_RULER))
 		return
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED) //don't trigger orphan hivemind if the shutters are closed
+		return
 	var/datum/game_mode/infestation/D = SSticker.mode
 
 	if(living_xeno_ruler)

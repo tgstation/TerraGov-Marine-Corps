@@ -416,3 +416,39 @@
   - spellcheck: updated beacon admin log to say 'supply' instead of 'orbital strike'
   ivanmixo:
   - balance: Moved green disk to engineering on LV
+2023-03-27:
+  567Turtle:
+  - rscadd: Changed Arrowhead to Svalinn
+  - rscadd: Changed Artemis to Freyr
+  DeltaFire15:
+  - qol: Readds the original psychic shield keybind behavior as an alternate keybind
+      option.
+  Lumipharon:
+  - qol: Dead space on the minimap no longer shows up, improvement readability
+  - qol: Added more coloured areas to groundside and Sulaco minimaps
+  - bugfix: fixed an autobalance issue
+  - bugfix: PMC armor is no longer invisible
+  Naaanii:
+  - balance: changes CMO surgery and medical skill to Master.
+  - bugfix: fixes some descriptions in code to be more accurate
+  Xander3359:
+  - rscadd: RMB with health analyzer will show the patient their health.
+  - rscadd: Health scanner balloon alerts.
+  - bugfix: Runtime involved when health scanning non-carbons.
+  - bugfix: '"Belt (2") in quick equip prefs is now "Belt Inside"'
+  carlarctg:
+  - refactor: Refactored and reworked EORD loadout selection to pick from all the
+      subtypes of normal ERT factions. Added spec ops to this list. Removed UPP because
+      they suck and have boring loadouts. Added ICC.
+  - rscadd: Added the HvH loadouts for SOM and terragov soldiers that are handled
+      by randomly picking from the relevant subtype outfits.
+  - rscadd: Added a 7% chance to spawn in as a 'rare faction', skeletons, Imperial
+      Guardsmen, and sectoids, also a tiny 2% additional roll will net you deathsquad.
+  - code_imp: Moved species changing of skeletons and sectoids from the ERT call proc
+      to when the outfit is applied.
+  chizzy376:
+  - bugfix: fixed big canterbury left button opening right shutters instead
+  ivanmixo:
+  - balance: Orphan hivemind collapse can no longer trigger before shutters are open
+  novaepee:
+  - bugfix: Fix long hair getting its top cut off by helmet
