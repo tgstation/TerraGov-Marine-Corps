@@ -13922,7 +13922,7 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/rack,
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP,
-/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner,
 /obj/item/storage/box/m94,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/plating,
