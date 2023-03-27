@@ -176,9 +176,7 @@
 	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
-		if(XENO_TIER_TWO)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+			new_xeno.upgrade_stored = max(new_xeno.upgrade_stored, TIER_ONE_MATURE_THRESHOLD)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))
