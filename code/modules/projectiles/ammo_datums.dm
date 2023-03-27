@@ -1294,6 +1294,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
+/datum/ammo/bullet/auto_cannon/flak/on_hit_turf(turf/T, obj/projectile/P)
+	. = ..()
+	if(iswallturf(T))
+		P.damage *= 2.5 // This will ANNHILATE walls.
+
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"

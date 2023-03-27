@@ -146,7 +146,7 @@
 
 /obj/item/ammo_magazine/auto_cannon/flak
 	name = "autocannon smart-detonating magazine(20mm)"
-	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will pierce cover, but detonate on hitting a target"
+	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will pierce through cover and people, and will shred walls better than most ammo."
 	icon_state = "ac_mag_flak"
 	item_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
