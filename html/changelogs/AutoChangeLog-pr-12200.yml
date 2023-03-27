@@ -1,7 +1,0 @@
-author: "carlarctg"
-delete-after: True
-changes:
-  - refactor: "Refactored and reworked EORD loadout selection to pick from all the subtypes of normal ERT factions. Added spec ops to this list. Removed UPP because they suck and have boring loadouts. Added ICC."
-  - rscadd: "Added the HvH loadouts for SOM and terragov soldiers that are handled by randomly picking from the relevant subtype outfits."
-  - rscadd: "Added a 7% chance to spawn in as a 'rare faction', skeletons, Imperial Guardsmen, and sectoids, also a tiny 2% additional roll will net you deathsquad."
-  - code_imp: "Moved species changing of skeletons and sectoids from the ERT call proc to when the outfit is applied."
