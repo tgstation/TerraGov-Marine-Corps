@@ -345,6 +345,48 @@
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
+/obj/item/weapon/twohanded/glaive/harvester
+	name = "\improper HP-S Harvester claymore"
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system. This specific version is enlarged to fit the design of an old world claymore. Simply squeeze the hilt to activate."
+	icon_state = "vali_claymore"
+	item_state = "vali_claymore"
+	force = 28
+	force_wielded = 90
+	throwforce = 65
+	throw_speed = 3
+	edge = 1
+	attack_speed = 20
+	sharp = IS_SHARP_ITEM_BIG
+	w_class = WEIGHT_CLASS_BULKY
+	flags_item = DRAINS_XENO | TWOHANDED
+
+	/// Lists the information in the codex
+	var/codex_info = {"<b>Reagent info:</b><BR>
+	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
+	Kelotane - produce a cone of flames<BR>
+	Tramadol - slow your target for 2 seconds<BR>
+	<BR>
+	<b>Tips:</b><BR>
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
+	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+
+/obj/item/weapon/twohanded/glaive/harvester/Initialize()
+	. = ..()
+	AddComponent(/datum/component/harvester, 60)
+
+/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()
+	. = ..()
+	. += jointext(codex_info, "<br>")
+
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."

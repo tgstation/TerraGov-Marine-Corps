@@ -220,7 +220,7 @@
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
-/obj/item/weapon/combat_knife/vali_knife
+/obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "vali_knife_icon"
@@ -239,19 +239,19 @@
 	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
 	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/combat_knife/vali_knife/Initialize()
+/obj/item/weapon/combat_knife/harvester/Initialize()
 	. = ..()
 	AddComponent(/datum/component/harvester, 5)
 
-/obj/item/weapon/combat_knife/vali_knife/equipped(mob/user, slot)
+/obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/dropped(mob/user)
+/obj/item/weapon/combat_knife/harvester/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/get_mechanics_info()
+/obj/item/weapon/combat_knife/harvester/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
 
