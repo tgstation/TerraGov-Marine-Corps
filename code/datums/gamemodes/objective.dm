@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/New()
 	..()
-	if(!GLOB.possible_items.len)//Only need to fill the list when it's needed.
+	if(!length(GLOB.possible_items))//Only need to fill the list when it's needed.
 		for(var/I in subtypesof(/datum/objective_item/steal))
 			new I
 

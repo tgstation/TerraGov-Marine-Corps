@@ -69,8 +69,8 @@
 		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel(T)
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
-	if(GLOB.zones_to_control.len)
-		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
+	if(length(GLOB.zones_to_control))
+		points_per_zone_per_second = 1 / length(GLOB.zones_to_control)
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")

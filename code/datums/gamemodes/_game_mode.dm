@@ -100,8 +100,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
-	while(GLOB.landmarks_round_start.len)
-		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
+	while(length(GLOB.landmarks_round_start))
+		L = GLOB.landmarks_round_start[length(GLOB.landmarks_round_start)]
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
@@ -272,8 +272,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
 		var/turf/T
-		while(GLOB.xeno_spawn_protection_locations.len)
-			T = GLOB.xeno_spawn_protection_locations[GLOB.xeno_spawn_protection_locations.len]
+		while(length(GLOB.xeno_spawn_protection_locations))
+			T = GLOB.xeno_spawn_protection_locations[length(GLOB.xeno_spawn_protection_locations)]
 			GLOB.xeno_spawn_protection_locations.len--
 			new /obj/effect/forcefield/fog(T)
 			stoplag()

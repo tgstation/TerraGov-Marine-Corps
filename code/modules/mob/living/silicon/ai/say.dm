@@ -65,7 +65,7 @@
 	for(var/word in GLOB.vox_sounds) //populate our list of available words for the user to see
 		index++
 		dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
-		if(index != GLOB.vox_sounds.len)
+		if(index != length(GLOB.vox_sounds))
 			dat += " / "
 
 	var/datum/browser/popup = new(src, "announce_help", "Announcement Help", 500, 400)
@@ -120,7 +120,7 @@
 		play_vox_word(word, src.z, null)
 
 ///play vox words for mobs on our zlevel
-/proc/play_vox_word(word, z_level, mob/only_listener) 
+/proc/play_vox_word(word, z_level, mob/only_listener)
 
 	word = lowertext(word)
 
