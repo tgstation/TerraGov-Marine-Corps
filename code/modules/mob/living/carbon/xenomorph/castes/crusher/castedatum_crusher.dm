@@ -170,7 +170,7 @@
 	max_health = 450
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
