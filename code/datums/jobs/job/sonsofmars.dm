@@ -964,7 +964,7 @@ You are also in charge of communicating with command and letting them know about
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	belt = /obj/item/belt_harness
 	back = /obj/item/cell/lasgun/volkite/powerpack
-	l_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/storage/pouch/general/large/som
 
 /datum/outfit/job/som/ert/leader/caliver_pack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
