@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/powernet/proc/is_empty()
-	return !length(cables) && !nodes.len
+	return !length(cables) && !length(nodes)
 
 //remove a cable from the current powernet
 //if the powernet is then empty, delete it

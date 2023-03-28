@@ -42,7 +42,7 @@ GLOBAL_VAR(antag_prototypes)
 
 /datum/antagonist/proc/antag_panel_objectives()
 	var/result = "<i><b>Objectives</b></i>:<br>"
-	if (objectives.len == 0)
+	if (length(objectives) == 0)
 		result += "EMPTY<br>"
 	else
 		var/obj_count = 1

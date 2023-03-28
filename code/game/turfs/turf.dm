@@ -350,7 +350,7 @@
 				CRASH("The bottomost baseturf of a turf is a skipover [src]([type])")
 			turf_type = new_baseturfs[max(1, length(new_baseturfs) - amount + 1)]
 		new_baseturfs.len -= min(amount, length(new_baseturfs) - 1) // No removing the very bottom
-		if(new_baseturfs.len == 1)
+		if(length(new_baseturfs) == 1)
 			new_baseturfs = new_baseturfs[1]
 		return ChangeTurf(turf_type, new_baseturfs, flags)
 

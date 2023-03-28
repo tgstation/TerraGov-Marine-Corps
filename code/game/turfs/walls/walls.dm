@@ -168,7 +168,7 @@
 		return
 
 	var/overlay = round((max_integrity - wall_integrity) / max_integrity * length(damage_overlays)) + 1
-	if(overlay > length(damage_overlays)) overlay = damage_overlays.len
+	if(overlay > length(damage_overlays)) overlay = length(damage_overlays)
 
 	if(!damage_overlay || overlay != damage_overlay)
 		overlays -= damage_overlays[damage_overlay]
@@ -203,7 +203,7 @@
 #undef cur_dir
 
 /turf/closed/wall/proc/generate_overlays()
-	var/alpha_inc = 256 / damage_overlays.len
+	var/alpha_inc = 256 / length(damage_overlays)
 
 	for(var/i = 1; i <= length(damage_overlays); i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")

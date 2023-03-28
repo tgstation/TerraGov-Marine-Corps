@@ -78,7 +78,7 @@
 		dat += "This plant does not possess genetics that are alterable.<br>"
 
 	if(grown_seed.products && length(grown_seed.products))
-		dat += "The mature plant will produce [grown_seed.products.len == 1 ? "fruit" : "[length(grown_seed.products)] varieties of fruit"].<br>"
+		dat += "The mature plant will produce [length(grown_seed.products) == 1 ? "fruit" : "[length(grown_seed.products)] varieties of fruit"].<br>"
 
 	if(grown_seed.requires_nutrients)
 		if(grown_seed.nutrient_consumption < 0.05)

@@ -2278,7 +2278,7 @@
 			tagimg.pixel_y = length(boxes) * 3
 			overlays += tagimg
 
-	icon_state = "pizzabox[boxes.len+1]"
+	icon_state = "pizzabox[length(boxes) + 1]"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/pizzabox/attack_hand(mob/living/user)

@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 				objectives_complete = FALSE
 				break
 
-	if(objectives.len == 0 || objectives_complete)
+	if(length(objectives) == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"

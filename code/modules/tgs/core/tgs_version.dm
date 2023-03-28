@@ -8,7 +8,7 @@
 		minor = text2num(version_bits[2])
 		if(length(version_bits) > 2)
 			patch = text2num(version_bits[3])
-			if(version_bits.len == 4)
+			if(length(version_bits) == 4)
 				deprecated_patch = text2num(version_bits[4])
 
 /datum/tgs_version/proc/Valid(allow_wildcards = FALSE)

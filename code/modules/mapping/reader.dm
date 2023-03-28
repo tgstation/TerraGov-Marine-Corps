@@ -288,8 +288,8 @@
 		// We can skip calling this proc every time we see XXX
 		if(no_changeturf \
 			&& !(.[SPACE_KEY]) \
-			&& members.len == 2 \
-			&& members_attributes.len == 2 \
+			&& length(members) == 2 \
+			&& length(members_attributes) == 2 \
 			&& length(members_attributes[1]) == 0 \
 			&& length(members_attributes[2]) == 0 \
 			&& (world.area in members) \
@@ -312,7 +312,7 @@
 
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
-	index = members.len
+	index = length(members)
 	if(members[index] != /area/template_noop)
 		var/atype = members[index]
 		GLOB._preloader.setup(members_attributes[index], atype)//preloader for assigning  set variables on atom creation

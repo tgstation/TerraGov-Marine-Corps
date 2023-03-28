@@ -151,7 +151,7 @@
 					buckled_mob.pixel_x = diroffsets[1]
 					if(length(diroffsets) >= 2)
 						buckled_mob.pixel_y = diroffsets[2]
-					if(diroffsets.len == 3)
+					if(length(diroffsets) == 3)
 						buckled_mob.layer = diroffsets[3]
 					break dir_loop
 

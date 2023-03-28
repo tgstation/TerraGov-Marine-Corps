@@ -39,7 +39,7 @@
 	cant_hold = list(/obj/item/disk/nuclear)
 
 /obj/item/storage/bag/trash/update_icon_state()
-	if(contents.len == 0)
+	if(length(contents) == 0)
 		icon_state = "trashbag0"
 	else if(length(contents) < 12)
 		icon_state = "trashbag1"
@@ -175,7 +175,7 @@
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
 /obj/item/storage/bag/sheetsnatcher/orient2hud()
-	var/adjusted_contents = contents.len
+	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents

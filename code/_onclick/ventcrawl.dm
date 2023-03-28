@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(!pipes || !length(pipes))
 		balloon_alert(src, "No pipes in range!")
 		return
-	if(pipes.len == 1)
+	if(length(pipes) == 1)
 		pipe = pipes[1]
 	else
 		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe",  pipes)

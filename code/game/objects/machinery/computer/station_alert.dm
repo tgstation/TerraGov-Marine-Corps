@@ -62,7 +62,7 @@
 	var/list/CL = null
 	if (O && istype(O, /list))
 		CL = O
-		if (CL.len == 1)
+		if (length(CL) == 1)
 			C = CL[1]
 	else if (O && istype(O, /obj/machinery/camera))
 		C = O
@@ -81,7 +81,7 @@
 			var/list/srcs  = alarm[3]
 			if (origin in srcs)
 				srcs -= origin
-			if (srcs.len == 0)
+			if (length(srcs) == 0)
 				cleared = 1
 				L -= I
 	return !cleared

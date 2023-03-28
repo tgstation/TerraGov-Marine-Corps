@@ -100,9 +100,9 @@
 	for (var/datum/recipe/recipe in avaiable_recipes)
 		if (recipe.check_reagents(obj.reagents)==exact && recipe.check_items(obj)==exact)
 			possible_recipes+=recipe
-	if (possible_recipes.len==0)
+	if (length(possible_recipes) == 0)
 		return null
-	else if (possible_recipes.len==1)
+	else if (length(possible_recipes) == 1)
 		return possible_recipes[1]
 	else //okay, let's select the most complicated recipe
 		var/r_count = 0

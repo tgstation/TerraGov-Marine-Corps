@@ -263,7 +263,7 @@
 	if(!length(cards))
 		return
 
-	if(cards.len == 1)
+	if(length(cards) == 1)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "card_back" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))

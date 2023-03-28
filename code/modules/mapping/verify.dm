@@ -33,7 +33,7 @@
 		for(var/key in bad_keys)
 			var/list/messages = bad_keys[key]
 			html += "<li><tt>[key]</tt>"
-			if(messages.len == 1)
+			if(length(messages) == 1)
 				html += ": [bad_keys[key][1]]"
 			else
 				html += "<ul><li>[messages.Join("</li><li>")]</li></ul>"

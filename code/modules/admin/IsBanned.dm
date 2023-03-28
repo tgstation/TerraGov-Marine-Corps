@@ -158,9 +158,9 @@
 
 
 			if (\
-				newmatches.len+pendingmatches.len > STICKYBAN_MAX_MATCHES || \
-				newmatches_connected.len > STICKYBAN_MAX_EXISTING_USER_MATCHES || \
-				newmatches_admin.len > STICKYBAN_MAX_ADMIN_MATCHES \
+				length(newmatches) + length(pendingmatches) > STICKYBAN_MAX_MATCHES || \
+				length(newmatches_connected) > STICKYBAN_MAX_EXISTING_USER_MATCHES || \
+				length(newmatches_admin) > STICKYBAN_MAX_ADMIN_MATCHES \
 			)
 
 				var/action

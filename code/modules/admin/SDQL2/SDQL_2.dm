@@ -395,7 +395,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 /proc/recursive_list_print(list/output = list(), list/input, datum/callback/datum_handler, datum/callback/atom_handler)
 	output += "\[ "
 	for(var/i in 1 to length(input))
-		var/final = i == input.len
+		var/final = i == length(input)
 		var/key = input[i]
 
 		//print the key
@@ -618,7 +618,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					SDQL2_HALT_CHECK
 				objs = out
 	if(islist(obj_count_eligible))
-		obj_count_eligible = objs.len
+		obj_count_eligible = length(objs)
 	else
 		obj_count_eligible = obj_count_all
 	. = objs
@@ -704,7 +704,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					out += d
 				SDQL2_TICK_CHECK
 				SDQL2_HALT_CHECK
-	obj_count_all = out.len
+	obj_count_all = length(out)
 	return out
 
 
@@ -981,7 +981,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 	else
 		val = world.SDQL_var(object, expression, i, object, superuser, src)
-		i = expression.len
+		i = length(expression)
 
 	return list("val" = val, "i" = i)
 
@@ -1051,7 +1051,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 /world/proc/SDQL_var(object, list/expression, start = 1, source, superuser, datum/SDQL2_query/query)
 	var/v
 	var/static/list/exclude = list("usr", "src", "marked", "global")
-	var/long = start < expression.len
+	var/long = start < length(expression)
 	var/datum/D
 	if(is_proper_datum(object))
 		D = object
@@ -1069,12 +1069,12 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			to_chat(usr, span_danger("Invalid pointer: [expression[start + 1]]"))
 			return null
 		start++
-		long = start < expression.len
+		long = start < length(expression)
 
 	else if(expression[start] == "(" && long)
 		v = query.SDQL_expression(source, expression[start + 1])
 		start++
-		long = start < expression.len
+		long = start < length(expression)
 
 	else if(D != null && (!long || expression[start + 1] == ".") && (expression[start] in D.vars))
 		if(D.can_vv_get(expression[start]) || superuser)
