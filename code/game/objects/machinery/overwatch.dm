@@ -399,8 +399,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			selected_target = locate(href_list["selected_target"])
 			if(!isAI(usr))
 				var/atom/cam_target = locate(href_list["cam_target"])
+				if(!cam_target)
+					return
+				var/turf/cam_target_turf = get_turf(cam_target)
+				if(!cam_target_turf)
+					return
 				open_prompt(usr)
-				eyeobj.setLoc(get_turf(cam_target))
+				eyeobj.setLoc(cam_target_turf)
 				if(isliving(cam_target))
 					var/mob/living/L = cam_target
 					track(L)
@@ -530,6 +535,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("The target's signal is too weak.")]")
 		return
 	var/turf/T = get_turf(selected_target)
+	if(!isturf(T)) //Huh?
+		to_chat(usr, "[icon2html(src, usr)] [span_warning("Invalid target.")]")
+		return
 	if(isspaceturf(T))
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("The target's landing zone appears to be out of bounds.")]")
 		return
