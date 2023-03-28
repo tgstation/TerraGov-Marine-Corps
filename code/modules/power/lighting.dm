@@ -584,7 +584,6 @@
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
 	base_state = "lbulb"
-	item_state = "contvapour"
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire
