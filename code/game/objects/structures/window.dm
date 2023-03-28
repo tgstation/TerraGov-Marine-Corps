@@ -419,7 +419,7 @@
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE)
 	if(window_frame)
-		var/obj/structure/window_frame/WF = new window_frame(loc)
+		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)
 	return ..()
