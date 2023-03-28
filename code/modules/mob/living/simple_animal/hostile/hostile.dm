@@ -519,7 +519,7 @@
 	if(!T)
 		return
 
-	if(!length(SSmobs.clients_by_zlevel[T.z])) // It's fine to use length() here but doesn't compile on 511
+	if(!length(SSmobs.clients_by_zlevel[T.z]))
 		toggle_ai(AI_Z_OFF)
 		return
 
