@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(direction)
 			continue
 		var/mob/living/tracker
 		while(currentrun[squad_id].len)
-			tracker = currentrun[squad_id][currentrun[squad_id].len]
+			tracker = currentrun[squad_id][currentrun[length(squad_id)]]
 			currentrun[squad_id].len--
 			if(QDELETED(tracker))
 				stop_tracking(squad_id, tracker)
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/proc/untrack_all_in_squad(squad_id)
 	var/mob/living/tracker
 	while(currentrun[squad_id].len)
-		tracker = currentrun[squad_id][currentrun[squad_id].len]
+		tracker = currentrun[squad_id][currentrun[length(squad_id)]]
 		currentrun[squad_id].len--
 		if(QDELETED(tracker))
 			stop_tracking(squad_id, tracker)
