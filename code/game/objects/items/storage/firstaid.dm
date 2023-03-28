@@ -10,6 +10,10 @@
 /obj/item/storage/firstaid
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medkits_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medkits_right.dmi',
+	)
 	icon_state = "firstaid"
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
