@@ -255,7 +255,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "bF" = (
-/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
@@ -895,6 +895,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
+"fa" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "fb" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -941,9 +949,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "fm" = (
-/obj/effect/landmark/sensor_tower_patrol,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
+/area/lv624/ground/caves/east1)
 "fn" = (
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
@@ -1069,10 +1080,6 @@
 /obj/structure/flora/ausbushes/fernybush{
 	pixel_x = -5;
 	pixel_y = 1
-	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
@@ -1323,16 +1330,16 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/shuttle/dropship/floor,
 /area/lv624/ground/jungle9)
 "hk" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
+	id = "SOM_22";
+	name = "SOM exit point 22"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/east1)
 "hm" = (
 /obj/structure/closet/crate/explosives,
 /turf/open/floor/rcircuit/off,
@@ -1402,6 +1409,7 @@
 /area/lv624/lazarus/spaceport2)
 "hA" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "hC" = (
@@ -1463,6 +1471,7 @@
 	pixel_x = -4;
 	pixel_y = -10
 	},
+/obj/structure/sign/hydro,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle5)
 "hQ" = (
@@ -1516,6 +1525,7 @@
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -9
 	},
+/obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
 "ie" = (
@@ -1551,9 +1561,12 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
 "io" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/ground/grass/weedable,
-/area/lv624/ground/jungle5)
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "ip" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/red/redtaupe{
@@ -1599,6 +1612,7 @@
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -10
 	},
+/obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
 "iC" = (
@@ -1835,6 +1849,12 @@
 	dir = 8
 	},
 /area/lv624/lazarus/medbay)
+"jF" = (
+/obj/structure/sign/hydro{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "jG" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/tile/barber,
@@ -2174,6 +2194,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"lB" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 "lD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -2371,6 +2395,7 @@
 "mx" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/podhatch/floor,
 /area/lv624/ground/jungle9)
 "mB" = (
@@ -2505,7 +2530,6 @@
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
-/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
@@ -2813,6 +2837,10 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle5)
+"oT" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "oU" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2902,6 +2930,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "pu" = (
@@ -3197,6 +3226,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle5)
+"qW" = (
+/obj/structure/closet/bodybag,
+/obj/item/tool/surgery/scalpel,
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/lv624/lazarus/medbay)
 "qX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/woodentable,
@@ -3496,6 +3531,12 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/fitness)
+"sA" = (
+/obj/structure/sign/hydro{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "sB" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -12
@@ -3557,11 +3598,11 @@
 /area/lv624/lazarus/hydroponics)
 "sL" = (
 /obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
+/turf/open/floor/plating/mainship,
+/area/lv624/lazarus/crashed_ship)
 "sM" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/dark,
@@ -3692,6 +3733,10 @@
 	dir = 8
 	},
 /area/lv624/lazarus/security)
+"tr" = (
+/obj/structure/fence,
+/turf/open/ground/grass/weedable,
+/area/lv624/ground/jungle9)
 "ts" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = 10;
@@ -3832,6 +3877,10 @@
 "ud" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/spaceport)
+"ue" = (
+/obj/structure/sign/hydro,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lv624/ground/jungle9)
 "uf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -4069,6 +4118,12 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
+"vo" = (
+/obj/structure/flora/ausbushes/genericbush{
+	pixel_x = -9
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lv624/ground/jungle7)
 "vp" = (
 /turf/open/floor/wood/broken/six,
 /area/lv624/lazarus/spaceport)
@@ -4099,13 +4154,20 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research)
+"vC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "vD" = (
 /obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
+/turf/open/floor/plating/mainship,
+/area/lv624/lazarus/crashed_ship)
 "vE" = (
 /obj/machinery/light{
 	dir = 1
@@ -4117,6 +4179,7 @@
 	pixel_y = 6
 	},
 /obj/item/storage/belt/utility/full,
+/obj/item/cell/apc,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "vF" = (
@@ -4359,13 +4422,12 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "wZ" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/research)
+/turf/open/floor/plating/dmg3,
+/area/lv624/lazarus/crashed_ship)
 "xc" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 18;
@@ -4523,6 +4585,10 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "xT" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
@@ -4852,11 +4918,11 @@
 /area/lv624/ground/jungle7)
 "zu" = (
 /obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
+	id = "SOM_23";
+	name = "SOM exit point 23"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle10)
+/area/lv624/ground/caves/east1)
 "zv" = (
 /obj/machinery/light{
 	dir = 1
@@ -4916,10 +4982,9 @@
 	},
 /area/lv624/lazarus/research)
 "zF" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/ai_node,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
+/area/lv624/ground/caves/central1)
 "zG" = (
 /obj/effect/turf_decal/siding{
 	dir = 9
@@ -4950,6 +5015,7 @@
 	pixel_x = 6;
 	pixel_y = 7
 	},
+/obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
 "zO" = (
@@ -4963,6 +5029,11 @@
 /obj/structure/flora/pottedplant/twentythree,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
+"zR" = (
+/obj/item/stack/rods,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "zV" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -5275,6 +5346,7 @@
 /area/lv624/lazarus/research)
 "Bx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/podhatch,
 /area/lv624/ground/jungle9)
 "By" = (
@@ -5465,11 +5537,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
 "Co" = (
-/obj/structure/flora/ausbushes/fernybush{
-	pixel_x = -8;
-	pixel_y = -1
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/turf/closed/wall,
 /area/lv624/ground/jungle7)
 "Cp" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
@@ -5679,8 +5747,8 @@
 	dir = 1
 	},
 /obj/item/frame/rack,
-/obj/item/weapon/stunprod,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/baton,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research)
 "Ds" = (
@@ -5712,6 +5780,7 @@
 /obj/item/shard/shrapnel{
 	name = "metal fragments"
 	},
+/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle7)
 "DB" = (
@@ -5940,6 +6009,14 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
+"EK" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/lv624/ground/caves/west1)
 "EL" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -5981,15 +6058,16 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/stack/rods,
+/obj/structure/cable,
 /turf/open/floor/podhatch/floor,
 /area/lv624/ground/jungle9)
 "Fc" = (
 /obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
 	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
-/area/lv624/ground/jungle10)
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "Fe" = (
 /obj/structure/table,
 /obj/item/trash/barcardine,
@@ -6047,6 +6125,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"Fn" = (
+/obj/structure/closet/bodybag,
+/obj/item/tool/surgery/scalpel,
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/tile/green,
+/area/lv624/lazarus/medbay)
 "Fo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -6154,12 +6238,10 @@
 	},
 /area/lv624/ground/river3)
 "FT" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
-/turf/open/floor/wood,
-/area/lv624/lazarus/bar)
+/obj/structure/table,
+/obj/item/stack/sheet/metal/medium_stack,
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "FU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/plating,
@@ -6201,13 +6283,10 @@
 /turf/open/floor/tile/dark/red2,
 /area/lv624/lazarus/research)
 "Gf" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "Gh" = (
 /obj/structure/table,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -6283,6 +6362,10 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/spaceport)
+"GC" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/ground/grass/weedable,
+/area/lv624/ground/jungle5)
 "GE" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -6367,6 +6450,7 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
+/obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
 "GU" = (
@@ -6692,6 +6776,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"IC" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lv624/ground/jungle7)
 "ID" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_y = 10
@@ -6745,8 +6833,10 @@
 /area/lv624/lazarus/canteen)
 "IQ" = (
 /obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/lv624/lazarus/research)
 "IR" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = -12;
@@ -6808,6 +6898,7 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
 	},
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/cult,
 /area/lv624/ground/caves/west1)
 "Jd" = (
@@ -7245,6 +7336,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
+"Ll" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/sign/hydro,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "Ln" = (
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -7866,7 +7963,9 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle9)
 "NV" = (
-/obj/machinery/computer/intel_computer,
+/obj/machinery/computer3{
+	name = "Family Guy Reruns TV"
+	},
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -8417,6 +8516,10 @@
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
+"QJ" = (
+/obj/structure/sign/hydro,
+/turf/open/ground/grass/weedable,
+/area/lv624/ground/jungle5)
 "QK" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -8481,6 +8584,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research)
+"Rb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "Rc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
@@ -8601,6 +8710,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"RE" = (
+/obj/effect/ai_node,
+/obj/structure/sign/hydro,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "RF" = (
 /obj/machinery/sleeper,
 /turf/open/floor/tile/blue/taupeblue{
@@ -8759,13 +8873,12 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
 "Sr" = (
-/obj/structure/cable,
 /obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
+	id = "SOM_12";
+	name = "SOM exit point 12"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
+/turf/open/floor,
+/area/lv624/lazarus/spaceport2)
 "Ss" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -8819,10 +8932,13 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/research)
 "SE" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/medium_stack,
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
+/area/lv624/lazarus/spaceport2)
 "SF" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/dmg3,
@@ -8896,6 +9012,10 @@
 /obj/effect/spawner/random/medbottle,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
+"Ta" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "Tb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -9057,13 +9177,14 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "TS" = (
-/obj/effect/landmark/corpsespawner/colonist/regular,
+/obj/structure/jungle/vines,
+/obj/structure/cable,
 /obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
+	id = "SOM_13";
+	name = "SOM exit point 13"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
+/turf/open/ground/grass/weedable,
+/area/lv624/lazarus/spaceport2)
 "TT" = (
 /obj/machinery/light,
 /obj/structure/flora/ausbushes/grassybush{
@@ -9283,13 +9404,6 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
-"UT" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle10)
 "UU" = (
 /obj/structure/cargo_container,
 /turf/open/floor/plating/ground/dirt,
@@ -9480,6 +9594,10 @@
 	},
 /turf/open/floor/tile,
 /area/lv624/lazarus/medbay)
+"VL" = (
+/obj/structure/sign/hydro,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "VM" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = 7;
@@ -9567,7 +9685,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/sign/security{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
@@ -9596,10 +9714,6 @@
 /area/lv624/lazarus/research)
 "Wl" = (
 /obj/structure/jungle/vines,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "Wn" = (
@@ -10681,8 +10795,8 @@ rg
 vt
 vt
 LE
-QB
-dw
+lD
+vt
 ah
 ah
 ah
@@ -10713,13 +10827,13 @@ wM
 wM
 wM
 wM
-UT
 wM
-Fc
+wM
+JY
 JY
 wM
 wM
-zu
+wM
 wM
 wM
 wM
@@ -10786,8 +10900,8 @@ vt
 vX
 LE
 vX
-dw
-dw
+vt
+vt
 vt
 vt
 BN
@@ -10850,7 +10964,7 @@ fn
 Yn
 fn
 fn
-fn
+Sr
 fn
 xg
 Lx
@@ -10871,7 +10985,7 @@ FC
 FC
 FC
 FC
-vt
+Fc
 vt
 vt
 lD
@@ -10885,13 +10999,13 @@ vt
 vt
 vt
 vt
-vt
+dw
 vt
 vt
 LE
 vt
 vX
-Lt
+vt
 vt
 vt
 vt
@@ -10957,7 +11071,7 @@ Yn
 Yn
 Yn
 Yn
-SQ
+SE
 TA
 TA
 TA
@@ -10989,13 +11103,13 @@ vX
 vt
 vt
 vt
-vt
+Lt
 vt
 vt
 LE
 vt
 lD
-zF
+vX
 vt
 vt
 eD
@@ -11093,13 +11207,13 @@ FC
 FC
 vt
 vt
-vt
+Lt
 vt
 vt
 LE
 vt
 vt
-Lt
+vt
 vt
 Be
 vt
@@ -11181,7 +11295,7 @@ bT
 Oh
 bX
 GW
-mU
+vD
 bT
 Br
 vt
@@ -11197,13 +11311,13 @@ wh
 wh
 wh
 wh
+dw
+vt
+vt
+LE
 vt
 vt
 vt
-LE
-LE
-LE
-LE
 vt
 vt
 vt
@@ -11304,11 +11418,11 @@ wh
 wh
 wh
 wh
-vt
-vt
-vt
 LE
-LE
+vt
+vt
+vt
+vt
 ah
 ah
 Ew
@@ -11408,12 +11522,12 @@ wh
 wh
 wh
 wh
-wh
-wh
-wh
-wh
-wh
-wh
+ah
+ah
+ah
+ah
+ah
+ah
 wh
 FC
 FC
@@ -11481,7 +11595,7 @@ Ux
 Ux
 YP
 gz
-NX
+TS
 Uw
 wh
 "}
@@ -11908,7 +12022,7 @@ bT
 xJ
 tK
 tK
-mU
+sL
 Oh
 vt
 lD
@@ -12121,7 +12235,7 @@ mU
 Oh
 vt
 vt
-fm
+vt
 vt
 vt
 FC
@@ -12245,7 +12359,7 @@ sR
 XM
 zg
 zg
-zg
+EK
 sR
 lD
 vt
@@ -12429,7 +12543,7 @@ aD
 jM
 mU
 mU
-tK
+wZ
 bT
 Oh
 vX
@@ -13925,7 +14039,7 @@ Zj
 Kd
 Zj
 mu
-ye
+qW
 gx
 ye
 Tx
@@ -14029,7 +14143,7 @@ Zj
 nZ
 Zj
 mu
-gx
+Fn
 ye
 gx
 ye
@@ -14317,7 +14431,7 @@ Jd
 zj
 zj
 zj
-SE
+ox
 ox
 ox
 zj
@@ -14336,7 +14450,7 @@ Rw
 Rw
 Yp
 Rw
-Rw
+oT
 EH
 Zp
 Zp
@@ -14422,7 +14536,7 @@ OR
 WH
 pO
 pO
-pO
+Gf
 Nf
 xQ
 zj
@@ -14517,7 +14631,7 @@ ua
 ua
 kd
 ua
-ua
+zF
 XJ
 iJ
 ox
@@ -14624,7 +14738,7 @@ ua
 ua
 XJ
 oY
-ox
+FT
 vO
 nn
 nn
@@ -14647,7 +14761,7 @@ Rw
 Rw
 fl
 Iy
-IQ
+Rw
 Rw
 EH
 Zp
@@ -14713,7 +14827,7 @@ wh
 wh
 ah
 bN
-vD
+ua
 qI
 FC
 ah
@@ -14740,10 +14854,10 @@ Fo
 zj
 OC
 OM
-OM
+Co
 iA
 GT
-OM
+IC
 Co
 OM
 OM
@@ -14848,8 +14962,8 @@ Rw
 Rw
 Rw
 Rw
-OM
-OM
+IC
+IC
 vW
 OM
 OM
@@ -14883,8 +14997,8 @@ Fq
 WB
 oq
 HV
-Zp
-Zp
+tr
+tr
 Om
 Om
 Om
@@ -14953,7 +15067,7 @@ Ee
 zZ
 Ee
 Et
-OM
+IC
 Ww
 se
 se
@@ -15017,7 +15131,7 @@ tz
 jd
 Jh
 qX
-FT
+Pg
 zx
 wh
 "}
@@ -15026,8 +15140,8 @@ wh
 ah
 ua
 ua
-ua
-TS
+bE
+nR
 ah
 wh
 wh
@@ -15052,13 +15166,13 @@ uY
 zj
 Wh
 OM
-OM
-OM
-OM
+IC
+IC
+Co
 AG
 Eu
-OM
-OM
+IC
+IC
 Ww
 zb
 se
@@ -15128,7 +15242,7 @@ wh
 (47,1,1) = {"
 wh
 ah
-hk
+nR
 ua
 qI
 ua
@@ -15162,12 +15276,12 @@ zK
 Rw
 EB
 Yp
-OM
-OM
+Co
+IC
 id
-OM
-OM
-OM
+IC
+Co
+IC
 Ww
 EH
 gU
@@ -15234,7 +15348,7 @@ wh
 ah
 ua
 ua
-bE
+ua
 ua
 ah
 wh
@@ -15260,10 +15374,10 @@ xX
 XJ
 Ww
 Ww
+zb
 Ww
-Ww
-OM
-OM
+IC
+Rw
 EN
 Aq
 Ee
@@ -15338,7 +15452,7 @@ wh
 ah
 ua
 ua
-sL
+ua
 ua
 ah
 wh
@@ -15352,7 +15466,7 @@ ua
 ua
 XJ
 iT
-Sy
+Rb
 Zl
 Sy
 Wc
@@ -15366,16 +15480,16 @@ Ww
 UW
 Ww
 Ww
-Ww
-OM
-OM
+IC
 Rw
 Rw
 Rw
 Rw
 Rw
-Eu
-AG
+Rw
+Rw
+vC
+fa
 Rw
 Ph
 hm
@@ -15443,7 +15557,7 @@ ah
 ua
 ua
 ua
-FC
+Ew
 Ew
 FC
 FC
@@ -15470,16 +15584,16 @@ Ww
 Ww
 Ww
 vW
-Ww
-Ww
-OM
-OM
-OM
-OM
-OM
-OM
+Co
+IC
+IC
+IC
+Co
+IC
+IC
+IC
+Co
 EN
-Ee
 Aq
 BJ
 mf
@@ -15536,7 +15650,7 @@ EH
 EH
 ft
 en
-Sr
+VW
 Om
 Om
 wh
@@ -15545,10 +15659,10 @@ wh
 wh
 ah
 Ew
+ua
+qI
 yD
-bF
-yD
-yD
+ua
 FC
 FC
 ua
@@ -15573,7 +15687,7 @@ zj
 Ww
 zb
 Ww
-Ww
+zb
 OM
 OM
 OM
@@ -15582,7 +15696,7 @@ OM
 OM
 OM
 OM
-OM
+IC
 OM
 ju
 iQ
@@ -15593,7 +15707,7 @@ hv
 JI
 Bo
 Aa
-lh
+zR
 eK
 Zp
 Om
@@ -15648,10 +15762,10 @@ wh
 (52,1,1) = {"
 wh
 wh
-FC
+Ew
 ua
 bW
-ua
+yD
 ua
 ua
 ua
@@ -15684,7 +15798,7 @@ Rw
 Gh
 Gy
 Rw
-OM
+vo
 Ww
 Dz
 OM
@@ -15752,10 +15866,10 @@ wh
 (53,1,1) = {"
 wh
 wh
-FC
+Ew
 ua
 ua
-kd
+bF
 ua
 ua
 kd
@@ -15856,10 +15970,10 @@ wh
 (54,1,1) = {"
 wh
 wh
-FC
-FC
-FC
-FC
+Ew
+Ew
+Ew
+Ew
 ua
 qI
 ua
@@ -15991,7 +16105,7 @@ UH
 Ww
 OM
 BH
-Rw
+oT
 Rw
 Rw
 Rw
@@ -16056,7 +16170,7 @@ VW
 VW
 VW
 lG
-Gf
+VW
 Om
 Om
 wh
@@ -16133,7 +16247,7 @@ JH
 oy
 JH
 JH
-JH
+Ll
 OZ
 rn
 Zp
@@ -16206,7 +16320,7 @@ Rw
 Rw
 Rw
 OM
-Ww
+zb
 IT
 hJ
 EH
@@ -16237,7 +16351,7 @@ ft
 GQ
 ft
 ft
-ft
+VL
 Du
 EH
 Zp
@@ -16341,7 +16455,7 @@ ft
 GQ
 ft
 ft
-Du
+RE
 EH
 EH
 EH
@@ -16413,7 +16527,7 @@ OM
 OM
 OM
 Ww
-Ww
+zb
 Ww
 xc
 Gi
@@ -16445,7 +16559,7 @@ ft
 gY
 ft
 ft
-ft
+VL
 EH
 EH
 EH
@@ -16549,7 +16663,7 @@ ft
 GQ
 ft
 ft
-EH
+ue
 EH
 EH
 ft
@@ -16651,7 +16765,7 @@ ft
 ft
 ft
 GQ
-ft
+sA
 ft
 EH
 Zp
@@ -16862,7 +16976,7 @@ CB
 wK
 ph
 ph
-Ya
+QJ
 eX
 Om
 Om
@@ -17033,7 +17147,7 @@ FC
 FC
 FC
 Uq
-Uq
+Ta
 Uq
 wh
 wh
@@ -17867,7 +17981,7 @@ KO
 yV
 rq
 Uq
-Uq
+Ta
 Uq
 Uq
 wh
@@ -17965,7 +18079,7 @@ XO
 zE
 RO
 Bc
-Bc
+IQ
 Lu
 DN
 Dh
@@ -18107,7 +18221,7 @@ WX
 WX
 WX
 WX
-WX
+jF
 Dv
 Vc
 SH
@@ -18408,7 +18522,7 @@ IV
 yh
 UI
 Ya
-io
+Ya
 Ja
 ms
 UI
@@ -18687,7 +18801,7 @@ aA
 Yz
 pn
 AT
-wZ
+Bf
 lZ
 Hq
 XO
@@ -18914,7 +19028,7 @@ wh
 FC
 ri
 WX
-WX
+lB
 WX
 WX
 Py
@@ -19121,7 +19235,7 @@ Uq
 Uq
 Uq
 WX
-JU
+WX
 WX
 WX
 WX
@@ -19331,7 +19445,7 @@ FC
 FC
 WX
 UI
-Ya
+GC
 UI
 Py
 WX
@@ -19599,7 +19713,7 @@ wh
 "}
 (90,1,1) = {"
 wh
-Uq
+fm
 Uq
 Uq
 Uq
@@ -20015,7 +20129,7 @@ wh
 "}
 (94,1,1) = {"
 wh
-Uq
+hk
 Uq
 Uq
 Uq
@@ -20539,7 +20653,7 @@ wh
 FC
 FC
 FC
-Uq
+io
 Uq
 Uq
 Uq
@@ -20646,7 +20760,7 @@ FC
 FC
 Uq
 Uq
-Uq
+zu
 Uq
 Uq
 Uq
