@@ -100,6 +100,7 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 	)
 
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable
 
 /turf/open/ground/grass
 	name = "grass"
@@ -108,6 +109,9 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+
+/turf/open/ground/grass/weedable
+	name = "soft grass"
 
 /turf/open/ground/grasspatch
 	name = "grass"
