@@ -37,6 +37,14 @@
 /obj/machinery/computer/camera_advanced/proc/CreateEye()
 	eyeobj = new()
 	eyeobj.origin = src
+	RegisterSignal(eyeobj, COMSIG_PARENT_QDELETING, PROC_REF(clear_eye_ref))
+
+/obj/machinery/computer/camera_advanced/proc/clear_eye_ref()
+	SIGNAL_HANDLER
+	UnregisterSignal(eyeobj, COMSIG_PARENT_QDELETING)
+	if(current_user)
+		remove_eye_control(current_user)
+	eyeobj = null
 
 
 /obj/machinery/computer/camera_advanced/proc/give_actions(mob/living/user)
