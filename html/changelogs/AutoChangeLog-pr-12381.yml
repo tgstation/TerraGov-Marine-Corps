@@ -1,8 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "Added real snow to gelida instead of fake snow"
-  - rscadd: "Preweeded the rest of ice colony"
-  - rscdel: "Removed fake snow due to it being ugly and unnecesarry"
-  - balance: "Snow is now weedable and no longer slows down"
-  - qol: "Melting snow with a plasmacutter is also free now since it's cosmetic"
