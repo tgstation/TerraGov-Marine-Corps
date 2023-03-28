@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T, owner)
+	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))

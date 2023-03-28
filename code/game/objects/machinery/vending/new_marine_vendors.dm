@@ -437,7 +437,7 @@
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
 		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
 		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
-		/obj/item/armor_module/module/artemis =  list(CAT_HEL, "Jaeger Artemis module", 0, "orange"),
+		/obj/item/armor_module/module/artemis =  list(CAT_HEL, "Jaeger Freyr module", 0, "orange"),
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
@@ -462,7 +462,7 @@
 		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
-		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Arrowhead Energy Shield System", 0 , "black"),
+		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -759,7 +759,7 @@
 	name = "Full set of TGMC white dress uniform"
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	gear_to_spawn = list(
-		/obj/item/clothing/under/whites,
+		/obj/item/clothing/under/marine/whites,
 		/obj/item/clothing/suit/white_dress_jacket,
 		/obj/item/clothing/head/white_dress,
 		/obj/item/clothing/shoes/white,
@@ -770,7 +770,7 @@
 	name = "Full set of TGMC service uniform"
 	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	gear_to_spawn = list(
-		/obj/item/clothing/under/service,
+		/obj/item/clothing/under/marine/service,
 		/obj/item/clothing/head/garrisoncap,
 		/obj/item/clothing/head/servicecap,
 		/obj/item/clothing/shoes/marine/full,
@@ -832,6 +832,12 @@
 		/obj/item/clothing/suit/modular/jaeger/heavy/eod,
 	)
 
+/obj/effect/vendor_bundle/xenonauten_light
+	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x,
+		/obj/item/clothing/suit/modular/xenonauten/light,
+	)
 
 /obj/effect/vendor_bundle/xenonauten_medium
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."

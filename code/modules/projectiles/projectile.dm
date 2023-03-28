@@ -695,13 +695,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	. = ..()
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(density)
+		return ..()
+
 	var/hit_chance = coverage
 	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
-	if(!density)
-		return prob(hit_chance)
+	return prob(hit_chance)
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -1356,7 +1359,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
 
-	if(!client.prefs.mute_self_combat_messages)
+	if(!client?.prefs.mute_self_combat_messages)
 		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
@@ -1393,7 +1396,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	if(!client.prefs.mute_self_combat_messages)
+	if(!client?.prefs.mute_self_combat_messages)
 		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 // Sundering procs

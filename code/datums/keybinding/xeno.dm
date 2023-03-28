@@ -881,6 +881,12 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/trigger_psychic_shield
+	name = "Trigger Psychic Shield"
+	full_name = "Warlock: Trigger Psychic Shield"
+	description = "Triggers the Psychic Shield ability without selecting it."
+	keybind_signal = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD
+
 /datum/keybinding/xeno/psychic_blast
 	name = "Psychic Blast"
 	full_name = "Warlock: Psychic Blast"

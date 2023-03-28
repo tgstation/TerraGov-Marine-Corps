@@ -47,6 +47,9 @@
 	miner_status = MINER_DESTROYED
 	icon_state = "mining_drill_error"
 
+/obj/machinery/miner/damaged/init_marker()
+	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
+
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
@@ -54,9 +57,16 @@
 
 /obj/machinery/miner/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
+	init_marker()
 	start_processing()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
+
+/**
+ * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
+ * * For a miner starting broken, it should be overridden and immediately return instead, as broken miners will automatically set their minimap marker during their first process()
+ **/
+/obj/machinery/miner/proc/init_marker()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)

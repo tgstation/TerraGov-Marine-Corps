@@ -499,3 +499,140 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/magnetic_harness,
 	)
+
+//-------------------------------------------------------
+// PL-38, ICC Machinepistol
+
+/obj/item/weapon/gun/smg/icc_machinepistol
+	name = "\improper PL-38 machinepistol"
+	desc = "The PL-38 is a machinepistol used by rearline ICCAF personnel, it presents solid performance at longer ranges in a compact package, although suffers due to a slow rate of fire for its class. It uses 10x20mm caseless rounds."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "pl38"
+	item_state = "pl38"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+
+	caliber = CALIBER_10X20_CASELESS //codex
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	max_shells = 32 //codex
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/icc_machinepistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_machinepistol, /obj/item/ammo_magazine/smg/icc_machinepistol/hp)
+	fire_sound = "mp38_fire"
+	unload_sound = 'sound/weapons/guns/interact/mp38_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp38_reload.ogg'
+
+	w_class = WEIGHT_CLASS_NORMAL
+	attachable_allowed = list(
+		/obj/item/attachable/foldable/icc_machinepistol,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/foldable/t19stock,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/motiondetector,
+	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/icc_machinepistol)
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = -4, "stock_y" = 16)
+
+	burst_amount = 1
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.65
+	recoil_unwielded = 0
+	fire_delay = 0.2 SECONDS
+
+	scatter = 2
+	scatter_unwielded = 5
+	aim_slowdown = 0.2
+	wield_delay = 0.35 SECONDS
+
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+
+/obj/item/weapon/gun/smg/icc_machinepistol/medic
+	starting_attachment_types = list(/obj/item/attachable/foldable/icc_machinepistol, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+
+//-------------------------------------------------------
+// L-40, ICC PDW
+
+/obj/item/weapon/gun/smg/icc_pdw
+	name = "\improper L-40 personal defense weapon"
+	desc = "The L-40 is the primer ICCAF submachinegun, generally termed as a 'PDW' due to its armor-piercing high velocity round, while it has adequate ranged performance, it is mostly tuned for at close quarters combat. It uses 4.6mm high velocity caseless rounds."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "l40"
+	item_state = "l40"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+
+	caliber = CALIBER_46X30
+	max_shells = 45
+	flags_equip_slot = ITEM_SLOT_BACK
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/icc_pdw
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/icc_pdw)
+	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/stock/icc_pdw,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+	)
+	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw)
+
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 20, "under_x" = 31, "under_y" = 13, "stock_x" = 9, "stock_y" = 10)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.55
+
+	burst_amount = 1
+	fire_delay = 0.15 SECONDS
+	aim_slowdown = 0.25
+	wield_delay = 0.4 SECONDS
+
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.9
+
+	recoil = 0
+	recoil_unwielded = 0.5
+
+	scatter = 3
+	scatter_unwielded = 8
+	damage_falloff_mult = 1.5
+
+/obj/item/weapon/gun/smg/icc_pdw/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)

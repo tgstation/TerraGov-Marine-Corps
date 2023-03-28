@@ -550,8 +550,6 @@
 /turf/open/ground/coast/is_weedable()
 	return FALSE
 
-/turf/open/floor/plating/ground/snow/is_weedable()
-	return !slayer && ..()
 
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable/is_weedable()
 	return TRUE
@@ -559,6 +557,7 @@
 /turf/open/ground/grass/weedable/is_weedable()
 	return TRUE
 	
+=======
 /**
  * Checks for whether we can build advanced xeno structures here
  * Returns TRUE if present, FALSE otherwise

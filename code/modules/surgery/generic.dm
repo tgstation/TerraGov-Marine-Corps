@@ -267,7 +267,6 @@
 	span_notice("You cauterize the incision on [target]'s [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 0
-	affected.germ_level = 0
 	affected.remove_limb_flags(LIMB_BLEEDING)
 	DISABLE_BITFIELD(affected.limb_wound_status, LIMB_WOUND_CLAMPED) //Once the incision is closed, any clamping we did doesn't matter
 

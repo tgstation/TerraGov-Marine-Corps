@@ -111,9 +111,9 @@
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "helmet"
@@ -122,10 +122,15 @@
 	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	///marine helmet behaviour flags
-	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
-	///reference to helmet storage object
-	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
+	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_STORE_GARB
 	/// items that fit in the helmet: strict type = iconstate to show
 	var/static/list/allowed_helmet_items = list(
 		/obj/item/tool/lighter/random = "helmet_lighter_",
@@ -152,52 +157,26 @@
 		/obj/item/clothing/head/hairflower = "flower_pin",
 	)
 
-/obj/item/storage/internal/marinehelmet
-	storage_slots = 2
-	max_w_class = WEIGHT_CLASS_TINY
-	bypass_w_limit = list(
-		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/snacks,
-	)
-	cant_hold = list(
-		/obj/item/stack,
-	)
-	max_storage_space = 2
-
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
-	pockets = new pockets(src)
-
-
-/obj/item/clothing/head/helmet/marine/attack_hand(mob/living/user)
-	if(pockets.handle_attack_hand(user))
-		return ..()
-
-/obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
-	if(pockets.handle_mousedrop(usr, over_object))
-		..()
-
-/obj/item/clothing/head/helmet/marine/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	return pockets.attackby(I, user, params)
-
-/obj/item/clothing/head/helmet/marine/on_pocket_insertion()
-	update_icon()
-
-/obj/item/clothing/head/helmet/marine/on_pocket_removal()
-	update_icon()
 
 /obj/item/clothing/head/helmet/marine/update_icon()
-	if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+
+	if(length(armor_storage.storage.contents) && (flags_marine_helmet & HELMET_GARB_OVERLAY))
 		if(!helmet_overlays["band"])
-			var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "helmet_band")
+			var/image/I = image('icons/obj/clothing/headwear/marine_hats.dmi', src, "helmet_band")
 			helmet_overlays["band"] = I
 
 		if(!helmet_overlays["item"])
-			var/obj/O = pockets.contents[1]
+			var/obj/O = armor_storage.storage.contents[1]
 			if(O.type in allowed_helmet_items)
-				var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
+				var/image/I = image('icons/obj/clothing/headwear/marine_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
 				helmet_overlays["item"] = I
 
 	else
@@ -222,14 +201,6 @@
 		if(M)
 			M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi',M.icon_state)
 			standing.overlays += M
-
-
-/obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
-	if(flags_marine_helmet & HELMET_DAMAGE_OVERLAY && !(flags_marine_helmet & HELMET_IS_DAMAGED))
-		helmet_overlays["damage"] = image('icons/obj/clothing/cm_hats.dmi',icon_state = "hugger_damage")
-		flags_marine_helmet |= HELMET_IS_DAMAGED
-		update_icon()
-		desc += "\n<b>This helmet seems to be scratched up and damaged, particularly around the face area...</b>"
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
@@ -289,6 +260,11 @@
 =======================================================================*/
 
 /obj/item/clothing/head/helmet/marine/veteran
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	flags_item = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
@@ -315,7 +291,6 @@
 	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 55, ENERGY = 60, BOMB = 70, BIO = 50, FIRE = 60, ACID = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	name = "\improper PMC gunner helmet"
@@ -325,7 +300,6 @@
 	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 80, ENERGY = 65, BOMB = 80, BIO = 50, FIRE = 65, ACID = 65)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"
@@ -335,7 +309,6 @@
 	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 	anti_hug = 50
 	resistance_flags = UNACIDABLE
 
@@ -347,7 +320,12 @@
 /obj/item/clothing/head/helmet/marine/imperial
 	name = "\improper Imperial Guard flak helmet"
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "guardhelm"
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	item_state = "guardhelm"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 85, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
@@ -357,11 +335,6 @@
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
 	soft_armor = list(MELEE = 85, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 85, BIO = 50, FIRE = 80, ACID = 80)
-	pockets = /obj/item/storage/internal/imperialhelmet
-
-/obj/item/storage/internal/imperialhelmet
-	max_w_class = 2
-	max_storage_space = 6
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace helmet"
@@ -372,9 +345,9 @@
 /obj/item/clothing/head/helmet/UPP
 	name = "\improper UM4 helmet"
 	desc = "A skirted helmet designed for use with the UM/UH system."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet1"
@@ -384,11 +357,6 @@
 
 /obj/item/clothing/head/helmet/UPP/heavy
 	name = "\improper UH7 helmet"
-	icon = 'icons/obj/clothing/cm_hats.dmi'
-	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet_heavy"
 	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 60, ENERGY = 65, BOMB = 85, BIO = 5, FIRE = 65, ACID = 65)
 	resistance_flags = UNACIDABLE
@@ -399,9 +367,9 @@
 /obj/item/clothing/head/helmet/specrag
 	name = "specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "spec"
@@ -420,7 +388,7 @@
 	soft_armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
+	flags_marine_helmet = NONE
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
 	name = "\improper Y8 miner helmet"
@@ -442,7 +410,12 @@
 /obj/item/clothing/head/helmet/marine/som
 	name = "\improper S6 combat helmet"
 	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "som_helmet"
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	item_state = "som_helmet"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -478,7 +451,12 @@
 /obj/item/clothing/head/helmet/marine/icc
 	name = "\improper Modelle/20 combat helmet"
 	desc = "A regular ICCAF helmet, used by all branches of its forces. It is made to fit in both a utility and combat role with noticeably high resistance to explosions and bullets. "
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "icc"
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	item_state = "icc"
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 
