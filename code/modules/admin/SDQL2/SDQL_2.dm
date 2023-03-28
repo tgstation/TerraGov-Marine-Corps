@@ -394,7 +394,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 /proc/recursive_list_print(list/output = list(), list/input, datum/callback/datum_handler, datum/callback/atom_handler)
 	output += "\[ "
-	for(var/i in 1 to input.len)
+	for(var/i in 1 to length(input))
 		var/final = i == input.len
 		var/key = input[i]
 
@@ -596,12 +596,12 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 	// 1 and 2 are type and FROM.
 	var/i = 3
-	while (i <= tree.len)
+	while (i <= length(tree))
 		var/key = tree[i++]
 		var/list/expression = tree[i++]
 		switch (key)
 			if ("map")
-				for(var/j = 1 to objs.len)
+				for(var/j = 1 to length(objs))
 					var/x = objs[j]
 					objs[j] = SDQL_expression(x, expression)
 					SDQL2_TICK_CHECK
@@ -820,7 +820,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			if(v == "#null")
 				SDQL_expression(d, set_list[sets])
 				break
-			if(++i == sets.len)
+			if(++i == length(sets))
 				if(superuser)
 					if(temp.vars.Find(v))
 						temp.vars[v] = SDQL_expression(d, set_list[sets])
@@ -852,7 +852,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	var/result = 0
 	var/val
 
-	for(var/i = start, i <= expression.len, i++)
+	for(var/i = start, i <= length(expression), i++)
 		var/op = ""
 
 		if(i > start)
@@ -910,7 +910,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	var/i = start
 	var/val = null
 
-	if(i > expression.len)
+	if(i > length(expression))
 		return list("val" = null, "i" = i)
 
 	if(istype(expression[i], /list))
@@ -996,7 +996,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	for(var/val in query_list)
 		if(val == ";")
 			do_parse = 1
-		else if(pos >= query_list.len)
+		else if(pos >= length(query_list))
 			query_tree += val
 			do_parse = 1
 
@@ -1004,7 +1004,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			parser.query = query_tree
 			var/list/parsed_tree
 			parsed_tree = parser.parse()
-			if(parsed_tree.len > 0)
+			if(length(parsed_tree) > 0)
 				querys.len = querys_pos
 				querys[querys_pos] = parsed_tree
 				querys_pos++
@@ -1196,7 +1196,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		else if(expression[start + 1] == "\[" && islist(v))
 			var/list/L = v
 			var/index = query.SDQL_expression(source, expression[start + 2])
-			if(isnum(index) && (!ISINTEGER(index) || L.len < index))
+			if(isnum(index) && (!ISINTEGER(index) || length(L) < index))
 				to_chat(usr, span_danger("Invalid list index: [index]"))
 				return null
 			return L[index]

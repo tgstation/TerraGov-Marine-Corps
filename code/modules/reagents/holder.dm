@@ -64,17 +64,17 @@
 	var/list/cached_reagents = reagent_list
 	var/total_transfered = 0
 	var/current_list_element= 1
-	var/initial_list_length = cached_reagents.len //stored here because removing can cause some reagents to be deleted, ergo length change.
+	var/initial_list_length = length(cached_reagents) //stored here because removing can cause some reagents to be deleted, ergo length change.
 
-	current_list_element = rand(1, cached_reagents.len)
+	current_list_element = rand(1, length(cached_reagents))
 
 	while(total_transfered != amount)
 		if(total_transfered >= amount)
 			break
-		if(total_volume <= 0 || !cached_reagents.len)
+		if(total_volume <= 0 || !length(cached_reagents))
 			break
 
-		if(current_list_element > cached_reagents.len)
+		if(current_list_element > length(cached_reagents))
 			current_list_element = 1
 
 		var/datum/reagent/R = cached_reagents[current_list_element]
@@ -412,7 +412,7 @@
 					possible_reactions += C
 
 
-		if(possible_reactions.len)
+		if(length(possible_reactions))
 			var/datum/chemical_reaction/selected_reaction = possible_reactions[1]
 			//select the reaction with the most extreme temperature requirements
 			for(var/V in possible_reactions)

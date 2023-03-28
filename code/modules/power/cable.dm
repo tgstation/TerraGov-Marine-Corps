@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 			if(linked_dirs & check_dir)
 				dir_icon_list += "[check_dir]"
 		var/dir_string = dir_icon_list.Join("-")
-		if(dir_icon_list.len > 1)
+		if(length(dir_icon_list) > 1)
 			for(var/obj/O in loc)
 				if(GLOB.wire_node_generating_types[O.type])
 					dir_string = "[dir_string]-node"

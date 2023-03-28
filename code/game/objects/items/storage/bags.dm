@@ -41,9 +41,9 @@
 /obj/item/storage/bag/trash/update_icon_state()
 	if(contents.len == 0)
 		icon_state = "trashbag0"
-	else if(contents.len < 12)
+	else if(length(contents) < 12)
 		icon_state = "trashbag1"
-	else if(contents.len < 21)
+	else if(length(contents) < 21)
 		icon_state = "trashbag2"
 	else
 		icon_state = "trashbag3"

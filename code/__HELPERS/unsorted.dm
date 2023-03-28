@@ -64,7 +64,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/GUID()
 	var/const/GUID_VERSION = "b"
 	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][length(world.contents)][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
 
 	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
 
@@ -970,7 +970,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		return GetAllContents()
 	var/list/processing = list(src)
 	. = list()
-	while(processing.len)
+	while(length(processing))
 		var/atom/A = processing[1]
 		processing.Cut(1,2)
 		if(ignore_typecache[A.type])

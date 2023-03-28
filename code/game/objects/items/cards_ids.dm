@@ -318,7 +318,7 @@
 
 /obj/item/dogtag/examine(mob/user)
 	. = ..()
-	if(ishuman(user) && fallen_names && fallen_names.len)
+	if(ishuman(user) && fallen_names && length(fallen_names))
 		if(fallen_names.len == 1)
 			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
 		else

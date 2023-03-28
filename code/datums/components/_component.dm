@@ -101,7 +101,7 @@
 				components_of_type = test
 			if(I == our_type)	//exact match, take priority
 				var/inserted = FALSE
-				for(var/J in 1 to components_of_type.len)
+				for(var/J in 1 to length(components_of_type))
 					var/datum/component/C = components_of_type[J]
 					if(C.type != our_type) //but not over other exact matches
 						components_of_type.Insert(J, I)
@@ -132,7 +132,7 @@
 				dc[I] = subtracted
 		else	//just us
 			dc -= I
-	if(!dc.len)
+	if(!length(dc))
 		P.datum_components = null
 
 	UnregisterFromParent()
@@ -239,7 +239,7 @@
 				lookup[sig] -= src
 
 	signal_procs[target] -= sig_type_or_types
-	if(!signal_procs[length(target)])
+	if(!length(signal_procs[target]))
 		signal_procs -= target
 
 /**

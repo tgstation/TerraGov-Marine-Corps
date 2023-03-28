@@ -167,8 +167,8 @@
 		bullethole_overlay = null
 		return
 
-	var/overlay = round((max_integrity - wall_integrity) / max_integrity * damage_overlays.len) + 1
-	if(overlay > damage_overlays.len) overlay = damage_overlays.len
+	var/overlay = round((max_integrity - wall_integrity) / max_integrity * length(damage_overlays)) + 1
+	if(overlay > length(damage_overlays)) overlay = damage_overlays.len
 
 	if(!damage_overlay || overlay != damage_overlay)
 		overlays -= damage_overlays[damage_overlay]
@@ -205,7 +205,7 @@
 /turf/closed/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
 
-	for(var/i = 1; i <= damage_overlays.len; i++)
+	for(var/i = 1; i <= length(damage_overlays); i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
 		img.alpha = (i * alpha_inc) - 1

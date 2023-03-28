@@ -122,7 +122,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 	max_elements = round(zone / min_angle)
 	var/paged = max_elements < choices.len
-	if(elements.len < max_elements)
+	if(length(elements) < max_elements)
 		var/elements_to_add = max_elements - elements.len
 		for(var/i in 1 to elements_to_add) //Create all elements
 			var/atom/movable/screen/radial/slice/new_element = new /atom/movable/screen/radial/slice
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	selected_choice = choices_values[choice_id]
 
 /datum/radial_menu/proc/get_next_id()
-	return "c_[choices.len]"
+	return "c_[length(choices)]"
 
 /datum/radial_menu/proc/set_choices(list/new_choices, use_tooltips)
 	if(length(choices))

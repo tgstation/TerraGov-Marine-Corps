@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(overlays)
 		priority_overlays.Cut()
 
 	//If not already queued for work and there are overlays to remove
-	if(NOT_QUEUED_ALREADY && remove_overlays.len)
+	if(NOT_QUEUED_ALREADY && length(remove_overlays))
 		QUEUE_FOR_COMPILE
 
 /atom/proc/cut_overlay(list/overlays, priority)
@@ -190,7 +190,7 @@ SUBSYSTEM_DEF(overlays)
 
 	var/list/cached_other = other.overlays.Copy()
 	if(cached_other)
-		if(cut_old || !overlays.len)
+		if(cut_old || !length(overlays))
 			overlays = cached_other
 		else
 			overlays |= cached_other

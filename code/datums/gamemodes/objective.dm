@@ -148,9 +148,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 				possible_targets += possible_target
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
-		if(!possible_targets.len)
+		if(!length(possible_targets))
 			possible_targets = all_possible_targets
-	if(possible_targets.len > 0)
+	if(length(possible_targets) > 0)
 		target = pick(possible_targets)
 	if(!target)
 		var/mob/living/M

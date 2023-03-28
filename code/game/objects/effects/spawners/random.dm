@@ -45,7 +45,7 @@
 	var/list/spawn_locations = get_spawn_locations(spawn_scatter_radius)
 	var/spawn_loot_count = lootcount_override ? lootcount_override : src.spawn_loot_count
 
-	if(!spawn_locations.len)
+	if(!length(spawn_locations))
 		return
 
 	if(spawn_all_loot)
@@ -58,11 +58,11 @@
 	if(loot_subtype_path)
 		loot += subtypesof(loot_subtype_path)
 
-	if(!loot.len)
+	if(!length(loot))
 		return
 
 	var/loot_spawned = 0
-	while((spawn_loot_count > loot_spawned) && loot.len)
+	while((spawn_loot_count > loot_spawned) && length(loot))
 		var/lootspawn = pick_weight_recursive(loot)
 		if(!spawn_loot_double)
 			loot.Remove(lootspawn)

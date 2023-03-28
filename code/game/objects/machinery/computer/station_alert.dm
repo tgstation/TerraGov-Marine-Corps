@@ -27,7 +27,7 @@
 	for (var/cat in src.alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
 		var/list/L = src.alarms[cat]
-		if (L.len)
+		if (length(L))
 			for (var/alarm in L)
 				var/list/alm = L[alarm]
 				var/area/A = alm[1]
@@ -35,8 +35,8 @@
 				dat += "<NOBR>"
 				dat += "&bull; "
 				dat += "[A.name]"
-				if (sources.len > 1)
-					dat += text(" - [] sources", sources.len)
+				if (length(sources) > 1)
+					dat += text(" - [] sources", length(sources))
 				dat += "</NOBR><BR>\n"
 		else
 			dat += "-- All Systems Nominal<BR>\n"
@@ -97,7 +97,7 @@
 	var/active_alarms = 0
 	for (var/cat in src.alarms)
 		var/list/L = src.alarms[cat]
-		if(L.len) active_alarms = 1
+		if(length(L)) active_alarms = 1
 	if(active_alarms)
 		icon_state = "atmos2"
 	else

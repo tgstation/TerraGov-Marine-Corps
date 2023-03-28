@@ -116,7 +116,7 @@ GLOBAL_VAR(antag_prototypes)
 				continue
 
 		if(!current_antag) //Show antagging options
-			if(possible_admin_antags.len)
+			if(length(possible_admin_antags))
 				antag_header_parts += "<span class='highlight'>None</span>"
 				antag_header_parts += possible_admin_antags
 			else

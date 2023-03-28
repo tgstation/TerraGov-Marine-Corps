@@ -87,7 +87,7 @@
 /obj/item/reagent_containers/food/condiment/on_reagent_change()
 	if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall")
 		return
-	if(reagents.reagent_list.len > 0)
+	if(length(reagents.reagent_list) > 0)
 		switch(reagents.get_master_reagent_id())
 			if(/datum/reagent/consumable/ketchup)
 				name = "Ketchup"

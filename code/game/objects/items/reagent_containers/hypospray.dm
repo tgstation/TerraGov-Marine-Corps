@@ -52,7 +52,7 @@
 			to_chat(user, span_warning("[src] is full."))
 			return  //early returning if its full
 
-		if(!A.contents.len)
+		if(!length(A.contents))
 			return //early returning if its empty
 		var/obj/item/pill = A.contents[1]
 
@@ -346,7 +346,7 @@
 		return
 	var/list/dat = list()
 	dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]")]</br>"
-	if(reagents.reagent_list.len > 0)
+	if(length(reagents.reagent_list) > 0)
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
 			var/dose = round(min(reagents.total_volume, amount_per_transfer_from_this) * percent * 0.01,0.01)

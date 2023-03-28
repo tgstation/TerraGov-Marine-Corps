@@ -62,7 +62,7 @@
 				continue
 		free_ssd_mobs += ssd_mob
 
-	if(!free_ssd_mobs.len)
+	if(!length(free_ssd_mobs))
 		to_chat(owner, span_warning("There aren't any SSD mobs."))
 		return FALSE
 

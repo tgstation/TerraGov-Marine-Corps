@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	report += printplayer(owner)
 
 	var/objectives_complete = TRUE
-	if(objectives.len)
+	if(length(objectives))
 		report += printobjectives(objectives)
 		for(var/datum/objective/objective in objectives)
 			if(!objective.check_completion())

@@ -134,7 +134,7 @@
 
 //Checks if the list is empty
 /proc/isemptylist(list/L)
-	if(!L.len)
+	if(!length(L))
 		return TRUE
 	return FALSE
 
@@ -224,12 +224,12 @@
 
 //Returns the top(last) element from the list and removes it from the list (typical stack function)
 /proc/pop(list/L)
-	if(L.len)
-		. = L[L.len]
+	if(length(L))
+		. = L[length(L)]
 		L.len--
 
 /proc/popleft(list/L)
-	if(L.len)
+	if(length(L))
 		. = L[1]
 		L.Cut(1,2)
 
@@ -383,7 +383,7 @@
 		insert_index = low_index
 
 		// Special case adding to end of list.
-		if(insert_index > sorted_list.len)
+		if(insert_index > length(sorted_list))
 			sorted_list += current_sort_object
 			continue
 
@@ -466,10 +466,10 @@
 	if(!islist(l) || !islist(d))
 		return FALSE
 
-	if(l.len != d.len)
+	if(length(l) != length(d))
 		return FALSE
 
-	for(var/i in 1 to l.len)
+	for(var/i in 1 to length(l))
 		if(l[i] != d[i])
 			return FALSE
 
@@ -597,7 +597,7 @@
 	var/start_len = list_to_clear.len
 	var/list/new_list = new(start_len)
 	list_to_clear -= new_list
-	return list_to_clear.len < start_len
+	return length(list_to_clear) < start_len
 
 ///sort any value in a list
 /proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)

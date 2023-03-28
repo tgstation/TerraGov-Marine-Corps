@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(parallax)
 	var/list/currentrun = src.currentrun
 
 	while(length(currentrun))
-		var/client/processing_client = currentrun[currentrun.len]
+		var/client/processing_client = currentrun[length(currentrun)]
 		currentrun.len--
 		if(QDELETED(processing_client) || !processing_client.eye)
 			if (MC_TICK_CHECK)

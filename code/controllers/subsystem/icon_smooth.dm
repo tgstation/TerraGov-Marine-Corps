@@ -24,8 +24,8 @@ SUBSYSTEM_DEF(icon_smooth)
 		if (MC_TICK_CHECK)
 			return
 
-	if (!cached.len)
-		if (deferred.len)
+	if (!length(cached))
+		if (length(deferred))
 			smooth_queue = deferred
 			deferred = cached
 		else

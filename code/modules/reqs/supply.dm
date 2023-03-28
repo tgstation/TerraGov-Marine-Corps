@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			empty_turfs += T
 
 	for(var/i in SSpoints.shoppinglist[faction])
-		if(!empty_turfs.len)
+		if(!length(empty_turfs))
 			break
 		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, i)
 
