@@ -3,6 +3,10 @@
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
+	)
 	item_state = "flashlight"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
