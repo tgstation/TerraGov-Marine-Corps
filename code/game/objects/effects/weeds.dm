@@ -188,6 +188,7 @@
 // windowed weed wall
 /obj/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
+	///The type of window we're expecting to grow on
 	var/window_type = /obj/structure/window/framed
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
