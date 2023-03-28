@@ -66,58 +66,14 @@
 		qdel(pill)
 		return
 
-	if(!A.reagents)
-		return
-	if(!istype(user))
-		return
-	if(!in_range(A, user) || !user.Adjacent(A))
-		return
-	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're drawing
-		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
-			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
-			update_icon() //So we now display as Inject
-			return
-
-		if(iscarbon(A))
-			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
-			var/mob/living/carbon/C = A
-			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-				to_chat(user, span_warning("There is already a blood sample in [src]."))
-				return
-			if(!C.blood_type)
-				to_chat(user, span_warning("You are unable to locate any blood."))
-				return
-
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
-				if(H.species.species_flags & NO_BLOOD)
-					to_chat(user, span_warning("You are unable to locate any blood."))
-					return
-				else
-					C.take_blood(src,amount)
-			else
-				C.take_blood(src,amount)
-
-			reagents.handle_reactions()
-			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
-								span_notice("You take a blood sample from [A]."), null, 4)
-
-		else if(istype(A, /obj)) //if not mob
-			if(!A.reagents.total_volume)
-				to_chat(user, "<span class='warning'>[A] is empty.")
-				return
-
-			if(!A.is_drawable())
-				to_chat(user, span_warning("You cannot directly remove reagents from this object."))
-				return
-
-			draw_reagent(A, user)
-
+	//For drawing reagents, will check if it's possible to draw, then draws.
+	if(can_draw_reagent(A, user, FALSE))
+		draw_reagent(A, user)
 		on_reagent_change()
 		return TRUE
 
-
+	if(!in_range(A, user) || !user.Adjacent(A))
+		return FALSE
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty."))
 		return
@@ -165,31 +121,51 @@
 	return TRUE
 
 /obj/item/reagent_containers/hypospray/afterattack_alternate(atom/A, mob/living/user)
+	if(can_draw_reagent(A, user, TRUE))
+		draw_reagent(A, user)
+		on_reagent_change()
+
+/obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user, alternate_draw_mode)
 	if(!A.reagents)
-		return
+		return FALSE
 	if(!istype(user))
-		return
-	if(!in_range(A, user) || !user.Adjacent(A))
-		return
+		return FALSE
+	if(!(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW || alternate_draw_mode)) //If we aren't drawing or using right click, return FALSE.
+		return FALSE
 	if(reagents.holder_full())
 		to_chat(user, span_warning("[src] is full."))
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 		update_icon() //So we now display as Inject
-		return
-
-	if(istype(A, /obj)) //if not mob
+		return FALSE
+	if(iscarbon(A))
+		var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
+		var/mob/living/carbon/C = A
+		if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
+			to_chat(user, span_warning("There is already a blood sample in [src]."))
+			return
+		if(!C.blood_type)
+			to_chat(user, span_warning("You are unable to locate any blood."))
+			return
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			if(H.species.species_flags & NO_BLOOD)
+				to_chat(user, span_warning("You are unable to locate any blood."))
+				return
+			else
+				C.take_blood(src,amount)
+		else
+			C.take_blood(src,amount)
+		reagents.handle_reactions()
+		user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
+							span_notice("You take a blood sample from [A]."), null, 4)
+	if(isobj(A)) //if not mob
 		if(!A.reagents.total_volume)
 			to_chat(user, "<span class='warning'>[A] is empty.")
 			return
-
 		if(!A.is_drawable())
 			to_chat(user, span_warning("You cannot directly remove reagents from this object."))
 			return
 
-		draw_reagent(A, user)
-		on_reagent_change()
-
-///Draws reagent from container A.
 /obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
 	var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 	to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
