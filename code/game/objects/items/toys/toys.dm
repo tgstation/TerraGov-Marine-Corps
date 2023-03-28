@@ -115,6 +115,10 @@
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "beacon"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "signaler"
 
 /*

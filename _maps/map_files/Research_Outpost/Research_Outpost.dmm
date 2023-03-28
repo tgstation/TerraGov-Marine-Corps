@@ -1084,7 +1084,7 @@
 /area/outpost/dormitories)
 "ft" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/hydponics)
 "fu" = (
@@ -8282,7 +8282,7 @@
 /area/outpost/hallway/central)
 "Mf" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},

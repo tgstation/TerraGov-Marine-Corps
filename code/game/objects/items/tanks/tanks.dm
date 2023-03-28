@@ -51,7 +51,7 @@
 /obj/item/tank/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if((istype(I, /obj/item/analyzer)) && get_dist(user, src) <= 1)
+	if((istype(I, /obj/item/tool/analyzer)) && get_dist(user, src) <= 1)
 		visible_message(span_warning("[user] has used [I] on [icon2html(src, user)] [src]"))
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.

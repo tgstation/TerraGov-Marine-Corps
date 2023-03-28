@@ -248,7 +248,7 @@
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
-	new /obj/item/rcd(src)
+	new /obj/item/tool/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"

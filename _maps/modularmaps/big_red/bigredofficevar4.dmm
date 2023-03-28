@@ -209,7 +209,7 @@
 /area/bigredv2/outside/office_complex)
 "hE" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "hL" = (

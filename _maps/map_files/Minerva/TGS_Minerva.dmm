@@ -881,7 +881,7 @@
 /obj/structure/table/woodentable,
 /obj/item/book/manual/security_space_law,
 /obj/item/tool/crowbar,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},

@@ -40,7 +40,7 @@
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/crowbar(src)
-	new /obj/item/analyzer(src)
+	new /obj/item/tool/analyzer(src)
 	new /obj/item/tool/wirecutters(src)
 
 
@@ -81,4 +81,4 @@
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/stack/cable_coil(src, 30, color)
 	new /obj/item/tool/wirecutters(src)
-	new /obj/item/multitool(src)
+	new /obj/item/tool/multitool(src)

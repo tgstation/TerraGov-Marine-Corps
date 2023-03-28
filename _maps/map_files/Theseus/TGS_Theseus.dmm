@@ -5127,7 +5127,7 @@
 	},
 /area/mainship/engineering/lower_engineering)
 "bzD" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},

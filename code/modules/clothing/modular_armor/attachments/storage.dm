@@ -200,7 +200,7 @@
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/handheld_charger,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/binoculars/tactical/range,
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,

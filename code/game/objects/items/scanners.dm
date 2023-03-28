@@ -295,7 +295,7 @@ REAGENT SCANNER
 	if(istype(user) && istype(target))
 		attack(target,user)
 
-/obj/item/analyzer
+/obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
 	icon_state = "atmos"
@@ -308,7 +308,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 
-/obj/item/analyzer/attack_self(mob/user as mob)
+/obj/item/tool/analyzer/attack_self(mob/user as mob)
 	..()
 	var/turf/T = get_turf(user)
 	if(!T)

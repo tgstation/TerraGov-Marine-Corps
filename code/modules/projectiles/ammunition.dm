@@ -4,6 +4,10 @@
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+		)
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 2

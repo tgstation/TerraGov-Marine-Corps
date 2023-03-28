@@ -51,11 +51,11 @@
 		/obj/item/tool/weldingtool,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/wrench,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
-		/obj/item/analyzer,
+		/obj/item/tool/analyzer,
 		/obj/item/tool/taperoll/engineering,
 	)
 
@@ -68,7 +68,7 @@
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
-	new /obj/item/multitool(src)
+	new /obj/item/tool/multitool(src)
 
 
 /obj/item/storage/belt/utility/atmostech/Initialize()

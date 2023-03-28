@@ -714,7 +714,7 @@
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/weldingtool,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/tool/wrench,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/extinguisher/mini,
