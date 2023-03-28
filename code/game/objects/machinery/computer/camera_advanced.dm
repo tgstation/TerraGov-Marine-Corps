@@ -195,6 +195,8 @@
 /obj/machinery/computer/camera_advanced/process()
 	if(QDELETED(tracking_target))
 		return PROCESS_KILL
+	if(QDELETED(eyeobj))
+		return PROCESS_KILL
 
 	if(!tracking_target.can_track(current_user))
 		if(!cameraticks)
