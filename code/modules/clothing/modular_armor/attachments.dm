@@ -27,9 +27,9 @@
 	///Bitfield flags of various features.
 	var/flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	///Time it takes to attach.
-	var/attach_delay = 2 SECONDS
+	var/attach_delay = 1.5 SECONDS
 	///Time it takes to detach.
-	var/detach_delay = 2 SECONDS
+	var/detach_delay = 1.5 SECONDS
 	///Used for when the mob attach overlay icon is different than icon.
 	var/mob_overlay_icon
 	///Pixel shift for the mob overlay on the X axis.
