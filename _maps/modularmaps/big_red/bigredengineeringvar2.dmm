@@ -396,7 +396,7 @@
 /area/bigredv2/caves/southwest)
 "xn" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "xH" = (
@@ -859,7 +859,7 @@
 /area/bigredv2/outside/sw)
 "Vj" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Vs" = (

@@ -446,11 +446,11 @@
 /area/lv624/lazarus/hydroponics)
 "bP" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer{
+/obj/item/tool/analyzer/plant_analyzer{
 	pixel_x = 2;
 	pixel_y = 1
 	},
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},

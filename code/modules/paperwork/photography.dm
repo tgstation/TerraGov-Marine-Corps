@@ -88,6 +88,10 @@
 	name = "photo"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "photo"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	var/datum/picture/picture

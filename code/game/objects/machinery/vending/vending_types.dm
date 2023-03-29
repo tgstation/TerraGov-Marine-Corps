@@ -542,8 +542,8 @@
 	icon_vend = "engivend-vend"
 	icon_deny = "engivend-deny"
 	products = list(
-		/obj/item/multitool = -1,
-		/obj/item/analyzer = -1,
+		/obj/item/tool/multitool = -1,
+		/obj/item/tool/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/circuitboard/airlock = -1,

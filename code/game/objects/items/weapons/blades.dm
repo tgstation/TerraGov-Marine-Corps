@@ -437,7 +437,7 @@
 	name = "chainsword"
 	desc = "chainsword thing"
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "chainswordoff"
+	icon_state = "chainsword"
 	attack_verb = list("gored", "slashed", "cut")
 	force = 10
 	throwforce = 5
@@ -447,8 +447,8 @@
 	. = ..()
 	if(!on)
 		on = !on
-		icon_state = "chainswordon"
-		force = 40
+		icon_state = "[initial(icon_state)]_on"
+		force = 80
 		throwforce = 30
 	else
 		on = !on
@@ -463,3 +463,8 @@
 /obj/item/weapon/chainsword/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
+
+/obj/item/weapon/chainsword/civilian
+	name = "chainsaw"
+	desc = "A chainsaw. Good for turning big things into little things."
+	icon_state = "chainsaw"

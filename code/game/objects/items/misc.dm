@@ -40,22 +40,14 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, 0.4 SECONDS, 0.2 SECONDS)
 
-/obj/item/cane
-	name = "cane"
-	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "cane"
-	item_state = "stick"
-	flags_atom = CONDUCT
-	force = 5.0
-	throwforce = 7.0
-	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
-
 /obj/item/gift
 	name = "gift"
 	desc = "A wrapped item."
 	icon = 'icons/obj/items/items.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	icon_state = "gift3"
 	var/size = 3.0
 	var/obj/item/gift = null
@@ -66,6 +58,10 @@
 	name = "wizards staff"
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
+	)
 	icon_state = "staff"
 	force = 3.0
 	throwforce = 5.0
@@ -79,25 +75,6 @@
 	desc = "Used for sweeping, and flying into the night while cackling. Black cat not included."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "broom"
-
-/obj/item/staff/gentcane
-	name = "Gentlemans Cane"
-	desc = "An ebony cane with an ivory tip."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "cane"
-	item_state = "stick"
-
-/obj/item/staff/stick
-	name = "stick"
-	desc = "A great tool to drag someone else's drinks across the bar."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "stick"
-	item_state = "stick"
-	force = 3.0
-	throwforce = 5.0
-	throw_speed = 1
-	throw_range = 5
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/skub
 	desc = "It's skub."

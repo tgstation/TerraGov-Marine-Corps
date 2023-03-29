@@ -1245,11 +1245,11 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -4617,7 +4617,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "ayq" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/item/encryptionkey,
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -5300,7 +5300,7 @@
 "aBe" = (
 /obj/structure/rack,
 /obj/item/flashlight,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -12185,7 +12185,7 @@
 "biO" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "biP" = (
@@ -21930,7 +21930,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bUx" = (
 /obj/structure/rack,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -22538,11 +22538,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},

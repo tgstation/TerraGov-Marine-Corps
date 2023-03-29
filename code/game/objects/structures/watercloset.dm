@@ -203,7 +203,7 @@
 /obj/machinery/shower/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(I.type == /obj/item/analyzer)
+	if(I.type == /obj/item/tool/analyzer)
 		to_chat(user, span_notice("The water temperature seems to be [watertemp]."))
 
 	else if(iswrench(I))

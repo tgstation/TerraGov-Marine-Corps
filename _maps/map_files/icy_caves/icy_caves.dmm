@@ -2783,11 +2783,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "py" = (
@@ -9177,11 +9177,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "UZ" = (

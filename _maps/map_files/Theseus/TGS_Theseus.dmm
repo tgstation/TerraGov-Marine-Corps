@@ -387,7 +387,7 @@
 /obj/item/weapon/telebaton,
 /obj/item/book/codebook,
 /obj/item/weapon/chainofcommand,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
@@ -5127,7 +5127,7 @@
 	},
 /area/mainship/engineering/lower_engineering)
 "bzD" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},

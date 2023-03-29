@@ -1944,7 +1944,7 @@
 /obj/item/weapon/telebaton,
 /obj/item/book/codebook,
 /obj/item/weapon/chainofcommand,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
 "bSX" = (
@@ -5254,7 +5254,7 @@
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/staff/gentcane{
+/obj/item/weapon/cane{
 	pixel_x = 5
 	},
 /obj/item/storage/fancy/cigarettes/lady_finger{
@@ -5279,7 +5279,7 @@
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/staff/gentcane{
+/obj/item/weapon/cane{
 	pixel_x = 5
 	},
 /obj/item/storage/fancy/cigarettes/lady_finger{
@@ -17197,7 +17197,7 @@
 /obj/item/weapon/telebaton,
 /obj/item/book/codebook,
 /obj/item/weapon/chainofcommand,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "prw" = (

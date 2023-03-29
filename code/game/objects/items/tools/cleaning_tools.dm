@@ -2,6 +2,10 @@
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
+	)
 	icon_state = "mop"
 	force = 3.0
 	throwforce = 10.0
@@ -47,6 +51,10 @@
 	desc = "Caution! Wet Floor!"
 	icon_state = "caution"
 	icon = 'icons/obj/janitor.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
+	)
 	force = 1
 	throwforce = 3
 	throw_speed = 1

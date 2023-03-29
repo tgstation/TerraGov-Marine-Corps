@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond/layer_cable.dmi'
 	icon_state = "l2-1-2-4-8-node"
-	color = "yellow"
+	color = COLOR_YELLOW
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
@@ -28,14 +28,14 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	var/datum/powernet/powernet
 
 /obj/structure/cable/layer1
-	color = "red"
+	color = COLOR_RED
 	cable_layer = CABLE_LAYER_1
 	machinery_layer = null
 	layer = WIRE_LAYER - 0.01
 	icon_state = "l1-1-2-4-8-node"
 
 /obj/structure/cable/layer3
-	color = "blue"
+	color = COLOR_BLUE
 	cable_layer = CABLE_LAYER_3
 	machinery_layer = null
 	layer = WIRE_LAYER + 0.01
@@ -384,11 +384,15 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "coil"
 	max_amount = MAXCOIL
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/cable_coil // This is here to let its children merge between themselves
-	color = "yellow"
+	color = COLOR_YELLOW
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
@@ -397,7 +401,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	singular_name = "cable piece"
 	usesound = 'sound/items/deconstruct.ogg'
-	var/cable_color = "yellow"
 	var/obj/structure/cable/target_type = /obj/structure/cable
 	var/target_layer = CABLE_LAYER_2
 
@@ -441,31 +444,31 @@ GLOBAL_LIST(cable_radial_layer_list)
 		if("Layer 1")
 			name = "cable coil"
 			icon_state = "coil"
-			color = "red"
+			color = COLOR_RED
 			target_type = /obj/structure/cable/layer1
 			target_layer = CABLE_LAYER_1
 		if("Layer 2")
 			name = "cable coil"
 			icon_state = "coil"
-			color = "yellow"
+			color = COLOR_YELLOW
 			target_type = /obj/structure/cable
 			target_layer = CABLE_LAYER_2
 		if("Layer 3")
 			name = "cable coil"
 			icon_state = "coil"
-			color = "blue"
+			color = COLOR_BLUE
 			target_type = /obj/structure/cable/layer3
 			target_layer = CABLE_LAYER_3
 		if("Multilayer cable hub")
 			name = "multilayer cable hub"
 			icon_state = "cable_bridge"
-			color = "white"
+			color = COLOR_VERY_LIGHT_GRAY
 			target_type = /obj/structure/cable/multilayer
 			target_layer = CABLE_LAYER_2
 		if("Multi Z layer cable hub")
 			name = "multi z layer cable hub"
 			icon_state = "cablerelay-broken-cable"
-			color = "white"
+			color = COLOR_VERY_LIGHT_GRAY
 			target_type = /obj/structure/cable/multilayer/multiz
 			target_layer = CABLE_LAYER_2
 	update_icon()
@@ -604,7 +607,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	cable_layer = CABLE_LAYER_2
 	machinery_layer = MACHINERY_LAYER_1
 	layer = WIRE_LAYER - 0.02 //Below all cables Disabled layers can lay over hub
-	color = "white"
+	color = COLOR_VERY_LIGHT_GRAY
 	var/obj/effect/node/machinery_node
 	var/obj/effect/node/layer1/cable_node_1
 	var/obj/effect/node/layer2/cable_node_2
@@ -614,20 +617,20 @@ GLOBAL_LIST(cable_radial_layer_list)
 	icon = 'icons/obj/power_cond/layer_cable.dmi'
 	icon_state = "l2-noconnection"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
-	color = "black"
+	color = COLOR_ALMOST_BLACK
 
 /obj/effect/node/layer1
-	color = "red"
+	color = COLOR_RED
 	icon_state = "l1-1-2-4-8-node"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/effect/node/layer2
-	color = "yellow"
+	color = COLOR_YELLOW
 	icon_state = "l2-1-2-4-8-node"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/effect/node/layer3
-	color = "blue"
+	color = COLOR_BLUE
 	icon_state = "l4-1-2-4-8-node"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 

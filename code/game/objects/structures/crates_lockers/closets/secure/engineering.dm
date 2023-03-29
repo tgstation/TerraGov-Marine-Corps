@@ -21,7 +21,7 @@
 	new /obj/item/clothing/suit/storage/hazardvest/lime(src)
 	new /obj/item/clothing/suit/storage/hazardvest/blue(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/multitool(src)
+	new /obj/item/tool/multitool(src)
 	new /obj/item/flash(src)
 	new /obj/item/tool/taperoll/engineering(src)
 	new /obj/item/flashlight(src)
@@ -58,9 +58,9 @@
 	new /obj/item/circuitboard/apc(src)
 	new /obj/item/circuitboard/apc(src)
 	new /obj/item/circuitboard/apc(src)
-	new /obj/item/multitool(src)
-	new /obj/item/multitool(src)
-	new /obj/item/multitool(src)
+	new /obj/item/tool/multitool(src)
+	new /obj/item/tool/multitool(src)
+	new /obj/item/tool/multitool(src)
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"

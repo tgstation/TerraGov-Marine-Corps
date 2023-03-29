@@ -48,8 +48,8 @@
 /area/lv624/lazarus/quartstorage)
 "ju" = (
 /obj/structure/rack,
-/obj/item/multitool,
-/obj/item/multitool,
+/obj/item/tool/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "jV" = (

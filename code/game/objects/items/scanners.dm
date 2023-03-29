@@ -18,6 +18,10 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 
 
@@ -59,7 +63,11 @@ REAGENT SCANNER
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon_state = "health"
-	item_state = "analyzer"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
+	item_state = "healthanalyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -295,7 +303,7 @@ REAGENT SCANNER
 	if(istype(user) && istype(target))
 		attack(target,user)
 
-/obj/item/analyzer
+/obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
 	icon_state = "atmos"
@@ -308,7 +316,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 
-/obj/item/analyzer/attack_self(mob/user as mob)
+/obj/item/tool/analyzer/attack_self(mob/user as mob)
 	..()
 	var/turf/T = get_turf(user)
 	if(!T)

@@ -35,7 +35,7 @@
 /obj/item/tool/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
-	item_state = "jackhammer"
+	item_state = "drill"
 	digspeed = 30
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"

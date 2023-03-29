@@ -2,6 +2,10 @@
 	name = "megaphone"
 	desc = "A device used to project your voice. Loudly."
 	icon_state = "megaphone"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "radio"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT

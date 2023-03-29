@@ -16311,11 +16311,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/emerald{
 	dir = 5
@@ -17618,7 +17618,7 @@
 /area/magmoor/command/conference)
 "mVK" = (
 /obj/structure/table/mainship,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
 	},
@@ -31138,8 +31138,8 @@
 "wIx" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer,
-/obj/item/analyzer{
+/obj/item/tool/analyzer,
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},

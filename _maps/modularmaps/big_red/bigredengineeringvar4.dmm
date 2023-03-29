@@ -772,7 +772,7 @@
 /area/bigredv2/outside/engineering)
 "Qv" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Rp" = (
@@ -891,7 +891,7 @@
 /area/bigredv2/outside/engineering)
 "XU" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Yb" = (

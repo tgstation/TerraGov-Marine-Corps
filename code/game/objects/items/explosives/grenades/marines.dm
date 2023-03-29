@@ -426,6 +426,12 @@
 		qdel(N)
 		turn_off()
 
+/obj/item/explosive/grenade/flare/civilian
+	name = "flare"
+	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
+	icon_state = "flare"
+	item_state = "flare"
+
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
 	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."

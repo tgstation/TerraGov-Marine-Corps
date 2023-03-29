@@ -119,7 +119,7 @@
 	loot = list(
 		/obj/item/t_scanner = 4,
 		/obj/item/radio = 2,
-		/obj/item/analyzer = 4,
+		/obj/item/tool/analyzer = 4,
 	)
 
 /obj/effect/spawner/random/powercell
@@ -140,7 +140,7 @@
 		/obj/item/assembly/igniter,
 		/obj/item/assembly/prox_sensor,
 		/obj/item/assembly/signaler,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 	)
 
 /obj/effect/spawner/random/toolbox
@@ -264,7 +264,7 @@
 	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/flashlight = 15,
-		/obj/item/flashlight/flare = 5,
+		/obj/item/explosive/grenade/flare/civilian = 5,
 		/obj/item/flashlight/lantern = 1,
 		/obj/item/flashlight/pen = 1,
 	)

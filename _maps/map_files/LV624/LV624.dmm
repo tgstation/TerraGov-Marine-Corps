@@ -1970,7 +1970,7 @@
 /turf/open/ground/river/autosmooth,
 /area/lv624/ground/river3)
 "baa" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "bab" = (
@@ -3393,7 +3393,7 @@
 /area/lv624/lazarus/quartstorage)
 "clB" = (
 /obj/item/bedsheet/rd,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/structure/bed/fancy,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/grimy,
@@ -5375,7 +5375,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "eSl" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "eSB" = (
@@ -14888,11 +14888,11 @@
 /area/lv624/ground/sand7)
 "rHK" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer{
+/obj/item/tool/analyzer/plant_analyzer{
 	pixel_x = 2;
 	pixel_y = 1
 	},
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},
@@ -14953,7 +14953,7 @@
 /turf/open/ground/river/autosmooth,
 /area/lv624/ground/jungle4)
 "rLt" = (
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "rMB" = (
@@ -16898,8 +16898,8 @@
 "unO" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/lighter,
-/obj/item/analyzer,
-/obj/item/multitool,
+/obj/item/tool/analyzer,
+/obj/item/tool/multitool,
 /obj/item/assembly/prox_sensor,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
