@@ -2,6 +2,10 @@
 	name = "toolbox"
 	desc = "Danger. Very robust."
 	icon_state = "red"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/toolboxes_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/toolboxes_right.dmi',
+	)
 	item_state = "toolbox_red"
 	flags_atom = CONDUCT
 	force = 5
