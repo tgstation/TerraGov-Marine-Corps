@@ -3,6 +3,10 @@
 	desc = "A spray bottle, with an unscrewable top."
 	icon = 'icons/obj/items/spray.dmi'
 	icon_state = "cleaner"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/spray_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/spray_right.dmi',
+	)
 	item_state = "cleaner"
 	init_reagent_flags = OPENCONTAINER_NOUNIT
 	flags_item = NOBLUDGEON
