@@ -280,7 +280,7 @@
 		return
 	attach_item(I, user)
 
-/obj/item/belt_harness/update_icon()
+/obj/item/belt_harness/update_icon_state()
 	. = ..()
 	if(reequip_component)
 		icon_state = initial(icon_state) + "_clipped"
