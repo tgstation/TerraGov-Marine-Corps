@@ -64,7 +64,7 @@
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
+		xeno.next_move_slowdown += xeno.xeno_caste.water_slowdown
 	else
 		C.next_move_slowdown += 1.75
 
