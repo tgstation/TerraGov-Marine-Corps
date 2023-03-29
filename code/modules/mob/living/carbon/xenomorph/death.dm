@@ -18,7 +18,6 @@
 	QDEL_NULL(leader_current_aura)
 
 	hive?.on_xeno_death(src)
-	hive.update_tier_limits() //Update our tier limits.
 
 	if(is_zoomed)
 		zoom_out()

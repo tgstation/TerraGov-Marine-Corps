@@ -57,7 +57,7 @@
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
 	if(!generic_evolution_checks())
 		return
-	
+
 	if(caste_type == /mob/living/carbon/xenomorph/hivemind && tgui_alert(src, "You are about to evolve into a hivemind, which places its core on the tile you're on when evolving. This core cannot be moved and you cannot regress. Are you sure you would like to place your core here?", "Evolving to hivemind", list("Yes", "No"), FALSE) == "No")
 		return
 
@@ -245,8 +245,6 @@
 		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return FALSE
 
-	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
-	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 	var/datum/xeno_caste/new_caste_type = GLOB.xeno_caste_datums[new_mob_type][XENO_UPGRADE_BASETYPE]
 	// Initial can access uninitialized vars, which is why it's used here.
 	var/new_caste_flags = new_caste_type.caste_flags
@@ -297,12 +295,6 @@
 				new_mob_type = /mob/living/carbon/xenomorph/queen/Corrupted/fallen
 
 	if(!regression)
-		if(new_caste_type.tier == XENO_TIER_TWO && no_room_tier_two)
-			balloon_alert(src, "The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die")
-			return FALSE
-		if(new_caste_type.tier == XENO_TIER_THREE && no_room_tier_three)
-			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
-			return FALSE
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 		if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_mob_type != /mob/living/carbon/xenomorph/drone)

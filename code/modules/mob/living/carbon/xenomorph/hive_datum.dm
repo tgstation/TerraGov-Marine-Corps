@@ -21,8 +21,6 @@
 	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
-	var/tier3_xeno_limit
-	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
 
@@ -66,8 +64,6 @@
 
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
-	.["hive_max_tier_two"] = tier2_xeno_limit
-	.["hive_max_tier_three"] = tier3_xeno_limit
 	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -400,7 +396,6 @@
 		return FALSE
 
 	xenos_by_typepath[X.caste_base_type] += X
-	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -419,7 +414,6 @@
 	generate_name()
 
 	SSdirection.start_tracking(HS.hivenumber, src)
-	hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
@@ -443,7 +437,6 @@
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	add_to_hive(HS, force)
-	hive.update_tier_limits() //Update our tier limits.
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
 /mob/living/carbon/xenomorph/proc/set_initial_hivenumber()
@@ -488,7 +481,6 @@
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
-	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -504,10 +496,8 @@
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
-	var/datum/hive_status/reference_hive = hive
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
-	reference_hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
@@ -858,7 +848,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	L.visible_message(span_xenodanger("[L] quickly burrows into the ground."))
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_positions(1)
-	update_tier_limits()
 	GLOB.round_statistics.total_xenos_created-- // keep stats sane
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(L)
@@ -1014,7 +1003,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-	update_tier_limits()
 
 /**
  * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
@@ -1093,16 +1081,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 	return TRUE
 
-///updates and sets the t2 and t3 xeno limits
-/datum/hive_status/proc/update_tier_limits()
-	var/zeros = get_total_tier_zeros()
-	var/ones = length(xenos_by_tier[XENO_TIER_ONE])
-	var/twos = length(xenos_by_tier[XENO_TIER_TWO])
-	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
-	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
-
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(evotowers) + 1, 1))
-	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(evotowers) * 2 + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos

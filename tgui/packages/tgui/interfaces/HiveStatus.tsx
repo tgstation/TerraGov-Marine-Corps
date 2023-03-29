@@ -7,7 +7,6 @@ type InputPack = {
   // ------- Hive info --------
   hive_name: string;
   hive_max_tier_two: number;
-  hive_max_tier_three: number;
   hive_larva_current: number;
   hive_larva_threshold: number;
   hive_larva_rate: number;
@@ -406,8 +405,6 @@ type PyramidCalc = {
 const PopulationPyramid = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
   const {
-    hive_max_tier_two,
-    hive_max_tier_three,
     hive_minion_count,
     hive_primos,
     xeno_info,
@@ -511,18 +508,12 @@ const PopulationPyramid = (_props, context) => {
         align={compact_display ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
-          const max_slots =
-            tier === 2
-              ? hive_max_tier_two
-              : 0 + tier === 3
-                ? hive_max_tier_three
-                : 0;
           const TierSlots = (_props, _context) => {
             return (
               <Box
                 as="span"
-                textColor={tier_info.total === max_slots ? 'bad' : 'good'}>
-                ({tier_info.total}/{max_slots})
+                textColor={'good'}>
+                ({tier_info.total})
               </Box>
             );
           };
@@ -556,7 +547,7 @@ const PopulationPyramid = (_props, context) => {
               <Box key={tier}>
                 Tier {tier}:{' '}
                 {tier === 2 || tier === 3
-                  ? ` (${tier_info.total}/${max_slots || 0}) `
+                  ? ` (${tier_info.total}) `
                   : ` ${tier_info.total} `}
                 Sisters {!empty_display && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index

@@ -287,6 +287,7 @@ REAGENT SCANNER
 	. = ..()
 	if(user.gloves == src)
 		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+		RegisterSignal(user,COMSIG_CLICK_RIGHT, PROC_REF(on_right_click))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
@@ -294,6 +295,9 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(istype(user) && istype(target))
 		attack(target,user)
+
+/obj/item/healthanalyzer/gloves/proc/on_right_click(user,target)
+	//yada yada
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."

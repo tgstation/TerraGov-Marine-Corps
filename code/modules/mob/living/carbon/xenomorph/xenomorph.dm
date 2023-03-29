@@ -70,7 +70,6 @@
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
 	if(xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(src, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
-	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
@@ -252,9 +251,7 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
-	var/datum/hive_status/hive_placeholder = hive
 	remove_from_hive()
-	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
 	vis_contents -= fire_overlay
