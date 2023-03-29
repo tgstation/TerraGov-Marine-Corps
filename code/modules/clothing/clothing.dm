@@ -66,6 +66,13 @@
 	. = ..()
 	update_icon()
 
+/obj/item/clothing/do_quick_equip(mob/user)
+	for(var/attachment_slot in attachments_by_slot)
+		if(ismodulararmorstoragemodule(attachments_by_slot[attachment_slot]))
+			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
+			return storage_attachment.storage.do_quick_equip(user)
+	return src
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return

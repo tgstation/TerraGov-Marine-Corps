@@ -552,7 +552,7 @@
 				return do_refill(I, user)
 
 	if(!can_be_inserted(I))
-		return
+		return FALSE
 	return handle_item_insertion(I, FALSE, user)
 
 ///Refills the storage from the refill_types item
