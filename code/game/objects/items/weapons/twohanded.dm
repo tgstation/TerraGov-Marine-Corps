@@ -375,10 +375,6 @@
 	. = ..()
 	AddComponent(/datum/component/harvester, 60)
 
-/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
 /obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
