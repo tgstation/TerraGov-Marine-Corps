@@ -359,7 +359,7 @@
 	throwforce = 65
 	throw_speed = 3
 	edge = 1
-	attack_speed = 20
+	attack_speed = 22
 	sharp = IS_SHARP_ITEM_BIG
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO | TWOHANDED
@@ -378,14 +378,6 @@
 /obj/item/weapon/twohanded/glaive/harvester/Initialize()
 	. = ..()
 	AddComponent(/datum/component/harvester, 60)
-
-/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()
 	. = ..()
