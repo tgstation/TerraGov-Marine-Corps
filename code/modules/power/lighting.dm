@@ -553,6 +553,10 @@
 
 /obj/item/light_bulb
 	icon = 'icons/obj/lighting.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
+	)
 	force = 2
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
