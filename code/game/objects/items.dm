@@ -1065,8 +1065,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 						for(var/obj/item/clothing/mask/cigarette/C in M.contents)
 							if(C.item_state == C.icon_on)
 								C.die()
-						if(isxenoslime(atm))
-							SEND_SIGNAL(atm, COMSIG_XENOMORPH_WATER, atm, TRUE)
 				if(W.loc == my_target)
 					break
 				sleep(0.2 SECONDS)
