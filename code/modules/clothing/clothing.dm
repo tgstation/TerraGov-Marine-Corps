@@ -87,6 +87,10 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_EARS
@@ -113,6 +117,10 @@
 //Suit
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits/suits.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
+	)
 	name = "suit"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
@@ -174,6 +182,10 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/gloves_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/gloves_right.dmi',
+	)
 	item_state_worn = TRUE
 	siemens_coefficient = 0.50
 	var/wired = 0
@@ -228,6 +240,10 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/masks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/masks_right.dmi',
+	)
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
 	blood_sprite_state = "maskblood"
@@ -245,6 +261,10 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/shoes_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/shoes_right.dmi',
+	)
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
