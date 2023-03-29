@@ -2,8 +2,8 @@
 /obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/bodyparts_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/bodyparts_right.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/bodyparts_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
 	)
 
 /obj/item/limb/Initialize(loc, mob/living/carbon/human/H)

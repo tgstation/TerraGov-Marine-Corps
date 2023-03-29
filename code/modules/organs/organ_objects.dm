@@ -3,8 +3,8 @@
 	desc = "It looks like it probably just plopped out."
 	icon = 'icons/obj/items/organs.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/bodyparts_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/bodyparts_right.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/bodyparts_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
 	)
 
 	icon_state = "appendix"
