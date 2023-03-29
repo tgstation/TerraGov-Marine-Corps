@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "River slows the amount its supposed to again"
-  - bugfix: "Snow actually doesn't slow xenos down"

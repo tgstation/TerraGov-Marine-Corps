@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "Smartpistol now uses pistol AP bullets rather than normal pistol bullets, and has full auto and a bit more magazine size (25->30)."

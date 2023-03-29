@@ -466,3 +466,22 @@
   - rscdel: Removed fake snow due to it being ugly and unnecesarry
   - balance: Snow is now weedable and no longer slows down
   - qol: Melting snow with a plasmacutter is also free now since it's cosmetic
+2023-03-29:
+  Autisem:
+  - rscadd: Phermone towers now spawn alongside the silo's during crash
+  DeltaFire15:
+  - rscadd: CIC Overwatch now has a minimap while using the camera system.
+  - rscadd: CAS now has a minimap while on a groundside strike mission.
+  - balance: AI's minimap now tracks the z the AI's eye is on, instead of only shipside
+  - bugfix: Miners no longer cause minimap-related runtimes every init.
+  - bugfix: default_overwatch_level for minimaps should now work properly.
+  - code_imp: Minimaps now support tracking atoms which aren't the owner of the action.
+  - bugfix: Fixes a very minor, easy to trigger, droppod runtime.
+  Pariah919:
+  - balance: Smartpistol now uses pistol AP bullets rather than normal pistol bullets,
+      and has full auto and a bit more magazine size (25->30).
+  chizzy376:
+  - rscadd: Added a new map, Desparity. Lowpop exclusive (30 pop or less).
+  ivanmixo:
+  - balance: River slows the amount its supposed to again
+  - bugfix: Snow actually doesn't slow xenos down
