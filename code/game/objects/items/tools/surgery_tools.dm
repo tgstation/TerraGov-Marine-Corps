@@ -86,7 +86,7 @@
 /obj/item/tool/surgery/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
-	icon_state = "saw3"
+	icon_state = "saw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags_atom = CONDUCT
 	force = 15.0
@@ -116,7 +116,7 @@
 
 /obj/item/tool/surgery/bonesetter
 	name = "bone setter"
-	icon_state = "bone setter"
+	icon_state = "bonesetter"
 	force = 8.0
 	throwforce = 9.0
 	throw_speed = 3
