@@ -13071,7 +13071,7 @@
 "cLg" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/briefcase,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /turf/open/floor/wood,
 /area/deltastation/commons/dorms)
 "cLm" = (
@@ -53603,7 +53603,7 @@
 /area/deltastation/maintenance/port/aft)
 "kTK" = (
 /obj/structure/table,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/item/clothing/head/bowler{
 	pixel_y = 2
 	},

@@ -3393,7 +3393,7 @@
 /area/lv624/lazarus/quartstorage)
 "clB" = (
 /obj/item/bedsheet/rd,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/structure/bed/fancy,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/grimy,

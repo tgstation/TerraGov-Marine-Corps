@@ -11184,7 +11184,7 @@
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/staff/gentcane{
+/obj/item/weapon/cane{
 	pixel_x = 5
 	},
 /obj/item/storage/fancy/cigarettes/lady_finger{

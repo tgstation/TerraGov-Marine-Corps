@@ -9692,7 +9692,7 @@
 /area/sulaco/research)
 "aZY" = (
 /obj/structure/rack,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/item/storage/backpack/satchel,
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/wood,
@@ -10883,7 +10883,7 @@
 "chQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/flashlight/flare,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/machinery/firealarm{
 	dir = 8
 	},

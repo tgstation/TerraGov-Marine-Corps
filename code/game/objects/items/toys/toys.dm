@@ -17,6 +17,10 @@
 
 /obj/item/toy
 	icon = 'icons/obj/items/toy.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
+	)
 	throw_speed = 4
 	throw_range = 20
 	force = 0

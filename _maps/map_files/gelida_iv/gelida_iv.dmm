@@ -9711,7 +9711,7 @@
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "gmM" = (
 /obj/structure/table/fancywoodentable,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "gnv" = (
@@ -26497,7 +26497,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/engineering)
 "rhH" = (
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
