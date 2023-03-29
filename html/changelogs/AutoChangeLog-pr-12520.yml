@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some issues with quick equip for hat and boot storage"
+  - code_imp: "Improved quick equip code somewhat"
