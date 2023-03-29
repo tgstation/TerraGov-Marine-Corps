@@ -508,17 +508,7 @@ const PopulationPyramid = (_props, context) => {
         align={compact_display ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
-          const TierSlots = (_props, _context) => {
-            return (
-              <Box
-                as="span"
-                textColor={'good'}>
-                ({tier_info.total})
-              </Box>
-            );
-          };
-          const slot_text =
-            tier === 2 || tier === 3 ? <TierSlots /> : tier_info.total;
+          const slot_text = tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3 ? 8 : 7;
           const primordial = primos[tier] ? (
