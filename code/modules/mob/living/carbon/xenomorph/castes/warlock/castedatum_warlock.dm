@@ -33,7 +33,6 @@
 	)
 
 	water_slowdown = 0
-	snow_slowdown = 0
 
 /datum/xeno_caste/warlock/young
 	upgrade_name = "Young"
