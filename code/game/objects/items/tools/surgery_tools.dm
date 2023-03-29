@@ -1,6 +1,10 @@
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/surgery_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/surgery_right.dmi',
+	)
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
 
 /obj/item/tool/surgery/retractor

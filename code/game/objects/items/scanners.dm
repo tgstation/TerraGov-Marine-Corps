@@ -63,7 +63,11 @@ REAGENT SCANNER
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon_state = "health"
-	item_state = "analyzer"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
+	item_state = "healthanalyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
