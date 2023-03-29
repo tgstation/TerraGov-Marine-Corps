@@ -15,6 +15,11 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
+	)
+	item_state = "card-id"
 	item_state_worn = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
@@ -28,7 +33,6 @@
 	var/function = "storage"
 	var/data = "null"
 	var/special = null
-	item_state = "card-id"
 
 /obj/item/card/data/verb/label(t as text)
 	set name = "Label Disk"
@@ -43,7 +47,6 @@
 /obj/item/card/data/clown
 	name = "\proper the coordinates to clown planet"
 	icon_state = "data"
-	item_state = "card-id"
 	layer = OBJ_LAYER
 	level = 2
 	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
@@ -58,14 +61,12 @@
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
-	item_state = "card-id"
 
 
 /obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
-	item_state = "card-id"
 	flags_item = NOBLUDGEON
 
 
@@ -73,7 +74,6 @@
 	name = "identification card"
 	desc = "A card used to provide ID and determine access to a large array of machinery."
 	icon_state = "id"
-	item_state = "card-id"
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	flags_equip_slot = ITEM_SLOT_ID

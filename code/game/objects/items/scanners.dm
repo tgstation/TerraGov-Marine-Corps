@@ -18,6 +18,10 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 
 
@@ -59,7 +63,11 @@ REAGENT SCANNER
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon_state = "health"
-	item_state = "analyzer"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
+	item_state = "healthanalyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -80,21 +88,34 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	analyze_vitals(M, user, TRUE)
+
+///Health scans a target. M is the thing being scanned, user is the person doing the scanning, show_patient will show the UI to the scanee when TRUE.
+/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/M, mob/living/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
 		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
-	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
-		to_chat(user, span_warning("Error: Cannot read vitals!"))
+	if(!iscarbon(M))
+		balloon_alert(user, "Cannot scan")
 		return
 	if(isxeno(M))
-		to_chat(user, span_warning("[src] can't make sense of this creature!"))
+		balloon_alert(user, "Unknown entity")
 		return
-	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
+	if(M.species.species_flags & NO_SCAN)
+		balloon_alert(user, "Not Organic")
+		return
 	patient = M
 	current_user = user
-	ui_interact(user)
+	if(show_patient)
+		ui_interact(M)
+	else
+		ui_interact(user)
 	update_static_data(user)
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return
@@ -282,7 +303,7 @@ REAGENT SCANNER
 	if(istype(user) && istype(target))
 		attack(target,user)
 
-/obj/item/analyzer
+/obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
 	icon_state = "atmos"
@@ -295,7 +316,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 
-/obj/item/analyzer/attack_self(mob/user as mob)
+/obj/item/tool/analyzer/attack_self(mob/user as mob)
 	..()
 	var/turf/T = get_turf(user)
 	if(!T)

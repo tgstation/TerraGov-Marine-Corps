@@ -3,8 +3,8 @@
 //      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
 /obj/item/clothing/head/helmet/space
 	name = "Space helmet"
-	icon = 'icons/obj/clothing/space_suit_helmets.dmi'
-	item_icons = list(slot_head_str = 'icons/mob/space_suit_helmets.dmi')
+	icon = 'icons/obj/clothing/headwear/space_suit_helmets.dmi'
+	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/space_suit_helmets.dmi')
 	icon_state = "space-helm"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	permeability_coefficient = 0.01
@@ -20,8 +20,8 @@
 /obj/item/clothing/suit/space
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
-	icon = 'icons/obj/clothing/space_suits.dmi'
-	item_icons = list(slot_wear_suit_str = 'icons/mob/space_suits.dmi')
+	icon = 'icons/obj/clothing/suits/space_suits.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/clothing/suits/space_suits.dmi')
 	icon_state = "space"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01

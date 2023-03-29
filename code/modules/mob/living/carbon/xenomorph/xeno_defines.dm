@@ -235,8 +235,6 @@
 	var/silent_vent_crawl = FALSE
 	///how much water slows down this caste
 	var/water_slowdown = 1.3
-	///how much snow slows down this caste
-	var/snow_slowdown = 0.25
 	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
 	var/evolve_min_xenos = 0
 	// How many of this caste may be alive at once

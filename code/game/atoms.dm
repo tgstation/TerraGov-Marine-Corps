@@ -827,7 +827,7 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/multitool))
+	if(!istype(I, /obj/item/tool/multitool))
 		if(user && !silent)
 			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE

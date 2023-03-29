@@ -914,7 +914,7 @@ ARMOR
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/artemis_mark_two
-	name = "Artemis Mark 2 helmet module"
+	name = "Freyr Mark 2 helmet module"
 	contains = list(
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
@@ -955,7 +955,7 @@ CLOTHING
 /datum/supply_packs/clothing/officer_outfits
 	name = "officer outfits"
 	contains = list(
-		/obj/item/clothing/under/rank/ro_suit,
+		/obj/item/clothing/under/marine/officer/ro_suit,
 		/obj/item/clothing/under/marine/officer/bridge,
 		/obj/item/clothing/under/marine/officer/bridge,
 		/obj/item/clothing/under/marine/officer/exec,

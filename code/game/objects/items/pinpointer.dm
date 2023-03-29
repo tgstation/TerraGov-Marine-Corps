@@ -4,6 +4,10 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
@@ -12,7 +16,7 @@
 
 /obj/item/pinpointer/Initialize()
 	. = ..()
-	tracked_list = GLOB.xeno_critical_structure
+	tracked_list = GLOB.xeno_critical_structures
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))

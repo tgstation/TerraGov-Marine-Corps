@@ -3,6 +3,7 @@
 /area/sulaco/bridge
 	name = "Sulaco Bridge"
 	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/sulaco/bridge/quarters
 	name = "Sulaco Officer's Quarters"
@@ -15,6 +16,7 @@
 /area/sulaco/cap_office
 	name = "Sulaco Captain's Office"
 	icon_state = "captain"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/sulaco/bridge/maint
 	name = "Sulaco Bridge Maintenance"
@@ -23,10 +25,15 @@
 /area/sulaco/security
 	name = "Sulaco Foreship Security Office"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/sulaco/hydro
 	name = "Sulaco Hydroponics"
 	icon_state = "garden"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/sulaco/medbay
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/sulaco/medbay/cmo
 	name = "Sulaco Chief Medical Officer's Office"
@@ -71,6 +78,7 @@
 /area/sulaco/brig
 	name = "Sulaco Brig"
 	icon_state = "brig"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/sulaco/hallway
 	name = "Sulaco Hallway"
@@ -91,6 +99,7 @@
 /area/sulaco/hallway/evac
 	name = "Sulaco Evacuation Port"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/sulaco/hallway/lower_foreship
 	name = "Sulaco Foreship Lower Hallway"
@@ -107,6 +116,7 @@
 /area/sulaco/briefing
 	name = "Sulaco Briefing Room"
 	icon_state = "blue-red2"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/sulaco/cryosleep
 	name = "Sulaco Cryogenic Storage"
@@ -115,18 +125,22 @@
 /area/sulaco/showers
 	name = "Sulaco Showers"
 	icon_state = "toilet"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/sulaco/cafeteria
 	name = "Sulaco Cafeteria"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/sulaco/cafeteria/kitchen
 	name = "Sulaco Kitchen"
 	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/sulaco/cargo
 	name = "Sulaco Main Cargo Bay"
 	icon_state = "quartstorage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/sulaco/cargo/office
 	name = "Sulaco Cargo Office"
@@ -143,14 +157,17 @@
 /area/sulaco/maintenance
 	name = "Sulaco Maintenance"
 	icon_state = "fmaint"
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/sulaco/mechpilotquarters
 	name = "Sulaco Mech Pilot Quarters"
 	icon_state = "blueold"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/sulaco/engineering
 	name = "Sulaco Engineering"
 	icon_state = "engine"
+	minimap_color = MINIMAP_AREA_ENGI
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/sulaco/engineering/lower_engineering
@@ -184,26 +201,34 @@
 /area/sulaco/marine
 	name = "Sulaco Marine Prep"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_PREP
 
 /area/sulaco/marine/chapel
 	name = "Sulaco Chapel"
 	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/sulaco/marine/chapel/chapel_office
 	name = "Sulaco Chapel Office"
 	icon_state = "chapeloffice"
 
+/area/sulaco/command
+	minimap_color = MINIMAP_AREA_COMMAND
+
 /area/sulaco/command/armory
 	name = "Sulaco Secure Armory"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/sulaco/research
 	name = "Sulaco Research Division"
 	icon_state = "research"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/sulaco/telecomms
 	name = "Sulaco Telecomms Central"
 	icon_state = "tcomsatcham"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/sulaco/telecomms/office
 	name = "Sulaco Telecomms Monitoring"
@@ -224,14 +249,17 @@
 /area/sulaco/morgue
 	name = "Sulaco Morgue"
 	icon_state = "morgue"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/sulaco/bar
 	name = "Sulaco Bar"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/sulaco/hangar
 	name = "Sulaco Dropship Hangar"
 	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/sulaco/hangar/droppod
 	name = "Sulaco Drop pod bay"
@@ -240,11 +268,11 @@
 /area/sulaco/hangar/storage
 	name = "Sulaco Hangar Workshop"
 	icon_state = "hangar_storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/sulaco/hangar/cas
 	name = "Sulaco Hangar CAS Plane"
 	icon_state = "hangar_cas"
-
 
 /area/sulaco/command/eva
 	name = "Sulaco EVA Storage"

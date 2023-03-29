@@ -97,7 +97,9 @@
 	if(ispath(item_type, /obj/item/clothing/suit))
 		return /datum/item_representation/armor_suit
 	if(ispath(item_type, /obj/item/clothing/head/modular))
-		return /datum/item_representation/modular_helmet
+		return /datum/item_representation/hat/modular_helmet
+	if(ispath(item_type, /obj/item/clothing/head))
+		return /datum/item_representation/hat
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))

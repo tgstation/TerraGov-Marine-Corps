@@ -12,7 +12,7 @@
 	flags_armor_protection = NONE
 	allowed = list (
 		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/analyzer/plant_analyzer,
+		/obj/item/tool/analyzer/plant_analyzer,
 		/obj/item/seeds,
 		/obj/item/reagent_containers/glass/fertilizer,
 		/obj/item/tool/minihoe,
@@ -198,9 +198,9 @@
 	item_state = "hazard"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/analyzer,
+		/obj/item/tool/analyzer,
 		/obj/item/flashlight,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/pipe_painter,
 		/obj/item/radio,
 		/obj/item/t_scanner,
@@ -319,7 +319,6 @@
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
 	desc = "A standard snow suit. It can protect the wearer from extreme cold."
-	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "snowsuit_alpha"
 	flags_armor_protection = CHEST|GROIN|ARMS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS

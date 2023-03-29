@@ -80,6 +80,7 @@
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)
+		new /obj/structure/xeno/pherotower(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
@@ -102,7 +103,7 @@
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 
-	for(var/i in GLOB.alive_xeno_list)
+	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
 			X.evolution_stored = X.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
@@ -176,9 +177,7 @@
 	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
-		if(XENO_TIER_TWO)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+			new_xeno.upgrade_stored = max(new_xeno.upgrade_stored, TIER_ONE_MATURE_THRESHOLD)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))

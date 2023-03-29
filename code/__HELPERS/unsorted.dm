@@ -664,7 +664,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/tool/crowbar)))
 
 

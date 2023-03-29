@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixed an issue with targeting mounted guns when manned"
-  - bugfix: "Fixed a couple of minor  COPE sentry issues"

@@ -4,6 +4,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/explosives_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/explosives_right.dmi',
+		)
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL

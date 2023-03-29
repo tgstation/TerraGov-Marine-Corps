@@ -32,11 +32,12 @@
 	. = ..()
 	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2 * SILO_PRICE + 4 * XENO_TURRET_PRICE)
 
-	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		if(isxenolarva(xeno)) // Larva
+			xeno.evolution_stored = xeno.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
 	. = ..()
@@ -69,7 +70,7 @@
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
 		return
-	if(GLOB.xeno_resin_silos.len)
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
 		if(siloless_hive_timer)
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
