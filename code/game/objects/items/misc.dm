@@ -56,6 +56,10 @@
 	name = "gift"
 	desc = "A wrapped item."
 	icon = 'icons/obj/items/items.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	icon_state = "gift3"
 	var/size = 3.0
 	var/obj/item/gift = null

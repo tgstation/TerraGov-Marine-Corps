@@ -8,6 +8,10 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_NORMAL
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
