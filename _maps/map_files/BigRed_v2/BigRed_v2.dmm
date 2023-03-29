@@ -2585,7 +2585,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "avq" = (
-/obj/item/violin,
+/obj/item/instrument/violin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},

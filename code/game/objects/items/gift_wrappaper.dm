@@ -42,7 +42,7 @@
 		/obj/item/toy/sword,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
-		/obj/item/violin,
+		/obj/item/instrument/violin,
 		/obj/item/clothing/tie/horrible)
 
 

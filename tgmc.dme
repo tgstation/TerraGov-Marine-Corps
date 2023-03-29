@@ -650,7 +650,6 @@
 #include "code\game\objects\items\taperecorder.dm"
 #include "code\game\objects\items\transfer_valve.dm"
 #include "code\game\objects\items\trash.dm"
-#include "code\game\objects\items\violin.dm"
 #include "code\game\objects\items\whistle.dm"
 #include "code\game\objects\items\books\book.dm"
 #include "code\game\objects\items\books\manuals.dm"

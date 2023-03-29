@@ -7,8 +7,8 @@
 	interaction_flags = INTERACT_OBJ_UI
 	item_state_worn = TRUE
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/instruments_lefthand.dmi',
-		slot_r_hand_str = 'icons/mob/instruments_righthand.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/instruments_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/instruments_right.dmi',
 		slot_s_store_str = 'icons/mob/instruments_back.dmi',
 		)
 	/// Our song datum.
