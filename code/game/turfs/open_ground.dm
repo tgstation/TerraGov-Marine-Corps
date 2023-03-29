@@ -64,8 +64,6 @@
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
-		if(isxenoslime(xeno))
-			SEND_SIGNAL(xeno, COMSIG_XENOMORPH_WATER, xeno)
 		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
 	else
 		C.next_move_slowdown += 1.75
@@ -362,9 +360,6 @@
 	if(prob(25))
 		to_chat(L, pick(span_warning(" Something sharp bites you!"),span_warning(" Sharp teeth grab hold of you!"),span_warning(" You feel something take a chunk out of your leg!")))
 		L.apply_damage(1, BRUTE, sharp = TRUE)
-
-	if(isxenoslime(L))
-		SEND_SIGNAL(L, COMSIG_XENOMORPH_WATER, L)
 
 /turf/open/ground/jungle/water/deep
 	plants_spawn = FALSE

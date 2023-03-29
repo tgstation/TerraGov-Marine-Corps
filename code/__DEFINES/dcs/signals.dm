@@ -565,8 +565,6 @@
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
-#define COMSIG_XENOMORPH_WATER "xeno_slime_water"
-
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
