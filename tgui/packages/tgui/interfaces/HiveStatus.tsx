@@ -6,7 +6,6 @@ import { round } from 'common/math';
 type InputPack = {
   // ------- Hive info --------
   hive_name: string;
-  hive_max_tier_two: number;
   hive_larva_current: number;
   hive_larva_threshold: number;
   hive_larva_rate: number;
@@ -507,7 +506,6 @@ const PopulationPyramid = (_props, context) => {
         direction="column-reverse"
         align={compact_display ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
-          // Hardcoded tier check for limited slots.
           const slot_text = tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3 ? 8 : 7;
@@ -535,10 +533,7 @@ const PopulationPyramid = (_props, context) => {
             }
             return (
               <Box key={tier}>
-                Tier {tier}:{' '}
-                {tier === 2 || tier === 3
-                  ? ` (${tier_info.total}) `
-                  : ` ${tier_info.total} `}
+                Tier {tier}: {tier_info.total}
                 Sisters {!empty_display && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index
                   .map((value, idx) => {
