@@ -359,7 +359,7 @@
 	throwforce = 65
 	throw_speed = 3
 	edge = 1
-	attack_speed = 20
+	attack_speed = 24
 	sharp = IS_SHARP_ITEM_BIG
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO | TWOHANDED
