@@ -51,7 +51,7 @@
 		receiving_xeno.salve_healing()
 		if(receiving_xeno == drainer)
 			receiving_xeno.evolution_stored = receiving_xeno.xeno_caste.evolution_threshold
-			if(receiving_xeno.tier == XENO_UPGRADE_FOUR || receiving_xeno.tier == XENO_UPGRADE_THREE)
+			if(receiving_xeno.upgrade == XENO_UPGRADE_FOUR || receiving_xeno.upgrade == XENO_UPGRADE_THREE)
 				continue
 			var/datum/xeno_caste/tier_two = GLOB.xeno_caste_datums[receiving_xeno.caste_base_type][XENO_UPGRADE_TWO]
 			if(!tier_two)
