@@ -361,6 +361,7 @@
 		to_chat(L, pick(span_warning(" Something sharp bites you!"),span_warning(" Sharp teeth grab hold of you!"),span_warning(" You feel something take a chunk out of your leg!")))
 		L.apply_damage(1, BRUTE, sharp = TRUE)
 
+
 /turf/open/ground/jungle/water/deep
 	plants_spawn = FALSE
 	density = TRUE
