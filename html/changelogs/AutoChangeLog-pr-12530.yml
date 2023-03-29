@@ -1,0 +1,4 @@
+author: "Autisem"
+delete-after: True
+changes:
+  - rscadd: "Phermone towers now spawn alongside the silo's during crash"
