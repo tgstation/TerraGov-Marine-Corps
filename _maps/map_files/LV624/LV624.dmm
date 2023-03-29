@@ -14953,7 +14953,7 @@
 /turf/open/ground/river/autosmooth,
 /area/lv624/ground/jungle4)
 "rLt" = (
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "rMB" = (

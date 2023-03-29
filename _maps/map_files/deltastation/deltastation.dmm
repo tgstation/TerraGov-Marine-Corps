@@ -17173,8 +17173,8 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den/gaming)
 "dBd" = (
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare{
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian{
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -51245,12 +51245,12 @@
 /area/deltastation/asteroidcaves/derelictsatellite)
 "kvt" = (
 /obj/effect/spawner/random/structure/closet/regular,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/spawner/random/structure/handheld_lighting,

@@ -6871,8 +6871,8 @@
 /obj/item/tank/oxygen/red,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/plating,
 /area/centcom/valhalla/central)
 "jpY" = (
@@ -7821,8 +7821,8 @@
 /obj/structure/closet/crate,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/item/cell/high,
 /obj/item/tool/crowbar/red,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -18098,8 +18098,8 @@
 "xsU" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/utility,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/eva)
 "xte" = (

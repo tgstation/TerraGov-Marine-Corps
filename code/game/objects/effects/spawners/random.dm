@@ -264,7 +264,7 @@
 	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/flashlight = 15,
-		/obj/item/flashlight/flare = 5,
+		/obj/item/explosive/grenade/flare/civilian = 5,
 		/obj/item/flashlight/lantern = 1,
 		/obj/item/flashlight/pen = 1,
 	)

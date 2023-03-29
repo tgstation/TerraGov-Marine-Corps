@@ -192,8 +192,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(Z.heat)
 			light(span_rose("With a flick of [user.p_their()] wrist, [user] lights their [name] with [W]."))
 
-	else if(istype(W, /obj/item/flashlight/flare))
-		var/obj/item/flashlight/flare/FL = W
+	else if(istype(W, /obj/item/explosive/grenade/flare/civilian))
+		var/obj/item/explosive/grenade/flare/civilian/FL = W
 		if(FL.heat)
 			light(span_notice("[user] lights [user.p_their()] [name] with [W]."))
 

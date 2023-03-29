@@ -10882,7 +10882,7 @@
 /area/sulaco/command/ai)
 "chQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/item/weapon/cane,
 /obj/machinery/firealarm{
 	dir = 8
@@ -12604,7 +12604,7 @@
 /area/sulaco/hallway/central_hall2)
 "eAP" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "eBK" = (
@@ -14115,7 +14115,7 @@
 /area/sulaco/showers)
 "gKQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/item/facepaint/brown,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
@@ -17261,7 +17261,7 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/lightreplacer,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "kUP" = (

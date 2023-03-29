@@ -29,7 +29,7 @@
 	if(prob(50))
 		new /obj/item/flashlight(src)
 	else
-		new /obj/item/flashlight/flare(src)
+		new /obj/item/explosive/grenade/flare/civilian(src)
 
 
 /obj/item/storage/toolbox/mechanical
