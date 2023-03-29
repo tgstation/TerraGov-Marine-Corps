@@ -10,6 +10,10 @@
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	throwforce = 8
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	var/source_sheet_type = /obj/item/stack/sheet/glass
