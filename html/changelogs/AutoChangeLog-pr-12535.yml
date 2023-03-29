@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed mobs getting stuck on eachother and other mobs when moving diagonally"
