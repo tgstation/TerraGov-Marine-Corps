@@ -70,7 +70,7 @@
 	if(src.processing)
 		to_chat(user, span_warning("The processor is in the process of processing."))
 		return 1
-	if(src.contents.len == 0)
+	if(length(src.contents) == 0)
 		to_chat(user, span_warning("The processor is empty."))
 		return 1
 	for(var/O in src.contents)

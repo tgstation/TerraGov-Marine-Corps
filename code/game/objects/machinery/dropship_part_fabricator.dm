@@ -104,7 +104,7 @@
 
 /// Processes next item in queue, if queue has not finished already
 /obj/machinery/dropship_part_fabricator/proc/next_queue()
-	if(queue.len > 0) //Cont n inue queue
+	if(length(queue) > 0) //Cont n inue queue
 		var/part_to_build = queue[1]
 		queue.Remove(part_to_build)
 		build_dropship_part(part_to_build)

@@ -100,8 +100,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
-	while(GLOB.landmarks_round_start.len)
-		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
+	while(length(GLOB.landmarks_round_start))
+		L = GLOB.landmarks_round_start[length(GLOB.landmarks_round_start)]
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
@@ -272,8 +272,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
 		var/turf/T
-		while(GLOB.xeno_spawn_protection_locations.len)
-			T = GLOB.xeno_spawn_protection_locations[GLOB.xeno_spawn_protection_locations.len]
+		while(length(GLOB.xeno_spawn_protection_locations))
+			T = GLOB.xeno_spawn_protection_locations[length(GLOB.xeno_spawn_protection_locations)]
 			GLOB.xeno_spawn_protection_locations.len--
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		for(var/i in 1 to length(RA.medal_names))
 			parts += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the [span_boldnotice("[RA.medal_names[i]]")]: \'<i>[RA.medal_citations[i]]</i>\'."
 
-	if(parts.len)
+	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
@@ -480,7 +480,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			else
 				parts += ","
 
-	if(parts.len)
+	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
@@ -806,7 +806,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	parts += span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
 
-	if(parts.len)
+	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
@@ -821,14 +821,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		antag_info["antagonist_type"] = A.type
 		antag_info["antagonist_name"] = A.name //For auto and custom roles
 		antag_info["objectives"] = list()
-		if(A.objectives.len)
+		if(length(A.objectives))
 			for(var/datum/objective/O in A.objectives)
 				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
 				antag_info["objectives"] += list(list("objective_type"=O.type,"text"=O.explanation_text,"result"=result))
 		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
 
 /proc/printobjectives(list/objectives)
-	if(!objectives || !objectives.len)
+	if(!objectives || !length(objectives))
 		return
 	var/list/objective_parts = list()
 	var/count = 1
@@ -881,8 +881,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		result += A.roundend_report()
 		result += "<br><br>"
 		CHECK_TICK
-	if(all_antagonists.len)
-		var/datum/antagonist/last = all_antagonists[all_antagonists.len]
+	if(length(all_antagonists))
+		var/datum/antagonist/last = all_antagonists[length(all_antagonists)]
 		result += last.roundend_report_footer()
 		result += "</div>"
 	return result.Join()

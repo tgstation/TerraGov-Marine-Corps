@@ -127,7 +127,7 @@
 	for(var/obj/C in supply_pad.loc)
 		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates, unmanned vehicles and large crates
 			supplies.Add(C)
-		if(supplies.len > MAX_SUPPLY_DROPS)
+		if(length(supplies) > MAX_SUPPLY_DROPS)
 			break
 
 ///Start the supply drop process
@@ -169,7 +169,7 @@
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
 		return
 
-	if(!supplies.len)
+	if(!length(supplies))
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
 		return
 

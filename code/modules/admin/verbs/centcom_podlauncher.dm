@@ -178,7 +178,7 @@
 				return
 			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flame") //Explosions have a range of different types of damage
 			var/list/boomInput = list()
-			for (var/i=1 to expNames.len) //Gather input from the user for the value of each type of damage
+			for (var/i=1 to length(expNames)) //Gather input from the user for the value of each type of damage
 				boomInput.Add(usr, tgui_input_number("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0))
 				if (isnull(boomInput[i]))
 					return
@@ -498,7 +498,7 @@
 	numTurfs = 0 //Counts the number of turfs that can be launched (remember, supplypods either launch all at once or one turf-worth of items at a time)
 	acceptableTurfs = list()
 	for (var/turf/T in orderedArea) //Go through the orderedArea list
-		if (typecache_filter_list_reverse(T.contents, ignored_atoms).len != 0) //if there is something in this turf that isnt in the blacklist, we consider this turf "acceptable" and add it to the acceptableTurfs list
+		if (typecache_filter_list_reverse(T.contents, length(ignored_atoms)) != 0) //if there is something in this turf that isnt in the blacklist, we consider this turf "acceptable" and add it to the acceptableTurfs list
 			acceptableTurfs.Add(T) //Because orderedArea was an ordered linear list, acceptableTurfs will be as well.
 			numTurfs ++
 
@@ -509,7 +509,7 @@
 				for (var/turf/T in acceptableTurfs)
 					launchList |= typecache_filter_list_reverse(T.contents, ignored_atoms) //We filter any blacklisted atoms and add the rest to the launchList
 			if(1) //If we are launching one at a time
-				if (launchCounter > acceptableTurfs.len) //Check if the launchCounter, which acts as an index, is too high. If it is, reset it to 1
+				if (launchCounter > length(acceptableTurfs)) //Check if the launchCounter, which acts as an index, is too high. If it is, reset it to 1
 					launchCounter = 1 //Note that the launchCounter index is incremented in the launch() proc
 				for (var/atom/movable/O in acceptableTurfs[launchCounter].contents) //Go through the acceptableTurfs list based on the launchCounter index
 					launchList |= typecache_filter_list_reverse(acceptableTurfs[launchCounter].contents, ignored_atoms) //Filter the specicic turf chosen from acceptableTurfs, and add it to the launchList
@@ -541,7 +541,7 @@
 /datum/centcom_podlauncher/proc/updateSelector() //Ensures that the selector effect will showcase the next item if needed
 	if (launchChoice == 1 && !isemptylist(acceptableTurfs) && !temp_pod.reversing && !temp_pod.effectMissile) //We only show the selector if we are taking items from the bay
 		var/index = launchCounter + 1 //launchCounter acts as an index to the ordered acceptableTurfs list, so adding one will show the next item in the list
-		if (index > acceptableTurfs.len) //out of bounds check
+		if (index > length(acceptableTurfs)) //out of bounds check
 			index = 1
 		selector.forceMove(acceptableTurfs[index]) //forceMove the selector to the next turf in the ordered acceptableTurfs list
 	else

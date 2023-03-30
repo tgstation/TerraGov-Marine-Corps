@@ -36,11 +36,11 @@ SUBSYSTEM_DEF(mobs)
 	if (!islist(clients_by_zlevel))
 		clients_by_zlevel = new /list(world.maxz,0)
 		dead_players_by_zlevel = new /list(world.maxz,0)
-	while (clients_by_zlevel.len < world.maxz)
+	while (length(clients_by_zlevel) < world.maxz)
 		clients_by_zlevel.len++
-		clients_by_zlevel[clients_by_zlevel.len] = list()
+		clients_by_zlevel[length(clients_by_zlevel)] = list()
 		dead_players_by_zlevel.len++
-		dead_players_by_zlevel[dead_players_by_zlevel.len] = list()
+		dead_players_by_zlevel[length(dead_players_by_zlevel)] = list()
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	var/seconds = wait * 0.1
@@ -67,8 +67,8 @@ SUBSYSTEM_DEF(mobs)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	var/times_fired = src.times_fired
-	while(currentrun.len)
-		var/mob/living/L = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/mob/living/L = currentrun[length(currentrun)]
 		currentrun.len--
 		if(L)
 			L.Life(seconds, times_fired)

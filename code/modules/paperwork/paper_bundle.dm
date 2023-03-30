@@ -197,7 +197,7 @@
 	qdel(src)
 
 /obj/item/paper_bundle/update_icon()
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/I = contents[1]
 		icon_state = I.icon_state
 		overlays = I.overlays

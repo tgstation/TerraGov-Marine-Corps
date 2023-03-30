@@ -28,7 +28,7 @@
 			for(var/rid in S.chems)
 				var/list/reagent_data = S.chems[rid]
 				var/rtotal = reagent_data[1]
-				if(reagent_data.len > 1 && potency > 0)
+				if(length(reagent_data) > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
 				reagents.add_reagent(rid,max(1,rtotal))
 

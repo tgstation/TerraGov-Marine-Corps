@@ -14,7 +14,7 @@
 	pixel_y = rand(-5,5)
 
 /obj/item/disk/botany/attack_self(mob/user as mob)
-	if(genes.len)
+	if(length(genes))
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", list("No", "Yes"))
 		if(src && user && genes && choice == "Yes")
 			to_chat(user, "You wipe the disk data.")
@@ -175,7 +175,7 @@
 		seed.loc = get_turf(src)
 
 		if(seed.seed.name == "new line" || isnull(GLOB.seed_types[seed.seed.name]))
-			seed.seed.uid = GLOB.seed_types.len + 1
+			seed.seed.uid = length(GLOB.seed_types) + 1
 			seed.seed.name = "[seed.seed.uid]"
 			GLOB.seed_types[seed.seed.name] = seed.seed
 
@@ -266,7 +266,7 @@
 	else
 		data["degradation"] = 0
 
-	if(loaded_disk && loaded_disk.genes.len)
+	if(loaded_disk && length(loaded_disk.genes))
 		data["disk"] = 1
 		data["sourceName"] = loaded_disk.genesource
 		data["locus"] = ""

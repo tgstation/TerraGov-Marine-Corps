@@ -42,7 +42,7 @@
 		to_chat(user, "You place your cards on the bottom of the deck.")
 
 /obj/item/toy/deck/update_icon_state()
-	switch(cards.len)
+	switch(length(cards))
 		if(52)
 			icon_state = "deck"
 		if(1 to 51)
@@ -69,7 +69,7 @@
 	if(!ishuman(user))
 		return
 
-	if(!cards.len)
+	if(!length(cards))
 		to_chat(usr, "There are no cards in the deck.")
 		return
 
@@ -101,7 +101,7 @@
 
 	if(usr.stat || !Adjacent(usr)) return
 
-	if(!cards.len)
+	if(!length(cards))
 		to_chat(usr, "There are no cards in the deck.")
 		return
 
@@ -114,7 +114,7 @@
 	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal a card?", null, players)
 	if(!usr || gc_destroyed || !Adjacent(usr) || !M || M.gc_destroyed) return
 
-	if(!cards.len)
+	if(!length(cards))
 		return
 
 	for(var/mob/living/L in viewers(3))
@@ -139,7 +139,7 @@
 /obj/item/toy/deck/attack_self(mob/user as mob)
 
 	var/list/newcards = list()
-	while(cards.len)
+	while(length(cards))
 		var/datum/playingcard/P = pick(cards)
 		newcards += P
 		cards -= P
@@ -152,7 +152,7 @@
 
 	if(!ishuman(over) || !(over in viewers(3))) return
 
-	if(!cards.len)
+	if(!length(cards))
 		to_chat(usr, "There are no cards in the deck.")
 		return
 
@@ -233,7 +233,7 @@
 	user.visible_message("\The [user] plays \the [discarding].")
 	H.loc = get_step(user, user.dir)
 
-	if(!cards.len)
+	if(!length(cards))
 		qdel(src)
 
 /obj/item/toy/handcard/attack_self(mob/user as mob)
@@ -243,15 +243,15 @@
 
 /obj/item/toy/handcard/examine(mob/user)
 	. = ..()
-	if(cards.len)
-		. += span_notice("It has [cards.len] cards.")
+	if(length(cards))
+		. += span_notice("It has [length(cards)] cards.")
 		if((!concealed || loc == user))
 			. += span_notice("The cards are: ")
 			for(var/datum/playingcard/P in cards)
 				. += "-[P.name]"
 
 /obj/item/toy/handcard/update_icon(direction = 0)
-	if(cards.len > 1)
+	if(length(cards) > 1)
 		name = "hand of cards"
 		desc = "Some playing cards."
 	else
@@ -260,10 +260,10 @@
 
 	overlays.Cut()
 
-	if(!cards.len)
+	if(!length(cards))
 		return
 
-	if(cards.len == 1)
+	if(length(cards) == 1)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "card_back" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
@@ -271,7 +271,7 @@
 		overlays += I
 		return
 
-	var/offset = FLOOR(20/cards.len, 1)
+	var/offset = FLOOR(length(20/cards), 1)
 
 	var/matrix/M = matrix()
 	if(direction)
@@ -362,7 +362,7 @@
 		cards += P
 
 /obj/item/toy/deck/kotahi/update_icon_state()
-	switch(cards.len)
+	switch(length(cards))
 		if(107 to 108) icon_state = "deck"
 		if(37 to 106) icon_state = "deck_open"
 		if(0 to 36) icon_state = "deck_empty"
