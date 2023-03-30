@@ -2,7 +2,7 @@
 	"Martialstaff" : [
 		{
 			"type": "icon_state",
-			"icon_state": "martialstaff_w",
+			"icon_state": "martialstaff",
 			"blend_mode": "overlay",
 			"color_ids": [1]
 		},

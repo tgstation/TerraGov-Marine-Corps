@@ -175,6 +175,7 @@
 
 //json for martialstaff because it has flames that update on-mob
 /datum/greyscale_config/martialstaff
+	icon_file = 'icons/obj/items/weapons.dmi'
 	json_config = 'code/datums/greyscale/json_configs/martialstaff.json'
 
 

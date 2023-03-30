@@ -30,12 +30,25 @@
 	attack_speed = 6
 	attack_speed_alternate = 14
 
-	greyscale_config = /datum/greyscale_config/martialstaff
-	greyscale_colors = COLOR_LASER_BLUE
+	/*greyscale_config = /datum/greyscale_config/martialstaff
+	greyscale_colors = COLOR_LASER_BLUE*/
 
 	hitsound = 'sound/weapons/wood_hit2.ogg'
 
+	///Storage for the flame overlay that gets put on the in-hand sprite
+	var/mutable_appearance/flame_overlay
 
+
+
+
+
+
+
+
+
+
+
+	var/list/mutable_appearance/in_hand_fire_overlay = list()
 	var/list/mutable_appearance/fire_overlay = list()
 	///How far can we throw things with toss/flip
 	var/toss_distance
@@ -68,6 +81,9 @@
 		STANCE_HEAL = list(COMBO_STEPS = list(LEFT_HIT, RIGHT_HIT, UNIQUE_HIT), COMBO_PROC = PROC_REF(heal)),
 		STANCE_HEAL_ALT = list(COMBO_STEPS = list(RIGHT_HIT, LEFT_HIT, UNIQUE_HIT), COMBO_PROC = PROC_REF(heal)), //Heal has 2 possible combos
 	)
+
+
+
 
 /obj/item/weapon/twohanded/martialstaff/Initialize()
 	. = ..()
@@ -134,9 +150,45 @@
 	new_overlay.color = (hit_side == RIGHT_HIT) ? flame_color_heavy : flame_color_light
 	if(existing_overlay)
 		new_overlay.icon_state = "flame1"
-		new_overlay.pixel_y = 16
+		new_overlay.pixel_y = 12
 	add_overlay(list(new_overlay))
 	fire_overlay.Add(new_overlay)
+	generate_flame_overlay(new_overlay, hit_side)
+
+
+
+
+/////// add_flame ///////////////////
+
+/*/obj/item/weapon/twohanded/martialstaff/add_flame(flame_color)
+	if(flame_color)
+		flame_color = flame_color
+	return TRUE
+
+	if(!flame_overlay)//apply the blood-splatter overlay if it isn't already in there
+		generate_flame_overlay()
+
+	else if(flame_overlay && flame_color && flame_overlay.color != flame_color)
+		overlays -= flame_overlay
+		flame_overlay.color = flame_color
+		overlays += flame_overlay
+	return TRUE //we applied blood to the item
+	*/
+
+
+/obj/item/weapon/twohanded/martialstaff/proc/generate_flame_overlay(flame_color, hit_side)
+	if(!flame_overlay)
+		flame_overlay = new /icon('icons/effects/effects.dmi', "flame")
+		flame_overlay.color = (hit_side == RIGHT_HIT) ? flame_color_heavy : flame_color_light
+		overlays += flame_overlay
+
+
+
+
+
+
+
+
 
 /**
  * Resets the inputs and overlays from the staff
