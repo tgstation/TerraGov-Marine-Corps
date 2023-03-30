@@ -1,7 +1,0 @@
-author: "carlarctg"
-delete-after: True
-changes:
-  - qol: "Halved attaching delay for most things, except anything that has it overriden such as guns."
-  - qol: "Halved the delay for taking modules out, 3s -> 1.5s."
-  - qol: "Allowed you to take off modules without taking the armor off, but it doubles it back to its normal 3s value."
-  - qol: "Added a sprite to signify you've hooked a gun to your harness."

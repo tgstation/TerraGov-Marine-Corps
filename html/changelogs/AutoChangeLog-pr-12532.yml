@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixes window and window frame weeds transferring the click to the frame/window below"
-  - code_imp: "Removed some weed window frame copypasta"
