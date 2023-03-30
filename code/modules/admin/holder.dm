@@ -185,7 +185,7 @@
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
 /proc/check_rights_for(client/subject, rights_required)
-	if(subject && subject.holder)
+	if(subject?.holder)
 		return subject.holder.check_for_rights(rights_required)
 	return FALSE
 

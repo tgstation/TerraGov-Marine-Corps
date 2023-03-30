@@ -92,7 +92,7 @@
 
 
 /mob/living/carbon/human/adjustBruteLoss(amount, updating_health = FALSE)
-	if(species && species.brute_mod && amount > 0)
+	if(species?.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
 	if(amount > 0)
@@ -102,7 +102,7 @@
 
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = FALSE)
-	if(species && species.burn_mod && amount > 0)
+	if(species?.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
 	if(amount > 0)
@@ -112,7 +112,7 @@
 
 
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
-	if(species && species.brute_mod && amount > 0)
+	if(species?.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
 	for(var/X in limbs)
@@ -127,7 +127,7 @@
 
 
 /mob/living/carbon/human/proc/adjustFireLossByPart(amount, organ_name, obj/damage_source = null)
-	if(species && species.burn_mod && amount > 0)
+	if(species?.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
 	for(var/X in limbs)

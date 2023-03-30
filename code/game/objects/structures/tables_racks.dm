@@ -82,7 +82,7 @@
 		var/tabledirs = 0
 		for(var/direction in list(turn(dir, 90), turn(dir, -90)) )
 			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
-			if (T && T.flipped && T.dir == dir)
+			if (T?.flipped && T.dir == dir)
 				ttype++
 				tabledirs |= direction
 
@@ -445,7 +445,7 @@
 	flags_atom &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
-		if(T && T.flipped && T.dir == src.dir)
+		if(T?.flipped && T.dir == src.dir)
 			T.unflip()
 	update_icon()
 	update_adjacent()

@@ -425,7 +425,7 @@
 		return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
-		if(smoke && smoke.opacity)
+		if(smoke?.opacity)
 			return FALSE
 
 		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE) && !(T.type in ignored_terrains))

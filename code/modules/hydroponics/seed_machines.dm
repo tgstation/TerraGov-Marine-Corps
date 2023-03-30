@@ -204,7 +204,7 @@
 		active = 1
 		start_processing()
 
-		if(seed && seed.seed)
+		if(seed?.seed)
 			genetics = seed.seed
 			degradation = 0
 
@@ -266,7 +266,7 @@
 	else
 		data["degradation"] = 0
 
-	if(loaded_disk && loaded_disk.genes.len)
+	if(loaded_disk?.genes.len)
 		data["disk"] = 1
 		data["sourceName"] = loaded_disk.genesource
 		data["locus"] = ""

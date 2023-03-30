@@ -35,7 +35,7 @@
 
 /obj/item/organ/brain/examine(mob/user)
 	. = ..()
-	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
+	if(brainmob?.client)//if thar be a brain inside... the brain.
 		. += "You can feel the small spark of life still left in this one."
 	else
 		. += "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
