@@ -888,8 +888,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!damage)
 		return
 
-	flash_weak_pain()
-
 	var/feedback_flags = NONE
 
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
