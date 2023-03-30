@@ -150,7 +150,7 @@
 		if(is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
 			dat += "<A href='?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
 			dat += "<A href='?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
-		if(holdingitems?.len > 0)
+		if(length(holdingitems) > 0)
 			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
 		if(beaker)
 			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
@@ -191,7 +191,7 @@
 
 	if(usr.stat != 0)
 		return
-	if(holdingitems?.len == 0)
+	if(length(holdingitems) == 0)
 		return
 
 	for(var/obj/item/O in holdingitems)
