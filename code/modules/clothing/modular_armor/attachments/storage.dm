@@ -332,7 +332,7 @@
 
 /obj/item/armor_module/storage/boot/full/Initialize()
 	. = ..()
-	new /obj/item/attachable/bayonetknife(storage)
+	new /obj/item/weapon/combat_knife(storage)
 
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
