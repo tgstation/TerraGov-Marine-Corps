@@ -324,6 +324,8 @@
 	icon_state = "large_explosive"
 	storage_slots = 4
 	max_w_class = 3
+	max_storage_space = 16
+	bypass_w_limit = list(/obj/item/ammo_magazine/rocket/recoilless)
 	can_hold = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/mine,
