@@ -246,6 +246,12 @@
 	icon_state = "marine_service" //with thanks to Fitz 'Pancake' Sholl
 	item_state = "marine_service" //with thanks to Fitz 'Pancake' Sholl
 
+/obj/item/clothing/under/marine/maid_suit
+	name = "maid uniform"
+	desc = "A classy maid dress with a cute bowtie."
+	icon_state = "maid_uniform"
+	item_state = "maid_uniform"
+
 /*=========================RESPONDERS================================*/
 
 

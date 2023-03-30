@@ -1476,6 +1476,7 @@
 			/obj/item/clothing/head/garrisoncap = -1,
 			/obj/item/clothing/head/servicecap = -1,
 			/obj/item/clothing/under/marine/black_suit = -1,
+			/obj/item/clothing/under/marine/maid_suit = -1,
 		),
 		"Surplus Headwear" = list(
 			/obj/item/clothing/head/slouch = -1,
