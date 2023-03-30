@@ -292,10 +292,13 @@
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///what to change the gun icon_state to when switching to this mode.
 	var/icon_state = "tx73"
+	///The muzzle flash animation this mode will use.
+	var/muzzleflash_iconstate
 	///Which icon file the radial menu will use.
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
+
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
@@ -320,6 +323,7 @@
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
 	scatter = initial(choice.scatter)
+	muzzleflash_iconstate = initial(muzzleflash_iconstate)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -755,6 +759,7 @@
 	fire_delay = 0 SECONDS
 	rounds_per_shot = 1
 	scatter = 0
+	muzzleflash_iconstate = null
 	message_to_user = "You set the machine laser's charge mode to beam mode."
 	radial_icon_state = "laser_disabler"
 
