@@ -101,8 +101,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aay" = (
-/turf/open/shuttle/escapepod/eleven{
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "aaz" = (
 /obj/machinery/marine_selector/clothes/leader,
@@ -374,8 +373,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "abC" = (
-/turf/open/shuttle/escapepod/eight{
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "abD" = (
 /obj/structure/window/reinforced{
@@ -1190,13 +1188,13 @@
 /area/mainship/command/cic)
 "afC" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "afD" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -2532,13 +2530,6 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"nHZ" = (
-/obj/item/dropship_points_voucher,
-/obj/item/dropship_points_voucher,
-/obj/item/dropship_points_voucher,
-/obj/item/dropship_points_voucher,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "oNT" = (
 /obj/machinery/light{
 	dir = 1
@@ -3877,7 +3868,7 @@ bgb
 acJ
 dwY
 dwY
-nHZ
+dwY
 dwY
 dwY
 dwY
