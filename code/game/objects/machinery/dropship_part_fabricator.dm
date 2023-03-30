@@ -142,12 +142,3 @@
 
 		build_dropship_part(build_type)
 		return
-
-/obj/machinery/dropship_part_fabricator/attackby(obj/item/H, mob/user, params)
-	. = ..()
-	if(!istype(H, /obj/item/dropship_points_voucher))
-		return
-	var/obj/item/dropship_points_voucher/voucher = H
-	to_chat(user, span_notice("You add [voucher.extra_points] dropship points to \the [src]."))
-	SSpoints.dropship_points += voucher.extra_points
-	qdel(H)
