@@ -201,7 +201,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	item_state = "som_axe"
-	force = 35
+	force = 40
 	force_wielded = 80
 	penetration = 35
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -209,7 +209,6 @@
 /obj/item/weapon/twohanded/fireaxe/som/Initialize()
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
-
 
 /*
 * Double-Bladed Energy Swords - Cheridan
