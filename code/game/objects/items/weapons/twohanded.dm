@@ -210,6 +210,31 @@
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 
+/obj/item/weapon/twohanded/fireaxe/som/wield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/fireaxe/som/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/twohanded/fireaxe/som/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
+	else
+		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
+
 /*
 * Double-Bladed Energy Swords - Cheridan
 */
