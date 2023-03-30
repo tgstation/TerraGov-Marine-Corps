@@ -12,7 +12,7 @@
 /obj/structure/largecrate/packed/examine()
 	. = ..()
 	for(var/item in manifest)
-		. += span_notice(item)
+		. += span_boldnotice(item)
 
 /obj/structure/largecrate/packed/proc/pack()
 	var/count = 0
