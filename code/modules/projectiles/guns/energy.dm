@@ -282,6 +282,8 @@
 	var/fire_delay = 0
 	///Gives guns a burst amount, editable.
 	var/burst_amount = 0
+	/// How much scatter the mode adds or reduces
+	var/scatter = 0
 	///The gun firing sound of this mode
 	var/fire_sound = null
 	///What message it sends to the user when you switch to this mode.
@@ -317,6 +319,7 @@
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
+	scatter = initial(choice.scatter)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -734,7 +737,7 @@
 	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
-		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
+		"Beam mode" = /datum/lasrifle/base/energy_mg_mode/standard/beam,
 		"Swarm mode" = /datum/lasrifle/base/energy_mg_mode/standard/swarm,
 	)
 
@@ -747,11 +750,12 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tem"
 
-/datum/lasrifle/base/energy_mg_mode/standard/efficiency
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
-	fire_delay = 0.15 SECONDS
-	rounds_per_shot = 3
-	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+/datum/lasrifle/base/energy_mg_mode/standard/beam
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/beam
+	fire_delay = -1 SECONDS
+	rounds_per_shot = 1
+	scatter = 0
+	message_to_user = "You set the machine laser's charge mode to beam mode."
 	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/energy_mg_mode/standard/swarm
