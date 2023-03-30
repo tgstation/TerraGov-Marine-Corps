@@ -1,0 +1,26 @@
+{
+	"Martialstaff" : [
+		{
+			"type": "icon_state",
+			"icon_state": "martialstaff_w",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		},
+		[
+			{
+				"type": "icon_state",
+				"icon_state": "martialstaff_w_flame_1",
+				"blend_mode": "overlay",
+				"color_ids": [1]
+			}
+		],
+		[
+			{
+				"type": "icon_state",
+				"icon_state": "martialstaff_w_flame_2",
+				"blend_mode": "overlay",
+				"color_ids": [1]
+			}
+		]
+	]
+}

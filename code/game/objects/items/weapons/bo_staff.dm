@@ -1,12 +1,20 @@
 #define LEFT_HIT "Left Hit"
 #define RIGHT_HIT "Right Hit"
+#define UNIQUE_HIT "Unique Action"
+
 #define COMBO_STEPS "steps"
 #define COMBO_PROC "proc"
+
 #define ATTACK_BASH "Bash"
 #define ATTACK_SWEEP "Sweep"
 #define ATTACK_DRAIN "Drain"
 #define ATTACK_FLIP "Flip"
 #define ATTACK_THROW "Throw Away"
+
+#define STANCE_EMPOWER "Empower"
+#define STANCE_PARRY "Parry"
+#define STANCE_HEAL "Heal"
+#define STANCE_HEAL_ALT "Heal Alternate"
 
 /obj/item/weapon/twohanded/martialstaff
 	name = "Martial Arts Staff"
@@ -21,6 +29,9 @@
 	attack_verb = list("attacked", "bashed", "smashed", "smacked", "bonked")
 	attack_speed = 6
 	attack_speed_alternate = 14
+
+	greyscale_config = /datum/greyscale_config/martialstaff
+	greyscale_colors = COLOR_LASER_BLUE
 
 	hitsound = 'sound/weapons/wood_hit2.ogg'
 
@@ -50,6 +61,12 @@
 		ATTACK_SWEEP = list(COMBO_STEPS = list(RIGHT_HIT, LEFT_HIT, RIGHT_HIT), COMBO_PROC = PROC_REF(sweep)),
 		ATTACK_FLIP = list(COMBO_STEPS = list(RIGHT_HIT, RIGHT_HIT, LEFT_HIT), COMBO_PROC = PROC_REF(flip)),
 		ATTACK_THROW = list(COMBO_STEPS = list(RIGHT_HIT, RIGHT_HIT, RIGHT_HIT), COMBO_PROC = PROC_REF(throw_away)),
+
+		//Stances the user can enter
+		STANCE_EMPOWER = list(COMBO_STEPS = list(LEFT_HIT, LEFT_HIT, UNIQUE_HIT), COMBO_PROC = PROC_REF(empower)),
+		STANCE_PARRY = list(COMBO_STEPS = list(RIGHT_HIT, RIGHT_HIT, UNIQUE_HIT), COMBO_PROC = PROC_REF(parry)),
+		STANCE_HEAL = list(COMBO_STEPS = list(LEFT_HIT, RIGHT_HIT, UNIQUE_HIT), COMBO_PROC = PROC_REF(heal)),
+		STANCE_HEAL_ALT = list(COMBO_STEPS = list(RIGHT_HIT, LEFT_HIT, UNIQUE_HIT), COMBO_PROC = PROC_REF(heal)), //Heal has 2 possible combos
 	)
 
 /obj/item/weapon/twohanded/martialstaff/Initialize()
@@ -83,6 +100,12 @@
 	else
 		last_hit_time = addtimer(CALLBACK(src, PROC_REF(reset_inputs), user, FALSE), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
+/**
+ * Checks the inputs to see if it matches a combo
+ * Arguments:
+ * * hit_side - Wether it's left click, right click or unique action
+ * Returns a specific combo
+ */
 /obj/item/weapon/twohanded/martialstaff/proc/check_input(mob/living/target, mob/user, hit_side)
 	input_list += hit_side
 
@@ -92,6 +115,7 @@
 			INVOKE_ASYNC(src, combo_specifics[COMBO_PROC], target, user)
 			return TRUE
 
+	//Resets the combo if you go over the maximum combo possible.
 	if(length(input_list) >= 3)
 		reset_inputs(user, TRUE)
 	else
@@ -132,7 +156,11 @@
 
 /obj/item/weapon/twohanded/martialstaff/unique_action(mob/user, special_treatment)
 	. = ..()
-	reset_inputs(user, TRUE)
+
+	if(check_input(user, user, UNIQUE_HIT)) //Target is user since the stance is a self-buff
+		reset_inputs(null, TRUE)
+		return
+	reset_inputs(user, TRUE) //Resets your combo if you only have 1 flame
 
 
 /obj/item/weapon/twohanded/martialstaff/proc/jab(mob/living/target, mob/user)
@@ -229,10 +257,22 @@
 	target.throw_at(T, toss_distance, 3, user, TRUE)
 
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
-	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 
 
+/obj/item/weapon/twohanded/martialstaff/proc/empower(mob/living/target, mob/user)
+	balloon_alert(user, "Empower")
+	///Speed increase of swings from being empowered
+	var/strike_speed = 3
+	attack_speed = initial(attack_speed) - strike_speed
+	attack_speed_alternate = initial(attack_speed_alternate) - strike_speed
 
+
+/obj/item/weapon/twohanded/martialstaff/proc/parry(mob/living/target, mob/user)
+	balloon_alert(user, "Parry Stance")
+
+
+/obj/item/weapon/twohanded/martialstaff/proc/heal(mob/living/target, mob/user)
+	balloon_alert(user, "Heal")
 
 
 
@@ -249,10 +289,19 @@
 
 #undef LEFT_HIT
 #undef RIGHT_HIT
+#undef UNIQUE_HIT
+
 #undef COMBO_STEPS
 #undef COMBO_PROC
+
 #undef ATTACK_BASH
 #undef ATTACK_SWEEP
-
+#undef ATTACK_DRAIN
 #undef ATTACK_FLIP
 #undef ATTACK_THROW
+
+#undef STANCE_EMPOWER
+#undef STANCE_PARRY
+#undef STANCE_HEAL
+#undef STANCE_HEAL_ALT
+

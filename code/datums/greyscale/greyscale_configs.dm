@@ -172,3 +172,10 @@
 
 /datum/greyscale_config/mech_vanguard/visor
 	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'
+
+//json for martialstaff because it has flames that update on-mob
+/datum/greyscale_config/martialstaff
+	json_config = 'code/datums/greyscale/json_configs/martialstaff.json'
+
+
+
