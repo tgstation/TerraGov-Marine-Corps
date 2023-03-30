@@ -752,7 +752,7 @@
 
 /datum/lasrifle/base/energy_mg_mode/standard/beam
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/beam
-	fire_delay = -1 SECONDS
+	fire_delay = 0 SECONDS
 	rounds_per_shot = 1
 	scatter = 0
 	message_to_user = "You set the machine laser's charge mode to beam mode."
