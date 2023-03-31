@@ -87,6 +87,7 @@
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
 
+	sunder_recov *= xeno_caste.sunder_regen_multiplier // Regen multiplier after everything else
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
 
 	adjust_sunder(sunder_recov)

@@ -99,6 +99,10 @@
 	var/sunder_recover = 0.5
 	///What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 	var/sunder_max = 100
+	///How much sunder application is multiplied by
+	var/sunder_multiplier = 1
+	///How much sunder regeneration is multiplied by
+	var/sunder_regen_multiplier = 1
 
 	// *** Ranged Attack *** //
 	///Delay timer for spitting
