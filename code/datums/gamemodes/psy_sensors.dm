@@ -38,9 +38,9 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/infestation/distress/psy_sensors/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
-	addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 50 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensor, set_game_timer)), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensor, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensor, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 50 SECONDS) //starts intro sequence 10 seconds before shutter drop
 
 /datum/game_mode/infestation/distress/psy_sensors/announce()
 	to_chat(world, "<b>The current game mode is - Psychic Sensors!</b>")
@@ -57,7 +57,7 @@
 
 /datum/game_mode/infestation/distress/psy_sensors/proc/respawn_wave()
 	var/datum/game_mode/infestation/distress/psy_sensors/D = SSticker.mode
-	D.wave_timer = addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/respawn_wave), wave_timer_length, TIMER_STOPPABLE)
+	D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensors, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
@@ -75,7 +75,7 @@
 	if(D.game_timer)
 		return
 
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/set_game_end), max_game_time, TIMER_STOPPABLE)
+	D.game_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensors, set_game_end)), max_game_time, TIMER_STOPPABLE)
 
 /datum/game_mode/infestation/distress/psy_sensors/game_end_countdown()
 	if(!game_timer)

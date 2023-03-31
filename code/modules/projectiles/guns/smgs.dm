@@ -685,3 +685,4 @@
 	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
+	firing_volume = 25

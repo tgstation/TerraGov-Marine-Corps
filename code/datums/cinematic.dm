@@ -268,10 +268,10 @@ GLOBAL_LIST_EMPTY(cinematics)
 	screen.screen_loc = "CENTER-9,CENTER-7"
 	screen.icon = 'icons/misc/briefing.dmi'
 	flick("initial", screen)
-	addtimer(CALLBACK(src, .proc/initializingseq), 29)
-	addtimer(CALLBACK(src, .proc/map_zoom), 78)
-	addtimer(CALLBACK(src, .proc/planet_zoom), 180)
-	addtimer(CALLBACK(src, .proc/colony), 292)
+	addtimer(CALLBACK(src, PROC_REF(initializingseq)), 29)
+	addtimer(CALLBACK(src, PROC_REF(map_zoom)), 78)
+	addtimer(CALLBACK(src, PROC_REF(planet_zoom)), 180)
+	addtimer(CALLBACK(src, PROC_REF(colony)), 292)
 
 /datum/cinematic/briefing/proc/initializingseq()
 	flick("initializing", screen)

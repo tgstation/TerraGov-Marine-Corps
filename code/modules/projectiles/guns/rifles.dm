@@ -2326,7 +2326,7 @@
 	scatter = -5
 	scatter_unwielded = 40
 	movement_acc_penalty_mult = 4
-	firing_volume = 40
+	firing_volume = 30
 
 	placed_overlay_iconstate = "smartgun"
 
