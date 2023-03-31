@@ -13,9 +13,9 @@
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 	///Time needed for the machine to generate the disc
-	var/generate_time = 1.5 MINUTES
-	///Time to start the hack
-	var/segment_time = 15 SECONDS
+	var/segment_time = 1.5 MINUTES
+	///Time to start a segment
+	var/start_time = 15 SECONDS
 	///Time to print a disk
 	var/printing_time = 15 SECONDS
 
@@ -25,6 +25,8 @@
 	var/completed_segments = 0
 	///The current ID of the timer running
 	var/current_timer
+	///Overall seconds elapsed
+	var/seconds_elapsed = 0
 
 	///Check if someone is printing already
 	var/busy = FALSE
@@ -39,7 +41,8 @@
 		"Establishing link to offsite mainframe- Link established",
 		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
 		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
-		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
+		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, getting ready to print",
+		"Program downloaded to disk. Have a nice day."
 	)
 	///For designating minimap color icon
 	var/disk_color
@@ -66,6 +69,8 @@
 /obj/machinery/computer/nuke_disk_generator/process()
 	. = ..()
 	if(. || !current_timer)
+		if(running)
+			seconds_elapsed += 2
 		return
 
 	deltimer(current_timer)
@@ -107,15 +112,21 @@
 
 	data["message"] = message
 
-	data["progress"] = round((completed_segments / total_segments) * 100)
+	data["progress"] = seconds_elapsed * 10 / (segment_time * total_segments) //*10 because we need to convert to deciseconds
 
-	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "Error, yell at coders."
+	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "You shouldn't be seeing this, yell at coders."
 
 	data["flavor_text"] = technobabble[completed_segments + 1]
 
-	data["running"] = running //runtimes here, out of bounds apparently. also make 2 progress bars, one overall, one current run
+	data["completed"] = (completed_segments == total_segments)
 
-	data["generate_time"] = generate_time
+	data["running"] = running
+
+	data["segment_time"] = segment_time
+
+	data["color"] = disk_color
+
+	data["segment_number"] = total_segments
 
 	return data
 
@@ -146,18 +157,19 @@
 			busy = TRUE
 
 			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-			if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
 
 			busy = FALSE
 
-			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), generate_time, TIMER_STOPPABLE)
+			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
 
 /obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
 	update_minimap_icon()
