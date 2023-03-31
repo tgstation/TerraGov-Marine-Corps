@@ -8,6 +8,7 @@
 	name = "nuke disk generator"
 	desc = "Used to generate the correct auth discs for the nuke."
 	icon_state = "nuke_red"
+	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
@@ -73,22 +74,16 @@
 			seconds_elapsed += 2
 		return
 
+	seconds_elapsed = (segment_time/10) * completed_segments
+	running = FALSE
 	deltimer(current_timer)
 	current_timer = null
 	update_minimap_icon()
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
-	return PROCESS_KILL
 
 
 /obj/machinery/computer/nuke_disk_generator/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
-
-
-/obj/machinery/computer/nuke_disk_generator/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	ui_interact(user)
 
 
 /obj/machinery/computer/nuke_disk_generator/ui_interact(mob/user, datum/tgui/ui)
@@ -166,6 +161,9 @@
 			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
+
+/obj/machinery/computer/nuke_disk_generator/ui_state(mob/user)
+	return GLOB.human_adjacent_state
 
 /obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)

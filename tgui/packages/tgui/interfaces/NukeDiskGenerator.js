@@ -15,12 +15,16 @@ export const NukeDiskGenerator = (props, context) => {
             </Stack.Item>
             <Stack.Item>
               <Box width="100%" textAlign="center">
-              Overall Progress:
+                Overall Progress:
                 <ProgressBar
                   value={progress}
                   color={color} />
+              </Box>
+            </Stack.Item>
+            <Stack.Item>
+              <Box width="100%" textAlign="center">
                 {running ? (
-                  <NoticeBox>
+                  <NoticeBox danger>
                     <Box>
                       Time left: {time_left} s
                       <ProgressBar
