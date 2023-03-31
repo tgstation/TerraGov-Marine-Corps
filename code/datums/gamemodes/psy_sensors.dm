@@ -24,8 +24,6 @@
 	var/wave_timer_length = 5 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
-	///Delay from shutter drop until game timer starts
-	var/game_timer_delay = 5 MINUTES
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
 
@@ -38,9 +36,9 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/infestation/distress/psy_sensors/D = SSticker.mode
-	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensor, set_game_timer)), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensor, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
-	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensor, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 50 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensors, set_game_timer)), SSticker.round_start_time + shutters_drop_time)
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensors, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/infestation/distress/psy_sensors, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 50 SECONDS) //starts intro sequence 10 seconds before shutter drop
 
 /datum/game_mode/infestation/distress/psy_sensors/announce()
 	to_chat(world, "<b>The current game mode is - Psychic Sensors!</b>")
