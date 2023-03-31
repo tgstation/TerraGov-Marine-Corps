@@ -199,7 +199,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/weapons/weapon64_right.dmi',
 	)
 	inhand_x_dimension = 64
-	inhand_y_dimension = 32
+	inhand_y_dimension = 64
 	item_state = "som_axe"
 	force = 40
 	force_wielded = 80
@@ -229,8 +229,8 @@
 		return ..()
 	if(!(user.l_hand == src || user.r_hand == src))
 		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
+	flags_item ^= NODROP
+	if(flags_item & NODROP)
 		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
 	else
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
