@@ -12,19 +12,27 @@
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
-	var/generate_time = 1.5 MINUTES // time for the machine to generate the disc
-	var/segment_time = 15 SECONDS // time to start the hack
-	var/printing_time = 15 SECONDS // time to print a disk
+	///Time needed for the machine to generate the disc
+	var/generate_time = 1.5 MINUTES
+	///Time to start the hack
+	var/segment_time = 15 SECONDS
+	///Time to print a disk
+	var/printing_time = 15 SECONDS
 
-	var/total_segments = 5 // total number of times the hack is required
-	var/completed_segments = 0 // what segment we are on, (once this hits total, disk is printed)
+	///Total number of times the hack is required
+	var/total_segments = 5
+	///What segment we are on, (once this hits total, disk is printed)
+	var/completed_segments = 0
+	///The current ID of the timer running
 	var/current_timer
 
-	var/reprintable = FALSE // once the disk is printed, reprinting is enabled
-	var/printing = FALSE // check if someone is printing already
+	///Check if someone is printing already
+	var/busy = FALSE
+	///Is a segment currently running?
+	var/running = FALSE
 
+	///The type of disk we're printing
 	var/disk_type
-	var/obj/item/disk/nuclear/disk
 
 	var/list/technobabble = list(
 		"Booting up terminal-  -Terminal running",
@@ -35,6 +43,9 @@
 	)
 	///For designating minimap color icon
 	var/disk_color
+
+	///The flavor message that shows up in the UI upon segment completion
+	var/message = "error"
 
 /obj/machinery/computer/nuke_disk_generator/Initialize()
 	. = ..()
@@ -68,95 +79,95 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/nuke_disk_generator/interact(mob/user)
+/obj/machinery/computer/nuke_disk_generator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	var/dat = ""
-	dat += "<div align='center'><a href='?src=[REF(src)];generate=1'>Run Program</a></div>"
-	dat += "<br/>"
-	dat += "<hr/>"
-	dat += "<div align='center'><h2>Status</h2></div>"
+	ui_interact(user)
 
-	var/message = "Error"
+
+/obj/machinery/computer/nuke_disk_generator/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "NukeDiskGenerator")
+		ui.open()
+
+
+/obj/machinery/computer/nuke_disk_generator/ui_data(mob/user)
+	var/list/data = list()
+
 	if(completed_segments >= total_segments)
 		message = "Disk generated. Run program to print."
 	else if(current_timer)
-		message = "Program running"
-	else if(completed_segments == 0)
-		message = "Idle"
+		message = "Program running."
+	else if(!completed_segments)
+		message = "Idle."
 	else if(completed_segments < total_segments)
-		message = "Restart required. Please rerun the program"
-	else
-		message = "Unknown"
+		message = "Restart required. Please re-run the program."
 
-	var/progress = round((completed_segments / total_segments) * 100)
+	data["message"] = message
 
-	dat += "<br/><span><b>Progress</b>: [progress]%</span>"
-	dat += "<br/><span><b>Time left</b>: [current_timer ? round(timeleft(current_timer) * 0.1, 2) : 0.0]</span>"
-	dat += "<br/><span><b>Message</b>: [message]</span>"
+	data["progress"] = round((completed_segments / total_segments) * 100)
 
-	var/flair = ""
-	for(var/i in 1 to completed_segments)
-		flair += "[technobabble[i]]<br />"
+	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "Error, yell at coders."
 
-	dat += "<br /><br /><span style='font-family: monospace, monospace;'>[flair]</span>"
+	data["flavor_text"] = technobabble[completed_segments + 1]
 
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disk Generator</div>")
-	popup.set_content(dat)
-	popup.open()
+	data["running"] = running //runtimes here, out of bounds apparently. also make 2 progress bars, one overall, one current run
 
-/obj/machinery/computer/nuke_disk_generator/Topic(href, href_list)
+	data["generate_time"] = generate_time
+
+	return data
+
+
+/obj/machinery/computer/nuke_disk_generator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
-
-	if(href_list["generate"])
-		if(printing || current_timer)
-			to_chat(usr, span_warning("A program is already running."))
-			return
-		if(reprintable)
-			printing = TRUE
-			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time)
-
-			usr.visible_message("[usr] started a program to regenerate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+	switch(action)
+		if("run_program")
+			if(busy || current_timer)
+				to_chat(usr, span_warning("A program is already running."))
 				return
 
-			print_disc()
-			return
+			if(completed_segments == total_segments) //If we're done, there's no need to run a segment again
+				busy = TRUE
 
-		printing = TRUE
-		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time)
+				usr.visible_message("[usr] started a program to generate a new copy of the program.", "You started a program to generate a new copy of the program.")
+				if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+					busy = FALSE
+					return
 
-		usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
-			return
+				new disk_type(get_turf(src))
+				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				busy = FALSE
+				return
 
-		current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), generate_time, TIMER_STOPPABLE)
-		update_minimap_icon()
+			busy = TRUE
 
-	updateUsrDialog()
+			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
+			if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+				busy = FALSE
+				return
 
+			busy = FALSE
+
+			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), generate_time, TIMER_STOPPABLE)
+			update_minimap_icon()
+			running = TRUE
 
 /obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
 	update_minimap_icon()
+	running = FALSE
 
 	if(completed_segments == total_segments)
-		reprintable = TRUE
 		visible_message(span_notice("[src] beeps as it ready to print."))
 		return
 
-	visible_message(span_notice("[src] beeps as it program requires attention."))
-
-
-/obj/machinery/computer/nuke_disk_generator/proc/print_disc()
-	disk = new disk_type(loc)
-	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
-	reprintable = TRUE
+	visible_message(span_notice("[src] beeps as it's program requires attention."))
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
