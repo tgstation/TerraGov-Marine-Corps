@@ -390,6 +390,81 @@
 	opacity = FALSE
 	density = FALSE
 
+/obj/structure/sign/safety/no_grav
+	name = "\improper Caution: Zero Gravity Area"
+	desc = "A warning sign that warns of a Zero Gravity Area"
+	icon_state = "sign_nograv"
+
+/obj/structure/sign/safety/grav_suit
+	name = "\improper Caution: Artifical Gravity Suit Required"
+	desc = "A warning sign advising the use of an artifical gravity suit"
+	icon_state = "sign_artgrav_suit"
+
+/obj/structure/sign/safety/blast_door
+	name = "\improper Caution: Bulkhead"
+	desc = "A sign warning of a bulkhead door nearby"
+	icon_state = "sign_blastdoor"
+
+/obj/structure/sign/safety/breakroom
+	name = "\improper Breakroom"
+	desc = "A sign denoting the presence of a breakroom nearby"
+	icon_state = "sign_coffee"
+
+/obj/structure/sign/safety/maintenance
+	name = "\improper Maintenance Shaft"
+	desc = "A sign warning of a nearby maintenance shaft."
+	icon_state = "sign_maint"
+
+/obj/structure/sign/safety/atmospherics
+	name = "\improper Life Support System"
+	desc = "A sign that denotes the proximity of a life supprot system."
+	icon_state = "sign_life_support"
+
+/obj/structure/sign/safety/vent
+	name = "\improper Warning: Exhaust Vent"
+	desc = "A warning sign that indicates a hazardous exhaust vent nearby"
+	icon_state = "sign_exhaust"
+
+/obj/structure/sign/safety/medical_supplies
+	name = "\improper First-Aid"
+	desc = "A sign denoting the presence of nearby "
+	icon_state = "sign_medical_life_support"
+
+/obj/structure/sign/safety/EVA
+	name = "\improper EVA Suit Locker"
+	desc = "A sign that indicates the presence of a EVA Suit Locker"
+	icon_state = "sign_space_suit_locker"
+
+/obj/structure/sign/safety/vacuum
+	name = "\improper Warning: Vacuum"
+	desc = "A warning sign indicating a pressureless area nearby"
+	icon_state = "sign_vacuum"
+
+/obj/structure/sign/safety/pressure
+	name = "\improper Warning: Pressurised Area Ahead"
+	desc = "A sign that warns of a pressurised area nearby"
+	icon_state = "sign_pressurised_area"
+
+/obj/structure/sign/safety/rad_hazard
+	name = "\improper Warning: Radiation Hazard"
+	desc = "A sign that warns of radiation nearby"
+	icon_state = "sign_rad_hazard"
+
+/obj/structure/sign/safety/cryogenic
+	name = "\improper Cryogenic Vault"
+	desc = "A sign that denotes the presence of a cryogenic vault"
+	icon_state = "sign_cryo_vault"
+
+/obj/structure/sign/safety/computer
+	name = "\improper Warning: Critical System"
+	desc = "A warning sign that warns of facility critical computer systems"
+	icon_state = "sign_computer"
+
+/obj/structure/sign/safety/hydro
+	name = "\improper Hydrophonics"
+	desc = "A sign that denotes the presence of a hydrophonic facility"
+	icon_state = "sign_food_fridge"
+
 /obj/structure/sign/safety/airlock
 	name = "airlock semiotic"
 	desc = "Semiotic Standard denoting the nearby presence of an airlock."
