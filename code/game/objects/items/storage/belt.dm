@@ -11,7 +11,7 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
-
+	refill_types = list(/obj/item/storage/box/visual/magazine)
 
 
 /obj/item/storage/belt/equipped(mob/user, slot)

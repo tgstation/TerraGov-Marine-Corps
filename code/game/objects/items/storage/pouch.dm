@@ -200,6 +200,7 @@
 	max_w_class = 3
 	storage_slots = 2
 	draw_mode = 0
+	refill_types = list(/obj/item/storage/box/visual/magazine)
 	can_hold = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
@@ -592,7 +593,6 @@
 		/obj/item/explosive/grenade/flare,
 	)
 	refill_types = list(/obj/item/storage/box/m94)
-	refill_sound = "rustle"
 
 /obj/item/storage/pouch/flare/full/Initialize()
 	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)

@@ -72,7 +72,7 @@
 	///What item do you use to tactical refill this
 	var/list/obj/item/storage/refill_types
 	///What sound gets played when the item is tactical refilled
-	var/refill_sound = null
+	var/refill_sound = "rustle"
 
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
