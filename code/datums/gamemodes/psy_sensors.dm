@@ -1,4 +1,4 @@
-#define SENSORS_NEEDED 5
+#define SENSORS_NEEDED_PSY 5
 
 /datum/game_mode/infestation/distress/psy_sensors
 	name = "Psychic Sensors"
@@ -104,7 +104,7 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 
-	if(sensors_activated >= SENSORS_NEEDED)
+	if(sensors_activated >= SENSORS_NEEDED_PSY)
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
