@@ -94,7 +94,7 @@
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 	//There's got to be a better way of doing this.
-	if(loc != usr || (loc?.loc == usr))
+	if(loc != usr || (loc && loc.loc == usr))
 		return
 
 	if(!usr.restrained() && !usr.stat)

@@ -221,7 +221,7 @@
 			if(href_list["identifier"])
 				if(tgui_alert(usr, "Are you sure you want to delete this record?", "Record deletion", list("Yes", "No")) == "Yes")
 					files.Remove(href_list["identifier"])
-					if(current?.uid == href_list["identifier"])
+					if(current && current.uid == href_list["identifier"])
 						current = null
 		if("label")
 			if(current)
