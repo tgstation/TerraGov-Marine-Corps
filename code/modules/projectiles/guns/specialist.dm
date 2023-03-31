@@ -706,7 +706,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/rpg_uscm
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/rpg_uscm,
-		/obj/item/ammo_magazine/rocket/rpg_uscm_ap
+		/obj/item/ammo_magazine/rocket/rpg_uscm_ap,
 	)
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
