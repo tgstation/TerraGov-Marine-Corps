@@ -660,9 +660,8 @@
 	max_storage_space = 28
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-
+	. = ..()
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
 		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
@@ -689,8 +688,6 @@
 			playsound(user.loc, "rustle", 15, TRUE, 6)
 			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
-
-	return ..()
 
 /obj/item/storage/belt/shotgun/flechette/Initialize(mapload, ...)
 	. = ..()
