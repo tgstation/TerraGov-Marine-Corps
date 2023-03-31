@@ -213,7 +213,7 @@
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		if(!GLOB.ai_list.len)
+		if(!length(GLOB.ai_list))
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
 

@@ -25,10 +25,10 @@
 	else
 		addMachineryMember(base)
 	var/list/possible_expansions = list(base)
-	while(possible_expansions.len)
+	while(length(possible_expansions))
 		for(var/obj/machinery/atmospherics/borderline in possible_expansions)
 			var/list/result = borderline.pipeline_expansion(src)
-			if(result && result.len)
+			if(result && length(result))
 				for(var/obj/machinery/atmospherics/P in result)
 					if(istype(P, /obj/machinery/atmospherics/pipe))
 						var/obj/machinery/atmospherics/pipe/item = P

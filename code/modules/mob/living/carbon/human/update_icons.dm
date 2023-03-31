@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 		GLOB.human_icon_cache[icon_key] = base_icon
 
-		//log_debug("Generated new cached mob icon ([icon_key] \icon[GLOB.human_icon_cache[icon_key]]) for [src]. [GLOB.human_icon_cache.len] cached mob icons.")
+		//log_debug("Generated new cached mob icon ([icon_key] \icon[GLOB.human_icon_cache[icon_key]]) for [src]. [length(GLOB.human_icon_cache)] cached mob icons.")
 
 	//END CACHED ICON GENERATION.
 

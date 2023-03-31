@@ -64,8 +64,8 @@
 		if(MODE_ORBITAL)
 			. += span_notice("They are currently set to orbital bombardment mode.")
 	. += span_notice("Use on a mortar to link it for remote targeting.")
-	if(linked_mortars.len)
-		. += span_notice("They are currently linked to [linked_mortars.len] mortar(s).")
+	if(length(linked_mortars))
+		. += span_notice("They are currently linked to [length(linked_mortars)] mortar(s).")
 		. += span_notice("They are currently set to mortar [selected_mortar].")
 		return
 	. += span_notice("They are not linked to a mortar.")
@@ -129,15 +129,15 @@
 /obj/item/binoculars/tactical/proc/check_mortar_index()
 	if(!linked_mortars)
 		return
-	if(!linked_mortars.len)
+	if(!length(linked_mortars))
 		selected_mortar = 1 // set back to default but it still wont fire because no mortars and thats good
 		return
-	if(selected_mortar > linked_mortars.len)
+	if(selected_mortar > length(linked_mortars))
 		selected_mortar = 1
 
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()
-	if(!linked_mortars.len)
+	if(!length(linked_mortars))
 		return
 	selected_mortar += 1
 	check_mortar_index()
@@ -242,7 +242,7 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			if(!linked_mortars.len)
+			if(!length(linked_mortars))
 				to_chat(user, span_notice("No linked mortars found."))
 				return
 			check_mortar_index() // incase varedit screws something up

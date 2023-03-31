@@ -1207,7 +1207,7 @@
 			blood_type = initial(temp_path.blood_type)
 			R.product_name += blood_type? " [blood_type]" : ""
 			temp_list -= R.product_path
-			if(!temp_list.len) break
+			if(!length(temp_list)) break
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"

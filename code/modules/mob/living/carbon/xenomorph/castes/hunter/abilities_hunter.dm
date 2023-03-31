@@ -443,7 +443,7 @@
 
 /datum/action/xeno_action/mirage/action_activate()
 	succeed_activate()
-	if (!illusions.len)
+	if (!length(illusions))
 		spawn_illusions()
 	else
 		swap()
@@ -472,7 +472,7 @@
 	swap_used = TRUE
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!illusions.len)
+	if(!length(illusions))
 		to_chat(X, span_xenowarning("We have no illusions to swap with!"))
 		return
 

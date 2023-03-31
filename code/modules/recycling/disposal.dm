@@ -315,7 +315,7 @@
 		return
 
 	//Check for items in disposal - occupied light
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 	//Charging and ready light
@@ -331,7 +331,7 @@
 
 	flush_count++
 	if(flush_count >= flush_every_ticks)
-		if(contents.len)
+		if(length(contents))
 			if(mode == 2)
 				INVOKE_ASYNC(src, PROC_REF(flush))
 		flush_count = 0

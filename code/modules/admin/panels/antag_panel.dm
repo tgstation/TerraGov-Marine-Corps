@@ -42,7 +42,7 @@ GLOBAL_VAR(antag_prototypes)
 
 /datum/antagonist/proc/antag_panel_objectives()
 	var/result = "<i><b>Objectives</b></i>:<br>"
-	if (objectives.len == 0)
+	if (length(objectives) == 0)
 		result += "EMPTY<br>"
 	else
 		var/obj_count = 1
@@ -116,7 +116,7 @@ GLOBAL_VAR(antag_prototypes)
 				continue
 
 		if(!current_antag) //Show antagging options
-			if(possible_admin_antags.len)
+			if(length(possible_admin_antags))
 				antag_header_parts += "<span class='highlight'>None</span>"
 				antag_header_parts += possible_admin_antags
 			else

@@ -318,8 +318,8 @@
 
 /obj/item/dogtag/examine(mob/user)
 	. = ..()
-	if(ishuman(user) && fallen_names && fallen_names.len)
-		if(fallen_names.len == 1)
+	if(ishuman(user) && fallen_names && length(fallen_names))
+		if(length(fallen_names) == 1)
 			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
 		else
 			var/msg = "<span class='notice'> It reads: "

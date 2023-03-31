@@ -38,7 +38,7 @@
 
 
 /obj/item/storage/firstaid/update_icon()
-	if(!contents.len)
+	if(!length(contents))
 		icon_state = "kit_empty"
 	else
 		icon_state = icon_full
@@ -296,7 +296,7 @@
 	if(user.get_inactive_held_item())
 		user.balloon_alert(user, "Need an empty hand")
 		return
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/I = contents[1]
 		if(!remove_from_storage(I,user,user))
 			return

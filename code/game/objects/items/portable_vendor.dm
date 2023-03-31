@@ -74,7 +74,7 @@
 	var/list/display_list = list()
 
 
-	for(var/i in 1 to listed_products.len)
+	for(var/i in 1 to length(listed_products))
 		var/list/myprod = listed_products[i]
 		var/p_name = myprod[1]
 		var/p_cost = myprod[2]

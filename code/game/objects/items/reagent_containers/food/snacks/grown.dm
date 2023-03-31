@@ -30,7 +30,7 @@
 		for(var/rid in S.chems)
 			var/list/reagent_data = S.chems[rid]
 			var/rtotal = reagent_data[1]
-			if(reagent_data.len > 1 && potency > 0)
+			if(length(reagent_data) > 1 && potency > 0)
 				rtotal += round(potency/reagent_data[2])
 			if(reagents)
 				reagents.add_reagent(rid, max(1, rtotal))
@@ -521,7 +521,7 @@
 		if(T.x>world.maxx-outer_teleport_radius || T.x<outer_teleport_radius)	continue
 		if(T.y>world.maxy-outer_teleport_radius || T.y<outer_teleport_radius)	continue
 		turfs += T
-	if(!turfs.len)
+	if(!length(turfs))
 		var/list/turfs_to_pick_from = list()
 		for(var/turf/T in orange(M,outer_teleport_radius))
 			if(!(T in orange(M,inner_teleport_radius)))

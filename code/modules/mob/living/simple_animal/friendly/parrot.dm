@@ -100,7 +100,7 @@
 	. = ..()
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
-			if(speech_buffer.len >= 500)
+			if(length(speech_buffer) >= 500)
 				speech_buffer -= pick(speech_buffer)
 			speech_buffer |= html_decode(raw_message)
 	if(speaker == src && !client) //If a parrot squawks in the woods and no one is around to hear it, does it make a sound? This code says yes!
@@ -157,7 +157,7 @@
 					to_chat(usr, span_warning("There is nothing to remove from its [remove_from]!"))
 					return
 				if(!stat)
-					say("[available_channels.len ? "[pick(available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
+					say("[length(available_channels) ? "[pick(available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
 				ears.forceMove(drop_location())
 				ears = null
 				for(var/possible_phrase in speak)

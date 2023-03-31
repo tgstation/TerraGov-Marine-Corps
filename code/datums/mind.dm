@@ -151,7 +151,7 @@
 				if(X)
 					target_antag = X
 			if(!target_antag)
-				switch(antag_datums.len)
+				switch(length(antag_datums))
 					if(0)
 						target_antag = add_antag_datum(/datum/antagonist/custom)
 					if(1)
