@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - bugfix: "Moved the actual necrosis removal of surgery back to the second step, rendering it possible to perform once again"

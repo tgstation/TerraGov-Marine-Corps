@@ -505,3 +505,19 @@
   - bugfix: Fixes window and window frame weeds transferring the click to the frame/window
       below
   - code_imp: Removed some weed window frame copypasta
+2023-03-31:
+  DeltaFire15:
+  - bugfix: Overwatch consoles should no longer brick under certain eye-deletion related
+      conditions.
+  - balance: Tad's landing cam view has minimap access.
+  QualityVan:
+  - bugfix: Moved the actual necrosis removal of surgery back to the second step,
+      rendering it possible to perform once again
+  Skye:
+  - bugfix: fixes the ICC medic spawn. It's Space...Somewhere, not 1940s Russia.
+  ivanmixo:
+  - code_imp: Replaced usages of .len with length() where applicable
+  - balance: Dropship fabricators now earn 30 and 15 points from respective miners.
+  - rscdel: Removed the dropship points voulcher
+  novaepee:
+  - imageadd: New Vali object and mob sprites

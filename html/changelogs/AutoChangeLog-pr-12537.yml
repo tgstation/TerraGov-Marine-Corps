@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "Overwatch consoles should no longer brick under certain eye-deletion related conditions."
