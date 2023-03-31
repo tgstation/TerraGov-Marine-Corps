@@ -133,7 +133,11 @@
 	if(!can_attach(attachment, user, attachment_data))
 		return FALSE
 
-
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_HANDS))
+		var/obj/item/in_hand = user.get_inactive_held_item()
+		if(in_hand != parent)
+			to_chat(user, span_warning("You have to hold [parent] to do that!"))
+			return FALSE
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data[ATTACH_DELAY]
@@ -187,6 +191,9 @@
 	SIGNAL_HANDLER
 	var/mob/living/living_user = user
 
+	if(living_user.get_active_held_item() != parent && living_user.get_inactive_held_item() != parent)
+		to_chat(living_user, span_warning("You must be holding [parent] to field strip it!"))
+		return
 	if((living_user.get_active_held_item() == parent && living_user.get_inactive_held_item()) || (living_user.get_inactive_held_item() == parent && living_user.get_active_held_item()))
 		to_chat(living_user, span_warning("You need a free hand to field strip [parent]!"))
 		return
