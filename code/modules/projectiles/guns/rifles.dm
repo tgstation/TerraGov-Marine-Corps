@@ -2333,7 +2333,7 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/weapon/gun/rifle/heavy_pulse
+/obj/item/weapon/gun/rifle/hpr_uscm
 	name = "\improper M41AE2 heavy pulse rifle"
 	desc = "A large squad support weapon capable of laying down sustained suppressing fire from a mounted position. While unstable and less accurate, it can be lugged and shot with two hands. Like it's smaller brothers, the M41A MK2 and L42 MK1, the M41AE2 is chambered in 10mm."
 	icon = 'icons/Marine/gun64.dmi'

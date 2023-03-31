@@ -170,3 +170,15 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/heavy_rr
 	reload_delay = 10 SECONDS
+
+/obj/item/ammo_magazine/mmg_uscm
+	name = "M56D box magazine (10x27m Caseless)"
+	desc = "A box of 300 10x27mm caseless rounds for the M56D medium machinegun."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "mag"
+	flags_magazine = NONE
+	caliber = CALIBER_10x27_CASELESS
+	max_rounds = 250
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	reload_delay = 3 SECONDS

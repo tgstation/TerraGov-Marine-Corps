@@ -11,6 +11,7 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
 	)
 	whitelist_ship_maps = list(MAP_KEMERDEKAAN)
 	blacklist_ship_maps = null

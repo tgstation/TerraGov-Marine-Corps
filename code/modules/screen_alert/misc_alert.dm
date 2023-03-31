@@ -53,3 +53,6 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/queen
 	image_to_play = "queen"
+
+/atom/movable/screen/text/screen_text/picture/potrait/pilot
+	image_to_play = "pilot"

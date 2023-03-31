@@ -684,6 +684,56 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	obj_flags = NONE
 
 //-------------------------------------------------------
+//M5 RPG
+
+/obj/item/weapon/gun/launcher/rocket/rpg_uscm
+	name = "\improper M5 RPG"
+	desc = "The M5 RPG is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "m5"
+	item_state = "m5"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_s_store_str = 'icons/mob/items_suit_slot_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	worn_x_dimension = 64
+	max_shells = 1
+	caliber = CALIBER_84MM
+	load_method = SINGLE_CASING
+	default_ammo_type = /obj/item/ammo_magazine/rocket/rpg_uscm
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rocket/rpg_uscm,
+		/obj/item/ammo_magazine/rocket/rpg_uscm_ap
+	)
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 12
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
+
+	gun_skill_category = SKILL_FIREARMS
+	fire_sound = "rpg_fire"
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 21, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+//-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/weapon/gun/launcher/rocket/m57a4

@@ -1,4 +1,4 @@
-//ORIONOUTPOST AREAS//
+//Patricks Rest  AREAS//
 /area/patricks_rest
 	name = "Patricks Rest"
 	icon_state = "dark"
@@ -13,14 +13,14 @@
 	icon_state = "red"
 
 /area/patricks_rest/surface/building
-	name = "Orion Outpost Buildings"
+	name = "Patricks Rest Colony Buildings"
 	icon_state = "clear"
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/patricks_rest/ground/underground
-	name = "Orion Outpost Underground"
+	name = "Patricks Rest Colony Underground"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
@@ -70,87 +70,67 @@
 	name = "Southern Riverbed"
 	icon_state = "bluenew"
 
-//OutpostGround
-/area/patricks_rest/ground/outpostse
-	name ="Southeast Outpost"
+//ColonyGround
+/area/patricks_rest/ground/colonyse
+	name ="Southeast Colony"
 	icon_state = "southeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outposts
-	name ="Southern Outpost"
+/area/patricks_rest/ground/colonys
+	name ="Southern Colony"
 	icon_state = "south"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outpostsw
-	name ="Southwest Outpost"
+/area/patricks_rest/ground/colonysw
+	name ="Southwest Colony"
 	icon_state = "southwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outpostw
-	name ="Western Outpost"
+/area/patricks_rest/ground/colonyw
+	name ="Western Colony"
 	icon_state = "west"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outposte
-	name ="Eastern Outpost"
+/area/patricks_rest/ground/colonye
+	name ="Eastern Colony"
 	icon_state = "east"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outpostnw
-	name ="Northwest Outpost"
+/area/patricks_rest/ground/colonynw
+	name ="Northwest Colony"
 	icon_state = "northwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outpostn
-	name ="Northern Outpost"
+/area/patricks_rest/ground/colonyn
+	name ="Northern Colony"
 	icon_state = "north"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outpostne
-	name ="Northeast Outpost"
+/area/patricks_rest/ground/colonyne
+	name ="Northeast Colony"
 	icon_state = "northeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-/area/patricks_rest/ground/outpostcent
-	name ="Central Outpost"
+/area/patricks_rest/ground/colonycent
+	name ="Central Colony"
 	icon_state = "central"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
-//OutpostCaves
+//ColonyCaves
 /area/patricks_rest/ground/underground/cave
-	name = "Underground Caves"
+	name = "Solomon Cavern"
 	icon_state = "cave"
 
-/area/patricks_rest/ground/underground/caveN
-	name = "Northern Caves"
-	icon_state = "cave"
-
-/area/patricks_rest/ground/underground/caveNW
-	name = "Northwestern Caves"
-	icon_state = "cave"
-
-/area/patricks_rest/ground/underground/caveE
-	name = "Eastern Caves"
-	icon_state = "cave"
-
-/area/patricks_rest/ground/underground/caveS
-	name = "Southern Caves"
-	icon_state = "cave"
-
-/area/patricks_rest/ground/underground/caveW
-	name = "Western Caves"
-	icon_state = "cave"
-
-//OutpostBuildings
+//ColonyBuildings
 /area/patricks_rest/surface/building/canteen
 	name = "Canteen"
 	icon_state = "yellow"
@@ -176,51 +156,29 @@
 	icon_state = "substation"
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/patricks_rest/surface/building/cargo
-	name = "Cargo Storage"
+/area/patricks_rest/surface/building/hydro
+	name = "Hydroelectric Power"
+	icon_state = "substation"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/patricks_rest/surface/building/offices
+	name = "Offices"
+	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/patricks_rest/surface/building/cargo_office
+	name = "Cargo Offices"
 	icon_state = "dark160"
 	minimap_color = MINIMAP_AREA_REQ
-
-/area/patricks_rest/surface/building/nebuilding
-	name = "Northeast Building"
-	icon_state = "dark160"
 
 /area/patricks_rest/surface/building/medbay
 	name = "Medbay"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
-/area/patricks_rest/surface/building/dorms
-	name = "Dormitory"
-	icon_state = "crew_quarters"
-	minimap_color = MINIMAP_AREA_LIVING
-
-/area/patricks_rest/surface/building/bunker
-	name = "Bunkers"
-	always_unpowered = TRUE
-	icon_state = "dark128"
-
-/area/patricks_rest/surface/building/crashedufo
-	name = "Crashed UFO"
-	icon_state = "blueold"
-
-/area/patricks_rest/surface/building/tadpolepad
-	name = "Tadpole Landing Pad"
-	icon_state = "purple"
-
 /area/patricks_rest/surface/building/armory
 	name = "Armory"
 	icon_state = "armory"
-	minimap_color = MINIMAP_AREA_SEC
-
-/area/patricks_rest/surface/building/brig
-	name = "Brig"
-	icon_state = "red"
-	minimap_color = MINIMAP_AREA_SEC
-
-/area/patricks_rest/surface/building/monitor
-	name = "Monitoring Station"
-	icon_state = "red"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/patricks_rest/surface/building/administration
@@ -233,17 +191,67 @@
 	icon_state = "bluenew"
 	minimap_color = MINIMAP_AREA_COMMAND
 
-/area/patricks_rest/surface/building/ammodepot
-	name = "Ammo Depot"
-	icon_state = "dark"
-	minimap_color = MINIMAP_AREA_SEC
+/area/patricks_rest/surface/building/residential_e
+	name = "Residential East"
+	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING
 
-/area/patricks_rest/surface/building/vehicledepot
-	name = "Vehicle Depot"
-	icon_state = "dark160"
+/area/patricks_rest/surface/building/residential_cent
+	name = "Residential Central"
+	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/patricks_rest/surface/building/residential_w
+	name = "Residential West"
+	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/patricks_rest/surface/building/residential_engi
+	name = "Residential Engineering"
+	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/patricks_rest/surface/building/transformer_residential
+	name = "Hydroelectric Power"
+	icon_state = "substation"
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/patricks_rest/surface/building/breakroom
-	name = "Breakroom Building"
+/area/patricks_rest/surface/building/transformer_barracks
+	name = "Hydroelectric Power"
+	icon_state = "substation"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/patricks_rest/surface/building/transformer_offices
+	name = "Hydroelectric Power"
+	icon_state = "substation"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/patricks_rest/surface/building/security_post_cargo
+	name = "Cargo Security Post"
+	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/patricks_rest/surface/building/security_post_residential
+	name = "Residential Security Post"
+	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/patricks_rest/surface/building/security_post_research
+	name = "Research Security Post"
+	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/patricks_rest/surface/building/storage_depot_south
+	name = "South Storage Depot"
 	icon_state = "dark160"
-	minimap_color = MINIMAP_AREA_LIVING
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/patricks_rest/surface/building/storage_depot_research
+	name = "Research Storage Depot"
+	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/patricks_rest/surface/building/ore
+	name = "Ore Processing"
+	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_REQ

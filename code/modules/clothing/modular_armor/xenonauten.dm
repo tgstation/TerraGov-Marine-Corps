@@ -209,3 +209,7 @@
 	name = "\improper M3-EOD pattern heavy armor"
 	desc = "A heavier version of the standard M3 pattern armor, the armor is primarily designed to withstand ballistic, explosive, and internal damage, with the drawback of increased bulk and thus reduced movement speed, alongside little additional protection from standard blunt force impacts and none from biological threats."
 	flags_armor_features = ARMOR_LAMP_OVERLAY
+
+/obj/item/clothing/head/modular/m10x/uscm
+	name = "\improper M10 pattern marine helmet"
+	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."

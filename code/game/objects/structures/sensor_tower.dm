@@ -245,13 +245,4 @@
 /obj/structure/sensor_tower_patrol/psy
 	icon_state = "psy"
 	faction = FACTION_XENO
-	var/obj/effect/ai_node/goal/goal_node
 
-/obj/structure/sensor_tower_patrol/psy/begin_activation()
-	. = ..()
-	var/turf/current_turf = get_turf(src)
-	goal_node = new(current_turf)
-
-/obj/structure/sensor_tower_patrol/psy/deactivate()
-	. = ..()
-	QDEL_NULL(goal_node)

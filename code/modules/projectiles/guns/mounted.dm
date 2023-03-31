@@ -520,5 +520,12 @@
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
+//-------------------------------------------------------
+//M56D
 
-
+//literally just a copy paste of mg27
+/obj/item/weapon/gun/standard_mmg/mmg_uscm
+	name = "\improper M56D medium machine gun"
+	desc = "The M56D is a deployable medium machine gun, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat."
+	default_ammo_type = /obj/item/ammo_magazine/mmg_uscm
+	allowed_ammo_types = list(/obj/item/ammo_magazine/mmg_uscm)

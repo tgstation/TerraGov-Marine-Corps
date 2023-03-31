@@ -63,6 +63,10 @@
 	icon_state = "grenade_som"
 	item_state = "grenade_som"
 
+/obj/item/explosive/grenade/uscm
+	name = "\improper M40 HEDP grenade"
+	icon_state = "m40"
+
 /obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."

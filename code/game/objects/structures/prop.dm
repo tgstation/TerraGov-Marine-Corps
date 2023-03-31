@@ -1519,6 +1519,16 @@
 	icon_state = "lightstick_spoke1"
 	density = FALSE
 
+/obj/structure/prop/mainship/gelida/lightstick/on
+	name = "light stick"
+	desc = "A post with a bulb at the top, used for lighting areas."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "lightstick_spoke1"
+	density = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	light_range = 1
+	light_color = LIGHT_COLOR_FLARE
+
 /obj/structure/prop/mainship/gelida/planterbox
 	name = "plant box"
 	desc = "A metallic box used for holding growing plants, this one is empty."
@@ -2015,16 +2025,19 @@
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "microscope"
 	density = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/survey
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "surveying_device"
 	name = "Surveying Device"
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/measure
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "measuring_device"
 	name = "Measuring Device"
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/big_science
 	icon = 'icons/obj/science_machines_64.dmi'

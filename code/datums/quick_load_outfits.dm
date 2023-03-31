@@ -2120,3 +2120,52 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
+
+////TGMC/////
+
+//Base TGMC outfit
+/datum/outfit/quick/uscm
+	name = "USCM base"
+	desc = "This is the base typepath for all USCM quick vendor outfits. You shouldn't see this."
+
+//Base TGMC marine outfit
+/datum/outfit/quick/uscm/marine
+	name = "USCM Squad Marine"
+	jobtype = "Squad Marine"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine/black_vest
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm
+	gloves = /obj/item/clothing/gloves/marine
+	head = /obj/item/clothing/head/modular/m10x/uscm
+	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/quick/uscm/marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
+/datum/outfit/quick/uscm/marine/standard_assaultrifle
+	name = "M41A rifleman"
+	desc = "The classic line rifleman. Equipped with a M41A, medium armor, and plenty of grenades and ammunition. A solid all-rounder."
+
+	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+	belt = /obj/item/storage/belt/marine/t12
+
+/datum/outfit/quick/uscm/marine/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)

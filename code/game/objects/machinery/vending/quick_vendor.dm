@@ -73,6 +73,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
+		/datum/outfit/quick/uscm/marine/standard_assaultrifle,
 	)
 
 	for(var/X in loadout_list)
@@ -109,6 +110,16 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Medic",
 		"SOM Squad Veteran",
 		"SOM Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/uscm
+	faction = FACTION_TERRAGOV
+	categories = list(
+		"Squad Marine",
+		"Squad Engineer",
+		"Squad Corpsman",
+		"Squad Smartgunner",
+		"Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)

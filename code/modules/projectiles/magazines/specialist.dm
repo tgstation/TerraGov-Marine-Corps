@@ -399,3 +399,21 @@
 	reload_delay = 10
 	icon_state_mini = "mag_railgun"
 
+//-------------------------------------------------------
+//M5 RPG
+
+/obj/item/ammo_magazine/rocket/rpg_uscm
+	name = "\improper 84mm 'L-G' high-explosive rocket"
+	desc = "A warhead for the M5 RPG. Carries a bogstandard HE warhead that explodes. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this.  When empty, use this frame to deconstruct it."
+	caliber = CALIBER_84MM
+	icon_state = "rocket_he"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/he
+	reload_delay = 60
+
+/obj/item/ammo_magazine/rocket/rpg_uscm_ap
+	name = "\improper 84mm 'L-G' anti-armor rocket"
+	desc = "A tube for an AP rocket, the warhead of which inside is a missile assisted kinetic penetrator that will devastate just about anything that it hits internally, but will do nothing to the surrounding armor. When empty, use this frame to deconstruct it."
+	icon_state = "rocket_ap"
+	default_ammo = /datum/ammo/rocket/ap
