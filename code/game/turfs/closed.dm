@@ -17,12 +17,13 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
+	minimap_color = NONE
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
-		if(istype(turf_to_check, /turf/open))
+		if(!isnull(turf_to_check) && !turf_to_check.density)
 			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
 			switch(direction)
 				if(NORTH)
@@ -33,6 +34,8 @@
 					rock_side.pixel_x += world.icon_size
 				if(WEST)
 					rock_side.pixel_x -= world.icon_size
+			if(!isspaceturf(turf_to_check))
+				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
 
 /turf/closed/mineral/smooth
@@ -142,6 +145,14 @@
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE
+	minimap_color = NONE
+
+/turf/closed/gm/dense/Initialize(mapload)
+	. = ..()
+	for(var/direction in GLOB.cardinals)
+		var/turf/turf_to_check = get_step(src, direction)
+		if(!isnull(turf_to_check) && !turf_to_check.density && !isspaceturf(turf_to_check))
+			minimap_color = MINIMAP_SOLID
 
 //desertdam rock
 /turf/closed/desertdamrockwall

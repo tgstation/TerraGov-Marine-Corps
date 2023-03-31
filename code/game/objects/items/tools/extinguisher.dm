@@ -3,6 +3,10 @@
 	desc = "A traditional red fire extinguisher."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "fire_extinguisher0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
 	flags_atom = CONDUCT

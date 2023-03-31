@@ -35,7 +35,7 @@
 	antag_text = "Using a cryptographic sequencer on this device will cause it to overload each light it replaces; when turned on, the new lights will explode!"
 
 /datum/codex_entry/multitool
-	associated_paths = list(/obj/item/multitool)
+	associated_paths = list(/obj/item/tool/multitool)
 	mechanics_text = "Multitools are incredibly versatile and can be used on a wide variety of machines. The most common use for this is to trip a device's wires without having to cut them. Simply click on an object with exposed wiring to use it. There might be other uses, as well..."
 	lore_text = "The common, every day multitool is descended from certain electrical tools from Earth's early space age. Though none too cheap, they are incredibly handy, and can be found in any self-respecting technician's toolbox."
 	antag_text = "This handy little tool can get you through doors, turn off power, and anything else you might need."
@@ -51,7 +51,7 @@
 	lore_text = "The T-ray scanner is a modern spectroscopy solution and labor-saving device. Why work yourself to the bone removing floor panels when you can simply look through them with submillimeter radiation?"
 
 /datum/codex_entry/rcd
-	associated_paths = list(/obj/item/rcd)
+	associated_paths = list(/obj/item/tool/rcd)
 	mechanics_text = "On use, this device will toggle between various types of structures (or their removal). You can examine it to see its current mode. It must be loaded with compressed matter cartridges, which can be obtained from an autolathe. Click an adjacent tile to use the device."
 	lore_text = "Advents in material printing and synthesis technology have produced everyday miracles, such as the RCD, which in certain industries has single-handedly put entire construction crews out of a job."
 	antag_text = "RCDs can be incredibly dangerous in the wrong hands. Use them to swiftly block off corridors, or instantly breach the ship wherever you want."

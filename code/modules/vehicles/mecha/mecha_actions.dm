@@ -128,7 +128,7 @@
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
-	if(chassis.occupants.len == chassis.max_occupants)
+	if(length(chassis.occupants) == chassis.max_occupants)
 		chassis.balloon_alert(owner, "other seat occupied!")
 		return
 	var/list/drivers = chassis.return_drivers()

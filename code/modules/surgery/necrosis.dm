@@ -43,7 +43,6 @@
 	affected.necro_surgery_stage = 1
 	affected.createwound(CUT, 30)
 	affected.germ_level = min(affected.germ_level, 600) //Ensure that necrosis won't immediately reform
-	affected.remove_limb_flags(LIMB_NECROTIZED)
 
 /datum/surgery_step/necro/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!"), \
@@ -80,6 +79,7 @@
 	affected.necro_surgery_stage = 0
 	affected.heal_limb_damage(affected.brute_dam / 2, updating_health = TRUE)
 	affected.germ_level = max(0, affected.germ_level - 100) //Right at infection level 2 if it was previously above the cap
+	affected.remove_limb_flags(LIMB_NECROTIZED)
 	affected.bandage()
 
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

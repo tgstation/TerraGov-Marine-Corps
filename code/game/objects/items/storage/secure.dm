@@ -121,6 +121,10 @@
 	name = "secure briefcase"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
 	force = 8.0

@@ -2122,10 +2122,10 @@
 /obj/machinery/cell_charger,
 /obj/item/flashlight,
 /obj/item/tool/wrench,
-/obj/item/multitool{
+/obj/item/tool/multitool{
 	pixel_x = 5
 	},
-/obj/item/multitool{
+/obj/item/tool/multitool{
 	pixel_x = 5
 	},
 /obj/machinery/light/mainship/small{
@@ -7445,8 +7445,8 @@
 /obj/item/book/manual/hydroponics_beekeeping,
 /obj/item/tool/plantspray/pests,
 /obj/item/tool/plantspray/pests,
-/obj/item/analyzer/plant_analyzer,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "aLh" = (
@@ -9327,7 +9327,7 @@
 "aWU" = (
 /obj/item/book/manual/security_space_law,
 /obj/item/tool/crowbar,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
@@ -9692,7 +9692,7 @@
 /area/sulaco/research)
 "aZY" = (
 /obj/structure/rack,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/item/storage/backpack/satchel,
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/wood,
@@ -10056,7 +10056,7 @@
 "bdB" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bdC" = (
@@ -10882,8 +10882,8 @@
 /area/sulaco/command/ai)
 "chQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/flare,
-/obj/item/cane,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/weapon/cane,
 /obj/machinery/firealarm{
 	dir = 8
 	},
@@ -12604,7 +12604,7 @@
 /area/sulaco/hallway/central_hall2)
 "eAP" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "eBK" = (
@@ -14115,7 +14115,7 @@
 /area/sulaco/showers)
 "gKQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/item/facepaint/brown,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
@@ -17261,7 +17261,7 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/lightreplacer,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "kUP" = (
@@ -17875,7 +17875,7 @@
 /area/sulaco/cap_office)
 "lJV" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "lLP" = (

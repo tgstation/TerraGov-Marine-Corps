@@ -53,14 +53,14 @@ SUBSYSTEM_DEF(atoms)
 	CreateAtoms(atoms, atoms_to_return)
 	clear_tracked_initalize()
 
-	if(late_loaders.len)
-		for(var/I in 1 to late_loaders.len)
+	if(length(late_loaders))
+		for(var/I in 1 to length(late_loaders))
 			var/atom/A = late_loaders[I]
 			//I hate that we need this
 			if(QDELETED(A))
 				continue
 			A.LateInitialize()
-		testing("Late initialized [late_loaders.len] atoms")
+		testing("Late initialized [length(late_loaders)] atoms")
 		late_loaders.Cut()
 
 	if (created_atoms)
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(atoms)
 	for (var/queued_deletion in queued_deletions)
 		qdel(queued_deletion)
 
-	testing("[queued_deletions.len] atoms were queued for deletion.")
+	testing("[length(queued_deletions)] atoms were queued for deletion.")
 	queued_deletions.Cut()
 
 	#ifdef PROFILE_MAPLOAD_INIT_ATOM
@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(atoms)
 	var/list/mapload_arg = list(TRUE)
 
 	if(atoms)
-		count = atoms.len
+		count = length(atoms)
 		for(var/I in 1 to count)
 			var/atom/A = atoms[I]
 			if(!(A.flags_atom & INITIALIZED))

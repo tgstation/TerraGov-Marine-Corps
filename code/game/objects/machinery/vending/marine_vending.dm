@@ -79,10 +79,11 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
-			/obj/item/weapon/combat_knife/vali_knife = 12,
+			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -292,6 +293,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
@@ -482,6 +484,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
 			/obj/item/weapon/shield/riot/marine/deployable = -1,
@@ -684,6 +687,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
@@ -1191,7 +1195,7 @@
 			blood_type = initial(temp_path.blood_type)
 			R.product_name += blood_type? " [blood_type]" : ""
 			temp_list -= R.product_path
-			if(!temp_list.len) break
+			if(!length(temp_list)) break
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
@@ -1376,6 +1380,7 @@
 			/obj/item/storage/holster/t19 = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
 		),
 		"Pouches" = list(
@@ -1592,6 +1597,7 @@
 			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
 			/obj/item/weapon/claymore/harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = -1,

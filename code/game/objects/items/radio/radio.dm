@@ -2,7 +2,11 @@
 	icon = 'icons/obj/items/radio.dmi'
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
-	item_state = "walkietalkie"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
+	item_state = "radio"
 
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT

@@ -49,7 +49,7 @@
 		i++
 		if(i == 1)
 			fullname += "[O.name]"
-		else if(i == ingredients.len)
+		else if(i == length(ingredients))
 			fullname += " and [O.name]"
 		else
 			fullname += ", [O.name]"
@@ -62,12 +62,12 @@
 
 	var/image/T = new(src.icon, "sandwich_top")
 	T.pixel_x = pick(list(-1,0,1))
-	T.pixel_y = (ingredients.len * 2)+1
+	T.pixel_y = (length(ingredients) * 2)+1
 	overlays += T
 
 	name = lowertext("[fullname] sandwich")
 	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
-	w_class = CEILING(clamp((ingredients.len/2),1,3),1)
+	w_class = CEILING(clamp((length(ingredients)/2),1,3),1)
 
 /obj/item/reagent_containers/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)

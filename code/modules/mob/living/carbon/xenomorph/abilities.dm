@@ -832,9 +832,9 @@
 		RegisterSignal(X, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		return ..()
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
+	for(var/i in 1 to length(X.xeno_caste.spit_types))
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
+			if(i == length(X.xeno_caste.spit_types))
 				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]

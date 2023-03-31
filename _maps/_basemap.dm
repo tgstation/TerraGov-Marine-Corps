@@ -24,6 +24,7 @@
 		#include "map_files\deltastation\deltastation.dmm"
 		#include "map_files\kemerdekaan\kemerdekaan.dmm"
 		#include "map_files\Patricks_Rest\patricks_rest.dmm"
+		#include "map_files\desparity\desparity.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

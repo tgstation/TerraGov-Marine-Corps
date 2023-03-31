@@ -280,12 +280,20 @@
 		return
 	attach_item(I, user)
 
+/obj/item/belt_harness/update_icon_state()
+	. = ..()
+	if(reequip_component)
+		icon_state = initial(icon_state) + "_clipped"
+	else
+		icon_state = initial(icon_state)
+
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
 	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
 	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), PROC_REF(detach_item))
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
+	update_icon()
 
 ///Clean out attachment refs/signals
 /obj/item/belt_harness/proc/detach_item(source)
@@ -299,6 +307,7 @@
 	if(!QDELING(reequip_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
 		qdel(reequip_component)
 	reequip_component = null
+	update_icon()
 
 /obj/item/belt_harness/vendor_equip(mob/user)
 	..()

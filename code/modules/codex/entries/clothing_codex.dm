@@ -97,10 +97,10 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
-	if(covers.len)
+	if(length(covers))
 		armor_strings += "<br>It covers the [english_list(covers)]."
 
-	if(slots.len)
+	if(length(slots))
 		armor_strings += "It can be worn on your [english_list(slots)]."
 
 	if(allowed)

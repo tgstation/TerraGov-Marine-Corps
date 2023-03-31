@@ -131,13 +131,6 @@ OPERATIONS
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/cas_voucher
-	name = "150 dropship fabricator points"
-	contains = list(/obj/item/dropship_points_voucher)
-	cost = 400
-	containertype = null
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/operations/cash
 	name = "200 dollars"
 	contains = list(/obj/item/spacecash/c500)
@@ -914,7 +907,7 @@ ARMOR
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/artemis_mark_two
-	name = "Artemis Mark 2 helmet module"
+	name = "Freyr Mark 2 helmet module"
 	contains = list(
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)

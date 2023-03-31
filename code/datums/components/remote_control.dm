@@ -27,15 +27,21 @@
 	RegisterSignal(controlled, COMSIG_PARENT_QDELETING, PROC_REF(on_control_terminate))
 	RegisterSignal(controlled, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 	RegisterSignal(parent, list(COMSIG_REMOTECONTROL_UNLINK, COMSIG_PARENT_QDELETING), PROC_REF(on_control_terminate))
+	RegisterSignal(controlled, COMSIG_PARENT_PREQDELETED, PROC_REF(disable_controls))
 
 
 /datum/component/remote_control/Destroy(force=FALSE, silent=FALSE)
-	if(is_controlling)
-		remote_control_off()
+	UnregisterSignal(controlled, COMSIG_PARENT_PREQDELETED)
 	controlled = null
 	left_click_proc = null
 	right_click_proc = null
 	return ..()
+
+///I want controls to be disabled *before* actually qdeling due to some race conditions of my own creation.
+/datum/component/remote_control/proc/disable_controls()
+	SIGNAL_HANDLER
+	if(is_controlling)
+		remote_control_off()
 
 ///Called when Controlling should not be resumed and deleted the component
 /datum/component/remote_control/proc/on_control_terminate(datum/source)

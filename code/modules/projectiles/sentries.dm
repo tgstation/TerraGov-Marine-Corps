@@ -421,7 +421,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
 	var/list/turf/path = getline(src, target)
 	path -= get_turf(src)
-	if(!path.len)
+	if(!length(path))
 		return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T

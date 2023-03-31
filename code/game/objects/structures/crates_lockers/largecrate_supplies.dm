@@ -10,7 +10,7 @@
 		var/list/T = list()
 		for(var/turf/open/O in range(1))
 			T += O
-		if(supply.len)
+		if(length(supply))
 			for(var/s in supply)
 				var/amount = supply[s]
 				for(var/i = 1, i <= amount, i++)
@@ -91,7 +91,7 @@
 
 /obj/structure/largecrate/supply/Initialize()
 	. = ..()
-	if(supplies.len)
+	if(length(supplies))
 		for(var/s in supplies)
 			var/amount = supplies[s]
 			for(var/i = 1, i <= amount, i++)

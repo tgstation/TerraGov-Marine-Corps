@@ -387,6 +387,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_L_POUCH,\
 	SLOT_IN_R_POUCH,\
 	SLOT_BELT,\
+	SLOT_IN_BELT,\
 	SLOT_WEAR_SUIT,\
 	SLOT_IN_STORAGE,\
 	SLOT_L_STORE,\
@@ -444,7 +445,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"Left Pocket",\
 	"Right Pocket",\
 	"Webbing",\
-	"Belt",\
+	"Belt Inside",\
 	"Belt Holster",\
 	"Suit Storage Holster",\
 	"Back Holster",\
@@ -472,7 +473,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_R_STORE
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
-		if("Belt")
+		if("Belt Inside")
 			return SLOT_IN_BELT
 		if("Belt Holster")
 			return SLOT_IN_HOLSTER
@@ -489,6 +490,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Inside"
 		if(SLOT_BELT)
 			return "Belt"
+		if(SLOT_IN_BELT)
+			return "Belt Inside"
 		if(SLOT_BACK)
 			return "Back"
 		if(SLOT_IN_BOOT)
@@ -503,8 +506,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Right Pocket"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
-		if(SLOT_IN_BELT)
-			return "Belt"
 		if(SLOT_IN_HOLSTER)
 			return "Belt Holster"
 		if(SLOT_IN_S_HOLSTER)

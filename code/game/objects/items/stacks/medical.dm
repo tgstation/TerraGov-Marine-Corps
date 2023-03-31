@@ -5,6 +5,10 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
 	amount = 10
 	max_amount = 10
 	w_class = WEIGHT_CLASS_SMALL

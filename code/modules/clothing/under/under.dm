@@ -1,6 +1,10 @@
 
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms/uniforms.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)
 	name = "under"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
@@ -142,9 +146,10 @@
 
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip(mob/user)
-	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
-	if(found)
-		return found.do_quick_equip(user)
+	for(var/attachment_slot in attachments_by_slot)
+		if(istype(attachments_by_slot[attachment_slot], /obj/item/armor_module/storage/uniform/holster))
+			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
+			return storage_attachment.storage.do_quick_equip(user)
 	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)

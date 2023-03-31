@@ -541,7 +541,7 @@
 /area/bigredv2/outside/general_store)
 "Ez" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "EN" = (

@@ -136,7 +136,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "hp" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "hZ" = (
@@ -903,7 +903,7 @@
 /area/bigredv2/outside/c)
 "NM" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "NT" = (

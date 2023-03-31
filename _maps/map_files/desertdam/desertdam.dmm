@@ -1793,7 +1793,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "alz" = (
 /obj/structure/rack,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/prison/darkpurple{
 	dir = 8
@@ -12666,7 +12666,7 @@
 /area/desert_dam/interior/dam_interior/control_room)
 "bzM" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -15119,7 +15119,7 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bOt" = (
 /obj/structure/table/reinforced,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
@@ -16969,7 +16969,7 @@
 "bYB" = (
 /obj/structure/rack,
 /obj/item/flashlight,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -20074,7 +20074,7 @@
 /area/desert_dam/building/telecommunication)
 "crh" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/building/telecommunication)
 "crj" = (
@@ -20247,7 +20247,7 @@
 /area/desert_dam/building/telecommunication)
 "css" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -52574,7 +52574,7 @@
 /area/desert_dam/exterior/valley/valley_labs)
 "qWS" = (
 /obj/structure/table,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/item/radio,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkyellow{

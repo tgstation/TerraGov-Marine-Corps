@@ -43,7 +43,7 @@
 
 
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
-	if(griddled_objects.len >= max_items)
+	if(length(griddled_objects) >= max_items)
 		to_chat(user, span_notice("[src] can't fit more items!"))
 		return
 	var/list/modifiers = params2list(params)
@@ -95,7 +95,7 @@
 	AddToGrill(grilled_result)
 
 /obj/machinery/griddle/proc/update_grill_audio()
-	if(on && griddled_objects.len)
+	if(on && length(griddled_objects))
 		grill_loop.start()
 	else
 		grill_loop.stop()

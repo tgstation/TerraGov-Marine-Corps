@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/themes in reboot_sounds)
 		possible_themes += themes
-	if(possible_themes.len)
+	if(length(possible_themes))
 		return "[global.config.directory]/lobby_themes/[pick(possible_themes)]"
 
 
@@ -400,5 +400,5 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/themes in reboot_sounds)
 		possible_themes += themes
-	if(possible_themes.len)
+	if(length(possible_themes))
 		return "[global.config.directory]/reboot_themes/[pick(possible_themes)]"

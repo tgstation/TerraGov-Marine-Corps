@@ -336,7 +336,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "tQ" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "tW" = (
@@ -428,7 +428,7 @@
 /area/bigredv2/outside/engineering)
 "xW" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "yb" = (
@@ -613,7 +613,7 @@
 /area/bigredv2/outside/engineering)
 "GD" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "GE" = (

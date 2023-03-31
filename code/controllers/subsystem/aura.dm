@@ -18,8 +18,8 @@ SUBSYSTEM_DEF(aura)
 		if(!current_resume)
 			current_cache = active_auras.Copy()
 		current_resume = FALSE
-		while(current_cache.len)
-			var/datum/aura_bearer/bearer = current_cache[current_cache.len]
+		while(length(current_cache))
+			var/datum/aura_bearer/bearer = current_cache[length(current_cache)]
 			current_cache.len--
 			if(QDELETED(bearer))
 				continue
@@ -31,8 +31,8 @@ SUBSYSTEM_DEF(aura)
 		if(!current_resume)
 			current_cache = GLOB.xeno_mob_list.Copy()
 		current_resume = FALSE
-		while(current_cache.len)
-			var/mob/living/carbon/xenomorph/xeno = current_cache[current_cache.len]
+		while(length(current_cache))
+			var/mob/living/carbon/xenomorph/xeno = current_cache[length(current_cache)]
 			current_cache.len--
 			if(QDELETED(xeno))
 				continue
@@ -44,8 +44,8 @@ SUBSYSTEM_DEF(aura)
 		if(!current_resume)
 			current_cache = GLOB.human_mob_list.Copy()
 		current_resume = FALSE
-		while(current_cache.len)
-			var/mob/living/carbon/human/human = current_cache[current_cache.len]
+		while(length(current_cache))
+			var/mob/living/carbon/human/human = current_cache[length(current_cache)]
 			current_cache.len--
 			if(QDELETED(human))
 				continue

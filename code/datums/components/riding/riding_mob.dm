@@ -158,7 +158,7 @@
 
 /datum/component/riding/creature/human/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
-	if(!AM.buckled_mobs || !AM.buckled_mobs.len)
+	if(!AM.buckled_mobs || !length(AM.buckled_mobs))
 		AM.layer = MOB_LAYER
 		return
 
