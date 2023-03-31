@@ -116,13 +116,26 @@
 	var/current_variant
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
+	var/list/armor_overlays
 
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
+	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
 
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
+	var/image/I
+	I = armor_overlays["lamp"]
+	overlays -= I
+	qdel(I)
+	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
+		I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+		armor_overlays["lamp"] = I
+		overlays += I
+	else
+		armor_overlays["lamp"] = null
+	user?.update_inv_wear_suit()
 	if(current_variant)
 		icon_state = initial(icon_state) + "_[current_variant]"
 		item_state = initial(item_state) + "_[current_variant]"
@@ -145,6 +158,12 @@
 
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
+	var/mutable_appearance/new_overlay
+	for(var/i in armor_overlays)
+		new_overlay = armor_overlays[i]
+		if(new_overlay)
+			new_overlay = mutable_appearance(item_icons[slot_wear_suit_str], new_overlay.icon_state)
+			standing.overlays += new_overlay
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return standing
 	var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
