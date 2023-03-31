@@ -176,6 +176,7 @@
 	name = "mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies."
 	icon_state = "som_satchel"
+	item_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
