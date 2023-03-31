@@ -279,8 +279,8 @@
 	. = ..()
 	if((isobserver(user) || ishuman(user)) && fallen_list)
 		var/faltext = ""
-		for(var/i = 1 to fallen_list.len)
-			if(i != fallen_list.len)
+		for(var/i = 1 to length(fallen_list))
+			if(i != length(fallen_list))
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]

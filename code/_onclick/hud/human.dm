@@ -234,7 +234,7 @@
 	var/mob/living/carbon/human/H = mymob
 	var/mob/screenmob = viewer || H
 
-	if(H.species && H.species.hud && !H.species.hud.gear.len)
+	if(H.species && H.species.hud && !length(H.species.hud.gear))
 		inventory_shown = FALSE
 		return //species without inv slots don't show items.
 	if(screenmob.hud_used.inventory_shown && screenmob.hud_used.hud_shown)

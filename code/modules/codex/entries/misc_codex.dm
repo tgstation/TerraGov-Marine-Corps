@@ -23,7 +23,7 @@
 		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
-	if(slots.len)
+	if(length(slots))
 		storage_strings += "It can be worn on your [english_list(slots)]."
 
 	if(use_to_pickup)

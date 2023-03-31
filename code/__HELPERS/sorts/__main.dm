@@ -182,8 +182,8 @@ reverse a descending sequence without violating stability.
 //This method is called each time a new run is pushed onto the stack.
 //So the invariants are guaranteed to hold for i<stackSize upon entry to the method
 /datum/sortInstance/proc/mergeCollapse()
-	while(runBases.len >= 2)
-		var/n = runBases.len - 1
+	while(length(runBases) >= 2)
+		var/n = length(runBases) - 1
 		if(n > 1 && runLens[n - 1] <= runLens[n] + runLens[n + 1])
 			if(runLens[n - 1] < runLens[n + 1])
 				--n
@@ -197,8 +197,8 @@ reverse a descending sequence without violating stability.
 //Merges all runs on the stack until only one remains.
 //Called only once, to finalise the sort
 /datum/sortInstance/proc/mergeForceCollapse()
-	while(runBases.len >= 2)
-		var/n = runBases.len - 1
+	while(length(runBases) >= 2)
+		var/n = length(runBases) - 1
 		if(n > 1 && runLens[n - 1] < runLens[n + 1])
 			--n
 		mergeAt(n)
@@ -208,9 +208,9 @@ reverse a descending sequence without violating stability.
 //Run i must be the penultimate or antepenultimate run on the stack
 //In other words, i must be equal to stackSize-2 or stackSize-3
 /datum/sortInstance/proc/mergeAt(i)
-	//ASSERT(runBases.len >= 2)
+	//ASSERT(length(runBases) >= 2)
 	//ASSERT(i >= 1)
-	//ASSERT(i == runBases.len - 1 || i == runBases.len - 2)
+	//ASSERT(i == length(runBases) - 1 || i == length(runBases) - 2)
 
 	var/base1 = runBases[i]
 	var/base2 = runBases[i + 1]
@@ -595,8 +595,8 @@ reverse a descending sequence without violating stability.
 
 	while(remaining > 0)
 
-	while(runBases.len >= 2)
-		var/n = runBases.len - 1
+	while(length(runBases) >= 2)
+		var/n = length(runBases) - 1
 		if(n > 1 && runLens[n - 1] <= runLens[n] + runLens[n + 1])
 			if(runLens[n - 1] < runLens[n + 1])
 				--n
@@ -606,8 +606,8 @@ reverse a descending sequence without violating stability.
 		else
 			break	//Invariant is established
 
-	while(runBases.len >= 2)
-		var/n = runBases.len - 1
+	while(length(runBases) >= 2)
+		var/n = length(runBases) - 1
 		if(n > 1 && runLens[n - 1] < runLens[n + 1])
 			--n
 		mergeAt2(n)

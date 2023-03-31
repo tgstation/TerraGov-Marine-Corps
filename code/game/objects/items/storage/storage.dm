@@ -345,7 +345,7 @@
 ///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
-	var/adjusted_contents = contents.len
+	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -379,7 +379,7 @@
 
 	if(loc == W)
 		return FALSE //Means the item is already in the storage item
-	if(storage_slots != null && contents.len >= storage_slots)
+	if(storage_slots != null && length(contents) >= storage_slots)
 		if(warning)
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
@@ -580,8 +580,8 @@
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
 		else if(open(user))
@@ -753,7 +753,7 @@
 		return
 
 	//Otherwise we'll try to fold it.
-	if ( contents.len )
+	if ( length(contents) )
 		return
 
 	if ( !ispath(foldable) )

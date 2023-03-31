@@ -1,0 +1,4 @@
+author: "Skye"
+delete-after: True
+changes:
+  - bugfix: "fixes the ICC medic spawn. It's Space...Somewhere, not 1940s Russia."

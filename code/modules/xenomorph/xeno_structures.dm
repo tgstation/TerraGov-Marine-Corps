@@ -963,7 +963,7 @@ TUNNEL
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		scan()
 		last_scan_time = world.time
-	if(!potential_hostiles.len)
+	if(!length(potential_hostiles))
 		return
 	set_hostile(get_target())
 	if (!hostile)
@@ -1038,7 +1038,7 @@ TUNNEL
 			continue
 		path = getline(src, nearby_hostile)
 		path -= get_turf(src)
-		if(!path.len) //Can't shoot if it's on the same turf
+		if(!length(path)) //Can't shoot if it's on the same turf
 			continue
 		var/blocked = FALSE
 		for(var/turf/T AS in path)

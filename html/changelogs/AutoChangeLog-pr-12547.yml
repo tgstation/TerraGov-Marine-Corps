@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Dropship fabricators now earn 30 and 15 points from respective miners."
+  - rscdel: "Removed the dropship points voulcher"

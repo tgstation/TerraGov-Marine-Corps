@@ -8,10 +8,10 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	for(var/obj/machinery/atmospherics/components/unary/U in range(1))
 		if(is_type_in_list(U, GLOB.ventcrawl_machinery) && Adjacent(U))
 			pipes |= U
-	if(!pipes || !pipes.len)
+	if(!pipes || !length(pipes))
 		balloon_alert(src, "No pipes in range!")
 		return
-	if(pipes.len == 1)
+	if(length(pipes) == 1)
 		pipe = pipes[1]
 	else
 		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe",  pipes)
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 	if(vent_found)
 		var/datum/pipeline/vent_found_parent = vent_found.parents[1]
-		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
+		if(vent_found_parent && (length(vent_found_parent.members) || vent_found_parent.other_atmosmch))
 			visible_message(span_notice("[stealthy ? "[src] begins climbing into the ventilation system..." : ""]"),span_notice("You begin climbing into the ventilation system..."))
 
 			if(!do_after(src, crawl_time, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(iscarbon(src))//It must have atleast been 1 to get this far
 				var/failed = FALSE
 				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
-				if(items_list.len)
+				if(length(items_list))
 					failed = TRUE
 				if(failed)
 					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	for(var/datum/pipeline/P in starting_machine.returnPipenets())
 		totalMembers += P.members
 		totalMembers += P.other_atmosmch
-	if(!totalMembers.len)
+	if(!length(totalMembers))
 		return
 
 	if(client)

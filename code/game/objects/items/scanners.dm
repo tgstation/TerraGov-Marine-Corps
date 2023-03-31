@@ -441,7 +441,7 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
-	if(!O.reagents || !O.reagents.reagent_list.len)
+	if(!O.reagents || !length(O.reagents.reagent_list))
 		to_chat(user, span_notice("No chemical agents found in [O]"))
 		return
 	var/dat = ""

@@ -232,7 +232,7 @@
 //It automatically updates health status
 /mob/living/carbon/human/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robo_repair)
-	if(!parts.len)
+	if(!length(parts))
 		return
 	var/datum/limb/picked = pick(parts)
 	if(picked.heal_limb_damage(brute, burn, robo_repair, updating_health))
@@ -246,7 +246,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 //It automatically updates health status
 /mob/living/carbon/human/take_limb_damage(brute, burn, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damageable_limbs()
-	if(!parts.len)
+	if(!length(parts))
 		return
 	var/datum/limb/picked = pick(parts)
 	if(picked.take_damage_limb(brute, burn, sharp, edge, 0, updating_health))
@@ -260,7 +260,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robo_repair)
 
 	var/update = 0
-	while(parts.len && (brute>0 || burn>0) )
+	while(length(parts) && (brute>0 || burn>0) )
 		var/datum/limb/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam

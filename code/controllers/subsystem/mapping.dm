@@ -92,12 +92,12 @@ SUBSYSTEM_DEF(mapping)
 			continue
 		in_transit[T] = T.get_docked()
 	var/go_ahead = world.time + wipe_safety_delay
-	if(in_transit.len)
+	if(length(in_transit))
 		message_admins("Shuttles in transit detected. Attempting to fast travel. Timeout is [wipe_safety_delay/10] seconds.")
 	var/list/cleared = list()
 	for(var/i in in_transit)
 		INVOKE_ASYNC(src, PROC_REF(safety_clear_transit_dock), i, in_transit[i], cleared)
-	UNTIL((go_ahead < world.time) || (cleared.len == in_transit.len))
+	UNTIL((go_ahead < world.time) || (length(cleared) == length(in_transit)))
 	do_wipe_turf_reservations()
 	clearing_reserved_turfs = FALSE
 
@@ -149,11 +149,11 @@ SUBSYSTEM_DEF(mapping)
 	if (!length(traits))  // null or empty - default
 		for (var/i in 1 to total_z)
 			traits += list(default_traits)
-	else if (total_z != traits.len)  // mismatch
-		INIT_ANNOUNCE("WARNING: [traits.len] trait sets specified for [total_z] z-levels in [path]!")
-		if (total_z < traits.len)  // ignore extra traits
+	else if (total_z != length(traits))  // mismatch
+		INIT_ANNOUNCE("WARNING: [length(traits)] trait sets specified for [total_z] z-levels in [path]!")
+		if (total_z < length(traits))  // ignore extra traits
 			traits.Cut(total_z + 1)
-		while (total_z > traits.len)  // fall back to defaults on extra levels
+		while (total_z > length(traits))  // fall back to defaults on extra levels
 			traits += list(default_traits)
 
 	// preload the relevant space_level datums
@@ -203,8 +203,8 @@ SUBSYSTEM_DEF(mapping)
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen
 		var/msg = "RED ALERT! The following map files failed to load: [FailedZs[1]]"
-		if(FailedZs.len > 1)
-			for(var/I in 2 to FailedZs.len)
+		if(length(FailedZs) > 1)
+			for(var/I in 2 to length(FailedZs))
 				msg += ", [FailedZs[I]]"
 		msg += ". Yell at your server host!"
 		INIT_ANNOUNCE(msg)
@@ -243,7 +243,7 @@ SUBSYSTEM_DEF(mapping)
 	. = list()
 	var/list/Lines = file2list(filename)
 
-	if(!Lines.len)
+	if(!length(Lines))
 		return
 	for (var/t in Lines)
 		if (!t)

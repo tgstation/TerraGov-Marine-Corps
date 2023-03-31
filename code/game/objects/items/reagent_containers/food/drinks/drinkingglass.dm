@@ -10,14 +10,14 @@
 
 //todo christ why is this still in the code please just port tg drinks to replace this
 /obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
-	/*if(reagents.reagent_list.len > 1 )
+	/*if(length(reagents.reagent_list) > 1 )
 		icon_state = "glass_brown"
 		name = "Glass of Hooch"
 		desc = "Two or more drinks, mixed together."*/
-	/*else if(reagents.reagent_list.len == 1)
+	/*else if(length(reagents.reagent_list) == 1)
 		for(var/datum/reagent/R in reagents.reagent_list)
 			switch(R.id)*/
-	if (reagents.reagent_list.len > 0)
+	if (length(reagents.reagent_list) > 0)
 		//mrid = R.get_master_reagent_id()
 		switch(reagents.get_master_reagent_id())
 			if(/datum/reagent/consumable/ethanol/beer)

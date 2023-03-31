@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			fully_legal_turfs += temp_turf
 		T = temp_turf
 
-	check_distance = min(fully_legal_turfs.len, check_distance) //Cap the check distance to the number of fully legal turfs
+	check_distance = min(length(fully_legal_turfs), check_distance) //Cap the check distance to the number of fully legal turfs
 	T = X.loc //Reset T to be our initial position
 	if(check_distance)
 		T = fully_legal_turfs[check_distance]

@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(player_details)	// ckey -> /datum/player_details
 /proc/log_played_names(ckey, ...)
 	if(!ckey)
 		return
-	if(args.len < 2)
+	if(length(args) < 2)
 		return
 	var/list/names = args.Copy(2)
 	var/datum/player_details/P = GLOB.player_details[ckey]

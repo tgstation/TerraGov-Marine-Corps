@@ -416,13 +416,13 @@
 	. = ..()
 
 	if(!id)
-		id = "[SSshuttle.mobile.len]"
+		id = "[length(SSshuttle.mobile)]"
 	if(name == "shuttle")
-		name = "shuttle[SSshuttle.mobile.len]"
+		name = "shuttle[length(SSshuttle.mobile)]"
 
 	shuttle_areas = list()
 	var/list/all_turfs = return_ordered_turfs(x, y, z, dir)
-	for(var/i in 1 to all_turfs.len)
+	for(var/i in 1 to length(all_turfs))
 		var/turf/curT = all_turfs[i]
 		var/area/cur_area = get_area(curT)
 		if(istype(cur_area, area_type))
@@ -625,7 +625,7 @@
 	if(!underlying_area)
 		underlying_area = new underlying_area_type(null)
 
-	for(var/i in 1 to old_turfs.len)
+	for(var/i in 1 to length(old_turfs))
 		var/turf/oldT = old_turfs[i]
 		if(!oldT || !istype(oldT.loc, area_type))
 			continue
@@ -638,7 +638,7 @@
 		var/list/baseturf_cache = oldT.baseturfs
 		for(var/k in 1 to length(baseturf_cache))
 			if(ispath(baseturf_cache[k], /turf/baseturf_skipover/shuttle))
-				oldT.ScrapeAway(baseturf_cache.len - k + 1)
+				oldT.ScrapeAway(length(baseturf_cache) - k + 1)
 				break
 
 	qdel(src, force=TRUE)
@@ -684,7 +684,7 @@
 
 	var/list/ripple_turfs = list()
 
-	for(var/i in 1 to L0.len)
+	for(var/i in 1 to length(L0))
 		var/turf/T0 = L0[i]
 		var/turf/T1 = L1[i]
 		if(!T0 || !T1)
@@ -752,7 +752,7 @@
 	set_idle()
 
 /obj/docking_port/mobile/proc/check_effects()
-	if(!ripples.len && destination?.loc != loc)
+	if(!length(ripples) && destination?.loc != loc)
 		if((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL))
 			var/tl = timeLeft(1)
 			if(tl <= SHUTTLE_RIPPLE_TIME)

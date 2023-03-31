@@ -38,7 +38,7 @@
 /obj/proc/check_access_list(L[])
 	if(!req_access  && !req_one_access)	return 1
 	if(!islist(req_access)) return 1
-	if(!req_access.len && (!req_one_access || !req_one_access.len))	return 1
+	if(!length(req_access) && (!req_one_access || !length(req_one_access)))	return 1
 	if(!islist(L))	return
 	var/i
 	for(i in req_access)

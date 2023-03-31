@@ -173,7 +173,7 @@
 	// Update flower/product overlay.
 	overlays.Cut()
 	if(age >= seed.maturation)
-		if(prob(20) && seed.products && seed.products.len && !harvest && ((age-lastproduce) > seed.production))
+		if(prob(20) && seed.products && length(seed.products) && !harvest && ((age-lastproduce) > seed.production))
 			harvest = 1
 			lastproduce = age
 
@@ -306,9 +306,9 @@
 		return
 
 	// Check if we're too big for our own good.
-	if(vines.len >= (seed ? seed.potency * collapse_limit : 250) && !reached_collapse_size)
+	if(length(vines) >= (seed ? seed.potency * collapse_limit : 250) && !reached_collapse_size)
 		reached_collapse_size = 1
-	if(vines.len >= (seed ? seed.potency * slowdown_limit : 30) && !reached_slowdown_size )
+	if(length(vines) >= (seed ? seed.potency * slowdown_limit : 30) && !reached_slowdown_size )
 		reached_slowdown_size = 1
 
 	var/length = 0
@@ -322,7 +322,7 @@
 	else
 		length = 1
 
-	length = min(30, max(length, vines.len/5))
+	length = min(30, max(length, length(vines)/5))
 
 	// Update as many pieces of vine as we're allowed to.
 	// Append updated vines to the end of the growth queue.

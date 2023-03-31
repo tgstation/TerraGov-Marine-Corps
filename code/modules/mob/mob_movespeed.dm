@@ -125,7 +125,7 @@ Key procs
 
 ///Check if a movespeed modifier is identical to another
 /mob/proc/movespeed_modifier_identical_check(list/mod1, list/mod2)
-	if(!islist(mod1) || !islist(mod2) || mod1.len < MOVESPEED_DATA_INDEX_MAX || mod2.len < MOVESPEED_DATA_INDEX_MAX)
+	if(!islist(mod1) || !islist(mod2) || length(mod1) < MOVESPEED_DATA_INDEX_MAX || length(mod2) < MOVESPEED_DATA_INDEX_MAX)
 		return FALSE
 	for(var/i in 1 to MOVESPEED_DATA_INDEX_MAX)
 		if(mod1[i] != mod2[i])
@@ -156,7 +156,7 @@ Key procs
 	var/list/assembled = list()
 	for(var/our_id in movespeed_modification)
 		var/list/our_data = movespeed_modification[our_id]
-		if(!islist(our_data) || (our_data.len < MOVESPEED_DATA_INDEX_PRIORITY) || movespeed_data_null_check(our_data))
+		if(!islist(our_data) || (length(our_data) < MOVESPEED_DATA_INDEX_PRIORITY) || movespeed_data_null_check(our_data))
 			movespeed_modification -= our_id
 			continue
 		var/our_priority = our_data[MOVESPEED_DATA_INDEX_PRIORITY]

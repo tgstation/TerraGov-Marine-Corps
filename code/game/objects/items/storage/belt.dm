@@ -819,12 +819,12 @@
 	update_icon()
 
 /obj/item/storage/belt/shotgun/martini/update_icon()
-	if(!contents.len)
+	if(!length(contents))
 		icon_state = initial(icon_state) + "_e"
 		return
 	icon_state = initial(icon_state)
 
-	var/holding = round((contents.len + 1) / 2)
+	var/holding = round((length(contents) + 1) / 2)
 	setDir(holding + round(holding/3))
 
 /obj/item/storage/belt/shotgun/martini/attackby(obj/item/I, mob/user, params)
@@ -842,13 +842,13 @@
 		for(var/mob/M in content_watchers)
 			close(M)
 
-	if(!draw_mode || !ishuman(user) && !contents.len)
+	if(!draw_mode || !ishuman(user) && !length(contents))
 		open(user)
 
 	if(!length(contents))
 		return
 
-	var/obj/item/I = contents[contents.len]
+	var/obj/item/I = contents[length(contents)]
 	if(!istype(I, /obj/item/ammo_magazine/handful))
 		return
 

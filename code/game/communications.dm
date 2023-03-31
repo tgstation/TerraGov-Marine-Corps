@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(reverseradiochannels, list(
 		if(!devices_line)
 			devices -= devices_filter
 		devices_line -= device
-		if(!devices_line.len)
+		if(!length(devices_line))
 			devices -= devices_filter
 
 

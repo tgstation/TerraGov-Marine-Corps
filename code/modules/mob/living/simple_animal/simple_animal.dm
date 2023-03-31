@@ -314,32 +314,32 @@
 	if(speak_chance)
 		if(prob(speak_chance) || override)
 			if(length(speak))
-				if((emote_hear && emote_hear.len) || (length(emote_see)))
+				if((emote_hear && length(emote_hear)) || (emote_see && length(emote_see)))
 					var/length = speak.len
-					if(length(emote_hear))
+					if(emote_hear && length(emote_hear))
 						length += emote_hear.len
-					if(length(emote_see))
+					if(emote_see && length(emote_see))
 						length += emote_see.len
 					var/randomValue = rand(1,length)
-					if(randomValue <= speak.len)
+					if(randomValue <= length(speak))
 						say(pick(speak), forced = "poly")
 					else
 						randomValue -= speak.len
-						if(emote_see && randomValue <= emote_see.len)
+						if(emote_see && randomValue <= length(emote_see))
 							emote("me [pick(emote_see)]", 1)
 						else
 							emote("me [pick(emote_hear)]", 2)
 				else
 					say(pick(speak), forced = "poly")
 			else
-				if(!(emote_hear && emote_hear.len) && (length(emote_see)))
+				if(!length(emote_hear) && length(emote_see))
 					emote("me", 1, pick(emote_see))
-				if((emote_hear && emote_hear.len) && !(length(emote_see)))
+				if(length(emote_hear) && !length(emote_see))
 					emote("me", 2, pick(emote_hear))
-				if((emote_hear && emote_hear.len) && (length(emote_see)))
-					var/length = emote_hear.len + emote_see.len
+				if(length(emote_hear) && length(emote_see))
+					var/length = length(emote_hear) + emote_see.len
 					var/pick = rand(1,length)
-					if(pick <= emote_see.len)
+					if(pick <= length(emote_see))
 						emote("me", 1, pick(emote_see))
 					else
 						emote("me", 2, pick(emote_hear))

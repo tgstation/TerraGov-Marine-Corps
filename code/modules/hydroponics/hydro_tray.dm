@@ -254,7 +254,7 @@
 		pestlevel = 0
 
 	// If enough time (in cycles, not ticks) has passed since the plant was harvested, we're ready to harvest again.
-	else if(seed.products && seed.products.len && age > seed.production && \
+	else if(seed.products && length(seed.products) && age > seed.production && \
 	(age - lastproduce) > seed.production && (!harvest && !dead))
 		harvest = 1
 		lastproduce = age
@@ -449,7 +449,7 @@
 		return
 
 	// Check if we should even bother working on the current seed datum.
-	if(seed.mutants && seed.mutants.len && severity > 1)
+	if(seed.mutants && length(seed.mutants) && severity > 1)
 		mutate_species()
 		return
 

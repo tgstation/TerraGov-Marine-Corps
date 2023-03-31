@@ -148,9 +148,9 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 				possible_targets += possible_target
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
-		if(!possible_targets.len)
+		if(!length(possible_targets))
 			possible_targets = all_possible_targets
-	if(possible_targets.len > 0)
+	if(length(possible_targets) > 0)
 		target = pick(possible_targets)
 	if(!target)
 		var/mob/living/M
@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal/New()
 	..()
-	if(!GLOB.possible_items.len)//Only need to fill the list when it's needed.
+	if(!length(GLOB.possible_items))//Only need to fill the list when it's needed.
 		for(var/I in subtypesof(/datum/objective_item/steal))
 			new I
 

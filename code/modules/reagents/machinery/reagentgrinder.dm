@@ -326,7 +326,7 @@
 			if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 
-		if(O.reagents.reagent_list.len == 0)
+		if(length(O.reagents.reagent_list) == 0)
 			remove_object(O)
 
 	//Sheets
