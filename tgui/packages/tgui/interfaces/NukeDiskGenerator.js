@@ -4,7 +4,15 @@ import { Window } from '../layouts';
 
 export const NukeDiskGenerator = (props, context) => {
   const { act, data } = useBackend(context);
-  const { message, progress, time_left, flavor_text, running, segment_time, color } = data;
+  const {
+    message,
+    progress,
+    time_left,
+    flavor_text,
+    running,
+    segment_time,
+    color,
+  } = data;
   return (
     <Window title="Nuke Disk Generator" width={450} height={250}>
       <Window.Content>
@@ -16,9 +24,7 @@ export const NukeDiskGenerator = (props, context) => {
             <Stack.Item>
               <Box width="100%" textAlign="center">
                 Overall Progress:
-                <ProgressBar
-                  value={progress}
-                  color={color} />
+                <ProgressBar value={progress} color={color} />
               </Box>
             </Stack.Item>
             <Stack.Item>
@@ -30,19 +36,16 @@ export const NukeDiskGenerator = (props, context) => {
                       <ProgressBar
                         minValue={0}
                         MaxValue={segment_time}
-                        value={time_left/segment_time*10} />
+                        value={(time_left / segment_time) * 10}
+                      />
                     </Box>
                     <Box>{message}</Box>
                   </NoticeBox>
                 ) : (
-                  <NoticeBox>
-                    {message}
-                  </NoticeBox>
+                  <NoticeBox>{message}</NoticeBox>
                 )}
-                <Button
-                  disabled={running}
-                  onClick={() => act('run_program')}>
-                    Run Program
+                <Button disabled={running} onClick={() => act('run_program')}>
+                  Run Program
                 </Button>
               </Box>
             </Stack.Item>
