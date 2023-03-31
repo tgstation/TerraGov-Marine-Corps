@@ -123,7 +123,7 @@
 	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
 
-/obj/item/clothing/suit/modular/update_icon()
+/obj/item/clothing/suit/modular/update_icon(mob/user)
 	. = ..()
 	var/image/I
 	I = armor_overlays["lamp"]
