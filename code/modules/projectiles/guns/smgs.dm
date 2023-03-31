@@ -636,3 +636,52 @@
 
 /obj/item/weapon/gun/smg/icc_pdw/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/smg/smg_uscm
+	name = "\improper M39 submachinegun"
+	desc = "The Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers and medics. A lightweight, lower caliber alternative to the various Pulse weapons used the USCM. Fires 10x20mm rounds out of 48 round magazines."
+	fire_sound = 'sound/weapons/guns/fire/smg_uscm.ogg'
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "m39"
+	item_state = "m39"
+	caliber = CALIBER_10X20_CASELESS //codex
+	max_shells = 48 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
+	wield_delay = 0.5 SECONDS
+	force = 20
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/smg_uscm
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/smg_uscm)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.55
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.9
+	scatter = 1
+	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 8
+	aim_slowdown = 0.2
+	burst_amount = 0
+	upper_akimbo_accuracy = 4
+	lower_akimbo_accuracy = 2
+
+	placed_overlay_iconstate = "t90"

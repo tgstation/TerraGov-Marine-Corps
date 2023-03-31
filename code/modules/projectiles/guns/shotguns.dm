@@ -835,3 +835,47 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
+
+/obj/item/weapon/gun/shotgun/pump/shotgun_uscm
+	name = "\improper M37A2 pump shotgun"
+	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "m37a2"
+	item_state = "m37a2"
+	cock_animation = "m37a2_pump"
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	fire_sound = "shotgun_som"
+	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
+	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
+	max_chamber_items = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/foldable/t35stock,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
+	flags_item_map_variant = NONE
+
+	fire_delay = 20
+	scatter_unwielded = 10
+	recoil = 2
+	recoil_unwielded = 4
+	aim_slowdown = 0.45
+	cock_delay = 14
+
+	placed_overlay_iconstate = "t35"

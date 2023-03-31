@@ -450,8 +450,8 @@
 //PR-11
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper PR-11 pulse rifle"
-	desc = "A strange failed electronically fired rifle, a rather unknown weapon of its time. It caused a surge in the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition. Has a irremoveable grenade launcher."
+	name = "\improper M41A Pulse Rifle"
+	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m41a"
 	item_state = "m41a"
@@ -2280,7 +2280,109 @@
 
 /obj/item/weapon/gun/rifle/smartgun_uscm
 	name = "\improper M56 smart gun"
-	desc = "The M56 smart gun is the core of a colonial marine squad's fighting power"
+	desc = "The M56 smart gun is the core of a colonial marine squad's fighting power. Capable of laying down sustained suppressing fire with pinpoint accuracy."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m56"
 	item_state = "m56"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	muzzle_flash_offset = 21
+	max_shells = 300 //codex
+	force = 30
+	aim_slowdown = 0.95
+	wield_delay = 1.3 SECONDS
+	fire_sound = "gun_pulse_sg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_smartmachinegun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+	fire_delay = 0.13 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.1
+	scatter = -5
+	scatter_unwielded = 40
+	movement_acc_penalty_mult = 4
+	firing_volume = 40
+
+	placed_overlay_iconstate = "smartgun"
+
+//-------------------------------------------------------
+//M41AE2 HEAVY PULSE RIFLE
+
+/obj/item/weapon/gun/rifle/heavy_pulse
+	name = "\improper M41AE2 heavy pulse rifle"
+	desc = "A large squad support weapon capable of laying down sustained suppressing fire from a mounted position. While unstable and less accurate, it can be lugged and shot with two hands. Like it's smaller brothers, the M41A MK2 and L42 MK1, the M41AE2 is chambered in 10mm."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "hpr"
+	item_state = "hpr"
+	fire_animation = "hpr_fire"
+	caliber = CALIBER_10x26_CASELESS
+	max_shells = 200
+	force = 35
+	wield_delay = 1.5 SECONDS
+	fire_sound =  "gun_pulse"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/v41_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/v41_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/som_mg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/som_mg)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/stock/m41a,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	starting_attachment_types = list(/obj/item/attachable/stock/m41a)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 24, "under_x" = 24, "under_y" = 13, "stock_x" = 22, "stock_y" = 16)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_slowdown = 1.2
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	accuracy_mult_unwielded = 0.4
+	scatter = 6
+	scatter_unwielded = 40
+	movement_acc_penalty_mult = 6
+
+	placed_overlay_iconstate = "lmg"

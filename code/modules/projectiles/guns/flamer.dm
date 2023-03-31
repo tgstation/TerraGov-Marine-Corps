@@ -20,9 +20,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/flamer_nozzle,
-		/obj/item/attachable/flamer_nozzle/wide,
-		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/shoulder_mount,
 		)
 	attachments_by_slot = list(
@@ -31,14 +28,14 @@
 		ATTACHMENT_SLOT_STOCK,
 		ATTACHMENT_SLOT_UNDER,
 		ATTACHMENT_SLOT_MAGAZINE,
-		ATTACHMENT_SLOT_FLAMER_NOZZLE,
 	)
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	gun_skill_category = SKILL_HEAVY_WEAPONS
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
-	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
-	fire_delay = 2 SECONDS
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_AUTO_EJECT
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+	fire_delay = 0.15 SECONDS
+	scatter = 3
 
 	placed_overlay_iconstate = "flamer"
 
@@ -47,200 +44,79 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large/X,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
-		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
-	///Max range of the flamer in tiles.
-	var/flame_max_range = 6
-	///Max resin wall penetration in tiles.
-	var/flame_max_wall_pen = 3
-	///After how many total resin walls the flame wont proceed further
-	var/flame_max_wall_pen_wide = 9
-	///Travel speed of the flames in seconds.
-	var/flame_spread_time = 0.1 SECONDS
-	///Gun based modifier for burn level. Percentage based.
-	var/burn_level_mod = 1
-	///Gun based modifier for burn time. Percentage based.
-	var/burn_time_mod = 1
-	///Bitfield flags for flamer specific traits.
-	var/flags_flamer_features = NONE
-	///Overlay icon state of the pilot light.
-	var/lit_overlay_icon_state = "+lit"
-	///Pixel offset on the X axis for the pilot light overlay.
-	var/lit_overlay_offset_x = 6
-	///Pixel offset on the Y axis for the pilot light overlay.
-	var/lit_overlay_offset_y = 0
+	var/list/datum/flamer/base/mode_list = list(
+		"Standard" = /datum/flamer/base/flamer_mode/standard,
+		"Over" = /datum/flamer/base/flamer_mode/over,
+	)
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
-	///how wide of a cone the flamethrower produces on wide mode.
-	var/cone_angle = 55
 
-/obj/item/weapon/gun/flamer/Initialize()
-	. = ..()
-	if(!rounds)
+/obj/item/weapon/gun/flamer/get_magazine_default_ammo(obj/item/mag)
+	return null
+
+/obj/item/weapon/gun/flamer/unique_action(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/flamer/base/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
 		return
-	light_pilot(TRUE)
+	playsound(user, 'sound/weapons/guns/interact/flamethrower_on.ogg', 5, FALSE, 2)
 
-/obj/item/weapon/gun/flamer/on_attachment_attach(obj/item/attaching_here, mob/attacher)
-	. = ..()
-	if(!istype(attaching_here, /obj/item/attachable/flamer_nozzle) || !rounds)
-		return
-	light_pilot(TRUE)
-
-/obj/item/weapon/gun/flamer/on_attachment_detach(obj/item/detaching_here, mob/attacher)
-	. = ..()
-	if(!istype(detaching_here, /obj/item/attachable/flamer_nozzle))
-		return
-	light_pilot(FALSE)
-
-/obj/item/weapon/gun/flamer/reload(obj/item/new_mag, mob/living/user)
-	. = ..()
-	if(!.)
-		return
-	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
-		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-
-/obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
-	. = ..()
-	if(!.)
-		return
-	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-
-///Makes the sound of the flamer being lit, and applies the overlay.
-/obj/item/weapon/gun/flamer/proc/light_pilot(light)
-	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) == !light) //!s so we can check equivalence on truthy, rather than true, values
-		return
-	if(light)
-		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
-	else
-		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
-	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
-
-
-	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
-		return
-
+	gun_firemode = initial(choice.fire_mode)
+	ammo_datum_type = initial(choice.ammo_datum_type)
+	fire_delay = initial(choice.fire_delay)
+	burst_amount = initial(choice.burst_amount)
+	fire_sound = initial(choice.fire_sound)
+	rounds_per_shot = initial(choice.rounds_per_shot)
+	scatter = initial(choice.scatter)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
 	update_icon()
+	to_chat(user, initial(choice.message_to_user))
+	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
-/obj/item/weapon/gun/flamer/update_overlays()
-	. = ..()
-	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)|| CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
+	if(!in_chamber || !length(chamber_items))
 		return
+	QDEL_NULL(in_chamber)
 
-	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
-	lit_overlay.pixel_x += lit_overlay_offset_x
-	lit_overlay.pixel_y += lit_overlay_offset_y
-	. += lit_overlay
+	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
 
-/obj/item/weapon/gun/flamer/able_to_fire(mob/user)
-	. = ..()
-	if(!.)
-		return
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE], /obj/item/attachable/flamer_nozzle))
-		to_chat(user, span_warning("[src] does not have a nozzle installed!"))
-		return FALSE
-	return TRUE
+/datum/flamer/base
+	///how much fuel the gun uses on this mode when shot.
+	var/rounds_per_shot = 1
+	///the ammo datum this mode is.
+	var/datum/ammo/ammo_datum_type = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = 0
+	///Gives guns a burst amount, editable.
+	var/burst_amount = 0
+	///The gun firing sound of this mode
+	var/fire_sound = "gun_flamethrower"
+	var/scatter = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "flamer"
 
-/obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
-	playsound(loc, fire_sound, 50, 1)
-	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
-	var/burn_type = nozzle.stream_type
-	var/old_turfs = list(get_turf(src))
-	var/range = flame_max_range
-	var/start_location = get_turf(src)
-	var/current_target = get_turf(target)
-	switch(burn_type)
-		if(FLAMER_STREAM_STRAIGHT)
-			var/path_to_target = getline(start_location, current_target)
-			path_to_target -= start_location
-			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
-		if(FLAMER_STREAM_CONE)
-			//direction in degrees
-			var/dir_to_target = Get_Angle(src, target)
-			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, bypass_xeno = TRUE, air_pass = TRUE)
-			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
-		if(FLAMER_STREAM_RANGED)
-			return ..()
-	return TRUE
-
-///Flames recursively a straight path.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target, walls_penetrated)
-	if(!rounds)
-		light_pilot(FALSE)
-		return
-	//recursive checks
-	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
-		return
-
-	var/list/turf/turfs_to_ignite = list()
-	if(iteration > length(path_to_target))
-		return
-	var/turf/turf_to_check = get_turf(src)
-	if(iteration > 1)
-		turf_to_check = path_to_target[iteration - 1]
-	if(LinkBlocked(turf_to_check, path_to_target[iteration], bypass_xeno = TRUE, air_pass = TRUE)) //checks if it's actually possible to get to the next tile in the line
-		return
-	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
-		walls_penetrated -= 1
-	//how many resin walls we've penetrated check
-	if(walls_penetrated <= 0)
-		return
-	turfs_to_ignite[path_to_target[iteration]] = get_dir(turf_to_check, path_to_target[iteration])
-	if(!burn_list(turfs_to_ignite))
-		return
-	iteration++
-	addtimer(CALLBACK(src, PROC_REF(recursive_flame_straight), iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
-
-///Flames recursively a cone.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source, walls_penetrated_wide)
-	if(!rounds)
-		light_pilot(FALSE)
-		return
-	//recursive checks
-	if(iteration > range || !current_target)
-		return
-
-	var/list/turf/turfs_by_iteration = list()
-	for(var/turf/turf AS in turfs_to_ignite)
-		if(get_dist(turf, flame_source) == iteration)
-			//Checks if turf is resin wall
-			if(turf.density && istype(turf, /turf/closed/wall/resin))
-				walls_penetrated_wide -= 1
-			//Checks if there is a resin door on the turf
-			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
-			if(!isnull(door_to_check))
-				walls_penetrated_wide -= 1
-			//Check to ensure that we dont burn more walls than specified
-			if(walls_penetrated_wide <= 0)
-				break
-			turfs_by_iteration[turf] = get_dir(src, turf)
-
-	burn_list(turfs_by_iteration)
-	iteration++
-	addtimer(CALLBACK(src, PROC_REF(recursive_flame_cone), iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
-
-///Checks and lights the turfs in turfs_to_burn
-/obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
-	if(!length(turfs_to_burn) || !length(chamber_items))
-		return FALSE
-
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
-	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
-	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
-	var/fire_color = initial(loaded_ammo.fire_color)
-
-	for(var/turf/turf_to_ignite AS in turfs_to_burn)
-		if(!rounds)
-			light_pilot(FALSE)
-			return FALSE
-		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color, turfs_to_burn[turf_to_ignite])
-		adjust_current_rounds(chamber_items[current_chamber_position], -1)
-		rounds--
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	return TRUE
+/datum/flamer/base/flamer_mode/standard
+	ammo_datum_type = /datum/ammo/flamethrower
+	message_to_user = "You set the flamethrowers mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer"
+	fire_delay = 0.15 SECONDS
+	scatter = 3
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
@@ -279,6 +155,13 @@
 		var/burn_message = "Augh! You are roasted by the flames!"
 		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
 
+/datum/flamer/base/flamer_mode/over
+	ammo_datum_type = /datum/ammo/flamethrower/over
+	message_to_user = "You set the laser rifle's charge mode to over fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer_over"
+	fire_delay = 0.15 SECONDS
+
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
@@ -298,20 +181,14 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
 	)
-	lit_overlay_icon_state = "v62_lit"
-	lit_overlay_offset_x = 0
-	flame_max_range = 8
-	cone_angle = 40
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/large/som,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
-		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
@@ -320,9 +197,7 @@
 	icon_state = "flamethrower"
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
-	flags_flamer_features = FLAMER_NO_LIT_OVERLAY
 	w_class = WEIGHT_CLASS_BULKY
-	fire_delay = 2.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/mini
@@ -330,19 +205,12 @@
 		/obj/item/ammo_magazine/flamer_tank/mini,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 	)
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
-	attachable_allowed = list(
-		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
-	)
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 15
 	pixel_shift_y = 18
-
-	mob_flame_damage_mod = 1
-	burn_level_mod = 0.6
-	flame_max_range = 4
+	damage_mult = 0.75
 
 	wield_delay_mod	= 0.2 SECONDS
 
@@ -357,48 +225,27 @@
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
-	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/t84stock,
-		/obj/item/attachable/flamer_nozzle,
-		/obj/item/attachable/flamer_nozzle/wide,
-		/obj/item/attachable/flamer_nozzle/long,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
-	if(!target)
-		return
-	if(gun_user?.skills.getRating(SKILL_FIREARMS) < 0)
-		switch(windup_checked)
-			if(WEAPON_WINDUP_NOT_CHECKED)
-				INVOKE_ASYNC(src, PROC_REF(do_windup))
-				return
-			if(WEAPON_WINDUP_CHECKING)
-				return
-	return ..()
-
-///Flamer windup called before firing
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
-	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
-	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()
+	starting_attachment_types = list(/obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
-		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,
 	)
+
+/obj/item/weapon/gun/flamer/big_flamer/uscm
+	icon_state = "m240"
+	icon = 'icons/Marine/gun64.dmi'
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
@@ -578,13 +425,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 
 	fire_delay = 1.2 SECONDS
 	fire_sound = 'sound/effects/extinguish.ogg'
-	attachable_offset = list("flamer_nozzle_x" = 20, "flamer_nozzle_y" = 27)
-	attachable_allowed = list(
-		/obj/item/attachable/flamer_nozzle,
-		/obj/item/attachable/flamer_nozzle/wide,
-		/obj/item/attachable/flamer_nozzle/long,
-	)
-	flame_max_range = 7
 
 	ammo_datum_type = /datum/ammo/water
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/water
@@ -594,10 +434,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
-	flags_flamer_features = FLAMER_NO_LIT_OVERLAY
 
-	flame_max_wall_pen = 1 //Actually means we'll hit one wall and then stop
-	flame_max_wall_pen_wide = 1
 
 /obj/item/weapon/gun/flamer/hydro_cannon/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
 	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in turf_to_ignite
@@ -606,8 +443,5 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	for(var/mob/living/mob_caught in turf_to_ignite)
 		mob_caught.ExtinguishMob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, direction)
-
-/obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
-	return
 
 #undef FLAMER_WATER

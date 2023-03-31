@@ -170,6 +170,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
+	icon_state = null
 
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"

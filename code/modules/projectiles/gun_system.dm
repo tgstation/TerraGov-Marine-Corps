@@ -50,6 +50,8 @@
 	var/fire_rattle = null
 	///World.time of last gun firing.
 	var/last_fired = 0
+	///Volume of gun firing
+	var/firing_volume = 60
 
 
 /*
@@ -892,15 +894,15 @@
 		switch(firing_angle)
 			if(0, 360)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = muzzle_flash_offset
+				muzzle_flash.pixel_y = 6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(1 to 44)
 				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
-				muzzle_flash.pixel_y = muzzle_flash_offset
+				muzzle_flash.pixel_y = 6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(45)
 				muzzle_flash.pixel_x = muzzle_flash_offset
-				muzzle_flash.pixel_y = muzzle_flash_offset
+				muzzle_flash.pixel_y = 6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(46 to 89)
 				muzzle_flash.pixel_x = muzzle_flash_offset
@@ -948,11 +950,11 @@
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(315)
 				muzzle_flash.pixel_x = -(muzzle_flash_offset)
-				muzzle_flash.pixel_y = muzzle_flash_offset
+				muzzle_flash.pixel_y = 6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(316 to 359)
 				muzzle_flash.pixel_x = round(-6 * ((360 - firing_angle) / 45))
-				muzzle_flash.pixel_y = muzzle_flash_offset
+				muzzle_flash.pixel_y = 6
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 
 		muzzle_flash.transform = null
@@ -1669,7 +1671,7 @@
 	if(firing_sndfreq && fire_rattle)
 		playsound(user, fire_rattle, 60, FALSE)
 		return
-	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
+	playsound(user, fire_sound, firing_volume, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)

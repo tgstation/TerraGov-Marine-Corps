@@ -172,9 +172,6 @@
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/attachable/stock/t76 = -1,
-			/obj/item/attachable/flamer_nozzle = -1,
-			/obj/item/attachable/flamer_nozzle/wide = -1,
-			/obj/item/attachable/flamer_nozzle/long = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -366,9 +363,6 @@
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/attachable/stock/t76 = -1,
-			/obj/item/attachable/flamer_nozzle = -1,
-			/obj/item/attachable/flamer_nozzle/wide = -1,
-			/obj/item/attachable/flamer_nozzle/long = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -577,9 +571,6 @@
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 			/obj/item/attachable/stock/t76 = -1,
-			/obj/item/attachable/flamer_nozzle = -1,
-			/obj/item/attachable/flamer_nozzle/wide = -1,
-			/obj/item/attachable/flamer_nozzle/long = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -755,9 +746,6 @@
 			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/attachable/flamer_nozzle = -1,
-			/obj/item/attachable/flamer_nozzle/wide = -1,
-			/obj/item/attachable/flamer_nozzle/long = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,

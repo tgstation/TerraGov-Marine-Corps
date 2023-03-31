@@ -52,6 +52,9 @@
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
 	var/message
+	if(ispsysensorgamemode(SSticker.mode))
+		message = "Activate all psychic inhibitors in time, good luck marines."
+
 	if(issensorcapturegamemode(SSticker.mode))
 		if(user.faction == FACTION_TERRAGOV)
 			message = "Reactivate all sensor towers, good luck team."
@@ -126,4 +129,4 @@
 
 /obj/structure/patrol_point/ud/Initialize()
 	..()
-	id = ("TGMC_" + rand(25, 28))
+	id = rand(1, 4)

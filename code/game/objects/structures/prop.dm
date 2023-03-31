@@ -632,6 +632,13 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_mp
+	name = "Military Police"
+	desc = "A MP officer guarding the perimeter. They are busy looking for any minor infraction to brig you."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "mp"
+	resistance_flags = RESIST_ALL
+	density = TRUE
 
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
@@ -1710,6 +1717,7 @@
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "biomass_turbine"
 	density = TRUE
+	bound_height = 96
 
 
 //TG BROKEN VENDOR PROPS
@@ -1984,6 +1992,70 @@
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
 	icon_state = "solar"
+
+/obj/structure/prop/printer
+	name = "printer"
+	desc = "Machine for printing text or pictures onto paper."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "printer"
+	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/power_transformer
+	name = "Power transformer"
+	desc = "Transfers electrical energy from one electrical circuit to another circuit, or multiple circuits."
+	icon = 'icons/obj/structures/power_transformer.dmi'
+	icon_state = "transformer"
+	density = TRUE
+	bound_width = 64
+	bound_height = 64
+
+/obj/structure/prop/microscope
+	name = "Microscope"
+	icon = 'icons/obj/machines/virology.dmi'
+	icon_state = "microscope"
+	density = FALSE
+
+/obj/structure/prop/survey
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "surveying_device"
+	name = "Surveying Device"
+
+/obj/structure/prop/measure
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "measuring_device"
+	name = "Measuring Device"
+
+/obj/structure/prop/big_science
+	icon = 'icons/obj/science_machines_64.dmi'
+	density = TRUE
+	anchored = TRUE
+	bound_width = 64
+
+/obj/structure/prop/big_science/modifier
+	icon_state = "modifier"
+	name = "Modifier"
+
+/obj/structure/prop/big_science/chemstorage
+	name = "Chem Storage"
+	icon_state = "chemstorage"
+
+/obj/structure/prop/big_science/operate
+	name = "Operator"
+	icon_state = "operator"
+
+/obj/structure/prop/big_science/protolathebig
+	name = "Protolathe"
+	icon_state = "protolathe"
+
+/obj/structure/prop/big_science/medilathe
+	name = "Medilathe"
+	icon_state = "medilathe"
+
+/obj/structure/prop/comm_tower
+	name = "Communication tower"
+	icon = 'icons/obj/structures/comm_tower.dmi'
+	icon_state = "comm_tower"
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

@@ -295,7 +295,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_node = null
 	goal_nodes = null
 	if(current_action == MOVING_TO_NODE)
-		look_for_next_node()
+		look_for_next_node(FALSE)
 
 /*
 Registering and unregistering signals related to a particular current_action

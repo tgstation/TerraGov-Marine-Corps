@@ -101,7 +101,10 @@
 /obj/structure/sensor_tower_patrol/update_icon_state()
 	icon_state = initial(icon_state)
 	if(current_timer || activated)
-		icon_state += "_loyalist"
+		if(ispsysensorgamemode(SSticker.mode))
+			icon_state += "_active"
+		else
+			icon_state += "_loyalist"
 
 /obj/structure/sensor_tower_patrol/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -238,3 +241,17 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid][current_timer ? "_on" : "_off"]")
+
+/obj/structure/sensor_tower_patrol/psy
+	icon_state = "psy"
+	faction = FACTION_XENO
+	var/obj/effect/ai_node/goal/goal_node
+
+/obj/structure/sensor_tower_patrol/psy/begin_activation()
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	goal_node = new(current_turf)
+
+/obj/structure/sensor_tower_patrol/psy/deactivate()
+	. = ..()
+	QDEL_NULL(goal_node)

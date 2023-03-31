@@ -4,18 +4,13 @@
 	name = "Psychic Sensors"
 	config_tag = "Psychic Sensors"
 	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_HUMAN_ONLY
-	shutters_drop_time = 2 MINUTES
+	shutters_drop_time = 3 MINUTES
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/engineer = 4,
-		/datum/job/som/squad/medic = 8,
-		/datum/job/som/squad/standard = -1,
 	)
 	whitelist_ship_maps = list(MAP_KEMERDEKAAN)
 	blacklist_ship_maps = null
@@ -29,8 +24,6 @@
 	var/wave_timer_length = 5 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
-	/// Time between two bioscan
-	var/bioscan_interval = 3 MINUTES
 	///Delay from shutter drop until game timer starts
 	var/game_timer_delay = 5 MINUTES
 	///The amount of activated sensor towers in sensor capture
@@ -38,8 +31,8 @@
 
 /datum/game_mode/infestation/distress/psy_sensors/post_setup()
 	. = ..()
-	for(var/turf/T AS in GLOB.sensor_towers_patrol)
-		new /obj/structure/sensor_tower_patrol(T)
+	for(var/turf/T AS in GLOB.psy_towers)
+		new /obj/structure/sensor_tower_patrol/psy(T)
 
 /datum/game_mode/infestation/distress/psy_sensors/setup_blockers()
 	. = ..()
@@ -48,7 +41,6 @@
 	addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
 	addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	addtimer(CALLBACK(D, /datum/game_mode/infestation/distress/psy_sensors.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 50 SECONDS) //starts intro sequence 10 seconds before shutter drop
-	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 /datum/game_mode/infestation/distress/psy_sensors/announce()
 	to_chat(world, "<b>The current game mode is - Psychic Sensors!</b>")

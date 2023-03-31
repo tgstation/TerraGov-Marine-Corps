@@ -748,3 +748,21 @@
 	name = "fossils"
 	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
 	icon_state = "lavarocks3"
+
+/obj/structure/flora/rock/boulder_large
+	name = "boulder"
+	desc = "A massive boulder."
+	icon = 'icons/obj/flora/boulder_large.dmi'
+	icon_state = "boulder_large1"
+	bound_width = 64
+	bound_height = 64
+
+/obj/structure/flora/rock/boulder_large/alt
+	icon_state = "boulder_large2"
+
+/obj/structure/flora/rock/boulder_wide
+	name = "boulder"
+	desc = "A massive boulder."
+	icon = 'icons/obj/flora/boulder_wide.dmi'
+	icon_state = "boulder1"
+	bound_width = 64

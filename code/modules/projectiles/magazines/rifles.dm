@@ -496,3 +496,29 @@
 	default_ammo = /datum/ammo/bullet/rifle/icc_confrontationrifle
 	max_rounds = 25
 	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//M56 AMMUNITION
+/obj/item/ammo_magazine/smartgun_uscm
+	name = "\improper M56 drum magazine"
+	desc = "A wide drum magazine carefully filled to capacity with 10x28mm specialized smart rounds."
+	caliber = CALIBER_10X28_CASELESS
+	icon_state = "sg29"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	max_rounds = 500
+	reload_delay = 2.5 SECONDS
+	icon_state_mini = "mag_sg29"
+
+//-------------------------------------------------------
+//HPR USCM
+/obj/item/ammo_magazine/hpr_uscm
+	name = "\improper M41AE2 ammo box (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+	icon_state = "v41"
+	caliber = CALIBER_10X24_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 250
+	reload_delay = 3 SECONDS
+	icon_state_mini = "mag_gpmg"

@@ -260,8 +260,8 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/briefing
 	id = CINEMATIC_BRIEFING
-	runtime = 600
-	cleanup_time = 600
+	runtime = 490
+	cleanup_time = 490
 	stop_ooc = FALSE
 
 /datum/cinematic/briefing/content()
@@ -292,5 +292,6 @@ GLOBAL_LIST_EMPTY(cinematics)
 /datum/cinematic/briefing/proc/colony()
 	flick("colony", screen)
 	for(var/mob/watcher AS in watching_mobs)
-		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "The colony is a CQC environment with allot of tight cave entrances, a grenade or C4 would collapse these.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
-		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "The psychic inhibitors will need to be placed in 4 places around the colony you will deploy near one of these and find a spot fit for defense.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "The colony has allot of tight cave entrances, a grenade or C4 would collapse these entrances.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "The psychic inhibitors will be dropped in 5 places around the colony you will deploy near one of these and activate them.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+		watcher.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt.Manley</u></span><br>" + "That will be all marines, get moving!", /atom/movable/screen/text/screen_text/picture/potrait/lt)

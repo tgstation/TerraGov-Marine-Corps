@@ -51,6 +51,35 @@
 	current_variant = "black"
 
 	allowed_uniform_type = /obj/item/clothing/under
+	var/list/armor_overlays
+
+/obj/item/clothing/suit/modular/xenonauten/Initialize()
+	. = ..()
+	armor_overlays = list("lamp") //Just one for now, can add more later.
+	update_icon()
+
+/obj/item/clothing/suit/modular/xenonauten/update_icon(mob/user)
+	. = ..()
+	var/image/I
+	I = armor_overlays["lamp"]
+	overlays -= I
+	qdel(I)
+	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
+		I = image(icon, src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+		armor_overlays["lamp"] = I
+		overlays += I
+	else
+		armor_overlays["lamp"] = null
+	user?.update_inv_wear_suit()
+
+/obj/item/clothing/suit/modular/xenonauten/apply_custom(mutable_appearance/standing)
+	. = ..()
+	var/mutable_appearance/new_overlay
+	for(var/i in armor_overlays)
+		new_overlay = armor_overlays[i]
+		if(new_overlay)
+			new_overlay = mutable_appearance(item_icons[slot_wear_suit_str], new_overlay.icon_state)
+			standing.overlays += new_overlay
 
 /obj/item/clothing/suit/modular/xenonauten/engineer
 	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
@@ -195,7 +224,17 @@
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
+/obj/item/clothing/suit/modular/xenonauten/light/uscm
+	name = "\improper M3 pattern personal armor"
+	desc = "The standard configuration M3 Pattern Body Armor. What else do you need to know about it? Well, since you asked - With design inspiration drawn off the French cuirasse, the M3 is built out of a light-weight titanium alloy, with several layers to account for spalling. Robust, and designed to function as the perfect armor for the shock-and-awe of the Colonial Marines. A TNR-Shoulder Lamp rests off its side, illuminating the way forward for you."
+	flags_armor_features = ARMOR_LAMP_OVERLAY
+
 /obj/item/clothing/suit/modular/xenonauten/uscm
+	name = "\improper M3 pattern personal armor"
+	desc = "The standard configuration M3 Pattern Body Armor. What else do you need to know about it? Well, since you asked - With design inspiration drawn off the French cuirasse, the M3 is built out of a light-weight titanium alloy, with several layers to account for spalling. Robust, and designed to function as the perfect armor for the shock-and-awe of the Colonial Marines. A TNR-Shoulder Lamp rests off its side, illuminating the way forward for you."
+	flags_armor_features = ARMOR_LAMP_OVERLAY
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/uscm
 	name = "\improper M3 pattern personal armor"
 	desc = "The standard configuration M3 Pattern Body Armor. What else do you need to know about it? Well, since you asked - With design inspiration drawn off the French cuirasse, the M3 is built out of a light-weight titanium alloy, with several layers to account for spalling. Robust, and designed to function as the perfect armor for the shock-and-awe of the Colonial Marines. A TNR-Shoulder Lamp rests off its side, illuminating the way forward for you."
 	flags_armor_features = ARMOR_LAMP_OVERLAY
