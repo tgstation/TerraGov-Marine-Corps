@@ -325,6 +325,14 @@
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 		to_chat(user, span_danger("!!REMEMBER TO ATTACH YOUR WEAPON TO YOUR HARNESS OR IT WON'T WORK!!"))
 
+/obj/item/belt_harness/marine/powerpack
+	name = "\improper M56 powerpack"
+	desc = "A heavy reinforced backpack with support equipment and power cells for the M56 Smartgun System."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "m56_powerpack"
+	var/obj/item/cell/cell
+
 /obj/item/compass
 	name = "compass"
 	desc = "A small compass that can tell you your coordinates on use."
