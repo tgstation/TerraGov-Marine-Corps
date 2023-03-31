@@ -309,7 +309,7 @@
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
-	minimap_color = MINIMAP_SOLID
+	minimap_color = MINIMAP_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
 	return FALSE

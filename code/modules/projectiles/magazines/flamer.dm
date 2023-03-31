@@ -28,6 +28,9 @@
 	if(!dispenser_type)
 		to_chat(user, span_warning("This isn't refillable!"))
 		return ..()
+	if(!istype(target, dispenser_type))
+		to_chat(user, span_warning("Not the right kind of tank!"))
+		return ..()
 	if(current_rounds >= max_rounds)
 		to_chat(user, span_warning("[src] is already full."))
 		return ..()
@@ -40,9 +43,9 @@
 	var/liquid_transfer_amount = min(dispenser.reagents.total_volume, (max_rounds - current_rounds))
 	dispenser.reagents.remove_any(liquid_transfer_amount)
 	current_rounds += liquid_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
-		update_icon()
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
+	update_icon()
 
 /obj/item/ammo_magazine/flamer_tank/update_icon()
 	return

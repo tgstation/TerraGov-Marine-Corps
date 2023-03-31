@@ -799,7 +799,6 @@
 		SMOOTH_GROUP_WINDOW_FULLTILE,
 	)
 	walltype = "sulaco"
-	minimap_color = MINIMAP_FENCE
 
 /turf/closed/shuttle/escapeshuttle/prison
 	resistance_flags = RESIST_ALL
