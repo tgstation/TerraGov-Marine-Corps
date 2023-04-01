@@ -793,7 +793,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 
 		if(sound) //Play sound if applicable
-			X.playsound_local(X, 'sound/april_fools/ma_gawd.ogg', max(size * 20, 80), 1)
+			X.playsound_local(X, sound, max(size * 20, 80), 0)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
 			var/atom/movable/screen/arrow/arrow_hud = new arrow_type
