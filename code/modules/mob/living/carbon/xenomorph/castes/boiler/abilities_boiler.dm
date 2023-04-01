@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/obj/projectile/P = new /obj/projectile(X.loc)
 	P.generate_bullet(X.ammo)
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
-	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
+	playsound(X, 'sound/april_fools/boiler_fart.ogg', 25, 1)
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
