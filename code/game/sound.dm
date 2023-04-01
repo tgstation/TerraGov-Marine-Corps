@@ -190,7 +190,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if("clownstep")
 			S = pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
 		if("swing_hit")
-			S = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
+			S = pick('sound/april_fools/squeky.ogg')
 		if("pageturn")
 			S = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 		if("gasbreath")
