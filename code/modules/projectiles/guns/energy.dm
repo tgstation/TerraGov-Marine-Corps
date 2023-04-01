@@ -393,7 +393,7 @@
 	name = "\improper Terra Experimental laser rifle"
 	desc = "A Terra Experimental laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	fire_sound = 'sound/april_fools/pew.ogg
 	icon_state = "ter"
 	item_state = "ter"
 	max_shots = 50 //codex stuff
