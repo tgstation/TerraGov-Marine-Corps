@@ -25,6 +25,8 @@
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return FALSE
 
+	if(xeno_caste.melee_damage)
+		return ..()
 	A.attack_larva(src)
 
 /atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)

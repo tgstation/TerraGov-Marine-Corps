@@ -57,5 +57,36 @@
 	silent_vent_crawl = TRUE
 
 /datum/xeno_caste/larva/young
-	upgrade = XENO_UPGRADE_INVALID
+	upgrade = XENO_UPGRADE_ZERO
+	upgrade_name = "Young"
+	speed = -1.6
+	upgrade_threshold = 250
 
+/datum/xeno_caste/larva/mature
+	upgrade = XENO_UPGRADE_ONE
+	upgrade_name = "Mature"
+	speed = -1.7
+	upgrade_threshold = 500
+
+/datum/xeno_caste/larva/elder
+	upgrade = XENO_UPGRADE_TWO
+	upgrade_name = "Elder"
+	speed = -1.8
+	upgrade_threshold = 1000
+
+/datum/xeno_caste/larva/ancient
+	upgrade = XENO_UPGRADE_THREE
+	upgrade_name = "Ancient"
+	caste_desc = "D'awwwww, so cute! The teeth are a bit worrisome though."
+	ancient_message = "Our fangs sharpen. The way begins to open before us."
+	speed = -1.9
+	upgrade_threshold = 2000
+	melee_damage = 1
+
+/datum/xeno_caste/larva/primordial
+	upgrade = XENO_UPGRADE_FOUR
+	upgrade_name = "Primordial"
+	caste_desc = "D'awwwww, so terrifying!"
+	primordial_message = "We are unbound! The world shall stand as naught more than dust!"
+	speed = -3
+	melee_damage = 200

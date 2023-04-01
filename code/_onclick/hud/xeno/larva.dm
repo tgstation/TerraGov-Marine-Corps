@@ -2,6 +2,12 @@
 	..()
 	var/atom/movable/screen/using
 
+	using = new /atom/movable/screen/act_intent/corner()
+	using.alpha = ui_alpha
+	using.icon_state = owner.a_intent
+	static_inventory += using
+	action_intent = using
+
 	using = new /atom/movable/screen/mov_intent/alien()
 	using.alpha = ui_alpha
 	using.icon_state = (owner.m_intent == MOVE_INTENT_RUN ? "running" : "walking")

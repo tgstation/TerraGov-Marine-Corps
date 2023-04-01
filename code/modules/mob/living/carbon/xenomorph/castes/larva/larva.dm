@@ -11,7 +11,7 @@
 	see_in_dark = 8
 	flags_pass = PASSTABLE | PASSMOB | PASSXENO
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
-	upgrade = XENO_UPGRADE_INVALID
+	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 25
 	hud_type = /datum/hud/larva
 	inherent_verbs = list(
@@ -24,6 +24,8 @@
 // *********** Mob overrides
 // ***************************************
 /mob/living/carbon/xenomorph/larva/a_intent_change()
+	if(xeno_caste.melee_damage)
+		return ..()
 	return
 
 /mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
@@ -39,11 +41,10 @@
 	var/progress = "" //Naming convention, three different names
 
 	var/grown = (evolution_stored / xeno_caste.evolution_threshold) * 100
-	switch(grown)
-		if(0 to 49) //We're still bloody
-			progress = "Bloody "
-		if(100 to INFINITY)
-			progress = "Mature "
+	if(grown < 50)
+		progress = "Bloody "
+	else
+		progress = xeno_caste.upgrade_name + " "
 
 	name = "[hive.prefix][progress]Larva ([nicknumber])"
 
