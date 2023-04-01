@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	set waitfor = FALSE
 
 	if(flags_round_type & MODE_LATE_OPENING_SHUTTER_TIMER)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
