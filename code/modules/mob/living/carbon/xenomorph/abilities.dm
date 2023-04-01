@@ -897,7 +897,7 @@
 /datum/action/xeno_action/activable/xeno_spit/proc/fire()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/current_turf = get_turf(owner)
-	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+	var/sound_to_play = 'sound/april_fools/spit.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
