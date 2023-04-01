@@ -139,7 +139,7 @@
 	icon_state = "[initial(icon_state)]1"
 
 	alarm_played = TRUE
-	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
+	playsound_z(z, 'sound/april_fools/ohio.ogg', 15) // woop woop, shutters opening.
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(pulsed)), 185)
 
