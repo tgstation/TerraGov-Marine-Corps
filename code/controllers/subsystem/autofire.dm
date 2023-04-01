@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(automatedfire)
 
 		while (shooter)
 			next_shooter = shooter.next
-			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
+			INVOKE_ASYNC(shooter, TYPE_PROC_REF(/datum/component/automatedfire, process_shot))
 
 			SSautomatedfire.shooter_count--
 			shooter = next_shooter

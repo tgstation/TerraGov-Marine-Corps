@@ -55,7 +55,7 @@
 		new visual_type(target, faction)
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
 	SEND_SIGNAL(owner, COMSIG_ORDER_SENT)
-	addtimer(CALLBACK(owner, /mob/proc/update_all_icons_orders), ORDER_COOLDOWN)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_all_icons_orders)), ORDER_COOLDOWN)
 	if(squad)
 		for(var/mob/living/carbon/human/marine AS in squad.marines_list)
 			marine.receive_order(target, arrow_type, verb_name, faction)
