@@ -43,7 +43,7 @@
 	var/shell_eject_animation = null
 
 	///Sound of firing the gun.
-	var/fire_sound = 'sound/weapons/guns/fire/gunshot.ogg'
+	var/fire_sound = 'sound/april_fools/fire.ogg'
 	///Does our gun have a unique sound when running out of ammo? If so, use this instead of pitch shifting.
 	var/fire_rattle = null
 	///World.time of last gun firing.

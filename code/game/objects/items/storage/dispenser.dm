@@ -16,7 +16,7 @@
 /obj/machinery/deployable/dispenser/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	flick("dispenser_deploy", src)
-	playsound(src, 'sound/machines/dispenser/dispenser_deploy.ogg', 50)
+	playsound(src, 'sound/april_fools/dispencer.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(deploy)), 4.2 SECONDS)
 
 ///finishes deploying after the deploy timer

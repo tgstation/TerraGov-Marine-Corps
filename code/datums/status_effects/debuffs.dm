@@ -181,10 +181,10 @@
 	var/sound_to_play
 	if(owner.getBruteLoss())
 		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
-		sound_to_play = 'sound/effects/robotrepair.ogg'
+		sound_to_play = 'sound/april_fools/repair.ogg'
 	else if(owner.getFireLoss())
 		owner.heal_limb_damage(0, healing_per_tick, TRUE, TRUE)
-		sound_to_play = 'sound/effects/robotrepair2.ogg'
+		sound_to_play = 'sound/april_fools/repair.ogg'
 	if(!sound_to_play || last_sound)
 		last_sound = FALSE
 		return

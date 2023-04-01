@@ -77,7 +77,7 @@
 	name = "\improper Lasgun"
 	desc = "A laser based firearm. Uses power cells."
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	fire_sound = 'sound/april_fools/pew.ogg'
 	load_method = CELL //codex
 	ammo_datum_type  = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
