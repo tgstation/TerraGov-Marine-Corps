@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added a SOM breaching axe to HvH"
+  - bugfix: "fixed blood looking weird on larger items"
