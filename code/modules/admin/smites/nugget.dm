@@ -14,6 +14,6 @@
 		if (limb_to_destroy.body_part == HEAD || limb_to_destroy.body_part == GROIN)
 			continue
 		addtimer(CALLBACK(limb_to_destroy, TYPE_PROC_REF(/datum/limb, droplimb)), timer)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), target, 'sound/effects/pop.ogg', 70), timer)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), target, 'sound/effects/pop.ogg', 70), timer)
 		addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, spin), 4, 1), timer - 0.4 SECONDS)
 		timer += 2 SECONDS

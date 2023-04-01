@@ -12,7 +12,7 @@
 	var/mutable_appearance/bread_appearance = mutable_appearance('icons/obj/items/food.dmi', "breadtg")
 	var/mutable_appearance/transform_scanline = mutable_appearance('icons/effects/effects.dmi', "transform_effect")
 	target.transformation_animation(bread_appearance, BREADIFY_TIME, transform_scanline.appearance)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(breadify), target), BREADIFY_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(breadify), target), BREADIFY_TIME)
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, Paralyze), BREAD_PARALYZE_TIME), BREADIFY_TIME) //necessary to keep the trapped mob from doing actions while inside the bread
 
 /proc/breadify(atom/movable/target)
