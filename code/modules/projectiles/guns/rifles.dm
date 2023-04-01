@@ -1242,7 +1242,7 @@
 	max_shells = 40 //codex
 	aim_slowdown = 0.85
 	wield_delay = 0.65 SECONDS
-	fire_sound = "gun_smartgun"
+	fire_sound =  'sound/weapons/guns/fire/t62.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -1283,6 +1283,7 @@
 	desc = "An underslung spotting rifle, generally found ontop of another gun.."
 	icon_state = "sr153"
 	icon = 'icons/Marine/gun64.dmi'
+	fire_sound =  'sound/weapons/guns/fire/spottingrifle.ogg'
 	caliber = CALIBER_12x7
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 5
@@ -1298,7 +1299,7 @@
 	attachable_allowed = list()
 	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	flags_attach_features = NONE
 	fire_delay = 2 SECONDS
 	pixel_shift_x = 18
