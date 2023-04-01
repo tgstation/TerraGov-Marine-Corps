@@ -80,8 +80,14 @@
 	caste_desc = "D'awwwww, so cute! The teeth are a bit worrisome though."
 	ancient_message = "Our fangs sharpen. The way begins to open before us."
 	speed = -1.9
-	upgrade_threshold = 2000
+	upgrade_threshold = 10000
 	melee_damage = 1
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/larval_feast,
+	)
 
 /datum/xeno_caste/larva/primordial
 	upgrade = XENO_UPGRADE_FOUR

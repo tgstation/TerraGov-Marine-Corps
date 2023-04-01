@@ -25,7 +25,7 @@
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return FALSE
 
-	if(xeno_caste.melee_damage)
+	if(xeno_caste.melee_damage && a_intent != INTENT_HELP)
 		return ..()
 	A.attack_larva(src)
 

@@ -91,3 +91,27 @@
 	if(!loc_weeds_type)
 		return 0
 	return 1
+
+///Fully passive "ability" which lets larva push towards primo faster once they're ancient
+/datum/action/xeno_action/larval_feast
+	name = "Larval feast"
+	action_icon_state = "headbite"
+	desc = "Whenever we feast upon our prey, we speed ourselves towards greatness."
+	ability_name = "larval feast"
+
+/datum/action/xeno_action/larval_feast/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_HUMAN, PROC_REF(feasting))
+
+/datum/action/xeno_action/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(L, COMSIG_XENOMORPH_ATTACK_HUMAN)
+
+/datum/action/xeno_action/larval_feast/can_use_action()
+	return TRUE
+
+///Signal handler, increase age when you bite a human
+/datum/action/xeno_action/proc/feasting()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
+	X.upgrade_stored += 1000
