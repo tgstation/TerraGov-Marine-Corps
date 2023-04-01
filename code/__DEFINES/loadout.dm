@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/ammo_magazine/minigun_powerpack/smartgun =  list(CAT_SGSUP, "SG-85 Powerpack", 10, "black"),
 	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SGSUP, "SG-85 Ammo Bin", 4, "black"),
 	/obj/item/weapon/gun/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle", 25, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
-	/obj/item/ammo_magazine/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle", 5, "orange"),
+	/obj/item/ammo_magazine/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 5, "orange"),
 	/obj/item/ammo_magazine/standard_spottingrifle = list(CAT_SGSUP, "SR-153 Spotting Rifle Magazine", 3, "black"),
 	/obj/item/ammo_magazine/standard_spottingrifle/highimpact = list(CAT_SGSUP, "SR-153 Spotting Rifle High Impact Magazine", 2, "black"),
 	/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber = list(CAT_SGSUP, "SR-153 Spotting Rifle Heavy Rubber Magazine", 3, "black"),
