@@ -581,7 +581,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
-	fire_sound = 'sound/april_fools/pipe.ogg'
+	windup_sound = 'sound/april_fools/skibby.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1 SECONDS
 	recoil = 3
