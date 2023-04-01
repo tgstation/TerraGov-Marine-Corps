@@ -201,7 +201,7 @@
 		return
 	owner.dir = get_cardinal_dir(owner, target)
 
-	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70, sound_range = 20)
+	playsound(owner, 'sound/april_fools/beast.ogg', 70, sound_range = 20)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"

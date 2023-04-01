@@ -100,7 +100,7 @@
 	span_xenowarning("We violently fling [victim] with the power of our mind!"))
 	victim.visible_message(span_xenowarning("[victim] is violently flung away by an unseen force!"), \
 	span_xenowarning("You are violently flung to the side by an unseen force!"))
-	playsound(owner,'sound/effects/magic.ogg', 75, 1)
+	playsound(owner,'sound/april_fools/oute_here.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 		//Held facehuggers get killed for balance reasons
