@@ -297,7 +297,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 		// Human
 		if("male_scream")
-			S = pick('sound/voice/human_male_scream_1.ogg','sound/voice/human_male_scream_2.ogg','sound/voice/human_male_scream_3.ogg','sound/voice/human_male_scream_4.ogg','sound/voice/human_male_scream_5.ogg','sound/voice/human_male_scream_6.ogg', 'sound/voice/human_male_scream_7.ogg')
+			S = pick('sound/april_fools/pelo_scream.ogg')
 		if("male_pain")
 			S = pick('sound/april_fools/oh_shit.ogg')
 		if("male_gored")
@@ -307,7 +307,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if("male_warcry")
 			S = pick('sound/voice/human_male_warcry_1.ogg','sound/voice/human_male_warcry_2.ogg','sound/voice/human_male_warcry_3.ogg','sound/voice/human_male_warcry_4.ogg','sound/voice/human_male_warcry_5.ogg','sound/voice/human_male_warcry_6.ogg','sound/voice/human_male_warcry_7.ogg','sound/voice/human_male_warcry_8.ogg','sound/voice/human_male_warcry_9.ogg')
 		if("female_scream")
-			S = pick('sound/voice/human_female_scream_1.ogg','sound/voice/human_female_scream_2.ogg','sound/voice/human_female_scream_3.ogg','sound/voice/human_female_scream_4.ogg','sound/voice/human_female_scream_5.ogg')
+			S = pick('sound/april_fools/grandma_scream.ogg')
 		if("female_pain")
 			S = pick('sound/april_fools/oh_shit.ogg')
 		if("female_gored")
