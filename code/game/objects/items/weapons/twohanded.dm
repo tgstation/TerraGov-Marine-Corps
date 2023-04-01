@@ -231,9 +231,9 @@
 		return ..()
 	flags_item ^= NODROP
 	if(flags_item & NODROP)
-		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
+		balloon_alert(user, "strap tightened")
 	else
-		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
+		balloon_alert(user, "strap loosened")
 
 /*
 * Double-Bladed Energy Swords - Cheridan
