@@ -1215,12 +1215,48 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/spottingrifle
 	name = "smart spotting bullet"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
-	hud_state = "smartgun"
+	hud_state = "spotrifle"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 70
 	penetration = 20
 	sundering = 5
+
+/datum/ammo/bullet/spottingrifle/highimpact
+	name = "smart high-impact spotting bullet"
+	hud_state = "spotrifle_impact"
+	damage = 10
+	sundering = 0.5
+
+/datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 1, slowdown = 1)
+
+/datum/ammo/bullet/spottingrifle/heavyrubber
+	name = "smart heavy-rubber spotting bullet"
+	hud_state = "spotrifle_rubber"
+	damage = 10
+	sundering = 0.5
+
+/datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 1, slowdown = 1)
+
+/datum/ammo/bullet/spottingrifle/plasmaloss
+	name = "smart tanglefoot spotting bullet"
+	hud_state = "spotrifle_plasmaloss"
+	damage = 10
+	sundering = 0.5
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/X = victim
+		X.use_plasma(20 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
+		X.use_plasma(20)
+
+/datum/ammo/bullet/spottingrifle/tungsten
+	name = "smart tanglefoot spotting bullet"
+	hud_state = "spotrifle_tungsten"
+	damage = 10
+	sundering = 15
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"

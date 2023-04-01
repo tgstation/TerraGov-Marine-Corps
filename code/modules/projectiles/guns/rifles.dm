@@ -1230,7 +1230,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/verticalgrip)
 
 //-------------------------------------------------------
-//SG Smart Machine Gun (It's more of a rifle than the SG.)
+//SG Target Rifle, has underbarreled spotting rifle that applies effects.
 
 /obj/item/weapon/gun/rifle/standard_smarttargetrifle
 	name = "\improper SG-62 Kauser-KT smart target rifle"
@@ -1256,6 +1256,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope,
 		/obj/item/weapon/gun/rifle/standard_spottingrifle,
+		/obj/item/attachable/stock/strstock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
@@ -1264,8 +1265,8 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
-	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
-	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle)
+	attachable_offset = list("muzzle_x" = 12, "muzzle_y" = 22, "rail_x" = 15, "rail_y" = 22, "under_x" = 28, "under_y" = 16, "stock_x" = 12, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle, /obj/item/attachable/stock/strstock)
 
 	fire_delay = 0.55 SECONDS
 	burst_amount = 0
@@ -1280,16 +1281,23 @@
 /obj/item/weapon/gun/rifle/standard_spottingrifle
 	name = "SR-153 spotting rifle"
 	desc = "An underslung spotting rifle, generally found ontop of another gun.."
-	icon_state = "pepperball_mini"
+	icon_state = "sr153"
+	icon = 'icons/Marine/gun64.dmi'
 	caliber = CALIBER_12x7
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 5
 	default_ammo_type =/obj/item/ammo_magazine/standard_spottingrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_spottingrifle)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/standard_spottingrifle,
+		/obj/item/ammo_magazine/standard_spottingrifle/highimpact,
+		/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber,
+		/obj/item/ammo_magazine/standard_spottingrifle/plasmaloss,
+		/obj/item/ammo_magazine/standard_spottingrifle/tungsten,
+	)
 	force = 5
 	attachable_allowed = list()
 	actions_types = list()
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_WIELDED_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_AMMO_COUNTER
 	flags_attach_features = NONE
 	fire_delay = 2 SECONDS

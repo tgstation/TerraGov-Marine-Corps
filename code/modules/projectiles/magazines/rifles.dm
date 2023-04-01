@@ -299,11 +299,36 @@
 	name = "\improper SR-153 magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm lethal smart rounds, these will do nothing other than pack a big punch."
 	caliber = CALIBER_12x7
-	icon_state = "sg62"
+	icon_state = "sr153"
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/spottingrifle
 	max_rounds = 5
 	icon_state_mini = "mag_sg29"
+
+/obj/item/ammo_magazine/standard_spottingrifle/highimpact
+	name = "\improper SR-153 high impact magazine (12x7mm)"
+	desc = "A magazine filled with 12x7mm high impact smart rounds, these will likely stagger and slow anything they hit."
+	icon_state = "sr153_hi"
+	default_ammo = /datum/ammo/bullet/spottingrifle/highimpact
+
+/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber
+	name = "\improper SR-153 heavy rubber magazine (12x7mm)"
+	desc = "A magazine filled with 12x7mm heavy rubber smart rounds, these will likely stun and displace anything they hit."
+	icon_state = "sr153_hr"
+	default_ammo = /datum/ammo/bullet/spottingrifle/heavyrubber
+
+/obj/item/ammo_magazine/standard_spottingrifle/plasmaloss
+	name = "\improper SR-153 tanglefoot magazine (12x7mm)"
+	desc = "A magazine filled with 12x7mm smart rounds tipped with 'Tanglefoot' poison, these rounds will drain the energy out of targets they hit."
+	icon_state = "sr153_hr"
+	default_ammo = /datum/ammo/bullet/spottingrifle/plasmaloss
+
+/obj/item/ammo_magazine/standard_spottingrifle/tungsten
+	name = "\improper SR-153 tungsten magazine (12x7mm)"
+	desc = "A magazine filled with 12x7mm tungsten smart roudns, these rounds will rip apart the armor of anything they hit."
+	icon_state = "sr153_tg"
+	default_ammo = /datum/ammo/bullet/spottingrifle/tungsten
+
 
 //-------------------------------------------------------
 //Sectoid Rifle
