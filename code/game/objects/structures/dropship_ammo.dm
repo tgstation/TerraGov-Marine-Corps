@@ -242,7 +242,7 @@
 	return strafelist
 
 /obj/structure/ship_ammo/heavygun/detonate_on(turf/impact, attackdir = NORTH)
-	playsound(impact, 'sound/effects/casplane_flyby.ogg', 40)
+	playsound(impact, 'sound/april_fools/gatlin.ogg', 40)
 	strafe_turfs(get_turfs_to_impact(impact, attackdir))
 
 ///Takes the top 3 turfs and miniguns them, then repeats until none left

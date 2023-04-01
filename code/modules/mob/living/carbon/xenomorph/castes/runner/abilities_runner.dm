@@ -128,7 +128,7 @@
 		else
 			X.balloon_alert(X, "Cannot savage, not ready")
 
-	playsound(X.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
+	playsound(X.loc, 'sound/april_fools/vine_boom.ogg', 25, TRUE)
 
 	pounce_complete()
 
