@@ -167,7 +167,7 @@
 	item_state = "fireaxe"
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
-	edge = 1
+	edge = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	flags_atom = CONDUCT
@@ -189,6 +189,51 @@
 		return
 	pry_capable = 0
 
+/obj/item/weapon/twohanded/fireaxe/som
+	name = "boarding axe"
+	desc = "A SOM boarding axe, effective at breaching doors as well as skulls. When wielded it can be used to block as well as attack."
+	icon = 'icons/obj/items/weapons64.dmi'
+	icon_state = "som_axe"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/weapon64_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/weapon64_right.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	item_state = "som_axe"
+	force = 40
+	force_wielded = 80
+	penetration = 35
+	flags_equip_slot = ITEM_SLOT_BACK
+
+/obj/item/weapon/twohanded/fireaxe/som/Initialize()
+	. = ..()
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
+
+/obj/item/weapon/twohanded/fireaxe/som/wield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/fireaxe/som/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/twohanded/fireaxe/som/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	flags_item ^= NODROP
+	if(flags_item & NODROP)
+		balloon_alert(user, "strap tightened")
+	else
+		balloon_alert(user, "strap loosened")
 
 /*
 * Double-Bladed Energy Swords - Cheridan

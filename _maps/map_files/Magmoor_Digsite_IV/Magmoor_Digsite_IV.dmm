@@ -16080,10 +16080,6 @@
 	dir = 9
 	},
 /area/magmoor/engi/power)
-"lNM" = (
-/obj/machinery/roomba,
-/turf/open/floor/mainship/green,
-/area/magmoor/civilian/rnr)
 "lOl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -24354,7 +24350,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/roomba,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/magmoor/civilian/arrival)
 "rMh" = (
@@ -47301,7 +47296,7 @@ upk
 pCT
 ePb
 fBg
-lNM
+oOH
 upk
 aaE
 qnk
