@@ -6,6 +6,10 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	item_state = "backpack"
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -172,6 +176,7 @@
 	name = "mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies."
 	icon_state = "som_satchel"
+	item_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"

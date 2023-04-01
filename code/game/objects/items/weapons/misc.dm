@@ -14,6 +14,17 @@
 	user.visible_message(span_danger("[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (OXYLOSS)
 
+/obj/item/weapon/cane
+	name = "cane"
+	desc = "A cane used by a true gentlemen. Or a clown."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "cane"
+	item_state = "cane"
+	flags_atom = CONDUCT
+	force = 5.0
+	throwforce = 7.0
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/weapon/broken_bottle
 	name = "Broken Bottle"

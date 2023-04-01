@@ -55,7 +55,7 @@
 	data = counterlist_normalise(supplied_data)
 
 /datum/reagent/consumable/nutriment/on_merge(list/newdata, newvolume)
-	if(!islist(newdata) || !newdata.len)
+	if(!islist(newdata) || !length(newdata))
 		return
 
 	// data for nutriment is one or more (flavour -> ratio)

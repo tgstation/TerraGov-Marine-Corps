@@ -1204,7 +1204,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		var/list/datum/limb/parts = get_damageable_limbs()
 
-		while(parts.len)
+		while(length(parts))
 			var/datum/limb/picked = pick_n_take(parts)
 			var/weight = GLOB.organ_rel_size[picked.name]
 			armor_val += picked.soft_armor.getRating(armor_type) * weight

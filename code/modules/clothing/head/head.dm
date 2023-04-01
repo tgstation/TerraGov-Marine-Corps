@@ -1,6 +1,10 @@
 /obj/item/clothing/head
 	name = "head"
 	icon = 'icons/obj/clothing/headwear/hats.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
+	)
 	flags_armor_protection = HEAD
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_SMALL

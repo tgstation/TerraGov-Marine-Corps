@@ -196,15 +196,20 @@
 	var/fuel_max = 40
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
+	///Minimap for the pilot to know where the marines have ran off to
+	var/datum/action/minimap/marine/external/cas_mini
 
 /obj/docking_port/mobile/marine_dropship/casplane/Initialize()
 	. = ..()
 	off_action = new
+	cas_mini = new
 	RegisterSignal(src, COMSIG_SHUTTLE_SETMODE, PROC_REF(update_state))
 
 /obj/docking_port/mobile/marine_dropship/casplane/Destroy(force)
 	STOP_PROCESSING(SSslowprocess, src)
 	end_cas_mission(chair?.occupant)
+	QDEL_NULL(off_action)
+	QDEL_NULL(cas_mini)
 	return ..()
 
 /obj/docking_port/mobile/marine_dropship/casplane/process()
@@ -290,6 +295,8 @@
 	if(!eyeobj)
 		eyeobj = new()
 		eyeobj.origin = src
+		cas_mini.override_locator(eyeobj)
+
 	if(eyeobj.eye_user)
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
@@ -321,6 +328,8 @@
 /obj/docking_port/mobile/marine_dropship/casplane/proc/give_eye_control(mob/user)
 	off_action.target = user
 	off_action.give_action(user)
+	cas_mini.target = user
+	cas_mini.give_action(user)
 	eyeobj.eye_user = user
 	eyeobj.name = "CAS Camera Eye ([user.name])"
 	user.remote_control = eyeobj
@@ -338,6 +347,7 @@
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	user.client.mouse_pointer_icon = initial(user.client.mouse_pointer_icon)
 	off_action.remove_action(user)
+	cas_mini.remove_action(user)
 	for(var/V in eyeobj.visibleCameraChunks)
 		var/datum/camerachunk/C = V
 		C.remove(eyeobj)

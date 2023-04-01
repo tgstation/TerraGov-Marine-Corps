@@ -31,7 +31,7 @@
 	. = ..()
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(access_storage))
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(insert_item))
 	storage.master_item = parent
@@ -39,11 +39,19 @@
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_PARENT_ATTACKBY))
 	storage.master_item = src
 	return ..()
 
-///Opens the internal storage when the parent is clicked on.
+///Triggers attack hand interaction for storage when the parent is clicked on.
+/obj/item/armor_module/storage/proc/access_storage(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, handle_attack_hand), user)
+	return COMPONENT_NO_ATTACK_HAND
+
+///Opens the internal storage when the parent is alt right clicked on.
 /obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc != user)
@@ -153,7 +161,7 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/flashlight/flare,
+		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
@@ -192,7 +200,7 @@
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/handheld_charger,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/binoculars/tactical/range,
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
@@ -324,7 +332,7 @@
 
 /obj/item/armor_module/storage/boot/full/Initialize()
 	. = ..()
-	new /obj/item/attachable/bayonetknife(storage)
+	new /obj/item/weapon/combat_knife(storage)
 
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"

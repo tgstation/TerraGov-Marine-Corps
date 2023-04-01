@@ -7,6 +7,10 @@
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	flags_atom = CONDUCT
 	force = 8.0
 	hitsound = "swing_hit"
@@ -70,7 +74,7 @@
 	var/list/display_list = list()
 
 
-	for(var/i in 1 to listed_products.len)
+	for(var/i in 1 to length(listed_products))
 		var/list/myprod = listed_products[i]
 		var/p_name = myprod[1]
 		var/p_cost = myprod[2]

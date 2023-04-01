@@ -39,7 +39,7 @@
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/analyzer(src)
+	new /obj/item/tool/analyzer(src)
 	new /obj/item/storage/bag/ore(src)
 	new /obj/item/flashlight/lantern(src)
 	new /obj/item/tool/shovel(src)

@@ -1,6 +1,10 @@
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/surgery_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/surgery_right.dmi',
+	)
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
 
 /obj/item/tool/surgery/retractor
@@ -82,7 +86,7 @@
 /obj/item/tool/surgery/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
-	icon_state = "saw3"
+	icon_state = "saw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags_atom = CONDUCT
 	force = 15.0
@@ -112,7 +116,7 @@
 
 /obj/item/tool/surgery/bonesetter
 	name = "bone setter"
-	icon_state = "bone setter"
+	icon_state = "bonesetter"
 	force = 8.0
 	throwforce = 9.0
 	throw_speed = 3

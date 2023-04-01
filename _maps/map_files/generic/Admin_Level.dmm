@@ -246,7 +246,7 @@
 "asl" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/item/tool/wrench,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/vault{
 	dir = 5
@@ -5548,7 +5548,7 @@
 "htq" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
-/obj/item/multitool{
+/obj/item/tool/multitool{
 	pixel_x = 6
 	},
 /obj/item/tool/pen/red,
@@ -6871,8 +6871,8 @@
 /obj/item/tank/oxygen/red,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/plating,
 /area/centcom/valhalla/central)
 "jpY" = (
@@ -7165,7 +7165,7 @@
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/item/stack/cable_coil,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/machinery/door_control/unmeltable{
 	dir = 8;
 	id = "evashutters";
@@ -7547,8 +7547,8 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/obj/item/multitool,
-/obj/item/multitool,
+/obj/item/tool/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
 "keE" = (
@@ -7821,8 +7821,8 @@
 /obj/structure/closet/crate,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/item/cell/high,
 /obj/item/tool/crowbar/red,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -13922,7 +13922,7 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/rack,
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP,
-/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner,
 /obj/item/storage/box/m94,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/plating,
@@ -17219,7 +17219,7 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/tool/crowbar/red,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/item/flash,
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -18098,8 +18098,8 @@
 "xsU" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/utility,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/eva)
 "xte" = (

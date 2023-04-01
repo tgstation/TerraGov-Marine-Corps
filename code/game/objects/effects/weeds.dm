@@ -188,6 +188,8 @@
 // windowed weed wall
 /obj/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
+	///The type of window we're expecting to grow on
+	var/window_type = /obj/structure/window/framed
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
 	if(color_variant == STICKY_COLOR)
@@ -196,43 +198,37 @@
 		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 /obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
-	var/obj/structure/window/framed/F = locate() in loc
-	if(!F)
+	var/obj/structure/window = locate(window_type) in loc
+	if(!window)
 		return ..()
-	return F.MouseDrop_T(dropping, user)
+	return window.MouseDrop_T(dropping, user)
 
-/obj/alien/weeds/weedwall/frame
-	layer = ABOVE_TABLE_LAYER
-
-/obj/alien/weeds/weedwall/frame/update_icon_state()
-	if(color_variant == STICKY_COLOR)
-		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
-	if(color_variant == RESTING_COLOR)
-		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
-
-/obj/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
-	var/obj/structure/window_frame/WF = locate() in loc
-	if(!WF)
+/obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
+	var/obj/structure/window = locate(window_type) in loc
+	if(!window)
 		return ..()
-	return WF.MouseDrop_T(dropping, user)
+	return window.MouseDrop_T(dropping, user)
 
-/obj/alien/weeds/weedwall/frame/specialclick(mob/living/carbon/user)
-	var/obj/structure/window_frame/WF = locate() in loc
-	if(!WF)
+/obj/alien/weeds/weedwall/window/specialclick(mob/living/carbon/user)
+	var/obj/structure/window = locate(window_type) in loc
+	if(!window)
 		return ..()
-	return WF.specialclick(user)
+	return window.specialclick(user)
 
-/obj/alien/weeds/weedwall/frame/attackby(obj/item/I, mob/user, params) //yes, this blocks attacking the weed itself, but if you destroy the frame you destroy the weed!
-	var/obj/structure/window_frame/WF = locate() in loc
-	if(!WF)
+/obj/alien/weeds/weedwall/window/attackby(obj/item/I, mob/user, params) //yes, this blocks attacking the weed itself, but if you destroy the frame you destroy the weed!
+	var/obj/structure/window = locate(window_type) in loc
+	if(!window)
 		return ..()
-	return WF.attackby(I, user, params)
+	return window.attackby(I, user, params)
 
-/obj/alien/weeds/weedwall/frame/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	var/obj/structure/window_frame/WF = locate() in loc
-	if(!WF)
+/obj/alien/weeds/weedwall/window/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	var/obj/structure/window = locate(window_type) in loc
+	if(!window)
 		return ..()
-	return WF.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	return window.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+
+/obj/alien/weeds/weedwall/window/frame
+	window_type = /obj/structure/window_frame
 
 // =================
 // weed node - grows other weeds

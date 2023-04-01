@@ -25,6 +25,10 @@
 
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 
 	flags_atom = CONDUCT

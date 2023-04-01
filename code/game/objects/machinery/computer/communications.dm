@@ -369,7 +369,7 @@
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i<=messagetitle.len; i++)
+			for(var/i = 1; length(i<=messagetitle); i++)
 				dat += "<BR><A HREF='?src=\ref[src];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
 		if(STATE_VIEWMESSAGE)

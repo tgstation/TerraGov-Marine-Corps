@@ -161,7 +161,7 @@
 
 	var/list/closed = list()
 	var/list/checking = list(ultimate_target)
-	while(checking.len && depth > 0)
+	while(length(checking) && depth > 0)
 		var/list/next = list()
 		--depth
 

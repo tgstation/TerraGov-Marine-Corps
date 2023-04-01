@@ -81,10 +81,6 @@
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36_shell"
 	item_state = "tat36"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
-		)
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_37MM
 	max_rounds = 1
@@ -169,10 +165,6 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "75shell"
 	item_state = "75shell"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
-		)
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_75MM
 	max_rounds = 1

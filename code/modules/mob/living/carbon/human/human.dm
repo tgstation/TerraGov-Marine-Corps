@@ -956,7 +956,7 @@
 			H.turn_light(src, FALSE, 0,FALSE, forced, light_again)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
-			if(istype(L, /obj/item/flashlight/flare))
+			if(istype(L, /obj/item/explosive/grenade/flare/civilian))
 				continue
 			if(L.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
@@ -969,7 +969,7 @@
 				lit_flashlight.turn_light(src, FALSE)
 				light_off++
 	if(flares)
-		for(var/obj/item/flashlight/flare/F in contents)
+		for(var/obj/item/explosive/grenade/flare/civilian/F in contents)
 			if(F.light_on)
 				goes_out++
 			F.turn_off(src)

@@ -16,8 +16,8 @@
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_species_specific()
-	underwear = rand(1, GLOB.underwear_m.len)
-	undershirt = rand(1, GLOB.undershirt_f.len)
+	underwear = rand(1, length(GLOB.underwear_m))
+	undershirt = rand(1, length(GLOB.undershirt_f))
 	backpack = 2
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)

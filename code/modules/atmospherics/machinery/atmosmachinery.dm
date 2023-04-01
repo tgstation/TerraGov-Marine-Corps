@@ -216,7 +216,7 @@
 
 	//Add identifiers for the iconset
 	if(iconsetids[iconset] == null)
-		iconsetids[iconset] = num2text(iconsetids.len + 1)
+		iconsetids[iconset] = num2text(length(iconsetids) + 1)
 
 	//Generate a unique identifier for this image combination
 	var/identifier = iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"

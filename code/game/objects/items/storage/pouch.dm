@@ -587,7 +587,7 @@
 	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
 	fill_type = /obj/item/explosive/grenade/flare
 	can_hold = list(
-		/obj/item/flashlight/flare,
+		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
 	)
@@ -714,7 +714,7 @@
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/weldingtool,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/tool/wrench,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/extinguisher/mini,

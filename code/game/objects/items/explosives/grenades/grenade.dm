@@ -4,6 +4,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/grenades_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
+	)
 	item_state = "grenade"
 	throw_speed = 3
 	throw_range = 7

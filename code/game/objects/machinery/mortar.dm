@@ -213,7 +213,7 @@
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		if(!GLOB.ai_list.len)
+		if(!length(GLOB.ai_list))
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
 
@@ -533,6 +533,10 @@
 	name = "\improper 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+	)
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT

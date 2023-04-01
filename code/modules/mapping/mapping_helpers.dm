@@ -39,7 +39,7 @@
 		for(var/i in baseturf_cache)
 			if(baseturf_to_replace[i])
 				baseturf_cache -= i
-		if(!baseturf_cache.len)
+		if(!length(baseturf_cache))
 			thing.assemble_baseturfs(baseturf)
 		else
 			thing.PlaceOnBottom(null, baseturf)

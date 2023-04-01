@@ -255,7 +255,7 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDELOWHAIR
 
-/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	name = "\improper PMC gunner armor"
 	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
 	icon_state = "pmc_heavyarmor"
@@ -284,7 +284,7 @@
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)

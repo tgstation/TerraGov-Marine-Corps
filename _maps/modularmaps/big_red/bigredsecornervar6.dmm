@@ -159,7 +159,7 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/secomplex)
 "kq" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "kt" = (
@@ -809,7 +809,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Wh" = (
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Wt" = (
