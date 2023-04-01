@@ -319,7 +319,7 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("Eyo watch yo jet bruh, EYO WATCH YO JET YO WATCH JO YET!" , "EMERGENCY", sound = 'sound/april_fools/watch_jet.ogg')
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
