@@ -445,6 +445,8 @@
 	scatter = -2
 	force = 20
 
+/obj/item/weapon/gun/rifle/m412/elite/deathsquad
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/bayonet)
 
 //-------------------------------------------------------
 //PR-11

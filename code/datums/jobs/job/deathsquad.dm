@@ -26,7 +26,7 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	glasses = /obj/item/clothing/glasses/night/tx8
-	suit_store = /obj/item/weapon/gun/rifle/m412/elite
+	suit_store = /obj/item/weapon/gun/rifle/m412/elite/deathsquad
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/commando
@@ -189,7 +189,7 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
+	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 	r_store = /obj/item/storage/pouch/magazine/drum
 	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/commando
