@@ -22,7 +22,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
-	playsound(owner, 'sound/magic/nightfall.ogg', 50, 1)
+	playsound(owner, 'sound/april_fools/lights_off.ogg', 50, 1)
 	succeed_activate()
 	add_cooldown()
 	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
