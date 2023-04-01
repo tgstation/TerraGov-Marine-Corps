@@ -11,18 +11,17 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/xenomorph = FREE_XENO_AT_START,
 	)
 	whitelist_ship_maps = list(MAP_KEMERDEKAAN)
 	blacklist_ship_maps = null
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
-	var/max_game_time = 35 MINUTES
+	var/max_game_time = 10 MINUTES
 	/// Timer used to calculate how long till next respawn wave
 	var/wave_timer
 	///The length of time until next respawn wave.
-	var/wave_timer_length = 5 MINUTES
+	var/wave_timer_length = 4 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	///The amount of activated sensor towers in sensor capture

@@ -1077,6 +1077,70 @@
 	spawn_number = 10
 	spawn_type = /obj/item/ammo_magazine/heavymachinegun
 
+/obj/item/storage/box/visual/magazine/compact/pulse_rifle_uscm
+	name = "M41A magazine box"
+	desc = "A box specifically designed to hold a large amount of M41A magazines."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_m41a"
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/pulse_rifle_uscm/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle
+
+/obj/item/storage/box/visual/magazine/compact/hpr_uscm
+	name = "M41AE2 magazine box"
+	desc = "A box specifically designed to hold a large amount of M41AE2 magazines."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_m41a"
+	can_hold = list(
+		/obj/item/ammo_magazine/hpr_uscm,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/hpr_uscm/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/hpr_uscm
+
+/obj/item/storage/box/visual/magazine/compact/smg_uscm
+	name = "M39 magazine box"
+	desc = "A box specifically designed to hold a large amount of M39 magazines."
+	closed_overlay = "mag_box_small_overlay_m39"
+	can_hold = list(
+		/obj/item/ammo_magazine/smg/smg_uscm,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/smg_uscm/full
+	spawn_number = 40
+	spawn_type = /obj/item/ammo_magazine/smg/smg_uscm
+
+/obj/item/storage/box/visual/magazine/compact/mmg_uscm
+	name = "M56D magazine box"
+	desc = "A box specifically designed to hold a large amount of M56D magazines."
+	storage_slots = 12
+	closed_overlay = "mag_box_small_overlay_m56d"
+	can_hold = list(
+		/obj/item/ammo_magazine/mmg_uscm,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/mmg_uscm/full
+	spawn_number = 12
+	spawn_type = /obj/item/ammo_magazine/mmg_uscm
+
+/obj/item/storage/box/visual/magazine/compact/smartgun_uscm
+	name = "M56 magazine box"
+	desc = "A box specifically designed to hold a large amount of M56 magazines."
+	storage_slots = 12
+	closed_overlay = "mag_box_small_overlay_m56"
+	can_hold = list(
+		/obj/item/ammo_magazine/smartgun_uscm,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/smartgun_uscm/full
+	spawn_number = 12
+	spawn_type = /obj/item/ammo_magazine/smartgun_uscm
+
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade
 	name = "grenade box"
@@ -1167,6 +1231,13 @@
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
+
+/obj/item/storage/box/visual/grenade/uscm
+	name = "\improper M40 HEDP grenade box"
+	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
+	spawn_number = 25
+	spawn_type = /obj/item/explosive/grenade/uscm
+	closed_overlay = "grenade_box_overlay_hedp"
 
 #undef BOX_OVERLAY_SHIFT_X
 #undef BOX_OVERLAY_SHIFT_Y

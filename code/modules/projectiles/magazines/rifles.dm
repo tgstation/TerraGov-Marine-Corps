@@ -508,7 +508,7 @@
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 500
 	reload_delay = 2.5 SECONDS
-	icon_state_mini = "mag_sg29"
+	icon_state_mini = "mag_t29"
 
 //-------------------------------------------------------
 //HPR USCM

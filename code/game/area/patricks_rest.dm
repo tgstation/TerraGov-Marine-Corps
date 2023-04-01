@@ -255,3 +255,18 @@
 	name = "Ore Processing"
 	icon_state = "dark160"
 	minimap_color = MINIMAP_AREA_REQ
+
+/area/patricks_rest/surface/building/ore_storage
+	name = "Ore Storage"
+	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/patricks_rest/surface/building/baggage
+	name = "Baggage Claim"
+	icon_state = "dark160"
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/patricks_rest/surface/building/science
+	name = "Science Department"
+	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_RESEARCH

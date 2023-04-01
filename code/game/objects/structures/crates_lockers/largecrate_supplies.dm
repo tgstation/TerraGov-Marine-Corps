@@ -221,7 +221,36 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
 	)
 
+/obj/structure/largecrate/supply/ammo/uscm
+	name = "large ammuniton crate"
+	desc = "An ammunition case containing one box of each CM brand ammo type."
+	icon_state = "chest"
+	supplies = list(
+		/obj/item/shotgunbox = 1,
+		/obj/item/shotgunbox/buckshot = 1,
+		/obj/item/shotgunbox/flechette = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/smg_uscm/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/pulse_rifle_uscm/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/hpr_uscm/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/mmg_uscm/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/smartgun_uscm/full = 1,
+		/obj/item/storage/box/visual/grenade/uscm = 1,
+	)
 
+/obj/structure/largecrate/supply/ammo/uscm/Initialize()
+	. = ..()
+	pixel_y = 480
+	var/image/I = image('icons/obj/items/fulton_balloon.dmi', src, "fulton_balloon")
+	I.pixel_y = 25
+	overlays += I
+	playsound(loc, 'sound/items/fultext_deploy.ogg', 50)
+	animate(src, pixel_y = 0, time = 2 SECONDS, easing = LINEAR_EASING)
+	addtimer(CALLBACK(src, PROC_REF(clear_overlay)), 2 SECONDS)
+
+/obj/structure/largecrate/supply/ammo/uscm/proc/clear_overlay()
+	overlays.Cut()
 
 /obj/structure/largecrate/supply/explosives
 	name = "explosives supply crate"

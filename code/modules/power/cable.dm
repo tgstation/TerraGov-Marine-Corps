@@ -26,6 +26,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	var/cable_layer = CABLE_LAYER_2			//bitflag
 	var/machinery_layer = MACHINERY_LAYER_1 //bitflag
 	var/datum/powernet/powernet
+	resistance_flags = UNACIDABLE //i messed up the floors
 
 /obj/structure/cable/layer1
 	color = COLOR_RED
