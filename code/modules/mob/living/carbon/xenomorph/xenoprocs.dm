@@ -523,12 +523,6 @@
 		return
 	return (sunder * -0.01) + 1 
 
-/mob/living/carbon/xenomorph/get_sunder_multiplier()
-	. = ..()
-	if(.)
-		return
-	return xeno_caste.sunder_multiplier
-
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
