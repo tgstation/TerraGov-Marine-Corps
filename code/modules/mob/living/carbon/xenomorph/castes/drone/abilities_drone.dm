@@ -125,7 +125,7 @@
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
 	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
 	target.adjustBruteLoss(-heal_amount)
-	target.adjust_sunder(-heal_amount/10*target.xeno_caste.sunder_regen_multiplier)
+	target.adjust_sunder(-heal_amount/10)
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)

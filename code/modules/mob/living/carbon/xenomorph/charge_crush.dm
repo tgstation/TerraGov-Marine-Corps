@@ -421,7 +421,7 @@
 		var/charge_damage = (CHARGE_SPEED(charge_datum) * 45)  // 2.1 * 45 = 94.5 max damage to inflict.
 		. = charge_damage
 		charge_datum.speed_down(3)
-		charger.adjust_sunder(10 * charger.xeno_caste.sunder_multiplier)
+		charger.adjust_sunder(10)
 		return
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
 
