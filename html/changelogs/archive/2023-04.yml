@@ -1,3 +1,15 @@
 2023-04-01:
   Lumipharon:
   - imageadd: added in hand sprites for SOM helmets, armor, uniforms and bags
+2023-04-02:
+  Lumipharon:
+  - rscadd: Added a SOM breaching axe to HvH
+  - bugfix: fixed blood looking weird on larger items
+  - bugfix: Importing loadouts works again with the current version
+  - bugfix: fixed SOM veterans having a blank HUD icon
+  RipGrayson:
+  - bugfix: Fixed carpets and catwalks becoming blank voids after explosions.
+  ivanmixo:
+  - code_imp: Fixes the stuff the 515 regexing missed
+  - balance: Makes the default starting boot knife the M5 survival knife
+  - bugfix: Fixes the 3rd person ravager endure message

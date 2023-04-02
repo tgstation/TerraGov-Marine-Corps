@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed carpets and catwalks becoming blank voids after explosions."
