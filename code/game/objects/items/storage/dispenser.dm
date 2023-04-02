@@ -98,7 +98,7 @@
 	affecting_list = null
 	STOP_PROCESSING(SSobj, src)
 	flick("dispenser_undeploy", src)
-	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
+	playsound(src, 'sound/april_fools/recnepsid.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(disassemble), user), 4 SECONDS)
 
 /obj/machinery/deployable/dispenser/disassemble(mob/user)

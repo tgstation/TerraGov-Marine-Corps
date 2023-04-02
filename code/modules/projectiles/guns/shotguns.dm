@@ -78,7 +78,6 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t39"
 	item_state = "t39"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
@@ -656,7 +655,7 @@
 	item_state = "t35"
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
+	fire_sound = 'sound/april_fools/brim.ogg'
 	max_chamber_items = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -715,7 +714,7 @@
 	max_chamber_items = 9 //codex
 	caliber = CALIBER_12G //codex
 	load_method = SINGLE_CASING //codex
-	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
+	fire_sound = 'sound/april_fools/fart.ogg'
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	aim_slowdown = 0.45
 	attachable_allowed = list(

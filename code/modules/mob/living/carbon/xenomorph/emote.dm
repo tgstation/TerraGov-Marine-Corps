@@ -7,22 +7,22 @@
 	key_third_person = "growls"
 	message = "growls!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/alien_growl1.ogg'
+	sound = 'sound/april_fools/scoob.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/growl/one
 	key = "growl1"
-	sound = 'sound/voice/alien_growl1.ogg'
+	sound = 'sound/april_fools/scoob.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/growl/two
 	key = "growl2"
-	sound = 'sound/voice/alien_growl2.ogg'
+	sound = 'sound/april_fools/scoob.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/growl/three
 	key = "growl3"
-	sound = 'sound/voice/alien_growl3.ogg'
+	sound = 'sound/april_fools/scoob.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/hiss
@@ -30,22 +30,22 @@
 	key_third_person = "hisses"
 	message = "hisses!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/alien_hiss1.ogg'
+	sound = 'sound/april_fools/guuh.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/hiss/one
 	key = "hiss1"
-	sound = 'sound/voice/alien_hiss1.ogg'
+	sound = 'sound/april_fools/guuh.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/hiss/two
 	key = "hiss2"
-	sound = 'sound/voice/alien_hiss2.ogg'
+	sound = 'sound/april_fools/guuh.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/hiss/three
 	key = "hiss3"
-	sound = 'sound/voice/alien_hiss3.ogg'
+	sound = 'sound/april_fools/guuh.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/needhelp
@@ -71,37 +71,37 @@
 	key_third_person = "roars"
 	message = "roars!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/alien_roar1.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/roar/one
 	key = "roar1"
-	sound = 'sound/voice/alien_roar1.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/roar/two
 	key = "roar2"
-	sound = 'sound/voice/alien_roar2.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/roar/three
 	key = "roar3"
-	sound = 'sound/voice/alien_roar3.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/roar/four
 	key = "roar4"
-	sound = 'sound/voice/alien_roar4.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/roar/five
 	key = "roar5"
-	sound = 'sound/voice/alien_roar5.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/roar/six
 	key = "roar6"
-	sound = 'sound/voice/alien_roar6.ogg'
+	sound = 'sound/april_fools/stalk_scream.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/tail

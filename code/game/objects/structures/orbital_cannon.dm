@@ -196,8 +196,8 @@
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 
-	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
-	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
+	playsound_z_humans(target.z, 'sound/april_fools/ob.ogg', 100) //for marines on ground
+	playsound(target, 'sound/april_fools/ob.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
 	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))

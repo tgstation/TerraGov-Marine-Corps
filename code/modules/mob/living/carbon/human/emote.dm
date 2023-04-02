@@ -485,13 +485,7 @@
 
 
 /datum/emote/living/carbon/human/medic/get_sound(mob/living/carbon/human/user)
-	if(user.gender == MALE)
-		if(prob(95))
-			return 'sound/voice/human_male_medic.ogg'
-		else
-			return 'sound/voice/human_male_medic2.ogg'
-	else
-		return 'sound/voice/human_female_medic.ogg'
+	return 'sound/april_fools/doktar.ogg'
 
 
 /datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
