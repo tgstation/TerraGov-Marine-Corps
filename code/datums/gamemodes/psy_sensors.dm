@@ -84,7 +84,6 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 	else
 		return "Patrol finished"
-	return ..()
 
 /datum/game_mode/infestation/psy_sensors/wave_countdown()
 	if(!wave_timer)

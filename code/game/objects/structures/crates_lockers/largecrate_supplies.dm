@@ -236,6 +236,7 @@
 		/obj/item/storage/box/visual/magazine/compact/mmg_uscm/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/smartgun_uscm/full = 1,
 		/obj/item/storage/box/visual/grenade/uscm = 1,
+		/obj/item/ammo_magazine/rocket/rpg_uscm = 6,
 	)
 
 /obj/structure/largecrate/supply/ammo/uscm/Initialize()
