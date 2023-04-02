@@ -78,12 +78,12 @@
 	if(!game_timer)
 		return
 	var/eta = timeleft(game_timer) * 0.1
+	if(game_timer == SENSOR_CAP_TIMER_PAUSED)
+		return "Timer paused, tower activation in progress"
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 	else
 		return "Patrol finished"
-	if(game_timer == SENSOR_CAP_TIMER_PAUSED)
-		return "Timer paused, tower activation in progress"
 	return ..()
 
 /datum/game_mode/infestation/psy_sensors/wave_countdown()
