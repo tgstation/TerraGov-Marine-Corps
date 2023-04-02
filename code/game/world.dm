@@ -17,7 +17,6 @@ GLOBAL_VAR(restart_counter)
 	if(fexists(extools))
 		LIBCALL(extools, "maptick_initialize")()
 #endif
-	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
