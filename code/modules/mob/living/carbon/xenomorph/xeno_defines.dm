@@ -101,8 +101,6 @@
 	var/sunder_max = 100
 	///How much sunder application is multiplied by
 	var/sunder_multiplier = 1
-	///How much sunder regeneration is multiplied by
-	var/sunder_regen_multiplier = 1
 
 	// *** Ranged Attack *** //
 	///Delay timer for spitting
