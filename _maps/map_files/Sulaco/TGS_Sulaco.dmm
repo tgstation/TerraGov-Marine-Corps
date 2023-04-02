@@ -4264,6 +4264,7 @@
 /area/sulaco/bridge)
 "avb" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/minimap_tablet,
 /turf/open/floor/mainship/terragov{
 	dir = 8
 	},
