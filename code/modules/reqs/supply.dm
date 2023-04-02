@@ -83,11 +83,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
-			RegisterSignal(G, COMSIG_PARENT_QDELETING, .proc/clean_gear)
+			RegisterSignal(G, COMSIG_PARENT_QDELETING, PROC_REF(clean_gear))
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
-			RegisterSignal(R, COMSIG_PARENT_QDELETING, .proc/clean_railing)
+			RegisterSignal(R, COMSIG_PARENT_QDELETING, PROC_REF(clean_railing))
 			R.linked_pad = src
 			R.open()
 
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			empty_turfs += T
 
 	for(var/i in SSpoints.shoppinglist[faction])
-		if(!empty_turfs.len)
+		if(!length(empty_turfs))
 			break
 		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, i)
 
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
 	src.source_object = source_object
-	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, .proc/clean_ui)
+	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, PROC_REF(clean_ui))
 
 ///Signal handler to delete the ui when the source object is deleting
 /datum/supply_ui/proc/clean_ui()
@@ -480,7 +480,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				else
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 					SSshuttle.moveShuttleToTransit(shuttle_id, TRUE)
-					addtimer(CALLBACK(supply_shuttle, /obj/docking_port/mobile/supply/proc/sell), 15 SECONDS)
+					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell)), 15 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
 				supply_shuttle.buy(usr)
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return FALSE
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum

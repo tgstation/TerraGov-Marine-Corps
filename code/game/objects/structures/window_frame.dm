@@ -40,10 +40,11 @@
 	var/weed_found
 	if(from_window_shatter)
 		for(var/obj/alien/weeds/weedwall/window/W in loc)
-			weed_found = TRUE
+			weed_found = W
 			break
 	if(weed_found)
-		new /obj/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
+		qdel(weed_found)
+		new /obj/alien/weeds/weedwall/window/frame(loc) //after smoothing to get the correct junction value
 
 
 /obj/structure/window_frame/proc/update_nearby_icons()

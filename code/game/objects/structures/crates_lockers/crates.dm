@@ -248,7 +248,7 @@
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
-	new /obj/item/rcd(src)
+	new /obj/item/tool/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
@@ -340,7 +340,6 @@
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
 	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
-	materials = list(/datum/material/metal = 200)
 	drop_material = null
 
 

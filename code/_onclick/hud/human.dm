@@ -217,11 +217,12 @@
 	f_style = "Shaved"
 	if(ishumanbasic(src))
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
-	undershirt = GLOB.undershirt_t.Find("None")
 	if(gender == MALE)
 		underwear = GLOB.underwear_m.Find("None")
+		undershirt = GLOB.undershirt_m.Find("None")
 	else
 		underwear = GLOB.underwear_f.Find("None")
+		undershirt = GLOB.undershirt_f.Find("None")
 	regenerate_icons()
 
 
@@ -233,7 +234,7 @@
 	var/mob/living/carbon/human/H = mymob
 	var/mob/screenmob = viewer || H
 
-	if(H.species && H.species.hud && !H.species.hud.gear.len)
+	if(H.species && H.species.hud && !length(H.species.hud.gear))
 		inventory_shown = FALSE
 		return //species without inv slots don't show items.
 	if(screenmob.hud_used.inventory_shown && screenmob.hud_used.hud_shown)

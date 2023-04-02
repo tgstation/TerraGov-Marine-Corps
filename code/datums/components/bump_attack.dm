@@ -11,18 +11,18 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(ishuman(parent))
-		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, .proc/living_activation_toggle)
-		bump_action_path = .proc/human_bump_action
+		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, PROC_REF(living_activation_toggle))
+		bump_action_path = PROC_REF(human_bump_action)
 	else if(isxeno(parent))
-		bump_action_path = .proc/xeno_bump_action
+		bump_action_path = PROC_REF(xeno_bump_action)
 	else
-		bump_action_path = .proc/living_bump_action
+		bump_action_path = PROC_REF(living_bump_action)
 	if(has_button)
 		toggle_action = new()
 		toggle_action.give_action(parent)
 		toggle_action.attacking = active
 		toggle_action.update_button_icon()
-		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/living_activation_toggle)
+		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, PROC_REF(living_activation_toggle))
 	living_activation_toggle(should_enable = enabled, silent_activation = silent_activation)
 
 /datum/component/bump_attack/UnregisterFromParent()
@@ -53,7 +53,7 @@
 	active = FALSE
 	UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 
-/// Handles living bump action checks before actually doing the attack checks.
+///Handles living bump action checks before actually doing the attack checks.
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
@@ -61,7 +61,7 @@
 	if(!(target.flags_atom & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
-/// Handles carbon bump action checks before actually doing the attack checks.
+///Handles carbon bump action checks before actually doing the attack checks.
 /datum/component/bump_attack/proc/carbon_bump_action_checks(atom/target)
 	var/mob/living/carbon/bumper = parent
 	. = living_bump_action_checks(target)
@@ -71,7 +71,7 @@
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
 
-/// Handles living pre-bump attack checks.
+///Handles living pre-bump attack checks.
 /datum/component/bump_attack/proc/living_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	. = living_bump_action_checks(target)
@@ -79,7 +79,7 @@
 		return
 	return living_do_bump_action(target)
 
-/// Handles human pre-bump attack checks.
+///Handles human pre-bump attack checks.
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/bumper = parent
@@ -89,9 +89,9 @@
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
-	INVOKE_ASYNC(src, .proc/human_do_bump_action, target)
+	INVOKE_ASYNC(src, PROC_REF(human_do_bump_action), target)
 
-/// Handles xeno pre-bump attack checks.
+///Handles xeno pre-bump attack checks.
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/bumper = parent
@@ -102,7 +102,7 @@
 		return //No more nibbling.
 	return xeno_do_bump_action(target)
 
-/// Handles living bump attacks.
+///Handles living bump attacks.
 /datum/component/bump_attack/proc/living_do_bump_action(atom/target)
 	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
@@ -111,7 +111,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
-/// Handles human bump attacks.
+///Handles human bump attacks.
 /datum/component/bump_attack/proc/human_do_bump_action(atom/target)
 	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
@@ -128,7 +128,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, held_item ? held_item.attack_speed : CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
-/// Handles xeno bump attacks.
+///Handles xeno bump attacks.
 /datum/component/bump_attack/proc/xeno_do_bump_action(atom/target)
 	var/mob/living/carbon/xenomorph/bumper = parent
 	if(bumper.next_move > world.time)

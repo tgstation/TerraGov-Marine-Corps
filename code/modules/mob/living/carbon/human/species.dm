@@ -375,7 +375,7 @@
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.set_skills(getSkillsType(/datum/skills/vatgrown/early))
-	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(handle_age), H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
@@ -470,6 +470,9 @@
 /datum/action/repair_self
 	name = "Activate autorepair"
 	action_icon_state = "suit_configure"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
+	)
 
 /datum/action/repair_self/can_use_action()
 	. = ..()
@@ -624,7 +627,8 @@
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
+	species_flags = HAS_NO_HAIR|NO_STAMINA|DETACHABLE_HEAD
+	inherent_traits = list(TRAIT_CAN_VENTCRAWL)
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
 	speech_verb_override = "chimpers"

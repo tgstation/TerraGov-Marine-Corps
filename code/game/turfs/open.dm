@@ -42,24 +42,7 @@
 
 					bloodDNA = null
 
-
-			switch (wet)
-				if(FLOOR_WET_WATER)
-					if(!C.slip(null, 5, 3, TRUE))
-						C.inertia_dir = 0
-
-				if(FLOOR_WET_LUBE) //lube
-					if(C.slip(null, 10, 10, FALSE, TRUE, 4))
-						C.take_limb_damage(2)
-
-				if(FLOOR_WET_ICE) // Ice
-					if(!C.slip("icy floor", 4, 3, FALSE, TRUE, 1))
-						C.inertia_dir = 0
-
-
-	..()
-
-
+	return ..()
 
 
 /turf/open/examine(mob/user)
@@ -120,7 +103,7 @@
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
+		xeno.next_move_slowdown += xeno.xeno_caste.water_slowdown
 	else
 		C.next_move_slowdown += 1.75
 

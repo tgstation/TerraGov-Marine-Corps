@@ -506,7 +506,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Mk" = (
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Mo" = (

@@ -75,6 +75,8 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
+	if(isnull(L))
+		stack_trace("Job after_spawn was called without a valid target.")
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L

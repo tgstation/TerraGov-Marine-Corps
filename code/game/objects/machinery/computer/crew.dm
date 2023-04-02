@@ -136,7 +136,7 @@
 	if(tracked.Find(under))
 		return
 	tracked += under
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/remove_from_tracked)
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, PROC_REF(remove_from_tracked))
 
 ///Remove an atom from the tracked list
 /obj/machinery/computer/crew/proc/remove_from_tracked(atom/under)

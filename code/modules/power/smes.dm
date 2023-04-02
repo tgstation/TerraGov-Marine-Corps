@@ -395,7 +395,7 @@
 	inputting = FALSE
 	output_level = 0
 	charge = max(charge - 1e6/severity, 0)
-	addtimer(CALLBACK(src, .proc/reset_power_level), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset_power_level)), 10 SECONDS)
 	..()
 
 /obj/machinery/power/smes/proc/reset_power_level()

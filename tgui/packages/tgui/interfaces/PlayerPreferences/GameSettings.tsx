@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Button, Section, LabeledList, Grid, ColorBox } from '../../components';
+import { Box, Button, Section, LabeledList, Grid, ColorBox } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
@@ -28,7 +28,8 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color, scaling_method, pixel_size, parallax } = data;
+  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip } =
+    data;
   return (
     <Section title="Game Settings">
       <Grid>
@@ -250,16 +251,18 @@ export const GameSettings = (props, context) => {
         <Grid.Column>
           <Section title="Keybinding Settings">
             <LabeledList>
-              <SelectFieldPreference
-                label={'Quick equip slot'}
-                value={'preferred_slot'}
-                action={'preferred_slot_select'}
-              />
-              <SelectFieldPreference
-                label={'Alternate quick equip slot'}
-                value={'preferred_slot_alt'}
-                action={'preferred_slot_alt_select'}
-              />
+              {quick_equip.map((equip_slot, index_slot) => (
+                <>
+                  <Box>Quick equip #{index_slot + 1}</Box>
+                  <Button
+                    key={equip_slot}
+                    content={equip_slot}
+                    onClick={() =>
+                      act('change_quick_equip', { selection: index_slot + 1 })
+                    }
+                  />
+                </>
+              ))}
             </LabeledList>
           </Section>
         </Grid.Column>

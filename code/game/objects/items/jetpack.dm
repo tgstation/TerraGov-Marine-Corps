@@ -8,6 +8,10 @@
 	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
@@ -56,9 +60,9 @@
 		UnregisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_ITEM_EXCLUSIVE_TOGGLE))
 		action.set_toggle(FALSE)
 	else
-		RegisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), .proc/can_use_jetpack)
+		RegisterSignal(user, list(COMSIG_MOB_MIDDLE_CLICK, COMSIG_MOB_CLICK_ALT_RIGHT), PROC_REF(can_use_jetpack))
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
+		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 		action.set_toggle(TRUE)
 	selected = !selected
 
@@ -101,7 +105,7 @@
 	update_icon()
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
 	human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
-	addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
+	addtimer(CALLBACK(src,PROC_REF(reset_flame), human_user), hovering_time)
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
@@ -128,7 +132,7 @@
 	if(fuel_left < FUEL_USE)
 		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
 		return
-	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
+	INVOKE_ASYNC(src, PROC_REF(use_jetpack), A, human_user)
 
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
@@ -145,7 +149,7 @@
 /obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(lit)
-		standing.overlays += mutable_appearance('icons/mob/back.dmi',"+jetpack_lit")
+		standing.overlays += mutable_appearance('icons/mob/clothing/back.dmi',"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()

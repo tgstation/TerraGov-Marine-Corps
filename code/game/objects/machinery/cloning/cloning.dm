@@ -24,13 +24,8 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge!")
 	return FALSE
 
-
-/obj/item/reagent_containers/glass/bucket/xeno_blood
-	list_reagents = list(/datum/reagent/blood/xeno_blood = 120)
-
 /obj/item/reagent_containers/glass/beaker/biomass
 	list_reagents = list(/datum/reagent/medicine/biomass = 60)
-
 
 /**
  *These automatically generate marine bodies based on a timer.
@@ -224,7 +219,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 
 	visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> whirls as it starts to create a new clone.</span>")
-	timerid = addtimer(CALLBACK(src, .proc/finish_growing_human), grow_timer, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(finish_growing_human)), grow_timer, TIMER_STOPPABLE)
 	update_icon()
 
 

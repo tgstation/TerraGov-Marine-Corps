@@ -135,6 +135,10 @@
 	desc = "Kitty!!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/animals_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/animals_right.dmi',
+	)
 	flags_armor_features = ARMOR_NO_DECAP
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, FIRE = 50, ACID = 50)
 	var/mob/living/simple_animal/cat/cat

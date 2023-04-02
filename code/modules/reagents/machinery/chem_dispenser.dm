@@ -66,9 +66,9 @@
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	dispensable_reagents = sortList(dispensable_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(emagged_reagents)
-		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
+		emagged_reagents = sortList(emagged_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 
 	cell = new /obj/item/cell/hyper
 	start_processing()
@@ -134,7 +134,7 @@
 		dispensable_reagents -= emagged_reagents
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
-	if(needs_medical_training && ishuman(usr) && user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED)
+	if(needs_medical_training && ishuman(usr) && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
 		balloon_alert(user, "skill issue")
 		return
 
@@ -156,7 +156,7 @@
 
 	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))	 // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume

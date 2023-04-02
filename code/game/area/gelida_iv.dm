@@ -158,14 +158,17 @@
 	name = "East LZ1 - Outdoor Botony"
 	icon_state = "yellow"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/lone_buildings/storage_blocks
 	name = "Outdoor Storage"
 	icon_state = "blue"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/lone_buildings/chunk
 	name = "Chunk 'N Dump"
 	icon_state = "blue"
+	minimap_color = MINIMAP_AREA_LIVING
 
 //A Block
 /area/gelida/indoors/a_block
@@ -182,10 +185,12 @@
 /area/gelida/indoors/a_block/dorms
 	name = "A-Block - Western Dorms And Offices"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/fitness
 	name = "A-Block - Fitness Centre"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/hallway
 	name = "A-Block - South Operations Hallway"
@@ -211,15 +216,18 @@
 	name = "A-Block - Kitchen And Dining"
 	icon_state = "kitchen"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/executive
 	name = "A-Block - Executive Suite"
 	icon_state = "captain"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/gelida/indoors/a_block/dorm_north
 	name = "A-Block - Northen Shared Dorms"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/bridges
 	name = "A-Block - Western Dorms To Security Bridge"
@@ -257,6 +265,7 @@
 	name = "A-Block - West Operations Garden"
 	icon_state = "green"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 //B Block
 
 /area/gelida/indoors/b_block
@@ -267,10 +276,12 @@
 /area/gelida/indoors/b_block/hydro
 	name = "B-Block - Hydroponics"
 	icon_state = "hydro"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/b_block/bar
 	name = "B-Block - Bar"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/b_block/bridge
 	name = "B-Block - Hydroponics Bridge Network"
@@ -286,19 +297,22 @@
 /area/gelida/indoors/c_block/cargo
 	name = "C-Block - Cargo"
 	icon_state = "primarystorage"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/c_block/mining
 	name = "C-Block - Mining"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/c_block/garage
 	name = "C-Block - Garage"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/c_block/casino
 	name = "C-Block - Casino"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/c_block/bridge
 	name = "C-Block - Cargo To Garage Bridge"
@@ -347,11 +361,13 @@
 	name = "Atmospheric Processor"
 	icon_state = "engineering"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/gelida/atmos/outdoor
 	name = "Atmospheric Processor - Outdoors"
 	icon_state = "quart"
 	ceiling = CEILING_NONE
+	minimap_color = NONE
 
 /area/gelida/atmos/east_reactor
 	name = "Atmospheric Processor - Eastern Reactor"
@@ -379,7 +395,7 @@
 /area/gelida/atmos/cargo_intake
 	name = "Atmospheric Processor - Cargo Intake"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/atmos/command_centre
 	name = "Atmospheric Processor - Central Command"

@@ -17,11 +17,13 @@
 	name = "Crashed Ship"
 	icon_state = "red"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_SHIP
 
 /area/icy_caves/caves/chapel
 	name = "Chapel of Nar'Sie"
 	icon_state = "icy_chapel"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/icy_caves/caves/northwestmonorail
 	name = "Northwestern Monorail Station"
@@ -30,6 +32,7 @@
 
 /area/icy_caves/caves/northwestmonorail/breakroom
 	name = "Northwestern Monorail Station Break Room"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/icy_caves/caves/northwestmonorail/hallway
 	name = "Northwestern Monorail Station Hallway"
@@ -46,11 +49,13 @@
 	name = "Underground Cafeteria"
 	icon_state = "icy_undercaf"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/icy_caves/caves/cavesbrig
 	name = "Caves Brig"
 	icon_state = "icy_cavesbrig"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/icy_caves/caves/weapon_vault
 	name = "Cave Weapons Vault"
@@ -62,6 +67,7 @@
 	name = "Extraterrestrial Organisms and Plant Life Exhibit"
 	icon_state = "icy_alienstuff"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/icy_caves/caves/south
 	name = "Southern Caves"
@@ -87,6 +93,7 @@
 /area/icy_caves/outpost/dorms
 	name = "Dormitories"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/icy_caves/outpost/engineering
 	name = "Engineering"
@@ -96,6 +103,7 @@
 /area/icy_caves/outpost/garage
 	name = "Garage"
 	icon_state = "garage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/icy_caves/outpost/medbay
 	name = "\improper Medbay"
@@ -105,6 +113,7 @@
 /area/icy_caves/outpost/refinery
 	name = "\improper Refinery"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/icy_caves/outpost/security
 	name = "\improper Security"
@@ -121,6 +130,9 @@
 	icon_state = "cafeteria"
 	ceiling = CEILING_GLASS
 
+/area/icy_caves/outpost/mining
+	minimap_color = MINIMAP_AREA_REQ
+
 /area/icy_caves/outpost/mining/west
 	name = "\improper Mining West"
 	icon_state = "blue"
@@ -132,6 +144,7 @@
 /area/icy_caves/outpost/kitchen
 	name = "\improper Kitchen"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/icy_caves/outpost/office
 	name = "\improper Offices"

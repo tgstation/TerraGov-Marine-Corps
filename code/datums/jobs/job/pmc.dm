@@ -85,7 +85,7 @@
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
 	shoes = /obj/item/clothing/shoes/veteran/pmc
-	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
 	mask = /obj/item/clothing/mask/gas/pmc

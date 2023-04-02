@@ -55,7 +55,7 @@
 	data = counterlist_normalise(supplied_data)
 
 /datum/reagent/consumable/nutriment/on_merge(list/newdata, newvolume)
-	if(!islist(newdata) || !newdata.len)
+	if(!islist(newdata) || !length(newdata))
 		return
 
 	// data for nutriment is one or more (flavour -> ratio)
@@ -129,15 +129,10 @@
 		var/mob/living/carbon/human/H = L
 		if((H.species.species_flags & NO_PAIN))
 			return ..()
-	switch(current_cycle)
-		if(1 to agony_start - 1)
-			if(prob(5))
-				to_chat(L, discomfort_message)
-		if(agony_start to INFINITY)
-			L.apply_effect(agony_amount, AGONY)
-			if(prob(5))
-				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
-				to_chat(L, discomfort_message)
+	if(prob(5))
+		to_chat(L, discomfort_message)
+	if(L.bodytemperature == targ_temp)
+		L.apply_effect(agony_amount, AGONY)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed

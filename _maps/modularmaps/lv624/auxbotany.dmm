@@ -217,8 +217,8 @@
 /area/lv624/lazarus/hydroponics/aux)
 "qq" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
 "rr" = (

@@ -19,23 +19,29 @@
 		return COMPONENT_INCOMPATIBLE
 	src.controlled = controlled
 	if(allow_interaction)
-		ctrl_click_proc = CALLBACK(src, .proc/remote_interact)
+		ctrl_click_proc = CALLBACK(src, PROC_REF(remote_interact))
 	update_left_clickproc(null, type)
-	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_left_clickproc)
-	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_right_clickproc)
-	RegisterSignal(parent, COMSIG_REMOTECONTROL_TOGGLE, .proc/toggle_remote_control)
-	RegisterSignal(controlled, COMSIG_PARENT_QDELETING, .proc/on_control_terminate)
-	RegisterSignal(controlled, COMSIG_MOVABLE_HEAR, .proc/on_hear)
-	RegisterSignal(parent, list(COMSIG_REMOTECONTROL_UNLINK, COMSIG_PARENT_QDELETING), .proc/on_control_terminate)
+	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, PROC_REF(update_left_clickproc))
+	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, PROC_REF(update_right_clickproc))
+	RegisterSignal(parent, COMSIG_REMOTECONTROL_TOGGLE, PROC_REF(toggle_remote_control))
+	RegisterSignal(controlled, COMSIG_PARENT_QDELETING, PROC_REF(on_control_terminate))
+	RegisterSignal(controlled, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
+	RegisterSignal(parent, list(COMSIG_REMOTECONTROL_UNLINK, COMSIG_PARENT_QDELETING), PROC_REF(on_control_terminate))
+	RegisterSignal(controlled, COMSIG_PARENT_PREQDELETED, PROC_REF(disable_controls))
 
 
 /datum/component/remote_control/Destroy(force=FALSE, silent=FALSE)
-	if(is_controlling)
-		remote_control_off()
+	UnregisterSignal(controlled, COMSIG_PARENT_PREQDELETED)
 	controlled = null
 	left_click_proc = null
 	right_click_proc = null
 	return ..()
+
+///I want controls to be disabled *before* actually qdeling due to some race conditions of my own creation.
+/datum/component/remote_control/proc/disable_controls()
+	SIGNAL_HANDLER
+	if(is_controlling)
+		remote_control_off()
 
 ///Called when Controlling should not be resumed and deleted the component
 /datum/component/remote_control/proc/on_control_terminate(datum/source)
@@ -62,9 +68,9 @@
 	SIGNAL_HANDLER
 	switch(type)
 		if(TURRET_TYPE_DROIDLASER, TURRET_TYPE_HEAVY, TURRET_TYPE_LIGHT)
-			left_click_proc = CALLBACK(src, .proc/uv_handle_click)
+			left_click_proc = CALLBACK(src, PROC_REF(uv_handle_click))
 		if(TURRET_TYPE_EXPLOSIVE)
-			left_click_proc = CALLBACK(src, .proc/uv_handle_click_explosive)
+			left_click_proc = CALLBACK(src, PROC_REF(uv_handle_click_explosive))
 		else
 			left_click_proc = null
 
@@ -115,10 +121,10 @@
 		return
 	controlled.become_hearing_sensitive()
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, newuser)
-	RegisterSignal(newuser, COMSIG_MOB_CLICKON, .proc/invoke)
-	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, .proc/remote_control_off)
-	RegisterSignal(newuser, COMSIG_RELAYED_SPEECH, .proc/on_relayed_speech)
-	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remote_control_off)
+	RegisterSignal(newuser, COMSIG_MOB_CLICKON, PROC_REF(invoke))
+	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, PROC_REF(remote_control_off))
+	RegisterSignal(newuser, COMSIG_RELAYED_SPEECH, PROC_REF(on_relayed_speech))
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(remote_control_off))
 	is_controlling = TRUE
 	newuser.set_remote_control(controlled)	//Movement inputs are handled by the controlled thing in relaymove()
 	user = newuser

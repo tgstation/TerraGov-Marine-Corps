@@ -34,6 +34,7 @@
 	icon_state="orange"
 	ceiling = CEILING_GLASS
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/outpost/cargo/office
 	name = "Cargo Office"
@@ -50,6 +51,7 @@
 	name = "Cargo Engineering"
 	icon_state="orange"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_REQ
 
 // Cave Areas, cave.
 
@@ -269,6 +271,7 @@
 	icon_state="Sleep"
 	ceiling = CEILING_GLASS
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LIVING
 
 
 // Brig

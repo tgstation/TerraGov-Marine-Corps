@@ -2,6 +2,10 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/glasses_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/glasses_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_SMALL
 	var/prescription = FALSE
 	var/toggleable = FALSE
@@ -91,7 +95,6 @@
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	item_state = "headset" // lol
 	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/material

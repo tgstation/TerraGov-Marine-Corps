@@ -57,7 +57,7 @@
 					trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
 					visible_message(span_danger("[user] tries to squirt something into [target]s eyes, but fails!"))
-					addtimer(CALLBACK(reagents, /datum/reagents.proc/reaction, safe_thing, TOUCH), 5)
+					addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, reaction), safe_thing, TOUCH), 5)
 
 					to_chat(user, span_notice("You transfer [trans] units of the solution."))
 					if (src.reagents.total_volume<=0)

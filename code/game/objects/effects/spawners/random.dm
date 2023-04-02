@@ -45,7 +45,7 @@
 	var/list/spawn_locations = get_spawn_locations(spawn_scatter_radius)
 	var/spawn_loot_count = lootcount_override ? lootcount_override : src.spawn_loot_count
 
-	if(!spawn_locations.len)
+	if(!length(spawn_locations))
 		return
 
 	if(spawn_all_loot)
@@ -58,11 +58,11 @@
 	if(loot_subtype_path)
 		loot += subtypesof(loot_subtype_path)
 
-	if(!loot.len)
+	if(!length(loot))
 		return
 
 	var/loot_spawned = 0
-	while((spawn_loot_count > loot_spawned) && loot.len)
+	while((spawn_loot_count > loot_spawned) && length(loot))
 		var/lootspawn = pick_weight_recursive(loot)
 		if(!spawn_loot_double)
 			loot.Remove(lootspawn)
@@ -119,7 +119,7 @@
 	loot = list(
 		/obj/item/t_scanner = 4,
 		/obj/item/radio = 2,
-		/obj/item/analyzer = 4,
+		/obj/item/tool/analyzer = 4,
 	)
 
 /obj/effect/spawner/random/powercell
@@ -140,7 +140,7 @@
 		/obj/item/assembly/igniter,
 		/obj/item/assembly/prox_sensor,
 		/obj/item/assembly/signaler,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 	)
 
 /obj/effect/spawner/random/toolbox
@@ -264,7 +264,7 @@
 	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/flashlight = 15,
-		/obj/item/flashlight/flare = 5,
+		/obj/item/explosive/grenade/flare/civilian = 5,
 		/obj/item/flashlight/lantern = 1,
 		/obj/item/flashlight/pen = 1,
 	)
@@ -468,7 +468,7 @@
 		/obj/item/clothing/under/rank/medical,
 		/obj/item/clothing/under/rank/prisoner,
 		/obj/item/clothing/under/rank/research_director/rdalt,
-		/obj/item/clothing/under/rank/ro_suit,
+		/obj/item/clothing/under/marine/officer/ro_suit,
 		/obj/item/clothing/under/suit_jacket,
 		/obj/item/clothing/under/suit_jacket/charcoal,
 		/obj/item/clothing/under/swimsuit,
@@ -503,11 +503,9 @@
 		/obj/item/clothing/head/headband/red,
 		/obj/item/clothing/head/headband/snake,
 		/obj/item/clothing/head/helmet,
-		/obj/item/clothing/head/helmet/durag/jungle,
 		/obj/item/clothing/head/helmet/gladiator,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/clothing/head/helmet/space/rig,
-		/obj/item/clothing/head/helmet/space/syndicate,
 		/obj/item/clothing/under/rank/head_of_security/alt,
 		/obj/item/clothing/head/powdered_wig,
 		/obj/item/clothing/head/radiation,
@@ -1676,7 +1674,7 @@
 
 /obj/effect/spawner/random/structure/random_broken_computer/rdconsole
 	loot = list(
-		/obj/machinery/computer/rdconsole = 85,
+		/obj/machinery/prop/computer/rdconsole = 85,
 		/obj/effect/spawner/random/structure/random_broken_computer = 15,
 	)
 

@@ -23,7 +23,7 @@
 		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
-	if(slots.len)
+	if(length(slots))
 		storage_strings += "It can be worn on your [english_list(slots)]."
 
 	if(use_to_pickup)
@@ -73,4 +73,4 @@
 	mechanics_text = "It's a belt for holding your tools"
 	lore_text = "Although it looks and feels like leather, the last cow was killed to make a steak dinner for the queen of France."
 	antag_text = "I don't see how this could be used for antagonistic purposes."
-	
+

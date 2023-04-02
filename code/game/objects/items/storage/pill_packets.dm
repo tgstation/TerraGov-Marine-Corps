@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!contents.len && !QDELETED(src))
+	if(!length(contents) && !QDELETED(src))
 		var/turf/T = get_turf(src)
 		new trash_item(T)
 		qdel(src)
@@ -29,7 +29,7 @@
 
 /obj/item/storage/pill_bottle/packet/update_overlays()
 	. = ..()
-	var/image/overlay = image('icons/obj/items/chemistry.dmi', src, "packet_canister[contents.len]")
+	var/image/overlay = image('icons/obj/items/chemistry.dmi', src, "packet_canister[length(contents)]")
 	overlay.color = pip_color
 	. += overlay
 
@@ -68,6 +68,12 @@
 	desc = "This packet contains paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 	pip_color = COLOR_PACKET_PARACETAMOL
+
+/obj/item/storage/pill_bottle/packet/isotonic
+	name = "Isotonic pill packet"
+	desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration. Once you take them out they don't go back in."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	pip_color = COLOR_PACKET_ISOTONIC
 
 /obj/item/storage/pill_bottle/packet/leporazine
 	name = "Leporazine pill packet"

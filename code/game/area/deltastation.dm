@@ -39,6 +39,7 @@
 /area/deltastation/maintenance/department/electrical
 	name = "Electrical Maintenance"
 	icon_state = "maint_electrical"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/maintenance/department/engine/atmos
 	name = "Atmospherics Maintenance"
@@ -412,7 +413,7 @@
 /area/deltastation/commons
 	name = "\improper Crew Facilities"
 	icon_state = "commons"
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/deltastation/commons/dorms
 	name = "\improper Dormitories"
@@ -460,6 +461,7 @@
 /area/deltastation/commons/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/deltastation/commons/fitness/locker_room
 	name = "\improper Unisex Locker Room"
@@ -524,7 +526,7 @@
 //Service
 
 /area/deltastation/service
-	minimap_color = MINIMAP_AREA_CELL_LOW
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/deltastation/service/cafeteria
 	name = "\improper Cafeteria"
@@ -1314,6 +1316,7 @@
 
 /area/deltastation/tcommsat
 	icon_state = "tcomsatcham"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/deltastation/tcommsat/computer
 	name = "\improper Telecomms Control Room"

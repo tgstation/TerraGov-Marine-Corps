@@ -2,53 +2,31 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	/obj/machinery/atmospherics/components/unary/vent_pump,
 	/obj/machinery/atmospherics/components/unary/vent_scrubber)))
 
-//todo refactor this into a trait
-/mob/proc/can_ventcrawl()
-	return FALSE
-
-
-/mob/proc/ventcrawl_carry()
-	for(var/atom/A in src.contents)
-		if(!istype(A, /obj/item/clothing/mask/facehugger))
-			balloon_alert(src, "You can't be carrying items!")
-			return FALSE
-	return TRUE
-
-
 /mob/proc/start_ventcrawl()
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/components/unary/U in range(1))
 		if(is_type_in_list(U, GLOB.ventcrawl_machinery) && Adjacent(U))
 			pipes |= U
-	if(!pipes || !pipes.len)
+	if(!pipes || !length(pipes))
 		balloon_alert(src, "No pipes in range!")
 		return
-	if(pipes.len == 1)
+	if(length(pipes) == 1)
 		pipe = pipes[1]
 	else
 		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe",  pipes)
 	if(!incapacitated() && pipe)
 		return pipe
 
-
-/mob/living/carbon/human/can_ventcrawl()
-	return species.species_flags & CAN_VENTCRAWL
-
-/mob/living/simple_animal/mouse/can_ventcrawl()
-	return TRUE
-
-
 //VENTCRAWLING
 /mob/living/proc/handle_ventcrawl(atom/A, crawl_time = 4.5 SECONDS, stealthy = FALSE)
-	if(!can_ventcrawl() || !Adjacent(A) || !canmove)
+	if(!HAS_TRAIT(src, TRAIT_CAN_VENTCRAWL) || !Adjacent(A) || !canmove)
 		return
 	if(stat)
 		to_chat(src, "You must be conscious to do this!")
 		return
 
 	var/obj/machinery/atmospherics/components/unary/vent_found
-
 
 	if(A)
 		vent_found = A
@@ -67,26 +45,24 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(vent_found)
 				break
 
-
 	if(vent_found)
 		var/datum/pipeline/vent_found_parent = vent_found.parents[1]
-		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
+		if(vent_found_parent && (length(vent_found_parent.members) || vent_found_parent.other_atmosmch))
 			visible_message(span_notice("[stealthy ? "[src] begins climbing into the ventilation system..." : ""]"),span_notice("You begin climbing into the ventilation system..."))
 
 			if(!do_after(src, crawl_time, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
 				return
 
-			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
+			/// TODO istype(src) stupidity
+			if(iscarbon(src))//It must have atleast been 1 to get this far
 				var/failed = FALSE
 				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
-				if(items_list.len)
+				if(length(items_list))
 					failed = TRUE
 				if(failed)
 					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
 					return
 
-			if(!ventcrawl_carry())
-				return
 
 			visible_message(span_notice("[stealthy ? "[src] scrambles into the ventilation ducts!" : ""]"),span_notice("You climb into the ventilation ducts."))
 
@@ -106,7 +82,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	for(var/datum/pipeline/P in starting_machine.returnPipenets())
 		totalMembers += P.members
 		totalMembers += P.other_atmosmch
-	if(!totalMembers.len)
+	if(!length(totalMembers))
 		return
 
 	if(client)

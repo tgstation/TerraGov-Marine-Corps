@@ -388,8 +388,8 @@
 
 /obj/item/storage/pouch/grenade/som/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/explosive/grenade/smokebomb(src)
-	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
@@ -397,8 +397,8 @@
 
 /obj/item/storage/pouch/grenade/som/ert/Initialize()
 	. = ..()
-	new /obj/item/explosive/grenade/smokebomb(src)
-	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
+	new /obj/item/explosive/grenade/smokebomb/som(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
 	new /obj/item/explosive/grenade/som(src)
@@ -587,7 +587,7 @@
 	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
 	fill_type = /obj/item/explosive/grenade/flare
 	can_hold = list(
-		/obj/item/flashlight/flare,
+		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
 	)
@@ -714,7 +714,7 @@
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/weldingtool,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/tool/wrench,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/extinguisher/mini,
@@ -752,7 +752,7 @@
 	new /obj/item/tool/wrench (src)
 	new /obj/item/tool/crowbar (src)
 
-/obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
+/obj/item/storage/pouch/shotgun
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
 	icon_state = "shotshells"

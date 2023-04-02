@@ -133,3 +133,5 @@
 
 #define SMOOTH_GROUP_GENERAL_STRUCTURES S_OBJ(68) //Walls, doors, windows, girders, you name it.
 #define SMOOTH_GROUP_XENO_STRUCTURES S_OBJ(69) //Resin structures.
+
+#define SMOOTH_GROUP_FOAM_WALL S_OBJ(70) //foam walls.

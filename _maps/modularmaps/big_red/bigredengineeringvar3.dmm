@@ -559,7 +559,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "yQ" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -790,7 +790,7 @@
 /area/bigredv2/outside/engineering)
 "MJ" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Nh" = (
@@ -965,7 +965,7 @@
 /area/bigredv2/caves/southwest)
 "Uz" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Vy" = (

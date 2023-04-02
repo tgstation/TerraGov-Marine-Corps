@@ -94,7 +94,7 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -123,7 +123,7 @@
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 35, TRUE, 9)
+	playsound(loc, "incendiary_explosion", 35)
 	qdel(src)
 
 
@@ -141,8 +141,8 @@
 		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
-	name = "\improper S31 incendiary grenade"
-	desc = "A reliable incendiary grenade utilised by SOM forces. Designed for hand or grenade launcher use."
+	name = "\improper S30-I incendiary grenade"
+	desc = "A reliable incendiary grenade utilised by SOM forces. Based off the S30 platform shared by most SOM grenades. Designed for hand or grenade launcher use."
 	icon_state = "grenade_fire_som"
 	item_state = "grenade_fire_som"
 
@@ -158,9 +158,8 @@
 	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
-	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
+	playsound(loc, "molotov", 35)
 	qdel(src)
 
 /obj/item/explosive/grenade/ags
@@ -192,10 +191,16 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
 	smoke.set_up(smokeradius, loc, smoke_duration)
 	smoke.start()
 	qdel(src)
+
+/obj/item/explosive/grenade/smokebomb/som
+	name = "\improper S30-S smoke grenade"
+	desc = "The S30-S is a small, but powerful smoke grenade. Based off the S30 platform shared by most SOM grenades. It is set to detonate in 2 seconds."
+	icon_state = "grenade_smoke_som"
+	item_state = "grenade_smoke_som"
 
 ///chemical grenades
 
@@ -221,8 +226,8 @@
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/satrapine
-	name = "\improper Satrapine smoke grenade"
-	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
+	name = "satrapine smoke grenade"
+	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers. Employed heavily by the SOM."
 	icon_state = "grenade_nerve"
 	item_state = "grenade_nerve"
 	det_time = 4 SECONDS
@@ -280,7 +285,7 @@
 	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
+	arm_sound = 'sound/weapons/armbombpin_1.ogg'
 
 /obj/item/explosive/grenade/impact
 	name = "\improper M40 IMDP grenade"
@@ -420,6 +425,12 @@
 	if(N)
 		qdel(N)
 		turn_off()
+
+/obj/item/explosive/grenade/flare/civilian
+	name = "flare"
+	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
+	icon_state = "flare"
+	item_state = "flare"
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"

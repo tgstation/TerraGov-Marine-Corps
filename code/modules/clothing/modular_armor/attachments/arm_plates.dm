@@ -6,17 +6,6 @@
 	icon = 'icons/mob/modular/mark_one/arm_plates.dmi'
 	icon_state = "infantry"
 	slot = ATTACHMENT_SLOT_SHOULDER
-	current_variant = "black"
-	icon_state_variants = list(
-		"black",
-		"jungle",
-		"desert",
-		"snow",
-		"alpha",
-		"bravo",
-		"charlie",
-		"delta",
-	)
 
 /obj/item/armor_module/armor/arms/marine
 	name = "\improper Jaeger Pattern Infantry arm plates"
@@ -49,3 +38,8 @@
 	name = "\improper Jaeger Pattern EOD arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod"
+
+/obj/item/armor_module/armor/arms/marine/helljumper
+	name = "\improper Jaeger Pattern Hell Jumper arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Hell Jumper armor piece."
+	icon_state = "helljumper"

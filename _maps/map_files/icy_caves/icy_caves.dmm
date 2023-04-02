@@ -2783,11 +2783,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "py" = (
@@ -3105,7 +3105,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "qY" = (
-/obj/machinery/computer/rdconsole,
+/obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/dark/purple2{
 	dir = 10
 	},
@@ -3115,7 +3115,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
 "ra" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
 "rb" = (
@@ -4911,7 +4911,7 @@
 "zu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/prison/bright_clean/two,
-/area/prison/monorail/west)
+/area/icy_caves/caves/northwestmonorail)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -9177,11 +9177,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "UZ" = (

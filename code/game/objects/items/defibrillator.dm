@@ -91,7 +91,7 @@
 		return
 
 	//Job knowledge requirement
-	var/skill = user.skills.getRating("medical")
+	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
@@ -116,7 +116,7 @@
 		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
 	dcell = new_cell
 	if(dcell)
-		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
+		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, PROC_REF(on_cell_deletion))
 
 
 ///Called by the deletion of the referenced powercell.
@@ -161,7 +161,7 @@
 	var/defib_heal_amt = damage_threshold
 
 	//job knowledge requirement
-	var/skill = user.skills.getRating("medical")
+	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
@@ -266,23 +266,25 @@
 	//At this point, the defibrillator is ready to work
 	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
 		H.setOxyLoss(0)
+		H.updatehealth()
 
+		var/heal_target = H.get_death_threshold() - H.health + 1
 		var/all_loss = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
-		var/heal_target = abs(H.health - H.get_death_threshold()) + 1
-		var/brute_ratio = H.getBruteLoss() / all_loss
-		var/burn_ratio = H.getFireLoss() / all_loss
-		var/tox_ratio = H.getToxLoss() / all_loss
-		if(tox_ratio)
-			H.adjustToxLoss(-(tox_ratio * heal_target))
-		H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE, TRUE) // explicitly also heals robit parts
+		if(all_loss && (heal_target > 0))
+			var/brute_ratio = H.getBruteLoss() / all_loss
+			var/burn_ratio = H.getFireLoss() / all_loss
+			var/tox_ratio = H.getToxLoss() / all_loss
+			if(tox_ratio)
+				H.adjustToxLoss(-(tox_ratio * heal_target))
+			H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robit parts
 
 	else if(!issynth(H)) // TODO make me a trait :)
 		H.adjustBruteLoss(-defib_heal_amt)
 		H.adjustFireLoss(-defib_heal_amt)
 		H.adjustToxLoss(-defib_heal_amt)
 		H.setOxyLoss(0)
-		H.updatehealth() //Needed for the check to register properly
 
+	H.updatehealth() //Make sure health is up to date since it's a purely derived value
 	if(H.health <= H.get_death_threshold())
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again."))
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
@@ -344,7 +346,7 @@
 /obj/item/defibrillator/gloves/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(user.gloves == src)
-		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_unarmed_attack)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 

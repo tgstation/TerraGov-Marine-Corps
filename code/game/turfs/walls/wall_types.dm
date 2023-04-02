@@ -21,6 +21,7 @@
 	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
 	resistance_flags = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
@@ -67,7 +68,7 @@
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	icon_state = "wwall-0"
+	icon_state = "wall-invincible"
 	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
@@ -187,9 +188,11 @@
 	desc = "A reinforced outer hull, probably to prevent breaches"
 	walltype = "sulaco"
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/sulaco/unmeltable
 	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
 
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
 	return
@@ -367,3 +370,15 @@
 	base_icon_state = "woodwall"
 	walltype = "woodwall"
 	explosion_block = 1
+
+// Reinforced Wood Wall
+
+/turf/closed/wall/wood/reinforced
+	name = "reinforced wood wall"
+	desc = "A reinforced wooden wall"
+	icon = 'icons/turf/walls/woodrwall.dmi'
+	icon_state = "woodrwall-0"
+	base_icon_state = "woodrwall"
+	walltype = "woodrwall"
+	max_integrity = 3000
+	explosion_block = 4

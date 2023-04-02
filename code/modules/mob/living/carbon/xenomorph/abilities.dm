@@ -83,7 +83,7 @@
 	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 /datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/choose_weed)
+	INVOKE_ASYNC(src, PROC_REF(choose_weed))
 	return COMSIG_KB_ACTIVATED
 
 ///Chose which weed will be planted by the xeno owner or toggle automatic weeding
@@ -110,8 +110,8 @@
 		auto_weeding = FALSE
 		to_chat(owner, span_xenonotice("We will no longer automatically plant weeds."))
 		return
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/weed_on_move)
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/toggle_auto_weeding)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(weed_on_move))
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(toggle_auto_weeding))
 	auto_weeding = TRUE
 	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
@@ -216,32 +216,28 @@
 
 /// Extra handling for adding the action for draggin functionality (for instant building)
 /datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
-	..()
+	. = ..()
 	if(!(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
 		return
-	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, .proc/start_resin_drag)
-	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, .proc/preshutter_resin_drag)
-	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, .proc/stop_resin_drag)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), .proc/end_resin_drag)
 
-/// Extra handling to remove the stuff needed for dragging
-/datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
-	..()
-	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
-		return
-	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
-
-
-/datum/action/xeno_action/activable/secrete_resin/New(Target)
-	. = ..()
-	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD)))
-		return
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	build_maptext.pixel_x = 12
 	build_maptext.pixel_y = -5
 	build_maptext.maptext = MAPTEXT(SSresinshaping.get_building_points(owner))
 	visual_references[VREF_MUTABLE_BUILDING_COUNTER] = build_maptext
+
+	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
+	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(preshutter_resin_drag))
+	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, PROC_REF(stop_resin_drag))
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
+
+/// Extra handling to remove the stuff needed for dragging
+/datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+		return
+	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
 
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
@@ -450,7 +446,7 @@
 		X.hud_set_pheromone()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction, X.hivenumber)
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, "alien_drool", 25)
 
@@ -561,7 +557,7 @@
 
 	target.beam(X,"drain_life", time = 1 SECONDS, maxdistance = 10) //visual SFX
 	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
-	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_filter), "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 
 	var/amount = plasma_transfer_amount
 	if(X.plasma_stored < plasma_transfer_amount)
@@ -818,7 +814,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
 	. = ..()
-	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, PROC_REF(reset_fire)), _callback_fire = CALLBACK(src, PROC_REF(fire)))
 
 /datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
 	qdel(owner.GetComponent(/datum/component/automatedfire/autofire))
@@ -832,13 +828,13 @@
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
-		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(X, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
+		RegisterSignal(X, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		return ..()
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
+	for(var/i in 1 to length(X.xeno_caste.spit_types))
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
+			if(i == length(X.xeno_caste.spit_types))
 				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
@@ -936,7 +932,7 @@
 		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
 	current_target = object
 	if(current_target)
-		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
 
 ///Cleans the current target in case of Hardel
 /datum/action/xeno_action/activable/xeno_spit/proc/clean_target()
@@ -1032,11 +1028,14 @@
 	succeed_activate()
 
 	add_cooldown()
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
+	track_stats()
+
+///Adds ability tally to the end-round statistics.
+/datum/action/xeno_action/activable/neurotox_sting/proc/track_stats()
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
-
-	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
 //Ozelomelyn Sting
 /datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
@@ -1051,6 +1050,10 @@
 	plasma_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
+///Adds ability tally to the end-round statistics.
+/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn/track_stats()
+	GLOB.round_statistics.ozelomelyn_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "ozelomelyn_stings")
 
 // ***************************************
 // *********** Psychic Whisper
@@ -1119,7 +1122,7 @@
 	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
 		span_xenonotice("We start planting an egg."), null, 5)
 
-	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
+	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
 		return fail_activate()
 
 	if(!xeno.loc_weeds_type)
@@ -1276,7 +1279,7 @@
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
@@ -1381,7 +1384,7 @@
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()

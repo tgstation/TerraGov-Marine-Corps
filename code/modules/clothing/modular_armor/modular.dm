@@ -53,6 +53,7 @@
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_BELT,
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/chest/marine,
@@ -79,6 +80,10 @@
 		/obj/item/armor_module/armor/legs/marine/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -95,7 +100,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -136,14 +143,6 @@
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
 
-/obj/item/clothing/suit/modular/on_pocket_insertion()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/suit/modular/on_pocket_removal()
-	. = ..()
-	update_icon()
-
 /obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
@@ -179,16 +178,6 @@
 		return
 	turn_light(user, !light_on)
 	return TRUE
-
-/obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()
-
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
 	if(!light_range) // No light no ability
@@ -264,6 +253,9 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
@@ -346,14 +338,6 @@
 			if(flags_item_map_variant & ITEM_DESERT_VARIANT)
 				current_variant = "desert"
 
-/obj/item/clothing/head/modular/on_pocket_insertion()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/head/modular/on_pocket_removal()
-	. = ..()
-	update_icon()
-
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
@@ -379,15 +363,6 @@
 	paint.uses--
 	update_icon()
 
-/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()
-
 /obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
@@ -411,7 +386,7 @@
 /obj/item/clothing/mask/gas/modular
 	name = "style mask"
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
-	icon = 'icons/mob/modular/style_hats.dmi'
+	icon = 'icons/obj/clothing/headwear/style_hats.dmi'
 	breathy = FALSE
 	item_icons = list(
 		slot_wear_mask_str = 'icons/mob/modular/style_hats_mob.dmi',

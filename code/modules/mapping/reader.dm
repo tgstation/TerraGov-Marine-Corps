@@ -101,24 +101,24 @@
 			gridSet.gridLines = gridLines
 
 			var/leadingBlanks = 0
-			while(leadingBlanks < gridLines.len && gridLines[++leadingBlanks] == "")
+			while(leadingBlanks < length(gridLines) && gridLines[++leadingBlanks] == "")
 			if(leadingBlanks > 1)
 				gridLines.Cut(1, leadingBlanks) // Remove all leading blank lines.
 
-			if(!gridLines.len) // Skip it if only blank lines exist.
+			if(!length(gridLines)) // Skip it if only blank lines exist.
 				continue
 
 			gridSets += gridSet
 
-			if(gridLines.len && gridLines[gridLines.len] == "")
-				gridLines.Cut(gridLines.len) // Remove only one blank line at the end.
+			if(length(gridLines) && gridLines[length(gridLines)] == "")
+				gridLines.Cut(length(gridLines)) // Remove only one blank line at the end.
 
 			bounds[MAP_MINY] = min(bounds[MAP_MINY], clamp(gridSet.ycrd, y_lower, y_upper))
-			gridSet.ycrd += gridLines.len - 1 // Start at the top and work down
+			gridSet.ycrd += length(gridLines) - 1 // Start at the top and work down
 			bounds[MAP_MAXY] = max(bounds[MAP_MAXY], clamp(gridSet.ycrd, y_lower, y_upper))
 
 			var/maxx = gridSet.xcrd
-			if(gridLines.len) //Not an empty map
+			if(length(gridLines)) //Not an empty map
 				maxx = max(maxx, gridSet.xcrd + length(gridLines[1]) / key_len - 1)
 
 			bounds[MAP_MAXX] = clamp(max(bounds[MAP_MAXX], maxx), x_lower, x_upper)
@@ -263,8 +263,8 @@
 			if(variables_start)//if there's any variable
 				full_def = copytext(full_def, variables_start + length(full_def[variables_start]), -length(copytext_char(full_def, -1))) //removing the last '}'
 				fields = readlist(full_def, ";")
-				if(fields.len)
-					if(!trim(fields[fields.len]))
+				if(length(fields))
+					if(!trim(fields[length(fields)]))
 						--fields.len
 					for(var/I in fields)
 						var/value = fields[I]
@@ -288,8 +288,8 @@
 		// We can skip calling this proc every time we see XXX
 		if(no_changeturf \
 			&& !(.[SPACE_KEY]) \
-			&& members.len == 2 \
-			&& members_attributes.len == 2 \
+			&& length(members) == 2 \
+			&& length(members_attributes) == 2 \
 			&& length(members_attributes[1]) == 0 \
 			&& length(members_attributes[2]) == 0 \
 			&& (world.area in members) \
@@ -312,7 +312,7 @@
 
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
-	index = members.len
+	index = length(members)
 	if(members[index] != /area/template_noop)
 		var/atype = members[index]
 		GLOB._preloader.setup(members_attributes[index], atype)//preloader for assigning  set variables on atom creation
@@ -344,7 +344,7 @@
 	if(T)
 		//if others /turf are presents, simulates the underlays piling effect
 		index = first_turf_index + 1
-		while(index <= members.len - 1) // Last item is an /area
+		while(index <= length(members) - 1) // Last item is an /area
 			var/underlay = T.appearance
 			T = instance_atom(members[index], members_attributes[index], crds,no_changeturf, placeOnTop, delete)//instance new turf
 			T.underlays += underlay

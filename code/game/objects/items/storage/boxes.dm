@@ -436,7 +436,7 @@
 
 /obj/item/storage/box/MRE/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	if(. && !contents.len && !gc_destroyed)
+	if(. && !length(contents) && !gc_destroyed)
 		qdel(src)
 
 /obj/item/storage/box/MRE/update_icon()
@@ -549,8 +549,8 @@
 
 	else if(deployed)
 		draw_mode = variety == 1? TRUE: FALSE //If only one type of item in box, then quickdraw it.
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
 		open(user)

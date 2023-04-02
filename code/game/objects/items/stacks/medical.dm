@@ -5,6 +5,10 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
 	amount = 10
 	max_amount = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -72,11 +76,11 @@
 		patient.balloon_alert(user, "limb destroyed")
 		return
 
-	var/unskilled_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
+	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
 	var/list/patient_limbs = patient.limbs.Copy()
 	patient_limbs -= affecting
 	while(affecting)
-		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, .proc/can_affect_limb, affecting)))
+		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
 			patient.balloon_alert(user, "Stopped tending")
 			return
 		var/affected = heal_limb(affecting, unskilled_penalty)
@@ -240,7 +244,7 @@
 	if(!.) // note this true/false is inverted because we want to get the limb
 		return
 
-	if(user.skills.getRating("medical") < skill_level_needed)
+	if(user.skills.getRating(SKILL_MEDICAL) < skill_level_needed)
 		if(user.do_actions)
 			M.balloon_alert(user, "already busy")
 			return FALSE
@@ -251,7 +255,7 @@
 	if(M == user && ((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT)))
 		user.balloon_alert(user, "You are using that arm!")
 		return
-	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M))
+	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
 		use(1)
 
 

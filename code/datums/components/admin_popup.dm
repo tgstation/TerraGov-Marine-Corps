@@ -23,7 +23,7 @@
 			COMSIG_ADMIN_HELP_REPLIED,
 			COMSIG_PARENT_QDELETING,
 		),
-		.proc/delete_self,
+		PROC_REF(delete_self),
 	)
 
 /datum/component/admin_popup/Destroy(force, silent)
@@ -101,7 +101,7 @@
 	if(world.time - last_update_time < 2 SECONDS)
 		return
 
-	last_color_index = (last_color_index % colors.len) + 1
+	last_color_index = (last_color_index % length(colors)) + 1
 
 	var/message = "<b style='color: [colors[last_color_index]]; text-align: center; font-size: 32px'>"
 	message += "HEY! An admin is trying to talk to you!<br>Check your chat window, and click their name to respond!"

@@ -104,7 +104,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "fZ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ge" = (
@@ -410,7 +410,7 @@
 /area/bigredv2/outside/office_complex)
 "to" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "tp" = (

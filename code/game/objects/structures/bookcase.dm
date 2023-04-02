@@ -35,7 +35,7 @@
 	. = ..()
 	if(.)
 		return
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/book/choice = tgui_input_list(user, "Which book would you like to remove from the shelf?", null, contents)
 		if(choice)
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
@@ -68,8 +68,8 @@
 
 
 /obj/structure/bookcase/update_icon()
-	if(contents.len < 5)
-		icon_state = "book-[contents.len]"
+	if(length(contents) < 5)
+		icon_state = "book-[length(contents)]"
 	else
 		icon_state = "book-5"
 

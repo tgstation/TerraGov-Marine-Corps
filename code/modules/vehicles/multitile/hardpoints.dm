@@ -40,7 +40,7 @@ Currently only has the tank hardpoints
 	. = ..()
 	var/status = obj_integrity <= 0.1 ? "broken" : "functional"
 	var/span_class = obj_integrity <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
-	if((user.skills.getRating("engineer") >= SKILL_ENGINEER_METAL) || isobserver(user))
+	if((user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_METAL) || isobserver(user))
 		switch(PERCENT(obj_integrity / max_integrity))
 			if(0.1 to 33)
 				status = "heavily damaged"
@@ -618,8 +618,8 @@ Currently only has the tank hardpoints
 	if(M)
 		to_chat(M, span_danger("You hit the nitros! RRRRRRRMMMM!!"))
 	playsound(M, 'sound/mecha/hydraulic.ogg', 60, 1, vary = 0)
-	addtimer(CALLBACK(src, .proc/boost_off), TANK_OVERDRIVE_BOOST_DURATION)
-	addtimer(CALLBACK(src, .proc/boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(boost_off)), TANK_OVERDRIVE_BOOST_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(boost_ready_notice)), TANK_OVERDRIVE_BOOST_COOLDOWN)
 
 /obj/item/hardpoint/support/overdrive_enhancer/remove_buff()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner

@@ -126,7 +126,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				dat += "<center><b>0 bans detected for [ckey]</b></center>"
 			else
 				bans = json_decode(response["body"])
-				dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
+				dat += "<center><b>[length(bans)] ban\s detected for [ckey]</b></center>"
 				for(var/list/ban in bans)
 					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
 					dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
@@ -269,8 +269,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
-				to_chat(GLOB.alive_xeno_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
-				for(var/i in GLOB.alive_xeno_list)
+				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
+				for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")
@@ -599,6 +599,23 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		usr.client.smite(H)
+
+	else if(href_list["traitor"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		if(!SSticker.HasRoundStarted())
+			alert("The game hasn't started yet!")
+			return
+
+		var/mob/M = locate(href_list["traitor"])
+		if(!ismob(M))
+			var/datum/mind/D = M
+			if(!istype(D))
+				to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+				return
+			else
+				D.traitor_panel()
 
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])

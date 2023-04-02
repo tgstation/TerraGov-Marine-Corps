@@ -7,7 +7,7 @@
 ///Signal handler for give keybind
 /mob/living/carbon/proc/give_signal_handler()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/do_give)
+	INVOKE_ASYNC(src, PROC_REF(do_give))
 
 ///Look for a nearby human to give the held item, and ask him if he wants it
 /mob/living/carbon/proc/do_give()

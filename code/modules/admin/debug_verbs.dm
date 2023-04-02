@@ -318,7 +318,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/preparsed = splittext(object,":")
 	var/path = preparsed[1]
 	var/amount = 1
-	if(preparsed.len > 1)
+	if(length(preparsed) > 1)
 		amount = clamp(text2num(preparsed[2]),1,ADMIN_SPAWN_CAP)
 
 	var/chosen = pick_closest_path(path)
@@ -637,7 +637,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			turfs_by_dist[affected_turf] = 9999
 			affected_turf.maptext = "N (null)"
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 10 SECONDS)
 
 /datum/admins/proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)

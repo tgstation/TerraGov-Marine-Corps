@@ -18,7 +18,7 @@
 /obj/alien/Initialize()
 	. = ..()
 	if(!ignore_weed_destruction)
-		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 
 /// Destroy the alien effect when the weed it was on is destroyed
 /obj/alien/proc/weed_removed()
@@ -85,7 +85,7 @@
 /obj/alien/resin/sticky/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -224,7 +224,7 @@
 	set_opacity(FALSE)
 	state = 1
 	update_icon()
-	addtimer(CALLBACK(src, .proc/Close), close_delay)
+	addtimer(CALLBACK(src, PROC_REF(Close)), close_delay)
 
 /obj/structure/mineral_door/resin/Close()
 	if(!state || !loc ||isSwitchingStates)
@@ -232,11 +232,11 @@
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
 		if(locate(/mob/living) in turf)
-			addtimer(CALLBACK(src, .proc/Close), close_delay)
+			addtimer(CALLBACK(src, PROC_REF(Close)), close_delay)
 			return
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
-	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_close)), 1 SECONDS)
 
 /// Change the icon and density of the door
 /obj/structure/mineral_door/resin/proc/do_close()
@@ -266,7 +266,7 @@
 		if(!istype(T))
 			continue
 		for(var/obj/structure/mineral_door/resin/R in T)
-			INVOKE_NEXT_TICK(R, .proc/check_resin_support)
+			INVOKE_NEXT_TICK(R, PROC_REF(check_resin_support))
 	return ..()
 
 
@@ -357,7 +357,7 @@
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)
 	if(isxenohivelord(thrower))
-		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/jelly_throw_hit)
+		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(jelly_throw_hit))
 	. = ..()
 
 /obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
@@ -369,4 +369,4 @@
 	if(X.fire_resist_modifier <= -20 || X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
-	INVOKE_ASYNC(src, .proc/activate_jelly, X)
+	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)

@@ -44,7 +44,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "dI" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "dV" = (
@@ -159,7 +159,7 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/secomplex)
 "kq" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "kt" = (
@@ -783,7 +783,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "UC" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "UJ" = (
@@ -809,7 +809,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Wh" = (
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Wt" = (

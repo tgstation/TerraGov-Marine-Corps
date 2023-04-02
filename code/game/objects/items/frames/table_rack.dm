@@ -11,8 +11,11 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "table_parts"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "table_parts"
-	materials = list(/datum/material/metal = 7500) //A table, takes two sheets to build
 	flags_atom = CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
@@ -73,7 +76,6 @@
 	desc = "A kit for a table, including a large, flat metal surface and four legs. This kit has side panels. Some assembly required."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "reinf_tableparts"
-	materials = list(/datum/material/metal = 15000) //A reinforced table. Two sheets of metal and four rods
 	table_type = /obj/structure/table/reinforced
 
 
@@ -141,9 +143,12 @@
 	name = "rack parts"
 	desc = "A kit for a storage rack with multiple metal shelves. Relatively cheap, useful for mass storage. Some assembly required."
 	icon = 'icons/obj/items/items.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	icon_state = "rack_parts"
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 3750)
 
 
 /obj/item/frame/rack/attackby(obj/item/I, mob/user, params)

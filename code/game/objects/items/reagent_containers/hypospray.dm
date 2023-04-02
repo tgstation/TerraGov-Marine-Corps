@@ -52,7 +52,7 @@
 			to_chat(user, span_warning("[src] is full."))
 			return  //early returning if its full
 
-		if(!A.contents.len)
+		if(!length(A.contents))
 			return //early returning if its empty
 		var/obj/item/pill = A.contents[1]
 
@@ -126,7 +126,7 @@
 	if(!A.is_injectable() && !ismob(A))
 		to_chat(user, span_warning("You cannot directly fill [A]."))
 		return
-	if(skilllock && user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
+	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 		span_notice("You fumble around figuring out how to use the [src]."))
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
@@ -136,7 +136,7 @@
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
 			user.Paralyze(60)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
@@ -346,7 +346,7 @@
 		return
 	var/list/dat = list()
 	dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]")]</br>"
-	if(reagents.reagent_list.len > 0)
+	if(length(reagents.reagent_list) > 0)
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
 			var/dose = round(min(reagents.total_volume, amount_per_transfer_from_this) * percent * 0.01,0.01)
