@@ -40,7 +40,7 @@
 	user.visible_message(span_notice("[user] pries \the [src] open."),
 		span_notice("You pry open \the [src]."),
 		span_notice("You hear splitting wood."))
-	new /obj/item/stack/sheet/wood(loc)
+	new /obj/item/stack/sheet/wood/five(loc)
 	deconstruct(TRUE)
 	return TRUE
 

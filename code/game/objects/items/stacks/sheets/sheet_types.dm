@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 2 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 5, time = 1.5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("baseball bat", /obj/item/weapon/baseballbat, 10, time = 2 SECONDS, on_floor = TRUE), \
-	new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 1, time = 2 SECONDS, on_floor = TRUE) \
+	new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE) \
 	))
 
 /obj/item/stack/sheet/wood
@@ -161,6 +161,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	icon_state = "sheet-wood"
 	merge_type = /obj/item/stack/sheet/wood
 	number_of_extra_variants = 3
+
+/obj/item/stack/sheet/wood/five
+	amount = 5
 
 /obj/item/stack/sheet/wood/large_stack
 	amount = 50
