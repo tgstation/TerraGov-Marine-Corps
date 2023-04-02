@@ -149,11 +149,11 @@
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 //-------------------------------------------------------
-//ATR-22 mounted heavy autocannon
+//ATR-22 mounted heavy anti-air gun
 
 /obj/item/weapon/gun/standard_auto_cannon
-	name = "\improper ATR-22 mounted heavy autocannon"
-	desc = "The ATR-22 is a recoiling barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in sustained damage."
+	name = "\improper ATR-22 mounted flak gun"
+	desc = "The ATR-22 is a recoiling barrel 20mm autocannon, created to be used against low flying targets, it is however able to engage ground targets at medium ranges with extreme efficency even if the recoil makes it near impossible to hit anything close by, its bullets will shred hard targets such as armored foes or walls. Both barrels can be fired at the same time rather than in sequence, but will incur large scatter penalties do so."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-ac.dmi'
@@ -165,27 +165,42 @@
 
 	scatter = 10
 	deployed_scatter_change = -10
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.25 SECONDS
 
-	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/auto_cannon,
 		/obj/item/ammo_magazine/auto_cannon/flak,
 	)
 
-	deploy_time = 6 SECONDS
-	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted
+	scatter = 0
+	min_scatter = 0
+	scatter_increase = 2 //Not supposed to have scatter unless you're fuller auto'ing.
+	scatter_decay = 2
+	scatter_decay_unwielded = 2
 
-	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	burst_amount = 2 // You're firing both barrels in sync for that FULLER AUTO EXPERIENCE
+	autoburst_delay = 0.1 SECONDS
+	autoburst_delay = 0.1 SECONDS
+	burst_accuracy_mult = 0.9
+	burst_scatter_mult = 2
+
+	undeploy_time = 2000 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted/moveable/auto_cannon
+
+	max_integrity = 500
+	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+
+/obj/machinery/deployable/mounted/moveable/auto_cannon
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	coverage = 75 //has a shield
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
