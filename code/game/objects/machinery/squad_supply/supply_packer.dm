@@ -16,11 +16,11 @@
 
 /obj/structure/largecrate/packed/proc/pack()
 	var/count = 0
-	for(var/obj/thing in loc)
+	for(var/obj/item/thing in loc)
+		count++
 		if(count >= max_items)
 			return
 		if(is_type_in_typecache(thing,black_list))
 			continue
 		thing.forceMove(src)
 		manifest += thing.name
-		count++
