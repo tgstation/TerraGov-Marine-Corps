@@ -2157,47 +2157,143 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
 
-////TGMC/////
+////USCM/////
 
-//Base TGMC outfit
+//Base USCM outfit
 /datum/outfit/quick/uscm
 	name = "USCM base"
 	desc = "This is the base typepath for all USCM quick vendor outfits. You shouldn't see this."
 
 //Base TGMC marine outfit
 /datum/outfit/quick/uscm/marine
-	name = "USCM Squad Marine"
-	jobtype = "Squad Marine"
+	name = "Squad Marine"
+	jobtype = "USCM Squad Marine"
 
 	ears = /obj/item/radio/headset/mainship/marine
-	w_uniform = /obj/item/clothing/under/marine/black_vest
+	w_uniform = /obj/item/clothing/under/marine/uscm/black_vest
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm/ammo
 	gloves = /obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/modular/m10x/uscm
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_store = /obj/item/storage/pouch/magazine/large/pulse
+	l_store = /obj/item/storage/pouch/medkit/uscm
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/quick/uscm/marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
-/datum/outfit/quick/uscm/marine/standard_assaultrifle
-	name = "M41A rifleman"
-	desc = "The classic line rifleman. Equipped with a M41A, medium armor, and plenty of grenades and ammunition. A solid all-rounder."
+/datum/outfit/quick/uscm/marine/standard_rifleman
+	name = "M41A Marine"
+	desc = "The classic marine loadout. Equipped with a M41A and a M37A2 pump shotgun, medium armor, and plenty of grenades and ammunition. A solid all-rounder."
 
-	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	belt = /obj/item/storage/belt/marine/t12
+	suit_store = /obj/item/weapon/gun/rifle/m41a/rifleman
+	belt = /obj/item/storage/belt/shotgun/mixed
+	back = /obj/item/weapon/gun/shotgun/pump/shotgun_uscm/harness
 
-/datum/outfit/quick/uscm/marine/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/quick/uscm/marine/standard_rifleman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/tactical(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+
+/datum/outfit/quick/uscm/marine/standard_rifleman/sadar
+	name = "AT Marine"
+	desc = "A loadout to deal with heavy armor. Equipped with a M41A and 4 disposable SADARs, medium armor, and plenty of grenades and ammunition."
+
+	belt = /obj/item/storage/belt/sparepouch/sadar
+	back = /obj/item/weapon/gun/launcher/rocket/oneuse/sadar_uscm
+
+/datum/outfit/quick/uscm/marine/standard_rifleman/grenadier
+	name = "Grenadier Marine"
+	desc = "A loadout to deal with grouped up units. Equipped with a M41A, medium armor, and a substantial amount of grenades and ammunition."
+
+	belt = /obj/item/storage/belt/grenade/uscm
+	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/quick/uscm/marine/standard_rifleman/grenadier/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new  /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+
+/datum/outfit/quick/uscm/marine/standard_smg
+	name = "Assault Marine"
+	desc = "A fast attack loadout. Equipped with a M39 SMG and a M37A2 pump shotgun, light armor, and ammunition."
+
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/uscm/ammo
+	suit_store = /obj/item/weapon/gun/smg/smg_uscm/tactical
+	belt = /obj/item/storage/belt/shotgun/mixed
+	back = /obj/item/weapon/gun/shotgun/pump/shotgun_uscm/harness
+	r_store = /obj/item/storage/pouch/magazine/large/smg_uscm
+
+/datum/outfit/quick/uscm/marine/standard_smg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical/small(H), SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+
+/datum/outfit/quick/uscm/marine/standard_smg/scout
+	name = "Scout Marine"
+	desc = "A fast attack loadout for recon. Equipped with a M39 SMG with a motion detector, a flare gun, a backpack full of flares, light armor, and ammunition."
+	back = /obj/item/storage/backpack/marine/satchel
+	suit_store = /obj/item/weapon/gun/smg/smg_uscm/scout
+	belt = /obj/item/belt_harness/marine
+
+/datum/outfit/quick/uscm/marine/standard_smg/scout/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94 , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94 , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94 , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94 , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94 , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94 , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(H), SLOT_IN_BACKPACK)
+
+/datum/outfit/quick/uscm/marine/shield
+	name = "Shield Marine"
+	desc = "Professional damage sponge. Equipped with an M39 SMG, a TL-172 defensive shield and heavy armor reinforced with a 'Tyr' module\\. Designed to absorb as much incoming damage as possible to protect your squishier comrades, however your mobility and damage output are notably diminished."
+
+	head = /obj/item/clothing/head/modular/m10x/uscm/tyr
+	glasses = /obj/item/clothing/glasses/welding
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/uscm/tyr_one
+	suit_store = /obj/item/weapon/gun/smg/smg_uscm/tactical
+	belt = /obj/item/storage/belt/marine/smg_uscm
+	r_hand = /obj/item/weapon/shield/riot/marine
+	r_store = /obj/item/storage/pouch/magazine/large/smg_uscm
+
+/datum/outfit/quick/uscm/marine/shield/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
@@ -2205,3 +2301,386 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+/datum/outfit/quick/uscm/marine/standard_hpr
+	name = "HPR Machinegunner"
+	desc = "Equipped with an M41AE2 machinegun with bipod, heavy armor and some basic construction supplies. Good for holding ground and providing firesupport, and the cost of some mobility."
+
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/uscm
+	suit_store = /obj/item/weapon/gun/rifle/hpr_uscm/machinegunner
+	belt = /obj/item/storage/belt/sparepouch/uscm
+	r_store = /obj/item/storage/pouch/construction
+
+/datum/outfit/quick/uscm/marine/standard_hpr/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/hpr_uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical/small(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+/datum/outfit/quick/uscm/marine/standard_mmg
+	name = "M56D Machinegunner"
+	desc = "For when you need the biggest gun you can carry. Equipped with an M56D machinegun and miniscope and a M39 SMG as a side arm, as well as medium armor and a small amount of construction supplies. Allows for devestating, albeit static firepower."
+
+	belt = /obj/item/storage/holster/uscm/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm
+	suit_store = /obj/item/weapon/gun/standard_mmg/mmg_uscm/machinegunner
+	r_store = /obj/item/storage/pouch/construction
+
+/datum/outfit/quick/uscm/marine/standard_mmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_mmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_mmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_mmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/smg_uscm/harness(H), SLOT_IN_HOLSTER)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_R_POUCH)
+
+/datum/outfit/quick/uscm/marine/standard_flamer
+	name = "M240A1 Flamethrower Operator"
+	desc = "For burning enemies, and sometimes friends. Equipped with an M240A1 flamethrower and wide nozzle, M39 secondary weapon, heavy armor upgraded with a 'Surt' fireproof module, and a backtank of fuel. Can burn down large areas extremely quickly both to flush out the enemy and to cover flanks. Is very slow however, ineffective at long range, and can expend all available fuel quickly if used excessively."
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/uscm/surt
+	belt = /obj/item/storage/holster/uscm/full
+	back = /obj/item/ammo_magazine/flamer_tank/backtank
+	suit_store = /obj/item/weapon/gun/flamer/big_flamer/uscm/harness
+
+/datum/outfit/quick/uscm/marine/standard_flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+
+//Base USCM engineer outfit
+/datum/outfit/quick/uscm/engineer
+	name = "Squad Engineer"
+	jobtype = "USCM Squad Engineer"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	glasses = /obj/item/clothing/glasses/meson
+	w_uniform = /obj/item/clothing/under/marine/uscm/black_vest
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm/engineer
+	gloves = /obj/item/clothing/gloves/marine/insulated
+	head = /obj/item/clothing/head/modular/m10x/uscm/welding
+	r_store = /obj/item/storage/pouch/tools/full
+	l_store = /obj/item/storage/pouch/medkit/uscm
+	back = /obj/item/storage/backpack/marine/engineerpack
+
+
+/datum/outfit/quick/uscm/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+
+/datum/outfit/quick/uscm/engineer/rocket
+	name = "M5 RPG Specialist"
+	desc = "Bringing the big guns. Equipped with a M41A and M5 RPG along with the standard engineer kit. Excellent against groups of enemy infantry or armor, but only has limited ammunition."
+	quantity = 2
+
+	suit_store = /obj/item/weapon/gun/rifle/m41a/rifleman
+	back = /obj/item/storage/holster/backholster/rpg/uscm
+	belt = /obj/item/storage/belt/marine/pulse
+
+/datum/outfit/quick/uscm/engineer/rocket/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_ACCESSORY)
+
+/datum/outfit/quick/uscm/engineer/sentry
+	name = "Sentry Technician"
+	desc = "Firing more guns than you have hands. Equipped with a M41A with miniflamer, and two minisentries along with the standard engineer kit. Allows the user to quickly setup strong points and lock areas down, with some sensible placement."
+
+	suit_store = /obj/item/weapon/gun/rifle/m41a/flamer
+	belt = /obj/item/storage/belt/marine/pulse
+
+/datum/outfit/quick/uscm/engineer/sentry/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_ACCESSORY)
+
+/datum/outfit/quick/uscm/engineer/demolition
+	name = "Demolition Specialist"
+	desc = "Boom boom, shake the room. Equipped with a M37A2 shotgun and UGL and an impressive array of mines, detpacks and grenades, along with the standard engineer kit. Excellent for blasting through any obstacle, and mining areas to restrict enemy movement."
+
+	suit_store = /obj/item/weapon/gun/shotgun/pump/shotgun_uscm/engi
+	back = /obj/item/storage/backpack/marine/tech
+	belt = /obj/item/storage/belt/shotgun/mixed
+
+/datum/outfit/quick/uscm/engineer/demolition/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/minelayer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+//Base USCM corpsman outfit
+/datum/outfit/quick/uscm/corpsman
+	name = "Squad Corpsman"
+	jobtype = "USCM Squad Corpsman"
+
+	belt = /obj/item/storage/belt/lifesaver/quick
+	ears = /obj/item/radio/headset/mainship/marine
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/uscm/corpsman
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm
+	gloves = /obj/item/clothing/gloves/marine
+	head = /obj/item/clothing/head/modular/m10x/uscm
+	r_store = /obj/item/storage/pouch/magazine/large
+	l_store = /obj/item/storage/pouch/grenade/uscm
+	back = /obj/item/storage/backpack/marine/corpsman
+
+/datum/outfit/quick/uscm/corpsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/spaceacillin, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
+
+/datum/outfit/quick/uscm/corpsman/standard_medic
+	name = "M41A Corpsman"
+	desc = "Keeping everyone else in the fight. Armed with a M41A rifle, an impressive array of tools for healing your team. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	suit_store = /obj/item/weapon/gun/rifle/m41a/rifleman
+
+/datum/outfit/quick/uscm/corpsman/standard_medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_R_POUCH)
+
+/datum/outfit/quick/uscm/corpsman/smg_medic
+	name = "M39 Corpsman"
+	desc = "Keeping everyone else in the fight. Armed with a M39 smg, an impressive array of tools for healing your team. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	suit_store = /obj/item/weapon/gun/smg/smg_uscm/tactical
+
+/datum/outfit/quick/uscm/corpsman/smg_medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_R_POUCH)
+
+/datum/outfit/quick/uscm/corpsman/shotgun_medic
+	name = "M37A2 Corpsman"
+	desc = "Keeping everyone else in the fight. Armed with a M39 smg, an impressive array of tools for healing your team. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	suit_store = /obj/item/weapon/gun/shotgun/pump/shotgun_uscm/engi
+	r_store = /obj/item/storage/pouch/shotgun
+
+/datum/outfit/quick/uscm/corpsman/shotgun_medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+
+//Base USCM smartgunner outfit
+/datum/outfit/quick/uscm/smartgunner
+	name = "Squad Smartgunner"
+	jobtype = "USCM Squad Smartgunner"
+
+	belt = /obj/item/storage/belt/sparepouch/uscm_sg
+	ears = /obj/item/radio/headset/mainship/marine
+	glasses = /obj/item/clothing/glasses/night/m56_goggles
+	w_uniform = /obj/item/clothing/under/marine/uscm/black_vest
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/uscm/general
+	gloves = /obj/item/clothing/gloves/marine
+	r_store = /obj/item/storage/pouch/pistol
+	l_store = /obj/item/storage/pouch/medkit/uscm
+	back = /obj/item/belt_harness/marine/powerpack
+
+/datum/outfit/quick/uscm/smartgunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
+/datum/outfit/quick/uscm/smartgunner/standard_sg
+	name = "M56 Smart Machinegunner"
+	desc = "A gun smarter than the average bear, or marine. Equipped with an M56 smart machine gun, the SG is responsible for providing mobile, accurate firesupport thanks to your IFF ammunition."
+
+	suit_store = /obj/item/weapon/gun/rifle/smartgun_uscm/standard
+
+/datum/outfit/quick/uscm/smartgunner/standard_sg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical/small(H), SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smartgun_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smartgun_uscm, SLOT_IN_SUIT)
+
+//Base USCM leader outfit
+/datum/outfit/quick/uscm/leader
+	name = "Squad Leader"
+	jobtype = "USCM Squad Leader"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/uscm/black_vest
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/uscm/leader
+	gloves = /obj/item/clothing/gloves/marine
+	head = /obj/item/clothing/head/modular/m10x/leader/uscm
+	r_store =  /obj/item/storage/pouch/magazine/large/pulse
+	l_store = /obj/item/storage/pouch/medkit/uscm
+	back = /obj/item/storage/backpack/marine/standard
+
+/datum/outfit/quick/uscm/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
+/datum/outfit/quick/uscm/leader/standard_rifle
+	name = "M41A Squad Leader"
+	desc = "Gives the orders and requests for fire support. Equipped with a M41A, a M37A2 pump shotgun, plenty of grenades, as well as armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
+
+	suit_store = /obj/item/weapon/gun/rifle/m41a/rifleman
+	back = /obj/item/weapon/gun/shotgun/pump/shotgun_uscm/harness
+	belt = /obj/item/storage/belt/shotgun/mixed
+
+/datum/outfit/quick/uscm/leader/standard_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_SUIT)
+
+/datum/outfit/quick/uscm/leader/standard_smg
+	name = "M39 Squad Leader"
+	desc = "Gives the orders and requests for fire support. Equipped with a M39, a M37A2 pump shotgun, plenty of grenades, as well as armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
+
+	suit_store = /obj/item/weapon/gun/smg/smg_uscm/tactical
+	back = /obj/item/weapon/gun/shotgun/pump/shotgun_uscm/harness
+	belt = /obj/item/storage/belt/shotgun/mixed
+	r_store = /obj/item/storage/pouch/magazine/large/smg_uscm
+
+/datum/outfit/quick/uscm/leader/standard_smg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/uscm, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new  /obj/item/ammo_magazine/smg/smg_uscm, SLOT_IN_SUIT)

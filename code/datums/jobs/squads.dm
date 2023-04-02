@@ -129,6 +129,62 @@
 		REBEL_SQUAD_LEADER = 1,
 )
 
+/datum/squad/alpha/uscm
+	id = ALPHA_SQUAD_USCM
+	current_positions = list(
+		USCM_SQUAD_MARINE = 0,
+		USCM_SQUAD_ENGINEER = 0,
+		USCM_SQUAD_CORPSMAN = 0,
+		USCM_SQUAD_SMARTGUNNER = 0,
+		USCM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		USCM_SQUAD_MARINE = -1,
+		USCM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/bravo/uscm
+	id = BRAVO_SQUAD_USCM
+	current_positions = list(
+		USCM_SQUAD_MARINE = 0,
+		USCM_SQUAD_ENGINEER = 0,
+		USCM_SQUAD_CORPSMAN = 0,
+		USCM_SQUAD_SMARTGUNNER = 0,
+		USCM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		USCM_SQUAD_MARINE = -1,
+		USCM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/charlie/uscm
+	id = CHARLIE_SQUAD_USCM
+	current_positions = list(
+		USCM_SQUAD_MARINE = 0,
+		USCM_SQUAD_ENGINEER = 0,
+		USCM_SQUAD_CORPSMAN = 0,
+		USCM_SQUAD_SMARTGUNNER = 0,
+		USCM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		USCM_SQUAD_MARINE = -1,
+		USCM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/delta/uscm
+	id = DELTA_SQUAD_USCM
+	current_positions = list(
+		USCM_SQUAD_MARINE = 0,
+		USCM_SQUAD_ENGINEER = 0,
+		USCM_SQUAD_CORPSMAN = 0,
+		USCM_SQUAD_SMARTGUNNER = 0,
+		USCM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		USCM_SQUAD_MARINE = -1,
+		USCM_SQUAD_LEADER = 1,
+)
+
 //SOM squads
 /datum/squad/zulu
 	name = "Zulu"

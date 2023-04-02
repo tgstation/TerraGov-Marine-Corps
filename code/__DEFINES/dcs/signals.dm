@@ -47,6 +47,8 @@
 #define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
 ///Sent when a psychic inhibitor is activated
 #define COMSIG_GLOB_PSY_INHIBITOR "!psy_active"
+///Sent when a psychic inhibitor is deactivated
+#define COMSIG_GLOB_PSY_INHIBITOR_OFF "!psy_deactivated"
 
 //Signals for fire support
 #define COMSIG_GLOB_OB_LASER_CREATED "!ob_laser_sent"

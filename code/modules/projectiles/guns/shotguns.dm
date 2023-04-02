@@ -866,6 +866,7 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/weapon/gun/grenade_launcher/underslung/uscm,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
@@ -879,3 +880,9 @@
 	cock_delay = 14
 
 	placed_overlay_iconstate = "t35"
+
+/obj/item/weapon/gun/shotgun/pump/shotgun_uscm/harness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness,)
+
+/obj/item/weapon/gun/shotgun/pump/shotgun_uscm/engi
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung/uscm,)

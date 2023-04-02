@@ -202,6 +202,37 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
+/obj/item/storage/holster/backholster/rpg/uscm
+	name = "\improper M5 RPG bag"
+	desc = "This backpack can hold 8 RPGs, in addition to a RPG launcher."
+	icon_state = "uscm_rocket"
+	item_state = "uscm_rocket"
+	base_icon = "uscm_rocket"
+	storage_slots = 9
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/launcher/rocket/rpg_uscm,
+		/obj/item/weapon/gun/launcher/rocket/rpg_uscm/scope,
+	)
+	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/rpg_uscm)
+	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/rpg_uscm = 1)
+	can_hold = list(
+		/obj/item/ammo_magazine/rocket,
+		/obj/item/weapon/gun/launcher/rocket/rpg_uscm,
+	)
+
+/obj/item/storage/holster/backholster/rpg/uscm/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	new /obj/item/ammo_magazine/rocket/rpg_uscm(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/rpg_uscm/scope(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
 //one slot holsters
 
 ///swords
@@ -320,6 +351,24 @@
 /obj/item/storage/holster/m25/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/uscm
+	name = "\improper M276 pattern M39 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	icon_state = "m39_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
+	base_icon = "m39_holster"
+	flags_equip_slot = ITEM_SLOT_BELT
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/smg/smg_uscm,
+		/obj/item/weapon/gun/smg/smg_uscm/harness,
+	)
+	can_hold = list(/obj/item/weapon/gun/smg/smg_uscm)
+
+/obj/item/storage/holster/uscm/full/Initialize()
+	. = ..()
+	var/obj/item/new_item = new /obj/item/weapon/gun/smg/smg_uscm/harness(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t19

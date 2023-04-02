@@ -229,7 +229,6 @@
 		/obj/item/shotgunbox = 1,
 		/obj/item/shotgunbox/buckshot = 1,
 		/obj/item/shotgunbox/flechette = 1,
-		/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/smg_uscm/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/pulse_rifle_uscm/full = 1,

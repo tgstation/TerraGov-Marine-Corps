@@ -172,7 +172,10 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
-	icon_state = null
+	default_ammo_type = /obj/item/explosive/grenade/uscm
+
+/obj/item/weapon/gun/grenade_launcher/underslung/uscm
+	default_ammo_type = /obj/item/explosive/grenade/uscm
 
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"

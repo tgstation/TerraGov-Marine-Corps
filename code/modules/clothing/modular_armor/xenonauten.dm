@@ -22,7 +22,6 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
-
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
@@ -200,16 +199,49 @@
 	desc = "A lighter, cut down version of the standard M3 pattern armor. It sacrifices durability for more speed."
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 
+/obj/item/clothing/suit/modular/xenonauten/light/uscm/ammo
+	starting_attachments = list(/obj/item/armor_module/storage/ammo_mag)
+
+/obj/item/clothing/suit/modular/xenonauten/light/uscm/general
+	starting_attachments = list(/obj/item/armor_module/storage/general)
+
 /obj/item/clothing/suit/modular/xenonauten/uscm
 	name = "\improper M3 pattern personal armor"
 	desc = "The standard configuration M3 Pattern Body Armor. What else do you need to know about it? Well, since you asked - With design inspiration drawn off the French cuirasse, the M3 is built out of a light-weight titanium alloy, with several layers to account for spalling. Robust, and designed to function as the perfect armor for the shock-and-awe of the Colonial Marines. A TNR-Shoulder Lamp rests off its side, illuminating the way forward for you."
 	flags_armor_features = ARMOR_LAMP_OVERLAY
+
+/obj/item/clothing/suit/modular/xenonauten/uscm/engineer
+	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
+
+/obj/item/clothing/suit/modular/xenonauten/uscm/ammo
+	starting_attachments = list(/obj/item/armor_module/storage/ammo_mag)
+
+/obj/item/clothing/suit/modular/xenonauten/uscm/leader
+	starting_attachments = list(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/storage/ammo_mag)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/uscm
 	name = "\improper M3-EOD pattern heavy armor"
 	desc = "A heavier version of the standard M3 pattern armor, the armor is primarily designed to withstand ballistic, explosive, and internal damage, with the drawback of increased bulk and thus reduced movement speed, alongside little additional protection from standard blunt force impacts and none from biological threats."
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/uscm/ammo
+	starting_attachments = list(/obj/item/armor_module/storage/ammo_mag)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/uscm/surt
+	starting_attachments = list(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/storage/general)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/uscm/tyr_one
+	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/mark1)
+
 /obj/item/clothing/head/modular/m10x/uscm
 	name = "\improper M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+
+/obj/item/clothing/head/modular/m10x/uscm/tyr
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/m10x/uscm/welding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/m10x/leader/uscm
+	name = "\improper M11 pattern leader helmet"

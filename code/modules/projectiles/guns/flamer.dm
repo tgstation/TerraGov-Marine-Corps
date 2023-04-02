@@ -244,8 +244,15 @@
 	)
 
 /obj/item/weapon/gun/flamer/big_flamer/uscm
+	name = "\improper M240A1 incinerator unit"
+	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	icon = 'icons/Marine/gun64.dmi'
+
+/obj/item/weapon/gun/flamer/big_flamer/uscm/harness
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present

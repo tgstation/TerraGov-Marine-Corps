@@ -171,3 +171,24 @@
 /obj/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
 	job = /datum/job/som/squad/leader
+
+//USCM
+/obj/effect/landmark/start/job/squadmarine/uscm
+	icon_state = "PFC"
+	job = /datum/job/terragov/squad/standard/uscm
+
+/obj/effect/landmark/start/job/squadengineer/uscm
+	icon_state = "Eng"
+	job = /datum/job/terragov/squad/engineer/uscm
+
+/obj/effect/landmark/start/job/squadcorpsman/uscm
+	icon_state = "HM"
+	job = /datum/job/terragov/squad/corpsman/uscm
+
+/obj/effect/landmark/start/job/squadsmartgunner/uscm
+	icon_state = "SGnr"
+	job = /datum/job/terragov/squad/smartgunner
+
+/obj/effect/landmark/start/job/squadleader/uscm
+	icon_state = "SL"
+	job = /datum/job/terragov/squad/leader/uscm

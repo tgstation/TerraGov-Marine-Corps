@@ -74,7 +74,24 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
-		/datum/outfit/quick/uscm/marine/standard_assaultrifle,
+		/datum/outfit/quick/uscm/marine/standard_rifleman,
+		/datum/outfit/quick/uscm/marine/standard_rifleman/sadar,
+		/datum/outfit/quick/uscm/marine/standard_rifleman/grenadier,
+		/datum/outfit/quick/uscm/marine/standard_smg,
+		/datum/outfit/quick/uscm/marine/standard_smg/scout,
+		/datum/outfit/quick/uscm/marine/shield,
+		/datum/outfit/quick/uscm/marine/standard_hpr,
+		/datum/outfit/quick/uscm/marine/standard_mmg,
+		/datum/outfit/quick/uscm/marine/standard_flamer,
+		/datum/outfit/quick/uscm/engineer/rocket,
+		/datum/outfit/quick/uscm/engineer/sentry,
+		/datum/outfit/quick/uscm/engineer/demolition,
+		/datum/outfit/quick/uscm/corpsman/standard_medic,
+		/datum/outfit/quick/uscm/corpsman/smg_medic,
+		/datum/outfit/quick/uscm/corpsman/shotgun_medic,
+		/datum/outfit/quick/uscm/smartgunner/standard_sg,
+		/datum/outfit/quick/uscm/leader/standard_rifle,
+		/datum/outfit/quick/uscm/leader/standard_smg,
 	)
 
 	for(var/X in loadout_list)
@@ -116,11 +133,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/uscm
 	faction = FACTION_TERRAGOV
 	categories = list(
-		"Squad Marine",
-		"Squad Engineer",
-		"Squad Corpsman",
-		"Squad Smartgunner",
-		"Squad Leader",
+		"USCM Squad Marine",
+		"USCM Squad Engineer",
+		"USCM Squad Corpsman",
+		"USCM Squad Smartgunner",
+		"USCM Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)

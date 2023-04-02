@@ -718,6 +718,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -732,6 +733,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1 SECONDS
 	recoil = 3
 	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/rpg_uscm/scope
+	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -872,6 +876,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon_state = "m83"
 	item_state = "m83"
 	fire_sound = "rpg_fire"
+	default_ammo_type = /obj/item/ammo_magazine/rocket/rpg_uscm
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/rpg_uscm)
+	flags_equip_slot = ITEM_SLOT_BACK
 
 //SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som

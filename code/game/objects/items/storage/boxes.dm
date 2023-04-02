@@ -1088,7 +1088,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/pulse_rifle_uscm/full
 	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/rifle
+	spawn_type = /obj/item/ammo_magazine/rifle/m41a
 
 /obj/item/storage/box/visual/magazine/compact/hpr_uscm
 	name = "M41AE2 magazine box"

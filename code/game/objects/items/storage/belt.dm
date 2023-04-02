@@ -521,6 +521,15 @@
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 
+/obj/item/storage/belt/marine/smg_uscm/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/smg/smg_uscm(src)
+	new /obj/item/ammo_magazine/smg/smg_uscm(src)
+	new /obj/item/ammo_magazine/smg/smg_uscm(src)
+	new /obj/item/ammo_magazine/smg/smg_uscm(src)
+	new /obj/item/ammo_magazine/smg/smg_uscm(src)
+	new /obj/item/ammo_magazine/smg/smg_uscm(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
@@ -623,6 +632,15 @@
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/carbine/black(src)
+
+/obj/item/storage/belt/marine/pulse/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/m41a(src)
+	new /obj/item/ammo_magazine/rifle/m41a(src)
+	new /obj/item/ammo_magazine/rifle/m41a(src)
+	new /obj/item/ammo_magazine/rifle/m41a(src)
+	new /obj/item/ammo_magazine/rifle/m41a(src)
+	new /obj/item/ammo_magazine/rifle/m41a(src)
 
 /obj/item/storage/belt/marine/icc
 	name = "\improper Modello/120 ammo belt"
@@ -910,6 +928,17 @@
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
 
+/obj/item/storage/belt/grenade/uscm/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = WEIGHT_CLASS_BULKY
@@ -945,6 +974,24 @@
 	max_w_class = 3
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
+
+/obj/item/storage/belt/sparepouch/uscm/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/hpr_uscm(src)
+	new /obj/item/ammo_magazine/hpr_uscm(src)
+	new /obj/item/ammo_magazine/hpr_uscm(src)
+
+/obj/item/storage/belt/sparepouch/uscm_sg/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/smartgun_uscm(src)
+	new /obj/item/ammo_magazine/smartgun_uscm(src)
+	new /obj/item/ammo_magazine/smartgun_uscm(src)
+
+/obj/item/storage/belt/sparepouch/sadar/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/launcher/rocket/oneuse/sadar_uscm(src)
+	new /obj/item/weapon/gun/launcher/rocket/oneuse/sadar_uscm(src)
+	new /obj/item/weapon/gun/launcher/rocket/oneuse/sadar_uscm(src)
 
 /obj/item/storage/belt/sparepouch/som
 	name= "standard utility pouch"

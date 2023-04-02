@@ -122,11 +122,23 @@
 	pixel_x = -48
 	bound_height = 224
 	density = TRUE
+	var/initial_id
 
 /obj/structure/patrol_point/ud/examine(mob/user)
 	. = ..()
 	. += span_notice("Click to enter dropship.")
 
 /obj/structure/patrol_point/ud/Initialize()
-	..()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR, PROC_REF(change_id))
+	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR_OFF, PROC_REF(revert_id))
 	id = rand(1, 4)
+	initial_id = id
+
+/obj/structure/patrol_point/ud/proc/change_id()
+	id = 5
+	create_link()
+
+/obj/structure/patrol_point/ud/proc/revert_id()
+	id = initial_id
+	create_link()

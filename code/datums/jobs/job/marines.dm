@@ -47,6 +47,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	"}
 	minimap_icon = "private"
 
+/datum/job/terragov/squad/standard/uscm
+	title = USCM_SQUAD_MARINE
+	outfit = /datum/outfit/job/marine/standard/uscm
+
 /datum/job/terragov/squad/standard/rebel
 	title = REBEL_SQUAD_MARINE
 	faction = FACTION_TERRAGOV_REBEL
@@ -94,6 +98,9 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 /datum/outfit/job/marine/standard/rebel
 	jobtype = /datum/job/terragov/squad/standard/rebel
 
+/datum/outfit/job/marine/standard/uscm
+	jobtype = /datum/job/terragov/squad/standard/uscm
+
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
@@ -123,6 +130,10 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
+/datum/job/terragov/squad/engineer/uscm
+	title = USCM_SQUAD_ENGINEER
+	outfit = /datum/outfit/job/marine/engineer/uscm
+
 /datum/job/terragov/squad/engineer/rebel
 	title = REBEL_SQUAD_ENGINEER
 	faction = FACTION_TERRAGOV_REBEL
@@ -150,6 +161,9 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 /datum/outfit/job/marine/engineer/rebel
 	jobtype = /datum/job/terragov/squad/engineer/rebel
+
+/datum/outfit/job/marine/engineer/uscm
+	jobtype = /datum/job/terragov/squad/engineer/uscm
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -196,6 +210,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	"}
 	minimap_icon = "medic"
 
+/datum/job/terragov/squad/corpsman/uscm
+	title = USCM_SQUAD_CORPSMAN
+	outfit = /datum/outfit/job/marine/corpsman/uscm
+
 /datum/job/terragov/squad/corpsman/rebel
 	title = REBEL_SQUAD_CORPSMAN
 	faction = FACTION_TERRAGOV_REBEL
@@ -222,6 +240,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/outfit/job/marine/corpsman/rebel
 	jobtype = /datum/job/terragov/squad/corpsman/rebel
+
+/datum/outfit/job/marine/corpsman/uscm
+	jobtype = /datum/job/terragov/squad/corpsman/uscm
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -266,6 +287,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	"}
 	minimap_icon = "smartgunner"
 
+/datum/job/terragov/squad/smartgunner/uscm
+	title = USCM_SQUAD_SMARTGUNNER
+	outfit = /datum/outfit/job/marine/smartgunner/uscm
+
 /datum/job/terragov/squad/smartgunner/rebel
 	title = REBEL_SQUAD_SMARTGUNNER
 	faction = FACTION_TERRAGOV_REBEL
@@ -302,6 +327,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/outfit/job/marine/smartgunner/rebel
 	jobtype = /datum/job/terragov/squad/smartgunner/rebel
+
+/datum/outfit/job/marine/smartgunner/uscm
+	jobtype = /datum/job/terragov/squad/smartgunner/uscm
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -371,6 +399,10 @@ You can serve a variety of roles, so choose carefully."})
 	"}
 	minimap_icon = "leader"
 
+/datum/job/terragov/squad/leader/uscm
+	title = USCM_SQUAD_LEADER
+	outfit = /datum/outfit/job/marine/leader/uscm
+
 /datum/job/terragov/squad/leader/rebel
 	title = REBEL_SQUAD_LEADER
 	faction = FACTION_TERRAGOV_REBEL
@@ -397,6 +429,9 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/outfit/job/marine/leader/rebel
 	jobtype = /datum/job/terragov/squad/leader/rebel
+
+/datum/outfit/job/marine/leader/uscm
+	jobtype = /datum/job/terragov/squad/leader/uscm
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()

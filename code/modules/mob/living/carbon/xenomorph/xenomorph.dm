@@ -16,6 +16,8 @@
 	add_inherent_verbs()
 	var/datum/action/minimap/xeno/mini = new
 	mini.give_action(src)
+	if(ispsysensorgamemode(SSticker.mode))
+		give_rally_abilities()
 	add_abilities()
 
 	create_reagents(1000)

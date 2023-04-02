@@ -529,3 +529,7 @@
 	desc = "The M56D is a deployable medium machine gun, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat."
 	default_ammo_type = /obj/item/ammo_magazine/mmg_uscm
 	allowed_ammo_types = list(/obj/item/ammo_magazine/mmg_uscm)
+	damage_mult = 1.3
+
+/obj/item/weapon/gun/standard_mmg/mmg_uscm/machinegunner
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)

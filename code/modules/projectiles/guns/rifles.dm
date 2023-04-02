@@ -480,6 +480,7 @@
 		/obj/item/attachable/stock/m41a,
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -491,8 +492,13 @@
 	burst_delay = 0.15 SECONDS
 	scatter = 0
 	fire_delay = 0.2 SECONDS
+	damage_mult = 1.3
 
+/obj/item/weapon/gun/rifle/m41a/rifleman
+	starting_attachment_types = list(/obj/item/attachable/stock/m41a, /obj/item/weapon/gun/grenade_launcher/underslung/invisible, /obj/item/attachable/magnetic_harness)
 
+/obj/item/weapon/gun/rifle/m41a/flamer
+	starting_attachment_types = list(/obj/item/attachable/stock/m41a, /obj/item/weapon/gun/flamer/mini_flamer, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 
@@ -2329,6 +2335,10 @@
 	firing_volume = 30
 
 	placed_overlay_iconstate = "smartgun"
+	damage_mult = 1.3
+
+/obj/item/weapon/gun/rifle/smartgun_uscm/standard
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight,)
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -2349,8 +2359,8 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/v41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/v41_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/som_mg
-	allowed_ammo_types = list(/obj/item/ammo_magazine/som_mg)
+	default_ammo_type = /obj/item/ammo_magazine/hpr_uscm
+	allowed_ammo_types = list(/obj/item/ammo_magazine/hpr_uscm)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -2378,7 +2388,7 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_slowdown = 1.2
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	scatter = 6
@@ -2386,3 +2396,7 @@
 	movement_acc_penalty_mult = 6
 
 	placed_overlay_iconstate = "lmg"
+	damage_mult = 1.3
+
+/obj/item/weapon/gun/rifle/hpr_uscm/machinegunner
+	starting_attachment_types = list(/obj/item/attachable/stock/m41a, /obj/item/attachable/foldable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)

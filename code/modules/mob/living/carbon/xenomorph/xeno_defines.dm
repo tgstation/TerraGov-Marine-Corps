@@ -239,6 +239,8 @@
 	var/evolve_min_xenos = 0
 	// How many of this caste may be alive at once
 	var/maximum_active_caste = INFINITY
+	/// is this caste disabled for psy sensor
+	var/disabled_for_psy = FALSE
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)

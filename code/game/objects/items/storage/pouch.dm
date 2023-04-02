@@ -220,6 +220,14 @@
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
+/obj/item/storage/pouch/magazine/large/pulse
+	fill_type = /obj/item/ammo_magazine/rifle/m41a
+	fill_number = 3
+
+/obj/item/storage/pouch/magazine/large/smg_uscm
+	fill_type = /obj/item/ammo_magazine/smg/smg_uscm
+	fill_number = 3
+
 /obj/item/storage/pouch/magazine/large/tx8full
 	fill_type = /obj/item/ammo_magazine/rifle/tx8
 	fill_number = 3
@@ -382,6 +390,15 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
+/obj/item/storage/pouch/grenade/uscm/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+	new /obj/item/explosive/grenade/uscm(src)
+
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"
@@ -445,6 +462,16 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
+/obj/item/storage/pouch/medkit/uscm/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/packet/dylovene(src)
+	new	/obj/item/stack/medical/heal_pack/gauze(src)
+	new	/obj/item/stack/medical/heal_pack/ointment(src)
 
 /obj/item/storage/pouch/medkit/som
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment. Made with traditional SOM leather."

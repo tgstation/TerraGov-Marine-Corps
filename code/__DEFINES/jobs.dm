@@ -63,6 +63,11 @@
 #define SQUAD_MARINE "Squad Marine"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
+#define USCM_SQUAD_LEADER "USCM Squad Leader"
+#define USCM_SQUAD_SMARTGUNNER "USCM Squad Smartgunner"
+#define USCM_SQUAD_CORPSMAN "USCM Squad Corpsman"
+#define USCM_SQUAD_ENGINEER "USCM Squad Engineer"
+#define USCM_SQUAD_MARINE "USCM Squad Marine"
 
 #define REBEL_CAPTAIN "Rebel Captain"
 #define REBEL_EXECUTIVE_OFFICER "Rebel Executive Officer" //Currently disabled.

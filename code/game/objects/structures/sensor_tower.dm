@@ -175,7 +175,11 @@
 		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, deactivate it!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, get ready to defend it team!", /atom/movable/screen/text/screen_text/picture/potrait)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, get ready to defend it team!", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		xeno.playsound_local(xeno, "sound/effects/CIC_order.ogg", 10, 1)
+		xeno.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>QUEEN</u></span><br>" + "[src] is being activated, deactivate it!", /atom/movable/screen/text/screen_text/picture/potrait/queen)
 
 ///When timer ends add a point to the point pool in sensor capture, increase game timer, and send an alert
 /obj/structure/sensor_tower_patrol/proc/finish_activation()
@@ -201,7 +205,11 @@
 		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, stop further towers from being activated!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, timer increased by [SENSOR_CAP_ADDITION_TIME_BONUS / 600] minutes.", /atom/movable/screen/text/screen_text/picture/potrait)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, timer increased by [SENSOR_CAP_ADDITION_TIME_BONUS / 600] minutes.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		xeno.playsound_local(xeno, "sound/effects/CIC_order.ogg", 10, 1)
+		xeno.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>QUEEN</u></span><br>" + "[src] is being activated, deactivate it!", /atom/movable/screen/text/screen_text/picture/potrait/queen)
 
 ///Stops timer if activating and sends an alert
 /obj/structure/sensor_tower_patrol/proc/deactivate()
@@ -214,9 +222,13 @@
 		if(human.faction == faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped, glory to Mars!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped<br>" + ",rally up and get it together team!", /atom/movable/screen/text/screen_text/picture/potrait)
-
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped<br>" + ",rally up and get it together team!", /atom/movable/screen/text/screen_text/picture/potrait/lt)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		xeno.playsound_local(xeno, "sound/effects/CIC_order.ogg", 10, 1)
+		xeno.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>QUEEN</u></span><br>" + "[src] activation process has been stopped, yass sis.", /atom/movable/screen/text/screen_text/picture/potrait/queen)
+
 
 ///Pauses or restarts the gamemode timer
 /obj/structure/sensor_tower_patrol/proc/toggle_game_timer(addition_time)
@@ -245,4 +257,19 @@
 /obj/structure/sensor_tower_patrol/psy
 	icon_state = "psy"
 	faction = FACTION_XENO
+	deactivate_time = 5 SECONDS
+	var/obj/effect/landmark/patrol_point/exit_point = /obj/effect/landmark/patrol_point
 
+/obj/structure/sensor_tower_patrol/psy/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	defender_interaction(X)
+
+/obj/structure/sensor_tower_patrol/psy/begin_activation()
+	. = ..()
+	exit_point = new exit_point(loc)
+	exit_point.id = 5
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PSY_INHIBITOR, src)
+
+/obj/structure/sensor_tower_patrol/psy/deactivate()
+	. = ..()
+	QDEL_NULL(exit_point)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PSY_INHIBITOR_OFF, src)

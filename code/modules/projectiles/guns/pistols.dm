@@ -527,6 +527,10 @@
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
 
+/obj/item/weapon/gun/pistol/vp70/tactical/small
+	w_class = WEIGHT_CLASS_SMALL
+	damage_mult = 1.3
+
 //-------------------------------------------------------
 //VP78
 

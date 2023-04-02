@@ -677,7 +677,7 @@
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
 	scatter = 1
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.1 SECONDS
 	scatter_unwielded = 8
 	aim_slowdown = 0.2
 	burst_amount = 0
@@ -686,3 +686,13 @@
 
 	placed_overlay_iconstate = "t90"
 	firing_volume = 25
+	damage_mult = 1.3
+
+/obj/item/weapon/gun/smg/smg_uscm/harness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/smg/smg_uscm/tactical
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/smg/smg_uscm/scout
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)

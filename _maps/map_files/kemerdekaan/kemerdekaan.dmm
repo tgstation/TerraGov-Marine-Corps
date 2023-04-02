@@ -374,7 +374,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/kemerdekaan)
 "pL" = (
-/obj/machinery/quick_vendor,
+/obj/machinery/quick_vendor/uscm,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -488,7 +488,7 @@
 /turf/open/floor/concrete,
 /area/mainship/kemerdekaan)
 "st" = (
-/obj/machinery/quick_vendor,
+/obj/machinery/quick_vendor/uscm,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1046,7 +1046,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "Rc" = (
-/obj/machinery/quick_vendor,
+/obj/machinery/quick_vendor/uscm,
 /turf/open/floor/mainship/mono,
 /area/mainship/kemerdekaan)
 "Rn" = (

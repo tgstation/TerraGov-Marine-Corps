@@ -378,6 +378,7 @@
 	var/mode = MODE_GUN
 	///Delay to impact post targeting
 	var/delay_to_impact = 4 SECONDS
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/binoculars/fire_support/Initialize()
 	. = ..()
@@ -527,6 +528,8 @@
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
+	var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU)
+	laser = CS
 	if(!do_after(user, target_acquisition_delay, TRUE, user, BUSY_ICON_HOSTILE))
 		return
 	if(!mode)
@@ -549,29 +552,21 @@
 		if(MODE_GUN)
 			to_chat(user, span_notice("TARGET ACQUIRED GUN RUN INBOUND."))
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Garuda-2</u></span><br>" + "Target received, gun run inbound.", /atom/movable/screen/text/screen_text/picture/potrait/pilot)
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, delay_to_impact)
-			laser = CS
 			playsound(TU, 'sound/effects/dropship_sonic_boom.ogg', 75)
 			addtimer(CALLBACK(src, PROC_REF(gun_run), TU), delay_to_impact)
 		if(MODE_ROCKETS)
 			to_chat(user, span_notice("TARGET ACQUIRED ROCKET RUN INBOUND."))
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Garuda-2</u></span><br>" + "Rockets hot, incoming!", /atom/movable/screen/text/screen_text/picture/potrait/pilot)
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, delay_to_impact)
-			laser = CS
 			playsound(TU, 'sound/effects/dropship_sonic_boom.ogg', 75)
 			addtimer(CALLBACK(src, PROC_REF(rocket_run), TU), delay_to_impact)
 		if(MODE_CRS_MSL)
 			to_chat(user, span_notice("TARGET ACQUIRED CRUISE MISSILE INBOUND."))
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Cruise missile programmed, 1 out.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, delay_to_impact)
-			laser = CS
 			playsound(TU, 'sound/weapons/rocket_incoming.ogg', 65)
 			addtimer(CALLBACK(src, PROC_REF(cruise_missile), TU), delay_to_impact)
 		if(MODE_SUPPLY)
 			to_chat(user, span_notice("TARGET ACQUIRED SUPPLY CRATE INBOUND."))
 			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Supply crate sent.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, delay_to_impact)
-			laser = CS
 			addtimer(CALLBACK(src, PROC_REF(supply), TU), delay_to_impact)
 
 /obj/item/binoculars/fire_support/proc/gun_run(turf/T, attackdir = NORTH)
@@ -643,7 +638,7 @@
 
 /obj/item/binoculars/fire_support/proc/cruise_missile(turf/T)
 	QDEL_NULL(laser)
-	explosion(T, 5)
+	explosion(T, 5, 5, 6, small_animation = TRUE)
 	cruise_timer = addtimer(CALLBACK(src, PROC_REF(cruise_clear_timer)), cruise_cooldown)
 
 /obj/item/binoculars/fire_support/proc/cruise_clear_timer()

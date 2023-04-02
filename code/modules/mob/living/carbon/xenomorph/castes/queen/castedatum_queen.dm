@@ -27,6 +27,7 @@
 	evolve_min_xenos = 8
 	maximum_active_caste = 1
 	death_evolution_delay = 5 MINUTES
+	disabled_for_psy = TRUE
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION

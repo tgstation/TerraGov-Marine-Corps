@@ -503,3 +503,9 @@
 	name = "\improper USCM uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "uscm"
+
+/obj/item/clothing/under/marine/uscm/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/uscm/corpsman
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)

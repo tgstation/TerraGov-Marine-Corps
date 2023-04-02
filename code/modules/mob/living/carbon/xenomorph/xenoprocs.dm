@@ -172,6 +172,16 @@
 		var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 		if(siloless_countdown)
 			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
+		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+		var/datum/game_mode/infestation/psy_sensors/psy_mode = SSticker.mode
+		if(issensorcapturegamemode(SSticker.mode))
+			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
+		if(ispsysensorgamemode(SSticker.mode))
+			stat("<b>Activated Sensor Towers:</b>", psy_mode.sensors_activated)
+		//combat patrol timer
+		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+		if(patrol_end_countdown)
+			stat("<b>Round End timer:</b>", patrol_end_countdown)
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()

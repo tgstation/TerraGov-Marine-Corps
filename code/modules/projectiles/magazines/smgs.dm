@@ -192,7 +192,7 @@
 	name = "\improper M39 HV magazine (10x20mm)"
 	desc = "A 10x20mm caseless high-velocity submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
 	caliber = CALIBER_10X20_CASELESS
-	icon_state = "t90"
+	icon_state = "m39"
 	max_rounds = 48
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t90"

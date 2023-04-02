@@ -94,8 +94,8 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41a
-	name = "\improper PR-11 magazine (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the PR-11 Pulse Rifle."
+	name = "\improper M41A magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M41A Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
 	icon_state_mini = "mag_rifle_big"
@@ -503,7 +503,7 @@
 	name = "\improper M56 drum magazine"
 	desc = "A wide drum magazine carefully filled to capacity with 10x28mm specialized smart rounds."
 	caliber = CALIBER_10X28_CASELESS
-	icon_state = "sg29"
+	icon_state = "m56"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 500

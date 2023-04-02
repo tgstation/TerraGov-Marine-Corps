@@ -249,6 +249,7 @@
 	flags_inventory = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/reequip_component
+	var/equip_on_back = FALSE
 
 /obj/item/belt_harness/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -269,9 +270,15 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/huser = user
-	if(huser.belt != src)
-		to_chat(user, span_notice("You need to be wearing [src] to attach something to it!"))
-		return
+	if(equip_on_back)
+		if(huser.back != src)
+			to_chat(user, span_notice("You need to be wearing [src] in the back to attach something to it!"))
+			return
+	else
+		if(huser.belt != src)
+			to_chat(user, span_notice("You need to be wearing [src] in the belt to attach something to it!"))
+			return
+
 	if(reequip_component)
 		if(reequip_component.parent == I)
 			detach_item(I, user)
@@ -321,7 +328,7 @@
 
 /obj/item/belt_harness/marine/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_BELT)
+	if(slot == SLOT_BELT || slot == SLOT_BACK)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 		to_chat(user, span_danger("!!REMEMBER TO ATTACH YOUR WEAPON TO YOUR HARNESS OR IT WON'T WORK!!"))
 
@@ -331,7 +338,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "m56_powerpack"
-	var/obj/item/cell/cell
+	equip_on_back = TRUE
 
 /obj/item/compass
 	name = "compass"
