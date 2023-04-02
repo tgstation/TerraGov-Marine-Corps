@@ -8,6 +8,24 @@
 #define SPOTLIGHT_COOLDOWN_DURATION 6 MINUTES
 #define SPOTLIGHT_DURATION 2 MINUTES
 
+
+#define MESSAGE_SINGLE "Message this marine"
+#define ASL "Set as aSL"
+#define SWITCH_SQUAD "Switch this marine's squad"
+
+#define MARK_LASE "Mark this lase on minimap"
+#define FIRE_LASE "!!FIRE OB!!"
+
+#define ORBITAL_SPOTLIGHT "Shine orbital spotlight"
+#define PLACE_MARK "Place a mark"
+#define MESSAGE_NEAR "Message all nearby marines"
+#define ANNOUNCE_TEXT "Make an announcement"
+
+#define RALLY_MARK "Place a rally mark"
+#define ATTACK_MARK "Place an attack mark"
+#define DEFEND_MARK "Place a defend mark"
+#define RETREAT_MARK "Place a retreat mark"
+
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
@@ -149,7 +167,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, PROC_REF(send_order))
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
-	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_spotlight))
+	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_radial))
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
@@ -719,6 +737,59 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
+
+
+///Quick-select radial menu for Overwatch
+/obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)
+	if(ishuman(A))
+		var/list/radial_options = list(
+			MESSAGE_SINGLE = image(),
+			ASL = image(),
+			SWITCH_SQUAD = image(),
+		)
+
+		var/mob/living/carbon/human/target = A
+
+		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
+		switch(choice)
+			if(MESSAGE_SINGLE)
+			if(ASL)
+
+	elif(istype(A, /obj/effect/overlay/temp/laser_target/OB))
+		var/obj/effect/overlay/temp/laser_target/OB/target = A
+		var/list/radial_options = list(
+			MARK_LASE = image(),
+			FIRE_LASE = image(),
+		)
+
+		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
+		switch(choice)
+			if(ORBITAL_SPOTLIGHT)
+			if(ANNOUNCE_TEXT)
+
+	else:
+		var/turf/target = get_turf(A)
+		var/list/radial_options = list(
+			ORBITAL_SPOTLIGHT = image(),
+			ANNOUNCE_TEXT = image(),
+			MESSAGE_NEAR = image(),
+			PLACE_MARK = image(),
+		)
+
+		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
+		switch(choice)
+			if(ORBITAL_SPOTLIGHT)
+			if(ANNOUNCE_TEXT)
+			if(MESSAGE_NEAR)
+			if(ORDER_BEACON)
+			if(PLACE_MARK)
+				var/list/radial_options = list(
+					RALLY_MARK = image(),
+					ATTACK_MARK = image(),
+					DEFEND_MARK = image(),
+					RETREAT_MARK = image(),
+				)
+
 
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
