@@ -303,6 +303,16 @@ WEAPONS
 	cost = 100
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/tx55
+	name = "AR-55 OICW Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/tx55)
+	cost = 525
+
+/datum/supply_packs/weapons/tx55/ammo
+	name = "AR-55 OICW rifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx55)
+	cost = 25
+
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
 	contains = list(/obj/item/storage/holster/backholster/rpg/full)
