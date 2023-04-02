@@ -173,9 +173,9 @@
 			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
 		),
 		"Reagent Bottle" = list(
-			/obj/item/reagent_containers/glass/bottle/bicaridine = 6,
-			/obj/item/reagent_containers/glass/bottle/kelotane = 6,
-			/obj/item/reagent_containers/glass/bottle/tramadol = 6,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
 			/obj/item/reagent_containers/glass/bottle/dylovene = 6,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
