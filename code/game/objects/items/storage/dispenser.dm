@@ -114,7 +114,7 @@
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 36
+	max_storage_space = 48
 	max_integrity = 250
 
 /obj/item/storage/backpack/dispenser/Initialize(mapload, ...)
