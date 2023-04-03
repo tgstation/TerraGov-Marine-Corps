@@ -194,7 +194,7 @@
 /obj/item/reagent_containers/food/snacks/burger
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "hburger"
-	bite_consumption = 3
+	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("bun" = 2, "beef patty" = 4)
 
@@ -254,7 +254,6 @@
 	name = "roburger"
 	desc = "This massive patty looks like poison. Beep."
 	icon_state = "roburger"
-	max_volume = 120
 	list_reagents = list(/datum/reagent/consumable/nutriment = 11, /datum/reagent/cyborg_mutation_nanomachines = 80, /datum/reagent/consumable/nutriment/vitamin = 15)
 	tastes = list("bun" = 4, "lettuce" = 2, "sludge" = 1)
 
@@ -289,51 +288,6 @@
 	icon_state = "brainburger"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/medicine/mannitol = 6, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/nutriment/protein = 6)
 	tastes = list("bun" = 4, "brains" = 2)
-
-/obj/item/reagent_containers/food/snacks/sandwiches/ghost
-	name = "ghost burger"
-	desc = "Too Spooky!"
-	icon_state = "ghostburger"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 12, /datum/reagent/consumable/salt = 5)
-	tastes = list("bun" = 2, "ectoplasm" = 4)
-	alpha = 170
-	verb_say = "moans"
-	verb_yell = "wails"
-
-/obj/item/reagent_containers/food/snacks/sandwiches/ghost/Initialize(mapload)
-	. = ..()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/reagent_containers/food/snacks/sandwiches/ghost/process()
-	if(!isturf(loc)) //no floating out of bags
-		return
-	var/paranormal_activity = rand(100)
-	switch(paranormal_activity)
-		if(97 to 100)
-			audible_message("[src] rattles a length of chain.")
-			playsound(loc, 'sound/misc/chain_rattling.ogg', 300, TRUE)
-		if(91 to 96)
-			say(pick("OoOoOoo.", "OoooOOooOoo!!"))
-		if(84 to 90)
-			dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-			step(src, dir)
-		if(71 to 83)
-			step(src, dir)
-		if(65 to 70)
-			var/obj/machinery/light/light = locate(/obj/machinery/light) in view(4, src)
-			light?.flicker()
-		if(62 to 64)
-			playsound(loc, pick('sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg'), 50, TRUE, ignore_walls = FALSE)
-		if(61)
-			visible_message("[src] spews out a glob of ectoplasm!")
-			new /obj/effect/decal/cleanable/greenglow/ecto(loc)
-			playsound(loc, 'sound/effects/splat.ogg', 200, TRUE)
-
-		//If i was less lazy i would make the burger forcefeed itself to a nearby mob here.
-
-/obj/item/reagent_containers/food/snacks/sandwiches/ghost/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	. = ..()
 
 /obj/item/reagent_containers/food/snacks/sandwiches/red
 	name = "red burger"
@@ -592,20 +546,20 @@
 	. = ..()
 	// Bun + meatball = burger
 	if(istype(I, /obj/item/reagent_containers/food/snacks/sandwiches/meatball))
-		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
+		new /obj/item/reagent_containers/food/snacks/sandwiches/monkeyburger(src)
 		to_chat(user, "You make a burger.")
 		qdel(I)
 		qdel(src)
 
 	// Bun + cutlet = hamburger
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/sandwiches/cutlet))
-		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
+		new /obj/item/reagent_containers/food/snacks/sandwiches/monkeyburger(src)
 		to_chat(user, "You make a burger.")
 		qdel(I)
 		qdel(src)
 
 	// Bun + sausage = hotdog
-	else if(istype(I, /obj/item/reagent_containers/food/snacks/sandwiches/sausage))
+	else if(istype(I, /obj/item/reagent_containers/food/snacks/sausage))
 		new /obj/item/reagent_containers/food/snacks/hotdog(src)
 		to_chat(user, "You make a hotdog.")
 		qdel(I)

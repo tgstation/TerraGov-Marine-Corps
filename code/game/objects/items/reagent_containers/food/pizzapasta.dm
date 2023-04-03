@@ -373,7 +373,6 @@
 	name = "spaghetti"
 	desc = "Now that's a nic'e pasta!"
 	icon_state = "spaghetti"
-	microwaved_type = /obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti
 	tastes = list("pasta" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti
@@ -386,7 +385,7 @@
 	name = "spaghetti"
 	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
 	icon_state = "pastatomato"
-	bite_consumption = 4
+	bitesize = 4
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pasta" = 1, "tomato" = 1)
 
@@ -394,7 +393,7 @@
 	name = "copypasta"
 	desc = "You probably shouldn't try this, you always hear people talking about how bad it is..."
 	icon_state = "copypasta"
-	bite_consumption = 4
+	bitesize = 4
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/tomatojuice = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
 	tastes = list("pasta" = 1, "tomato" = 1)
 
@@ -423,7 +422,6 @@
 	name = "beef noodle"
 	desc = "Nutritious, beefy and noodly."
 	icon_state = "beefnoodle"
-	trash_type = /obj/item/reagent_containers/glass/bowl
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/liquidgibs = 3)
 	tastes = list("noodle" = 1, "meat" = 1)
 

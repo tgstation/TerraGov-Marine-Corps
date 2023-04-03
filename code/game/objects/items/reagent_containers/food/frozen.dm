@@ -37,10 +37,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("ice cream" = 1, "banana" = 1, "a bad joke" = 1)
 
-/obj/item/reagent_containers/food/snacks/frozen/honkdae/MakeEdible()
-	. = ..()
-	AddComponent(/datum/component/ice_cream_holder, y_offset = -2) //The sugar will react with the banana forming laughter. Honk!
-
 /////////////
 //SNOWCONES//
 /////////////
@@ -49,7 +45,6 @@
 	name = "flavorless snowcone"
 	desc = "It's just shaved ice. Still fun to chew on."
 	icon_state = "flavorless_sc"
-	trash_type = /obj/item/reagent_containers/food/drinks/sillycup //We dont eat paper cups
 	list_reagents = list(/datum/reagent/water = 11) // We dont get food for water/juices
 	tastes = list("ice" = 1, "water" = 1)
 
@@ -179,16 +174,14 @@
 	icon_state = "popsicle_stick_s"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/milk = 2, /datum/reagent/consumable/vanilla = 2, /datum/reagent/consumable/sugar = 4)
 	tastes = list("beetlejuice")
-	trash_type = /obj/item/popsicle_stick
 
 	var/overlay_state = "creamsicle_o" //This is the edible part of the popsicle.
-	var/bite_states = 4 //This value value is used for correctly setting the bite_consumption to ensure every bite changes the sprite. Do not set to zero.
-	var/bitecount = 0
+	var/bite_states = 4 //This value value is used for correctly setting the bitesize to ensure every bite changes the sprite. Do not set to zero.
 
 
 /obj/item/reagent_containers/food/snacks/frozen/popsicle/Initialize(mapload)
 	. = ..()
-	bite_consumption = reagents.total_volume / bite_states
+	bitesize = reagents.total_volume / bite_states
 	update_icon() // make sure the popsicle overlay is primed so it's not just a stick until you start eating it
 
 /obj/item/reagent_containers/food/snacks/frozen/popsicle/update_overlays()
@@ -200,7 +193,6 @@
 
 /obj/item/reagent_containers/food/snacks/frozen/popsicle/proc/after_bite(mob/living/eater, mob/living/feeder, bitecount)
 	src.bitecount = bitecount
-	update_appearance()
 
 /obj/item/popsicle_stick
 	name = "popsicle stick"
