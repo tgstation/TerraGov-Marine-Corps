@@ -741,73 +741,78 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)
+	var/list/radial_options //THESE AREE BAD AND I NEED TO MOVE THESE
+	var/choice
 	if(ishuman(A))
-		var/list/radial_options = list(
-			MESSAGE_SINGLE = image(),
-			ASL = image(),
-			SWITCH_SQUAD = image(),
+		radial_options = list(
+			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
-
-		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
 		var/mob/living/carbon/human/target = A
+		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MESSAGE_SINGLE)
 				var/input = stripped_input(usr, "Please write a message to announce to this marine:", "CIC Message")
-				message_member(target, input, source)
-			if(ASL)
-			if(SWITCH_SQUAD)
+				current_squad.message_member(target, input, source)
+//			if(ASL)
+//			if(SWITCH_SQUAD)
 
-	elif(istype(A, /obj/effect/overlay/temp/laser_target/OB))
+	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
 		var/obj/effect/overlay/temp/laser_target/OB/target = A
-		var/list/radial_options = list(
-			MARK_LASE = image(),
-			FIRE_LASE = image(),
+		radial_options = list(
+			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 
-		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
-		switch(choice)
-			if(ORBITAL_SPOTLIGHT)
-			if(ANNOUNCE_TEXT)
+		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
+//		switch(choice)
+//			if(ORBITAL_SPOTLIGHT)
+//			if(ANNOUNCE_TEXT)
 
-	else:
+	else
 		var/turf/target = get_turf(A)
-		var/list/radial_options = list(
-			ORBITAL_SPOTLIGHT = image(),
-			ANNOUNCE_TEXT = image(),
-			MESSAGE_NEAR = image(),
-			SQUAD_ACTIONS = image(),
-			PLACE_MARK = image(),
+		radial_options = list(
+			ORBITAL_SPOTLIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			ANNOUNCE_TEXT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			PLACE_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 
-		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
+		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(ORBITAL_SPOTLIGHT)
 				attempt_spotlight(source, target, params)
 			if(ANNOUNCE_TEXT)
 			if(MESSAGE_NEAR)
 				var/input = stripped_input(usr, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
-				for(var/mob/living/human/H in GLOB.human_mob_list)
+				for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+					if(!H)
+						return
 					if(get_dist(H, target) > WORLD_VIEW_NUM*2)
 						continue
-					message_member(H, source)
+					current_squad.message_member(H, input, source)
 			if(SQUAD_ACTIONS)
-				var/list/radial_options = list(
-					MESSAGE_SQUAD = image(),
-					SWITCH_SQUAD_NEAR = image(),
+				radial_options = list(
+					MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+					SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 				)
 
-				switch(choice)
-					if(MESSAGE_SQUAD)
+//				switch(choice)
+//					if(MESSAGE_SQUAD)
 						//Need to open squad menu here. Maybe do it as a function?
-					if(SWITCH_SQUAD_NEAR)
+//					if(SWITCH_SQUAD_NEAR)
 
 			if(PLACE_MARK)
-				var/list/radial_options = list(
-					RALLY_MARK = image(),
-					ATTACK_MARK = image(),
-					DEFEND_MARK = image(),
-					RETREAT_MARK = image(),
+				radial_options = list(
+					RALLY_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+					ATTACK_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+					DEFEND_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+					RETREAT_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 				)
+
+
 
 
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
