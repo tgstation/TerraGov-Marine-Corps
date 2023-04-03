@@ -9,10 +9,11 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/explosive/mine
 	name = "not a real mine"
 	desc = "Dummy object. Otherwise changing stats on the parent item would cause chaos/tedium every time."
-	icon = 'icons/obj/items/grenade.dmi'
+	icon = 'icons/obj/items/mine.dmi'
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
+	max_integrity = 100
 	force = 5
 	throwforce = 5
 	throw_range = 6
@@ -37,7 +38,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/buffer_range = 0
 	///Determines how wide the cone for detecting victims is
 	var/angle = 0
-	///How long this mine is active once detonated; for things like slow or radiation fields
+	///How long this mine is active once detonated; for things like slow or radiation fields; set to -1 if it stays active until prompted
 	var/duration = 0
 	///Time before the mine explodes
 	var/detonation_delay = 0
@@ -55,6 +56,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/volatile = FALSE
 	///Mine will not delete itself upon detonation if TRUE
 	var/reusable = FALSE
+	///If this mine can be disarmed or interacted with in any way once triggered; good for adding flavor or as an effect
+	var/interruptible = TRUE
 
 	/* -- Explosion data -- */
 	///How large the devestation impact is
@@ -85,6 +88,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/shrapnel_type = null
 	///How far the shrapnel can go before it is deleted
 	var/shrapnel_range = 0
+	///Type of smoke to spawn
+	var/datum/effect_system/smoke_spread/gas_type = null
+	///Radius of the mine's smoke cloud
+	var/gas_range = 0
+	///How long the gas cloud remains; do not use SECONDS as it is used by the smoke object's process(), which is called roughly every second
+	var/gas_duration = 0
 
 /obj/item/explosive/mine/Initialize()
 	. = ..()
@@ -117,7 +126,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	if(!do_after(user, deploy_delay, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	//Probably important to keep this logged, just in case
-	visible_message(span_notice("[user] deploys a [src]."), span_notice("You deploy a [src]."))
+	user.visible_message(span_notice("[user] deploys a [src]."), span_notice("You deploy a [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy(user, id?.iff_signal)
 
@@ -148,6 +157,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 ///Required checks before a mine is turned off and packed up
 /obj/item/explosive/mine/proc/undeploy(mob/living/user)
+	if(triggered && !interruptible)
+		balloon_alert(user, "Too late, run!")
+		return FALSE
 	if(iff_signal)	//Has to actually be registered with a faction, otherwise it's hostile to everyone!
 		var/obj/item/card/id/id_card = user.get_idcard()
 		if(id_card && id_card.iff_signal == iff_signal)
@@ -163,6 +175,9 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 ///The process for trying to disarm a mine
 /obj/item/explosive/mine/proc/bomb_defusal(mob/user)
+	if(triggered && !interruptible)
+		balloon_alert(user, "Can't disarm this, run!")
+		return FALSE
 	//Mine defusal time is de/increased by 1 second per skill point
 	var/skill_issue = max(disarm_delay - user.skills.getRating(SKILL_ENGINEER) + SKILL_ENGINEER_ENGI, 0)
 	if(skill_issue)	//If you got the time down to 0, you can just skip this whole disarming process you smart egg!
@@ -239,11 +254,18 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		var/obj/projectile/projectile_to_fire = new /obj/projectile(get_turf(src))
 		projectile_to_fire.generate_bullet(shrapnel_type)
 		projectile_to_fire.fire_at(get_step(src, dir), src, src, shrapnel_range, projectile_to_fire.ammo.shell_speed)
-	if(duration)	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
+	if(gas_type && gas_duration)
+		var/datum/effect_system/smoke_spread/smoke = new gas_type()
+		playsound(src, 'sound/effects/smoke.ogg', 25, 1, gas_range + 2)
+		smoke.set_up(gas_range, get_turf(src), gas_duration)
+		smoke.start()
+	if(duration || duration < 0)	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
 		extra_effects(duration)
-		if(reusable)
-			return addtimer(CALLBACK(src, PROC_REF(disarm)), duration)
-		return addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration)
+		if(duration > 0)
+			if(reusable)
+				return addtimer(CALLBACK(src, PROC_REF(disarm)), duration)
+			return addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration)
+		return TRUE
 	if(reusable)
 		return disarm()
 	QDEL_LIST(triggers)
@@ -373,6 +395,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	desc = "Pressure activated high explosive. Watch your step."
 	icon_state = "m20"
 	detonation_message = "whirs and clicks. Run"
+	max_integrity = 250
 	range = 0
 	detonation_delay = 0.5 SECONDS
 	disarm_delay = 5 SECONDS
@@ -413,3 +436,126 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_damage = 10
 	fire_stacks = 10
 	fire_color = "green"
+
+/obj/item/explosive/mine/radiation
+	name = "radiation mine"
+	desc = "Irradiates the surrounding area when triggered."
+	icon_state = "m20"
+	detonation_message = "clicks, emitting a low hum"
+	range = 2
+	duration = 10 SECONDS
+	detonation_delay = 1 SECONDS
+	disarm_delay = 5 SECONDS
+	undeploy_delay = 4 SECONDS	//You turn it off veeeery carefully
+	deploy_delay = 2 SECONDS
+	volatile = TRUE
+	///How large our nuclear exclusion zone shall be
+	var/rad_zone_radius = 5
+
+
+/obj/item/explosive/mine/shock
+	name = "shock mine"
+	desc = "Delivers high voltage arcs of lightning at nearby conductive targets. Can be recharged."
+	icon_state = "m20"
+	range = 3
+	duration = -1
+	disarm_delay = 4 SECONDS
+	undeploy_delay = 5 SECONDS
+	deploy_delay = 5 SECONDS
+	volatile = TRUE
+	reusable = TRUE
+	///The internal cell powering it
+	var/obj/item/cell/battery
+	///How much energy is drained from the internal cell
+	var/energy_cost = 100	//Average cell holds 1000, so 10 shots
+	///How long between each shot
+	var/fire_delay = 0.75 SECONDS
+	///Damage dealt per shot
+	var/damage = 50
+
+/obj/item/explosive/mine/shock/Initialize()
+	. = ..()
+	if(battery)
+		battery = new battery(src)
+
+/obj/item/explosive/mine/shock/examine(mob/user)
+	. = ..()
+	. += span_notice("[battery ? "Battery Charge - [PERCENT(battery.charge/battery.maxcharge)]%" : "No battery installed."]")
+
+/obj/item/explosive/mine/shock/attackby(obj/item/I, mob/user, params)
+	if(!iscell(I))
+		return ..()
+	if(battery)
+		return balloon_alert(user, "There is already a battery installed!")
+	user.transferItemToLoc(I, src)
+	battery = I
+	update_icon()
+
+/obj/item/explosive/mine/shock/screwdriver_act(mob/living/user, obj/item/I)
+	if(!battery)
+		return balloon_alert(user, "No battery installed!")
+	user.put_in_hands(battery)
+	battery = null
+	update_icon()
+
+/obj/item/explosive/mine/shock/trigger_explosion()
+	if(!battery.charge)
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
+		balloon_alert_to_viewers("Out of charge!")
+		return FALSE
+	. = ..()
+
+/obj/item/explosive/mine/shock/extra_effects(duration)
+	if(battery.charge < energy_cost)
+		balloon_alert_to_viewers("Out of charge!")
+		return disarm()
+	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
+	var/target
+	var/list/nearby_objects = shuffle(circle_view(src, range))
+	nearby_objects -= src	//Prevent the mine from committing suicide
+	for(var/atom in nearby_objects)
+		if(isliving(atom))
+			if(ishuman(atom))
+				var/mob/living/carbon/human/victim = atom
+				//Will shock a random body part on humans
+				victim.apply_damage(damage, BURN, pick(GLOB.human_body_parts), ENERGY)
+				target = victim
+			else
+				var/mob/living/victim = atom
+				victim.apply_damage(damage, BURN, blocked = ENERGY)
+				target = victim
+			break
+		if(isobj(atom) && !iseffect(atom))
+			var/obj/victim = atom
+			//Prevents targeting things like wiring under floor tiles and makes it so only conductive objects will attract lightning
+			if(victim.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(victim.flags_atom, CONDUCT))
+				continue
+			victim.take_damage(damage, BURN, ENERGY)
+			target = victim
+			break
+	playsound(loc, "sparks", 100, sound_range = 7)
+	if(target)
+		to_chat(world, "[target]")
+		beam(target, "lightning[rand(1,12)]", time = 0.25 SECONDS)
+		battery.charge -= energy_cost
+	addtimer(CALLBACK(src, PROC_REF(extra_effects)), fire_delay)
+
+/obj/item/explosive/mine/shock/battery_included
+	battery = /obj/item/cell
+
+/obj/item/explosive/mine/tanglefoot
+	name = "tanglefoot mine"
+	desc = "Releases plasma-draining smoke."
+	icon_state = "m20"
+	detonation_message = "beeps and hisses, releasing purple vapors"
+	range = 2
+	duration = 10 SECONDS	//Stays around for a bit venting gas
+	detonation_delay = 1.5 SECONDS
+	disarm_delay = 5 SECONDS
+	undeploy_delay = 3 SECONDS
+	deploy_delay = 3 SECONDS
+	gas_type = /datum/effect_system/smoke_spread/plasmaloss
+	gas_range = 3
+	gas_duration = 15
+	volatile = TRUE
+	interruptible = FALSE
