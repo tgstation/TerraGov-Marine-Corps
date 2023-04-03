@@ -812,6 +812,12 @@
 #define COMSIG_RELAYED_SPEECH "relayed_speech"
 	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
+// mule bot control signals
+#define COMSIG_REMOTECONTROLL_STOP_FOLLOW "remotecontroll_stop_follow"
+#define COMSIG_SET_TARGET "set_target"
+#define COMSIG_BOT_STOP "stopped"
+#define COMSIG_BOT_FOLLOW "followed"
+
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_GUN_SAFETY "keybinding_gun_safety"
