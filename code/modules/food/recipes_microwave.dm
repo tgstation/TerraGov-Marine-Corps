@@ -539,7 +539,7 @@
 	result = /obj/item/reagent_containers/food/snacks/amanitajelly
 
 /datum/recipe/amanitajelly/make_food(obj/container)
-	var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
+	var/obj/item/reagent_containers/food/snacks/soup/amanitajelly/being_cooked = ..(container)
 	being_cooked.reagents.del_reagent(/datum/reagent/toxin/amatoxin)
 	return being_cooked
 

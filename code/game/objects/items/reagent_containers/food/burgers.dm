@@ -284,7 +284,7 @@
 	tastes = list("bun" = 4, "soy protein" = 2) //Cheap fridge burgers.
 
 // Human Burger + cheese wedge = cheeseburger
-/obj/item/reagent_containers/food/snacks/burger/human/burger/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/food/snacks/burger/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/cheesewedge))

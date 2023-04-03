@@ -1214,7 +1214,6 @@
 /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel
 	name = "Cheese wheel"
 	desc = "A big wheel of delcious Cheddar."
-	icon = 'icons/obj/items/piecake.dmi'
 	icon_state = "cheesewheel"
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)

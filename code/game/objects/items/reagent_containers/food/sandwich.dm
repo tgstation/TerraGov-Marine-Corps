@@ -200,7 +200,6 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/plain/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
 		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
 		visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
 		name = "steamed ham"
