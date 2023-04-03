@@ -591,6 +591,9 @@
 		message_admins("[key_name_admin(usr)] disabled the CDN asset transport")
 		log_admin("[key_name(usr)] disabled the CDN asset transport")
 
+/**
+ * Toggles players' ability to join valhalla
+ */
 /datum/admins/proc/toggle_valhalla()
 	set category = "Server"
 	set name = "Toggle Valhalla joining"
@@ -604,6 +607,9 @@
 	log_admin("[key_name(usr)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
 
+/**
+ * Toggles players' ability to take over SSD mobs
+ */
 /datum/admins/proc/toggle_sdd_possesion()
 	set category = "Server"
 	set name = "Toggle taking over SSD mobs"
