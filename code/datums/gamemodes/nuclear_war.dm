@@ -1,15 +1,15 @@
 /datum/game_mode/infestation/distress/nuclear_war
 	name = "Nuclear War"
 	config_tag = "Nuclear War"
-	silo_scaling = 2.5
+	silo_scaling = 2
 
 /datum/game_mode/infestation/distress/nuclear_war/post_setup()
 	. = ..()
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
 /datum/game_mode/infestation/distress/nuclear_war/check_finished()
 	if(round_finished)
@@ -18,7 +18,7 @@
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 	var/num_humans_ship = living_player_list[3]
@@ -32,9 +32,9 @@
 		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
 		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
-	
+
 	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
-		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines managed to nuke the colony
+		message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines managed to nuke the colony
 		round_finished = MODE_INFESTATION_M_MINOR
 		return TRUE
 
@@ -48,7 +48,7 @@
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == INFESTATION_MARINE_CRASHING)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
 			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
@@ -68,4 +68,7 @@
 	return
 
 /datum/game_mode/infestation/distress/nuclear_war/get_siloless_collapse_countdown()
+	return
+
+/datum/game_mode/infestation/distress/nuclear_war/update_silo_death_timer(datum/hive_status/silo_owner)
 	return

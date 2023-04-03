@@ -399,35 +399,39 @@
 		return U
 
 //////////////////CONFUSED
-/mob/living/proc/IsConfused() //If we're unconscious
+///Returns the current confuse status effect if any, else FALSE
+/mob/living/proc/IsConfused()
 	return has_status_effect(STATUS_EFFECT_CONFUSED)
 
-/mob/living/proc/AmountConfused() //How many deciseconds remain in our unconsciousness
-	var/datum/status_effect/confused/C = IsConfused()
+///Returns the remaining duration if a confuse effect exists, else 0
+/mob/living/proc/AmountConfused()
+	var/datum/status_effect/incapacitating/confused/C = IsConfused()
 	if(C)
 		return C.duration - world.time
 	return 0
 
-/mob/living/proc/Confused(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+///Set confused effect duration to the provided value if not less than current duration
+/mob/living/proc/Confused(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))  || ignore_canstun)
-		var/datum/status_effect/confused/C = IsConfused()
+		var/datum/status_effect/incapacitating/confused/C = IsConfused()
 		if(C)
 			C.duration = max(world.time + amount, C.duration)
 		else if(amount > 0)
 			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount)
 		return C
 
+///Set confused effect duration to the provided value
 /mob/living/proc/SetConfused(amount, ignore_canstun = FALSE) //Sets remaining duration
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
-		var/datum/status_effect/confused/C = IsConfused()
+		var/datum/status_effect/incapacitating/confused/C = IsConfused()
 		if(amount <= 0)
 			if(C)
 				qdel(C)
@@ -437,13 +441,14 @@
 			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount)
 		return C
 
+///Increases confused effect duration by the provided value.
 /mob/living/proc/AdjustConfused(amount, ignore_canstun = FALSE) //Adds to remaining duration
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
-		var/datum/status_effect/confused/C = IsConfused()
+		var/datum/status_effect/incapacitating/confused/C = IsConfused()
 		if(C)
 			C.duration += amount
 		else if(amount > 0)
@@ -487,13 +492,6 @@
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
 
-
-/mob/living/proc/adjust_drugginess(amount)
-	return
-
-/mob/living/proc/set_drugginess(amount)
-	return
-
 /mob/living/proc/jitter(amount)
 	jitteriness = clamp(jitteriness + amount,0, 1000)
 
@@ -505,14 +503,14 @@
 		var/old_eye_blind = eye_blind
 		eye_blind = max(eye_blind, amount)
 		if(!old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 
 /mob/living/proc/adjust_blindness(amount)
 	if(amount>0)
 		var/old_eye_blind = eye_blind
 		eye_blind += amount
 		if(!old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
@@ -530,8 +528,8 @@
 		var/old_eye_blind = eye_blind
 		eye_blind = amount
 		if(client && !old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-	else if(!eye_blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
 			blind_minimum = 1
@@ -542,9 +540,6 @@
 		eye_blind = blind_minimum
 		if(!eye_blind)
 			clear_fullscreen("blind")
-	else
-		eye_blind = max(eye_blind, 0)
-		clear_fullscreen("blind")
 
 /mob/living/proc/blur_eyes(amount)
 	if(amount>0)
@@ -562,8 +557,8 @@
 /mob/living/proc/update_eye_blur()
 	if(!client)
 		return
-	var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in client.screen
-	var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in client.screen
+	var/atom/movable/screen/plane_master/floor/OT = locate(/atom/movable/screen/plane_master/floor) in client.screen
+	var/atom/movable/screen/plane_master/game_world/GW = locate(/atom/movable/screen/plane_master/game_world) in client.screen
 	GW.backdrop(src)
 	OT.backdrop(src)
 
@@ -578,19 +573,19 @@
 	if(!isnull(deaf))
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
-
-/mob/living/adjust_drugginess(amount)
+///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
+/mob/living/proc/adjust_drugginess(amount)
 	druggy = max(druggy + amount, 0)
 	if(druggy)
-		overlay_fullscreen("high", /obj/screen/fullscreen/high)
+		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
 	else
 		clear_fullscreen("high")
 
-
-/mob/living/set_drugginess(amount)
+///Sets mob's drugginess to provided amount, minimum 0. Adds or removes druggy overlay as appropriate.
+/mob/living/proc/set_drugginess(amount)
 	druggy = max(amount, 0)
 	if(druggy)
-		overlay_fullscreen("high", /obj/screen/fullscreen/high)
+		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
 	else
 		clear_fullscreen("high")
 
@@ -629,7 +624,7 @@
 
 ///Where the magic happens. Actually applies stagger stacks.
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
-	if(stagger > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
@@ -639,8 +634,17 @@
 		stagger = clamp(stagger + amount, 0, capped)
 		return stagger
 
-	stagger = max(stagger + amount,0)
+	set_stagger(max(stagger + amount,0))
 	return stagger
+
+///Used to set stagger to a set number
+/mob/living/proc/set_stagger(amount)
+	if(stagger == amount)
+		return
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
+	stagger = max(amount, 0)
+	SEND_SIGNAL(src, COMSIG_LIVING_STAGGER_CHANGED, stagger)
 
 ////////////////////////////// SLOW ////////////////////////////////////
 
@@ -747,3 +751,53 @@
 	else if(amount > 0)
 		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
 	return M
+
+///////////////////////////////// Irradiated //////////////////////////////////
+
+///Returns whether the mob is irradiated or not
+/mob/living/proc/is_irradiated()
+	return has_status_effect(STATUS_EFFECT_IRRADIATED)
+
+///How many deciseconds remain in our irradiated status effect
+/mob/living/proc/amount_irradiated()
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	if(irradiated)
+		return irradiated.duration - world.time
+	return 0
+
+///Applies irradiation from a source
+/mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	if(irradiated)
+		irradiated.duration = max(world.time + amount, irradiated.duration)
+	else if(amount > 0)
+		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return irradiated
+
+///Sets irradiation  duration
+/mob/living/proc/set_radiation(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	if(amount <= 0)
+		if(irradiated)
+			qdel(irradiated)
+	else
+		if(irradiated)
+			irradiated.duration = world.time + amount
+		else
+			irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return irradiated
+
+///Modifies irradiation duration
+/mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	if(irradiated)
+		irradiated.duration += amount
+	else if(amount > 0)
+		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return irradiated

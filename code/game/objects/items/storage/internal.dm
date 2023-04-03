@@ -55,7 +55,7 @@
 	if(owner.flags_item & NODROP)
 		return FALSE
 
-	if(!istype(over_object, /obj/screen))
+	if(!istype(over_object, /atom/movable/screen))
 		return TRUE
 
 	//Makes sure owner is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
@@ -65,7 +65,7 @@
 
 	if(over_object.name == "r_hand" || over_object.name == "l_hand")
 		if(owner.time_to_unequip)
-			INVOKE_ASYNC(src, .proc/unequip_item, user, over_object.name)
+			INVOKE_ASYNC(src, PROC_REF(unequip_item), user, over_object.name)
 		else if(over_object.name == "r_hand")
 			user.dropItemToGround(owner)
 			user.put_in_r_hand(owner)
@@ -107,8 +107,8 @@
 			return FALSE
 
 	if(master_item.loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 		else
 			open(user)

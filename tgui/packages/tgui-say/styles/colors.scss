@@ -1,0 +1,69 @@
+@use 'sass:color';
+@use 'sass:map';
+
+$background: #131313;
+$button: #1f1f1f;
+$lightMode: #ffffff;
+$lightBorder: #bbbbbb;
+$lightHover: #eaeaea;
+
+////////////////////////////////////////////////
+// Normal chat colors
+$say: #a4bad6;
+$radio: #158c15;
+$me: #5975da;
+$ooc: #004ed8;
+$looc: #3a9696;
+$xooc: #004ed8;
+$mooc: #004ed8;
+
+////////////////////////////////////////////////
+// Subchannel chat colors
+$ai: #d65d95;
+$binary: #1e90ff;
+$command: #3e67b2;
+$engi: #cc631e;
+$hive: #b23593;
+$medical: #158c78;
+$science: #993599;
+$cas: #dd3535;
+$requisitions: #b88646;
+$alpha: #bf2f2f;
+$bravo: #cc8814;
+$charlie: #b259b2;
+$delta: #3656d8;
+
+$_channel_map: (
+  'say': $say,
+  'radio': $radio,
+  'me': $me,
+  'ooc': $ooc,
+  'looc': $looc,
+  'xooc': $xooc,
+  'mooc': $mooc,
+  'ai': $ai,
+  'binary': $binary,
+  'command': $command,
+  'engi': $engi,
+  'hive': $hive,
+  'medical': $medical,
+  'firesupport': $cas,
+  'requisitions': $requisitions,
+  'alpha': $alpha,
+  'bravo': $bravo,
+  'charlie': $charlie,
+  'delta': $delta,
+);
+
+$channel_keys: map.keys($_channel_map) !default;
+
+$channel-map: ();
+
+@each $channel in $channel_keys {
+  $channel-map: map-merge(
+    $channel-map,
+    (
+      $channel: map.get($_channel_map, $channel),
+    )
+  );
+}

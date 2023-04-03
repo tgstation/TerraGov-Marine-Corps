@@ -7,7 +7,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "I" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "L" = (
 /turf/open/floor/marking/asteroidwarning{

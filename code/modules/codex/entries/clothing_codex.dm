@@ -68,6 +68,9 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(mechanics_signal & COMPONENT_CLOTHING_MECHANICS_TINTED)
 		armor_strings += "<br>This will obstruct your vision."
 
+	if(mechanics_signal & COMPONENT_CLOTHING_BLUR_PROTECTION)
+		armor_strings += "<br>This will clarify your vision, removing all sources of blur."
+
 	if(accuracy_mod)
 		armor_strings += "<br>This will alter your shooting accuracy by up to [accuracy_mod]% when worn."
 
@@ -94,10 +97,10 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
-	if(covers.len)
+	if(length(covers))
 		armor_strings += "<br>It covers the [english_list(covers)]."
 
-	if(slots.len)
+	if(length(slots))
 		armor_strings += "It can be worn on your [english_list(slots)]."
 
 	if(allowed)
@@ -115,18 +118,6 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(length(storage.bypass_w_limit))
 		. += "<br><br><U>You can also carry the following special items in this</U>:"
 		for(var/X in storage.bypass_w_limit)
-			var/obj/B = X
-			. += "<br>[initial(B.name)]"
-
-/obj/item/clothing/suit/storage/get_mechanics_info()
-	. = ..()
-	if(!pockets)
-		return
-	. += "<br><br>This item has an internal inventory of [pockets.storage_slots] slots."
-	. += "<br>It can carry weight [pockets.max_w_class] things or lighter."
-	if(length(pockets.bypass_w_limit))
-		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
-		for(var/X in pockets.bypass_w_limit)
 			var/obj/B = X
 			. += "<br>[initial(B.name)]"
 

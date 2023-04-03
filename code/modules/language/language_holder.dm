@@ -10,7 +10,7 @@
 
 /datum/language_holder/New(owner)
 	src.owner = owner
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_language)
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_language))
 
 	languages = typecacheof(languages)
 	shadow_languages = typecacheof(shadow_languages)
@@ -116,6 +116,8 @@
 	. = ..()
 	grant_all_languages(omnitongue = TRUE)
 
+/datum/language_holder/robot
+	languages = list(/datum/language/common, /datum/language/machine)
 
 /datum/language_holder/synthetic
 	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)

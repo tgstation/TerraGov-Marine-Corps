@@ -55,7 +55,7 @@
 	data = counterlist_normalise(supplied_data)
 
 /datum/reagent/consumable/nutriment/on_merge(list/newdata, newvolume)
-	if(!islist(newdata) || !newdata.len)
+	if(!islist(newdata) || !length(newdata))
 		return
 
 	// data for nutriment is one or more (flavour -> ratio)
@@ -129,15 +129,10 @@
 		var/mob/living/carbon/human/H = L
 		if((H.species.species_flags & NO_PAIN))
 			return ..()
-	switch(current_cycle)
-		if(1 to agony_start - 1)
-			if(prob(5))
-				to_chat(L, discomfort_message)
-		if(agony_start to INFINITY)
-			L.apply_effect(agony_amount, AGONY)
-			if(prob(5))
-				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
-				to_chat(L, discomfort_message)
+	if(prob(5))
+		to_chat(L, discomfort_message)
+	if(L.bodytemperature == targ_temp)
+		L.apply_effect(agony_amount, AGONY)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed
@@ -282,19 +277,19 @@
 	L.druggy = max(L.druggy, 30)
 	switch(current_cycle)
 		if(1 to 5)
-			L.stuttering += 1
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 			L.dizzy(5)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 		if(5 to 10)
-			L.stuttering += 1
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 			L.jitter(10)
 			L.dizzy(10)
 			L.set_drugginess(35)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(10 to INFINITY)
-			L.stuttering += 1
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 			L.jitter(20)
 			L.dizzy(20)
 			L.set_drugginess(40)

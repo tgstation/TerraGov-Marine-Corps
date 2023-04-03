@@ -111,7 +111,8 @@
 				"default" = 'icons/mob/ai.dmi',
 				"floating face" = 'icons/mob/ai.dmi',
 				"xeno_queen" = 'icons/mob/ai.dmi',
-				"void_horror" = 'icons/mob/ai.dmi'
+				"void_horror" = 'icons/mob/ai.dmi',
+				"holo4" = 'icons/mob/ai.dmi'
 				)
 
 			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
@@ -267,7 +268,7 @@
 
 	var/delay = 1 SECONDS
 	for(var/i in laws)
-		addtimer(CALLBACK(src, /atom/movable/.proc/say, "[radiomod] [i]"), delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "[radiomod] [i]"), delay)
 		delay += 1 SECONDS
 
 
@@ -308,7 +309,15 @@
 	if(tgui_alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", list("Yes", "No")) != "Yes")
 		return
 
-	to_chat(src, span_notice("Systems shutting down..."))
+	if(tgui_alert(src, "Are you sure you want to shutdown your systems? You won't be able to return to your body. You can't change your mind so choose wisely!", "Shutdown systems confirm", list("Yes", "No")) != "Yes")
+		return
 
+	to_chat(src, span_notice("Systems shutting down..."))
+	icon_state = "ai"
+
+	log_game("[key_name(src)] has ghosted at [AREACOORD(src)].")
+	message_admins("[ADMIN_TPMONTY(src)] has ghosted.")
+
+	priority_announce("[src] has suffered an unexpected NTOS failure over its Logarithmic silicon backhaul functions and has been taken offline. An attempt to load a backup personality core will proceed shortly.", "AI NT-OS Critical Failure")
 	ghostize(FALSE)
 	offer_mob()

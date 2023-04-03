@@ -1,13 +1,17 @@
 
 /obj/item/clothing/under
-	icon = 'icons/obj/clothing/uniforms.dmi'
+	icon = 'icons/obj/clothing/uniforms/uniforms.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)
 	name = "under"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	blood_sprite_state = "uniformblood"
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
@@ -21,24 +25,21 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/uniform/webbing,
 		/obj/item/armor_module/storage/uniform/black_vest,
-		/obj/item/armor_module/storage/uniform/black_vest/som,
 		/obj/item/armor_module/storage/uniform/brown_vest,
 		/obj/item/armor_module/storage/uniform/white_vest,
-		/obj/item/armor_module/storage/uniform/white_vest/medic/som,
-		/obj/item/armor_module/storage/uniform/black_vest/som_vet,
-		/obj/item/armor_module/storage/uniform/white_vest/surgery,
-		/obj/item/armor_module/storage/uniform/white_vest/medic,
+		/obj/item/armor_module/storage/uniform/surgery_webbing,
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
 		/obj/item/armor_module/storage/uniform/holster/highpower,
-		/obj/item/armor_module/armor/badge,
-		/obj/item/armor_module/armor/cape,
-		/obj/item/armor_module/armor/cape/half,
-		/obj/item/armor_module/armor/cape/short,
-		/obj/item/armor_module/armor/cape/scarf,
+		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/greyscale/cape,
+		/obj/item/armor_module/greyscale/cape/half,
+		/obj/item/armor_module/greyscale/cape/short,
+		/obj/item/armor_module/greyscale/cape/scarf,
+		/obj/item/armor_module/module/pt_belt,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -72,6 +73,7 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 		ATTACHMENT_SLOT_CAPE,
+		ATTACHMENT_SLOT_BELT,
 	)
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
@@ -143,10 +145,11 @@
 			. += "Its vital tracker and tracking beacon appear to be enabled."
 
 //we only want to quick equip from actual 'holster' type webbings
-/obj/item/clothing/under/do_quick_equip()
-	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
-	if(found)
-		return found.do_quick_equip()
+/obj/item/clothing/under/do_quick_equip(mob/user)
+	for(var/attachment_slot in attachments_by_slot)
+		if(istype(attachments_by_slot[attachment_slot], /obj/item/armor_module/storage/uniform/holster))
+			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
+			return storage_attachment.storage.do_quick_equip(user)
 	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)

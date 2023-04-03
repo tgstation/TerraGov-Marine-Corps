@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/box12x40mm
 	name = "box of 12x40mm"
-	desc = "A box containing 200 rounds of 12x40mm caseless.."
+	desc = "A box containing 200 rounds of 12x40mm caseless."
 	caliber = CALIBER_12X40
 	icon_state = "ltbcannon_4"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -11,7 +11,7 @@
 
 /obj/item/ammo_magazine/box11x35mm
 	name = "box of 11x35mm"
-	desc = "A box containing 200 rounds of 11x35mm caseless.."
+	desc = "A box containing 200 rounds of 11x35mm caseless."
 	caliber = CALIBER_11X35
 	icon_state = "ltbcannon_4"
 	w_class = WEIGHT_CLASS_NORMAL

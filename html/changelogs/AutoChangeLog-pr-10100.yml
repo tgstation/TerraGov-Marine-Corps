@@ -1,5 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscdel: "Unused baystation races and their codes it gone."
-  - rscdel: "Unused deformed limb code is gone."

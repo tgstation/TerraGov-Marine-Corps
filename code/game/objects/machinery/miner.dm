@@ -10,9 +10,10 @@
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
-#define PHORON_CRATE_SELL_AMOUNT 15
-#define PLATINUM_CRATE_SELL_AMOUNT 30
-
+#define PHORON_CRATE_SELL_AMOUNT 150
+#define PLATINUM_CRATE_SELL_AMOUNT 300
+#define PHORON_DROPSHIP_BONUS_AMOUNT 15
+#define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
@@ -22,6 +23,7 @@
 	icon_state = "mining_drill_active"
 	anchored = TRUE
 	coverage = 30
+	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
@@ -33,6 +35,8 @@
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
 	var/mineral_value = PHORON_CRATE_SELL_AMOUNT
+	///Applies the actual bonus points for the dropship for each sale
+	var/dropship_bonus = PHORON_DROPSHIP_BONUS_AMOUNT
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -46,40 +50,51 @@
 	miner_status = MINER_DESTROYED
 	icon_state = "mining_drill_error"
 
+/obj/machinery/miner/damaged/init_marker()
+	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
+
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
-
+	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
 /obj/machinery/miner/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
+	init_marker()
 	start_processing()
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
+
+/**
+ * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
+ * * For a miner starting broken, it should be overridden and immediately return instead, as broken miners will automatically set their minimap marker during their first process()
+ **/
+/obj/machinery/miner/proc/init_marker()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
 			icon_state = "mining_drill_active_[miner_upgrade_type]"
-			set_light(MINER_LIGHT_RUNNING)
+			set_light(MINER_LIGHT_RUNNING, MINER_LIGHT_RUNNING)
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
-			set_light(MINER_LIGHT_SDAMAGE)
+			set_light(MINER_LIGHT_SDAMAGE, MINER_LIGHT_SDAMAGE)
 		if(MINER_MEDIUM_DAMAGE)
 			icon_state = "mining_drill_[miner_upgrade_type]"
-			set_light(MINER_LIGHT_MDAMAGE)
+			set_light(MINER_LIGHT_MDAMAGE, MINER_LIGHT_MDAMAGE)
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
-			set_light(MINER_LIGHT_DESTROYED)
+			set_light(MINER_LIGHT_DESTROYED, MINER_LIGHT_DESTROYED)
 
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
 		to_chat(user, span_info("The [src]'s module sockets are already occupied by the [miner_upgrade_type]."))
 		return FALSE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to install the module on [src]."),
 		span_notice("You fumble around figuring out how to install the module on [src]."))
-		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
@@ -95,6 +110,8 @@
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
+				SSpoints.dropship_points += dropship_bonus * stored_mineral
+				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -151,33 +168,37 @@
 	if(!weldingtool.remove_fuel(1, user))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return FALSE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
 		span_notice("You fumble around figuring out [src]'s internals."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
+	add_overlay(GLOB.welding_sparks)
 	if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
+		cut_overlay(GLOB.welding_sparks)
 		return FALSE
 	if(miner_status != MINER_DESTROYED )
+		cut_overlay(GLOB.welding_sparks)
 		return FALSE
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	miner_integrity = 0.33 * max_miner_integrity
 	set_miner_status()
 	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 	span_notice("You weld [src]'s internal damage."))
+	cut_overlay(GLOB.welding_sparks)
 	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
 		span_notice("You fumble around figuring out [src]'s wiring."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
@@ -197,10 +218,10 @@
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
 		span_notice("You fumble around figuring out [src]'s tubing and plating."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
@@ -250,6 +271,8 @@
 		return
 
 	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	SSpoints.dropship_points += dropship_bonus * stored_mineral
+	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -257,7 +280,7 @@
 	start_processing()
 
 /obj/machinery/miner/process()
-	if(miner_status != MINER_RUNNING)
+	if(miner_status != MINER_RUNNING || mineral_value == 0)
 		stop_processing()
 		SSminimaps.remove_marker(src)
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
@@ -268,6 +291,8 @@
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
 				SSpoints.supply_points[faction] += mineral_value
+				SSpoints.dropship_points += dropship_bonus
+				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value] points.")
@@ -318,3 +343,9 @@
 			SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
 			miner_status = MINER_RUNNING
 	update_icon()
+
+///Called via global signal to prevent perpetual mining
+/obj/machinery/miner/proc/disable_on_hijack()
+	mineral_value = 0
+	miner_integrity = 0
+	set_miner_status()

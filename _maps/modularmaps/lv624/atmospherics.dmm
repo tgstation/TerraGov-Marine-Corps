@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "at" = (
 /obj/machinery/computer/general_air_control,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -12,14 +12,13 @@
 /area/lv624/lazarus/atmos)
 "aX" = (
 /obj/structure/cryofeed/right,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "cn" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -28,12 +27,11 @@
 /area/lv624/lazarus/atmos)
 "ct" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "cU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -67,7 +65,7 @@
 	},
 /obj/structure/table,
 /obj/item/storage/belt/utility/full,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -86,33 +84,30 @@
 /area/lv624/lazarus/atmos)
 "ga" = (
 /obj/structure/cryofeed,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "gi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
 /obj/structure/cryofeed/right,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "iF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "iN" = (
 /turf/closed/wall,
@@ -147,11 +142,10 @@
 	dir = 5
 	},
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "lX" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -159,11 +153,10 @@
 /area/lv624/lazarus/atmos)
 "mQ" = (
 /obj/structure/cryofeed,
-/obj/effect/decal/warning_stripes{
-	icon_state = "SW-in"
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "mZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -180,7 +173,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "oO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -210,11 +203,10 @@
 /area/lv624/lazarus/atmos)
 "su" = (
 /obj/structure/cryofeed/right,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "tr" = (
 /turf/open/floor/tile/dark/brown2{
@@ -249,7 +241,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "wH" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -258,7 +250,7 @@
 /area/lv624/lazarus/atmos)
 "xU" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -289,7 +281,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "za" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -297,7 +289,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "zx" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
@@ -320,11 +312,10 @@
 /area/lv624/lazarus/atmos)
 "BD" = (
 /obj/structure/cryofeed/right,
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 8
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "BV" = (
 /obj/structure/closet/firecloset/full,
@@ -346,11 +337,10 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "CS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -394,11 +384,10 @@
 /area/lv624/lazarus/atmos)
 "EN" = (
 /obj/structure/cryofeed,
-/obj/effect/decal/warning_stripes/linethick{
+/obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "Gh" = (
 /turf/open/floor/tile/dark/brown2{
@@ -441,11 +430,10 @@
 /area/lv624/lazarus/atmos)
 "Jy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "Ke" = (
 /obj/effect/decal/cleanable/blood,
@@ -468,11 +456,10 @@
 	dir = 6
 	},
 /obj/structure/cryofeed,
-/obj/effect/decal/warning_stripes/thick{
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "LL" = (
 /obj/machinery/computer/atmos_alert,
@@ -480,7 +467,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Mh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -489,7 +476,7 @@
 /area/lv624/lazarus/atmos)
 "MA" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -508,13 +495,13 @@
 /area/lv624/lazarus/atmos)
 "OT" = (
 /obj/machinery/computer3/server,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "PD" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -592,14 +579,13 @@
 	dir = 9
 	},
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
 "Wh" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark/brown2{

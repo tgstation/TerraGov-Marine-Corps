@@ -54,6 +54,9 @@
 		climbable = 0 //Open crate is not a surface that works when climbing around
 	return 1
 
+/obj/structure/closet/crate/break_open()
+	open()
+
 /obj/structure/closet/crate/close()
 	if(!opened)
 		return 0
@@ -112,23 +115,6 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 
-
-/obj/structure/closet/crate/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			for(var/obj/O in src.contents)
-				qdel(O)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			for(var/obj/O in src.contents)
-				if(prob(50))
-					qdel(O)
-			qdel(src)
-		if(EXPLODE_LIGHT)
-			if (prob(50))
-				qdel(src)
-
-
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
 	desc = "A crate with alpha squad's symbol on it. "
@@ -177,6 +163,36 @@
 	icon_state = "closed_explosives"
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
+
+/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize()
+	. = ..()
+	new /obj/structure/closet/crate/explosives(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/M15(src)
+	new /obj/item/storage/box/visual/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer crate"
@@ -232,7 +248,7 @@
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
-	new /obj/item/rcd(src)
+	new /obj/item/tool/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
@@ -282,6 +298,7 @@
 /obj/structure/closet/crate/trashcart
 	name = "Trash Cart"
 	desc = "A heavy, metal trashcart with wheels."
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "closed_trashcart"
 	icon_opened = "open_trashcart"
 	icon_closed = "closed_trashcart"
@@ -305,8 +322,93 @@
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon_state = "miningcar"
+	icon_state = "closed_mcart"
 	density = TRUE
-	icon_opened = "miningcaropen"
-	icon_closed = "miningcar"
+	icon_opened = "open_mcart"
+	icon_closed = "closed_mcart"
 
+/obj/structure/closet/crate/miningcar/stripe
+	icon_state = "closed_mcart_y"
+	icon_opened = "open_mcart_y"
+	icon_closed = "closed_mcart_y"
+
+/obj/structure/closet/crate/mass_produced_crate
+	name = "Mass Produced Crate"
+	desc = "A rectangular steel crate. Cannot be welded for metal."
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "closed_basic"
+	icon_opened = "open_basic"
+	icon_closed = "closed_basic"
+	max_integrity = 5 //hopefully makes it so req crate spam can easily be destroyed
+	drop_material = null
+
+
+/obj/structure/closet/crate/mass_produced_crate/alpha
+	name = "Mass Produced Alpha Squad Crate"
+	desc = "A crate with alpha squad's symbol on it. Cannot be welded for metal. "
+	icon_state = "closed_alpha"
+	icon_opened = "open_alpha"
+	icon_closed = "closed_alpha"
+
+/obj/structure/closet/crate/mass_produced_crate/ammo
+	name = "Mass Produced Ammunitions Crate"
+	desc = "A ammunitions crate. Cannot be welded for metal."
+	icon_state = "closed_ammo"
+	icon_opened = "open_ammo"
+	icon_closed = "closed_ammo"
+
+/obj/structure/closet/crate/mass_produced_crate/bravo
+	name = "Mass Produced Bravo Squad Crate"
+	desc = "A crate with bravo squad's symbol on it. Cannot be welded for metal."
+	icon_state = "closed_bravo"
+	icon_opened = "open_bravo"
+	icon_closed = "closed_bravo"
+
+/obj/structure/closet/crate/mass_produced_crate/charlie
+	name = "Mass Produced Charlie Squad Crate"
+	desc = "A crate with charlie squad's symbol on it. Cannot be welded for metal."
+	icon_state = "closed_charlie"
+	icon_opened = "open_charlie"
+	icon_closed = "closed_charlie"
+
+/obj/structure/closet/crate/mass_produced_crate/construction
+	name = "Mass Produced Construction Crate"
+	desc = "A construction crate. Cannot be welded for metal."
+	icon_state = "closed_construction"
+	icon_opened = "open_construction"
+	icon_closed = "closed_construction"
+
+/obj/structure/closet/crate/mass_produced_crate/delta
+	name = "Mass Produced Delta Squad Crate"
+	desc = "A crate with delta squad's symbol on it. Cannot be welded for metal. "
+	icon_state = "closed_delta"
+	icon_opened = "open_delta"
+	icon_closed = "closed_delta"
+
+/obj/structure/closet/crate/mass_produced_crate/explosives
+	name = "Mass Produced Explosives Crate"
+	desc = "A explosives crate. Cannot be welded for metal."
+	icon_state = "closed_explosives"
+	icon_opened = "open_explosives"
+	icon_closed = "closed_explosives"
+
+/obj/structure/closet/crate/mass_produced_crate/medical
+	name = "Mass Produced Medical Crate"
+	desc = "A medical crate. Cannot be welded for metal."
+	icon_state = "closed_medical"
+	icon_opened = "open_medical"
+	icon_closed = "closed_medical"
+
+/obj/structure/closet/crate/mass_produced_crate/supply
+	name = "Mass Produced Supply Crate"
+	desc = "A supply crate. Cannot be welded for metal."
+	icon_state = "closed_supply"
+	icon_opened = "open_supply"
+	icon_closed = "closed_supply"
+
+/obj/structure/closet/crate/mass_produced_crate/weapon
+	name = "Mass Produced Weapons Crate"
+	desc = "A weapons crate. Cannot be welded for metal."
+	icon_state = "closed_weapons"
+	icon_opened = "open_weapons"
+	icon_closed = "closed_weapons"

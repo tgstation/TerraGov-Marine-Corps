@@ -130,7 +130,7 @@
 /area/bigredv2/outside/engineering)
 "gy" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -276,10 +276,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "op" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oE" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
@@ -559,7 +559,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "yQ" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -707,7 +707,7 @@
 /turf/open/ground/river,
 /area/bigredv2/outside/engineering)
 "Hz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
@@ -790,7 +790,7 @@
 /area/bigredv2/outside/engineering)
 "MJ" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Nh" = (
@@ -965,7 +965,7 @@
 /area/bigredv2/caves/southwest)
 "Uz" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Vy" = (

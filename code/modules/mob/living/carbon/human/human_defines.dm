@@ -4,11 +4,12 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, SQUAD_HUD_SOM, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
 	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
+	resistance_flags = XENO_DAMAGEABLE|PORTAL_IMMUNE
 
 	hud_type = /datum/hud/human
 
@@ -56,9 +57,7 @@
 	var/backpack = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
 	// General information
-	var/home_system = ""
 	var/citizenship = ""
-	var/personal_faction = ""
 	var/religion = ""
 
 	//Equipment slots
@@ -76,8 +75,6 @@
 	var/obj/item/s_store = null
 
 	var/icon/stand_icon = null
-
-	var/speech_problem_flag = 0
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
@@ -102,20 +99,14 @@
 	var/list/limbs = list()
 	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
 
-	var/command_aura = null //The command aura we are using as a string. Need to be trained or higher in Leadership
-	var/command_aura_strength = 0 //The strength of our command aura. This depends on our Leadership skill
-	var/command_aura_allowed = list("move", "hold", "focus") //Auras we can create. Leadership checked separately
-	var/command_aura_tick = 0 //How many ticks left before we cut out your command aura
-	var/command_aura_cooldown = 0 //Cooldown on our command aura
+	///Auras we can create, used for the order choice UI.
+	var/static/list/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
+	///Whether we can use another command order yet. Either null or a timer ID.
+	var/command_aura_cooldown
 
 	var/mobility_aura = 0
 	var/protection_aura = 0
 	var/marksman_aura = 0
-
-	var/mobility_new = 0
-	var/protection_new = 0
-	var/marksman_new = 0
-	var/aura_recovery_multiplier = 0
 
 	var/datum/squad/assigned_squad //the squad assigned to
 

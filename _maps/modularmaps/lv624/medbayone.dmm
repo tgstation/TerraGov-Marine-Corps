@@ -180,13 +180,10 @@
 /obj/machinery/door/airlock/colony/medical/domestorage{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
-	icon_state = "shutter0";
 	id = "OR2";
 	name = "\improper Shutters";
-	opacity = 0
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -255,13 +252,10 @@
 /area/lv624/lazarus/medbay)
 "vI" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
-	icon_state = "shutter0";
 	id = "OR2";
 	name = "\improper Shutters";
-	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)

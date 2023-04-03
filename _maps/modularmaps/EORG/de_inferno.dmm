@@ -5,7 +5,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ar" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor{
@@ -304,11 +304,11 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "dS" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "dT" = (
@@ -441,7 +441,7 @@
 /area/deathmatch)
 "eC" = (
 /obj/structure/cargo_container/horizontal,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "eD" = (
@@ -639,7 +639,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "ht" = (
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "hz" = (
@@ -668,10 +668,10 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "iq" = (
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 8
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "iS" = (
@@ -680,12 +680,9 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "iW" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/effect/landmark/deathmatch,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "jc" = (
 /obj/structure/table/gamblingtable,
@@ -704,6 +701,10 @@
 "jA" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"jG" = (
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
 /area/deathmatch)
 "kb" = (
@@ -731,11 +732,18 @@
 "kI" = (
 /obj/structure/largecrate/guns/merc,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "kJ" = (
 /turf/open/floor/wood/broken,
+/area/deathmatch)
+"kL" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
 /area/deathmatch)
 "kV" = (
 /obj/structure/platform{
@@ -748,12 +756,17 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/wood,
 /area/deathmatch)
+"lW" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "mt" = (
 /obj/structure/platform,
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "mG" = (
@@ -762,7 +775,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "mX" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "ng" = (
@@ -777,7 +790,7 @@
 /area/deathmatch)
 "nS" = (
 /obj/structure/platform,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "ob" = (
@@ -821,6 +834,12 @@
 /obj/structure/closet/cabinet,
 /turf/open/floor/industrial,
 /area/deathmatch)
+"pG" = (
+/obj/structure/barricade/wooden,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "pN" = (
 /obj/structure/barricade/wooden,
 /obj/effect/decal/cleanable/dirt,
@@ -832,10 +851,10 @@
 /area/deathmatch)
 "rA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "rM" = (
@@ -859,6 +878,12 @@
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
+/area/deathmatch)
+"sp" = (
+/obj/structure/table/gamblingtable,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/turf/open/floor/wood,
 /area/deathmatch)
 "sU" = (
 /obj/effect/forcefield{
@@ -913,7 +938,7 @@
 "uy" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "uC" = (
@@ -995,7 +1020,7 @@
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "xf" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating,
@@ -1046,6 +1071,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
+"zK" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "zO" = (
 /obj/effect/landmark/deathmatch,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
@@ -1058,7 +1088,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Ax" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "AJ" = (
@@ -1067,7 +1097,7 @@
 /area/deathmatch)
 "Ba" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/stairs/rampbottom{
@@ -1086,11 +1116,16 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "BI" = (
-/obj/effect/decal/sandedge/corner2{
+/obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
 	},
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
+"BO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "CI" = (
 /obj/structure/closet/cabinet,
@@ -1179,7 +1214,7 @@
 	},
 /obj/structure/platform,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt/desert,
@@ -1205,9 +1240,7 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/turf/closed/wall/wood{
-	soft_armor = list("melee" = 1000, "bullet" = 1000, "laser" = 1000, "energy" = 1000, "bomb" = 1000, "bio" = 1000, "rad" = 1000, "fire" = 1000, "acid" = 1000)
-	},
+/turf/closed/wall/wood,
 /area/deathmatch)
 "Jf" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -1255,13 +1288,13 @@
 /area/deathmatch)
 "KV" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "KZ" = (
-/obj/effect/decal/siding{
+/obj/effect/turf_decal/siding{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor{
@@ -1289,7 +1322,7 @@
 /area/deathmatch)
 "LY" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Mm" = (
@@ -1388,7 +1421,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt/desert,
@@ -1423,6 +1456,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt/desert,
 /area/deathmatch)
+"RZ" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "Sq" = (
 /obj/structure/closet/coffin,
 /turf/open/floor/plating/asteroidplating,
@@ -1436,7 +1474,7 @@
 "Tk" = (
 /obj/structure/platform,
 /obj/effect/landmark/deathmatch,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Tw" = (
@@ -1449,7 +1487,7 @@
 	},
 /area/deathmatch)
 "Tx" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -1465,7 +1503,7 @@
 /area/deathmatch)
 "TZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandytile,
+/obj/effect/turf_decal/sandytile,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Us" = (
@@ -1564,7 +1602,7 @@
 	},
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/sandedge{
+/obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt/desert,
@@ -1609,6 +1647,10 @@
 /area/deathmatch)
 "ZO" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ZV" = (
+/obj/item/storage/belt/champion,
 /turf/open/floor/wood,
 /area/deathmatch)
 
@@ -2127,7 +2169,7 @@ Zd
 tr
 bb
 kJ
-rO
+sp
 tr
 tr
 eM
@@ -2183,7 +2225,7 @@ fI
 fI
 dG
 wN
-tr
+jG
 tr
 MF
 IZ
@@ -2257,11 +2299,11 @@ pj
 pj
 pj
 pj
-fa
+RZ
 fI
 Bs
 va
-fI
+eZ
 fI
 fI
 eZ
@@ -2300,12 +2342,12 @@ UU
 ce
 ce
 vJ
-pN
+pG
 Bs
 fI
 Bs
 va
-fI
+eZ
 Bs
 Bs
 va
@@ -2353,14 +2395,14 @@ fI
 Bs
 Bs
 va
-eZ
-eY
-yk
-pj
-pj
-pj
-pj
-si
+fI
+dG
+eM
+eM
+kL
+lW
+lW
+dG
 fI
 fI
 Bs
@@ -2402,12 +2444,12 @@ Bs
 aH
 pj
 pj
-pj
-pj
-pj
-TP
-TP
-pj
+zK
+Jm
+tr
+tr
+tr
+Jm
 iW
 dz
 fI
@@ -2450,13 +2492,13 @@ pj
 pj
 pj
 TP
-TP
-TP
-TP
-TP
-TP
-pj
-pj
+zK
+tr
+tr
+tr
+tr
+tr
+iW
 dB
 fI
 eZ
@@ -2498,13 +2540,13 @@ pj
 TP
 TP
 TP
-TP
-TP
-TP
-TP
-TP
-TP
-pj
+zK
+tr
+tr
+ZV
+tr
+tr
+iW
 fa
 fI
 fI
@@ -2546,13 +2588,13 @@ pj
 TP
 TP
 TP
-TP
-TP
-TP
-TP
-TP
-TP
-pj
+zK
+tr
+tr
+tr
+tr
+tr
+iW
 fI
 fI
 Bs
@@ -2594,13 +2636,13 @@ pj
 TP
 TP
 TP
-TP
-TP
-TP
-TP
-TP
-TP
-pj
+zK
+Jm
+tr
+tr
+tr
+Jm
+iW
 fI
 Bs
 Bs
@@ -2642,13 +2684,13 @@ pj
 TP
 TP
 TP
-TP
-TP
-TP
-TP
-TP
-TP
-pj
+dG
+zK
+zK
+dG
+iW
+iW
+dG
 fI
 Bs
 vJ
@@ -2890,7 +2932,7 @@ Ry
 dq
 TW
 Bs
-Bs
+BO
 Bs
 UN
 eO

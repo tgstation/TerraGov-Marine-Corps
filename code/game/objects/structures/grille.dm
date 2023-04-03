@@ -2,7 +2,7 @@
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
 	name = "grille"
 	icon = 'icons/obj/structures/structures.dmi'
-	icon_state = "grille"
+	icon_state = "grille0"
 	hit_sound = 'sound/effects/grillehit.ogg'
 	density = TRUE
 	anchored = TRUE
@@ -10,7 +10,7 @@
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 10
 
 /obj/structure/grille/Initialize()
@@ -144,11 +144,11 @@
 
 //MARINE SHIP GRILLE
 
-/obj/structure/grille/mainship
-	icon = 'icons/turf/mainship.dmi'
-	icon_state = "grille0"
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+/obj/structure/grille/smoothing
+	icon = 'icons/obj/smooth_objects/grille.dmi'
+	icon_state = "grille-0"
+	base_icon_state = "grille"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_GRILLE)
+	canSmoothWith = list(SMOOTH_GROUP_GRILLE)
 
-/obj/structure/grille/mainship/update_icon()
-	smooth_self()

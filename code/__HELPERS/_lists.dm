@@ -13,6 +13,8 @@
 #define reverseList(L) reverseRange(L.Copy())
 #define LAZYADDASSOCSIMPLE(L, K, V) if(!L) { L = list(); } L[K] += V;
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 #define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
 #define LAZYINCREMENT(L, K) if(!L) { L = list(); } L[K]++;
@@ -132,7 +134,7 @@
 
 //Checks if the list is empty
 /proc/isemptylist(list/L)
-	if(!L.len)
+	if(!length(L))
 		return TRUE
 	return FALSE
 
@@ -182,19 +184,28 @@
 	return result
 
 
-//Pretends to pick an element based on its weight but really just seems to pick a random element.
-/proc/pickweight(list/L)
+/**
+ * Picks a random element from a list based on a weighting system.
+ * For example, given the following list:
+ * A = 6, B = 3, C = 1, D = 0
+ * A would have a 60% chance of being picked,
+ * B would have a 30% chance of being picked,
+ * C would have a 10% chance of being picked,
+ * and D would have a 0% chance of being picked.
+ * You should only pass integers in.
+ */
+/proc/pickweight(list/list_to_pick)
 	var/total = 0
 	var/item
-	for(item in L)
-		if(!L[item])
-			L[item] = 1
-		total += L[item]
+	for(item in list_to_pick)
+		if(!list_to_pick[item])
+			list_to_pick[item] = 1
+		total += list_to_pick[item]
 
 	total = rand(1, total)
-	for(item in L)
-		total -=L [item]
-		if(total <= 0)
+	for(item in list_to_pick)
+		total -= list_to_pick[item]
+		if(total <= 0 && list_to_pick[item])
 			return item
 
 	return null
@@ -213,12 +224,12 @@
 
 //Returns the top(last) element from the list and removes it from the list (typical stack function)
 /proc/pop(list/L)
-	if(L.len)
-		. = L[L.len]
+	if(length(L))
+		. = L[length(L)]
 		L.len--
 
 /proc/popleft(list/L)
-	if(L.len)
+	if(length(L))
 		. = L[1]
 		L.Cut(1,2)
 
@@ -287,9 +298,9 @@
 
 //Move a single element from position fromIndex within a list, to position toIndex
 //All elements in the range [1,toIndex) before the move will be before the pivot afterwards
-//All elements in the range [toIndex, L.len+1) before the move will be after the pivot afterwards
+//All elements in the range [toIndex, length(L) + 1) before the move will be after the pivot afterwards
 //In other words, it's as if the range [fromIndex,toIndex) have been rotated using a <<< operation common to other languages.
-//fromIndex and toIndex must be in the range [1,L.len+1]
+//fromIndex and toIndex must be in the range [1,length(L) + 1]
 //This will preserve associations ~Carnie
 /proc/moveElement(list/L, fromIndex, toIndex)
 	if(fromIndex == toIndex || fromIndex + 1 == toIndex)	//no need to move
@@ -348,7 +359,7 @@
 	var/current_sort_object
 	for (current_sort_object in incoming)
 		low_index = 1
-		high_index = sorted_list.len
+		high_index = length(sorted_list)
 		while (low_index <= high_index)
 			// Figure out the midpoint, rounding up for fractions.  (BYOND rounds down, so add 1 if necessary.)
 			midway_calc = (low_index + high_index) / 2
@@ -372,7 +383,7 @@
 		insert_index = low_index
 
 		// Special case adding to end of list.
-		if(insert_index > sorted_list.len)
+		if(insert_index > length(sorted_list))
 			sorted_list += current_sort_object
 			continue
 
@@ -455,10 +466,10 @@
 	if(!islist(l) || !islist(d))
 		return FALSE
 
-	if(l.len != d.len)
+	if(length(l) != length(d))
 		return FALSE
 
-	for(var/i in 1 to l.len)
+	for(var/i in 1 to length(l))
 		if(l[i] != d[i])
 			return FALSE
 
@@ -559,3 +570,39 @@
 		var/atom/A = thing
 		if(!typecache[A.type])
 			. += A
+
+/**
+ * Like pickweight, but allowing for nested lists.
+ *
+ * For example, given the following list:
+ * list(A = 1, list(B = 1, C = 1))
+ * A would have a 50% chance of being picked,
+ * and list(B, C) would have a 50% chance of being picked.
+ * If list(B, C) was picked, B and C would then each have a 50% chance of being picked.
+ * So the final probabilities would be 50% for A, 25% for B, and 25% for C.
+ *
+ * Weights should be integers. Entries without weights are assigned weight 1 (so unweighted lists can be used as well)
+ */
+/proc/pick_weight_recursive(list/list_to_pick)
+	var/result = pickweight(list_to_pick)
+	while(islist(result))
+		result = pickweight(result)
+	return result
+
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	var/start_len = length(list_to_clear)
+	var/list/new_list = new(start_len)
+	list_to_clear -= new_list
+	return length(list_to_clear) < start_len
+
+///sort any value in a list
+/proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)
+	return sortTim(list_to_sort.Copy(), cmp)
+
+///uses sort_list() but uses the var's name specifically. This should probably be using mergeAtom() instead
+/proc/sort_names(list/list_to_sort, order=1)
+	return sortTim(list_to_sort.Copy(), order >= 0 ? GLOBAL_PROC_REF(cmp_name_asc) : GLOBAL_PROC_REF(cmp_name_dsc))

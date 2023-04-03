@@ -29,3 +29,5 @@
 		winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[command]")
 
 	winset(src, null, "map.focus=true")
+
+	update_special_keybinds()

@@ -9,10 +9,10 @@
 	opacity = TRUE
 	anchored = TRUE
 	layer = FLY_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/amount = 3
-	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
+	///time in decisecond for a smoke to spread one tile.
 	var/expansion_speed = 1
 	var/smoke_traits = NONE
 	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
@@ -38,12 +38,12 @@
 		fraction = INVERSE(smoketime)
 	if(range)
 		amount = range
-		addtimer(CALLBACK(src, /obj/effect/particle_effect/smoke.proc/spread_smoke), expansion_speed)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/effect/particle_effect/smoke, spread_smoke)), expansion_speed)
 	create_reagents(500)
 	START_PROCESSING(SSobj, src)
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXITED = .proc/on_exited
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -51,7 +51,7 @@
 	if(lifetime && CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
-		INVOKE_ASYNC(src, .proc/fade_out)
+		INVOKE_ASYNC(src, PROC_REF(fade_out))
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
@@ -107,7 +107,7 @@
 	if(!cloud || !reagents)
 		return
 	if(!LAZYLEN(cloud.smoked_mobs))
-		addtimer(CALLBACK(src, .proc/chemical_effect), 4)
+		addtimer(CALLBACK(src, PROC_REF(chemical_effect)), 4)
 	LAZYADD(cloud.smoked_mobs, C)
 
 /obj/effect/particle_effect/smoke/proc/chemical_effect()
@@ -138,8 +138,8 @@
 			S.lifetime += rand(-1,1)
 	lifetime += rand(-1,1)
 
-	if(newsmokes.len)
-		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
+	if(length(newsmokes))
+		addtimer(CALLBACK(src, PROC_REF(spawn_smoke), newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
 
 /obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
 	amount = parent.amount-1
@@ -199,7 +199,7 @@
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(QDELETED(location) && !QDELETED(holder))
+	if(!QDELETED(holder))
 		location = get_turf(holder)
 	new smoke_type(location, range, lifetime, src)
 
@@ -209,7 +209,7 @@
 
 /obj/effect/particle_effect/smoke/bad
 	lifetime = 8
-	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS
+	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS|SMOKE_EXTINGUISH
 
 /////////////////////////////////////////////
 // Cloak Smoke
@@ -258,6 +258,14 @@
 	icon_state = "sparks"
 	icon = 'icons/effects/effects.dmi'
 
+//SOM nerve agent smoke
+/obj/effect/particle_effect/smoke/satrapine
+	color = "#b02828"
+	lifetime = 6
+	expansion_speed = 3
+	strength = 1.5
+	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
+
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
@@ -265,7 +273,6 @@
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno
 	lifetime = 6
-	spread_speed = 7
 	expansion_speed = 3
 	smoke_traits = SMOKE_XENO
 
@@ -290,7 +297,7 @@
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
 	color = "#ffbf58" //Mustard orange?
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
@@ -299,26 +306,32 @@
 	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
+/obj/effect/particle_effect/smoke/xeno/toxic
+	lifetime = 2
+	smoke_can_spread_through = TRUE
+	color = "#00B22C"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TOXIC|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	smoke_can_spread_through = TRUE
 	color = "#0287A1"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
 	smoke_can_spread_through = TRUE
 	color = "#abf775"
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Toxic smoke when the Defiler successfully uses Defile
 /obj/effect/particle_effect/smoke/xeno/sanguinal
 	color = "#bb0a1e" //Blood red
 	smoke_can_spread_through = TRUE
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno ozelomelyn in smoke form for Defiler.
 /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 	color = "#f1ddcf" //A pinkish for now.
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -327,7 +340,7 @@
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
 
-datum/effect_system/smoke_spread/tactical
+/datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/tactical
 
 /datum/effect_system/smoke_spread/sleepy
@@ -338,6 +351,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
+
+/datum/effect_system/smoke_spread/satrapine
+	smoke_type = /obj/effect/particle_effect/smoke/satrapine
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
@@ -363,6 +379,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
+
+/datum/effect_system/smoke_spread/xeno/toxic
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
 
 /datum/effect_system/smoke_spread/xeno/hemodile
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile

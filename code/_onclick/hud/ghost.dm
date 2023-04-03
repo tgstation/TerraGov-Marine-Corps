@@ -1,59 +1,63 @@
-/obj/screen/ghost
+/atom/movable/screen/ghost
 	icon = 'icons/mob/screen_ghost.dmi'
 
-/obj/screen/ghost/MouseEntered()
+/atom/movable/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-/obj/screen/ghost/follow_ghosts
+/atom/movable/screen/ghost/follow_ghosts
 	name = "Follow"
 	icon_state = "follow_ghost"
 
-/obj/screen/ghost/follow_ghosts/Click()
+/atom/movable/screen/ghost/follow_ghosts/Click()
 	var/mob/dead/observer/G = usr
 	G.follow()
 
-// /obj/screen/ghost/follow_xeno
+// /atom/movable/screen/ghost/follow_xeno
 // 	name = "Follow Xeno"
 // 	icon_state = "follow_xeno"
 
-// /obj/screen/ghost/follow_xeno/Click()
+// /atom/movable/screen/ghost/follow_xeno/Click()
 // 	var/mob/dead/observer/G = usr
 // 	G.follow_xeno()
 
-// /obj/screen/ghost/follow_human
+// /atom/movable/screen/ghost/follow_human
 // 	name = "Follow Humans"
 // 	icon_state = "follow_human"
 
-// /obj/screen/ghost/follow_human/Click()
+// /atom/movable/screen/ghost/follow_human/Click()
 // 	var/mob/dead/observer/G = usr
 // 	G.follow_human()
 
-/obj/screen/ghost/reenter_corpse
+/atom/movable/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
 	icon_state = "reenter_corpse"
 
-/obj/screen/ghost/reenter_corpse/Click()
+/atom/movable/screen/ghost/reenter_corpse/Click()
 	var/mob/dead/observer/G = usr
+	if(G.larva_position)
+		var/confirm = tgui_alert(usr, "Returning to your corpse will make you leave the larva queue.", "Confirm.", list("Yes", "No"))
+		if(confirm == "No")
+			return
 	G.reenter_corpse()
 
 
 /datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen/white.dmi', ui_color, ui_alpha = 230)
 	. = ..()
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
-	using = new /obj/screen/ghost/follow_ghosts()
+	using = new /atom/movable/screen/ghost/follow_ghosts()
 	using.screen_loc = ui_ghost_slot2
 	static_inventory += using
 
-	// using = new /obj/screen/ghost/follow_xeno()
+	// using = new /atom/movable/screen/ghost/follow_xeno()
 	// using.screen_loc = ui_ghost_slot2
 	// static_inventory += using
 
-	// using = new /obj/screen/ghost/follow_human()
+	// using = new /atom/movable/screen/ghost/follow_human()
 	// using.screen_loc = ui_ghost_slot3
 	// static_inventory += using
 
-	using = new /obj/screen/ghost/reenter_corpse()
+	using = new /atom/movable/screen/ghost/reenter_corpse()
 	using.screen_loc = ui_ghost_slot3
 	static_inventory += using
 

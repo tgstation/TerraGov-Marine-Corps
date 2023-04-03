@@ -11,6 +11,7 @@
 	name = "telecommunication hub"
 	icon_state = "hub"
 	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
+	telecomms_type = /obj/machinery/telecomms/hub
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
@@ -56,3 +57,9 @@
 	autolinkers = list("hub_rebel", "relay", "s_relay", "command_rebel", "medical_rebel", "ert",
 	"requisitions_rebel", "alpha_rebel","firesupport_rebel", "bravo_rebel", "charlie_rebel", "delta_rebel", "common_rebel", "engineering_rebel",
 	"receiverA_rebel", "receiverB_rebel", "broadcasterA_rebel")
+
+/obj/machinery/telecomms/hub/preset/som
+	id = "Hub som"
+	autolinkers = list("hub_som", "relay", "s_relay", "command_som", "medical_som", "ert",
+	"zulu", "yankee", "xray", "whiskey", "common_som", "engineering_som",
+	"receiverA_som", "receiverB_som", "broadcasterA_som")

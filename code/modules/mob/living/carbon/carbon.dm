@@ -34,9 +34,10 @@
 
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return
 	shock_damage *= siemens_coeff
-	if (shock_damage<1)
+	if(shock_damage<1)
 		return 0
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
@@ -75,7 +76,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
 	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_vomit)), 5 SECONDS)
 
 
 /mob/living/carbon/proc/do_vomit()
@@ -151,6 +152,7 @@
 	if(hud_used && hud_used.throw_icon)
 		hud_used.throw_icon.icon_state = "act_throw_on"
 
+///Throws active held item at target in params
 /mob/proc/throw_item(atom/target)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
@@ -163,7 +165,7 @@
 		return
 	if(stat || !target)
 		return
-	if(target.type == /obj/screen)
+	if(target.type == /atom/movable/screen)
 		return
 
 	var/atom/movable/thrown_thing
@@ -257,23 +259,21 @@
 		return
 	. = ..()
 
-/mob/living/carbon/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/slip(slip_source_name, stun_time, paralyze_time, run_only, override_noslip, slide_steps)
 	set waitfor = 0
-	if(buckled) return FALSE //can't slip while buckled
-	if(run_only && (m_intent != MOVE_INTENT_RUN)) return FALSE
-	if(lying_angle)
-		return FALSE //can't slip if already lying down.
+	if(buckled || (run_only && (m_intent != MOVE_INTENT_RUN)) || lying_angle)
+		return FALSE //can't slip while buckled, if the slip is run only and we're not running or while resting
+
 	stop_pulling()
-	to_chat(src, span_warning("You slipped on \the [slip_source_name? slip_source_name : "floor"]!"))
-	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	Stun(stun_level)
-	Paralyze(weaken_level)
+	visible_message(span_warning("[src] slipped on \the [slip_source_name]!"), span_warning("You slipped on \the [slip_source_name]!"))
+	playsound(src, 'sound/misc/slip.ogg', 25, 1)
+	Stun(stun_time)
+	Paralyze(paralyze_time)
 	. = TRUE
 	if(slide_steps && lying_angle)//lying check to make sure we downed the mob
 		var/slide_dir = dir
-		for(var/i=1, i<=slide_steps, i++)
+		for(var/i in 1 to slide_steps)
 			step(src, slide_dir)
-			sleep(2)
 			if(!lying_angle)
 				break
 
@@ -285,7 +285,7 @@
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
@@ -295,7 +295,7 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
 
 
@@ -378,7 +378,7 @@
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
-		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
+		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, TYPE_PROC_REF(/mob/living/carbon/human, oncritdrag))
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)

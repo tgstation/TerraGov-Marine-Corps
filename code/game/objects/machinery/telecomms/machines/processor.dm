@@ -9,6 +9,7 @@
 	name = "processor unit"
 	icon_state = "processor"
 	desc = "This machine is used to process large quantities of information."
+	telecomms_type = /obj/machinery/telecomms/processor
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
@@ -81,3 +82,22 @@
 /obj/machinery/telecomms/processor/preset_four/rebel
 	id = "Processor 4 rebel"
 	autolinkers = list("processor4_rebel")
+
+/obj/machinery/telecomms/processor/preset_one/som
+	id = "Processor 1 som"
+	autolinkers = list("processor1_som")
+
+
+/obj/machinery/telecomms/processor/preset_two/som
+	id = "Processor 2 som"
+	autolinkers = list("processor2_som")
+
+
+/obj/machinery/telecomms/processor/preset_three/som
+	id = "Processor 3 som"
+	autolinkers = list("processor3_som")
+
+
+/obj/machinery/telecomms/processor/preset_four/som
+	id = "Processor 4 som"
+	autolinkers = list("processor4_som")

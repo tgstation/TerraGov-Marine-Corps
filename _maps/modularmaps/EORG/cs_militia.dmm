@@ -4,8 +4,12 @@
 /area/deathmatch)
 "bl" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/flora/desert/grass/three{
-	},
+/obj/structure/flora/desert/grass/three,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"bE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "bP" = (
@@ -16,6 +20,12 @@
 "bQ" = (
 /obj/structure/table/gamblingtable,
 /turf/open/floor/wood,
+/area/deathmatch)
+"bZ" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "dg" = (
 /obj/structure/ore_box,
@@ -32,11 +42,22 @@
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/wood,
 /area/deathmatch)
+"gb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
 "gi" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
+/area/deathmatch)
+"gK" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "hw" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -44,13 +65,17 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"hy" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/turf/open/floor/wood,
+/area/deathmatch)
 "iq" = (
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood,
 /area/deathmatch)
 "jg" = (
-/obj/structure/flora/desert/grass/seven{
-	},
+/obj/structure/flora/desert/grass/seven,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "kv" = (
@@ -77,8 +102,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "oE" = (
-/obj/structure/flora/desert/cactus/multiple/eleven{
-	},
+/obj/structure/flora/desert/cactus/multiple/eleven,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "pl" = (
@@ -122,6 +146,14 @@
 "rn" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"rs" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"rK" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/wood,
 /area/deathmatch)
 "sv" = (
 /obj/structure/ladder{
@@ -182,13 +214,11 @@
 	},
 /area/deathmatch)
 "xg" = (
-/obj/structure/flora/desert/grass/three{
-	},
+/obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xp" = (
-/obj/structure/flora/desert/grass/seven{
-	},
+/obj/structure/flora/desert/grass/seven,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "xA" = (
@@ -234,6 +264,14 @@
 	dir = 5
 	},
 /area/deathmatch)
+"BJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
 "BL" = (
 /obj/structure/table/mainship,
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
@@ -259,32 +297,19 @@
 	color = "#888888"
 	},
 /area/deathmatch)
-"EP" = (
-/obj/structure/desertdam/decals/road/edge{
-	pixel_x = -16;
-	pixel_y = 16
-	},
-/obj/structure/desertdam/decals/road/edge{
-	dir = 1;
-	pixel_x = 16;
-	pixel_y = -16
-	},
-/obj/structure/desertdam/decals/road/edge{
-	dir = 4;
-	pixel_x = 16;
-	pixel_y = 16
-	},
-/obj/structure/desertdam/decals/road/edge{
-	dir = 8;
-	pixel_x = -16;
-	pixel_y = -16
-	},
-/obj/structure/ladder{
-	height = 2;
-	id = "cs_militia_2";
-	pixel_y = 8
-	},
+"DH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"EP" = (
+/turf/closed/wall/wood,
+/area/deathmatch)
+"EV" = (
+/obj/effect/spawner/random/plushie/nospawnninetynine,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
 /area/deathmatch)
 "Gk" = (
 /obj/effect/landmark/deathmatch,
@@ -338,6 +363,10 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"Jj" = (
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "Kl" = (
 /obj/structure/ladder{
 	height = 1;
@@ -386,12 +415,22 @@
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
 /area/deathmatch)
+"Po" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "PH" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Qa" = (
 /turf/open/floor/wood/broken,
+/area/deathmatch)
+"Qf" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "QI" = (
 /turf/closed/wall,
@@ -400,6 +439,14 @@
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
+/area/deathmatch)
+"RZ" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Tb" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "TA" = (
 /obj/machinery/vending/boozeomat,
@@ -414,10 +461,15 @@
 "Uv" = (
 /turf/closed/desertdamrockwall,
 /area/deathmatch)
+"US" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
 "Vo" = (
 /obj/effect/landmark/deathmatch,
-/obj/structure/flora/desert/grass/three{
-	},
+/obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Vq" = (
@@ -466,6 +518,11 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"XA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
 "Yq" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
@@ -479,9 +536,21 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
+"YW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
 "Zh" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"ZK" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -933,7 +1002,7 @@ uR
 uR
 dg
 QI
-Pa
+hy
 YH
 LT
 LT
@@ -1148,7 +1217,7 @@ WV
 WV
 hw
 WV
-WV
+EV
 WV
 WV
 WC
@@ -1459,15 +1528,15 @@ aB
 pl
 kv
 rf
+rs
+DH
+BJ
+US
 uR
-uR
-uR
-uR
-xg
-uR
-uR
-uR
-uR
+US
+US
+rs
+rs
 uR
 Gk
 uR
@@ -1507,15 +1576,15 @@ kv
 uT
 uR
 uR
-uR
+bE
 EP
-uR
-uR
-Gx
-RD
-Uv
-Uv
-Uv
+Jj
+Jj
+ZK
+Qf
+Qf
+EP
+XA
 uR
 uR
 uT
@@ -1555,15 +1624,15 @@ uR
 uR
 uR
 uR
-uR
-uR
-uR
-Gx
-Uv
-Uv
-Uv
-Uv
-mY
+YW
+gK
+LK
+LT
+LT
+LT
+LK
+Po
+YW
 uR
 uR
 uR
@@ -1601,17 +1670,17 @@ kv
 uR
 Gk
 uR
-Uv
-Uv
 uR
 uR
-Gx
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
+YW
+gK
+LT
+LT
+LT
+LT
+LT
+Po
+YW
 uR
 uR
 Gx
@@ -1649,17 +1718,17 @@ uR
 uR
 bl
 uR
-Uv
-Uv
 uR
-Gk
-Yq
-Uv
-Uv
-Uv
-pl
-kv
 uR
+Tb
+gK
+LT
+LT
+RZ
+LT
+LT
+Po
+gb
 rf
 Gx
 Uv
@@ -1699,15 +1768,15 @@ uR
 uR
 uR
 oE
-rf
-uR
-uR
-uR
-jg
-uR
-uR
-xg
-uR
+Tb
+gK
+LT
+LT
+LT
+LT
+LT
+Po
+YW
 uR
 Uv
 Uv
@@ -1747,15 +1816,15 @@ Uv
 bP
 uR
 uR
-uR
-uR
-rf
-uR
-uR
-uR
-Gk
-uR
-uR
+YW
+gK
+LK
+LT
+LT
+LT
+LK
+Po
+Tb
 Gx
 Uv
 Uv
@@ -1795,16 +1864,16 @@ Uv
 Uv
 Uv
 gi
-RD
-RD
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
+XA
+EP
+gK
+gK
+rK
+Po
+Po
+EP
+rf
+vb
 Uv
 Uv
 Uv
@@ -1842,16 +1911,16 @@ Uv
 Uv
 Uv
 Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
-Uv
+aB
+uR
+uR
+bZ
+bZ
+uR
+bZ
+bZ
+rs
+rs
 pl
 pl
 pl

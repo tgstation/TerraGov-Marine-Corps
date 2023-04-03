@@ -24,7 +24,7 @@
 
 	riding_component_type = component_type
 
-	RegisterSignal(target, COMSIG_MOVABLE_PREBUCKLE, .proc/check_mounting)
+	RegisterSignal(target, COMSIG_MOVABLE_PREBUCKLE, PROC_REF(check_mounting))
 
 /datum/element/ridable/Detach(datum/target)
 	UnregisterSignal(target, list(COMSIG_MOVABLE_PREBUCKLE, COMSIG_PARENT_ATTACKBY))
@@ -105,7 +105,7 @@
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	flags_item = ITEM_ABSTRACT | DELONDROP | NOBLUDGEON
-	resistance_flags = INDESTRUCTIBLE | UNACIDABLE
+	resistance_flags = INDESTRUCTIBLE | UNACIDABLE | PROJECTILE_IMMUNE
 	var/mob/living/carbon/rider
 	var/mob/living/parent
 	var/selfdeleting = FALSE

@@ -78,11 +78,11 @@
 		qdel(src, force = TRUE)
 
 /datum/static_lighting_corner/proc/vis_update()
-	for (var/datum/static_light_source/light_source as anything in affecting)
+	for (var/datum/static_light_source/light_source AS in affecting)
 		light_source.vis_update()
 
 /datum/static_lighting_corner/proc/full_update()
-	for (var/datum/static_light_source/light_source as anything in affecting)
+	for (var/datum/static_light_source/light_source AS in affecting)
 		light_source.recalc_corner(src)
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
@@ -155,7 +155,7 @@
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 
-	for(var/datum/static_light_source/light_source as anything in affecting)
+	for(var/datum/static_light_source/light_source AS in affecting)
 		LAZYREMOVE(light_source.effect_str, src)
 	affecting = null
 

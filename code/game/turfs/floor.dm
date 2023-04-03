@@ -17,6 +17,7 @@
 	var/burnable_tile = TRUE
 	var/hull_floor = FALSE //invincible floor, can't interact with it
 	var/image/wet_overlay
+	var/drytimer_id
 
 
 
@@ -94,14 +95,14 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			switch(T.state)
 				if(0)
 					icon_state = "light_on"
-					set_light(5)
+					set_light(5,5)
 				if(1)
 					var/num = pick("1", "2", "3", "4")
 					icon_state = "light_on_flicker[num]"
-					set_light(5)
+					set_light(5,5)
 				if(2)
 					icon_state = "light_on_broken"
-					set_light(5)
+					set_light(5,5)
 				if(3)
 					icon_state = "light_off"
 					set_light(0)
@@ -512,6 +513,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 
+		flick("floorweld", src)
 		to_chat(user, span_warning("You fix some dents on the broken plating."))
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		icon_state = "plating"
@@ -519,25 +521,33 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		broken = FALSE
 
 /turf/open/floor/wet_floor(wet_level = FLOOR_WET_WATER)
-	if(wet >= wet_level) return
+	if(wet >= wet_level)
+		return
 	wet = wet_level
+	switch(wet)
+		if(FLOOR_WET_WATER)
+			AddComponent(/datum/component/slippery, 0.5 SECONDS, 0.3 SECONDS, null, TRUE)
+
+		if(FLOOR_WET_LUBE) //lube
+			AddComponent(/datum/component/slippery, 1 SECONDS, 1 SECONDS, null, FALSE, TRUE, 4)
+
+		if(FLOOR_WET_ICE) // Ice
+			AddComponent(/datum/component/slippery, 0.4 SECONDS, 0.3 SECONDS, null, FALSE, TRUE, 1)
+
 	if(wet_overlay)
 		overlays -= wet_overlay
 		wet_overlay = null
-	wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+	wet_overlay = image('icons/effects/water.dmi', src, "wet_floor_static")
 	overlays += wet_overlay
 
-	var/oldtype = type
-	spawn(800)
-		if(type != oldtype)
-			return
-		if(wet == wet_level)
-			wet = 0
-			if(wet_overlay)
-				overlays -= wet_overlay
-				wet_overlay = null
+	drytimer_id = addtimer(CALLBACK(src, PROC_REF(dry), wet_level, type), 80 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-
-
-
-
+/turf/open/floor/proc/dry(old_wet_level, oldtype)
+	if(type != oldtype)
+		return
+	if(wet == old_wet_level)
+		wet = 0
+		qdel(GetComponent(/datum/component/slippery))
+		if(wet_overlay)
+			overlays -= wet_overlay
+			wet_overlay = null

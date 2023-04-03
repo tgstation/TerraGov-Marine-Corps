@@ -56,6 +56,8 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
+	///Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.
+	var/list/fixed_underlay = null
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
@@ -101,9 +103,17 @@
 	else if (!istype(hard_armor, /datum/armor))
 		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
-	if(smoothing_behavior)
-		smooth_self()
-		smooth_neighbors()
+	if (length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if (length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -276,7 +286,7 @@
 	if(old_signal_procs)
 		LAZYOR(W.signal_procs, old_signal_procs)
 
-	for(var/datum/callback/callback as anything in post_change_callbacks)
+	for(var/datum/callback/callback AS in post_change_callbacks)
 		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
@@ -316,6 +326,15 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
+	if(!W.smoothing_behavior == NO_SMOOTHING)
+		return W
+	else
+		for(var/dirn in GLOB.alldirs)
+			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
+			QUEUE_SMOOTH(D)
+			QUEUE_SMOOTH_NEIGHBORS(D)
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
@@ -324,14 +343,14 @@
 		return
 	if(length(baseturfs))
 		var/list/new_baseturfs = baseturfs.Copy()
-		var/turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		var/turf_type = new_baseturfs[max(1, length(new_baseturfs) - amount + 1)]
 		while(ispath(turf_type, /turf/baseturf_skipover))
 			amount++
-			if(amount > new_baseturfs.len)
+			if(amount > length(new_baseturfs))
 				CRASH("The bottomost baseturf of a turf is a skipover [src]([type])")
-			turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
-		new_baseturfs.len -= min(amount, new_baseturfs.len - 1) // No removing the very bottom
-		if(new_baseturfs.len == 1)
+			turf_type = new_baseturfs[max(1, length(new_baseturfs) - amount + 1)]
+		new_baseturfs.len -= min(amount, length(new_baseturfs) - 1) // No removing the very bottom
+		if(length(new_baseturfs) == 1)
 			new_baseturfs = new_baseturfs[1]
 		return ChangeTurf(turf_type, new_baseturfs, flags)
 
@@ -345,7 +364,7 @@
 	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
-	for(var/i in 1 to allowed_contents.len)
+	for(var/i in 1 to length(allowed_contents))
 		var/thing = allowed_contents[i]
 		qdel(thing, force=TRUE)
 
@@ -510,6 +529,12 @@
 /turf/proc/is_weedable()
 	return !density
 
+/turf/closed/wall/is_weedable()
+	return TRUE
+
+/turf/closed/wall/resin/is_weedable()
+	return FALSE
+
 /turf/open/space/is_weedable()
 	return FALSE
 
@@ -525,8 +550,12 @@
 /turf/open/ground/coast/is_weedable()
 	return FALSE
 
-/turf/open/floor/plating/ground/snow/is_weedable()
-	return !slayer && ..()
+
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable/is_weedable()
+	return TRUE
+
+/turf/open/ground/grass/weedable/is_weedable()
+	return TRUE
 
 /**
  * Checks for whether we can build advanced xeno structures here
@@ -553,7 +582,7 @@
 				if(!silent)
 					to_chat(builder, span_warning("There is a little one here already. Best move it."))
 				return FALSE
-		if(istype(O, /obj/effect/alien/egg))
+		if(istype(O, /obj/alien/egg))
 			if(!silent)
 				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
@@ -565,7 +594,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -577,7 +606,7 @@
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/effect/alien/hivemindcore))
+		if(istype(O, /obj/structure/xeno/hivemindcore))
 			has_obstacle = TRUE
 			break
 
@@ -636,7 +665,8 @@
 /turf/open/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 
-
+/turf/open/lavaland/basalt/can_dig_xeno_tunnel()
+	return TRUE
 
 
 
@@ -712,9 +742,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		baseturfs += type
 	var/turf/change_type
 	if(length(new_baseturfs))
-		change_type = new_baseturfs[new_baseturfs.len]
+		change_type = new_baseturfs[length(new_baseturfs)]
 		new_baseturfs.len--
-		if(new_baseturfs.len)
+		if(length(new_baseturfs))
 			baseturfs += new_baseturfs
 	else
 		change_type = new_baseturfs
@@ -730,9 +760,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(depth)
 		var/list/target_baseturfs
 		if(length(copytarget.baseturfs))
-			// with default inputs this would be Copy(clamp(2, -INFINITY, baseturfs.len))
+			// with default inputs this would be Copy(clamp(2, -INFINITY, length(baseturfs)))
 			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
-			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + length(copytarget.baseturfs) - depth, length(copytarget.baseturfs)))
 		else if(!ignore_bottom)
 			target_baseturfs = list(copytarget.baseturfs)
 		if(target_baseturfs)
@@ -829,7 +859,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		next_target = initial(current_target.baseturfs)
 
 	baseturfs = new_baseturfs
-	created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
+	created_baseturf_lists[new_baseturfs[length(new_baseturfs)]] = new_baseturfs.Copy()
 	return new_baseturfs
 
 // Take the input as baseturfs and put it underneath the current baseturfs
@@ -922,10 +952,25 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(current_acid)
 		UnregisterSignal(current_acid, COMSIG_PARENT_QDELETING)
 	current_acid = new_acid
-	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, .proc/clean_current_acid)
+	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, PROC_REF(clean_current_acid))
 
 ///Signal handler to clean current_acid var
 /turf/proc/clean_current_acid()
 	SIGNAL_HANDLER
 	current_acid = null
 
+/turf/balloon_alert_perform(mob/viewer, text)
+	// Balloon alerts occuring on turf objects result in mass spam of alerts.
+	// Thus, no more balloon alerts for turfs.
+	return
+
+///cleans any cleanable decals from the turf
+/turf/proc/clean_turf()
+	for(var/obj/effect/decal/cleanable/filth in src)
+		qdel(filth) //dirty, filthy floor
+
+/turf/proc/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
+	underlay_appearance.icon = icon
+	underlay_appearance.icon_state = icon_state
+	underlay_appearance.dir = adjacency_dir
+	return TRUE

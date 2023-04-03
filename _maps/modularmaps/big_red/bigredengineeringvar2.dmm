@@ -44,7 +44,7 @@
 /area/bigredv2/outside/engineering)
 "cE" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/caves/southwest)
@@ -120,7 +120,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "gv" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/caves/southwest)
@@ -168,7 +168,7 @@
 /area/bigredv2/outside/engineering)
 "iz" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 5
 	},
 /area/bigredv2/caves/southwest)
@@ -200,7 +200,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kF" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/caves/southwest)
@@ -239,7 +239,7 @@
 /area/bigredv2/outside/engineering)
 "oq" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
@@ -352,7 +352,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
 "vk" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/caves/southwest)
 "vR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -396,7 +396,7 @@
 /area/bigredv2/caves/southwest)
 "xn" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "xH" = (
@@ -496,7 +496,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "Cj" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
@@ -613,7 +613,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Jb" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
@@ -667,7 +667,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "LF" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "LM" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -687,7 +687,7 @@
 /area/bigredv2/outside/engineering)
 "MZ" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/caves/southwest)
@@ -738,7 +738,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "OH" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/caves/southwest)
@@ -761,7 +761,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Pp" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
 	},
 /area/bigredv2/caves/southwest)
@@ -859,7 +859,7 @@
 /area/bigredv2/outside/sw)
 "Vj" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Vs" = (
@@ -906,7 +906,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
 "XH" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/caves/southwest)

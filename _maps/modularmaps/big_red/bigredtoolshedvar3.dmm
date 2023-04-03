@@ -57,6 +57,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"l" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
 "m" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/ammo/rifle,
@@ -73,6 +80,9 @@
 /obj/effect/spawner/random/gun/machineguns,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
+"q" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "r" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/storage)
@@ -130,6 +140,14 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
+/area/bigredv2/outside/c)
+"E" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "F" = (
 /obj/structure/cable,
@@ -247,10 +265,10 @@
 s
 W
 G
-G
-G
+q
+M
 k
-n
+l
 F
 a
 "}
@@ -318,7 +336,7 @@ u
 J
 o
 r
-t
+O
 "}
 (8,1,1) = {"
 y
@@ -329,7 +347,7 @@ X
 J
 A
 r
-O
+E
 "}
 (9,1,1) = {"
 y
@@ -340,7 +358,7 @@ X
 J
 Z
 r
-v
+t
 "}
 (10,1,1) = {"
 y
@@ -412,7 +430,7 @@ v
 y
 P
 h
-h
+q
 M
 n
 H

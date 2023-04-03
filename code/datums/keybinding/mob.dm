@@ -125,7 +125,7 @@
 	user.swap_hand()
 	return TRUE
 
-/datum/keybinding/mob/say
+/*/datum/keybinding/mob/say
 	name = "say"
 	full_name = "Say"
 	hotkey_keys = list("T")
@@ -138,22 +138,7 @@
 		return
 	var/mob/M = user.mob
 	M.say_wrapper()
-	return TRUE
-
-/datum/keybinding/mob/me
-	name = "me"
-	full_name = "Me"
-	hotkey_keys = list("M")
-	description = ""
-	keybind_signal = COMSIG_KB_MOB_ME_DOWN
-
-/datum/keybinding/mob/me/down(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/M = user.mob
-	M.me_wrapper()
-	return TRUE
+	return TRUE*/
 
 /datum/keybinding/mob/activate_inhand
 	hotkey_keys = list("Z")
@@ -202,7 +187,7 @@
 	. = ..()
 	if(.)
 		return
-	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), .proc/examinate)
+	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), PROC_REF(examinate))
 	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .keybinding/proc/intercept_mouse_special)
 	return TRUE
 
@@ -337,5 +322,24 @@
 /datum/keybinding/mob/toggle_minimap
 	name = "toggle_minimap"
 	full_name = "Toggle minimap"
-	description = "Toggle the minimap screen"
+	description = "Toggle your character's inherent or headset-based minimap screen"
 	keybind_signal = COMSIG_KB_TOGGLE_MINIMAP
+
+/datum/keybinding/mob/toggle_external_minimap
+	name = "toggle_external_minimap"
+	full_name = "Toggle external minimap"
+	description = "Toggle external minimap screens received from e.g. consoles or similar objects"
+	keybind_signal = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP
+
+/datum/keybinding/mob/toggle_self_harm
+	name = "toggle_self_harm"
+	full_name = "Toggle self harm"
+	description = "Toggle being able to hit yourself"
+	keybind_signal = COMSIG_KB_SELFHARM
+
+/datum/keybinding/mob/toggle_self_harm/down(client/user)
+	. = ..()
+	if (.)
+		return
+	user.mob.do_self_harm = !user.mob.do_self_harm
+	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself")

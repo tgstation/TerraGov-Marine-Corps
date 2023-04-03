@@ -1,9 +1,9 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1575
+#define MAX_RECOMMENDED_CLIENT 1604
 #define MIN_RECOMMENDED_CLIENT 1575
-#define REQUIRED_CLIENT_MAJOR 513
+#define REQUIRED_CLIENT_MAJOR 514
 #define REQUIRED_CLIENT_MINOR 1493
 
 #define LIMITER_SIZE 5
@@ -136,7 +136,9 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
+
+	tgui_say = new(src, "tgui_say")
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -208,10 +210,13 @@
 
 	if(SSinput.initialized)
 		set_macros()
-		update_movement_keys()
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
+
+	tgui_say.initialize()
+
+
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
 		//to_chat(src, span_userdanger("Your version of byond is severely out of date."))
@@ -386,9 +391,9 @@
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	if(movingmob != null)
-		movingmob.client_mobs_in_contents -= mob
-		UNSETEMPTY(movingmob.client_mobs_in_contents)
+		LAZYREMOVE(movingmob.client_mobs_in_contents, mob)
 		movingmob = null
+	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
 	SSambience.ambience_listening_clients -= src
@@ -463,7 +468,7 @@
 	var/static/next_external_rsc = 0
 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
 	if(length(external_rsc_urls))
-		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
+		next_external_rsc = WRAP(next_external_rsc+1, 1, length(external_rsc_urls) + 1)
 		preload_rsc = external_rsc_urls[next_external_rsc]
 #endif
 
@@ -474,7 +479,7 @@
 
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		if (CONFIG_GET(flag/asset_simple_preload))
-			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
+			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 #if (PRELOAD_RSC == 0)
 		for (var/name in GLOB.vox_sounds)
@@ -493,7 +498,7 @@
 	var/pos = 0
 	for(var/D in GLOB.cardinals)
 		pos++
-		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		var/atom/movable/screen/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
 			LAZYSET(char_render_holders, "[D]", O)
@@ -505,7 +510,7 @@
 
 /client/proc/clear_character_previews()
 	for(var/index in char_render_holders)
-		var/obj/screen/S = char_render_holders[index]
+		var/atom/movable/screen/S = char_render_holders[index]
 		screen -= S
 		qdel(S)
 	char_render_holders = null
@@ -780,8 +785,16 @@
 /client/proc/rescale_view(change, min, max)
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
-
-/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+/**
+ * Updates the keybinds for special keys
+ *
+ * Handles adding macros for the keys that need it
+ * And adding movement keys to the clients movement_keys list
+ * At the time of writing this, communication(OOC, Say, IC) require macros
+ * Arguments:
+ * * direct_prefs - the preference we're going to get keybinds from
+ */
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return
@@ -797,6 +810,27 @@
 					movement_keys[key] = WEST
 				if("South")
 					movement_keys[key] = SOUTH
+				if(SAY_CHANNEL)
+					var/say = tgui_say_create_open_command(SAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[say]")
+				if(RADIO_CHANNEL)
+					var/radio = tgui_say_create_open_command(RADIO_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[radio]")
+				if(ME_CHANNEL)
+					var/me = tgui_say_create_open_command(ME_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[me]")
+				if(OOC_CHANNEL)
+					var/ooc = tgui_say_create_open_command(OOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[ooc]")
+				if(LOOC_CHANNEL)
+					var/looc = tgui_say_create_open_command(LOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[looc]")
+				if(MOOC_CHANNEL)
+					var/mooc = tgui_say_create_open_command(MOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[mooc]")
+				if(XOOC_CHANNEL)
+					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
 
 
 /client/proc/change_view(new_size)
@@ -843,14 +877,14 @@
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
-	if(!check_rights(R_ADMIN, FALSE) && filelength > UPLOAD_LIMIT)
+	if(holder)
+		if(filelength > UPLOAD_LIMIT_ADMIN)
+			to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT_ADMIN/1024]KiB.</font>")
+			return FALSE
+	else if(filelength > UPLOAD_LIMIT)
 		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
 		return FALSE
-	else if(filelength > UPLOAD_LIMIT_ADMIN)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB. Stop trying to break the server.</font>")
-		return FALSE
 	return TRUE
-
 
 GLOBAL_VAR_INIT(automute_on, null)
 /client/proc/handle_spam_prevention(message, mute_type)
@@ -906,6 +940,12 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(holder)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)
+
+///opens the particle editor UI for the in_atom object for this client
+/client/proc/open_particle_editor(atom/movable/in_atom)
+	if(holder)
+		holder.particle_test = new /datum/particle_editor(in_atom)
+		holder.particle_test.ui_interact(mob)
 
 ///updates with the ambience preferrences of the user
 /client/proc/update_ambience_pref()

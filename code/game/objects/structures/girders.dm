@@ -9,8 +9,6 @@
 	hit_sound = 'sound/effects/metalhit.ogg'
 	max_integrity = 150
 	integrity_failure = 25
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 	var/girder_state = GIRDER_NORMAL
 	var/reinforcement = null
 	var/icon_prefix = "girder"

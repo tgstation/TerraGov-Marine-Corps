@@ -39,7 +39,9 @@ All ShuttleMove procs go here
 		if(ismovable(thing))
 			var/atom/movable/movable_thing = thing
 			if(movable_thing.flags_atom & SHUTTLE_IMMUNE)
-				movable_thing.forceMove(src)
+				var/old_dir = movable_thing.dir
+				movable_thing.abstract_move(src)
+				movable_thing.setDir(old_dir)
 				movable_thing.invisibility = INVISIBILITY_ABSTRACT
 				continue
 			qdel(thing)
@@ -53,7 +55,7 @@ All ShuttleMove procs go here
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(!shuttle_boundary)
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
-	var/depth = baseturfs.len - shuttle_boundary + 1
+	var/depth = length(baseturfs) - shuttle_boundary + 1
 	newT.CopyOnTop(src, 1, depth, TRUE)
 
 	return TRUE
@@ -66,7 +68,7 @@ All ShuttleMove procs go here
 
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(shuttle_boundary)
-		oldT.ScrapeAway(baseturfs.len - shuttle_boundary + 1)
+		oldT.ScrapeAway(length(baseturfs) - shuttle_boundary + 1)
 
 	if(rotation)
 		shuttleRotate(rotation) //see shuttle_rotate.dm
@@ -129,7 +131,7 @@ All ShuttleMove procs go here
 	var/range = throw_force * 10
 	range = CEILING(rand(range-(range*0.1), range+(range*0.1)), 10)/10
 	var/speed = range/5
-	safe_throw_at(target, range, speed) //, force = MOVE_FORCE_EXTREMELY_STRONG)
+	safe_throw_at(target, range, speed, force = MOVE_FORCE_EXTREMELY_STRONG)
 
 /////////////////////////////////////////////////////////////////////////////////////
 

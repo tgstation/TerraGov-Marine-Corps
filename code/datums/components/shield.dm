@@ -14,17 +14,17 @@
 	var/active = TRUE
 
 
-/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80))
+/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 30, FIRE = 80, ACID = 80))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/parent_item = parent
 	if(shield_flags & SHIELD_TOGGLE)
-		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, .proc/toggle_shield)
+		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, PROC_REF(toggle_shield))
 		active = parent_item.active
 	if(active)
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/shield_equipped)
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/shield_dropped)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
 		if(ismob(parent_item.loc))
 			shield_init(parent_item.loc)
 
@@ -65,11 +65,11 @@
 
 /datum/component/shield/proc/setup_callbacks(shield_flags)
 	if(shield_flags & SHIELD_PURE_BLOCKING)
-		intercept_damage_cb = CALLBACK(src, .proc/item_pure_block_chance)
+		intercept_damage_cb = CALLBACK(src, PROC_REF(item_pure_block_chance))
 	else
-		intercept_damage_cb = CALLBACK(src, .proc/item_intercept_attack)
+		intercept_damage_cb = CALLBACK(src, PROC_REF(item_intercept_attack))
 	if(shield_flags & SHIELD_PARENT_INTEGRITY)
-		transfer_damage_cb = CALLBACK(src, .proc/transfer_damage_to_parent)
+		transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_parent))
 
 /datum/component/shield/proc/shield_init(mob/holder_mob) // If we confess our sins (like this proc), he is faithful and just and will forgive us our sins and purify us from all unrighteousness.
 	var/slot
@@ -119,8 +119,8 @@
 		return
 	active = new_state
 	if(active)
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/shield_equipped)
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/shield_dropped)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
 		if(affected)
 			activate_with_user()
 		return
@@ -162,7 +162,7 @@
 		activate_with_user()
 
 /datum/component/shield/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, .proc/on_attack_cb_shields_call)
+	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, PROC_REF(on_attack_cb_shields_call))
 
 /datum/component/shield/proc/deactivate_with_user()
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
@@ -180,7 +180,7 @@
 		return
 	affecting_shields[intercept_damage_cb] = layer
 
-/datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent)
+/datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent, penetration)
 	var/obj/item/parent_item = parent
 	var/status_cover_modifier = 1
 
@@ -207,11 +207,11 @@
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
 			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
-			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
+			absorbing_damage = max(0, absorbing_damage - (hard_armor.getRating(damage_type) * (100 - penetration) * 0.01)) //Hard armor first, with pen as percent reduction to flat armor
+			absorbing_damage *= (100 - max(0, soft_armor.getRating(damage_type) - penetration)) * 0.01 //Soft armor second, with pen as flat reduction to percent armor
 			if(absorbing_damage <= 0)
 				if(!silent)
 					to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
@@ -219,16 +219,16 @@
 			if(transfer_damage_cb)
 				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
 
-/datum/component/shield/proc/item_pure_block_chance(attack_type, incoming_damage, damage_type, silent)
+/datum/component/shield/proc/item_pure_block_chance(attack_type, incoming_damage, damage_type, silent, penetration)
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
-			if(!prob(cover.getRating(damage_type)))
+			if(!prob(cover.getRating(damage_type) - penetration))
 				return FALSE //Bypassed the shield.
 			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
 			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			if(prob(cover.getRating(damage_type)))
+			if(prob(cover.getRating(damage_type) - penetration))
 				return 0 //Blocked
 			return incoming_damage //Went through.
 
@@ -248,7 +248,7 @@
 
 /datum/component/shield/overhealth
 	layer = 100
-	cover = list("melee" = 0, "bullet" = 80, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 80)
+	cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80)
 	slot_flags = SLOT_WEAR_SUIT //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
 	var/max_shield_integrity = 100
 	var/shield_integrity = 100
@@ -269,8 +269,8 @@
 
 
 /datum/component/shield/overhealth/setup_callbacks(shield_flags)
-	intercept_damage_cb = CALLBACK(src, .proc/overhealth_intercept_attack)
-	transfer_damage_cb = CALLBACK(src, .proc/transfer_damage_to_overhealth)
+	intercept_damage_cb = CALLBACK(src, PROC_REF(overhealth_intercept_attack))
+	transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_overhealth))
 
 
 /datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent)

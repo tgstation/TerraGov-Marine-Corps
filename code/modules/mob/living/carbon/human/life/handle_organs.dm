@@ -15,26 +15,26 @@
 		if(nutrition > 0 && stat != DEAD)
 			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > NUTRITION_OVERFED)
-			if(overeatduration < 600) //Capped so people don't take forever to unfat
-				overeatduration++
-		else
-			if(overeatduration > 1)
-				overeatduration -= 2	//Doubled the unfat rate
-
-	var/leg_tally = 2
+	var/leg_tally = 0
 
 	last_dam = getBruteLoss() + getFireLoss() + getToxLoss()
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.process()
 
+	var/multi_limb_regen_penalty = 1 / (max(1, length(get_damaged_limbs(TRUE, TRUE))) ** 0.5) //Per-limb regen decreases with multiple damaged limbs, but slower than linear
+
 	for(var/i in limbs)
 		var/datum/limb/E = i
+
+		if((E.name in list("l_leg", "l_foot", "r_leg", "r_foot")) && !lying_angle) //Need to do this before checking need_process in order to catch missing limbs
+			if(!E.is_usable() || E.is_malfunctioning() || E.is_broken())
+				leg_tally++			//let it fail even if just foot&leg
+
 		if(!E.need_process())
 			continue
 
-		E.process()
+		E.process(multi_limb_regen_penalty)
 
 		if(!lying_angle && world.time - last_move_time < 15)
 			if(E.is_broken() && E.internal_organs && prob(15))
@@ -47,13 +47,10 @@
 				if(prob((E.brute_dam - (E.limb_wound_status & LIMB_WOUND_BANDAGED ? 50 : 0)) * 4))
 					E.germ_level++
 
-		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying_angle)
-			if(!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
-				leg_tally--			//let it fail even if just foot&leg
-
-	//standing is poor
-	if(leg_tally <= 0 && !IsUnconscious() && !lying_angle && prob(5))
+	//Hard to stay upright
+	if(leg_tally > 0 && prob(2.5 * leg_tally))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
-		emote("collapse")
-		SetUnconscious(20 SECONDS)
+		visible_message(span_warning("[src] collapses to the ground!"),	\
+			span_danger("Your legs give out from under you!"))
+		Knockdown(1 SECONDS)

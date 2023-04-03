@@ -247,7 +247,7 @@
 /area/bigredv2/outside/medical)
 "fa" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -285,7 +285,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "fY" = (
@@ -371,7 +371,7 @@
 "hO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -505,7 +505,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "jR" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /obj/effect/landmark/xeno_resin_wall,
@@ -552,7 +552,7 @@
 "kO" = (
 /obj/effect/landmark/weed_node,
 /obj/item/stack/sheet/metal,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1128,7 +1128,7 @@
 /area/bigredv2/outside/medical)
 "xS" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1271,7 +1271,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1379,7 +1379,7 @@
 "BZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "Cg" = (
@@ -1504,7 +1504,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "EP" = (
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1537,7 +1537,7 @@
 /obj/item/stack/sheet/metal,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -1638,7 +1638,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -1664,7 +1664,7 @@
 /obj/effect/landmark/corpsespawner/security,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1683,7 +1683,7 @@
 /area/bigredv2/outside/medical)
 "HI" = (
 /obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -1868,7 +1868,7 @@
 /obj/effect/landmark/weed_node,
 /obj/item/ammo_casing/bullet,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -1927,7 +1927,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/ai_node,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /turf/open/floor/tile/white,
@@ -2023,7 +2023,7 @@
 "Pf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 6
 	},
 /turf/open/floor/tile/green/whitegreen,
@@ -2129,7 +2129,7 @@
 /area/bigredv2/outside/medical)
 "RS" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/tracks/wheels/bloody{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 9
 	},
 /turf/open/floor/tile/white,
@@ -2152,7 +2152,7 @@
 "SH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/tracks/wheels/bloody,
+/obj/effect/turf_decal/tracks/wheels/bloody,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "SS" = (
@@ -2171,8 +2171,8 @@
 "Tw" = (
 /obj/structure/window_frame/colony,
 /obj/item/shard,
-/obj/effect/decal/tracks/claw1,
-/obj/effect/decal/tracks/claw2,
+/obj/effect/turf_decal/tracks/claw1,
+/obj/effect/turf_decal/tracks/claw2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Ty" = (

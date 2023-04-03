@@ -8,13 +8,6 @@
 	flags_heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/cyborg
-	desc = "beep boop borp"
-	name = "cyborg gloves"
-	icon_state = "black"
-	item_state = "r_hands"
-	siemens_coefficient = 1.0
-
 /obj/item/clothing/gloves/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
 	name = "\improper SWAT Gloves"
@@ -51,7 +44,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/gloves/latex
 	name = "latex gloves"

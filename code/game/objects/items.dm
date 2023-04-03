@@ -1,12 +1,17 @@
+GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_vertical, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_vertical", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_horizontal, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_horizontal", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	materials = list(/datum/material/metal = 50)
 	light_system = MOVABLE_LIGHT
 	flags_pass = PASSTABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	resistance_flags = PROJECTILE_IMMUNE
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
@@ -18,8 +23,6 @@
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
 	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
 	var/icon_state_mini = "item"
-	var/force = 0
-	var/damtype = BRUTE
 	///Byond tick delay between left click attacks
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks
@@ -49,9 +52,10 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
-	var/list/actions = list() //list of /datum/action's that this item has.
-	var/list/actions_types = list() //list of paths of action datums to give to the item on Initialize().
-
+	///list of /datum/action's that this item has.
+	var/list/actions
+	///list of paths of action datums to give to the item on Initialize().
+	var/list/actions_types
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -92,14 +96,28 @@
 	var/list/item_state_slots
 	///>LazyList< Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	var/list/item_icons
-	///icon equivalent but for on-mob icon.
-	var/icon/default_worn_icon
 	///specific layer for on-mob icon.
 	var/worn_layer
 	///tells if the item shall use item_state for non-inhands, needed due to some items using item_state only for inhands and not worn.
 	var/item_state_worn = FALSE
-
-	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
+	///overrides the icon file which the item will be used to render on mob, if its in hands it will add _l or _r to the state depending if its on left or right hand.
+	var/icon_override = null
+	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	var/worn_x_dimension = 32
+	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	var/worn_y_dimension = 32
+	///Same as for [worn_x_dimension][/obj/item/var/worn_x_dimension] but for inhands.
+	var/inhand_x_dimension = 32
+	///Same as for [worn_y_dimension][/obj/item/var/worn_y_dimension] but for inhands.
+	var/inhand_y_dimension = 32
+	/// Worn overlay will be shifted by this along x axis
+	var/worn_x_offset = 0
+	/// Worn overlay will be shifted by this along y axis
+	var/worn_y_offset = 0
+	///Worn nhand overlay will be shifted by this along x axis
+	var/inhand_x_offset = 0
+	///Worn inhand overlay will be shifted by this along y axis
+	var/inhand_y_offset = 0
 
 	var/flags_item_map_variant = NONE
 
@@ -109,7 +127,6 @@
 	var/usesound = null
 
 	var/active = FALSE
-
 
 /obj/item/Initialize()
 
@@ -268,6 +285,11 @@
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
 
+///When hit by a thrown object, play the associated hitsound of the object
+/obj/item/throw_impact(atom/hit_atom, speed, bounce)
+	. = ..()
+	if(isliving(hit_atom))
+		playsound(src, hitsound, 50)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
@@ -301,7 +323,7 @@
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			armor_block = H.run_armor_check(X, "acid")
+			armor_block = H.get_soft_armor("acid", X)
 			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), blocked = armor_block))
 				H.UpdateDamageIcon()
 			limb_count++
@@ -310,13 +332,8 @@
 		current_acid = null
 	return
 
-///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
-/obj/item/proc/do_quick_equip()
-	var/obj/item/found = locate(/obj/item/storage) in contents
-	if(!found)
-		found = locate(/obj/item/armor_module/storage) in contents
-	if(found)
-		return found.do_quick_equip()
+///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
+/obj/item/proc/do_quick_equip(mob/user)
 	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -333,11 +350,13 @@
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
-// called after an item is placed in an equipment slot
-// user is mob that equipped it
-// slot uses the slot_X defines found in setup.dm
-// for items that can be placed in multiple slots
-// note this isn't called during the initial dressing of a player
+/**
+ * called after an item is placed in an equipment slot
+ * user is mob that equipped it
+ * slot uses the slot_X defines found in setup.dm
+ * for items that can be placed in multiple slots
+ * note this isn't called during the initial dressing of a player
+ */
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
@@ -348,8 +367,7 @@
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
@@ -371,8 +389,7 @@
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
 
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.remove_action(unequipper)
 
 	if(!equipped_from_slot)
@@ -391,12 +408,12 @@
 	return TRUE
 
 ///Signal sender for unique_action
-/obj/item/proc/do_unique_action(mob/user)
+/obj/item/proc/do_unique_action(mob/user, special_treatment = FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	return unique_action(user)
+	return unique_action(user, special_treatment)
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
-/obj/item/proc/unique_action(mob/user)
+/obj/item/proc/unique_action(mob/user, special_treatment = FALSE)
 	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
@@ -409,11 +426,12 @@
 		return
 	flags_item &= ~CAN_BUMP_ATTACK
 
-// The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
-// If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
-// Set disable_warning to 1 if you wish it to not give you outputs.
-// warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-
+/**
+ * The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
+ * If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
+ * Set disable_warning to 1 if you wish it to not give you outputs.
+ * warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
+ */
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE, override_nodrop = FALSE)
 	if(!slot)
 		return FALSE
@@ -428,7 +446,7 @@
 
 	if(!ishuman(M))
 		return FALSE
-	//START HUMAN
+
 	var/mob/living/carbon/human/H = M
 	var/list/mob_equip = list()
 	if(H.species.hud?.equip_slots)
@@ -445,6 +463,9 @@
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
 		return FALSE
 
+	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
+	var/equip_to_slot = FALSE
+
 	switch(slot)
 		if(SLOT_L_HAND)
 			if(H.l_hand)
@@ -454,36 +475,64 @@
 			if(H.r_hand)
 				return FALSE
 			return TRUE
+		if(SLOT_HANDCUFFED)
+			if(H.handcuffed)
+				return FALSE
+			if(!istype(src, /obj/item/restraints/handcuffs))
+				return FALSE
+			return TRUE
+		if(SLOT_IN_STORAGE) //open storage
+			if(!H.s_active)
+				return FALSE
+			selected_slot = H.s_active
+
+		//actual slots
 		if(SLOT_WEAR_MASK)
 			if(H.wear_mask)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_MASK))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_BACK)
 			if(H.back)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_BACK))
-				return FALSE
-			return TRUE
-		if(SLOT_WEAR_SUIT)
-			if(H.wear_suit)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_GLOVES)
 			if(H.gloves)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_SHOES)
 			if(H.shoes)
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_FEET))
+			equip_to_slot = TRUE
+		if(SLOT_GLASSES)
+			if(H.glasses)
 				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
+		if(SLOT_HEAD)
+			if(H.head)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_EARS)
+			if(H.wear_ear)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_W_UNIFORM)
+			if(H.w_uniform)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_WEAR_ID)
+			if(H.wear_id)
+				return FALSE
+			equip_to_slot = TRUE
+
+		//direct slots with prerequisites
+		if(SLOT_WEAR_SUIT)
+			if(H.wear_suit)
+				return FALSE
+			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(warning)
+					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
+				return FALSE
+			equip_to_slot = TRUE
 		if(SLOT_BELT)
 			if(H.belt)
 				return FALSE
@@ -491,39 +540,7 @@
 				if(warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_BELT))
-				return FALSE
-			return TRUE
-		if(SLOT_GLASSES)
-			if(H.glasses)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_EYES))
-				return FALSE
-			return TRUE
-		if(SLOT_HEAD)
-			if(H.head)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_HEAD))
-				return FALSE
-			return TRUE
-		if(SLOT_EARS)
-			if(H.wear_ear)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_EARS))
-				return FALSE
-			return TRUE
-		if(SLOT_W_UNIFORM)
-			if(H.w_uniform)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
-				return FALSE
-			return TRUE
-		if(SLOT_WEAR_ID)
-			if(H.wear_id)
-				return FALSE
-			if(!(flags_equip_slot & ITEM_SLOT_ID))
-				return FALSE
-			return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_L_STORE)
 			if(H.l_store)
 				return FALSE
@@ -533,8 +550,9 @@
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
-			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+			if(w_class <= 2) //smaller or tiny items can all go in pocket slots, larger items require the flag to fit
 				return TRUE
+			equip_to_slot = TRUE
 		if(SLOT_R_STORE)
 			if(H.r_store)
 				return FALSE
@@ -544,110 +562,80 @@
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
-			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+			if(w_class <= 2)
 				return TRUE
-			return FALSE
-		if(SLOT_IN_ACCESSORY)
-			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)))
-				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
-				var/obj/item/storage/S = U.storage
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			return FALSE
-		if(SLOT_S_STORE)
+			equip_to_slot = TRUE
+		if(SLOT_S_STORE) //suit storage uniquely depends on the suit allowed list, so is a bit snowflake
 			if(H.s_store)
 				return FALSE
 			if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
 				if(warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return FALSE
-			if(!H.wear_suit.allowed)
-				if(warning)
-					to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
-				return FALSE
-			if(istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+			if(is_type_in_list(src, H.wear_suit.allowed))
 				return TRUE
 			return FALSE
-		if(SLOT_HANDCUFFED)
-			if(H.handcuffed)
-				return FALSE
-			if(!istype(src, /obj/item/restraints/handcuffs))
-				return FALSE
-			return TRUE
+
+		//storage slot defines
+		if(SLOT_IN_ACCESSORY)
+			selected_slot = H.w_uniform
 		if(SLOT_IN_BACKPACK)
-			if (!H.back || !istype(H.back, /obj/item/storage/backpack))
-				return FALSE
-			var/obj/item/storage/backpack/B = H.back
-			if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
-				return FALSE
-			return TRUE
+			selected_slot = H.back
+		if(SLOT_IN_BELT)
+			selected_slot = H.belt
+		if(SLOT_IN_L_POUCH)
+			selected_slot = H.l_store
+		if(SLOT_IN_R_POUCH)
+			selected_slot = H.r_store
+		if(SLOT_IN_SUIT)
+			selected_slot = H.wear_suit
+		if(SLOT_IN_HEAD)
+			selected_slot = H.head
+		if(SLOT_IN_BOOT)
+			selected_slot = H.shoes
+
+		//holsters - need to check for specific item types
 		if(SLOT_IN_B_HOLSTER)
 			if(!H.back || !istype(H.back, /obj/item/storage/holster))
 				return FALSE
-			var/obj/item/storage/S = H.back
-			if(!S.can_be_inserted(src, warning))
-				return FALSE
-			return TRUE
-		if(SLOT_IN_BELT)
-			if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
-				return FALSE
-			var/obj/item/storage/belt/S = H.belt
-			if(!S.can_be_inserted(src, warning))
-				return FALSE
-			return TRUE
+			selected_slot = H.back
 		if(SLOT_IN_HOLSTER)
-			if((H.belt && istype(H.belt,/obj/item/storage/holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
-				var/obj/item/storage/S = H.belt
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			return FALSE
+			if(!H.belt || (!istype(H.belt,/obj/item/storage/holster) && !istype(H.belt,/obj/item/storage/belt/gun)))
+				return FALSE
+			selected_slot = H.belt
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
-				var/obj/item/storage/S = H.s_store
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			return FALSE
-		if(SLOT_IN_STORAGE)
-			if(!H.s_active)
+			if(!H.s_store || (!istype(H.s_store, /obj/item/storage/holster) && !istype(H.s_store,/obj/item/storage/belt/gun)))
 				return FALSE
-			var/obj/item/storage/S = H.s_active
-			if(S.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_L_POUCH)
-			if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
-				return FALSE
-			var/obj/item/storage/S = H.l_store
-			if(S.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_R_POUCH)
-			if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
-				return FALSE
-			var/obj/item/storage/S = H.r_store
-			if(S.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_SUIT)
-			var/obj/item/clothing/suit/storage/S = H.wear_suit
-			if(!istype(S) || !S.pockets)
-				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_HEAD)
-			var/obj/item/clothing/head/helmet/marine/S = H.head
-			if(!istype(S) || !S.pockets)
-				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_BOOT)
-			var/obj/item/clothing/shoes/marine/S = H.shoes
-			if(!istype(S) || !S.pockets)
-				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
-	return FALSE //Unsupported slot
+			selected_slot = H.s_store
 
+		else
+			return FALSE //Unsupported slot
+
+	if(equip_to_slot)
+		if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+			return FALSE
+		return TRUE
+
+	if(!selected_slot)
+		return FALSE
+
+	var/obj/item/storage/storage_item
+
+	if(isstorage(selected_slot))
+		storage_item = selected_slot
+
+	else if(isclothing(selected_slot))
+		var/obj/item/clothing/selected_clothing = selected_slot
+		for(var/attachment_slot in selected_clothing.attachments_by_slot)
+			if(ismodulararmorstoragemodule(selected_clothing.attachments_by_slot[attachment_slot]))
+				var/obj/item/armor_module/storage/storage_attachment = selected_clothing.attachments_by_slot[attachment_slot]
+				storage_item = storage_attachment.storage
+				break
+
+	if(!storage_item)
+		return FALSE
+
+	return storage_item.can_be_inserted(src, warning)
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -694,7 +682,7 @@
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_view(pickup_animation, src, 4)
 	var/matrix/animation_matrix = new(pickup_animation.transform)
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)
@@ -836,7 +824,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
 		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
-	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(zoom_check_return))
 	onzoom(user)
 
 ///applies the offset of the zooming, using animate for smoothing.
@@ -879,11 +867,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
 	if(zoom_allow_movement)
-		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
+		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
-	RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
+	RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 
 
 ///called when zoom is deactivated.
@@ -937,8 +925,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 
 /obj/item/proc/update_action_button_icons()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 
@@ -964,29 +951,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 3
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 2
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 1
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 0
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 
 	var/turf/T = get_turf(target)
@@ -1034,7 +1021,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 								C.die()
 				if(W.loc == my_target)
 					break
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(W)
 
 	if(isspaceturf(user.loc))
@@ -1057,7 +1044,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
-		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
 			if(do_mob(user, target, delay, extra_checks=tool_check))
@@ -1141,30 +1128,34 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Generates worn icon for sprites on-mob.
 /obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/iconfile2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
-	if(inhands && icon2use == icon_override)
+	if(inhands && iconfile2use == icon_override)
 		switch(slot_name)
 			if(slot_r_hand_str)
 				state2use += "_r"
 			if(slot_l_hand_str)
 				state2use += "_l"
 
-	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	var/image/standing = image(icon2use, icon_state = state2use)
-	standing.alpha = alpha
-	standing.color = color
-	standing.layer = layer2use
+	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
 	if(!inhands)
 		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
 		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
+
+	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
+
+	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
+	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing.alpha = alpha
+	standing.color = color
 
 	//Return our icon
 	return standing
@@ -1185,10 +1176,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	. = LAZYACCESS(item_icons, slot_name)
 	if(.)
 		return
-
-	//4: item's default icon
-	if(default_worn_icon)
-		return default_worn_icon
 
 	//5: provided default_icon
 	if(default_icon)
@@ -1215,15 +1202,131 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
-/obj/item/proc/apply_custom(image/standing)
+/obj/item/proc/apply_custom(mutable_appearance/standing)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().
-/obj/item/proc/apply_blood(image/standing)
+/obj/item/proc/apply_blood(mutable_appearance/standing)
 	return standing
 
 ///applies any accessory the item may have, called by make_worn_icon().
-/obj/item/proc/apply_accessories(image/standing)
+/obj/item/proc/apply_accessories(mutable_appearance/standing)
 	return standing
+
+//fancy tricks
+
+///Checks to see if you successfully perform a trick, and what kind
+/obj/item/proc/do_trick(mob/living/carbon/human/user)
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_TRICK))
+		return FALSE
+	if(!istype(user))
+		return FALSE
+	var/chance = -5
+	chance = user.health < 6 ? 0 : user.health - 5
+
+	var/obj/item/double = user.get_inactive_held_item()
+	if(prob(chance))
+		switch(rand(1,7))
+			if(1)
+				basic_spin_trick(user, -1)
+			if(2)
+				basic_spin_trick(user, 1)
+			if(3)
+				throw_catch_trick(user)
+			if(4)
+				basic_spin_trick(user, 1)
+			if(5)
+				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
+				basic_spin_trick(arglist(arguments))
+			if(6)
+				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
+				basic_spin_trick(arglist(arguments))
+			if(7)
+				if(istype(double))
+					spawn(0)
+						double.throw_catch_trick(user)
+					throw_catch_trick(user)
+				else
+					throw_catch_trick(user)
+	else
+		if(prob(10))
+			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
+		else
+			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
+
+	TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_TRICK, 6)
+
+	return TRUE
+
+///The basic spin trick
+/obj/item/proc/basic_spin_trick(mob/living/carbon/human/user, direction = 1, obj/item/double)
+	set waitfor = 0
+	playsound(user, 'sound/effects/spin.ogg', 25, 1)
+	if(double)
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		animation_wrist_flick(double, 1)
+	else
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+	animation_wrist_flick(src, direction)
+	sleep(0.3 SECONDS)
+	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
+
+///The fancy trick. Woah.
+/obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
+	set waitfor = 0
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	var/img_layer = MOB_LAYER+0.1
+	var/image/trick = image(icon,user,icon_state,img_layer)
+	switch(pick(1,2))
+		if(1) animation_toss_snatch(trick)
+		if(2) animation_toss_flick(trick, pick(1,-1))
+
+	invisibility = 100
+	for(var/mob/M in viewers(user))
+		SEND_IMAGE(M, trick)
+	sleep(0.5 SECONDS)
+	trick.loc = null
+	if(!loc || !user)
+		return
+	invisibility = 0
+	playsound(user, 'sound/effects/thud.ogg', 25, 1)
+
+	if(user.get_active_held_item() != src)
+		return
+
+	if(user.get_inactive_held_item())
+		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		return
+	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.temporarilyRemoveItemFromInventory(src)
+	user.put_in_inactive_hand(src)
+	user.swap_hand()
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
+
+///Handles registering if an item is flagged as deployed or not
+/obj/item/proc/toggle_deployment_flag(deployed)
+	if(deployed)
+		ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	else
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
+
+///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
+/obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
+	//Put item into player's currently open storage
+	if (fill_container && user.s_active && user.s_active.can_be_inserted(src, FALSE))
+		user.s_active.handle_item_insertion(src, FALSE, user)
+		return
+	//Equip item onto player
+	if (auto_equip && vendor_equip(user))
+		return
+	//Otherwise fall back to putting item in player's hand
+	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
+		pickup(user)
+
+///Controls how vendors will try to equip this item. Returns whether item was sucessfully equipped
+/obj/item/proc/vendor_equip(mob/user)
+	return FALSE
+

@@ -4,6 +4,7 @@
 #define CAN_BE_HIT (1<<1) //can this be bludgeoned by items?
 #define PROJ_IGNORE_DENSITY (1<<2) // If non-dense structures can still get hit by projectiles
 #define LIGHT_CAN_BE_SHUT (1<<3) // Is sensible to nightfall ability, and its light will be turned off
+#define AUTOBALANCE_CHECK (1<<4) //If this item is used for autobalance calculations or excluded, such as valhalla items
 
 //Fire and Acid stuff, for resistance_flags
 #define INDESTRUCTIBLE (1<<0) //doesn't take damage
@@ -14,5 +15,11 @@
 #define CRUSHER_IMMUNE (1<<5) //is immune to crusher's charge destruction
 #define BANISH_IMMUNE (1<<6) //is immune it wraith's banish ability
 #define PLASMACUTTER_IMMUNE (1<<7) //is immune to being cut by a plasmacutter
+#define PROJECTILE_IMMUNE (1<<8) //Cannot be hit by projectiles
+#define PORTAL_IMMUNE (1<<9) //Cannot be teleported by wraith's portals
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE)
+
+//projectile flags
+#define PROJECTILE_FROZEN (1<<0) //indicates a projectile is no longer moving
+#define PROJECTILE_HIT (1<<1)

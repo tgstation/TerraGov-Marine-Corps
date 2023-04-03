@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 #define PLASMACUTTER_VLOW_MOD 0.1
 #define PLASMACUTTER_CUT_DELAY 30
-#define PLASMACUTTER_RESIN_MULTIPLIER 2
+#define PLASMACUTTER_RESIN_MULTIPLIER 2.3
 #define PLASMACUTTER_BASE_COST 1000
 
 //MEDEVAC DEFINES
@@ -138,7 +138,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define RAZORWIRE_ENTANGLE_DELAY 5 SECONDS
 #define RAZORWIRE_SOAK 5
 #define RAZORWIRE_MAX_HEALTH 100
-#define RAZORWIRE_SLOWDOWN 10
 #define RAZORWIRE_MIN_DAMAGE_MULT_LOW 0.4 //attacking
 #define RAZORWIRE_MAX_DAMAGE_MULT_LOW 0.6
 #define RAZORWIRE_MIN_DAMAGE_MULT_MED 0.8 //climbing into, disentangling or crusher charging it
@@ -207,6 +206,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define ITEM_ICE_VARIANT (1<<1)
 #define ITEM_ICE_PROTECTION (1<<2)
 #define ITEM_PRISON_VARIANT (1<<3)
+#define ITEM_DESERT_VARIANT (1<<4)
 
 #define ITEM_UNEQUIP_FAIL 0
 #define ITEM_UNEQUIP_DROPPED 1
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //Unmanned vehicle define
 #define OVERLAY_TURRET (1<<0)
-#define HAS_LIGHTS (1<<1)
+#define HAS_HEADLIGHTS (1<<1)
 #define UNDERCARRIAGE (1<<2)
 #define GIVE_NIGHT_VISION (1<<3)
 
@@ -250,3 +250,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define MOTION_DETECTOR_HOSTILE "hostile"
 #define MOTION_DETECTOR_FRIENDLY "friendly"
 #define MOTION_DETECTOR_DEAD "dead"
+
+//Repair define
+#define BELOW_INTEGRITY_THRESHOLD "below integrity threshold"

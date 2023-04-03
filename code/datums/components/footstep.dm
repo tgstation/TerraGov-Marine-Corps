@@ -21,7 +21,7 @@
 		if(FOOTSTEP_MOB_HUMAN)
 			if(!ishuman(parent))
 				return COMPONENT_INCOMPATIBLE
-			RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), .proc/play_humanstep)
+			RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(play_humanstep))
 			return
 		if(FOOTSTEP_MOB_SHOE)
 			footstep_sounds = GLOB.shoefootstep
@@ -31,7 +31,7 @@
 			footstep_sounds = GLOB.xenomediumstep
 		if(FOOTSTEP_XENO_HEAVY)
 			footstep_sounds = GLOB.xenoheavystep
-	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), .proc/play_simplestep) //Note that this doesn't get called for humans.
+	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(play_simplestep)) //Note that this doesn't get called for humans.
 
 ///Prepares a footstep. Determines if it should get played. Returns the turf it should get played on. Note that it is always a /turf/open
 /datum/component/footstep/proc/prepare_step()
@@ -58,7 +58,7 @@
 		playsound(T, footstep_sounds, volume)
 		return
 	var/turf_footstep
-	if(locate(/obj/effect/alien/weeds) in T)
+	if(locate(/obj/alien/weeds) in T)
 		turf_footstep = FOOTSTEP_RESIN
 	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
@@ -82,13 +82,13 @@
 	var/turf/open/T = prepare_step()
 	if(!T)
 		return
-	if(locate(/obj/effect/alien/weeds) in T)
+	if(locate(/obj/alien/weeds) in T)
 		playsound(T, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
 			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
 			TRUE,
 			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
 		return
-	if(H.shoes) //are we wearing shoes
+	if(H.shoes || isrobot(H)) //are we wearing shoes
 		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 			GLOB.shoefootstep[T.shoefootstep][2] * volume,
 			TRUE,

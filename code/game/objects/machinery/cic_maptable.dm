@@ -12,7 +12,7 @@
 	///by default Zlevel 2, groundside is targetted
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
-	var/obj/screen/minimap/map
+	var/atom/movable/screen/minimap/map
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
@@ -27,6 +27,19 @@
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
 	user.client.screen += map
+	if(isobserver(user))
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+
+
+//Bugfix to handle cases for ghosts/observers that dont automatically close uis on move.
+/obj/machinery/cic_maptable/proc/on_move(mob/dead/observer/source, oldloc)
+	SIGNAL_HANDLER
+	if(!istype(source))
+		CRASH("on_move called by non observer")
+	if(Adjacent(source))
+		return
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	source.unset_interaction()
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
@@ -36,3 +49,6 @@
 	name = "Athena tactical map console"
 	desc = "A map that display the planetside AO, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"
 	icon_state = "droppodtable"
+
+/obj/machinery/cic_maptable/som_maptable
+	allowed_flags = MINIMAP_FLAG_MARINE_SOM

@@ -5,9 +5,14 @@
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	///How much the atom tries to push things out its way
+	var/move_force = MOVE_FORCE_DEFAULT
 	///How much the atom resists being thrown or moved.
 	var/move_resist = MOVE_RESIST_DEFAULT
-	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
+	///Delay added to mob's move_delay when pulling it.
+	var/drag_delay = 3
+	///Wind-up before the mob can pull an object.
+	var/drag_windup = 1.5 SECONDS
 	var/throwing = FALSE
 	var/thrower = null
 	var/turf/throw_source = null
@@ -47,18 +52,19 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
-	var/list/client_mobs_in_contents // This contains all the client mobs within this container
-
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
 	/**
 	 * an associative lazylist of relevant nested contents by "channel", the list is of the form: list(channel = list(important nested contents of that type))
-	 * each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration
+	 * each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration.
 	 * do NOT add channels to this for little reason as it can add considerable memory usage.
 	 */
 	var/list/important_recursive_contents
+	///contains every client mob corresponding to every client eye in this container. lazily updated by SSparallax and is sparse:
+	///only the last container of a client eye has this list assuming no movement since SSparallax's last fire
+	var/list/client_mobs_in_contents
 
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
@@ -106,13 +112,18 @@
 	for(var/movable_content in contents)
 		qdel(movable_content)
 
+	if(important_recursive_contents && (important_recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] || important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]))
+		SSspatial_grid.force_remove_from_cell(src)
+
 	LAZYCLEARLIST(client_mobs_in_contents)
+
+	LAZYCLEARLIST(important_recursive_contents)//has to be before moveToNullspace() so that we can exit our spatial_grid cell if we're in it
 
 	moveToNullspace()
 
-	if(smoothing_behavior && isturf(old_loc))
-		smooth_neighbors(old_loc)
-	
+	if(smoothing_flags && isturf(old_loc))
+		QUEUE_SMOOTH_NEIGHBORS(old_loc)
+
 	invisibility = INVISIBILITY_ABSTRACT
 
 	pulledby?.stop_pulling()
@@ -122,10 +133,10 @@
 		orbiting = null
 
 	vis_contents.Cut()
+	vis_locs = null
 
-	//We add ourselves to this list, best to clear it out
-	//DO it after moveToNullspace so memes can be had
-	LAZYCLEARLIST(important_recursive_contents)
+	QDEL_NULL(light)
+	QDEL_NULL(static_light)
 
 ///Updates this movables emissive overlay
 /atom/movable/proc/update_emissive_block()
@@ -176,6 +187,8 @@
 	var/atom/movable/pullee = pulling
 	if(!moving_from_pull)
 		check_pulling()
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc, direction) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return FALSE
 	if(!loc || !newloc || loc == newloc)
 		return FALSE
 
@@ -209,7 +222,7 @@
 			return
 		if(!(flags_atom & DIRLOCK))
 			setDir(direction)
-	
+
 	var/enter_return_value = newloc.Enter(src)
 	if(!(enter_return_value & TURF_CAN_ENTER))
 		if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
@@ -323,7 +336,7 @@
 
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
-	if(length(client_mobs_in_contents))
+	if(client_mobs_in_contents)
 		update_parallax_contents()
 
 	if(pulledby)
@@ -335,6 +348,24 @@
 			light.find_containing_atom()
 	for(var/datum/static_light_source/L AS in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
 		L.source_atom.static_update_light()
+
+	var/turf/old_turf = get_turf(old_loc)
+	var/turf/new_turf = get_turf(src)
+
+	if(HAS_SPATIAL_GRID_CONTENTS(src))
+		if(old_turf && new_turf && (old_turf.z != new_turf.z \
+			|| ROUND_UP(old_turf.x / SPATIAL_GRID_CELLSIZE) != ROUND_UP(new_turf.x / SPATIAL_GRID_CELLSIZE) \
+			|| ROUND_UP(old_turf.y / SPATIAL_GRID_CELLSIZE) != ROUND_UP(new_turf.y / SPATIAL_GRID_CELLSIZE)))
+
+			SSspatial_grid.exit_cell(src, old_turf)
+			SSspatial_grid.enter_cell(src, new_turf)
+
+		else if(old_turf && !new_turf)
+			SSspatial_grid.exit_cell(src, old_turf)
+
+		else if(new_turf && !old_turf)
+			SSspatial_grid.enter_cell(src, new_turf)
+
 	return TRUE
 
 
@@ -409,7 +440,7 @@
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
 //called when src is thrown into hit_atom
-/atom/movable/proc/throw_impact(atom/hit_atom, speed)
+/atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.hitby(src, speed)
@@ -424,8 +455,9 @@
 		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
-			spawn(2)
-				step(src, turn(dir, 180))
+			if(bounce)
+				spawn(2)
+					step(src, turn(dir, 180))
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
@@ -445,13 +477,13 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if((!L.density || L.throwpass) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
+			if((!L.density || (L.flags_pass & PASSPROJECTILE)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
 			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.flags_pass & PASSPROJECTILE) || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
@@ -460,18 +492,21 @@
 	if(!target || !src)
 		return FALSE
 
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
+		return FALSE
+
 	if(spin)
 		animation_spin(5, 1)
 
 	if(!flying)
 		set_throwing(TRUE)
 		src.thrower = thrower
-	
+
 	var/originally_dir_locked = flags_atom & DIRLOCK
 	if(!originally_dir_locked)
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
-	
+
 	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -509,7 +544,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 			else
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
@@ -524,7 +559,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
 		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
@@ -543,7 +578,7 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 			else
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
@@ -558,13 +593,13 @@
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
-					sleep(1)
+					sleep(0.1 SECONDS)
 
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
 	if(parrier)
-		INVOKE_NEXT_TICK(src, .proc/throw_at, (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
+		INVOKE_NEXT_TICK(src, PROC_REF(throw_at), (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
 		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
@@ -588,12 +623,6 @@
 		last_move = buckled_mob.last_move
 		return FALSE
 	return TRUE
-
-
-//called when a mob tries to breathe while inside us.
-/atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
-	. = return_air()
-
 
 /atom/movable/proc/check_blocked_turf(turf/target)
 	if(target.density)
@@ -677,7 +706,7 @@
 	if(!I)
 		return
 
-	flick_overlay(I, GLOB.clients, 0.5 SECONDS)
+	flick_overlay_view(I, A, 0.5 SECONDS)
 
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
@@ -691,6 +720,7 @@
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
+	.["Edit Particles"] = "?_src_=vars;[HrefToken()];modify_particles=[REF(src)]"
 
 
 /atom/movable/proc/get_language_holder(shadow = TRUE)
@@ -798,17 +828,17 @@
 		AM.onTransitZ(old_z,new_z)
 
 
-/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE)
-	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
-	//	return
+/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, force = MOVE_FORCE_STRONG)
+	if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
+		return
 	return throw_at(target, range, speed, thrower, spin)
 
 
-/atom/movable/proc/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/atom/movable/proc/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
 
-	if(!(AM.can_be_pulled(src)))
+	if(!(AM.can_be_pulled(src, force)))
 		return FALSE
 
 	// If we're pulling something then drop what we're currently pulling and pull this instead.
@@ -894,7 +924,7 @@
 		pulledby.stop_pulling()
 
 
-/atom/movable/proc/can_be_pulled(user)
+/atom/movable/proc/can_be_pulled(user, force)
 	if(src == user || !isturf(loc))
 		return FALSE
 	if(anchored || throwing)
@@ -902,6 +932,8 @@
 	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
 		return FALSE
 	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
+		return FALSE
+	if(force < (move_resist * MOVE_FORCE_PULL_RATIO))
 		return FALSE
 	return TRUE
 
@@ -1046,6 +1078,25 @@
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
 
+///returns bool for if we want to get forcepushed
+/atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+	return FALSE
+
+///returns bool for if we want to get handle forcepushing, return is bool if we can move an anchored obj
+/atom/movable/proc/force_push(atom/movable/pushed_atom, force = move_force, direction, silent = FALSE)
+	. = pushed_atom.force_pushed(src, force, direction)
+	if(!silent && .)
+		visible_message(span_warning("[src] forcefully pushes against [pushed_atom]!"), span_warning("You forcefully push against [pushed_atom]!"))
+
+///returns bool for if we want to get handle move crushing, return is bool if we can move an anchored obj
+/atom/movable/proc/move_crush(atom/movable/crushed_atom, force = move_force, direction, silent = FALSE)
+	. = crushed_atom.move_crushed(src, force, direction)
+	if(!silent && .)
+		visible_message(span_danger("[src] crushes past [crushed_atom]!"), span_danger("You crush [crushed_atom]!"))
+
+///returns bool for if we want to get crushed
+/atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+	return FALSE
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -1063,13 +1114,62 @@
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
 /atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)
 	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
-		RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), .proc/on_hearing_sensitive_trait_loss)
+		//RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), PROC_REF(on_hearing_sensitive_trait_loss))
 		for(var/atom/movable/location AS in get_nested_locs(src) + src)
 			LAZYADDASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
+
+		var/turf/our_turf = get_turf(src)
+		if(our_turf && SSspatial_grid.initialized)
+			SSspatial_grid.enter_cell(src, our_turf)
+
+		else if(our_turf && !SSspatial_grid.initialized)//SSspatial_grid isnt init'd yet, add ourselves to the queue
+			SSspatial_grid.enter_pre_init_queue(src, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
+
 	ADD_TRAIT(src, TRAIT_HEARING_SENSITIVE, trait_source)
 
-/atom/movable/proc/on_hearing_sensitive_trait_loss()
-	SIGNAL_HANDLER
-	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE))
+/**
+ * removes the hearing sensitivity channel from the important_recursive_contents list of this and all nested locs containing us if there are no more sources of the trait left
+ * since RECURSIVE_CONTENTS_HEARING_SENSITIVE is also a spatial grid content type, removes us from the spatial grid if the trait is removed
+ *
+ * * trait_source - trait source define or ALL, if ALL, force removes hearing sensitivity. if a trait source define, removes hearing sensitivity only if the trait is removed
+ */
+/atom/movable/proc/lose_hearing_sensitivity(trait_source = TRAIT_GENERIC)
+	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
+		return
+	REMOVE_TRAIT(src, TRAIT_HEARING_SENSITIVE, trait_source)
+	if(HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
+		return
+
+	var/turf/our_turf = get_turf(src)
+	if(our_turf && SSspatial_grid.initialized)
+		SSspatial_grid.exit_cell(src, our_turf)
+	else if(our_turf && !SSspatial_grid.initialized)
+		SSspatial_grid.remove_from_pre_init_queue(src, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
+
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
+
+///propogates new_client's mob through our nested contents, similar to other important_recursive_contents procs
+///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye
+/atom/movable/proc/enable_client_mobs_in_contents(client/new_client)
+	var/turf/our_turf = get_turf(src)
+	if(our_turf && SSspatial_grid.initialized)
+		SSspatial_grid.enter_cell(src, our_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+	else if(our_turf && !SSspatial_grid.initialized)
+		SSspatial_grid.enter_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
+		LAZYORASSOCLIST(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, new_client.mob)
+
+///Clears the clients channel of this movables important_recursive_contents list and all nested locs
+/atom/movable/proc/clear_important_client_contents(client/former_client)
+
+	var/turf/our_turf = get_turf(src)
+
+	if(our_turf && SSspatial_grid.initialized)
+		SSspatial_grid.exit_cell(src, our_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+	else if(our_turf && !SSspatial_grid.initialized)
+		SSspatial_grid.remove_from_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
+		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)

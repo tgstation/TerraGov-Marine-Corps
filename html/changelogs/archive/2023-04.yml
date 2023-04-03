@@ -1,0 +1,27 @@
+2023-04-01:
+  Lumipharon:
+  - imageadd: added in hand sprites for SOM helmets, armor, uniforms and bags
+2023-04-02:
+  Lumipharon:
+  - rscadd: Added a SOM breaching axe to HvH
+  - bugfix: fixed blood looking weird on larger items
+  - bugfix: Importing loadouts works again with the current version
+  - bugfix: fixed SOM veterans having a blank HUD icon
+  RipGrayson:
+  - bugfix: Fixed carpets and catwalks becoming blank voids after explosions.
+  ivanmixo:
+  - code_imp: Fixes the stuff the 515 regexing missed
+  - balance: Makes the default starting boot knife the M5 survival knife
+  - bugfix: Fixes the 3rd person ravager endure message
+2023-04-03:
+  Lumipharon:
+  - code_imp: The mc now detects if its priority budget gets out of sync with reality
+      and soft resets
+  - code_imp: The mc now keeps track of how many times a subsystem has slept in fire()
+  - code_imp: Updated the failsafe to recover from a deleted MC
+  - code_imp: Increased SSsilo priority to reduce the chance of it getting stuck
+  ivanmixo:
+  - rscadd: Gave the nuke disk generator a new TGUI interface
+  - bugfix: Fixed a bug related to the disk console never being processed again if
+      turned off once
+  - refactor: Refactored a bit of the nuke disk generator code and added autodocs

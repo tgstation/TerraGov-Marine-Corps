@@ -24,6 +24,8 @@
 	density = TRUE
 	coverage = 20
 
+/obj/structure/device/piano/full
+	icon_state = "piano"
 
 /obj/structure/device/piano/Initialize()
 	. = ..()

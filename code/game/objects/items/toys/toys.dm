@@ -17,6 +17,10 @@
 
 /obj/item/toy
 	icon = 'icons/obj/items/toy.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
+	)
 	throw_speed = 4
 	throw_range = 20
 	force = 0
@@ -115,6 +119,10 @@
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "beacon"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "signaler"
 
 /*
@@ -161,7 +169,7 @@
 /obj/item/toy/snappop/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -252,7 +260,7 @@
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
 						to_chat(T:client, span_warning("[user] has sprayed you with water!"))
-				sleep(4)
+				sleep(0.4 SECONDS)
 			qdel(D)
 
 		return
@@ -363,9 +371,9 @@
 	throw_speed = 1
 	throw_range = 20
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_held_item()
-		throw_at(target, throw_range, throw_speed, user)
+/obj/item/toy/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	user.drop_held_item()
+	throw_at(target, throw_range, throw_speed, user)
 
 
 /obj/item/toy/dice
@@ -536,7 +544,6 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
-	throwpass = 1
 	var/side = ""
 	var/id = ""
 

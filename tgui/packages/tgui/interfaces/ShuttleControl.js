@@ -5,65 +5,60 @@ import { Window } from '../layouts';
 const DestinationSelection = (props, context) => {
   const { id, name, locked, selectDestination } = props;
   return (
-    <Table.Row
-      textAlign="center">
+    <Table.Row textAlign="center">
       <Button
         my="1px"
         mx={1}
         color="good"
         content={name}
         disabled={locked}
-        onClick={() => selectDestination(id)} />
+        onClick={() => selectDestination(id)}
+      />
     </Table.Row>
   );
 };
 
 export const ShuttleControl = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    linked_shuttle_name,
-    shuttle_status,
-    destinations = [],
-  } = data;
+  const { linked_shuttle_name, shuttle_status, destinations = [] } = data;
 
   return (
-    <Window
-      title="Shuttle Control Console"
-      width={400}
-      height={230}>
+    <Window title="Shuttle Control Console" width={400} height={230}>
       <Window.Content>
         <Section>
           {shuttle_status ? (
-            <Box
-              textAlign="center">
+            <Box textAlign="center">
               <b>{linked_shuttle_name}</b> - <b>{shuttle_status}</b>
-            </Box>)
-            : (
-              <NoticeBox
-                textAlign="center">
-                <b>No linked shuttle detected</b>
-              </NoticeBox>)}
+            </Box>
+          ) : (
+            <NoticeBox textAlign="center">
+              <b>No linked shuttle detected</b>
+            </NoticeBox>
+          )}
         </Section>
         {destinations.length >= 1 ? (
           <Section title="Destinations">
             <Table>
-              {destinations.map(DT => (
+              {destinations.map((DT) => (
                 <DestinationSelection
                   key={DT.id}
                   id={DT.id}
                   name={DT.name}
                   locked={DT.locked || destinations.length <= 0}
-                  selectDestination={id => act('selectDestination', {
-                    destination: id,
-                  })} />
+                  selectDestination={(id) =>
+                    act('selectDestination', {
+                      destination: id,
+                    })
+                  }
+                />
               ))}
             </Table>
           </Section>
         ) : (
-          <NoticeBox
-            textAlign="center">
+          <NoticeBox textAlign="center">
             No available destinations found!
-          </NoticeBox>)}
+          </NoticeBox>
+        )}
       </Window.Content>
     </Window>
   );

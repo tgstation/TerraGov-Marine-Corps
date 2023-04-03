@@ -59,6 +59,26 @@
 	name = "Circuit board (ID Computer)"
 	build_path = /obj/machinery/computer/marine_card
 
+/obj/item/circuitboard/computer/supplycomp
+	name = "Circuit board (Requisitions ASRS Computer)"
+	build_path = /obj/machinery/computer/supplycomp
+
+/obj/item/circuitboard/computer/rebelsupplycomp
+	name = "Circuit board (Rebel Requisitions ASRS Computer)"
+	build_path = /obj/machinery/computer/supplycomp/rebel
+
+/obj/item/circuitboard/computer/ordercomp
+	name = "Circuit board (Requisitions Ordering Computer)"
+	build_path = /obj/machinery/computer/ordercomp
+
+/obj/item/circuitboard/computer/supplyoverwatch
+	name = "Circuit board (Requisitions Overwatch Computer)"
+	build_path = /obj/machinery/computer/camera_advanced/overwatch/req
+
+/obj/item/circuitboard/computer/supplydrop
+	name = "Circuit board (Requisitions Targeting Computer)"
+	build_path = /obj/machinery/computer/supplydrop_console
+
 /obj/item/circuitboard/computer/marine_card/centcom
 	name = "Circuit board (CentCom ID Computer)"
 	build_path = /obj/machinery/computer/marine_card/centcom
@@ -135,17 +155,9 @@
 /obj/item/circuitboard/computer/prisoner
 	name = "Circuit board (Prisoner Management)"
 	build_path = /obj/machinery/computer/prisoner
-/obj/item/circuitboard/computer/rdconsole
-	name = "Circuit Board (RD Console)"
-	build_path = /obj/machinery/computer/rdconsole/core
-/obj/item/circuitboard/computer/rdservercontrol
-	name = "Circuit Board (R&D Server Control)"
-	build_path = /obj/machinery/computer/rdservercontrol
 /obj/item/circuitboard/computer/crew
 	name = "Circuit board (Crew monitoring computer)"
 	build_path = /obj/machinery/computer/crew
-
-
 /obj/item/circuitboard/computer/operating
 	name = "Circuit board (Operating Computer)"
 	build_path = /obj/machinery/computer/operating
@@ -187,7 +199,7 @@
 			to_chat(user, "No input found please hang up and try your call again.")
 			return
 
-		var/list/tempnetwork = text2list(input, ",")
+		var/list/tempnetwork = splittext(input, ",")
 		tempnetwork = difflist(tempnetwork, GLOB.restricted_camera_networks, 1)
 		if(!length(tempnetwork))
 			to_chat(user, "No network found please hang up and try your call again.")
@@ -195,17 +207,3 @@
 
 		network = tempnetwork
 
-/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isscrewdriver(I))
-		user.visible_message(span_notice(" \the [user] adjusts the jumper on the [src]'s access protocol pins."), span_notice(" You adjust the jumper on the access protocol pins."))
-
-		if(build_path == /obj/machinery/computer/rdconsole/core)
-			name = "Circuit Board (RD Console - Robotics)"
-			build_path = /obj/machinery/computer/rdconsole/robotics
-			to_chat(user, span_notice("Access protocols set to robotics."))
-		else
-			name = "Circuit Board (RD Console)"
-			build_path = /obj/machinery/computer/rdconsole/core
-			to_chat(user, span_notice("Access protocols set to default."))

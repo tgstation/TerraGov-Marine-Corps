@@ -31,6 +31,48 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 		if("delta")
 			level = SEC_LEVEL_DELTA
 
+	if(level <= SEC_LEVEL_BLUE)
+		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+			alarmplayer.deltalarm.stop(alarmplayer)
+		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+			light.base_state = "tube"
+			var/area/A = get_area(light)
+			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+				continue
+			light.light_color = COLOR_WHITE
+			light.brightness = 8
+			light.light_range = 8
+			if(istype(light, /obj/machinery/light/mainship/small))
+				light.icon_state = "bulb1"
+				light.base_state = "bulb"
+			else
+				light.icon_state = "tube1"
+			light.update_light()
+	else
+		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+			if(level != SEC_LEVEL_DELTA)
+				alarmplayer.deltalarm.stop(alarmplayer)
+			else
+				alarmplayer.deltalarm.start(alarmplayer)
+		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+			light.base_state = "tubered"
+			var/area/A = get_area(light)
+			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+				continue
+			light.light_color = COLOR_SOMEWHAT_LIGHTER_RED
+			light.brightness = 3.0
+			light.light_range = 7.5
+			if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
+				var/rangelevel = pick(5.5,6.0,6.5,7.0)
+				if(prob(15))
+					rangelevel -= pick(0.5,1.0,1.5,2.0)
+				light.light_range = rangelevel
+			if(istype(light, /obj/machinery/light/mainship/small))
+				light.icon_state = "bulbred1"
+				light.base_state = "bulbred"
+			else
+				light.icon_state = "tubered1"
+			light.update_light()
 
 	//Will not be announced if you try to set to the same level as it already is
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)

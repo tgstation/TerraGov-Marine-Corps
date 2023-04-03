@@ -7,8 +7,8 @@
 
 /obj/structure/closet/l3closet/Initialize()
 	. = ..()
-	new /obj/item/clothing/suit/bio_suit/general( src )
-	new /obj/item/clothing/head/bio_hood/general( src )
+	new /obj/item/clothing/suit/bio_suit( src )
+	new /obj/item/clothing/head/bio_hood( src )
 
 
 /obj/structure/closet/l3closet/general
@@ -19,8 +19,8 @@
 /obj/structure/closet/l3closet/general/Initialize()
 	. = ..()
 	contents = list()
-	new /obj/item/clothing/suit/bio_suit/general( src )
-	new /obj/item/clothing/head/bio_hood/general( src )
+	new /obj/item/clothing/suit/bio_suit( src )
+	new /obj/item/clothing/head/bio_hood( src )
 
 
 /obj/structure/closet/l3closet/virology

@@ -8,7 +8,9 @@
 	action_icon_state = "larva_growth"
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
-	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
+	)
 	use_state_flags = XACT_USE_LYING
 
 
@@ -29,10 +31,10 @@
 	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
 	if(stored_larva)
-		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		caller.hive.give_larva_to_next_in_queue()
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
-		addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
+		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), caller), CALLING_BURROWED_DURATION)
 
 	succeed_activate()
 	add_cooldown()
@@ -54,10 +56,12 @@
 /datum/action/xeno_action/activable/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
-	mechanics_text = "Sends an enemy or an item flying. A close ranged ability."
+	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
+	)
 	target_flags = XABB_MOB_TARGET
 
 
@@ -135,12 +139,14 @@
 /datum/action/xeno_action/activable/unrelenting_force
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
-	mechanics_text = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
+	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 300
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
-	alternate_keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
+	)
 
 
 /datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()
@@ -151,8 +157,9 @@
 /datum/action/xeno_action/activable/unrelenting_force/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
-	owner.icon_state = "Shrike Screeching"
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
+	var/mob/living/carbon/xenomorph/xeno = owner
+	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
@@ -208,17 +215,18 @@
 			FH.kill_hugger()
 
 
-
 // ***************************************
 // *********** Psychic Cure
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure
 	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Heal and remove debuffs from a target."
+	desc = "Heal and remove debuffs from a target."
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+	)
 	var/heal_range = SHRIKE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
@@ -274,6 +282,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
@@ -289,15 +298,19 @@
 	succeed_activate()
 	add_cooldown()
 
+
 // ***************************************
 // *********** Construct Acid Well
 // ***************************************
 /datum/action/xeno_action/place_acidwell
 	name = "Place acid well"
 	action_icon_state = "place_trap"
-	mechanics_text = "Place an acid well that can put out fires."
+	desc = "Place an acid well that can put out fires."
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
+	keybinding_signals = list(
+	    KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
+	)
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -333,9 +346,11 @@
 /datum/action/xeno_action/activable/gravity_grenade
 	name = "Throw gravity grenade"
 	action_icon_state = "gas mine"
-	mechanics_text = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
+	desc = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
 	plasma_cost = 500
-	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE,
+	)
 	cooldown_timer = 1 MINUTES
 
 /datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)

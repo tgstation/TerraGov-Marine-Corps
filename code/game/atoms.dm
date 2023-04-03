@@ -11,10 +11,10 @@
 	var/blood_color
 	var/list/blood_DNA
 
+	///Flags to indicate whether this atom can bypass certain things, or if certain things can bypass this atom
 	var/flags_pass = NONE
-	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
@@ -48,6 +48,9 @@
 	var/datum/proximity_monitor/proximity_monitor
 
 	var/datum/wires/wires = null
+
+	///Used for changing icon states for different base sprites.
+	var/base_icon_state
 
 	//light stuff
 
@@ -91,13 +94,26 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
-	///Reference to atom being orbited
-	var/atom/orbit_target
 
 	///Whether this atom smooths with things around it, and what type of smoothing if any.
 	var/smoothing_behavior = NO_SMOOTHING
-	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
-	var/smoothing_groups = NONE
+
+	///Icon-smoothing behavior.
+	var/smoothing_flags = NONE
+	///What directions this is currently smoothing with. IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
+	var/smoothing_junction = NONE
+	///Smoothing variable
+	var/top_left_corner
+	///Smoothing variable
+	var/top_right_corner
+	///Smoothing variable
+	var/bottom_left_corner
+	///Smoothing variable
+	var/bottom_right_corner
+	///What smoothing groups does this atom belongs to, to match canSmoothWith. If null, nobody can smooth with it.
+	var/list/smoothing_groups = null
+	///List of smoothing groups this atom can smooth with. If this is null and atom is smooth, it smooths only with itself.
+	var/list/canSmoothWith = null
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
@@ -228,7 +244,7 @@ directive is properly returned.
 				pass |= istype(A, type)
 			if(!pass)
 				continue
-		if(A.contents.len)
+		if(length(A.contents))
 			found += A.search_contents_for(path,filter_path)
 	return found
 
@@ -245,7 +261,11 @@ directive is properly returned.
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
-	to_chat(src, span_infoplain(result.Join("\n")))
+	if(length(result))
+		for(var/i in 1 to (length(result) - 1))
+			result[i] += "\n"
+
+	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
 
 /**
@@ -269,7 +289,11 @@ directive is properly returned.
 
 /atom/proc/examine(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	. = list("[get_examine_string(user, TRUE)].")
+	var/examine_string = get_examine_string(user, thats = TRUE)
+	if(examine_string)
+		. = list("[examine_string].")
+	else
+		. = list()
 
 	if(desc)
 		. += desc
@@ -294,7 +318,7 @@ directive is properly returned.
 		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 			if(isxeno(user))
 				return
-			if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
+			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
 				. += "It contains these reagents:"
 				if(length(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)
@@ -417,8 +441,8 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-//Generalized Fire Proc.
-/atom/proc/flamer_fire_act()
+///Fire effects from a burning turf. Burn level is the base fire damage being received.
+/atom/proc/flamer_fire_act(burnlevel)
 	return
 
 
@@ -464,6 +488,10 @@ directive is properly returned.
 			log_admin_private_asay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
+		if(LOG_SPEECH_INDICATORS)
+			log_speech_indicators(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)
@@ -546,7 +574,7 @@ Proc for attack log creation, because really why not
 ///Sorts our filters by priority and reapplies them
 /atom/proc/update_filters()
 	filters = null
-	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
 	for(var/f in filter_data)
 		var/list/data = filter_data[f]
 		var/list/arguments = data.Copy()
@@ -578,8 +606,7 @@ Proc for attack log creation, because really why not
 
 /obj/item/update_filters()
 	. = ..()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 ///returns a filter in the managed filters list by name
@@ -614,12 +641,12 @@ Proc for attack log creation, because really why not
 	Adds an instance of colour_type to the atom's atom_colours list
 */
 /atom/proc/add_atom_colour(coloration, colour_priority)
-	if(!atom_colours || !atom_colours.len)
+	if(!atom_colours || !length(atom_colours))
 		atom_colours = list()
 		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
 	if(!coloration)
 		return
-	if(colour_priority > atom_colours.len)
+	if(colour_priority > length(atom_colours))
 		return
 	atom_colours[colour_priority] = coloration
 	update_atom_colour()
@@ -632,7 +659,7 @@ Proc for attack log creation, because really why not
 	if(!atom_colours)
 		atom_colours = list()
 		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
-	if(colour_priority > atom_colours.len)
+	if(colour_priority > length(atom_colours))
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
 		return //if we don't have the expected color (for a specific priority) to remove, do nothing
@@ -652,7 +679,7 @@ Proc for attack log creation, because really why not
 	for(var/C in atom_colours)
 		if(islist(C))
 			var/list/L = C
-			if(L.len)
+			if(length(L))
 				color = L
 				return
 		else if(C)
@@ -711,9 +738,18 @@ Proc for attack log creation, because really why not
 				var/turf/T = loc
 				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
-			if(smoothing_behavior)
-				smooth_self()
-				smooth_neighbors()
+			if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+				QUEUE_SMOOTH(src)
+				QUEUE_SMOOTH_NEIGHBORS(src)
+
+	if(length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if(length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -791,7 +827,7 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/multitool))
+	if(!istype(I, /obj/item/tool/multitool))
 		if(user && !silent)
 			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
@@ -926,7 +962,7 @@ Proc for attack log creation, because really why not
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
 	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
-		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+		addtimer(CALLBACK(src, PROC_REF(reset_light)), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -955,3 +991,12 @@ Proc for attack log creation, because really why not
 	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
 		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
 	return output
+
+/**
+ * Function that determines if we can slip when we walk over this atom.
+ *
+ * Returns true if we can, false if we can't. Put your special checks here.
+ */
+
+/atom/proc/can_slip()
+	return TRUE

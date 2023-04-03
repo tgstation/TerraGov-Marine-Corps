@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	var/list/gene_tags = list("products","consumption","environment","resistance","vigour","flowers")
 	var/list/used_masks = list()
 
-	while(gene_tags && gene_tags.len)
+	while(gene_tags && length(gene_tags))
 		var/gene_tag = pick(gene_tags)
 		var/gene_mask = "[num2hex(rand(0,255))]"
 
@@ -191,7 +191,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(additional_chems)
 		var/list/possible_chems = list(
 			/datum/reagent/medicine/bicaridine,
-			/datum/reagent/medicine/hyperzine,
 			/datum/reagent/medicine/cryoxadone,
 			/datum/reagent/blood,
 			/datum/reagent/water,
@@ -212,7 +211,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/impedrezene,
 			/datum/reagent/medicine/hyronalin,
-			/datum/reagent/medicine/peridaxon,
 			/datum/reagent/toxin,
 			/datum/reagent/medicine/rezadone,
 			/datum/reagent/medicine/ethylredoxrazine,
@@ -222,7 +220,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			)
 
 		for(var/x=1;x<=additional_chems;x++)
-			if(!possible_chems.len)
+			if(!length(possible_chems))
 				break
 			var/new_chem = pick(possible_chems)
 			possible_chems -= new_chem
@@ -283,7 +281,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 //Returns a key corresponding to an entry in the global seed list.
 /datum/seed/proc/get_mutant_variant()
-	if(!mutants || !mutants.len || immutable > 0) return 0
+	if(!mutants || !length(mutants) || immutable > 0) return 0
 	return pick(mutants)
 
 //Mutates the plant overall (randomly).
@@ -370,7 +368,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		//Splicing products has some detrimental effects on yield and lifespan.
 		if("products")
 
-			if(gene.values.len < 6) return
+			if(length(gene.values) < 6) return
 
 			if(yield > 0)     yield =     max(1,round(yield*0.85))
 			if(endurance > 0) endurance = max(1,round(endurance*0.85))
@@ -390,7 +388,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 					chems[rid] = gene_chem.Copy()
 					continue
 
-				for(var/i=1;i<=gene_chem.len;i++)
+				for(var/i=1;i<=length(gene_chem);i++)
 
 					if(isnull(gene_chem[i])) gene_chem[i] = 0
 
@@ -412,7 +410,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		if("consumption")
 
-			if(gene.values.len < 7) return
+			if(length(gene.values) < 7) return
 
 			consume_gasses =       gene.values[1]
 			requires_nutrients =   gene.values[2]
@@ -424,7 +422,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		if("environment")
 
-			if(gene.values.len < 6) return
+			if(length(gene.values) < 6) return
 
 			ideal_heat =           gene.values[1]
 			heat_tolerance =       gene.values[2]
@@ -435,7 +433,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		if("resistance")
 
-			if(gene.values.len < 3) return
+			if(length(gene.values) < 3) return
 
 			toxins_tolerance =     gene.values[1]
 			pest_tolerance =       gene.values[2]
@@ -443,7 +441,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		if("vigour")
 
-			if(gene.values.len < 6) return
+			if(length(gene.values) < 6) return
 
 			endurance =            gene.values[1]
 			yield =                gene.values[2]
@@ -454,7 +452,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		if("flowers")
 
-			if(gene.values.len < 7) return
+			if(length(gene.values) < 7) return
 
 			product_icon =         gene.values[1]
 			product_colour =       gene.values[2]
@@ -541,7 +539,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		return
 
 	var/got_product
-	if(!isnull(products) && products.len && yield > 0)
+	if(!isnull(products) && length(products) && yield > 0)
 		got_product = 1
 
 	if(!got_product && !harvest_sample)
@@ -551,7 +549,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in GLOB.seed_types))
-			uid = GLOB.seed_types.len + 1
+			uid = length(GLOB.seed_types) + 1
 			name = "[uid]"
 			GLOB.seed_types[name] = src
 
@@ -934,7 +932,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-ambrosiadeus"
 	plant_icon = "ambrosiadeus"
-	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyronalin = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
 
 //Mushrooms/varieties.
 /datum/seed/mushroom

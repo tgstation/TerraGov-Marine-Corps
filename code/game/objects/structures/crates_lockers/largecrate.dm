@@ -7,7 +7,8 @@
 	anchored = FALSE
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	max_integrity = 100
+	max_integrity = 40
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
@@ -94,7 +95,7 @@
 	var/list/stuff = list(
 						/obj/item/cell/high,
 						/obj/item/storage/belt/utility/full,
-						/obj/item/multitool,
+						/obj/item/tool/multitool,
 						/obj/item/tool/crowbar,
 						/obj/item/flashlight,
 						/obj/item/reagent_containers/food/snacks/donkpocket,
@@ -103,8 +104,8 @@
 						/obj/item/assembly/igniter,
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
-						/obj/item/analyzer,
-						/obj/item/clothing/under/marine/standard,
+						/obj/item/tool/analyzer,
+						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine
 						)
 
@@ -178,7 +179,7 @@
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
 
-/obj/structure/largecrate/random/barrel/red
+/obj/structure/largecrate/random/barrel/red //lame non explosive version
 	name = "red barrel"
 	desc = "A red storage barrel"
 	icon_state = "barrel_red"
@@ -265,7 +266,7 @@
 	stuff = list(
 		/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
 		/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
-		/obj/item/weapon/gun/rifle/mpi_km = /obj/item/ammo_magazine/rifle/mpi_km,
+		/obj/item/weapon/gun/rifle/mpi_km = /obj/item/ammo_magazine/rifle/mpi_km/plum,
 		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
 		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
 		/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,

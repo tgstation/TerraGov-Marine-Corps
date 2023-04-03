@@ -36,12 +36,6 @@
 	desc = "<i>'I guess it's a redhead.'</i>"
 	flags_armor_protection = NONE
 
-/obj/item/clothing/head/mailman
-	name = "station cap"
-	icon_state = "mailman"
-	desc = "<i>Choo-choo</i>!"
-	flags_armor_protection = NONE
-
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
 	desc = "These were once used by Plague doctors. They're pretty much useless."
@@ -112,22 +106,6 @@
 	flags_inventory = COVERMOUTH|COVEREYES
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 
-/obj/item/clothing/head/justice/blue
-	icon_state = "justiceblue"
-	item_state = "justiceblue"
-
-/obj/item/clothing/head/justice/yellow
-	icon_state = "justiceyellow"
-	item_state = "justiceyellow"
-
-/obj/item/clothing/head/justice/green
-	icon_state = "justicegreen"
-	item_state = "justicegreen"
-
-/obj/item/clothing/head/justice/pink
-	icon_state = "justicepink"
-	item_state = "justicepink"
-
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
 	desc = "A working man's cap."
@@ -149,18 +127,25 @@
 	item_state = "hgpiratecap"
 	flags_armor_protection = NONE
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 50, BULLET = 80, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/head/bandanna
-	name = "pirate bandanna"
-	desc = "Yarr."
-	icon_state = "bandanna"
-	item_state = "bandanna"
+/obj/item/clothing/head/bandanna/brown
+	name = "brown bandanna"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat."
+	icon_state = "bandanna_brown"
+	item_state = "bandanna_brown"
+
+/obj/item/clothing/head/bandanna/grey
+	name = "grey bandanna"
+	desc = "Show off the bleak side of your soul."
+	icon_state = "bandanna_grey"
+	item_state = "bandanna_grey"
 
 /obj/item/clothing/head/bandanna/red
 	name = "red bandanna"
 	desc = "For when it comes crashing down and it hurts inside."
 	icon_state = "bandanna_red"
+	item_state = "bandanna_red"
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"

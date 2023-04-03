@@ -78,12 +78,6 @@
 	return ..()
 
 
-/mob/living/simple_animal/handle_status_effects()
-	. = ..()
-	if(stuttering)
-		stuttering = 0
-
-
 /mob/living/simple_animal/updatehealth()
 	. = ..()
 	health = clamp(health, 0, maxHealth)
@@ -100,7 +94,7 @@
 	med_hud_set_status()
 
 
-/mob/living/simple_animal/revive()
+/mob/living/simple_animal/revive(admin_revive = FALSE)
 	. = ..()
 	icon = initial(icon)
 	icon_state = icon_living
@@ -181,15 +175,6 @@
 
 	if(changed)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
-
-
-/mob/living/simple_animal/bullet_act(obj/projectile/Proj)
-	if(!Proj || Proj.damage <= 0)
-		return FALSE
-
-	adjustBruteLoss(Proj.damage)
-	return TRUE
-
 
 /mob/living/simple_animal/attack_hand(mob/living/user)
 	. = ..()
@@ -276,7 +261,7 @@
 		visible_message(span_warning("[src] looks unharmed."))
 		return FALSE
 	else
-		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
+		apply_damage(damage, damagetype, blocked = armorcheck)
 		UPDATEHEALTH(src)
 		return TRUE
 
@@ -328,33 +313,33 @@
 	set waitfor = FALSE
 	if(speak_chance)
 		if(prob(speak_chance) || override)
-			if(speak && speak.len)
-				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
+			if(speak && length(speak))
+				if((emote_hear && length(emote_hear)) || (emote_see && length(emote_see)))
 					var/length = speak.len
-					if(emote_hear && emote_hear.len)
+					if(emote_hear && length(emote_hear))
 						length += emote_hear.len
-					if(emote_see && emote_see.len)
+					if(emote_see && length(emote_see))
 						length += emote_see.len
 					var/randomValue = rand(1,length)
-					if(randomValue <= speak.len)
+					if(randomValue <= length(speak))
 						say(pick(speak), forced = "poly")
 					else
 						randomValue -= speak.len
-						if(emote_see && randomValue <= emote_see.len)
+						if(emote_see && randomValue <= length(emote_see))
 							emote("me [pick(emote_see)]", 1)
 						else
 							emote("me [pick(emote_hear)]", 2)
 				else
 					say(pick(speak), forced = "poly")
 			else
-				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
+				if(!(emote_hear && length(emote_hear)) && (emote_see && length(emote_see)))
 					emote("me", 1, pick(emote_see))
-				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
+				if((emote_hear && length(emote_hear)) && !(emote_see && length(emote_see)))
 					emote("me", 2, pick(emote_hear))
-				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					var/length = emote_hear.len + emote_see.len
+				if((emote_hear && length(emote_hear)) && (emote_see && length(emote_see)))
+					var/length = length(emote_hear) + emote_see.len
 					var/pick = rand(1,length)
-					if(pick <= emote_see.len)
+					if(pick <= length(emote_see))
 						emote("me", 1, pick(emote_see))
 					else
 						emote("me", 2, pick(emote_hear))

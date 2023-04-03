@@ -285,14 +285,14 @@
 			if(cam == src)
 				return
 	if(on)
-		set_light(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
 		set_light(0)
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
 	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
 
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)

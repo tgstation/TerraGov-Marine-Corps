@@ -42,7 +42,7 @@
 		/obj/item/toy/sword,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
-		/obj/item/violin,
+		/obj/item/instrument/violin,
 		/obj/item/clothing/tie/horrible)
 
 
@@ -80,10 +80,9 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/rifle,
 		/obj/item/attachable/scope,
 	)
 

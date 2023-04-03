@@ -1,9 +1,13 @@
 
 /obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/bodyparts_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
+	)
 
-/obj/item/limb/New(loc, mob/living/carbon/human/H)
-	..(loc)
+/obj/item/limb/Initialize(loc, mob/living/carbon/human/H)
+	. = ..()
 	if(!istype(H))
 		return
 	//Forming icon for the limb
@@ -77,7 +81,6 @@
 	if(!istype(H))
 		return
 
-	icon_state = H.gender == MALE? "head_m" : "head_f"
 	if(H.species.species_flags & HAS_NO_HAIR)
 		return
 	//Add (facial) hair.
@@ -121,14 +124,13 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
+	brainmob.copy_known_languages_from(H, TRUE)
 
 //synthetic head, allowing brain mob inside to talk
 /obj/item/limb/head/synth
-	name = "synthetic head"
 	brain_item_type = null
 	braindeath_on_decap = 0
 
 /obj/item/limb/head/robotic
-	name = "robotic head"
 	brain_item_type = null
 	braindeath_on_decap = 0

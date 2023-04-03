@@ -18,6 +18,10 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 
 
@@ -59,7 +63,11 @@ REAGENT SCANNER
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon_state = "health"
-	item_state = "analyzer"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
+	item_state = "healthanalyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -68,9 +76,9 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 	///Skill required to bypass the fumble time.
-	var/skill_threshold = SKILL_MEDICAL_PRACTICED
+	var/skill_threshold = SKILL_MEDICAL_NOVICE
 	///Skill required to have the scanner auto refresh
-	var/upper_skill_threshold = SKILL_MEDICAL_PRACTICED
+	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
 	///Current mob being tracked by the scanner
 	var/mob/living/carbon/patient
 	///Current user of the scanner
@@ -80,23 +88,36 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
-	if(user.skills.getRating("medical") < skill_threshold)
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	analyze_vitals(M, user, TRUE)
+
+///Health scans a target. M is the thing being scanned, user is the person doing the scanning, show_patient will show the UI to the scanee when TRUE.
+/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/M, mob/living/user, show_patient)
+	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
-		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0), BUSY_ICON_UNSKILLED))
+		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
-	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
-		to_chat(user, span_warning("Error: Cannot read vitals!"))
+	if(!iscarbon(M))
+		balloon_alert(user, "Cannot scan")
 		return
 	if(isxeno(M))
-		to_chat(user, span_warning("[src] can't make sense of this creature!"))
+		balloon_alert(user, "Unknown entity")
 		return
-	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
+	if(M.species.species_flags & NO_SCAN)
+		balloon_alert(user, "Not Organic")
+		return
 	patient = M
 	current_user = user
-	ui_interact(user)
+	if(show_patient)
+		ui_interact(M)
+	else
+		ui_interact(user)
 	update_static_data(user)
-	if(user.skills.getRating("medical") < upper_skill_threshold)
+	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return
 	START_PROCESSING(SSobj, src)
 
@@ -144,9 +165,11 @@ REAGENT SCANNER
 
 		"hugged" = (locate(/obj/item/alien_embryo) in patient)
 	)
+	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
 	for(var/datum/reagent/reagent AS in patient.reagents.reagent_list)
 		if(!reagent.scannable)
+			data["has_unknown_chemicals"] = TRUE
 			continue
 		chemicals_lists["[reagent.name]"] = list(
 			"name" = reagent.name,
@@ -154,34 +177,32 @@ REAGENT SCANNER
 			"od" = reagent.overdosed,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
-	data["has_chemicals"] = length(chemicals_lists)
+	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))
 		var/mob/living/carbon/human/human_patient = patient
 		var/infection_message
-		var/infected
 		var/internal_bleeding
 
 		var/unknown_implants = 0
 		for(var/datum/limb/limb AS in human_patient.limbs)
+			var/infected = FALSE
+			var/necrotized = FALSE
+
 			if(!internal_bleeding)
 				for(var/datum/wound/wound in limb.wounds)
 					if(!istype(wound, /datum/wound/internal_bleeding))
 						continue
 					internal_bleeding = TRUE
 					break
-			if(!infected)
-				if(limb.germ_level >= INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] is in the last stage of infection. < 30u of antibiotics recommended."
-					infected = 2
-				if(limb.germ_level >= INFECTION_LEVEL_ONE && limb.germ_level < INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] has an infection. Antibiotics recommended."
-					infected = 1
-				if(limb.has_infected_wound())
-					infection_message = "Infected wound detected in subject's [limb.display_name]. Disinfection recommended."
-					infected = 1
+			if(limb.germ_level > INFECTION_LEVEL_ONE)
+				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
+				infected = TRUE
+			if(limb.limb_status & LIMB_NECROTIZED)
+				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+				necrotized = TRUE
 
 			if(limb.hidden)
 				unknown_implants++
@@ -193,18 +214,19 @@ REAGENT SCANNER
 					unknown_implants++
 					implant = TRUE
 
-			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !implant)
+			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implant && !infected )
 				continue
 			var/list/current_list = list(
 				"name" = limb.display_name,
 				"brute" = round(limb.brute_dam),
 				"burn" = round(limb.burn_dam),
-				"bandaged" = !limb.is_bandaged(),
-				"salved" = !limb.is_salved(),
+				"bandaged" = limb.is_bandaged(),
+				"salved" = limb.is_salved(),
 				"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
 				"limb_status" = null,
 				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
 				"open_incision" = limb.surgery_open_stage,
+				"necrotized" = necrotized,
 				"infected" = infected,
 				"implant" = implant
 			)
@@ -224,13 +246,17 @@ REAGENT SCANNER
 		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"
 		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
 		data["implants"] = unknown_implants
-
-	if (!isrobot(patient) && (patient.getBrainLoss() >= 100 || !patient.has_brain()))
-		data["brain_damage"] = "Subject is brain dead"
-	else if (patient.getBrainLoss() >= 60)
-		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
-	else if (patient.getBrainLoss() >= 10)
-		data["brain_damage"] = "Significant brain damage</b> detected. Subject may have had a concussion."
+		var/damaged_organs = list()
+		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
+			if(organ.organ_status == ORGAN_HEALTHY)
+				continue
+			var/current_organ = list(
+				"name" = organ.name,
+				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+				"damage" = organ.damage
+			)
+			damaged_organs += list(current_organ)
+		data["damaged_organs"] = damaged_organs
 
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)
@@ -245,7 +271,39 @@ REAGENT SCANNER
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
 	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
-/obj/item/analyzer
+/obj/item/healthanalyzer/gloves
+	name = "\improper HF2 Medical Gloves"
+	desc = "Advanced medical gloves, these include a built-in analyzer to quickly scan patients."
+	icon_state = "medscan_gloves"
+	item_state = "medscan_gloves"
+	flags_equip_slot = ITEM_SLOT_GLOVES
+	w_class = WEIGHT_CLASS_SMALL
+	icon = 'icons/obj/clothing/gloves.dmi'
+	item_state_worn = TRUE
+	siemens_coefficient = 0.50
+	blood_sprite_state = "bloodyhands"
+	flags_armor_protection = HANDS
+	flags_equip_slot = ITEM_SLOT_GLOVES
+	attack_verb = "scans"
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+	flags_cold_protection = HANDS
+	flags_heat_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/healthanalyzer/gloves/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(user.gloves == src)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+
+//when you are wearing these gloves, this will call the normal attack code to health scan the target
+/obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(istype(user) && istype(target))
+		attack(target,user)
+
+/obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
 	icon_state = "atmos"
@@ -258,7 +316,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 
-/obj/item/analyzer/attack_self(mob/user as mob)
+/obj/item/tool/analyzer/attack_self(mob/user as mob)
 	..()
 	var/turf/T = get_turf(user)
 	if(!T)
@@ -306,8 +364,8 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	var/details = 0
-	var/recent_fail = 0
+	var/details = FALSE
+	var/recent_fail = TRUE
 
 /obj/item/mass_spectrometer/Initialize(mapload)
 	. = ..()
@@ -325,39 +383,37 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
-	if(reagents.total_volume)
-		var/list/blood_traces = list()
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.type != /datum/reagent/blood)
-				reagents.clear_reagents()
-				to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
-				return
-			else
-				blood_traces = params2list(R.data["trace_chem"])
-				break
-		var/dat = "Trace Chemicals Found: "
-		for(var/R in blood_traces)
-			if(prob(reliability))
-				if(details)
-					dat += "[R] ([blood_traces[R]] units) "
-				else
-					dat += "[R] "
-				recent_fail = 0
-			else
-				if(recent_fail)
-					crit_fail = 1
-					reagents.clear_reagents()
-					return
-				else
-					recent_fail = 1
-		to_chat(user, "[dat]")
-		reagents.clear_reagents()
+	if(!reagents.total_volume)
+		return
+	var/list/blood_traces
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.type != /datum/reagent/blood)
+			reagents.clear_reagents()
+			to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
+			return
+		else
+			blood_traces = params2list(R.data["trace_chem"])
+			break
+	var/dat = "Trace Chemicals Found: "
+	for(var/R in blood_traces)
+		if(prob(reliability))
+			dat += "\n\t[R][details ? " ([blood_traces[R]] units)" : "" ]"
+			recent_fail = FALSE
+		else if(recent_fail)
+			crit_fail = TRUE
+			reagents.clear_reagents()
+			to_chat(user, span_warning("Device malfunction occured. Please consult manual for manufacturer contact and warranty."))
+			return
+		else
+			recent_fail = TRUE
+	to_chat(user, "[dat]")
+	reagents.clear_reagents()
 
 
 /obj/item/mass_spectrometer/adv
 	name = "advanced mass-spectrometer"
 	icon_state = "adv_spectrometer"
-	details = 1
+	details = TRUE
 
 
 /obj/item/reagent_scanner
@@ -373,7 +429,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 	var/details = FALSE
-	var/recent_fail = 0
+	var/recent_fail = FALSE
 
 /obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
@@ -385,27 +441,22 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
-
-	if(!isnull(O.reagents))
-		var/dat = ""
-		if(O.reagents.reagent_list.len > 0)
-			var/one_percent = O.reagents.total_volume / 100
-			for (var/datum/reagent/R in O.reagents.reagent_list)
-				if(prob(reliability))
-					dat += "\n \t [span_notice(" [R][details ? ": [R.volume / one_percent]%" : ""]")]"
-					recent_fail = 0
-				else if(recent_fail)
-					crit_fail = 1
-					dat = null
-					break
-				else
-					recent_fail = 1
-		if(dat)
-			to_chat(user, span_notice("Chemicals found: [dat]"))
+	if(!O.reagents || !length(O.reagents.reagent_list))
+		to_chat(user, span_notice("No chemical agents found in [O]"))
+		return
+	var/dat = ""
+	var/one_percent = O.reagents.total_volume / 100
+	for (var/datum/reagent/R in O.reagents.reagent_list)
+		if(prob(reliability))
+			dat += "\n \t [span_notice(" [R.name][details ? ": [R.volume / one_percent]%" : ""]")]"
+			recent_fail = FALSE
+		else if(recent_fail)
+			crit_fail = TRUE
+			to_chat(user, span_warning("Device malfunction occured. Please consult manual for manufacturer contact and warranty."))
+			return
 		else
-			to_chat(user, span_notice("No active chemical agents found in [O]."))
-	else
-		to_chat(user, span_notice("No significant chemical agents found in [O]."))
+			recent_fail = TRUE
+	to_chat(user, span_notice("Chemicals found: [dat]"))
 
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"

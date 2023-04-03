@@ -40,7 +40,7 @@
 			for (var/reagent in recipe.reagents)
 				acceptable_reagents |= reagent
 			if (recipe.items)
-				max_n_of_items = max(max_n_of_items,recipe.items.len)
+				max_n_of_items = max(max_n_of_items,length(recipe.items))
 
 /*******************
 *   Item Adding
@@ -196,7 +196,7 @@
 				display_name = "Coldsauce"
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
-		if (items_counts.len==0 && reagents.reagent_list.len==0)
+		if (length(items_counts) == 0 && length(reagents.reagent_list) == 0)
 			dat = {"<B>The microwave is empty</B><BR>"}
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
@@ -277,7 +277,7 @@
 		if (machine_stat & (NOPOWER|BROKEN))
 			return 0
 		use_power(active_power_usage)
-		sleep(10)
+		sleep(1 SECONDS)
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()

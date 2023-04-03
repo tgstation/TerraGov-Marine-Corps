@@ -1,3 +1,20 @@
+/particles/shuttle_dust
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	width = 750
+	height = 750
+	count = 1000
+	spawning = 20
+	lifespan = 8
+	fade = 50
+	grow = 0.3
+	velocity = list(0, 0)
+	position = generator(GEN_CIRCLE, 160, 160, NORMAL_RAND)
+	gravity = list(0, 0)
+	scale = generator(GEN_VECTOR, list(1, 1), list(2,2), NORMAL_RAND)
+	rotation = 0
+	spin = generator(GEN_NUM, -20, 20)
+
 //use this define to highlight docking port bounding boxes (ONLY FOR DEBUG USE)
 //#ifdef TESTING
 //#define DOCKING_PORT_HIGHLIGHT
@@ -38,6 +55,10 @@
 	var/delete_after = FALSE
 	///are we registered in SSshuttles?
 	var/registered = FALSE
+	///particle holder for dust/engine smoke
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///does the landing sequence emit dust
+	var/uses_dust = TRUE
 
 ///register to SSshuttles
 /obj/docking_port/proc/register()
@@ -395,13 +416,13 @@
 	. = ..()
 
 	if(!id)
-		id = "[SSshuttle.mobile.len]"
+		id = "[length(SSshuttle.mobile)]"
 	if(name == "shuttle")
-		name = "shuttle[SSshuttle.mobile.len]"
+		name = "shuttle[length(SSshuttle.mobile)]"
 
 	shuttle_areas = list()
 	var/list/all_turfs = return_ordered_turfs(x, y, z, dir)
-	for(var/i in 1 to all_turfs.len)
+	for(var/i in 1 to length(all_turfs))
 		var/turf/curT = all_turfs[i]
 		var/area/cur_area = get_area(curT)
 		if(istype(cur_area, area_type))
@@ -604,7 +625,7 @@
 	if(!underlying_area)
 		underlying_area = new underlying_area_type(null)
 
-	for(var/i in 1 to old_turfs.len)
+	for(var/i in 1 to length(old_turfs))
 		var/turf/oldT = old_turfs[i]
 		if(!oldT || !istype(oldT.loc, area_type))
 			continue
@@ -617,7 +638,7 @@
 		var/list/baseturf_cache = oldT.baseturfs
 		for(var/k in 1 to length(baseturf_cache))
 			if(ispath(baseturf_cache[k], /turf/baseturf_skipover/shuttle))
-				oldT.ScrapeAway(baseturf_cache.len - k + 1)
+				oldT.ScrapeAway(length(baseturf_cache) - k + 1)
 				break
 
 	qdel(src, force=TRUE)
@@ -644,10 +665,16 @@
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
+	if(uses_dust)
+		particle_holder = new(S1.loc, /particles/shuttle_dust)
+		particle_holder.particles.position = generator(GEN_CIRCLE, width*12, height*12, NORMAL_RAND)
+		particle_holder.particles.width = width * 65
+		particle_holder.particles.height = height * 65
 	return TRUE
 
 /obj/docking_port/mobile/proc/remove_ripples()
 	QDEL_LIST(ripples)
+	QDEL_NULL(particle_holder)
 
 /obj/docking_port/mobile/proc/ripple_area(obj/docking_port/stationary/S1)
 	if(!S1)
@@ -657,7 +684,7 @@
 
 	var/list/ripple_turfs = list()
 
-	for(var/i in 1 to L0.len)
+	for(var/i in 1 to length(L0))
 		var/turf/T0 = L0[i]
 		var/turf/T1 = L1[i]
 		if(!T0 || !T1)
@@ -725,7 +752,7 @@
 	set_idle()
 
 /obj/docking_port/mobile/proc/check_effects()
-	if(!ripples.len && destination?.loc != loc)
+	if(!length(ripples) && destination?.loc != loc)
 		if((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL))
 			var/tl = timeLeft(1)
 			if(tl <= SHUTTLE_RIPPLE_TIME)

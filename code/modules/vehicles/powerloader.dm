@@ -79,7 +79,7 @@
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-	move_delay = max(4, move_delay - buckling_mob.skills.getRating("powerloader"))
+	move_delay = max(4, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
 	var/clamp_equipped = 0
 	for(var/obj/item/powerloader_clamp/PC in contents)
 		if(!buckling_mob.put_in_hands(PC))
@@ -89,7 +89,7 @@
 	if(clamp_equipped != 2)
 		unbuckle_mob(buckling_mob) //can't use the powerloader without both clamps equipped
 		stack_trace("[src] buckled [buckling_mob] with clamp_equipped as [clamp_equipped]")
-	set_light(light_range_on)
+	set_light(light_range_on,2)
 
 /obj/vehicle/ridden/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()

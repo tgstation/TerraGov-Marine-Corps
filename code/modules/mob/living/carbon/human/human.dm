@@ -6,22 +6,12 @@
 	if(!species)
 		set_species()
 
-	var/datum/reagents/R
-	if(species.species_flags & NO_CHEM_METABOLIZATION)
-		R = new /datum/reagents(0)
-	else
-		R = new /datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
-
 	. = ..()
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
-	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
-	GLOB.round_statistics.total_humans_created++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(human_z_changed))
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -31,10 +21,17 @@
 	issue_order_hold.give_action(src)
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
-	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/innate/order/attack_order/personal/send_attack_order = new
+	send_attack_order.give_action(src)
+	var/datum/action/innate/order/defend_order/personal/send_defend_order = new
+	send_defend_order.give_action(src)
+	var/datum/action/innate/order/retreat_order/personal/send_retreat_order = new
+	send_retreat_order.give_action(src)
+	var/datum/action/innate/order/rally_order/personal/send_rally_order = new
 	send_rally_order.give_action(src)
 	var/datum/action/innate/message_squad/screen_orders = new
 	screen_orders.give_action(src)
+
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -42,12 +39,11 @@
 
 	randomize_appearance()
 
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
-	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/async_do_quick_equip)
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIPALT, .proc/async_do_quick_equip_alt)
-	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
-	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
+	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
+	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
@@ -98,6 +94,11 @@
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
 
+		//combat patrol timer
+		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+		if(patrol_end_countdown)
+			stat("<b>Round End timer:</b>", patrol_end_countdown)
+
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
 			stat("Tank Pressure", internal.pressure)
@@ -120,6 +121,9 @@
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+		if(issensorcapturegamemode(SSticker.mode))
+			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -127,7 +131,7 @@
 
 	var/b_loss = 0
 	var/f_loss = 0
-	var/armor = getarmor(null, "bomb") * 0.01
+	var/armor = get_soft_armor("bomb") * 0.01 //Gets average bomb armor over all limbs.
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -164,7 +168,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, f_loss, armor * 100, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE, max_limbs = 4)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE, max_limbs = 4)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -175,11 +180,9 @@
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
-		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
-		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = run_armor_check(affecting, "melee")
-		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
+		dam_zone = ran_zone(dam_zone)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
@@ -342,7 +345,7 @@
 						to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
+			if(!usr.do_actions || usr.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -386,41 +389,6 @@
 				// Update strip window
 				if(usr.interactee == src && Adjacent(usr))
 					show_inv(usr)
-
-
-	if(href_list["internal"])
-
-		if(!usr.do_actions)
-			log_combat(usr, src, "attempted to toggle internals")
-			if(internal)
-				usr.visible_message(span_danger("[usr] is trying to disable [src]'s internals"), null, null, 3)
-			else
-				usr.visible_message(span_danger("[usr] is trying to enable [src]'s internals."), null, null, 3)
-
-			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
-				if (internal)
-					internal = null
-					if (hud_used && hud_used.internals)
-						hud_used.internals.icon_state = "internal0"
-					visible_message("[src] is no longer running on internals.", null, null, 1)
-				else
-					if(istype(wear_mask, /obj/item/clothing/mask))
-						if (istype(back, /obj/item/tank))
-							internal = back
-						else if (istype(s_store, /obj/item/tank))
-							internal = s_store
-						else if (istype(belt, /obj/item/tank))
-							internal = belt
-						if (internal)
-							visible_message(span_notice("[src] is now running on internals."), null, null, 1)
-							if (hud_used && hud_used.internals)
-								hud_used.internals.icon_state = "internal1"
-
-				// Update strip window
-				if(usr.interactee == src && Adjacent(usr))
-					show_inv(usr)
-
-
 
 	if(href_list["splints"])
 
@@ -751,7 +719,7 @@
 		return NONE
 	if(stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		INVOKE_ASYNC(src, .proc/fireman_carry, grabbed)
+		INVOKE_ASYNC(src, PROC_REF(fireman_carry), grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
@@ -765,7 +733,7 @@
 		return
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
-	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
@@ -788,12 +756,9 @@
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
 	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
-	if(I)
-		if(I.cut_away)
-			return 2
-		if(I.robotic == ORGAN_ROBOT)
-			return 2
-	else
+	if(!I)
+		return 2
+	if(I.robotic == ORGAN_ROBOT)
 		return 2
 
 	if(istype(head, /obj/item/clothing))
@@ -832,12 +797,12 @@
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
-	return L && L.is_bruised()
+	return L?.organ_status == ORGAN_BRUISED
 
 /mob/living/carbon/human/proc/rupture_lung()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 
-	if(L && !L.is_bruised())
+	if(L?.organ_status == ORGAN_BRUISED)
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
 		L.damage = L.min_bruised_damage
 
@@ -917,6 +882,14 @@
 		//additional things to change when we're no longer that species
 		oldspecies.post_species_loss(src)
 
+	var/datum/reagents/R
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
+	reagents = R
+	R.my_atom = src
+
 	species.create_organs(src)
 
 	dextrous = species.has_fine_manipulation
@@ -941,15 +914,16 @@
 
 	species.handle_post_spawn(src)
 
-	INVOKE_ASYNC(src, .proc/regenerate_icons)
-	INVOKE_ASYNC(src, .proc/update_body)
-	INVOKE_ASYNC(src, .proc/update_hair)
-	INVOKE_ASYNC(src, .proc/restore_blood)
+	INVOKE_ASYNC(src, PROC_REF(regenerate_icons))
+	INVOKE_ASYNC(src, PROC_REF(update_body))
+	INVOKE_ASYNC(src, PROC_REF(update_hair))
+	INVOKE_ASYNC(src, PROC_REF(restore_blood))
 
 	if(!(species.species_flags & NO_STAMINA))
 		AddComponent(/datum/component/stamina_behavior)
-		max_stamina_buffer = species.max_stamina_buffer
-		setStaminaLoss(-max_stamina_buffer)
+		max_stamina = species.max_stamina
+		max_stamina_buffer = max_stamina
+		setStaminaLoss(-max_stamina)
 
 	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
 	species.on_species_gain(src, oldspecies) //todo move most of the stuff in this proc to here
@@ -960,7 +934,7 @@
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
+	if((shoes?.flags_inventory & NOSLIPPING) && !override_noslip) //If our shoes are noslip just return immediately unless we don't care about the noslip
 		return FALSE
 	return ..()
 
@@ -982,19 +956,20 @@
 			H.turn_light(src, FALSE, 0,FALSE, forced, light_again)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
-			if(istype(L, /obj/item/flashlight/flare))
+			if(istype(L, /obj/item/explosive/grenade/flare/civilian))
 				continue
 			if(L.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
-			if(!isattachmentflashlight(lit_rail_flashlight))
-				continue
-			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
-			light_off++
+			for(var/attachment_slot in lit_gun.attachments_by_slot)
+				var/obj/item/attachable/flashlight/lit_flashlight = lit_gun.attachments_by_slot[attachment_slot]
+				if(!isattachmentflashlight(lit_flashlight))
+					continue
+				lit_flashlight.turn_light(src, FALSE)
+				light_off++
 	if(flares)
-		for(var/obj/item/flashlight/flare/F in contents)
+		for(var/obj/item/explosive/grenade/flare/civilian/F in contents)
 			if(F.light_on)
 				goes_out++
 			F.turn_off(src)
@@ -1231,7 +1206,7 @@
 	if(QDELETED(H.camera))
 		return
 
-	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_camera_update), oldloc, H), 1 SECONDS)
 
 
 /mob/living/carbon/human/get_language_holder()

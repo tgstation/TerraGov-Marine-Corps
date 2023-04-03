@@ -369,10 +369,10 @@
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
 	spawn_type = /obj/item/explosive/grenade/flare
-	spawn_number = 7
+	spawn_number = 14
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
@@ -410,6 +410,8 @@
 	max_w_class = 0
 	foldable = 0
 	var/isopened = 0
+	///the item left behind when this is used up
+	var/trash_item = /obj/item/trash/mre
 
 /obj/item/storage/box/MRE/Initialize()
 	. = ..()
@@ -418,7 +420,7 @@
 /obj/item/storage/box/MRE/Destroy()
 	var/turf/T = get_turf(src)
 	if(T)
-		new /obj/item/trash/mre(T)
+		new trash_item(T)
 	return ..()
 
 /obj/item/storage/box/MRE/proc/pickflavor()
@@ -434,13 +436,19 @@
 
 /obj/item/storage/box/MRE/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
-	if(. && !contents.len && !gc_destroyed)
+	if(. && !length(contents) && !gc_destroyed)
 		qdel(src)
 
 /obj/item/storage/box/MRE/update_icon()
 	if(!isopened)
 		isopened = 1
-		icon_state = "mealpackopened"
+		icon_state += "opened"
+
+/obj/item/storage/box/MRE/som
+	name = "\improper SOM MFR"
+	desc = "A Martian Field Ration, guaranteed to have a taste of Mars in every bite."
+	icon_state = "som_mealpack"
+	trash_item = /obj/item/trash/mre/som
 
 /**
  * # fillable box
@@ -541,8 +549,8 @@
 
 	else if(deployed)
 		draw_mode = variety == 1? TRUE: FALSE //If only one type of item in box, then quickdraw it.
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
 		open(user)
@@ -1058,7 +1066,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun
 	name = "HMG-08 drum box"
-	desc = "A box specifically designed to hold a large amount ofHMG-08 drum."
+	desc = "A box specifically designed to hold a large amount of HMG-08 drum."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_mg08"
 	can_hold = list(

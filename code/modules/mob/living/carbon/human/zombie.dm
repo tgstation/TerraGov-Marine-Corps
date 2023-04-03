@@ -86,7 +86,7 @@
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	SSmobs.stop_processing(H)
 	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), revive_time)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()
@@ -186,7 +186,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
 	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
 	if(set_agressivity)
-		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
+		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
 
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"
@@ -196,10 +196,9 @@
 
 /datum/action/set_agressivity/action_activate()
 	zombies_agressive = !zombies_agressive
-	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
 	update_button_icon()
 
 /datum/action/set_agressivity/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, zombies_agressive ? "minion_agressive" : "minion_passive")
+	action_icon_state = zombies_agressive ? "minion_agressive" : "minion_passive"
 	return ..()

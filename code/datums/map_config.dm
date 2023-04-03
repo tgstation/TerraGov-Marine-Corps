@@ -94,6 +94,7 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
+	announce_text = json["announce_text"]
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"
@@ -148,9 +149,6 @@
 		return
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
-
-	if(json["announce_text"] && maptype == SHIP_MAP)
-		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", map_name)
 
 	if(json["armor"])
 		armor_style = json["armor"]

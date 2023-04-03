@@ -7,6 +7,37 @@
 	can_bloody = FALSE
 	light_power = 0.25
 
+/turf/open/space/basic/New()	//Do not convert to Initialize
+	//This is used to optimize the map loader
+	return
+
+// override for space turfs, since they should never hide anything
+/turf/open/space/levelupdate()
+	for(var/obj/O in src)
+		if(O.level == 1)
+			O.hide(FALSE)
+
+/**
+ * Space Initialize
+ *
+ * Doesn't call parent, see [/atom/proc/Initialize].
+ * When adding new stuff to /atom/Initialize, /turf/Initialize, etc
+ * don't just add it here unless space actually needs it.
+ *
+ * There is a lot of work that is intentionally not done because it is not currently used.
+ * This includes stuff like smoothing, blocking camera visibility, etc.
+ * If you are facing some odd bug with specifically space, check if it's something that was
+ * intentionally ommitted from this implementation.
+ */
+/turf/open/space/Initialize(mapload, ...)
+	SHOULD_CALL_PARENT(FALSE) //prevent laggies
+	if(flags_atom & INITIALIZED)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+	icon_state = SPACE_ICON_STATE(x, y, z)
+
+	return INITIALIZE_HINT_NORMAL
+
 /area/space/Entered(atom/movable/arrived, atom/old_loc)
 	. = ..()
 	if(isliving(arrived))
@@ -19,41 +50,6 @@
 	if(isliving(leaver))
 		var/mob/living/spaceman = leaver
 		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
-
-
-/turf/open/space/basic/New()	//Do not convert to Initialize
-	//This is used to optimize the map loader
-	return
-
-
-// override for space turfs, since they should never hide anything
-/turf/open/space/levelupdate()
-	for(var/obj/O in src)
-		if(O.level == 1)
-			O.hide(FALSE)
-
-/turf/open/space/Initialize(mapload, ...)
-	SHOULD_CALL_PARENT(FALSE) //prevent laggies
-	if(flags_atom & INITIALIZED)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	ENABLE_BITFIELD(flags_atom, INITIALIZED)
-
-	vis_contents.Cut() //removes inherited overlays
-	visibilityChanged()
-
-	if(light_system != MOVABLE_LIGHT && light_power && light_range)
-		update_light()
-
-	if(opacity)
-		directional_opacity = ALL_CARDINALS
-
-	update_icon()
-
-	return INITIALIZE_HINT_NORMAL
-
-
-/turf/open/space/update_icon_state()
-	icon_state = SPACE_ICON_STATE
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -104,5 +100,6 @@
 	icon_state = "seadeep"
 	plane = FLOOR_PLANE
 
-/turf/open/space/sea/update_icon_state()
-	return
+/turf/open/space/sea/Initialize(mapload, ...)
+	. = ..()
+	icon_state = "seadeep"

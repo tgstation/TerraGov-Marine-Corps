@@ -4,8 +4,10 @@
 /datum/action/xeno_action/toggle_savage
 	name = "Toggle Savage"
 	action_icon_state = "savage_on"
-	mechanics_text = "Toggle on to add a vicious attack to your pounce."
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+	desc = "Toggle on to add a vicious attack to your pounce."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
+	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 
 /datum/action/xeno_action/toggle_savage/action_activate()
@@ -16,19 +18,15 @@
 
 	if(X.savage)
 		X.savage = FALSE
-		to_chat(X, span_xenowarning("We untense our muscles, and relax. We will no longer savage when pouncing."))
+		X.balloon_alert(X, "No longer savaging")
 	else
 		X.savage = TRUE
-		to_chat(X, "We ready ourselves for a killing stroke. We will savage when pouncing.[X.savage_used ? " However, we're not quite yet able to savage again." : ""]")
+		X.balloon_alert(X, "Will savage on pounce")
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	if(X.savage)
-		button.overlays += image('icons/mob/actions.dmi', button, "savage_off")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "savage_on")
+	action_icon_state = X.savage ? "savage_off" : "savage_on"
 	return ..()
 
 /mob/living/carbon/xenomorph/proc/Savage(mob/living/carbon/M)
@@ -54,7 +52,7 @@
 	M.attack_alien_harm(src, extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
 	use_plasma(extra_dam * 2)
 	savage_used = TRUE
-	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(savage_cooldown)), xeno_caste.savage_cooldown)
 
 	return TRUE
 
@@ -72,10 +70,12 @@
 /datum/action/xeno_action/activable/pounce
 	name = "Pounce"
 	action_icon_state = "pounce"
-	mechanics_text = "Leap at your target, tackling and disarming them."
+	desc = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
 	plasma_cost = 10
-	keybind_signal = COMSIG_XENOABILITY_POUNCE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_POUNCE,
+	)
 	use_state_flags = XACT_USE_BUCKLED
 	///How far can we pounce.
 	var/range = 6
@@ -121,11 +121,12 @@
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
 		if(!X.savage_used)
 			if(X.plasma_stored >= 10)
-				INVOKE_ASYNC(X, /mob/living/carbon/xenomorph/.proc/Savage, M)
+				INVOKE_ASYNC(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, Savage), M)
 			else
-				to_chat(X, span_xenodanger("We attempt to savage our victim, but we need [10-X.plasma_stored] more plasma."))
+				X.balloon_alert(X, "Cannot savage, no plasma")
+				to_chat(X, span_xenodanger("We attempt to savage our victim but we need at least [10-X.plasma_stored] more plasma."))
 		else
-			to_chat(X, span_xenodanger("We attempt to savage our victim, but we aren't yet ready."))
+			X.balloon_alert(X, "Cannot savage, not ready")
 
 	playsound(X.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
 
@@ -159,9 +160,9 @@
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/pounce_complete)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
 
 	prepare_to_pounce()
 
@@ -176,7 +177,7 @@
 	X.flags_pass = PASSTABLE|PASSFIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 6)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_flags_pass)), 6)
 
 	return TRUE
 
@@ -207,10 +208,12 @@
 /datum/action/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion"
-	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
+	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
 	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_EVASION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EVASION,
+	)
 	///Whether evasion is currently active
 	var/evade_active = FALSE
 	///Number of successful cooldown clears in a row
@@ -227,15 +230,16 @@
 
 	if(evade_active) //Can't evade while we're already evading.
 		if(!silent)
-			to_chat(owner, span_xenodanger("We're already taking evasive action!"))
+			owner.balloon_alert(owner, "Already evading")
 		return FALSE
 
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
+	R.balloon_alert(R, "Begin evasion: [RUNNER_EVASION_DURATION * 0.1] sec.")
 	to_chat(R, span_highdanger("We take evasive action, making us impossible to hit with projectiles for the next [RUNNER_EVASION_DURATION * 0.1] seconds."))
 
-	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(evasion_deactivate)), RUNNER_EVASION_DURATION)
 
 	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
@@ -243,12 +247,12 @@
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
+		COMSIG_LIVING_STATUS_STAGGER), PROC_REF(evasion_debuff_check))
 
-	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, .proc/evasion_dodge) //This is where we actually check to see if we dodge the projectile.
-	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, .proc/evasion_throw_dodge) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge)) //This is where we actually check to see if we dodge the projectile.
+	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, PROC_REF(evasion_burn_check)) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit)) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge)) //Register status effects and fire which impact evasion.
 
 	evade_active = TRUE //evasion is currently active
 
@@ -267,6 +271,7 @@
 
 	evasion_stacks = max(0, evasion_stacks - proj.damage) //We lose evasion stacks equal to the burn damage
 	if(evasion_stacks)
+		owner.balloon_alert(owner, "Evasion reduced, damaged")
 		to_chat(owner, span_danger("The searing fire compromises our ability to dodge![RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]"))
 	else //If all of our evasion stacks have burnt away, cancel out
 		evasion_deactivate()
@@ -277,8 +282,7 @@
 
 	var/mob/living/carbon/xenomorph/runner/R = owner
 	evasion_stacks = 0 //We lose all evasion stacks
-	if(evasion_stacks)
-		to_chat(R, span_danger("Being on fire compromises our ability to dodge! We have lost all evasion stacks!"))
+	to_chat(R, span_danger("Being on fire compromises our ability to dodge! We have lost all evasion stacks!"))
 
 ///After getting hit with an Evasion disabling debuff, this is where we check to see if evasion is active, and if we actually have debuff stacks
 /datum/action/xeno_action/evasion/proc/evasion_debuff_check(datum/source, amount)
@@ -310,8 +314,7 @@
 	evade_active = FALSE //Evasion is no longer active
 
 	evasion_stacks = 0
-	owner.visible_message(span_warning("[owner] stops moving erratically."), \
-	span_highdanger("We stop moving erratically; projectiles will hit us normally again!"))
+	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 
 
@@ -379,16 +382,16 @@
 	span_xenodanger("We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
 
 	X.add_filter("runner_evasion", 2, gauss_blur_filter(5))
-	addtimer(CALLBACK(X, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	X.do_jitter_animation(4000)
 
 	if(evasion_stacks >= evasion_stack_target && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
-		to_chat(X, span_highdanger("Our success spurs us to continue our evasive maneuvers!"))
+		X.balloon_alert(X, "Evasion refreshed")
 		clear_streaks = FALSE //We just scored a streak so we're not clearing our streaks on cooldown finish
 		evasion_streak++ //Increment our streak count
 		clear_cooldown() //Clear our cooldown
 		if(evasion_streak > 3) //Easter egg shoutout
-			to_chat(X, span_xenodanger("Damn we're good."))
+			X.balloon_alert(X, "Damn we're good.")
 
 	var/turf/T = get_turf(X) //location of after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
@@ -400,10 +403,12 @@
 /datum/action/xeno_action/activable/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
-	mechanics_text = "Take an item equipped by your target in your mouth, and carry it away."
+	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	plasma_cost = 75
 	cooldown_timer = 60 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_SNATCH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
+	)
 	target_flags = XABB_MOB_TARGET
 	///If the runner have an item
 	var/obj/item/stolen_item = FALSE
@@ -427,17 +432,26 @@
 		return
 	if(!owner.Adjacent(A))
 		if(!silent)
-			to_chat(owner, span_xenodanger("Our target must be adjacent!"))
+			owner.balloon_alert(owner, "Cannot reach")
 		return FALSE
 	if(!ishuman(A))
 		if(!silent)
-			to_chat(owner, span_xenowarning("You cannot steal from that target"))
+			owner.balloon_alert(owner, "Cannot snatch")
+		return FALSE
+	var/mob/living/carbon/human/target = A
+	if(target.stat == DEAD)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot snatch")
+		return FALSE
+	if(target.status_flags & GODMODE)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	var/mob/living/carbon/xenomorph/X = A
-	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	stolen_item = victim.get_active_held_item()
@@ -448,15 +462,15 @@
 			if(stolen_item)
 				break
 	if(!stolen_item)
-		to_chat(owner, span_xenowarning("They are too poor, and have nothing to steal!"))
+		victim.balloon_alert(owner, "Snatch failed, no item")
 		return fail_activate()
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
 	stolen_appearance.layer = ABOVE_OBJ_LAYER
-	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
-	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
+	addtimer(CALLBACK(src, PROC_REF(drop_item), stolen_item), 3 SECONDS)
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
 	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
 	add_cooldown()

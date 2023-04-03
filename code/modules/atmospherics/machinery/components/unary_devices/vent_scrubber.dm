@@ -43,7 +43,7 @@
 		amount = active_power_usage
 
 	if(widenet)
-		amount += amount * (adjacent_turfs.len * (adjacent_turfs.len / 2))
+		amount += amount * (length(adjacent_turfs) * (length(adjacent_turfs) / 2))
 	use_power(amount, power_channel)
 	return TRUE
 
@@ -95,23 +95,30 @@
 		if(WT.isOn())
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
+			add_overlay(GLOB.welding_sparks)
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(1, user))
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) && WT.remove_fuel(1, user))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))
+					cut_overlay(GLOB.welding_sparks)
 					welded = TRUE
 				else
 					user.visible_message(span_notice("[user] welds [src] open."), \
 					span_notice("You weld [src] open."))
+					cut_overlay(GLOB.welding_sparks)
 					welded = FALSE
 				update_icon()
 				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 				pipe_vision_img.plane = ABOVE_HUD_PLANE
+				cut_overlay(GLOB.welding_sparks)
 				return TRUE
+			else
+				cut_overlay(GLOB.welding_sparks)
 		else
 			to_chat(user, span_warning("[WT] needs to be on to start this task."))
+			cut_overlay(GLOB.welding_sparks)
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
@@ -143,6 +150,10 @@
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/AltClick(mob/user)
 	if(!isliving(user))
+		return
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		xeno_user.handle_ventcrawl(src, xeno_user.xeno_caste.vent_enter_speed, xeno_user.xeno_caste.silent_vent_crawl)
 		return
 	var/mob/living/living_user = user
 	living_user.handle_ventcrawl(src)

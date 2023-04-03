@@ -162,6 +162,62 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/lvhydrobridgeone
+	name = "LV Hydro Bridge One"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge1.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/lvhydrobridgetwo
+	name = "LV Hydro Bridge Two"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge2.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/lvhydrobridgethree
+	name = "LV Hydro Bridge Three"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge3.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/lvhydrobridgefour
+	name = "LV Hydro Bridge Four"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge4.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/southsandtempleone
+	name = "LV South Sand Temple One"
+	mappath = "_maps/modularmaps/lv624/southsandtemple1.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
+/datum/map_template/modular/lv624/southsandtempletwo
+	name = "LV South Sand Temple Two"
+	mappath = "_maps/modularmaps/lv624/southsandtemple2.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
+/datum/map_template/modular/lv624/southsandtemplethree
+	name = "LV South Sand Temple Three"
+	mappath = "_maps/modularmaps/lv624/southsandtemple3.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
+/datum/map_template/modular/lv624/southsandtemplefour
+	name = "LV South Sand Temple Four"
+	mappath = "_maps/modularmaps/lv624/southsandtemple4.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
 /datum/map_template/modular/lv624/dome_atmos
 	name = "LV atmos dome"
 	mappath = "_maps/modularmaps/lv624/atmospherics.dmm"
@@ -205,6 +261,14 @@
 /datum/map_template/modular/lv624/dome_internal_affairs
 	name = "LV internal affairs dome"
 	mappath = "_maps/modularmaps/lv624/internal_affairs.dmm"
+	modular_id = "lvdome"
+	template_width = 15
+	template_height = 15
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/dome_internal_affairs
+	name = "LV auxillary botany dome"
+	mappath = "_maps/modularmaps/lv624/auxbotany.dmm"
 	modular_id = "lvdome"
 	template_width = 15
 	template_height = 15
@@ -792,14 +856,14 @@
 	template_width = 23
 	template_height = 10
 
-datum/map_template/modular/bigred/southetafour
+/datum/map_template/modular/bigred/southetafour
 	name = "Big red southwest eta"
 	mappath = "_maps/modularmaps/big_red/bigredsouthetavar4.dmm"
 	modular_id = "brsoutheta"
 	template_width = 23
 	template_height = 10
 
-datum/map_template/modular/bigred/southetafive
+/datum/map_template/modular/bigred/southetafive
 	name = "Big red southwest eta"
 	mappath = "_maps/modularmaps/big_red/bigredsouthetavar5.dmm"
 	modular_id = "brsoutheta"
@@ -1076,6 +1140,81 @@ datum/map_template/modular/bigred/southetafive
 	modular_id = "broperations"
 	template_width = 29
 	template_height = 25
+
+/datum/map_template/modular/oscaroutposttopone
+	name = "Oscar outpost map top half"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar1.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
+/datum/map_template/modular/oscaroutposttoptwo
+	name = "Oscar outpost map top half"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar2.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
+/datum/map_template/modular/oscaroutposttopthree
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar3.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
+/datum/map_template/modular/oscaroutposttopfour
+	mappath = "_maps/modularmaps/oscaroutpost/oscarnorthvar4.dmm"
+	modular_id = "oscartop"
+	template_width = 150
+	template_height = 153
+
+/datum/map_template/modular/oscaroutzetabaseone
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar1.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
+
+/datum/map_template/modular/oscaroutzetabasetwo
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar2.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
+
+/datum/map_template/modular/oscaroutzetabasethree
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar3.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
+
+/datum/map_template/modular/oscaroutzetabasefour
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar4.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
+
+/datum/map_template/modular/oscaroutzetabasefive
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar5.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
+
+/datum/map_template/modular/oscaroutzetabasesix
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar6.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
+
+/datum/map_template/modular/oscaroutzetabaseseven
+	name = "Oscar outpost abandoned base"
+	mappath = "_maps/modularmaps/oscaroutpost/oscarsouthvar7.dmm"
+	modular_id = "oscarbase"
+	template_width = 79
+	template_height = 29
 
 /datum/map_template/modular/end_of_round/original
 	name = "Original EORG"

@@ -40,7 +40,7 @@ Currently only has the tank hardpoints
 	. = ..()
 	var/status = obj_integrity <= 0.1 ? "broken" : "functional"
 	var/span_class = obj_integrity <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
-	if((user.skills.getRating("engineer") >= SKILL_ENGINEER_METAL) || isobserver(user))
+	if((user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_METAL) || isobserver(user))
 		switch(PERCENT(obj_integrity / max_integrity))
 			if(0.1 to 33)
 				status = "heavily damaged"
@@ -443,22 +443,6 @@ Currently only has the tank hardpoints
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
-/obj/item/hardpoint/secondary/m56cupola
-	name = "M56 Cupola"
-	desc = "A secondary weapon for tanks that shoots bullets"
-
-	max_integrity = 350
-	point_cost = 50
-
-	icon_state = "m56_cupola"
-
-	disp_icon = "tank"
-	disp_icon_state = "m56cupola"
-
-	starter_ammo = /obj/item/ammo_magazine/tank/m56_cupola
-	max_clips = 1
-	max_angle = 90
-
 /obj/item/hardpoint/secondary/m56cupola/broken
 	obj_integrity = 0
 	buyable = FALSE
@@ -634,8 +618,8 @@ Currently only has the tank hardpoints
 	if(M)
 		to_chat(M, span_danger("You hit the nitros! RRRRRRRMMMM!!"))
 	playsound(M, 'sound/mecha/hydraulic.ogg', 60, 1, vary = 0)
-	addtimer(CALLBACK(src, .proc/boost_off), TANK_OVERDRIVE_BOOST_DURATION)
-	addtimer(CALLBACK(src, .proc/boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(boost_off)), TANK_OVERDRIVE_BOOST_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(boost_ready_notice)), TANK_OVERDRIVE_BOOST_COOLDOWN)
 
 /obj/item/hardpoint/support/overdrive_enhancer/remove_buff()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
@@ -880,7 +864,7 @@ Currently only has the tank hardpoints
 	targ = get_step(M, owner.dir)
 	targ = get_step(M, owner.dir)
 	M.throw_at(targ, 4, 2, src, 1)
-	M.apply_damage(7 + rand(0, 3), BRUTE)
+	M.apply_damage(7 + rand(0, 3), BRUTE, blocked = MELEE)
 
 /////////////////
 // ARMOR SLOTS // END
@@ -976,17 +960,6 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
 	point_cost = 100
-
-
-/obj/item/ammo_magazine/tank/m56_cupola
-	name = "M56 Cupola Magazine"
-	desc = "A secondary armament MG magazine"
-	caliber = CALIBER_10X28 //Correlates to smartguns
-	icon_state = "big_ammo_box"
-	w_class = 12
-	default_ammo = /datum/ammo/bullet/smartgun
-	max_rounds = 1000
-	point_cost = 10
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"

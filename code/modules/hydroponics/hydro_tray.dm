@@ -7,9 +7,11 @@
 	density = TRUE
 	anchored = TRUE
 	volume = 100
-	coverage = 20
+	coverage = 40
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 40
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.
 
@@ -252,7 +254,7 @@
 		pestlevel = 0
 
 	// If enough time (in cycles, not ticks) has passed since the plant was harvested, we're ready to harvest again.
-	else if(seed.products && seed.products.len && age > seed.production && \
+	else if(seed.products && length(seed.products) && age > seed.production && \
 	(age - lastproduce) > seed.production && (!harvest && !dead))
 		harvest = 1
 		lastproduce = age
@@ -447,7 +449,7 @@
 		return
 
 	// Check if we should even bother working on the current seed datum.
-	if(seed.mutants && seed.mutants.len && severity > 1)
+	if(seed.mutants && length(seed.mutants) && severity > 1)
 		mutate_species()
 		return
 
@@ -668,5 +670,9 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/Initialize()
 	. = ..()
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid
+
+/obj/machinery/portable_atmospherics/hydroponics/slashable
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 80
 
 #undef HYDRO_SPEED_MULTIPLIER

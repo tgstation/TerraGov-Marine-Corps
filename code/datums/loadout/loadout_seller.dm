@@ -12,7 +12,7 @@
 	/// How many points can be used when equipping the loadout
 	var/available_points = 0
 	/// The buying bitfield this marine used to equip the loadout
-	var/buying_bitfield = MARINE_CAN_BUY_ALL
+	var/buying_choices_left = list()
 	/// Items that were taken from essential kits, used to check for duplicates
 	var/unique_items_list = list()
 	/// Assoc list of items in visible slots.
@@ -30,7 +30,7 @@
 	item_list = list()
 	var/obj/item/card/id/id = user.get_idcard()
 	available_points = id.marine_points
-	buying_bitfield = id.marine_buy_flags
+	buying_choices_left = id.marine_buy_choices
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		var/datum/item_representation/item_representation = loadout.item_list[slot_key]
 		item_list[slot_key] = item_representation?.instantiate_object(src, null, user)
@@ -54,11 +54,12 @@
 /datum/loadout_seller/proc/try_to_equip_loadout(datum/loadout/loadout, mob/user)
 	prepare_to_equip_loadout(loadout, user)
 	var/obj/item/card/id/id = user.get_idcard()
-	id.marine_buy_flags &= buying_bitfield
+	for(var/category in id.marine_buy_choices)
+		id.marine_buy_choices[category] = min(buying_choices_left[category], id.marine_buy_choices[category])
 	id.marine_points = available_points
 	do_equip_loadout(user)
 	if(length(unique_items_list))
-		id.marine_buy_flags &= ~MARINE_CAN_BUY_ESSENTIALS
+		id.marine_buy_choices[CAT_ESS] = 0
 		sell_rest_of_essential_kit(loadout, user)
 
 /// If one item from essential kit was bought, we sell the rest and put in on the ground

@@ -4,9 +4,16 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	layer = ABOVE_MOB_LAYER
+	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	flags_pass = PASSABLE
+	///Store user old pixel x
+	var/user_old_x = 0
+	///Store user old pixel y
+	var/user_old_y = 0
+	///Stores user old move resist and apply on unset interaction
+	var/user_old_move_resist
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
@@ -132,25 +139,49 @@
 	if(!gun)
 		CRASH("[src] has been deployed and attempted interaction with [operator] without having a gun. This shouldn't happen.")
 
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
+	operator.forceMove(loc)
+	operator.setDir(dir)
+	user_old_x = operator.pixel_x
+	user_old_y = operator.pixel_y
+	update_pixels(operator, TRUE)
+	density = FALSE
+	user_old_move_resist = operator.move_resist
+	operator.move_resist = MOVE_FORCE_STRONG
 
+///Updates the pixel offset of user so it looks like their manning the gun from behind
+/obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
+	if(!mounting)
+		animate(user, pixel_x=user_old_x, pixel_y=user_old_y, 4, 1)
+		return
+	var/diff_x = 0
+	var/diff_y = 0
+	switch(dir)
+		if(NORTH)
+			diff_y = -16 + user_old_y
+			diff_x = 0
+		if(SOUTH)
+			diff_y = 16 + user_old_y
+			diff_x = 0
+		if(EAST)
+			diff_x = -16 + user_old_x
+			diff_y = 0
+		if(WEST)
+			diff_x = 16 + user_old_x
+			diff_y = 0
+	animate(user, pixel_x=diff_x, pixel_y=diff_y, 0.4 SECONDS)
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
 	var/obj/item/weapon/gun/gun = internal_item
-
-	if(object == src) //Clicking the gun gets off of it.
-		var/mob/living/carbon/human/user = source
-		user.unset_interaction()
-		return
 
 	var/target = get_turf_on_clickcatcher(object, operator, params)
 
@@ -175,7 +206,7 @@
 /obj/machinery/deployable/mounted/proc/can_fire(atom/object)
 	if(!object)
 		return FALSE
-	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || get_step(src, REVERSE_DIR(dir)) != operator.loc)
+	if(operator.lying_angle || !Adjacent(operator) || operator.incapacitated() || loc != operator.loc)
 		operator.unset_interaction()
 		return FALSE
 	if(operator.get_active_held_item())
@@ -209,7 +240,6 @@
 	if(!(left == (angle-1)) && !(right == (angle+1)))
 		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
 		return FALSE
-	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
 	var/obj/item/attachable/scope/current_scope
@@ -223,17 +253,14 @@
 		scope.zoom_item_turnoff(operator, operator)
 		current_scope = scope
 
-	if(!operator.Move(move_to))
-		to_chat(operator, "You cannot rotate [src] that way.")
-		return FALSE
-
 	setDir(angle)
 	user.set_interaction(src)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+	update_pixels(user, TRUE)
 
 	if(current_scope && current_scope.deployed_scope_rezoom)
-		INVOKE_ASYNC(current_scope, /obj/item/attachable/scope.proc/activate, operator)
+		INVOKE_ASYNC(current_scope, TYPE_PROC_REF(/obj/item/attachable/scope, activate), operator)
 
 	return FALSE
 
@@ -265,6 +292,11 @@
 
 	operator = null
 	gun?.set_gun_user(null)
+	update_pixels(user, FALSE)
+	user_old_x = 0
+	user_old_y = 0
+	density = initial(density)
+	user.move_resist = user_old_move_resist
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)
@@ -285,4 +317,4 @@
 		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
 	else
 		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))
+		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))

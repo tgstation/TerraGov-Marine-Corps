@@ -14,7 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
-	throwpass = FALSE
+	flags_pass = NONE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -79,7 +79,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -110,7 +110,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -155,7 +155,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(6)
+	sleep(0.6 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -202,8 +202,8 @@
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), impact_time - (0.5 SECONDS))
-	var/impact_timerid = addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, handle_ob_firing_effects), target), impact_time - (0.5 SECONDS))
+	var/impact_timerid = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, impact_callback), target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
 
 	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
 	message_admins("[span_prefix("OB FIRED:")] <span class='message linkify'> [canceltext]</span>")
@@ -230,7 +230,6 @@
 	icon_state = "cannon_tray"
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
@@ -325,7 +324,6 @@
 	name = "theoretical ob ammo"
 	density = TRUE
 	anchored = TRUE
-	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = XENO_DAMAGEABLE
@@ -410,17 +408,17 @@
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
 		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
 	name = "\improper Plasma draining orbital warhead"
 	warhead_kind = "plasma"
 	icon_state = "ob_warhead_4"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	smoke = new(src)
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()
 
@@ -460,10 +458,10 @@
 	if(!allowed(user))
 		return
 
-	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(!isobserver(user) && user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the console."),
 		span_notice("You fumble around figuring out how to use the console."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -544,13 +542,13 @@
 	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
-	var/obj/structure/ship_ammo/heavygun/railgun/rail_gun_ammo
+	var/obj/structure/ship_ammo/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize()
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
-	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/railgun(src)
+	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
@@ -565,11 +563,11 @@
 	last_firing = world.time
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
-	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
+	var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("NOTICE - \The [src] has fired."))
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
-	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/ship_rail_gun, impact_rail_gun), target), 1 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
 	rail_gun_ammo.detonate_on(T)

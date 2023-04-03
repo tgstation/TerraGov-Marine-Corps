@@ -158,7 +158,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "nU" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "oA" = (

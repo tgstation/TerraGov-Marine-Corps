@@ -17,7 +17,7 @@
 	var/can_max_release_pressure = (ONE_ATMOSPHERE * 10)
 	var/can_min_release_pressure = (ONE_ATMOSPHERE / 10)
 
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 80, ACID = 50)
 	max_integrity = 250
 	var/temperature_resistance = 1000 + T0C
 	var/starter_temp
@@ -52,6 +52,25 @@
 	desc = "Pre-mixed air."
 	icon_state = "grey"
 	gas_type = GAS_TYPE_AIR
+
+/obj/machinery/portable_atmospherics/canister/phoron
+	name = "phoron canister"
+	desc = "Toxic phoron in gas form."
+	icon_state = "orange"
+	gas_type = GAS_TYPE_PHORON
+
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide
+	name = "nitrous oxide canister"
+	desc = "Compressed nitrous oxide."
+	icon_state = "redws"
+	gas_type = GAS_TYPE_N2O
+
+/obj/machinery/portable_atmospherics/canister/co2
+	name = "carbon dioxide canister"
+	desc = "Carbon dioxide, commonly used for increasing the power generation of exotic engine types."
+	icon_state = "black"
+	gas_type = GAS_TYPE_CO2
+
 
 /obj/machinery/portable_atmospherics/canister/empty
 

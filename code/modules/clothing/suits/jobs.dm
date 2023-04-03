@@ -12,7 +12,7 @@
 	flags_armor_protection = NONE
 	allowed = list (
 		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/analyzer/plant_analyzer,
+		/obj/item/tool/analyzer/plant_analyzer,
 		/obj/item/seeds,
 		/obj/item/reagent_containers/glass/fertilizer,
 		/obj/item/tool/minihoe,
@@ -47,7 +47,7 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 	)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 10, FIRE = 0, ACID = 0)
 
 
 //Captain
@@ -104,26 +104,33 @@
 	flags_armor_protection = NONE
 
 //Security
-/obj/item/clothing/suit/security/navyofficer
-	name = "security officer's jacket"
-	desc = "This jacket is for those special occasions when a security officer actually feels safe."
+/obj/item/clothing/suit/security
+	desc = "You shouldn't see this"
+	flags_armor_protection = CHEST|GROIN|ARMS
+
+/obj/item/clothing/suit/security/formal
+	name = "formal jacket"
+	desc = "A formal military jacket. Not recommended for combat use."
 	icon_state = "officerbluejacket"
-	item_state = "officerbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
 
-/obj/item/clothing/suit/security/navywarden
-	name = "warden's jacket"
-	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
+/obj/item/clothing/suit/security/formal/tan
+	icon_state = "officertanjacket"
+
+/obj/item/clothing/suit/security/formal/officer
+	name = "officer's jacket"
+	desc = "An officer's formal jacket, makes you look authoritative."
 	icon_state = "wardenbluejacket"
-	item_state = "wardenbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
 
-/obj/item/clothing/suit/security/navyhos
-	name = "head of security's jacket"
+/obj/item/clothing/suit/security/formal/officer/tan
+	icon_state = "wardentanjacket"
+
+/obj/item/clothing/suit/security/formal/senior_officer
+	name = "senior officer's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
-	item_state = "hosbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
+
+/obj/item/clothing/suit/security/formal/senior_officer/tan
+	icon_state = "hostanjacket"
 
 //Detective
 /obj/item/clothing/suit/storage/det_suit
@@ -149,7 +156,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/holster/blade,
 	)
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/suit/storage/det_suit/black
 	icon_state = "detective2"
@@ -171,7 +178,7 @@
 		/obj/item/detective_scanner,
 		/obj/item/taperecorder,
 	)
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/suit/storage/forensics/red
 	name = "red jacket"
@@ -191,9 +198,9 @@
 	item_state = "hazard"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/analyzer,
+		/obj/item/tool/analyzer,
 		/obj/item/flashlight,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/pipe_painter,
 		/obj/item/radio,
 		/obj/item/t_scanner,
@@ -312,11 +319,10 @@
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
 	desc = "A standard snow suit. It can protect the wearer from extreme cold."
-	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "snowsuit_alpha"
 	flags_armor_protection = CHEST|GROIN|ARMS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
-	soft_armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
@@ -327,9 +333,9 @@
 	name = "doctor's snow suit"
 	icon_state = "snowsuit_doctor"
 	permeability_coefficient = 0.6
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 20, BOMB = 10, BIO = 0, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/suit/storage/snow_suit/engineer
 	name = "engineer's snow suit"
 	icon_state = "snowsuit_engineer"
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 20, BOMB = 10, BIO = 0, FIRE = 20, ACID = 20)

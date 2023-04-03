@@ -17,8 +17,8 @@
 
 /datum/component/throw_parry/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_THROW_PARRY_CHECK, .proc/parry_check)
-	RegisterSignal(parent, COMSIG_PARRY_TRIGGER, .proc/enable_parry)
+	RegisterSignal(parent, COMSIG_THROW_PARRY_CHECK, PROC_REF(parry_check))
+	RegisterSignal(parent, COMSIG_PARRY_TRIGGER, PROC_REF(enable_parry))
 
 /datum/component/throw_parry/UnregisterFromParent()
 	. = ..()

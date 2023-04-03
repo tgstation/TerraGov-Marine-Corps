@@ -1,14 +1,15 @@
 /mob/proc/flash_pain()
-	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 2)
+	overlay_fullscreen("pain", /atom/movable/screen/fullscreen/pain, 2)
 	clear_fullscreen("pain")
 
-mob/var/list/pain_stored = list()
-mob/var/last_pain_message = ""
-mob/var/next_pain_time = 0
+///TODO MOVE ME OR EVEN BETTER GET RID OF ME
+/mob/var/list/pain_stored = list()
+/mob/var/last_pain_message = ""
+/mob/var/next_pain_time = 0
 
 // partname is the name of a body part
 // amount is a num from 1 to 100
-mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
+/mob/living/carbon/proc/pain(partname, amount, force, burning = FALSE)
 	if(stat >= DEAD || (world.time < next_pain_time && !force))
 		return
 	if(reagent_pain_modifier < 0)
@@ -61,7 +62,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 
 // message is the custom message to be displayed
 // flash_strength is 0 for weak pain flash, 1 for strong pain flash
-mob/living/carbon/human/proc/custom_pain(message, flash_strength)
+/mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(stat >= UNCONSCIOUS)
 		return
 	if(species && species.species_flags & NO_PAIN)
@@ -80,7 +81,7 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 		to_chat(src, msg)
 	next_pain_time = world.time + 100
 
-mob/living/carbon/human/proc/handle_pain()
+/mob/living/carbon/human/proc/handle_pain()
 	if(stat >= UNCONSCIOUS)
 		return 	// not when sleeping
 	if(species && species.species_flags & NO_PAIN)

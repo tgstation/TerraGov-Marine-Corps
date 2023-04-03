@@ -52,7 +52,11 @@
 		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
 		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
 		for(var/i in SSmapping.levels_by_trait(trait))
-			counts[trait][FACTION_XENO] += length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"])
+			var/list/parsed_xenos = GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]?.Copy()
+			for(var/mob/living/carbon/xenomorph/xeno in parsed_xenos)
+				if(xeno.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
+					parsed_xenos -= xeno
+			counts[trait][FACTION_XENO] += length(parsed_xenos)
 			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
 			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
 				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
@@ -78,7 +82,7 @@
 
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
-		for(var/i in GLOB.alive_xeno_list)
+		for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 			var/mob/M = i
 			SEND_SOUND(M, S)
 			to_chat(M, span_xenoannounce("The Queen Mother reaches into your mind from worlds away."))
@@ -121,7 +125,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 	var/num_humans_ship = living_player_list[3]
@@ -146,7 +150,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == INFESTATION_MARINE_CRASHING)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
 			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
@@ -162,10 +166,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return TRUE
 	return FALSE
 
+
 /datum/game_mode/infestation/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 	var/sound/xeno_track
 	var/sound/human_track
 	var/sound/ghost_track
@@ -220,20 +224,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
-	announce_xenomorphs()
-	announce_medal_awards()
-	announce_round_stats()
-
-/// Announce to players the name of the surviving hive ruler
-/datum/game_mode/infestation/proc/announce_xenomorphs()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
-		return
-
-	var/dat = span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
-
-	to_chat(world, dat)
-
 /datum/game_mode/infestation/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
@@ -254,7 +244,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 /datum/game_mode/infestation/pre_setup()
 	. = ..()
-	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
+	addtimer(CALLBACK(SSticker.mode, PROC_REF(map_announce)), 5 SECONDS)
 
 ///Announce the next map
 /datum/game_mode/infestation/proc/map_announce()
@@ -283,7 +273,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/infestation/proc/on_nuclear_explosion(datum/source, z_level)
 	SIGNAL_HANDLER
 	planet_nuked = INFESTATION_NUKE_INPROGRESS
-	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
+	INVOKE_ASYNC(src, PROC_REF(play_cinematic), z_level)
 
 /datum/game_mode/infestation/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	SIGNAL_HANDLER
@@ -302,12 +292,13 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/M = x
 		if(isobserver(M) || isnewplayer(M))
 			continue
-		shake_camera(M, 110, 4)
+		if(M.z == z_level)
+			shake_camera(M, 110, 4)
 
 	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, INFESTATION_NUKE_COMPLETED), nuketime)
-	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
+	addtimer(CALLBACK(src, PROC_REF(do_nuke_z_level), z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_CRASH_NUKE, world)
 

@@ -1,7 +1,6 @@
 /obj/machinery/deployable/mounted/sentry
 
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	layer = ABOVE_MOB_LAYER
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
@@ -30,6 +29,8 @@
 	var/iff_signal = NONE
 	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
 	var/list/ignored_terrains
+	///For minimap icon change if sentry is firing
+	var/firing
 
 //------------------------------------------------------------------
 //Setup and Deletion
@@ -66,6 +67,22 @@
 	GLOB.marine_turrets += src
 	set_on(TRUE)
 
+///Change minimap icon if its firing or not firing
+/obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	if(!z)
+		return
+	var/marker_flags
+	if(iff_signal == TGMC_LOYALIST_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE
+	else if(iff_signal == TGMC_REBEL_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE_REBEL
+	else if(iff_signal == SON_OF_MARS_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else
+		marker_flags = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, z, marker_flags, "sentry[firing ? "_firing" : "_passive"]")
+
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
 	if(!CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
@@ -89,6 +106,12 @@
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
 	sentry_alert(SENTRY_ALERT_DESTROYED)
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/AltClick(mob/user)
+	if(!match_iff(user))
+		to_chat(user, span_notice("Access denied."))
+		return
 	return ..()
 
 //-----------------------------------------------------------------
@@ -122,10 +145,16 @@
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
+	if(!match_iff(user)) //You can't pull the ammo out of hostile turrets
+		to_chat(user, span_notice("Access denied."))
+		return
 	. = ..()
 	update_static_data(user)
 
 /obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
+	if(!match_iff(user)) //You can't mess with hostile turrets
+		to_chat(user, span_notice("Access denied."))
+		return
 	var/obj/item/weapon/gun/gun = internal_item
 	if(manual_mode)
 		return ..()
@@ -249,10 +278,11 @@
 	visible_message(span_notice("The [name] powers up with a warm hum."))
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
-	set_light(SENTRY_LIGHT_POWER)
+	set_light(SENTRY_LIGHT_POWER,SENTRY_LIGHT_POWER)
 	update_icon()
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
+	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, PROC_REF(check_next_shot))
+	update_minimap_icon()
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
@@ -260,16 +290,14 @@
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
+	firing = FALSE
+	update_minimap_icon()
 	visible_message(span_highdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
 	set_on(FALSE)
 	update_icon()
-
-/obj/machinery/deployable/mounted/sentry/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
-	return ..()
 
 /obj/machinery/deployable/mounted/sentry/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	if(damage_amount <= 0)
@@ -284,15 +312,6 @@
 		return
 	sentry_alert(SENTRY_ALERT_DAMAGE)
 	update_icon()
-
-/obj/machinery/deployable/mounted/sentry/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			take_damage(rand(90, 150))
-		if(EXPLODE_HEAVY)
-			take_damage(rand(50, 150))
-		if(EXPLODE_LIGHT)
-			take_damage(rand(30, 100))
 
 //----------------------------------------------------------------------------
 // Sentry Functions
@@ -336,6 +355,8 @@
 	if(!scan())
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
@@ -360,13 +381,15 @@
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
-		INVOKE_ASYNC(internal_gun, /obj/item/weapon/gun.proc/do_unique_action)
-	if(get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
+	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
-	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
+	addtimer(CALLBACK(src, PROC_REF(sentry_start_fire)), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
@@ -375,9 +398,13 @@
 	update_icon()
 	if(!target || get_dist(src, target) > range)
 		gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 		return
 	if(target != gun.target)
 		gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 	if(!gun.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
@@ -387,27 +414,29 @@
 		gun.set_target(target)
 		return
 	gun.start_fire(src, target, bypass_checks = TRUE)
+	firing = TRUE
+	update_minimap_icon()
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
 	var/list/turf/path = getline(src, target)
 	path -= get_turf(src)
-	if(!path.len)
+	if(!length(path))
 		return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
 		if(smoke && smoke.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE && !(T.type in ignored_terrains))
+		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE) && !(T.type in ignored_terrains))
 			return FALSE
 
 		for(var/obj/machinery/MA in T)
-			if(MA.density && MA.throwpass == FALSE && !(MA.type in ignored_terrains))
+			if(MA.density && !(MA.flags_pass & PASSPROJECTILE) && !(MA.type in ignored_terrains))
 				return FALSE
 
 		for(var/obj/structure/S in T)
-			if(S.density && S.throwpass == FALSE && !(S.type in ignored_terrains))
+			if(S.density && !(S.flags_pass & PASSPROJECTILE) && !(S.type in ignored_terrains))
 				return FALSE
 
 	return TRUE
@@ -434,14 +463,23 @@
 		distance = buffer_distance
 		return nearby_target
 
-
 /obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+	if(!match_iff(user)) //You can't steal other faction's turrets
+		to_chat(user, span_notice("Access denied."))
+		return
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
 		gun.accuracy_mult += 0.15
 		gun.scatter -= 10
 
+///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
+/obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)
+	if(!user)
+		return TRUE
+	if((GLOB.faction_to_iff[user.faction] != iff_signal) && iff_signal) //You can't steal other faction's turrets
+		return FALSE
+	return TRUE
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
 	name = "broken build-a-sentry"
@@ -458,3 +496,48 @@
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
+
+
+//Throwable turret
+/obj/machinery/deployable/mounted/sentry/cope
+	density = FALSE
+
+/obj/machinery/deployable/mounted/sentry/cope/sentry_start_fire()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.update_ammo_count() //checks if the battery has recharged enough to fire
+	return ..()
+
+///Dissassembles the device
+/obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
+	var/obj/item/item = internal_item
+	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+		to_chat(user, span_notice("[src] is anchored in place and cannot be disassembled."))
+		return
+	if(!match_iff(user)) //You can't steal other faction's turrets
+		to_chat(user, span_notice("Access denied."))
+		return
+	operator?.unset_interaction()
+
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item  = internal_item //Item the machine is undeploying
+
+	if(!ishuman(user))
+		return
+	set_on(FALSE)
+	user.balloon_alert(user, "You start disassembling [attached_item]")
+	if(!do_after(user, attached_item.undeploy_time, TRUE, src, BUSY_ICON_BUILD))
+		set_on(TRUE)
+		return
+
+	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+
+	attached_item.reset()
+	user.unset_interaction()
+	user.put_in_hands(attached_item)
+
+	attached_item.max_integrity = max_integrity
+	attached_item.obj_integrity = obj_integrity
+
+	internal_item = null
+
+	QDEL_NULL(src)
+	attached_item.update_icon_state()

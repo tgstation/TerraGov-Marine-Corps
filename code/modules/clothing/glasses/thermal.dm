@@ -52,6 +52,10 @@
 	name = "Optical Thermal Implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	item_state = "syringe_kit"
 	toggleable = 0
 

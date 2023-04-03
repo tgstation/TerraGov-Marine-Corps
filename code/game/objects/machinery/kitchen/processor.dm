@@ -19,36 +19,12 @@
 	var/input
 	var/output
 	var/time = 40
-	process(loc, what)
-		if (src.output && loc)
-			new src.output(loc)
-		if (what)
-			qdel(what)
 
-	/* objs */
-	meat
-		input = /obj/item/reagent_containers/food/snacks/meat
-		output = /obj/item/reagent_containers/food/snacks/meatball
-
-	potato
-		input = /obj/item/reagent_containers/food/snacks/grown/potato
-		output = /obj/item/reagent_containers/food/snacks/rawsticks
-
-	carrot
-		input = /obj/item/reagent_containers/food/snacks/grown/carrot
-		output = /obj/item/reagent_containers/food/snacks/carrotfries
-
-	soybeans
-		input = /obj/item/reagent_containers/food/snacks/grown/soybeans
-		output = /obj/item/reagent_containers/food/snacks/soydope
-
-	wheat
-		input = /obj/item/reagent_containers/food/snacks/grown/wheat
-		output = /obj/item/reagent_containers/food/snacks/flour
-
-	spaghetti
-		input = /obj/item/reagent_containers/food/snacks/flour
-		output = /obj/item/reagent_containers/food/snacks/spagetti
+/datum/food_processor_process/process(loc, what)
+	if (src.output && loc)
+		new src.output(loc)
+	if (what)
+		qdel(what)
 
 
 /obj/machinery/processor/proc/select_recipe(X)
@@ -94,7 +70,7 @@
 	if(src.processing)
 		to_chat(user, span_warning("The processor is in the process of processing."))
 		return 1
-	if(src.contents.len == 0)
+	if(length(src.contents) == 0)
 		to_chat(user, span_warning("The processor is empty."))
 		return 1
 	for(var/O in src.contents)

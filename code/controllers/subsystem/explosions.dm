@@ -86,16 +86,13 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE, color = LIGHT_COLOR_LAVA)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, color)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, color)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
-
-	if(small_animation)
-		new /obj/effect/temp_visual/explosion(epicenter)
 
 	if(isnull(flash_range))
 		flash_range = devastation_range
@@ -107,6 +104,10 @@ SUBSYSTEM_DEF(explosions)
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
+
+	if(small_animation)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color)
+
 	if(adminlog)
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
 		if(is_mainship_level(epicenter.z))
@@ -121,13 +122,14 @@ SUBSYSTEM_DEF(explosions)
 	// 3/7/14 will calculate to 80 + 35
 
 	var/far_dist = 0
+	far_dist += light_impact_range * 4
 	far_dist += heavy_impact_range * 5
 	far_dist += devastation_range * 20
 
 	if(!silent)
 		var/frequency = GET_RAND_FREQUENCY
-		var/sound/explosion_sound = sound(get_sfx("explosion"))
-		var/sound/far_explosion_sound = sound(get_sfx("explosion_distant"))
+		var/sound/explosion_sound = sound(get_sfx("explosion_large"))
+		var/sound/far_explosion_sound = sound(get_sfx("explosion_large_distant"))
 		var/sound/creak_sound = sound(get_sfx("explosion_creak"))
 
 		for(var/MN in GLOB.player_list)
@@ -139,9 +141,16 @@ SUBSYSTEM_DEF(explosions)
 				var/baseshakeamount
 				if(orig_max_distance - dist > 0)
 					baseshakeamount = sqrt((orig_max_distance - dist)*0.1)
+				if(devastation_range)
+					explosion_sound = sound(get_sfx("explosion_large"))
+				else if(heavy_impact_range)
+					explosion_sound = sound(get_sfx("explosion_med"))
+				else if(light_impact_range)
+					explosion_sound = sound(get_sfx("explosion_small"))
+					far_explosion_sound = sound(get_sfx("explosion_small_distant"))
 				// If inside the blast radius + world.view - 2
 				if(dist <= round(max_range + world.view - 2, 1))
-					M.playsound_local(epicenter, null, 100, 1, frequency, falloff = 5, S = explosion_sound)
+					M.playsound_local(epicenter, null, 75, 1, frequency, falloff = 5, S = explosion_sound)
 					if(is_mainship_level(epicenter.z))
 						M.playsound_local(epicenter, null, 40, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
@@ -163,7 +172,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			E = new
 		E.set_up(epicenter)
-		E.start()
+		E.start(max_range, color)
 
 	//flash mobs
 	if(flash_range)

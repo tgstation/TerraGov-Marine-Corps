@@ -64,17 +64,17 @@
 		instance_name = "TG Station Server" //maybe just upgraded
 
 	var/list/logs = TGS_FILE2LIST(".git/logs/HEAD")
-	if(logs.len)
-		logs = splittext(logs[logs.len], " ")
-		if (logs.len >= 2)
+	if(length(logs))
+		logs = splittext(logs[length(logs)], " ")
+		if (length(logs) >= 2)
 			commit = logs[2]
 		else
 			TGS_ERROR_LOG("Error parsing commit logs")
 
 	logs = TGS_FILE2LIST(".git/logs/refs/remotes/origin/master")
-	if(logs.len)
-		logs = splittext(logs[logs.len], " ")
-		if (logs.len >= 2)
+	if(length(logs))
+		logs = splittext(logs[length(logs)], " ")
+		if (length(logs) >= 2)
 			originmastercommit = logs[2]
 		else
 			TGS_ERROR_LOG("Error parsing origin commmit logs")
@@ -99,7 +99,7 @@
 	if(skip_compat_check && !fexists(SERVICE_INTERFACE_DLL))
 		TGS_ERROR_LOG("Service parameter present but no interface DLL detected. This is symptomatic of running a service less than version 3.1! Please upgrade.")
 		return
-	call(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance_name, command) //trust no retval
+	LIBCALL(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance_name, command) //trust no retval
 	return TRUE
 
 /datum/tgs_api/v3210/OnTopic(T)

@@ -82,7 +82,7 @@
 				to_chat(M, span_warning("You take a bite of \the [src]."))
 			if (fullness > 350 && fullness <= 550)
 				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
-			if (fullness > (550 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
+			if (fullness > 550)
 				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
 				return FALSE
 		else
@@ -90,7 +90,7 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
-			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
+			if (fullness <= 550)
 				M.visible_message(span_warning("[user] attempts to feed \the [M] [src]."))
 			else
 				M.visible_message(span_warning("[user] cannot force anymore of \the [src] down [M]'s throat."))
@@ -1245,6 +1245,269 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("cracker" = 1)
 
+
+
+/////////////////////////////////////////////////PIZZA////////////////////////////////////////
+/obj/item/reagent_containers/food/snacks/sliceable/pizza
+
+	slices_num = 6
+	bitesize = 1
+	filling_color = "#BAA14C"
+
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
+	name = "Margherita"
+	desc = "The golden standard of pizzas."
+	slice_path = /obj/item/reagent_containers/food/snacks/margheritaslice
+	icon_state = "margheritapizza"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/drink/tomatojuice = 6)
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
+
+/obj/item/reagent_containers/food/snacks/margheritaslice
+	name = "Margherita slice"
+	desc = "A slice of the classic pizza."
+	icon_state = "margheritapizzaslice"
+	filling_color = "#BAA14C"
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
+	bitesize = 2
+
+	name = "Meatpizza"
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
+	desc = "A pizza with meat topping."
+	slice_path = /obj/item/reagent_containers/food/snacks/meatpizzaslice
+	icon_state = "meatpizza"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 50, /datum/reagent/consumable/drink/tomatojuice = 6)
+
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+/obj/item/reagent_containers/food/snacks/meatpizzaslice
+	desc = "A slice of a meaty pizza."
+	name = "Meatpizza slice"
+	filling_color = "#BAA14C"
+	icon_state = "meatpizzaslice"
+	bitesize = 2
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
+	desc = "Very special pizza"
+	name = "Mushroompizza"
+	icon_state = "mushroompizza"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 35)
+	slice_path = /obj/item/reagent_containers/food/snacks/mushroompizzaslice
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
+
+	name = "Mushroompizza slice"
+/obj/item/reagent_containers/food/snacks/mushroompizzaslice
+	desc = "Maybe it is the last slice of pizza in your life."
+	icon_state = "mushroompizzaslice"
+	filling_color = "#BAA14C"
+	bitesize = 2
+
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
+	desc = "No one of Tomato Sapiens were harmed during making this pizza"
+	name = "Vegetable pizza"
+	icon_state = "vegetablepizza"
+	slice_path = /obj/item/reagent_containers/food/snacks/vegetablepizzaslice
+	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/medicine/imidazoline = 12)
+	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
+
+/obj/item/reagent_containers/food/snacks/vegetablepizzaslice
+	name = "Vegetable pizza slice"
+	desc = "A slice of the most green pizza of all pizzas not containing green ingredients "
+	icon_state = "vegetablepizzaslice"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
+
+/obj/item/pizzabox
+	name = "pizza box"
+	desc = "A box suited for pizzas."
+	icon = 'icons/obj/items/food.dmi'
+	icon_state = "pizzabox1"
+
+	var/ismessy = 0 // Fancy mess on the lid
+	var/open = 0 // Is the box open?
+	var/list/boxes = list() // If the boxes are stacked, they come here
+	var/obj/item/reagent_containers/food/snacks/sliceable/pizza/pizza // Content pizza
+	var/boxtag = ""
+
+
+/obj/item/pizzabox/update_icon()
+	overlays = list()
+	// Set appropriate description
+
+	if( open && pizza )
+		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
+		desc = "A pile of boxes suited for pizzas. There appears to be [length(boxes) + 1] boxes in the pile."
+	else if( length(boxes) > 0 )
+
+		var/obj/item/pizzabox/topbox = boxes[length(boxes)]
+		var/toptag = topbox.boxtag
+			desc = "[desc] The box on top has a tag, it reads: '[toptag]'."
+		if( toptag != "" )
+	else
+		desc = "A box suited for pizzas."
+		if( boxtag != "" )
+
+			desc = "[desc] The box has a tag, it reads: '[boxtag]'."
+
+	// Icon states and overlays
+	if( open )
+		if( ismessy )
+			icon_state = "pizzabox_messy"
+		else
+			icon_state = "pizzabox_open"
+
+		if( pizza )
+			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
+			overlays += pizzaimg
+			pizzaimg.pixel_y = -3
+
+	else
+		return
+		// Stupid code because byondcode sucks
+		var/doimgtag = 0
+			var/obj/item/pizzabox/topbox = boxes[length(boxes)]
+		if( length(boxes) > 0 )
+			if( topbox.boxtag != "" )
+				doimgtag = 1
+		else
+			if( boxtag != "" )
+
+				doimgtag = 1
+		if( doimgtag )
+			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
+			tagimg.pixel_y = length(boxes) * 3
+			overlays += tagimg
+
+	icon_state = "pizzabox[length(boxes) + 1]"
+
+//ATTACK HAND IGNORING PARENT RETURN VALUE
+/obj/item/pizzabox/attack_hand(mob/living/user)
+	if( open && pizza )
+		user.put_in_hands( pizza )
+
+		src.pizza = null
+		to_chat(user, span_warning("You take the [src.pizza] out of the [src]."))
+		update_icon()
+
+		return
+	else if( length(boxes) > 0 )
+			return ..()
+		if( user.get_inactive_held_item() != src )
+
+		var/obj/item/pizzabox/box = boxes[length(boxes)]
+		boxes -= box
+
+		to_chat(user, span_warning("You remove the topmost [src] from your hand."))
+		user.put_in_hands( box )
+		box.update_icon()
+		update_icon()
+
+	else
+		return ..()
+
+/obj/item/pizzabox/attack_self( mob/user as mob )
+
+	if( length(boxes) > 0 )
+		return
+
+
+	open = !open
+		ismessy = 1
+	if( open && pizza )
+
+	update_icon()
+
+/obj/item/pizzabox/attackby(obj/item/I, mob/user, params)
+
+	. = ..()
+	if(istype(I, /obj/item/pizzabox))
+		var/obj/item/pizzabox/box = I
+
+			to_chat(user, span_warning("Close the [box] first!"))
+		if(box.open || open)
+			return
+
+		var/list/boxestoadd = list()
+		// Make a list of all boxes to be added
+		for(var/obj/item/pizzabox/i in box.boxes)
+		boxestoadd += box
+			boxestoadd += i
+		if((length(boxes) + 1) + length(boxestoadd) > 5)
+
+			to_chat(user, span_warning("The stack is too high!"))
+			return
+
+		user.transferItemToLoc(box, src)
+		boxes.Add(boxestoadd)
+		box.boxes = list()
+		box.update_icon()
+
+		update_icon()
+
+		to_chat(user, span_warning("You put the [box] ontop of the [src]!"))
+
+	else if(istype(I, /obj/item/reagent_containers/food/snacks/sliceable/pizza))
+		if(!open)
+			to_chat(user, span_warning("You try to push the [I] through the lid but it doesn't work!"))
+			return
+
+		user.transferItemToLoc(I, src)
+		pizza = I
+
+		update_icon()
+
+		to_chat(user, span_warning("You put the [I] in the [src]!"))
+
+	else if(istype(I, /obj/item/tool/pen))
+		if(open)
+			return
+
+		var/t = stripped_input(user, "Enter what you want to add to the tag:", "Write", "", 30)
+
+		boxtag = "[boxtag][t]"
+
+		update_icon()
+
+
+/obj/item/pizzabox/margherita/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita(src)
+	boxtag = "Margherita Deluxe"
+
+
+/obj/item/pizzabox/vegetable/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza(src)
+	boxtag = "Gourmet Vegatable"
+
+
+/obj/item/pizzabox/mushroom/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza(src)
+	boxtag = "Mushroom Special"
+
+
+/obj/item/pizzabox/meat/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	boxtag = "Meatlover's Supreme"
+
+/obj/item/pizzabox/random
+	var/list/pizza_choices = list(
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+	)
+
+/obj/item/pizzabox/random/Initialize()
+	. = .. ()
+	var/pizza_type = pick(pizza_choices)
+	pizza = new pizza_type(src)
+	boxtag = "Pizza Time"
+
 ///////////////////////////////////////////
 // new old food stuff from bs12
 ///////////////////////////////////////////
@@ -1688,7 +1951,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/combat
 	name = "Commed-pop"
-	desc = "A lolipop devised to heal wounds overtime, with a slower amount of reagent use. Can be eaten or put in the mask slot"
+	desc = "A lolipop devised to heal wounds overtime by mixing sugar with bicard and kelotane, with a slower amount of reagent use. Can be eaten or put in the mask slot"
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5)
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord

@@ -4,7 +4,7 @@
 	desc = "An all-terrain vehicle built for traversing rough terrain with ease. One of the few old-Earth technologies that are still relevant on most planet-bound outposts."
 	icon_state = "atv"
 	max_integrity = 150
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
 	key_type = /obj/item/key/atv
 	integrity_failure = 0.5
 	var/static/mutable_appearance/atvcover
@@ -25,15 +25,7 @@
 	return ..()
 
 /obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/I)
-	if(obj_integrity >= max_integrity)
-		return TRUE
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to \the [src]."))
-	obj_integrity += min(10, max_integrity-obj_integrity)
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_notice("It looks to be fully repaired now."))
-	return TRUE
+	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/atv/obj_break()
 	START_PROCESSING(SSobj, src)

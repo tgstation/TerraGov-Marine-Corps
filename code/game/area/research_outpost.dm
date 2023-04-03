@@ -34,6 +34,7 @@
 	icon_state="orange"
 	ceiling = CEILING_GLASS
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/outpost/cargo/office
 	name = "Cargo Office"
@@ -50,6 +51,7 @@
 	name = "Cargo Engineering"
 	icon_state="orange"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_REQ
 
 // Cave Areas, cave.
 
@@ -58,7 +60,6 @@
 	icon_state="cave"
 	ceiling = CEILING_NONE
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/outpost/caves/central
 	name = "Central Caves"
@@ -69,12 +70,14 @@
 	name = "Northern Caves"
 	icon_state="cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/outpost/caves/north_east
 	// Note: This is where the hive is
 	name = "North Eastern Caves"
 	icon_state="cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/outpost/caves/east
 	name = "Eastern Caves"
@@ -105,6 +108,7 @@
 	name = "North Western Caves"
 	icon_state="cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 
 
@@ -267,6 +271,7 @@
 	icon_state="Sleep"
 	ceiling = CEILING_GLASS
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LIVING
 
 
 // Brig
@@ -276,6 +281,7 @@
 	icon_state="brig"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/outpost/brig/gear_room
 	name = "Brig Gear Room"
@@ -301,6 +307,7 @@
 	icon_state="purple"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/outpost/science/research
 	name = "Research and Development"
@@ -370,3 +377,4 @@
 	name = "Engine Room"
 	icon_state="engine"
 	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_ENGI_CAVE

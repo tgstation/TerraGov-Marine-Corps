@@ -23,18 +23,16 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "af" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "96"
-	},
+/turf/closed/shuttle/dropship1/window,
 /area/shuttle/dropship/alamo)
 "ag" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "97"
+/turf/closed/shuttle/dropship1/window{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "ah" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "98"
+/turf/closed/shuttle/dropship1/window{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "ai" = (
@@ -42,24 +40,26 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aj" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "92"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "ak" = (
 /obj/machinery/computer/security/dropship/one,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship1/panel,
 /area/shuttle/dropship/alamo)
 "al" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship1/panel{
+	dir = 4
+	},
 /area/shuttle/dropship/alamo)
 "an" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "94"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "ao" = (
@@ -80,9 +80,7 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ar" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "86"
-	},
+/turf/closed/shuttle/dropship1/interiorwindow,
 /area/shuttle/dropship/alamo)
 "as" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -109,8 +107,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "av" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "89"
+/turf/closed/shuttle/dropship1/interiorwindow{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "aw" = (
@@ -128,23 +126,11 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ay" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "75"
-	},
-/area/shuttle/dropship/alamo)
-"az" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "76"
-	},
-/area/shuttle/dropship/alamo)
-"aA" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "81"
-	},
+/turf/closed/shuttle/dropship1/cornersalt2,
 /area/shuttle/dropship/alamo)
 "aB" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "78"
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "aC" = (
@@ -152,18 +138,16 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aD" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "80"
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "aE" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "77"
-	},
+/turf/closed/shuttle/dropship1/edge,
 /area/shuttle/dropship/alamo)
 "aF" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "83"
+/turf/closed/shuttle/dropship1/cornersalt2{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "aG" = (
@@ -171,8 +155,8 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aH" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "72"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "aI" = (
@@ -188,11 +172,6 @@
 "aK" = (
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
-"aL" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
-/area/shuttle/dropship/alamo)
 "aM" = (
 /obj/item/radio/intercom/dropship,
 /turf/open/shuttle/dropship/seven,
@@ -204,8 +183,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aO" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "73"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "aP" = (
@@ -213,22 +192,20 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aQ" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "66"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "aR" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "67"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "aS" = (
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "aT" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "68"
-	},
+/turf/closed/shuttle/dropship1/aisle,
 /area/shuttle/dropship/alamo)
 "aU" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -241,42 +218,36 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aV" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "69"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "aW" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "70"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "aX" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aY" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "62"
-	},
+/turf/closed/shuttle/dropship1/finleft,
 /area/shuttle/dropship/alamo)
 "aZ" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "63"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "ba" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "64"
-	},
+/turf/closed/shuttle/dropship1/finright,
 /area/shuttle/dropship/alamo)
 "bb" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 4;
-	icon_state = "equip_base_r_wing"
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/template_noop,
@@ -304,25 +275,15 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"bf" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "52"
-	},
-/area/shuttle/dropship/alamo)
 "bg" = (
 /obj/docking_port/mobile/marine_dropship/one,
-/turf/closed/shuttle/dropship1{
-	icon_state = "63"
-	},
-/area/shuttle/dropship/alamo)
-"bh" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "54"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bi" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "50"
+/turf/closed/shuttle/dropship1/edge{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bj" = (
@@ -335,8 +296,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bk" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "53"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "bl" = (
@@ -349,14 +310,14 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bm" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "51"
+/turf/closed/shuttle/dropship1/edge{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "bn" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/shuttle/dropship1{
-	icon_state = "63"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bo" = (
@@ -371,9 +332,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/dropship/alamo)
 "br" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "47"
-	},
+/turf/closed/shuttle/dropship1/cornersalt,
 /area/shuttle/dropship/alamo)
 "bs" = (
 /obj/structure/dropship_piece/one/corner/middleright,
@@ -384,13 +343,13 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "bu" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "42"
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "bv" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "48"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "bw" = (
@@ -411,9 +370,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "by" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "43"
-	},
+/turf/closed/shuttle/dropship1/edge/alt,
 /area/shuttle/dropship/alamo)
 "bD" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -434,13 +391,11 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "bG" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "34"
-	},
+/turf/closed/shuttle/dropship1/enginefour,
 /area/shuttle/dropship/alamo)
 "bH" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "35"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "bI" = (
@@ -448,58 +403,52 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bJ" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "24"
-	},
+/turf/closed/shuttle/dropship1/wall,
 /area/shuttle/dropship/alamo)
 "bK" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "38"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bL" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "39"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "bM" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "28"
-	},
+/turf/closed/shuttle/dropship1/enginethree,
 /area/shuttle/dropship/alamo)
 "bN" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "29"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "bO" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "30"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bP" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "31"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "bQ" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "32"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "bR" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "33"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bS" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "22"
-	},
+/turf/closed/shuttle/dropship1/enginetwo,
 /area/shuttle/dropship/alamo)
 "bT" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "23"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "bW" = (
@@ -507,9 +456,7 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "bX" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "10"
-	},
+/turf/closed/shuttle/dropship1/interiormisc,
 /area/shuttle/dropship/alamo)
 "bY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
@@ -525,8 +472,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ca" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "14"
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "cb" = (
@@ -566,8 +513,13 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "dS" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "26"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
+"gB" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "iV" = (
@@ -596,21 +548,23 @@
 /turf/open/shuttle/dropship/ten,
 /area/shuttle/dropship/alamo)
 "FA" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "27"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/one,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship1/panel{
+	dir = 1
+	},
 /area/shuttle/dropship/alamo)
 "QK" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "Zx" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "25"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 
@@ -648,7 +602,7 @@ aR
 aY
 ac
 ac
-bf
+bu
 bi
 bu
 bt
@@ -665,7 +619,7 @@ ao
 ao
 ao
 aq
-az
+aE
 aI
 bD
 aI
@@ -688,7 +642,7 @@ aa
 ae
 aj
 ar
-aA
+aE
 aJ
 aS
 aS
@@ -735,7 +689,7 @@ ag
 Ki
 at
 aC
-aL
+aK
 aT
 bn
 aZ
@@ -803,7 +757,7 @@ ao
 ao
 ao
 aw
-az
+aE
 aN
 aU
 aN
@@ -832,7 +786,7 @@ aV
 ba
 bc
 bc
-bh
+gB
 bm
 by
 bs

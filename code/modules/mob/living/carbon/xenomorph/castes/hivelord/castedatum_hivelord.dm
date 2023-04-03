@@ -29,15 +29,16 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/gorger)
+	evolves_to = list(/mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/gorger)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_IS_BUILDER|CASTE_CAN_BECOME_KING
-
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
+	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 15, "acid" = 10)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -45,26 +46,32 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Minimap Icon *** //
 	minimap_icon = "hivelord"
 
 	// *** Abilities *** //
+
+	resin_max_range = 1 //Hivelord can place resin structures from 1 tile away
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/secrete_resin/ranged,
+		/datum/action/xeno_action/activable/secrete_resin/hivelord,
 		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,
@@ -94,7 +101,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 15, "rad" = 15, "fire" = 20, "acid" = 15)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 15, FIRE = 20, ACID = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -125,7 +132,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 18, FIRE = 25, ACID = 18)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -157,7 +164,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -187,7 +194,7 @@
 	max_health = 350
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -198,19 +205,23 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/secrete_resin/ranged,
+		/datum/action/xeno_action/activable/secrete_resin/hivelord,
 		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/sow,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,

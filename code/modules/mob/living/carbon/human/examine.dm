@@ -1,7 +1,7 @@
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	if (isxeno(user))
-		var/msg = "<span class='info'>*---------*\nThis is "
+		var/msg = "<span class='info'>This is "
 		if(icon)
 			msg += "[icon2html(icon, user)] "
 		msg += "<b>[name]</b>!\n"
@@ -12,8 +12,6 @@
 			msg += "This creature is impregnated. \n"
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
-		if (headbitten)
-			msg += "This creature has been purged of vital organs in the head.\n"
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
 			msg += "It has a little one on its face.\n"
 		if(on_fire)
@@ -26,7 +24,7 @@
 			msg += "Transvitox: 40% brute/burn injuries received are converted to toxin\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
-		msg += "*---------*</span>"
+		msg += "</span>"
 		return list(msg)
 
 	var/skipgloves = 0
@@ -60,7 +58,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	var/msg = "<span class='info'>*---------*\nThis is "
+	var/msg = "<span class='info'>This is "
 
 	if(icon)
 		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
@@ -219,7 +217,7 @@
 				msg += "[span_deadsay("[t_He] [t_has] gone cold.")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
-		addtimer(CALLBACK(src, .proc/take_pulse, user), 15)
+		addtimer(CALLBACK(src, PROC_REF(take_pulse), user), 15)
 
 	msg += "<span class='warning'>"
 
@@ -444,9 +442,6 @@
 	if(chestburst == 2)
 		msg += "[span_warning("<b>[t_He] has a giant hole in [t_his] chest!</b>")]\n"
 
-	if(headbitten)
-		msg += "[span_warning("<b>[t_He] has a giant hole in [t_his] head!</b>")]\n"
-
 
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
@@ -525,7 +520,7 @@
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += span_highdanger("<B>This player has been slept by staff.</B>\n")
 
-	msg += "*---------*</span>"
+	msg += "</span>"
 
 	return list(msg)
 
@@ -545,7 +540,7 @@
 		switch(hudtype)
 			if("security")
 				//only MPs can use the security HUD glasses's functionalities
-				if(H.skills.getRating("police") >= SKILL_POLICE_MP)
+				if(H.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 					return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)

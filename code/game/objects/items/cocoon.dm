@@ -9,6 +9,7 @@
 	max_integrity = 400
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
+	resistance_flags = UNACIDABLE
 	///Which hive it belongs too
 	var/hivenumber
 	///What is inside the cocoon
@@ -29,8 +30,8 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/life_draining_over, null, TRUE), cocoon_life_time)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
+	addtimer(CALLBACK(src, PROC_REF(life_draining_over), null, TRUE), cocoon_life_time)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(life_draining_over))
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -63,6 +64,8 @@
 	if(must_release_victim)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_points(larva_point_reward)
+		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
+		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()

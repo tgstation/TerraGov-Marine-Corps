@@ -3,6 +3,7 @@
 	desc = "A special device that, when activated, produces a pair of holographic copies of the user."
 	icon_state = "delivery"
 	item_state = "delivery"
+	dangerous = FALSE
 	///the parent to be copied
 	var/mob/living/current_user
 	///How long the illusory fakes last
@@ -59,7 +60,7 @@
 	life_span = world.time+lifespan
 	faction = parent_mob.faction
 	setDir(parent.dir)
-	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/on_parent_del)
+	RegisterSignal(parent, COMSIG_PARENT_QDELETING, PROC_REF(on_parent_del))
 
 /mob/living/simple_animal/hostile/illusion/proc/on_parent_del()
 	SIGNAL_HANDLER

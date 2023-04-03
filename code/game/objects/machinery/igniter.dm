@@ -127,7 +127,7 @@
 
 	for(var/obj/machinery/sparker/M in GLOB.machines)
 		if (M.id == src.id)
-			INVOKE_ASYNC(M, /obj/machinery/sparker.proc/ignite)
+			INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/machinery/sparker, ignite))
 
 	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == src.id)
@@ -135,7 +135,7 @@
 			M.on = !( M.on )
 			M.icon_state = text("igniter[]", M.on)
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	icon_state = "launcherbtt"
 	active = 0

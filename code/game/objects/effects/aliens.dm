@@ -41,7 +41,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
@@ -55,8 +55,8 @@
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
 	xeno_owner = _xeno_owner
-	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
-	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
+	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_mob_owner))
+	RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(atom_enter_turf))
 	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
 /obj/effect/xenomorph/spray/Destroy()
@@ -94,21 +94,21 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(take_overall_damage), acid_damage, BURN, ACID, FALSE, FALSE, TRUE, 0, 3)
 		to_chat(src, span_danger("You are scalded by the burning acid!"))
 		return
 	to_chat(src, span_danger("Your feet scald and burn! Argh!"))
 	if(!(species.species_flags & NO_PAIN))
-		INVOKE_ASYNC(src, .proc/emote, "pain")
+		INVOKE_ASYNC(src, PROC_REF(emote), "pain")
 
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
-	var/armor_block = run_armor_check(affecting, "acid")
-	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block)
+	var/armor_block = get_soft_armor("acid", affecting)
+	INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, acid_damage/2, FALSE, FALSE, armor_block)
 
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
-	armor_block = run_armor_check(affecting, "acid")
-	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
+	armor_block = get_soft_armor("acid", affecting)
+	INVOKE_ASYNC(affecting, TYPE_PROC_REF(/datum/limb, take_damage_limb), 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
 
 
 /obj/effect/xenomorph/spray/process()
@@ -133,21 +133,21 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 0.004 //base speed, normal
+	var/acid_strength = 0.04 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.0016 //40% of base speed
+	acid_strength = 0.016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.01 //250% normal speed
+	acid_strength = 0.1 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
@@ -188,20 +188,24 @@
 			WF.deconstruct(FALSE)
 
 		else
-			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
+			if(length(acid_t.contents)) //Hopefully won't auto-delete mobs inside melted stuff..
 				for(var/mob/M in acid_t.contents)
-					if(acid_t.loc) M.forceMove(acid_t.loc)
-			qdel(acid_t)
-			acid_t = null
+					if(acid_t.loc)
+						M.forceMove(get_turf(acid_t))
+			QDEL_NULL(acid_t)
 
 		qdel(src)
 		return
 
 	switch(strength_t - ticks)
-		if(6) visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
-		if(4) visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
-		if(2) visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
-		if(0 to 1) visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
+		if(0 to 1)
+			visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
+		if(2)
+			visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
+		if(4)
+			visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
+		if(6)
+			visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
 
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"

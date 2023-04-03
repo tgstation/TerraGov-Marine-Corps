@@ -11,6 +11,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset
 	var/_abstract = /datum/asset
+	var/cached_serialized_url_mappings
+	var/cached_serialized_url_mappings_transport_type
 
 /datum/asset/New()
 	GLOB.asset_datums[type] = src
@@ -18,6 +20,14 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/proc/get_url_mappings()
 	return list()
+
+/// Returns a cached tgui message of URL mappings
+/datum/asset/proc/get_serialized_url_mappings()
+	if (isnull(cached_serialized_url_mappings) || cached_serialized_url_mappings_transport_type != SSassets.transport.type)
+		cached_serialized_url_mappings = TGUI_CREATE_MESSAGE("asset/mappings", get_url_mappings())
+		cached_serialized_url_mappings_transport_type = SSassets.transport.type
+
+	return cached_serialized_url_mappings
 
 /datum/asset/proc/register()
 	return
@@ -194,7 +204,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	for (var/icon_state_name in icon_states(I))
 		for (var/direction in directions)
-			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]-" : ""
+			var/prefix2 = (length(directions) > 1) ? "[dir2text(direction)]-" : ""
 			Insert("[prefix][prefix2][icon_state_name]", I, icon_state=icon_state_name, dir=direction)
 
 /datum/asset/spritesheet/proc/css_tag()
@@ -268,7 +278,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 			if (!asset)
 				continue
 			asset = fcopy_rsc(asset) //dedupe
-			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]." : ""
+			var/prefix2 = (length(directions) > 1) ? "[dir2text(direction)]." : ""
 			var/asset_name = SANITIZE_FILENAME("[prefix].[prefix2][icon_state_name].png")
 			if (generic_icon_names)
 				asset_name = "[generate_asset_name(asset)].png"

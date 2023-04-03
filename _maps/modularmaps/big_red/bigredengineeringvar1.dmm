@@ -234,7 +234,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "nP" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "os" = (
 /obj/effect/decal/cleanable/dirt,
@@ -277,7 +277,7 @@
 /area/bigredv2/outside/engineering)
 "qu" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -336,7 +336,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "tQ" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "tW" = (
@@ -428,7 +428,7 @@
 /area/bigredv2/outside/engineering)
 "xW" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "yb" = (
@@ -508,7 +508,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
 "BP" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
@@ -613,7 +613,7 @@
 /area/bigredv2/outside/engineering)
 "GD" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "GE" = (
@@ -629,7 +629,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "HL" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)

@@ -46,6 +46,19 @@
 #define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
 #define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bikee_fuel_message"
 #define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
+#define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
+#define COOLDOWN_RAVAGER_FLAMER_ACT "cooldown_ravager_flamer_act"
+#define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
+
+//Mecha cooldowns
+#define COOLDOWN_MECHA "mecha"
+#define COOLDOWN_MECHA_MESSAGE "mecha_message"
+#define COOLDOWN_MECHA_EQUIPMENT(type) ("mecha_equip_[type]")
+#define COOLDOWN_MECHA_ARMOR "mecha_armor"
+#define COOLDOWN_MECHA_MELEE_ATTACK "mecha_melee"
+#define COOLDOWN_MECHA_SMOKE "mecha_smoke"
+#define COOLDOWN_MECHA_SKYFALL "mecha_skyfall"
+#define COOLDOWN_MECHA_MISSILE_STRIKE "mecha_missile_strike"
 
 //// COOLDOWN SYSTEMS
 /*
@@ -84,7 +97,7 @@
 #define COMSIG_CD_STOP(cd_index) "cooldown_[cd_index]"
 #define COMSIG_CD_RESET(cd_index) "cd_reset_[cd_index]"
 
-#define TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time))
+#define TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_cooldown), cd_source, cd_index), cd_time))
 
 #define TIMER_COOLDOWN_CHECK(cd_source, cd_index) LAZYACCESS(cd_source.cooldowns, cd_index)
 
@@ -97,7 +110,7 @@
  * A bit more expensive than the regular timers, but can be reset before they end and the time left can be checked.
  */
 
-#define S_TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time, TIMER_STOPPABLE))
+#define S_TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_cooldown), cd_source, cd_index), cd_time, TIMER_STOPPABLE))
 
 #define S_TIMER_COOLDOWN_RESET(cd_source, cd_index) reset_cooldown(cd_source, cd_index)
 
