@@ -25,10 +25,6 @@
 #define MESSAGE_SQUAD "Message all marines in a squad"
 #define SWITCH_SQUAD_NEAR "Move all nearby marines to a squad"
 
-#define RALLY_MARK "Place a rally mark"
-#define ATTACK_MARK "Place an attack mark"
-#define DEFEND_MARK "Place a defend mark"
-#define RETREAT_MARK "Place a retreat mark"
 
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
@@ -777,8 +773,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			ANNOUNCE_TEXT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			PLACE_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-		)
+				)
 
 		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
@@ -803,14 +798,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 //					if(MESSAGE_SQUAD)
 						//Need to open squad menu here. Maybe do it as a function?
 //					if(SWITCH_SQUAD_NEAR)
-
-			if(PLACE_MARK)
-				radial_options = list(
-					RALLY_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-					ATTACK_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-					DEFEND_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-					RETREAT_MARK = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-				)
 
 
 
