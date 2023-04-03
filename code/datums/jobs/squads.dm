@@ -392,9 +392,13 @@
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
+	var/header = "AUTOMATED CIC NOTICE:"
+	if(sender)
+		header = "CIC SQUAD MESSAGE FROM [sender.name]:"
+
 	for(var/i in marines_list)
 		var/mob/living/L = i
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC SQUAD MESSAGE FROM [sender.name]:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
