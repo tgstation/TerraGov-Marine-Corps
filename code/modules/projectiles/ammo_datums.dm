@@ -1253,7 +1253,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		X.use_plasma(20)
 
 /datum/ammo/bullet/spottingrifle/tungsten
-	name = "smart tanglefoot spotting bullet"
+	name = "smart tungsten spotting bullet"
 	hud_state = "spotrifle_tungsten"
 	damage = 10
 	sundering = 15
