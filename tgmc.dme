@@ -709,6 +709,7 @@
 #include "code\game\objects\items\reagent_containers\food\donuts.dm"
 #include "code\game\objects\items\reagent_containers\food\drinks.dm"
 #include "code\game\objects\items\reagent_containers\food\frozen.dm"
+#include "code\game\objects\items\reagent_containers\food\mexican.dm"
 #include "code\game\objects\items\reagent_containers\food\piecake.dm"
 #include "code\game\objects\items\reagent_containers\food\pizzapasta.dm"
 #include "code\game\objects\items\reagent_containers\food\sandwich.dm"

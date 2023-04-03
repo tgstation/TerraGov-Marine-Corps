@@ -109,8 +109,8 @@
 /area/bigredv2/outside/general_store)
 "hf" = (
 /obj/structure/table,
-/obj/item/toy/sword,
 /obj/item/toy/gun,
+/obj/item/toy/katana,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "hA" = (
@@ -246,7 +246,7 @@
 "oM" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "oN" = (
@@ -385,7 +385,7 @@
 "vs" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
@@ -421,8 +421,8 @@
 /area/bigredv2/outside/general_store)
 "ym" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -507,7 +507,7 @@
 /area/bigredv2/outside/general_store)
 "Ev" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -544,6 +544,11 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"FW" = (
+/obj/structure/table,
+/obj/item/toy/plush/carp,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "GR" = (
@@ -669,8 +674,8 @@
 /area/bigredv2/outside/general_store)
 "Ns" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -686,7 +691,7 @@
 /area/bigredv2/outside/general_store)
 "Oj" = (
 /obj/structure/table,
-/obj/item/toy/sword,
+/obj/item/toy/beach_ball,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "Oq" = (
@@ -1020,7 +1025,7 @@ zL
 Ad
 sA
 hX
-Oj
+FW
 SM
 "}
 (8,1,1) = {"

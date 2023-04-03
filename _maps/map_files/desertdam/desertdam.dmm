@@ -28004,7 +28004,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAk" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAm" = (
@@ -28055,7 +28055,7 @@
 "dBc" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
@@ -28064,8 +28064,8 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBd" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/prison/kitchen,
@@ -28073,7 +28073,7 @@
 "dBf" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBh" = (
@@ -34875,7 +34875,7 @@
 "gQS" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -41428,7 +41428,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/reagent_containers/food/snacks/soup/stew,
 /obj/item/tool/kitchen/utensil/spoon,
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 10
@@ -60022,8 +60022,8 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "vjF" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
