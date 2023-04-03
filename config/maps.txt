@@ -66,3 +66,7 @@ endmap
 map deltastation
 	minplayers 60
 endmap
+
+map patricks_rest
+	minplayers 25
+endmap

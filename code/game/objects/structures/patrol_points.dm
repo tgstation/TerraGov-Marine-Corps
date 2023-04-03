@@ -107,3 +107,35 @@
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)
 	QDEL_IN(src, 5)
+
+/obj/structure/patrol_point/dropship
+	name = "UD-4L Cheyenne Dropship"
+	desc = "A versatile dropship and tactical transport employed in a primary role in the TGMC."
+	icon = 'icons/Marine/ud.dmi'
+	icon_state = "ud"
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+	pixel_x = -48
+	bound_height = 224
+	density = TRUE
+	var/initial_id
+
+/obj/structure/patrol_point/dropship/examine(mob/user)
+	. = ..()
+	. += span_notice("Click to enter dropship.")
+
+/obj/structure/patrol_point/dropship/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR, PROC_REF(change_id))
+	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR_OFF, PROC_REF(revert_id))
+	id = rand(1, 4)
+	initial_id = id
+
+/obj/structure/patrol_point/dropship/proc/change_id()
+	id = 5
+	create_link()
+
+/obj/structure/patrol_point/dropship/proc/revert_id()
+	id = initial_id
+	create_link()

@@ -488,3 +488,13 @@
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
 	return ..()
+
+/obj/effect/landmark/psy_tower
+	name = "Psy tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "psy"
+
+/obj/effect/landmark/psy_tower/Initialize()
+	..()
+	GLOB.psy_towers += loc
+	return INITIALIZE_HINT_QDEL

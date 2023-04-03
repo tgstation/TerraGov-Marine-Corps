@@ -418,6 +418,7 @@
 #include "code\datums\gamemodes\game_mode.dm"
 #include "code\datums\gamemodes\infestation.dm"
 #include "code\datums\gamemodes\nuclear_war.dm"
+#include "code\datums\gamemodes\psychicsensors.dm"
 #include "code\datums\gamemodes\sensor_capture.dm"
 #include "code\datums\greyscale\_greyscale_config.dm"
 #include "code\datums\greyscale\greyscale_configs.dm"

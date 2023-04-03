@@ -66,5 +66,9 @@
 	density = TRUE
 	opacity = TRUE
 
+/obj/structure/cargo_container/lockmart
+	icon_state = "lockmart"
 
+/obj/structure/cargo_container/seegson
+	icon_state = "seegson"
 

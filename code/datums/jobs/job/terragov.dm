@@ -3,6 +3,8 @@
 
 /datum/job/terragov/radio_help_message(mob/M)
 	. = ..()
+	if(ispsysensorgamemode(SSticker.mode))
+		to_chat(M, span_highdanger("Your platoon has orders to activate the psychic inhibitors to secure the colony. High Command considers the successful activation of all psychic inhibitors a major victory."))
 	if(istype(SSticker.mode, /datum/game_mode/combat_patrol))
 		if(issensorcapturegamemode(SSticker.mode))
 			to_chat(M, span_highdanger("Your platoon has orders to attack sensor towers in the AO and reactivate them in order to alert other TerraGov forces in the sector about the invasion. High Command considers the successful reactivation of the sensor towers a major victory"))

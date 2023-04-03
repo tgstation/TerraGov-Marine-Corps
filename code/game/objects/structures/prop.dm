@@ -1475,6 +1475,16 @@
 	icon_state = "lightstick_spoke1"
 	density = FALSE
 
+/obj/structure/prop/mainship/gelida/lightstick/on
+	name = "light stick"
+	desc = "A post with a bulb at the top, used for lighting areas."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "lightstick_spoke1"
+	density = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	light_range = 1
+	light_color = LIGHT_COLOR_FLARE
+
 /obj/structure/prop/mainship/gelida/planterbox
 	name = "plant box"
 	desc = "A metallic box used for holding growing plants, this one is empty."
@@ -1673,6 +1683,7 @@
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "biomass_turbine"
 	density = TRUE
+	bound_height = 96
 
 
 //TG BROKEN VENDOR PROPS
@@ -1952,6 +1963,73 @@
 	density = FALSE
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "launcher"
+
+/obj/structure/prop/printer
+	name = "printer"
+	desc = "Machine for printing text or pictures onto paper."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "printer"
+	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/power_transformer
+	name = "Power transformer"
+	desc = "Transfers electrical energy from one electrical circuit to another circuit, or multiple circuits."
+	icon = 'icons/obj/structures/power_transformer.dmi'
+	icon_state = "transformer"
+	density = TRUE
+	bound_width = 64
+	bound_height = 64
+
+/obj/structure/prop/microscope
+	name = "Microscope"
+	icon = 'icons/obj/machines/virology.dmi'
+	icon_state = "microscope"
+	density = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/survey
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "surveying_device"
+	name = "Surveying Device"
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/measure
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "measuring_device"
+	name = "Measuring Device"
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/big_science
+	icon = 'icons/obj/science_machines_64.dmi'
+	density = TRUE
+	anchored = TRUE
+	bound_width = 64
+
+/obj/structure/prop/big_science/modifier
+	icon_state = "modifier"
+	name = "Modifier"
+
+/obj/structure/prop/big_science/chemstorage
+	name = "Chem Storage"
+	icon_state = "chemstorage"
+
+/obj/structure/prop/big_science/operate
+	name = "Operator"
+	icon_state = "operator"
+
+/obj/structure/prop/big_science/protolathebig
+	name = "Protolathe"
+	icon_state = "protolathe"
+
+/obj/structure/prop/big_science/medilathe
+	name = "Medilathe"
+	icon_state = "medilathe"
+
+/obj/structure/prop/comm_tower
+	name = "Communication tower"
+	icon = 'icons/obj/structures/comm_tower.dmi'
+	icon_state = "comm_tower"
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

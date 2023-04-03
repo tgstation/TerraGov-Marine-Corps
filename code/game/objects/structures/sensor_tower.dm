@@ -101,7 +101,7 @@
 /obj/structure/sensor_tower_patrol/update_icon_state()
 	icon_state = initial(icon_state)
 	if(current_timer || activated)
-		icon_state += "_loyalist"
+		icon_state += "_active"
 
 /obj/structure/sensor_tower_patrol/attack_hand(mob/living/user)
 	if(!ishuman(user))

@@ -31,3 +31,7 @@ endmode
 mode Sensor Capture
 	requiredplayers 2
 endmode
+
+mode Psychic Sensors
+	requiredplayers 2
+endmode
