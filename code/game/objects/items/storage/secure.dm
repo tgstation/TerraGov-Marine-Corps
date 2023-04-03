@@ -11,7 +11,7 @@
 	var/l_hacking = 0
 	var/open = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
 
 /obj/item/storage/secure/examine(mob/user)

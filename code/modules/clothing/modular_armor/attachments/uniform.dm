@@ -139,7 +139,7 @@
 /obj/item/storage/internal/holster
 	storage_slots = 4
 	max_storage_space = 10
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(/obj/item/weapon/gun = 1)
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
