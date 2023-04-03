@@ -861,14 +861,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 50
+	damage = 49.9
 	damage_falloff = 0.5
 	penetration = 15
 	sundering = 7
 
 /datum/ammo/bullet/shotgun/flechette/flechette_spread
 	name = "additional flechette"
-	damage = 40
+	damage = 39.9
 	sundering = 5
 
 /datum/ammo/bullet/shotgun/buckshot
@@ -883,7 +883,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 39.9
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
@@ -896,7 +896,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 39.9
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
@@ -940,7 +940,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_slug"
 	shell_speed = 3
 	max_range = 15
-	damage = 40
+	damage = 39.9
 	penetration = 20
 
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
