@@ -24,6 +24,7 @@
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
+	maximum_active_caste = 3
 
 	deevolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/carrier)
 

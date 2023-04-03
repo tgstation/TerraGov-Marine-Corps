@@ -14,6 +14,7 @@
 	plasma_gain = 40
 	max_health = 320
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
+	maximum_active_caste = 3
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 
 	deevolves_to = /mob/living/carbon/xenomorph/wraith
