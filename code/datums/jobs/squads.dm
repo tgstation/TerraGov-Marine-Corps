@@ -392,24 +392,14 @@
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
-	var/text = span_notice("<B>\[Overwatch\]:</b> [format_message(message, sender)]")
 	for(var/i in marines_list)
 		var/mob/living/L = i
-		message_member(L, text, sender)
-
-
-/datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
-	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
-		return FALSE
-	return message_member(squad_leader, span_notice("<B>\[SL Overwatch\]:</b> [format_message(message, sender)]"), sender)
-
+		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC SQUAD MESSAGE FROM [sender.name]:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
 		return
-	if(sender)
-		target.playsound_local(target, 'sound/effects/radiostatic.ogg')
-	to_chat(target, message)
+	marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.name]:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 	return TRUE
 
 
