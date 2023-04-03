@@ -33,6 +33,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
+	a_intent = INTENT_HELP
 	var/obj/item/storage/backpack/mule_pack/storage_pack = /obj/item/storage/backpack/mule_pack
 
 /mob/living/simple_animal/mule_bot/Initialize()
