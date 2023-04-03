@@ -184,7 +184,7 @@
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	var/forced_faction
-	if(SSticker.mode.flags_round_type & MODE_TWO_FACTIONS)
+	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
 		if(faction in SSticker.mode.get_joinable_factions(FALSE))
 			forced_faction = faction
 		else

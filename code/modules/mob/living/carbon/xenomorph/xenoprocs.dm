@@ -173,7 +173,7 @@
 		if(siloless_countdown)
 			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
 		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
-		var/datum/game_mode/infestation/psy_sensors/psy_mode = SSticker.mode
+		var/datum/game_mode/psy_sensors/psy_mode = SSticker.mode
 		if(issensorcapturegamemode(SSticker.mode))
 			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
 		if(ispsysensorgamemode(SSticker.mode))
