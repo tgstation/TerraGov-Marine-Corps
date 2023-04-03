@@ -21,9 +21,6 @@
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
-	// Moving around increases germ_level faster
-	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
-		germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
 	if(user.incapacitated(TRUE))
