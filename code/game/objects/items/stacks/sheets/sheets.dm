@@ -1,5 +1,9 @@
 /obj/item/stack/sheet
 	name = "sheet"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/stacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/stacks_right.dmi',
+	)
 	layer = UPPER_ITEM_LAYER
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 5

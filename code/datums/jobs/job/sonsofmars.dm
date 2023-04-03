@@ -806,6 +806,9 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_SUIT)
 
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+
 /datum/outfit/job/som/ert/veteran/shotgunner
 	belt = /obj/item/storage/belt/shotgun/som/flechette
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
@@ -827,6 +830,9 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 //SOM Specialist - special weapon vets
 /datum/job/som/ert/specialist
@@ -958,7 +964,7 @@ You are also in charge of communicating with command and letting them know about
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	belt = /obj/item/belt_harness
 	back = /obj/item/cell/lasgun/volkite/powerpack
-	l_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/storage/pouch/general/large/som
 
 /datum/outfit/job/som/ert/leader/caliver_pack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

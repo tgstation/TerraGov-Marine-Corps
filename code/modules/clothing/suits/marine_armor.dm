@@ -129,16 +129,22 @@
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
+	obj_flags = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddElement(/datum/element/limb_support, supporting_limbs)
-	SSmonitor.stats.b18_in_use += src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	SSmonitor.stats.b18_in_use -= src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b18_in_use -= src
 	return ..()
+
+/obj/item/clothing/suit/storage/marine/specialist/valhalla
+	obj_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -147,14 +153,20 @@
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 50, ENERGY = 55, BOMB = 100, BIO = 55, FIRE = 75, ACID = 65)
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	obj_flags = AUTOBALANCE_CHECK
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	SSmonitor.stats.b17_in_use += src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b17_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
-	SSmonitor.stats.b17_in_use -= src
+	if(obj_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.b17_in_use -= src
 	return ..()
+
+/obj/item/clothing/suit/storage/marine/B17/valhalla
+	obj_flags = NONE
 
 ////////////////////////////////
 
@@ -201,7 +213,7 @@
 /obj/item/clothing/suit/storage/marine/veteran
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
@@ -243,7 +255,7 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDELOWHAIR
 
-/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc
+/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	name = "\improper PMC gunner armor"
 	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
 	icon_state = "pmc_heavyarmor"
@@ -272,7 +284,7 @@
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
 	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)

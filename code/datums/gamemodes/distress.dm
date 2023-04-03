@@ -35,6 +35,9 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		if(isxenolarva(xeno)) // Larva
+			xeno.evolution_stored = xeno.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
 	. = ..()

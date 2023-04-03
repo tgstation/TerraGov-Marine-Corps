@@ -101,7 +101,7 @@
 	if(direct)
 		S.channel = SSsounds.random_available_channel()
 		S.volume = volume_override || volume //Use volume as fallback if theres no override
-	for(var/i in 1 to atoms_cache.len)
+	for(var/i in 1 to length(atoms_cache))
 		var/atom/thing = atoms_cache[i]
 		if(direct)
 			SEND_SOUND(thing, S)

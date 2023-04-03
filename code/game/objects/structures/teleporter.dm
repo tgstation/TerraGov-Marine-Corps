@@ -72,7 +72,7 @@
 		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
 			teleporting += thing
 
-	if(!teleporting.len)
+	if(!length(teleporting))
 		to_chat(user, span_warning("No teleportable content was detected on [src]!"))
 		return
 

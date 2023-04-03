@@ -1428,7 +1428,7 @@
 		to_chat(usr,"[A.type]")
 		to_chat(usr,"[A.name]")
 
-		if(A.objectives.len)
+		if(length(A.objectives))
 			for(var/datum/objective/O in A.objectives)
 				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
 				to_chat(usr,"--------------------------------")

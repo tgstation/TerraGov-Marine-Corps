@@ -146,13 +146,13 @@
 		new /obj/item/clothing/mask/cigarette(src)
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
+	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_selected == "mouth" && length(contents) > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user), user)
@@ -196,7 +196,7 @@
 	new /obj/item/tool/lighter(src)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
+	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
@@ -238,14 +238,14 @@
 	icon_type = "cigar"
 
 /obj/item/storage/fancy/cigar/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
+	icon_state = "[initial(icon_state)][length(contents)]"
 
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_selected == "mouth" && length(contents) > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user), user)

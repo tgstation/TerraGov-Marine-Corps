@@ -88,6 +88,10 @@
 	name = "photo"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "photo"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	var/datum/picture/picture
@@ -401,9 +405,9 @@
 
 	var/list/sorted = list()
 	var/j
-	for(var/i in 1 to atoms.len)
+	for(var/i in 1 to length(atoms))
 		var/atom/c = atoms[i]
-		for(j = sorted.len, j > 0, --j)
+		for(j = length(sorted), j > 0, --j)
 			var/atom/c2 = sorted[j]
 			if(c2.layer <= c.layer)
 				break

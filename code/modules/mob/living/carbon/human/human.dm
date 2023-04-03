@@ -40,8 +40,7 @@
 	randomize_appearance()
 
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
-	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), PROC_REF(async_do_quick_equip))
-	RegisterSignal(src, COMSIG_KB_QUICKEQUIPALT, PROC_REF(async_do_quick_equip_alt))
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
@@ -957,7 +956,7 @@
 			H.turn_light(src, FALSE, 0,FALSE, forced, light_again)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
-			if(istype(L, /obj/item/flashlight/flare))
+			if(istype(L, /obj/item/explosive/grenade/flare/civilian))
 				continue
 			if(L.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
@@ -970,7 +969,7 @@
 				lit_flashlight.turn_light(src, FALSE)
 				light_off++
 	if(flares)
-		for(var/obj/item/flashlight/flare/F in contents)
+		for(var/obj/item/explosive/grenade/flare/civilian/F in contents)
 			if(F.light_on)
 				goes_out++
 			F.turn_off(src)

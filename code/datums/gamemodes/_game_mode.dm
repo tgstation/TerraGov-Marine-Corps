@@ -100,8 +100,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
-	while(GLOB.landmarks_round_start.len)
-		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
+	while(length(GLOB.landmarks_round_start))
+		L = GLOB.landmarks_round_start[length(GLOB.landmarks_round_start)]
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
@@ -267,13 +267,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	set waitfor = FALSE
 
 	if(flags_round_type & MODE_LATE_OPENING_SHUTTER_TIMER)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
 		var/turf/T
-		while(GLOB.xeno_spawn_protection_locations.len)
-			T = GLOB.xeno_spawn_protection_locations[GLOB.xeno_spawn_protection_locations.len]
+		while(length(GLOB.xeno_spawn_protection_locations))
+			T = GLOB.xeno_spawn_protection_locations[length(GLOB.xeno_spawn_protection_locations)]
 			GLOB.xeno_spawn_protection_locations.len--
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
@@ -322,44 +322,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			to_chat(M, "<br><br><h1>[span_danger("Failed to find a valid location for End of Round Deathmatch. Please do not grief.")]</h1><br><br>")
 			continue
 
-		var/mob/living/L
-		if(!isliving(M) || isAI(M))
-			L = new /mob/living/carbon/human(picked)
-			M.mind.transfer_to(L, TRUE)
-		else
-			L = M
-			INVOKE_ASYNC(L, TYPE_PROC_REF(/atom/movable, forceMove), picked)
-
-		L.mind.bypass_ff = TRUE
-		L.revive()
-
-		if(isxeno(L))
-			var/mob/living/carbon/xenomorph/X = L
+		if(isxeno(M))
+			var/mob/living/carbon/xenomorph/X = M
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			INVOKE_ASYNC(X, TYPE_PROC_REF(/atom/movable, forceMove), picked)
 
-		else if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(!H.w_uniform)
-				var/job = pick(
-					/datum/job/clf/leader,
-					/datum/job/clf/standard,
-					/datum/job/freelancer/leader,
-					/datum/job/freelancer/grenadier,
-					/datum/job/freelancer/standard,
-					/datum/job/upp/leader,
-					/datum/job/upp/heavy,
-					/datum/job/upp/standard,
-					/datum/job/som/ert/leader,
-					/datum/job/som/ert/veteran,
-					/datum/job/som/ert/standard,
-					/datum/job/pmc/leader,
-					/datum/job/pmc/standard,
-				)
-				var/datum/job/J = SSjob.GetJobType(job)
-				H.apply_assigned_role_to_spawn(J)
-				H.regenerate_icons()
+		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			do_eord_respawn(H)
 
-		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
+		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
 
@@ -396,7 +368,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		for(var/i in 1 to length(RA.medal_names))
 			parts += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the [span_boldnotice("[RA.medal_names[i]]")]: \'<i>[RA.medal_citations[i]]</i>\'."
 
-	if(parts.len)
+	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
@@ -508,7 +480,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			else
 				parts += ","
 
-	if(parts.len)
+	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
@@ -834,7 +806,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	parts += span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
 
-	if(parts.len)
+	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
 		return ""
@@ -849,14 +821,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		antag_info["antagonist_type"] = A.type
 		antag_info["antagonist_name"] = A.name //For auto and custom roles
 		antag_info["objectives"] = list()
-		if(A.objectives.len)
+		if(length(A.objectives))
 			for(var/datum/objective/O in A.objectives)
 				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
 				antag_info["objectives"] += list(list("objective_type"=O.type,"text"=O.explanation_text,"result"=result))
 		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
 
 /proc/printobjectives(list/objectives)
-	if(!objectives || !objectives.len)
+	if(!objectives || !length(objectives))
 		return
 	var/list/objective_parts = list()
 	var/count = 1
@@ -909,8 +881,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		result += A.roundend_report()
 		result += "<br><br>"
 		CHECK_TICK
-	if(all_antagonists.len)
-		var/datum/antagonist/last = all_antagonists[all_antagonists.len]
+	if(length(all_antagonists))
+		var/datum/antagonist/last = all_antagonists[length(all_antagonists)]
 		result += last.roundend_report_footer()
 		result += "</div>"
 	return result.Join()

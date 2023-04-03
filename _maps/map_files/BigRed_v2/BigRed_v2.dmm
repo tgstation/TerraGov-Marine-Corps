@@ -1145,7 +1145,7 @@
 /area/bigredv2/caves/lambda_lab)
 "akJ" = (
 /obj/structure/table,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2058,7 +2058,7 @@
 "aqX" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "aqY" = (
@@ -2585,7 +2585,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "avq" = (
-/obj/item/violin,
+/obj/item/instrument/violin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
@@ -10796,7 +10796,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "llR" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/purple/whitepurplefull,

@@ -82,7 +82,7 @@
 
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
-		for(var/i in GLOB.alive_xeno_list)
+		for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 			var/mob/M = i
 			SEND_SOUND(M, S)
 			to_chat(M, span_xenoannounce("The Queen Mother reaches into your mind from worlds away."))

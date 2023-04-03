@@ -307,8 +307,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	cqc = SKILL_CQC_WEAK
 	firearms = SKILL_FIREARMS_UNTRAINED
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_EXPERT
-	surgery = SKILL_SURGERY_EXPERT
+	medical = SKILL_MEDICAL_MASTER
+	surgery = SKILL_SURGERY_MASTER
 	melee_weapons = SKILL_MELEE_WEAK
 	police = SKILL_POLICE_MP
 

@@ -4,7 +4,7 @@
 *
 */
 
-/obj/item/multitool
+/obj/item/tool/multitool
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	icon_state = "multitool"

@@ -1,4 +1,4 @@
-/obj/item/rcd
+/obj/item/tool/rcd
 	name = "rapid-construction-device (RCD)"
 	desc = "A device used to rapidly build walls/floor."
 	icon_state = "rcd"
@@ -18,6 +18,10 @@
 	desc = "Highly compressed matter for the RCD."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "rcd"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "rcdammo"
 	opacity = FALSE
 	density = FALSE

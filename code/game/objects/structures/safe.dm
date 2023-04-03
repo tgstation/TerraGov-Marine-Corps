@@ -113,7 +113,7 @@ FLOOR SAFES
 	dat += "Dial 2: <a href='?src=\ref[src];decrement2=1'>-</a> [tumbler_2_pos] <a href='?src=\ref[src];increment2=1'>+</a><br>"
 	if(open)
 		dat += "<table>"
-		for(var/i = contents.len, i>=1, i--)
+		for(var/i = length(contents), i>=1, i--)
 			var/obj/item/P = contents[i]
 			dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"

@@ -367,7 +367,7 @@
 "adG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/electrical)
 "adJ" = (
@@ -3159,7 +3159,7 @@
 "aIM" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/item/book/manual/engineering_hacking,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/electrical)
@@ -4936,7 +4936,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/insulatedgloves,
 /obj/item/storage/toolbox/electrical,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6718,7 +6718,7 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/item/stack/rods,
 /obj/effect/spawner/random/cable,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "bsT" = (
@@ -7084,11 +7084,11 @@
 /area/deltastation/hallway/primary/starboard)
 "bww" = (
 /obj/structure/table/reinforced,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
@@ -13071,7 +13071,7 @@
 "cLg" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/briefcase,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /turf/open/floor/wood,
 /area/deltastation/commons/dorms)
 "cLm" = (
@@ -17173,8 +17173,8 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den/gaming)
 "dBd" = (
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare{
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian{
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -27153,7 +27153,7 @@
 /area/deltastation/security/execution/transfer)
 "fwy" = (
 /obj/structure/rack,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
@@ -27805,7 +27805,7 @@
 	pixel_y = 3
 	},
 /obj/structure/table,
-/obj/item/multitool{
+/obj/item/tool/multitool{
 	pixel_x = -4;
 	pixel_y = 2
 	},
@@ -29223,7 +29223,7 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 8
 	},
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/iron/checker,
 /area/deltastation/service/hydroponics/garden/abandoned)
 "fRb" = (
@@ -33973,7 +33973,7 @@
 "gNZ" = (
 /obj/effect/spawner/random/structure/rad_closet,
 /obj/effect/turf_decal/warning_stripes/box/empty,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "gOe" = (
@@ -34660,7 +34660,7 @@
 	name = "engineering camera"
 	},
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/item/radio/intercom{
 	dir = 8
 	},
@@ -35979,7 +35979,7 @@
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
 "hhP" = (
 /obj/structure/table/reinforced,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
@@ -40494,7 +40494,7 @@
 	dir = 4
 	},
 /obj/machinery/alarm,
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics/garden)
 "iip" = (
@@ -42100,7 +42100,7 @@
 /obj/item/tool/screwdriver{
 	pixel_y = 5
 	},
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark,
@@ -51245,12 +51245,12 @@
 /area/deltastation/asteroidcaves/derelictsatellite)
 "kvt" = (
 /obj/effect/spawner/random/structure/closet/regular,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
+/obj/item/explosive/grenade/flare/civilian,
 /obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/spawner/random/structure/handheld_lighting,
@@ -53423,7 +53423,7 @@
 /area/ai_monitored/storage/eva)
 "kRY" = (
 /obj/effect/spawner/random/folder,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/tool/pen/red,
 /obj/structure/table,
 /obj/item/tool/pen/blue{
@@ -53603,7 +53603,7 @@
 /area/deltastation/maintenance/port/aft)
 "kTK" = (
 /obj/structure/table,
-/obj/item/cane,
+/obj/item/weapon/cane,
 /obj/item/clothing/head/bowler{
 	pixel_y = 2
 	},
@@ -65384,7 +65384,7 @@
 /obj/item/storage/toolbox/electrical{
 	pixel_x = 1
 	},
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/clothing/head/welding,
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -66061,10 +66061,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/service/chapel/storage)
 "nxO" = (
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_y = 4
 	},
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/tile/transparent/neutral/anticorner/contrasted,
@@ -69937,7 +69937,7 @@
 	},
 /obj/effect/turf_decal/tile/transparent/neutral,
 /obj/effect/spawner/random/cable,
-/obj/item/multitool{
+/obj/item/tool/multitool{
 	pixel_x = 5;
 	pixel_y = -5
 	},
@@ -73955,7 +73955,7 @@
 "pfb" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/starboard/aft)
@@ -74480,7 +74480,7 @@
 "pjK" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/mineral,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
@@ -78911,7 +78911,7 @@
 /obj/structure/rack{
 	dir = 8
 	},
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/storage/testroom)
@@ -80218,7 +80218,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/table/reinforced,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
@@ -83745,7 +83745,7 @@
 	dir = 8
 	},
 /obj/item/tool/wrench,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
@@ -92092,11 +92092,11 @@
 /area/deltastation/science/research)
 "sIh" = (
 /obj/structure/table/reinforced,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 7;
 	pixel_y = 3
 	},
@@ -106304,7 +106304,7 @@
 	dir = 8
 	},
 /obj/effect/spawner/random/structure/rad_closet,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -107094,7 +107094,7 @@
 "vGp" = (
 /obj/structure/rack,
 /obj/machinery/light,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
 	dir = 1
 	},
@@ -111654,7 +111654,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/item/tool/wrench,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron/corner,
@@ -120548,7 +120548,7 @@
 /obj/machinery/firealarm,
 /obj/effect/spawner/random/insulatedgloves,
 /obj/structure/rack,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/effect/turf_decal/tile/transparent/yellow/anticorner/contrasted{
 	dir = 1

@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 //Turf colours
 #define MINIMAP_SOLID "#ebe5e5ee"
 #define MINIMAP_DOOR "#451e5eb8"
-#define MINIMAP_FENCE "#8d2294ad"
+#define MINIMAP_FENCE "#8c2294c2"
 #define MINIMAP_LAVA "#db4206ad"
 #define MINIMAP_DIRT "#9c906dc2"
 #define MINIMAP_SNOW "#c4e3e9c7"
@@ -40,10 +40,12 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_JUNGLE "#2b5b2bee"
 #define MINIMAP_AREA_COLONY "#6c6767d8"
 #define MINIMAP_AREA_LZ "#ebe5e5b6"
-#define MINIMAP_AREA_REQ "#936824bb"
+#define MINIMAP_AREA_REQ "#936824cc"
+#define MINIMAP_AREA_REQ_CAVE "#503914cc"
 #define MINIMAP_AREA_PREP "#5b92e5c9"
 #define MINIMAP_AREA_ESCAPE "#446791ab"
 #define MINIMAP_AREA_LIVING "#2a9201cb"
+#define MINIMAP_AREA_LIVING_CAVE "#195700cb"
 
 //Prison
 #define MINIMAP_AREA_CELL_MAX "#570101ee"

@@ -79,10 +79,11 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
-			/obj/item/weapon/combat_knife/vali_knife = 12,
+			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -295,6 +296,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
@@ -488,6 +490,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
 			/obj/item/weapon/shield/riot/marine/deployable = -1,
@@ -693,6 +696,7 @@
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
@@ -1203,7 +1207,7 @@
 			blood_type = initial(temp_path.blood_type)
 			R.product_name += blood_type? " [blood_type]" : ""
 			temp_list -= R.product_path
-			if(!temp_list.len) break
+			if(!length(temp_list)) break
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
@@ -1388,6 +1392,7 @@
 			/obj/item/storage/holster/t19 = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
 		),
 		"Pouches" = list(
@@ -1540,7 +1545,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/xray = -1,
 			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = -1,
 			/obj/item/ammo_magazine/rocket/m57a4 = -1,
-			/obj/item/weapon/gun/launcher/rocket/sadar = -1,
+			/obj/item/weapon/gun/launcher/rocket/sadar/valhalla = -1,
 			/obj/item/ammo_magazine/rocket/sadar = -1,
 			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
@@ -1551,7 +1556,7 @@
 			/obj/item/weapon/gun/rifle/sniper/antimaterial = -1,
 			/obj/item/ammo_magazine/sniper = -1,
 			/obj/item/ammo_magazine/rifle/autosniper = -1,
-			/obj/item/weapon/gun/minigun = -1,
+			/obj/item/weapon/gun/minigun/valhalla = -1,
 			/obj/item/ammo_magazine/minigun_powerpack = -1,
 			/obj/item/weapon/gun/standard_mmg = -1,
 			/obj/item/ammo_magazine/standard_mmg = -1,
@@ -1567,6 +1572,7 @@
 			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
 			/obj/item/weapon/claymore/harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = -1,
@@ -1580,10 +1586,10 @@
 			/obj/item/clothing/glasses/hud/xenohud = -1,
 			/obj/item/clothing/mask/gas/swat = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
-			/obj/item/clothing/suit/storage/marine/specialist = -1,
+			/obj/item/clothing/suit/storage/marine/specialist/valhalla = -1,
 			/obj/item/clothing/head/helmet/marine/specialist = -1,
 			/obj/item/clothing/gloves/marine/specialist = -1,
-			/obj/item/clothing/suit/storage/marine/B17 = -1,
+			/obj/item/clothing/suit/storage/marine/B17/valhalla = -1,
 			/obj/item/clothing/head/helmet/marine/grenadier = -1,
 			/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = -1,
 			/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = -1,

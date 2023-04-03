@@ -425,8 +425,8 @@
 	icon_state = "som_uniform"
 	item_icons = list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
 	)
 	item_state = "som_uniform"
 	has_sensor = FALSE

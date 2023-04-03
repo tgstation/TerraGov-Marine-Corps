@@ -172,8 +172,8 @@
 	multiple_outfits = TRUE
 	outfit = /datum/outfit/job/icc/medic/icc_machinepistol
 	outfits = list(
-		outfit = /datum/outfit/job/icc/medic/icc_machinepistol,
-		outfit = /datum/outfit/job/icc/medic/icc_sharpshooter,
+		/datum/outfit/job/icc/medic/icc_machinepistol,
+		/datum/outfit/job/icc/medic/icc_sharpshooter,
 	)
 
 /datum/outfit/job/icc/medic

@@ -94,10 +94,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/attach_shell_speed_mod = 0
 	///Modifies accuracy/scatter penalty when firing onehanded while moving.
 	var/movement_acc_penalty_mod = 0
-	///How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
-	var/attach_delay = 30
-	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
-	var/detach_delay = 30
+	///How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 1.5 seconds.
+	var/attach_delay = 1.5 SECONDS
+	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 1.5 seconds.
+	var/detach_delay = 1.5 SECONDS
 	///Changes aim mode movement delay multiplicatively
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit

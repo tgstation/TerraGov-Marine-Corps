@@ -317,7 +317,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "OD" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},

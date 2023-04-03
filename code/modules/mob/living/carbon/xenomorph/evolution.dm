@@ -273,7 +273,7 @@
 			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste_type.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return FALSE
 	var/maximum_active_caste = new_caste_type.maximum_active_caste
-	if(maximum_active_caste != INFINITY && maximum_active_caste <= hive.xenos_by_typepath[new_mob_type].len)
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_mob_type]))
 		to_chat(src, span_warning("There is already the maximum amount of [initial(new_caste_type.display_name)]s in the hive. We must wait for one to die."))
 		return FALSE
 	var/turf/T = get_turf(src)

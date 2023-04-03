@@ -138,7 +138,7 @@
 			S.lifetime += rand(-1,1)
 	lifetime += rand(-1,1)
 
-	if(newsmokes.len)
+	if(length(newsmokes))
 		addtimer(CALLBACK(src, PROC_REF(spawn_smoke), newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
 
 /obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
@@ -209,7 +209,7 @@
 
 /obj/effect/particle_effect/smoke/bad
 	lifetime = 8
-	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS
+	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS|SMOKE_EXTINGUISH
 
 /////////////////////////////////////////////
 // Cloak Smoke

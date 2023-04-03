@@ -48,6 +48,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/defend_order/send_defend_order
 	///datum used when sending a rally order
 	var/datum/action/innate/order/rally_order/send_rally_order
+	///Groundside minimap for overwatch
+	var/datum/action/minimap/marine/external/cic_mini
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -55,6 +57,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	send_defend_order = new
 	send_retreat_order = new
 	send_rally_order = new
+	cic_mini = new
+
+/obj/machinery/computer/camera_advanced/overwatch/Destroy()
+	QDEL_NULL(send_attack_order)
+	QDEL_NULL(send_defend_order)
+	QDEL_NULL(send_retreat_order)
+	QDEL_NULL(send_rally_order)
+	QDEL_NULL(cic_mini)
+	current_order = null
+	selected_target = null
+	current_squad = null
+	return ..()
 
 /obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
 	. = ..()
@@ -74,6 +88,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		send_rally_order.target = user
 		send_rally_order.give_action(user)
 		actions += send_rally_order
+	if(cic_mini)
+		cic_mini.target = user
+		cic_mini.give_action(user)
+		actions += cic_mini
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -125,6 +143,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	eyeobj.visible_icon = TRUE
 	eyeobj.icon = 'icons/mob/cameramob.dmi'
 	eyeobj.icon_state = "generic_camera"
+	cic_mini.override_locator(eyeobj)
 
 /obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
 	. = ..()
@@ -393,8 +412,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			selected_target = locate(href_list["selected_target"])
 			if(!isAI(usr))
 				var/atom/cam_target = locate(href_list["cam_target"])
+				if(!cam_target)
+					return
+				var/turf/cam_target_turf = get_turf(cam_target)
+				if(!cam_target_turf)
+					return
 				open_prompt(usr)
-				eyeobj.setLoc(get_turf(cam_target))
+				eyeobj.setLoc(cam_target_turf)
 				if(isliving(cam_target))
 					var/mob/living/L = cam_target
 					track(L)
@@ -518,6 +542,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("The target's signal is too weak.")]")
 		return
 	var/turf/T = get_turf(selected_target)
+	if(!isturf(T)) //Huh?
+		to_chat(usr, "[icon2html(src, usr)] [span_warning("Invalid target.")]")
+		return
 	if(isspaceturf(T))
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("The target's landing zone appears to be out of bounds.")]")
 		return

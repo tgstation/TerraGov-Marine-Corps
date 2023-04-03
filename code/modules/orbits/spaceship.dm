@@ -195,7 +195,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	engine_shudder()
 
 	var/message = "Arriving at new orbital level. Prepare for engine ignition and stabilization."
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(priority_announce), message, "Orbit Change"), 290 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(orbit_gets_changed), current_orbit, direction), 3 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
