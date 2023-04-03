@@ -1478,7 +1478,7 @@
 /area/icy_caves/outpost/outside/center)
 "iv" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/applecakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/applecakeslice,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "ix" = (
@@ -7658,7 +7658,7 @@
 /area/icy_caves/outpost/office)
 "MT" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "MU" = (
@@ -9678,7 +9678,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Xn" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Xo" = (

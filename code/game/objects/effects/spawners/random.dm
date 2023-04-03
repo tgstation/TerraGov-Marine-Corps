@@ -362,7 +362,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk,
 		/obj/item/reagent_containers/food/snacks/lollipop,
-		/obj/item/reagent_containers/food/snacks/appletart,
+		/obj/item/reagent_containers/food/snacks/pastries/appletart,
 	)
 
 
@@ -380,7 +380,7 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
 		/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
 		/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
-		/obj/item/reagent_containers/food/snacks/packaged_burger,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs,
 		/obj/item/reagent_containers/food/snacks/upp/fish,
 		/obj/item/reagent_containers/food/snacks/upp/rice,
@@ -390,9 +390,9 @@
 		/obj/item/reagent_containers/food/snacks/cheesyfries,
 		/obj/item/reagent_containers/food/snacks/fishandchips,
 		/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
-		/obj/item/reagent_containers/food/snacks/tofuburger,
-		/obj/item/reagent_containers/food/snacks/fishburger,
-		/obj/item/reagent_containers/food/snacks/xenoburger,
+		/obj/item/reagent_containers/food/snacks/burger/tofuburger,
+		/obj/item/reagent_containers/food/snacks/burger/fishburger,
+		/obj/item/reagent_containers/food/snacks/burger/xeno,
 		/obj/item/reagent_containers/food/snacks/fishfingers,
 	)
 

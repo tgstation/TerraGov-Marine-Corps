@@ -15,7 +15,7 @@
 	bitesize = 5
 	tastes = list("wishes" = 1)
 
-/obj/item/reagent_containers/food/snacks/soup/wish/Initialize(mapload)
+/obj/item/reagent_containers/food/snacks/soup/wishsoup/Initialize(mapload)
 	. = ..()
 	var/wish_true = prob(25)
 	if(wish_true)
@@ -261,7 +261,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("sweet potato" = 1)
 
-/obj/item/reagent_containers/food/snacks/soup/beet/red
+/obj/item/reagent_containers/food/snacks/soup/beetsoup/red
 	name = "red beet soup"
 	desc = "Quite a delicacy."
 	icon_state = "redbeetsoup"

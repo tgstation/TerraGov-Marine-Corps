@@ -261,7 +261,7 @@
 //	the bites. No more contained reagents = no more bites.
 
 //Here is an example of the new formatting for anyone who wants to add more food items.
-///obj/item/reagent_containers/food/snacks/xenoburger			//Identification path for the object.
+///obj/item/reagent_containers/food/snacks/burger/xeno			//Identification path for the object.
 //	 name = "Xenoburger"												//Name that displays in the UI.
 //	 desc = "Smells caustic. Tastes like heresy."						//Duh
 //	 icon_state = "xburger"												//Refers to an icon in food.dmi
@@ -270,7 +270,7 @@
 //	 bitesize = 3														//This is the amount each bite consumes.
 
 
-///obj/item/reagent_containers/food/snacks/xenoburger/Initialize()		//Absolute pathing for procs, please.
+///obj/item/reagent_containers/food/snacks/burger/xeno/Initialize()		//Absolute pathing for procs, please.
 //	 . = ..()															//Calls the parent proc, don't forget to add this.
 
 

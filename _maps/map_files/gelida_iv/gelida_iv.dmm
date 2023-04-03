@@ -2150,7 +2150,7 @@
 /area/gelida/indoors/a_block/hallway)
 "bus" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "buA" = (
@@ -2584,7 +2584,7 @@
 	pixel_y = 14
 	},
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/packaged_burger,
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
@@ -3591,7 +3591,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "csX" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sandwich{
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich{
 	pixel_x = -6;
 	pixel_y = 3
 	},
@@ -6102,7 +6102,7 @@
 /obj/item/tool/kitchen/tray{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/snacks/tofubreadslice{
+/obj/item/reagent_containers/food/snacks/sandwiches/tofubreadslice{
 	pixel_x = -7
 	},
 /obj/item/clothing/mask/facehugger/dead{
@@ -7628,7 +7628,7 @@
 	pixel_x = 10;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/wishsoup{
+/obj/item/reagent_containers/food/snacks/soup/wishsoup{
 	pixel_x = -4;
 	pixel_y = -7
 	},
@@ -12052,7 +12052,7 @@
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "hRf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/monkeyburger{
+/obj/item/reagent_containers/food/snacks/burger/monkeyburger{
 	pixel_x = -9;
 	pixel_y = 12
 	},
@@ -13956,7 +13956,7 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "iZI" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sliceable/plaincake{
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/plaincake{
 	pixel_y = 4
 	},
 /turf/open/floor/prison/kitchen,
@@ -14437,7 +14437,7 @@
 	pixel_x = 2;
 	pixel_y = 20
 	},
-/obj/item/reagent_containers/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich{
 	pixel_y = 27
 	},
 /turf/open/floor/prison/plate,
@@ -20135,13 +20135,13 @@
 /area/gelida/indoors/a_block/medical)
 "nhJ" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sliceable/bread{
+/obj/item/reagent_containers/food/snacks/sandwiches/bread{
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/bread{
+/obj/item/reagent_containers/food/snacks/sandwiches/bread{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sandwiches/bread,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "nhK" = (
@@ -20643,10 +20643,10 @@
 /area/gelida/indoors/a_block/dorms)
 "nAf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/cherrypie{
+/obj/item/reagent_containers/food/snacks/pastries/cherrypie{
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/pumpkinpie,
 /obj/machinery/door/window{
 	dir = 2;
 	pixel_y = 6
@@ -21159,7 +21159,7 @@
 /obj/item/trash/plate{
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/snacks/toastedsandwich{
+/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich{
 	pixel_y = 20
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -23943,7 +23943,7 @@
 	pixel_x = -10;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/snacks/wishsoup,
+/obj/item/reagent_containers/food/snacks/soup/wishsoup,
 /obj/item/tool/kitchen/utensil/spoon{
 	pixel_x = 10;
 	pixel_y = 5
@@ -29390,7 +29390,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "sZD" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sandwiches/bread,
 /obj/item/newspaper{
 	anchored = 1;
 	desc = "This is the Chunk and Dunks menu. It reads 'Starters chunky fried cheese chunky chicken giblets dunky donuts Main chunky mac and cheese chunky meat and gravy pizza galaxy pizza TM dunky grilled style steak imitation Deserts dunky refried ice cream OUT OF STOCK  chunky chocolate moose dunky hash brown Drinks souto TM Original souto TM penguin week special chunk and dunk gravy soft drink chunky coffee CAUTION HOT dunky arcturian imitation tea";
@@ -33735,11 +33735,11 @@
 /area/gelida/indoors/lone_buildings/spaceport)
 "vUN" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/plaincakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice{
 	pixel_x = 5;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/plaincakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
@@ -35022,7 +35022,7 @@
 	pixel_x = 4;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -36119,7 +36119,7 @@
 /area/gelida/caves/central_caves)
 "xEi" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/toastedsandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich,
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -10;
 	pixel_y = 8

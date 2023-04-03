@@ -7478,7 +7478,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/sandwiches/cheese,
+/obj/item/reagent_containers/food/snacks/burger/cheese,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "hNl" = (
@@ -10145,7 +10145,6 @@
 /area/lv624/ground/jungle10)
 "llZ" = (
 /obj/structure/flora/bush,
-/obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)

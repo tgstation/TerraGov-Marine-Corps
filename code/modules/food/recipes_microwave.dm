@@ -110,7 +110,7 @@
 		/obj/item/clothing/head/beret,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sandwiches/mimeburger
-	
+
 /datum/recipe/hotdog
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sandwiches/bun,
@@ -680,7 +680,7 @@
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/clothing/head/cakehat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
+	result = /obj/item/reagent_containers/food/snacks/sliceable/pastries/birthdaycake
 
 /datum/recipe/bread
 	items = list(
@@ -700,7 +700,7 @@
 
 /datum/recipe/toastedsandwich
 	items = list(
-		/obj/item/reagent_containers/food/snacks/sandwich,
+		/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich
 
@@ -745,7 +745,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 	)
-	result = /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast/cherry
 
 /datum/recipe/milosoup
 	reagents = list(/datum/reagent/water = 10)
@@ -1037,7 +1037,7 @@
 		/obj/item/reagent_containers/food/snacks/egg,
 		/obj/item/reagent_containers/food/snacks/grown/goldapple,
 	)
-	result = /obj/item/reagent_containers/food/snacks/appletart
+	result = /obj/item/reagent_containers/food/snacks/pastries/appletart
 
 /datum/recipe/tossedsalad
 	items = list(

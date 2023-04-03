@@ -703,6 +703,7 @@
 #include "code\game\objects\items\reagent_containers\reagent_container.dm"
 #include "code\game\objects\items\reagent_containers\spray.dm"
 #include "code\game\objects\items\reagent_containers\syringes.dm"
+#include "code\game\objects\items\reagent_containers\food\burgers.dm"
 #include "code\game\objects\items\reagent_containers\food\cans.dm"
 #include "code\game\objects\items\reagent_containers\food\condiment.dm"
 #include "code\game\objects\items\reagent_containers\food\donuts.dm"
