@@ -336,32 +336,32 @@
 
 /obj/item/pizzabox/donkpocket/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/donkpocket(src)
 	boxtag = "Bangin' Donk"
 
 /obj/item/pizzabox/ants/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/ants(src)
 	boxtag = "Anthill Deluxe"
 
 /obj/item/pizzabox/dank/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/dank(src)
 	boxtag = "Fresh Herbs"
 
 /obj/item/pizzabox/vegetable/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
 	boxtag = "Gourmet Vegetable"
 
 /obj/item/pizzabox/sassysage/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/sassysage(src)
 	boxtag = "Sausage Lovers"
 
 /obj/item/pizzabox/pineapple/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/pineapple(src)
 	boxtag = "Honolulu Chew"
 
 ///spaghetti prototype used by all subtypes
@@ -440,3 +440,17 @@
 	icon_state = "mac_n_cheese"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("cheese" = 1, "breadcrumbs" = 1, "pasta" = 1)
+
+/obj/item/pizzabox/random
+	var/list/pizza_choices = list(
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+	)
+
+/obj/item/pizzabox/random/Initialize()
+	. = .. ()
+	var/pizza_type = pick(pizza_choices)
+	pizza = new pizza_type(src)
+	boxtag = "Pizza Time"
