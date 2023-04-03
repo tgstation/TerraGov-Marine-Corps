@@ -25,7 +25,7 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
-			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, .proc/delete_link)
+			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, PROC_REF(delete_link))
 			return
 
 ///Removes the linked patrol exist point
@@ -78,7 +78,7 @@
 ///Temporarily applies godmode to prevent spawn camping
 /obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
 	user.status_flags |= GODMODE
-	addtimer(CALLBACK(src, .proc/remove_spawn_protection, user), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
 ///Removes spawn protection godmode
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
@@ -102,7 +102,7 @@
 
 /atom/movable/effect/rappel_rope/proc/ropeanimation()
 	flick("rope_deploy", src)
-	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(ropeanimation_stop)), 2 SECONDS)
 
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)

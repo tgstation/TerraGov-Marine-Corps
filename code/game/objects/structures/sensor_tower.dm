@@ -162,7 +162,7 @@
 
 ///Starts timer and sends an alert
 /obj/structure/sensor_tower_patrol/proc/begin_activation()
-	current_timer = addtimer(CALLBACK(src, .proc/finish_activation), generate_time, TIMER_STOPPABLE)
+	current_timer = addtimer(CALLBACK(src, PROC_REF(finish_activation)), generate_time, TIMER_STOPPABLE)
 	already_activated = TRUE
 	toggle_game_timer()
 	update_icon()
@@ -220,7 +220,7 @@
 	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
 
 	if(mode.game_timer == SENSOR_CAP_TIMER_PAUSED)
-		mode.game_timer = addtimer(CALLBACK(mode, /datum/game_mode/combat_patrol.proc/set_game_end), remaining_game_time + addition_time, TIMER_STOPPABLE)
+		mode.game_timer = addtimer(CALLBACK(mode, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_end)), remaining_game_time + addition_time, TIMER_STOPPABLE)
 		return
 
 	remaining_game_time = timeleft(mode.game_timer)

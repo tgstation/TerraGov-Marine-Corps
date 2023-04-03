@@ -56,7 +56,7 @@
 	trunk = null
 	if(future_trunk)
 		trunk = future_trunk
-		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, .proc/clean_trunk)
+		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, PROC_REF(clean_trunk))
 
 ///Signal handler to clean trunk to prevent harddel
 /obj/machinery/disposal/proc/clean_trunk()
@@ -315,7 +315,7 @@
 		return
 
 	//Check for items in disposal - occupied light
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 	//Charging and ready light
@@ -331,9 +331,9 @@
 
 	flush_count++
 	if(flush_count >= flush_every_ticks)
-		if(contents.len)
+		if(length(contents))
 			if(mode == 2)
-				INVOKE_ASYNC(src, .proc/flush)
+				INVOKE_ASYNC(src, PROC_REF(flush))
 		flush_count = 0
 
 	updateUsrDialog()
@@ -478,7 +478,7 @@
 	loc = D.trunk
 	active = 1
 	setDir(DOWN)
-	INVOKE_NEXT_TICK(src, .proc/move) //Spawn off the movement process
+	INVOKE_NEXT_TICK(src, PROC_REF(move)) //Spawn off the movement process
 
 //Movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()
@@ -1170,7 +1170,7 @@
 	linked = null
 	if(to_link)
 		linked = to_link
-		RegisterSignal(linked, COMSIG_PARENT_QDELETING, .proc/clean_linked)
+		RegisterSignal(linked, COMSIG_PARENT_QDELETING, PROC_REF(clean_linked))
 
 ///Signal handler to clean linked from harddeling
 /obj/structure/disposalpipe/trunk/proc/clean_linked()

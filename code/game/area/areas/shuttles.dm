@@ -72,6 +72,7 @@
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/shuttle/custom
 	name = "Custom player shuttle"

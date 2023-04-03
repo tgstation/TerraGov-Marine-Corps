@@ -61,8 +61,8 @@ SUBSYSTEM_DEF(direction)
 			untrack_all_in_squad(squad_id) // clear and reset all the squad members
 			continue
 		var/mob/living/tracker
-		while(currentrun[squad_id].len)
-			tracker = currentrun[squad_id][currentrun[squad_id].len]
+		while(length(currentrun[squad_id]))
+			tracker = currentrun[squad_id][length(currentrun[squad_id])]
 			currentrun[squad_id].len--
 			if(QDELETED(tracker))
 				stop_tracking(squad_id, tracker)
@@ -74,8 +74,8 @@ SUBSYSTEM_DEF(direction)
 ///Stops all members of this squad from tracking the leader
 /datum/controller/subsystem/direction/proc/untrack_all_in_squad(squad_id)
 	var/mob/living/tracker
-	while(currentrun[squad_id].len)
-		tracker = currentrun[squad_id][currentrun[squad_id].len]
+	while(length(currentrun[squad_id]))
+		tracker = currentrun[squad_id][length(currentrun[squad_id])]
 		currentrun[squad_id].len--
 		if(QDELETED(tracker))
 			stop_tracking(squad_id, tracker)

@@ -142,6 +142,10 @@
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
 	independent = TRUE
 
+/obj/item/encryptionkey/icc
+	name = "\improper ICC encryption key"
+	channels = list(RADIO_CHANNEL_ICC = TRUE)
+	independent = TRUE
 
 /obj/item/encryptionkey/sectoid
 	name = "\improper alien encryption key"

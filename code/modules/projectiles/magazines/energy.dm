@@ -4,6 +4,10 @@
 	name = "\improper lasgun Battery"
 	desc = "A specialized high density battery used to power lasguns."
 	icon = 'icons/obj/items/ammo.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+		)
 	icon_state = "m43"
 	item_state = null
 	maxcharge = 600 ///Changed due to the fact some maps and ERTs spawn with the child, the lasrifle. Charges on guns changed accordingly.
@@ -78,7 +82,6 @@
 	maxcharge = 540
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_cell"
-	charge_overlay = "volkite_small"
 
 /obj/item/cell/lasgun/volkite/turret
 	name = "\improper volkite nuclear energy cell"

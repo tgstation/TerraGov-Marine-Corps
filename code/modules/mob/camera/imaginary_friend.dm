@@ -157,6 +157,7 @@
 
 
 /mob/camera/imaginary_friend/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
 	if(client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 	to_chat(src, compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode))
@@ -184,7 +185,7 @@
 	//speech bubble
 	var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
 	MA.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i

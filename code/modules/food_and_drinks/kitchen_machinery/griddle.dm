@@ -43,7 +43,7 @@
 
 
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
-	if(griddled_objects.len >= max_items)
+	if(length(griddled_objects) >= max_items)
 		to_chat(user, span_notice("[src] can't fit more items!"))
 		return
 	var/list/modifiers = params2list(params)
@@ -74,9 +74,9 @@
 /obj/machinery/griddle/proc/AddToGrill(obj/item/item_to_grill, mob/user)
 	vis_contents += item_to_grill
 	griddled_objects += item_to_grill
-	RegisterSignal(item_to_grill, COMSIG_MOVABLE_MOVED, .proc/ItemMoved)
-	RegisterSignal(item_to_grill, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
-	RegisterSignal(item_to_grill, COMSIG_PARENT_QDELETING, .proc/ItemRemovedFromGrill)
+	RegisterSignal(item_to_grill, COMSIG_MOVABLE_MOVED, PROC_REF(ItemMoved))
+	RegisterSignal(item_to_grill, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
+	RegisterSignal(item_to_grill, COMSIG_PARENT_QDELETING, PROC_REF(ItemRemovedFromGrill))
 	update_grill_audio()
 
 /obj/machinery/griddle/proc/ItemRemovedFromGrill(obj/item/I)
@@ -95,7 +95,7 @@
 	AddToGrill(grilled_result)
 
 /obj/machinery/griddle/proc/update_grill_audio()
-	if(on && griddled_objects.len)
+	if(on && length(griddled_objects))
 		grill_loop.start()
 	else
 		grill_loop.stop()

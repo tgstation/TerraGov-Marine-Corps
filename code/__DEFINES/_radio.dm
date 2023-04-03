@@ -66,6 +66,7 @@
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
 #define RADIO_CHANNEL_SECTOID "Alien"
+#define RADIO_CHANNEL_ICC "ICC"
 #define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_DS1 "Alamo"
 #define RADIO_CHANNEL_DS2 "Normandy"
@@ -91,6 +92,7 @@
 #define FREQ_DEATHSQUAD 1339
 #define FREQ_IMPERIAL 1341
 #define FREQ_SOM 1343
+#define FREQ_ICC 1345
 #define FREQ_SECTOID 1347
 #define FREQ_ECHO 1349
 #define MAX_ERT_FREQ 1349

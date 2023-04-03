@@ -36,7 +36,7 @@
 
 	carbon_mob.internal_organs |= src
 	owner = carbon_mob
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_owner))
 
 	if(!ishuman(carbon_mob))
 		return
@@ -256,8 +256,8 @@
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
-	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/owner_added_reagent)
-	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, .proc/owner_removed_reagent)
+	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, PROC_REF(owner_added_reagent))
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, PROC_REF(owner_removed_reagent))
 
 /datum/internal_organ/kidneys/clean_owner()
 	UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
@@ -330,7 +330,7 @@
 	. = ..()
 	if(!.)
 		return
-	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	owner.set_skills(owner.skills.modifyAllRatings(old_organ_status - organ_status))
 	if(organ_status >= ORGAN_BRUISED)
 		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
 	else

@@ -138,6 +138,7 @@
 	name = "\improper Filtration Plant"
 	icon_state = "green"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/ground/compound
 	name = "\improper Nanotrasen Compound"
@@ -283,14 +284,17 @@
 /area/lv624/lazarus/hop
 	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv624/lazarus/kitchen
 	name = "\improper Kitchen"
 	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/canteen
 	name = "\improper Canteen"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/main_hall
 	name = "\improper Main Hallway"
@@ -303,36 +307,44 @@
 /area/lv624/lazarus/toilet
 	name = "\improper Dormitory Toilet"
 	icon_state = "toilet"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
 	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 
 /area/lv624/lazarus/toilet
 	name = "\improper Dormitory Toilet"
 	icon_state = "toilet"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/sleep_male
 	name = "\improper Male Dorm"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/sleep_female
 	name = "\improper Female Dorm"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/quart
 	name = "\improper Quartermasters"
 	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv624/lazarus/quartstorage
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv624/lazarus/quartstorage/outdoors
 	name = "\improper Cargo Bay Area"
 	icon_state = "purple"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv624/lazarus/engineering
 	name = "\improper Engineering"
@@ -359,6 +371,7 @@
 /area/lv624/lazarus/robotics
 	name = "\improper Robotics"
 	icon_state = "ass_line"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/research
 	name = "\improper Research Lab"
@@ -368,11 +381,13 @@
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/hydroponics/aux
 	name = "\improper Auxillary Hydroponics"
@@ -409,6 +424,7 @@
 	icon_state = "shuttlered"
 	ceiling = CEILING_UNDERGROUND_METAL
 	always_unpowered = TRUE
+	minimap_color = MINIMAP_AREA_SHIP
 
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"

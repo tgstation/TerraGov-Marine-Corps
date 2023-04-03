@@ -56,6 +56,9 @@
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
+	///Referenec to the AIs minimap.
+	var/datum/action/minimap/ai/mini
+
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
@@ -72,6 +75,8 @@
 	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
+	mini = new
+	mini.give_action(src)
 	create_eye()
 
 	if(!job)
@@ -84,19 +89,18 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
-	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
-	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, PROC_REF(send_order))
+	RegisterSignal(src, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(receive_laser_ob))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, PROC_REF(shuttle_takeoff_notification))
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
-	var/datum/action/minimap/ai/mini = new
 	var/datum/action/innate/squad_message/squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
@@ -108,7 +112,6 @@
 	send_rally_order.give_action(src)
 	control.give_action(src)
 	squad_message.give_action(src)
-	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
@@ -120,6 +123,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
+	QDEL_NULL(mini)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -394,9 +398,11 @@
 
 /mob/living/silicon/ai/set_remote_control(atom/movable/controlled)
 	if(controlled)
+		mini.override_locator(controlled)
 		reset_perspective(controlled, FALSE)
 	else
-		eyeobj.forceMove(remote_control)
+		eyeobj.forceMove(get_turf(remote_control))
+		mini.override_locator(eyeobj)
 		reset_perspective()
 	remote_control = controlled
 
@@ -407,7 +413,7 @@
 		linked_artillery = null
 		return FALSE
 	linked_artillery = mortar
-	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, PROC_REF(clean_artillery_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.
@@ -461,7 +467,7 @@
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
-	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, PROC_REF(clear_vehicle))
 	vehicle.on_link()
 	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

@@ -20,8 +20,8 @@ SUBSYSTEM_DEF(npcpool)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
-	while(currentrun.len)
-		var/mob/living/simple_animal/SA = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/mob/living/simple_animal/SA = currentrun[length(currentrun)]
 		--currentrun.len
 
 		if(!SA.ckey && !SA.notransform)

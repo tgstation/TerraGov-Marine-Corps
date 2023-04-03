@@ -50,7 +50,7 @@
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
-	var/def_zone = "chest"	//So we're not getting empty strings.
+	var/def_zone = BODY_ZONE_CHEST	//So we're not getting empty strings.
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
@@ -111,7 +111,7 @@
 /obj/projectile/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -487,7 +487,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				SEND_SIGNAL(turf_crossed_by, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
 				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 					return
-				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
@@ -553,7 +553,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			SEND_SIGNAL(next_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
 			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 				return
-			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			ammo.do_at_max_range(next_turf, src)
@@ -695,13 +695,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	. = ..()
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(density)
+		return ..()
+
 	var/hit_chance = coverage
 	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
-	if(!density)
-		return prob(hit_chance)
+	return prob(hit_chance)
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -800,7 +803,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		if(proj.ammo.sound_miss)
-			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1)
+			var/pitch = 0
+			if(proj.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
+			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1, frequency = pitch)
 		on_dodged_bullet(proj)
 
 	return FALSE
@@ -854,6 +860,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
+	SHOULD_CALL_PARENT(TRUE)
 	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
 		proj.damage *= proj.ammo.on_pierce_multiplier
 		proj.penetration *= proj.ammo.on_pierce_multiplier
@@ -983,9 +990,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	y_offset = round(cos(dir_angle), 0.01)
 	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN || (flags_projectile_behavior & PROJECTILE_FROZEN))
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
-		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
-		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
+		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
+		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
+		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
 		return
 	qdel(src)
 
@@ -1197,7 +1204,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		var/list/datum/limb/parts = get_damageable_limbs()
 
-		while(parts.len)
+		while(length(parts))
 			var/datum/limb/picked = pick_n_take(parts)
 			var/weight = GLOB.organ_rel_size[picked.name]
 			armor_val += picked.soft_armor.getRating(armor_type) * weight
@@ -1296,7 +1303,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!P.ammo.ping)
 		return
 	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
+		if(P.ammo.sound_bounce)
+			var/pitch = 0
+			if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+				pitch = 55000
+			playsound(src, P.ammo.sound_bounce, 50, 1, frequency = pitch)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
 		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
 		if(prob(60))
@@ -1308,7 +1319,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		rotate.Turn(angle)
 		I.transform = rotate
 		add_overlay(I)
-		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(cut_overlay), I), 3, TIMER_CLIENT_TIME)
 
 
 
@@ -1329,8 +1340,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
-
 	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
@@ -1349,10 +1358,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
-		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
-	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
-	span_highdanger("[victim_feedback.Join(" ")]"), null, 4, visible_message_flags = COMBAT_MESSAGE)
+	if(!client?.prefs.mute_self_combat_messages)
+		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1369,8 +1377,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
-
 	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback = list("We've been shot in the [parse_zone(proj.def_zone)] by [proj]!")
@@ -1379,22 +1385,19 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += "Our exoskeleton deflects it!"
-		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton deflects it!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
 		victim_feedback += "Our exoskeleton absorbs it!"
-		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton absorbs it!"
 	else if(feedback_flags & BULLET_FEEDBACK_PEN)
 		victim_feedback += "Our exoskeleton was penetrated!"
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
 		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
-		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	visible_message(span_danger("[onlooker_feedback.Join(" ")]"),
-	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
+	if(!client?.prefs.mute_self_combat_messages)
+		to_chat(src, span_highdanger("[victim_feedback.Join(" ")]"))
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)

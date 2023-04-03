@@ -9,70 +9,33 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
-	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/shoes/boot_knife
 
-/obj/item/storage/internal/shoes/boot_knife
-	max_storage_space = 3
-	storage_slots = 1
-	draw_mode = TRUE
-	can_hold = list(
-		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/gun/pistol/standard_pocketpistol,
-		/obj/item/weapon/gun/shotgun/double/derringer,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/stack/throwing_knife,
-		/obj/item/storage/box/MRE,
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
 	)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/boot,
+		/obj/item/armor_module/storage/boot/full,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/boot)
 
 /obj/item/clothing/shoes/marine/Initialize()
 	. = ..()
-	pockets = new pockets(src)
-	RegisterSignal(pockets, COMSIG_ATOM_UPDATE_ICON, /atom/proc/update_icon)
 	update_icon()
-
-/obj/item/clothing/shoes/marine/Destroy()
-	QDEL_NULL(pockets)
-	return ..()
-
-
-/obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
-	if(pockets.handle_attack_hand(user))
-		return ..()
-
-
-/obj/item/clothing/shoes/marine/MouseDrop(over_object, src_location, over_location)
-	if(!pockets)
-		return ..()
-	if(pockets.handle_mousedrop(usr, over_object))
-		return ..()
-
-
-/obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(!pockets)
-		return
-
-	return pockets.attackby(I, user, params)
-
-
-/obj/item/clothing/shoes/marine/emp_act(severity)
-	pockets?.emp_act(severity)
-	return ..()
 
 /obj/item/clothing/shoes/marine/update_icon_state()
 	icon_state = initial(icon_state)
-	for(var/atom/item_in_pocket AS in pockets.contents)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	for(var/atom/item_in_pocket AS in armor_storage.storage.contents)
 		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
 			icon_state += "-knife"
 
 /obj/item/clothing/shoes/marine/full
-	pockets = /obj/item/storage/internal/shoes/boot_knife/full
-
-/obj/item/storage/internal/shoes/boot_knife/full/Initialize()
-	. = ..()
-	new /obj/item/attachable/bayonetknife(src)
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
 /obj/item/clothing/shoes/marine/brown
 	name = "brown marine combat boots"
@@ -80,7 +43,7 @@
 	item_state = "marine_brown"
 
 /obj/item/clothing/shoes/marine/brown/full
-	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
@@ -106,7 +69,7 @@
 
 /obj/item/clothing/shoes/veteran
 
-/obj/item/clothing/shoes/veteran/PMC
+/obj/item/clothing/shoes/veteran/pmc
 	name = "polished shoes"
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "jackboots"
@@ -120,7 +83,7 @@
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/shoes/veteran/PMC/commando
+/obj/item/clothing/shoes/veteran/pmc/commando
 	name = "\improper PMC commando boots"
 	desc = "A pair of heavily armored, acid-resistant boots."
 	icon_state = "commando_boots"
@@ -150,7 +113,7 @@
 	item_state = "som"
 
 /obj/item/clothing/shoes/marine/som/knife
-	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
 /obj/item/clothing/shoes/sectoid
 	name = "psionic field"
@@ -174,4 +137,20 @@
 	item_state = "boots"
 
 /obj/item/clothing/shoes/marine/clf/full
-	pockets = /obj/item/storage/internal/shoes/boot_knife/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/icc
+	name = "\improper Modelle/32 combat shoes"
+	desc = "A set of sturdy working boots."
+	icon_state = "icc"
+
+/obj/item/clothing/shoes/marine/icc/knife
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/icc/guard
+	name = "\improper Modelle/33 tactical shoes"
+	desc = "A set of sturdy tactical boots."
+	icon_state  = "icc_guard"
+
+/obj/item/clothing/shoes/marine/icc/guard/knife
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)

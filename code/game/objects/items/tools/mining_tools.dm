@@ -13,7 +13,6 @@
 	throwforce = 4.0
 	item_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/metal = 2000)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = 'sound/weapons/genhit.ogg'
@@ -36,7 +35,7 @@
 /obj/item/tool/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
-	item_state = "jackhammer"
+	item_state = "drill"
 	digspeed = 30
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
@@ -212,7 +211,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	. = PLASMACUTTER_CUT_DELAY
-	var/skill = user.skills.getRating("engineer")
+	var/skill = user.skills.getRating(SKILL_ENGINEER)
 	if(skill < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
@@ -277,12 +276,12 @@
 		var/turf/open/floor/plating/ground/snow/ST = T
 		if(!ST.slayer)
 			return
-		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, span_notice("You start melting the [target.name] with [src].")))
+		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
-		if(!cell.charge >= PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD || !powered)
+		if(!powered)
 			fizzle_message(user)
 			return
 		if(!turfdirt == DIRT_TYPE_SNOW)
@@ -291,7 +290,7 @@
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
 		ST.update_icon(1,0)
-		cut_apart(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "You melt the snow with [src]. ") //costs 25% normal
+		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
 
 
 

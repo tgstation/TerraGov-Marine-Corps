@@ -125,7 +125,7 @@
 /obj/effect/forcefield/fog/passable_fog/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -140,7 +140,7 @@
 	set_opacity(FALSE)
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	addtimer(CALLBACK(src, .proc/reset), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset)), 30 SECONDS)
 
 /obj/effect/forcefield/fog/passable_fog/proc/reset()
 	alpha = initial(alpha)

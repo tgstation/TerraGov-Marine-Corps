@@ -70,3 +70,7 @@ endmap
 map patricks_rest
 	minplayers 25
 endmap
+
+map desparity
+	maxplayers 30
+endmap

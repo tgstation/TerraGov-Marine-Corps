@@ -62,7 +62,7 @@
 /datum/SDQL_parser/proc/parse_error(error_message)
 	error = 1
 	to_chat(usr, span_warning("SQDL2 Parsing Error: [error_message]"))
-	return query.len + 1
+	return length(query) + 1
 
 
 /datum/SDQL_parser/proc/parse()
@@ -462,7 +462,7 @@
 				if(tok == ":")
 					temp_expression_list = list()
 					i = expression(i + 1, temp_expression_list)
-					expression_list[expression_list[expression_list.len]] = temp_expression_list
+					expression_list[expression_list[length(expression_list)]] = temp_expression_list
 					temp_expression_list = null
 					tok = token(i)
 					if(tok != ",")

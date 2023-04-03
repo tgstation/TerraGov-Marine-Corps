@@ -16,7 +16,7 @@
 "aab" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/side,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "aap" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/security/storage)
@@ -880,7 +880,7 @@
 	},
 /area/magmoor/cave/north)
 "aIw" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/prop/r_n_d/protolathe,
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research)
 "aJd" = (
@@ -1012,7 +1012,7 @@
 /obj/machinery/chem_master,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/corner,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "aPs" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/cult,
@@ -1416,7 +1416,7 @@
 "bbG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "bbI" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6630,7 +6630,7 @@
 "eHt" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "eHz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -6899,7 +6899,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "eQR" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/blue{
@@ -8803,7 +8803,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/side,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "gkF" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -9981,7 +9981,7 @@
 "hhA" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/plating,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "hin" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -11212,7 +11212,7 @@
 /area/magmoor/hydroponics/south)
 "ihH" = (
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "ihZ" = (
 /obj/structure/rack,
 /obj/item/storage/box/lightstick,
@@ -11352,7 +11352,6 @@
 /area/magmoor/compound)
 "ilf" = (
 /obj/structure/table/mainship,
-/obj/item/tool/surgery/solderingtool,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -11651,7 +11650,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "iyA" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /obj/machinery/alarm,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/tcomms,
@@ -12642,7 +12641,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "jix" = (
 /turf/open/floor/mainship/sterile/white,
 /area/magmoor/medical/surgery)
@@ -12715,7 +12714,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "jlC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -13853,7 +13852,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "kau" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/mainship/cargo,
@@ -13861,7 +13860,7 @@
 "kaC" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "kaF" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -14516,7 +14515,7 @@
 /obj/item/tool/hand_labeler,
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "kCl" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
@@ -15454,7 +15453,7 @@
 "lmZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "lng" = (
 /turf/closed/mineral/smooth,
 /area/magmoor/cave/north)
@@ -16081,10 +16080,6 @@
 	dir = 9
 	},
 /area/magmoor/engi/power)
-"lNM" = (
-/obj/machinery/roomba,
-/turf/open/floor/mainship/green,
-/area/magmoor/civilian/rnr)
 "lOl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -16261,7 +16256,7 @@
 /area/magmoor/civilian/arrival)
 "lUh" = (
 /turf/closed/wall/r_wall,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "lUN" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin{
@@ -16312,11 +16307,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer{
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/emerald{
 	dir = 5
@@ -16864,7 +16859,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "mtD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/geothermal,
@@ -17492,7 +17487,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "mRh" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/vials/prison,
@@ -17619,7 +17614,7 @@
 /area/magmoor/command/conference)
 "mVK" = (
 /obj/structure/table/mainship,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
 	},
@@ -18766,7 +18761,7 @@
 "nOe" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "nOp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -19015,7 +19010,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "oaK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -19173,7 +19168,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "ogT" = (
 /turf/open/floor/plating,
 /area/magmoor/landing/two)
@@ -20610,12 +20605,6 @@
 	dir = 1
 	},
 /area/magmoor/command/conference)
-"pbR" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/magmoor/engi)
 "pbS" = (
 /obj/machinery/door/airlock/colony/medical{
 	name = "Basketball Arena"
@@ -22327,7 +22316,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "qiK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -22713,7 +22702,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "qwo" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/blue{
@@ -23663,7 +23652,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "rkV" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -24299,7 +24288,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "rKI" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/barricade/wooden{
@@ -24361,7 +24350,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/roomba,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/magmoor/civilian/arrival)
 "rMh" = (
@@ -25259,9 +25247,8 @@
 	dir = 5;
 	id = "brg"
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/plating,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "sve" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck/kotahi,
@@ -25456,7 +25443,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "sBQ" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -25491,7 +25478,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "sDz" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -25541,7 +25528,7 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "sEJ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -25610,7 +25597,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "sHu" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -25741,7 +25728,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "sNO" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/mainship/mono,
@@ -25803,7 +25790,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "sQB" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/floor/bcircuit/off,
 /area/magmoor/research/serverroom)
 "sQI" = (
@@ -27758,7 +27745,7 @@
 	},
 /area/magmoor/medical/lobby)
 "uiL" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "uiY" = (
@@ -28357,7 +28344,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "uDF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
@@ -28751,7 +28738,6 @@
 /area/magmoor/security/infocenter)
 "uTu" = (
 /obj/structure/table/mainship,
-/obj/item/tool/surgery/solderingtool,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/power)
 "uTx" = (
@@ -29075,7 +29061,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "vdU" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -29915,7 +29901,7 @@
 	},
 /area/magmoor/research)
 "vPb" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},
@@ -30101,7 +30087,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi)
 "vUz" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/purple{
 	dir = 8
 	},
@@ -30576,7 +30562,7 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/mass_spectrometer,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "woi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -30836,7 +30822,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "wxp" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -31147,8 +31133,8 @@
 "wIx" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/utility/full,
-/obj/item/analyzer,
-/obj/item/analyzer{
+/obj/item/tool/analyzer,
+/obj/item/tool/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
@@ -31648,7 +31634,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "wXI" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/plant,
@@ -31702,7 +31688,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "wZE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -32025,7 +32011,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "xkc" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/corner{
@@ -33263,7 +33249,7 @@
 "xZH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/lab)
+/area/magmoor/medical/chemistry)
 "yah" = (
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
@@ -47310,7 +47296,7 @@ upk
 pCT
 ePb
 fBg
-lNM
+oOH
 upk
 aaE
 qnk
@@ -59848,7 +59834,7 @@ qWQ
 xOB
 qtZ
 sEJ
-pbR
+ilf
 wsz
 svw
 jVn

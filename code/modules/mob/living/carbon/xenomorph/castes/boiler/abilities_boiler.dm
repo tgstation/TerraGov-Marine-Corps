@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(length(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
 		action_activate()
 		return
-	INVOKE_ASYNC(src, .proc/select_glob_radial)
+	INVOKE_ASYNC(src, PROC_REF(select_glob_radial))
 
 /**
  * Opens a radial menu to select a glob in and sets current ammo to the selected result.
@@ -223,7 +223,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
 	if(can_use_ability(A))
-		INVOKE_ASYNC(src, .proc/use_ability, A)
+		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
 
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)

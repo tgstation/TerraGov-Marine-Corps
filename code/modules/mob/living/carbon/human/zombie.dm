@@ -86,7 +86,7 @@
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	SSmobs.stop_processing(H)
 	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), revive_time)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()

@@ -94,7 +94,7 @@
 			if(!accept_check(G))
 				continue
 
-			if(contents.len >= max_n_of_items)
+			if(length(contents) >= max_n_of_items)
 				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 

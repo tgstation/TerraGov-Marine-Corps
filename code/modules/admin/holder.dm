@@ -294,6 +294,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
+	/client/proc/show_traitor_panel,
+	/client/proc/validate_objectives,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -552,7 +554,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMINTICKET, FALSE))
+	if(check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE

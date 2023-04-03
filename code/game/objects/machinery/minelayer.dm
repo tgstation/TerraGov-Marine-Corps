@@ -11,7 +11,7 @@
 
 /obj/item/minelayer/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, type, 1 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, 1 SECONDS)
 
 /obj/machinery/deployable/minelayer
 	anchored = TRUE
@@ -38,7 +38,7 @@
 	var/obj/item/card/id/id = user.get_idcard()
 	iff_signal = id?.iff_signal
 	playsound(loc, 'sound/machines/click.ogg', 25, 1)
-	addtimer(CALLBACK(src, .proc/throw_mine, turf_list), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(throw_mine), turf_list), 2 SECONDS)
 
 ///this proc is used to check for valid turfs and throw mines
 /obj/machinery/deployable/minelayer/proc/throw_mine(list/turf/list_of_turfs)
@@ -53,8 +53,8 @@
 	mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
 	stored_amount--
 	playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
-	addtimer(CALLBACK(src, .proc/place_mine, target_turf, mine_to_throw), cooldown)
-	addtimer(CALLBACK(src, .proc/throw_mine, list_of_turfs), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(place_mine), target_turf, mine_to_throw), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(throw_mine), list_of_turfs), cooldown)
 
 ///this proc is used to check a turf and place mines
 /obj/machinery/deployable/minelayer/proc/place_mine(turf/T, obj/item/explosive/mine/throwed_mine)

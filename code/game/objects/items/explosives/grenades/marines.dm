@@ -21,11 +21,10 @@
 
 
 
-/obj/item/explosive/grenade/PMC
+/obj/item/explosive/grenade/pmc
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_pmc"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	icon_state_mini = "grenade_red_white"
 	light_impact_range = 5
@@ -35,7 +34,6 @@
 	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	icon_state_mini = "grenade_yellow"
 	light_impact_range = 5
@@ -45,24 +43,25 @@
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
 	item_state = "grenade_stick"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
-	throw_speed = 2
-	throw_range = 7
 
 /obj/item/explosive/grenade/upp
 	name = "\improper Type 5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
 	item_state = "grenade_upp"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
 
+/obj/item/explosive/grenade/som
+	name = "\improper S30 HE grenade"
+	desc = "A reliable high explosive grenade utilised by SOM forces. Designed for hand or grenade launcher use."
+	icon_state = "grenade_som"
+	item_state = "grenade_som"
 
 /obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
@@ -95,7 +94,7 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -118,13 +117,13 @@
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
 	icon_state = "grenade_fire"
 	item_state = "grenade_fire"
-	det_time = 40
+	det_time = 4 SECONDS
 	hud_state = "grenade_fire"
 	icon_state_mini = "grenade_orange"
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 35, TRUE, 4)
+	playsound(loc, "incendiary_explosion", 35)
 	qdel(src)
 
 
@@ -141,9 +140,14 @@
 		var/turf/turf_to_flame = t
 		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
+/obj/item/explosive/grenade/incendiary/som
+	name = "\improper S30-I incendiary grenade"
+	desc = "A reliable incendiary grenade utilised by SOM forces. Based off the S30 platform shared by most SOM grenades. Designed for hand or grenade launcher use."
+	icon_state = "grenade_fire_som"
+	item_state = "grenade_fire_som"
 
 /obj/item/explosive/grenade/incendiary/molotov
-	name = "\improper improvised firebomb"
+	name = "improvised firebomb"
 	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
 	icon_state = "molotov"
 	item_state = "molotov"
@@ -151,12 +155,11 @@
 
 /obj/item/explosive/grenade/incendiary/molotov/Initialize()
 	. = ..()
-	det_time = rand(10,40)//Adds some risk to using this thing.
+	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
-	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
+	playsound(loc, "molotov", 35)
 	qdel(src)
 
 /obj/item/explosive/grenade/ags
@@ -166,7 +169,7 @@
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "ags_grenade"
 	item_state = "ags_grenade"
-	det_time = 20
+	det_time = 2 SECONDS
 	light_impact_range = 3
 
 
@@ -175,7 +178,7 @@
 	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon_state = "grenade_smoke"
 	item_state = "grenade_smoke"
-	det_time = 20
+	det_time = 2 SECONDS
 	hud_state = "grenade_smoke"
 	dangerous = FALSE
 	icon_state_mini = "grenade_blue"
@@ -188,10 +191,16 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
 	smoke.set_up(smokeradius, loc, smoke_duration)
 	smoke.start()
 	qdel(src)
+
+/obj/item/explosive/grenade/smokebomb/som
+	name = "\improper S30-S smoke grenade"
+	desc = "The S30-S is a small, but powerful smoke grenade. Based off the S30 platform shared by most SOM grenades. It is set to detonate in 2 seconds."
+	icon_state = "grenade_smoke_som"
+	item_state = "grenade_smoke_som"
 
 ///chemical grenades
 
@@ -201,7 +210,7 @@
 	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
 	icon_state = "grenade_neuro"
 	item_state = "grenade_neuro"
-	det_time = 40
+	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
 	smokeradius = 6
@@ -211,17 +220,17 @@
 	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
 	icon_state = "grenade_acid"
 	item_state = "grenade_acid"
-	det_time = 40
+	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/satrapine
-	name = "\improper Satrapine smoke grenade"
-	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
+	name = "satrapine smoke grenade"
+	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers. Employed heavily by the SOM."
 	icon_state = "grenade_nerve"
 	item_state = "grenade_nerve"
-	det_time = 40
+	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/satrapine
 	smokeradius = 6
@@ -240,7 +249,7 @@
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
 	icon_state = "grenade_pgas"
 	item_state = "grenade_pgas"
-	det_time = 60
+	det_time = 6 SECONDS
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
@@ -250,7 +259,7 @@
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon_state = "grenade_phos"
 	item_state = "grenade_phos"
-	det_time = 20
+	det_time = 2 SECONDS
 	hud_state = "grenade_hide"
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
@@ -276,7 +285,7 @@
 	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
+	arm_sound = 'sound/weapons/armbombpin_1.ogg'
 
 /obj/item/explosive/grenade/impact
 	name = "\improper M40 IMDP grenade"
@@ -284,7 +293,7 @@
 	icon_state = "grenade_impact"
 	item_state = "grenade_impact"
 	hud_state = "grenade_frag"
-	det_time = 40
+	det_time = 4 SECONDS
 	dangerous = TRUE
 	icon_state_mini = "grenade_blue_white"
 	light_impact_range = 3
@@ -370,9 +379,6 @@
 	// All good, turn it on.
 	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
 	turn_on(user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = usr
-		C.toggle_throw_mode()
 
 /obj/item/explosive/grenade/flare/activate(mob/user)
 	if(!active)
@@ -419,6 +425,12 @@
 	if(N)
 		qdel(N)
 		turn_off()
+
+/obj/item/explosive/grenade/flare/civilian
+	name = "flare"
+	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
+	icon_state = "flare"
+	item_state = "flare"
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"

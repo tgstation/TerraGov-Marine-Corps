@@ -57,8 +57,8 @@
 		update_icon()
 		update_adjacent()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -563,7 +563,7 @@
 		span_notice("You start weakening [src]"))
 		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
 			cut_overlay(GLOB.welding_sparks)
 			return TRUE
 
@@ -577,7 +577,7 @@
 		span_notice("You start welding [src] back together."))
 	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
 		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
@@ -619,7 +619,7 @@
 /obj/structure/rack/Initialize()
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

@@ -50,7 +50,7 @@
 			"jatum\\id" = existing_ref)
 
 	// Simple incrementing ID system
-	var/ref_id = seen_references.len + 1
+	var/ref_id = length(seen_references) + 1
 	seen_references[ref] = ref_id
 
 	if(istype(value, /matrix)) // matricies work with json_encode so use a custom arglist

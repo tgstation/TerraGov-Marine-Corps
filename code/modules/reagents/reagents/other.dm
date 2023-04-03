@@ -20,13 +20,6 @@
 	taste_description = "sludge"
 	description = "A white blood-like liquid used by all Synthetics."
 
-/datum/reagent/blood/xeno_blood
-	name = "Acid Blood"
-	color = "#dffc00"
-	taste_description = "acid"
-	description = "A corrosive yellow-ish liquid..."
-
-
 /datum/reagent/water
 	name = "Water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
@@ -352,11 +345,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "iron"
-
-/datum/reagent/iron/on_mob_life(mob/living/L, metabolism)
-	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-		L.blood_volume += 0.8
-	return ..()
+	scannable = TRUE
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(1, 0, 1)

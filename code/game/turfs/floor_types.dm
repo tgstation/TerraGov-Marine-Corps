@@ -312,6 +312,8 @@
 /turf/open/floor/light/LateInitialize(mapload)
 	update_icon()
 
+/turf/open/floor/light/plating
+	icon_state = "plating"
 
 /turf/open/floor/wood
 	name = "floor"
@@ -820,6 +822,9 @@
 	. = ..()
 	floor_tile = new /obj/item/stack/tile/carpet
 	return INITIALIZE_HINT_LATELOAD
+
+/turf/open/floor/carpet/ex_act(severity)
+	return
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"

@@ -18,6 +18,7 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/wraith
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 25, FIRE = 25, ACID = 25)
 	minimap_icon = "warlock"
 	actions = list(
@@ -32,7 +33,6 @@
 	)
 
 	water_slowdown = 0
-	snow_slowdown = 0
 
 /datum/xeno_caste/warlock/young
 	upgrade_name = "Young"

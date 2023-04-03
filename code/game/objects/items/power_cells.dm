@@ -3,6 +3,10 @@
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "cell"
 	force = 5.0
 	throwforce = 5.0
@@ -19,7 +23,6 @@
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	///used to track what set of overlays to use to display charge level
 	var/charge_overlay = "cell"
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
@@ -29,7 +32,6 @@
 	name = "\improper Nanotrasen brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 40)
 
 /obj/item/cell/crap/empty/Initialize()
 	. = ..()
@@ -38,7 +40,6 @@
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 40)
 
 /obj/item/cell/secborg/empty/Initialize()
 	. = ..()
@@ -47,13 +48,11 @@
 /obj/item/cell/apc
 	name = "heavy-duty power cell"
 	maxcharge = 5000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/high
 	name = "high-capacity power cell"
 	icon_state = "hcell"
 	maxcharge = 10000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 60)
 
 /obj/item/cell/high/empty/Initialize()
 	. = ..()
@@ -63,7 +62,6 @@
 	name = "super-capacity power cell"
 	icon_state = "scell"
 	maxcharge = 20000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 70)
 
 /obj/item/cell/super/empty/Initialize()
 	. = ..()
@@ -73,7 +71,6 @@
 	name = "hyper-capacity power cell"
 	icon_state = "hpcell"
 	maxcharge = 30000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 80)
 
 /obj/item/cell/hyper/empty/Initialize()
 	. = ..()
@@ -83,7 +80,6 @@
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
 	maxcharge = 30000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 80)
 
 /obj/item/cell/infinite/use()
 	return TRUE

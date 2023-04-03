@@ -8,6 +8,10 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_NORMAL
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
@@ -22,31 +26,47 @@
 	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
 	 */
 	var/list/storage_type_limits
-	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
+	///In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_start = list()
 	var/list/click_border_end = list()
-	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
-	var/storage_slots = 7 //The number of storage slots in this container.
+	///Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_w_class = 2
+	///The sum of the storage costs of all the items in this storage item.
+	var/max_storage_space = 14
+	///The number of storage slots in this container.
+	var/storage_slots = 7
 	var/atom/movable/screen/storage/boxes = null
-	var/atom/movable/screen/storage/storage_start = null //storage UI
+	///storage UI
+	var/atom/movable/screen/storage/storage_start = null
 	var/atom/movable/screen/storage/storage_continue = null
 	var/atom/movable/screen/storage/storage_end = null
 	var/atom/movable/screen/storage/stored_start = null
 	var/atom/movable/screen/storage/stored_continue = null
 	var/atom/movable/screen/storage/stored_end = null
 	var/atom/movable/screen/close/closer = null
-	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
-	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/allow_drawing_method //whether this object can change its drawing method (pouches)
+	///whether our storage box on hud changes color when full.
+	var/show_storage_fullness = TRUE
+	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/use_to_pickup
+	///Set this to make the storage item group contents of the same type and display them as a number.
+	var/display_contents_with_number
+	///Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_empty
+	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/allow_quick_gather
+	///whether this object can change its drawing method (pouches)
+	var/allow_drawing_method
 	var/draw_mode = 0
-	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
-	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
-	var/use_sound = "rustle"	//sound played when used. null for no sound.
-	var/opened = 0 //Has it been opened before?
-	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
+	////0 = pick one at a time, 1 = pick all on tile
+	var/collection_mode = 1;
+	///BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/foldable = null
+	///sound played when used. null for no sound.
+	var/use_sound = "rustle"
+	///Has it been opened before?
+	var/opened = 0
+	///list of mobs currently seeing the storage's contents
+	var/list/content_watchers = list()
 	///How long does it take to put items into or out of this, in ticks
 	var/access_delay = 0
 	///What item do you use to tactical refill this
@@ -171,8 +191,7 @@
 	hide_from(user)
 
 
-//This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
-//The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+///This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right. The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
 /obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
@@ -189,7 +208,7 @@
 	if(show_storage_fullness)
 		boxes.update_fullness(src)
 
-//This proc draws out the inventory and places the items on it. It uses the standard position.
+///This proc draws out the inventory and places the items on it. It uses the standard position.
 /obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
@@ -223,10 +242,14 @@
 
 /obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 
-	var/baseline_max_storage_space = 21 //should be equal to default backpack capacity
-	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
-	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
-	var/storage_width = min( round( 258 * max_storage_space/baseline_max_storage_space ,1) ,284) //length of sprite for the box representing total storage space
+	///should be equal to default backpack capacity
+	var/baseline_max_storage_space = 21
+	///length of sprite for start and end of the box representing total storage space
+	var/storage_cap_width = 2
+	///length of sprite for start and end of the box representing the stored item
+	var/stored_cap_width = 4
+	///length of sprite for the box representing total storage space
+	var/storage_width = min( round( 258 * max_storage_space/baseline_max_storage_space ,1) ,284)
 
 	click_border_start.Cut()
 	click_border_end.Cut()
@@ -319,10 +342,10 @@
 	sample_object = null
 	return ..()
 
-//This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
+///This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
-	var/adjusted_contents = contents.len
+	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -349,15 +372,14 @@
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 		slot_orient_objs(row_num, col_count, numbered_contents)
 
-//This proc return 1 if the item can be picked up and 0 if it can't.
-//Set the warning to stop it from printing messages
+///This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, warning = TRUE)
 	if(!istype(W) || (W.flags_item & NODROP))
 		return //Not an item
 
 	if(loc == W)
 		return FALSE //Means the item is already in the storage item
-	if(storage_slots != null && contents.len >= storage_slots)
+	if(storage_slots != null && length(contents) >= storage_slots)
 		if(warning)
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
@@ -477,7 +499,7 @@
 			storage_type_limits[limited_type] -= 1
 	return TRUE
 
-//Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
+///Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	if(!istype(item))
 		return FALSE
@@ -520,7 +542,7 @@
 
 	return TRUE
 
-//This proc is called when you want to place an item into the storage item.
+///This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -530,7 +552,7 @@
 				return do_refill(I, user)
 
 	if(!can_be_inserted(I))
-		return
+		return FALSE
 	return handle_item_insertion(I, FALSE, user)
 
 ///Refills the storage from the refill_types item
@@ -558,8 +580,8 @@
 
 /obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 			return
 		else if(open(user))
@@ -607,18 +629,19 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T, usr)
 
-/// Delete everything that's inside the storage
+///Delete everything that's inside the storage
 /obj/item/storage/proc/delete_contents()
 	for(var/obj/item/I AS in contents)
 		I.on_exit_storage(src)
 		qdel(I)
 
-//finds a stored item to draw
+///finds a stored item to draw
 /obj/item/storage/do_quick_equip(mob/user)
 	if(!length(contents))
 		return FALSE //we don't want to equip the storage item itself
 	var/obj/item/W = contents[length(contents)]
-	remove_from_storage(W, null, user)
+	if(!remove_from_storage(W, null, user))
+		return FALSE
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
@@ -720,7 +743,7 @@
 			O.emp_act(severity)
 	..()
 
-// BubbleWrap - A box can be folded up to make card
+///BubbleWrap - A box can be folded up to make card
 /obj/item/storage/attack_self(mob/user)
 
 	//Clicking on itself will empty it, if it has the verb to do that.
@@ -730,7 +753,7 @@
 		return
 
 	//Otherwise we'll try to fold it.
-	if ( contents.len )
+	if ( length(contents) )
 		return
 
 	if ( !ispath(foldable) )
@@ -746,8 +769,7 @@
 	qdel(src)
 //BubbleWrap END
 
-//Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
-//Returns -1 if the atom was not found on container.
+///Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area). Returns -1 if the atom was not found on container.
 /atom/proc/storage_depth(atom/container)
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -764,8 +786,7 @@
 
 	return depth
 
-//Like storage depth, but returns the depth to the nearest turf
-//Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
+///Like storage depth, but returns the depth to the nearest turf. Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
 /atom/proc/storage_depth_turf()
 	var/depth = 0
 	var/atom/cur_atom = src
@@ -828,8 +849,10 @@
 
 ///attempts to get the first possible object from this container
 /obj/item/storage/proc/attempt_draw_object(mob/living/user)
-	if(!ishuman(user) || user.incapacitated() || !length(contents) || isturf(loc))
+	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
+	if(!length(contents))
+		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]
