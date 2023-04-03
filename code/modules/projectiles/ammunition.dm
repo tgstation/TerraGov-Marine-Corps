@@ -556,4 +556,4 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/mg
 	name = "big ammo box (10x26mm)"
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
-	caliber = CALIBER_10X26_CASELESS
+	caliber = CALIBER_10x26_CASELESS
