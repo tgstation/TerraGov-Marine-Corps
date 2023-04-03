@@ -253,8 +253,8 @@ Stepping directly on the mine will also blow it up
 	icon_state = "m20p"
 
 /obj/item/explosive/mine/alert
-	name = "\improper S20 Alert system"
-	desc = "The S20 Alert system behaves much like a regulair mine. But instead of exploding it will alert marine forces of movements. Giving early warning when hostiles aproach"
+	name = "\improper S20 Proxomity mine"
+	desc = "The S20 proximity mine behaves much like a regulair mine. But instead of exploding it will alert marine forces of movements. Giving early warning when hostiles aproach."
 	var/obj/item/radio/radio
 	deploy_time = 5
 	pick_upable = TRUE
