@@ -17,9 +17,13 @@
 #define FIRE_LASE "!!FIRE OB!!"
 
 #define ORBITAL_SPOTLIGHT "Shine orbital spotlight"
-#define PLACE_MARK "Place a mark"
-#define MESSAGE_NEAR "Message all nearby marines"
 #define ANNOUNCE_TEXT "Make an announcement"
+#define MESSAGE_NEAR "Message all nearby marines"
+#define SQUAD_ACTIONS "Open squad actions menu"
+#define PLACE_MARK "Place a mark"
+
+#define MESSAGE_SQUAD "Message all marines in a squad"
+#define SWITCH_SQUAD_NEAR "Move all nearby marines to a squad"
 
 #define RALLY_MARK "Place a rally mark"
 #define ATTACK_MARK "Place an attack mark"
@@ -748,12 +752,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			SWITCH_SQUAD = image(),
 		)
 
-		var/mob/living/carbon/human/target = A
-
 		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
+		var/mob/living/carbon/human/target = A
 		switch(choice)
 			if(MESSAGE_SINGLE)
+				var/input = stripped_input(usr, "Please write a message to announce to this marine:", "CIC Message")
+				message_member(target, input, source)
 			if(ASL)
+			if(SWITCH_SQUAD)
 
 	elif(istype(A, /obj/effect/overlay/temp/laser_target/OB))
 		var/obj/effect/overlay/temp/laser_target/OB/target = A
@@ -773,6 +779,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			ORBITAL_SPOTLIGHT = image(),
 			ANNOUNCE_TEXT = image(),
 			MESSAGE_NEAR = image(),
+			SQUAD_ACTIONS = image(),
 			PLACE_MARK = image(),
 		)
 
@@ -781,7 +788,25 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(ORBITAL_SPOTLIGHT)
 			if(ANNOUNCE_TEXT)
 			if(MESSAGE_NEAR)
+				var/input = stripped_input(usr, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
+				for(var/mob/living/human/H in GLOB.human_mob_list)
+					if(get_dist(H, target) > WORLD_VIEW_NUM*2)
+						continue
+					message_member(H, target)
+
+
 			if(ORDER_BEACON)
+			if(SQUAD_ACTIONS)
+				var/list/radial_options = list(
+					MESSAGE_SQUAD = image(),
+					SWITCH_SQUAD_NEAR = image(),
+				)
+
+				switch(choice)
+					if(MESSAGE_SQUAD)
+						//Need to open squad menu here. Maybe do it as a function?
+					if(SWITCH_SQUAD_NEAR)
+
 			if(PLACE_MARK)
 				var/list/radial_options = list(
 					RALLY_MARK = image(),
