@@ -258,6 +258,7 @@ Stepping directly on the mine will also blow it up
 	var/obj/item/radio/radio
 	deploy_time = 5
 	pick_upable = TRUE
+	icon_state = "s20"
 	trip_range = 3
 
 /obj/item/explosive/mine/alert/Initialize()

@@ -130,6 +130,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
+		/obj/item/storage/box/explosive_mines/alert = list(CAT_LEDSUP, "Box of proximity alerting mines", 5, "black"),
 	))
 
 //A way to give them everything at once that still works with loadouts would be nice, but barring that make sure that your point calculation is set up so they don't get more than what they're supposed to

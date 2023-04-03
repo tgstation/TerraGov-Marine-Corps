@@ -136,6 +136,11 @@ OPERATIONS
 	contains = list(/obj/item/spacecash/c500)
 	cost = 50
 
+/datum/supply_packs/operations/alert_mines
+	name = "Box of proximity alerting mines"
+	contains = list(/obj/item/storage/box/explosive_mines/alert)
+	cost = 50
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/

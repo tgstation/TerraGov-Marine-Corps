@@ -353,6 +353,12 @@
 	if(!length(contents))
 		icon_state += "_e"
 
+
+/obj/item/storage/box/explosive_mines/alert
+	max_storage_space = 10
+	spawn_type = /obj/item/explosive/mine/alert
+	spawn_number = 10
+
 /obj/item/storage/box/explosive_mines/large
 	name = "\improper M20 mine box"
 	desc = "A large secure box holding anti-personel proximity mines."
