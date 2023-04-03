@@ -782,16 +782,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		var/choice = show_radial_menu(source, target, radial_options, CIC_MENU, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(ORBITAL_SPOTLIGHT)
+				attempt_spotlight(source, target, params)
 			if(ANNOUNCE_TEXT)
 			if(MESSAGE_NEAR)
 				var/input = stripped_input(usr, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
 				for(var/mob/living/human/H in GLOB.human_mob_list)
 					if(get_dist(H, target) > WORLD_VIEW_NUM*2)
 						continue
-					message_member(H, target)
-
-
-			if(ORDER_BEACON)
+					message_member(H, source)
 			if(SQUAD_ACTIONS)
 				var/list/radial_options = list(
 					MESSAGE_SQUAD = image(),
