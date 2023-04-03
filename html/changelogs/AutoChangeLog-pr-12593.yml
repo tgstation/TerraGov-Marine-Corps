@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Admins can disable players taking over ssd mobs now"
+  - bugfix: "Admins can now actually toggle the var to disable valhalla joining"
