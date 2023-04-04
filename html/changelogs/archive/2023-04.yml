@@ -25,3 +25,10 @@
   - bugfix: Fixed a bug related to the disk console never being processed again if
       turned off once
   - refactor: Refactored a bit of the nuke disk generator code and added autodocs
+2023-04-04:
+  Xander3359:
+  - imageadd: updates minimap action button icon.
+  - balance: Dispenser can no longer carry bulky items.
+  ivanmixo:
+  - rscadd: Admins can disable players taking over ssd mobs now
+  - bugfix: Admins can now actually toggle the var to disable valhalla joining
