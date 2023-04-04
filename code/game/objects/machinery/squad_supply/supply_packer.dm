@@ -22,7 +22,7 @@
 	for(var/obj/item/thing in loc)
 		if(is_type_in_typecache(thing,black_list))
 			continue
-		if(item.anchored)
+		if(thing.anchored)
 			continue
 		thing.forceMove(src)
 		manifest += thing.name
