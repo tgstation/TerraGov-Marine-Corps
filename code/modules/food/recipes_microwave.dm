@@ -80,7 +80,7 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/carpmeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/burger/fish
+	result = /obj/item/reagent_containers/food/snacks/burger/fishburger
 
 /datum/recipe/tofuburger
 	items = list(
