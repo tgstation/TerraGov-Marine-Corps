@@ -210,7 +210,7 @@
 	name = "energy cake"
 	desc = "Just enough calories for a whole nuclear operative squad."
 	icon_state = "energycake"
-	slice_path = /obj/item/reagent_containers/food/snacks/pastries/birthdaycake/energyslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/energycakeslice
 	hitsound = 'sound/weapons/blade1.ogg'
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 3, "a Vlad's Salad" = 1)

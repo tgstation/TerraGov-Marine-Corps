@@ -66,21 +66,21 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/organ/brain,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/brain
+	result = /obj/item/reagent_containers/food/snacks/burger/brain
 
 /datum/recipe/xenoburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/xenomeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/xeno
+	result = /obj/item/reagent_containers/food/snacks/burger/xeno
 
 /datum/recipe/fishburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/carpmeat,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/fish
+	result = /obj/item/reagent_containers/food/snacks/burger/fish
 
 /datum/recipe/tofuburger
 	items = list(
@@ -109,7 +109,7 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/clothing/head/beret,
 	)
-	result = /obj/item/reagent_containers/food/snacks/burger/mimeburger
+	result = /obj/item/reagent_containers/food/snacks/burger/mime
 
 /datum/recipe/hotdog
 	items = list(
@@ -859,7 +859,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 	)
-	result = /obj/item/reagent_containers/food/snacks/burger/jellyburger
+	result = /obj/item/reagent_containers/food/snacks/burger/jelly
 
 /datum/recipe/twobread
 	reagents = list(/datum/reagent/consumable/ethanol/wine = 5)

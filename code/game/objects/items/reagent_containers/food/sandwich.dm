@@ -341,7 +341,7 @@
 	desc = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
 	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "tofubread"
-	slice_path = /obj/item/reagent_containers/food/snacks/tofubreadslice
+	slice_path = /obj/item/reagent_containers/food/snacks/sandwiches/tofubreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
 	filling_color = "#F7FFE0"
 	tastes = list("bread" = 10, "tofu" = 10)
