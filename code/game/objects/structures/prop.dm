@@ -251,6 +251,13 @@
 /obj/structure/prop/mainship/missile_tube/south
 	icon_state = "missiletubesouth"
 
+/obj/structure/prop/mainship/vls
+	name = "\improper Mk 47 VLS"
+	desc = "The MK 47 vertical launching system is the staple of ship to ship combat in the space age. Fitted on most TGN Ships, it can fire a variety of missile types fitted for its purpose and target type."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "vls"
+	resistance_flags = RESIST_ALL
+
 /obj/structure/prop/mainship/ship_memorial
 	name = "slab of victory"
 	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC."
