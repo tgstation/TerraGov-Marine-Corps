@@ -406,7 +406,20 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("insubordination")
 			mark_insubordination()
 		if("squad_transfer")
-			transfer_squad()
+			if(!current_squad)
+				to_chat(usr, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
+				return
+			var/datum/squad/S = current_squad
+			var/mob/living/carbon/human/transfer_marine = tgui_input_list(usr, "Choose marine to transfer", null, current_squad.get_all_members())
+
+			if(!transfer_marine)
+				return
+			if(S != current_squad)
+				return //don't change overwatched squad, idiot.
+
+			var/datum/squad/new_squad = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
+
+			transfer_squad(transfer_marine, new_squad)
 		if("dropbomb")
 			handle_bombard()
 		if("shootrailgun")
@@ -663,24 +676,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						wanted_marine.sec_hud_set_security_status()
 					return
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/transfer_squad()
+/obj/machinery/computer/camera_advanced/overwatch/proc/transfer_squad(mob/living/carbon/human/transfer_marine, datum/squad/new_squad)
 	if(!usr || usr != operator)
-		return
-	if(!current_squad)
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
-		return
-	var/datum/squad/S = current_squad
-	var/mob/living/carbon/human/transfer_marine = tgui_input_list(usr, "Choose marine to transfer", null, current_squad.get_all_members())
-	if(!transfer_marine)
 		return
 
 	if(!transfer_marine.job)
 		CRASH("[transfer_marine] selected for transfer without a job.")
 
-	if(S != current_squad)
-		return //don't change overwatched squad, idiot.
-
-	if(!istype(transfer_marine) || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
+	if(!istype(transfer_marine)) //gibbed
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("[transfer_marine] is KIA.")]")
 		return
 
@@ -688,19 +691,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("Transfer aborted. [transfer_marine] isn't wearing an ID.")]")
 		return
 
-	var/datum/squad/new_squad = tgui_input_list(usr, "Choose the marine's new squad", null,  watchable_squads)
 	if(!new_squad)
 		return
 
-	if(S != current_squad)
-		return
-
-	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("[transfer_marine] is KIA.")]")
-		return
-
-	if(!istype(transfer_marine.wear_id, /obj/item/card/id))
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("Transfer aborted. [transfer_marine] isn't wearing an ID.")]")
+	if(ismarineleaderjob(transfer_marine.job) && new_squad.current_positions[/datum/job/terragov/squad/leader] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
+		to_chat(usr, "[icon2html(src, usr)] [span_warning("Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].")]")
 		return
 
 	var/datum/squad/old_squad = transfer_marine.assigned_squad
@@ -708,11 +703,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("[transfer_marine] is already in [new_squad]!")]")
 		return
 
-	if(ismarineleaderjob(transfer_marine.job) && new_squad.current_positions[/datum/job/terragov/squad/leader] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].")]")
-		return
-
-	old_squad.remove_from_squad(transfer_marine)
+	if(old_squad)
+		old_squad.remove_from_squad(transfer_marine)
 	new_squad.insert_into_squad(transfer_marine)
 
 	for(var/datum/data/record/t in GLOB.datacore.general) //we update the crew manifest
@@ -752,7 +744,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				var/input = stripped_input(usr, "Please write a message to announce to this marine:", "CIC Message")
 				current_squad.message_member(target, input, source)
 //			if(ASL)
-//			if(SWITCH_SQUAD)
+			if(SWITCH_SQUAD)
+				var/datum/squad/desired_squad = squad_select(source, target)
+				transfer_squad(target, desired_squad)
 
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
 		var/obj/effect/overlay/temp/laser_target/OB/target = A
@@ -763,8 +757,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 //		switch(choice)
-//			if(ORBITAL_SPOTLIGHT)
-//			if(ANNOUNCE_TEXT)
+//			if(MARK_LASE)
+//			if(FIRE_LASE)
 
 	else
 		var/turf/target = get_turf(A)
@@ -773,7 +767,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			ANNOUNCE_TEXT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-				)
+		)
 
 		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
@@ -794,12 +788,31 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 				)
 
-//				switch(choice)
-//					if(MESSAGE_SQUAD)
-						//Need to open squad menu here. Maybe do it as a function?
-//					if(SWITCH_SQUAD_NEAR)
+				choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
+				var/datum/squad/chosen_squad = squad_select(source, target)
+				switch(choice)
+					if(MESSAGE_SQUAD)
+						var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
+						chosen_squad.message_squad(input, source)
+					if(SWITCH_SQUAD_NEAR)
+						for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+							if(!H)
+								return
+							if(get_dist(H, target) > 9)
+								continue
+							transfer_squad(H, chosen_squad)
 
+///Radial squad select menu.
+/obj/machinery/computer/camera_advanced/overwatch/proc/squad_select(datum/source, atom/A)
+	var/list/squad_options = list()
+	var/list/squad_selection = watchable_squads
 
+	for(var/datum/squad/squad in watchable_squads)
+		var/image/squad_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice")
+		squad_icon.color = squad.color
+		squad_options += list(squad.name = squad_icon)
+
+	return SSjob.squads_by_name[faction][show_radial_menu(source, A, squad_options, null, 48, null, FALSE, TRUE)]
 
 
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
