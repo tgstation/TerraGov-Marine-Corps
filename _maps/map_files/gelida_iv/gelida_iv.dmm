@@ -1261,7 +1261,7 @@
 /obj/item/tool/kitchen/knife{
 	pixel_x = -11
 	},
-/obj/item/reagent_containers/food/snacks/superbiteburger{
+/obj/item/reagent_containers/food/snacks/burger/superbite{
 	pixel_x = 4;
 	pixel_y = 8
 	},
