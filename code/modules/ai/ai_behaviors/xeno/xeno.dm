@@ -246,12 +246,16 @@
 
 /datum/ai_behavior/xeno/ranged/patrolling
 	base_action = MOVING_TO_NODE
+	is_offered_on_creation = FALSE
 
 /datum/ai_behavior/xeno/ranged/following
 	base_action = ESCORTING_ATOM
+	is_offered_on_creation = FALSE
 
 /datum/ai_behavior/xeno/patrolling
 	base_action = MOVING_TO_NODE
+	is_offered_on_creation = FALSE
 
 /datum/ai_behavior/xeno/following
 	base_action = ESCORTING_ATOM
+	is_offered_on_creation = FALSE
