@@ -368,3 +368,92 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bitesize = 2
 	tastes = list("rice" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/jellyfish
+	name = "jellyfish stew"
+	desc = "A slimy bowl of jellyfish stew. It jiggles if you shake it."
+	icon_state = "jellyfish_stew"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment = 6)
+	tastes = list("slime" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/rootbread_soup
+	name = "rootbread soup"
+	desc = "A big bowl of spicy, savoury soup made with rootbread. Heavily seasoned, and very tasty."
+	icon_state = "rootbread_soup"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("bread" = 1, "egg" = 1, "chili" = 1, "garlic" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/black_broth
+	name = "\improper Tiziran black broth"
+	desc = "A bowl of sausage, onion, blood and vinegar, served ice cold. Every bit as rough as it sounds."
+	icon_state = "black_broth"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/blood = 8, /datum/reagent/liquidgibs = 2)
+	tastes = list("vinegar" = 1, "metal" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/meatball_noodles
+	name = "meatball noodle soup"
+	desc = "A hearty noodle soup made from meatballs in a rich broth."
+	icon_state = "meatball_noodles"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/water = 5)
+	tastes = list("bone broth" = 1, "meat" = 1, "gnocchi" = 1, "peanuts" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/atrakor_dumplings
+	name = "\improper Atrakor dumpling soup"
+	desc = "A bowl of rich, meaty dumpling soup."
+	icon_state = "atrakor_dumplings"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/water = 5)
+	tastes = list("bone broth" = 1, "onion" = 1, "potato" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/shredded_lungs
+	name = "crispy shredded lung stirfry"
+	desc = "Crispy lung strips, with veggies and a spicy sauce. Delicious, if you like lungs."
+	icon_state = "lung_stirfry"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/capsaicin = 2)
+	tastes = list("meat" = 1, "heat" = 1, "veggies" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/lizard_escargot
+	name = "desert snail cocleas"
+	desc = "A very niche example of cultural crossover between lizards and humans, lizard escargot is sourced naturally from perfectly compliant lizardfolk."
+	icon_state = "lizard_escargot"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/garlic = 2)
+	tastes = list("snails" = 1, "garlic" = 1, "oil" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/rice_porridge
+	name = "rice porridge"
+	desc = "A plate of rice porridge. It's mostly flavourless, but it does fill a spot." //höllflöfmiskl = rice (höllflöf = cloud, miskl = seed), sløsk = porridge
+	icon = 'icons/obj/food/moth.dmi'
+	icon_state = "rice_porridge"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 8)
+	tastes = list("nothing" = 1)
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/soup/hua_mulan_congee
+	name = "\improper Hua Mulan congee"
+	desc = "Nobody is quite sure why this smiley bowl of rice porridge with eggs and bacon is named after a mythological Chinese figure- it's just sorta what it's always been called."
+	icon_state = "hua_mulan_congee"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/nutriment/protein = 6)
+	tastes = list("bacon" = 1, "eggs" = 1)
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/soup/cornmeal_porridge
+	name = "cornmeal porridge"
+	desc = "A plate of cornmeal porridge. It's more flavourful than most porridges, and makes a good base for other flavours, too."
+	icon_state = "cornmeal_porridge"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("cornmeal" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/cheesy_porridge //milk, polenta, firm cheese, curd cheese, butter
+	name = "cheesy porridge"
+	desc = "A rich and creamy bowl of cheesy cornmeal porridge."
+	icon_state = "cheesy_porridge"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nutriment = 8)
+	tastes = list("cornmeal" = 1, "cheese" = 1, "more cheese" = 1, "lots of cheese" = 1)
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/soup/red_porridge
+	name = "red porridge" //eltsløsk = red porridge, ül a = with, prikt = sour, æolk = cream
+	desc = "Red porridge with yoghurt. The name and vegetable ingredients obscure the sweet nature of the dish, which is commonly served as a dessert aboard the fleet."
+	icon = 'icons/obj/food/moth.dmi'
+	icon_state = "red_porridge"
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/sugar = 8)
+	tastes = list("sweet beets" = 1, "sugar" = 1, "sweetened yoghurt" = 1)

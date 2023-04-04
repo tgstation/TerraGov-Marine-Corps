@@ -355,3 +355,33 @@
 	filling_color = "#F7FFE0"
 	bitesize = 2
 	tastes = list("bread" = 10, "tofu" = 10)
+
+/obj/item/reagent_containers/food/snacks/sandwiches/emperor_roll
+	name = "emperor roll"
+	desc = "A popular sandwich on Imperial core worlds, usually served in honor of royalty."
+	icon_state = "emperor_roll"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("bread" = 1, "cheese" = 1, "liver" = 1, "caviar" = 1)
+
+/obj/item/reagent_containers/food/snacks/sandwiches/honey_roll
+	name = "honey sweetroll"
+	desc = "A sweetened rootroll with sliced fruit."
+	icon_state = "honey_roll"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/consumable/honey = 2)
+	tastes = list("bread" = 1, "honey" = 1, "fruit" = 1)
+
+//Bread
+/obj/item/reagent_containers/food/snacks/sandwiches/corn
+	name = "cornbread"
+	desc = "Some good down-home country-style, rootin'-tootin', revolver-shootin', dad-gum yeehaw cornbread."
+	icon_state = "cornbread"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 18)
+	tastes = list("cornbread" = 10)
+	w_class = WEIGHT_CLASS_SMALL
+	bitesize = 2
+
+/obj/item/reagent_containers/food/snacks/sandwiches/corn
+	name = "cornbread slice"
+	desc = "A chunk of crispy, cowboy-style cornbread. Consume contentedly."
+	icon_state = "cornbread_slice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)

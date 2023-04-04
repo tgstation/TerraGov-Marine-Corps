@@ -552,6 +552,22 @@
 	tastes = list("meat" = 1, "acid" = 1)
 	bitesize = 6
 
+/obj/item/reagent_containers/food/snacks/raw_lizard_sausage
+	name = "raw Lizard blood sausage"
+	desc = "A raw lizard blood sausage, ready to be cured on a drying rack."
+	icon = 'icons/obj/items/food/meat.dmi'
+	icon_state = "raw_lizard_sausage"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/blood = 3)
+	tastes = list("meat" = 1, "black pudding" = 1)
+
+/obj/item/reagent_containers/food/snacks/lizard_sausage
+	name = "\improper Lizard blood sausage"
+	desc = "A coarse dry-cured blood sausage, traditionally made from 100% organically sourced lizard."
+	icon = 'icons/obj/items/food/meat.dmi'
+	icon_state = "lizard_sausage"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("meat" = 1, "black pudding" = 1)
+
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."
@@ -1134,6 +1150,24 @@
 	filling_color = "#FFF700"
 	bitesize = 2
 	tastes = list("cheese" = 1)
+
+/obj/item/reagent_containers/food/snacks/baked_cheese
+	name = "baked cheese wheel"
+	desc = "A baked cheese wheel, melty and delicious."
+	icon = 'icons/obj/food/moth.dmi'
+	icon_state = "baked_cheese"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/nutriment = 5)
+	tastes = list("cheese" = 1)
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/baked_cheese_platter
+	name = "backed cheese platter" //stannt = oven, krakt = baked, ælo = cheese
+	desc = "A baked cheese wheel: a favourite for sharing. Usually served with crispy bread slices for dipping, because the only thing better than good cheese is good cheese on bread."
+	icon = 'icons/obj/food/moth.dmi'
+	icon_state = "baked_cheese_platter"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 12, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/nutriment = 8)
+	tastes = list("cheese" = 1, "bread" = 1)
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_containers/food/snacks/watermelonslice
 	name = "Watermelon Slice"
