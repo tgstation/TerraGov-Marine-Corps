@@ -6,7 +6,7 @@ Mines use invisible /obj/effect/mine_trigger objects that tell the mine to explo
 Shrapnel-based explosives (like claymores) will not actually hit anything standing on the same tile due to fire_at() not
 taking that kind of thing into account, setting buffer_range = 0 or making them pressure_activated is useless
 */
-/obj/item/explosive/mine
+/obj/item/mine
 	name = "not a real mine"
 	desc = "Dummy object. Otherwise changing stats on the parent item would cause chaos/tedium every time."
 	icon = 'icons/obj/items/mine.dmi'
@@ -95,30 +95,30 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	///How long the gas cloud remains; do not use SECONDS as it is used by the smoke object's process(), which is called roughly every second
 	var/gas_duration = 0
 
-/obj/item/explosive/mine/Initialize()
+/obj/item/mine/Initialize()
 	. = ..()
 	if(!buffer_range || pressure_activated)
 		var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
 		AddElement(/datum/element/connect_loc, connections)
 
-/obj/item/explosive/mine/Destroy()
+/obj/item/mine/Destroy()
 	QDEL_LIST(triggers)
 	return ..()
 
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
-/obj/item/explosive/mine/update_icon()
+/obj/item/mine/update_icon()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
 
-/obj/item/explosive/mine/attack_self(mob/living/user)
+/obj/item/mine/attack_self(mob/living/user)
 	. = ..()
 	setup(user)
 
 ///Runs the checks for attempting to deploy a mine
-/obj/item/explosive/mine/proc/setup(mob/living/user)
+/obj/item/mine/proc/setup(mob/living/user)
 	if(!user.loc || user.loc.density)
 		balloon_alert(user, "You can't plant a mine here.")
 		return FALSE
-	if(locate(/obj/item/explosive/mine) in get_turf(src))
+	if(locate(/obj/item/mine) in get_turf(src))
 		balloon_alert(user, "There already is a mine at this position!")
 		return FALSE
 	if(armed || triggered)	//Just in case
@@ -131,7 +131,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	deploy(user, id?.iff_signal)
 
 ///Process for arming the mine; anchoring, setting who it belongs to, generating the trigger zones
-/obj/item/explosive/mine/proc/deploy(mob/living/user, faction)
+/obj/item/mine/proc/deploy(mob/living/user, faction)
 	iff_signal = faction
 	anchored = TRUE
 	armed = TRUE
@@ -150,13 +150,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			triggers += tripwire
 	update_icon()
 
-/obj/item/explosive/mine/attack_hand(mob/living/user)
+/obj/item/mine/attack_hand(mob/living/user)
 	. = ..()
 	if(anchored || armed)
 		undeploy(user)
 
 ///Required checks before a mine is turned off and packed up
-/obj/item/explosive/mine/proc/undeploy(mob/living/user)
+/obj/item/mine/proc/undeploy(mob/living/user)
 	if(triggered && !interruptible)
 		balloon_alert(user, "Too late, run!")
 		return FALSE
@@ -168,13 +168,13 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 			return disarm()
 	balloon_alert(user, "Must be defused!")
 
-/obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
+/obj/item/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(ismultitool(I))
 		bomb_defusal(user)	//Sweaty palms time
 
 ///The process for trying to disarm a mine
-/obj/item/explosive/mine/proc/bomb_defusal(mob/user)
+/obj/item/mine/proc/bomb_defusal(mob/user)
 	if(triggered && !interruptible)
 		balloon_alert(user, "Can't disarm this, run!")
 		return FALSE
@@ -196,7 +196,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	disarm(user)
 
 ///Turns off the mine
-/obj/item/explosive/mine/proc/disarm()
+/obj/item/mine/proc/disarm()
 	armed = FALSE
 	anchored = FALSE
 	if(triggered)	//Good job, you managed to disarm it before it blew
@@ -205,7 +205,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	QDEL_LIST(triggers)
 
 ///Checks if a mob entered the tile this mine is on, and if it can cause it to trigger
-/obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
+/obj/item/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(discern_living)	//If only conscious mobs can trigger this mine, run the appropriate checks
 		if(!isliving(A))
 			return FALSE
@@ -219,7 +219,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	trip_mine(A)
 
 ///Process for triggering detonation
-/obj/item/explosive/mine/proc/trip_mine(mob/living/L)
+/obj/item/mine/proc/trip_mine(mob/living/L)
 	if(!armed || triggered)
 		return FALSE
 	if((L.status_flags & INCORPOREAL))
@@ -230,7 +230,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	trigger_explosion(L)
 
 ///Trigger the mine; needs to be a separate proc so that we can use a timer
-/obj/item/explosive/mine/proc/trigger_explosion(mob/living/L)
+/obj/item/mine/proc/trigger_explosion(mob/living/L)
 	if(triggered)
 		return FALSE
 	triggered = TRUE
@@ -242,7 +242,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	explode(L)
 
 ///Proc that actually causes the explosion
-/obj/item/explosive/mine/proc/explode(mob/living/L)
+/obj/item/mine/proc/explode(mob/living/L)
 	if(!triggered)
 		return FALSE
 	if(light_explosion_range || heavy_explosion_range || uber_explosion_range)
@@ -273,38 +273,38 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	qdel(src)
 
 ///Shove any code for special effects caused by this mine here
-/obj/item/explosive/mine/proc/extra_effects(duration = 1 SECONDS, mob/living/L)
+/obj/item/mine/proc/extra_effects(duration = 1 SECONDS, mob/living/L)
 	return
 
 ///If this mine is volatile, explode! Easier to copy paste this into several places
-/obj/item/explosive/mine/proc/volatility_check()
+/obj/item/mine/proc/volatility_check()
 	if(volatile)
 		//Let's make sure everyone knows it was not activated by normal circumstances
 		visible_message(span_danger("[icon2html(src, viewers(src))] \The [src]'s detonation mechanism is accidentally triggered!"))
 		trigger_explosion()
 
 //On explosion, mines trigger their own explosion, assuming they were not deleted straight away (larger explosions or probability)
-/obj/item/explosive/mine/ex_act()
+/obj/item/mine/ex_act()
 	. = ..()
 	if(!QDELETED(src))
 		volatility_check()
 
 //Any EMP effects will render volatiles mines disabled
-/obj/item/explosive/mine/emp_act()
+/obj/item/mine/emp_act()
 	. = ..()
 	if(volatile)
 		disarm()
 
 //Fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act(burnlevel)
+/obj/item/mine/flamer_fire_act(burnlevel)
 	. = ..()
 	volatility_check()
 
-/obj/item/explosive/mine/fire_act()
+/obj/item/mine/fire_act()
 	. = ..()
 	volatility_check()
 
-/obj/item/explosive/mine/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+/obj/item/mine/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	volatility_check()
 
@@ -315,7 +315,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	icon_state = "blocker"
 	//invisibility = INVISIBILITY_MAXIMUM
 	///The explosive this dummy object is connected to
-	var/obj/item/explosive/mine/linked_mine
+	var/obj/item/mine/linked_mine
 
 /obj/effect/mine_trigger/Initialize()
 	. = ..()
@@ -343,7 +343,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	linked_mine.trip_mine(A)
 
 /* Claymores - Directional fragment spray, small explosion */
-/obj/item/explosive/mine/claymore
+/obj/item/mine/claymore
 	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
 	icon_state = "m20"
@@ -362,7 +362,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	shrapnel_type = /datum/ammo/bullet/claymore_shrapnel
 	shrapnel_range = 5
 
-/obj/item/explosive/mine/claymore/pmc
+/obj/item/mine/claymore/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
@@ -372,7 +372,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	shrapnel_range = 8
 
 /* Land mines - explode when something walks on or near it */
-/obj/item/explosive/mine/proximity
+/obj/item/mine/proximity
 	name = "proximity mine"
 	desc = "Detonates when it detects a nearby hostile."
 	icon_state = "m20"
@@ -391,7 +391,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	launch_distance = 1
 	volatile = TRUE
 
-/obj/item/explosive/mine/pressure
+/obj/item/mine/pressure
 	name = "land mine"
 	desc = "Pressure activated high explosive. Watch your step."
 	icon_state = "m20"
@@ -410,7 +410,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	pressure_activated = TRUE
 	volatile = TRUE
 
-/obj/item/explosive/mine/incendiary
+/obj/item/mine/incendiary
 	name = "incendiary mine"
 	desc = "Rather than filled with explosives or shrapnel, it contains combustable chemicals that are ignited in the presence of enemies."
 	icon_state = "m20"
@@ -427,7 +427,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_stacks = 15
 	volatile = TRUE
 
-/obj/item/explosive/mine/incendiary/napalm
+/obj/item/mine/incendiary/napalm
 	name = "napalm mine"
 	desc = "Incendiary mine variant with a napalm-based formula. Very sticky."
 	range = 3
@@ -439,7 +439,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_color = "green"
 
 /* Exotic mines - Rather than just explode, these have special effects */
-/obj/item/explosive/mine/radiation
+/obj/item/mine/radiation
 	name = "radiation mine"
 	desc = "Irradiates the surrounding area when triggered."
 	icon_state = "m20"
@@ -455,7 +455,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/rad_zone_radius = 5
 
 
-/obj/item/explosive/mine/shock
+/obj/item/mine/shock
 	name = "shock mine"
 	desc = "Delivers high voltage arcs of lightning at nearby conductive targets. Can be recharged."
 	icon_state = "m20"
@@ -475,16 +475,16 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	///Damage dealt per shot
 	var/damage = 50
 
-/obj/item/explosive/mine/shock/Initialize()
+/obj/item/mine/shock/Initialize()
 	. = ..()
 	if(battery)
 		battery = new battery(src)
 
-/obj/item/explosive/mine/shock/examine(mob/user)
+/obj/item/mine/shock/examine(mob/user)
 	. = ..()
 	. += span_notice("[battery ? "Battery Charge - [PERCENT(battery.charge/battery.maxcharge)]%" : "No battery installed."]")
 
-/obj/item/explosive/mine/shock/attackby(obj/item/I, mob/user, params)
+/obj/item/mine/shock/attackby(obj/item/I, mob/user, params)
 	if(!iscell(I))
 		return ..()
 	if(battery)
@@ -493,21 +493,21 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	battery = I
 	update_icon()
 
-/obj/item/explosive/mine/shock/screwdriver_act(mob/living/user, obj/item/I)
+/obj/item/mine/shock/screwdriver_act(mob/living/user, obj/item/I)
 	if(!battery)
 		return balloon_alert(user, "No battery installed!")
 	user.put_in_hands(battery)
 	battery = null
 	update_icon()
 
-/obj/item/explosive/mine/shock/trigger_explosion()
+/obj/item/mine/shock/trigger_explosion()
 	if(!battery.charge)
 		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
 		balloon_alert_to_viewers("Out of charge!")
 		return FALSE
 	. = ..()
 
-/obj/item/explosive/mine/shock/extra_effects(duration, mob/living/L)
+/obj/item/mine/shock/extra_effects(duration, mob/living/L)
 	if(battery.charge < energy_cost)
 		balloon_alert_to_viewers("Out of charge!")
 		return disarm()
@@ -542,11 +542,11 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		battery.charge -= energy_cost
 	addtimer(CALLBACK(src, PROC_REF(extra_effects)), fire_delay)
 
-/obj/item/explosive/mine/shock/battery_included
+/obj/item/mine/shock/battery_included
 	battery = /obj/item/cell
 
 /* Gas mines - Release smoke clouds on detonation, war crime certified */
-/obj/item/explosive/mine/tanglefoot
+/obj/item/mine/tanglefoot
 	name = "tanglefoot mine"
 	desc = "Releases plasma-draining smoke."
 	icon_state = "m20"
@@ -564,7 +564,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	interruptible = FALSE
 
 /* Tactical mines - Non-lethal, utility-focused gadgets */
-/obj/item/explosive/mine/alarm
+/obj/item/mine/alarm
 	name = "\improper S20 Proximity Alarm"
 	desc = "The S20 proximity mine serve a different purpose other than exploding. Instead it will announce enemy movements, giving early warning when hostiles approach."
 	icon_state = "m20"
@@ -586,17 +586,17 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	///How long a minimap icon remains
 	var/minimap_duration = 7 SECONDS
 
-/obj/item/explosive/mine/alarm/Initialize()
+/obj/item/mine/alarm/Initialize()
 	. = ..()
 	radio = new(src)
 	radio.frequency = FREQ_COMMON	//Frequency argument on talk_into is bugged so making it common by default
 
-/obj/item/explosive/mine/alarm/trip_mine(mob/living/L)
+/obj/item/mine/alarm/trip_mine(mob/living/L)
 	if(!COOLDOWN_CHECK(src, alarm_cooldown))
 		return
 	. = ..()
 
-/obj/item/explosive/mine/alarm/extra_effects(duration, mob/living/L)
+/obj/item/mine/alarm/extra_effects(duration, mob/living/L)
 	triggered = FALSE	//Reset the mine but not disarm it
 	if(!L)
 		return FALSE
@@ -622,6 +622,6 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	minimap_timer = addtimer(CALLBACK(SSminimaps, TYPE_PROC_REF(/datum/controller/subsystem/minimaps, remove_marker), src), minimap_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 	COOLDOWN_START(src, alarm_cooldown, cooldown)
 
-/obj/item/explosive/mine/alarm/disarm()
+/obj/item/mine/alarm/disarm()
 	. = ..()
 	SSminimaps.remove_marker(src)	//Do a minimap icon removal on being disarmed just in case

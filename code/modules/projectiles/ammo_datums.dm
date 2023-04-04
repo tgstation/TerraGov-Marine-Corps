@@ -2350,7 +2350,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
-	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
+	var/obj/item/mine/mine = new /obj/item/mine(T)
 	mine.deploy(null, TGMC_LOYALIST_IFF)
 
 /datum/ammo/mortar/rocket/mlrs

@@ -112,6 +112,6 @@
 	putting it inside a weapon recharger."
 
 /datum/codex_entry/mines
-	associated_paths = list(/obj/item/explosive/mine)
+	associated_paths = list(/obj/item/mine)
 	mechanics_text = "Claymores are best used in tandem with sentry guns that can shoot enemies which trip them, and ambushing marines concealed by tarps or cloaking devices."
 

@@ -46,10 +46,10 @@
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
 		return
 	var/turf/target_turf = pick_n_take(list_of_turfs)
-	if(target_turf.density || turf_block_check(src, target_turf) || locate(/obj/item/explosive/mine) in range(1, target_turf) || !line_of_sight(loc, target_turf))
+	if(target_turf.density || turf_block_check(src, target_turf) || locate(/obj/item/mine) in range(1, target_turf) || !line_of_sight(loc, target_turf))
 		throw_mine(list_of_turfs)
 		return
-	var/obj/item/explosive/mine/mine_to_throw = new /obj/item/explosive/mine(loc)
+	var/obj/item/mine/mine_to_throw = new /obj/item/mine(loc)
 	mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
 	stored_amount--
 	playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
@@ -57,28 +57,28 @@
 	addtimer(CALLBACK(src, PROC_REF(throw_mine), list_of_turfs), cooldown)
 
 ///this proc is used to check a turf and place mines
-/obj/machinery/deployable/minelayer/proc/place_mine(turf/T, obj/item/explosive/mine/throwed_mine)
-	var/obj/item/explosive/mine/located_mine = locate(/obj/item/explosive/mine) in get_turf(throwed_mine)
+/obj/machinery/deployable/minelayer/proc/place_mine(turf/T, obj/item/mine/throwed_mine)
+	var/obj/item/mine/located_mine = locate(/obj/item/mine) in get_turf(throwed_mine)
 	if(located_mine?.armed)
 		return
 	throwed_mine.deploy(null, iff_signal)
 
 /obj/machinery/deployable/minelayer/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/explosive/mine) && stored_amount <= max_amount)
+	if(istype(I, /obj/item/mine) && stored_amount <= max_amount)
 		stored_amount++
 		qdel(I)
 		return
 	if(!istype(I, /obj/item/storage/box/explosive_mines))
 		return
-	for(var/obj/item/explosive/mine/content AS in I)
+	for(var/obj/item/mine/content AS in I)
 		if(stored_amount < max_amount)
 			stored_amount++
 			qdel(content)
 
 /obj/machinery/deployable/minelayer/disassemble(mob/user)
 	for(var/i = 1 to stored_amount)
-		new /obj/item/explosive/mine(loc)
+		new /obj/item/mine(loc)
 	stored_amount = 0
 	return ..()
 

@@ -326,7 +326,7 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/explosive/plastique,
-		/obj/item/explosive/mine,
+		/obj/item/mine,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,

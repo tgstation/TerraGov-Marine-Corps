@@ -50,7 +50,7 @@
 	if(isnull(wall_integrity))
 		wall_integrity = max_integrity
 
-	for(var/obj/item/explosive/mine/M in src)
+	for(var/obj/item/mine/M in src)
 		if(M)
 			visible_message(span_warning("\The [M] is sealed inside the wall as it is built"))
 			qdel(M)

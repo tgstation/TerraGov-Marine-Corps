@@ -9,7 +9,7 @@
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
 	///The mine we have attached to this roomba
-	var/obj/item/explosive/mine/claymore //Claymore roomb
+	var/obj/item/mine/claymore //Claymore roomb
 	///So It doesnt infinitely look for an exit and crash the server
 	var/stuck_counter = 0
 	///Admins can let it have a claymore
@@ -126,7 +126,7 @@
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!allow_claymore)
 		return
-	if(!istype(I, /obj/item/explosive/mine) || claymore)
+	if(!istype(I, /obj/item/mine) || claymore)
 		return
 	visible_message(span_warning("[user] begins to try to attach [I] to [src]..."))
 	stop_processing()
