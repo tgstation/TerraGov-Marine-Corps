@@ -5686,7 +5686,7 @@
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/meatpizzaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
 	pixel_x = 3
 	},
 /obj/effect/spawner/random/sugary_snack{
@@ -8031,10 +8031,10 @@
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "kJw" = (
@@ -8548,7 +8548,7 @@
 /area/centcom/valhalla/starboard_hallway)
 "ltl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/margheritaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
 	pixel_y = -3
 	},
 /obj/item/reagent_containers/food/drinks/dry_ramen,
@@ -9849,10 +9849,10 @@
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "nfl" = (
@@ -12742,7 +12742,7 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/applecake,
 /obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
-/obj/item/reagent_containers/food/snacks/margheritaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
 	pixel_x = 1;
 	pixel_y = 8
 	},
@@ -14038,7 +14038,7 @@
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/ricepudding{
+/obj/item/reagent_containers/food/snacks/soup/ricepudding{
 	pixel_x = 4;
 	pixel_y = 2
 	},
@@ -15539,7 +15539,7 @@
 /area/centcom/valhalla/secondary/exit)
 "uCk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/ricepudding,
+/obj/item/reagent_containers/food/snacks/soup/ricepudding,
 /obj/item/reagent_containers/food/snacks/muffin{
 	pixel_x = -3;
 	pixel_y = -1

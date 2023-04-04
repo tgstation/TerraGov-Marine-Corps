@@ -3930,7 +3930,7 @@
 /area/magmoor/cave/north)
 "cSj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/boiledrice,
+/obj/item/reagent_containers/food/snacks/soup/boiledrice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "cSl" = (
@@ -20088,7 +20088,7 @@
 /area/magmoor/volcano)
 "oMm" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/aesirsalad,
+/obj/item/reagent_containers/food/snacks/soup/aesirsalad,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "oMr" = (
@@ -31653,7 +31653,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/item/reagent_containers/food/snacks/mexican/enchiladas,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "wYx" = (

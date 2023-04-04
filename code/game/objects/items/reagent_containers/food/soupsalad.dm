@@ -337,3 +337,34 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/water = 5)
 	bitesize = 4
 	tastes = list("miso" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/aesirsalad
+	name = "Aesir salad"
+	desc = "Probably too incredible for mortal men to fully enjoy."
+	icon_state = "aesirsalad"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#468C00"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/drink/doctor_delight = 8, /datum/reagent/medicine/tricordrazine = 8)
+	bitesize = 3
+	tastes = list("leaves" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/ricepudding
+	name = "Rice Pudding"
+	desc = "Where's the Jam!"
+	icon_state = "rpudding"
+	icon = 'icons/obj/items/food/soupsalad.dmi'
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#FFFBDB"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
+	bitesize = 2
+	tastes = list("rice" = 1, "sweetness" = 1)
+
+/obj/item/reagent_containers/food/snacks/soup/boiledrice
+	name = "Boiled Rice"
+	desc = "A boring dish of boring rice."
+	icon_state = "boiledrice"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#FFFBDB"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	bitesize = 2
+	tastes = list("rice" = 1)

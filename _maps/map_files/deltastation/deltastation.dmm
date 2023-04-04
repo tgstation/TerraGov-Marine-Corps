@@ -93703,7 +93703,7 @@
 /area/deltastation/maintenance/department/medical/morgue)
 "tae" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/space_hut/observatory)
@@ -103846,7 +103846,7 @@
 /area/deltastation/cargo/office)
 "var" = (
 /obj/structure/closet/crate/secure/gear,
-/obj/item/toy/sword,
+/obj/item/toy/katana,
 /obj/item/toy/balloon,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship/two)

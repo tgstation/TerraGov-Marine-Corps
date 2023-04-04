@@ -193,6 +193,7 @@
 
 /obj/item/reagent_containers/food/snacks/sandwiches/plain
 	name = "plain burger"
+	icon = 'icons/obj/items/food/burgers.dmi'
 	icon_state = "hburger"
 	desc = "The cornerstone of every nutritious breakfast."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -211,6 +212,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/rib
 	name = "mcrib"
 	desc = "An elusive rib shaped burger with limited availablity across the galaxy. Not as good as you remember it."
+	icon = 'icons/obj/items/food/burgers.dmi'
 	icon_state = "mcrib"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/bbqsauce = 1)
 	tastes = list("bun" = 2, "pork patty" = 4)
@@ -218,13 +220,14 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/mcguffin
 	name = "mcguffin"
 	desc = "A cheap and greasy imitation of an eggs benedict."
+	icon = 'icons/obj/items/food/burgers.dmi'
 	icon_state = "mcguffin"
 	tastes = list("muffin" = 2, "bacon" = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/eggyolk = 3, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/reagent_containers/food/snacks/sandwiches/bread
 	name = "Bread"
-	icon_state = "Some plain old Earthen bread."
+	desc = "Some plain old Earthen bread."
 	icon_state = "bread"
 	slice_path = /obj/item/reagent_containers/food/snacks/sandwiches/breadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -240,7 +243,7 @@
 	bitesize = 2
 	tastes = list("bread" = 10)
 
-/obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread
+/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebread
 	name = "Cream Cheese Bread"
 	desc = "Yum yum yum!"
 	icon_state = "creamcheesebread"

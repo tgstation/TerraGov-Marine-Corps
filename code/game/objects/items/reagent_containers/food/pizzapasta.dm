@@ -62,7 +62,7 @@
 
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza
 	name = "Vegetable pizza"
-	desc = "No one of Tomato Sapiens were harmed during making this obj/item/reagent_containers/food/snacks/sliceable/pizzapastapizza"
+	desc = "No Tomato Sapiens were harmed during making of this pizza."
 	icon_state = "vegetablepizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/vegetablepizzaslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/medicine/imidazoline = 12)
@@ -288,7 +288,7 @@
 
 		to_chat(user, span_warning("You put the [box] ontop of the [src]!"))
 
-	else if(istype(I, /obj/item/reagent_containers/food/snacks/sliceable/pizza))
+	else if(istype(I, /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta))
 		if(!open)
 			to_chat(user, span_warning("You try to push the [I] through the lid but it doesn't work!"))
 			return
@@ -408,6 +408,10 @@
 	icon_state = "meatballspaghetti"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pasta" = 1, "meat" = 1)
+	trash = /obj/item/trash/plate
+	filling_color = "#DE4545"
+	bitesize = 3
+	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/spesslaw
 	name = "spesslaw"
@@ -446,10 +450,10 @@
 
 /obj/item/pizzabox/random
 	var/list/pizza_choices = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza,
 	)
 
 /obj/item/pizzabox/random/Initialize()
@@ -457,17 +461,6 @@
 	var/pizza_type = pick(pizza_choices)
 	pizza = new pizza_type(src)
 	boxtag = "Pizza Time"
-
-/obj/item/reagent_containers/food/snacks/pizzapasta/meatballspagetti
-	name = "Spaghetti & Meatballs"
-	desc = "Now thats a nic'e meatball!"
-	icon_state = "meatballspagetti"
-	icon = 'icons/obj/items/food/pizzapasta.dmi'
-	trash = /obj/item/trash/plate
-	filling_color = "#DE4545"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
-	bitesize = 3
-	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/spagetti
 	name = "Spaghetti"

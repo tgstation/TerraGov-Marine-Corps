@@ -264,7 +264,7 @@
 "IE" = (
 /obj/structure/table,
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Ji" = (

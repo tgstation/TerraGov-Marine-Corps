@@ -256,7 +256,7 @@
 "afc" = (
 /obj/structure/table/mainship,
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/mushroompizzaslice,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "afm" = (
@@ -36206,7 +36206,7 @@
 /obj/item/tool/kitchen/tray{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita{
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita{
 	pixel_y = 2
 	},
 /turf/open/floor/prison/whitepurple/full{

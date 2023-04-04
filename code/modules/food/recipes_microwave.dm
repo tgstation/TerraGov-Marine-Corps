@@ -636,7 +636,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/chili,
 		/obj/item/reagent_containers/food/snacks/grown/corn,
 	)
-	result = /obj/item/reagent_containers/food/snacks/enchiladas
+	result = /obj/item/reagent_containers/food/snacks/mexican/enchiladas
 
 /datum/recipe/creamcheesebread
 	items = list(
@@ -775,11 +775,11 @@
 
 /datum/recipe/boiledrice
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/rice = 10)
-	result = /obj/item/reagent_containers/food/snacks/boiledrice
+	result = /obj/item/reagent_containers/food/snacks/soup/boiledrice
 
 /datum/recipe/ricepudding
 	reagents = list(/datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/rice = 10)
-	result = /obj/item/reagent_containers/food/snacks/ricepudding
+	result = /obj/item/reagent_containers/food/snacks/soup/ricepudding
 
 /datum/recipe/pastatomato
 	reagents = list(/datum/reagent/water = 5)
@@ -1056,7 +1056,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/goldapple,
 	)
-	result = /obj/item/reagent_containers/food/snacks/aesirsalad
+	result = /obj/item/reagent_containers/food/snacks/soup/aesirsalad
 
 /datum/recipe/validsalad
 	items = list(

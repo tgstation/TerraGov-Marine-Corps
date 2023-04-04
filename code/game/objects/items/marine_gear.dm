@@ -101,7 +101,7 @@
 /obj/item/reagent_containers/food/snacks/req_pizza
 	name = "\improper TGMC PFC Jim pizza"
 	desc = "You think that is a pizza. You definitely shouldn't eat this, but you can sell this for a PROFIT! While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it sat in the ASRS for a while? Oh well, time to sell it to some poor customer in space."
-	icon = 'icons/obj/items/food/pizzapasta.dmi'
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	icon_state = "mushroompizza"
 	list_reagents = list(/datum/reagent/iron = 8)
 	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
@@ -189,7 +189,7 @@
 /obj/item/storage/box/pizza
 	name = "food delivery box"
 	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
-	icon = 'icons/obj/items/food/pizzapasta.dmi'
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 
 /obj/item/storage/box/pizza/Initialize(mapload, ...)
 	. = ..()
@@ -200,7 +200,7 @@
 	var/list/randompick = list(
 		/obj/item/reagent_containers/food/snacks/fries,
 		/obj/item/reagent_containers/food/snacks/cheesyfries,
-		/obj/item/reagent_containers/food/snacks/bigbiteburger,
+		/obj/item/reagent_containers/food/snacks/burger/bigbiteburger,
 		/obj/item/reagent_containers/food/snacks/mexican/taco,
 		/obj/item/reagent_containers/food/snacks/hotdog)
 

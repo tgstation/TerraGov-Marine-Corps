@@ -13,7 +13,7 @@
 /obj/item/reagent_containers/food/snacks/mexican/burrito
 	name = "burrito"
 	desc = "Tortilla wrapped goodness."
-	icon_state = "burrito"
+	icon_state = "openburrito"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("torilla" = 2, "beans" = 3)
 	w_class = WEIGHT_CLASS_SMALL
@@ -88,12 +88,4 @@
 	bitesize = 4
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/capsaicin = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/reagent_containers/food/snacks/mexican/stuffedlegion
-	name = "stuffed legion"
-	desc = "The former skull of a damned human, filled with goliath meat. It has a decorative lava pool made of ketchup and hotsauce."
-	icon_state = "stuffed_legion"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/capsaicin = 2)
-	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
 	w_class = WEIGHT_CLASS_SMALL

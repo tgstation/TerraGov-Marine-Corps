@@ -281,21 +281,12 @@
 	list_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/consumable/nutriment = 0.5, /datum/reagent/consumable/sugar = 2)
 	bitesize = 2
 
-/obj/item/reagent_containers/food/snacks/aesirsalad
-	name = "Aesir salad"
-	desc = "Probably too incredible for mortal men to fully enjoy."
-	icon_state = "aesirsalad"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#468C00"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/drink/doctor_delight = 8, /datum/reagent/medicine/tricordrazine = 8)
-	bitesize = 3
-	tastes = list("leaves" = 1)
-
 /obj/item/reagent_containers/food/snacks/candy
 	name = "candy"
 	desc = "Nougat, love it or hate it."
 	icon_state = "candy"
 	trash = /obj/item/trash/candy
+	icon = 'icons/obj/items/food/packaged.dmi'
 	filling_color = "#7D5F46"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3)
 	tastes = list("candy" = 1)
@@ -482,6 +473,7 @@
 /obj/item/reagent_containers/food/snacks/tofurkey
 	name = "Tofurkey"
 	desc = "A fake turkey made from tofu."
+	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "tofurkey"
 	filling_color = "#FFFEE0"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/toxin/sleeptoxin = 3)
@@ -491,6 +483,7 @@
 /obj/item/reagent_containers/food/snacks/stuffing
 	name = "Stuffing"
 	desc = "Moist, peppery breadcrumbs for filling the body cavities of dead birds. Dig in!"
+	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "stuffing"
 	filling_color = "#C9AC83"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
@@ -612,6 +605,7 @@
 /obj/item/reagent_containers/food/snacks/muffin
 	name = "Muffin"
 	desc = "A delicious and spongy little cake"
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "muffin"
 	filling_color = "#E0CF9B"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -691,6 +685,7 @@
 /obj/item/reagent_containers/food/snacks/cubancarp
 	name = "Cuban Carp"
 	desc = "A grifftastic sandwich that burns your tongue and then leaves it numb!"
+	icon = 'icons/obj/items/food/meat.dmi'
 	icon_state = "cubancarp"
 	trash = /obj/item/trash/plate
 	filling_color = "#E9ADFF"
@@ -817,6 +812,7 @@
 /obj/item/reagent_containers/food/snacks/fortunecookie
 	name = "Fortune cookie"
 	desc = "A true prophecy in each cookie!"
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "fortune_cookie"
 	filling_color = "#E8E79E"
 	trash = /obj/item/trash/fortunecookie
@@ -942,16 +938,6 @@
 	name = "neaera cube"
 	monkey_type = /mob/living/carbon/human/species/monkey/naera
 
-/obj/item/reagent_containers/food/snacks/enchiladas
-	name = "Enchiladas"
-	desc = "Viva La Mexico!"
-	icon_state = "enchiladas"
-	trash = /obj/item/trash/tray
-	filling_color = "#A36A1F"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
-	bitesize = 4
-	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
-
 /obj/item/reagent_containers/food/snacks/monkeysdelight
 	name = "monkey's Delight"
 	desc = "Eeee Eee!"
@@ -982,26 +968,14 @@
 	tastes = list("fish" = 1, "chips" = 1)
 
 /obj/item/reagent_containers/food/snacks/rofflewaffles
-	name = "Roffle Waffles"
-	desc = "Waffles from Roffle. Co."
+	name = "Rohffle Waffles"
+	desc = "Waffles from Rohffle. Co."
 	icon_state = "rofflewaffles"
 	trash = /obj/item/trash/waffles
 	filling_color = "#FF00F7"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/psilocybin = 8)
 	bitesize = 4
 	tastes = list("waffle" = 1, "mushrooms" = 1)
-
-/obj/item/reagent_containers/food/snacks/jellyburger
-	name = "Jelly Burger"
-	desc = "Culinary delight..?"
-	icon_state = "jellyburger"
-	filling_color = "#B572AB"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 2)
-	bitesize = 2
-	tastes = list("bun" = 4, "jelly" = 2)
-
-/obj/item/reagent_containers/food/snacks/jellyburger/cherry
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cherryjelly = 5)
 
 /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	name = "Stewed Soy Meat"
@@ -1020,27 +994,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bitesize = 2
 	tastes = list("pasta" = 1)
-
-/obj/item/reagent_containers/food/snacks/boiledrice
-	name = "Boiled Rice"
-	desc = "A boring dish of boring rice."
-	icon_state = "boiledrice"
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#FFFBDB"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	bitesize = 2
-	tastes = list("rice" = 1)
-
-/obj/item/reagent_containers/food/snacks/ricepudding
-	name = "Rice Pudding"
-	desc = "Where's the Jam!"
-	icon_state = "rpudding"
-	icon = 'icons/obj/items/food/soupsalad.dmi'
-	trash = /obj/item/trash/snack_bowl
-	filling_color = "#FFFBDB"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
-	bitesize = 2
-	tastes = list("rice" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/spesslaw
 	name = "Spesslaw"
@@ -1184,86 +1137,10 @@
 	name = "Cracker"
 	desc = "It's a salted cracker."
 	icon_state = "cracker"
-	icon = 'icons/obj/items/food/food.dmi'
+	icon = 'icons/obj/items/food/mre.dmi'
 	filling_color = "#F5DEB8"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("cracker" = 1)
-
-/////////////////////////////////////////////////PIZZA////////////////////////////////////////
-/obj/item/reagent_containers/food/snacks/sliceable/pizza
-
-	slices_num = 6
-	bitesize = 1
-	filling_color = "#BAA14C"
-
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
-	name = "Margherita"
-	desc = "The golden standard of pizzas."
-	slice_path = /obj/item/reagent_containers/food/snacks/margheritaslice
-	icon_state = "margheritapizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/drink/tomatojuice = 6)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
-
-/obj/item/reagent_containers/food/snacks/margheritaslice
-	name = "Margherita slice"
-	desc = "A slice of the classic pizza."
-	icon_state = "margheritapizzaslice"
-	filling_color = "#BAA14C"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
-	bitesize = 2
-
-	name = "Meatpizza"
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
-	desc = "A pizza with meat topping."
-	slice_path = /obj/item/reagent_containers/food/snacks/meatpizzaslice
-	icon_state = "meatpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 50, /datum/reagent/consumable/drink/tomatojuice = 6)
-
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-/obj/item/reagent_containers/food/snacks/meatpizzaslice
-	desc = "A slice of a meaty pizza."
-	name = "Meatpizza slice"
-	filling_color = "#BAA14C"
-	icon_state = "meatpizzaslice"
-	bitesize = 2
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
-	desc = "Very special pizza"
-	name = "Mushroompizza"
-	icon_state = "mushroompizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 35)
-	slice_path = /obj/item/reagent_containers/food/snacks/mushroompizzaslice
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
-
-	name = "Mushroompizza slice"
-/obj/item/reagent_containers/food/snacks/mushroompizzaslice
-	desc = "Maybe it is the last slice of pizza in your life."
-	icon_state = "mushroompizzaslice"
-	filling_color = "#BAA14C"
-	bitesize = 2
-
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
-	desc = "No one of Tomato Sapiens were harmed during making this pizza"
-	name = "Vegetable pizza"
-	icon_state = "vegetablepizza"
-	slice_path = /obj/item/reagent_containers/food/snacks/vegetablepizzaslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/medicine/imidazoline = 12)
-	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
-
-/obj/item/reagent_containers/food/snacks/vegetablepizzaslice
-	name = "Vegetable pizza slice"
-	desc = "A slice of the most green pizza of all pizzas not containing green ingredients "
-	icon_state = "vegetablepizzaslice"
-	filling_color = "#BAA14C"
-	bitesize = 2
-	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
-
-///////////////////////////////////////////
-// new old food stuff from bs12
-///////////////////////////////////////////
 
 // Flour + egg = dough
 /obj/item/reagent_containers/food/snacks/flour/attackby(obj/item/I, mob/user, params)
@@ -1393,6 +1270,7 @@
 /obj/item/reagent_containers/food/snacks/rawmeatball
 	name = "raw meatball"
 	desc = "A raw meatball."
+	icon = 'icons/obj/items/food/meat.dmi'
 	icon_state = "raw_meatball"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -1473,6 +1351,7 @@
 /obj/item/reagent_containers/food/snacks/upp
 	name = "\improper USL ration"
 	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the USL pirate band and even those who live on Mars, especially those stationed on far-flung colonies. This one is was packaged in 2415."
+	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "upp_ration"
 	bitesize = 2
 	package = TRUE
@@ -1517,6 +1396,7 @@
 /obj/item/reagent_containers/food/snacks/enrg_bar
 	name = "EnrG Bar"
 	desc = "A calorie-dense bar made with ingredients with unpronounceable names. Somehow, even the packaging is edible."
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "energybar"
 	bitesize = 2
 	w_class = WEIGHT_CLASS_TINY
@@ -1539,6 +1419,7 @@
 /obj/item/reagent_containers/food/snacks/wrapped
 	package = TRUE
 	bitesize = 3
+	icon = 'icons/obj/items/food/packaged.dmi'
 	var/obj/item/trash/wrapper = null //Why this and not trash? Because it pulls the wrapper off when you unwrap it as a trash item.
 
 /obj/item/reagent_containers/food/snacks/wrapped/attack_self(mob/user as mob)
