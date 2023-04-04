@@ -10,7 +10,7 @@
 /obj/item/storage/backpack/mule_pack
 	name = "internal storage"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_w_class = 6
+	max_w_class = WEIGHT_CLASS_GIGANTIC
 	max_storage_space = 48
 
 /mob/living/simple_animal/mule_bot
@@ -25,7 +25,7 @@
 	speak_emote = list("purrs", "meows")
 	emote_hear = list("meows.", "mews.")
 	emote_see = list("shakes its head.", "shivers.")
-	speak_chance = 9
+	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 6
 	flags_pass = PASSTABLE
@@ -35,6 +35,8 @@
 	response_harm   = "kicks"
 	a_intent = INTENT_HELP
 	var/obj/item/storage/backpack/mule_pack/storage_pack = /obj/item/storage/backpack/mule_pack
+	var/obj/item/clothing/head/hat
+	var/mutable_appearance/hat_overlay
 
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
@@ -46,6 +48,20 @@
 
 /mob/living/simple_animal/mule_bot/attack_hand(mob/living/user)
 	storage_pack.open(user)
+
+/mob/living/simple_animal/mule_bot/attackby(obj/item/I, mob/living/user, def_zone)
+	if(istype(I,/obj/item/clothing/head))
+		if(hat)
+			hat.forceMove(src.loc)
+			cut_overlay(hat_overlay)
+		var/obj/item/clothing/head/new_hat = I
+		I.forceMove(src)
+		user?.temporarilyRemoveItemFromInventory(I)
+		hat = new_hat
+		hat_overlay = mutable_appearance(new_hat.get_worn_icon_file("Human",slot_head_str), new_hat.get_worn_icon_state(slot_head_str), HEAD_LAYER, FLOAT_PLANE)
+		hat_overlay.pixel_y -= 0
+		add_overlay(hat_overlay)
+	. = ..()
 
 /obj/item/remote
 	name = "remote"
