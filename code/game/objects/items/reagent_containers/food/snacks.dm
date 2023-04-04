@@ -302,6 +302,7 @@
 /obj/item/reagent_containers/food/snacks/candy_corn
 	name = "candy corn"
 	desc = "It's a handful of candy corn. Cannot be stored in a detective's hat, alas."
+	icon = 'icons/obj/items/food/candy.dmi'
 	icon_state = "candy_corn"
 	filling_color = "#FFFCB0"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2)
@@ -330,6 +331,7 @@
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "Chocolate Bar"
 	desc = "Such sweet, fattening food."
+	icon = 'icons/obj/items/food/candy.dmi'
 	icon_state = "chocolatebar"
 	filling_color = "#7D5F46"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
@@ -339,6 +341,7 @@
 /obj/item/reagent_containers/food/snacks/chocolateegg
 	name = "Chocolate Egg"
 	desc = "Such sweet, fattening food."
+	icon = 'icons/obj/items/food/candy.dmi'
 	icon_state = "chocolateegg"
 	filling_color = "#7D5F46"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
@@ -782,6 +785,7 @@
 /obj/item/reagent_containers/food/snacks/fries
 	name = "Space Fries"
 	desc = "AKA: French Fries, Freedom Fries, etc."
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "fries"
 	trash = /obj/item/trash/plate
 	filling_color = "#EDDD00"
@@ -802,6 +806,7 @@
 /obj/item/reagent_containers/food/snacks/cheesyfries
 	name = "Cheesy Fries"
 	desc = "Fries. Covered in cheese. Duh."
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "cheesyfries"
 	trash = /obj/item/trash/plate
 	filling_color = "#EDDD00"
@@ -961,6 +966,7 @@
 /obj/item/reagent_containers/food/snacks/fishandchips
 	name = "Fish and Chips"
 	desc = "I do say so myself chap."
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "fishandchips"
 	filling_color = "#E3D796"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/toxin/carpotoxin = 3)
@@ -1017,6 +1023,7 @@
 /obj/item/reagent_containers/food/snacks/carrotfries
 	name = "Carrot Fries"
 	desc = "Tasty fries from fresh Carrots."
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "carrotfries"
 	trash = /obj/item/trash/plate
 	filling_color = "#FAA005"
@@ -1027,6 +1034,7 @@
 /obj/item/reagent_containers/food/snacks/candiedapple
 	name = "Candied Apple"
 	desc = "An apple coated in sugary sweetness."
+	icon = 'icons/obj/items/food/candy.dmi'
 	icon_state = "candiedapple"
 	filling_color = "#F21873"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2)
@@ -1111,6 +1119,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel
 	name = "Cheese wheel"
 	desc = "A big wheel of delcious Cheddar."
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "cheesewheel"
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
@@ -1120,6 +1129,7 @@
 /obj/item/reagent_containers/food/snacks/cheesewedge
 	name = "Cheese wedge"
 	desc = "A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far."
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "cheesewedge"
 	filling_color = "#FFF700"
 	bitesize = 2

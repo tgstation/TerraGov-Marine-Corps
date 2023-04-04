@@ -43,7 +43,6 @@
 		var/picked = pick(randompick)
 		new picked(src)
 /obj/item/reagent_containers/food/snacks/protein_pack
-
 	name = "TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
 	icon = 'icons/obj/items/food/mre.dmi'
