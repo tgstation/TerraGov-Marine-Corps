@@ -875,7 +875,7 @@
 		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/jellysandwichh/cherry
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/jellysandwich/cherry
 
 /datum/recipe/orangecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)

@@ -178,7 +178,7 @@
 	name = "five alarm burger"
 	desc = "HOT! HOT!"
 	icon_state = "fivealarmburger"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/condensedcapsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/capsaicin/condensed = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 
 /obj/item/reagent_containers/food/snacks/burger/rat
 	name = "rat burger"
@@ -244,14 +244,14 @@
 	desc = "A delicious chicken sandwich, it is said the proceeds from this treat helps criminalize disarming people on the space frontier."
 	icon_state = "chickenburger"
 	tastes = list("bun" = 2, "chicken" = 4, "God's covenant" = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/mayonnaise = 3, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/reagent_containers/food/snacks/burger/crazy
 	name = "crazy hamburger"
 	desc = "This looks like the sort of food that a demented clown in a trenchcoat would make."
 	icon_state = "crazyburger"
 	tastes = list("bun" = 2, "beef patty" = 4, "cheese" = 2, "beef soaked in chili" = 3, "a smoking flare" = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/capsaicin = 3, /datum/reagent/consumable/condensedcapsaicin = 3, /datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/capsaicin = 3, /datum/reagent/consumable/capsaicin/condensed = 3, /datum/reagent/consumable/nutriment/vitamin = 6)
 
 // empty burger you can customize
 /obj/item/reagent_containers/food/snacks/burger/empty

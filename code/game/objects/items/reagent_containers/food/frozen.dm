@@ -5,14 +5,14 @@
 	name = "icecream sandwich"
 	desc = "Portable Ice-cream in its own packaging."
 	icon_state = "icecreamsandwich"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/ice = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 	tastes = list("ice cream" = 1)
 
 /obj/item/reagent_containers/food/snacks/frozen/strawberryicecreamsandwich
 	name = "strawberry ice cream sandwich"
 	desc = "Portable ice-cream in its own packaging of the strawberry variety."
 	icon_state = "strawberryicecreamsandwich"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/ice = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("ice cream" = 2, "berry" = 2)
 
 
@@ -20,7 +20,7 @@
 	name = "space freezy"
 	desc = "The best icecream in space."
 	icon_state = "spacefreezy"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/bluecherryjelly = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("blue cherries" = 2, "ice cream" = 2)
 
 /obj/item/reagent_containers/food/snacks/frozen/sundae
@@ -87,7 +87,7 @@
 	name = "bluecherry snowcone"
 	desc = "Bluecherry syrup drizzled over a snowball in a paper cup, how rare!"
 	icon_state = "blue_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/bluecherryjelly = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "blue" = 5, "cherries" = 5)
 
 /obj/item/reagent_containers/food/snacks/frozen/snowcones/red
@@ -115,7 +115,7 @@
 	name = "pineapple snowcone"
 	desc = "Pineapple syrup drizzled over a snowball in a paper cup."
 	icon_state = "pineapple_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/drink/pineapplejuice = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "pineapples" = 5)
 
 /obj/item/reagent_containers/food/snacks/frozen/snowcones/mime
@@ -136,14 +136,14 @@
 	name = "space cola snowcone"
 	desc = "Space Cola drizzled over a snowball in a paper cup."
 	icon_state = "soda_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/space_cola = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/drink/cold/space_cola = 5, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "cola" = 5)
 
 /obj/item/reagent_containers/food/snacks/frozen/snowcones/spacemountainwind
 	name = "Space Mountain Wind snowcone"
 	desc = "Space Mountain Wind drizzled over a snowball in a paper cup."
 	icon_state = "mountainwind_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/spacemountainwind = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/drink/cold/spacemountainwind = 5, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "mountain wind" = 5)
 
 
@@ -196,7 +196,7 @@
 
 /obj/item/popsicle_stick
 	name = "popsicle stick"
-	icon = 'icons/obj/items/food/frozen.dmi'
+	icon = 'icons/obj/items/food/frozen_treats.dmi'
 	icon_state = "popsicle_stick"
 	desc = "This humble little stick usually carries a frozen treat, at the moment it seems freed from this Atlassian burden."
 

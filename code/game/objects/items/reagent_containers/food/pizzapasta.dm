@@ -99,7 +99,7 @@
 	name = "dank pizza"
 	desc = "The hippie's pizza of choice."
 	icon_state = "dankpizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/doctor_delight = 5, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/drink/doctor_delight = 5, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/dank
 
@@ -130,7 +130,7 @@
 	name = "\improper Hawaiian pizza"
 	desc = "The pizza equivalent of Einstein's riddle."
 	icon_state = "pineapplepizza"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/drink/pineapplejuice = 8)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/drink/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/pineapple
 
