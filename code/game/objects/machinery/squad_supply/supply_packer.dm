@@ -1,9 +1,12 @@
 /obj/structure/largecrate/packed
 	name = "supplies crate"
 	icon_state = "secure_crate"
+	// This will contain all the item names inside the packed crate
 	var/list/manifest = list("This crate contains:")
-	var/static/list/black_list = typecacheof(list(/obj/structure))
-	var/max_items = 30 // while packing the entire FOB into a single crate would be funny propably not great idea
+	//black list for anything under /obj/item that you dont want to be packable
+	var/static/list/black_list = typecacheof(list())
+	// while packing the entire FOB into a single crate would be funny propably not great idea
+	var/max_items = 30
 
 /obj/structure/largecrate/packed/Initialize()
 	. = ..()
@@ -18,6 +21,8 @@
 	var/count = 0
 	for(var/obj/item/thing in loc)
 		if(is_type_in_typecache(thing,black_list))
+			continue
+		if(item.anchored)
 			continue
 		thing.forceMove(src)
 		manifest += thing.name
