@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Draining a hive threat now gives a flat 1000 maturity points"

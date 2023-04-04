@@ -617,9 +617,9 @@
 /datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
-	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
 	if(ishuman(L))
 		var/mob/living/carbon/human/disinfectee = L
+		disinfectee.germ_level -= min(volume * 20 * touch_protection, disinfectee.germ_level)
 		for(var/datum/limb/limb AS in disinfectee.limbs)
 			limb.disinfect() //Only removes germs from individual external wounds. Won't help with the limb itself having a high germ level.
 	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
@@ -632,12 +632,6 @@
 		L.emote(pick("scream","pain","moan"))
 		L.flash_pain()
 		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
-
-/datum/reagent/sterilizine/reaction_obj(obj/O, volume)
-	O.germ_level -= min(volume*20, O.germ_level)
-
-/datum/reagent/sterilizine/reaction_turf(turf/T, volume)
-	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str)
