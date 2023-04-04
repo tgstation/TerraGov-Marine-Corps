@@ -5,7 +5,7 @@
 	desc = "Holds stuff, and sometimes goes swoosh."
 	icon_state = "backpack"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 4 ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
+	max_w_class = WEIGHT_CLASS_BULKY ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
 	storage_slots = 1
 	max_storage_space = 4
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -102,7 +102,7 @@
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
-	max_w_class = 3 //normal items
+	max_w_class = WEIGHT_CLASS_NORMAL //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
 
@@ -128,7 +128,7 @@
 	base_icon = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 5
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	access_delay = 0.5 SECONDS
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
@@ -337,7 +337,7 @@
 
 	storage_slots = 4
 	max_storage_space = 10
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 
 	can_hold = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
