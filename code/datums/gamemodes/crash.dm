@@ -85,6 +85,8 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
+	for(var/restrictor in GLOB.turf_restrictor)
+		new /obj/effect/turf_restrictor(restrictor)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)

@@ -1,20 +1,27 @@
-/datum/element/spawn_protecting
+/datum/element/turf_restrictor
 
-/datum/element/spawn_protecting/Attach(datum/target, _result)
+/datum/element/turf_restrictor/Attach(datum/target, _result)
 	. = ..()
 	RegisterSignal(target, COMSIG_ATOM_ENTERED_RESTRICTED, PROC_REF(on_bump_protected_turf))
 
-/datum/element/scalping/Detach(datum/source, force)
+/datum/element/turf_restrictor/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source, COMSIG_ATOM_ENTERED_RESTRICTED)
 
-/datum/element/spawn_protecting/proc/on_bump_protected_turf(object, oldloc)
+/datum/element/turf_restrictor/proc/on_bump_protected_turf(object, oldloc)
 	SIGNAL_HANDLER
 	return TRUE
 
-/obj/effect/spawn_protection
+/obj/effect/turf_restrictor
+	icon_state = "blocker"
+	invisibility = INVISIBILITY_MAXIMUM
 
-/obj/effect/spawn_protection/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/effect/turf_restrictor/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(SEND_SIGNAL(mover, COMSIG_ATOM_ENTERED_RESTRICTED, target))
 		return FALSE
+
+/obj/effect/landmark/spawn_turf_restrictor/Initialize()
+	GLOB.turf_restrictor += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL

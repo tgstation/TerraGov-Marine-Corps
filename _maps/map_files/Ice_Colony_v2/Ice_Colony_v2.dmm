@@ -23356,9 +23356,11 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "cat" = (
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/underground/maintenance/south)
 "cav" = (
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/exterior/underground/caves/open)
 "cay" = (
@@ -24062,6 +24064,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"dGE" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/exterior/underground/caves/rock)
 "dHu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -24253,6 +24260,10 @@
 	dir = 4
 	},
 /area/ice_colony/surface/research)
+"eaF" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/exterior/underground/caves/rock)
 "eaK" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -24416,6 +24427,7 @@
 "evb" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "evD" = (
@@ -24506,6 +24518,11 @@
 	dir = 4
 	},
 /area/ice_colony/surface/research)
+"eHq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "eIV" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2/corner,
@@ -24575,6 +24592,12 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
+"eRF" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "eRM" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -24699,6 +24722,7 @@
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "ffZ" = (
@@ -24733,6 +24757,7 @@
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "fkU" = (
@@ -24805,6 +24830,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
+"fqm" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "fry" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -24842,6 +24872,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
+"fwS" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/exterior/underground/caves)
 "fxT" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
@@ -24955,6 +24990,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "fKN" = (
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "fMG" = (
@@ -24981,6 +25017,8 @@
 "fOQ" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "fPd" = (
@@ -24989,6 +25027,13 @@
 	dir = 1
 	},
 /area/ice_colony/surface/garage/one)
+"fQH" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "fRq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -25067,6 +25112,7 @@
 /area/ice_colony/surface/command)
 "fXU" = (
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "fXZ" = (
@@ -25098,6 +25144,13 @@
 "ggq" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
+"ggM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "ghj" = (
 /obj/machinery/conveyor_switch,
 /obj/effect/turf_decal/warning_stripes/linethick{
@@ -25119,6 +25172,18 @@
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/alpha)
+"gkp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
+"gkB" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/ice_colony/exterior/underground/caves/rock)
 "gkO" = (
 /obj/structure/fence,
 /turf/closed/mineral/smooth/bluefrostwall,
@@ -25405,6 +25470,7 @@
 /area/ice_colony/surface/research)
 "gLN" = (
 /obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "gMH" = (
@@ -25543,6 +25609,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/ice_se)
+"hen" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "her" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -25749,6 +25821,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
+"hCl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/south)
 "hCx" = (
 /obj/effect/decal/cleanable/egg_smudge,
 /turf/open/floor/tile/dark,
@@ -25764,6 +25843,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
+"hFp" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/exterior/underground/caves/rock)
 "hFG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -25996,6 +26080,11 @@
 	dir = 8
 	},
 /area/ice_colony/underground/engineering)
+"ioB" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/south)
 "ipb" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -26071,6 +26160,7 @@
 "iwO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "iyB" = (
@@ -26454,6 +26544,7 @@
 /area/ice_colony/surface/bar/bar)
 "jeb" = (
 /obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "jez" = (
@@ -26552,6 +26643,7 @@
 "jmX" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "joa" = (
@@ -26992,6 +27084,10 @@
 	dir = 4
 	},
 /area/ice_colony/surface/research)
+"kks" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "kla" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -27331,8 +27427,19 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
+"kPN" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "kQW" = (
 /obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/east)
+"kTt" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "kVf" = (
@@ -27428,6 +27535,12 @@
 	},
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
+"lhE" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "liE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -27845,6 +27958,11 @@
 	dir = 4
 	},
 /area/ice_colony/surface/command)
+"lWw" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "lXP" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -28031,6 +28149,12 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
+"moB" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "mpz" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
@@ -28150,6 +28274,7 @@
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "mBR" = (
@@ -28192,6 +28317,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "mFk" = (
 /obj/machinery/miner/damaged/platinum,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "mFv" = (
@@ -28473,6 +28599,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
+"noW" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "nph" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -28684,6 +28817,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"nMD" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "nNT" = (
 /obj/machinery/light{
 	dir = 1
@@ -28790,6 +28928,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/ice_nw)
+"nZR" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/east)
 "oaD" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/ice,
@@ -28959,6 +29101,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "ovV" = (
 /obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "owj" = (
@@ -29226,6 +29369,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_w)
+"oSD" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "oSG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -29606,6 +29755,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
+"pJU" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "pKd" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -29631,6 +29785,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
+"pMM" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "pMV" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/bluefrostwall,
@@ -29805,6 +29965,7 @@
 "qcq" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "qdg" = (
@@ -29855,6 +30016,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
+"qjF" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/south)
 "qkE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -30130,6 +30295,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
+"qLY" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "qMz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -30202,6 +30372,11 @@
 /obj/effect/decal/cleanable/flour,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
+"qXU" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "qYn" = (
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -30231,6 +30406,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "ram" = (
 /obj/machinery/miner/damaged/platinum,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "raD" = (
@@ -31005,6 +31181,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "sns" = (
 /obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "snG" = (
@@ -31455,6 +31632,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
+"tgg" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/ice_colony/exterior/underground/caves)
 "tgt" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/bomb_supply,
@@ -31760,6 +31941,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "tLR" = (
 /obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "tMF" = (
@@ -31808,6 +31990,7 @@
 "tRU" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "tSd" = (
@@ -31869,6 +32052,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
+"tXI" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "tXW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31931,6 +32121,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
+"uiw" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "ujx" = (
 /turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/south)
@@ -32048,6 +32243,7 @@
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "uyJ" = (
@@ -32166,6 +32362,10 @@
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves)
+"uHH" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "uIt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -32305,6 +32505,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "uWf" = (
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/underground/maintenance/south)
 "uWp" = (
@@ -32394,6 +32595,7 @@
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "vdr" = (
@@ -32497,8 +32699,13 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
+"vmy" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "vmC" = (
 /obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "vmX" = (
@@ -33061,6 +33268,7 @@
 /area/ice_colony/underground/maintenance/engineering)
 "wEL" = (
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "wFl" = (
@@ -33157,6 +33365,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
+"wKN" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/maintenance/south)
 "wLj" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
@@ -33235,8 +33447,13 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
+"wWg" = (
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/ice_colony/exterior/underground/caves)
 "wWA" = (
 /obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "wWT" = (
@@ -33596,6 +33813,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
+"xAz" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "xAD" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/xeno_resin_wall,
@@ -33788,6 +34012,7 @@
 "xQb" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/spawn_turf_restrictor,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/underground/maintenance/south)
 "xQH" = (
@@ -34047,6 +34272,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/lavatory)
+"ymd" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/spawn_turf_restrictor,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 
 (1,1,1) = {"
 bSw
@@ -35832,20 +36063,20 @@ xJX
 xJX
 xJX
 yeX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
-xJX
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
+gkB
 yeX
 xJX
 xJX
@@ -36044,20 +36275,20 @@ xJX
 xJX
 xJX
 yeX
-xJX
-ePo
-ePo
-vYE
-ePo
+gkB
+uHH
+uHH
+nMD
+uHH
 fKN
-ePo
-ePo
-ePo
-ePo
-vYE
-ePo
-xJX
-xJX
+uHH
+uHH
+uHH
+uHH
+nMD
+uHH
+gkB
+gkB
 yeX
 xJX
 xJX
@@ -36148,14 +36379,14 @@ dSq
 dSq
 rGe
 wEL
-vfw
-vfw
+kks
+kks
 vdh
-uQB
-uQB
-uQB
-uQB
-uQB
+wWg
+wWg
+wWg
+wWg
+wWg
 dSq
 bSw
 aaa
@@ -36256,20 +36487,20 @@ xJX
 xJX
 xJX
 yeX
-xJX
-ePo
+gkB
+uHH
 gLN
-ePo
-sij
+uHH
+qXU
 fKN
-vYE
-ePo
-ePo
-ePo
-sij
-ePo
-xJX
-xJX
+nMD
+uHH
+uHH
+uHH
+qXU
+uHH
+gkB
+gkB
 yeX
 xJX
 xJX
@@ -36360,14 +36591,14 @@ sij
 vuk
 rGe
 tRU
-rNJ
-cMa
-vfw
-cMa
-vfw
-vfw
-ePo
-uQB
+uiw
+pJU
+kks
+pJU
+kks
+kks
+uHH
+wWg
 dSq
 bSw
 aaa
@@ -36468,20 +36699,20 @@ xJX
 xJX
 xJX
 yeX
-ePo
-ePo
+uHH
+uHH
 qcq
-ePo
-xJX
-xJX
-ePo
-ePo
-vYE
-ePo
-ePo
-ePo
-ePo
-xJX
+uHH
+gkB
+gkB
+uHH
+uHH
+nMD
+uHH
+uHH
+uHH
+uHH
+gkB
 yeX
 xJX
 xJX
@@ -36572,14 +36803,14 @@ ePo
 cMa
 vAV
 wEL
-vfw
-vfw
-vfw
-vfw
-vfw
+kks
+kks
+kks
+kks
+kks
 vmC
-vfw
-uQB
+kks
+wWg
 dSq
 bSw
 aaa
@@ -36680,20 +36911,20 @@ uSg
 uSg
 uSg
 yeX
-ePo
-vYE
-ePo
-ePo
-xJX
-xJX
-xJX
-xJX
-xJX
-ePo
-vYE
-ePo
-ePo
-xJX
+uHH
+nMD
+uHH
+uHH
+gkB
+gkB
+gkB
+gkB
+gkB
+uHH
+nMD
+uHH
+uHH
+gkB
 yeX
 xJX
 xJX
@@ -36783,15 +37014,15 @@ ePo
 sij
 ePo
 tFB
-dSq
-dSq
-uQB
-vfw
-cMa
-vfw
-cMa
-vfw
-uQB
+tgg
+tgg
+wWg
+kks
+pJU
+kks
+pJU
+kks
+wWg
 dSq
 bSw
 aaa
@@ -36995,15 +37226,15 @@ ePo
 ePo
 vYE
 tFB
-dSq
-dSq
-dSq
-uQB
-vfw
-cMa
-cMa
-vfw
-uQB
+tgg
+tgg
+tgg
+wWg
+kks
+pJU
+pJU
+kks
+wWg
 dSq
 bSw
 aaa
@@ -37207,15 +37438,15 @@ ePo
 vYE
 ePo
 snG
-dSq
-dSq
-dSq
-uQB
-cMa
-vfw
-vfw
-vfw
-uQB
+tgg
+tgg
+tgg
+wWg
+pJU
+kks
+kks
+kks
+wWg
 dSq
 bSw
 aaa
@@ -37419,14 +37650,14 @@ ePo
 ePo
 ePo
 vAV
-uQB
-dSq
-dSq
-uQB
+wWg
+tgg
+tgg
+wWg
 cav
-vfw
+kks
 tLR
-cMa
+pJU
 ffU
 dSq
 bSw
@@ -37631,15 +37862,15 @@ ePo
 ePo
 ePo
 vAV
-ePo
-uQB
-dSq
-uQB
-uQB
+uHH
+wWg
+tgg
+wWg
+wWg
 fkg
-cMa
-vfw
-uQB
+pJU
+kks
+wWg
 dSq
 bSw
 aaa
@@ -48670,9 +48901,9 @@ wWA
 iwO
 wWA
 wWA
-bOk
-iXO
-bPg
+wKN
+ggM
+qjF
 dSq
 bSw
 "}
@@ -48882,9 +49113,9 @@ wWA
 wWA
 jmX
 wWA
-bOk
-rvr
-bPg
+wKN
+hCl
+qjF
 dSq
 bSw
 "}
@@ -49094,9 +49325,9 @@ wWA
 iwO
 wWA
 wWA
-bOk
-rvr
-eSd
+wKN
+hCl
+ioB
 dSq
 bSw
 "}
@@ -49306,9 +49537,9 @@ wWA
 wWA
 wWA
 wWA
-bOk
-rvr
-bPg
+wKN
+hCl
+qjF
 dSq
 bSw
 "}
@@ -49518,9 +49749,9 @@ wWA
 iwO
 wWA
 wWA
-bOk
-rvr
-fnv
+wKN
+hCl
+vmy
 dSq
 bSw
 "}
@@ -49731,8 +49962,8 @@ wWA
 wWA
 wWA
 fXU
-jHT
-fnv
+gkp
+vmy
 dSq
 bSw
 "}
@@ -49943,8 +50174,8 @@ ovV
 wWA
 wWA
 fXU
-iXO
-wWT
+ggM
+lWw
 dSq
 bSw
 "}
@@ -50155,8 +50386,8 @@ wWA
 wWA
 wWA
 jeb
-iXO
-fnv
+ggM
+vmy
 dSq
 bSw
 "}
@@ -50367,8 +50598,8 @@ wWA
 iwO
 wWA
 jeb
-rvr
-fnv
+hCl
+vmy
 dSq
 bSw
 "}
@@ -58611,13 +58842,13 @@ hwO
 oBz
 bCg
 xYB
-uSg
-uSg
-uSg
-uSg
-uSg
-uSg
-uSg
+eaF
+eaF
+eaF
+eaF
+eaF
+eaF
+eaF
 xYB
 bMs
 bMX
@@ -58823,13 +59054,13 @@ hwO
 oBz
 bCg
 xYB
-uSg
-uSg
-uSg
-uSg
-uSg
-uSg
-yld
+eaF
+eaF
+eaF
+eaF
+eaF
+eaF
+hFp
 xYB
 bMs
 bMY
@@ -59035,13 +59266,13 @@ hwO
 oBz
 bCg
 xYB
-uSg
-uSg
-yld
-yld
-bFH
+eaF
+eaF
+hFp
+hFp
+nZR
 evb
-bFH
+nZR
 ikJ
 bMs
 bMs
@@ -59247,13 +59478,13 @@ efV
 pcR
 bCg
 xYB
-uSg
-yld
-bFH
-bFH
-bFH
-bFH
-bFH
+eaF
+hFp
+nZR
+nZR
+nZR
+nZR
+nZR
 rrC
 rrC
 xYB
@@ -59459,17 +59690,17 @@ hwO
 oBz
 bCg
 xYB
-uSg
-uSg
-bFH
-kQW
-bFH
-kQW
-bFH
-bFH
-bFH
-bFH
-bFH
+eaF
+eaF
+nZR
+kTt
+nZR
+kTt
+nZR
+nZR
+nZR
+nZR
+nZR
 uSg
 xYB
 bOX
@@ -59671,18 +59902,18 @@ hwO
 oBz
 bCg
 xYB
-uSg
-uSg
-uSg
-bFH
-bFH
-bFH
-kQW
+eaF
+eaF
+eaF
+nZR
+nZR
+nZR
+kTt
 sns
-bFH
-bFH
-bFH
-yld
+nZR
+nZR
+nZR
+hFp
 xYB
 bOX
 bPG
@@ -59883,18 +60114,18 @@ hwO
 oBz
 bCg
 xYB
-uSg
-kQW
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-kQW
-kQW
-yld
+eaF
+kTt
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+kTt
+kTt
+hFp
 xYB
 bOX
 bPH
@@ -60095,17 +60326,17 @@ hwO
 oBz
 bCg
 xYB
-uSg
-yld
-bFH
-bFH
+eaF
+hFp
+nZR
+nZR
 mFk
-bFH
-bFH
-bFH
-kQW
-bFH
-bFH
+nZR
+nZR
+nZR
+kTt
+nZR
+nZR
 uSg
 xYB
 bOX
@@ -60307,17 +60538,17 @@ efV
 oBz
 bCg
 pmj
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
 uSg
-yld
+hFp
 uSg
 xYB
 uSg
@@ -60519,15 +60750,15 @@ hwO
 oBz
 bCg
 mTa
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
-bFH
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
+nZR
 uSg
 uSg
 uSg
@@ -62445,14 +62676,14 @@ ePo
 ePo
 ePo
 vAV
-ePo
-uQB
-uHw
-uQB
-ePo
-ePo
-ePo
-yld
+uHH
+wWg
+fwS
+wWg
+uHH
+uHH
+uHH
+hFp
 dSq
 bSw
 "}
@@ -62657,14 +62888,14 @@ ePo
 ePo
 ePo
 vAV
-uHw
-uQB
-uQB
-vYE
-ePo
-ePo
-yld
-ePo
+fwS
+wWg
+wWg
+nMD
+uHH
+uHH
+hFp
+uHH
 dSq
 bSw
 "}
@@ -62871,12 +63102,12 @@ sij
 vAV
 fKN
 fKN
-ePo
-sij
-ePo
-ePo
-vYE
-ePo
+uHH
+qXU
+uHH
+uHH
+nMD
+uHH
 pPK
 bSw
 "}
@@ -63083,12 +63314,12 @@ ePo
 vAV
 fKN
 fKN
-ePo
-ePo
-iBD
-ePo
+uHH
+uHH
+moB
+uHH
 gLN
-ePo
+uHH
 dSq
 bSw
 "}
@@ -63293,14 +63524,14 @@ uQB
 uQB
 uQB
 xxV
-uQB
-tQV
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
+wWg
+qLY
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
 dSq
 bSw
 "}
@@ -63505,13 +63736,13 @@ uQB
 uQB
 uQB
 xxV
-uQB
-ePo
-ePo
-vYE
-ePo
-vYE
-ePo
+wWg
+uHH
+uHH
+nMD
+uHH
+nMD
+uHH
 uSg
 dSq
 bSw
@@ -63717,13 +63948,13 @@ uQB
 uQB
 uQB
 xxV
-uQB
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
+wWg
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
 uSg
 dSq
 bSw
@@ -63930,10 +64161,10 @@ ePo
 uQB
 xxV
 uQB
-ePo
-ePo
-ePo
-ePo
+uHH
+uHH
+uHH
+uHH
 uQB
 uSg
 uQB
@@ -67923,15 +68154,15 @@ ePo
 uSg
 tbJ
 uSg
-fKN
-fKN
-uSg
-uSg
-uSg
-uSg
-uSg
-uSg
-uSg
+lhE
+lhE
+eaF
+eaF
+eaF
+eaF
+eaF
+eaF
+eaF
 tbJ
 uSg
 ePo
@@ -68134,16 +68365,16 @@ sij
 ePo
 uSg
 tbJ
-tQV
-ePo
-ePo
-tQV
-tQV
-tQV
-uSg
-uSg
-uSg
-uSg
+qLY
+fqm
+fqm
+kPN
+kPN
+kPN
+eaF
+eaF
+eaF
+eaF
 tbJ
 uSg
 ePo
@@ -68346,16 +68577,16 @@ ePo
 ePo
 uSg
 tbJ
-tQV
-ePo
-sij
-ePo
-sij
-tQV
-uSg
-uSg
-uSg
-uSg
+qLY
+fqm
+pMM
+fqm
+pMM
+kPN
+eaF
+eaF
+eaF
+eaF
 tbJ
 uSg
 ePo
@@ -68378,12 +68609,12 @@ xxV
 xxV
 uQB
 grl
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
 uQB
 uQB
 uQB
@@ -68558,16 +68789,16 @@ ePo
 ePo
 uSg
 tbJ
-emN
+hen
 fOQ
-ePo
-ePo
-vYE
-tQV
-uSg
-uSg
-uSg
-uSg
+fqm
+fqm
+eRF
+kPN
+eaF
+eaF
+eaF
+eaF
 tbJ
 uSg
 ePo
@@ -68587,18 +68818,18 @@ ePo
 ePo
 uQB
 xxV
-uQB
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-uQB
-uQB
+wWg
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+wWg
+wWg
 xxV
 uQB
 dSq
@@ -68771,15 +69002,15 @@ ePo
 uSg
 uSg
 tbJ
-tQV
-ePo
-vYE
-ePo
-tQV
-tQV
-uSg
-uSg
-uSg
+kPN
+fqm
+eRF
+fqm
+kPN
+kPN
+eaF
+eaF
+eaF
 tbJ
 uSg
 ePo
@@ -68799,18 +69030,18 @@ ePo
 ePo
 uQB
 xxV
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-vYE
-ePo
-ePo
-uQB
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+nMD
+uHH
+uHH
+wWg
 xxV
 uQB
 dSq
@@ -68983,15 +69214,15 @@ vYE
 ePo
 uSg
 tbJ
-tQV
-ePo
-ePo
-ePo
-ePo
-tQV
-tQV
-uSg
-uSg
+kPN
+fqm
+fqm
+fqm
+fqm
+kPN
+kPN
+dGE
+eaF
 tbJ
 uSg
 ePo
@@ -69011,18 +69242,18 @@ ePo
 ePo
 uQB
 xxV
-ePo
-ePo
-ePo
-oKP
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-uQB
+uHH
+uHH
+uHH
+ymd
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+wWg
 xxV
 uQB
 dSq
@@ -69195,15 +69426,15 @@ ePo
 ePo
 uSg
 tbJ
-tQV
-tQV
-ePo
-vYE
-ePo
-ePo
-tQV
-tQV
-uSg
+kPN
+kPN
+fqm
+eRF
+fqm
+fqm
+kPN
+kPN
+eaF
 tbJ
 uSg
 ePo
@@ -69223,17 +69454,17 @@ ePo
 ePo
 uQB
 xxV
-vYE
-ePo
-ePo
-ePo
-ePo
-ePo
-vYE
-ePo
-ePo
-ePo
-ePo
+nMD
+uHH
+uHH
+uHH
+uHH
+uHH
+nMD
+uHH
+uHH
+uHH
+uHH
 uyG
 xxV
 uQB
@@ -69407,15 +69638,15 @@ ePo
 ePo
 ePo
 tbJ
-uSg
-tQV
-ePo
-oKP
-ePo
-ePo
-ePo
-tQV
-uSg
+eaF
+kPN
+fqm
+xAz
+fqm
+fqm
+fqm
+kPN
+eaF
 tbJ
 uSg
 ePo
@@ -69435,18 +69666,18 @@ vYE
 ePo
 uQB
 xxV
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
 gLN
-cUW
-ePo
-ePo
+eHq
+uHH
+uHH
 xxV
 uQB
 dSq
@@ -69619,15 +69850,15 @@ ePo
 ePo
 ePo
 tbJ
-uSg
-tQV
-ePo
-ePo
-gLN
-vYE
-ePo
-tQV
-tQV
+eaF
+kPN
+oSD
+oSD
+tXI
+noW
+oSD
+fQH
+kPN
 tbJ
 uSg
 uSg
@@ -69648,17 +69879,17 @@ ePo
 uQB
 xxV
 mBK
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-vYE
-ePo
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+nMD
+uHH
 xxV
 uQB
 dSq
@@ -69831,15 +70062,15 @@ ePo
 ePo
 uSg
 tbJ
-uSg
-tQV
-tQV
-ePo
-vYE
-ePo
-ePo
-ePo
-tQV
+eaF
+kPN
+fQH
+oSD
+noW
+oSD
+oSD
+oSD
+kPN
 tbJ
 uSg
 uSg
@@ -69859,18 +70090,18 @@ ePo
 sij
 uQB
 xxV
-uQB
-ePo
-ePo
-ePo
-ePo
-ePo
-vYE
-ePo
-ePo
-ePo
-ePo
-ePo
+wWg
+uHH
+uHH
+uHH
+uHH
+uHH
+nMD
+uHH
+uHH
+uHH
+uHH
+uHH
 xxV
 uQB
 dSq
@@ -70043,15 +70274,15 @@ uSg
 uSg
 uSg
 tbJ
-uSg
-uSg
-tQV
-tQV
-ePo
-ePo
-ePo
-vYE
-tQV
+eaF
+eaF
+kPN
+kPN
+fqm
+fqm
+fqm
+eRF
+kPN
 tbJ
 uSg
 uSg
@@ -70071,18 +70302,18 @@ uQB
 uQB
 uQB
 xxV
-uQB
-uQB
-uQB
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
-ePo
+wWg
+wWg
+wWg
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
+uHH
 xxV
 uQB
 dSq
@@ -70255,15 +70486,15 @@ uSg
 uSg
 uSg
 tbJ
-uSg
-uSg
-uSg
-uSg
-tQV
-tQV
-tQV
-tQV
-tQV
+eaF
+eaF
+eaF
+eaF
+qLY
+qLY
+qLY
+qLY
+qLY
 tbJ
 uSg
 uSg

@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_critical_structures)
+GLOBAL_LIST_EMPTY(turf_restrictor)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)

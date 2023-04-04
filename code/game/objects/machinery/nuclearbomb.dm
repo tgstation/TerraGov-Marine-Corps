@@ -43,7 +43,7 @@
 	name = "[initial(name)] ([UNIQUEID])"
 	update_minimap_icon()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
-	AddElement(/datum/element/spawn_protecting)
+	AddElement(/datum/element/turf_restrictor)
 
 /obj/machinery/nuclearbomb/Destroy()
 	GLOB.nuke_list -= src
