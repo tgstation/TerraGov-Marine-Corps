@@ -28,8 +28,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/list/triggers = list()
 
 	/* -- Gameplay data -- */
-	///Message sent to nearby players when this mine is triggered; "The [name] [message]."
-	var/detonation_message = "screams for the sweet release of death"
+	///Message sent to nearby players when this mine is triggered; "The [name] [message]"
+	var/detonation_message = "screams for the sweet release of death."
 	///Sound played when the mine is triggered
 	var/detonation_sound = 'sound/weapons/mine_tripped.ogg'
 	///How many tiles around/in front of itself will trigger detonation
@@ -227,21 +227,22 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/obj/item/card/id/id = L.get_idcard()
 	if(id?.iff_signal & iff_signal)
 		return FALSE
-	trigger_explosion()
+	trigger_explosion(L)
 
 ///Trigger the mine; needs to be a separate proc so that we can use a timer
-/obj/item/explosive/mine/proc/trigger_explosion()
+/obj/item/explosive/mine/proc/trigger_explosion(mob/living/L)
 	if(triggered)
 		return FALSE
 	triggered = TRUE
-	visible_message(span_danger("[icon2html(src, viewers(src))] \The [src] [detonation_message]."))
+	if(detonation_message)
+		visible_message(span_danger("[icon2html(src, viewers(src))] \The [src] [detonation_message]"))
 	playsound(loc, detonation_sound, 50, sound_range = 7)
 	if(detonation_delay)
 		return addtimer(CALLBACK(src, PROC_REF(explode)), detonation_delay)
-	explode()
+	explode(L)
 
 ///Proc that actually causes the explosion
-/obj/item/explosive/mine/proc/explode()
+/obj/item/explosive/mine/proc/explode(mob/living/L)
 	if(!triggered)
 		return FALSE
 	if(light_explosion_range || heavy_explosion_range || uber_explosion_range)
@@ -260,7 +261,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		smoke.set_up(gas_range, get_turf(src), gas_duration)
 		smoke.start()
 	if(duration || duration < 0)	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
-		extra_effects(duration)
+		extra_effects(duration, L)
 		if(duration > 0)
 			if(reusable)
 				return addtimer(CALLBACK(src, PROC_REF(disarm)), duration)
@@ -272,7 +273,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	qdel(src)
 
 ///Shove any code for special effects caused by this mine here
-/obj/item/explosive/mine/proc/extra_effects(duration = 1 SECONDS)
+/obj/item/explosive/mine/proc/extra_effects(duration = 1 SECONDS, mob/living/L)
 	return
 
 ///If this mine is volatile, explode! Easier to copy paste this into several places
@@ -346,7 +347,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
 	icon_state = "m20"
-	detonation_message = "makes a loud click"
+	detonation_message = "makes a loud click."
 	range = 3
 	buffer_range = 1
 	angle = 110
@@ -375,7 +376,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	name = "proximity mine"
 	desc = "Detonates when it detects a nearby hostile."
 	icon_state = "m20"
-	detonation_message = "beeps rapidly"
+	detonation_message = "beeps rapidly."
 	detonation_sound = 'sound/machines/triple_beep.ogg'
 	range = 3
 	angle = 360
@@ -394,7 +395,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	name = "land mine"
 	desc = "Pressure activated high explosive. Watch your step."
 	icon_state = "m20"
-	detonation_message = "whirs and clicks. Run"
+	detonation_message = "whirs and clicks. Run."
 	max_integrity = 250
 	range = 0
 	detonation_delay = 0.5 SECONDS
@@ -413,7 +414,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	name = "incendiary mine"
 	desc = "Rather than filled with explosives or shrapnel, it contains combustable chemicals that are ignited in the presence of enemies."
 	icon_state = "m20"
-	detonation_message = "hisses, releasing an inferno"
+	detonation_message = "hisses, releasing an inferno."
 	detonation_sound = 'sound/machines/terminal_button08.ogg'
 	range = 4
 	disarm_delay = 2 SECONDS
@@ -437,11 +438,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	fire_stacks = 10
 	fire_color = "green"
 
+/* Exotic mines - Rather than just explode, these have special effects */
 /obj/item/explosive/mine/radiation
 	name = "radiation mine"
 	desc = "Irradiates the surrounding area when triggered."
 	icon_state = "m20"
-	detonation_message = "clicks, emitting a low hum"
+	detonation_message = "clicks, emitting a low hum."
 	range = 2
 	duration = 10 SECONDS
 	detonation_delay = 1 SECONDS
@@ -505,7 +507,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 	. = ..()
 
-/obj/item/explosive/mine/shock/extra_effects(duration)
+/obj/item/explosive/mine/shock/extra_effects(duration, mob/living/L)
 	if(battery.charge < energy_cost)
 		balloon_alert_to_viewers("Out of charge!")
 		return disarm()
@@ -543,11 +545,12 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/explosive/mine/shock/battery_included
 	battery = /obj/item/cell
 
+/* Gas mines - Release smoke clouds on detonation, war crime certified */
 /obj/item/explosive/mine/tanglefoot
 	name = "tanglefoot mine"
 	desc = "Releases plasma-draining smoke."
 	icon_state = "m20"
-	detonation_message = "beeps and hisses, releasing purple vapors"
+	detonation_message = "beeps and hisses, releasing purple vapors."
 	range = 2
 	duration = 10 SECONDS	//Stays around for a bit venting gas
 	detonation_delay = 1.5 SECONDS
@@ -559,3 +562,66 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	gas_duration = 15
 	volatile = TRUE
 	interruptible = FALSE
+
+/* Tactical mines - Non-lethal, utility-focused gadgets */
+/obj/item/explosive/mine/alarm
+	name = "\improper S20 Proximity Alarm"
+	desc = "The S20 proximity mine serve a different purpose other than exploding. Instead it will announce enemy movements, giving early warning when hostiles approach."
+	icon_state = "m20"
+	detonation_message = "blares \"Intruder detected!\""
+	detonation_sound = 'sound/machines/triple_beep.ogg'
+	range = 5
+	duration = -1
+	undeploy_delay = 0.5 SECONDS
+	deploy_delay = 1 SECONDS
+	reusable = TRUE
+	///Internal radio that transmits alerts, spawned on Initialize()
+	var/obj/item/radio/radio
+	///To prevent spam
+	COOLDOWN_DECLARE(alarm_cooldown)
+	///Time between alarm messages
+	var/cooldown = 2 SECONDS
+	///Reference to the unique timer that deletes the minimap icon when done
+	var/minimap_timer
+	///How long a minimap icon remains
+	var/minimap_duration = 7 SECONDS
+
+/obj/item/explosive/mine/alarm/Initialize()
+	. = ..()
+	radio = new(src)
+	radio.frequency = FREQ_COMMON	//Frequency argument on talk_into is bugged so making it common by default
+
+/obj/item/explosive/mine/alarm/trip_mine(mob/living/L)
+	if(!COOLDOWN_CHECK(src, alarm_cooldown))
+		return
+	. = ..()
+
+/obj/item/explosive/mine/alarm/extra_effects(duration, mob/living/L)
+	triggered = FALSE	//Reset the mine but not disarm it
+	if(!L)
+		return FALSE
+	var/mini_icon
+	if(isxeno(L))
+		var/mob/living/carbon/xenomorph/X = L
+		mini_icon = X.xeno_caste.minimap_icon
+	else if(L.job)	//Not everything has a job
+		mini_icon = L.job.minimap_icon
+	else
+		mini_icon = "defiler"	//Closest thing to a generic warning
+	var/marker_flags = MINIMAP_FLAG_MARINE
+	if(CHECK_BITFIELD(iff_signal, TGMC_LOYALIST_IFF))
+		marker_flags |= MINIMAP_FLAG_MARINE
+	if(CHECK_BITFIELD(iff_signal, TGMC_REBEL_IFF))
+		marker_flags |= MINIMAP_FLAG_MARINE_REBEL
+	//Lumping all the antag groups together
+	if(CHECK_BITFIELD(iff_signal, SON_OF_MARS_IFF|ICC_IFF|DEATHSQUAD_IFF))
+		marker_flags |= MINIMAP_FLAG_MARINE_SOM
+	radio.talk_into(src, "ALERT! Hostile/Unknown: [L.name] | [AREACOORD_NO_Z(src)]")
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, marker_flags, mini_icon)
+	minimap_timer = addtimer(CALLBACK(SSminimaps, TYPE_PROC_REF(/datum/controller/subsystem/minimaps, remove_marker), src), minimap_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+	COOLDOWN_START(src, alarm_cooldown, cooldown)
+
+/obj/item/explosive/mine/alarm/disarm()
+	. = ..()
+	SSminimaps.remove_marker(src)	//Do a minimap icon removal on being disarmed just in case
