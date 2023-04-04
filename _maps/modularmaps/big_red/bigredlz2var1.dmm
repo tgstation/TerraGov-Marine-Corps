@@ -49,7 +49,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "db" = (
@@ -65,12 +65,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"dU" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 6
-	},
-/area/shuttle/drop2/lz2)
 "eg" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
@@ -319,6 +313,10 @@
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
+"xH" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/shuttle/drop2/lz2)
 "yh" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -368,7 +366,9 @@
 /area/shuttle/drop2/lz2)
 "zI" = (
 /obj/effect/ai_node,
-/turf/open/floor/asteroidfloor,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
 /area/shuttle/drop2/lz2)
 "Aa" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -481,9 +481,7 @@
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 8
 	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "HG" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -596,9 +594,7 @@
 "Nx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/lv624/lazarus/console)
 "NM" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -753,14 +749,16 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "Wv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/sw)
+"WW" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/shuttle/drop2/lz2)
 "Xm" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -2337,7 +2335,7 @@ mU
 mU
 mU
 mU
-Nb
+qY
 sZ
 BT
 MO
@@ -2377,32 +2375,32 @@ LR
 mU
 mU
 mU
-qY
-sZ
-BT
-MO
-BT
-BT
+wE
+mo
+Eh
+yR
+Eh
+Eh
 zI
-BT
-BT
-BT
-BT
-BT
-BT
-BT
-BT
-BT
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
+Eh
 zI
-BT
-BT
-BT
-BT
-BT
+Eh
+Eh
+Eh
+Eh
+Eh
 zI
-sZ
-BT
-MO
+mo
+Eh
+yR
 BT
 Zi
 Sp
@@ -2417,33 +2415,33 @@ mU
 mU
 mU
 zl
-qY
-wE
+xH
+xH
 cW
-dU
-BT
-BT
-BT
-BT
-BT
-BT
-BT
+ES
+mU
+mU
+mU
+mU
+mU
+mU
+mU
 mS
 Nx
 Wq
-wR
-wR
-wR
+xH
+qY
+WW
 Hl
-wR
-wR
-wR
-Eh
-Eh
-mo
-Eh
-yR
-Eh
+xH
+xH
+qY
+MO
+mU
+mU
+mU
+mU
+mU
 Zi
 Sp
 "}

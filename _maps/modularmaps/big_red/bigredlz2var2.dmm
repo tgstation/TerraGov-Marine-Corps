@@ -110,6 +110,13 @@
 	},
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
+"jq" = (
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "jR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
@@ -150,6 +157,10 @@
 "ni" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
+"nz" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/shuttle/drop2/lz2)
 "oc" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -210,6 +221,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"sz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "sF" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -252,9 +270,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "vB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -275,6 +291,10 @@
 "vT" = (
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/marking/asteroidwarning,
+/area/shuttle/drop2/lz2)
+"wy" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "wG" = (
 /obj/structure/cable,
@@ -329,12 +349,6 @@
 "zI" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 10
-	},
-/area/shuttle/drop2/lz2)
-"zS" = (
-/obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 5
 	},
 /area/shuttle/drop2/lz2)
 "zX" = (
@@ -520,13 +534,6 @@
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"Mj" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "Mv" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -565,6 +572,10 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"OB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/shuttle/drop2/lz2)
 "Pa" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/marking/asteroidwarning{
@@ -586,9 +597,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "Qa" = (
 /obj/effect/decal/cleanable/dirt,
@@ -656,9 +665,7 @@
 "Tq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/lv624/lazarus/console)
 "Uj" = (
 /turf/closed/mineral/smooth/bigred,
@@ -683,6 +690,13 @@
 "UL" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
+	},
+/area/shuttle/drop2/lz2)
+"UU" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 5
 	},
 /area/shuttle/drop2/lz2)
 "Ve" = (
@@ -2310,32 +2324,32 @@ aX
 aX
 aX
 aX
-yN
-dt
-As
-os
-BV
-BV
-BV
-As
-BV
-BV
-BV
-BV
-BV
-BV
-As
-BV
-As
-BV
-BV
-As
-BV
-BV
-BV
-dt
-BV
-os
+UU
+AV
+jq
+Qh
+UL
+UL
+UL
+er
+UL
+UL
+UL
+UL
+UL
+UL
+er
+UL
+er
+UL
+UL
+er
+UL
+UL
+UL
+AV
+UL
+YL
 BV
 dj
 JK
@@ -2350,33 +2364,33 @@ aX
 aX
 aX
 aX
-Jz
-zS
-zX
-Qh
-BV
-BV
-BV
-BV
-BV
-BV
-BV
+OB
+OB
+sz
+KG
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 ky
 Tq
 vg
-Nu
-Nu
-Nu
+OB
+Jz
+nz
 Pq
-Nu
-Nu
-Mj
-UL
-UL
-AV
-UL
-YL
-er
+OB
+OB
+yN
+os
+aX
+aX
+aX
+aX
+wy
 dj
 JK
 "}
