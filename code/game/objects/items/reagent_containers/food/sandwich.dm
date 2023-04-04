@@ -281,7 +281,7 @@
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
 	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "xenomeatbread"
-	slice_path = /obj/item/reagent_containers/food/snacks/xenomeatbreadslice
+	slice_path = /obj/item/reagent_containers/food/snacks/sandwiches/xenomeatbreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
 	filling_color = "#8AFF75"
 	tastes = list("bread" = 10, "acid" = 10)

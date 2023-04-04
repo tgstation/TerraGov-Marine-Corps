@@ -115,7 +115,7 @@
 	name = "pineapple snowcone"
 	desc = "Pineapple syrup drizzled over a snowball in a paper cup."
 	icon_state = "pineapple_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/pineapplejuice = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/drink/pineapplejuice = 5, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "pineapples" = 5)
 
 /obj/item/reagent_containers/food/snacks/frozen/snowcones/mime
@@ -151,7 +151,7 @@
 	name = "pwrgame snowcone"
 	desc = "Pwrgame soda drizzled over a snowball in a paper cup."
 	icon_state = "pwrgame_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/pwr_game = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "valid" = 5, "salt" = 5, "wats" = 5)
 
 /obj/item/reagent_containers/food/snacks/frozen/snowcones/honey

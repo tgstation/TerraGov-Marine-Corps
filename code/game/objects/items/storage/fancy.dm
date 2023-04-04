@@ -13,7 +13,7 @@
 */
 
 /obj/item/storage/fancy
-	icon = 'icons/obj/items/oodf.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"

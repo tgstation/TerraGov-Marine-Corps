@@ -385,7 +385,7 @@
 		/obj/item/reagent_containers/food/snacks/upp/fish,
 		/obj/item/reagent_containers/food/snacks/upp/rice,
 		/obj/item/reagent_containers/food/snacks/sliceable/meatbread,
-		/obj/item/reagent_containers/food/snacks/bigbiteburger,
+		/obj/item/reagent_containers/food/snacks/burger/bigbite,
 		/obj/item/reagent_containers/food/snacks/mexican/enchiladas,
 		/obj/item/reagent_containers/food/snacks/cheesyfries,
 		/obj/item/reagent_containers/food/snacks/fishandchips,

@@ -212,7 +212,7 @@
 	icon_state = "energycake"
 	slice_path = /obj/item/reagent_containers/food/snacks/pastries/birthdaycake/energyslice
 	hitsound = 'sound/weapons/blade1.ogg'
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/pwr_game = 10, /datum/reagent/consumable/liquidelectricity/enriched = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 3, "a Vlad's Salad" = 1)
 
 /obj/item/reagent_containers/food/snacks/pastries/energycakeslice
@@ -322,7 +322,7 @@
 	name = "hardware cake"
 	desc = "A quote on quote cake that is made with electronic boards and leaks acid..."
 	icon_state = "hardware_cake"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/toxin/acid = 15, /datum/reagent/fuel/oil = 15)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/toxin/acid = 15)
 	slice_path = /obj/item/reagent_containers/food/snacks/pastries/hardware_cakelice
 	tastes = list("acid" = 3, "metal" = 4, "glass" = 5)
 
@@ -331,7 +331,7 @@
 	desc = "A slice of electronic boards and some acid."
 	icon_state = "hardware_cake_slice"
 	tastes = list("acid" = 3, "metal" = 4, "glass" = 5)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/toxin/acid = 3, /datum/reagent/fuel/oil = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/toxin/acid = 3)
 
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/vanilla_cake
 	name = "vanilla cake"
