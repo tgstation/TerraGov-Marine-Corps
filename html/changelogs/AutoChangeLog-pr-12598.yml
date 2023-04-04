@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Comms blackouts no longer last forever"
+  - bugfix: "Comms blackouts now correctly apply for a randomised period of time"

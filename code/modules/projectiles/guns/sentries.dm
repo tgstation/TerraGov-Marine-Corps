@@ -37,7 +37,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = 5
+	max_w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	max_storage_space = 16
 	can_hold = list(

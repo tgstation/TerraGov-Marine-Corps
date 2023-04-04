@@ -16,8 +16,6 @@
 
 	var/resistance_flags = PROJECTILE_IMMUNE
 
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-
 	///If non-null, overrides a/an/some in all cases
 	var/article
 

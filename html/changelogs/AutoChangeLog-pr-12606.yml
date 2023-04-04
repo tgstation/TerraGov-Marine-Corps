@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - code_imp: "germ_level moved from atom to human, no major player-facing changes"
