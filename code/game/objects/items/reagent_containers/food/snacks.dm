@@ -1154,7 +1154,7 @@
 /obj/item/reagent_containers/food/snacks/baked_cheese
 	name = "baked cheese wheel"
 	desc = "A baked cheese wheel, melty and delicious."
-	icon = 'icons/obj/food/moth.dmi'
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "baked_cheese"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/nutriment = 5)
 	tastes = list("cheese" = 1)
@@ -1163,7 +1163,7 @@
 /obj/item/reagent_containers/food/snacks/baked_cheese_platter
 	name = "backed cheese platter" //stannt = oven, krakt = baked, ælo = cheese
 	desc = "A baked cheese wheel: a favourite for sharing. Usually served with crispy bread slices for dipping, because the only thing better than good cheese is good cheese on bread."
-	icon = 'icons/obj/food/moth.dmi'
+	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "baked_cheese_platter"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 12, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/nutriment = 8)
 	tastes = list("cheese" = 1, "bread" = 1)

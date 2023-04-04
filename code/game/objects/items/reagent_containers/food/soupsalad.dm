@@ -387,7 +387,7 @@
 	name = "\improper Tiziran black broth"
 	desc = "A bowl of sausage, onion, blood and vinegar, served ice cold. Every bit as rough as it sounds."
 	icon_state = "black_broth"
-	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/blood = 8, /datum/reagent/liquidgibs = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/blood = 8)
 	tastes = list("vinegar" = 1, "metal" = 1)
 
 /obj/item/reagent_containers/food/snacks/soup/meatball_noodles
@@ -415,13 +415,13 @@
 	name = "desert snail cocleas"
 	desc = "A very niche example of cultural crossover between lizards and humans, lizard escargot is sourced naturally from perfectly compliant lizardfolk."
 	icon_state = "lizard_escargot"
-	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/garlic = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("snails" = 1, "garlic" = 1, "oil" = 1)
 
 /obj/item/reagent_containers/food/snacks/soup/rice_porridge
 	name = "rice porridge"
 	desc = "A plate of rice porridge. It's mostly flavourless, but it does fill a spot." //höllflöfmiskl = rice (höllflöf = cloud, miskl = seed), sløsk = porridge
-	icon = 'icons/obj/food/moth.dmi'
+	icon = 'icons/obj/items/food/soupsalad.dmi'
 	icon_state = "rice_porridge"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 8)
 	tastes = list("nothing" = 1)
@@ -453,7 +453,7 @@
 /obj/item/reagent_containers/food/snacks/soup/red_porridge
 	name = "red porridge" //eltsløsk = red porridge, ül a = with, prikt = sour, æolk = cream
 	desc = "Red porridge with yoghurt. The name and vegetable ingredients obscure the sweet nature of the dish, which is commonly served as a dessert aboard the fleet."
-	icon = 'icons/obj/food/moth.dmi'
+	icon = 'icons/obj/items/food/soupsalad.dmi'
 	icon_state = "red_porridge"
 	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/sugar = 8)
 	tastes = list("sweet beets" = 1, "sugar" = 1, "sweetened yoghurt" = 1)
