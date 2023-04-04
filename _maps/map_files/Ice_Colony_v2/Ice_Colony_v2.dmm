@@ -8979,7 +8979,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aTf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/burger/bigbite,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTg" = (

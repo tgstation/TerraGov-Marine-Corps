@@ -14526,7 +14526,7 @@
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/knife/butcher,
 /obj/item/clothing/head/helmet/marine/som,
-/obj/item/reagent_containers/food/snacks/brainburger,
+/obj/item/reagent_containers/food/snacks/burger/brain,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "sPc" = (
