@@ -200,7 +200,7 @@
 	var/list/randompick = list(
 		/obj/item/reagent_containers/food/snacks/fries,
 		/obj/item/reagent_containers/food/snacks/cheesyfries,
-		/obj/item/reagent_containers/food/snacks/burger/bigbiteburger,
+		/obj/item/reagent_containers/food/snacks/burger/bigbite,
 		/obj/item/reagent_containers/food/snacks/mexican/taco,
 		/obj/item/reagent_containers/food/snacks/hotdog)
 
