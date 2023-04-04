@@ -158,7 +158,7 @@
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "monkeycubebox"
 	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	spawn_number = 5

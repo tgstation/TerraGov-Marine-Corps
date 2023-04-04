@@ -1,6 +1,6 @@
 //Food items that are eaten normally and don't leave anything behind.
 /obj/item/reagent_containers/food/snacks/burger
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/burgers.dmi'
 	icon_state = "hburger"
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -150,7 +150,10 @@
 	name = "big bite burger"
 	desc = "Forget the Big Mac. THIS is the future!"
 	icon_state = "bigbiteburger"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	filling_color = "#E3D681"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 14, /datum/reagent/consumable/sodiumchloride = 2)
+	bitesize = 3
+	tastes = list("bun" = 4)
 
 /obj/item/reagent_containers/food/snacks/burger/jelly
 	name = "jelly burger"
@@ -276,7 +279,7 @@
 /obj/item/reagent_containers/food/snacks/burger/packaged_burger
 	name = "Packaged Cheeseburger"
 	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "burger"
 	bitesize = 3
 	package = TRUE
@@ -315,7 +318,7 @@
 /obj/item/reagent_containers/food/snacks/burger/bun
 	name = "bun"
 	desc = "A base for any self-respecting burger."
-	icon = 'icons/obj/items/food_ingredients.dmi'
+	icon = 'icons/obj/items/food/food_ingredients.dmi'
 	icon_state = "bun"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
@@ -343,3 +346,23 @@
 		to_chat(user, "You make a hotdog.")
 		qdel(I)
 		qdel(src)
+
+/obj/item/reagent_containers/food/snacks/burger/superbiteburger
+	name = "Super Bite Burger"
+	desc = "This is a mountain of a burger. FOOD!"
+	icon_state = "superbiteburger"
+	filling_color = "#CCA26A"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 40)
+	bitesize = 7
+	volume = 100
+	tastes = list("bun" = 4, "type two diabetes" = 10)
+
+/obj/item/reagent_containers/food/snacks/burger/ghostburger
+	name = "Ghost Burger"
+	desc = "Spooky! It doesn't look very filling."
+	icon = 'icons/obj/items/food/burgers.dmi'
+	icon_state = "ghostburger"
+	filling_color = "#FFF2FF"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	bitesize = 2
+	tastes = list("bun" = 4, "ectoplasm" = 2)

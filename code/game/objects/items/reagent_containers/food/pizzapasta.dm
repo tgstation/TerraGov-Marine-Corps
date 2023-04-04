@@ -1,14 +1,14 @@
 /////////////////////////////////////////////////PIZZA////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/pizzapasta
-	icon = 'icons/obj/items/pizzaspaghetti.dmi'
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	slices_num = 6
 	bitesize = 1
 	filling_color = "#BAA14C"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta
-	icon = 'icons/obj/items/pizzaspaghetti.dmi'
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	bitesize = 1
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 
@@ -16,7 +16,7 @@
 	name = "Margherita"
 	desc = "The golden standard of pizzas."
 	icon_state = "pizzamargherita"
-	slice_path = /obj/item/reagent_containers/food/snacks/margheritaslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/drink/tomatojuice = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 
@@ -32,7 +32,7 @@
 	name = "Meatpizza"
 	desc = "A pizza with meat topping."
 	icon_state = "meatpizza"
-	slice_path = /obj/item/reagent_containers/food/snacks/meatpizzaslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 50, /datum/reagent/consumable/drink/tomatojuice = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 
@@ -48,7 +48,7 @@
 	name = "Mushroompizza"
 	desc = "Very special pizza"
 	icon_state = "mushroompizza"
-	slice_path = /obj/item/reagent_containers/food/snacks/mushroompizzaslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/mushroompizzaslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 35)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
 
@@ -120,7 +120,7 @@
 	icon_state = "sassysagepizza"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 15, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	slice_path = /obj/item/reagent_containers/food/snacks/sassysage
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzapasta/sassysage
 
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/sassysage/raw
 	name = "raw sassysage pizza"
@@ -162,7 +162,7 @@
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "pizzabox1"
 
 	var/open = 0 // Is the box open?
@@ -366,7 +366,7 @@
 
 ///spaghetti prototype used by all subtypes
 /obj/item/reagent_containers/food/snacks/pizzapasta
-	icon = 'icons/obj/items/pizzaspaghetti.dmi'
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/raw
@@ -378,8 +378,13 @@
 /obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti
 	name = "boiled spaghetti"
 	desc = "A plain dish of noodles, this needs more ingredients."
-	icon_state = "spaghettiboiled"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
+	icon_state = "spagettiboiled"
+	trash = /obj/item/trash/plate
+	filling_color = "#FCEE81"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	bitesize = 2
+	tastes = list("pasta" = 1)
 
 /obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato
 	name = "spaghetti"
@@ -452,3 +457,23 @@
 	var/pizza_type = pick(pizza_choices)
 	pizza = new pizza_type(src)
 	boxtag = "Pizza Time"
+
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatballspagetti
+	name = "Spaghetti & Meatballs"
+	desc = "Now thats a nic'e meatball!"
+	icon_state = "meatballspagetti"
+	icon = 'icons/obj/items/food/pizzapasta.dmi'
+	trash = /obj/item/trash/plate
+	filling_color = "#DE4545"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
+	bitesize = 3
+	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
+
+/obj/item/reagent_containers/food/snacks/pizzapasta/spagetti
+	name = "Spaghetti"
+	desc = "A bundle of raw spaghetti."
+	icon_state = "spagetti"
+	filling_color = "#EDDD00"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	bitesize = 1
+	tastes = list("raw pasta" = 1)

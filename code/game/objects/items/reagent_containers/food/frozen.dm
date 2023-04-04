@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/food/snacks/frozen/
-	icon = 'icons/obj/items/frozen_treats.dmi'
+	icon = 'icons/obj/items/food/frozen_treats.dmi'
 
 /obj/item/reagent_containers/food/snacks/frozen/icecreamsandwich
 	name = "icecream sandwich"

@@ -1611,7 +1611,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cca" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/mimeburger,
+/obj/item/reagent_containers/food/snacks/burger/mime,
 /obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice{
 	pixel_x = -5
 	},
@@ -2523,7 +2523,7 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast,
 /obj/item/reagent_containers/food/snacks/donut,
-/obj/item/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
@@ -2996,7 +2996,7 @@
 "dPI" = (
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pastatomato,
+/obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato,
 /obj/item/reagent_containers/food/snacks/soup/mysterysoup{
 	pixel_y = 12
 	},
@@ -12142,7 +12142,7 @@
 /area/centcom/valhalla/port)
 "qwk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/taco,
+/obj/item/reagent_containers/food/snacks/mexican/taco,
 /obj/item/reagent_containers/food/snacks/sandwiches/twobread,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
@@ -14931,7 +14931,7 @@
 	pixel_x = 14
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/milosoup,
+/obj/item/reagent_containers/food/snacks/soup/milosoup,
 /obj/effect/spawner/random/sugary_snack,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)

@@ -2,7 +2,7 @@
 /obj/item/reagent_containers/food/snacks/soup
 	name = "snack"
 	desc = "yummy"
-	icon = 'icons/obj/items/soupsalad.dmi'
+	icon = 'icons/obj/items/food/soupsalad.dmi'
 	icon_state = null
 
 /obj/item/reagent_containers/food/snacks/soup/wishsoup
@@ -329,7 +329,7 @@
 	list_reagents = list (/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/nutriment/protein = 2)
 	tastes = list("creamy vegetables"= 2, "sausage" = 1)
 
-/obj/item/reagent_containers/food/snacks/milosoup
+/obj/item/reagent_containers/food/snacks/soup/milosoup
 	name = "Milosoup"
 	desc = "The universes best soup! Yum!!!"
 	icon_state = "milosoup"

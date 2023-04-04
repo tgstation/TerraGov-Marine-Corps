@@ -16668,7 +16668,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bBd" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bBe" = (
@@ -22294,7 +22294,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWc" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bWd" = (

@@ -372,7 +372,7 @@
 	icon_state = "random_outdoors_snack"
 	spawn_random_offset = TRUE
 	loot = list(
-		/obj/item/reagent_containers/food/snacks/taco,
+		/obj/item/reagent_containers/food/snacks/mexican/taco,
 		/obj/item/reagent_containers/food/snacks/hotdog,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito,
 		/obj/item/reagent_containers/food/snacks/fries,

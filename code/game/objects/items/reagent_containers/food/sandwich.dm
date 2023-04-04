@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/food/snacks/sandwiches
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 
 /obj/item/reagent_containers/food/snacks/sandwiches/breadslice/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -65,7 +65,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/butteredtoast
 	name = "buttered toast"
 	desc = "Butter lightly spread over a piece of toast."
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "butteredtoast"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "toast" = 1)
@@ -261,7 +261,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/marinebread //meme bread for breadify smite
 	name = "Bread"
 	desc = "Some plain old Earthen bread. An air of penance surrounds it."
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "breadtg"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
 	filling_color = "#FFF896"
@@ -276,7 +276,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/xenomeatbread
 	name = "xenomeatbread loaf"
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "xenomeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/xenomeatbreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
@@ -286,7 +286,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/xenomeatbreadslice
 	name = "xenomeatbread slice"
 	desc = "A slice of delicious meatbread. Extra Heretical."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "xenobreadslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#8AFF75"
@@ -296,7 +296,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/bananabread
 	name = "Banana-nut bread"
 	desc = "A heavenly and filling treat."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "bananabread"
 	slice_path = /obj/item/reagent_containers/food/snacks/sandwiches/bananabreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/drink/banana = 20)
@@ -306,7 +306,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/bananabreadslice
 	name = "Banana-nut bread slice"
 	desc = "A slice of delicious banana bread."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "bananabreadslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#EDE5AD"
@@ -316,7 +316,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread
 	name = "meatbread loaf"
 	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "meatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
@@ -326,7 +326,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice
 	name = "meatbread slice"
 	desc = "A slice of delicious meatbread."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "meatbreadslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#FF7575"
@@ -336,7 +336,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/tofubread
 	name = "Tofubread"
 	desc = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "tofubread"
 	slice_path = /obj/item/reagent_containers/food/snacks/tofubreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
@@ -346,7 +346,7 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/tofubreadslice
 	name = "Tofubread slice"
 	desc = "A slice of delicious tofubread."
-	icon = 'icons/obj/items/burgerbread.dmi'
+	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "tofubreadslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#F7FFE0"

@@ -45,7 +45,7 @@
 /obj/item/reagent_containers/food/snacks/fishmeat/moonfish
 	name = "moonfish fillet"
 	desc = "A fillet of moonfish."
-	icon = 'icons/obj/food/lizard.dmi'
+	icon = 'icons/obj/items/food/meat.dmi'
 	icon_state = "moonfish_fillet"
 
 /obj/item/reagent_containers/food/snacks/fishmeat/moonfish/MakeGrillable()
@@ -54,14 +54,14 @@
 /obj/item/reagent_containers/food/snacks/fishmeat/gunner_jellyfish
 	name = "filleted gunner jellyfish"
 	desc = "A gunner jellyfish with the stingers removed. Mildly hallucinogenic."
-	icon = 'icons/obj/food/lizard.dmi'
+	icon = 'icons/obj/items/food/meat.dmi'
 	icon_state = "jellyfish_fillet"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/mindbreaker = 2)
 
 /obj/item/reagent_containers/food/snacks/fishmeat/armorfish
 	name = "cleaned armorfish"
 	desc = "An armorfish with its guts and shell removed, ready for use in cooking."
-	icon = 'icons/obj/food/lizard.dmi'
+	icon = 'icons/obj/items/food/meat.dmi'
 	icon_state = "armorfish_fillet"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 3)
 

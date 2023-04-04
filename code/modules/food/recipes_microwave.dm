@@ -771,7 +771,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/spagetti,
 	)
-	result = /obj/item/reagent_containers/food/snacks/boiledspagetti
+	result = /obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti
 
 /datum/recipe/boiledrice
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/rice = 10)
@@ -1105,7 +1105,7 @@
 		/obj/item/reagent_containers/food/snacks/cutlet,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/taco
+	result = /obj/item/reagent_containers/food/snacks/mexican/taco
 
 /datum/recipe/bun
 	items = list(

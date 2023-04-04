@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/food/snacks/donut
 	name = "donut"
 	desc = "A donut pastry, which is a common snack on Earth. Goes great with coffee."
-	icon = 'icons/obj/items/donuts.dmi'
+	icon = 'icons/obj/items/food/donuts.dmi'
 	icon_state = "donut"
 	filling_color = "#D9C386"
 	var/overlay_state = "donut"

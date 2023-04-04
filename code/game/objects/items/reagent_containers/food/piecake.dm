@@ -2,13 +2,13 @@
 /obj/item/reagent_containers/food/snacks/pastries
 	name = "snack"
 	desc = "yummy"
-	icon = 'icons/obj/items/piecake.dmi'
+	icon = 'icons/obj/items/food/piecake.dmi'
 	icon_state = null
 
 /obj/item/reagent_containers/food/snacks/sliceable/pastries
 	name = "snack"
 	desc = "yummy"
-	icon = 'icons/obj/items/piecake.dmi'
+	icon = 'icons/obj/items/food/piecake.dmi'
 	icon_state = null
 
 /obj/item/reagent_containers/food/snacks/pastries/pie
