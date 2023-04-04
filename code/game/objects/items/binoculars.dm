@@ -561,12 +561,12 @@
 			addtimer(CALLBACK(src, PROC_REF(rocket_run), TU), delay_to_impact)
 		if(MODE_CRS_MSL)
 			to_chat(user, span_notice("TARGET ACQUIRED CRUISE MISSILE INBOUND."))
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Cruise missile programmed, 1 out.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Cruise missile programmed, 1 out.", /atom/movable/screen/text/screen_text/picture/potrait)
 			playsound(TU, 'sound/weapons/rocket_incoming.ogg', 65)
 			addtimer(CALLBACK(src, PROC_REF(cruise_missile), TU), delay_to_impact)
 		if(MODE_SUPPLY)
 			to_chat(user, span_notice("TARGET ACQUIRED SUPPLY CRATE INBOUND."))
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Supply crate sent.", /atom/movable/screen/text/screen_text/picture/potrait/lt)
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Lt-Manley</u></span><br>" + "Supply crate sent.", /atom/movable/screen/text/screen_text/picture/potrait)
 			addtimer(CALLBACK(src, PROC_REF(supply), TU), delay_to_impact)
 
 /obj/item/binoculars/fire_support/proc/gun_run(turf/T, attackdir = NORTH)
@@ -646,7 +646,7 @@
 
 /obj/item/binoculars/fire_support/proc/supply(turf/T)
 	QDEL_NULL(laser)
-	new /obj/structure/largecrate/supply/ammo/uscm(T)
+	new /obj/structure/largecrate/supply/ammo/psy(T)
 	supply_timer = addtimer(CALLBACK(src, PROC_REF(supply_clear_timer)), supply_cooldown)
 
 /obj/item/binoculars/fire_support/proc/supply_clear_timer()

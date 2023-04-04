@@ -1609,3 +1609,96 @@ TUNNEL
 		X.alpha = initial(X.alpha)
 		balloon_alert(X, "Effect wears off")
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))
+
+/obj/structure/spawner_cave
+	name = "cave entrance"
+	desc = "A cave entrance to a subterranean network of caves, xenomorphs are crawling out of it. Better collapse it."
+	icon = 'icons/xeno/2x2building.dmi'
+	icon_state = "big_tunnel"
+	pixel_x = -16
+	pixel_y = -16
+	max_integrity = 500
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	///typepath or list of typepaths for the spawner to pick from
+	var/spawntypes = /mob/living/carbon/xenomorph/drone/ai_patrol
+	///Amount of types to spawn for each squad created
+	var/spawnamount = 1
+	///Delay between squad spawns, dont set this to below SSspawning wait
+	var/spawndelay = 30 SECONDS
+	///Max amount of
+	var/maxamount = 2
+	///Whether we want to use the postspawn proc on the mobs created by the Spawner
+	var/use_postspawn = TRUE
+	///Typepath for the collapsed spawner it spawns when destroyed
+	var/collapsed_spawner = /obj/structure/collapsed_spawner
+	///Amount of followers of the leader
+	var/amount_to_spawn = 3
+	///The xeno that follows the leader
+	var/mob/living/carbon/xenomorph/follower_xeno = /mob/living/carbon/xenomorph/drone/ai_follow
+
+/obj/structure/spawner_cave/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(500)
+		if(EXPLODE_HEAVY)
+			take_damage(250)
+		if(EXPLODE_LIGHT)
+			take_damage(200)
+
+/obj/structure/spawner_cave/Initialize()
+	if(!spawntypes || !spawnamount)
+		stack_trace("Invalid spawn parameters on spawner, deleting")
+		return INITIALIZE_HINT_QDEL
+	if(spawndelay < SSspawning.wait)
+		stack_trace("Spawndelay too low, deleting spawner")
+		return INITIALIZE_HINT_QDEL
+	. = ..()
+	SSspawning.registerspawner(src, spawndelay, spawntypes, maxamount, spawnamount, use_postspawn ? CALLBACK(src, PROC_REF(postspawn)) : null)
+
+///This proc runs on the created mobs if use_postspawn is enabled
+/obj/structure/spawner_cave/proc/postspawn(list/squad)
+	var/leader = pick_n_take(squad)
+	for(var/i in 1 to amount_to_spawn)
+		new follower_xeno(loc, leader)
+	return
+
+/obj/structure/spawner_cave/obj_destruction()
+	new collapsed_spawner(loc)
+	return ..()
+
+/obj/structure/spawner_cave/runner
+	spawntypes = /mob/living/carbon/xenomorph/runner/ai_patrol
+	follower_xeno = /mob/living/carbon/xenomorph/runner/ai_follow
+	amount_to_spawn = 1
+	collapsed_spawner = /obj/structure/collapsed_spawner/runner
+
+/obj/structure/spawner_cave/sentinel
+	spawntypes = /mob/living/carbon/xenomorph/sentinel/ai_patrol
+	follower_xeno = /mob/living/carbon/xenomorph/sentinel/ai_follow
+	amount_to_spawn = 1
+	collapsed_spawner = /obj/structure/collapsed_spawner/sentinel
+
+/obj/structure/collapsed_spawner
+	name = "collapsed cave entrance"
+	desc = "A cave entrance to a subterranean network of caves, this one has collapsed but its only a matter of time before its open again."
+	icon = 'icons/xeno/2x2building.dmi'
+	icon_state = "big_tunnel_collapse"
+	pixel_x = -16
+	pixel_y = -16
+	resistance_flags = RESIST_ALL
+	var/spawner_to_create = /obj/structure/spawner_cave
+	var/time_to_create = 5 MINUTES
+
+/obj/structure/collapsed_spawner/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(create_new)), time_to_create)
+
+/obj/structure/collapsed_spawner/proc/create_new()
+	new spawner_to_create(loc)
+	qdel(src)
+
+/obj/structure/collapsed_spawner/runner
+	spawner_to_create = /obj/structure/spawner_cave/runner
+
+/obj/structure/collapsed_spawner/sentinel
+	spawner_to_create = /obj/structure/spawner_cave/sentinel

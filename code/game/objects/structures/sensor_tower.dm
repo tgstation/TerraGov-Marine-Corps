@@ -240,4 +240,25 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid][current_timer ? "_on" : "_off"]")
 
 /obj/structure/sensor_tower_patrol/psy
-	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	icon_state = "psy"
+	faction = FACTION_XENO
+	deactivate_time = 5 SECONDS
+	var/obj/effect/landmark/patrol_point/exit_point = /obj/effect/landmark/patrol_point
+
+/obj/structure/sensor_tower_patrol/psy/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	defender_interaction(X)
+
+/obj/structure/sensor_tower_patrol/psy/begin_activation()
+	. = ..()
+	exit_point = new exit_point(loc)
+	exit_point.id = 5
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PSY_INHIBITOR, src)
+
+/obj/structure/sensor_tower_patrol/finish_activation()
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PSY_INHIBITOR_ON, src)
+
+/obj/structure/sensor_tower_patrol/psy/deactivate()
+	. = ..()
+	QDEL_NULL(exit_point)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PSY_INHIBITOR_OFF, src)

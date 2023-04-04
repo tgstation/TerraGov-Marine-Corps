@@ -243,3 +243,15 @@
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
 	minimum_health = 0.3
+
+/datum/ai_behavior/xeno/ranged/patrolling
+	base_action = MOVING_TO_NODE
+
+/datum/ai_behavior/xeno/ranged/following
+	base_action = ESCORTING_ATOM
+
+/datum/ai_behavior/xeno/patrolling
+	base_action = MOVING_TO_NODE
+
+/datum/ai_behavior/xeno/following
+	base_action = ESCORTING_ATOM

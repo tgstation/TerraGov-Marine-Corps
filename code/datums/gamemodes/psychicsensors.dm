@@ -3,8 +3,7 @@
 /datum/game_mode/psy_sensors
 	name = "Psychic Sensors"
 	config_tag = "Psychic Sensors"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_HUMAN_ONLY|MODE_DEAD_GRAB_FORBIDDEN
-	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
+	flags_round_type = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_HUMAN_ONLY|MODE_DEAD_GRAB_FORBIDDEN
 	flags_xeno_abilities = ABILITY_CRASH
 	shutters_drop_time = 3 MINUTES
 	valid_job_types = list(
@@ -58,7 +57,9 @@
 
 ///plays the intro sequence
 /datum/game_mode/psy_sensors/proc/intro_sequence()
-	Cinematic(CINEMATIC_BRIEFING, world)
+	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
 
 /datum/game_mode/psy_sensors/proc/respawn_wave()
 	var/datum/game_mode/psy_sensors/D = SSticker.mode

@@ -47,6 +47,8 @@
 #define COMSIG_GLOB_FLOODLIGHT_SWITCH "!floodlight_switch_power_change"
 ///Sent when a psychic inhibitor is activated
 #define COMSIG_GLOB_PSY_INHIBITOR "!psy_active"
+///Sent when a psychic inhibitor finishes_activation
+#define COMSIG_GLOB_PSY_INHIBITOR_ON "!psy_finish"
 ///Sent when a psychic inhibitor is deactivated
 #define COMSIG_GLOB_PSY_INHIBITOR_OFF "!psy_deactivated"
 

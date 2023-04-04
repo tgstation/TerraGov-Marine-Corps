@@ -111,7 +111,7 @@
 /obj/structure/patrol_point/dropship
 	name = "UD-4L Cheyenne Dropship"
 	desc = "A versatile dropship and tactical transport employed in a primary role in the TGMC."
-	icon = 'icons/Marine/ud.dmi'
+	icon = 'icons/Marine/dropship_prop.dmi'
 	icon_state = "ud"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
@@ -128,9 +128,14 @@
 /obj/structure/patrol_point/dropship/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR, PROC_REF(change_id))
+	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR_ON, PROC_REF(set_id))
 	RegisterSignal(SSdcs, COMSIG_GLOB_PSY_INHIBITOR_OFF, PROC_REF(revert_id))
 	id = rand(1, 4)
 	initial_id = id
+
+/obj/structure/patrol_point/dropship/proc/set_id()
+	initial_id = id
+	create_link()
 
 /obj/structure/patrol_point/dropship/proc/change_id()
 	id = 5

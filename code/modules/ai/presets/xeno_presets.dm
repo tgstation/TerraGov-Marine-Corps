@@ -94,3 +94,26 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 
+/mob/living/carbon/xenomorph/drone/ai_patrol/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/patrolling, null)
+
+/mob/living/carbon/xenomorph/drone/ai_follow/Initialize(loc, atom_to_escort)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/following, atom_to_escort)
+
+/mob/living/carbon/xenomorph/runner/ai_patrol/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/patrolling, null)
+
+/mob/living/carbon/xenomorph/runner/ai_follow/Initialize(loc, atom_to_escort)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/following, atom_to_escort)
+
+/mob/living/carbon/xenomorph/sentinel/ai_patrol/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/ranged/patrolling, null)
+
+/mob/living/carbon/xenomorph/sentinel/ai_follow/Initialize(loc, atom_to_escort)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/ranged/following, atom_to_escort)

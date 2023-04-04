@@ -95,8 +95,8 @@
 	animate(src, time = duration, pixel_y = 0)
 
 /obj/effect/temp_visual/dropship_flyby
-	icon = 'icons/Marine/ud.dmi'
-	icon_state = "shadow"
+	icon = 'icons/Marine/dropship_prop.dmi'
+	icon_state = "fighter_shadow"
 	layer = FLY_LAYER
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

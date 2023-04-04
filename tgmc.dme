@@ -529,6 +529,7 @@
 #include "code\game\area\mainship.dm"
 #include "code\game\area\orion_outpost.dm"
 #include "code\game\area\oscaroutpost.dm"
+#include "code\game\area\patricks_rest.dm"
 #include "code\game\area\port_hamburg.dm"
 #include "code\game\area\prison.dm"
 #include "code\game\area\research_outpost.dm"
