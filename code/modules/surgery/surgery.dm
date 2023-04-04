@@ -74,34 +74,37 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	if(!istype(user) || !istype(E))
 		return
 
+	var/applied_germ_ratio = 0
 	//Gloves
 	if(user.gloves)
 		if(istype(user.gloves, /obj/item/clothing/gloves/latex))
-			E.germ_level += user.gloves.germ_level * 0.1
-		else if(user.gloves.germ_level && user.gloves.germ_level > 60)
-			E.germ_level += user.gloves.germ_level * 0.2
+			applied_germ_ratio += 0.1
+		else
+			applied_germ_ratio += 0.2
 	else
-		E.germ_level += user.germ_level * 0.33
+		applied_germ_ratio += 0.33
 
 	//Masks
 	if(user.wear_mask)
 		if(istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
-			E.germ_level += user.germ_level * 1
+			applied_germ_ratio += 1
 		else if(istype(user.wear_mask, /obj/item/clothing/mask/surgical))
-			E.germ_level += user.wear_mask.germ_level * 0.1
+			applied_germ_ratio += 0.1
 		else
-			E.germ_level += user.wear_mask.germ_level * 0.2
+			applied_germ_ratio += 0.2
 	else
-		E.germ_level += user.germ_level * 0.33
+		applied_germ_ratio += 0.33
 
 	//Suits
 	if(user.wear_suit)
 		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical))
-			E.germ_level += user.germ_level * 0.1
+			applied_germ_ratio += 0.1
 		else
-			E.germ_level += user.germ_level * 0.2
+			applied_germ_ratio += 0.2
 	else
-		E.germ_level += user.germ_level * 0.33
+		applied_germ_ratio += 0.33
+
+	E.germ_level += user.germ_level * applied_germ_ratio
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
 		E.germ_level += 50
