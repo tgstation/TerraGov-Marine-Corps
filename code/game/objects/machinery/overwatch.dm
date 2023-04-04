@@ -805,7 +805,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 ///Radial squad select menu.
 /obj/machinery/computer/camera_advanced/overwatch/proc/squad_select(datum/source, atom/A)
 	var/list/squad_options = list()
-	var/list/squad_selection = watchable_squads
 
 	for(var/datum/squad/squad in watchable_squads)
 		var/image/squad_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice")
