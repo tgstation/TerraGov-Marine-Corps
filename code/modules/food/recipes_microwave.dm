@@ -87,7 +87,7 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/tofu,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/tofu
+	result = /obj/item/reagent_containers/food/snacks/burger/tofu
 
 /datum/recipe/ghostburger
 	items = list(
@@ -109,7 +109,7 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/clothing/head/beret,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/mimeburger
+	result = /obj/item/reagent_containers/food/snacks/burger/mimeburger
 
 /datum/recipe/hotdog
 	items = list(
@@ -527,7 +527,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap,
 	)
-	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
+	result = /obj/item/reagent_containers/food/snacks/soup/spacylibertyduff
 
 /datum/recipe/amanitajelly
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/ethanol/vodka = 5)
@@ -797,14 +797,14 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/poppypretzel
 
-/datum/recipe/meatballspagetti
+/datum/recipe/meatballspaghetti
 	reagents = list(/datum/reagent/water = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/pizzapasta/spagetti,
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/meatball,
 	)
-	result = /obj/item/reagent_containers/food/snacks/pizzapasta/meatballspagetti
+	result = /obj/item/reagent_containers/food/snacks/pizzapasta/meatballspaghetti
 
 /datum/recipe/spesslaw
 	reagents = list(/datum/reagent/water = 5)
@@ -859,7 +859,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 	)
-	result = /obj/item/reagent_containers/food/snacks/sandwiches/jellyburger/cherry
+	result = /obj/item/reagent_containers/food/snacks/burger/jellyburger
 
 /datum/recipe/twobread
 	reagents = list(/datum/reagent/consumable/ethanol/wine = 5)
@@ -875,7 +875,7 @@
 		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 		/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 	)
-	result = /obj/item/reagent_containers/food/snacks/jellysandwich/cherry
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/jellysandwichh/cherry
 
 /datum/recipe/orangecake
 	reagents = list(/datum/reagent/consumable/drink/milk = 5)

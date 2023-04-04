@@ -214,7 +214,7 @@
 	desc = "An elusive rib shaped burger with limited availablity across the galaxy. Not as good as you remember it."
 	icon = 'icons/obj/items/food/burgers.dmi'
 	icon_state = "mcrib"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/bbqsauce = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 2, "pork patty" = 4)
 
 /obj/item/reagent_containers/food/snacks/sandwiches/mcguffin
@@ -223,7 +223,7 @@
 	icon = 'icons/obj/items/food/burgers.dmi'
 	icon_state = "mcguffin"
 	tastes = list("muffin" = 2, "bacon" = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/eggyolk = 3, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/reagent_containers/food/snacks/sandwiches/bread
 	name = "Bread"

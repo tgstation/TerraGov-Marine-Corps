@@ -27,14 +27,14 @@
 	name = "sundae"
 	desc = "A classic dessert."
 	icon_state = "sundae"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/drink/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("ice cream" = 1, "banana" = 1)
 
 /obj/item/reagent_containers/food/snacks/frozen/honkdae
 	name = "honkdae"
 	desc = "The clown's favorite dessert."
 	icon_state = "honkdae"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/drink/banana = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("ice cream" = 1, "banana" = 1, "a bad joke" = 1)
 
 /////////////
@@ -66,7 +66,7 @@
 	name = "apple snowcone"
 	desc = "Apple syrup drizzled over a snowball in a paper cup."
 	icon_state = "amber_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/applejuice = 5, /datum/reagent/water = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "apples" = 5)
 
 /obj/item/reagent_containers/food/snacks/frozen/snowcones/grape
@@ -196,7 +196,7 @@
 
 /obj/item/popsicle_stick
 	name = "popsicle stick"
-	icon = 'icons/obj/items/frozen.dmi'
+	icon = 'icons/obj/items/food/frozen.dmi'
 	icon_state = "popsicle_stick"
 	desc = "This humble little stick usually carries a frozen treat, at the moment it seems freed from this Atlassian burden."
 
