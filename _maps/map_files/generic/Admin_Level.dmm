@@ -12746,7 +12746,7 @@
 	pixel_x = 1;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/burger/monkeyburger{
+/obj/item/reagent_containers/food/snacks/burger/plain{
 	pixel_x = -7;
 	pixel_y = 10
 	},

@@ -346,7 +346,7 @@
 
 	// Bun + cutlet = hamburger
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/cutlet))
-		new /obj/item/reagent_containers/food/snacks/burger(src)
+		new /obj/item/reagent_containers/food/snacks/burger/plain(src)
 		to_chat(user, "You make a burger.")
 		qdel(I)
 		qdel(src)

@@ -386,7 +386,7 @@
 /area/lv624/ground/jungle7)
 "GW" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/monkeyburger{
+/obj/item/reagent_containers/food/snacks/burger/plain{
 	pixel_x = -3
 	},
 /obj/item/reagent_containers/food/snacks/pastries/orangecakeslice{

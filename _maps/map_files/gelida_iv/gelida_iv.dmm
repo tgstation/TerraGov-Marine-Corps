@@ -12052,7 +12052,7 @@
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "hRf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/burger/monkeyburger{
+/obj/item/reagent_containers/food/snacks/burger/plain{
 	pixel_x = -9;
 	pixel_y = 12
 	},
