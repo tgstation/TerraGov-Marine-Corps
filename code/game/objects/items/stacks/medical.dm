@@ -155,7 +155,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 3
-	heal_flags = SALVE
+	heal_flags = SALVE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
