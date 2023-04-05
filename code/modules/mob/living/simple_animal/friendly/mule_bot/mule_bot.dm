@@ -3,15 +3,11 @@
 	. = ..()
 	var/mob/living/simple_animal/mule_bot/M = new(loc)
 	var/obj/item/remote/R = new(loc)
+	new /obj/item/mule_module/storage(loc)
 	M.try_link(R)
 	R.bot = M
 	qdel(src)
 
-/obj/item/storage/backpack/mule_pack
-	name = "internal storage"
-	flags_equip_slot = ITEM_SLOT_BACK
-	max_w_class = WEIGHT_CLASS_GIGANTIC
-	max_storage_space = 48
 
 /mob/living/simple_animal/mule_bot
 	name = "Felidae Beetle MK 1"
@@ -21,7 +17,8 @@
 	icon_living = "mule_bot"
 	icon_dead = "mule_bot"
 	gender = FEMALE
-	speak = list("Meow!", "Purr!", "Remember to stock up on medicine!", "Ill carry for the team!", "I sure do hope all these munations are safe...","Did we really need to bring THAT many plasma cutters?", "Oh I may have the thing for that!","I don't think a xenomorphs head would fit...")
+	speak = list("Meow!", "Purr!", "Remember to stock up on medicine!", "Ill carry for the team!", "I sure do hope all these munations are safe...",
+	"Did we really need to bring THAT many plasma cutters?", "Oh I may have the thing for that!","I don't think a xenomorphs head would fit...","Sometimes I wonder if moving bullets is the best way to make a living..","Please stop calling me a tin can...","Time to restock!")
 	speak_emote = list("purrs", "meows")
 	emote_hear = list("meows.", "mews.")
 	emote_see = list("shakes its head.", "shivers.")
@@ -34,20 +31,16 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	a_intent = INTENT_HELP
-	var/obj/item/storage/backpack/mule_pack/storage_pack = /obj/item/storage/backpack/mule_pack
+	var/obj/item/mule_module/installed_module
 	var/obj/item/clothing/head/hat
 	var/mutable_appearance/hat_overlay
 
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
-	storage_pack = new storage_pack(src)
 
 /mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/R)
 	if(R)
 		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot, R)
-
-/mob/living/simple_animal/mule_bot/attack_hand(mob/living/user)
-	storage_pack.open(user)
 
 /mob/living/simple_animal/mule_bot/attackby(obj/item/I, mob/living/user, def_zone)
 	if(istype(I,/obj/item/clothing/head))
@@ -61,7 +54,20 @@
 		hat_overlay = mutable_appearance(new_hat.get_worn_icon_file("Human",slot_head_str), new_hat.get_worn_icon_state(slot_head_str), HEAD_LAYER, FLOAT_PLANE)
 		hat_overlay.pixel_y -= 0
 		add_overlay(hat_overlay)
+		return
+	if(istype(I,/obj/item/mule_module))
+		apply_module(I,user)
+		return
 	. = ..()
+
+/mob/living/simple_animal/mule_bot/proc/apply_module(obj/item/mule_module/mod, mob/user)
+	if(installed_module)
+		installed_module.unapply(FALSE)
+	if(mod.apply(src))
+		to_chat(user,span_notice("You succesfully installed [mod]"))
+		user?.temporarilyRemoveItemFromInventory(mod)
+	else
+		to_chat(user,span_warning("You failed to installed [mod]"))
 
 /obj/item/remote
 	name = "remote"
