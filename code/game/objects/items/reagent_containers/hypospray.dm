@@ -65,12 +65,15 @@
 		qdel(pill)
 		return
 
+	if(!istype(user))
+		return FALSE
 	if(!in_range(A, user) || !user.Adjacent(A))
 		return FALSE
 
 	//For drawing reagents, will check if it's possible to draw, then draws.
-	if(can_draw_reagent(A, user, FALSE))
-		return
+	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW)
+		if(can_draw_reagent(A, user, FALSE))
+			return
 
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty."))
@@ -120,24 +123,28 @@
 
 ///Always draws reagents on right click
 /obj/item/reagent_containers/hypospray/afterattack_alternate(atom/A, mob/living/user)
+	if(!istype(user))
+		return FALSE
 	if(!in_range(A, user) || !user.Adjacent(A)) //So we arent drawing reagent from a container behind a window
 		return FALSE
 	can_draw_reagent(A, user, TRUE)
 
 ///If it's possible to draw from something. Will draw_blood() when targetting a carbon, or draw_reagent() when targetting a non-carbon
 ///Returns TRUE if we successfully draw from something
-/obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user, alternate_draw_mode)
+/obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user)
 	if(!A.reagents)
-		return FALSE
-	if(!istype(user))
-		return FALSE
-	if(!(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW || alternate_draw_mode)) //If we aren't drawing or using right click, return FALSE.
 		return FALSE
 	if(reagents.holder_full())
 		to_chat(user, span_warning("[src] is full."))
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 		update_icon() //So we now display as Inject
 		return FALSE
+	if(!A.reagents.total_volume)
+		to_chat(user, "<span class='warning'>[A] is empty.")
+		return
+	if(!A.is_drawable())
+		to_chat(user, span_warning("You cannot directly remove reagents from this object."))
+		return
 
 	if(iscarbon(A))
 		draw_blood(A, user)
@@ -176,12 +183,6 @@
 
 ///Checks if a container is drawable, then draw reagents from the container
 /obj/item/reagent_containers/hypospray/proc/draw_reagent(atom/A, mob/living/user)
-	if(!A.reagents.total_volume)
-		to_chat(user, "<span class='warning'>[A] is empty.")
-		return
-	if(!A.is_drawable())
-		to_chat(user, span_warning("You cannot directly remove reagents from this object."))
-		return
 	var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 	to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
 	on_reagent_change()
