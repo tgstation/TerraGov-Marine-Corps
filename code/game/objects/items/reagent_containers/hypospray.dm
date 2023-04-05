@@ -125,6 +125,7 @@
 	can_draw_reagent(A, user, TRUE)
 
 ///If it's possible to draw from something. Will draw_blood() when targetting a carbon, or draw_reagent() when targetting a non-carbon
+///Returns TRUE if we successfully draw from something
 /obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user, alternate_draw_mode)
 	if(!A.reagents)
 		return FALSE
@@ -139,10 +140,12 @@
 		return FALSE
 
 	if(iscarbon(A))
-		return draw_blood(A, user)
+		draw_blood(A, user)
+		return TRUE
 
 	if(isobj(A)) //if not mob
-		return draw_reagent(A, user)
+		draw_reagent(A, user)
+		return TRUE
 
 ///Checks if the carbon has blood, then tries to draw blood from it
 /obj/item/reagent_containers/hypospray/proc/draw_blood(atom/A, mob/living/user)
@@ -153,6 +156,9 @@
 		return
 	if(!C.blood_type)
 		to_chat(user, span_warning("You are unable to locate any blood."))
+		return
+	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
+		to_chat(user, span_warning("This body doesn't have enough blood to draw from."))
 		return
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
