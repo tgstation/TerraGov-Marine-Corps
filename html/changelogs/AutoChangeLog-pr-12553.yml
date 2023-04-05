@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "Railgun now holds 3 shots in a canister rather than 1, has 3 seconds of fire delay inbetween shots. Railgun ammo now costs 50 points rather than 30 to accommodate for the larger magazine size."

@@ -32,3 +32,29 @@
   ivanmixo:
   - rscadd: Admins can disable players taking over ssd mobs now
   - bugfix: Admins can now actually toggle the var to disable valhalla joining
+2023-04-05:
+  Lumipharon:
+  - bugfix: Draining a hive threat now gives a flat 1000 maturity points
+  - bugfix: The droppod deployment map can no longer get stuck if you deploy with
+      it open
+  - qol: Minor standardisation to minimap color opacity
+  - bugfix: Comms blackouts no longer last forever
+  - bugfix: Comms blackouts now correctly apply for a randomised period of time
+  Pariah919:
+  - balance: Railgun now holds 3 shots in a canister rather than 1, has 3 seconds
+      of fire delay inbetween shots. Railgun ammo now costs 50 points rather than
+      30 to accommodate for the larger magazine size.
+  QualityVan:
+  - rscadd: When you check yourself for wounds, you can see the dirt you've accumulated.
+      Mostly only matters for surgeons.
+  - code_imp: germ_level moved from atom to human, no major player-facing changes
+  Skye:
+  - qol: Adds cryogenics to the TGS Smallbury, used in the Crash game mode. (Also
+      moves a table.)
+  - balance: Adds a cryomix beaker to both Canterbury variants.
+  Xander3359:
+  - code_imp: max_w_class uses defines now.
+  irRegularGuy646:
+  - rscadd: Added big 10x26mm caseless ammo box to req operational vendor
+  novaepee:
+  - bugfix: reverse grip on right wielding greatsword
