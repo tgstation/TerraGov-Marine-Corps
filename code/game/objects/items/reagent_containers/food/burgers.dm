@@ -260,7 +260,7 @@
 	tastes = list("bun")
 	desc = "A crazy, custom burger made by a mad cook."
 
-/obj/item/reagent_containers/food/snacks/burger/monkeyburger
+/obj/item/reagent_containers/food/snacks/burger/plain
 	name = "burger"
 	desc = "The cornerstone of every nutritious breakfast."
 	icon_state = "hburger"
@@ -268,6 +268,17 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("bun" = 4, "meat" = 2)
 	bitesize = 2
+
+/obj/item/reagent_containers/food/snacks/burger/plain/Initialize(mapload)
+	. = ..()
+	if(prob(1))
+		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
+		visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
+		name = "steamed ham"
+		desc = pick("Ahh, CMO, welcome. I hope you're prepared for an unforgettable luncheon!",
+		"And you call these steamed hams despite the fact that they are obviously microwaved?",
+		"TGMC Marine Corp? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
+		"You know, these hamburgers taste quite similar to the ones they have at the Maltese Falcon.")
 
 /obj/item/reagent_containers/food/snacks/burger/packaged_burger/attack_self(mob/user as mob)
 	if (package)
@@ -298,7 +309,7 @@
 
 
 // Burger + cheese wedge = cheeseburger
-/obj/item/reagent_containers/food/snacks/burger/monkeyburger/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/food/snacks/burger/plain/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/cheesewedge))
@@ -307,7 +318,7 @@
 		qdel(I)
 		qdel(src)
 
-/obj/item/reagent_containers/food/snacks/burger/human/burger
+/obj/item/reagent_containers/food/snacks/burger/human
 	name = "burger"
 	desc = "A bloody burger."
 	icon_state = "hburger"
@@ -328,7 +339,7 @@
 	. = ..()
 	// Bun + meatball = burger
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meatball))
-		new /obj/item/reagent_containers/food/snacks/burger/monkeyburger(src)
+		new /obj/item/reagent_containers/food/snacks/burger/plain(src)
 		to_chat(user, "You make a burger.")
 		qdel(I)
 		qdel(src)

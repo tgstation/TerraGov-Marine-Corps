@@ -198,17 +198,6 @@
 	desc = "The cornerstone of every nutritious breakfast."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 
-/obj/item/reagent_containers/food/snacks/sandwiches/plain/Initialize(mapload)
-	. = ..()
-	if(prob(1))
-		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
-		visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
-		name = "steamed ham"
-		desc = pick("Ahh, CMO, welcome. I hope you're prepared for an unforgettable luncheon!",
-		"And you call these steamed hams despite the fact that they are obviously microwaved?",
-		"TGMC Marine Corp? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
-		"You know, these hamburgers taste quite similar to the ones they have at the Maltese Falcon.")
-
 /obj/item/reagent_containers/food/snacks/sandwiches/rib
 	name = "mcrib"
 	desc = "An elusive rib shaped burger with limited availablity across the galaxy. Not as good as you remember it."

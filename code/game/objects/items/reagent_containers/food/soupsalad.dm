@@ -451,7 +451,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_containers/food/snacks/soup/red_porridge
-	name = "red porridge" //eltsløsk = red porridge, ül a = with, prikt = sour, æolk = cream
+	name = "red porridge"
 	desc = "Red porridge with yoghurt. The name and vegetable ingredients obscure the sweet nature of the dish, which is commonly served as a dessert aboard the fleet."
 	icon = 'icons/obj/items/food/soupsalad.dmi'
 	icon_state = "red_porridge"

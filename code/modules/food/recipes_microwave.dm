@@ -39,7 +39,7 @@
 	result = /obj/item/reagent_containers/food/snacks/donut/normal
 
 
-/datum/recipe/human/burger
+/datum/recipe/human
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat/human,
 		/obj/item/reagent_containers/food/snacks/burger/bun,
@@ -52,14 +52,14 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/meat //do not place this recipe before /datum/recipe/humanburger
 	)
-	result = /obj/item/reagent_containers/food/snacks/burger/monkeyburger
+	result = /obj/item/reagent_containers/food/snacks/burger/plain
 
 /datum/recipe/syntiburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 		/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
 	)
-	result = /obj/item/reagent_containers/food/snacks/burger/monkeyburger
+	result = /obj/item/reagent_containers/food/snacks/burger/plain
 
 /datum/recipe/brainburger
 	items = list(
@@ -607,21 +607,21 @@
 
 /datum/recipe/spellburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/burger/monkeyburger,
+		/obj/item/reagent_containers/food/snacks/burger/plain,
 		/obj/item/clothing/head/wizard/fake,
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/spell
 
 /datum/recipe/spellburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/burger/monkeyburger,
+		/obj/item/reagent_containers/food/snacks/burger/plain,
 		/obj/item/clothing/head/wizard,
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/spell
 
 /datum/recipe/bigbiteburger
 	items = list(
-		/obj/item/reagent_containers/food/snacks/burger/monkeyburger,
+		/obj/item/reagent_containers/food/snacks/burger/plain,
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,
