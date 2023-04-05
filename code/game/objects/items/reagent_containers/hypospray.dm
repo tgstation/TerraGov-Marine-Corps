@@ -46,6 +46,11 @@
 	label = str
 
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(!in_range(A, user) || !user.Adjacent(A))
+		return FALSE
+
 	if(istype(A, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
 		if(reagents.total_volume >= volume)
 			to_chat(user, span_warning("[src] is full."))
@@ -64,11 +69,6 @@
 		A.contents -= pill
 		qdel(pill)
 		return
-
-	if(!istype(user))
-		return FALSE
-	if(!in_range(A, user) || !user.Adjacent(A))
-		return FALSE
 
 	//For drawing reagents, will check if it's possible to draw, then draws.
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW)
