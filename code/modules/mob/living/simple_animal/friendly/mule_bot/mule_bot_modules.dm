@@ -5,22 +5,34 @@
 	icon_state = "modkit"
 	var/mob/living/simple_animal/mule_bot/attached_mule
 	var/mutable_appearance/mod_overlay
+	var/overlay_icon = 'icons/mob/mule_bot.dmi'
+	var/overlay_icon_state = "test"
+	var/y_offset = 0
+	var/x_offset = 0
 
+
+/obj/item/mule_module/Initialize()
+	. = ..()
+	mod_overlay = mutable_appearance(overlay_icon, overlay_icon_state, BACK_LAYER, FLOAT_PLANE)
+	mod_overlay.pixel_y = y_offset
+	mod_overlay.pixel_x = x_offset
 
 /obj/item/mule_module/proc/apply(mob/living/simple_animal/mule_bot/mule)
 	mule.installed_module = src
 	attached_mule = mule
 	src.forceMove(mule)
+	mule.add_overlay(mod_overlay)
 	return TRUE
 
 
 /obj/item/mule_module/proc/unapply(delete_mod = TRUE)
-	attached_mule.installed_module = null
-	attached_mule = null
+	attached_mule.cut_overlay(mod_overlay)
 	if(!delete_mod)
 		src.forceMove(attached_mule.loc)
 	else
 		qdel(src)
+	attached_mule.installed_module = null
+	attached_mule = null
 
 
 /obj/item/storage/mule_pack
@@ -34,6 +46,7 @@
 	name = "Storage module"
 	desc = "A module that allows the mule to carry various items"
 	var/obj/item/storage/mule_pack/storage_pack = /obj/item/storage/mule_pack
+	overlay_icon_state = "marine_rocket_full"
 
 /obj/item/mule_module/storage/Initialize(mapload, ...)
 	. = ..()
