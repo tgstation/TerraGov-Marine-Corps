@@ -72,8 +72,8 @@
 
 	//For drawing reagents, will check if it's possible to draw, then draws.
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW)
-		if(can_draw_reagent(A, user, FALSE))
-			return
+		can_draw_reagent(A, user, FALSE)
+		return
 
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty."))
