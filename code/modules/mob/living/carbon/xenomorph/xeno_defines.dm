@@ -15,6 +15,7 @@
 	var/upgrade = XENO_UPGRADE_ZERO
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
+	var/reductive_wound_overlay = FALSE
 	var/language = "Xenomorph"
 
 	var/gib_anim = "gibbed-a-corpse"

@@ -108,9 +108,17 @@
 /mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
 
+
+/////////
+
+///Updates the wound overlays on the xeno
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	if(QDELETED(src))
 		return
+
+	remove_overlay(X_WOUND_LAYER)
+	remove_filter("wounded_filter")
+
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
 	wound_overlay.vis_flags |= VIS_HIDE
@@ -130,15 +138,26 @@
 				health_thresholds = 2
 			if(3 to INFINITY)
 				health_thresholds = 3
+	var/overlay_to_show
 	if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			wound_overlay.icon_state = "[xeno_caste.wound_type]_wounded_resting_[health_thresholds]"
+			overlay_to_show = "wounded_resting_[health_thresholds]"
 		else
-			wound_overlay.icon_state = "[xeno_caste.wound_type]_wounded_stunned_[health_thresholds]"
+			overlay_to_show = "wounded_stunned_[health_thresholds]"
 	else if(!handle_special_state())
-		wound_overlay.icon_state = "[xeno_caste.wound_type]_wounded_[health_thresholds]"
+		overlay_to_show = "wounded_[health_thresholds]"
 	else
-		wound_overlay.icon_state = handle_special_wound_states(health_thresholds)
+		overlay_to_show = handle_special_wound_states(health_thresholds)
+
+	wound_overlay.icon_state = "[xeno_caste.wound_type]_[overlay_to_show]"
+
+	if(xeno_caste.reductive_wound_overlay)
+		var/image/wounded_mask = image('icons/Xeno/wound_alpha.dmi', null, "[xeno_caste.wound_type]_[overlay_to_show]")
+		wounded_mask.render_target = "*[REF(src)]"
+		overlays_standing[X_WOUND_LAYER] = wounded_mask
+		apply_overlay(X_WOUND_LAYER)
+		add_filter("wounded_filter", list(alpha_mask_filter(0, 0, null, "*[REF(src)]")))
+
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
 /mob/living/carbon/xenomorph/update_transform()

@@ -7,6 +7,7 @@
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "king" //used to match appropriate wound overlays
+	reductive_wound_overlay = TRUE
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
