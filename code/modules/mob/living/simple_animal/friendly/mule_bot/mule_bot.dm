@@ -13,8 +13,8 @@
 	name = "Felidae Beetle MK 1"
 	desc = "A highly spohisticated load carrying robotic companion for the advanced marine. Manly as hell!"
 	icon = 'icons/mob/kerfus.dmi'
-	icon_state = "kerfus"
-	icon_living = "kerfus"
+	icon_state = "kerfus_blank"
+	icon_living = "kerfus_blank"
 	icon_dead = "kerfus"
 	gender = FEMALE
 	speak = list("Meow!", "Purr!", "Remember to stock up on medicine!", "Ill carry for the team!", "I sure do hope all these munations are safe...",
@@ -37,35 +37,67 @@
 	light_color =  "#3262db"
 	light_range = 2
 	light_power = 1
-	light_on = TRUE
+	light_on = FALSE
+	hud_possible = list(MACHINE_HEALTH_HUD)
+	maxHealth  = 200
+	var/mutable_appearance/face_overlay
 	var/obj/item/mule_module/installed_module
 	var/obj/item/clothing/head/hat
 	var/mutable_appearance/hat_overlay
 
+
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
+	face_overlay = emissive_appearance(icon, "kerfus_face")
 
 /mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/R)
 	if(R)
 		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot, R)
 
+/mob/living/simple_animal/mule_bot/update_overlays()
+	. = ..()
+	. += list(hat_overlay,face_overlay,installed_module?.mod_overlay)
+
+
 /mob/living/simple_animal/mule_bot/attackby(obj/item/I, mob/living/user, def_zone)
 	if(istype(I,/obj/item/clothing/head))
 		if(hat)
 			hat.forceMove(src.loc)
-			cut_overlay(hat_overlay)
 		var/obj/item/clothing/head/new_hat = I
 		I.forceMove(src)
 		user?.temporarilyRemoveItemFromInventory(I)
 		hat = new_hat
 		hat_overlay = mutable_appearance(new_hat.get_worn_icon_file("Human",slot_head_str), new_hat.get_worn_icon_state(slot_head_str), HEAD_LAYER, FLOAT_PLANE)
 		hat_overlay.pixel_y -= -5
-		add_overlay(hat_overlay)
+		update_icon()
 		return
 	if(istype(I,/obj/item/mule_module))
 		apply_module(I,user)
 		return
 	. = ..()
+
+/mob/living/simple_animal/mule_bot/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/welder = I
+	var/repair_time = 1 SECONDS
+	if(src == user)
+		repair_time *= 3
+
+	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]."),\
+		span_notice("You start fixing some of the dents on [src]"))
+
+	add_overlay(GLOB.welding_sparks)
+	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		user.visible_message(span_warning("\The [user] patches some dents on [src]."), \
+			span_warning("You patch some dents on \the [src]."))
+		if(src.heal_limb_damage(15,15, robo_repair = FALSE, updating_health = TRUE))
+			UpdateDamageIcon()
+		if(!I.tool_use_check(user, 2))
+			break
+		if(!src.bruteloss)
+			balloon_alert(user, "Dents fully repaired.")
+			break
+	cut_overlay(GLOB.welding_sparks)
+	return TRUE
 
 /mob/living/simple_animal/mule_bot/proc/apply_module(obj/item/mule_module/mod, mob/user)
 	if(installed_module)
@@ -75,6 +107,7 @@
 		user?.temporarilyRemoveItemFromInventory(mod)
 	else
 		to_chat(user,span_warning("You failed to installed [mod]"))
+	update_icon()
 
 /obj/item/remote
 	name = "remote"

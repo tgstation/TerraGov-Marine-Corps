@@ -30,13 +30,11 @@
 	mule.installed_module = src
 	attached_mule = mule
 	src.forceMove(mule)
-	mule.add_overlay(mod_overlay)
 	return TRUE
 
 
 /obj/item/mule_module/proc/unapply(delete_mod = TRUE)
 	UnregisterSignal(attached_mule, COMSIG_PARENT_EXAMINE)
-	attached_mule.cut_overlay(mod_overlay)
 	if(!delete_mod)
 		src.forceMove(attached_mule.loc)
 	else
@@ -122,8 +120,40 @@
 
 /obj/item/mule_module/light/apply(mob/living/simple_animal/mule_bot/mule)
 	mule.set_light_range_power_color(mod_Light_power,mod_Light_range,mod_light_color)
+	mule.light_on = TRUE
 	. = ..()
 
 /obj/item/mule_module/light/unapply(delete_mod)
 	attached_mule.set_light_range_power_color(initial(attached_mule.light_range) ,initial(attached_mule.light_power),initial(attached_mule.light_color))
+	attached_mule.light_on = FALSE
 	. = ..()
+
+/obj/item/mule_module/flare_placer
+	name = "Flare placing module"
+	desc = "This module places flare automaticly when its too dark."
+	var/flare_type = /obj/item/explosive/grenade/flare
+	COOLDOWN_DECLARE(flare_place)
+
+/obj/item/mule_module/flare_placer/apply(mob/living/simple_animal/mule_bot/mule)
+	RegisterSignal(mule, COMSIG_MOVABLE_MOVED, PROC_REF(check_lumcount))
+	. = ..()
+
+
+/obj/item/mule_module/flare_placer/proc/check_lumcount(atom/bot)
+	SIGNAL_HANDLER
+	if(!COOLDOWN_CHECK(src,flare_place))
+		return
+	if(!isturf(bot.loc))
+		return
+	var/turf/T = bot.loc
+	if(T.dynamic_lumcount < 0.5 && T.luminosity < 1)
+		var/obj/item/explosive/grenade/flare/F = new(T)
+		F.activate(bot)
+		//lum count wont update properly since lighting uses moved signals
+		F.forceMove(T)
+		COOLDOWN_START(src,flare_place, 0)
+
+/obj/item/mule_module/flare_placer/proc/place_flare(turf/T,mob/bot)
+	var/obj/item/explosive/grenade/flare/F = new(T)
+	F.activate(bot)
+	COOLDOWN_START(src,flare_place, 3 SEC)
