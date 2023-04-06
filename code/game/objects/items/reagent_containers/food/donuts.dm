@@ -18,11 +18,17 @@
 /obj/item/reagent_containers/food/snacks/donut/normal/Initialize()
 	. = ..()
 	if(prob(40))
-		icon_state = "donut_pink2"
+		icon_state = "donut_pink"
 		overlay_state = "fdonut"
 		name = "frosted donut"
 		desc = "A pink frosted donut. Even more rare on the frontier."
 		reagents.add_reagent(/datum/reagent/consumable/sprinkles, 2)
+	else if(prob(10))
+		icon_state = "donut_homer"
+		overlay_state = "fdonut"
+		name = "frosted sprinkled donut"
+		desc = "A pink frosted donut. The rarest on the frontier."
+		reagents.add_reagent(/datum/reagent/consumable/sprinkles, 3)
 
 /obj/item/reagent_containers/food/snacks/donut/chaos
 	name = "Chaos Donut"
@@ -138,7 +144,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/hot_coco = 3, /datum/reagent/consumable/sprinkles = 1) //the coco reagent is just bitter.
 	tastes = list("donut" = 4, "bitterness" = 1)
 
-/obj/item/reagent_containers/food/snacks/donut/normal/Initialize()
+/obj/item/reagent_containers/food/snacks/donut/choco/Initialize()
 	. = ..()
 	if(prob(40))
 		icon_state = "donut_choc_sprinkles"

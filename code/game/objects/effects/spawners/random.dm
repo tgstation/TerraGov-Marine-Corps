@@ -593,13 +593,11 @@
 		/obj/item/reagent_containers/food/snacks/donut/normal = 70, //we could use loot_subtype_path to include all donuts automatically but then we couldn't adjust probabilities
 		/obj/item/reagent_containers/food/snacks/donut/jelly = 15,
 		/obj/item/reagent_containers/food/snacks/donut/cherryjelly = 10,
-		/obj/item/reagent_containers/food/snacks/donut/chaos = 10,
-		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
 		/obj/item/reagent_containers/food/snacks/donut/berry = 10,
 		/obj/item/reagent_containers/food/snacks/donut/trumpet = 10,
 		/obj/item/reagent_containers/food/snacks/donut/apple = 10,
 		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
-		/obj/item/reagent_containers/food/snacks/donut/choco = 10,
+		/obj/item/reagent_containers/food/snacks/donut/choco = 15,
 		/obj/item/reagent_containers/food/snacks/donut/blumpkin = 10,
 		/obj/item/reagent_containers/food/snacks/donut/bungo = 10,
 		/obj/item/reagent_containers/food/snacks/donut/matcha = 10,
@@ -623,6 +621,8 @@
 		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/bungo = 1,
 		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/matcha = 1,
 		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh = 1,
+		/obj/item/reagent_containers/food/snacks/donut/chaos = 1,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 1,
 	)
 
 /obj/effect/spawner/random/beaker/bluespace
