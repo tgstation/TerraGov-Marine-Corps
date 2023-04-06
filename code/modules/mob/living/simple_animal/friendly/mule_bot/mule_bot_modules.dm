@@ -5,8 +5,8 @@
 	icon_state = "modkit"
 	var/mob/living/simple_animal/mule_bot/attached_mule
 	var/mutable_appearance/mod_overlay
-	var/overlay_icon = 'icons/mob/mule_bot.dmi'
-	var/overlay_icon_state = "test"
+	var/overlay_icon = 'icons/mob/kerfus.dmi'
+	var/overlay_icon_state = "backpack"
 	var/y_offset = 0
 	var/x_offset = 0
 
@@ -45,8 +45,11 @@
 /obj/item/mule_module/storage
 	name = "Storage module"
 	desc = "A module that allows the mule to carry various items"
-	var/obj/item/storage/mule_pack/storage_pack = /obj/item/storage/mule_pack
 	overlay_icon_state = "marine_rocket_full"
+	overlay_icon = 'icons/mob/kerfus.dmi'
+	overlay_icon_state = "backpack"
+
+	var/obj/item/storage/mule_pack/storage_pack = /obj/item/storage/mule_pack
 
 /obj/item/mule_module/storage/Initialize(mapload, ...)
 	. = ..()

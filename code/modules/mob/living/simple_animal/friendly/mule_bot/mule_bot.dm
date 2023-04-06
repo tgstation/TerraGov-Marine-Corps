@@ -12,10 +12,10 @@
 /mob/living/simple_animal/mule_bot
 	name = "Felidae Beetle MK 1"
 	desc = "A highly spohisticated load carrying robotic companion for the advanced marine. Manly as hell!"
-	icon = 'icons/mob/mule_bot.dmi'
-	icon_state = "mule_bot"
-	icon_living = "mule_bot"
-	icon_dead = "mule_bot"
+	icon = 'icons/mob/kerfus.dmi'
+	icon_state = "kerfus"
+	icon_living = "kerfus"
+	icon_dead = "kerfus"
 	gender = FEMALE
 	speak = list("Meow!", "Purr!", "Remember to stock up on medicine!", "Ill carry for the team!", "I sure do hope all these munations are safe...",
 	"Did we really need to bring THAT many plasma cutters?", "Oh I may have the thing for that!","I don't think a xenomorphs head would fit...","Sometimes I wonder if moving bullets is the best way to make a living..","Please stop calling me a tin can...","Time to restock!")
@@ -36,7 +36,7 @@
 	flags_atom = BUMP_ATTACKABLE
 	light_color =  "#3262db"
 	light_range = 2
-	light_power = 2
+	light_power = 1
 	light_on = TRUE
 	var/obj/item/mule_module/installed_module
 	var/obj/item/clothing/head/hat
@@ -59,7 +59,7 @@
 		user?.temporarilyRemoveItemFromInventory(I)
 		hat = new_hat
 		hat_overlay = mutable_appearance(new_hat.get_worn_icon_file("Human",slot_head_str), new_hat.get_worn_icon_state(slot_head_str), HEAD_LAYER, FLOAT_PLANE)
-		hat_overlay.pixel_y -= 0
+		hat_overlay.pixel_y -= -5
 		add_overlay(hat_overlay)
 		return
 	if(istype(I,/obj/item/mule_module))
