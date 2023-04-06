@@ -180,6 +180,18 @@
 	prefs.ShowChoices(usr)
 
 
+/client/verb/toggle_auto_interact_deployables()
+	set category = "Preferences"
+	set name = "Toggle Auto Interact with Deployables"
+	set desc = "When placing down a deployable, automatically interact with it."
+
+	prefs.auto_interact_with_deployables = !prefs.auto_interact_with_deployables
+	if(prefs.auto_interact_with_deployables)
+		to_chat(src, span_notice("You will now automatically interact with deployables when placing them down."))
+	else
+		to_chat(src, span_notice("You will no longer automatically interact with deployables when placing them down."))
+
+
 GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
 							"Black" = "ghost_black", "Blue" = "ghost_blue", "Yellow" = "ghost_yellow", "Green" = "ghost_green", "Pink" = "ghost_pink", \
 							"Cyan" = "ghost_cyan", "Dark Blue" = "ghost_dblue", "Dark Red" = "ghost_dred", "Dark Green" = "ghost_dgreen", \

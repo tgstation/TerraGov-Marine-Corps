@@ -136,6 +136,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
 	var/mute_xeno_health_alert_messages = TRUE
 
+	///Whether to automatically interact with deployables when they are deployed.
+	var/auto_interact_with_deployables = TRUE
+
 	/// Chat on map
 	var/chat_on_map = TRUE
 	var/see_chat_non_mob = FALSE
