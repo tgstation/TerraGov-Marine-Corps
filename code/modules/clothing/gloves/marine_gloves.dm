@@ -20,6 +20,7 @@
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
+	icon_state = "gloves_marine_insulated"
 	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/officer
