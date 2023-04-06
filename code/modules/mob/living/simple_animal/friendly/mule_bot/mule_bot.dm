@@ -32,11 +32,12 @@
 	response_harm   = "kicks"
 	a_intent = INTENT_HELP
 	light_system = MOVABLE_LIGHT
-	flags_atom = BUMP_ATTACKABLE
+	flags_atom = BUMP_ATTACKABLE //bump attack may not work due to pass flags
 	light_color =  "#3262db"
 	light_range = 2
 	light_power = 1
 	light_on = FALSE
+	//TODO to make this  hud actuely work
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	maxHealth  = 200
 	var/mutable_appearance/face_overlay
@@ -60,6 +61,7 @@
 
 
 /mob/living/simple_animal/mule_bot/attackby(obj/item/I, mob/living/user, def_zone)
+	//give it a funny hat, could be turned into an actuel proc though
 	if(istype(I,/obj/item/clothing/head))
 		if(hat)
 			hat.forceMove(src.loc)
