@@ -163,7 +163,7 @@
 
 /datum/component/shield/proc/activate_with_user()
 	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, PROC_REF(on_attack_cb_shields_call))
-	RegisterSignal(affected, COMSIG_LIVING_STUN_MITIGATION, PROC_REF(on_attack_cb_stun_mitigation_call))
+	RegisterSignal(affected, COMSIG_LIVING_STUN_MITIGATION, PROC_REF(on_attack_stun_mitigation))
 
 /datum/component/shield/proc/deactivate_with_user()
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
@@ -182,21 +182,45 @@
 		return
 	affecting_shields[intercept_damage_cb] = layer
 
-/datum/component/shield/proc/on_attack_cb_stun_mitigation_call(datum/source, list/incoming_stuns, damage_type, penetration)
+///attempts to convert incoming hard stuns to soft stuns
+/datum/component/shield/proc/on_attack_stun_mitigation(datum/source, list/incoming_stuns, damage_type, penetration)
 	SIGNAL_HANDLER
+	var/obj/item/parent_item = parent
 	var/mitigation_prob = cover.getRating(damage_type) - penetration
-	affected.balloon_alert_to_viewers("[mitigation_prob]") //debugging
+	var/status_cover_modifier = 1
+
 	if(mitigation_prob <= 0)
+		affected.balloon_alert_to_viewers("[mitigation_prob] too low") //debugging
 		return
+
+	if(parent_item.obj_integrity <= parent_item.integrity_failure)
+		affected.balloon_alert_to_viewers("low integrity") //debugging
+		return
+
+	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping())
+		affected.balloon_alert_to_viewers("sleepy") //debugging
+		return
+
+	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed())
+		status_cover_modifier *= 0.5
+
+	if(iscarbon(affected))
+		var/mob/living/carbon/C = affected
+		if(C.stagger)
+			status_cover_modifier *= 0.50 //being staggered and stunned is a bad day
+
+	mitigation_prob *= status_cover_modifier
+	affected.balloon_alert_to_viewers("[mitigation_prob]") //debugging
+
 	if(!prob(mitigation_prob))
 		return
-	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2], incoming_stuns[5])
-	incoming_stuns[3] += max_hardstun
-	incoming_stuns[4] += max_hardstun
+
+	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2], incoming_stuns[5]) //stun, weaken and knockback
+	incoming_stuns[3] += max_hardstun //stagger
+	incoming_stuns[4] += max_hardstun //slowdown
 	incoming_stuns[1] = 0
 	incoming_stuns[2] = 0
 	incoming_stuns[5] = 0
-	var/obj/item/parent_item = parent
 	to_chat(affected, span_avoidharm("\The [parent_item.name] absorbs the impact!"))
 
 /datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent, penetration)

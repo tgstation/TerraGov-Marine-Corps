@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stun = 0
 
 	//Check for and apply hard CC.
-	if(hard_size_threshold >= victim.mob_size)
+	if(hard_size_threshold >= victim.mob_size && (stun || weaken || knockback))
 		var/mob/living/living_victim = victim
 		var/list/stunlist = list(stun, weaken, stagger, slowdown, knockback)
 		SEND_SIGNAL(living_victim, COMSIG_LIVING_STUN_MITIGATION, stunlist, armor_type, penetration)
