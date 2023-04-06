@@ -1,9 +1,10 @@
-//towing moduke
-//pepperball module
-//motion detector module
-//auto flare mod
-//medical mod
-//personal storage module
+//towing moduke -- uncertain
+//pepperball module -- might make
+//motion detector module -- will make
+//auto flare mod -- finished
+//medical mod -- uncertain
+//personal storage module -- finished
+//storage module -- finished
 
 /obj/item/mule_module
 	name = "mule module"

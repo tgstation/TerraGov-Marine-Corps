@@ -49,6 +49,7 @@
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
 	face_overlay = emissive_appearance(icon, "kerfus_face")
+	update_icon()
 
 /mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/R)
 	if(R)
@@ -147,7 +148,7 @@
 	if(follow)
 		follow = FALSE
 		atom_to_walk_to = null
-		change_action(IDLE)
+		change_action(MOVING_TO_ATOM)
 		mob_parent.say("Ill wait right here!")
 		return COMSIG_BOT_STOP
 	else
