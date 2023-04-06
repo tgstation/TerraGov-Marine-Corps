@@ -93,7 +93,7 @@
 	overlay_icon_state = "marine_rocket_full"
 	overlay_icon = 'icons/mob/kerfus.dmi'
 	overlay_icon_state = "backpack"
-	module_desc = "The installed module allows you to have a personal storage inside [attached_mule] based on ID"
+	module_desc = "The installed module allows you to have a personal storage inside the mule based on ID"
 	var/list/obj/item/storage/mule_pack/small/packs = list()
 
 /obj/item/mule_module/personal_storage/apply(mob/living/simple_animal/mule_bot/mule)
