@@ -54,6 +54,11 @@
 	max_w_class = 6
 	storage_slots = null
 
+/*
+Storage emodule
+
+bassicly dispencer inside robot
+*/
 /obj/item/mule_module/storage
 	name = "Storage module"
 	desc = "A module that allows the mule to carry various items"
@@ -86,6 +91,13 @@
 	max_storage_space = 12
 	storage_slots = null
 
+/*
+Personal storage module
+
+based on keycard you get your own private storage, imagine MC enderchests sorta but not shared with other bots
+
+*/
+
 /obj/item/mule_module/personal_storage
 	name = "Personal storage module"
 	desc = "A module that allows the mule to carry various items for various individuels"
@@ -103,6 +115,7 @@
 	UnregisterSignal(attached_mule, COMSIG_ATOM_ATTACK_HAND)
 	. = ..()
 
+//Since every person gets there own storage bit with this module, we need to either create new storage for the person or let it acces the old one
 /obj/item/mule_module/personal_storage/proc/acces_storage(mob/mule, mob/user)
 	var/card = user.get_idcard(TRUE)
 	if(!card)
@@ -111,6 +124,13 @@
 	if(!packs[card])
 		packs[card] = new /obj/item/storage/mule_pack/small(src)
 	packs[card].open(user)
+
+/*
+Spot light module
+
+Bassicly baldur jeager mod for robot. gives light
+
+*/
 
 /obj/item/mule_module/light
 	name = "Spot light module"
@@ -129,10 +149,17 @@
 	attached_mule.set_light_on(FALSE)
 	. = ..()
 
+/*
+Flare placing module
+
+Place flares on turf if we find its too dark
+
+
+*/
+
 /obj/item/mule_module/flare_placer
 	name = "Flare placing module"
 	desc = "This module places flare automaticly when its too dark."
-	var/flare_type = /obj/item/explosive/grenade/flare
 	COOLDOWN_DECLARE(flare_place)
 
 /obj/item/mule_module/flare_placer/apply(mob/living/simple_animal/mule_bot/mule)

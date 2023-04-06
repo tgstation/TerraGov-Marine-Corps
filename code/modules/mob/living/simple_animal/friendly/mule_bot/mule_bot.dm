@@ -77,7 +77,6 @@
 	. = ..()
 
 /mob/living/simple_animal/mule_bot/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/welder = I
 	var/repair_time = 1 SECONDS
 	if(src == user)
 		repair_time *= 3
@@ -103,20 +102,20 @@
 	remove_module()
 	return TRUE
 
+
 /mob/living/simple_animal/mule_bot/proc/swap_module(obj/item/mule_module/mod, mob/user)
 	remove_module(user, FALSE)
 	apply_module(mod,user, FALSE)
 	update_icon()
 
 /mob/living/simple_animal/mule_bot/proc/apply_module(obj/item/mule_module/mod, mob/user, update_icon = TRUE)
-	if(installed_module)
-		remove_module(user, FALSE)
 	if(mod.apply(src))
 		to_chat(user,span_notice("You succesfully installed [mod]"))
 		user?.temporarilyRemoveItemFromInventory(mod)
 	else
 		to_chat(user,span_warning("You failed to installed [mod]"))
-	update_icon()
+	if(update_icon)
+		update_icon()
 
 /mob/living/simple_animal/mule_bot/proc/remove_module(mob/user, update_icon = TRUE)
 	if(!installed_module)
@@ -148,10 +147,19 @@
 	SEND_SIGNAL(src, COMSIG_SET_TARGET, user, T)
 	to_chat(user, span_notice("[user] is now following [T]"))
 
+
+/*
+The bot has 2 modes
+Follow and goto
+
+In follow, it will follow the remote and who ever is holding it
+in goto. it will go to a selected tile and stay there
+
+*/
 /datum/ai_behavior/mule_bot
 	target_distance = 1
 	base_action = ESCORTING_ATOM
-	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the spiderling's widow
+	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the remote
 	var/datum/weakref/default_escorted_atom
 	var/follow = FALSE
 
@@ -180,12 +188,6 @@
 /datum/ai_behavior/mule_bot/proc/only_set_escorted_atom(source, atom/A)
 	SIGNAL_HANDLER
 	escorted_atom = default_escorted_atom.resolve()
-
-/// Check if escorted_atom moves away from the spiderling while it's attacking something, this is to always keep them close to escorted_atom
-// /datum/ai_behavior/mule_bot/look_for_new_state()
-// 	if(current_action == MOVING_TO_ATOM)
-// 		if(escorted_atom && !(mob_parent.Adjacent(escorted_atom)))
-// 			change_action(ESCORTING_ATOM, escorted_atom)
 
 /// Check so that we dont keep attacking our target beyond it's death
 /datum/ai_behavior/mule_bot/proc/go_to_obj_target(source, obj/remote, turf/target)
