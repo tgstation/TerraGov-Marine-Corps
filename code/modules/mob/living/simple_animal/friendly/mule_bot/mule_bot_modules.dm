@@ -1,3 +1,10 @@
+//towing moduke
+//pepperball module
+//motion detector module
+//auto flare mod
+//medical mod
+//personal storage module
+
 /obj/item/mule_module
 	name = "mule module"
 	desc = "Can be used to improve a mule and specialize it"
@@ -9,6 +16,7 @@
 	var/overlay_icon_state = "backpack"
 	var/y_offset = 0
 	var/x_offset = 0
+	var/module_desc = "this module does not do that much, you think. You'd have no way of knowing."
 
 
 /obj/item/mule_module/Initialize()
@@ -18,6 +26,7 @@
 	mod_overlay.pixel_x = x_offset
 
 /obj/item/mule_module/proc/apply(mob/living/simple_animal/mule_bot/mule)
+	RegisterSignal(mule, COMSIG_PARENT_EXAMINE, PROC_REF(examine_parent))
 	mule.installed_module = src
 	attached_mule = mule
 	src.forceMove(mule)
@@ -26,6 +35,7 @@
 
 
 /obj/item/mule_module/proc/unapply(delete_mod = TRUE)
+	UnregisterSignal(attached_mule, COMSIG_PARENT_EXAMINE)
 	attached_mule.cut_overlay(mod_overlay)
 	if(!delete_mod)
 		src.forceMove(attached_mule.loc)
@@ -34,6 +44,9 @@
 	attached_mule.installed_module = null
 	attached_mule = null
 
+/obj/item/mule_module/proc/examine_parent(datum/source, mob/user, list/examine_text)
+	SIGNAL_HANDLER
+	examine_text += span_notice(module_desc)
 
 /obj/item/storage/mule_pack
 	name = "internal storage"
@@ -67,6 +80,38 @@
 	SIGNAL_HANDLER
 	storage_pack.open(user)
 
+
+/obj/item/storage/mule_pack/small
+	name = "small internal storage"
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_storage_space = 12
+	storage_slots = null
+
+/obj/item/mule_module/personal_storage
+	name = "Personal storage module"
+	desc = "A module that allows the mule to carry various items for various individuels"
+	overlay_icon_state = "marine_rocket_full"
+	overlay_icon = 'icons/mob/kerfus.dmi'
+	overlay_icon_state = "backpack"
+	module_desc = "The installed module allows you to have a personal storage inside [attached_mule] based on ID"
+	var/list/obj/item/storage/mule_pack/small/packs = list()
+
+/obj/item/mule_module/personal_storage/apply(mob/living/simple_animal/mule_bot/mule)
+	RegisterSignal(mule,COMSIG_ATOM_ATTACK_HAND, PROC_REF(acces_storage))
+	. = ..()
+
+/obj/item/mule_module/personal_storage/unapply(delete_mod = TRUE)
+	UnregisterSignal(attached_mule, COMSIG_ATOM_ATTACK_HAND)
+	. = ..()
+
+/obj/item/mule_module/personal_storage/proc/acces_storage(mob/mule, mob/user)
+	var/card = user.get_idcard(TRUE)
+	if(!card)
+		to_chat(user,span_warning("You need an valid ID to store items here!"))
+		return
+	if(!packs[card])
+		packs[card] = new /obj/item/storage/mule_pack/small(src)
+	packs[card].open(user)
 
 /obj/item/mule_module/light
 	name = "Spot light module"
