@@ -434,6 +434,7 @@
 #define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 #define COMSIG_LIVING_MELEE_ALIEN_DISARMED "living_melee_alien_disarmed"	//from /mob/living/proc/attack_alien_disarm(): (mob/living/carbon/xenomorph/X)
 #define COMSIG_LIVING_SHIELDCALL "living_shieldcall"
+#define COMSIG_LIVING_STUN_MITIGATION "living_stun_mitigation" //from /datum/ammo/proc/staggerstun
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
 

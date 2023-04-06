@@ -163,9 +163,11 @@
 
 /datum/component/shield/proc/activate_with_user()
 	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, PROC_REF(on_attack_cb_shields_call))
+	RegisterSignal(affected, COMSIG_LIVING_STUN_MITIGATION, PROC_REF(on_attack_cb_stun_mitigation_call))
 
 /datum/component/shield/proc/deactivate_with_user()
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
+	UnregisterSignal(affected, COMSIG_LIVING_STUN_MITIGATION)
 
 /datum/component/shield/proc/shield_detatch_from_user()
 	if(!affected)
@@ -179,6 +181,23 @@
 	if(cover.getRating(dam_type) <= 0)
 		return
 	affecting_shields[intercept_damage_cb] = layer
+
+/datum/component/shield/proc/on_attack_cb_stun_mitigation_call(datum/source, list/incoming_stuns, damage_type, penetration)
+	SIGNAL_HANDLER
+	var/mitigation_prob = cover.getRating(damage_type) - penetration
+	affected.balloon_alert_to_viewers("[mitigation_prob]") //debugging
+	if(mitigation_prob <= 0)
+		return
+	if(!prob(mitigation_prob))
+		return
+	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2], incoming_stuns[5])
+	incoming_stuns[3] += max_hardstun
+	incoming_stuns[4] += max_hardstun
+	incoming_stuns[1] = 0
+	incoming_stuns[2] = 0
+	incoming_stuns[5] = 0
+	var/obj/item/parent_item = parent
+	to_chat(affected, span_avoidharm("\The [parent_item.name] absorbs the impact!"))
 
 /datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent, penetration)
 	var/obj/item/parent_item = parent
