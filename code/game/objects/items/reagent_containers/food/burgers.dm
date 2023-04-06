@@ -329,7 +329,6 @@
 /obj/item/reagent_containers/food/snacks/burger/bun
 	name = "bun"
 	desc = "A base for any self-respecting burger."
-	icon = 'icons/obj/items/food/food_ingredients.dmi'
 	icon_state = "bun"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)

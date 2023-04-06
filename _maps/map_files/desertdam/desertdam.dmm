@@ -28073,6 +28073,7 @@
 "dBf" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/cutlet,
 /obj/item/reagent_containers/food/snacks/burger/bun,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
@@ -46238,6 +46239,12 @@
 	},
 /turf/closed/mineral/smooth,
 /area/desert_dam/interior/dam_interior/hanger)
+"nxV" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/meatball,
+/obj/item/reagent_containers/food/snacks/burger/bun,
+/turf/open/floor/prison/kitchen,
+/area/desert_dam/building/cafeteria/cafeteria)
 "nxZ" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -108805,7 +108812,7 @@ sqN
 hAK
 usq
 rWr
-dAk
+nxV
 cYK
 oiZ
 dcw
