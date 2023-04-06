@@ -1294,6 +1294,60 @@ SUPPLIES
 	)
 	cost = 50
 
+/datum/supply_packs/supplies/carpplush
+	name = "Carp Plushie"
+	contains = list(/obj/item/toy/plush/carp)
+	cost = 20
+
+/datum/supply_packs/supplies/lizplush
+	name = "Lizard Plushie"
+	contains = list(/obj/item/toy/plush/lizard)
+	cost = 20
+
+/datum/supply_packs/supplies/slimeplush
+	name = "Slime Plushie"
+	contains = list(/obj/item/toy/plush/slime)
+	cost = 20
+
+/datum/supply_packs/supplies/mothplush
+	name = "Moth Plushie"
+	contains = list(/obj/item/toy/plush/moth)
+	cost = 20
+
+/datum/supply_packs/supplies/rounyplush
+	name = "Rouny Plushie"
+	contains = list(/obj/item/toy/plush/rouny)
+	cost = 20
+
+/datum/supply_packs/supplies/games
+	name = "Games crate"
+	contains = list(
+		/obj/item/toy/beach_ball/basketball,
+		/obj/item/toy/bikehorn,
+		/obj/item/toy/spinningtoy,
+		/obj/item/toy/dice/d20,
+		/obj/item/toy/dice,
+		/obj/item/toy/dice,
+		/obj/item/toy/sword,
+		/obj/item/toy/sword,
+		/obj/item/toy/crossbow,
+		/obj/item/toy/crossbow,
+		/obj/item/toy/deck,
+		/obj/item/toy/deck/kotahi,
+	)
+	cost = 100
+
+/datum/supply_packs/supplies/games
+	name = "Therapy doll crate"
+	contains = list(
+		/obj/item/toy/plush/therapy_red,
+		/obj/item/toy/plush/therapy_orange,
+		/obj/item/toy/plush/therapy_yellow,
+		/obj/item/toy/plush/therapy_green,
+		/obj/item/toy/plush/therapy_blue,
+		/obj/item/toy/plush/therapy_purple,
+	)
+	cost = 50
 /*******************************************************************************
 Imports
 *******************************************************************************/
