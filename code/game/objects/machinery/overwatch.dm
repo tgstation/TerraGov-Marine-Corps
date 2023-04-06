@@ -68,6 +68,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/rally_order/send_rally_order
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
+    ///Ref of the lase that's had an OB warning mark placed on the minimap
+	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -595,12 +597,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		log_attack("[key_name(usr)] fired a [warhead_type]in for squad [current_squad] in [AREACOORD(T)].")
 		message_admins("[ADMIN_TPMONTY(usr)] fired a [warhead_type]for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
 	visible_message(span_boldnotice("Orbital bombardment request accepted. Orbital cannons are now calibrating."))
-	send_to_squads("Initializing fire coordinates...")
+	send_to_squads("!!ORBITAL BOMBARDMENT INBOUND AT [get_area(selected_target)]!!")
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
 
-	addtimer(CALLBACK(src, PROC_REF(send_to_squads), "Transmitting beacon feed..."), 1.5 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(send_to_squads), "Calibrating trajectory window..."), 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, usr), 3.1 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
@@ -736,9 +736,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 		var/mob/living/carbon/human/target = A
-		if(target == target.current_squad.squad_leader)
-			to_chat(usr, "[icon2html(src, usr)] [span_warning("[H] is already the Squad Leader!")]")
-			return
+		if(!target == target.assigned_squad.squad_leader)
+			radial_options += list(ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"))
 		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MESSAGE_SINGLE)
@@ -749,19 +748,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(SWITCH_SQUAD)
 				var/datum/squad/desired_squad = squad_select(source, target)
 				transfer_squad(target, desired_squad)
-
-	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
-		var/obj/effect/overlay/temp/laser_target/OB/target = A
-		radial_options = list(
-			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-		)
-
-		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
-//		switch(choice)
-//			if(MARK_LASE)
-//			if(FIRE_LASE)
-
 	else
 		var/turf/target = get_turf(A)
 		radial_options = list(
@@ -812,6 +798,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		squad_options += list(squad.name = squad_icon)
 
 	return SSjob.squads_by_name[faction][show_radial_menu(source, A, squad_options, null, 48, null, FALSE, TRUE)]
+
+///Removes any active marks on OB lases, if any
+/obj/machinery/computer/camera_advanced/overwatch/proc/remove_mark_from_lase()
+	if(marked_lase)
+		SSminimaps.remove_marker(marked_lase)
+		marked_lase = null
 
 
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
