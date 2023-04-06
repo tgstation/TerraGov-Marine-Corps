@@ -74,10 +74,8 @@
 
 /obj/item/mule_module/light/apply(mob/living/simple_animal/mule_bot/mule)
 	mule.set_light_range_power_color(mod_Light_power,mod_Light_range,mod_light_color)
-	mule.set_light_on(TRUE)
 	. = ..()
 
 /obj/item/mule_module/light/unapply(delete_mod)
 	attached_mule.set_light_range_power_color(initial(attached_mule.light_range) ,initial(attached_mule.light_power),initial(attached_mule.light_color))
-	attached_mule.set_light_on(FALSE)
 	. = ..()
