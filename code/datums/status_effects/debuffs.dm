@@ -526,7 +526,8 @@
 		is_resisting = FALSE
 		debuff_owner.balloon_alert("Interrupted")
 		return
-	is_resisting = FALSE
 	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
 	debuff_owner.balloon_alert("Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
+	if(stacks > 0)
+		resist_debuff() // We repeat ourselves as long as the debuff persists.
