@@ -63,3 +63,21 @@
 /obj/item/mule_module/storage/proc/acces_storage(mob/mule, mob/user)
 	SIGNAL_HANDLER
 	storage_pack.open(user)
+
+
+/obj/item/mule_module/light
+	name = "Spot light module"
+	desc = "This module lets the bot cast a bright light."
+	var/mod_Light_power = 10
+	var/mod_Light_range = 23
+	var/mod_light_color = "#f0e0b6"
+
+/obj/item/mule_module/light/apply(mob/living/simple_animal/mule_bot/mule)
+	mule.set_light_range_power_color(mod_Light_power,mod_Light_range,mod_light_color)
+	mule.set_light_on(TRUE)
+	. = ..()
+
+/obj/item/mule_module/light/unapply(delete_mod)
+	attached_mule.set_light_range_power_color(initial(attached_mule.light_range) ,initial(attached_mule.light_power),initial(attached_mule.light_color))
+	attached_mule.set_light_on(FALSE)
+	. = ..()

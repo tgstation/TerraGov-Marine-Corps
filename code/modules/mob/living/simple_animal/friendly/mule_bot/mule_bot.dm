@@ -25,12 +25,19 @@
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 6
-	flags_pass = PASSTABLE
+	flags_pass = PASSTABLE | PASSMOB | PASSXENO //to avoid it body blocking marines and xenos
+	a_intent = INTENT_HELP
 	mob_size = MOB_SIZE_SMALL
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	a_intent = INTENT_HELP
+	light_system = MOVABLE_LIGHT
+	flags_atom = BUMP_ATTACKABLE
+	light_color =  "#3262db"
+	light_range = 2
+	light_power = 2
+	light_on = TRUE
 	var/obj/item/mule_module/installed_module
 	var/obj/item/clothing/head/hat
 	var/mutable_appearance/hat_overlay
