@@ -9844,9 +9844,6 @@
 	pixel_y = 3
 	},
 /obj/item/whistle,
-/obj/machinery/door_control/mainship/req{
-	pixel_y = -5
-	},
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
@@ -12273,7 +12270,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "pRb" = (
-/obj/structure/flora/pottedplant/three,
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "pRo" = (
@@ -14526,7 +14523,7 @@
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/knife/butcher,
 /obj/item/clothing/head/helmet/marine/som,
-/obj/item/reagent_containers/food/snacks/burger/brain,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "sPc" = (
@@ -14663,7 +14660,7 @@
 /area/mainship/medical/medical_science)
 "sXf" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "sXo" = (

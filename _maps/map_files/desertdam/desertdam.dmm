@@ -25635,7 +25635,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dbA" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/burger/bigbite,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dbB" = (

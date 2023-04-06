@@ -7478,7 +7478,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "hNl" = (

@@ -7658,7 +7658,7 @@
 /area/icy_caves/outpost/office)
 "MT" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "MU" = (
@@ -9678,7 +9678,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Xn" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Xo" = (

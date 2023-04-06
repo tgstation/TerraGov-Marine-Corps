@@ -11349,7 +11349,7 @@
 /area/sulaco/cafeteria/kitchen)
 "cMp" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/burger/plain,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "cMx" = (
@@ -20643,7 +20643,7 @@
 /area/sulaco/hangar)
 "ptE" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/burger/plain,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "pum" = (
@@ -24313,7 +24313,7 @@
 "uhf" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/effect/spawner/random/burger{
 	pixel_x = -4;
 	pixel_y = 1
 	},

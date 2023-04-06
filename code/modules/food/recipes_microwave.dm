@@ -817,7 +817,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/spesslaw
 
-/datum/recipe/superbiteburger
+/obj/item/reagent_containers/food/snacks/burger/superbite
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 5, /datum/reagent/consumable/blackpepper = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bigbite,

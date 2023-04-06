@@ -858,7 +858,7 @@
 /area/ice_colony/surface/engineering)
 "agz" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/human,
+/obj/effect/spawner/random/burger,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -8000,7 +8000,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOC" = (
@@ -8979,7 +8979,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aTf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/burger/bigbite,
+/obj/item/reagent_containers/food/snacks/burger/human,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTg" = (
@@ -17135,7 +17135,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bCD" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCF" = (

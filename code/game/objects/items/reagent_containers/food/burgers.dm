@@ -167,13 +167,6 @@
 /obj/item/reagent_containers/food/snacks/burger/jelly/cherry
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/cherryjelly = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 
-/obj/item/reagent_containers/food/snacks/burger/superbite
-	name = "super bite burger"
-	desc = "This is a mountain of a burger. FOOD!"
-	icon_state = "superbiteburger"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/protein = 40, /datum/reagent/consumable/nutriment/vitamin = 12)
-	tastes = list("bun" = 4, "type two diabetes" = 10)
-
 /obj/item/reagent_containers/food/snacks/burger/fivealarm
 	name = "five alarm burger"
 	desc = "HOT! HOT!"
@@ -357,15 +350,15 @@
 		qdel(I)
 		qdel(src)
 
-/obj/item/reagent_containers/food/snacks/burger/superbiteburger
+/obj/item/reagent_containers/food/snacks/burger/superbite
 	name = "Super Bite Burger"
 	desc = "This is a mountain of a burger. FOOD!"
 	icon_state = "superbiteburger"
 	filling_color = "#CCA26A"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 40)
 	bitesize = 7
 	volume = 100
-	tastes = list("bun" = 4, "type two diabetes" = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/protein = 40, /datum/reagent/consumable/nutriment/vitamin = 12)
+	tastes = list("bun" = 4, "type two diabetes" = 10, "grease" = 1)
 
 /obj/item/reagent_containers/food/snacks/burger/ghostburger
 	name = "Ghost Burger"

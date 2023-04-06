@@ -1261,7 +1261,7 @@
 /obj/item/tool/kitchen/knife{
 	pixel_x = -11
 	},
-/obj/item/reagent_containers/food/snacks/burger/superbite{
+/obj/effect/spawner/random/burger{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -2150,7 +2150,7 @@
 /area/gelida/indoors/a_block/hallway)
 "bus" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/burger/cheese,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "buA" = (
@@ -2584,7 +2584,7 @@
 	pixel_y = 14
 	},
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/burger/packaged_burger,
+/obj/effect/spawner/random/burger,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
@@ -12052,7 +12052,7 @@
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "hRf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/burger/plain{
+/obj/effect/spawner/random/burger{
 	pixel_x = -9;
 	pixel_y = 12
 	},

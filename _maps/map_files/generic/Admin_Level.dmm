@@ -1611,7 +1611,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cca" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/burger/mime,
+/obj/effect/spawner/random/burger,
 /obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice{
 	pixel_x = -5
 	},
@@ -3937,7 +3937,7 @@
 /obj/item/reagent_containers/food/snacks/pastries/xemeatpie{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/burger/xeno{
+/obj/effect/spawner/random/burger{
 	pixel_x = -4;
 	pixel_y = -1
 	},
@@ -8555,7 +8555,7 @@
 /obj/item/reagent_containers/food/snacks/pastries/chocolatecakeslice{
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/burger/fishburger{
+/obj/effect/spawner/random/burger{
 	pixel_x = -4;
 	pixel_y = 1
 	},
@@ -12746,7 +12746,7 @@
 	pixel_x = 1;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/burger/plain{
+/obj/effect/spawner/random/burger{
 	pixel_x = -7;
 	pixel_y = 10
 	},
@@ -18905,7 +18905,7 @@
 /obj/effect/turf_decal/tile/black{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/burger/clown,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},

@@ -625,6 +625,59 @@
 		/obj/item/reagent_containers/food/snacks/donut/meat = 1,
 	)
 
+/obj/effect/spawner/random/burger
+	name = "Random burger spawner"
+	icon_state = "random_burger"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/effect/spawner/random/burger/normal = 95,
+		/obj/effect/spawner/random/burger/weird = 5,
+	)
+
+/obj/effect/spawner/random/burger/normal
+	name = "Random normal burger spawner"
+	icon_state = "random_burger_normal"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/burger = 40,
+		/obj/item/reagent_containers/food/snacks/burger/cheese = 20,
+		/obj/item/reagent_containers/food/snacks/burger/baconburger = 10,
+		/obj/item/reagent_containers/food/snacks/burger/chicken = 10,
+		/obj/item/reagent_containers/food/snacks/burger/fishburger = 10,
+		/obj/item/reagent_containers/food/snacks/burger/superbite = 5,
+		/obj/item/reagent_containers/food/snacks/burger/fivealarm = 5,
+	)
+
+/obj/effect/spawner/random/burger/weird
+	name = "Random weird burger spawner"
+	icon_state = "random_burger_weird"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/burger/tofu,
+		/obj/item/reagent_containers/food/snacks/burger/roburger,
+		/obj/item/reagent_containers/food/snacks/burger/roburgerbig,
+		/obj/item/reagent_containers/food/snacks/burger/appendix,
+		/obj/item/reagent_containers/food/snacks/burger/xeno,
+		/obj/item/reagent_containers/food/snacks/burger/human,
+		/obj/item/reagent_containers/food/snacks/burger/bearger,
+		/obj/item/reagent_containers/food/snacks/burger/clown,
+		/obj/item/reagent_containers/food/snacks/burger/mime,
+		/obj/item/reagent_containers/food/snacks/burger/brain,
+		/obj/item/reagent_containers/food/snacks/burger/spell,
+		/obj/item/reagent_containers/food/snacks/burger/jelly,
+		/obj/item/reagent_containers/food/snacks/burger/jelly/cherry,
+		/obj/item/reagent_containers/food/snacks/burger/jelly/slime,
+		/obj/item/reagent_containers/food/snacks/burger/rat,
+		/obj/item/reagent_containers/food/snacks/burger/baseball,
+		/obj/item/reagent_containers/food/snacks/burger/empoweredburger,
+		/obj/item/reagent_containers/food/snacks/burger/catburger,
+		/obj/item/reagent_containers/food/snacks/burger/crab
+		/obj/item/reagent_containers/food/snacks/burger/soylent,
+		/obj/item/reagent_containers/food/snacks/burger/crazy,
+		/obj/item/reagent_containers/food/snacks/burger/ghostburger,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
+	)
+
 /obj/effect/spawner/random/beaker/bluespace
 	name = "Random bluespace beaker spawner"
 	icon_state = "random_bluespace_beaker"
