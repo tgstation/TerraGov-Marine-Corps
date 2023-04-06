@@ -1509,7 +1509,7 @@
 	icon_state = "proteinbar"
 	force = 10 //dense enough to hurt but less than chunk
 	wrapper = /obj/item/trash/candy
-	list_reagents = list(/datum/reagent/consumable/protein = 8, /datum/reagent/consumable/coco = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/coco = 2)
 	tastes = list("compressed matter" = 3, "discarded rubber" = 1)
 
 //MREs
