@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Barricade repair time and fuel use cut in half. Repair amount reduced from 150 to 85"
