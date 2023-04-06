@@ -16,8 +16,6 @@
 	damage = 12
 	spit_cost = 30
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
-	/// The owner of this projectile.
-	var/mob/living/carbon/xenomorph/xeno_owner
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER
 
