@@ -3,7 +3,6 @@
 	. = ..()
 	var/mob/living/simple_animal/mule_bot/M = new(loc)
 	var/obj/item/remote/R = new(loc)
-	new /obj/item/mule_module/storage(loc)
 	M.try_link(R)
 	R.bot = M
 	qdel(src)
@@ -100,15 +99,34 @@
 	cut_overlay(GLOB.welding_sparks)
 	return TRUE
 
-/mob/living/simple_animal/mule_bot/proc/apply_module(obj/item/mule_module/mod, mob/user)
+/mob/living/simple_animal/mule_bot/crowbar_act(mob/living/user, obj/item/I)
+	remove_module()
+	return TRUE
+
+/mob/living/simple_animal/mule_bot/proc/swap_module(obj/item/mule_module/mod, mob/user)
+	remove_module(user, FALSE)
+	apply_module(mod,user, FALSE)
+	update_icon()
+
+/mob/living/simple_animal/mule_bot/proc/apply_module(obj/item/mule_module/mod, mob/user, update_icon = TRUE)
 	if(installed_module)
-		installed_module.unapply(FALSE)
+		remove_module(user, FALSE)
 	if(mod.apply(src))
 		to_chat(user,span_notice("You succesfully installed [mod]"))
 		user?.temporarilyRemoveItemFromInventory(mod)
 	else
 		to_chat(user,span_warning("You failed to installed [mod]"))
 	update_icon()
+
+/mob/living/simple_animal/mule_bot/proc/remove_module(mob/user, update_icon = TRUE)
+	if(!installed_module)
+		return
+	if(user)
+		to_chat(user,span_notice("You succesfully remove [installed_module]"))
+	installed_module.unapply(FALSE)
+	if(update_icon)
+		update_icon()
+
 
 /obj/item/remote
 	name = "remote"
