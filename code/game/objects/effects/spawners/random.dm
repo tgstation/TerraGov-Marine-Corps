@@ -671,7 +671,7 @@
 		/obj/item/reagent_containers/food/snacks/burger/baseball,
 		/obj/item/reagent_containers/food/snacks/burger/empoweredburger,
 		/obj/item/reagent_containers/food/snacks/burger/catburger,
-		/obj/item/reagent_containers/food/snacks/burger/crab
+		/obj/item/reagent_containers/food/snacks/burger/crab,
 		/obj/item/reagent_containers/food/snacks/burger/soylent,
 		/obj/item/reagent_containers/food/snacks/burger/crazy,
 		/obj/item/reagent_containers/food/snacks/burger/ghostburger,

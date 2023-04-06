@@ -1594,7 +1594,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -3186,6 +3186,10 @@
 	dir = 5
 	},
 /area/gelida/indoors/a_block/hallway)
+"cdb" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/cargo)
 "cdu" = (
 /obj/item/reagent_containers/hypospray/autoinjector,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5443,7 +5447,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "dwZ" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "dxk" = (
@@ -5788,7 +5792,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "dII" = (
@@ -6124,6 +6128,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"dTS" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating/heatinggrate,
+/area/gelida/indoors/c_block/cargo)
 "dUi" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -7599,7 +7607,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "eOs" = (
-/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/decal/blood,
 /obj/item/weapon/twohanded/fireaxe,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
@@ -8028,10 +8036,10 @@
 	},
 /area/gelida/outdoors/colony_streets/south_street)
 "faS" = (
-/obj/effect/decal/cleanable/blood/oil,
 /obj/structure/platform/gelida{
 	dir = 8
 	},
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "fbs" = (
@@ -9176,7 +9184,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "fXd" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/green/full{
 	dir = 4
 	},
@@ -9260,7 +9268,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "fZQ" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "fZS" = (
@@ -10924,7 +10932,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "hcf" = (
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "hcv" = (
@@ -10955,7 +10963,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "hcS" = (
 /obj/structure/table/mainship,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+/obj/effect/spawner/random/heal_pack/bruteweighted{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -11240,7 +11248,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "hln" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "hlt" = (
@@ -11295,7 +11303,7 @@
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "hnd" = (
-/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/casino)
 "hnn" = (
@@ -11328,8 +11336,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "hoH" = (
-/obj/effect/decal/cleanable/blood,
 /obj/structure/bed/roller,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "hoS" = (
@@ -12618,10 +12626,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"ihS" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison,
-/area/gelida/indoors/b_block/hydro)
 "ihZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -16738,7 +16742,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "kWv" = (
@@ -17133,8 +17137,8 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "lin" = (
-/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "lir" = (
@@ -21398,8 +21402,8 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "nZB" = (
-/obj/effect/decal/cleanable/blood,
 /obj/item/tool/hatchet,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "nZH" = (
@@ -21901,11 +21905,11 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/bridges/corpo)
 "osO" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "osS" = (
@@ -24299,11 +24303,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"pPU" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/whitegreenfull2,
-/area/gelida/indoors/b_block/hydro)
 "pPX" = (
 /turf/closed/wall,
 /area/gelida/indoors/c_block/mining)
@@ -24321,11 +24320,9 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "pQm" = (
-/obj/effect/acid_hole{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/gelida/indoors/c_block/mining)
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/prison/darkred/full,
+/area/gelida/indoors/a_block/kitchen)
 "pQC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -26015,11 +26012,11 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "qUf" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "qUp" = (
@@ -26641,7 +26638,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "rlw" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "rlA" = (
@@ -27605,11 +27602,11 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "rTT" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/hallway)
 "rUv" = (
@@ -29243,8 +29240,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "sUm" = (
-/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "sUt" = (
@@ -29952,7 +29949,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "tqD" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "tqF" = (
@@ -30752,7 +30749,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "tUx" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "tUK" = (
@@ -31059,8 +31056,8 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "ugy" = (
-/obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "ugJ" = (
@@ -34236,8 +34233,8 @@
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "wkY" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+/obj/effect/spawner/random/decal/blood,
+/obj/effect/spawner/random/heal_pack/bruteweighted{
 	pixel_x = -10;
 	pixel_y = 8
 	},
@@ -34774,8 +34771,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/bridge)
 "wEq" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/ai_node,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -35231,8 +35228,8 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "wUF" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "wUJ" = (
@@ -35315,10 +35312,10 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "wXO" = (
-/obj/effect/decal/cleanable/blood/oil,
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "wXZ" = (
@@ -36037,8 +36034,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "xCi" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/item/tool/hatchet,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/hydro)
 "xCF" = (
@@ -36156,7 +36153,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xFh" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "xFv" = (
@@ -36495,7 +36492,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xOI" = (
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+/obj/effect/spawner/random/heal_pack/bruteweighted{
 	pixel_x = -3;
 	pixel_y = -5
 	},
@@ -51992,7 +51989,7 @@ tPp
 kUF
 bRS
 xCi
-ihS
+tUx
 lNq
 oEN
 iuJ
@@ -52434,7 +52431,7 @@ tPp
 lNq
 tPp
 kUF
-ihS
+tUx
 vuB
 mLB
 fXd
@@ -52657,8 +52654,8 @@ lNq
 rCP
 kUF
 jyV
-ihS
-ihS
+tUx
+tUx
 qxc
 xMf
 iuJ
@@ -52878,7 +52875,7 @@ vtt
 lNq
 bwC
 kUF
-ihS
+tUx
 tUx
 eyO
 nZB
@@ -53323,7 +53320,7 @@ fdY
 quk
 dFI
 jfW
-pPU
+wUF
 wUF
 lJE
 jAp
@@ -58384,7 +58381,7 @@ haP
 iVD
 jZN
 miL
-fRn
+pQm
 dFb
 iVD
 iVD
@@ -59316,7 +59313,7 @@ rDu
 etr
 rFU
 etr
-aRF
+cdb
 rFU
 etr
 wBH
@@ -59511,7 +59508,7 @@ dOq
 iVD
 sOb
 buS
-wpE
+dTS
 nsX
 nsX
 sOb
@@ -61534,7 +61531,7 @@ etr
 oHl
 etr
 hto
-aRF
+cdb
 uWL
 obF
 pJy
@@ -65354,7 +65351,7 @@ pPX
 pPX
 pPX
 pPX
-pQm
+pPX
 pPX
 pPX
 mth
