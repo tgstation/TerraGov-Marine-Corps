@@ -506,7 +506,7 @@
 		return
 	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) || (debuff_owner.get_soft_armor(BIO) > 65))
 		stack_decay = 2
-	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10) * is_resisting ? 0.7 : 1 // If they're resisting, reduce the damage taken by 30%.
+	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10) * is_resisting ? 0.7 : 1 // If they're resisting, reduce the extra damage taken by 30%.
 	debuff_owner.adjustFireLoss(debuff_damage)
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
