@@ -13290,7 +13290,7 @@
 "Nj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
 "Nk" = (

@@ -1258,7 +1258,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 11
 	},
-/obj/item/tool/kitchen/knife{
+/obj/effect/spawner/random/kitchenknife{
 	pixel_x = -11
 	},
 /obj/effect/spawner/random/burger{
@@ -3410,7 +3410,7 @@
 /turf/open/floor/freezer,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "clo" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "cml" = (
@@ -3609,7 +3609,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "cuc" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/item/reagent_containers/food/drinks/flask/marine{
 	pixel_x = -6;
 	pixel_y = -11
@@ -13425,7 +13425,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHe" = (
 /obj/structure/fakeplatform,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHf" = (
@@ -13844,7 +13844,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/corpo)
 "iWq" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "iWI" = (
@@ -20861,7 +20861,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "nHu" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/greenblue{
 	dir = 9
 	},
@@ -24329,7 +24329,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "pQI" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "pRa" = (
@@ -26404,7 +26404,7 @@
 /area/gelida/indoors/a_block/dorms)
 "reQ" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 7
 	},
@@ -26673,7 +26673,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "rmA" = (
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "rmB" = (
@@ -28434,7 +28434,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "svq" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "svG" = (
@@ -28755,7 +28755,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "sDS" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "sEe" = (
@@ -28850,7 +28850,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "sHG" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sIj" = (
@@ -30903,7 +30903,7 @@
 /turf/closed/wall/r_wall,
 /area/gelida/indoors/b_block/bridge)
 "uau" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -34570,7 +34570,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "wvS" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "wvV" = (
@@ -35804,7 +35804,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 4
 	},
-/obj/item/tool/kitchen/knife{
+/obj/effect/spawner/random/kitchenknife{
 	pixel_x = -9;
 	pixel_y = 3
 	},

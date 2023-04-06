@@ -9330,7 +9330,7 @@
 "klH" = (
 /obj/effect/landmark/corpsespawner/chef,
 /obj/effect/decal/cleanable/blood,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "klL" = (

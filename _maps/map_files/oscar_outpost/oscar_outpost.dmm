@@ -6099,7 +6099,7 @@
 /obj/item/reagent_containers/food/snacks/pastatomato{
 	pixel_y = 10
 	},
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Jz" = (
@@ -9013,7 +9013,7 @@
 /area/oscar_outpost/village/fairgrounds)
 "VQ" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VT" = (

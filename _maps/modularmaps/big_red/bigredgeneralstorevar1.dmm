@@ -8,7 +8,7 @@
 /area/bigredv2/outside/general_store)
 "an" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /obj/effect/spawner/random/burger/bunweighted,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -29,11 +29,11 @@
 /area/bigredv2/outside/general_store)
 "bs" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -170,13 +170,13 @@
 /obj/structure/table,
 /obj/effect/spawner/random/burger/bunweighted,
 /obj/effect/spawner/random/burger/bunweighted,
-/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "ky" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /obj/effect/spawner/random/burger/bunweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
@@ -252,7 +252,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/burger/bunweighted,
 /obj/effect/spawner/random/burger/bunweighted,
-/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "pW" = (
@@ -362,7 +362,7 @@
 /area/bigredv2/outside/general_store)
 "wh" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "wp" = (
@@ -429,7 +429,7 @@
 "yk" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/blood,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "yp" = (
@@ -464,7 +464,7 @@
 /area/bigredv2/outside/general_store)
 "AR" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "AV" = (
@@ -558,7 +558,7 @@
 /area/bigredv2/outside/general_store)
 "EZ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/effect/spawner/random/donut,
@@ -669,9 +669,9 @@
 /area/bigredv2/outside/general_store)
 "Lm" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -862,7 +862,7 @@
 /area/bigredv2/outside/general_store)
 "Yh" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/tile/blue/whitebluefull,

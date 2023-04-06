@@ -12309,7 +12309,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/item/tool/kitchen/rollingpin,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "iZM" = (
@@ -26685,7 +26685,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "twX" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "twY" = (
@@ -31894,7 +31894,7 @@
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/processing/south)
 "xfk" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)

@@ -685,7 +685,7 @@
 		/obj/item/reagent_containers/food/snacks/burger/bun,
 	)
 
-/obj/effect/spawner/random/beaker/packagedbar
+/obj/effect/spawner/random/packagedbar
 	name = "Random food bar spawner"
 	icon_state = "random_foodbar"
 	loot = list(
@@ -697,7 +697,7 @@
 		/obj/item/reagent_containers/food/snacks/enrg_bar = 5,
 	)
 
-/obj/effect/spawner/random/beaker/packagedbar/candyweighted
+/obj/effect/spawner/random/beaker/candyweighted
 	name = "Random candy bar spawner"
 	icon_state = "random_foodbar_candy"
 	loot = list(
@@ -708,7 +708,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 5,
 	)
 
-/obj/effect/spawner/random/beaker/packagedbar/cheesewedge
+/obj/effect/spawner/random/beaker/cheesewedge
 	name = "Random cheese wedge spawner"
 	icon_state = "random_cheesewedge"
 	loot = list(
@@ -717,6 +717,23 @@
 		/obj/item/reagent_containers/food/snacks/baked_cheese = 5,
 		/obj/item/reagent_containers/food/snacks/baked_cheese_platter = 5,
 	)
+
+/obj/effect/spawner/random/kitchenknife
+	name = "Random kitchen knife spawner"
+	icon_state = "random_knife"
+	loot = list(
+		/obj/item/tool/kitchen/knife = 9,
+		/obj/item/tool/kitchen/knife/butcher = 1,
+	)
+
+/obj/effect/spawner/random/kitchenknife/butcherweighted
+	name = "Random kitchen knife spawner"
+	icon_state = "random_knife_butcher"
+	loot = list(
+		/obj/item/tool/kitchen/knife/butcher = 9,
+		/obj/item/tool/kitchen/knife = 1,
+	)
+
 
 /obj/effect/spawner/random/beaker/bluespace
 	name = "Random bluespace beaker spawner"

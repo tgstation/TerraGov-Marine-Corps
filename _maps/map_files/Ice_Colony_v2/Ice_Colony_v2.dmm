@@ -8983,7 +8983,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTg" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)

@@ -3213,7 +3213,7 @@
 /area/icy_caves/outpost/medbay)
 "rv" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "rw" = (

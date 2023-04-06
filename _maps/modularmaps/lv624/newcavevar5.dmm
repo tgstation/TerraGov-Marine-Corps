@@ -45,8 +45,8 @@
 /area/lv624/ground/caves/central2)
 "eH" = (
 /obj/structure/table/woodentable,
-/obj/item/tool/kitchen/knife/butcher,
-/obj/item/tool/kitchen/knife/butcher{
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/kitchenknife/butcherweighted{
 	pixel_y = 6
 	},
 /turf/open/floor/wood,

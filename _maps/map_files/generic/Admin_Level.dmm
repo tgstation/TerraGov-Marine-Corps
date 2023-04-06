@@ -8091,7 +8091,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = -8
 	},
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/kitchen)
