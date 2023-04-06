@@ -634,10 +634,18 @@
 		/obj/effect/spawner/random/burger/weird = 5,
 	)
 
+/obj/effect/spawner/random/burger/bunweighted
+	name = "Random burger bun spawner"
+	icon_state = "random_burger_bun"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/burger/bun = 95,
+		/obj/effect/spawner/random/burger = 5,
+	)
+
 /obj/effect/spawner/random/burger/normal
 	name = "Random normal burger spawner"
 	icon_state = "random_burger_normal"
-	spawn_loot_chance = 95
 	loot = list(
 		/obj/item/reagent_containers/food/snacks/burger = 40,
 		/obj/item/reagent_containers/food/snacks/burger/cheese = 20,
@@ -651,7 +659,6 @@
 /obj/effect/spawner/random/burger/weird
 	name = "Random weird burger spawner"
 	icon_state = "random_burger_weird"
-	spawn_loot_chance = 95
 	loot = list(
 		/obj/item/reagent_containers/food/snacks/burger/tofu,
 		/obj/item/reagent_containers/food/snacks/burger/roburger,
@@ -676,6 +683,39 @@
 		/obj/item/reagent_containers/food/snacks/burger/crazy,
 		/obj/item/reagent_containers/food/snacks/burger/ghostburger,
 		/obj/item/reagent_containers/food/snacks/burger/bun,
+	)
+
+/obj/effect/spawner/random/beaker/packagedbar
+	name = "Random food bar spawner"
+	icon_state = "random_foodbar"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 12,
+		/obj/item/reagent_containers/food/snacks/candy = 5,
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 5,
+	)
+
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted
+	name = "Random candy bar spawner"
+	icon_state = "random_foodbar_candy"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/candy = 75,
+		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 10,
+		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 5,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 5,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 5,
+	)
+
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge
+	name = "Random cheese wedge spawner"
+	icon_state = "random_cheesewedge"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 80,
+		/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel = 10,
+		/obj/item/reagent_containers/food/snacks/baked_cheese = 5,
+		/obj/item/reagent_containers/food/snacks/baked_cheese_platter = 5,
 	)
 
 /obj/effect/spawner/random/beaker/bluespace

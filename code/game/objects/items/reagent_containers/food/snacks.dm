@@ -1161,7 +1161,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_containers/food/snacks/baked_cheese_platter
-	name = "backed cheese platter" //stannt = oven, krakt = baked, ælo = cheese
+	name = "backed cheese platter"
 	desc = "A baked cheese wheel: a favourite for sharing. Usually served with crispy bread slices for dipping, because the only thing better than good cheese is good cheese on bread."
 	icon = 'icons/obj/items/food/cheeseandfries.dmi'
 	icon_state = "baked_cheese_platter"
@@ -1502,6 +1502,15 @@
 	wrapper = /obj/item/trash/barcardine
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2, /datum/reagent/medicine/tramadol = 1, /datum/reagent/medicine/tramadol = 1)
 	tastes = list("cough syrup" = 1)
+
+/obj/item/reagent_containers/food/snacks/wrapped/proteinbar
+	name = "Protein Bar"
+	desc = "A chocolate protein bar, made of dense unused food materials that couldn't find a home in another recipe."
+	icon_state = "proteinbar"
+	force = 10 //dense enough to hurt but less than chunk
+	wrapper = /obj/item/trash/candy
+	list_reagents = list(/datum/reagent/consumable/protein = 8, /datum/reagent/consumable/coco = 2)
+	tastes = list("compressed matter" = 3, "discarded rubber" = 1)
 
 //MREs
 

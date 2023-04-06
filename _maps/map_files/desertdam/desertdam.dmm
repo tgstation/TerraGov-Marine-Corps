@@ -27727,7 +27727,7 @@
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "dxM" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
@@ -27738,7 +27738,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxT" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxX" = (
@@ -27997,14 +27997,14 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAf" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAk" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/burger/bunweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAm" = (
@@ -28054,8 +28054,8 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBc" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/burger/bunweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
@@ -28064,17 +28064,17 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBd" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/effect/spawner/random/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBf" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/cutlet,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/burger/bunweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBh" = (
@@ -34875,8 +34875,8 @@
 /area/desert_dam/interior/caves/temple)
 "gQS" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/burger/bunweighted,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -36928,9 +36928,9 @@
 /area/desert_dam/building/medical/chemistry)
 "hYB" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -46242,7 +46242,7 @@
 "nxV" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/meatball,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/burger/bunweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "nxZ" = (
@@ -47422,9 +47422,9 @@
 /area/desert_dam/building/security/deathrow)
 "oei" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -60007,7 +60007,7 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "viQ" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
@@ -60029,9 +60029,9 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "vjF" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)

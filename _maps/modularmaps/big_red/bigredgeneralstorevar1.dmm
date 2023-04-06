@@ -8,8 +8,8 @@
 /area/bigredv2/outside/general_store)
 "an" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/burger/bunweighted,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "az" = (
@@ -29,11 +29,11 @@
 /area/bigredv2/outside/general_store)
 "bs" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -168,16 +168,16 @@
 /area/bigredv2/outside/general_store)
 "jQ" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "ky" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/burger/bunweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
@@ -250,9 +250,9 @@
 /area/bigredv2/outside/general_store)
 "px" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/burger/bun,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "pW" = (
@@ -362,7 +362,7 @@
 /area/bigredv2/outside/general_store)
 "wh" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "wp" = (
@@ -389,7 +389,7 @@
 /area/bigredv2/outside/general_store)
 "wH" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/bun,
+/obj/effect/spawner/random/burger/bunweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -558,7 +558,7 @@
 /area/bigredv2/outside/general_store)
 "EZ" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/effect/spawner/random/donut,
@@ -669,9 +669,9 @@
 /area/bigredv2/outside/general_store)
 "Lm" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
+/obj/effect/spawner/random/beaker/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -862,7 +862,7 @@
 /area/bigredv2/outside/general_store)
 "Yh" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/tile/blue/whitebluefull,

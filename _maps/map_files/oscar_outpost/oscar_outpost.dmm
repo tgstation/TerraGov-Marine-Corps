@@ -9013,7 +9013,7 @@
 /area/oscar_outpost/village/fairgrounds)
 "VQ" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/beaker/packagedbar/cheesewedge,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VT" = (
