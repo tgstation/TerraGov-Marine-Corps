@@ -470,6 +470,8 @@
 	var/mob/living/carbon/debuff_owner
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Prevents you from stacking resists to instantly rid yourself of the debuff.
+	var/is_resisting = FALSE
 
 /datum/status_effect/stacking/intoxicated/can_gain_stacks()
 	if(owner.status_flags & GODMODE)
@@ -519,9 +521,12 @@
 
 /// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
-	if(!do_after(debuff_owner, 3 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
+	is_resisting = TRUE
+	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
+		is_resisting = FALSE
 		debuff_owner.balloon_alert("Interrupted")
 		return
+	is_resisting = FALSE
 	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
 	debuff_owner.balloon_alert("Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
