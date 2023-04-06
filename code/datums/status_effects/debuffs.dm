@@ -521,10 +521,10 @@
 
 /// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
-	is_resisting = TRUE
 	if(length(debuff_owner.do_actions))
 		is_resisting = FALSE
 		return
+	is_resisting = TRUE
 	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
 		debuff_owner.balloon_alert("Interrupted")
 		is_resisting = FALSE
