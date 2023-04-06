@@ -152,8 +152,3 @@
 		//lum count wont update properly since lighting uses moved signals
 		F.forceMove(T)
 		COOLDOWN_START(src,flare_place, 0)
-
-/obj/item/mule_module/flare_placer/proc/place_flare(turf/T,mob/bot)
-	var/obj/item/explosive/grenade/flare/F = new(T)
-	F.activate(bot)
-	COOLDOWN_START(src,flare_place, 3 SEC)
