@@ -402,7 +402,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					to_chat(usr, "[icon2html(src, usr)] [span_notice("No location is ignored anymore.")]")
 
 		if("change_lead")
-			change_lead()
+			if(!current_squad)
+				to_chat(usr, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
+				return
+			var/sl_candidates = list()
+			for(var/mob/living/carbon/human/H in current_squad.get_all_members())
+				if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, SQUAD_LEADER))
+					sl_candidates += H
+			var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", null, sl_candidates)
+			if(!new_lead || new_lead == "Cancel") return
+			change_lead(new_lead)
 		if("insubordination")
 			mark_insubordination()
 		if("squad_transfer")
@@ -608,19 +617,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		target.ceiling_debris_check(5)
 		GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target,user)
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/change_lead()
+/obj/machinery/computer/camera_advanced/overwatch/proc/change_lead(mob/living/carbon/human/H)
 	if(!usr || usr != operator)
 		return
-	if(!current_squad)
-		to_chat(usr, "[icon2html(src, usr)] [span_warning("No squad selected!")]")
-		return
-	var/sl_candidates = list()
-	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
-		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, SQUAD_LEADER))
-			sl_candidates += H
-	var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", null, sl_candidates)
-	if(!new_lead || new_lead == "Cancel") return
-	var/mob/living/carbon/human/H = new_lead
 	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("[H] is KIA!")]")
 		return
@@ -734,16 +733,19 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(ishuman(A))
 		radial_options = list(
 			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 		var/mob/living/carbon/human/target = A
+		if(target == target.current_squad.squad_leader)
+			to_chat(usr, "[icon2html(src, usr)] [span_warning("[H] is already the Squad Leader!")]")
+			return
 		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MESSAGE_SINGLE)
 				var/input = stripped_input(usr, "Please write a message to announce to this marine:", "CIC Message")
 				current_squad.message_member(target, input, source)
-//			if(ASL)
+			if(ASL)
+				change_lead(target)
 			if(SWITCH_SQUAD)
 				var/datum/squad/desired_squad = squad_select(source, target)
 				transfer_squad(target, desired_squad)
@@ -796,9 +798,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						chosen_squad.message_squad(input, source)
 					if(SWITCH_SQUAD_NEAR)
 						for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-							if(!H)
-								return
-							if(get_dist(H, target) > 9)
+							if(!H.faction == faction || get_dist(H, target) > 9)
 								continue
 							transfer_squad(H, chosen_squad)
 
