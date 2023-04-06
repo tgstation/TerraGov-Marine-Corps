@@ -585,6 +585,46 @@
 		/obj/item/reagent_containers/glass/beaker/large,
 	)
 
+/obj/effect/spawner/random/donut
+	name = "Random donut spawner"
+	icon_state = "random_donut"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/donut/normal = 70, //we could use loot_subtype_path to include all donuts automatically but then we couldn't adjust probabilities
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 15,
+		/obj/item/reagent_containers/food/snacks/donut/cherryjelly = 10,
+		/obj/item/reagent_containers/food/snacks/donut/chaos = 10,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
+		/obj/item/reagent_containers/food/snacks/donut/berry = 10,
+		/obj/item/reagent_containers/food/snacks/donut/trumpet = 10,
+		/obj/item/reagent_containers/food/snacks/donut/apple = 10,
+		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
+		/obj/item/reagent_containers/food/snacks/donut/choco = 10,
+		/obj/item/reagent_containers/food/snacks/donut/blumpkin = 10,
+		/obj/item/reagent_containers/food/snacks/donut/bungo = 10,
+		/obj/item/reagent_containers/food/snacks/donut/matcha = 10,
+		/obj/item/reagent_containers/food/snacks/donut/laugh = 10,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/trumpet = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/apple = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/caramel = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/choco = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/blumpkin = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/bungo = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/matcha = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/laugh = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/plain = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/berry = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/trumpet = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/apple = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/caramel = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/choco = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/blumpkin = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/bungo = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/matcha = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh = 1,
+	)
+
 /obj/effect/spawner/random/beaker/bluespace
 	name = "Random bluespace beaker spawner"
 	icon_state = "random_bluespace_beaker"

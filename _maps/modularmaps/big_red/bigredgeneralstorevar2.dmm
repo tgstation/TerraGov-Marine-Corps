@@ -465,7 +465,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "zX" = (
@@ -543,7 +543,7 @@
 "Fz" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "FW" = (
@@ -677,7 +677,7 @@
 /obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/cheesewedge,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "NI" = (
@@ -813,7 +813,7 @@
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/donkpocket,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "Ub" = (

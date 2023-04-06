@@ -2813,7 +2813,7 @@
 /area/gelida/indoors/b_block/bridge)
 "bOx" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -18632,7 +18632,7 @@
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/darkred/full,
@@ -25038,7 +25038,7 @@
 	pixel_x = 7;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/donut/jelly{
+/obj/effect/spawner/random/donut{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -25706,7 +25706,7 @@
 	pixel_x = -4;
 	pixel_y = 11
 	},
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -28651,7 +28651,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "sBz" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_y = 9
 	},
 /obj/item/reagent_containers/food/drinks/coffee{

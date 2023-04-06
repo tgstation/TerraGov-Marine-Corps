@@ -2522,7 +2522,7 @@
 "dqp" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14

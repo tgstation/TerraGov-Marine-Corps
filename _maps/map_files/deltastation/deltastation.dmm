@@ -112370,7 +112370,7 @@
 /obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/donut/jelly{
+/obj/effect/spawner/random/donut{
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/tile/transparent/neutral{

@@ -2934,7 +2934,7 @@
 "aqV" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/donut_box,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/prison/darkred{
 	dir = 8
 	},
@@ -27733,7 +27733,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxR" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxT" = (
@@ -27992,7 +27992,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAf" = (
@@ -28067,7 +28067,7 @@
 /obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/burger/bun,
 /obj/item/reagent_containers/food/snacks/cheesewedge,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBf" = (
@@ -36483,7 +36483,7 @@
 "hLl" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
