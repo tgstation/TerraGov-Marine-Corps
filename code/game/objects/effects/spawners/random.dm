@@ -697,7 +697,7 @@
 		/obj/item/reagent_containers/food/snacks/enrg_bar = 5,
 	)
 
-/obj/effect/spawner/random/beaker/candyweighted
+/obj/effect/spawner/random/packagedbar/candyweighted
 	name = "Random candy bar spawner"
 	icon_state = "random_foodbar_candy"
 	loot = list(
@@ -708,7 +708,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 5,
 	)
 
-/obj/effect/spawner/random/beaker/cheesewedge
+/obj/effect/spawner/random/cheesewedge
 	name = "Random cheese wedge spawner"
 	icon_state = "random_cheesewedge"
 	loot = list(
