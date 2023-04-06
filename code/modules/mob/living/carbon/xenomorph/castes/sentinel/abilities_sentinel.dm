@@ -15,7 +15,7 @@
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	damage = 12
 	spit_cost = 30
-	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 	/// The owner of this projectile.
 	var/mob/living/carbon/xenomorph/xeno_owner
 	/// The amount of stacks applied on hit.
