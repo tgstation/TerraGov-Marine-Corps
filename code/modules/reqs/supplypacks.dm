@@ -1297,27 +1297,27 @@ SUPPLIES
 /datum/supply_packs/supplies/carpplush
 	name = "Carp Plushie"
 	contains = list(/obj/item/toy/plush/carp)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/supplies/lizplush
 	name = "Lizard Plushie"
 	contains = list(/obj/item/toy/plush/lizard)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/supplies/slimeplush
 	name = "Slime Plushie"
 	contains = list(/obj/item/toy/plush/slime)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/supplies/mothplush
 	name = "Moth Plushie"
 	contains = list(/obj/item/toy/plush/moth)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/supplies/rounyplush
 	name = "Rouny Plushie"
 	contains = list(/obj/item/toy/plush/rouny)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/supplies/games
 	name = "Games crate"
@@ -1335,7 +1335,7 @@ SUPPLIES
 		/obj/item/toy/deck,
 		/obj/item/toy/deck/kotahi,
 	)
-	cost = 100
+	cost = 80
 
 /datum/supply_packs/supplies/games
 	name = "Therapy doll crate"
@@ -1347,7 +1347,7 @@ SUPPLIES
 		/obj/item/toy/plush/therapy_blue,
 		/obj/item/toy/plush/therapy_purple,
 	)
-	cost = 50
+	cost = 40
 /*******************************************************************************
 Imports
 *******************************************************************************/
