@@ -1390,6 +1390,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "build_a_sentry_attachment"
 	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
+	size_mod = 3
 	pixel_shift_x = 10
 	pixel_shift_y = 18
 	///Deploy time for the build-a-sentry
