@@ -896,6 +896,7 @@
 #include "code\game\objects\machinery\practice\medical.dm"
 #include "code\game\objects\machinery\squad_supply\supply_beacon.dm"
 #include "code\game\objects\machinery\squad_supply\supply_console.dm"
+#include "code\game\objects\machinery\squad_supply\supply_packer.dm"
 #include "code\game\objects\machinery\squad_supply\supply_pads.dm"
 #include "code\game\objects\machinery\telecomms\broadcasting.dm"
 #include "code\game\objects\machinery\telecomms\telecomunications.dm"
