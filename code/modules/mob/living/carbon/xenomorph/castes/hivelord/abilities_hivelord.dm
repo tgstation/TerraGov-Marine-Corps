@@ -71,7 +71,7 @@
 			xeno_job.add_job_points(3)
 			recycled_xeno.gib()
 		if(XENO_TIER_FOUR)
-			xeno_job.add_job_points(8)
+			xeno_job.add_job_points(4)
 			recycled_xeno.gib()
 
 
