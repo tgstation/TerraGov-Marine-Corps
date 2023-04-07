@@ -121,16 +121,14 @@
 
 	return TRUE
 
-///Always draws reagents on right click
 /obj/item/reagent_containers/hypospray/afterattack_alternate(atom/A, mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(!in_range(A, user) || !user.Adjacent(A)) //So we arent drawing reagent from a container behind a window
 		return FALSE
-	can_draw_reagent(A, user, TRUE)
+	can_draw_reagent(A, user, TRUE) //Always draws reagents on right click
 
 ///If it's possible to draw from something. Will draw_blood() when targetting a carbon, or draw_reagent() when targetting a non-carbon
-///Returns TRUE if we successfully draw from something
 /obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user)
 	if(!A.reagents)
 		return FALSE
