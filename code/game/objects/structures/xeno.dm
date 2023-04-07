@@ -152,21 +152,17 @@
 	)
 	trigger_sound = "alien_resin_move"
 
+	///The delay before the door closes automatically after being open
 	var/close_delay = 10 SECONDS
+	///The timer that tracks the delay above
 	var/closetimer
-	var/former_icon_state
+
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)
-/*
-/obj/structure/mineral_door/resin/update_icon()
-	if(open)
-		former_icon_state = icon_state
-		icon_state = "[icon_state]-open"
-	else
-		icon_state = former_icon_state*/
+
 
 /obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
@@ -228,7 +224,7 @@
 		deltimer(closetimer)
 		closetimer = null
 
-/// Toggle(close) the door
+/// Toggle(close) the door. Used for the timer's callback.
 /obj/structure/mineral_door/resin/proc/do_close()
 	if(locate(/mob/living) in loc) //there is a mob in the door, abort and reschedule the close
 		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)

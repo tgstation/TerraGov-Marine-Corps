@@ -136,13 +136,14 @@
 	icon_state = "door_closed"
 	inflatable_item = /obj/item/inflatable/door
 	popped_variant = /obj/structure/inflatable/popped/door
-
+	///Are we open?
 	var/open = FALSE
-	var/switching_states = 0
+	///Are we currently busy opening/closing?
+	var/switching_states = FALSE
 
 /obj/structure/inflatable/door/Initialize()
 	. = ..()
-	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
+	if((locate(/mob/living) in loc) && !open)
 		toggle_state()
 
 /obj/structure/inflatable/door/Bumped(atom/user)
@@ -170,6 +171,11 @@
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 
+/*
+ * Checks all the requirements for opening/closing a door before opening/closing it. Copypasta. TODO: un-copypasta this
+ *
+ * atom/user - the mob trying to open/close this door
+*/
 /obj/structure/inflatable/door/proc/try_toggle_state(atom/user)
 	if(switching_states || !ismob(user) || locate(/mob/living) in get_turf(src))
 		return
@@ -182,6 +188,8 @@
 			return
 	toggle_state()
 
+
+///The proc that actually does the door closing. Plays the animation, etc. Copypasta. TODO: un-copypasta this
 /obj/structure/inflatable/door/proc/toggle_state()
 	switching_states = TRUE
 	open = !open

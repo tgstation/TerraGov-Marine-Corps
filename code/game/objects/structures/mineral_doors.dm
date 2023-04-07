@@ -39,6 +39,11 @@
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 
+/*
+ * Checks all the requirements for opening/closing a door before opening/closing it
+ *
+ * atom/user - the mob trying to open/close this door
+*/
 /obj/structure/mineral_door/proc/try_toggle_state(atom/user)
 	if(switching_states || !ismob(user) || locate(/mob/living) in get_turf(src))
 		return
@@ -51,6 +56,8 @@
 			return
 	toggle_state()
 
+
+///The proc that actually does the door closing. Plays the sound, the animation, etc.
 /obj/structure/mineral_door/proc/toggle_state()
 	switching_states = TRUE
 	open = !open
