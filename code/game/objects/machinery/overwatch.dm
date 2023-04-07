@@ -170,12 +170,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, PROC_REF(send_order))
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_radial))
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(alert_lase))
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -603,6 +605,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, usr), 3.1 SECONDS)
 
+/obj/machinery/computer/camera_advanced/overwatch/proc/alert_lase(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+	to_chat(usr, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
+	usr.playsound_local(usr, 'sound/effects/binoctarget.ogg', 15)
+
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message(span_boldnotice("Orbital bombardment has fired! Impact imminent!"))
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
@@ -748,6 +754,24 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(SWITCH_SQUAD)
 				var/datum/squad/desired_squad = squad_select(source, target)
 				transfer_squad(target, desired_squad)
+	else if(istype(A, /obj/effect/overlay/temp/laser_target/OB))
+		var/obj/effect/overlay/temp/laser_target/OB/target = A
+		radial_options = list(
+			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+		)
+
+		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
+		switch(choice)
+			if(MARK_LASE)
+				if(marked_lase)
+					remove_mark_from_lase() //There can only be one
+					marked_lase = target
+				SSminimaps.add_marker(target, target.z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_platinum_on")
+				addtimer(CALLBACK(src, PROC_REF(remove_mark_from_lase)), 30 SECONDS)
+			if(FIRE_LASE)
+				selected_target = target
+				handle_bombard()
 	else
 		var/turf/target = get_turf(A)
 		radial_options = list(
