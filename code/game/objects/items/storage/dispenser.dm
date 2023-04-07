@@ -57,7 +57,7 @@
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_storage_space = 62
+	max_storage_space = 72
 	max_integrity = 250
 
 /obj/item/storage/backpack/dispenser/Initialize(mapload, ...)
