@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - bugfix: "ICC and some SoM armors not having their onmobs show up properly."
