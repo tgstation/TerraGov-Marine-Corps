@@ -296,11 +296,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/researcher
 	name = "Researcher"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
-	surgery = SKILL_SURGERY_PROFESSIONAL
-	melee_weapons = SKILL_MELEE_WEAK
+	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/cmo
 	name = "CMO"
