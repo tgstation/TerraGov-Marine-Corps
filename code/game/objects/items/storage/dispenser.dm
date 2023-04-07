@@ -8,8 +8,6 @@
 	resistance_flags = XENO_DAMAGEABLE
 	flags_pass = PASSABLE
 	coverage = 60
-	///list of human mobs we're currently affecting in our area.
-	var/list/mob/living/carbon/human/affecting_list
 	///if the dispenser has finished deploying and is fully active and can be used.
 	var/active = FALSE
 
