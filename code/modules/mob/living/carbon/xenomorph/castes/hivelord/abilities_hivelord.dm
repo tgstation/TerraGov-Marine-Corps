@@ -44,7 +44,7 @@
 	span_danger("We slowly feast upon \the [victim]'s carcass!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
