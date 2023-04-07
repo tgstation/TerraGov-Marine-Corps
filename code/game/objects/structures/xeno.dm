@@ -158,7 +158,6 @@
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
-	to_chat(world, "called xeno door init")
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)
 /*

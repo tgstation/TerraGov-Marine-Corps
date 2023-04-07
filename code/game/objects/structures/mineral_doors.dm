@@ -20,7 +20,6 @@
 
 /obj/structure/mineral_door/Initialize()
 	. = ..()
-	to_chat(world, "called door init")
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()
 
