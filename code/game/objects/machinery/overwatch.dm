@@ -10,17 +10,15 @@
 
 
 #define MESSAGE_SINGLE "Message this marine"
-#define ASL "Set as aSL"
+#define ASL "Set or un-set as aSL"
 #define SWITCH_SQUAD "Switch this marine's squad"
 
 #define MARK_LASE "Mark this lase on minimap"
 #define FIRE_LASE "!!FIRE OB!!"
 
 #define ORBITAL_SPOTLIGHT "Shine orbital spotlight"
-#define ANNOUNCE_TEXT "Make an announcement"
 #define MESSAGE_NEAR "Message all nearby marines"
 #define SQUAD_ACTIONS "Open squad actions menu"
-#define PLACE_MARK "Place a mark"
 
 #define MESSAGE_SQUAD "Message all marines in a squad"
 #define SWITCH_SQUAD_NEAR "Move all nearby marines to a squad"
@@ -629,27 +627,28 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("[H] is KIA!")]")
 		return
-	if(H == current_squad.squad_leader)
+	var/datum/squad/target_squad = H.assigned_squad
+	if(H == target_squad.squad_leader)
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("[H] is already the Squad Leader!")]")
 		return
 	if(is_banned_from(H.ckey, SQUAD_LEADER))
 		to_chat(usr, "[icon2html(src, usr)] [span_warning("[H] is unfit to lead!")]")
 		return
-	if(current_squad.squad_leader)
-		current_squad.message_squad("Acting Squad Leader updated to [H.real_name].")
+	if(target_squad.squad_leader)
+		target_squad.message_squad("Acting Squad Leader updated to [H.real_name].")
 		if(issilicon(usr))
-			to_chat(usr, span_boldnotice("Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
-		visible_message(span_boldnotice("Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
-		current_squad.demote_leader()
+			to_chat(usr, span_boldnotice("Squad Leader [target_squad.squad_leader] of squad '[target_squad]' has been [target_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
+		visible_message(span_boldnotice("Squad Leader [target_squad.squad_leader] of squad '[target_squad]' has been [target_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
+		target_squad.demote_leader()
 	else
-		current_squad.message_squad("Acting Squad Leader updated to [H.real_name].")
+		target_squad.message_squad("Acting Squad Leader updated to [H.real_name].")
 		if(issilicon(usr))
-			to_chat(usr, span_boldnotice("[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file."))
-		visible_message(span_boldnotice("[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file."))
+			to_chat(usr, span_boldnotice("[H.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
+		visible_message(span_boldnotice("[H.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
 
-	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(H.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
-	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
-	current_squad.promote_leader(H)
+	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(H.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [target_squad.name]. Your headset has access to the command channel (:v).</B></font>")
+	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [target_squad]'s new leader!")
+	target_squad.promote_leader(H)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/mark_insubordination()
@@ -709,6 +708,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 
 	if(old_squad)
+		if(old_squad.squad_leader == transfer_marine)
+			old_squad.demote_leader()
 		old_squad.remove_from_squad(transfer_marine)
 	new_squad.insert_into_squad(transfer_marine)
 
@@ -739,17 +740,19 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(ishuman(A))
 		radial_options = list(
 			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 		var/mob/living/carbon/human/target = A
-		if(!target == target.assigned_squad.squad_leader)
-			radial_options += list(ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"))
 		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MESSAGE_SINGLE)
 				var/input = stripped_input(usr, "Please write a message to announce to this marine:", "CIC Message")
 				current_squad.message_member(target, input, source)
 			if(ASL)
+				if(target == target.assigned_squad.squad_leader)
+					target.assigned_squad.demote_leader()
+					return
 				change_lead(target)
 			if(SWITCH_SQUAD)
 				var/datum/squad/desired_squad = squad_select(source, target)
@@ -785,7 +788,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		switch(choice)
 			if(ORBITAL_SPOTLIGHT)
 				attempt_spotlight(source, target, params)
-			if(ANNOUNCE_TEXT)
 			if(MESSAGE_NEAR)
 				var/input = stripped_input(usr, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
 				for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
