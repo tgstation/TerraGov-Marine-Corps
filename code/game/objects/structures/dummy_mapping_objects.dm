@@ -20,8 +20,8 @@
 	icon_state = "laptop"
 
 /obj/machinery/computer3/server
-	name			= "server"
-	icon			= 'icons/obj/machines/computer3.dmi'
+	name = "server"
+	icon = 'icons/obj/machines/computer3.dmi'
 	icon_state		= "serverframe"
 
 /obj/machinery/computer3/server/rack

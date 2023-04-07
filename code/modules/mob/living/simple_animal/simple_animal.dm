@@ -31,9 +31,9 @@
 	var/shouldwakeup = FALSE //convenience var for forcibly waking up an idling AI on next check.
 
 	//Interaction
-	var/response_help   = "pokes"
+	var/response_help = "pokes"
 	var/response_disarm = "shoves"
-	var/response_harm   = "hits"
+	var/response_harm = "hits"
 	var/harm_intent_damage = 3
 	var/force_threshold = 0 //Minimum force required to deal any damage
 	var/healable = TRUE

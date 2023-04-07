@@ -38,7 +38,7 @@
 	var/base_mag_icon
 
 	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
-	var/scatter_mod 	= 0
+	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.

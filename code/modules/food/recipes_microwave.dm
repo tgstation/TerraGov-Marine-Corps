@@ -1142,6 +1142,6 @@
 	result = /obj/item/reagent_containers/food/snacks/mint
 
 /datum/recipe/larva_soup
-	reagents = list(/datum/reagent/water  = 5, /datum/reagent/consumable/larvajelly = 5)
+	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/larvajelly = 5)
 	result = /obj/item/reagent_containers/food/snacks/larvasoup
 

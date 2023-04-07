@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	//BEGIN CACHED ICON GENERATION.
 
 		// Why don't we just make skeletons/shadows/golems a species? ~Z
-		var/race_icon =   species.icobase
+		var/race_icon = species.icobase
 
 		//Robotic limbs are handled in get_icon() so all we worry about are missing or dead limbs.
 		//No icon stored, so we need to start with a basic one.

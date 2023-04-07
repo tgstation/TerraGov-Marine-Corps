@@ -93,7 +93,7 @@
 	var/startWhen		= 0	//When in the lifetime to call start().
 	var/announce_when	= 0	//When in the lifetime to call announce(). If you don't want it to announce use announce_chance, below.
 	var/announce_chance	= 100 // Probability of announcing, used in prob(), 0 to 100, default 100. Used in ion storms currently.
-	var/endWhen			= 0	//When in the lifetime the event should end.
+	var/endWhen = 0	//When in the lifetime the event should end.
 
 	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
 	var/current_players	= 0 //Amount of of alive, non-AFK human players on server at the time of event start

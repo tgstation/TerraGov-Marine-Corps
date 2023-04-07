@@ -10,11 +10,11 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
 	max_integrity = 250
-	w_class 	= 3
-	throwforce 	= 5
+	w_class = 3
+	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
-	force 		= 5
+	force = 5
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT

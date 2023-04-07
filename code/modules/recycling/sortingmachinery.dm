@@ -446,7 +446,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 		to_chat(user, "You sliced the floorweld off the delivery chute.")
 		var/obj/structure/disposalconstruct/C = new(loc)
-		C.ptype = 8 // 8 =  Delivery chute
+		C.ptype = 8 // 8 = Delivery chute
 		C.update()
 		C.anchored = TRUE
 		C.density = TRUE

@@ -44,7 +44,7 @@
 	var/datum/limb/affecting = user.zone_selected //Find what the player is aiming at
 
 	//apply damage
-	var/weaken_duration =  target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE)
+	var/weaken_duration = target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE)
 
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 

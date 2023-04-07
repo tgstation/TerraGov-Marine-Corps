@@ -184,14 +184,14 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/obj/item/photo/photo_side = new(null, ps)
 	//General Record
 	var/datum/data/record/G = new()
-	G.fields["id"]			= id
+	G.fields["id"] = id
 	G.fields["name"]		= H.real_name
 	G.fields["rank"]		= assignment
 	G.fields["squad"]		= H.assigned_squad ? H.assigned_squad.name : null
-	G.fields["age"]			= H.age
+	G.fields["age"] = H.age
 	G.fields["p_stat"]		= "Active"
 	G.fields["m_stat"]		= "Stable"
-	G.fields["sex"]			= H.gender
+	G.fields["sex"] = H.gender
 	G.fields["species"]		= H.get_species()
 	G.fields["citizenship"]	= H.citizenship
 	G.fields["religion"]	= H.religion
@@ -205,16 +205,16 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	//Medical Record
 	var/datum/data/record/M = new()
-	M.fields["id"]			= id
+	M.fields["id"] = id
 	M.fields["name"]		= H.real_name
 	M.fields["b_type"]		= H.b_type
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"
 	M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
-	M.fields["alg"]			= "None"
+	M.fields["alg"] = "None"
 	M.fields["alg_d"]		= "No allergies have been detected in this patient."
-	M.fields["cdi"]			= "None"
+	M.fields["cdi"] = "None"
 	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 	M.fields["last_scan_time"]		= null
 	M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
@@ -228,7 +228,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	//Security Record
 	var/datum/data/record/S = new()
-	S.fields["id"]			= id
+	S.fields["id"] = id
 	S.fields["name"]		= H.real_name
 	S.fields["criminal"]	= "None"
 	S.fields["mi_crim"]		= "None"
@@ -291,16 +291,16 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 /proc/create_medical_record(mob/living/carbon/human/H)
 	var/datum/data/record/M = new
-	M.fields["id"]			= null
+	M.fields["id"] = null
 	M.fields["name"]		= H.real_name
 	M.fields["b_type"]		= H.b_type
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"
 	M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
-	M.fields["alg"]			= "None"
+	M.fields["alg"] = "None"
 	M.fields["alg_d"]		= "No allergies have been detected in this patient."
-	M.fields["cdi"]			= "None"
+	M.fields["cdi"] = "None"
 	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 	M.fields["last_scan_time"] = 0
 	M.fields["last_scan_result"] = "No scan data on record"

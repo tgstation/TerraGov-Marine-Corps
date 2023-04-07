@@ -364,7 +364,7 @@
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = TRUE
-	tinted =  TRUE
+	tinted = TRUE
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
@@ -561,7 +561,7 @@
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
 /obj/structure/window/framed/colony/reinforced/tinted
-	name =  "tinted reinforced window"
+	name = "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
 	opacity = TRUE
 

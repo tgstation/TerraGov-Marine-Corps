@@ -107,7 +107,7 @@
 	uptype = "reinforced components"
 
 /obj/item/minerupgrade/overclock
-	name =  "high-efficiency drill"
+	name = "high-efficiency drill"
 	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
