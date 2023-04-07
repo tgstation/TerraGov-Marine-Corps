@@ -132,8 +132,8 @@
 
 
 
-
-/obj/structure/inflatable/door //Based on mineral door code
+//TODO MAKE ALL OF THE SHIT BELOW NOT SHAMELESS COPYPASTA
+/obj/structure/inflatable/door //Based on mineral door code (why would you do this)
 	name = "inflatable door"
 	density = TRUE
 	anchored = TRUE
@@ -143,13 +143,13 @@
 	icon_state = "door_closed"
 
 	var/state = 0 //closed, 1 == open
-	var/isSwitchingStates = 0
+	var/switching_states = 0
 
 /obj/structure/inflatable/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	return TryToSwitchState(user)
+	return toggle_state(user)
 
 /obj/structure/inflatable/door/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	. = ..()
@@ -158,8 +158,8 @@
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 
-/obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates)
+/obj/structure/inflatable/door/proc/toggle_state(atom/user)
+	if(switching_states)
 		return
 	if(ismob(user))
 		var/mob/M = user
@@ -176,13 +176,13 @@
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)
-		Close()
+		close()
 	else
-		Open()
+		open()
 
 
-/obj/structure/inflatable/door/proc/Open()
-	isSwitchingStates = 1
+/obj/structure/inflatable/door/proc/open()
+	switching_states = 1
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
 	sleep(1 SECONDS)
@@ -190,10 +190,10 @@
 	opacity = FALSE
 	state = 1
 	update_icon()
-	isSwitchingStates = 0
+	switching_states = 0
 
-/obj/structure/inflatable/door/proc/Close()
-	isSwitchingStates = 1
+/obj/structure/inflatable/door/proc/close()
+	switching_states = 1
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_closing",src)
 	sleep(1 SECONDS)
@@ -201,7 +201,7 @@
 	opacity = FALSE
 	state = 0
 	update_icon()
-	isSwitchingStates = 0
+	switching_states = 0
 
 /obj/structure/inflatable/door/update_icon()
 	if(state)
@@ -226,10 +226,6 @@
 		spawn(50)
 			new /obj/item/inflatable/door(loc)
 			qdel(src)
-
-
-
-
 
 
 /obj/item/storage/briefcase/inflatable
