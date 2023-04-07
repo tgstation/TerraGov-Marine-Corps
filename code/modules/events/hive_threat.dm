@@ -51,12 +51,7 @@
 		receiving_xeno.salve_healing()
 		if(receiving_xeno == drainer)
 			receiving_xeno.evolution_stored = receiving_xeno.xeno_caste.evolution_threshold
-			if(receiving_xeno.tier == XENO_UPGRADE_FOUR || receiving_xeno.tier == XENO_UPGRADE_THREE)
-				continue
-			var/datum/xeno_caste/tier_two = GLOB.xeno_caste_datums[receiving_xeno.caste_base_type][XENO_UPGRADE_TWO]
-			if(!tier_two)
-				continue
-			receiving_xeno.upgrade_stored = tier_two.upgrade_threshold
+			receiving_xeno.upgrade_stored += 1000
 	SEND_SOUND(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 	addtimer(CALLBACK(src, PROC_REF(remove_blessing)), 2 MINUTES)
 

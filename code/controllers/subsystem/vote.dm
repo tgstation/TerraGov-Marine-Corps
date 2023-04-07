@@ -474,6 +474,12 @@ SUBSYSTEM_DEF(vote)
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
 	SIGNAL_HANDLER
 	if(owner)
+		if(owner.client)
+			owner.client?.player_details.player_actions -= src
+
+		else if(owner.ckey)
+			var/datum/player_details/associated_details = GLOB.player_details[owner.ckey]
+			associated_details?.player_actions -= src
 		remove_action(owner)
 	qdel(src)
 
