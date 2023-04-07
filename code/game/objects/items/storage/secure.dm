@@ -167,8 +167,8 @@
 	icon_sparking = "safespark"
 	flags_atom = CONDUCT
 	force = 8.0
-	w_class = 8.0
-	max_w_class = 8
+	w_class = WEIGHT_CLASS_IMMOVABLE
+	max_w_class = WEIGHT_CLASS_IMMOVABLE
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)
