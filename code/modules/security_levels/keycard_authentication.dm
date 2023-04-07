@@ -21,6 +21,7 @@
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
+	resistance_flags = INDESTRUCTIBLE
 
 
 /obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)

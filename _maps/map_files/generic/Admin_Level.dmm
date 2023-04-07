@@ -1663,7 +1663,6 @@
 /obj/item/clothing/suit/armor/captain,
 /obj/item/clothing/under/gimmick/rank/captain/suit,
 /obj/item/clothing/gloves/captain,
-/obj/item/card/id/captains_spare,
 /obj/item/tool/stamp/captain,
 /obj/item/clothing/head/caphat,
 /turf/open/floor/grimy,
