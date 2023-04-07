@@ -208,7 +208,7 @@
 
 /obj/item/ammo_magazine/standard_gpmg
 	name = "\improper MG-60 GPMG box magazine (10x26mm)"
-	desc = "A drum magazine for the MG-60 general purpose machinegun."
+	desc = "A belt box for the MG-60 general purpose machinegun."
 	icon_state = "t60"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
