@@ -21,54 +21,8 @@
 
 ///finishes deploying after the deploy timer
 /obj/machinery/deployable/dispenser/proc/deploy()
-	affecting_list = list()
-	for(var/mob/living/carbon/human/human in view(2, src))
-		if(!(human.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
-			continue
-		RegisterSignal(human, COMSIG_PARENT_QDELETING, PROC_REF(on_affecting_qdel))
-		affecting_list[human] = beam(human, "blood_light", maxdistance = 3)
-		RegisterSignal(affecting_list[human], COMSIG_PARENT_QDELETING, PROC_REF(on_beam_qdel))
-		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
-	for(var/turf/turfs AS in RANGE_TURFS(2, src))
-		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(entered_tiles))
 	active = TRUE
 	START_PROCESSING(SSobj, src)
-
-/obj/machinery/deployable/dispenser/process()
-	for(var/mob/living/carbon/human/affecting AS in affecting_list)
-		if(!line_of_sight(src, affecting, 2))
-			qdel(affecting_list[affecting])
-			affecting_list -= affecting
-			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-			continue
-		affecting.heal_overall_damage(2, 2, TRUE, TRUE)
-
-///checks if a mob that moved close is elligible to get heal beamed.
-/obj/machinery/deployable/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
-	SIGNAL_HANDLER
-	if(!ishuman(entering) || !(entering.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
-		return
-	if(entering in affecting_list)
-		return
-	if(!line_of_sight(src, entering))
-		return
-
-	RegisterSignal(entering, COMSIG_PARENT_QDELETING, PROC_REF(on_affecting_qdel))
-	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
-	affecting_list[entering] = beam(entering, "blood_light", maxdistance = 3)
-	RegisterSignal(affecting_list[entering], COMSIG_PARENT_QDELETING, PROC_REF(on_beam_qdel))
-
-///cleans human from affecting_list when it gets qdeletted
-/obj/machinery/deployable/dispenser/proc/on_affecting_qdel(datum/source)
-	SIGNAL_HANDLER
-	affecting_list -= source
-
-///cleans human from affecting_list when the beam gets qdeletted
-/obj/machinery/deployable/dispenser/proc/on_beam_qdel(datum/source)
-	SIGNAL_HANDLER
-	var/datum/beam/beam = source
-	UnregisterSignal(beam.target, COMSIG_PARENT_QDELETING)
-	affecting_list -= beam.target
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
 	. = ..()
