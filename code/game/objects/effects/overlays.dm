@@ -227,15 +227,15 @@
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/OB
+/obj/effect/overlay/temp/laser_target/cas/OB //This is a subtype of CAS so that CIC gets cameras on the lase
 	icon_state = "laser_target2"
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
+/obj/effect/overlay/temp/laser_target/cas/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
-/obj/effect/overlay/temp/laser_target/OB/Destroy()
+/obj/effect/overlay/temp/laser_target/cas/OB/Destroy()
 	GLOB.active_laser_targets -= src
 	return ..()
 

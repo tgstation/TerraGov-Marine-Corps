@@ -276,7 +276,7 @@
 			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target/cas/OB/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
