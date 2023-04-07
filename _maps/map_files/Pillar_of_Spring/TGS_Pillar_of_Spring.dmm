@@ -5556,7 +5556,7 @@
 /area/mainship/engineering/port_atmos)
 "hlO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/bananabreadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/bananabreadslice,
 /obj/item/reagent_containers/food/snacks/chawanmushi,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -9844,9 +9844,6 @@
 	pixel_y = 3
 	},
 /obj/item/whistle,
-/obj/machinery/door_control/mainship/req{
-	pixel_y = -5
-	},
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
@@ -11120,7 +11117,7 @@
 /area/mainship/living/grunt_rnr)
 "osT" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/appletart,
+/obj/item/reagent_containers/food/snacks/pastries/appletart,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ouq" = (
@@ -12273,7 +12270,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "pRb" = (
-/obj/structure/flora/pottedplant/three,
+/obj/effect/spawner/random/plant,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "pRo" = (
@@ -14420,7 +14417,7 @@
 "sFo" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /obj/item/storage/box/tgmc_mre,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -14524,9 +14521,9 @@
 /area/mainship/hallways/hangar)
 "sOJ" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/item/clothing/head/helmet/marine/som,
-/obj/item/reagent_containers/food/snacks/brainburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "sPc" = (
@@ -14663,7 +14660,7 @@
 /area/mainship/medical/medical_science)
 "sXf" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "sXo" = (
@@ -15674,7 +15671,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "ufq" = (

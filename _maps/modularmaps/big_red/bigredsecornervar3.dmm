@@ -561,7 +561,6 @@
 "Ck" = (
 /obj/structure/table/reinforced,
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},

@@ -2999,7 +2999,7 @@
 /area/lv624/lazarus/canteen)
 "qn" = (
 /obj/structure/window/reinforced,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /obj/item/tool/kitchen/tray,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)

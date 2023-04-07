@@ -96,7 +96,7 @@
 "gJ" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/blood,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "gL" = (
@@ -109,8 +109,8 @@
 /area/bigredv2/outside/general_store)
 "hf" = (
 /obj/structure/table,
-/obj/item/toy/sword,
 /obj/item/toy/gun,
+/obj/item/toy/katana,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "hA" = (
@@ -206,7 +206,7 @@
 /area/bigredv2/outside/general_store)
 "lL" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "mk" = (
@@ -245,8 +245,8 @@
 /area/bigredv2/outside/general_store)
 "oM" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/burger/bunweighted,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "oN" = (
@@ -268,16 +268,16 @@
 /area/bigredv2/outside/general_store)
 "pH" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "qO" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -384,8 +384,8 @@
 /area/bigredv2/outside/general_store)
 "vs" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/burger/bunweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
@@ -404,11 +404,11 @@
 /area/bigredv2/outside/general_store)
 "wZ" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -421,14 +421,14 @@
 /area/bigredv2/outside/general_store)
 "ym" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/cheesewedge,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "yx" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/candy,
+/obj/effect/spawner/random/packagedbar/candyweighted,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "yU" = (
@@ -465,7 +465,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "zX" = (
@@ -507,7 +507,7 @@
 /area/bigredv2/outside/general_store)
 "Ev" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
+/obj/effect/spawner/random/burger/bunweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -543,7 +543,12 @@
 "Fz" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"FW" = (
+/obj/structure/table,
+/obj/item/toy/plush/carp,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "GR" = (
@@ -669,10 +674,10 @@
 /area/bigredv2/outside/general_store)
 "Ns" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/bun,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/cheesewedge,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "NI" = (
@@ -686,7 +691,7 @@
 /area/bigredv2/outside/general_store)
 "Oj" = (
 /obj/structure/table,
-/obj/item/toy/sword,
+/obj/item/toy/beach_ball,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "Oq" = (
@@ -805,10 +810,10 @@
 /area/bigredv2/outside/general_store)
 "TU" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/donkpocket,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/effect/spawner/random/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "Ub" = (
@@ -1020,7 +1025,7 @@ zL
 Ad
 sA
 hX
-Oj
+FW
 SM
 "}
 (8,1,1) = {"
