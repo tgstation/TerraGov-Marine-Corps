@@ -1,5 +1,5 @@
 /obj/machinery/loadout_vendor
-	name = "automated vendor"
+	name = "\improper Automated Loadout Vendor"
 	desc = "An advanced vendor used by the TGMC to rapidly equip their soldiers"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "specialist"

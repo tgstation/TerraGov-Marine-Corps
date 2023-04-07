@@ -1233,7 +1233,7 @@
 //Sectoid Rifle
 
 /obj/item/weapon/gun/rifle/sectoid_rifle
-	name = "\improper alien rifle"
+	name = "alien rifle"
 	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
 	icon_state = "alien_rifle"
 	item_state = "alien_rifle"
@@ -1631,7 +1631,7 @@
 //-------------------------------------------------------
 // GL-54 grenade launcher
 /obj/item/weapon/gun/rifle/tx54
-	name = "GL-54 grenade launcher"
+	name = "\improper GL-54 grenade launcher"
 	desc = "A magazine fed, semiautomatic grenade launcher designed to shoot airbursting smart grenades. Requires a T49 scope for precision aiming."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx54"
@@ -1680,7 +1680,7 @@
 // AR-55 built in grenade launcher
 
 /obj/item/weapon/gun/rifle/tx54/mini
-	name = "GL-55 20mm grenade launcher"
+	name = "\improper GL-55 20mm grenade launcher"
 	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "tx55gl"
