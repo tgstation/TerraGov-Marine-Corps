@@ -735,16 +735,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 ///Quick-select radial menu for Overwatch
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)
-	var/list/radial_options //THESE AREE BAD AND I NEED TO MOVE THESE
-	var/choice
 	if(ishuman(A))
-		radial_options = list(
+		var/list/radial_options = list(
 			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 		var/mob/living/carbon/human/target = A
-		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
+		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MESSAGE_SINGLE)
 				var/input = stripped_input(usr, "Please write a message to announce to this marine:", "CIC Message")
@@ -759,12 +757,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				transfer_squad(target, desired_squad)
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/cas/OB))
 		var/obj/effect/overlay/temp/laser_target/cas/OB/target = A
-		radial_options = list(
+		var/list/radial_options = list(
 			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 
-		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
+		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(MARK_LASE)
 				if(marked_lase)
@@ -777,14 +775,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				handle_bombard()
 	else
 		var/turf/target = get_turf(A)
-		radial_options = list(
+		var/list/radial_options = list(
 			ORBITAL_SPOTLIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			ANNOUNCE_TEXT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
 		)
 
-		choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
+		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
 		switch(choice)
 			if(ORBITAL_SPOTLIGHT)
 				attempt_spotlight(source, target, params)
