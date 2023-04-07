@@ -449,6 +449,13 @@
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	hotkey_keys = list("X")
 
+/datum/keybinding/xeno/recycle
+	name = "Recycle"
+	full_name = "Hivelord: Recycle xenomorph"
+	description = "Recycles a fellow dead xenomorph for psy points and larva points"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/change_form
 	name = "change_form"
 	full_name = "Hivemind: Change Form"

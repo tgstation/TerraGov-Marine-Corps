@@ -4,6 +4,78 @@
 //#endif
 
 // ***************************************
+// *********** Recycle
+// ***************************************
+/datum/action/xeno_action/activable/Recycle
+	name = "Recycle"
+	action_icon_state = "recycle"
+	desc = "We devour the body of a fellow fallen xeno. Gaining psy points and larva points for it."
+	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
+	)
+	plasma_cost = 150
+	gamemode_flags = ABILITY_DISTRESS
+
+/datum/action/xeno_action/activable/Recycle/can_use_ability(atom/target)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/victim = target
+	if(!.)
+		return FALSE
+	if(X.do_actions)
+		X.balloon_alert(X, "Busy")
+		return FALSE
+	if(!X.Adjacent(victim))
+		X.balloon_alert(X, "Too far")
+		return FALSE
+	if(X.on_fire)
+		X.balloon_alert(X, "Cannot while burning")
+		return FALSE
+	if(!iscarbon(target)||!isxeno(target))
+		X.balloon_alert(X, "Cannot recycle")
+		return FALSE
+	if(victim.stat != DEAD)
+		X.balloon_alert(X, "Sister isn't dead")
+		return FALSE
+
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message(span_warning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
+	span_danger("We slowly feast upon \the [victim]'s carcass!"), null, 20)
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound_vore_escape.ogg', 40, channel = channel)
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
+		span_danger("We retract our inner jaw."), null, 20)
+		X.stop_sound_channel(channel)
+		return FALSE
+	succeed_activate() //dew it
+
+/datum/action/xeno_action/activable/Recycle/use_ability(atom/target)
+	. = ..()
+	var/mob/living/carbon/xenomorph/recycled_xeno = target
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/mob/living/carbon/xenomorph/X = owner
+	switch(recycled_xeno.tier)
+		if(XENO_TIER_MINION)
+			recycled_xeno.gib()
+		if(XENO_TIER_ZERO)
+			X.balloon_alert(X, "Too young.")
+		if(XENO_TIER_ONE)
+			xeno_job.add_job_points(1)
+			recycled_xeno.gib()
+		if(XENO_TIER_TWO)
+			xeno_job.add_job_points(2)
+			recycled_xeno.gib()
+		if(XENO_TIER_THREE)
+			xeno_job.add_job_points(3)
+			recycled_xeno.gib()
+		if(XENO_TIER_FOUR)
+			xeno_job.add_job_points(8)
+			recycled_xeno.gib()
+
+
+// ***************************************
 // *********** Resin building
 // ***************************************
 /datum/action/xeno_action/activable/secrete_resin/hivelord
