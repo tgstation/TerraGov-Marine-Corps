@@ -162,7 +162,7 @@
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
-	icon = 'icons/obj/items/food/packaged.dmi'
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	icon_state = "pizzabox1"
 
 	var/open = 0 // Is the box open?
@@ -199,7 +199,7 @@
 			icon_state = "pizzabox_open"
 
 		if( pizza )
-			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
+			var/image/pizzaimg = image("pizzaspaghetti.dmi", icon_state = pizza.icon_state)
 			pizzaimg.pixel_y = -3
 			overlays += pizzaimg
 
@@ -216,7 +216,7 @@
 				doimgtag = 1
 
 		if( doimgtag )
-			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
+			var/image/tagimg = image("pizzaspaghetti.dmi", icon_state = "pizzabox_tag")
 			tagimg.pixel_y = boxes.len * 3
 			overlays += tagimg
 
