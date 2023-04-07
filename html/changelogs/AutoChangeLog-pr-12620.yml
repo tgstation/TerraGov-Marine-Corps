@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - imageadd: "Replaced some crusty food icons with TG versions"
+  - code_imp: "Reorganized food icons to not be in a single giant file"
