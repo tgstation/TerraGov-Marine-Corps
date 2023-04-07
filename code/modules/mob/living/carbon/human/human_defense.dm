@@ -37,7 +37,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (!def_zone)
 		return 1.0
 
-	var/siemens_coefficient = 1.0
+	var/siemens_coefficient = 1
 
 	if(species.species_flags & IS_INSULATED)
 		siemens_coefficient = 0

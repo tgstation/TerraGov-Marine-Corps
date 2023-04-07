@@ -9,8 +9,8 @@
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 15.0
-	throwforce = 4.0
+	force = 15
+	throwforce = 4
 	item_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
@@ -85,7 +85,7 @@
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	force = 70.0
+	force = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."

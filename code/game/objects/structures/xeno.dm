@@ -287,7 +287,7 @@
 
 /obj/structure/mineral_door/resin/thick
 	max_integrity = 160
-	hardness = 2.0
+	hardness = 2
 
 /obj/item/resin_jelly
 	name = "resin jelly"

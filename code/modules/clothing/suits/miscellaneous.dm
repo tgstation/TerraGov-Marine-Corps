@@ -16,7 +16,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
 	allowed = list (/obj/item/weapon/gun)
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armour"
@@ -26,7 +26,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
 	allowed = list (/obj/item/weapon/gun)
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /*
 * Costume
@@ -133,7 +133,7 @@
 	item_state = "chickensuit"
 	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 /obj/item/clothing/suit/monkeysuit
@@ -143,7 +143,7 @@
 	item_state = "monkeysuit"
 	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 /obj/item/clothing/suit/holidaypriest
@@ -277,7 +277,7 @@
 	item_state = "xenos_helm"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1

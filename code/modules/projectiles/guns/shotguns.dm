@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
-	force = 14.0
+	force = 14
 	caliber = CALIBER_12G //codex
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex

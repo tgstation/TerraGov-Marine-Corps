@@ -3,9 +3,9 @@
 	desc = "A controll for launching pods. Some people prefer firing Mechas."
 	icon_state = "computer_generic"
 	circuit = /obj/item/circuitboard/computer/pod
-	var/id = 1.0
-	var/timing = 0.0
-	var/time = 30.0
+	var/id = 1
+	var/timing = 0
+	var/time = 30
 	var/title = "Mass Driver Controls"
 
 /obj/machinery/computer/pod/old
