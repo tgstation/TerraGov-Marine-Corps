@@ -6,7 +6,7 @@
 // ***************************************
 // *********** Recycle
 // ***************************************
-/datum/action/xeno_action/activable/Recycle
+/datum/action/xeno_action/activable/recycle
 	name = "Recycle"
 	action_icon_state = "recycle"
 	desc = "We devour the body of a fellow fallen xeno. Gaining psy points and larva points for it."
@@ -17,7 +17,7 @@
 	plasma_cost = 150
 	gamemode_flags = ABILITY_DISTRESS
 
-/datum/action/xeno_action/activable/Recycle/can_use_ability(atom/target)
+/datum/action/xeno_action/activable/recycle/can_use_ability(atom/target)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/victim = target
@@ -43,7 +43,7 @@
 	X.visible_message(span_warning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
 	span_danger("We slowly feast upon \the [victim]'s carcass!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
-	playsound(X, 'sound_vore_escape.ogg', 40, channel = channel)
+	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
@@ -51,7 +51,7 @@
 		return FALSE
 	succeed_activate() //dew it
 
-/datum/action/xeno_action/activable/Recycle/use_ability(atom/target)
+/datum/action/xeno_action/activable/recycle/use_ability(atom/target)
 	. = ..()
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
