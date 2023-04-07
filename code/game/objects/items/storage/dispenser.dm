@@ -63,7 +63,7 @@
 
 /obj/item/storage/backpack/dispenser
 	name = "TX-9000 provisions dispenser"
-	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby synthetics. Your allies will often ask you to lay down one of those."
+	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a big amount of items on it."
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
