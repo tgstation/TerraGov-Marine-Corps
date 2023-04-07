@@ -42,9 +42,9 @@
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.
-	var/aim_speed_mod	= 0
+	var/aim_speed_mod = 0
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()

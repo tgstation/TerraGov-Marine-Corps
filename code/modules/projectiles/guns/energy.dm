@@ -955,7 +955,7 @@
 	accuracy_mult = 1.1
 	aim_slowdown = 0.65
 	damage_falloff_mult = 0.4
-	wield_delay	= 0.7 SECONDS
+	wield_delay = 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/magharness
@@ -994,7 +994,7 @@
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 11, "rail_y" = 29, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	aim_slowdown = 1
-	wield_delay	= 1.2 SECONDS
+	wield_delay = 1.2 SECONDS
 	fire_delay = 0.15 SECONDS
 	scatter = 3
 	accuracy_mult_unwielded = 0.4

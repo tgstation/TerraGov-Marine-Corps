@@ -97,7 +97,7 @@
 /proc/SolveQuadratic(a, b, c)
 	ASSERT(a)
 	. = list()
-	var/d		= b*b - 4 * a * c
+	var/d = b*b - 4 * a * c
 	var/bottom = 2 * a
 	if(d < 0)
 		return

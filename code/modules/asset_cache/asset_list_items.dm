@@ -88,7 +88,7 @@
 	..()
 
 /datum/asset/simple/namespaced/common
-	assets = list("padlock.png"	= 'html/images/padlock.png')
+	assets = list("padlock.png" = 'html/images/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')
 
 /datum/asset/simple/permissions

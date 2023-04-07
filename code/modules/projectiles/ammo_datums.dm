@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///How many stacks of sundering to apply to a mob on hit
 	var/sundering = 0
 	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
-	var/airburst_multiplier	= 0.1
+	var/airburst_multiplier = 0.1
 	///What kind of behavior the ammo has
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
@@ -1096,7 +1096,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90
 	penetration = 0
 	sundering = 25
-	airburst_multiplier	= 0.2
+	airburst_multiplier = 0.2
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1289,7 +1289,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 12
 	max_range = 30
-	airburst_multiplier	= 1
+	airburst_multiplier = 1
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1354,7 +1354,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "20mm_airburst"
 	handful_amount = 3
 	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
+	sound_bounce = "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0.5
@@ -1667,7 +1667,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "40mm_grenade"
 	handful_amount = 1
 	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
+	sound_bounce = "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_IFF
 	armor_type = "bomb"
 	damage_falloff = 0.5
@@ -1766,7 +1766,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rocket_he"
 	hud_state_empty = "rocket_empty"
 	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
+	sound_bounce = "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0
@@ -3140,7 +3140,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "acid spit"
 	icon_state = "xeno_acid"
 	sound_hit 	 = "acid_hit"
-	sound_bounce	= "acid_bounce"
+	sound_bounce = "acid_bounce"
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 50
@@ -3352,7 +3352,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "glob of acid"
 	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
-	sound_bounce	= "acid_bounce"
+	sound_bounce = "acid_bounce"
 	icon_key = BOILER_GLOB_ACID
 	select_text = "We will now fire corrosive acid. This is lethal!"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
@@ -3571,7 +3571,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "MSpearFlight"
 	sound_hit 	 = "alloy_hit"
 	sound_armor	 = "alloy_armor"
-	sound_bounce	= "alloy_bounce"
+	sound_bounce = "alloy_bounce"
 	armor_type = BULLET
 	accuracy = 20
 	accurate_range = 15

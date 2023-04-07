@@ -3,7 +3,7 @@
 
 	var/target
 	var/name = "nobody's admin datum (no rank)"
-	var/client/owner	= null
+	var/client/owner = null
 	var/fakekey = null
 
 	var/datum/marked_datum

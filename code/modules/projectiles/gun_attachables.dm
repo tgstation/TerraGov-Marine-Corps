@@ -87,9 +87,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Increases the weight class.
 	var/size_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.
-	var/aim_speed_mod	= 0
+	var/aim_speed_mod = 0
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 	///Changes the speed of projectiles fired
 	var/attach_shell_speed_mod = 0
 	///Modifies accuracy/scatter penalty when firing onehanded while moving.
@@ -1108,7 +1108,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 3
-	aim_speed_mod	= -0.1
+	aim_speed_mod = -0.1
 	aim_mode_movement_mult = -0.2
 
 

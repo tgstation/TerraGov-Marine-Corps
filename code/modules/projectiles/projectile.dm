@@ -159,7 +159,7 @@
 	damage = ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
 	sundering = ammo.sundering
-	scatter		= ammo.scatter
+	scatter = ammo.scatter
 	airburst_multiplier = ammo.airburst_multiplier
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.

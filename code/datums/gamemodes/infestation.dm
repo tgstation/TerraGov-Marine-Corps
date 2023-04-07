@@ -63,16 +63,16 @@
 			if(length(GLOB.humans_by_zlevel["[i]"]))
 				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
-	var/numHostsPlanet	= counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/numHostsShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
-	var/numHostsTransit	= counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
-	var/numXenosPlanet	= counts[ZTRAIT_GROUND][FACTION_XENO]
-	var/numXenosShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
-	var/numXenosTransit	= counts[ZTRAIT_RESERVED][FACTION_XENO]
-	var/hostLocationP	= locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/hostLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
-	var/xenoLocationP	= locations[ZTRAIT_GROUND][FACTION_XENO]
-	var/xenoLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numHostsPlanet = counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/numHostsShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/numHostsTransit = counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
+	var/numXenosPlanet = counts[ZTRAIT_GROUND][FACTION_XENO]
+	var/numXenosShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numXenosTransit = counts[ZTRAIT_RESERVED][FACTION_XENO]
+	var/hostLocationP = locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/hostLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/xenoLocationP = locations[ZTRAIT_GROUND][FACTION_XENO]
+	var/xenoLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 
 	//Adjust the randomness there so everyone gets the same thing
 	var/numHostsShipr = BIOSCAN_DELTA(numHostsShip, delta)

@@ -124,7 +124,7 @@
 					mapHeight = map['view-size'].y,
 					tilesShown = tooltip.client_view_w
 					realIconSize = mapWidth / tilesShown,
-					resizeRatio		= realIconSize / tooltip.tileSize,
+					resizeRatio = realIconSize / tooltip.tileSize,
 					//Calculate letterboxing offsets
 					leftOffset = (map.size.x - mapWidth) / 2,
 					topOffset = (map.size.y - mapHeight) / 2;
@@ -222,8 +222,8 @@
 					pixelRatio = window.devicePixelRatio;
 				}
 
-				var docWidth	= Math.floor($wrap.outerWidth() * pixelRatio),
-					docHeight	= Math.floor($wrap.outerHeight() * pixelRatio);
+				var docWidth = Math.floor($wrap.outerWidth() * pixelRatio),
+					docHeight = Math.floor($wrap.outerHeight() * pixelRatio);
 
 				if (posY + docHeight > map.size.y) { //Is the bottom edge below the window? Snap it up if so
 					posY = (posY - docHeight) - realIconSize - tooltip.padding;
