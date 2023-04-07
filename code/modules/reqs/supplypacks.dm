@@ -646,16 +646,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
-/datum/supply_packs/weapons/BigAmmoBox
-	name = "Big Ammo Box (10x24mm)"
-	contains = list(/obj/item/big_ammo_box)
-	cost = 50
-
-/datum/supply_packs/weapons/BigAmmoBoxSMG
-	name = "Big Ammo Box (10x20mm)"
-	contains = list(/obj/item/big_ammo_box/smg)
-	cost = 50
-
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
