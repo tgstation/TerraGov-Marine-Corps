@@ -22,7 +22,6 @@
 ///finishes deploying after the deploy timer
 /obj/machinery/deployable/dispenser/proc/deploy()
 	active = TRUE
-	START_PROCESSING(SSobj, src)
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
 	. = ..()
@@ -44,13 +43,6 @@
 		return
 	active = FALSE
 	balloon_alert_to_viewers("Undeploying...")
-	for(var/turf/turfs AS in RANGE_TURFS(2, src))
-		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
-	for(var/mob/living/carbon/human/affecting AS in affecting_list)
-		qdel(affecting_list[affecting])
-		UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-	affecting_list = null
-	STOP_PROCESSING(SSobj, src)
 	flick("dispenser_undeploy", src)
 	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(disassemble), user), 4 SECONDS)
