@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "Xenomorph Queen ban now bans shrike as well"
