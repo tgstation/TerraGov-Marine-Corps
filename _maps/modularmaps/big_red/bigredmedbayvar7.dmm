@@ -281,7 +281,7 @@
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner,
-/obj/item/reagent_containers/food/snacks/margheritaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "iH" = (
@@ -826,7 +826,7 @@
 /area/bigredv2/outside/medical)
 "zN" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/reagent_containers/food/snacks/margheritaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "zT" = (
@@ -948,7 +948,7 @@
 /area/bigredv2/outside/medical)
 "Ca" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "Cj" = (

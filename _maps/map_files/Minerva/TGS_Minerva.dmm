@@ -2081,10 +2081,10 @@
 /area/mainship/hull/port_hull)
 "gc" = (
 /obj/structure/closet/secure_closet/freezer,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
@@ -9328,7 +9328,7 @@
 /area/mainship/hallways/starboard_hallway)
 "Bq" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/creamcheesebreadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "Br" = (
@@ -9657,7 +9657,7 @@
 /area/mainship/living/cafeteria_starboard)
 "Cv" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "Cw" = (
@@ -11127,7 +11127,7 @@
 /area/mainship/living/bridgebunks)
 "GH" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/limecakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/limecakeslice,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
@@ -13290,7 +13290,7 @@
 "Nj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
 "Nk" = (

@@ -858,7 +858,7 @@
 /area/ice_colony/surface/engineering)
 "agz" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/human/burger,
+/obj/effect/spawner/random/burger,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -4711,7 +4711,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/soup/hotchili,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -8000,7 +8000,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOC" = (
@@ -8014,7 +8014,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/hotchili{
+/obj/item/reagent_containers/food/snacks/soup/hotchili{
 	pixel_x = -1;
 	pixel_y = 2
 	},
@@ -8029,7 +8029,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/soup/hotchili,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOG" = (
@@ -8979,11 +8979,11 @@
 /area/ice_colony/surface/bar/canteen)
 "aTf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/burger/human,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTg" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -16668,7 +16668,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bBd" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bBe" = (
@@ -17135,7 +17135,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bCD" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCF" = (
@@ -17199,7 +17199,7 @@
 "bCS" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/item/reagent_containers/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/soup/hotchili,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCV" = (
@@ -22294,7 +22294,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWc" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bWd" = (

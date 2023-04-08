@@ -68,3 +68,38 @@
   ivanmixo:
   - bugfix: Sentinel spit now travels properly instead of stopping at the tile you
       aimed
+2023-04-08:
+  567Turtle:
+  - balance: Claymore now hits slower
+  Autisem:
+  - rscadd: You can now craft supply crates with wood
+  Blundir:
+  - bugfix: Xenomorph Queen ban now bans shrike as well
+  Losenis:
+  - balance: Buildasentry attachment increases object (gun) size by 1.
+  Lumipharon:
+  - balance: Big Red LZ2 is slightly wider on the right hand side
+  - bugfix: fixed CL uniforms not having icon sprites
+  RikuTheKiller:
+  - balance: Resisting intoxication takes 5 seconds instead of 3 seconds and removes
+      8 stacks instead of 3 stacks. This makes it 1.6 times more effective in general,
+      but harder to use in the middle of combat.
+  - qol: Resisting intoxication now automatically repeats itself, similarly to repairing
+      things.
+  - bugfix: You can't stack intoxication resists anymore to remove it almost instantly.
+  RipGrayson:
+  - imageadd: Replaced some crusty food icons with TG versions
+  - code_imp: Reorganized food icons to not be in a single giant file
+  Xander3359:
+  - balance: MREs contain a lot more nutriment.
+  - rscadd: Hyposprays can now draw reagent with right click (Autoinjectors are also
+      hyposprays fyi).
+  dopamiin:
+  - rscadd: The TGMC has approved several morale-boosting supply options to be added
+      to requisitions.
+  irRegularGuy646:
+  - balance: large 10x26 box now holds 3200 rounds instead of 2400
+  - bugfix: obsolete large ammo box orders removed from req
+  - bugfix: MG-60 magazine is now referred to as a "belt box" instead of a "drum magazine"
+  ivanmixo:
+  - bugfix: Fixed a behead runtime

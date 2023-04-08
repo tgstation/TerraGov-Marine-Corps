@@ -1105,7 +1105,7 @@
 "zV" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/tray,
-/obj/item/reagent_containers/food/snacks/monkeyburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "zZ" = (
@@ -2120,7 +2120,7 @@
 "Xl" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/suit/chef/classic,

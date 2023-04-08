@@ -4573,7 +4573,7 @@
 /area/lv624/lazarus/engineering)
 "xR" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich,
 /obj/item/trash/candy{
 	pixel_y = 15
 	},
@@ -9865,7 +9865,7 @@
 /area/lv624/lazarus/fitness)
 "Xd" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/meatballspagetti,
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatballspaghetti,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "Xf" = (
@@ -11046,7 +11046,7 @@ wM
 wM
 wM
 JY
-wM
+JY
 wM
 Zu
 Om
@@ -11146,7 +11146,7 @@ JY
 JY
 wM
 wM
-JY
+wM
 Om
 Om
 Om
