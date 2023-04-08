@@ -2801,7 +2801,7 @@
 /obj/item/reagent_containers/food/snacks/packaged_meal
 	name = "\improper MRE component"
 	package = TRUE
-	bitesize = 1
+	bitesize = 4
 	icon_state = "entree"
 	var/flavor = "boneless pork ribs"//default value
 
@@ -2828,16 +2828,16 @@
 	switch(newflavor)
 		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 			icon_state = "entree"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sodiumchloride = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sodiumchloride = 1)
 		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
 			icon_state = "side"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sodiumchloride = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sodiumchloride = 1)
 		if("biscuit", "pretzels", "peanuts", "cracker")
 			icon_state = "snack"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sodiumchloride = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sodiumchloride = 1)
 		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 			icon_state = "dessert"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sugar = 1)
 
 
 /obj/item/reagent_containers/food/snacks/lollipop
