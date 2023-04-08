@@ -1,0 +1,6 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - balance: "Resisting intoxication takes 5 seconds instead of 3 seconds and removes 8 stacks instead of 3 stacks. This makes it 1.6 times more effective in general, but harder to use in the middle of combat."
+  - qol: "Resisting intoxication now automatically repeats itself, similarly to repairing things."
+  - bugfix: "You can't stack intoxication resists anymore to remove it almost instantly."
