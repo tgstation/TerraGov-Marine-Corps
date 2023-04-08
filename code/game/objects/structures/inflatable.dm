@@ -9,6 +9,7 @@
 
 
 /obj/item/inflatable/attack_self(mob/user)
+	. = ..()
 	balloon_alert(user, "Inflating...")
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		balloon_alert(user, "Interrupted!")
@@ -73,7 +74,7 @@
 		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)
 
-
+///Handles the structure deflating
 /obj/structure/inflatable/proc/deflate(violent = FALSE)
 	set waitfor = 0
 	if(deflated)
@@ -84,7 +85,7 @@
 	flick("wall_[violent ? "popping" : "deflating"]", src)
 	addtimer(CALLBACK(src, PROC_REF(post_deflate), violent), violent ? 1 SECONDS : 5 SECONDS)
 
-
+///Creates the appropriate item after deflation
 /obj/structure/inflatable/proc/post_deflate(violent = FALSE)
 	if(violent)
 		new popped_variant(get_turf(src))
