@@ -1,0 +1,4 @@
+author: "Losenis"
+delete-after: True
+changes:
+  - balance: "Buildasentry attachment increases object (gun) size by 1."
