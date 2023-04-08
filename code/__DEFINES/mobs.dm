@@ -698,7 +698,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SENTINEL_DRAIN_MULTIPLIER 6 //Amount to multiply Drain Sting's restoration by
 #define SENTINEL_DRAIN_SURGE_ARMOR_MOD 20 //Amount to modify the Sentinel's armor by when under the effects of Drain Surge.
 #define SENTINEL_INTOXICATED_BASE_DAMAGE 1 //Amount of damage per tick dealt by the Intoxicated debuff
-#define SENTINEL_INTOXICATED_RESIST_REDUCTION 3 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
+#define SENTINEL_INTOXICATED_RESIST_REDUCTION 8 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
 #define SENTINEL_INTOXICATED_SANGUINAL_INCREASE 3 //Amount of debuff stacks applied for every tick of Sanguinal.
 
 //Wraith defines
