@@ -1,6 +1,18 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Section, LabeledList, Grid, ColorBox } from '../../components';
-import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
+import {
+  Box,
+  Button,
+  Section,
+  LabeledList,
+  Grid,
+  ColorBox,
+} from '../../components';
+import {
+  ToggleFieldPreference,
+  TextFieldPreference,
+  SelectFieldPreference,
+  LoopingSelectionPreference,
+} from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
   let returnval = '';
@@ -117,11 +129,11 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
-              label="Auto interact with Deployables"
-              value="autointeractdeployablespref"
-              action="autointeractdeployablespref"
-              leftLabel={'Enabled'}
-              rightLabel={'Disabled'}
+                label="Auto interact with Deployables"
+                value="autointeractdeployablespref"
+                action="autointeractdeployablespref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
               />
             </LabeledList>
           </Section>
