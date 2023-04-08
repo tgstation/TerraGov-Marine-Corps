@@ -98,12 +98,6 @@
 
 	default_ammo = /datum/ammo/flamethrower
 
-/obj/item/ammo_magazine/flamer_tank/backtank/X
-	name = "back fuel tank (X)"
-	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
-	default_ammo = /datum/ammo/flamethrower/blue
-	dispenser_type = null
-
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"
 	desc = "A cannister of water for use with the FL-84's underslung extinguisher. Can be refilled by hand."

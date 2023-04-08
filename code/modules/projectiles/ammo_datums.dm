@@ -3582,19 +3582,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/flamethrower
 	name = "flame"
-	icon_state = "pulse0"
+	icon_state = "flamer"
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
-	max_range = 7
-	damage = 31
+	max_range = 4
+	damage = 10
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
+	shell_speed = 0.6
 	bullet_color = LIGHT_COLOR_FIRE
+	ping = null
 	var/fire_color = "red"
-	var/burntime = 17
+	var/burntime = 0.5 SECONDS
 	var/burnlevel = 31
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
@@ -3624,14 +3626,53 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	flame_radius(1, T)
 
+/datum/ammo/flamethrower/over
+	icon_state = "flamer_over"
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_IFF
+	max_range = 5
+	shell_speed = 0.3
+	damage = 6
+
+/datum/ammo/flamethrower/blast
+	icon_state = "flamer_blast"
+	max_range = 5
+	shell_speed = 0.6
+	damage = 20
+
+/datum/ammo/flamethrower/blast/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	flame_radius(1, T)
+
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
+	icon_state = "flamer_blue"
 	hud_state = "flame_blue"
-	max_range = 7
 	fire_color = "blue"
-	burntime = 40
-	burnlevel = 46
-	bullet_color = COLOR_NAVY
+	bullet_color = COLOR_DISABLER_BLUE
+	damage = 15
+	burntime = 1 SECONDS
+	burnlevel = 40
+
+/datum/ammo/flamethrower/over/blue
+	name = "blue flame"
+	icon_state = "flamer_blue_over"
+	hud_state = "flame_blue"
+	fire_color = "blue"
+	bullet_color = COLOR_DISABLER_BLUE
+	damage = 10
+	burntime = 1 SECONDS
+	burnlevel = 40
+
+/datum/ammo/flamethrower/blast/blue
+	name = "blue flame"
+	icon_state = "flamer_blue"
+	hud_state = "flame_blue"
+	fire_color = "blue"
+	bullet_color = COLOR_DISABLER_BLUE
+	damage = 25
+	burntime = 1 SECONDS
+	burnlevel = 40
 
 /datum/ammo/water
 	name = "water"
