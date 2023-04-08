@@ -11,8 +11,6 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
-	refill_types = list(/obj/item/storage/box/visual/magazine)
-
 
 /obj/item/storage/belt/equipped(mob/user, slot)
 	if(slot == SLOT_BELT)
@@ -403,6 +401,7 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	)
+	refill_types = list(/obj/item/storage/box/visual/magazine)
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
@@ -661,7 +660,6 @@
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
 		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
