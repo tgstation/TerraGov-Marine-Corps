@@ -297,7 +297,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/researcher
 	name = "Researcher"
 	medical = SKILL_MEDICAL_EXPERT
-	surgery = SKILL_SURGERY_TRAINED
+	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/cmo
 	name = "CMO"
