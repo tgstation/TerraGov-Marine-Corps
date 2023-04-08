@@ -71,7 +71,7 @@
 	hud.mymob.client?.prefs.ShowChoices(hud.mymob)
 
 /atom/movable/screen/text/lobby/clickable/setup_character/set_text()
-	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
+	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: [hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
 	if(!registered)
 		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(set_text))
 		registered = TRUE
