@@ -34,7 +34,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/current_positions = 0
 	var/max_positions = INFINITY //How many positions can be dynamically assigned.
 	var/job_points = 0 //Points assigned dynamically to open new positions.
-	var/job_points_needed  = INFINITY
+	var/job_points_needed = INFINITY
 
 	var/supervisors = ""
 	var/selection_color = "#ffffff"

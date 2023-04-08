@@ -231,7 +231,7 @@
 			to_chat(user, span_warning("That's too big to fit!"))
 			return
 
-		beaker =  I
+		beaker = I
 
 
 		var/reagentnames = ""

@@ -4,8 +4,8 @@
 		health = species.total_health
 		set_stat(CONSCIOUS)
 		return
-	var/total_burn	= 0
-	var/total_brute	= 0
+	var/total_burn = 0
+	var/total_brute = 0
 	for(var/datum/limb/O AS in limbs)	//hardcoded to streamline things a bit
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam

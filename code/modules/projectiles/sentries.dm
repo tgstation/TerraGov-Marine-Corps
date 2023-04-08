@@ -184,7 +184,7 @@
 	var/current_rounds
 	current_rounds = gun.rounds
 	. = list(
-		"rounds" =  current_rounds,
+		"rounds" = current_rounds,
 		"health" = obj_integrity
 	)
 
@@ -518,7 +518,7 @@
 		return
 	operator?.unset_interaction()
 
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item  = internal_item //Item the machine is undeploying
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item = internal_item //Item the machine is undeploying
 
 	if(!ishuman(user))
 		return

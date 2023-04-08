@@ -13,7 +13,7 @@
 	var/gameover = 0
 	var/blocked = 0 //Player cannot attack/heal while set
 	var/list/prizes = list(
-		/obj/item/spacecash/c10	= 4,
+		/obj/item/spacecash/c10 = 4,
 		/obj/item/tool/lighter/zippo = 2,
 		/obj/item/storage/box/tgmc_mre = 2,
 		/obj/item/camera = 2,
