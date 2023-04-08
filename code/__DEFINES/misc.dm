@@ -137,4 +137,3 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
-GLOBAL_VAR_INIT(geothermal_generator_ammount, 0)
