@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed people who get killed while buckled in the alamo chairs standing up even while dead"
