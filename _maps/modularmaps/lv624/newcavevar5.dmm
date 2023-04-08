@@ -45,8 +45,8 @@
 /area/lv624/ground/caves/central2)
 "eH" = (
 /obj/structure/table/woodentable,
-/obj/item/tool/kitchen/knife/butcher,
-/obj/item/tool/kitchen/knife/butcher{
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/kitchenknife/butcherweighted{
 	pixel_y = 6
 	},
 /turf/open/floor/wood,
@@ -255,7 +255,9 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "sL" = (
-/obj/machinery/door/airlock/sandstone,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "sR" = (
@@ -492,8 +494,8 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Ky" = (
-/obj/machinery/door/airlock/sandstone,
 /obj/effect/ai_node,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Md" = (

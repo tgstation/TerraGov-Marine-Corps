@@ -586,7 +586,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "cG" = (
-/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/clothing/suit/storage/marine/smartgunner,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
@@ -6933,7 +6933,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
 	},
-/obj/item/weapon/gun/minigun_nest{
+/obj/item/weapon/gun/standard_minigun/nest{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{

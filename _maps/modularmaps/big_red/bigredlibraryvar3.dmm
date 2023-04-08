@@ -254,7 +254,7 @@
 "xB" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/dice/d20,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /obj/effect/spawner/random/drink_alcohol_bottle{
 	pixel_x = -1;
 	pixel_y = 3
@@ -308,7 +308,7 @@
 /area/bigredv2/outside/library)
 "Ez" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -374,7 +374,7 @@
 /area/bigredv2/outside/library)
 "Nb" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice,
 /obj/effect/spawner/random/drink_alcohol_bottle,
 /obj/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,

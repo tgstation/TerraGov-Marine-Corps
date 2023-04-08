@@ -73,7 +73,7 @@
 		/obj/item/toy/bikehorn,
 		/obj/item/clothing/tie/horrible,
 		/obj/item/toy/spinningtoy,
-		/obj/item/toy/sword,
+		/obj/item/toy/katana,
 		/obj/item/weapon/banhammer,
 	)
 

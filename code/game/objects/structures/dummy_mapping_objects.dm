@@ -36,7 +36,7 @@
 	item_state	=  "laptop-inhand"
 	pixel_x		= 2
 	pixel_y		= -3
-	w_class		= 3
+	w_class		= WEIGHT_CLASS_NORMAL
 
 /obj/machinery/lapvend
 	name = "Laptop Vendor"

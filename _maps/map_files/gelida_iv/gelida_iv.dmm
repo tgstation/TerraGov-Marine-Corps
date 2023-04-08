@@ -256,7 +256,7 @@
 "afc" = (
 /obj/structure/table/mainship,
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/mushroompizzaslice,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "afm" = (
@@ -1258,10 +1258,10 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 11
 	},
-/obj/item/tool/kitchen/knife{
+/obj/effect/spawner/random/kitchenknife{
 	pixel_x = -11
 	},
-/obj/item/reagent_containers/food/snacks/superbiteburger{
+/obj/effect/spawner/random/burger{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -1594,7 +1594,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -2150,7 +2150,7 @@
 /area/gelida/indoors/a_block/hallway)
 "bus" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "buA" = (
@@ -2584,7 +2584,7 @@
 	pixel_y = 14
 	},
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/packaged_burger,
+/obj/effect/spawner/random/burger,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
@@ -2813,7 +2813,7 @@
 /area/gelida/indoors/b_block/bridge)
 "bOx" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -3186,6 +3186,10 @@
 	dir = 5
 	},
 /area/gelida/indoors/a_block/hallway)
+"cdb" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/cargo)
 "cdu" = (
 /obj/item/reagent_containers/hypospray/autoinjector,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3406,7 +3410,7 @@
 /turf/open/floor/freezer,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "clo" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "cml" = (
@@ -3591,7 +3595,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "csX" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sandwich{
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich{
 	pixel_x = -6;
 	pixel_y = 3
 	},
@@ -3605,7 +3609,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "cuc" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/item/reagent_containers/food/drinks/flask/marine{
 	pixel_x = -6;
 	pixel_y = -11
@@ -5443,7 +5447,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "dwZ" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "dxk" = (
@@ -5788,7 +5792,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "dII" = (
@@ -6102,7 +6106,7 @@
 /obj/item/tool/kitchen/tray{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/snacks/tofubreadslice{
+/obj/item/reagent_containers/food/snacks/sandwiches/tofubreadslice{
 	pixel_x = -7
 	},
 /obj/item/clothing/mask/facehugger/dead{
@@ -6124,6 +6128,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"dTS" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating/heatinggrate,
+/area/gelida/indoors/c_block/cargo)
 "dUi" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -7599,7 +7607,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "eOs" = (
-/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/decal/blood,
 /obj/item/weapon/twohanded/fireaxe,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
@@ -7628,7 +7636,7 @@
 	pixel_x = 10;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/wishsoup{
+/obj/item/reagent_containers/food/snacks/soup/wishsoup{
 	pixel_x = -4;
 	pixel_y = -7
 	},
@@ -8028,10 +8036,10 @@
 	},
 /area/gelida/outdoors/colony_streets/south_street)
 "faS" = (
-/obj/effect/decal/cleanable/blood/oil,
 /obj/structure/platform/gelida{
 	dir = 8
 	},
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "fbs" = (
@@ -9176,7 +9184,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "fXd" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/green/full{
 	dir = 4
 	},
@@ -9260,7 +9268,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "fZQ" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "fZS" = (
@@ -10924,7 +10932,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "hcf" = (
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/effect/spawner/random/heal_pack/bruteweighted,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "hcv" = (
@@ -10955,7 +10963,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "hcS" = (
 /obj/structure/table/mainship,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+/obj/effect/spawner/random/heal_pack/bruteweighted{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -11240,7 +11248,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "hln" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "hlt" = (
@@ -11295,7 +11303,7 @@
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "hnd" = (
-/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/casino)
 "hnn" = (
@@ -11328,8 +11336,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "hoH" = (
-/obj/effect/decal/cleanable/blood,
 /obj/structure/bed/roller,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "hoS" = (
@@ -12052,7 +12060,7 @@
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "hRf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/monkeyburger{
+/obj/effect/spawner/random/burger{
 	pixel_x = -9;
 	pixel_y = 12
 	},
@@ -12618,10 +12626,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
-"ihS" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison,
-/area/gelida/indoors/b_block/hydro)
 "ihZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -13421,7 +13425,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHe" = (
 /obj/structure/fakeplatform,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHf" = (
@@ -13840,7 +13844,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/corpo)
 "iWq" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "iWI" = (
@@ -13956,7 +13960,7 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "iZI" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sliceable/plaincake{
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/plaincake{
 	pixel_y = 4
 	},
 /turf/open/floor/prison/kitchen,
@@ -14437,7 +14441,7 @@
 	pixel_x = 2;
 	pixel_y = 20
 	},
-/obj/item/reagent_containers/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich{
 	pixel_y = 27
 	},
 /turf/open/floor/prison/plate,
@@ -16738,7 +16742,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "kWv" = (
@@ -17133,8 +17137,8 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "lin" = (
-/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "lir" = (
@@ -18632,7 +18636,7 @@
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/darkred/full,
@@ -20135,13 +20139,13 @@
 /area/gelida/indoors/a_block/medical)
 "nhJ" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sliceable/bread{
+/obj/item/reagent_containers/food/snacks/sandwiches/bread{
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/bread{
+/obj/item/reagent_containers/food/snacks/sandwiches/bread{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sandwiches/bread,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "nhK" = (
@@ -20643,10 +20647,10 @@
 /area/gelida/indoors/a_block/dorms)
 "nAf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/cherrypie{
+/obj/item/reagent_containers/food/snacks/pastries/cherrypie{
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/pumpkinpie,
 /obj/machinery/door/window{
 	dir = 2;
 	pixel_y = 6
@@ -20857,7 +20861,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "nHu" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/greenblue{
 	dir = 9
 	},
@@ -21159,7 +21163,7 @@
 /obj/item/trash/plate{
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/snacks/toastedsandwich{
+/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich{
 	pixel_y = 20
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -21398,8 +21402,8 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "nZB" = (
-/obj/effect/decal/cleanable/blood,
 /obj/item/tool/hatchet,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "nZH" = (
@@ -21901,11 +21905,11 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/bridges/corpo)
 "osO" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "osS" = (
@@ -23943,7 +23947,7 @@
 	pixel_x = -10;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/snacks/wishsoup,
+/obj/item/reagent_containers/food/snacks/soup/wishsoup,
 /obj/item/tool/kitchen/utensil/spoon{
 	pixel_x = 10;
 	pixel_y = 5
@@ -24299,11 +24303,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/north_west_street)
-"pPU" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/whitegreenfull2,
-/area/gelida/indoors/b_block/hydro)
 "pPX" = (
 /turf/closed/wall,
 /area/gelida/indoors/c_block/mining)
@@ -24321,18 +24320,16 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "pQm" = (
-/obj/effect/acid_hole{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/gelida/indoors/c_block/mining)
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/prison/darkred/full,
+/area/gelida/indoors/a_block/kitchen)
 "pQC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "pQI" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "pRa" = (
@@ -25038,7 +25035,7 @@
 	pixel_x = 7;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/donut/jelly{
+/obj/effect/spawner/random/donut{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -25706,7 +25703,7 @@
 	pixel_x = -4;
 	pixel_y = 11
 	},
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -26015,11 +26012,11 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "qUf" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "qUp" = (
@@ -26407,7 +26404,7 @@
 /area/gelida/indoors/a_block/dorms)
 "reQ" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 7
 	},
@@ -26641,7 +26638,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "rlw" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "rlA" = (
@@ -26676,7 +26673,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "rmA" = (
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "rmB" = (
@@ -27605,11 +27602,11 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "rTT" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/hallway)
 "rUv" = (
@@ -28437,7 +28434,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "svq" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "svG" = (
@@ -28651,7 +28648,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "sBz" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/effect/spawner/random/donut{
 	pixel_y = 9
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -28758,7 +28755,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "sDS" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "sEe" = (
@@ -28853,7 +28850,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "sHG" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sIj" = (
@@ -29243,8 +29240,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "sUm" = (
-/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "sUt" = (
@@ -29390,7 +29387,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "sZD" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sandwiches/bread,
 /obj/item/newspaper{
 	anchored = 1;
 	desc = "This is the Chunk and Dunks menu. It reads 'Starters chunky fried cheese chunky chicken giblets dunky donuts Main chunky mac and cheese chunky meat and gravy pizza galaxy pizza TM dunky grilled style steak imitation Deserts dunky refried ice cream OUT OF STOCK  chunky chocolate moose dunky hash brown Drinks souto TM Original souto TM penguin week special chunk and dunk gravy soft drink chunky coffee CAUTION HOT dunky arcturian imitation tea";
@@ -29952,7 +29949,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "tqD" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "tqF" = (
@@ -30752,7 +30749,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "tUx" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "tUK" = (
@@ -30906,7 +30903,7 @@
 /turf/closed/wall/r_wall,
 /area/gelida/indoors/b_block/bridge)
 "uau" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -31059,8 +31056,8 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "ugy" = (
-/obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "ugJ" = (
@@ -33735,11 +33732,11 @@
 /area/gelida/indoors/lone_buildings/spaceport)
 "vUN" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/plaincakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice{
 	pixel_x = 5;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/plaincakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
@@ -34236,8 +34233,8 @@
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "wkY" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+/obj/effect/spawner/random/decal/blood,
+/obj/effect/spawner/random/heal_pack/bruteweighted{
 	pixel_x = -10;
 	pixel_y = 8
 	},
@@ -34573,7 +34570,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "wvS" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "wvV" = (
@@ -34774,8 +34771,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/bridge)
 "wEq" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/ai_node,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -35022,7 +35019,7 @@
 	pixel_x = 4;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -35231,8 +35228,8 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "wUF" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "wUJ" = (
@@ -35315,10 +35312,10 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "wXO" = (
-/obj/effect/decal/cleanable/blood/oil,
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "wXZ" = (
@@ -35807,7 +35804,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 4
 	},
-/obj/item/tool/kitchen/knife{
+/obj/effect/spawner/random/kitchenknife{
 	pixel_x = -9;
 	pixel_y = 3
 	},
@@ -36037,8 +36034,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "xCi" = (
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/item/tool/hatchet,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/hydro)
 "xCF" = (
@@ -36119,7 +36116,7 @@
 /area/gelida/caves/central_caves)
 "xEi" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/toastedsandwich,
+/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich,
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -10;
 	pixel_y = 8
@@ -36156,7 +36153,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xFh" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "xFv" = (
@@ -36206,7 +36203,7 @@
 /obj/item/tool/kitchen/tray{
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita{
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita{
 	pixel_y = 2
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -36495,7 +36492,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xOI" = (
-/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+/obj/effect/spawner/random/heal_pack/bruteweighted{
 	pixel_x = -3;
 	pixel_y = -5
 	},
@@ -51992,7 +51989,7 @@ tPp
 kUF
 bRS
 xCi
-ihS
+tUx
 lNq
 oEN
 iuJ
@@ -52434,7 +52431,7 @@ tPp
 lNq
 tPp
 kUF
-ihS
+tUx
 vuB
 mLB
 fXd
@@ -52657,8 +52654,8 @@ lNq
 rCP
 kUF
 jyV
-ihS
-ihS
+tUx
+tUx
 qxc
 xMf
 iuJ
@@ -52878,7 +52875,7 @@ vtt
 lNq
 bwC
 kUF
-ihS
+tUx
 tUx
 eyO
 nZB
@@ -53323,7 +53320,7 @@ fdY
 quk
 dFI
 jfW
-pPU
+wUF
 wUF
 lJE
 jAp
@@ -58384,7 +58381,7 @@ haP
 iVD
 jZN
 miL
-fRn
+pQm
 dFb
 iVD
 iVD
@@ -59316,7 +59313,7 @@ rDu
 etr
 rFU
 etr
-aRF
+cdb
 rFU
 etr
 wBH
@@ -59511,7 +59508,7 @@ dOq
 iVD
 sOb
 buS
-wpE
+dTS
 nsX
 nsX
 sOb
@@ -61534,7 +61531,7 @@ etr
 oHl
 etr
 hto
-aRF
+cdb
 uWL
 obF
 pJy
@@ -65354,7 +65351,7 @@ pPX
 pPX
 pPX
 pPX
-pQm
+pPX
 pPX
 pPX
 mth
