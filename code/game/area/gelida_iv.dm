@@ -81,9 +81,13 @@
 
 /area/gelida/landing_zone_forecon/UD6_Typhoon
 	name = "Gelida IV - UD6 Typhoon"
+	outside = FALSE
+	ceiling = CEILING_METAL
 
 /area/gelida/landing_zone_forecon/UD6_Tornado
 	name = "Gelida IV - UD6 Tornado"
+	outside = FALSE
+	ceiling = CEILING_METAL
 
 //Outdoors areas
 /area/gelida/outdoors/colony_streets //WHY IS THIS A SUBTYPE OF BUILDINGS AAAARGGHGHHHH YOU DIDN'T EVEN USE OBJECT INHERITANCE FOR THE CIELINGS I HATE YOU BOBBY
