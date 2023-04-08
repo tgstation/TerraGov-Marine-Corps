@@ -457,7 +457,6 @@
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.adjustDrowsyness(-5)
 	L.AdjustUnconscious(-20)
-	L.AdjustParalyzed(-20)
 	L.adjustToxLoss(effect_str)
 	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
