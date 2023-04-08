@@ -39,7 +39,7 @@
 				return FALSE
 
 			if(species?.species_flags & ROBOTIC_LIMBS)
-				to_chat(H, span_boldnotice("You cant help this one, [p_they()] have no lungs!"))
+				to_chat(H, span_boldnotice("You can't help this one, [p_they()] [p_have()] no lungs!"))
 				return FALSE
 
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
@@ -302,5 +302,15 @@
 			final_msg += span_info("Your whole body hurts badly.")
 		if(26 to INFINITY)
 			final_msg += span_info("Your body aches all over, it's driving you mad!")
+
+	switch(germ_level)
+		if(0 to 19)
+			final_msg += span_info("You're [pick("free of grime", "pristine", "freshly laundered")].")
+		if(20 to 79)
+			final_msg += span_info(pick("You've got some grime on you", "You're a bit dirty"))
+		if(80 to 150)
+			final_msg += span_info(pick("You're not far off filthy.", "You're pretty dirty.", "There's still one or two clean spots left on you."))
+		else
+			final_msg += span_info(pick("There's a full layer of dirt covering you. Maybe it'll work as camo?", "You could go for a shower.", "You've reached a more complete understanding of grime."))
 
 	to_chat(src, examine_block(final_msg.Join("\n")))

@@ -244,7 +244,7 @@
 	icon_state = "dualsaber"
 	item_state = "dualsaber"
 	force = 3
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -404,7 +404,7 @@
 	throwforce = 65
 	throw_speed = 3
 	edge = 1
-	attack_speed = 20
+	attack_speed = 24
 	sharp = IS_SHARP_ITEM_BIG
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO | TWOHANDED

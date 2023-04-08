@@ -1005,8 +1005,8 @@
 "Lv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/folder/red,
 /obj/item/ammo_casing/bullet,
+/obj/effect/spawner/random/folder,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "LF" = (

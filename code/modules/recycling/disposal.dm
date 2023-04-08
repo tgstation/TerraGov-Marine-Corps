@@ -1329,7 +1329,7 @@
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))
 		var/obj/structure/disposalconstruct/C = new(loc)
-		C.ptype = 7 //7 =  outlet
+		C.ptype = 7 //7 = outlet
 		C.update()
 		C.anchored = TRUE
 		C.density = TRUE

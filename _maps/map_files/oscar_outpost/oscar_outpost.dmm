@@ -679,7 +679,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "eT" = (
-/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/clothing/suit/storage/marine/smartgunner,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
@@ -2738,7 +2738,7 @@
 /obj/item/reagent_containers/food/snacks/grown/tomato{
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/snacks/carrotcakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice{
 	pixel_x = 6
 	},
 /obj/machinery/light/small,
@@ -4338,10 +4338,10 @@
 /area/oscar_outpost)
 "Cm" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 11
 	},
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_x = -8
 	},
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
@@ -6099,7 +6099,7 @@
 /obj/item/reagent_containers/food/snacks/pastatomato{
 	pixel_y = 10
 	},
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Jz" = (
@@ -6328,13 +6328,13 @@
 /area/oscar_outpost/village/south)
 "KI" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/packaged_burger{
+/obj/item/reagent_containers/food/snacks/burger/packaged_burger{
 	pixel_y = 15
 	},
 /turf/open/floor/wood,
@@ -9013,7 +9013,7 @@
 /area/oscar_outpost/village/fairgrounds)
 "VQ" = (
 /obj/structure/table/rusticwoodentable,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/effect/spawner/random/cheesewedge,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VT" = (

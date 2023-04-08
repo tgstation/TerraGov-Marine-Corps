@@ -560,7 +560,7 @@
 	med_record = sanitize_text(med_record, initial(med_record))
 	sec_record = sanitize_text(sec_record, initial(sec_record))
 	gen_record = sanitize_text(gen_record, initial(gen_record))
-	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
+	exploit_record = sanitize_text(exploit_record, initial(exploit_record))
 	flavor_text = sanitize_text(flavor_text, initial(flavor_text))
 
 	WRITE_FILE(S["be_special"], be_special)

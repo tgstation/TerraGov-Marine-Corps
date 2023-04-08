@@ -90,7 +90,6 @@
 
 
 /atom/proc/clean_blood()
-	germ_level = 0
 	blood_color = null
 	return 1
 
@@ -110,7 +109,6 @@
 	if(gloves)
 		if(gloves.clean_blood())
 			update_inv_gloves()
-		gloves.germ_level = 0
 	else
 		blood_color = null
 		bloody_hands = 0

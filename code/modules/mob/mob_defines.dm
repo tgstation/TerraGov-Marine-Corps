@@ -40,7 +40,7 @@
 	var/list/movespeed_modification
 	///The calculated mob speed slowdown based on the modifiers list.
 	var/cached_multiplicative_slowdown
-	var/next_click	= 0
+	var/next_click = 0
 	var/next_move = 0
 	///Amount added during the next movement_delay(), then is reset.
 	var/next_move_slowdown = 0

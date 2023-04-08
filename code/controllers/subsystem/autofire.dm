@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(automatedfire)
 	// Iterate through each bucket starting from the practical offset
 	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
 		if(!shooter)
-			shooter =  bucket_list[practical_offset]
+			shooter = bucket_list[practical_offset]
 			bucket_list[practical_offset] = null
 
 		while (shooter)

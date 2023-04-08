@@ -11349,7 +11349,7 @@
 /area/sulaco/cafeteria/kitchen)
 "cMp" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/monkeyburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "cMx" = (
@@ -19917,7 +19917,7 @@
 "oCV" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/suit/chef/classic,
@@ -20643,7 +20643,7 @@
 /area/sulaco/hangar)
 "ptE" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/monkeyburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "pum" = (
@@ -21212,10 +21212,6 @@
 	dir = 1
 	},
 /area/mainship/living/basketball)
-"qoX" = (
-/obj/machinery/newscaster,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cafeteria/kitchen)
 "qpo" = (
 /obj/machinery/light/mainship/small,
 /obj/machinery/camera/autoname{
@@ -24317,7 +24313,10 @@
 "uhf" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
-/obj/item/reagent_containers/food/snacks/hotdog,
+/obj/effect/spawner/random/burger{
+	pixel_x = -4;
+	pixel_y = 1
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "uhy" = (
@@ -25953,7 +25952,7 @@
 /area/sulaco/engineering/ce)
 "wyw" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich{
 	desc = "'The best grilled cheese this side of Uranus!' (tm)";
 	name = "Sandwich Joe's Grilled Cheese";
 	volume = 65
@@ -47024,7 +47023,7 @@ guu
 xHk
 vMB
 boI
-qoX
+vMB
 vMB
 vMB
 vMB

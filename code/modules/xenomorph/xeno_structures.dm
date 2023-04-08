@@ -865,7 +865,7 @@ TUNNEL
 	bound_height = 32
 	obj_integrity = 600
 	max_integrity = 1500
-	layer =  ABOVE_MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY

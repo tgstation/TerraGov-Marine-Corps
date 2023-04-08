@@ -66,7 +66,7 @@
 /area/gelida/landing_zone_forecon
 	name = "Gelida IV - FORECON Shuttle"
 	icon_state = "shuttle"
-	ceiling =  CEILING_METAL
+	ceiling = CEILING_METAL
 	requires_power = FALSE
 
 /area/gelida/landing_zone_forecon/landing_zone_3
@@ -204,7 +204,7 @@
 /area/gelida/indoors/a_block/medical
 	name = "A-Block - Medical"
 	icon_state = "medbay"
-	ceiling =  CEILING_GLASS
+	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/gelida/indoors/a_block/security
@@ -271,7 +271,7 @@
 /area/gelida/indoors/b_block
 	name = "B-Block"
 	icon_state = "red"
-	ceiling =  CEILING_METAL
+	ceiling = CEILING_METAL
 
 /area/gelida/indoors/b_block/hydro
 	name = "B-Block - Hydroponics"

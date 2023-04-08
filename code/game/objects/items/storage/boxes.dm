@@ -47,7 +47,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/paper/crumpled
 	storage_slots = null
-	max_w_class = 2 //Changed because of in-game abuse
+	max_w_class = WEIGHT_CLASS_SMALL //Changed because of in-game abuse
 	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
 	var/spawn_type
 	var/spawn_number
@@ -158,7 +158,7 @@
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "monkeycubebox"
 	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	spawn_number = 5
@@ -465,7 +465,7 @@
 	item_state = "mag_box"
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.4 // Big unhandly box
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64
 	use_to_pickup = TRUE
@@ -637,7 +637,7 @@
 	name = "ammunition box"
 	desc = "This box is able to hold a wide variety of supplies, mainly military-grade ammunition."
 	icon_state = "mag_box"
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
 	can_hold = list(
@@ -1082,7 +1082,7 @@
 	name = "grenade box"
 	desc = "This box is able to hold a wide variety of grenades."
 	icon_state = "grenade_box"
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 25
 	max_storage_space = 50
 	can_hold = list(

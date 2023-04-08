@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(job)
 	var/list/occupations = list() //List of all jobs.
 	var/list/joinable_occupations = list() //List of jobs that can be joined as through the lobby.
 	var/list/joinable_occupations_by_category = list()
-	var/list/active_occupations	= list() //Jobs in use by the game mode at roundstart.
+	var/list/active_occupations = list() //Jobs in use by the game mode at roundstart.
 	var/list/active_joinable_occupations = list() //Jobs currently joineable through the lobby (roundstart-only removed after).
 	var/list/active_joinable_occupations_by_category = list()
 	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles.

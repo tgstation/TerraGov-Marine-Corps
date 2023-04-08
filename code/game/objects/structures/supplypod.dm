@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)
 		pod.fallingSoundLength = 3
-		pod.fallingSound =  'sound/weapons/guns/misc/mortar_whistle.ogg'
+		pod.fallingSound = 'sound/weapons/guns/misc/mortar_whistle.ogg'
 	var/soundStartTime = pod.landingDelay - pod.fallingSoundLength + pod.fallDuration
 	if(soundStartTime < 0)
 		soundStartTime = 1

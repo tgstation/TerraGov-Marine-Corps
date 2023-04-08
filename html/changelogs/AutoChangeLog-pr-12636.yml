@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed psi point gen calculations being wrong. Also you cant corrupt an already corrupted gen anymore."

@@ -51,7 +51,7 @@
 	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
-	w_class = 10
+	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_FLY_LAYER
 	set_light(2, 1)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)

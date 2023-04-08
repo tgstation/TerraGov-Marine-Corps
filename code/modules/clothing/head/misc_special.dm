@@ -89,7 +89,7 @@
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	flags_inventory = COVEREYES
-	var/onfire = 0.0
+	var/onfire = 0
 	var/status = 0
 	var/processing = 0 //I dont think this is used anywhere.
 	flags_armor_protection = EYES

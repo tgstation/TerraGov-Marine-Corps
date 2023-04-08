@@ -64406,7 +64406,7 @@
 /obj/effect/turf_decal/tile/transparent/red,
 /obj/machinery/light/small,
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/applepie,
+/obj/item/reagent_containers/food/snacks/pastries/applepie,
 /obj/item/paper/crumpled{
 	name = "note from mom"
 	},
@@ -67109,7 +67109,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "nKH" = (
-/obj/item/reagent_containers/food/snacks/applepie,
+/obj/item/reagent_containers/food/snacks/pastries/applepie,
 /obj/structure/table,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
@@ -93703,7 +93703,7 @@
 /area/deltastation/maintenance/department/medical/morgue)
 "tae" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/space_hut/observatory)
@@ -103581,9 +103581,9 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/reagent_containers/food/snacks/breadslice,
-/obj/item/reagent_containers/food/snacks/breadslice,
-/obj/item/reagent_containers/food/snacks/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 /obj/item/reagent_containers/food/snacks/grown/potato,
 /obj/item/reagent_containers/food/snacks/grown/potato,
 /obj/item/reagent_containers/food/snacks/grown/carrot,
@@ -103846,7 +103846,7 @@
 /area/deltastation/cargo/office)
 "var" = (
 /obj/structure/closet/crate/secure/gear,
-/obj/item/toy/sword,
+/obj/item/toy/katana,
 /obj/item/toy/balloon,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship/two)
@@ -112370,7 +112370,7 @@
 /obj/effect/turf_decal/tile/transparent/red/anticorner/contrasted{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/donut/jelly{
+/obj/effect/spawner/random/donut{
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/tile/transparent/neutral{

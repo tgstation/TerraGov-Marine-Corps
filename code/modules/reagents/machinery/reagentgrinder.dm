@@ -77,7 +77,7 @@
 		if(beaker)
 			return TRUE
 
-		beaker =  I
+		beaker = I
 		user.transferItemToLoc(I, src)
 		update_icon()
 		updateUsrDialog()

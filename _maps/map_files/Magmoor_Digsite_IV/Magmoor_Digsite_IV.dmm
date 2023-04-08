@@ -3930,7 +3930,7 @@
 /area/magmoor/cave/north)
 "cSj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/boiledrice,
+/obj/item/reagent_containers/food/snacks/soup/boiledrice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "cSl" = (
@@ -4453,7 +4453,7 @@
 /area/magmoor/volcano)
 "djX" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/birthdaycakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/birthdaycakeslice,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/cryostasis)
 "dkb" = (
@@ -12309,7 +12309,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/item/tool/kitchen/rollingpin,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "iZM" = (
@@ -13178,7 +13178,7 @@
 /area/magmoor/command/commandroom)
 "jAj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
 "jAA" = (
@@ -17288,7 +17288,7 @@
 "mLY" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/kitchen/utensil/fork,
-/obj/item/reagent_containers/food/snacks/bloodsoup,
+/obj/item/reagent_containers/food/snacks/soup/bloodsoup,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "mMj" = (
@@ -18828,8 +18828,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/breadslice,
-/obj/item/reagent_containers/food/snacks/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "nSr" = (
@@ -20088,7 +20088,7 @@
 /area/magmoor/volcano)
 "oMm" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/aesirsalad,
+/obj/item/reagent_containers/food/snacks/soup/aesirsalad,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "oMr" = (
@@ -21767,7 +21767,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "pNj" = (
@@ -26685,7 +26685,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "twX" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "twY" = (
@@ -28325,7 +28325,7 @@
 /area/magmoor/cave/north)
 "uDl" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/creamcheesebreadslice,
+/obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebreadslice,
 /turf/open/floor/wood,
 /area/magmoor/civilian/jani)
 "uDn" = (
@@ -31653,7 +31653,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/item/reagent_containers/food/snacks/mexican/enchiladas,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/civilian/cook)
 "wYx" = (
@@ -31894,7 +31894,7 @@
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/cargo/processing/south)
 "xfk" = (
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)

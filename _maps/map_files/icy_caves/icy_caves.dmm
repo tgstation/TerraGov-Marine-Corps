@@ -1478,7 +1478,7 @@
 /area/icy_caves/outpost/outside/center)
 "iv" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/applecakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/applecakeslice,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "ix" = (
@@ -3213,7 +3213,7 @@
 /area/icy_caves/outpost/medbay)
 "rv" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "rw" = (
@@ -3913,7 +3913,7 @@
 /area/icy_caves/caves/cavesbrig)
 "uv" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "uw" = (
@@ -7658,7 +7658,7 @@
 /area/icy_caves/outpost/office)
 "MT" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "MU" = (
@@ -9678,7 +9678,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Xn" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Xo" = (
