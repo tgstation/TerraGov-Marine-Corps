@@ -184,6 +184,7 @@
 	xeno_owner.gain_plasma(drain_potency * 3.5)
 	xeno_owner.do_attack_animation(xeno_target, ATTACK_EFFECT_DRAIN_STING)
 	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
+	xeno_owner.visible_message(message = span_xenowarning("\A [xeno_owner] stings [xeno_target]!"), self_message = span_xenowarning("We sting [xeno_target]!"))
 	debuff.stacks -= round(debuff.stacks * 0.7)
 	succeed_activate()
 	add_cooldown()
