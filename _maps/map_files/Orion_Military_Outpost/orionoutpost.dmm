@@ -1120,7 +1120,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
 "gk" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "gm" = (
@@ -1243,7 +1243,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "hf" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/cargo)
 "hh" = (
@@ -2246,11 +2246,11 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "ml" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/cargo)
 "mm" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
@@ -3168,7 +3168,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "qx" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/ammodepot)
 "qy" = (
@@ -3658,9 +3658,9 @@
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -3804,7 +3804,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outpostcent)
 "tt" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -5273,7 +5273,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/vehicledepot)
 "By" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5325,7 +5325,7 @@
 	},
 /area/orion_outpost/surface/building/tadpolepad)
 "BM" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
@@ -5789,7 +5789,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveN)
 "Ec" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -6235,7 +6235,7 @@
 /turf/open/floor/mainship/green,
 /area/orion_outpost/surface/building/prep)
 "GH" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
@@ -6670,7 +6670,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/building/prep)
 "Jc" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
 	},
@@ -7589,7 +7589,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/cargo)
 "Ny" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
@@ -7971,7 +7971,7 @@
 	},
 /area/orion_outpost/ground/outpostsw)
 "Pl" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/tadpolepad)
 "Pn" = (
@@ -8205,7 +8205,7 @@
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/tadpolepad)
 "QH" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -8566,7 +8566,7 @@
 /turf/open/floor/plating,
 /area/orion_outpost/surface/landing_pad)
 "SB" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/tadpolepad)
 "SC" = (

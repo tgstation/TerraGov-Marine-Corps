@@ -551,8 +551,8 @@
 "Ci" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/flechette,
-/obj/item/ammo_magazine/shotgun/flechette,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 5
@@ -566,7 +566,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Cm" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -623,7 +623,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Ho" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "Hu" = (
@@ -747,7 +747,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Mq" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},

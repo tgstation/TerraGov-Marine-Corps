@@ -133,6 +133,16 @@
 		/obj/item/cell/hyper = 1,
 	)
 
+/obj/effect/spawner/random/pickaxe
+	name = "Random pickaxe spawner"
+	icon_state = "random_pickaxe"
+	loot = list(
+		/obj/item/tool/pickaxe = 600,
+		/obj/item/tool/pickaxe/drill = 100,
+		/obj/item/tool/pickaxe/borgdrill = 100,
+		/obj/item/tool/pickaxe/plasmacutter = 10, //10 in 800 chance of showing up
+	)
+
 /obj/effect/spawner/random/bomb_supply
 	name = "Bomb Supply"
 	icon_state = "random_scanner"
@@ -1132,8 +1142,9 @@
 	name = "Random shotgun ammunition spawner"
 	icon_state = "random_shotgun_ammo"
 	loot = list(
-		/obj/item/ammo_magazine/shotgun/buckshot,
-		/obj/item/ammo_magazine/shotgun/flechette,
+		/obj/item/ammo_magazine/shotgun/buckshot = 10,
+		/obj/item/ammo_magazine/shotgun/flechette = 5,
+		/obj/item/ammo_magazine/shotgun/incendiary = 1,
 	)
 
 
@@ -2127,6 +2138,15 @@
 		/obj/structure/window/framed/colony/reinforced = 1,
 	)
 
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn
+	name = "broken reinforced window spawner"
+	icon_state = "random_col_rwindow"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/window/framed/colony/reinforced = 100,
+		/obj/structure/window_frame/colony/reinforced = 1,
+	)
+
 /obj/effect/spawner/random/structure/broken_window
 	name = "broken window spawner"
 	icon_state = "random_col_window"
@@ -2134,6 +2154,14 @@
 	loot = list(
 		/obj/structure/window_frame/colony = 9,
 		/obj/structure/window/framed/colony = 1,
+	)
+
+/obj/effect/spawner/random/structure/broken_window/colonyspawn //used on regular maps, low chance to spawn broken and will always appear
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/window/framed/colony = 75,
+		/obj/structure/window_frame/colony = 1,
+
 	)
 
 /obj/effect/spawner/random/structure/barrel
@@ -2286,7 +2314,9 @@
 	name = "stool spawner"
 	icon_state = "random_stool"
 	spawn_loot_chance = 95
-	loot = list()
+	loot = list(
+		/obj/structure/bed/stool,
+	)
 
 /obj/effect/spawner/random/structure/supplycrate //only works for south facing chairs due to lack of proper directional spawning
 	name = "supply crate spawner"
@@ -2295,6 +2325,12 @@
 	loot = list(
 		/obj/structure/largecrate/random = 30,
 		/obj/structure/largecrate/random/secure = 5,
+	)
+
+/obj/effect/spawner/random/structure/supplycrate/normalweighted
+	loot = list(
+		/obj/structure/largecrate = 30,
+		/obj/effect/spawner/random/structure/supplycrate = 5,
 	)
 
 /obj/effect/spawner/random/structure/supplycrate/secureweighted //only works for south facing chairs due to lack of proper directional spawning

@@ -146,7 +146,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "iT" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "jc" = (
@@ -217,7 +217,7 @@
 /area/bigredv2/outside/general_store)
 "nu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/restraints/handcuffs/cable/cyan,
+/obj/effect/spawner/random/structure/handcuffs/cable/cyan,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "nv" = (
@@ -490,7 +490,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "Bz" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "BJ" = (
@@ -699,7 +699,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "MM" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "Nr" = (

@@ -119,7 +119,7 @@
 /area/bigredv2/outside/general_store)
 "hB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/restraints/handcuffs/cable/cyan,
+/obj/effect/spawner/random/structure/handcuffs/cable/cyan,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "hX" = (
@@ -169,7 +169,7 @@
 	id = "General Store";
 	name = "\improper General Store Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "kl" = (
@@ -219,7 +219,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "mN" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "General Store";
@@ -493,7 +493,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "Df" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "DC" = (
@@ -660,7 +660,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "MK" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "Ng" = (

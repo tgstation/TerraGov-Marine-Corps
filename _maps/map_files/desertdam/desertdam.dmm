@@ -38,7 +38,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/lab_northeast/east_lab_east_entrance)
 "aau" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_northwest)
 "aaw" = (
@@ -183,7 +183,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_backup)
 "abo" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "abs" = (
@@ -263,7 +263,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "abX" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "abY" = (
@@ -292,7 +292,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_cargo)
 "acc" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
 "acd" = (
@@ -339,7 +339,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
 "acq" = (
@@ -348,7 +348,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "acr" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
@@ -380,11 +380,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/river/riverside_central_north)
 "acD" = (
-/obj/structure/desertdam/decals/road{
-	dir = 1
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "acE" = (
 /turf/open/ground/river/desertdam/clean/shallow_edge{
 	dir = 4
@@ -1839,7 +1838,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "alH" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/prison/darkpurple,
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "alI" = (
@@ -2257,7 +2256,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "anQ" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "anR" = (
@@ -2399,8 +2398,8 @@
 /area/desert_dam/exterior/valley/valley_northwest)
 "aoF" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/prison/darkred/full,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "aoG" = (
@@ -3997,7 +3996,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "avQ" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -4028,7 +4027,7 @@
 	},
 /area/desert_dam/building/substation/northeast)
 "avW" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -4360,14 +4359,14 @@
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/valley/valley_labs)
 "axK" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axL" = (
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axN" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axO" = (
@@ -5225,7 +5224,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "aCS" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aCV" = (
@@ -5261,7 +5260,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDi" = (
 /obj/structure/table/woodentable,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDk" = (
@@ -5282,7 +5281,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDp" = (
 /obj/structure/table/woodentable,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
@@ -5293,7 +5292,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDr" = (
 /obj/structure/table/woodentable,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDs" = (
@@ -5418,7 +5417,7 @@
 /turf/closed/wall,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aEb" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
@@ -5480,7 +5479,7 @@
 	},
 /area/desert_dam/building/medical/medsecure)
 "aEt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_room)
 "aEv" = (
@@ -5615,7 +5614,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "aGz" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/lab_northwest/west_lab_xenoflora)
 "aGA" = (
@@ -5837,12 +5836,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aHT" = (
-/obj/structure/desertdam/decals/road{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "aHV" = (
@@ -6461,7 +6456,7 @@
 	},
 /area/desert_dam/building/substation/northeast)
 "aNf" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "aNg" = (
@@ -6501,7 +6496,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "aNw" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -6521,7 +6516,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "aNC" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "aND" = (
@@ -6561,7 +6556,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/building/warehouse/warehouse)
 "aNQ" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/building/substation/northeast)
 "aNR" = (
@@ -6573,7 +6568,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_two/floodgate_control)
 "aNU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/floodgate_control)
 "aNX" = (
@@ -6644,7 +6639,7 @@
 	},
 /area/desert_dam/interior/east_engineering)
 "aOz" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/east_engineering)
 "aOC" = (
@@ -6776,7 +6771,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "aPF" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -6788,7 +6783,7 @@
 	},
 /area/desert_dam/building/warehouse/loading)
 "aPI" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -7295,7 +7290,7 @@
 	},
 /area/desert_dam/exterior/valley/south_valley_dam)
 "aTM" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/control_room)
 "aTP" = (
@@ -7459,7 +7454,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/equipment)
 "aUR" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/equipment)
 "aUS" = (
@@ -7497,7 +7492,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/office)
 "aVn" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/hallway)
 "aVp" = (
@@ -7727,7 +7722,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/desert_dam/building/security/evidence)
 "aWM" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/control_room)
 "aWO" = (
@@ -7883,7 +7878,7 @@
 	},
 /area/desert_dam/building/administration/control_room)
 "aXL" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/office)
 "aXN" = (
@@ -8296,11 +8291,11 @@
 	},
 /area/desert_dam/building/administration/control_room)
 "aZP" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/hallway)
 "aZR" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/hallway)
@@ -8405,7 +8400,7 @@
 	},
 /area/desert_dam/building/administration/control_room)
 "ban" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/lobby)
 "bap" = (
@@ -8801,7 +8796,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/holding)
 "bcK" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/hallway)
 "bcM" = (
@@ -8835,7 +8830,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/meetingrooom)
 "bcU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/meetingrooom)
 "bcV" = (
@@ -8894,7 +8889,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/overseer_office)
 "bdg" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/overseer_office)
 "bdh" = (
@@ -9451,7 +9446,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "bgo" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/lobby)
 "bgq" = (
@@ -9835,7 +9830,7 @@
 /turf/open/floor/prison/plate,
 /area/desert_dam/building/security/lobby)
 "biW" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/lobby)
 "biX" = (
@@ -10605,7 +10600,7 @@
 /area/desert_dam/exterior/valley/valley_mining)
 "bnC" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "bnD" = (
@@ -10875,7 +10870,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/marshals_office)
 "boO" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/security/northern_hallway)
 "boP" = (
@@ -10908,9 +10903,14 @@
 	},
 /area/desert_dam/building/security/northern_hallway)
 "boY" = (
-/obj/structure/flora/desert/grass,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_civilian)
 "bpb" = (
 /turf/open/floor/prison/red{
 	dir = 1
@@ -11081,7 +11081,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_main)
 "bpY" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
 "bqa" = (
@@ -11429,7 +11429,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bsf" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
@@ -11554,10 +11554,10 @@
 "bsM" = (
 /obj/structure/closet/radiation,
 /obj/item/radio/intercom{
+	dir = 4;
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = -30
+	name = "General Listening Channel"
 	},
 /turf/open/floor/prison/darkyellow{
 	dir = 8
@@ -11567,7 +11567,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bsO" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -11595,7 +11595,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "btc" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_main)
 "btf" = (
@@ -11804,7 +11804,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "buA" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/wood,
 /area/desert_dam/building/bar/backroom)
 "buC" = (
@@ -12129,13 +12129,13 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bwA" = (
-/obj/machinery/power/port_gen/pacman/super,
+/obj/effect/spawner/random/structure/powergenerator/superweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bwB" = (
-/obj/machinery/power/port_gen/pacman/super,
+/obj/effect/spawner/random/structure/powergenerator/superweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
@@ -12211,7 +12211,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "bwY" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hanger)
 "bwZ" = (
@@ -12246,7 +12246,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bxn" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown{
 	dir = 4
 	},
@@ -12502,7 +12502,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "byU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/security/staffroom)
 "byY" = (
@@ -12577,11 +12577,11 @@
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bzo" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bzp" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -12747,7 +12747,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/staffroom)
 "bAh" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bAi" = (
@@ -12779,7 +12779,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/east_caves)
 "bAy" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
@@ -12793,7 +12793,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bAB" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bAC" = (
@@ -13257,7 +13257,7 @@
 	},
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bDy" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_mining)
 "bDz" = (
@@ -13552,7 +13552,7 @@
 "bFm" = (
 /obj/structure/table,
 /obj/item/taperecorder,
-/obj/item/clothing/glasses/sunglasses,
+/obj/effect/spawner/random/sunglasses,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/holding)
 "bFn" = (
@@ -13710,7 +13710,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/control_room)
 "bGc" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_room)
 "bGe" = (
@@ -13757,9 +13757,9 @@
 	},
 /area/desert_dam/interior/caves/east_caves)
 "bGr" = (
-/obj/structure/flora/desert/grass/nine,
+/obj/structure/flora/desert/cactus/multiple/eleven,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "bGu" = (
 /obj/structure/platform,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -13820,7 +13820,7 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "bGT" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
@@ -13916,7 +13916,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bHn" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bHo" = (
@@ -14185,11 +14185,11 @@
 /turf/open/floor/prison/green,
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bIB" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/prison/green,
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bIC" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/prison/green{
 	dir = 6
 	},
@@ -14302,7 +14302,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bJp" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bJq" = (
@@ -14324,7 +14324,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bJB" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bJD" = (
@@ -14454,7 +14454,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_main)
 "bKy" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -14504,11 +14504,11 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_mining)
 "bKL" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/control_room)
 "bKM" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/hanger)
 "bKN" = (
@@ -14610,7 +14610,7 @@
 	},
 /area/desert_dam/interior/dam_interior/lobby)
 "bLz" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bLB" = (
@@ -14776,7 +14776,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
 "bMw" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bMy" = (
@@ -14848,7 +14848,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/open{
 	dir = 8
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "bMW" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -15273,11 +15273,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "bPv" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/lobby)
 "bPx" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bPz" = (
@@ -15294,7 +15294,7 @@
 /area/desert_dam/building/security/prison)
 "bPD" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/security/prison)
 "bPE" = (
@@ -15448,7 +15448,7 @@
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bQl" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bQm" = (
@@ -15594,11 +15594,11 @@
 	},
 /area/desert_dam/interior/dam_interior/CE_office)
 "bRj" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/workshop)
 "bRk" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/office)
 "bRl" = (
@@ -15656,7 +15656,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bRy" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/CE_office)
 "bRz" = (
@@ -15727,7 +15727,7 @@
 	},
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "bRO" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bRT" = (
@@ -15994,11 +15994,11 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/building/security/prison)
 "bTt" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/break_room)
 "bTu" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "bTD" = (
@@ -16939,7 +16939,7 @@
 /area/desert_dam/building/security/armory)
 "bYr" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/armory)
 "bYs" = (
@@ -17238,7 +17238,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "bZR" = (
 /obj/item/trash/semki,
 /turf/open/floor/plating,
@@ -17406,11 +17406,15 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/armory)
 "caP" = (
-/obj/structure/desertdam/decals/road/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "caQ" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	name = "\improper Cell 2"
@@ -17475,14 +17479,14 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "cbe" = (
-/obj/item/ammo_magazine/shotgun/buckshot{
+/obj/effect/spawner/random/ammo/shotgun{
 	pixel_x = 6;
 	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "cbg" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/CE_office)
 "cbi" = (
@@ -18212,7 +18216,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "cfN" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/warden)
 "cfR" = (
@@ -18352,7 +18356,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/exterior/river/riverside_south)
 "cgJ" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/west)
 "cgN" = (
@@ -18390,7 +18394,7 @@
 	},
 /area/desert_dam/building/substation/west)
 "chb" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/building/substation/west)
 "chd" = (
@@ -18683,7 +18687,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/chemistry)
 "ciS" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/chemistry)
 "ciU" = (
@@ -18695,7 +18699,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/break_room)
 "ciW" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/break_room)
 "ciY" = (
@@ -18763,7 +18767,7 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "cjs" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/west_wing_hallway)
 "cjt" = (
@@ -18878,7 +18882,7 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "cjV" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/chemistry)
 "cjW" = (
@@ -19051,7 +19055,7 @@
 	},
 /area/desert_dam/building/medical/break_room)
 "ckY" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
 "ckZ" = (
@@ -19338,7 +19342,7 @@
 "cmI" = (
 /obj/structure/flora/bush,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "cmJ" = (
 /obj/structure/flora/tree/joshua,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -19714,7 +19718,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/morgue)
 "coU" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/break_room)
 "coW" = (
@@ -19852,7 +19856,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "cpH" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/north_wing_hallway)
 "cpI" = (
@@ -19957,8 +19961,8 @@
 /area/desert_dam/building/security/warden)
 "cqk" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/warden)
 "cql" = (
@@ -19972,7 +19976,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
 "cqm" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/clothing/head/beret/sec/warden,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/warden)
@@ -20122,7 +20126,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_cargo)
 "crA" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/lobby)
 "crC" = (
@@ -20153,7 +20157,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "crH" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/lobby)
 "crL" = (
@@ -20483,7 +20487,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/medical/primary_storage)
 "ctX" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/primary_storage)
 "ctY" = (
@@ -20503,7 +20507,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_observation)
 "cub" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cuc" = (
@@ -20526,7 +20530,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/medical/CMO)
 "cuf" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/CMO)
 "cug" = (
@@ -21133,7 +21137,7 @@
 	},
 /area/desert_dam/building/medical/primary_storage)
 "cxE" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/surgery_observation)
 "cxH" = (
@@ -21284,7 +21288,7 @@
 	},
 /area/desert_dam/building/medical/surgery_room_two)
 "cyn" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -21512,7 +21516,7 @@
 	},
 /area/desert_dam/building/substation/central)
 "czN" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -21811,7 +21815,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_south)
 "cBa" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "cBc" = (
@@ -21975,7 +21979,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/emergency_room)
 "cCj" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/emergency_room)
 "cCk" = (
@@ -22002,7 +22006,7 @@
 	},
 /area/desert_dam/building/medical/primary_storage)
 "cCn" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -22233,7 +22237,7 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "cDs" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/surgery_room_one)
 "cDt" = (
@@ -22248,7 +22252,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_one)
 "cDu" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/surgery_room_two)
 "cDv" = (
@@ -22263,7 +22267,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_two)
 "cDy" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/office1)
 "cDz" = (
@@ -22277,7 +22281,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/office1)
 "cDA" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/office2)
 "cDB" = (
@@ -22397,7 +22401,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cEf" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/garage)
 "cEg" = (
@@ -22449,7 +22453,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cEA" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /obj/machinery/power/apc{
 	start_charge = 0
 	},
@@ -22487,7 +22491,7 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "cEG" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/treatment_room)
 "cEJ" = (
@@ -22579,7 +22583,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "cFn" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/emergency_room)
 "cFp" = (
@@ -22965,7 +22969,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/medical/virology_wing)
 "cHO" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "cHP" = (
@@ -23141,12 +23145,12 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cII" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cIJ" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /obj/machinery/light,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
@@ -23221,7 +23225,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/church)
 "cJe" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/church)
 "cJg" = (
@@ -23379,7 +23383,7 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "cJN" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cJO" = (
@@ -23752,7 +23756,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -23848,7 +23852,7 @@
 	},
 /area/desert_dam/building/medical/virology_isolation)
 "cNa" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_isolation)
 "cNb" = (
@@ -23888,7 +23892,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "cNo" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/warehouse)
 "cNu" = (
@@ -24268,7 +24272,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cPM" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_isolation)
 "cPN" = (
@@ -24418,7 +24422,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/office)
 "cQv" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/southwest)
 "cQw" = (
@@ -24836,7 +24840,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "cTi" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/southwest)
 "cTj" = (
@@ -25103,7 +25107,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/building/warehouse/loading)
 "cVV" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cVX" = (
@@ -25117,7 +25121,7 @@
 "cWb" = (
 /obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "cWe" = (
 /obj/structure/desertdam/decals/road{
 	dir = 1
@@ -25128,7 +25132,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "cWk" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "cWl" = (
@@ -25208,7 +25212,7 @@
 "cXb" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "cXh" = (
 /obj/structure/desertdam/decals/road/edge/long{
 	dir = 8
@@ -25246,7 +25250,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "cXz" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "cXD" = (
@@ -25398,7 +25402,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "cZc" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_hydro)
 "cZd" = (
@@ -25441,7 +25445,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "cZu" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/cafeteria)
 "cZv" = (
@@ -25472,7 +25476,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "dao" = (
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/cafeteria/backroom)
@@ -25519,7 +25523,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "daN" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "daO" = (
@@ -25584,7 +25588,7 @@
 /turf/open/floor/prison/yellow/full,
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbo" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbp" = (
@@ -25613,7 +25617,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbu" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbw" = (
@@ -25769,7 +25773,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dcl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dcn" = (
@@ -25871,7 +25875,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "dde" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "ddg" = (
@@ -25996,7 +26000,7 @@
 "dec" = (
 /obj/structure/flora/desert/cactus/multiple/twelve,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "ded" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
@@ -26033,9 +26037,9 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "dep" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "des" = (
@@ -26057,7 +26061,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics)
 "deA" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "deC" = (
@@ -26086,7 +26090,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "deI" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 9
 	},
@@ -26112,7 +26116,7 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dfi" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dfj" = (
@@ -26167,7 +26171,7 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "dfD" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "dfI" = (
@@ -26220,11 +26224,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_medical)
 "dgo" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/loading)
 "dgs" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "dgt" = (
@@ -26324,7 +26328,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dhe" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/cafeteria/loading)
 "dhf" = (
@@ -26341,7 +26345,7 @@
 	},
 /area/desert_dam/building/warehouse/warehouse)
 "dhs" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/hallway)
 "dhU" = (
@@ -26367,23 +26371,23 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/prison)
 "dil" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/garage)
 "dim" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/dorms/hallway_northwing)
 "din" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
 "diq" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/equipment)
 "dir" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_northwest)
 "diC" = (
@@ -26416,7 +26420,7 @@
 /turf/open/floor/prison/yellow,
 /area/desert_dam/building/hydroponics/hydroponics)
 "diL" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "diM" = (
@@ -26656,7 +26660,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "dkJ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 9
 	},
@@ -26705,7 +26709,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_westwing)
 "dlu" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "dlw" = (
@@ -26726,7 +26730,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dlB" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/loading)
 "dlC" = (
@@ -26894,7 +26898,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "dof" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "doA" = (
@@ -27112,7 +27116,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/lobby)
 "dqW" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/lobby)
 "drc" = (
@@ -27275,7 +27279,7 @@
 	},
 /area/desert_dam/building/water_treatment_one/garage)
 "dsM" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/garage)
 "dsO" = (
@@ -27633,7 +27637,7 @@
 	},
 /area/desert_dam/building/security/deathrow)
 "dxa" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
@@ -27969,7 +27973,7 @@
 "dzE" = (
 /obj/structure/flora/desert/grass/ten,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "dzG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
@@ -28102,7 +28106,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "dBo" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/dorms/hallway_westwing)
 "dBp" = (
@@ -28379,7 +28383,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/dorms/restroom)
 "dDk" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -28867,7 +28871,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/dorms/pool)
 "dIl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/dorms/pool)
 "dIo" = (
@@ -29542,10 +29546,17 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_south)
 "dTK" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 10
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
 	},
-/area/desert_dam/exterior/valley/valley_mining)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_civilian)
 "dTM" = (
 /obj/structure/desertdam/decals/road{
 	dir = 4
@@ -29583,7 +29594,7 @@
 	},
 /area/desert_dam/building/dorms/hallway_westwing)
 "dUt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dUE" = (
@@ -29770,7 +29781,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "dYK" = (
 /obj/item/trash/boonie,
 /turf/open/floor/prison,
@@ -30151,7 +30162,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
 "edO" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/hallway)
 "edP" = (
@@ -30209,11 +30220,11 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "eeo" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/control_room)
 "eeq" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/breakroom)
 "eer" = (
@@ -30258,7 +30269,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/garage)
 "eeL" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/building/cafeteria/loading)
 "eeS" = (
@@ -30866,7 +30877,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_civilian)
 "exa" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -31082,14 +31093,15 @@
 /turf/open/ground/river/desertdam/clean/shallow_edge/corner2,
 /area/desert_dam/exterior/river/riverside_east)
 "eEh" = (
-/obj/structure/flora/desert/cactus/multiple/seven,
+/obj/structure/flora/rock/pile/alt,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "eEA" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 9
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/turf/closed/mineral/smooth,
+/area/desert_dam/building/cafeteria/cold_room)
 "eEW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2;
@@ -32295,10 +32307,11 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/medical/break_room)
 "fnP" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/mineral/smooth,
+/area/desert_dam/building/cafeteria/loading)
 "foq" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -32339,7 +32352,7 @@
 	},
 /area/desert_dam/interior/dam_interior/disposals)
 "fpg" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_main)
@@ -32415,9 +32428,11 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "fsk" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/mineral/smooth,
+/area/desert_dam/building/dorms/hallway_westwing)
 "fsp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Containment"
@@ -33241,7 +33256,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "fQV" = (
 /obj/structure/flora/desert/grass/seven,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -33322,7 +33337,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_civilian)
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "fSc" = (
 /obj/structure/flora/desert/grass/twelve,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -33482,9 +33497,11 @@
 /turf/open/floor/tile/dark,
 /area/desert_dam/building/church)
 "fVY" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
-/area/desert_dam/exterior/valley/valley_mining)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/mineral/smooth,
+/area/desert_dam/building/cafeteria/cafeteria)
 "fWq" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -33848,16 +33865,16 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
 "ggL" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 9
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/turf/closed/mineral/smooth,
+/area/desert_dam/exterior/river/riverside_south)
 "ggS" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
 	},
@@ -34076,7 +34093,7 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -34332,9 +34349,11 @@
 	},
 /area/desert_dam/exterior/river/riverside_south)
 "gwu" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/mineral/smooth,
+/area/desert_dam/building/cafeteria/backroom)
 "gxa" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -34575,11 +34594,6 @@
 	},
 /turf/open/floor/wood,
 /area/desert_dam/building/bar/backroom)
-"gGg" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 1
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "gGk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -34659,7 +34673,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "gIR" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -34764,7 +34778,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/primary_storage)
 "gNh" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
@@ -34890,12 +34904,12 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "gRl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/control_room)
 "gRw" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -34953,7 +34967,7 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "gSW" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
@@ -34974,7 +34988,7 @@
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/desert_dam/interior/caves/east_caves)
 "gTE" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/building/security/staffroom)
@@ -35663,13 +35677,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
-"hnD" = (
-/obj/structure/desertdam/decals/road/line{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
 "hnI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -36284,11 +36291,6 @@
 "hFw" = (
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_one)
-"hFC" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/open{
-	dir = 8
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "hFG" = (
 /obj/machinery/shower{
 	pixel_y = 18
@@ -36689,7 +36691,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "hRf" = (
@@ -36826,12 +36828,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/north_wing_hallway)
-"hVo" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 1
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "hVA" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_mining)
@@ -37104,10 +37100,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
-"icK" = (
-/obj/structure/flora/desert/grass/six,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "icT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -37567,7 +37559,7 @@
 "ist" = (
 /obj/structure/flora/desert/cactus/multiple/nine,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "isx" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -37722,7 +37714,7 @@
 	},
 /area/desert_dam/interior/caves/temple)
 "iwW" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/equipment)
@@ -37839,7 +37831,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
 "izM" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
@@ -38360,7 +38352,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/southern_hallway)
 "iPK" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
@@ -38671,10 +38663,6 @@
 	dir = 6
 	},
 /area/desert_dam/exterior/landing/landing_pad_two_external)
-"iYn" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
 "iYD" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
@@ -38970,7 +38958,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/interior/east_engineering)
 "jhp" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "jhq" = (
@@ -39061,12 +39049,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/desert_dam/building/substation/central)
-"jkw" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 4
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "jkz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -39091,7 +39073,7 @@
 "jlB" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "jlE" = (
 /obj/structure/table/reinforced,
 /obj/item/folder,
@@ -39178,7 +39160,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/desert_dam/building/security/prison)
 "jnT" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_backup)
@@ -39289,18 +39271,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/lobby)
-"jsf" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
 "jsg" = (
 /obj/structure/flora/rock/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "jsi" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -39392,7 +39366,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "juH" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -39539,7 +39513,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "jze" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "jzi" = (
@@ -39697,7 +39671,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
 "jCi" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/central)
@@ -39748,7 +39722,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "jDb" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
@@ -39912,7 +39886,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
 "jHI" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
@@ -40360,10 +40334,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/desert_dam/building/telecommunication)
-"jWi" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "jWl" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
@@ -40557,12 +40527,6 @@
 	dir = 1
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
-"kaA" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_civilian)
 "kaF" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -40856,7 +40820,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "kjQ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -41000,7 +40964,7 @@
 /obj/structure/flora/desert/cactus/four,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "knv" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -41538,7 +41502,7 @@
 /turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "kEX" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/telecommunication)
 "kFa" = (
@@ -41612,7 +41576,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "kHr" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
@@ -41624,12 +41588,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
-"kHJ" = (
-/obj/structure/desertdam/decals/road/edge/long{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "kHM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -41659,10 +41617,6 @@
 	dir = 8
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
-"kIu" = (
-/obj/structure/flora/desert/cactus/eight,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
 "kIF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -42331,7 +42285,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "laL" = (
 /obj/machinery/light{
 	dir = 1
@@ -42776,10 +42730,6 @@
 	dir = 10
 	},
 /area/desert_dam/building/security/staffroom)
-"lpN" = (
-/obj/structure/flora/desert/cactus,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "lpX" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	desc = "Heavy shutters reinforced to prevent breaches, no way to get through here.";
@@ -42898,10 +42848,6 @@
 	dir = 1
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
-"lsE" = (
-/obj/structure/flora/desert/grass/four,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
 "lsJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -43174,9 +43120,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/bar_valley_dam)
-"lAT" = (
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "lBh" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/desertdam/asphalt/open{
@@ -43574,12 +43517,6 @@
 	dir = 1
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
-"lNg" = (
-/obj/structure/desertdam/decals/road{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "lNs" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -43815,7 +43752,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "lWs" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
@@ -43860,7 +43797,7 @@
 	},
 /area/desert_dam/exterior/valley/north_valley_dam)
 "lYq" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_isolation)
@@ -44275,18 +44212,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "mmS" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
 /area/desert_dam/exterior/landing/landing_pad_two_external)
-"mmU" = (
-/obj/structure/desertdam/decals/loose_sand_overlay{
-	dir = 9
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "mmV" = (
 /obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/plating,
@@ -45166,7 +45097,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_civilian)
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "mNA" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -45197,7 +45128,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "mOr" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /obj/machinery/door_control{
 	id = "medstorage3";
 	name = "Medical Secure Shutters"
@@ -45295,10 +45226,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/desert_dam/interior/dam_interior/lobby)
-"mQQ" = (
-/obj/structure/flora/desert/grass/eleven,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "mQZ" = (
 /turf/open/floor/plating/ground/dirt{
 	dir = 8
@@ -45580,7 +45507,7 @@
 "naB" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "naF" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -45782,17 +45709,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "ngq" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
-"nhe" = (
-/obj/structure/desertdam/decals/road{
-	dir = 8
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
 "nhu" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/weed_node,
@@ -45914,7 +45834,7 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "nkP" = (
 /obj/structure/table/woodentable,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -45976,11 +45896,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_telecoms)
-"nmw" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 4
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "nna" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -46142,7 +46057,7 @@
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/chemistry)
 "ntl" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -46222,9 +46137,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
-"nxg" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "nxl" = (
 /obj/effect/turf_decal/medical_decals/doc/stripe,
 /turf/open/floor/tile/white,
@@ -46494,7 +46406,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/open{
 	dir = 8
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "nDR" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship/open{
@@ -46650,7 +46562,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "nKh" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
@@ -46910,16 +46822,6 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
-"nRD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
 "nRG" = (
 /obj/machinery/power/apc{
 	start_charge = 0
@@ -47017,7 +46919,7 @@
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "nVf" = (
 /obj/structure/cable,
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "nVv" = (
@@ -47191,7 +47093,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "nYw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -47276,7 +47178,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "oaw" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/meetingrooom)
@@ -47365,7 +47267,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/control_room)
 "ocw" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/ai_node,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
@@ -47835,7 +47737,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/administration/archives)
 "orL" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "orX" = (
@@ -48136,7 +48038,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "oBz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -48542,7 +48444,7 @@
 "oNN" = (
 /obj/structure/flora/desert/grass/eight,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "oNP" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/effect/decal/cleanable/dirt,
@@ -48759,7 +48661,7 @@
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
 "oTp" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
@@ -48935,7 +48837,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "oXY" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "oYo" = (
@@ -48961,7 +48863,7 @@
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "oYW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
 "oYY" = (
@@ -49062,12 +48964,12 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "paK" = (
 /obj/structure/desertdam/decals/road/edge/long,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "pba" = (
 /obj/structure/flora/tree/joshua,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -49457,7 +49359,7 @@
 /obj/structure/flora/desert/grass/eleven,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "pkd" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -49693,12 +49595,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
-"prb" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 5
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "prh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitepurple{
@@ -49901,7 +49797,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "pwM" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
 "pwO" = (
@@ -50389,10 +50285,6 @@
 	dir = 8
 	},
 /area/desert_dam/exterior/river_mouth/southern)
-"pJW" = (
-/obj/structure/flora/desert/grass/two,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
 "pKe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -51288,7 +51180,7 @@
 "qij" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "qiu" = (
@@ -51335,7 +51227,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/garage)
 "qjH" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
@@ -51528,7 +51420,7 @@
 /obj/structure/desertdam/decals/road,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_labs)
+/area/desert_dam/exterior/valley/valley_northwest)
 "qqa" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -52020,10 +51912,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_workshop)
-"qDY" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "qFu" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -52556,7 +52444,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "qWC" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -52686,7 +52574,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/prop/vehicle/truck/truckcargo,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "ras" = (
 /obj/structure/desertdam/decals/road/line,
 /obj/effect/decal/cleanable/dirt,
@@ -53546,7 +53434,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "rAj" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
@@ -53739,7 +53627,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "rIt" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/effect/spawner/random/structure/powergenerator,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -54054,7 +53942,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "rQI" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
@@ -54376,7 +54264,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "rXr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -54812,7 +54700,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "siP" = (
 /obj/structure/reagent_dispensers/wallmounted/virusfood{
 	pixel_x = -32
@@ -55150,7 +55038,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "sqZ" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -55164,7 +55052,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "srF" = (
@@ -55405,7 +55293,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "szM" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/cafeteria/loading)
@@ -55423,10 +55311,6 @@
 "sAr" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
-"sAz" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_mining)
 "sAE" = (
 /obj/machinery/light,
@@ -55907,10 +55791,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
-"sTc" = (
-/obj/structure/flora/desert/grass/six,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_mining)
 "sTf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
@@ -56543,9 +56423,9 @@
 /obj/structure/desertdam/decals/road,
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_labs)
+/area/desert_dam/exterior/valley/valley_northwest)
 "tmj" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "tmn" = (
@@ -56959,7 +56839,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_east)
 "txj" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -57384,11 +57264,6 @@
 "tLl" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_hydro)
-"tLA" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/twoside{
-	dir = 4
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "tLG" = (
 /obj/structure/platform{
 	dir = 8
@@ -57461,7 +57336,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/open{
 	dir = 8
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "tNE" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -57603,9 +57478,6 @@
 	dir = 4
 	},
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
-"tSa" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "tSg" = (
 /obj/machinery/light{
 	dir = 8
@@ -58228,7 +58100,7 @@
 /obj/structure/desertdam/decals/road,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "uis" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/whitegreen/full,
@@ -58247,7 +58119,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "uiU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	desc = "Heavy shutters reinforced to prevent breaches, no way to get through here.";
 	dir = 2;
@@ -58870,7 +58742,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "uBx" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "uBK" = (
@@ -60393,12 +60265,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
-"vuF" = (
-/obj/structure/desertdam/decals/road{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "vuG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -60589,7 +60455,7 @@
 "vAs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vAT" = (
@@ -61037,7 +60903,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vNE" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
@@ -61202,7 +61068,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "vRR" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "vRZ" = (
@@ -61316,7 +61182,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_northwing)
 "vWO" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vWS" = (
@@ -61379,13 +61245,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel)
-"vXX" = (
-/obj/structure/desertdam/decals/road{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
 "vYc" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/catwalk,
@@ -61526,7 +61385,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
 	},
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "wbh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -61592,7 +61451,7 @@
 /obj/structure/flora/desert/grass/two,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
+/area/desert_dam/exterior/valley/valley_civilian)
 "wcJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -62008,11 +61867,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/loading)
-"wmJ" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/edge{
-	dir = 8
-	},
-/area/desert_dam/exterior/valley/valley_medical_south)
 "wnc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/prisoner,
@@ -62569,7 +62423,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "wFp" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/desertdam/decals/road/line{
@@ -62811,7 +62665,7 @@
 /obj/structure/desertdam/decals/road,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/valley/valley_mining)
+/area/desert_dam/exterior/valley/valley_civilian)
 "wNf" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -62922,7 +62776,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "wQe" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -63209,7 +63063,7 @@
 /area/desert_dam/building/medical/north_wing_hallway)
 "wWc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -63254,7 +63108,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/hallway)
 "wXR" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/spawner/random/trash,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
@@ -64163,7 +64017,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "xAB" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/control_room)
@@ -64494,10 +64348,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/desert_dam/exterior/valley/south_valley_dam)
-"xJA" = (
-/obj/structure/flora/desert/cactus/eight,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "xJG" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -64629,7 +64479,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_northwest)
 "xNj" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -64680,10 +64530,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
-"xOx" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/desert_dam/exterior/valley/valley_medical_south)
 "xOG" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -64723,7 +64569,7 @@
 	dir = 8;
 	id = "cargo_storage"
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -65094,7 +64940,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -66296,11 +66142,11 @@ tFb
 tFb
 tFb
 tFb
-tFb
-tFb
-tFb
-tFb
-tFb
+aUY
+bqs
+aVa
+bhe
+bwV
 tFb
 tFb
 tFb
@@ -81526,15 +81372,15 @@ bdg
 bdg
 bdg
 bdf
-udu
-hkC
-pUO
-cGD
-cGD
-dzU
-vzj
-aeA
-xzR
+bgg
+spE
+apz
+aqg
+aqg
+asa
+aoE
+aiZ
+xMI
 rCV
 rCV
 rCV
@@ -81760,15 +81606,15 @@ bdC
 hfY
 bfw
 bdf
-udu
-ajL
-pUO
-eCe
-lYP
+bgg
+odn
+apz
+oOz
+feN
 tlS
-vzj
-mUO
-xzR
+aoE
+xpc
+xMI
 rCV
 rCV
 rCV
@@ -81994,16 +81840,16 @@ beY
 bdC
 bfx
 bdg
-udu
-ajL
-pUO
-cGD
-cGD
-dzU
-vzj
-aeA
-wZM
-xzR
+bgg
+odn
+apz
+aqg
+aqg
+asa
+aoE
+aiZ
+aUL
+xMI
 rCV
 rCV
 rCV
@@ -82228,18 +82074,18 @@ bPW
 bdC
 bfy
 bdg
-udu
-hkC
-pUO
-cGD
-cGD
+bgg
+spE
+apz
+aqg
+aqg
 qpM
-vzj
-aeA
-aeA
-jGW
-xzR
-mre
+aoE
+aiZ
+aiZ
+mPH
+xMI
+bzg
 rCV
 rCV
 bkU
@@ -102956,13 +102802,13 @@ rCV
 rCV
 rCV
 rCV
-cAe
-cAe
-cAe
-cAe
-cAe
-cAe
-cAe
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 cko
 cko
 cCH
@@ -103189,14 +103035,14 @@ rCV
 rCV
 rCV
 rCV
-gJP
-wTk
+cSC
+cmW
 naB
-wTk
-gJP
-wTk
-wTk
-wTk
+cmW
+cSC
+cmW
+cmW
+cmW
 cSC
 cYs
 cCH
@@ -103423,14 +103269,14 @@ rCV
 rCV
 rCV
 rCV
-xVE
-pys
+pfV
+aKm
 cmI
-xJA
-pys
-pys
-pys
-pys
+evU
+aKm
+aKm
+aKm
+aKm
 aKm
 cUc
 pkv
@@ -103654,17 +103500,17 @@ rCV
 rCV
 rCV
 rCV
-qHn
-qHn
-xVE
-xVE
-boY
-lpN
-pys
-qDY
-vyt
-xeb
-pys
+cwu
+cwu
+pfV
+pfV
+vpQ
+cEU
+aKm
+xAV
+eEh
+kPN
+aKm
 aKm
 cUc
 cCH
@@ -103887,18 +103733,18 @@ rCV
 rCV
 rCV
 rCV
-qHn
-qHn
-ohW
-pys
-icK
-qho
-xeb
-eEh
-pys
-pys
-pys
-mmU
+cwu
+cwu
+mYm
+aKm
+tKg
+oNN
+kPN
+cUK
+aKm
+aKm
+aKm
+cUL
 cko
 cUc
 pkv
@@ -104120,19 +103966,19 @@ rCV
 rCV
 rCV
 rCV
-qHn
-xVE
-xVE
-pys
-pys
-pys
-rzB
-pys
-mmU
-eEA
-nxg
-nxg
-nxg
+cwu
+pfV
+pfV
+aKm
+aKm
+aKm
+csb
+aKm
+cUL
+hqD
+cvn
+cvn
+cvn
 cvn
 cvx
 cCH
@@ -104353,20 +104199,20 @@ rCV
 rCV
 rCV
 rCV
-qHn
-xVE
-xeb
-pys
-mQQ
-pys
-pys
-hXE
-pys
-cAe
-tLA
+cwu
+pfV
+kPN
+aKm
+cQK
+aKm
+aKm
+cqT
+aKm
+cko
+cUc
 paK
-vuF
-vuF
+daT
+daT
 daT
 daT
 pgZ
@@ -104587,20 +104433,20 @@ xVE
 xVE
 rCV
 gJP
-xVE
-pys
-pys
-xeb
-pys
-xeb
-pys
-pys
-lhu
-cAe
-tLA
-acD
-lAT
-lAT
+pfV
+aKm
+aKm
+kPN
+aKm
+kPN
+aKm
+aKm
+fCL
+cko
+cUc
+cCH
+cto
+cto
 cto
 cUP
 cto
@@ -104821,20 +104667,20 @@ pys
 pys
 xVE
 dco
-xVE
-pys
-pys
+pfV
+aKm
+aKm
 wcw
-pys
-pys
-rzB
-pys
-cAe
-cAe
-tLA
-acD
-lAT
-lAT
+aKm
+aKm
+csb
+aKm
+cko
+cko
+cUc
+cCH
+cto
+cto
 cto
 cUP
 cto
@@ -105055,20 +104901,20 @@ wYS
 xeb
 xeb
 wTk
-pys
-pys
-boY
-pys
-pys
-pys
-xeb
-pys
-cAe
+aKm
+aKm
+vpQ
+aKm
+aKm
+aKm
+kPN
+aKm
+cko
 wbf
-tSa
-kHJ
-lNg
-lNg
+cvw
+cVC
+cmb
+cmb
 sxN
 cVA
 cto
@@ -105289,20 +105135,20 @@ pys
 pys
 pys
 wTk
-pys
-pys
-pys
-qDY
-hXE
-boY
-wYS
-pys
-cAe
-gGg
-tSa
+aKm
+aKm
+aKm
+xAV
+cqT
+vpQ
+cmJ
+aKm
+cko
+cmN
+cvw
 cWb
-vuF
-vuF
+daT
+daT
 daT
 coZ
 lru
@@ -105523,20 +105369,20 @@ pys
 pys
 vyt
 wTk
-jIJ
-pys
-pys
-boY
-pys
-pys
-pys
-mmU
-cAe
-gGg
+jeC
+aKm
+aKm
+vpQ
+aKm
+aKm
+aKm
+cUL
+cko
+cmN
 cXb
-acD
-lAT
-lAT
+cCH
+cto
+cto
 cto
 cUP
 cto
@@ -105757,20 +105603,20 @@ pys
 pys
 xeb
 wTk
-pys
-xeb
+aKm
+kPN
 ist
-pys
-pys
-pys
-xeb
-cAe
-eEA
+aKm
+aKm
+aKm
+kPN
+cko
+hqD
 nDP
-tSa
-acD
-lAT
-jWi
+cvw
+cCH
+cto
+sfi
 cto
 cUP
 cto
@@ -105991,20 +105837,20 @@ xeb
 pys
 pys
 gJP
-xVE
-xVE
-pys
-pys
+pfV
+pfV
+aKm
+aKm
 dec
-pys
+aKm
 jsg
-cAe
+cko
 siE
-hFC
-gwu
-kHJ
-lNg
-lNg
+mEf
+dzG
+cVC
+cmb
+cmb
 cmb
 cVA
 cto
@@ -106227,18 +106073,18 @@ xVE
 rCV
 rCV
 rCV
-xVE
-xVE
-ohW
-pys
-mmU
-fsk
-gGg
-hFC
-tSa
+pfV
+pfV
+mYm
+aKm
+cUL
+rMV
+cmN
+mEf
+cvw
 cWb
-vuF
-vuF
+daT
+daT
 daT
 coZ
 cto
@@ -106463,16 +106309,16 @@ rCV
 rCV
 rCV
 rCV
-qHn
-xVE
-cAe
-eEA
-hFC
-hFC
-tSa
-acD
-jWi
-lAT
+cwu
+pfV
+cko
+hqD
+mEf
+mEf
+cvw
+cCH
+sfi
+cto
 cto
 qkG
 cto
@@ -106698,15 +106544,15 @@ rCV
 rCV
 rCV
 rCV
-qHn
-cAe
-gGg
+cwu
+cko
+cmN
 tNr
 tNr
-xOx
-acD
-lAT
-lAT
+iCz
+cCH
+cto
+cto
 cto
 nKg
 cto
@@ -106932,15 +106778,15 @@ rCV
 rCV
 rCV
 rCV
-cAe
-cAe
-hVo
+cko
+cko
+iaA
 tNr
 bMV
-xOx
-kHJ
-lNg
-lNg
+iCz
+cVC
+cmb
+cmb
 cmb
 cmb
 cmb
@@ -107165,16 +107011,16 @@ rCV
 rCV
 rCV
 rCV
-qHn
-cAe
-ggL
+cwu
+cko
+usd
 bMV
 tNr
 tNr
-hFC
-wmJ
-wmJ
-wmJ
+mEf
+cok
+cok
+cok
 cok
 cok
 cok
@@ -107399,16 +107245,16 @@ rCV
 rCV
 rCV
 rCV
-qHn
-cAe
-hVo
+cwu
+cko
+iaA
 tNr
-nmw
-nmw
-nmw
-jkw
-nmw
-nmw
+cod
+cod
+cod
+tkG
+cod
+cod
 cod
 cod
 cod
@@ -107633,16 +107479,16 @@ rCV
 rCV
 rCV
 rCV
-qHn
-cAe
-prb
+cwu
+cko
+mLw
 nYt
-cAe
-cAe
-cAe
-pys
-pys
-pys
+cko
+cko
+cko
+aKm
+aKm
+aKm
 aKm
 aKm
 aKm
@@ -110670,7 +110516,7 @@ hVA
 rCV
 rCV
 rCV
-bqp
+cwu
 daO
 dby
 mto
@@ -110903,8 +110749,8 @@ bjV
 hVA
 rCV
 rCV
-bqp
-noj
+cwu
+mYm
 daO
 dbz
 jEb
@@ -111131,14 +110977,14 @@ rCV
 rCV
 rCV
 bqp
-hVA
+pfV
 knr
-kIu
-tiU
-hVA
+evU
+kPN
+pfV
 rCV
-hVA
-iYn
+pfV
+ewX
 daO
 dbA
 wbQ
@@ -111365,14 +111211,14 @@ rCV
 rCV
 rCV
 rCV
-bqp
-hVA
-ewV
-bjV
-bjV
-hVA
-hVA
-bjV
+cwu
+pfV
+jeC
+aKm
+aKm
+pfV
+pfV
+aKm
 daO
 dbB
 jVu
@@ -111600,13 +111446,13 @@ rCV
 rCV
 rCV
 rCV
-hVA
-bjV
-bjV
-pJW
-bjV
-bjV
-bjV
+pfV
+aKm
+aKm
+cqT
+aKm
+aKm
+aKm
 daO
 fTk
 wbQ
@@ -111834,13 +111680,13 @@ rCV
 rCV
 rCV
 rCV
-bjV
-bjV
+aKm
+aKm
 pjN
-bjV
-bjV
+aKm
+aKm
 dzE
-tiU
+kPN
 daO
 dbD
 wbQ
@@ -112064,17 +111910,17 @@ rCV
 rCV
 rCV
 rCV
-bqp
+cwu
 rCV
-mQf
-hVA
-bjV
-bjV
+tRu
+pfV
+aKm
+aKm
 oNN
-bjV
-bjV
-bjV
-bjV
+aKm
+aKm
+aKm
+aKm
 daO
 dbE
 jVu
@@ -112297,18 +112143,18 @@ rCV
 rCV
 rCV
 rCV
-hVA
-hVA
-hVA
-hVA
-bjV
-bjV
-lsE
-bjV
-bjV
-sAr
-bjV
-bjV
+pfV
+pfV
+pfV
+pfV
+aKm
+aKm
+cPz
+aKm
+aKm
+xAV
+aKm
+aKm
 daO
 dbG
 wbQ
@@ -112526,23 +112372,23 @@ bYe
 ttI
 bnA
 bWK
-bZN
-bZN
-bYw
-bWK
-bZN
-bZN
+daT
+daT
+cFH
+cWb
+daT
+daT
 juz
-bjV
-bjV
-bjV
-bjV
-sTc
-bjV
-bjV
-bjV
+aKm
+aKm
+aKm
+aKm
+tKg
+aKm
+aKm
+aKm
 pjN
-bjV
+aKm
 daO
 dbG
 wbQ
@@ -112761,22 +112607,22 @@ bYK
 ohd
 bWL
 rag
-tOr
-bYK
-bWL
-ptN
-bTW
-bYK
-bjV
-bjV
-tiU
-bjV
-bjV
-tiU
-bjV
-bGr
-sTc
-bjV
+sfi
+crW
+cCH
+dtv
+cto
+crW
+aKm
+aKm
+kPN
+aKm
+aKm
+kPN
+aKm
+csb
+tKg
+aKm
 daO
 dbH
 fbQ
@@ -112994,23 +112840,23 @@ xAR
 bYK
 bnA
 bWL
-bTW
-ptN
+cto
+dtv
 uii
-kUl
-bTW
-bTW
-bYK
-bjV
-bjV
-bjV
-ewV
-bjV
-pJW
-bjV
-bjV
-bjV
-bjV
+pkv
+cto
+cto
+crW
+aKm
+aKm
+aKm
+jeC
+aKm
+cqT
+aKm
+aKm
+aKm
+aKm
 daO
 dxM
 fbQ
@@ -113228,23 +113074,23 @@ xAR
 bYK
 bnA
 bWL
-bTW
-bTW
-bYK
-bWL
-bTW
-tOr
-bYK
-tiU
-bjV
-bjV
-bjV
-bjV
-bjV
-tiU
-bKI
-bjV
-bjV
+cto
+cto
+crW
+cCH
+cto
+sfi
+crW
+kPN
+aKm
+aKm
+aKm
+aKm
+aKm
+kPN
+fCL
+aKm
+aKm
 daO
 vWE
 sqy
@@ -113463,22 +113309,22 @@ ttI
 bnA
 bWL
 bZO
-hnD
-caP
-bZF
+veQ
+crY
+coZ
 bZO
 bZO
-bYK
-bjV
-bnA
-bnA
-ohd
-iaj
-bnA
-bnA
-bnA
-bnA
-tiU
+crW
+aKm
+cko
+cko
+onb
+rMV
+cko
+cko
+cko
+cko
+kPN
 daO
 nDw
 fbQ
@@ -113696,23 +113542,23 @@ xAR
 bYK
 bnA
 kUl
-bTW
-ptN
-qev
-bTW
-ptN
-bTW
-ttI
-bjV
-bnA
+cto
+dtv
+acD
+cto
+dtv
+cto
+pom
+aKm
+cko
 dak
-bTV
-bTV
-bTV
+cvn
+cvn
+cvn
 gIL
-ntz
-bnA
-bjV
+iCz
+cko
+aKm
 daO
 dbJ
 xaU
@@ -113930,23 +113776,23 @@ bYe
 lPx
 bZN
 bZF
-bTW
-ptN
-qev
-ptN
-vFQ
-bTW
-caP
-bZN
-bZN
-bZN
-bZN
-bZN
-nhe
+cto
+dtv
+acD
+dtv
+aHT
+cto
+crY
+daT
+daT
+daT
+daT
+daT
+hnX
 oBg
-bFF
-bnA
-bjV
+cUc
+cko
+aKm
 daO
 dbK
 dbK
@@ -114003,7 +113849,7 @@ rCV
 rCV
 rCV
 rCV
-pED
+eEA
 rCV
 acu
 "}
@@ -114164,24 +114010,24 @@ pOM
 okS
 feG
 bYM
-bYM
-jsf
-bYM
-bYM
-feG
+cma
+xmO
+cma
+cma
+boY
 dYE
-bYM
-jsf
-bYM
-bYM
-jsf
-bYM
+cma
+xmO
+cma
+cma
+xmO
+cma
 dem
-bYK
-bFF
-bnA
-bjV
-bjV
+crW
+cUc
+cko
+aKm
+aKm
 dbL
 dbN
 ggd
@@ -114237,7 +114083,7 @@ rCV
 rCV
 rCV
 rCV
-pED
+fnP
 rCV
 acu
 "}
@@ -114398,24 +114244,24 @@ bTW
 bTW
 fbW
 bTW
-ptN
-fbW
-bTW
-qev
+dtv
+dvb
+cto
+acD
 kjO
-ptN
-vFQ
+dtv
+aHT
 kjO
-bTW
-tOr
-fbW
-bTW
-xAR
+cto
+sfi
+dvb
+cto
+caP
 wMI
-ltO
-bnA
-bnA
-bnA
+ojA
+cko
+cko
+cko
 dbL
 dbN
 ddB
@@ -114471,7 +114317,7 @@ rCV
 rCV
 rCV
 rCV
-pED
+fsk
 rCV
 acu
 "}
@@ -114633,23 +114479,23 @@ uUU
 bXK
 bXK
 laH
-bXK
-bXK
-bXK
-bXK
-bXK
-uUU
-bXK
+cmb
+cmb
+cmb
+cmb
+cmb
+sxN
+cmb
 mmO
-bXK
+cmb
 wFd
-nqO
-qGb
-bYK
-aSH
-bul
-kqJ
+wEO
 dTK
+crW
+cmN
+cok
+rnh
+jOe
 dbM
 dbN
 ggd
@@ -114705,7 +114551,7 @@ wsw
 rCV
 rCV
 rCV
-pED
+fVY
 rCV
 acu
 "}
@@ -114866,24 +114712,24 @@ bul
 bul
 bul
 bul
-bul
-bTV
-fVY
-bTV
-bTV
-bTV
-bTV
-bTV
+cok
+cvn
+tgu
+cvn
+cvn
+cvn
+cvn
+cvn
 jlB
-ntz
-bWL
-sAz
-bYe
-bYK
-aSH
-buh
-buh
-aie
+iCz
+cCH
+qqa
+dpI
+crW
+cmN
+cod
+cod
+cvx
 dbN
 dbN
 ueI
@@ -114939,7 +114785,7 @@ wsw
 wsw
 rCV
 rCV
-pED
+ggL
 rCV
 acu
 "}
@@ -115100,24 +114946,24 @@ buh
 vxL
 buh
 buh
-aie
+cvx
 rCV
 rCV
-bnA
-bnA
-bnA
-bnA
-ohd
-bnA
+cko
+cko
+cko
+cko
+onb
+cko
 sqW
-bWL
-bTW
-bYe
-bYK
-bFF
-bnA
-bnA
-bnA
+cCH
+cto
+dpI
+crW
+cUc
+cko
+cko
+cko
 dbL
 dcx
 ddB
@@ -115173,7 +115019,7 @@ pcA
 rCV
 rCV
 rCV
-pED
+gwu
 rCV
 acu
 "}
@@ -115334,24 +115180,24 @@ bnA
 bnA
 bnA
 bnA
-bnA
+cko
 rCV
 rCV
 rCV
-tiU
-bjV
-tGK
-bjV
-ohd
-bFF
-vXX
-nqO
-qGb
-ttI
-bFF
-bnA
-tiU
-tiU
+kPN
+aKm
+cmI
+aKm
+onb
+cUc
+rPl
+wEO
+dTK
+pom
+cUc
+cko
+kPN
+kPN
 dbL
 dbN
 aft
@@ -115574,16 +115420,16 @@ rCV
 rCV
 rCV
 rCV
-sAr
-bjV
-bnA
-ltO
-vXX
-bTW
-bYe
-bYK
-bFF
-bnA
+xAV
+aKm
+cko
+ojA
+rPl
+cto
+dpI
+crW
+cUc
+cko
 dap
 dap
 dap
@@ -115809,15 +115655,15 @@ rCV
 rCV
 rCV
 rCV
-fvi
-bnA
-bFF
-bWL
-bTW
-bYe
-bYK
-ltO
-bnA
+bGr
+cko
+cUc
+cCH
+cto
+dpI
+crW
+ojA
+cko
 dap
 daP
 oJq
@@ -116044,14 +115890,14 @@ rCV
 rCV
 rCV
 rCV
-bnA
-bFF
-bWL
+cko
+cUc
+cCH
 rXm
-qGb
-bYK
-bFF
-bnA
+dTK
+crW
+cUc
+cko
 dap
 daQ
 dbP
@@ -116278,14 +116124,14 @@ rCV
 rCV
 rCV
 rCV
-bnA
-bFF
-bWL
-ptN
-bYe
-bYK
-bFF
-bnA
+cko
+cUc
+cCH
+dtv
+dpI
+crW
+cUc
+cko
 dap
 daQ
 rsJ
@@ -116512,14 +116358,14 @@ rCV
 rCV
 rCV
 rCV
-bnA
-bFF
-bWL
-ptN
-bYe
-bYK
-bFF
-bnA
+cko
+cUc
+cCH
+dtv
+dpI
+crW
+cUc
+cko
 dap
 daQ
 jLj
@@ -116747,13 +116593,13 @@ rCV
 rCV
 rCV
 rCV
-ltO
-bWL
-xZH
-qGb
-ttI
-bFF
-bnA
+ojA
+cCH
+pXb
+dTK
+pom
+cUc
+cko
 dap
 daQ
 rsJ
@@ -116981,13 +116827,13 @@ rCV
 rCV
 rCV
 rCV
-bFF
-bWL
-qev
-bYe
-bYK
-bFF
-ohd
+cUc
+cCH
+acD
+dpI
+crW
+cUc
+onb
 dap
 daQ
 dbP
@@ -117215,13 +117061,13 @@ rCV
 rCV
 rCV
 rCV
-bFF
-bWL
-bTW
-bYe
-bYK
-bFF
-bnA
+cUc
+cCH
+cto
+dpI
+crW
+cUc
+cko
 dap
 daQ
 ctd
@@ -117450,12 +117296,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-fnP
-qGb
-ttI
-bFF
-bnA
+cCH
+uvl
+dTK
+pom
+cUc
+cko
 dap
 dap
 dap
@@ -117684,12 +117530,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-bTW
-nRD
-bYK
-ltO
-bnA
+cCH
+cto
+gOn
+crW
+ojA
+cko
 aKm
 aKm
 jeC
@@ -117918,12 +117764,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-tOr
-bYe
-bYK
-bFF
-aPd
+cCH
+sfi
+dpI
+crW
+cUc
+aeC
 cko
 onb
 cko
@@ -118152,12 +117998,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-nqO
-qGb
-bYK
-cYZ
-bTV
+cCH
+wEO
+dTK
+crW
+fww
+cvn
 cvn
 cvn
 cvn
@@ -118386,12 +118232,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-tOr
-bYe
-caP
-bZN
-bZN
+cCH
+sfi
+dpI
+crY
+daT
+daT
 daT
 daT
 daT
@@ -118620,12 +118466,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-bTW
+cCH
+cto
 paF
-bYM
-jsf
-bYM
+cma
+xmO
+cma
 iuE
 xmO
 iuE
@@ -118854,12 +118700,12 @@ rCV
 rCV
 rCV
 rCV
-bWL
-bTW
-bTW
-bTW
-fbW
-bTW
+cCH
+cto
+cto
+cto
+dvb
+cto
 cto
 dvb
 cto
@@ -119088,12 +118934,12 @@ rCV
 rCV
 rCV
 rCV
-bXF
-bXK
-bXK
-uUU
-bXK
-bXK
+cVC
+cmb
+cmb
+sxN
+cmb
+cmb
 cmb
 sxN
 cmb
@@ -119325,9 +119171,9 @@ rCV
 rCV
 rCV
 fQC
-bTV
-bTV
-bTV
+cvn
+cvn
+cvn
 cvn
 cvn
 fnD
@@ -119561,7 +119407,7 @@ rCV
 rCV
 rCV
 rCV
-bnA
+cko
 cko
 cko
 cko
@@ -120525,8 +120371,8 @@ xHh
 jqE
 crY
 daT
-aHT
-daT
+kDf
+ycz
 ycz
 ycz
 ycz
@@ -120760,7 +120606,7 @@ cto
 cto
 kYD
 mNt
-cto
+dXU
 qeH
 dXU
 dXU
@@ -120993,8 +120839,8 @@ qqa
 cto
 cto
 dvb
-kaA
-cto
+iwp
+dXU
 xVv
 etF
 dXU
@@ -121228,7 +121074,7 @@ cmb
 sxN
 cmb
 fSb
-cmb
+gXe
 gXe
 aVd
 gXe

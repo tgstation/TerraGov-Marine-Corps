@@ -5331,6 +5331,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gUJ" = (
@@ -8315,7 +8318,9 @@
 /area/mainship/squads/general)
 "kWu" = (
 /obj/structure/window/framed/mainship/white,
-/obj/machinery/door/poddoor/shutters/opened/medbay,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "kWG" = (
@@ -9117,6 +9122,9 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lMn" = (
@@ -9349,6 +9357,10 @@
 /area/mainship/hallways/hangar)
 "lXP" = (
 /obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/ai/exterior,
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "lYg" = (
@@ -14228,6 +14240,9 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "svg" = (
@@ -15226,6 +15241,9 @@
 	},
 /obj/machinery/light/mainship{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
 	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -17219,6 +17237,9 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/ai/exterior,
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "whZ" = (
@@ -17545,6 +17566,9 @@
 	},
 /obj/machinery/door/poddoor/mainship/ai/exterior{
 	dir = 1
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
@@ -17970,6 +17994,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
+	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
@@ -18368,6 +18395,12 @@
 	pixel_x = 6;
 	pixel_y = -5
 	},
+/obj/machinery/door_control/old{
+	id = "ROlobby";
+	name = "Requisitions lockdown";
+	pixel_x = 6;
+	pixel_y = 2
+	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "xBh" = (
@@ -18386,6 +18419,9 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/sign/restroom,
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xBM" = (
@@ -18732,6 +18768,12 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/lower_engineering)
+"xWB" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "xXt" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/sterile/dark,
@@ -45312,7 +45354,7 @@ tyN
 tyN
 tyN
 tyN
-dpY
+xWB
 svd
 tyN
 jAX
@@ -53272,7 +53314,7 @@ cXd
 tTm
 kiP
 rlR
-kiP
+qWc
 wqq
 kzV
 kzK
@@ -53529,7 +53571,7 @@ niE
 mQH
 tXB
 bKB
-tXB
+imJ
 dpY
 nas
 bxn
@@ -55079,7 +55121,7 @@ tyN
 tyN
 tyN
 tyN
-dpY
+xWB
 lMf
 tyN
 jAX

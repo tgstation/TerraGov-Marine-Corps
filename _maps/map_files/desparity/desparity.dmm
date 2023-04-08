@@ -10094,7 +10094,7 @@
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/machinery/cell_charger,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/clothing/glasses/sunglasses,
+/obj/effect/spawner/random/sunglasses,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},

@@ -179,7 +179,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "rL" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -398,7 +398,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Rn" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Library";

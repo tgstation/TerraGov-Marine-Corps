@@ -389,7 +389,7 @@
 /area/lv624/ground/caves/central2)
 "DE" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

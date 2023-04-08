@@ -668,7 +668,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "sH" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "sN" = (
@@ -1403,7 +1403,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Mb" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Medical";
@@ -1499,7 +1499,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "OI" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Pe" = (
@@ -1692,7 +1692,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Ti" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"

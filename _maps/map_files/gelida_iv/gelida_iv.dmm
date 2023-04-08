@@ -2647,7 +2647,7 @@
 /obj/structure/rack/nometal,
 /obj/item/clothing/head/hardhat,
 /obj/item/clothing/head/hardhat,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "bKq" = (
@@ -6585,12 +6585,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "egB" = (
-/obj/machinery/power/apc/drained,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/darkred/full,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "egF" = (
 /obj/effect/spawner/random/structure/girder/highspawn,
@@ -8498,7 +8494,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "fxu" = (
@@ -12212,7 +12208,7 @@
 /area/gelida/indoors/a_block/dorms)
 "hXG" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -12250,8 +12246,8 @@
 /area/gelida/indoors/c_block/garage)
 "hYH" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_street)
 "hYS" = (
@@ -12750,10 +12746,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/power/apc/drained,
 /obj/structure/table/reinforced/prison,
 /obj/item/tool/pen/blue,
-/obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "imv" = (
@@ -12959,7 +12953,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/clothing/glasses/sunglasses{
+/obj/effect/spawner/random/sunglasses{
 	pixel_y = 5
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -13666,7 +13660,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iRN" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "iSy" = (
@@ -16301,7 +16295,7 @@
 /area/gelida/indoors/b_block/bar)
 "kJJ" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/clothing/glasses/sunglasses,
+/obj/effect/spawner/random/sunglasses,
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/garage)
 "kJL" = (
@@ -22427,7 +22421,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "oMQ" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "oNa" = (
@@ -29874,7 +29868,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/casino)
 "twC" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "twI" = (
@@ -63454,7 +63448,7 @@ dGP
 ete
 snA
 snA
-egB
+xNL
 keT
 snA
 snA
@@ -63676,7 +63670,7 @@ pdM
 rIx
 snA
 oYR
-iiC
+egB
 jpP
 vnz
 snA
@@ -63898,7 +63892,7 @@ miQ
 ixv
 niE
 kxB
-hUv
+jQg
 kxB
 nja
 niE
