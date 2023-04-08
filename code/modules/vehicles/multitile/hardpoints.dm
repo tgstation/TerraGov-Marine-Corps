@@ -589,13 +589,13 @@ Currently only has the tank hardpoints
 	owner.misc_ratios["supp_acc"] = 1.67
 
 /obj/item/hardpoint/support/weapons_sensor/remove_buff()
-	owner.misc_ratios["prim_cool"] = 1.0
-	owner.misc_ratios["secd_cool"] = 1.0
-	owner.misc_ratios["supp_cool"] = 1.0
+	owner.misc_ratios["prim_cool"] = 1
+	owner.misc_ratios["secd_cool"] = 1
+	owner.misc_ratios["supp_cool"] = 1
 
-	owner.misc_ratios["prim_acc"] = 1.0
-	owner.misc_ratios["secd_acc"] = 1.0
-	owner.misc_ratios["supp_acc"] = 1.0
+	owner.misc_ratios["prim_acc"] = 1
+	owner.misc_ratios["secd_acc"] = 1
+	owner.misc_ratios["supp_acc"] = 1
 
 /obj/item/hardpoint/support/overdrive_enhancer
 	name = "Overdrive Enhancer"
@@ -631,7 +631,7 @@ Currently only has the tank hardpoints
 	C.verbs += /obj/vehicle/multitile/root/cm_armored/tank/verb/overdrive_multitile
 
 /obj/item/hardpoint/support/overdrive_enhancer/proc/boost_off()
-	owner.misc_ratios["move"] = 1.0
+	owner.misc_ratios["move"] = 1
 
 /obj/item/hardpoint/support/overdrive_enhancer/proc/boost_ready_notice()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
@@ -769,10 +769,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/ballistic/remove_buff()
-	owner.dmg_multipliers["bullet"] = 1.0
-	owner.dmg_multipliers["slash"] = 1.0
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["bullet"] = 1
+	owner.dmg_multipliers["slash"] = 1
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/caustic
 	name = "Caustic Armor"
@@ -793,10 +793,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/caustic/remove_buff()
-	owner.dmg_multipliers["acid"] = 1.0
-	owner.dmg_multipliers["slash"] = 1.0
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["acid"] = 1
+	owner.dmg_multipliers["slash"] = 1
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/concussive
 	name = "Concussive Armor"
@@ -817,10 +817,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/concussive/remove_buff()
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["explosive"] = 1.0
-	owner.dmg_multipliers["ballistic"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["explosive"] = 1
+	owner.dmg_multipliers["ballistic"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/paladin
 	name = "Paladin Armor"
@@ -841,10 +841,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/paladin/remove_buff()
-	owner.dmg_multipliers["explosive"] = 1.0
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["slash"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["explosive"] = 1
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["slash"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/snowplow
 	name = "Snowplow"

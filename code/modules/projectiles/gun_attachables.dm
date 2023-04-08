@@ -32,7 +32,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	force = 1.0
+	force = 1
 	///ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.
 	var/slot = null
 

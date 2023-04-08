@@ -392,7 +392,7 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/photograph
 	name = "photo"
 	icon_state = "photo"
-	var/photo_id = 0.0
+	var/photo_id = 0
 	item_state = "paper"
 
 /obj/item/paper/sop

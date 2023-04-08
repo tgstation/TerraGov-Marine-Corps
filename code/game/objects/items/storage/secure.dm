@@ -127,7 +127,7 @@
 	)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = 8.0
+	force = 8
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
@@ -166,7 +166,7 @@
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
 	flags_atom = CONDUCT
-	force = 8.0
+	force = 8
 	w_class = WEIGHT_CLASS_GIGANTIC
 	max_w_class = WEIGHT_CLASS_GIGANTIC
 	anchored = TRUE

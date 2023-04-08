@@ -4,9 +4,9 @@
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain2"
 	flags_atom = NONE
-	force = 1.0
+	force = 1
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 1.0
+	throwforce = 1
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "slapped", "whacked")
