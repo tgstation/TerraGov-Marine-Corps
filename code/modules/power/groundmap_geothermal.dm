@@ -31,7 +31,9 @@
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "generator")
-	GLOB.geothermal_generator_ammount++
+
+	if(!GLOB.xeno_generators_by_hive)
+		GLOB.xeno_generators_by_hive = list()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -89,8 +91,8 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if(length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list))
-			SSpoints.add_psy_points("[corrupted]", GENERATOR_PSYCH_POINT_OUTPUT / GLOB.geothermal_generator_ammount)
+		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && length(GLOB.xeno_generators_by_hive[corrupted] > 0))
+			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.xeno_generators_by_hive[corrupted])
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -138,6 +140,8 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
+	if(corrupted) //you have no reason to interact with it if its already corrupted
+		return
 	if(CHECK_BITFIELD(X.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
 		to_chat(X, span_notice("You start to corrupt [src]"))
 		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
@@ -227,6 +231,7 @@
 		corrupted = 0
 		stop_processing()
 		update_icon()
+		GLOB.xeno_generators_by_hive[corrupted] -= 1
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
@@ -305,6 +310,7 @@
 
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)
 	corrupted = hivenumber
+	GLOB.xeno_generators_by_hive[corrupted] += 1
 	is_on = FALSE
 	power_gen_percent = 0
 	cur_tick = 0

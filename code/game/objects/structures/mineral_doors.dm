@@ -1,257 +1,177 @@
-#define D_CLOSED 0
-#define D_OPEN 1
-
 //NOT using the existing /obj/machinery/door type, since that has some complications on its own, mainly based on its
 //machineryness
 
 /obj/structure/mineral_door
 	name = "mineral door"
 	density = TRUE
-	anchored = TRUE
 	opacity = TRUE
 	flags_pass = NONE
-	//used to determine icon state before update_icon, used for keeping the opening and closing animations working when the smoothing system is involved
-	var/formericon
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
-	resistance_flags = DROPSHIP_IMMUNE
 
-	var/mineralType = "metal"
-	var/state = D_CLOSED
-	var/isSwitchingStates = FALSE
-	var/hardness = 1
-	var/oreAmount = 7
+	///Are we open or not
+	var/open = FALSE
+	///Are we currently opening/closing
+	var/switching_states = FALSE
+	///The sound that gets played when opening/closing this door
+	var/trigger_sound = 'sound/effects/stonedoor_openclose.ogg'
+	///The type of material we're made from and what we drop when destroyed
+	var/material_type
 
 /obj/structure/mineral_door/Initialize()
 	. = ..()
-	icon_state = mineralType
-	name = "[mineralType] door"
-
+	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
+		toggle_state()
 
 /obj/structure/mineral_door/Bumped(atom/user)
 	. = ..()
-	if(!state)
-		return TryToSwitchState(user)
+	if(!open)
+		return try_toggle_state(user)
 
 /obj/structure/mineral_door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	return TryToSwitchState(user)
+	return try_toggle_state(user)
 
 /obj/structure/mineral_door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 
-/obj/structure/mineral_door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates)
+/*
+ * Checks all the requirements for opening/closing a door before opening/closing it
+ *
+ * atom/user - the mob trying to open/close this door
+*/
+/obj/structure/mineral_door/proc/try_toggle_state(atom/user)
+	if(switching_states || !ismob(user) || locate(/mob/living) in get_turf(src))
 		return
-	if(ismob(user))
-		var/mob/M = user
-		if(M.client)
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
-				if(!C.handcuffed)
-					SwitchState()
-			else
-				SwitchState()
+	var/mob/M = user
+	if(!M.client)
+		return
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(C.handcuffed)
+			return
+	toggle_state()
 
-/obj/structure/mineral_door/proc/SwitchState()
-	if(state)
-		Close()
-	else
-		Open()
 
-/obj/structure/mineral_door/proc/Open()
-	isSwitchingStates = 1
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
-	flick("[mineralType]opening",src)
-	sleep(1 SECONDS)
-	density = FALSE
-	opacity = FALSE
-	state = D_OPEN
+///The proc that actually does the door closing. Plays the sound, the animation, etc.
+/obj/structure/mineral_door/proc/toggle_state()
+	switching_states = TRUE
+	open = !open
+	playsound(get_turf(src), trigger_sound, 25, 1)
+	flick("[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-[open ? "opening" : "closing"]", src)
+	density = !density
+	opacity = !opacity
 	update_icon()
-	isSwitchingStates = FALSE
-
-
-/obj/structure/mineral_door/proc/Close()
-	isSwitchingStates = TRUE
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
-	flick("[mineralType]closing",src)
-	sleep(1 SECONDS)
-	density = TRUE
-	opacity = TRUE
-	state = D_CLOSED
-	update_icon()
-	isSwitchingStates = FALSE
-
+	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 
 /obj/structure/mineral_door/update_icon()
-	if(state && mineralType == "resin")
-		formericon = icon_state
-		if(formericon == "resin") //if we somehow end up with a nonsmoothed icon_state use resin-door-0 as a placeholder so the icon doesn't break
-			formericon = "resin-door-0"
-		icon_state = "[icon_state]-open"
-		return
-	if(!state && mineralType == "resin")
-		return
-	if(state)
-		icon_state = "[mineralType]open"
+	if(open)
+		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-open"
 	else
-		icon_state = mineralType
-
+		icon_state = "[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]"
 
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
-	var/is_resin = istype(src, /obj/structure/mineral_door/resin)
-	if(!(W.flags_item & NOBLUDGEON) && W.force)
-		user.changeNext_move(W.attack_speed)
-		var/multiplier = 1
-		var/obj/item/tool/pickaxe/plasmacutter/P
-		if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-			P = W
-			if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-				if(is_resin)
-					multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-				else
-					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
-				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-		if(W.damtype == BURN && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
-			multiplier += 1
-		user.do_attack_animation(src, used_item = W)
-		hardness -= W.force * multiplier * 0.01
-		if(!P)
-			to_chat(user, "You hit the [name] with your [W.name]!")
-		CheckHardness()
+	if((W.flags_item & NOBLUDGEON) && !W.force)
+		attack_hand(user)
 		return
-	attack_hand(user)
 
-/obj/structure/mineral_door/proc/CheckHardness()
-	if(hardness <= 0)
-		Dismantle(1)
-
-/obj/structure/mineral_door/proc/Dismantle(devastated = 0)
-	if(!devastated)
-		if (mineralType == "metal")
-			var/ore = /obj/item/stack/sheet/metal
-			for(var/i = 1, i <= oreAmount, i++)
-				new ore(get_turf(src))
-		else
-			var/ore = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
-			for(var/i = 1, i <= oreAmount, i++)
-				new ore(get_turf(src))
-	else
-		if (mineralType == "metal")
-			var/ore = /obj/item/stack/sheet/metal
-			for(var/i = 3, i <= oreAmount, i++)
-				new ore(get_turf(src))
-		else
-			var/ore = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
-			for(var/i = 3, i <= oreAmount, i++)
-				new ore(get_turf(src))
-	qdel(src)
-
-/obj/structure/mineral_door/ex_act(severity = 1)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			Dismantle(1)
-		if(EXPLODE_HEAVY)
-			if(prob(20))
-				Dismantle(1)
+	user.changeNext_move(W.attack_speed)
+	var/multiplier = 1
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			if(istype(src, /obj/structure/mineral_door/resin))
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
 			else
-				hardness--
-				CheckHardness()
-		if(EXPLODE_LIGHT)
-			hardness -= 0.1
-			CheckHardness()
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1 //generally means we do double damage to resin doors
+	user.do_attack_animation(src, used_item = W)
+	if(!istype(W, /obj/item/tool/pickaxe/plasmacutter))
+		to_chat(user, "You hit [src] with [name]!")
 
+/obj/structure/mineral_door/Destroy()
+	if(material_type)
+		for(var/i in 1 to rand(1,5))
+			new material_type(get_turf(src))
+	return ..()
 
 /obj/structure/mineral_door/iron
-	mineralType = "metal"
-	hardness = 3
+	name = "iron door"
+	material_type = /obj/item/stack/sheet/metal
+	base_icon_state = "metal"
+	max_integrity = 500
 
 /obj/structure/mineral_door/silver
-	mineralType = "silver"
-	hardness = 3
+	name = "silver door"
+	material_type = /obj/item/stack/sheet/mineral/silver
+	base_icon_state = "silver"
+	max_integrity = 500
 
 /obj/structure/mineral_door/gold
-	mineralType = "gold"
+	name = "gold door"
+	material_type = /obj/item/stack/sheet/mineral/gold
+	base_icon_state = "gold"
+	max_integrity = 250
 
 /obj/structure/mineral_door/uranium
-	mineralType = "uranium"
-	hardness = 3
+	name = "uranium door"
+	material_type = /obj/item/stack/sheet/mineral/uranium
+	base_icon_state = "uranium"
+	max_integrity = 500
 
 /obj/structure/mineral_door/sandstone
-	mineralType = "sandstone"
-	hardness = 0.5
+	name = "sandstone door"
+	material_type = /obj/item/stack/sheet/mineral/sandstone
+	base_icon_state = "sandstone"
+	max_integrity = 100
 
 /obj/structure/mineral_door/transparent
+	name = "generic transparent door"
+	desc = "You shouldn't be seeing this."
 	opacity = FALSE
 
-/obj/structure/mineral_door/transparent/Close()
+/obj/structure/mineral_door/transparent/toggle_state()
 	..()
 	opacity = FALSE
 
 /obj/structure/mineral_door/transparent/phoron
-	mineralType = "phoron"
+	name = "phoron door"
+	material_type = /obj/item/stack/sheet/mineral/phoron
+	base_icon_state = "phoron"
+	max_integrity = 250
 
 /obj/structure/mineral_door/transparent/phoron/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/tool/weldingtool))
+	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			TemperatureAct(100)
-	..()
+			new /obj/flamer_fire(get_turf(src), 25, 25)
+			visible_message(span_danger("[src] suddenly combusts!"))
+	return ..()
+
 
 /obj/structure/mineral_door/transparent/phoron/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		TemperatureAct(exposed_temperature)
-
-/obj/structure/mineral_door/transparent/phoron/proc/TemperatureAct(temperature)
+		new /obj/flamer_fire(get_turf(src), 25, 25)
 
 
 /obj/structure/mineral_door/transparent/diamond
-	mineralType = "diamond"
-	hardness = 10
+	name = "diamond door"
+	material_type = /obj/item/stack/sheet/mineral/diamond
+	base_icon_state = "diamond"
+	max_integrity = 1000
+
 
 /obj/structure/mineral_door/wood
-	mineralType = "wood"
-	hardness = 1
+	name = "wooden door"
+	material_type = /obj/item/stack/sheet/wood
+	base_icon_state = "wood"
+	trigger_sound = 'sound/effects/doorcreaky.ogg'
+	max_integrity = 100
 
-/obj/structure/mineral_door/wood/Open()
-	isSwitchingStates = TRUE
-	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
-	flick("[mineralType]opening",src)
-	sleep(1 SECONDS)
-	density = FALSE
-	opacity = FALSE
-	state = D_OPEN
-	update_icon()
-	isSwitchingStates = FALSE
-
-/obj/structure/mineral_door/wood/Close()
-	isSwitchingStates = TRUE
-	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
-	flick("[mineralType]closing",src)
-	sleep(1 SECONDS)
-	density = TRUE
-	opacity = TRUE
-	state = D_CLOSED
-	update_icon()
-	isSwitchingStates = FALSE
-
-/obj/structure/mineral_door/wood/Dismantle(devastated = 0)
-	if(!devastated)
-		for(var/i = 1, i <= oreAmount, i++)
-			new/obj/item/stack/sheet/wood(get_turf(src))
-	qdel(src)
-
-//Mapping instance
-/obj/structure/mineral_door/wood/open
-	density = FALSE
-	opacity = FALSE
-	state = D_OPEN
-	icon_state = "woodopen"
-
-#undef D_CLOSED
-#undef D_OPEN

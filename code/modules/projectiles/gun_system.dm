@@ -10,7 +10,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
 	max_integrity = 250
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
