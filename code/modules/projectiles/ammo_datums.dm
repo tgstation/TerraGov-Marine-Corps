@@ -1296,7 +1296,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 5
 	max_range = 30
 	airburst_multiplier = 1
-  autocannon_wall_bonus = 5
+	autocannon_wall_bonus = 5
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
