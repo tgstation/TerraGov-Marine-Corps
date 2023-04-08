@@ -58,6 +58,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/reusable = FALSE
 	///If this mine can be disarmed or interacted with in any way once triggered; good for adding flavor or as an effect
 	var/interruptible = TRUE
+	///If TRUE, the range can be changed from 1 to 7 tiles of range
+	var/custom_range = FALSE
 
 	/* -- Explosion data -- */
 	///How large the devestation impact is
@@ -105,9 +107,26 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	QDEL_LIST(triggers)
 	return ..()
 
+/obj/item/mine/examine(mob/user)
+	. = ..()
+	if(custom_range)
+		. += "[span_bold("Alt Click")] to change the detection range."
+
 /// Update the icon, adding "_armed" if appropriate to the icon_state.
 /obj/item/mine/update_icon()
 	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
+
+/obj/item/mine/AltClick(mob/user)
+	if(armed)
+		balloon_alert(user, "Undeploy [src] to adjust range!")
+		return FALSE
+	if(!can_interact(user))
+		return FALSE
+	var/new_range = tgui_input_number(user, "Input the detection range of [src] in tiles, up to 7", "Set Range", range, 7, 1)
+	//Check if the user is still near this mine or if a value was provided; also make sure the mine isn't already planted
+	if(!new_range || armed || !can_interact(user))
+		return FALSE
+	range = new_range
 
 /obj/item/mine/attack_self(mob/living/user)
 	. = ..()
@@ -500,15 +519,14 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	battery = null
 	update_icon()
 
-/obj/item/mine/shock/trigger_explosion()
-	if(!battery.charge)
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
-		balloon_alert_to_viewers("Out of charge!")
+/obj/item/mine/shock/trip_mine(mob/living/L)
+	if(!battery?.charge)
 		return FALSE
 	. = ..()
 
 /obj/item/mine/shock/extra_effects(duration, mob/living/L)
-	if(battery.charge < energy_cost)
+	if(!battery?.charge || battery.charge < energy_cost)
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
 		balloon_alert_to_viewers("Out of charge!")
 		return disarm()
 	//Grab a list of nearby objects, shuffle it, then see if they are an eligible victim
@@ -527,7 +545,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 				victim.apply_damage(damage, BURN, blocked = ENERGY)
 				target = victim
 			break
-		if(isobj(atom) && !iseffect(atom))
+		else if(isobj(atom) && !iseffect(atom))
 			var/obj/victim = atom
 			//Prevents targeting things like wiring under floor tiles and makes it so only conductive objects will attract lightning
 			if(victim.invisibility > SEE_INVISIBLE_LIVING || !CHECK_BITFIELD(victim.flags_atom, CONDUCT))
@@ -625,3 +643,137 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /obj/item/mine/alarm/disarm()
 	. = ..()
 	SSminimaps.remove_marker(src)	//Do a minimap icon removal on being disarmed just in case
+
+/obj/item/mine/emp
+	name = "\improper EMP mine"
+	desc = "Emits a powerful electromagnetic pulse that disables electronics."
+	icon_state = "m20"
+	detonation_message = "makes a high pitched whine."
+	detonation_sound = 'sound/effects/nightvision.ogg'
+	range = 3
+	duration = 1.5 SECONDS
+	undeploy_delay = 2 SECONDS
+	deploy_delay = 2 SECONDS
+	reusable = TRUE
+	custom_range = TRUE
+	///The internal cell powering it
+	var/obj/item/cell/battery
+
+/obj/item/mine/emp/Initialize()
+	. = ..()
+	if(battery)
+		battery = new battery(src)
+
+/obj/item/mine/emp/examine(mob/user)
+	. = ..()
+	. += span_notice("[battery ? "Battery Charge - [PERCENT(battery.charge/battery.maxcharge)]%" : "No battery installed."]")
+
+/obj/item/mine/emp/attackby(obj/item/I, mob/user, params)
+	if(!iscell(I))
+		return ..()
+	if(battery)
+		return balloon_alert(user, "There is already a battery installed!")
+	user.transferItemToLoc(I, src)
+	battery = I
+	update_icon()
+
+/obj/item/mine/emp/screwdriver_act(mob/living/user, obj/item/I)
+	if(!battery)
+		return balloon_alert(user, "No battery installed!")
+	user.put_in_hands(battery)
+	battery = null
+	update_icon()
+
+/obj/item/mine/emp/trip_mine(mob/living/L)
+	if(!battery?.charge)
+		return FALSE
+	. = ..()
+
+/obj/item/mine/emp/extra_effects(duration, mob/living/L)
+	addtimer(CALLBACK(src, PROC_REF(do_empulse)), duration - 1)	//Make the timer slightly less than duration otherwise it gets disarmed
+
+///Separate proc that performs empulse() if it was not disarmed before the timer was done
+/obj/item/mine/emp/proc/do_empulse()
+	if(!battery?.charge)
+		return FALSE
+	if(!triggered)
+		return FALSE
+	//Find the logarithm of current charge, subtract 2, multiply it to the power of 3, then round down
+	//Best formula I could come up with that kept scaling smooth and didn't have extreme highs or lows
+	//Standard cell (1k charge) will only affect the tile it is on; a hyper cell (30k charge) will reach 15 tiles
+	var/light_emp_range = FLOOR((log(10, battery.charge) - 2) ** 3, 1)
+	var/heavy_emp_range = FLOOR(light_emp_range/2, 1)	//Heavy range is half of the light range rounded down
+	empulse(get_turf(src), heavy_emp_range, light_emp_range)
+	battery.charge = 0	//Detonation always drains the battery completely
+
+/obj/item/mine/emp/battery_included
+	battery = /obj/item/cell/high
+
+/obj/item/mine/flash
+	name = "flash mine"
+	desc = "Blinds nearby enemies when activated."
+	icon_state = "m20"
+	detonation_message = "clicks."
+	range = 4
+	duration = -1
+	undeploy_delay = 1 SECONDS
+	deploy_delay = 1 SECONDS
+	reusable = TRUE
+	///How long to blind a victim
+	var/flash_duration = 3 SECONDS
+	///The internal cell powering it
+	var/obj/item/cell/battery
+	///How much energy is drained from the internal cell
+	var/energy_cost = 500	//Average cell holds 1000, so has 2 charges
+	///To prevent spam
+	COOLDOWN_DECLARE(flash_cooldown)
+	///Time between alarm messages
+	var/cooldown = 3 SECONDS
+
+/obj/item/mine/flash/Initialize()
+	. = ..()
+	if(battery)
+		battery = new battery(src)
+
+/obj/item/mine/flash/examine(mob/user)
+	. = ..()
+	. += span_notice("[battery ? "Battery Charge - [PERCENT(battery.charge/battery.maxcharge)]%" : "No battery installed."]")
+
+/obj/item/mine/flash/attackby(obj/item/I, mob/user, params)
+	if(!iscell(I))
+		return ..()
+	if(battery)
+		return balloon_alert(user, "There is already a battery installed!")
+	user.transferItemToLoc(I, src)
+	battery = I
+	update_icon()
+
+/obj/item/mine/flash/screwdriver_act(mob/living/user, obj/item/I)
+	if(!battery)
+		return balloon_alert(user, "No battery installed!")
+	user.put_in_hands(battery)
+	battery = null
+	update_icon()
+
+/obj/item/mine/flash/trip_mine(mob/living/L)
+	if(!COOLDOWN_CHECK(src, flash_cooldown))
+		return FALSE
+	if(!battery?.charge)
+		return FALSE
+	. = ..()
+
+/obj/item/mine/flash/extra_effects(duration, mob/living/L)
+	if(!battery?.charge || battery.charge < energy_cost)
+		balloon_alert_to_viewers("Out of charge!")
+		return disarm()
+	triggered = FALSE	//Reset the mine but not disarm it
+	var/turf/epicenter = get_turf(src)
+	playsound(epicenter, "flashbang", 65, FALSE, range + 2)
+	for(var/mob/living/carbon/victim in hearers(range, epicenter))
+		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
+			victim.flash_act(duration = flash_duration)
+	battery.charge -= energy_cost
+	COOLDOWN_START(src, flash_cooldown, cooldown)
+
+/obj/item/mine/flash/battery_included
+	battery = /obj/item/cell
