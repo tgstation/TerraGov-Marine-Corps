@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Hyposprays can now draw reagent with right click (Autoinjectors are also hyposprays fyi)."

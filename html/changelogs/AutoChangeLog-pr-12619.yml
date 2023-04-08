@@ -1,6 +1,0 @@
-author: "irRegularGuy646"
-delete-after: True
-changes:
-  - balance: "large 10x26 box now holds 3200 rounds instead of 2400"
-  - bugfix: "obsolete large ammo box orders removed from req"
-  - bugfix: "MG-60 magazine is now referred to as a \"belt box\" instead of a \"drum magazine\""
