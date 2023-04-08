@@ -346,7 +346,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 #define WEIGHT_CLASS_BULKY 4 //Items that can be weilded or equipped but not stored in an inventory, ex: Defibrillator, Backpack, Space Suits
 #define WEIGHT_CLASS_HUGE 5 //Usually represents objects that require two hands to operate, ex: Shotgun, Two Handed Melee Weapons
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
-#define WEIGHT_CLASS_IMMOVABLE 7 //For things that cannot move ever ex: Secure safe
 
 #define SLOT_EQUIP_ORDER list(\
 	SLOT_WEAR_ID,\
