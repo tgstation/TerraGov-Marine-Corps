@@ -745,6 +745,9 @@ TUNNEL
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
+/obj/structure/xeno/silo/crash
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | INDESTRUCTIBLE
+
 /obj/structure/xeno/silo/Initialize()
 	. = ..()
 	center_turf = get_step(src, NORTHEAST)
@@ -783,6 +786,8 @@ TUNNEL
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
+		if(resistance_flags & INDESTRUCTIBLE)
+			newt.resistance_flags |= INDESTRUCTIBLE
 
 /obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(GLOB.hive_datums[hivenumber])
