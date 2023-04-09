@@ -511,6 +511,14 @@ You can serve a variety of roles, so choose carefully."})
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
+/datum/job/terragov/squad/leader/crash
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.

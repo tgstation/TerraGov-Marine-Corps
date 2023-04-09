@@ -142,6 +142,14 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
+/datum/job/terragov/command/fieldcommander/crash
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
 	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, L)
@@ -1118,6 +1126,13 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_REGULAR,
+	)
+
+/datum/job/terragov/silicon/synthetic/crash
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 
 
