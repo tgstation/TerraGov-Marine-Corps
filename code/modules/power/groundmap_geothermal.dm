@@ -35,6 +35,9 @@
 	if(!GLOB.xeno_generators_by_hive)
 		GLOB.xeno_generators_by_hive = list()
 
+	if(corrupted)
+		GLOB.xeno_generators_by_hive[corrupted] += 1
+
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(corrupted)
@@ -91,7 +94,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && length(GLOB.xeno_generators_by_hive[corrupted] > 0))
+		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && GLOB.xeno_generators_by_hive[corrupted] > 0)
 			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.xeno_generators_by_hive[corrupted])
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
