@@ -738,7 +738,7 @@
 
 		if("parallax")
 			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
-			if(parent && parent.mob && parent.mob.hud_used)
+			if(parent?.mob && parent.mob.hud_used)
 				parent.mob.hud_used.update_parallax_pref(parent.mob)
 
 		if("scaling_method")

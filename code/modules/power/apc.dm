@@ -740,7 +740,7 @@
 
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
-	if(cell && cell.charge > 0)
+	if(cell?.charge > 0)
 		return (val==1) ? 0 : val
 	else if(val == 3)
 		return 1
@@ -841,7 +841,7 @@
 
 
 /obj/machinery/power/apc/add_load(amount)
-	if(terminal && terminal.powernet)
+	if(terminal?.powernet)
 		return terminal.add_load(amount)
 	return 0
 
@@ -1065,7 +1065,7 @@
 /obj/machinery/power/apc/proc/overload_lighting()
 	if(!operating || shorted)
 		return
-	if(cell && cell.charge >= 20)
+	if(cell?.charge >= 20)
 		cell.use(20)
 		INVOKE_ASYNC(src, PROC_REF(break_lights))
 

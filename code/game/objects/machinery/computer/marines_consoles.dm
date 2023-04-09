@@ -68,11 +68,11 @@
 			target_name = modify.name
 		else
 			target_name = "--------"
-		if(modify && modify.registered_name)
+		if(modify?.registered_name)
 			target_owner = modify.registered_name
 		else
 			target_owner = "--------"
-		if(modify && modify.assignment)
+		if(modify?.assignment)
 			target_rank = modify.assignment
 		else
 			target_rank = "Unassigned"

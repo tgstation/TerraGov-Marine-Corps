@@ -206,7 +206,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user && user.loc == src)
+	if(user?.loc == src)
 		to_chat(usr, span_warning("You cannot reach the controls from inside."))
 		return FALSE
 
@@ -1233,10 +1233,10 @@
 			O.expel(H) //Expel at outlet
 		else
 			var/obj/machinery/disposal/D = linked
-			if(H && H.loc)
+			if(H?.loc)
 				D.expel(H) //Expel at disposal
 	else
-		if(H && H.loc)
+		if(H?.loc)
 			src.expel(H, loc, 0) //Expel at turf
 	return null
 

@@ -189,7 +189,7 @@
 		return
 
 	// Health Hud
-	if(hud_used && hud_used.healths)
+	if(hud_used?.healths)
 		if(stat != DEAD)
 			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
 			hud_used.healths.icon_state = "health[bucket]"
@@ -197,7 +197,7 @@
 			hud_used.healths.icon_state = "health_dead"
 
 	// Plasma Hud
-	if(hud_used && hud_used.alien_plasma_display)
+	if(hud_used?.alien_plasma_display)
 		if(stat != DEAD)
 			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
 			hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
@@ -215,12 +215,12 @@
 		if(env_temperature > (T0C + 66))
 			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * get_fire_resist()) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
-			if(hud_used && hud_used.fire_icon)
+			if(hud_used?.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
 				to_chat(src, span_warning("We feel a searing heat!"))
 		else
-			if(hud_used && hud_used.fire_icon)
+			if(hud_used?.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
 
 /mob/living/carbon/xenomorph/updatehealth()

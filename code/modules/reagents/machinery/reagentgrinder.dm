@@ -150,7 +150,7 @@
 		if(is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
 			dat += "<A href='?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
 			dat += "<A href='?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
-		if(holdingitems && length(holdingitems) > 0)
+		if(length(holdingitems) > 0)
 			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
 		if(beaker)
 			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
@@ -191,7 +191,7 @@
 
 	if(usr.stat != 0)
 		return
-	if(length(holdingitems && holdingitems) == 0)
+	if(length(holdingitems) == 0)
 		return
 
 	for(var/obj/item/O in holdingitems)
@@ -265,7 +265,7 @@
 	power_change()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
+	if(!beaker || (beaker?.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return
 	operate_for(5 SECONDS, juicing = TRUE)
 	//Snacks
@@ -294,7 +294,7 @@
 	power_change()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
+	if(!beaker || (beaker?.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return
 	operate_for(6 SECONDS)
 	//Snacks and Plants

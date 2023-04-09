@@ -1439,7 +1439,7 @@
 	var/num_of_casings
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/mag = magazine
-		num_of_casings = (mag && mag.used_casings) ? mag.used_casings : 1
+		num_of_casings = (mag?.used_casings) ? mag.used_casings : 1
 	else
 		num_of_casings = 1
 	var/sound_to_play = type_of_casings == "shell" ? 'sound/bullets/bulletcasing_shotgun_fall1.ogg' : pick('sound/bullets/bulletcasing_fall2.ogg','sound/bullets/bulletcasing_fall1.ogg')

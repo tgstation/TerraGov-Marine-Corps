@@ -113,7 +113,7 @@
 	if(has_user_lock && user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
-	if(bcell && bcell.charge > hitcost)
+	if(bcell?.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 25, 1, 6)

@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	var/list/gene_tags = list("products","consumption","environment","resistance","vigour","flowers")
 	var/list/used_masks = list()
 
-	while(gene_tags && length(gene_tags))
+	while(length(gene_tags))
 		var/gene_tag = pick(gene_tags)
 		var/gene_mask = "[num2hex(rand(0,255))]"
 
