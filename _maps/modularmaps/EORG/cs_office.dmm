@@ -228,7 +228,7 @@
 	},
 /area/deathmatch)
 "gn" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/machinery/light,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
@@ -476,7 +476,7 @@
 /turf/open/floor/plating,
 /area/deathmatch)
 "lH" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "mg" = (
@@ -715,7 +715,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "ro" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "rp" = (
@@ -1147,7 +1147,7 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/deathmatch)
 "Aq" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -1939,7 +1939,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "To" = (
@@ -2251,7 +2251,7 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Zx" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Zy" = (

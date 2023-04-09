@@ -11301,7 +11301,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bey" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -11315,7 +11315,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hangar)
 "beC" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
@@ -11504,7 +11504,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bfw" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
@@ -23373,7 +23373,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "caB" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "caD" = (
@@ -24747,7 +24747,7 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "fkV" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -29402,7 +29402,7 @@
 	},
 /area/ice_colony/surface/engineering/tool)
 "plZ" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},

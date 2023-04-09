@@ -22,7 +22,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "aD" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "aH" = (
@@ -44,7 +44,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "bk" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "bl" = (
@@ -74,7 +74,7 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "by" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/wood,
 /area/deathmatch)
 "bB" = (
@@ -257,7 +257,7 @@
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "dB" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "dF" = (
@@ -900,7 +900,7 @@
 	},
 /area/deathmatch)
 "tq" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
@@ -1194,7 +1194,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "GT" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)

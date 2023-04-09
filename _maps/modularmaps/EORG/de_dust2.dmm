@@ -39,7 +39,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "gA" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/tile,
 /area/deathmatch)
 "gC" = (
@@ -125,7 +125,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "nz" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "nE" = (
@@ -452,7 +452,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "QP" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Sh" = (
