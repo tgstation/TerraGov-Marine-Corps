@@ -367,7 +367,7 @@
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
-/datum/component/chem_booster/proc/drain_resource(obj/item/weapon/source, mob/living/M, mob/living/user)
+/datum/component/chem_booster/proc/drain_resource(datum/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
 	if(!isxeno(M))
 		return
@@ -375,7 +375,7 @@
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
-	update_resource(source.green_blood_drained)
+	update_resource(connected_weapon.green_blood_drained)
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)

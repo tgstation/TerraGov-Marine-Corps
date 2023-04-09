@@ -86,6 +86,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/reach = 1
 
+	///Amount of green blood gained on hit, used for vali harvesters
+	var/green_blood_drained = 20 //Default amount
 
 	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
 	var/list/sprite_sheets = null
@@ -148,6 +150,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(flags_item_map_variant)
 		update_item_sprites()
 
+	green_blood_drained = round(green_blood_drained*attack_speed/11) //11 Being the baseline attack speed. Slower attack = more green blood
 
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
