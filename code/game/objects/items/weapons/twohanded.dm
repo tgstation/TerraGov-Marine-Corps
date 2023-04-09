@@ -585,7 +585,7 @@
 		else
 			stun = 1
 
-	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
+	if(!M.IsStun() && !M.IsParalyzed()) //Prevent chain stunning
 		M.apply_effects(stun,weaken)
 
 	return ..()
