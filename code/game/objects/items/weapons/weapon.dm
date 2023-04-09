@@ -14,6 +14,7 @@
 	var/max_shots = 0 //codex, energy weapons
 	var/scope_zoom = FALSE//codex
 	var/self_recharge = FALSE //codex
+	var/green_blood_drained = 20
 
 /obj/item/weapon/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(target == user && !user.do_self_harm)
