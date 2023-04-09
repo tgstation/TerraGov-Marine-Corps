@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Adds the ak47 to the proper seasonal instead of 2 mag types"

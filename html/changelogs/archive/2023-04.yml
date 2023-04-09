@@ -103,3 +103,20 @@
   - bugfix: MG-60 magazine is now referred to as a "belt box" instead of a "drum magazine"
   ivanmixo:
   - bugfix: Fixed a behead runtime
+2023-04-09:
+  Arturlang:
+  - bugfix: fixed random_available_channel runtiming from accessing a invalid index
+      on channel_list, hopefully
+  - bugfix: Hopefully the maptext for secrete resin will no longer cause all xenos
+      to spawn without any abilities randomly.
+  Xander3359:
+  - balance: Sentry ammo is now sentry sized (Normal)
+  - code_imp: w_class code cleanup 2nd try.
+  ivanmixo:
+  - code_imp: Removed pointless .0 for some vars
+  - bugfix: Adds the ak47 to the proper seasonal instead of 2 mag types
+  - bugfix: Fixed psi point gen calculations being wrong. Also you cant corrupt an
+      already corrupted gen anymore.
+  - bugfix: Fixed people who get killed while buckled in the alamo chairs standing
+      up even while dead
+  - refactor: Refactored inflatables and other simple doors
