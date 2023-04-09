@@ -35,6 +35,8 @@
 	if(!GLOB.xeno_generators_by_hive)
 		GLOB.xeno_generators_by_hive = list()
 
+	GLOB.xeno_generators_by_hive[corrupted] += 1
+
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(corrupted)
