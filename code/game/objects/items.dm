@@ -146,8 +146,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(flags_item_map_variant)
 		update_item_sprites()
 
-	green_blood_drained = round(green_blood_drained*attack_speed/11) //11 Being the baseline attack speed. Slower attack = more green blood
-
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
