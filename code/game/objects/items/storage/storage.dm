@@ -30,7 +30,7 @@
 	var/list/click_border_start = list()
 	var/list/click_border_end = list()
 	///Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_w_class = 2
+	var/max_w_class = WEIGHT_CLASS_SMALL
 	///The sum of the storage costs of all the items in this storage item.
 	var/max_storage_space = 14
 	///The number of storage slots in this container.

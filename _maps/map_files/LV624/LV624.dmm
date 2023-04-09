@@ -7478,7 +7478,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "hNl" = (
@@ -9330,7 +9330,7 @@
 "klH" = (
 /obj/effect/landmark/corpsespawner/chef,
 /obj/effect/decal/cleanable/blood,
-/obj/item/tool/kitchen/knife/butcher,
+/obj/effect/spawner/random/kitchenknife/butcherweighted,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "klL" = (
@@ -9753,7 +9753,7 @@
 	},
 /obj/structure/table/mainship,
 /obj/structure/jungle/vines,
-/obj/item/reagent_containers/food/snacks/xemeatpie,
+/obj/item/reagent_containers/food/snacks/pastries/xemeatpie,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "kLK" = (
@@ -10145,7 +10145,6 @@
 /area/lv624/ground/jungle10)
 "llZ" = (
 /obj/structure/flora/bush,
-/obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -13837,7 +13836,7 @@
 /area/lv624/ground/sand8)
 "qwI" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "qwX" = (
@@ -15394,7 +15393,7 @@
 /obj/item/tool/kitchen/utensil/spoon,
 /obj/structure/table/mainship,
 /obj/structure/jungle/vines,
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/reagent_containers/food/snacks/soup/stew,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "srR" = (

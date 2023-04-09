@@ -36,22 +36,22 @@
 				desc = "White and nutritious goodness!"
 				center_of_mass = list("x"=16, "y"=10)
 			if(/datum/reagent/consumable/drink/milk/cream)
-				icon_state  = "glass_white"
+				icon_state = "glass_white"
 				name = "Glass of cream"
 				desc = "Ewwww..."
 				center_of_mass = list("x"=16, "y"=10)
 			if(/datum/reagent/consumable/drink/hot_coco)
-				icon_state  = "chocolateglass"
+				icon_state = "chocolateglass"
 				name = "Glass of chocolate"
 				desc = "Tasty"
 				center_of_mass = list("x"=16, "y"=10)
 			if(/datum/reagent/consumable/drink/lemonjuice)
-				icon_state  = "lemonglass"
+				icon_state = "lemonglass"
 				name = "Glass of lemonjuice"
 				desc = "Sour..."
 				center_of_mass = list("x"=16, "y"=10)
 			if(/datum/reagent/consumable/drink/cold/space_cola)
-				icon_state  = "glass_brown"
+				icon_state = "glass_brown"
 				name = "Glass of Space Cola"
 				desc = "A glass of refreshing Space Cola"
 				center_of_mass = list("x"=16, "y"=10)

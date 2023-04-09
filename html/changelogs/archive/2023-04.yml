@@ -13,3 +13,110 @@
   - code_imp: Fixes the stuff the 515 regexing missed
   - balance: Makes the default starting boot knife the M5 survival knife
   - bugfix: Fixes the 3rd person ravager endure message
+2023-04-03:
+  Lumipharon:
+  - code_imp: The mc now detects if its priority budget gets out of sync with reality
+      and soft resets
+  - code_imp: The mc now keeps track of how many times a subsystem has slept in fire()
+  - code_imp: Updated the failsafe to recover from a deleted MC
+  - code_imp: Increased SSsilo priority to reduce the chance of it getting stuck
+  ivanmixo:
+  - rscadd: Gave the nuke disk generator a new TGUI interface
+  - bugfix: Fixed a bug related to the disk console never being processed again if
+      turned off once
+  - refactor: Refactored a bit of the nuke disk generator code and added autodocs
+2023-04-04:
+  Xander3359:
+  - imageadd: updates minimap action button icon.
+  - balance: Dispenser can no longer carry bulky items.
+  ivanmixo:
+  - rscadd: Admins can disable players taking over ssd mobs now
+  - bugfix: Admins can now actually toggle the var to disable valhalla joining
+2023-04-05:
+  Lumipharon:
+  - bugfix: Draining a hive threat now gives a flat 1000 maturity points
+  - bugfix: The droppod deployment map can no longer get stuck if you deploy with
+      it open
+  - qol: Minor standardisation to minimap color opacity
+  - bugfix: Comms blackouts no longer last forever
+  - bugfix: Comms blackouts now correctly apply for a randomised period of time
+  Pariah919:
+  - balance: Railgun now holds 3 shots in a canister rather than 1, has 3 seconds
+      of fire delay inbetween shots. Railgun ammo now costs 50 points rather than
+      30 to accommodate for the larger magazine size.
+  QualityVan:
+  - rscadd: When you check yourself for wounds, you can see the dirt you've accumulated.
+      Mostly only matters for surgeons.
+  - code_imp: germ_level moved from atom to human, no major player-facing changes
+  Skye:
+  - qol: Adds cryogenics to the TGS Smallbury, used in the Crash game mode. (Also
+      moves a table.)
+  - balance: Adds a cryomix beaker to both Canterbury variants.
+  Xander3359:
+  - code_imp: max_w_class uses defines now.
+  irRegularGuy646:
+  - rscadd: Added big 10x26mm caseless ammo box to req operational vendor
+  novaepee:
+  - bugfix: reverse grip on right wielding greatsword
+2023-04-07:
+  Lumipharon:
+  - bugfix: Fixed mortar sounds playing after they've already landed
+  - balance: Barricade repair time and fuel use cut in half. Repair amount reduced
+      from 150 to 85
+  Pariah919:
+  - bugfix: ICC and some SoM armors not having their onmobs show up properly.
+  ivanmixo:
+  - bugfix: Sentinel spit now travels properly instead of stopping at the tile you
+      aimed
+2023-04-08:
+  567Turtle:
+  - balance: Claymore now hits slower
+  Autisem:
+  - rscadd: You can now craft supply crates with wood
+  Blundir:
+  - bugfix: Xenomorph Queen ban now bans shrike as well
+  Losenis:
+  - balance: Buildasentry attachment increases object (gun) size by 1.
+  Lumipharon:
+  - balance: Big Red LZ2 is slightly wider on the right hand side
+  - bugfix: fixed CL uniforms not having icon sprites
+  RikuTheKiller:
+  - balance: Resisting intoxication takes 5 seconds instead of 3 seconds and removes
+      8 stacks instead of 3 stacks. This makes it 1.6 times more effective in general,
+      but harder to use in the middle of combat.
+  - qol: Resisting intoxication now automatically repeats itself, similarly to repairing
+      things.
+  - bugfix: You can't stack intoxication resists anymore to remove it almost instantly.
+  RipGrayson:
+  - imageadd: Replaced some crusty food icons with TG versions
+  - code_imp: Reorganized food icons to not be in a single giant file
+  Xander3359:
+  - balance: MREs contain a lot more nutriment.
+  - rscadd: Hyposprays can now draw reagent with right click (Autoinjectors are also
+      hyposprays fyi).
+  dopamiin:
+  - rscadd: The TGMC has approved several morale-boosting supply options to be added
+      to requisitions.
+  irRegularGuy646:
+  - balance: large 10x26 box now holds 3200 rounds instead of 2400
+  - bugfix: obsolete large ammo box orders removed from req
+  - bugfix: MG-60 magazine is now referred to as a "belt box" instead of a "drum magazine"
+  ivanmixo:
+  - bugfix: Fixed a behead runtime
+2023-04-09:
+  Arturlang:
+  - bugfix: fixed random_available_channel runtiming from accessing a invalid index
+      on channel_list, hopefully
+  - bugfix: Hopefully the maptext for secrete resin will no longer cause all xenos
+      to spawn without any abilities randomly.
+  Xander3359:
+  - balance: Sentry ammo is now sentry sized (Normal)
+  - code_imp: w_class code cleanup 2nd try.
+  ivanmixo:
+  - code_imp: Removed pointless .0 for some vars
+  - bugfix: Adds the ak47 to the proper seasonal instead of 2 mag types
+  - bugfix: Fixed psi point gen calculations being wrong. Also you cant corrupt an
+      already corrupted gen anymore.
+  - bugfix: Fixed people who get killed while buckled in the alamo chairs standing
+      up even while dead
+  - refactor: Refactored inflatables and other simple doors

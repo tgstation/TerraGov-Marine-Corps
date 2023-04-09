@@ -10,11 +10,11 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
 	max_integrity = 250
-	w_class 	= 3
-	throwforce 	= 5
+	w_class = WEIGHT_CLASS_NORMAL
+	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
-	force 		= 5
+	force = 5
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT
@@ -190,7 +190,7 @@
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
 	///How much the bullet currently scattered when last fired.
-	var/scatter	= 4
+	var/scatter = 4
 	///How much the bullet scatters when fired while unwielded.
 	var/scatter_unwielded = 12
 	///Maximum scatter
@@ -212,7 +212,7 @@
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
 	///Additive number added to accuracy_mult. Defaults to 0 (no change).
-	var/burst_accuracy_mult	= 0
+	var/burst_accuracy_mult = 0
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.
@@ -220,7 +220,7 @@
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
 	///Modifies the speed of projectiles fired.
-	var/shell_speed_mod	= 0
+	var/shell_speed_mod = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/iff_marine_damage_falloff = 0
 	///Determines how fire delay is changed when aim mode is active
@@ -237,14 +237,14 @@
 	///The delay in between shots. Lower = less delay = faster.
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-	var/extra_delay	= 0
+	var/extra_delay = 0
 	///when autobursting, this is the total amount of time before the weapon fires again. If no amount is specified, defaults to fire_delay + extra_delay
 	var/autoburst_delay = 0
 
 	///Slowdown for wielding
 	var/aim_slowdown = 0
 	///How long between wielding and firing in tenths of seconds
-	var/wield_delay	= 0.4 SECONDS
+	var/wield_delay = 0.4 SECONDS
 	///Extra wield delay for untrained operators
 	var/wield_penalty = 0.2 SECONDS
 	///Storing value for above
@@ -252,7 +252,7 @@
 
 
 	///how much energy is consumed per shot.
-	var/charge_cost	= 0
+	var/charge_cost = 0
 	///How much ammo consumed per shot; normally 1.
 	var/ammo_per_shot = 1
 	///In overcharge mode?
@@ -325,7 +325,7 @@
 	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 
 
 /*

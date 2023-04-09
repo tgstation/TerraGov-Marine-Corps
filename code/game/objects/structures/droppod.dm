@@ -315,7 +315,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(choosing)
 		return FALSE
 	return ..()
-	
+
 /datum/action/innate/set_drop_target/Activate()
 	. = ..()
 	//yes this is hardcoded bite me
@@ -331,6 +331,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	choosing = FALSE
 	var/obj/structure/droppod/pod = target
 	pod.set_target(polled_coords[1], polled_coords[2])
+
+/datum/action/innate/set_drop_target/remove_action(mob/M)
+	if(choosing)
+		owner.client?.screen -= SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+	return ..()
 
 /obj/structure/dropprop	//Just a prop for now but if the pods are someday made movable make a requirement to have these on the turf
 	name = "Zeus pod launch bay"

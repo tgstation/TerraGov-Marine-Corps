@@ -502,7 +502,7 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			L =  carbon_victim.get_limb(BODY_ZONE_CHEST)
+			L = carbon_victim.get_limb(BODY_ZONE_CHEST)
 		apply_damage(damage, BRUTE, L, MELEE)
 	else
 		apply_damage(damage, BRUTE, blocked = MELEE)

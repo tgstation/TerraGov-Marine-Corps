@@ -66,7 +66,7 @@
 	desc = "A plastic replica of a syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 1
 
@@ -202,7 +202,7 @@
 	item_state = "witch"
 	flags_inventory = NONE
 	flags_inv_hide = HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
@@ -211,7 +211,7 @@
 	item_state = "chickensuit"
 	flags_inventory = NONE
 	flags_inv_hide = HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/xenos
@@ -221,7 +221,7 @@
 	desc = "A helmet made out of chitinous alien hide."
 	flags_inventory = COVERMOUTH|COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 10 //Lel
 

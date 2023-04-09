@@ -358,17 +358,17 @@ WEAPONS
 /datum/supply_packs/weapons/railgun_ammo
 	name = "SR-220 Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 20
+	cost = 50
 
 /datum/supply_packs/weapons/railgun_ammo/hvap
 	name = "SR-220 Railgun high velocity armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/hvap)
-	cost = 20
+	cost = 50
 
 /datum/supply_packs/weapons/railgun_ammo/smart
 	name = "SR-220 Railgun smart armor piercing round"
 	contains = list(/obj/item/ammo_magazine/railgun/smart)
-	cost = 20
+	cost = 50
 
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"
@@ -645,16 +645,6 @@ WEAPONS
 	name = "TX13 smartpistol ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
-
-/datum/supply_packs/weapons/BigAmmoBox
-	name = "Big Ammo Box (10x24mm)"
-	contains = list(/obj/item/big_ammo_box)
-	cost = 50
-
-/datum/supply_packs/weapons/BigAmmoBoxSMG
-	name = "Big Ammo Box (10x20mm)"
-	contains = list(/obj/item/big_ammo_box/smg)
-	cost = 50
 
 /*******************************************************************************
 EXPLOSIVES
@@ -1294,6 +1284,60 @@ SUPPLIES
 	)
 	cost = 50
 
+/datum/supply_packs/supplies/carpplush
+	name = "Carp Plushie"
+	contains = list(/obj/item/toy/plush/carp)
+	cost = 10
+
+/datum/supply_packs/supplies/lizplush
+	name = "Lizard Plushie"
+	contains = list(/obj/item/toy/plush/lizard)
+	cost = 10
+
+/datum/supply_packs/supplies/slimeplush
+	name = "Slime Plushie"
+	contains = list(/obj/item/toy/plush/slime)
+	cost = 10
+
+/datum/supply_packs/supplies/mothplush
+	name = "Moth Plushie"
+	contains = list(/obj/item/toy/plush/moth)
+	cost = 10
+
+/datum/supply_packs/supplies/rounyplush
+	name = "Rouny Plushie"
+	contains = list(/obj/item/toy/plush/rouny)
+	cost = 10
+
+/datum/supply_packs/supplies/games
+	name = "Games crate"
+	contains = list(
+		/obj/item/toy/beach_ball/basketball,
+		/obj/item/toy/bikehorn,
+		/obj/item/toy/spinningtoy,
+		/obj/item/toy/dice/d20,
+		/obj/item/toy/dice,
+		/obj/item/toy/dice,
+		/obj/item/toy/sword,
+		/obj/item/toy/sword,
+		/obj/item/toy/crossbow,
+		/obj/item/toy/crossbow,
+		/obj/item/toy/deck,
+		/obj/item/toy/deck/kotahi,
+	)
+	cost = 80
+
+/datum/supply_packs/supplies/games
+	name = "Therapy doll crate"
+	contains = list(
+		/obj/item/toy/plush/therapy_red,
+		/obj/item/toy/plush/therapy_orange,
+		/obj/item/toy/plush/therapy_yellow,
+		/obj/item/toy/plush/therapy_green,
+		/obj/item/toy/plush/therapy_blue,
+		/obj/item/toy/plush/therapy_purple,
+	)
+	cost = 40
 /*******************************************************************************
 Imports
 *******************************************************************************/

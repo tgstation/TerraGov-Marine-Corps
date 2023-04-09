@@ -1559,7 +1559,7 @@
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/rofflewaffles,
-/obj/item/reagent_containers/food/snacks/larvasoup,
+/obj/item/reagent_containers/food/snacks/soup/larvasoup,
 /obj/effect/spawner/random/sugary_snack{
 	pixel_x = -3;
 	pixel_y = 7
@@ -1611,14 +1611,14 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cca" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/mimeburger,
-/obj/item/reagent_containers/food/snacks/pumpkinpieslice{
+/obj/effect/spawner/random/burger,
+/obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice{
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/food/snacks/meatbreadslice{
+/obj/item/reagent_containers/food/snacks/sandwiches/meatbreadslice{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/meatpie{
+/obj/item/reagent_containers/food/snacks/pastries/meatpie{
 	pixel_x = 5;
 	pixel_y = -4
 	},
@@ -2358,8 +2358,8 @@
 /area/centcom/valhalla/crew_quarters/theatre)
 "dbr" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/plaincakeslice,
-/obj/item/reagent_containers/food/snacks/nettlesoup{
+/obj/item/reagent_containers/food/snacks/pastries/plaincakeslice,
+/obj/item/reagent_containers/food/snacks/soup/nettlesoup{
 	pixel_y = 14
 	},
 /obj/item/reagent_containers/food/snacks/no_raisin{
@@ -2521,9 +2521,9 @@
 /area/centcom/valhalla/chapel/main)
 "dqp" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/jelliedtoast,
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/item/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/sandwiches/jelliedtoast,
+/obj/effect/spawner/random/donut,
+/obj/item/reagent_containers/food/snacks/pizzapasta/boiledspaghetti,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
@@ -2996,8 +2996,8 @@
 "dPI" = (
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pastatomato,
-/obj/item/reagent_containers/food/snacks/mysterysoup{
+/obj/item/reagent_containers/food/snacks/pizzapasta/pastatomato,
+/obj/item/reagent_containers/food/snacks/soup/mysterysoup{
 	pixel_y = 12
 	},
 /obj/item/tool/kitchen/utensil/fork{
@@ -3934,10 +3934,10 @@
 /obj/item/reagent_containers/food/drinks/cans/sodawater,
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit,
-/obj/item/reagent_containers/food/snacks/xemeatpie{
+/obj/item/reagent_containers/food/snacks/pastries/xemeatpie{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/xenoburger{
+/obj/effect/spawner/random/burger{
 	pixel_x = -4;
 	pixel_y = -1
 	},
@@ -5679,14 +5679,14 @@
 	pixel_x = 1;
 	pixel_y = -2
 	},
-/obj/item/reagent_containers/food/snacks/applepie{
+/obj/item/reagent_containers/food/snacks/pastries/applepie{
 	pixel_x = -4
 	},
 /obj/item/reagent_containers/food/snacks/meatsteak{
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/meatpizzaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/meatpizzaslice{
 	pixel_x = 3
 	},
 /obj/effect/spawner/random/sugary_snack{
@@ -8031,10 +8031,10 @@
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "kJw" = (
@@ -8091,7 +8091,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = -8
 	},
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/kitchen)
@@ -8548,14 +8548,14 @@
 /area/centcom/valhalla/starboard_hallway)
 "ltl" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/margheritaslice{
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
 	pixel_y = -3
 	},
 /obj/item/reagent_containers/food/drinks/dry_ramen,
-/obj/item/reagent_containers/food/snacks/chocolatecakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/chocolatecakeslice{
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/fishburger{
+/obj/effect/spawner/random/burger{
 	pixel_x = -4;
 	pixel_y = 1
 	},
@@ -9849,10 +9849,10 @@
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
 /obj/item/toy/dice/d20,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
+/obj/item/toy/katana,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "nfl" = (
@@ -12142,8 +12142,8 @@
 /area/centcom/valhalla/port)
 "qwk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/taco,
-/obj/item/reagent_containers/food/snacks/twobread,
+/obj/item/reagent_containers/food/snacks/mexican/taco,
+/obj/item/reagent_containers/food/snacks/sandwiches/twobread,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
@@ -12161,7 +12161,7 @@
 	pixel_x = -8
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/orangecakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
@@ -12740,13 +12740,13 @@
 /area/centcom/valhalla/library)
 "qZR" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/applecake,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/margheritaslice{
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/applecake,
+/obj/item/reagent_containers/food/snacks/sandwiches/sandwich,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice{
 	pixel_x = 1;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/monkeyburger{
+/obj/effect/spawner/random/burger{
 	pixel_x = -7;
 	pixel_y = 10
 	},
@@ -14034,11 +14034,11 @@
 /obj/item/reagent_containers/food/snacks/stewedsoymeat{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/snacks/orangecakeslice{
+/obj/item/reagent_containers/food/snacks/pastries/orangecakeslice{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/ricepudding{
+/obj/item/reagent_containers/food/snacks/soup/ricepudding{
 	pixel_x = 4;
 	pixel_y = 2
 	},
@@ -14142,7 +14142,7 @@
 "sOY" = (
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb,
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/pumpkinpieslice,
+/obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice,
 /obj/item/reagent_containers/food/snacks/baguette,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
@@ -14594,7 +14594,7 @@
 "tuV" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/hotdog,
-/obj/item/reagent_containers/food/snacks/carrotcakeslice,
+/obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
@@ -14689,7 +14689,7 @@
 /area/centcom/valhalla/crew_quarters)
 "tye" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread,
+/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/xenomeatbread,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
@@ -14931,7 +14931,7 @@
 	pixel_x = 14
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/milosoup,
+/obj/item/reagent_containers/food/snacks/soup/milosoup,
 /obj/effect/spawner/random/sugary_snack,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
@@ -15539,7 +15539,7 @@
 /area/centcom/valhalla/secondary/exit)
 "uCk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/ricepudding,
+/obj/item/reagent_containers/food/snacks/soup/ricepudding,
 /obj/item/reagent_containers/food/snacks/muffin{
 	pixel_x = -3;
 	pixel_y = -1
@@ -16292,7 +16292,7 @@
 /area/tdome/tdomeobserve)
 "vFA" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/birthdaycake,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/birthdaycake,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
@@ -16992,8 +16992,8 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "wic" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/sliceable/cheesecake,
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
+/obj/item/reagent_containers/food/snacks/sliceable/pastries/cheesecake,
+/obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice,
 /obj/effect/spawner/random/sugary_snack{
 	pixel_y = 3
 	},
@@ -18905,7 +18905,7 @@
 /obj/effect/turf_decal/tile/black{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/clownburger,
+/obj/effect/spawner/random/burger,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},

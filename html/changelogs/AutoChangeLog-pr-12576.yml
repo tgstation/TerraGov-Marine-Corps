@@ -1,6 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "Gave the nuke disk generator a new TGUI interface"
-  - bugfix: "Fixed a bug related to the disk console never being processed again if turned off once"
-  - refactor: "Refactored a bit of the nuke disk generator code and added autodocs"

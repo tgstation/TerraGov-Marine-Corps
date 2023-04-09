@@ -337,7 +337,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 
-			beaker =  I
+			beaker = I
 			to_chat(user, "You set [I] on the machine.")
 			update_icon()
 			updateUsrDialog()

@@ -4285,7 +4285,7 @@
 /area/bigredv2/outside/hydroponics)
 "aLy" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/kitchen/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLA" = (

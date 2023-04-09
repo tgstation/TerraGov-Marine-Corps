@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(minimaps)
 		minimaps_by_z["[zlevel]"].images_raw["[flag]"] += blip
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target)
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_marker))
 
@@ -234,6 +234,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target)
 	for(var/flag in GLOB.all_minimap_flags)
 		minimaps_by_z["[target.z]"].images_raw["[flag]"] -= blip
+	blip.UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	removal_cbs -= target
 
 /**
@@ -252,12 +253,12 @@ SUBSYSTEM_DEF(minimaps)
 /**
  * Simple proc, updates overlay position on the map when a atom moves
  */
-/datum/controller/subsystem/minimaps/proc/on_move(atom/movable/source, oldloc)
+/image/proc/minimap_on_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
 	if(!source.z)
 		return //this can happen legitimately when you go into pipes, it shouldnt but thats how it is
-	images_by_source[source].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + minimaps_by_z["[source.z]"].x_offset
-	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
+	pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + SSminimaps.minimaps_by_z["[source.z]"].x_offset
+	pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + SSminimaps.minimaps_by_z["[source.z]"].y_offset
 
 /**
  * Removes an atom and it's blip from the subsystem
@@ -266,7 +267,7 @@ SUBSYSTEM_DEF(minimaps)
 	SIGNAL_HANDLER
 	if(!removal_cbs[source]) //already removed
 		return
-	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 	for(var/flag in GLOB.all_minimap_flags)
 		minimaps_by_z["[source.z]"].images_assoc["[flag]"] -= source
 	images_by_source -= source

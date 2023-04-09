@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 		standing_image.overlays += DI
 
-	overlays_standing[DAMAGE_LAYER]	= standing_image
+	overlays_standing[DAMAGE_LAYER] = standing_image
 
 	apply_overlay(DAMAGE_LAYER)
 
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	//BEGIN CACHED ICON GENERATION.
 
 		// Why don't we just make skeletons/shadows/golems a species? ~Z
-		var/race_icon =   species.icobase
+		var/race_icon = species.icobase
 
 		//Robotic limbs are handled in get_icon() so all we worry about are missing or dead limbs.
 		//No icon stored, so we need to start with a basic one.
@@ -314,7 +314,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	//base icons
-	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
+	var/icon/face_standing = new /icon('icons/mob/human_face.dmi',"bald_s")
 
 	if(f_style && !(wear_suit?.flags_inv_hide & HIDELOWHAIR) && !(wear_mask?.flags_inv_hide & HIDELOWHAIR))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += wear_id
 
 	if(w_uniform?.displays_id || istype(wear_id, /obj/item/card/id/dogtag))
-		overlays_standing[ID_LAYER]	= wear_id.make_worn_icon(species_type = species.name, slot_name = slot_wear_id_str, default_icon = 'icons/mob/mob.dmi', default_layer = ID_LAYER)
+		overlays_standing[ID_LAYER] = wear_id.make_worn_icon(species_type = species.name, slot_name = slot_wear_id_str, default_icon = 'icons/mob/mob.dmi', default_layer = ID_LAYER)
 
 	apply_overlay(ID_LAYER)
 
@@ -434,7 +434,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 			gloves.screen_loc = ui_gloves
 			client.screen += gloves
-		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(species_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/clothing/hands.dmi', default_layer = GLOVES_LAYER)
+		overlays_standing[GLOVES_LAYER] = gloves.make_worn_icon(species_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/clothing/hands.dmi', default_layer = GLOVES_LAYER)
 		apply_overlay(GLOVES_LAYER)
 		return
 
@@ -453,7 +453,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhands") //Both hands.
 
 	bloodsies.color = blood_color
-	overlays_standing[GLOVES_LAYER]	= bloodsies
+	overlays_standing[GLOVES_LAYER] = bloodsies
 	apply_overlay(GLOVES_LAYER)
 
 
@@ -643,7 +643,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 //	if (gender == FEMALE)	g = "f"
 
 	//base icons
-	var/icon/face_lying		= new /icon('icons/mob/human_face.dmi',"bald_l")
+	var/icon/face_lying = new /icon('icons/mob/human_face.dmi',"bald_l")
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	else if(chestburst == 2)
 		standing = mutable_appearance('icons/Xeno/Effects.dmi', "bursted_stand", -BURST_LAYER)
 
-	overlays_standing[BURST_LAYER]	= standing
+	overlays_standing[BURST_LAYER] = standing
 	apply_overlay(BURST_LAYER)
 
 /mob/living/carbon/human/update_fire()

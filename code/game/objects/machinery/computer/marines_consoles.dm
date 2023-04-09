@@ -7,8 +7,8 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
-	var/authenticated = 0.0
-	var/mode = 0.0
+	var/authenticated = 0
+	var/mode = 0
 	var/printing = null
 
 

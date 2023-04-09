@@ -1,50 +1,53 @@
 /obj/item/inflatable
-	name = "inflatable wall"
-	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
+	name = "generic inflatable"
+	desc = "You shouldn't be seeing this."
 	icon = 'icons/obj/inflatable.dmi'
-	icon_state = "folded_wall"
 	hit_sound = 'sound/effects/Glasshit_old.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
+	///The type of structure we make upon inflation
+	var/inflatable_type
+
 
 /obj/item/inflatable/attack_self(mob/user)
+	balloon_alert(user, "Inflating...")
+	if(!do_after(user, 3 SECONDS, TRUE, src))
+		balloon_alert(user, "Interrupted!")
+		return
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
 	to_chat(user, span_notice("You inflate [src]."))
-	new /obj/structure/inflatable(user.loc)
+	new inflatable_type(get_turf(user))
 	qdel(src)
 
+
+/obj/item/inflatable/wall
+	name = "inflatable wall"
+	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
+	icon_state = "folded_wall"
+	inflatable_type = /obj/structure/inflatable/wall
 
 
 /obj/item/inflatable/door
 	name = "inflatable door"
 	desc = "A folded membrane which rapidly expands into a simple door on activation."
-	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_door"
-
-/obj/item/inflatable/door/attack_self(mob/user)
-	. = ..()
-	playsound(loc, 'sound/items/zip.ogg', 25, 1)
-	to_chat(user, span_notice("You inflate [src]."))
-	new /obj/structure/inflatable/door(user.loc)
-	qdel(src)
-
-
-
+	inflatable_type = /obj/structure/inflatable/door
 
 
 /obj/structure/inflatable
-	name = "inflatable wall"
-	desc = "An inflated membrane. Do not puncture."
+	name = "generic inflatable"
+	desc = "You shouldn't be seeing this."
 	density = TRUE
-	anchored = TRUE
-	opacity = FALSE
 	flags_pass = NONE
-
 	icon = 'icons/obj/inflatable.dmi'
-	icon_state = "wall"
-
 	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
+
+	///Are we deflated?
 	var/deflated = FALSE
+	///The type of item we get back upon deflation
+	var/inflatable_item
+	///The popped variant of this type
+	var/popped_variant
 
 
 /obj/structure/inflatable/deconstruct(disassembled = TRUE)
@@ -57,60 +60,60 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			deflate(1)
+			deflate(TRUE)
 
 		if(EXPLODE_LIGHT)
 			if(prob(50))
-				deflate(1)
+				deflate(TRUE)
 
 
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
 	if(can_puncture(I))
 		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)
 
 
-/obj/structure/inflatable/proc/deflate(violent=0)
+/obj/structure/inflatable/proc/deflate(violent = FALSE)
 	set waitfor = 0
 	if(deflated)
 		return
 	deflated = TRUE
 	playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
+	visible_message("[src] [violent ? "rapidly" : "slowly"] deflates!")
+	flick("wall_[violent ? "popping" : "deflating"]", src)
+	addtimer(CALLBACK(src, PROC_REF(post_deflate), violent), violent ? 1 SECONDS : 5 SECONDS)
+
+
+/obj/structure/inflatable/proc/post_deflate(violent = FALSE)
 	if(violent)
-		visible_message("[src] rapidly deflates!")
-		flick("wall_popping", src)
-		sleep(1 SECONDS)
-		new /obj/structure/inflatable/popped(loc)
-		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
-		qdel(src)
+		new popped_variant(get_turf(src))
 	else
-		//to_chat(user, span_notice("You slowly deflate the inflatable wall."))
-		visible_message("[src] slowly deflates.")
-		flick("wall_deflating", src)
-		spawn(50)
-			new /obj/item/inflatable(loc)
-			qdel(src)
+		new inflatable_item(get_turf(src))
+	qdel(src)
+
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
 	set category = "Object"
 	set src in oview(1)
 
-	if(isobserver(usr)) //to stop ghosts from deflating
-		return
-	if(isxeno(usr))
+	if(!ishuman(usr))
 		return
 
 	if(!deflated)
-		deflate()
+		balloon_alert(usr, "Deflating...")
+		deflate(FALSE)
 	else
-		to_chat(usr, "[src] is already deflated.")
+		balloon_alert(usr, "Already deflated.")
 
 
-
-
+/obj/structure/inflatable/wall
+	name = "inflatable wall"
+	desc = "An inflated membrane. Do not puncture."
+	icon_state = "wall"
+	inflatable_item = /obj/item/inflatable/wall
+	popped_variant = /obj/structure/inflatable/popped
 
 /obj/structure/inflatable/popped
 	name = "popped inflatable wall"
@@ -118,119 +121,83 @@
 	density = FALSE
 	anchored = TRUE
 	deflated = TRUE
-
-	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall_popped"
 
 
 /obj/structure/inflatable/popped/door
 	name = "popped inflatable door"
 	desc = "This used to be an inflatable door, now it's just a mess of plastic."
-
-	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_popped"
 
 
-
-
-/obj/structure/inflatable/door //Based on mineral door code
+//TODO make this not copypasta. A simple door component maybe.
+/obj/structure/inflatable/door
 	name = "inflatable door"
-	density = TRUE
-	anchored = TRUE
-	opacity = FALSE
-
-	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_closed"
+	inflatable_item = /obj/item/inflatable/door
+	popped_variant = /obj/structure/inflatable/popped/door
+	///Are we open?
+	var/open = FALSE
+	///Are we currently busy opening/closing?
+	var/switching_states = FALSE
 
-	var/state = 0 //closed, 1 == open
-	var/isSwitchingStates = 0
+/obj/structure/inflatable/door/Initialize()
+	. = ..()
+	if((locate(/mob/living) in loc) && !open)
+		toggle_state()
+
+/obj/structure/inflatable/door/Bumped(atom/user)
+	. = ..()
+	if(!open)
+		return try_toggle_state(user)
+
+/obj/structure/inflatable/door/update_icon()
+	. = ..()
+	if(open)
+		icon_state = "door_open"
+	else
+		icon_state = "door_closed"
 
 /obj/structure/inflatable/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	return TryToSwitchState(user)
+	return try_toggle_state(user)
 
 /obj/structure/inflatable/door/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	. = ..()
 	if(air_group)
-		return state
+		return open
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 
-/obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates)
+/*
+ * Checks all the requirements for opening/closing a door before opening/closing it. Copypasta. TODO: un-copypasta this
+ *
+ * atom/user - the mob trying to open/close this door
+*/
+/obj/structure/inflatable/door/proc/try_toggle_state(atom/user)
+	if(switching_states || !ismob(user) || locate(/mob/living) in get_turf(src))
 		return
-	if(ismob(user))
-		var/mob/M = user
-		if(TIMER_COOLDOWN_CHECK(M, COOLDOWN_BUMP))
+	var/mob/M = user
+	if(!M.client)
+		return
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(C.handcuffed)
 			return
-		if(M.client)
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
-				if(!C.handcuffed)
-					SwitchState()
-			else
-				SwitchState()
-			TIMER_COOLDOWN_START(M, COOLDOWN_BUMP, 6 SECONDS)
-
-/obj/structure/inflatable/door/proc/SwitchState()
-	if(state)
-		Close()
-	else
-		Open()
+	toggle_state()
 
 
-/obj/structure/inflatable/door/proc/Open()
-	isSwitchingStates = 1
-	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
-	flick("door_opening",src)
-	sleep(1 SECONDS)
-	density = FALSE
-	opacity = FALSE
-	state = 1
+///The proc that actually does the door closing. Plays the animation, etc. Copypasta. TODO: un-copypasta this
+/obj/structure/inflatable/door/proc/toggle_state()
+	switching_states = TRUE
+	open = !open
+	flick("door_[open ? "opening" : "closing"]", src)
+	density = !density
+	opacity = !opacity
 	update_icon()
-	isSwitchingStates = 0
-
-/obj/structure/inflatable/door/proc/Close()
-	isSwitchingStates = 1
-	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
-	flick("door_closing",src)
-	sleep(1 SECONDS)
-	density = TRUE
-	opacity = FALSE
-	state = 0
-	update_icon()
-	isSwitchingStates = 0
-
-/obj/structure/inflatable/door/update_icon()
-	if(state)
-		icon_state = "door_open"
-	else
-		icon_state = "door_closed"
-
-/obj/structure/inflatable/door/deflate(violent=0)
-	set waitfor = 0
-	playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
-	if(violent)
-		visible_message("[src] rapidly deflates!")
-		flick("door_popping",src)
-		sleep(1 SECONDS)
-		new /obj/structure/inflatable/popped/door(loc)
-		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
-		qdel(src)
-	else
-		//to_chat(user, span_notice("You slowly deflate the inflatable wall."))
-		visible_message("[src] slowly deflates.")
-		flick("door_deflating", src)
-		spawn(50)
-			new /obj/item/inflatable/door(loc)
-			qdel(src)
-
-
-
-
-
+	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 
 /obj/item/storage/briefcase/inflatable
 	name = "inflatable barrier box"
@@ -241,10 +208,7 @@
 
 /obj/item/storage/briefcase/inflatable/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable(src)
-	new /obj/item/inflatable(src)
-	new /obj/item/inflatable(src)
-	new /obj/item/inflatable(src)
+	for(var/i in 1 to 3)
+		new /obj/item/inflatable/door(src)
+	for(var/i in 1 to 4)
+		new /obj/item/inflatable/wall(src)
