@@ -357,7 +357,7 @@
 /area/gelida/indoors/a_block/medical)
 "alr" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/gelida)
+/area/shuttle/drop1/gelida)
 "alF" = (
 /obj/structure/platform/gelida{
 	dir = 1
@@ -6408,7 +6408,7 @@
 /area/gelida/indoors/a_block/bridges/op_centre)
 "ecy" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/gelida)
+/area/shuttle/drop2/gelida)
 "ecI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -20952,7 +20952,7 @@
 "nNL" = (
 /obj/effect/mapping_helpers/area_flag_injector/marine_base,
 /turf/open/floor/plating,
-/area/shuttle/drop2/gelida)
+/area/shuttle/drop1/gelida)
 "nNN" = (
 /obj/structure/toilet{
 	pixel_y = 16
@@ -22867,7 +22867,7 @@
 "paR" = (
 /obj/effect/mapping_helpers/area_flag_injector/marine_base,
 /turf/open/floor/plating,
-/area/shuttle/drop1/gelida)
+/area/shuttle/drop2/gelida)
 "pbi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/spawner/random/structure/supplycrate,
@@ -28189,7 +28189,7 @@
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/shuttle/drop1/gelida)
+/area/shuttle/drop2/gelida)
 "suB" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -32573,7 +32573,7 @@
 /obj/docking_port/stationary/marine_dropship/lz1,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/shuttle/drop2/gelida)
+/area/shuttle/drop1/gelida)
 "vqd" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
@@ -41424,9 +41424,9 @@ xYR
 ddP
 ddP
 xYR
-vFl
-vFl
-vFl
+ndb
+ndb
+ndb
 ddP
 fBJ
 fBJ
@@ -41647,7 +41647,7 @@ ddP
 bYd
 bYd
 gNQ
-vFl
+ndb
 ddP
 ddP
 fBJ

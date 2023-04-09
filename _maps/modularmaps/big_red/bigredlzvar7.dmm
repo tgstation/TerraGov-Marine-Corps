@@ -275,7 +275,7 @@
 /area/bigredv2/outside/space_port)
 "gt" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -353,11 +353,11 @@
 	},
 /area/bigredv2/outside/nw)
 "hI" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "hN" = (
@@ -504,11 +504,6 @@
 "kN" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"kP" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "kW" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -520,11 +515,6 @@
 	},
 /turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
-"la" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "ld" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidplating,
@@ -970,12 +960,12 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "xD" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "xP" = (
@@ -1714,7 +1704,7 @@
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/telecomm)
 "OQ" = (
@@ -2276,7 +2266,7 @@ iY
 iY
 iY
 xi
-la
+IO
 vN
 Tc
 lj
@@ -2478,7 +2468,7 @@ gF
 tu
 BO
 IO
-kP
+IO
 Pj
 kN
 Rb
@@ -2636,7 +2626,7 @@ rA
 rA
 LB
 UY
-kP
+IO
 BA
 UF
 Dl

@@ -163,7 +163,7 @@
 /area/bigredv2/outside/space_port)
 "el" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -687,11 +687,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"rs" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "sm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -865,7 +860,7 @@
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/telecomm)
 "xm" = (
@@ -968,11 +963,6 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
-"zE" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "zI" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -1107,11 +1097,11 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Dl" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Dv" = (
@@ -1355,12 +1345,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
 "JL" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "JM" = (
@@ -2151,7 +2141,7 @@ tE
 tE
 tE
 xq
-zE
+Qi
 sv
 sQ
 KJ
@@ -2352,7 +2342,7 @@ jS
 jS
 le
 Hx
-rs
+Qi
 Qi
 Ms
 uO

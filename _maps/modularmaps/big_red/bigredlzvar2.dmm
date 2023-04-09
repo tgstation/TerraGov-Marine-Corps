@@ -469,11 +469,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"lH" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "lT" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -738,11 +733,6 @@
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/spawner/random/tool,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
-"tk" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "tq" = (
@@ -1040,12 +1030,12 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "CW" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "CZ" = (
@@ -1213,11 +1203,11 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "Ic" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Id" = (
@@ -1549,9 +1539,9 @@
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Spaceport";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
@@ -1668,7 +1658,7 @@
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/telecomm)
 "Ta" = (
@@ -2283,8 +2273,8 @@ Ei
 Ei
 qy
 jG
-tk
-lH
+vy
+vy
 sc
 dS
 mH
@@ -2442,7 +2432,7 @@ Ei
 gM
 xP
 Id
-lH
+vy
 pS
 jz
 Fm

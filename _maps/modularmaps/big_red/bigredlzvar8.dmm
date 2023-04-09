@@ -45,11 +45,11 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "aG" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aY" = (
@@ -170,11 +170,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"fc" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "ff" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -1003,12 +998,12 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "Cg" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Ch" = (
@@ -1173,11 +1168,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/space_port)
-"Ga" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "Ge" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -1211,7 +1201,7 @@
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/telecomm)
 "Hg" = (
@@ -1259,9 +1249,9 @@
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Spaceport";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
@@ -2152,7 +2142,7 @@ ds
 ds
 Ge
 cj
-Ga
+Ko
 hg
 PT
 HT
@@ -2353,7 +2343,7 @@ MN
 MN
 cj
 Xx
-fc
+Ko
 Ko
 og
 og

@@ -175,7 +175,12 @@
 	},
 /area/bigredv2/outside/space_port)
 "eT" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Spaceport";
+	name = "\improper Spaceport Shutters"
+	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "eX" = (
@@ -282,7 +287,7 @@
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/telecomm)
 "iI" = (
@@ -349,16 +354,6 @@
 "jH" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
-"jN" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
-"kb" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/bigred,
-/area/bigredv2/caves/northwest)
 "ke" = (
 /obj/machinery/light{
 	dir = 4
@@ -480,11 +475,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"nm" = (
-/obj/structure/table,
-/obj/effect/spawner/random/folder/nooffset,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "nt" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/tile/white,
@@ -638,11 +628,11 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "qN" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "qS" = (
@@ -2077,9 +2067,9 @@
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Spaceport";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
@@ -2236,7 +2226,7 @@ LS
 LS
 LT
 hI
-nm
+xX
 ML
 JT
 Gx
@@ -2437,7 +2427,7 @@ gb
 gb
 hI
 Oj
-jN
+xX
 xX
 MB
 QK
@@ -3406,7 +3396,7 @@ EP
 Ku
 eq
 ks
-eT
+OS
 IU
 fN
 IU
@@ -3606,7 +3596,7 @@ EA
 EP
 EP
 EP
-eT
+OS
 IU
 Wp
 cs
@@ -3715,7 +3705,7 @@ St
 St
 mK
 XX
-oJ
+eT
 EP
 ks
 EP
@@ -3755,7 +3745,7 @@ FU
 St
 St
 PO
-oJ
+eT
 EP
 ks
 EP
@@ -3886,7 +3876,7 @@ EP
 AL
 xH
 EP
-eT
+OS
 aH
 FU
 mV
@@ -4044,7 +4034,7 @@ hv
 hv
 hv
 cl
-kb
+cl
 cl
 hv
 hv
