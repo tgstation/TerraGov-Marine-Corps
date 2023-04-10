@@ -120,3 +120,10 @@
   - bugfix: Fixed people who get killed while buckled in the alamo chairs standing
       up even while dead
   - refactor: Refactored inflatables and other simple doors
+2023-04-10:
+  Lumipharon:
+  - code_imp: Some minor code cleanup
+  ivanmixo:
+  - rscadd: Adds 2 AI droids to Theseus
+  - bugfix: Fixes the psi gen fix
+  - code_imp: Utilized ?. a lot more where applicable

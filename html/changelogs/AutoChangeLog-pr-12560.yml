@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Utilized ?. a lot more where applicable"
