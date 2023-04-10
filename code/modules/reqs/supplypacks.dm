@@ -548,7 +548,7 @@ WEAPONS
 	cost = 50
 
 /datum/supply_packs/weapons/smart_minigun
-	name = "SG-85 smart minigun"
+	name = "SG-85 smart gatling gun"
 	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 400
 
