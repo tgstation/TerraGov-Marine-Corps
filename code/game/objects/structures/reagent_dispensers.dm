@@ -210,17 +210,22 @@
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
 
+/obj/structure/reagent_dispensers/fueltank/barrel
+	name = "red barrel"
+	desc = "A red fuel barrel"
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "barrel_red"
+
 /obj/structure/reagent_dispensers/fueltank/xfuel
-	name = "fueltank"
-	desc = "A fueltank"
-	icon = 'icons/obj/objects.dmi'
+	name = "X-fueltank"
+	desc = "A tank filled with extremely dangerous Fuel type X. There are numerous no smoking signs on every side of the tank."
 	icon_state = "xweldtank"
 	list_reagents = list(/datum/reagent/xfuel = 1000)
 
 /obj/structure/reagent_dispensers/fueltank/xfuel/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
-		balloon_alert(user, "Cannot refuel")
+		balloon_alert(user, "wrong fuel")
 		return
 	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
@@ -228,12 +233,23 @@
 	explode()
 	return TRUE
 
+/obj/structure/reagent_dispensers/fueltank/xfuel/explode()
+	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
+	if(exploding)
+		return
+	exploding = TRUE
 
-/obj/structure/reagent_dispensers/fueltank/barrel
-	name = "red barrel"
-	desc = "A red fuel barrel"
-	icon = 'icons/obj/structures/crates.dmi'
-	icon_state = "barrel_red"
+	if(reagents.total_volume > 500)
+		flame_radius(5, loc, 46, 40, 31, 30, colour = "blue")
+		explosion(loc, light_impact_range = 5, small_animation = TRUE)
+	else if(reagents.total_volume > 100)
+		flame_radius(4, loc, 46, 40, 31, 30, colour = "blue")
+		explosion(loc, light_impact_range = 4, small_animation = TRUE)
+	else
+		flame_radius(3, loc, 46, 40, 31, 30, colour = "blue")
+		explosion(loc, light_impact_range = 3, small_animation = TRUE)
+
+	qdel(src)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
