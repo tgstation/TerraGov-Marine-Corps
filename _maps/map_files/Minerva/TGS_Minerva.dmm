@@ -6732,6 +6732,11 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"uh" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/ai/exterior,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/airoom)
 "ui" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/mono,
@@ -13496,6 +13501,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/ai/exterior{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "NQ" = (
@@ -16560,6 +16568,9 @@
 /area/mainship/command/airoom)
 "WQ" = (
 /obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/ai/exterior{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "WR" = (
@@ -17236,6 +17247,7 @@
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/mainship/ai/exterior,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "YV" = (
@@ -29484,7 +29496,7 @@ So
 TZ
 VR
 NO
-WQ
+uh
 YU
 NO
 xB
@@ -29876,7 +29888,7 @@ St
 TZ
 VR
 NO
-WQ
+uh
 YU
 NO
 yg

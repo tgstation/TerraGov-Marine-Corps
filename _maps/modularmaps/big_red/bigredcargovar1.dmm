@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ax" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Cargonia";
@@ -25,7 +25,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bL" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "du" = (
@@ -51,7 +51,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "fG" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
@@ -85,7 +85,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hG" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
@@ -180,7 +180,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "oU" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "pb" = (
@@ -201,7 +201,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "qi" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "qC" = (
@@ -287,7 +287,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "xV" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "zh" = (
@@ -459,7 +459,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "MF" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -476,7 +476,7 @@
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "NJ" = (
@@ -514,7 +514,7 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
 "PW" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Qw" = (
@@ -546,7 +546,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ux" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "Vw" = (

@@ -307,7 +307,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gD" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -1138,7 +1138,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "xY" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "yc" = (

@@ -38,7 +38,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ba" = (
@@ -75,7 +75,7 @@
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "bR" = (
@@ -96,7 +96,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "cD" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "cH" = (
@@ -120,12 +120,12 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "fe" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "fj" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "fl" = (
@@ -151,7 +151,7 @@
 /area/bigredv2/outside/cargo)
 "hM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hS" = (
@@ -196,7 +196,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "lz" = (
-/obj/structure/largecrate/random/barrel,
+/obj/effect/spawner/random/structure/barrel,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "lA" = (
@@ -204,7 +204,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "lI" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Cargonia";
@@ -229,7 +229,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "nH" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "nS" = (
@@ -260,7 +260,7 @@
 /area/bigredv2/outside/cargo)
 "ou" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/largecrate/random/barrel,
+/obj/effect/spawner/random/structure/barrel,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "pt" = (
@@ -287,7 +287,7 @@
 /area/bigredv2/outside/cargo)
 "pI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "pV" = (
@@ -386,7 +386,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "xE" = (
@@ -475,7 +475,7 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "EI" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "Fu" = (
@@ -582,7 +582,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ji" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Js" = (
@@ -611,7 +611,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "LD" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/marking/loadingarea,
 /area/bigredv2/outside/cargo)
 "Mw" = (
@@ -646,7 +646,7 @@
 "PF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Qn" = (
@@ -734,7 +734,7 @@
 /area/bigredv2/outside/cargo)
 "ZT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 

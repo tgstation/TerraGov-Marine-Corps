@@ -110,7 +110,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "aby" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "abJ" = (
@@ -182,7 +182,7 @@
 	},
 /area/ice_colony/surface/engineering)
 "acA" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -211,7 +211,7 @@
 	},
 /area/ice_colony/surface/engineering)
 "acP" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering/electric)
 "acS" = (
@@ -250,7 +250,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
 "ada" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering/generator)
 "adj" = (
@@ -271,7 +271,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "adw" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering/tool)
 "adx" = (
@@ -386,7 +386,7 @@
 /area/ice_colony/surface/engineering/generator)
 "aeo" = (
 /obj/structure/table,
-/obj/item/stack/cable_coil,
+/obj/effect/spawner/random/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -421,7 +421,7 @@
 /area/ice_colony/surface/engineering)
 "aew" = (
 /obj/structure/table,
-/obj/item/cell/high/empty,
+/obj/effect/spawner/random/powercell,
 /obj/machinery/cell_charger,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
@@ -445,7 +445,7 @@
 /area/ice_colony/surface/storage_unit/research)
 "aeG" = (
 /obj/structure/rack,
-/obj/item/stack/cable_coil,
+/obj/effect/spawner/random/cable,
 /obj/item/storage/box/engineer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
@@ -463,7 +463,7 @@
 	},
 /area/ice_colony/surface/hydroponics/north)
 "aeK" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering)
 "aeL" = (
@@ -522,7 +522,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering/tool)
 "aeW" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering/generator)
 "afa" = (
@@ -537,7 +537,7 @@
 "afc" = (
 /obj/structure/rack,
 /obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/item/storage/box/lightstick/red,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -578,7 +578,7 @@
 /obj/item/stack/rods{
 	amount = 25
 	},
-/obj/item/stack/cable_coil,
+/obj/effect/spawner/random/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -684,7 +684,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "afP" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1011,7 +1011,7 @@
 /turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/north)
 "ahH" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/hydroponics/north)
 "ahL" = (
@@ -1091,7 +1091,7 @@
 /area/ice_colony/surface/engineering/generator)
 "aim" = (
 /obj/structure/rack,
-/obj/item/cell/high/empty,
+/obj/effect/spawner/random/powercell,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
@@ -1134,7 +1134,7 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "ait" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/substation/smes)
 "aiu" = (
@@ -1179,7 +1179,7 @@
 /area/ice_colony/surface/engineering)
 "aiD" = (
 /obj/structure/rack,
-/obj/item/cell/high/empty,
+/obj/effect/spawner/random/powercell,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1195,8 +1195,8 @@
 /area/ice_colony/surface/substation/smes)
 "aiF" = (
 /obj/structure/table/reinforced,
-/obj/item/cell/high,
-/obj/item/cell/high,
+/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -1293,7 +1293,7 @@
 /area/ice_colony/surface/engineering)
 "aja" = (
 /obj/structure/rack,
-/obj/item/cell/high/empty,
+/obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -1312,7 +1312,7 @@
 /area/ice_colony/surface/substation/smes)
 "aje" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -1478,7 +1478,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ajT" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -1947,7 +1947,7 @@
 /area/ice_colony/surface/substation)
 "amf" = (
 /obj/structure/cable,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
 "amg" = (
@@ -2294,8 +2294,8 @@
 /area/ice_colony/surface/mining)
 "anU" = (
 /obj/structure/table,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
+/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/cable,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "anV" = (
@@ -2635,7 +2635,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "apu" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "apw" = (
@@ -2694,7 +2694,7 @@
 /area/ice_colony/surface/mining)
 "apF" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor,
 /area/ice_colony/surface/mining)
 "apG" = (
@@ -2741,7 +2741,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command)
 "apO" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -2753,7 +2753,7 @@
 	},
 /area/ice_colony/surface/command)
 "apU" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -2789,7 +2789,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "aqd" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "aqe" = (
@@ -2906,18 +2906,18 @@
 /area/ice_colony/surface/command)
 "aqx" = (
 /obj/structure/rack,
-/obj/item/storage/toolbox/emergency,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
 /obj/item/tool/shovel/snow,
 /obj/item/tool/shovel/snow,
 /obj/item/tool/shovel/snow,
-/obj/item/explosive/plastique,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/ice_colony/surface/dorms)
 "aqz" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "colony_admin_top";
@@ -3087,7 +3087,7 @@
 /area/ice_colony/surface/dorms/restroom_e)
 "are" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/structure/closet/cabinet,
+/obj/effect/spawner/random/structure/cabinet,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "arg" = (
@@ -3216,7 +3216,7 @@
 	},
 /area/ice_colony/surface/clinic/storage)
 "arB" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -3321,7 +3321,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "asj" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "asn" = (
@@ -3332,7 +3332,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "asu" = (
-/obj/structure/closet/cabinet,
+/obj/effect/spawner/random/structure/cabinet,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
@@ -3433,7 +3433,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ata" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/clinic/lobby)
 "atb" = (
@@ -3447,7 +3447,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "ate" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ath" = (
@@ -3490,12 +3490,12 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/lobby)
 "ato" = (
-/obj/structure/closet/cabinet,
+/obj/effect/spawner/random/structure/cabinet,
 /obj/item/clothing/under/color/black,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "atp" = (
-/obj/structure/closet/cabinet,
+/obj/effect/spawner/random/structure/cabinet,
 /obj/item/clothing/under/bluepyjamas,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
@@ -3544,7 +3544,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
 "atL" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/hydroponics/lobby)
 "atM" = (
@@ -3629,7 +3629,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
 "auk" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "aum" = (
@@ -3979,8 +3979,8 @@
 /obj/structure/closet/crate,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/ammo_magazine/shotgun/beanbag,
-/obj/item/ammo_magazine/shotgun/flechette,
-/obj/item/ammo_magazine/shotgun/flechette,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/pump/cmb{
 	pixel_x = 2;
 	pixel_y = 27
@@ -4455,8 +4455,8 @@
 	},
 /area/ice_colony/surface/dorms/lavatory)
 "axz" = (
-/obj/structure/closet/cabinet,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/structure/cabinet,
+/obj/effect/spawner/random/toolbox,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
@@ -4776,7 +4776,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayW" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/hydroponics/south)
 "ayX" = (
@@ -5097,12 +5097,12 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/lavatory)
 "aAq" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/surface/dorms/canteen)
 "aAr" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/dorms/canteen)
 "aAt" = (
@@ -5145,7 +5145,7 @@
 /obj/structure/table,
 /obj/item/radio/survivor,
 /obj/item/radio/survivor,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -5574,7 +5574,7 @@
 	},
 /area/ice_colony/surface/clinic/lobby)
 "aCE" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "aCF" = (
@@ -5702,7 +5702,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "aDk" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/garage/repair)
 "aDm" = (
@@ -6212,7 +6212,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aFm" = (
-/obj/item/ammo_magazine/shotgun/buckshot{
+/obj/effect/spawner/random/ammo/shotgun{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -6471,7 +6471,7 @@
 	},
 /area/ice_colony/surface/hydroponics/south)
 "aGv" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/vault{
@@ -6681,7 +6681,7 @@
 	},
 /area/ice_colony/surface/storage_unit/power)
 "aHh" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/clinic/treatment)
 "aHi" = (
@@ -6882,8 +6882,8 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aIs" = (
 /obj/structure/closet/crate,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -6919,7 +6919,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "aIF" = (
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -6991,7 +6991,7 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aJk" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -7077,7 +7077,7 @@
 	},
 /area/ice_colony/surface/clinic/storage)
 "aJO" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "colony_admin_top";
@@ -7152,7 +7152,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/storage_unit/telecomms)
 "aKm" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -7190,7 +7190,7 @@
 /turf/closed/wall,
 /area/ice_colony/surface/bar/canteen)
 "aKx" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/bar/canteen)
 "aKy" = (
@@ -7212,7 +7212,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "aKB" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/bar/bar)
 "aKC" = (
@@ -7255,7 +7255,7 @@
 /area/ice_colony/underground/responsehangar)
 "aKX" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -7382,7 +7382,7 @@
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aLP" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -7442,7 +7442,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/bar/bar)
 "aMj" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -7772,7 +7772,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "aND" = (
-/obj/structure/reagent_dispensers,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
 "aNE" = (
@@ -7987,7 +7987,7 @@
 "aOz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/tool/kitchen/utensil/knife,
+/obj/effect/spawner/random/kitchenknife,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOA" = (
@@ -8006,7 +8006,7 @@
 "aOC" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/fortunecookie,
-/obj/item/tool/kitchen/utensil/fork,
+/obj/effect/spawner/random/kitchen,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOD" = (
@@ -8143,7 +8143,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aPc" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -8238,7 +8238,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aPz" = (
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -8247,7 +8247,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aPC" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/hangar/alpha)
 "aPD" = (
@@ -8296,7 +8296,7 @@
 /turf/closed/wall,
 /area/ice_colony/surface/research/field_gear)
 "aPR" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research/field_gear)
 "aPZ" = (
@@ -8669,7 +8669,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aRp" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRr" = (
@@ -8820,7 +8820,7 @@
 /turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aSl" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/alpha)
@@ -8830,11 +8830,11 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aSn" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/alpha)
 "aSo" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
 "aSr" = (
@@ -9005,11 +9005,11 @@
 	},
 /area/ice_colony/surface/research)
 "aTo" = (
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTq" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTr" = (
@@ -9219,7 +9219,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aUs" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research/temporary)
 "aUt" = (
@@ -9329,7 +9329,7 @@
 /turf/closed/wall,
 /area/ice_colony/surface/research/tech_storage)
 "aUX" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research/tech_storage)
 "aUY" = (
@@ -9567,7 +9567,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aVW" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aVX" = (
@@ -9864,7 +9864,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/ice_colony/surface/hangar/alpha)
 "aXp" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -10692,7 +10692,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/westroadtunnel)
 "bbU" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -10831,7 +10831,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/excavation)
 "bcM" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -10862,7 +10862,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/dark/purple2{
 	dir = 5
 	},
@@ -10932,7 +10932,7 @@
 /area/ice_colony/underground/requesition)
 "bdf" = (
 /obj/structure/cable,
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -10985,7 +10985,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -11176,7 +11176,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/hangar)
 "bdY" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
 "bdZ" = (
@@ -11250,7 +11250,7 @@
 /obj/item/ammo_rcd,
 /obj/item/ammo_rcd,
 /obj/item/ammo_rcd,
-/obj/item/explosive/plastique,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -11301,7 +11301,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bey" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -11315,7 +11315,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hangar)
 "beC" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
@@ -11332,7 +11332,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "beH" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/responsehangar)
 "beI" = (
@@ -11383,7 +11383,7 @@
 /area/ice_colony/underground/hangar)
 "bfb" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -11445,7 +11445,7 @@
 	},
 /area/ice_colony/underground/requesition)
 "bfn" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -11484,7 +11484,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -11504,7 +11504,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bfw" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
@@ -11638,7 +11638,7 @@
 	},
 /area/ice_colony/underground/requesition)
 "bfR" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition/lobby)
 "bfS" = (
@@ -11661,11 +11661,11 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bfW" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "bfX" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -11815,7 +11815,7 @@
 /area/ice_colony/surface/excavation)
 "bgN" = (
 /obj/machinery/conveyor,
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition)
 "bgO" = (
@@ -11988,7 +11988,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhD" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bhE" = (
@@ -12161,7 +12161,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/requesition/sec_storage)
 "biB" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition)
 "biD" = (
@@ -12219,7 +12219,7 @@
 	},
 /area/ice_colony/underground/hangar)
 "bjc" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bjd" = (
@@ -12407,7 +12407,7 @@
 /area/ice_colony/surface/research)
 "bjY" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/effect/spawner/random/beaker/bluespace,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -12455,7 +12455,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bki" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
@@ -12571,7 +12571,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bkN" = (
@@ -12709,7 +12709,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "blm" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/chapel)
 "bln" = (
@@ -13110,7 +13110,7 @@
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bmX" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bmY" = (
@@ -13347,7 +13347,7 @@
 	},
 /area/ice_colony/underground/engineering)
 "bnQ" = (
-/obj/item/stack/cable_coil,
+/obj/effect/spawner/random/cable,
 /obj/item/stack/rods,
 /obj/item/storage/donut_box,
 /obj/structure/table/woodentable,
@@ -13497,7 +13497,7 @@
 /area/ice_colony/underground/crew/morgue)
 "bou" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -13553,7 +13553,7 @@
 	},
 /area/ice_colony/underground/crew/bball)
 "boH" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/library)
 "boI" = (
@@ -13628,7 +13628,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bpa" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
 "bpb" = (
@@ -13677,7 +13677,7 @@
 	},
 /area/ice_colony/underground/hangar)
 "bpl" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering)
 "bpm" = (
@@ -14123,7 +14123,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/medical/lobby)
 "bqV" = (
@@ -14139,7 +14139,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/medical/lobby)
 "bqY" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/medical/hallway)
 "bqZ" = (
@@ -14182,7 +14182,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/crew/bball)
 "bri" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/bball)
 "brj" = (
@@ -14260,7 +14260,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "brv" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "brz" = (
@@ -14312,7 +14312,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/ice_colony/underground/hallway/north_west)
 "brN" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/reception/checkpoint_north)
 "brO" = (
@@ -14449,7 +14449,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/hallway/north_west)
 "bsu" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/bball)
@@ -14973,7 +14973,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "buG" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/responsehangar)
 "buH" = (
@@ -15238,7 +15238,7 @@
 "bvH" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers,
-/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/effect/spawner/random/beaker/bluespace,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
@@ -15672,7 +15672,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/crew/bball)
 "bxs" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bxt" = (
@@ -15680,7 +15680,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bxu" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
@@ -15864,7 +15864,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "byd" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment)
 "bye" = (
@@ -15874,7 +15874,7 @@
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment)
 "byf" = (
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
@@ -16071,14 +16071,14 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "byU" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "byV" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "byW" = (
@@ -16278,7 +16278,7 @@
 	},
 /area/ice_colony/underground/crew/canteen)
 "bzJ" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/canteen)
 "bzK" = (
@@ -16615,7 +16615,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
 "bAT" = (
-/obj/machinery/iv_drip,
+/obj/effect/spawner/random/structure/ivdrip,
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bAU" = (
@@ -16663,7 +16663,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bBc" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/utensil/fork,
+/obj/effect/spawner/random/kitchen,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bBd" = (
@@ -16831,7 +16831,7 @@
 	},
 /area/ice_colony/underground/crew/canteen)
 "bBA" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -16859,7 +16859,7 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bBG" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/underground/security/hallway)
@@ -17144,7 +17144,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCH" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/excavationbarracks)
 "bCK" = (
@@ -17154,7 +17154,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bCL" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/security/interrogation)
 "bCM" = (
@@ -17253,13 +17253,13 @@
 	},
 /area/ice_colony/underground/security/interrogation)
 "bDd" = (
-/obj/structure/dispenser,
+/obj/effect/spawner/random/structure/tank_dispenser,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
 /area/ice_colony/underground/storage/highsec)
 "bDe" = (
-/obj/structure/dispenser,
+/obj/effect/spawner/random/structure/tank_dispenser,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -17452,7 +17452,7 @@
 	},
 /area/ice_colony/underground/storage/highsec)
 "bDH" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/command/center)
 "bDI" = (
@@ -17467,7 +17467,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/interrogation)
 "bDK" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/ice_colony/underground/command/center)
@@ -17527,7 +17527,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage/highsec)
 "bDT" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -17677,7 +17677,7 @@
 /area/ice_colony/underground/storage/highsec)
 "bEz" = (
 /obj/structure/table/reinforced,
-/obj/item/circuitboard/computer/atmos_alert,
+/obj/effect/spawner/random/computercircuit,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -17866,27 +17866,17 @@
 /area/ice_colony/underground/security/hallway)
 "bFh" = (
 /obj/structure/table,
-/obj/item/cell/high/empty,
 /obj/machinery/cell_charger,
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
 /area/ice_colony/underground/storage)
-"bFi" = (
-/obj/structure/table/reinforced,
-/obj/item/circuitboard/machine/smes,
-/turf/open/floor/tile/dark/blue2,
-/area/ice_colony/underground/storage/highsec)
 "bFj" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/tile/dark/blue2,
-/area/ice_colony/underground/storage/highsec)
-"bFk" = (
-/obj/structure/table/reinforced,
-/obj/item/circuitboard/computer/crew,
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFl" = (
@@ -17894,7 +17884,7 @@
 /area/ice_colony/underground/storage/highsec)
 "bFm" = (
 /obj/structure/table/reinforced,
-/obj/item/circuitboard/computer/powermonitor,
+/obj/effect/spawner/random/computercircuit,
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFn" = (
@@ -18300,7 +18290,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
 "bGD" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/command/checkpoint)
 "bGE" = (
@@ -18311,7 +18301,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "bGG" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/ice_colony/underground/command/checkpoint)
@@ -18424,7 +18414,7 @@
 /area/ice_colony/underground/security/backroom)
 "bGZ" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -18450,7 +18440,7 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bHc" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/security/hallway)
 "bHd" = (
@@ -18576,7 +18566,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/backroom)
 "bHx" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
@@ -18811,7 +18801,7 @@
 /turf/open/shuttle/dropship/four,
 /area/ice_colony/underground/responsehangar)
 "bIe" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/storage)
 "bIg" = (
@@ -19254,7 +19244,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bJH" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
@@ -19710,7 +19700,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bLp" = (
 /obj/structure/cable,
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
 "bLq" = (
@@ -20095,7 +20085,7 @@
 /area/ice_colony/underground/security)
 "bMV" = (
 /obj/item/taperecorder,
-/obj/item/clothing/glasses/sunglasses,
+/obj/effect/spawner/random/sunglasses,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -20147,7 +20137,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "bNe" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "bNf" = (
@@ -20272,7 +20262,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/crew/leisure)
 "bNB" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/leisure)
 "bNC" = (
@@ -20296,7 +20286,7 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bNF" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
 "bNG" = (
@@ -20605,8 +20595,8 @@
 /area/ice_colony/underground/reception)
 "bOz" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot{
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -20800,7 +20790,7 @@
 /area/ice_colony/underground/reception)
 "bPj" = (
 /obj/structure/rack,
-/obj/item/explosive/plastique,
+/obj/effect/spawner/random/structure/plastiqueexplosive,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -20841,8 +20831,8 @@
 /area/ice_colony/underground/crew/leisure)
 "bPo" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot{
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -20850,7 +20840,7 @@
 /area/ice_colony/underground/security/armory)
 "bPp" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/armory)
 "bPq" = (
@@ -21376,7 +21366,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
 "bRt" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
 "bRu" = (
@@ -21687,7 +21677,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bTb" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
@@ -21809,14 +21799,14 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bTC" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bTE" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bTF" = (
@@ -21876,7 +21866,7 @@
 /area/ice_colony/underground/maintenance/east)
 "bTX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bTZ" = (
@@ -21903,7 +21893,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bUl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bUr" = (
@@ -22066,7 +22056,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "bVc" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/structure/rack,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -22179,7 +22169,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/excavationbarracks)
 "bVD" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -22332,7 +22322,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bWj" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
@@ -22378,13 +22368,13 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bWu" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/underground/hangar)
 "bWv" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bWw" = (
@@ -22591,10 +22581,7 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 1;
-	pixel_y = 10
-	},
+/obj/effect/spawner/random/toolbox,
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 1
 	},
@@ -22747,7 +22734,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bXQ" = (
-/obj/structure/closet/cabinet,
+/obj/effect/spawner/random/structure/cabinet,
 /obj/item/clothing/suit/storage/snow_suit,
 /obj/item/clothing/suit/storage/snow_suit,
 /obj/item/radio/headset/survivor,
@@ -23027,7 +23014,7 @@
 	},
 /area/ice_colony/underground/engineering)
 "bZl" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bZn" = (
@@ -23373,7 +23360,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "caB" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "caD" = (
@@ -24274,7 +24261,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "edA" = (
 /obj/structure/cable,
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering)
 "eeV" = (
@@ -24747,7 +24734,7 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "fkV" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -24782,7 +24769,7 @@
 "fnQ" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
@@ -25165,7 +25152,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "gqs" = (
 /obj/structure/cable,
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/surface/substation/smes)
 "gqG" = (
@@ -26594,7 +26581,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "jsD" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -28975,7 +28962,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/item/tool/pickaxe{
+/obj/effect/spawner/random/pickaxe{
 	pixel_x = 5;
 	pixel_y = 27
 	},
@@ -29277,7 +29264,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
-/obj/structure/curtain/medical,
+/obj/effect/spawner/random/structure/curtain/medical,
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
@@ -29402,7 +29389,7 @@
 	},
 /area/ice_colony/surface/engineering/tool)
 "plZ" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -29931,7 +29918,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "qrf" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/structure/rack,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -30032,7 +30019,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "qzI" = (
 /obj/effect/landmark/start/job/survivor,
-/obj/item/storage/toolbox/emergency,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "qAU" = (
@@ -31522,7 +31509,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "tmm" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -42079,7 +42066,7 @@ bDe
 bDE
 bDE
 bDE
-bFi
+bFm
 bCu
 eNf
 bIg
@@ -42503,7 +42490,7 @@ bDj
 bDE
 bEn
 bDE
-bFk
+bFm
 bCu
 bGq
 bIg

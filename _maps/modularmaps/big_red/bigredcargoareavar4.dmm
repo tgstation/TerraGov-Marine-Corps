@@ -199,7 +199,7 @@
 /area/bigredv2/caves/west)
 "oj" = (
 /obj/machinery/light,
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "op" = (
@@ -216,7 +216,7 @@
 /area/bigredv2/caves/west)
 "pG" = (
 /obj/machinery/light,
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/structure/tank/fuelweighted/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pR" = (
@@ -366,7 +366,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "zy" = (
-/obj/structure/largecrate/random/case/double,
+/obj/effect/spawner/random/structure/supplycrate/case/double,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "zR" = (
@@ -488,7 +488,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Gr" = (
-/obj/structure/largecrate/random/barrel/white,
+/obj/effect/spawner/random/structure/barrel/white,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Gu" = (
@@ -620,11 +620,11 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "PY" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/structure/supplycrate/normalweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Qe" = (
-/obj/structure/largecrate/random/barrel,
+/obj/effect/spawner/random/structure/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Qm" = (
@@ -723,7 +723,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UP" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/structure/tank/fuelweighted/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Vv" = (
@@ -800,7 +800,7 @@
 /obj/machinery/light{
 	dir = 1;
 	},
-/obj/structure/largecrate/random/case/small,
+/obj/effect/spawner/random/structure/supplycrate/case/small,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Yd" = (
@@ -815,7 +815,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Ys" = (
-/obj/structure/largecrate/random/barrel,
+/obj/effect/spawner/random/structure/barrel,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)

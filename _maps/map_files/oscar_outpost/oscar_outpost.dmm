@@ -3166,10 +3166,10 @@
 /area/oscar_outpost/village/south)
 "wf" = (
 /obj/structure/closet/crate,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "wk" = (
@@ -4070,8 +4070,8 @@
 /area/oscar_outpost/village)
 "Be" = (
 /obj/structure/closet/crate,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/item/tool/shovel{
 	pixel_x = 13
 	},
@@ -7179,10 +7179,10 @@
 /obj/item/tool/shovel{
 	pixel_x = 9
 	},
-/obj/item/tool/pickaxe{
+/obj/effect/spawner/random/pickaxe{
 	pixel_x = 3
 	},
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/item/tool/hatchet{
 	pixel_x = -10
 	},
@@ -8522,16 +8522,16 @@
 /area/oscar_outpost/base)
 "TD" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "TE" = (

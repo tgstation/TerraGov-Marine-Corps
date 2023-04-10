@@ -79326,7 +79326,7 @@
 /obj/structure/rack{
 	dir = 8
 	},
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/storage/testroom)
@@ -104760,8 +104760,8 @@
 /obj/item/storage/toolbox/emergency,
 /obj/item/tool/shovel,
 /obj/item/tool/shovel,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/cargo/miningoffice)

@@ -78,8 +78,8 @@
 /area/bigredv2/outside/filtration_plant)
 "eR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "eT" = (
@@ -94,7 +94,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "fx" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "fH" = (
@@ -102,7 +102,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "fI" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
@@ -112,7 +112,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "gj" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "gl" = (
@@ -136,7 +136,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/item/frame/table,
+/obj/effect/spawner/random/structure/table_parts,
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -147,7 +147,7 @@
 	},
 /area/bigredv2/outside/s)
 "jl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "jX" = (
@@ -324,7 +324,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "sk" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -337,12 +337,12 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/filtration_plant)
 "uc" = (
-/obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ux" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "uU" = (
@@ -414,7 +414,7 @@
 /turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "yj" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -511,8 +511,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Fe" = (
-/obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Ff" = (
@@ -546,7 +546,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Hd" = (
-/obj/structure/window_frame/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -559,7 +559,7 @@
 /area/bigredv2/outside/filtration_plant)
 "If" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -620,8 +620,8 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
 "LK" = (
-/obj/structure/largecrate/random,
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "LX" = (
@@ -744,12 +744,12 @@
 "TA" = (
 /obj/structure/rack,
 /obj/item/tank/air,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "TO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/structure/table_parts,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -806,7 +806,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Xr" = (
-/obj/item/frame/table,
+/obj/effect/spawner/random/structure/table_parts,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)

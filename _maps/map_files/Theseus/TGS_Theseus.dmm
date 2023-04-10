@@ -12890,6 +12890,9 @@
 /obj/machinery/door/poddoor/mainship/ai/exterior{
 	dir = 2
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "kQN" = (
@@ -18093,6 +18096,7 @@
 "tBH" = (
 /obj/machinery/door/airlock/mainship/ai,
 /obj/machinery/door/poddoor/mainship/ai/interior,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "tBV" = (
@@ -18243,6 +18247,9 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/ai/exterior{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
 /turf/open/floor/mainship/ai,

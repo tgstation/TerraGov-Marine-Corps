@@ -731,6 +731,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "aSJ" = (
@@ -1837,6 +1838,9 @@
 	dir = 1;
 	name = "\improper CMO Bunk Airlock"
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "clt" = (
@@ -2229,6 +2233,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "cQN" = (
@@ -2623,6 +2628,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "dkX" = (
@@ -4860,6 +4868,9 @@
 /obj/machinery/door/airlock/mainship/medical/glass/CMO{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "gjA" = (
@@ -5210,6 +5221,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/medical/morgue)
 "gMI" = (
@@ -5331,6 +5343,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gUJ" = (
@@ -8315,7 +8330,9 @@
 /area/mainship/squads/general)
 "kWu" = (
 /obj/structure/window/framed/mainship/white,
-/obj/machinery/door/poddoor/shutters/opened/medbay,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "kWG" = (
@@ -9117,6 +9134,9 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lMn" = (
@@ -9349,6 +9369,10 @@
 /area/mainship/hallways/hangar)
 "lXP" = (
 /obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/ai/exterior,
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "lYg" = (
@@ -10431,7 +10455,7 @@
 "nwc" = (
 /obj/machinery/holosign_switch{
 	id = "or2sign";
-	pixel_x = 7;
+	pixel_x = -7;
 	pixel_y = -5
 	},
 /turf/closed/wall/mainship/white,
@@ -10655,6 +10679,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "nMA" = (
@@ -14228,6 +14255,9 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "svg" = (
@@ -15226,6 +15256,9 @@
 	},
 /obj/machinery/light/mainship{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
 	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -17219,6 +17252,9 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/ai/exterior,
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "whZ" = (
@@ -17545,6 +17581,9 @@
 	},
 /obj/machinery/door/poddoor/mainship/ai/exterior{
 	dir = 1
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
@@ -17970,6 +18009,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 1
+	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
@@ -18368,6 +18410,12 @@
 	pixel_x = 6;
 	pixel_y = -5
 	},
+/obj/machinery/door_control/old{
+	id = "ROlobby";
+	name = "Requisitions lockdown";
+	pixel_x = 6;
+	pixel_y = 2
+	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "xBh" = (
@@ -18386,6 +18434,9 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/sign/restroom,
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xBM" = (
@@ -18732,6 +18783,12 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/lower_engineering)
+"xWB" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "xXt" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/sterile/dark,
@@ -40456,7 +40513,7 @@ qVo
 qVo
 hRh
 nWT
-rKn
+esN
 trv
 lmF
 lmF
@@ -40713,7 +40770,7 @@ qVo
 qVo
 hRh
 nWT
-rKn
+esN
 jzI
 xlx
 gmc
@@ -40970,7 +41027,7 @@ qVo
 qVo
 hRh
 nWT
-rKn
+esN
 jzI
 gmc
 qMI
@@ -41227,7 +41284,7 @@ mBZ
 qVo
 hRh
 nWT
-rKn
+esN
 kEP
 gmc
 rGg
@@ -41484,7 +41541,7 @@ bhv
 bhv
 nWT
 nWT
-rKn
+esN
 kEP
 gmc
 gmc
@@ -41741,7 +41798,7 @@ nWT
 nWT
 nWT
 nWT
-rKn
+esN
 kEP
 gmc
 cYW
@@ -41998,7 +42055,7 @@ nWT
 nWT
 nWT
 nWT
-rKn
+esN
 ndI
 gmc
 sbQ
@@ -42255,7 +42312,7 @@ esN
 esN
 esN
 esN
-rKn
+esN
 kEP
 gmc
 kRY
@@ -45312,7 +45369,7 @@ tyN
 tyN
 tyN
 tyN
-dpY
+xWB
 svd
 tyN
 jAX
@@ -53272,7 +53329,7 @@ cXd
 tTm
 kiP
 rlR
-kiP
+qWc
 wqq
 kzV
 kzK
@@ -53529,7 +53586,7 @@ niE
 mQH
 tXB
 bKB
-tXB
+imJ
 dpY
 nas
 bxn
@@ -55079,7 +55136,7 @@ tyN
 tyN
 tyN
 tyN
-dpY
+xWB
 lMf
 tyN
 jAX

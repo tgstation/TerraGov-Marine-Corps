@@ -2821,8 +2821,8 @@
 /area/outpost/medbay)
 "nj" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -3168,7 +3168,7 @@
 /area/outpost/engineering/engine)
 "oH" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/incendiary,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -4954,8 +4954,8 @@
 "wD" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/attachable/flashlight,
 /obj/item/attachable/heavy_barrel,
 /obj/item/attachable/reddot,
@@ -5534,7 +5534,7 @@
 /area/outpost/medbay/chemistry)
 "zg" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/clothing/head/beret/sec/warden,
 /obj/machinery/light{
 	dir = 1
@@ -6105,7 +6105,7 @@
 /area/outpost/yard/south_east)
 "BL" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -8092,7 +8092,7 @@
 "Ll" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
@@ -9286,8 +9286,8 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/attachable/gyro,
 /obj/item/attachable/reddot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
