@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "shrike can now give plasma"
+  - balance: "shrike can help xenomorph even more by giving plasma"
