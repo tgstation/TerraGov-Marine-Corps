@@ -585,7 +585,7 @@ WEAPONS
 /datum/supply_packs/weapons/fueltank
 	name = "X-fuel tank"
 	contains = list(/obj/structure/reagent_dispensers/fueltank/xfuel)
-	cost = 300
+	cost = 600
 	containertype = null
 
 /datum/supply_packs/weapons/rpgoneuse
