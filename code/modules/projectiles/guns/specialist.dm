@@ -442,7 +442,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // SG minigun
 
 /obj/item/weapon/gun/minigun/smart_minigun
-	name = "\improper SG-85 smart minigun"
+	name = "\improper SG-85 smart handheld gatling gun"
 	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's newest IFF-capable weapon. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
