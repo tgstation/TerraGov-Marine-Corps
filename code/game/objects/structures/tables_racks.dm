@@ -4,7 +4,7 @@
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon = 'icons/obj/structures/tables.dmi'
+	icon = 'icons/obj/smooth_objects/table_regular.dmi'
 	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
@@ -13,7 +13,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
-	smoothing_behavior = SMOOTH_BITMASK
+	smoothing_flags = SMOOTH_BITMASK
+	base_icon_state = "table_regular"
 	//determines if we drop metal on deconstruction
 	var/dropmetal = TRUE
 	var/parts = /obj/item/frame/table
@@ -42,13 +43,18 @@
 			new sheet_type(src)
 	return ..()
 
-/obj/structure/table/proc/update_adjacent(location = loc)
+/obj/structure/table/proc/update_adjacent(location = loc, unflipping = FALSE)
 	for(var/direction in CARDINAL_ALL_DIRS)
 		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
 		if(!table)
 			continue
 		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
+	QUEUE_SMOOTH(src)
 
+/obj/structure/table/Destroy()
+	var/tableloc = loc
+	update_adjacent(tableloc) //so neighbouring tables get updated correctly
+	return ..()
 
 /obj/structure/table/Initialize(mapload)
 	. = ..()
@@ -73,11 +79,6 @@
 	if(!M.stat) //No dead xenos jumpin on the bed~
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
-
-/obj/structure/table/Destroy()
-	var/tableloc = loc
-	update_adjacent(tableloc) //so neighbouring tables get updated correctly
-	return ..()
 
 /obj/structure/table/update_icon()
 	if(flipped)
@@ -275,7 +276,7 @@
 		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
-	unflip()
+	unflip(TRUE)
 
 	flip_cooldown = world.time + 50
 
@@ -331,6 +332,7 @@
 			T.unflip()
 	update_icon()
 	update_adjacent()
+	QUEUE_SMOOTH(src)
 
 	return TRUE
 
