@@ -134,6 +134,7 @@
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
+	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40))
 	AddElement(/datum/element/limb_support, supporting_limbs)
 	if(obj_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src

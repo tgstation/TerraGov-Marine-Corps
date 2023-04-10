@@ -8,16 +8,23 @@
 	var/active = TRUE
 
 
-/datum/component/stun_mitigation/Initialize(shield_flags, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+/datum/component/stun_mitigation/Initialize(shield_flags, slot_override, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
+
 	var/obj/item/parent_item = parent
+
+	if(slot_override)
+		slot_flags = slot_override
+
 	if(shield_flags & SHIELD_TOGGLE)
 		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_ACTIVE, PROC_REF(toggle_shield))
 		active = parent_item.active
+
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
+
 	if(active)
 		if(ismob(parent_item.loc))
 			shield_init(parent_item.loc)
