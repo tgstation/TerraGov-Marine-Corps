@@ -1,10 +1,12 @@
 /datum/component/stun_mitigation
 	var/mob/living/affected
-	/// Percentage damage The shield intercepts.
+	///Percentage chance to mitigate a hardstun
 	var/datum/armor/cover
+	///Any special behavior flags
 	var/shield_flags = NONE
+	///The slots in which the parent can be in for the component to apply
 	var/slot_flags = SLOT_L_HAND|SLOT_R_HAND
-	var/layer = 50
+	///Whether the component is currently active
 	var/active = TRUE
 
 
