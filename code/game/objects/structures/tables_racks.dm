@@ -13,6 +13,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
+	smoothing_behavior = SMOOTH_BITMASK
 	//determines if we drop metal on deconstruction
 	var/dropmetal = TRUE
 	var/parts = /obj/item/frame/table
@@ -23,6 +24,8 @@
 	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 40
+	smoothing_groups = list(SMOOTH_GROUP_TABLES_GENERAL)
+	canSmoothWith = list(SMOOTH_GROUP_TABLES_GENERAL)
 
 /obj/structure/table/mainship/nometal
 	parts = /obj/item/frame/table/nometal
@@ -476,9 +479,11 @@
 /obj/structure/table/woodentable
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "woodtable"
+	icon = 'icons/obj/smooth_objects/wood_table_reinforced.dmi'
+	icon_state = "wood_table_reinforced-0"
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/wood
+	base_icon_state = "wood_table_reinforced"
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
@@ -486,21 +491,27 @@
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "fwoodtable"
+	icon = 'icons/obj/smooth_objects/fancy_table.dmi'
+	icon_state = "fancy_table-0"
+	base_icon_state = "fancy_table"
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "pwoodtable"
+	icon = 'icons/obj/smooth_objects/rustic_table.dmi'
+	icon_state = "rustic_table-0"
+	base_icon_state = "rustic_table"
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
 
 /obj/structure/table/black
 	name = "black metal table"
 	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "blacktable"
+	icon = 'icons/obj/smooth_objects/black_table.dmi'
+	icon_state = "black_table-0"
+	base_icon_state = "black_table"
 	table_prefix = "black"
 	parts = /obj/item/frame/table
 
@@ -510,7 +521,9 @@
 /obj/structure/table/gamblingtable
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
-	icon_state = "gambletable"
+	icon = 'icons/obj/smooth_objects/pool_table.dmi'
+	icon_state = "pool_table-0"
+	base_icon_state = "pool_table"
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
@@ -522,7 +535,9 @@
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
-	icon_state = "reinftable"
+	icon = 'icons/obj/smooth_objects/table_reinforced.dmi'
+	icon_state = "table_reinforced-0"
+	base_icon_state = "table_reinforced"
 	max_integrity = 100
 	reinforced = TRUE
 	table_prefix = "reinf"
@@ -590,11 +605,15 @@
 
 /obj/structure/table/reinforced/prison
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
-	icon_state = "prisontable"
+	icon = 'icons/obj/smooth_objects/prison_table.dmi'
+	icon_state = "prison_table-0"
+	base_icon_state = "prison_table"
 	table_prefix = "prison"
 
 /obj/structure/table/mainship
-	icon_state = "shiptable"
+	icon = 'icons/obj/smooth_objects/mainship_table.dmi'
+	icon_state = "mainship_table-0"
+	base_icon_state = "mainship_table"
 	table_prefix = "ship"
 
 
