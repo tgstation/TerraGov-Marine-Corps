@@ -5,7 +5,7 @@
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/smooth_objects/table_regular.dmi'
-	icon_state = "table"
+	icon_state = "table_regular-0"
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
