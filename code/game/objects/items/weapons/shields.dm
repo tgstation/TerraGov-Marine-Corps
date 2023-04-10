@@ -11,7 +11,7 @@
 
 /obj/item/weapon/shield/proc/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
-	AddComponent(/datum/component/stun_mitigation, shield_cover = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60))
+	AddComponent(/datum/component/stun_mitigation)
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"

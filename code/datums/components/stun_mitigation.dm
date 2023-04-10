@@ -10,7 +10,7 @@
 	var/active = TRUE
 
 
-/datum/component/stun_mitigation/Initialize(shield_flags, slot_override, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+/datum/component/stun_mitigation/Initialize(shield_flags, slot_override, shield_cover = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -45,7 +45,8 @@
 	cover = null
 	return ..()
 
-/datum/component/stun_mitigation/proc/shield_init(mob/holder_mob) // If we confess our sins (like this proc), he is faithful and just and will forgive us our sins and purify us from all unrighteousness.
+///A horrible proc for if the shield is initialised in a slot
+/datum/component/stun_mitigation/proc/shield_init(mob/holder_mob)
 	var/slot
 	if(parent == holder_mob.l_hand)
 		slot = SLOT_L_HAND
@@ -151,7 +152,7 @@
 		return FALSE
 
 	var/obj/item/parent_item = parent
-	var/mitigation_prob = cover.getRating(damage_type) - penetration
+	var/mitigation_prob = cover.getRating(damage_type) * (100 - penetration) * 0.01 //pen reduction is a % instead of flat like armor
 	var/status_cover_modifier = 1
 
 	if(mitigation_prob <= 0)
@@ -169,7 +170,7 @@
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
 		if(C.stagger)
-			status_cover_modifier *= 0.50
+			status_cover_modifier *= 0.4
 
 	mitigation_prob *= status_cover_modifier
 
