@@ -210,6 +210,25 @@
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
 
+/obj/structure/reagent_dispensers/fueltank/xfuel
+	name = "fueltank"
+	desc = "A fueltank"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "xweldtank"
+	list_reagents = list(/datum/reagent/xfuel = 1000)
+
+/obj/structure/reagent_dispensers/fueltank/xfuel/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/W = I
+	if(!W.welding)
+		balloon_alert(user, "Cannot refuel")
+		return
+	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
+	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
+	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)
+	explode()
+	return TRUE
+
+
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "red barrel"
 	desc = "A red fuel barrel"

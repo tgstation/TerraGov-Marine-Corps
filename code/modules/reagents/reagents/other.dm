@@ -423,6 +423,11 @@
 /datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
+/datum/reagent/xfuel
+	name = "X-fuel"
+	description = "Type X fuel, for use in flamers for when you really want something nice and crispy"
+	color = COLOR_DARK_RED
+
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
