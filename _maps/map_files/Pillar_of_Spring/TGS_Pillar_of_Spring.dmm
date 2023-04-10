@@ -10455,7 +10455,7 @@
 "nwc" = (
 /obj/machinery/holosign_switch{
 	id = "or2sign";
-	pixel_x = 7;
+	pixel_x = -7;
 	pixel_y = -5
 	},
 /turf/closed/wall/mainship/white,
@@ -40513,7 +40513,7 @@ qVo
 qVo
 hRh
 nWT
-rKn
+esN
 trv
 lmF
 lmF
@@ -40770,7 +40770,7 @@ qVo
 qVo
 hRh
 nWT
-rKn
+esN
 jzI
 xlx
 gmc
@@ -41027,7 +41027,7 @@ qVo
 qVo
 hRh
 nWT
-rKn
+esN
 jzI
 gmc
 qMI
@@ -41284,7 +41284,7 @@ mBZ
 qVo
 hRh
 nWT
-rKn
+esN
 kEP
 gmc
 rGg
@@ -41541,7 +41541,7 @@ bhv
 bhv
 nWT
 nWT
-rKn
+esN
 kEP
 gmc
 gmc
@@ -41798,7 +41798,7 @@ nWT
 nWT
 nWT
 nWT
-rKn
+esN
 kEP
 gmc
 cYW
@@ -42055,7 +42055,7 @@ nWT
 nWT
 nWT
 nWT
-rKn
+esN
 ndI
 gmc
 sbQ
@@ -42312,7 +42312,7 @@ esN
 esN
 esN
 esN
-rKn
+esN
 kEP
 gmc
 kRY
