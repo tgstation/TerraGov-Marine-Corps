@@ -93,7 +93,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
-	sentry_iff_signal = SON_OF_MARS_IFF
+	sentry_iff_signal = SOM_IFF
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
