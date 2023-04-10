@@ -121,9 +121,12 @@
 			M.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as they punch [M.name]!"), \
 				span_userdanger("[user] punches you!"))
 		return ..()
-	if(M == user)
-		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
-		to_chat(user, span_userdanger("You punch yourself!"))
+	if(M == user || isxenoqueen(M)) //You can't propel yourself. Xeno queen can't be propelled
+		if(M == user)
+			to_chat(user, span_userdanger("You punch yourself!"))
+		if(isxenoqueen(M)) //This looks shitty but idk how else to make 2 different messages based on what you hit outside of this
+			balloon_alert(user, "Can't push")
+		M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
