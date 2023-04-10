@@ -118,10 +118,11 @@
 		name += " ([squad.name])"
 		squad.squad_orbital_beacons += src
 		name += " ([H])"
+		GLOB.active_orbital_beacons += src
 		return
 	else	//So we can just get a goshdarn name.
 		name += " ([H])"
-	GLOB.active_orbital_beacons += src
+		GLOB.active_orbital_beacons += src
 	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 
 /obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
