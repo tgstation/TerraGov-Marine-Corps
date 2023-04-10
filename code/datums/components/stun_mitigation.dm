@@ -78,24 +78,23 @@
 				slot = SLOT_S_STORE
 	shield_equipped(parent, holder_mob, slot)
 
-//this should ONLY apply for where affected is in place... i.e. wielding and unwielding.
+///Toggles the mitigation on or off when already equipped
 /datum/component/stun_mitigation/proc/toggle_shield/(datum/source, new_state)
 	SIGNAL_HANDLER
 	if(active == new_state)
 		return
-	active = new_state
-	if(active)
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
-		if(affected)
-			affected.balloon_alert_to_viewers("toggle_shield, on") //debugging
-			activate_with_user()
-		return
-	if(affected)
-		affected.balloon_alert_to_viewers("toggle_shield, off") //debugging
-		deactivate_with_user()
-	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
+	active = new_state
+
+	if(!affected)
+		return
+
+	if(active)
+		activate_with_user()
+	else
+		deactivate_with_user()
+
+///Signal handler for equipping the shield to a slot
 /datum/component/stun_mitigation/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
 	if(!(slot_flags & slot))
@@ -103,26 +102,30 @@
 		return
 	shield_affect_user(user)
 
+///Signal handler for dropping the shield
 /datum/component/stun_mitigation/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	shield_detatch_from_user()
 
+///Handles the shield setting up for a user, and activating if applicable
 /datum/component/stun_mitigation/proc/shield_affect_user(mob/living/user)
 	if(affected)
 		if(affected == user)
 			return //Already active
-		shield_detatch_from_user()
+		shield_detatch_from_user() //changing affected
 	affected = user
-	affected.balloon_alert_to_viewers("shield_affect_user") //debugging
 	if(active)
 		activate_with_user()
 
+///Actually activates the mitigation effect
 /datum/component/stun_mitigation/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_LIVING_STUN_MITIGATION, PROC_REF(on_attack_stun_mitigation))
+	RegisterSignal(affected, COMSIG_LIVING_PROJECTILE_STUN, PROC_REF(on_attack_stun_mitigation))
 
+///Actually deactivates the mitigation effect
 /datum/component/stun_mitigation/proc/deactivate_with_user()
-	UnregisterSignal(affected, COMSIG_LIVING_STUN_MITIGATION)
+	UnregisterSignal(affected, COMSIG_LIVING_PROJECTILE_STUN)
 
+///Handles removing the mitigation from a user
 /datum/component/stun_mitigation/proc/shield_detatch_from_user()
 	if(!affected)
 		return
@@ -133,21 +136,23 @@
 ///attempts to convert incoming hard stuns to soft stuns
 /datum/component/stun_mitigation/proc/on_attack_stun_mitigation(datum/source, list/incoming_stuns, damage_type, penetration)
 	SIGNAL_HANDLER
+
+	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2]) //stun and weaken
+	if(!max_hardstun)
+		return FALSE
+
 	var/obj/item/parent_item = parent
 	var/mitigation_prob = cover.getRating(damage_type) - penetration
 	var/status_cover_modifier = 1
 
 	if(mitigation_prob <= 0)
-		affected.balloon_alert_to_viewers("[mitigation_prob] too low") //debugging
-		return
+		return FALSE
 
 	if(parent_item.obj_integrity <= parent_item.integrity_failure)
-		affected.balloon_alert_to_viewers("low integrity") //debugging
-		return
+		return FALSE
 
 	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping())
-		affected.balloon_alert_to_viewers("sleepy") //debugging
-		return
+		return FALSE
 
 	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed())
 		status_cover_modifier *= 0.5
@@ -155,19 +160,17 @@
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
 		if(C.stagger)
-			status_cover_modifier *= 0.50 //being staggered and stunned is a bad day
+			status_cover_modifier *= 0.50
 
 	mitigation_prob *= status_cover_modifier
-	affected.balloon_alert_to_viewers("[mitigation_prob]") //debugging
 
 	if(!prob(mitigation_prob))
-		return
+		return FALSE
 
-	var/max_hardstun = max(incoming_stuns[1], incoming_stuns[2], incoming_stuns[5]) //stun, weaken and knockback
-	incoming_stuns[3] += max_hardstun //stagger
-	incoming_stuns[4] += max_hardstun //slowdown
 	incoming_stuns[1] = 0
 	incoming_stuns[2] = 0
-	incoming_stuns[5] = 0
+	incoming_stuns[3] += max_hardstun //stagger
+	incoming_stuns[4] += max_hardstun //slowdown
 	to_chat(affected, span_avoidharm("\The [parent_item.name] absorbs the impact!"))
+	return TRUE
 
