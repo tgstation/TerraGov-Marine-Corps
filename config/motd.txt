@@ -1,4 +1,0 @@
-<h1>Welcome to the TGMC codebase!</h1>
-
-<i>Don't forget to set your own MOTD.</i>
-<br><br>
