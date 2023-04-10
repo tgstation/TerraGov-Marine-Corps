@@ -537,7 +537,7 @@
 /area/lv624/ground/jungle8)
 "Vu" = (
 /obj/effect/turf_decal/sandytile,
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "VY" = (
@@ -577,7 +577,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Yf" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Yg" = (

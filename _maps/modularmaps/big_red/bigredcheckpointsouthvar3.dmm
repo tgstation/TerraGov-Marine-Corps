@@ -86,7 +86,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/southcheckpoint)
 "u" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "v" = (
