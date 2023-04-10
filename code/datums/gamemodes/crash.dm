@@ -80,7 +80,7 @@
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/silo/crash(i)
-		new /obj/structure/xeno/pherotower(i)
+		new /obj/structure/xeno/pherotower/crash(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()

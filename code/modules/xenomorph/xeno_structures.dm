@@ -1274,6 +1274,14 @@ TUNNEL
 			icon_state = "frenzytower"
 			set_light(2, 2, LIGHT_COLOR_RED)
 
+/obj/structure/xeno/pherotower/crash
+	name = "Recovery tower"
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | INDESTRUCTIBLE
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
+
+/obj/structure/xeno/pherotower/crash/attack_alien(isrightclick = FALSE)
+	return
+
 /obj/structure/xeno/spawner
 	name = "spawner"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
