@@ -23,7 +23,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "ez" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "eB" = (
 /obj/effect/landmark/deathmatch,
