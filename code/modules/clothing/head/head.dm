@@ -287,7 +287,7 @@
 	name = "bear pelt hat"
 	desc = "Fuzzy."
 	icon_state = "bearpelt"
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	anti_hug = 4
 	flags_armor_protection = HEAD|CHEST|ARMS
 	soft_armor = list(MELEE = 90, BULLET = 70, LASER = 45, ENERGY = 55, BOMB = 45, BIO = 10, FIRE = 55, ACID = 55)
@@ -306,7 +306,7 @@
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	//anti_hug = 2
 	flags_armor_protection = HEAD
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 55, ACID = 55)
@@ -329,7 +329,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "freelancer_helmet"
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 55, ACID = 55)
 	flags_cold_protection = HEAD
@@ -355,7 +355,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "rebel_hood"
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|CHEST
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	flags_cold_protection = HEAD
@@ -368,7 +368,7 @@
 	name = "\improper armored admiral cap"
 	desc = "A sturdy admiral's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
 	icon_state = "admiral_helmet"
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 45, ENERGY = 55, BOMB = 55, BIO = 10, FIRE = 55, ACID = 55)
 	flags_cold_protection = HEAD

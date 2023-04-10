@@ -4,8 +4,8 @@
 	desc = "Those could work as a pretty decent throwing weapon"
 	icon_state = "tile"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 6.0
-	throwforce = 8.0
+	force = 6
+	throwforce = 8
 	throw_speed = 3
 	throw_range = 6
 	flags_atom = CONDUCT

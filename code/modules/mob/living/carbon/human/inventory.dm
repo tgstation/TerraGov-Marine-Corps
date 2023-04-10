@@ -23,7 +23,7 @@
 				next_move = world.time + 1
 				return
 	else //store item
-		if(s_active && s_active.attackby(I, src)) //stored in currently open storage
+		if(s_active?.attackby(I, src)) //stored in currently open storage
 			return TRUE
 		if(slot_requested)
 			if(equip_to_slot_if_possible(I, slot_requested, FALSE, FALSE, FALSE))

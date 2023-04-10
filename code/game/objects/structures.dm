@@ -104,7 +104,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A && A.density && !(A.flags_atom & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
@@ -142,7 +142,7 @@
 				to_chat(user, span_warning("You cannot leap this way."))
 				return
 			for(var/atom/movable/A in target)
-				if(A && A.density && !(A.flags_atom & ON_BORDER))
+				if(A?.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface

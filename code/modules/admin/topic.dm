@@ -465,7 +465,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
 			if("zombie")
-				newmob =  M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
 

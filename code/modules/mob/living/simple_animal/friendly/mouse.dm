@@ -13,9 +13,9 @@
 	see_in_dark = 6
 	maxHealth = 5
 	health = 5
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm = "splats"
 	density = FALSE
 	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 	mob_size = MOB_SIZE_SMALL
@@ -79,6 +79,6 @@
 /mob/living/simple_animal/mouse/brown/Tom
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm = "splats"

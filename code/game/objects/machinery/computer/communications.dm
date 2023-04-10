@@ -259,7 +259,7 @@
 			if(authenticated)
 				if(currmsg)
 					var/title = messagetitle[currmsg]
-					var/text  = messagetext[currmsg]
+					var/text = messagetext[currmsg]
 					messagetitle.Remove(title)
 					messagetext.Remove(text)
 					if(currmsg == aicurrmsg)

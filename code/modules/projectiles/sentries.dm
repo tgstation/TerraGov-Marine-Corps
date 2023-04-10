@@ -184,7 +184,7 @@
 	var/current_rounds
 	current_rounds = gun.rounds
 	. = list(
-		"rounds" =  current_rounds,
+		"rounds" = current_rounds,
 		"health" = obj_integrity
 	)
 
@@ -425,7 +425,7 @@
 		return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
-		if(smoke && smoke.opacity)
+		if(smoke?.opacity)
 			return FALSE
 
 		if(IS_OPAQUE_TURF(T) || T.density && !(T.flags_pass & PASSPROJECTILE) && !(T.type in ignored_terrains))
@@ -518,7 +518,7 @@
 		return
 	operator?.unset_interaction()
 
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item  = internal_item //Item the machine is undeploying
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item = internal_item //Item the machine is undeploying
 
 	if(!ishuman(user))
 		return

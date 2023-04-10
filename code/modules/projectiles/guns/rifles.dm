@@ -811,7 +811,7 @@
 	force = 30
 	aim_slowdown = 0.8
 	wield_delay = 1 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/t40.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t40.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -884,8 +884,8 @@
 	force = 35
 	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
-	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
+	fire_sound = 'sound/weapons/guns/fire/GPMG.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/GPMG_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -950,7 +950,7 @@
 	max_shells = 200 //codex
 	aim_slowdown = 0.8
 	wield_delay = 2 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/hmg.ogg'
+	fire_sound = 'sound/weapons/guns/fire/hmg.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -2023,7 +2023,7 @@
 	max_shells = 200
 	force = 35
 	wield_delay = 1.5 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/v41.ogg'
+	fire_sound = 'sound/weapons/guns/fire/v41.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/v41_reload.ogg'
