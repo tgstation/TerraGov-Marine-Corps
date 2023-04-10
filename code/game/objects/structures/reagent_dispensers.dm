@@ -193,8 +193,8 @@
 
 /obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if (modded)
-		leak_fuel(amount_per_transfer_from_this/10.0)
+	if(modded)
+		leak_fuel(rand(3, amount_per_transfer_from_this))
 
 ///Leaks fuel when the valve is opened, leaving behind burnable splotches
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
@@ -202,10 +202,14 @@
 		return
 
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent(/datum/reagent/fuel,amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
-	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
+	for(var/datum/reagent/leaked_reagent AS in reagents.reagent_list)
+		if(leaked_reagent.volume < amount)
+			continue
+		leaked_reagent.reaction_turf(loc, amount)
+		reagents.remove_reagent(leaked_reagent.type, amount)
+
+	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
@@ -220,7 +224,7 @@
 	name = "X-fueltank"
 	desc = "A tank filled with extremely dangerous Fuel type X. There are numerous no smoking signs on every side of the tank."
 	icon_state = "xweldtank"
-	list_reagents = list(/datum/reagent/xfuel = 1000)
+	list_reagents = list(/datum/reagent/fuel/xfuel = 1000)
 
 /obj/structure/reagent_dispensers/fueltank/xfuel/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/W = I

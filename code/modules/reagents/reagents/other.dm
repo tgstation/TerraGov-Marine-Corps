@@ -401,11 +401,12 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "gross metal"
+	var/obj/effect/effect_type = /obj/effect/decal/cleanable/liquid_fuel
 
 /datum/reagent/fuel/reaction_turf(turf/T, volume)
 	if(volume <= 3 || !isfloorturf(T))
 		return
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
+	new effect_type(T, volume) //It already handles dupes on it own turf.
 
 /datum/reagent/fuel/on_mob_life(mob/living/L)
 	L.adjustToxLoss(1)
@@ -423,10 +424,11 @@
 /datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-/datum/reagent/xfuel
+/datum/reagent/fuel/xfuel
 	name = "X-fuel"
 	description = "Type X fuel, for use in flamers for when you really want something nice and crispy"
-	color = COLOR_DARK_RED
+	color = COLOR_MODERATE_BLUE
+	effect_type = /obj/effect/decal/cleanable/liquid_fuel/xfuel
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
