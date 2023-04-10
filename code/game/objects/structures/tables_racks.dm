@@ -491,6 +491,20 @@
 	base_icon_state = "prison_table"
 	table_prefix = "prison"
 
+/obj/structure/table/reinforced/fabric
+	name = "cloth table"
+	desc = "A fancy cloth-topped wooden table, bolted to the floor. Fit for formal occasions."
+	icon = 'icons/obj/smooth_objects/table_fabric.dmi'
+	icon_state = "table_fabric-0"
+	base_icon_state = "table_fabric"
+	table_prefix = "fabric"
+	parts = /obj/item/frame/table
+	reinforced = TRUE
+
+/obj/structure/table/reinforced/fabric/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
+	return FALSE
+
 /obj/structure/table/mainship
 	icon = 'icons/obj/smooth_objects/mainship_table.dmi'
 	icon_state = "mainship_table-0"
