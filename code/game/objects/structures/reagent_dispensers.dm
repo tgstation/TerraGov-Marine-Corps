@@ -122,7 +122,10 @@
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
 		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			to_chat(user, span_warning("Your [W.name] is already full!"))
+			balloon_alert(user, "already full!")
+			return
+		if(!reagents.has_reagent(/datum/reagent/fuel, 1))
+			balloon_alert(user, "no valid fuel")
 			return
 		reagents.trans_to(W, W.max_fuel)
 		W.weld_tick = 0
@@ -225,17 +228,6 @@
 	desc = "A tank filled with extremely dangerous Fuel type X. There are numerous no smoking signs on every side of the tank."
 	icon_state = "xweldtank"
 	list_reagents = list(/datum/reagent/fuel/xfuel = 1000)
-
-/obj/structure/reagent_dispensers/fueltank/xfuel/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/W = I
-	if(!W.welding)
-		balloon_alert(user, "wrong fuel")
-		return
-	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
-	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
-	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)
-	explode()
-	return TRUE
 
 /obj/structure/reagent_dispensers/fueltank/xfuel/explode()
 	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
