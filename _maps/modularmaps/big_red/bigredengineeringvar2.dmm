@@ -158,7 +158,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ib" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "iu" = (

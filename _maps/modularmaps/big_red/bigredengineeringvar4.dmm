@@ -561,7 +561,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "GK" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Hz" = (
