@@ -76,11 +76,10 @@
 
 
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
-	if((W.flags_item & NOBLUDGEON) && !W.force)
-		attack_hand(user)
+	. = ..()
+	if(QDELETED(src))
 		return
 
-	user.changeNext_move(W.attack_speed)
 	var/multiplier = 1
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
@@ -92,9 +91,8 @@
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1 //generally means we do double damage to resin doors
-	user.do_attack_animation(src, used_item = W)
-	if(!istype(W, /obj/item/tool/pickaxe/plasmacutter))
-		to_chat(user, "You hit [src] with [name]!")
+
+	take_damage(max(0, W.force * multiplier - W.force), W.damtype)
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)
