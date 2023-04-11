@@ -502,7 +502,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/quickclotplus = 60,
 	)
-	description_overlay = "Qk"
+	description_overlay = "Qk+"
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
