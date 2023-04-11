@@ -116,6 +116,13 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Auto interact with Deployables"
+                value="autointeractdeployablespref"
+                action="autointeractdeployablespref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Grid.Column>
