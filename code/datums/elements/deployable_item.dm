@@ -86,6 +86,8 @@
 	if(user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
 		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
+		if(user.client.prefs.toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
+			deployed_machine.interact(user)
 	else
 		item_to_deploy.forceMove(deployed_machine)
 
