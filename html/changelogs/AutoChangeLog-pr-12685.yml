@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - code_imp: "Removed an unused breaker box type from the code."
