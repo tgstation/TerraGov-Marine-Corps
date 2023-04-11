@@ -581,13 +581,20 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/plasmaloss
-	name = "SR-153 heavy rubber spotting rifle ammo"
+	name = "SR-153 tanglefoot spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/standard_spottingrifle/plasmaloss)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/tungsten
 	name = "SR-153 tungsten spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/standard_spottingrifle/tungsten)
-	cost = 35
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/flak
+	name = "SR-153 flak spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/standard_spottingrifle/flak)
+
+/datum/supply_packs/weapons/spotting_rifle_ammo/incendiary
+	name = "SR-153 incendiary spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/standard_spottingrifle/incendiary)
 
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 Flamethrower"

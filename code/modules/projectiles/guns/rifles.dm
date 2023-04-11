@@ -1294,6 +1294,8 @@
 		/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber,
 		/obj/item/ammo_magazine/standard_spottingrifle/plasmaloss,
 		/obj/item/ammo_magazine/standard_spottingrifle/tungsten,
+		/obj/item/ammo_magazine/standard_spottingrifle/incendiary,
+		/obj/item/ammo_magazine/standard_spottingrifle/flak,
 	)
 	force = 5
 	attachable_allowed = list()

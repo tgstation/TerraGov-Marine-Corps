@@ -146,7 +146,9 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/ammo_magazine/standard_spottingrifle/highimpact = list(CAT_SGSUP, "SR-153 Spotting Rifle High Impact Magazine", 2, "black"),
 	/obj/item/ammo_magazine/standard_spottingrifle/heavyrubber = list(CAT_SGSUP, "SR-153 Spotting Rifle Heavy Rubber Magazine", 3, "black"),
 	/obj/item/ammo_magazine/standard_spottingrifle/plasmaloss = list(CAT_SGSUP, "SR-153 Spotting Rifle Tanglefoot Magazine", 3, "black"),
-	/obj/item/ammo_magazine/standard_spottingrifle/tungsten = list(CAT_SGSUP, "SR-153 Spotting Rifle Tungsten Magazine", 4, "black"),
+	/obj/item/ammo_magazine/standard_spottingrifle/tungsten = list(CAT_SGSUP, "SR-153 Spotting Rifle Tungsten Magazine", 3, "black"),
+	/obj/item/ammo_magazine/standard_spottingrifle/flak = list(CAT_SGSUP, "SR-153 Spotting Rifle Flak Magazine", 3, "black"),
+	/obj/item/ammo_magazine/standard_spottingrifle/incendiary = list(CAT_SGSUP, "SR-153 Spotting Rifle Incendiary Magazine", 4, "black"),
 	))
 
 

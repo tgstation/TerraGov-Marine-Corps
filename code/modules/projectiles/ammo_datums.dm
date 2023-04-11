@@ -1256,7 +1256,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smart tungsten spotting bullet"
 	hud_state = "spotrifle_tungsten"
 	damage = 10
-	sundering = 15
+	sundering = 0.5
+
+/datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, knockback = 4)
+
+/datum/ammo/bullet/spottingrifle/flak
+	name = "smart flak spotting bullet"
+	hud_state = "spotrifle_flak"
+	damage = 60
+	sundering = 0.5
+	airburst_multiplier = 0.5
+
+/datum/ammo/bullet/spottingrifle/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+	airburst(victim, proj)
+
+/datum/ammo/bullet/spottingrifle/incendiary
+	name = "smart incendiary spotting  bullet"
+	hud_state = "spotrifle_incend"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage_type = BURN
+	damage = 10
+	sundering = 0.5
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
