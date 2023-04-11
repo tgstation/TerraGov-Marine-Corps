@@ -73,9 +73,10 @@
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "uav")
 
 /obj/vehicle/unmanned/Destroy()
-	. = ..()
 	GLOB.unmanned_vehicles -= src
 	QDEL_NULL(flash)
+	robogibs(src)
+	return ..()
 
 /obj/vehicle/unmanned/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
