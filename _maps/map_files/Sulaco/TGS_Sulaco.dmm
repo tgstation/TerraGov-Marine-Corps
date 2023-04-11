@@ -8271,6 +8271,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_3"
+	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "aQu" = (
@@ -8863,9 +8866,6 @@
 "aTt" = (
 /obj/structure/rack,
 /obj/item/storage/box/sentry,
-/obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_2"
-	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aTw" = (
@@ -10191,7 +10191,10 @@
 	pixel_y = 4
 	},
 /obj/item/robot_parts/head,
-/obj/item/stack/cable_coil,
+/obj/machinery/door_control/mainship/mech{
+	dir = 4;
+	id = "mech_shutters_4"
+	},
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -11719,7 +11722,7 @@
 /obj/effect/ai_node,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_1"
+	id = "mech_shutters_4"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
@@ -14013,7 +14016,8 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_5"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -14801,7 +14805,8 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_3"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -15801,6 +15806,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/engineering/engine_monitoring)
+"iUR" = (
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_5"
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "iVw" = (
 /obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -18300,6 +18311,10 @@
 /obj/structure/rack,
 /obj/item/circuitboard/computer/arcade,
 /obj/item/circuitboard/computer/operating,
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_5";
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "mte" = (
@@ -22872,6 +22887,13 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"srV" = (
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_3";
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "ssZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/disposal,
@@ -25339,7 +25361,8 @@
 	},
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_5"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
@@ -26754,6 +26777,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"xEP" = (
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_4"
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "xFo" = (
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
@@ -68846,11 +68875,11 @@ mDu
 kOr
 jYO
 wTC
-pWS
+srV
 bYM
 aQt
 aUu
-aWh
+xEP
 aTM
 aUt
 aUt
@@ -71678,7 +71707,7 @@ aWo
 pWS
 aYa
 bYM
-aWh
+iUR
 aTM
 aTM
 aTM
