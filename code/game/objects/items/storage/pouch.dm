@@ -594,11 +594,29 @@
 	)
 	refill_types = list(/obj/item/storage/box/m94)
 	refill_sound = "rustle"
+	///Reference to any flaregun currently holstered in the pouch
+	var/obj/item/weapon/gun/holstered_flaregun
 
 /obj/item/storage/pouch/flare/full/Initialize()
 	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)
 	fill_number = max_storage_space - flare_gun.w_class
 	return ..()
+
+/obj/item/storage/pouch/flare/attack_hand(mob/living/user)
+	if(holstered_flaregun && ishuman(user) && loc == user)
+		holstered_flaregun.attack_hand(user)
+	else
+		return ..()
+
+///Will only draw the specific holstered item, not ammo etc.
+/obj/item/storage/pouch/flare/do_quick_equip(mob/user)
+	if(!holstered_flaregun)
+		return FALSE
+	var/obj/item/flaregun = holstered_flaregun
+	if(!remove_from_storage(flaregun, null, user))
+		return FALSE
+	return flaregun
 
 /obj/item/storage/pouch/flare/attackby_alternate(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))

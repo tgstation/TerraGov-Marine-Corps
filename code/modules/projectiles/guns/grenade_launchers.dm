@@ -231,3 +231,22 @@ The Grenade Launchers
 	name = "M30E2 flare gun"
 	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
 	icon_state = "marine_flaregun"
+
+///Handles the flaregun entering a flare pouch
+/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine/on_enter_storage(obj/item/I)
+	if(istype(I,/obj/item/storage/pouch/flare))
+		var/obj/item/storage/pouch/flare/GB = I
+		if(!GB.holstered_flaregun)
+			GB.holstered_flaregun = src
+			//GB.update_gun_icon() If anyone wants to add a sprite for a flare pouch with/without flaregun, hit me up Xander#3359
+
+///Handles the flaregun exiting a flare pouch
+/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine/on_exit_storage(obj/item/I)
+	if(istype(I,/obj/item/storage/pouch/flare))
+		var/obj/item/storage/pouch/flare/GB = I
+		if(GB.holstered_flaregun == src)
+			GB.holstered_flaregun = null
+			//GB.update_gun_icon() If anyone wants to add a sprite for a flare pouch with/without flaregun, hit me up Xander#3359
+
+
+
