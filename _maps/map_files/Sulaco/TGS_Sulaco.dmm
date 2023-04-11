@@ -13193,8 +13193,8 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/weapon/gun/shotgun/pump,
 /obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "fqN" = (
@@ -17597,6 +17597,9 @@
 "lsW" = (
 /obj/machinery/door/poddoor/mainship/ai/interior{
 	dir = 1
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/command/ai)

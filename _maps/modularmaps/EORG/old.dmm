@@ -402,7 +402,7 @@
 /area/deathmatch)
 "bG" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor,
 /area/deathmatch)
 "bH" = (

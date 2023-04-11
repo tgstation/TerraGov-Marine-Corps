@@ -950,7 +950,7 @@
 /area/magmoor/cave/rock)
 "aLW" = (
 /obj/structure/table/woodentable,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "aMe" = (
@@ -4688,7 +4688,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "drW" = (
@@ -5634,8 +5634,8 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/mainship/red,
 /area/magmoor/security/storage)
 "dWD" = (
@@ -32066,7 +32066,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)

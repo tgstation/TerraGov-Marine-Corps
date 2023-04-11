@@ -1112,7 +1112,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "bnh" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -3690,7 +3690,7 @@
 	pixel_x = -3
 	},
 /obj/item/clothing/mask/cigarette/cigar,
-/obj/item/clothing/glasses/sunglasses,
+/obj/effect/spawner/random/sunglasses,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
 "eLQ" = (
@@ -4166,7 +4166,7 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla/primary/aft)
 "fuL" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "fuY" = (
@@ -8697,7 +8697,7 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /obj/item/storage/toolbox/emergency,
 /obj/item/tool/shovel,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -17756,7 +17756,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "wYG" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/plating,
 /area/space)
 "wZp" = (

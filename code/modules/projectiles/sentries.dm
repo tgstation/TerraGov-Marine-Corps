@@ -77,7 +77,7 @@
 		marker_flags = MINIMAP_FLAG_MARINE
 	else if(iff_signal == TGMC_REBEL_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	else if(iff_signal == SON_OF_MARS_IFF)
+	else if(iff_signal == SOM_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	else
 		marker_flags = MINIMAP_FLAG_MARINE

@@ -1832,7 +1832,7 @@
 "jE" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jF" = (
@@ -3936,7 +3936,7 @@
 /area/crew_quarters/sleep_male)
 "uI" = (
 /obj/structure/closet,
-/obj/item/clothing/glasses/sunglasses,
+/obj/effect/spawner/random/sunglasses,
 /obj/structure/window/reinforced{
 	dir = 4
 	},

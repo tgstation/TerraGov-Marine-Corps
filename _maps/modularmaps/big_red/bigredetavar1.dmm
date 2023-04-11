@@ -152,7 +152,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "hG" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "hM" = (
@@ -190,7 +190,7 @@
 	},
 /area/bigredv2/outside/ne)
 "jn" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Greenhouse";
@@ -229,7 +229,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "kC" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "kF" = (
@@ -255,7 +255,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "mz" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "mS" = (
@@ -348,7 +348,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "qd" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -526,7 +526,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/general_offices)
 "xy" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
@@ -824,7 +824,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "IG" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "IS" = (

@@ -157,7 +157,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ie" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "if" = (
@@ -588,7 +588,7 @@
 /area/bigredv2/outside/office_complex)
 "zx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/folder/black,
+/obj/effect/spawner/random/folder/nooffset,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "zI" = (
@@ -1031,7 +1031,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "Td" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -1142,7 +1142,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "Zt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
