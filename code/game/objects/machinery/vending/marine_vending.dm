@@ -1,5 +1,5 @@
 /obj/machinery/vending/weapon
-	name = "\improper Automated Weapons Rack"
+	name = "automated weapons rack"
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
@@ -904,6 +904,7 @@
 		"Ammo Boxes" = list(
 			/obj/item/big_ammo_box = -1,
 			/obj/item/big_ammo_box/smg = -1,
+			/obj/item/big_ammo_box/mg = -1,
 			/obj/item/shotgunbox = -1,
 			/obj/item/shotgunbox/buckshot = -1,
 			/obj/item/shotgunbox/flechette = -1,

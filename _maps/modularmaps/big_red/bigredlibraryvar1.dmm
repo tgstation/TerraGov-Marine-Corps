@@ -10,7 +10,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "c" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Library";
@@ -93,7 +93,7 @@
 	},
 /area/bigredv2/outside/library)
 "o" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Library";
 	name = "\improper Library Shutters"

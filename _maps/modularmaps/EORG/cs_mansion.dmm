@@ -231,7 +231,7 @@
 /area/deathmatch)
 "nN" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/wood,
 /area/deathmatch)
 "nP" = (
@@ -493,7 +493,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "zt" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/wood,
 /area/deathmatch)
 "zM" = (

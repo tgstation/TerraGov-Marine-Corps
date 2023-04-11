@@ -375,7 +375,7 @@
                         self, SECRET, {value: {}}
                       )[SECRET],
           currentType = temple[ontype] || (temple[ontype] = {}),
-          handlers  = currentType.h || (currentType.h = []),
+          handlers = currentType.h || (currentType.h = []),
           e, attr
         ;
         if (!hasOwnProperty.call(currentType, 'w')) {
@@ -506,7 +506,7 @@
                         self, SECRET, {value: {}}
                       )[SECRET],
           currentType = temple[ontype] || (temple[ontype] = {}),
-          handlers  = currentType.h || (currentType.h = [])
+          handlers = currentType.h || (currentType.h = [])
         ;
         if (find(handlers, handler) < 0) {
           if (!self[ontype]) {

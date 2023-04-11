@@ -15,7 +15,7 @@
 	name = "Void Jetpack (Oxygen)"
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
-	item_state =  "jetpack-void"
+	item_state = "jetpack-void"
 
 
 /obj/item/tank/jetpack/oxygen
@@ -30,4 +30,4 @@
 	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."
 	distribute_pressure = 0
 	icon_state = "jetpack-black"
-	item_state =  "jetpack-black"
+	item_state = "jetpack-black"

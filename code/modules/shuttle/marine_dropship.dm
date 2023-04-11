@@ -769,7 +769,7 @@
 	icon_state = "rasputin15"
 
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing
-	smoothing_groups = NONE
+	smoothing_groups = null
 
 /turf/open/shuttle/dropship/floor/alt
 	icon_state = "rasputin14"

@@ -102,14 +102,14 @@
 	icon_state = "wizard-fake"
 	item_state = "wizrobe"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	siemens_coefficient = 1.0
+	siemens_coefficient = 1
 
 /obj/item/clothing/head/wizard/marisa/fake
 	name = "Witch Hat"
 	desc = "Strange-looking hat-wear, makes you want to cast fireballs."
 	icon_state = "marisa"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	siemens_coefficient = 1.0
+	siemens_coefficient = 1
 
 /obj/item/clothing/suit/wizrobe/marisa/fake
 	name = "Witch Robe"
@@ -118,5 +118,5 @@
 	item_state = "marisarobe"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	siemens_coefficient = 1.0
+	siemens_coefficient = 1
 

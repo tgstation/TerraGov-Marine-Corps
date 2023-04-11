@@ -15,7 +15,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bJ" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bR" = (
@@ -148,7 +148,7 @@
 	},
 /area/bigredv2/caves/southwest)
 "jq" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -245,7 +245,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "oI" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -340,7 +340,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "tW" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "rad_door";
@@ -571,7 +571,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Gj" = (
@@ -673,7 +673,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "JS" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Km" = (
@@ -777,7 +777,7 @@
 	},
 /area/bigredv2/outside/c)
 "NB" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -907,7 +907,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "UN" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "UO" = (

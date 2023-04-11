@@ -11,10 +11,10 @@ FIRE ALARM
 	icon_state = "fire0"
 	pixel_x = -16
 	pixel_y = -16
-	var/detecting = 1.0
-	var/working = 1.0
-	var/time = 10.0
-	var/timing = 0.0
+	var/detecting = 1
+	var/working = 1
+	var/time = 10
+	var/timing = 0
 	var/lockdownbyai = 0
 	var/obj/item/circuitboard/firealarm/electronics = null
 	anchored = TRUE

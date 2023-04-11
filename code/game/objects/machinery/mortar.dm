@@ -259,7 +259,7 @@
 	shell.generate_bullet(ammo)
 	var/shell_range = min(get_dist_euclide(src,target), ammo.max_range)
 	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
-	var/fall_time = shell_range/ammo.shell_speed - 1 SECONDS
+	var/fall_time = (shell_range/(ammo.shell_speed * 5)) - 0.5 SECONDS
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS

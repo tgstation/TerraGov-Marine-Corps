@@ -11,9 +11,9 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	faction = FACTION_NEUTRAL
 	attack_same = TRUE
 	attacktext = "kicks"
@@ -64,9 +64,9 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 50
@@ -118,9 +118,9 @@
 	density = FALSE
 	speak_chance = 2
 	turns_per_move = 2
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	attacktext = "kicks"
 	health = 3
 	maxHealth = 3
@@ -167,9 +167,9 @@
 	turns_per_move = 3
 	var/egg_type = /obj/item/reagent_containers/food/snacks/egg
 	var/food_type = /obj/item/reagent_containers/food/snacks/grown/wheat
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	attacktext = "kicks"
 	health = 15
 	maxHealth = 15

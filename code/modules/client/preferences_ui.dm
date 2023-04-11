@@ -118,6 +118,7 @@
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
+			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
@@ -722,6 +723,9 @@
 		if("radialstackspref")
 			toggles_gameplay ^= RADIAL_STACKS
 
+		if("autointeractdeployablespref")
+			toggles_gameplay ^= AUTO_INTERACT_DEPLOYABLES
+
 		if("pixel_size")
 			switch(pixel_size)
 				if(PIXEL_SCALING_AUTO)
@@ -738,7 +742,7 @@
 
 		if("parallax")
 			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
-			if(parent && parent.mob && parent.mob.hud_used)
+			if(parent?.mob && parent.mob.hud_used)
 				parent.mob.hud_used.update_parallax_pref(parent.mob)
 
 		if("scaling_method")

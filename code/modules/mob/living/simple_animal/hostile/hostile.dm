@@ -406,7 +406,7 @@
 	dodging = FALSE
 	. = Move(get_step(loc,pick(cdir,ccdir)))
 	if(!.)//Can't dodge there so we just carry on
-		. =  Move(moving_to,move_direction)
+		. = Move(moving_to,move_direction)
 	dodging = TRUE
 
 

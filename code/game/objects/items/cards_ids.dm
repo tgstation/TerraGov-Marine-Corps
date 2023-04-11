@@ -284,7 +284,7 @@
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
-	iff_signal = SON_OF_MARS_IFF
+	iff_signal = SOM_IFF
 
 
 /obj/item/card/id/dogtag/examine(mob/user)

@@ -21,8 +21,8 @@
 	icon_state = "cane"
 	item_state = "cane"
 	flags_atom = CONDUCT
-	force = 5.0
-	throwforce = 7.0
+	force = 5
+	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
@@ -31,8 +31,8 @@
 	desc = "A bottle with a sharp broken bottom."
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "broken_bottle"
-	force = 9.0
-	throwforce = 5.0
+	force = 9
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	item_state = "broken_beer"

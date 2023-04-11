@@ -39,7 +39,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "gA" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/tile,
 /area/deathmatch)
 "gC" = (
@@ -125,7 +125,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "nz" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "nE" = (
@@ -142,6 +142,12 @@
 "nT" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"od" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
@@ -190,7 +196,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "qZ" = (
-/obj/machinery/door/airlock/sandstone,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ri" = (
@@ -323,7 +329,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "DZ" = (
-/obj/machinery/door/airlock/sandstone,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "FE" = (
@@ -452,7 +458,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "QP" = (
-/obj/structure/inflatable,
+/obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Sh" = (
@@ -480,7 +486,9 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "SF" = (
-/obj/machinery/door/airlock/sandstone,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "SO" = (
@@ -1532,7 +1540,7 @@ FE
 ZW
 FE
 FE
-qZ
+od
 FE
 FE
 DV

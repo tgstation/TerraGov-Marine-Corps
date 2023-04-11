@@ -161,6 +161,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aO" = (

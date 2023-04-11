@@ -1109,13 +1109,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TRUE
 
-
-/obj/item/attack_self(mob/user)
-	if(!can_interact(user))
-		return
-
-	interact(user)
-
 /obj/item/proc/toggle_active(new_state)
 	if(!isnull(new_state))
 		if(new_state == active)

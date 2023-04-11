@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	throwforce = 14.0
+	throwforce = 14
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
 	number_of_extra_variants = 3
@@ -117,14 +117,14 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	throwforce = 15.0
+	throwforce = 15
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel
 	number_of_extra_variants = 3
 
 /obj/item/stack/sheet/plasteel/attack_self(mob/user)
 	. = ..()
-	create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL), 1)
+	create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 
 /obj/item/stack/sheet/plasteel/small_stack
@@ -150,7 +150,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 2 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 5, time = 1.5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
-	new/datum/stack_recipe("baseball bat", /obj/item/weapon/baseballbat, 10, time = 2 SECONDS, on_floor = TRUE) \
+	new/datum/stack_recipe("baseball bat", /obj/item/weapon/baseballbat, 10, time = 2 SECONDS, on_floor = TRUE), \
+	new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE) \
 	))
 
 /obj/item/stack/sheet/wood
@@ -160,6 +161,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	icon_state = "sheet-wood"
 	merge_type = /obj/item/stack/sheet/wood
 	number_of_extra_variants = 3
+
+/obj/item/stack/sheet/wood/five
+	amount = 5
 
 /obj/item/stack/sheet/wood/large_stack
 	amount = 50

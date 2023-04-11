@@ -29,9 +29,9 @@
 	turns_per_move = 5
 	melee_damage = 8
 
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently moves aside"
-	response_harm   = "swats"
+	response_harm = "swats"
 	stop_automated_movement = TRUE
 	a_intent = INTENT_HARM
 	attacktext = "chomps"

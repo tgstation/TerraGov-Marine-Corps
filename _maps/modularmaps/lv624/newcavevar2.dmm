@@ -226,7 +226,7 @@
 /area/lv624/ground/caves/central1)
 "AR" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

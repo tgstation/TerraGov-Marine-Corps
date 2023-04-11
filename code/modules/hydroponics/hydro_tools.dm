@@ -60,7 +60,7 @@
 	dat += "<tr><td><b>Potency</b></td><td>[grown_seed.potency]</td></tr>"
 	dat += "</table>"
 
-	if(grown_reagents && grown_reagents.reagent_list && length(grown_reagents.reagent_list))
+	if(length(grown_reagents.reagent_list))
 		dat += "<h2>Reagent Data</h2>"
 
 		dat += "<br>This sample contains: "

@@ -8,8 +8,8 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
 	item_state = "cell"
-	force = 5.0
-	throwforce = 5.0
+	force = 5
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
