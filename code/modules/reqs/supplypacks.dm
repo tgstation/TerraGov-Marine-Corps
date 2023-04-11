@@ -538,17 +538,17 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/smartgun
-	name = "SG-29 Smart Machinegun"
+	name = "SG-29 smart machine gun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 400
 
 /datum/supply_packs/weapons/smartgun_ammo
-	name = "SG-29 smartmachinegun ammo"
+	name = "SG-29 ammo drum"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 50
 
 /datum/supply_packs/weapons/smart_minigun
-	name = "SG-85 Smart Handheld Gatling Gun"
+	name = "SG-85 smart gatling gun"
 	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 400
 
@@ -1856,12 +1856,12 @@ FACTORY
 	cost = 290 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartgun_minigun_box_refill
-	name = "Smart minigun bullet bin parts refill"
+	name = "SG-85 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
 	cost = 250
 
 /datum/supply_packs/factory/smartgun_magazine_refill
-	name = "Smart machinegun drum parts refill"
+	name = "SG-29 ammo drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
 	cost = 250
 
