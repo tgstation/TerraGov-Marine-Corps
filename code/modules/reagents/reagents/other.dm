@@ -401,7 +401,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "gross metal"
-	var/obj/effect/effect_type = /obj/effect/decal/cleanable/liquid_fuel
+	///The effect creates when this reagent is splashed on the ground
+	var/effect_type = /obj/effect/decal/cleanable/liquid_fuel
 
 /datum/reagent/fuel/reaction_turf(turf/T, volume)
 	if(volume <= 3 || !isfloorturf(T))
