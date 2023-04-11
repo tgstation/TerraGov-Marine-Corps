@@ -586,6 +586,7 @@
 	icon_state = "flare"
 	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
 	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
+	fill_number = 26
 	fill_type = /obj/item/explosive/grenade/flare
 	can_hold = list(
 		/obj/item/explosive/grenade/flare/civilian,
@@ -598,10 +599,9 @@
 	var/obj/item/weapon/gun/holstered_flaregun
 
 /obj/item/storage/pouch/flare/full/Initialize()
+	. = ..()
 	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
-	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)
-	fill_number = max_storage_space - flare_gun.w_class
-	return ..()
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun) //It's weird, but you need to initialize the flare pouch before you put the flare gun in or it runtimes
 
 /obj/item/storage/pouch/flare/attack_hand(mob/living/user)
 	if(holstered_flaregun && ishuman(user) && loc == user)
