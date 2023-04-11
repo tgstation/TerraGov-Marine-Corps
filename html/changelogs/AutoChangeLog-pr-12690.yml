@@ -1,0 +1,4 @@
+author: "metalyc"
+delete-after: True
+changes:
+  - bugfix: "Scout droids being able to cloak again"
