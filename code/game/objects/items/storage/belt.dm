@@ -12,7 +12,28 @@
 	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
 
-
+/obj/item/storage/belt/attackby_alternate(obj/item/I, mob/user, params) //Right clicking the belt with any gun will perform a tac reload
+	if(!istype(I, /obj/item/weapon/gun))
+		return ..()
+	var/obj/item/weapon/gun/gun_to_reload = I
+	for(var/obj/item/ammo_magazine/mag in contents)
+		if(!(mag.type in gun_to_reload.allowed_ammo_types))
+			continue
+		if(user.l_hand && user.r_hand || length(gun_to_reload.chamber_items))
+			gun_to_reload.tactical_reload(mag, user)
+		else
+			gun_to_reload.reload(mag, user)
+		orient2hud()
+		return
+	for(var/obj/item/cell/cell in contents) //I know it's copy-paste, but it's the simplest solution that I was able to think of
+		if(!(cell.type in gun_to_reload.allowed_ammo_types))
+			continue
+		if(user.l_hand && user.r_hand || length(gun_to_reload.chamber_items))
+			gun_to_reload.tactical_reload(cell, user)
+		else
+			gun_to_reload.reload(cell, user)
+		orient2hud()
+		return
 
 /obj/item/storage/belt/equipped(mob/user, slot)
 	if(slot == SLOT_BELT)
@@ -1039,20 +1060,6 @@
 	desc = "A pistol belt that is not a revolver belt"
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
-
-/obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/weapon/gun/pistol))
-		return ..()
-	var/obj/item/weapon/gun/pistol/gun = I
-	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!(mag.type in gun.allowed_ammo_types))
-			continue
-		if(user.l_hand && user.r_hand || length(gun.chamber_items))
-			gun.tactical_reload(mag, user)
-		else
-			gun.reload(mag, user)
-		orient2hud()
-		return
 
 /obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
 	. = ..()
