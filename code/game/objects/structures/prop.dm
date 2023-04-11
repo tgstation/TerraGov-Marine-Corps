@@ -1033,6 +1033,7 @@
 /obj/structure/prop/vehicle/truck/truckcargo/destructible
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
