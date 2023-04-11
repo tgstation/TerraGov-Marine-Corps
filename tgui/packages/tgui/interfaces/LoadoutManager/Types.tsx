@@ -1,5 +1,4 @@
 export type Loadout = {
-  loadout_data: string;
   name: string;
   job: string;
 };
