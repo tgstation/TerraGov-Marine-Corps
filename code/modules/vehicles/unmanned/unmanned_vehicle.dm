@@ -73,8 +73,11 @@
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "uav")
 
 /obj/vehicle/unmanned/Destroy()
+	. = ..()
 	GLOB.unmanned_vehicles -= src
 	QDEL_NULL(flash)
+
+/obj/vehicle/unmanned/obj_destruction()
 	robogibs(src)
 	return ..()
 
