@@ -8271,6 +8271,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_3"
+	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "aQu" = (
@@ -8863,9 +8866,6 @@
 "aTt" = (
 /obj/structure/rack,
 /obj/item/storage/box/sentry,
-/obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_2"
-	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aTw" = (
@@ -11713,16 +11713,12 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
 "dkE" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_3";
+	dir = 1
 	},
-/obj/effect/ai_node,
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_1"
-	},
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint)
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "dls" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -14012,9 +14008,6 @@
 /obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
 "gBU" = (
@@ -14801,7 +14794,8 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_3"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -25338,9 +25332,6 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "vFC" = (
@@ -68846,7 +68837,7 @@ mDu
 kOr
 jYO
 wTC
-pWS
+dkE
 bYM
 aQt
 aUu
@@ -69107,7 +69098,7 @@ pWS
 bYM
 vov
 aUu
-dkE
+aZB
 aTM
 jQX
 aUt
