@@ -43,7 +43,7 @@
 			new sheet_type(src)
 	return ..()
 
-/obj/structure/table/proc/update_adjacent(location = loc, unflipping = FALSE)
+/obj/structure/table/proc/update_adjacent(location = loc)
 	for(var/direction in CARDINAL_ALL_DIRS)
 		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
 		if(!table)
@@ -52,8 +52,7 @@
 	QUEUE_SMOOTH(src)
 
 /obj/structure/table/Destroy()
-	var/tableloc = loc
-	update_adjacent(tableloc) //so neighbouring tables get updated correctly
+	update_adjacent(loc) //so neighbouring tables get updated correctly
 	return ..()
 
 /obj/structure/table/Initialize(mapload)
@@ -500,10 +499,6 @@
 	table_prefix = "fabric"
 	parts = /obj/item/frame/table
 	reinforced = TRUE
-
-/obj/structure/table/reinforced/fabric/wrench_act(mob/living/user, obj/item/I)
-	. = ..()
-	return FALSE
 
 /obj/structure/table/mainship
 	icon = 'icons/obj/smooth_objects/mainship_table.dmi'
