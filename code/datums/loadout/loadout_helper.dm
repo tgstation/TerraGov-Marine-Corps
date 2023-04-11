@@ -56,8 +56,8 @@
 /proc/buy_stack(obj/item/stack/stack_to_buy_type, datum/loadout_seller/seller, mob/living/user, amount)
 	//Hardcode to check the category. Why is this function even here? But it doesn't work, and here I am doing hardcode to make it work because it's hardcoded anyway.
 	var/item_cat = ""
-	if(user.job.title == SQUAD_LEADER || FIELD_COMMANDER)
-		item_cat = CAT_LEDSUP || CAT_FCSUP
+	if(user.job.title == SQUAD_LEADER)
+		item_cat = CAT_LEDSUP
 	else if (user.job.title == SQUAD_ENGINEER)
 		item_cat = CAT_ENGSUP
 	else
