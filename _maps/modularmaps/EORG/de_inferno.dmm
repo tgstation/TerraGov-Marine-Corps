@@ -1492,7 +1492,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "TP" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "TW" = (
 /obj/structure/platform{

@@ -359,7 +359,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/desert_dam/building/security/lobby)
 "acu" = (
-/turf/closed/desertdamrockwall/invincible/perimeter,
+/turf/closed/perimeter,
 /area/desert_dam/exterior/rock)
 "acv" = (
 /obj/structure/platform{
