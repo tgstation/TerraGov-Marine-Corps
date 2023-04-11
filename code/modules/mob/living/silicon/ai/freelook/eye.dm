@@ -71,7 +71,7 @@
 		moveToNullspace()
 	if(use_static)
 		ai.camera_visibility(src)
-	if(ai.client && !ai.multicam_on)
+	if(ai.client)
 		ai.client.eye = src
 	//Holopad
 	if(istype(ai.current, /obj/machinery/holopad))
@@ -79,8 +79,6 @@
 		H.move_hologram(ai, T)
 	if(ai.camera_light_on)
 		ai.light_cameras()
-	if(ai.master_multicam)
-		ai.master_multicam.refresh_view()
 	update_parallax_contents()
 
 /mob/camera/aiEye/abstract_move(atom/new_loc)
@@ -115,7 +113,7 @@
 		return
 
 	var/mob/living/silicon/ai/AI = usr
-	if(AI.eyeobj && (AI.multicam_on || (AI.client.eye == AI.eyeobj)) && (AI.eyeobj.z == z))
+	if(AI.eyeobj && (AI.client.eye == AI.eyeobj) && (AI.eyeobj.z == z))
 		AI.cameraFollow = null
 		if(isturf(loc) || isturf(src))
 			AI.eyeobj.setLoc(src)
@@ -157,7 +155,6 @@
 	unset_interaction()
 
 	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
-		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
 		create_eye()
 
 	eyeobj?.setLoc(loc)

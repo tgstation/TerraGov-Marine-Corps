@@ -20,16 +20,11 @@
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
 
+	var/list/all_eyes = list()
 	var/mob/camera/aiEye/hud/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = FALSE
-
-	var/multicam_on = FALSE
-	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
-	var/list/multicam_screens = list()
-	var/list/all_eyes = list()
-	var/max_multicams = 6
 
 	var/tracking = FALSE
 	var/last_paper_seen = 0
@@ -152,9 +147,9 @@
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 ///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
-/mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
+/mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, obj/docking_port/mobile/shuttle, obj/docking_port/stationary/D)
 	SIGNAL_HANDLER
-	to_chat(src, span_notice("NOTICE - [shuttleId] taking off towards \the [D]"))
+	to_chat(src, span_notice("NOTICE - [shuttle.name] taking off towards \the [D.name]"))
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	SHOULD_CALL_PARENT(FALSE)
@@ -306,12 +301,9 @@
 		current = new_eye
 	if(client)
 		if(ismovableatom(new_eye))
-			if(new_eye != GLOB.ai_camera_room_landmark)
-				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = new_eye
 		else
-			end_multicam()
 			if(isturf(loc))
 				if(eyeobj)
 					client.eye = eyeobj
@@ -378,13 +370,6 @@
 
 	if(eyeobj)
 		eyeobj.name = "[newname] (AI Eye)"
-
-
-/mob/living/silicon/ai/forceMove(atom/destination)
-	. = ..()
-	if(.)
-		end_multicam()
-
 
 /mob/living/silicon/ai/can_interact_with(datum/D)
 	if(!isatom(D))

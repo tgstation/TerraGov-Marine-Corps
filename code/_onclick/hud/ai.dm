@@ -80,33 +80,40 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.toggle_camera_light()
 
+/atom/movable/screen/ai/view_manifest
+	name = "View Crew Manifest"
+	icon_state = "manifest"
 
-/atom/movable/screen/ai/multicam
-	name = "Multicamera Mode"
-	icon_state = "multicam"
 
-
-/atom/movable/screen/ai/multicam/Click()
+/atom/movable/screen/ai/view_manifest/Click()
 	. = ..()
 	if(.)
 		return
-	var/mob/living/silicon/ai/AI = usr
-	AI.toggle_multicam()
+	var/dat = GLOB.datacore.get_manifest()
+
+	var/datum/browser/popup = new(usr, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
+/atom/movable/screen/ai/main_overwatch
+	name = "Connect to Main Overwatch"
+	icon_state = "overwatch"
 
 
-/atom/movable/screen/ai/add_multicam
-	name = "New Camera"
-	icon_state = "new_cam"
-
-
-/atom/movable/screen/ai/add_multicam/Click()
+/atom/movable/screen/ai/main_overwatch/Click()
 	. = ..()
 	if(.)
 		return
-	var/mob/living/silicon/ai/AI = usr
-	AI.drop_new_multicam()
+	to_chat(usr, span_notice("Establishing connection to Main Overwatch..."))
+	var/static/obj/machinery/computer/camera_advanced/overwatch/main/overwatch
+	if(!overwatch || QDELETED(overwatch))
+		stoplag()
+		overwatch = locate(/obj/machinery/computer/camera_advanced/overwatch/main) in GLOB.machines
 
-
+	if(!overwatch) //still no overwatch
+		to_chat(usr, span_warning("Connection Failure! Main Overwatch missing."))
+	else
+		overwatch.interact(usr)
 /datum/hud/ai/New(mob/owner, ui_style, ui_color, ui_alpha = 230)
 	. = ..()
 	var/atom/movable/screen/using
@@ -141,12 +148,12 @@
 	using.screen_loc = ui_ai_camera_light
 	static_inventory += using
 
-//Multicamera mode
-	using = new /atom/movable/screen/ai/multicam()
-	using.screen_loc = ui_ai_multicam
+//Manifest
+	using = new /atom/movable/screen/ai/view_manifest()
+	using.screen_loc = ui_ai_manifest
 	static_inventory += using
 
-//Add multicamera camera
-	using = new /atom/movable/screen/ai/add_multicam()
-	using.screen_loc = ui_ai_add_multicam
+//Main Overwatch
+	using = new /atom/movable/screen/ai/main_overwatch()
+	using.screen_loc = ui_ai_mainoverwatch
 	static_inventory += using

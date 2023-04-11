@@ -77,8 +77,6 @@
 
 /datum/config_entry/flag/allow_ai
 
-/datum/config_entry/flag/allow_ai_multicam	// allow ai multicamera mode
-
 /datum/config_entry/flag/fun_allowed //a lot of LRP features
 
 /datum/config_entry/flag/xenos_on_strike

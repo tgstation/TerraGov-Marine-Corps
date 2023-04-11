@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "Supply Manifest"
 
 /obj/docking_port/stationary/supply
+	name = "requisitions home"
 	id = "supply_home"
 	roundstart_template = /datum/map_template/shuttle/supply
 	width = 5
@@ -31,7 +32,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	roundstart_shuttle_specific_id = "supply_rebel"
 
 /obj/docking_port/mobile/supply
-	name = "supply shuttle"
+	name = "requisitions lift"
 	id = SHUTTLE_SUPPLY
 	callTime = 15 SECONDS
 

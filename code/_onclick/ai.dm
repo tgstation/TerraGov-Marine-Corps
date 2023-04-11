@@ -31,14 +31,6 @@
 	if(!controlling && !can_interact_with(A))
 		return
 
-	if(multicam_on)
-		var/turf/T = get_turf(A)
-		if(T)
-			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
-				if(P.ai == src)
-					P.Click(params)
-					break
-
 	if(check_click_intercept(params, A))
 		return
 

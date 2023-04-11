@@ -84,7 +84,7 @@
 		added_turf.vis_contents -= vis_contents_opaque
 
 	for(var/turf/removed_turf AS in visRemoved)
-		if(obscuredTurfs[removed_turf] && !istype(removed_turf, /turf/open/ai_visible))
+		if(obscuredTurfs[removed_turf])
 			removed_turf.vis_contents += vis_contents_opaque
 
 	changed = FALSE
