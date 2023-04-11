@@ -81,7 +81,7 @@
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
-	dispenser_type = null
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
@@ -103,7 +103,7 @@
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue
-	dispenser_type = null
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"

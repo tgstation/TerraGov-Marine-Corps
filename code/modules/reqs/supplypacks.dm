@@ -582,6 +582,12 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
 	cost = 600
 
+/datum/supply_packs/weapons/fueltank
+	name = "X-fuel tank"
+	contains = list(/obj/structure/reagent_dispensers/fueltank/xfuel)
+	cost = 600
+	containertype = null
+
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
