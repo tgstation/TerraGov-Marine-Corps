@@ -492,8 +492,6 @@
 				var/new_criminal_status = tgui_input_list(usr, "Specify a new criminal status for this person.", "Security HUD", list("None", "*Arrest*", "Incarcerated", "Released"))
 				if(!new_criminal_status)
 					return
-				if(!hasHUD(usr, "security")) //mightve lost the hud in the meantime
-					return
 				security_record.fields["criminal"] = new_criminal_status
 				sec_hud_set_security_status()
 				return
