@@ -52,7 +52,7 @@
 		return
 	if(href_list["remove"])
 		var/obj/item/P = locate(href_list["remove"])
-		if((P && P.loc == src))
+		if((P?.loc == src))
 			P.loc = get_turf(src)	//dump paper on the floor because you're a clumsy fuck
 			notices--
 			icon_state = "nboard0[notices]"
@@ -60,7 +60,7 @@
 	if(href_list["write"])
 		var/obj/item/P = locate(href_list["write"])
 
-		if((P && P.loc == src)) //ifthe paper's on the board
+		if((P?.loc == src)) //ifthe paper's on the board
 			if(istype(usr.r_hand, /obj/item/tool/pen)) //and you're holding a pen
 				P.attackby(usr.r_hand, usr) //then do ittttt
 			else
@@ -71,7 +71,7 @@
 
 	if(href_list["read"])
 		var/obj/item/paper/P = locate(href_list["read"])
-		if((P && P.loc == src))
+		if((P?.loc == src))
 			if(!( ishuman(usr) ))
 				usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY><TT>[stars(P.info)]</TT></BODY></HTML>", "window=[P.name]")
 				onclose(usr, "[P.name]")

@@ -68,11 +68,11 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "bn" = (
-/obj/item/folder/yellow,
+/obj/effect/spawner/random/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "bs" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
@@ -275,7 +275,7 @@
 /area/bigredv2/outside/space_port)
 "gt" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -353,11 +353,11 @@
 	},
 /area/bigredv2/outside/nw)
 "hI" = (
-/obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "hN" = (
@@ -504,11 +504,6 @@
 "kN" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"kP" = (
-/obj/structure/table,
-/obj/item/folder/black_random,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "kW" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -520,11 +515,6 @@
 	},
 /turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
-"la" = (
-/obj/structure/table,
-/obj/item/folder/black,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "ld" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidplating,
@@ -903,7 +893,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "vh" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -970,12 +960,12 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "xD" = (
-/obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "xP" = (
@@ -1320,7 +1310,7 @@
 /area/shuttle/drop1/lz1)
 "FG" = (
 /obj/structure/table,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "FJ" = (
@@ -1505,7 +1495,7 @@
 /area/bigredv2/outside/nw)
 "IO" = (
 /obj/structure/table,
-/obj/item/folder/yellow,
+/obj/effect/spawner/random/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "IU" = (
@@ -2276,7 +2266,7 @@ iY
 iY
 iY
 xi
-la
+IO
 vN
 Tc
 lj
@@ -2478,7 +2468,7 @@ gF
 tu
 BO
 IO
-kP
+IO
 Pj
 kN
 Rb
@@ -2636,7 +2626,7 @@ rA
 rA
 LB
 UY
-kP
+IO
 BA
 UF
 Dl

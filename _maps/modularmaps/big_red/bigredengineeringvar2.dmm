@@ -158,7 +158,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ib" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "iu" = (
@@ -257,11 +256,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "pZ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -381,7 +380,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "wt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "wW" = (
@@ -670,7 +669,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "LM" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "LR" = (

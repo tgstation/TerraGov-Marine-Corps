@@ -5,8 +5,8 @@
 	icon_state = "rods"
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 9.0
-	throwforce = 15.0
+	force = 9
+	throwforce = 15
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60

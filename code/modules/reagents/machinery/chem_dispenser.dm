@@ -156,7 +156,7 @@
 
 	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
-	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
+	if(beaker?.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))	 // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
@@ -337,7 +337,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 
-			beaker =  I
+			beaker = I
 			to_chat(user, "You set [I] on the machine.")
 			update_icon()
 			updateUsrDialog()

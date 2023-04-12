@@ -14,8 +14,8 @@
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 1.0
-	throwforce = 1.0
+	force = 1
+	throwforce = 1
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
@@ -29,8 +29,8 @@
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "tile-wood"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 1.0
-	throwforce = 1.0
+	force = 1
+	throwforce = 1
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
@@ -44,8 +44,8 @@
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 1.0
-	throwforce = 1.0
+	force = 1
+	throwforce = 1
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60

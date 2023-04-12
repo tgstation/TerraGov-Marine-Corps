@@ -1034,7 +1034,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 	LAZYADD(candidate, observer)
 	RegisterSignal(observer, COMSIG_PARENT_QDELETING, PROC_REF(clean_observer))
-	observer.larva_position =  LAZYLEN(candidate)
+	observer.larva_position = LAZYLEN(candidate)
 	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
 	return TRUE
 

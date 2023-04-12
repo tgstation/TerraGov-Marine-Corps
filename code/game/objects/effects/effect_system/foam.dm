@@ -130,7 +130,7 @@
 	QDEL_NULL(carrying_reagents)
 	return ..()
 
-/datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime  = 75)
+/datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime = 75)
 	if(isturf(location))
 		src.location = location
 	else

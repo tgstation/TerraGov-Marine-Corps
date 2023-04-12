@@ -425,4 +425,38 @@
 	L.adjustBruteLoss(-0.5*effect_str)
 	return ..()
 
+/datum/reagent/consumable/caramel
+	name = "Caramel"
+	description = "Who would have guessed that heated sugar could be so delicious?"
+	nutriment_factor = 10 * REAGENTS_METABOLISM
+	color = "#D98736"
+	taste_multi = 2
+	taste_description = "caramel"
+	reagent_state = SOLID
 
+/datum/reagent/consumable/vanilla
+	name = "Vanilla Powder"
+	description = "A fatty, bitter paste made from vanilla pods."
+	reagent_state = SOLID
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#FFFACD"
+	taste_description = "vanilla"
+
+/datum/reagent/consumable/salt
+	name = "Table Salt"
+	description = "A salt made of sodium chloride. Commonly used to season food."
+	reagent_state = SOLID
+	color = "#FFFFFF" // rgb: 255,255,255
+	taste_description = "salt"
+
+/datum/reagent/consumable/nutriment/vitamin
+	name = "Vitamin"
+	description = "All the best vitamins, minerals, and carbohydrates the body needs in pure form."
+
+	brute_heal = 0.07
+	burn_heal = 0.07
+
+/datum/reagent/consumable/nutriment/protein
+	name = "Protein"
+	description = "A natural polyamide made up of amino acids. An essential constituent of mosts known forms of life."
+	brute_heal = 0.02 //Rewards the player for eating a balanced diet.

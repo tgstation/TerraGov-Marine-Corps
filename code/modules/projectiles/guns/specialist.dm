@@ -531,7 +531,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	pixel_shift_x = 18
 	pixel_shift_y = 16
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /particles/backblast
 	icon = 'icons/effects/effects.dmi'

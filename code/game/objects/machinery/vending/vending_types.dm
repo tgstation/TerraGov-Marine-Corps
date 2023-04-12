@@ -107,7 +107,7 @@
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,

@@ -1,11 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ab" = (
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/s)
 "ah" = (
-/obj/structure/window_frame/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -15,7 +15,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "am" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "an" = (
@@ -90,7 +90,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/s)
 "hT" = (
@@ -167,7 +167,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "nU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "oi" = (
@@ -177,14 +177,14 @@
 	},
 /area/bigredv2/outside/se)
 "om" = (
-/obj/item/frame/table,
+/obj/effect/spawner/random/structure/table_parts,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "oy" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/s)
 "oU" = (
@@ -196,7 +196,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "ph" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -252,7 +252,7 @@
 /area/bigredv2/outside/s)
 "qg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -279,7 +279,7 @@
 "qz" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/s)
 "qW" = (
@@ -304,11 +304,11 @@
 "sE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/s)
 "tF" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "ug" = (
@@ -342,7 +342,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "vv" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -379,7 +379,7 @@
 /area/bigredv2/outside/filtration_plant)
 "xp" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -404,7 +404,7 @@
 "yq" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/s)
 "yP" = (
@@ -530,12 +530,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Eo" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Ex" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -568,7 +568,7 @@
 /area/bigredv2/outside/se)
 "HO" = (
 /turf/open/floor/marking/asteroidwarning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/s)
 "HZ" = (
@@ -598,7 +598,7 @@
 "Iu" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/s)
 "IA" = (
@@ -645,7 +645,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/filtration_plant)
 "KI" = (
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "Lc" = (
@@ -657,7 +657,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "MA" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
@@ -669,7 +669,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "NH" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -680,7 +680,7 @@
 "Oj" = (
 /obj/structure/rack,
 /obj/item/tank/air,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "OF" = (
@@ -737,7 +737,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/item/frame/table,
+/obj/effect/spawner/random/structure/table_parts,
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -775,7 +775,7 @@
 /area/bigredv2/outside/s)
 "Uo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/structure/table_parts,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -810,7 +810,7 @@
 "Wc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/s)
 "Wf" = (

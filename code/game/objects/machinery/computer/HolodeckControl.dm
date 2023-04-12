@@ -37,7 +37,9 @@
 /obj/structure/table/holotable/wood
 	name = "table"
 	desc = "A square piece of wood standing on four wooden legs. It can not move."
-	icon_state = "woodtable"
+	icon = 'icons/obj/smooth_objects/wood_table_reinforced.dmi'
+	base_icon_state = "wood_table_reinforced"
+	icon_state = "woodtable-0"
 	table_prefix = "wood"
 
 /obj/structure/holowindow

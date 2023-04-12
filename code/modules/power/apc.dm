@@ -710,8 +710,8 @@
 				"status" = equipment,
 				"topicParams" = list(
 					"auto" = list("eqp" = 3),
-					"on"   = list("eqp" = 2),
-					"off"  = list("eqp" = 1)
+					"on" = list("eqp" = 2),
+					"off" = list("eqp" = 1)
 				)
 			),
 			list(
@@ -720,8 +720,8 @@
 				"status" = lighting,
 				"topicParams" = list(
 					"auto" = list("lgt" = 3),
-					"on"   = list("lgt" = 2),
-					"off"  = list("lgt" = 1)
+					"on" = list("lgt" = 2),
+					"off" = list("lgt" = 1)
 				)
 			),
 			list(
@@ -730,8 +730,8 @@
 				"status" = environ,
 				"topicParams" = list(
 					"auto" = list("env" = 3),
-					"on"   = list("env" = 2),
-					"off"  = list("env" = 1)
+					"on" = list("env" = 2),
+					"off" = list("env" = 1)
 				)
 			)
 		)
@@ -740,7 +740,7 @@
 
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
-	if(cell && cell.charge > 0)
+	if(cell?.charge > 0)
 		return (val==1) ? 0 : val
 	else if(val == 3)
 		return 1
@@ -841,7 +841,7 @@
 
 
 /obj/machinery/power/apc/add_load(amount)
-	if(terminal && terminal.powernet)
+	if(terminal?.powernet)
 		return terminal.add_load(amount)
 	return 0
 
@@ -1065,7 +1065,7 @@
 /obj/machinery/power/apc/proc/overload_lighting()
 	if(!operating || shorted)
 		return
-	if(cell && cell.charge >= 20)
+	if(cell?.charge >= 20)
 		cell.use(20)
 		INVOKE_ASYNC(src, PROC_REF(break_lights))
 

@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_critical_structures)
+GLOBAL_LIST_EMPTY(xeno_generators_by_hive)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)
@@ -63,6 +64,7 @@ GLOBAL_LIST_EMPTY(unmanned_vehicles)
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/structure/largecrate/supply,
+	/obj/structure/largecrate/packed,
 	/obj/machinery/vending,
 	/obj/vehicle/unmanned)))
 
