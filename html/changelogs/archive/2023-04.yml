@@ -164,3 +164,26 @@
   novaepee:
   - rscadd: shrike can now give plasma
   - balance: shrike can help xenomorph even more by giving plasma
+2023-04-12:
+  '@KillerOrcaCora':
+  - rscadd: navy cap in the SO locker
+  - imageadd: RO cap minor resprite
+  KillerOrcaCora:
+  - imageadd: xfuel back tank has a better sprite.
+  Lumipharon:
+  - bugfix: fixed some odd behavior when firing rockets at dense objects like windows
+      or airlocks
+  - bugfix: fixed some IFF issues with various minor factions
+  MacBlaze1:
+  - qol: made players automatically interact with deployables when they deploy them,
+      it is now an option in game preferences that you can enable and disable at will.
+  - balance: This change applies to all weapons deployables, like emplacements and
+      machine guns
+  RipGrayson:
+  - code_imp: Removed an unused breaker box type from the code.
+  grinkgo:
+  - spellcheck: Smartgun-related req items are now more consistently named
+  ivanmixo:
+  - bugfix: Fixed resin doors not being damagable in melee
+  metalyc:
+  - bugfix: Scout droids being able to cloak again
