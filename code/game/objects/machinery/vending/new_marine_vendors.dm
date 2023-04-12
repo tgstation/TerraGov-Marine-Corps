@@ -178,8 +178,6 @@
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
 					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
-					if(!istype(H.job, /datum/job/terragov/squad/engineer))
-						vended_items += new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
@@ -605,6 +603,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/paper/tutorial/medical,
 		/obj/item/paper/tutorial/mechanics,
@@ -614,6 +613,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 		/obj/item/paper/tutorial/medical,
@@ -624,6 +624,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -631,6 +632,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -639,6 +641,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -646,6 +649,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -654,6 +658,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/corpsman,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -661,6 +666,7 @@
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
@@ -897,12 +903,32 @@
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 	)
 
-/obj/effect/vendor_bundle/robot
+/obj/effect/vendor_bundle/robot/essentials
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/robotic,
 		/obj/item/tool/weldingtool,
-		/obj/item/stack/cable_coil/twentyfive,
+		/obj/item/stack/cable_coil,
 	)
+
+/obj/effect/vendor_bundle/robot/light_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot/light,
+		/obj/item/clothing/head/modular/robot/light,
+	)
+
+/obj/effect/vendor_bundle/robot/medium_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot,
+		/obj/item/clothing/head/modular/robot,
+	)
+
+/obj/effect/vendor_bundle/robot/heavy_armor
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/modular/robot/heavy,
+		/obj/item/clothing/head/modular/robot/heavy,
+	)
+
+
 
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS
