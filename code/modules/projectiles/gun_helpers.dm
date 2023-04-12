@@ -563,7 +563,25 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	balloon_alert(usr, "No usable underrail attachments")
 
+///Toggles weapons ejecting their magazines when they're empty. This one is on a human level so it shows up in the users verbs.
+/mob/living/carbon/human/verb/toggle_auto_eject()
+	set category = "Weapons"
+	set name = "Toggle Automatic Magazine Ejection"
+	set desc = "Toggles the gun automatically unloading it's magazine upon depletion of magazine."
 
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_auto_eject()
+
+///Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.
+/obj/item/weapon/gun/verb/toggle_auto_eject()
+	set category = null
+	set name = "Toggle Automatic Magazine Ejection (Weapon)"
+	set desc = "Toggles the gun automatically unloading it's magazine upon depletion of magazine."
+
+	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -703,6 +721,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/toggle_gun_safety_keybind()
 	SIGNAL_HANDLER
 	toggle_gun_safety()
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle automatic magazine ejection
+/obj/item/weapon/gun/proc/toggle_auto_eject_keybind()
+	SIGNAL_HANDLER
+	toggle_auto_eject()
 	return COMSIG_KB_ACTIVATED
 
 /obj/item/weapon/gun/toggle_deployment_flag(deployed)
