@@ -20,10 +20,10 @@
 	///the snowflake item(s) that will update the sprite.
 	var/list/holsterable_allowed = list()
 	///records the specific special item currently in the holster
-	var/holstered_item = null
+	var/obj/holstered_item = null
 
 /obj/item/storage/holster/equipped(mob/user, slot)
-	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
+	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 	return ..()
 
@@ -55,6 +55,12 @@
 	holstered_item = null
 	playsound(src, draw_sound, 15, 1)
 	update_icon()
+
+/obj/item/storage/holster/attack_hand(mob/living/user) //Prioritizes our snowflake item on unarmed click
+	if(holstered_item && ishuman(user) && loc == user)
+		holstered_item.attack_hand(user)
+	else
+		return ..()
 
 /obj/item/storage/holster/update_icon_state()
 	//sets the icon to full or empty
