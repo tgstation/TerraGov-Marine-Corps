@@ -116,7 +116,7 @@
 	icon_state = "random_latex_gloves"
 	loot = list(
 		/obj/item/clothing/gloves/latex = 30,
-		/obj/effect/spawner/random/coloredgloves = 1,
+		/obj/effect/spawner/random/clothing/coloredgloves = 1,
 	)
 
 /obj/effect/spawner/random/clothing/sunglasses

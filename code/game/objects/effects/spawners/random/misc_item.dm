@@ -212,7 +212,7 @@
 		/obj/item/clothing/shoes/black = 10,
 		/obj/item/storage/backpack/satchel/norm = 10,
 		/obj/item/clothing/suit/armor/vest = 10,
-		/obj/effect/spawner/random/misc/engineering/toolbox = 5,
+		/obj/effect/spawner/random/engineering/toolbox = 5,
 		/obj/item/storage/belt/utility = 5,
 		/obj/effect/spawner/random/engineering/insulatedgloves = 5,
 		/obj/effect/spawner/random/decal/blood = 5,
