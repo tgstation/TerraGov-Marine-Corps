@@ -17,15 +17,15 @@
 	name = "random broken computer spawner"
 	icon_state = "random_broke_computer"
 	loot = list(
-		/obj/machinery/prop/computer/broken = 20,
-		/obj/machinery/prop/computer/broken/two = 5,
-		/obj/machinery/prop/computer/broken/three = 20,
-		/obj/machinery/prop/computer/broken/four = 5,
-		/obj/machinery/prop/computer/broken/five = 20,
-		/obj/machinery/prop/computer/broken/six = 20,
-		/obj/machinery/prop/computer/broken/seven = 1,
-		/obj/machinery/prop/computer/broken/eight = 50,
-		/obj/machinery/prop/computer/broken/nine = 40,
+		/obj/structure/prop/computer/broken = 20,
+		/obj/structure/prop/computer/broken/two = 5,
+		/obj/structure/prop/computer/broken/three = 20,
+		/obj/structure/prop/computer/broken/four = 5,
+		/obj/structure/prop/computer/broken/five = 20,
+		/obj/structure/prop/computer/broken/six = 20,
+		/obj/structure/prop/computer/broken/seven = 1,
+		/obj/structure/prop/computer/broken/eight = 50,
+		/obj/structure/prop/computer/broken/nine = 40,
 	)
 
 /obj/effect/spawner/random/machinery/random_broken_computer/genetics
@@ -68,16 +68,16 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small
 	icon_state = "random_broke_computer_small"
 	loot = list(
-		/obj/machinery/prop/computer/broken/eleven = 20,
-		/obj/machinery/prop/computer/broken/fifteen = 5,
-		/obj/machinery/prop/computer/broken/ten = 20,
-		/obj/machinery/prop/computer/broken/sixteen = 5,
-		/obj/machinery/prop/computer/broken/nineteen = 5,
-		/obj/machinery/prop/computer/broken/fourteen = 20,
-		/obj/machinery/prop/computer/broken/twelve = 20,
-		/obj/machinery/prop/computer/broken/seventeen = 1,
-		/obj/machinery/prop/computer/broken/thirteen = 50,
-		/obj/machinery/prop/computer/broken/eighteen = 40,
+		/obj/structure/prop/computer/broken/eleven = 20,
+		/obj/structure/prop/computer/broken/fifteen = 5,
+		/obj/structure/prop/computer/broken/ten = 20,
+		/obj/structure/prop/computer/broken/sixteen = 5,
+		/obj/structure/prop/computer/broken/nineteen = 5,
+		/obj/structure/prop/computer/broken/fourteen = 20,
+		/obj/structure/prop/computer/broken/twelve = 20,
+		/obj/structure/prop/computer/broken/seventeen = 1,
+		/obj/structure/prop/computer/broken/thirteen = 50,
+		/obj/structure/prop/computer/broken/eighteen = 40,
 	)
 
 /obj/effect/spawner/random/machinery/random_broken_computer/small/meddata
@@ -136,7 +136,7 @@
 	loot = list(
 		/obj/machinery/disposal = 9,
 		/obj/item/stack/sheet/metal = 1,
-		/obj/effect/spawner/random/metal = 1,
+		/obj/effect/spawner/random/engineering/metal = 1,
 	)
 
 /obj/effect/spawner/random/machinery/hydrotray
@@ -145,7 +145,7 @@
 	spawn_loot_chance = 65
 	loot = list(
 		/obj/machinery/portable_atmospherics/hydroponics/slashable = 8,
-		/obj/effect/spawner/random/seeds = 1,
+		/obj/effect/spawner/random/misc/seeds = 1,
 		/obj/effect/spawner/random/machinery/machine_frame = 1,
 	)
 
@@ -155,7 +155,7 @@
 	spawn_loot_chance = 85
 	loot = list(
 		/obj/machinery/microwave = 8,
-		/obj/effect/spawner/random/outdoors_snacks = 2,
+		/obj/effect/spawner/random/food_or_drink/outdoors_snacks = 2,
 	)
 
 /obj/effect/spawner/random/machinery/photocopier
@@ -174,8 +174,8 @@
 	loot = list(
 		/obj/machinery/constructable_frame,
 		/obj/machinery/constructable_frame/state_2,
-		/obj/machinery/prop/machine_frame3,
-		/obj/machinery/computer3frame,
+		/obj/structure/prop/machine_frame3,
+		/obj/structure/computer3frame,
 		/obj/item/frame/rack,
 	)
 
@@ -184,7 +184,7 @@
 	icon_state = "random_dead_ai"
 	spawn_loot_chance = 15
 	loot = list(
-		/obj/machinery/prop/mainship/deadai,
+		/obj/structure/prop/mainship/deadai,
 	)
 
 /obj/effect/spawner/random/machinery/cryo
@@ -194,7 +194,7 @@
 	loot = list(
 		/obj/machinery/atmospherics/components/unary/cryo_cell = 7,
 		/obj/effect/spawner/random/machinery/machine_frame = 2,
-		/obj/effect/spawner/random/metal = 1,
+		/obj/effect/spawner/random/engineering/metal = 1,
 	)
 
 /obj/effect/spawner/random/machinery/motorbike

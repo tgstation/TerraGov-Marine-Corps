@@ -18,7 +18,7 @@
 	icon_state = "random_wood_barricade"
 	spawn_loot_chance = 30
 	loot = list(
-		/obj/effect/spawner/random/wood = 6,
+		/obj/effect/spawner/random/engineering/wood = 6,
 		/obj/structure/barricade/wooden = 4,
 	)
 
@@ -90,7 +90,7 @@
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/closet/cabinet = 85,
-		/obj/effect/spawner/random/wood = 15,
+		/obj/effect/spawner/random/engineering/wood = 15,
 	)
 
 /obj/effect/spawner/random/misc/structure/securecloset
@@ -124,7 +124,7 @@
 	spawn_loot_chance = 85
 	loot = list(
 		/obj/structure/closet/secure_closet = 40,
-		/obj/effect/spawner/random/metal = 2,
+		/obj/effect/spawner/random/engineering/metal = 2,
 		/obj/effect/spawner/random/misc/structure/securecloset = 1,
 	)
 
@@ -225,7 +225,7 @@
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/prop/mainship/suit_storage_prop = 9,
-		/obj/effect/spawner/random/metal = 1,
+		/obj/effect/spawner/random/engineering/metal = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/showcase
@@ -259,7 +259,7 @@
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/table/woodentable = 99,
-		/obj/effect/spawner/random/wood = 1,
+		/obj/effect/spawner/random/engineering/wood = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window
@@ -489,7 +489,7 @@
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/window/reinforced = 35,
-		/obj/effect/spawner/random/shard = 1,
+		/obj/effect/spawner/random/misc/shard = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/directional_window/north
@@ -497,7 +497,7 @@
 	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/window/reinforced/north = 35,
-		/obj/effect/spawner/random/shard = 1,
+		/obj/effect/spawner/random/misc/shard = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/directional_window/east
@@ -505,7 +505,7 @@
 	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/window/reinforced/east = 35,
-		/obj/effect/spawner/random/shard = 1,
+		/obj/effect/spawner/random/misc/shard = 1,
 	)
 
 /obj/effect/spawner/random/misc/structure/directional_window/west
@@ -513,5 +513,5 @@
 	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/window/reinforced/west = 35,
-		/obj/effect/spawner/random/shard = 1,
+		/obj/effect/spawner/random/misc/shard = 1,
 	)

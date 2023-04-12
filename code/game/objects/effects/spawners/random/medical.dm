@@ -173,7 +173,7 @@
 	spawn_scatter_radius = 1
 	loot = list(
 		/obj/structure/bed/roller = 90,
-		/obj/effect/spawner/random/medical/decal/blood = 9,
+		/obj/effect/spawner/random/decal/blood = 9,
 		/obj/structure/bed/medevac_stretcher = 1,
 	)
 
@@ -183,7 +183,7 @@
 	spawn_loot_chance = 50
 	loot = list(
 		/obj/machinery/iv_drip = 90,
-		/obj/effect/spawner/random/medical/decal/blood = 9,
+		/obj/effect/spawner/random/decal/blood = 9,
 		/obj/structure/bed/medevac_stretcher = 1,
 	)
 
