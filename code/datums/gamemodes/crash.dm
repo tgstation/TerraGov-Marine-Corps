@@ -8,10 +8,10 @@
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 1,
-		/datum/job/terragov/squad/leader/crash = 1,
+		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/medical/professor = 1,
-		/datum/job/terragov/silicon/synthetic/crash = 1,
-		/datum/job/terragov/command/fieldcommander/crash = 1,
+		/datum/job/terragov/silicon/synthetic = 1,
+		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/xenomorph = FREE_XENO_AT_START
 	)
 
