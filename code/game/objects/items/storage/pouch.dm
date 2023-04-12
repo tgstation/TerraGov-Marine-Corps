@@ -211,6 +211,24 @@
 		/obj/item/cell/lasgun,
 	)
 
+/obj/item/storage/pouch/magazine/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun))
+		return ..()
+	var/obj/item/weapon/gun/gun_to_reload = I
+	for(var/obj/item/item_to_reload_with in contents)
+		if(!(item_to_reload_with.type in gun_to_reload.allowed_ammo_types))
+			continue
+		if(user.l_hand && user.r_hand || length(gun_to_reload.chamber_items))
+			gun_to_reload.tactical_reload(item_to_reload_with, user)
+		else
+			gun_to_reload.reload(item_to_reload_with, user)
+		orient2hud()
+		return
+
+/obj/item/storage/pouch/magazine/examine(mob/user)
+	. = ..()
+	. += span_notice("To perform a reload with the amunition inside, right click on the belt with any compatible gun.")
+
 /obj/item/storage/pouch/magazine/smgfull
 	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 	fill_number = 2
