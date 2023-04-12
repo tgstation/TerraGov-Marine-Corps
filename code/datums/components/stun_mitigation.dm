@@ -41,7 +41,7 @@
 
 
 /datum/component/stun_mitigation/Destroy()
-	shield_detatch_from_user()
+	shield_detach_from_user()
 	cover = null
 	return ..()
 
@@ -108,21 +108,21 @@
 /datum/component/stun_mitigation/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
 	if(!(slot_flags & slot))
-		shield_detatch_from_user()
+		shield_detach_from_user()
 		return
 	shield_affect_user(user)
 
 ///Signal handler for dropping the shield
 /datum/component/stun_mitigation/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
-	shield_detatch_from_user()
+	shield_detach_from_user()
 
 ///Handles the shield setting up for a user, and activating if applicable
 /datum/component/stun_mitigation/proc/shield_affect_user(mob/living/user)
 	if(affected)
 		if(affected == user)
 			return //Already active
-		shield_detatch_from_user() //changing affected
+		shield_detach_from_user() //changing affected
 	affected = user
 	if(active)
 		activate_with_user()
@@ -136,7 +136,7 @@
 	UnregisterSignal(affected, COMSIG_LIVING_PROJECTILE_STUN)
 
 ///Handles removing the mitigation from a user
-/datum/component/stun_mitigation/proc/shield_detatch_from_user()
+/datum/component/stun_mitigation/proc/shield_detach_from_user()
 	if(!affected)
 		return
 	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETATCH)
@@ -153,7 +153,6 @@
 
 	var/obj/item/parent_item = parent
 	var/mitigation_prob = cover.getRating(damage_type) * (100 - penetration) * 0.01 //pen reduction is a % instead of flat like armor
-	var/status_cover_modifier = 1
 
 	if(mitigation_prob <= 0)
 		return FALSE
@@ -165,14 +164,12 @@
 		return FALSE
 
 	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed())
-		status_cover_modifier *= 0.5
+		mitigation_prob *= 0.5
 
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
 		if(C.stagger)
-			status_cover_modifier *= 0.4
-
-	mitigation_prob *= status_cover_modifier
+			mitigation_prob *= 0.4
 
 	if(!prob(mitigation_prob))
 		return FALSE
