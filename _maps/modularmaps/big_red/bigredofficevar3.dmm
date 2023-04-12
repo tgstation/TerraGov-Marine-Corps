@@ -268,7 +268,7 @@
 /area/bigredv2/outside/c)
 "mO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "nL" = (
@@ -383,7 +383,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "sx" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -542,7 +542,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "yN" = (
@@ -764,7 +764,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Jd" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/office_complex)
 "Jh" = (
@@ -834,7 +834,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "MX" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"

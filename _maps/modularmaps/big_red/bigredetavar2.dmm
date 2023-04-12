@@ -116,7 +116,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/northeast)
 "eP" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
@@ -176,7 +176,7 @@
 /area/bigredv2/caves/northeast)
 "gW" = (
 /obj/item/shard,
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "gX" = (
@@ -228,7 +228,7 @@
 /area/bigredv2/outside/ne)
 "jQ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/structure/handcuffs,
+/obj/effect/spawner/random/misc/handcuffs,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "kc" = (
@@ -368,7 +368,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "qu" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
@@ -563,9 +563,9 @@
 /area/bigredv2/outside/general_offices)
 "AN" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "AT" = (
@@ -589,8 +589,8 @@
 /area/bigredv2/outside/general_offices)
 "BG" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "BI" = (
@@ -725,7 +725,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "IA" = (
-/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
 "Jc" = (
@@ -874,7 +874,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Tm" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "TF" = (

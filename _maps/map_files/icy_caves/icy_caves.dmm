@@ -144,7 +144,7 @@
 	},
 /area/icy_caves/outpost/engineering)
 "aC" = (
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
@@ -159,7 +159,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "aF" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
@@ -201,14 +201,14 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aR" = (
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aS" = (
@@ -329,9 +329,9 @@
 "bs" = (
 /obj/structure/closet/crate/medical,
 /obj/item/defibrillator,
-/obj/effect/spawner/random/firstaid,
-/obj/effect/spawner/random/firstaid,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -366,7 +366,7 @@
 	},
 /area/icy_caves/outpost/security)
 "bw" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bx" = (
@@ -598,7 +598,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/crashed_ship)
 "cO" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
@@ -967,7 +967,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eT" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "eU" = (
@@ -1008,24 +1008,24 @@
 "fb" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/item/storage/firstaid/regular,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fd" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fe" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/item/clothing/glasses/welding,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark,
@@ -1033,16 +1033,16 @@
 "ff" = (
 /obj/structure/rack,
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fg" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -1186,7 +1186,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "gJ" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "gK" = (
@@ -1515,7 +1515,7 @@
 /area/icy_caves/outpost/engineering)
 "iH" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "iI" = (
@@ -1540,7 +1540,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/caves/west)
 "iN" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
@@ -1604,7 +1604,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "jk" = (
@@ -1624,7 +1624,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "jq" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "jr" = (
@@ -1796,7 +1796,7 @@
 /area/icy_caves/outpost/LZ2)
 "kd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "kf" = (
@@ -2045,7 +2045,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "lE" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "lH" = (
@@ -2386,11 +2386,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "nw" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail)
 "nx" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/mining/west)
 "ny" = (
@@ -2656,7 +2656,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "oU" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
@@ -2787,7 +2787,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "pB" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "pC" = (
@@ -2822,7 +2822,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/alienstuff)
 "pK" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "pL" = (
@@ -2842,7 +2842,7 @@
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "pR" = (
@@ -2925,7 +2925,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qi" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
@@ -2935,7 +2935,7 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qk" = (
@@ -3183,7 +3183,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "rs" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/tile/dark/green2{
 	dir = 1
 	},
@@ -3199,7 +3199,7 @@
 /area/icy_caves/outpost/medbay)
 "rv" = (
 /obj/structure/table,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "rw" = (
@@ -3216,12 +3216,12 @@
 /area/icy_caves/outpost/medbay)
 "rz" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/largeweighted,
-/obj/effect/spawner/random/beaker/largeweighted,
-/obj/effect/spawner/random/beaker/largeweighted,
-/obj/effect/spawner/random/beaker/largeweighted,
-/obj/effect/spawner/random/beaker/largeweighted,
-/obj/effect/spawner/random/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3404,7 +3404,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "sg" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/medbay)
 "sh" = (
@@ -3721,7 +3721,7 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "tG" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -4052,7 +4052,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "vh" = (
@@ -4076,11 +4076,11 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "vl" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "vm" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -4314,7 +4314,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "wx" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
 "wz" = (
@@ -4456,7 +4456,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "xi" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "xk" = (
@@ -4534,7 +4534,7 @@
 /area/icy_caves/outpost/LZ2)
 "xy" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "xz" = (
@@ -4706,7 +4706,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "yC" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "yE" = (
@@ -4739,11 +4739,11 @@
 /obj/item/cell/hyper,
 /obj/item/cell/hyper,
 /obj/item/cell/hyper,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
@@ -4975,7 +4975,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zT" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -4993,9 +4993,9 @@
 "zY" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/item/storage/firstaid/regular,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/dark/green2{
 	dir = 9
 	},
@@ -5100,7 +5100,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/office)
 "Au" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Av" = (
@@ -5340,7 +5340,7 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "BF" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5903,7 +5903,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "Ew" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Ex" = (
@@ -5943,7 +5943,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "EI" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/dark/green2{
 	dir = 1
 	},
@@ -5967,7 +5967,7 @@
 /turf/open/floor/prison/red/full,
 /area/icy_caves/caves/cavesbrig)
 "EP" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "EU" = (
@@ -6288,7 +6288,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "Gn" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Go" = (
@@ -6691,7 +6691,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "Ij" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -6805,7 +6805,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "IL" = (
@@ -6858,7 +6858,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "IZ" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/LZ2)
 "Jc" = (
@@ -6887,7 +6887,7 @@
 "Jl" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -7302,7 +7302,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Lp" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Lq" = (
@@ -7425,7 +7425,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "LO" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "LQ" = (
@@ -7509,7 +7509,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Mh" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/research)
 "Mi" = (
@@ -7628,7 +7628,7 @@
 /area/icy_caves/outpost/office)
 "MT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "MU" = (
@@ -7643,7 +7643,7 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "MV" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/office)
 "MW" = (
@@ -7792,7 +7792,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "NI" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/rock)
 "NJ" = (
@@ -8261,7 +8261,7 @@
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/icy_caves/outpost/LZ1)
 "Qj" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "Qk" = (
@@ -8402,7 +8402,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "QS" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -8617,7 +8617,7 @@
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/icy_caves/caves/rock)
 "Sc" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
 "Se" = (
@@ -8656,9 +8656,9 @@
 "Sm" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/item/storage/firstaid/regular,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "So" = (
@@ -9062,7 +9062,7 @@
 /area/icy_caves/outpost/LZ1)
 "UG" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
@@ -9401,7 +9401,7 @@
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/icy_caves/outpost/outside/center)
 "Wf" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Wg" = (
@@ -9425,7 +9425,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Wm" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "Wn" = (
@@ -9459,7 +9459,7 @@
 "Wt" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/dark/red2,
 /area/icy_caves/outpost/security)
 "Wu" = (
@@ -9578,7 +9578,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/medbay)
 "Xb" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "Xc" = (
@@ -9646,7 +9646,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Xn" = (
 /obj/structure/table,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Xo" = (
@@ -9707,7 +9707,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/space)
 "Xz" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
@@ -9843,7 +9843,7 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "Ye" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/security)
 "Yf" = (
@@ -10139,7 +10139,7 @@
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/icy_caves/caves/rock)
 "ZJ" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "ZK" = (
@@ -10160,7 +10160,7 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "ZN" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "ZP" = (

@@ -1891,7 +1891,7 @@
 /area/mainship/command/self_destruct)
 "aBc" = (
 /obj/machinery/self_destruct/console,
-/obj/effect/spawner/random/plushie/nospawnninety,
+/obj/effect/spawner/random/misc/plushie/nospawnninety,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "aBe" = (
@@ -4173,7 +4173,7 @@
 	},
 /area/mainship/squads/req)
 "bpr" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -5901,7 +5901,7 @@
 /area/mainship/medical/surgery_hallway)
 "bKG" = (
 /obj/machinery/autodoc,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "bKI" = (
@@ -8477,7 +8477,7 @@
 	},
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
 "djv" = (
@@ -11145,7 +11145,7 @@
 /area/mainship/command/bridge)
 "hHj" = (
 /obj/machinery/camera/autoname/mainship,
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -16482,13 +16482,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "qFT" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "qGo" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/storage/box/tgmc_mre,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,

@@ -97,7 +97,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "abE" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_2)
 "abH" = (
@@ -290,7 +290,7 @@
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "ahJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
@@ -435,7 +435,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_street)
 "aoO" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "aoT" = (
@@ -650,7 +650,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
 "awe" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "awA" = (
@@ -708,8 +708,8 @@
 /area/gelida/caves/west_caves)
 "aye" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "ayp" = (
@@ -780,7 +780,7 @@
 /area/gelida/outdoors/colony_streets/south_street)
 "aAR" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 7
 	},
@@ -799,7 +799,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "aAY" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "aAZ" = (
@@ -811,11 +811,11 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "aBm" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
 "aBq" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/mining)
 "aBu" = (
@@ -904,7 +904,7 @@
 	},
 /area/gelida/indoors/a_block/bridges)
 "aFI" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
@@ -1046,7 +1046,7 @@
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "aKQ" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "aLd" = (
@@ -1087,7 +1087,7 @@
 /area/gelida/indoors/a_block/dorms)
 "aLL" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 4
 	},
@@ -1113,7 +1113,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aMy" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
@@ -1160,7 +1160,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "aPe" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "aPl" = (
@@ -1241,10 +1241,10 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 11
 	},
-/obj/effect/spawner/random/kitchenknife{
+/obj/effect/spawner/random/food_or_drink/kitchenknife{
 	pixel_x = -11
 	},
-/obj/effect/spawner/random/burger{
+/obj/effect/spawner/random/food_or_drink/burger{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -1295,7 +1295,7 @@
 /area/gelida/indoors/a_block/admin)
 "aRq" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "aRy" = (
@@ -1401,7 +1401,7 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_street)
 "aWa" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aWg" = (
@@ -1432,7 +1432,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "aXk" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -8;
 	pixel_y = -8
 	},
@@ -1579,7 +1579,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -1692,7 +1692,7 @@
 	},
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "beo" = (
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = 5;
 	pixel_y = 7
 	},
@@ -1710,15 +1710,15 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/effect/spawner/random/organ{
+/obj/effect/spawner/random/medical/organ{
 	pixel_x = -7;
 	pixel_y = 17
 	},
-/obj/effect/spawner/random/organ{
+/obj/effect/spawner/random/medical/organ{
 	pixel_x = 5;
 	pixel_y = -7
 	},
-/obj/effect/spawner/random/organ{
+/obj/effect/spawner/random/medical/organ{
 	pixel_x = -14;
 	pixel_y = -16
 	},
@@ -1848,7 +1848,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "bin" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
@@ -1886,8 +1886,8 @@
 /area/gelida/outdoors/colony_streets/south_street)
 "bkv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "bkL" = (
@@ -1914,7 +1914,7 @@
 "blf" = (
 /obj/item/weapon/gun/revolver/cmb,
 /obj/item/clothing/head/soft/sec,
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -1993,8 +1993,8 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "bok" = (
-/obj/effect/spawner/random/structure/supplycrate,
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 13;
 	pixel_y = 18
 	},
@@ -2038,10 +2038,10 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "bpJ" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = 6
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2069,7 +2069,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "bsh" = (
@@ -2133,7 +2133,7 @@
 /area/gelida/indoors/a_block/hallway)
 "bus" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bar)
 "buA" = (
@@ -2171,7 +2171,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "bvb" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/bed/chair{
 	dir = 4;
 	pixel_x = 1;
@@ -2229,7 +2229,7 @@
 /area/gelida/indoors/a_block/corpo)
 "bwt" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -2254,7 +2254,7 @@
 /turf/open/floor/plating/platebot,
 /area/gelida/indoors/c_block/cargo)
 "bxb" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "bxh" = (
@@ -2290,7 +2290,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "bzb" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "bzf" = (
@@ -2344,7 +2344,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "bBO" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_street)
 "bBU" = (
@@ -2369,11 +2369,11 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "bCm" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "bCs" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
@@ -2499,7 +2499,7 @@
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "bGh" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "bGr" = (
@@ -2563,7 +2563,7 @@
 	pixel_y = 14
 	},
 /obj/item/trash/plate,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
@@ -2593,7 +2593,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "bID" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 8;
 	pixel_y = 6
 	},
@@ -2645,7 +2645,7 @@
 /obj/structure/rack/nometal,
 /obj/item/clothing/head/hardhat,
 /obj/item/clothing/head/hardhat,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "bKq" = (
@@ -2653,7 +2653,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "bKF" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "bLc" = (
@@ -2699,7 +2699,7 @@
 /area/gelida/indoors/a_block/dorms)
 "bMT" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 4
 	},
@@ -2720,7 +2720,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/garage)
 "bMX" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "bMY" = (
@@ -2792,7 +2792,7 @@
 /area/gelida/indoors/b_block/bridge)
 "bOx" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/donut{
+/obj/effect/spawner/random/food_or_drink/donut{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -2873,7 +2873,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "bQW" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -3203,7 +3203,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "ceO" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 8;
 	pixel_y = 6
 	},
@@ -3389,7 +3389,7 @@
 /turf/open/floor/freezer,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "clo" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "cml" = (
@@ -3441,7 +3441,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "cnG" = (
@@ -3523,7 +3523,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "crW" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/shard,
 /obj/item/stack/rods,
 /turf/open/floor/prison/darkred/full,
@@ -3588,7 +3588,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "cuc" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/item/reagent_containers/food/drinks/flask/marine{
 	pixel_x = -6;
 	pixel_y = -11
@@ -3624,7 +3624,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "cuK" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -3778,7 +3778,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/kitchen)
 "czH" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "czM" = (
@@ -3819,15 +3819,15 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
 "cAg" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "cAu" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "cAv" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3878,7 +3878,7 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
 "cCa" = (
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /obj/item/newspaper{
 	pixel_x = 8;
 	pixel_y = -7
@@ -4016,7 +4016,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "cGx" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
@@ -4087,7 +4087,7 @@
 /area/gelida/indoors/a_block/admin)
 "cHL" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 6;
 	pixel_y = 7
 	},
@@ -4209,7 +4209,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/landing_zone_2)
 "cLa" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "cLe" = (
@@ -4279,7 +4279,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "cNq" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/hydro)
@@ -4374,7 +4374,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "cQP" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "cQW" = (
@@ -4428,7 +4428,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "cSd" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/fitness)
 "cSm" = (
@@ -4467,7 +4467,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "cTz" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/cable,
 /obj/structure/window/reinforced/windowstake{
 	dir = 4
@@ -4553,7 +4553,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "cWi" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "cWj" = (
@@ -4561,7 +4561,7 @@
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "cWF" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "cWH" = (
@@ -4608,7 +4608,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "cYf" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/bridge)
 "cYs" = (
@@ -4668,7 +4668,7 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "cZv" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
@@ -4716,7 +4716,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "daZ" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "dbd" = (
@@ -4751,7 +4751,7 @@
 /area/gelida/indoors/c_block/cargo)
 "dbC" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 4
 	},
@@ -4848,7 +4848,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "dfj" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "dfq" = (
@@ -4928,7 +4928,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/casino)
 "dhk" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
 "dhr" = (
@@ -4954,7 +4954,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_street)
 "dhP" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "dia" = (
@@ -4997,7 +4997,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "dkr" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/admin)
 "dkT" = (
@@ -5042,7 +5042,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/caves/west_caves)
 "dmk" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/stack/rods,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
@@ -5081,7 +5081,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "dnH" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "dnT" = (
@@ -5114,7 +5114,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "doO" = (
@@ -5210,7 +5210,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "drw" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -5247,7 +5247,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "dsa" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
@@ -5259,7 +5259,7 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "dsw" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 8;
 	pixel_y = 6
 	},
@@ -5294,8 +5294,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/disposal,
-/obj/effect/spawner/random/firstaid{
+/obj/effect/spawner/random/machinery/disposal,
+/obj/effect/spawner/random/medical/firstaid{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -5389,7 +5389,7 @@
 	dir = 1
 	},
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
@@ -5444,7 +5444,7 @@
 /area/gelida/indoors/a_block/security)
 "dxV" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "dyf" = (
@@ -5535,7 +5535,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "dBO" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/bed/chair{
 	dir = 4;
 	pixel_x = 1;
@@ -5616,7 +5616,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "dES" = (
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = -9;
 	pixel_y = -12
 	},
@@ -5735,7 +5735,7 @@
 /area/gelida/indoors/b_block/hydro)
 "dHA" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 3;
 	pixel_y = 7
 	},
@@ -5849,8 +5849,8 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "dKZ" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "dLh" = (
@@ -5918,7 +5918,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "dOl" = (
@@ -6202,7 +6202,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "dXf" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -6241,7 +6241,7 @@
 /area/gelida/outdoors/w_rockies)
 "dYq" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
 "dYx" = (
@@ -6292,7 +6292,7 @@
 "dZo" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "dZy" = (
@@ -6316,12 +6316,12 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "dZU" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "eae" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "eas" = (
@@ -6411,7 +6411,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "ecS" = (
@@ -6468,7 +6468,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "edS" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "eea" = (
@@ -6571,7 +6571,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "egy" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -6587,7 +6587,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "egF" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "egJ" = (
@@ -6652,11 +6652,11 @@
 /area/gelida/indoors/c_block/garage)
 "elG" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/tool{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "emD" = (
@@ -6745,7 +6745,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/structure/closet/crate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
@@ -6788,7 +6788,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "erf" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "erk" = (
@@ -6911,7 +6911,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "euz" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "euE" = (
@@ -6978,7 +6978,7 @@
 /area/gelida/indoors/a_block/dorms)
 "evG" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "evL" = (
@@ -7157,7 +7157,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "eCL" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "eDl" = (
@@ -7317,7 +7317,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "eHl" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/bed/chair{
 	dir = 4;
 	pixel_x = 1;
@@ -7351,7 +7351,7 @@
 /turf/open/floor/plating,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "eHB" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 1;
 	pixel_y = -6
 	},
@@ -7422,7 +7422,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "eKq" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "eKz" = (
@@ -7704,7 +7704,7 @@
 	},
 /area/gelida/indoors/a_block/medical)
 "eTo" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "eTs" = (
@@ -7751,7 +7751,7 @@
 	},
 /area/gelida/indoors/a_block/bridges/corpo)
 "eUV" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "eVd" = (
@@ -8104,7 +8104,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "fgw" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/rock)
 "fgJ" = (
@@ -8210,7 +8210,7 @@
 /area/gelida/indoors/a_block/dorms)
 "fmO" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 7
 	},
@@ -8225,7 +8225,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "fnf" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "fno" = (
@@ -8233,8 +8233,8 @@
 	dir = 1
 	},
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "fnx" = (
@@ -8254,7 +8254,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "fnR" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "fox" = (
@@ -8314,7 +8314,7 @@
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "fqe" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison{
 	dir = 8
@@ -8356,7 +8356,7 @@
 /area/gelida/indoors/c_block/cargo)
 "frC" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 8
 	},
 /obj/item/tool/pen,
@@ -8492,7 +8492,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "fxu" = (
@@ -8500,12 +8500,12 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "fxC" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "fxT" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/shard,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -8537,7 +8537,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "fzq" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "fzB" = (
@@ -8629,7 +8629,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "fDw" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "fEb" = (
@@ -8659,7 +8659,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/gelida/indoors/a_block/medical)
 "fFG" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8697,7 +8697,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "fGM" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
@@ -8711,7 +8711,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/kitchen)
 "fHD" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -8741,7 +8741,7 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "fIE" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/ore/uranium,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
@@ -8758,15 +8758,15 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
 "fJM" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 10;
 	pixel_y = -7
 	},
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "fJX" = (
@@ -8884,7 +8884,7 @@
 "fOS" = (
 /obj/structure/table/mainship,
 /obj/item/newspaper,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
@@ -8979,7 +8979,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "fTs" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "fTz" = (
@@ -9010,7 +9010,7 @@
 /area/gelida/indoors/a_block/hallway)
 "fUy" = (
 /obj/structure/table/fancywoodentable,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 8
 	},
 /obj/item/tool/pen,
@@ -9036,7 +9036,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -9046,7 +9046,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/caves/west_caves)
 "fVo" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood{
 	dir = 1
@@ -9108,7 +9108,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorms)
 "fWH" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "fXd" = (
@@ -9164,7 +9164,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -9234,7 +9234,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "gaF" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_street)
 "gaP" = (
@@ -9262,7 +9262,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "gbt" = (
@@ -9356,8 +9356,8 @@
 /area/gelida/indoors/b_block/bridge)
 "gew" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "geE" = (
@@ -9369,7 +9369,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/gelida/indoors/lone_buildings/engineering)
 "geX" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "gfh" = (
@@ -9381,7 +9381,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/central_caves)
 "gfp" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/lone_buildings/spaceport)
 "ggk" = (
@@ -9420,7 +9420,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "ghH" = (
@@ -9443,7 +9443,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "gib" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -9520,15 +9520,15 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "gkd" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "gkg" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9550,7 +9550,7 @@
 /area/gelida/indoors/lone_buildings/spaceport)
 "gkR" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "gkW" = (
@@ -9593,7 +9593,7 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "glH" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
@@ -9666,7 +9666,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "gnN" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
 	},
@@ -9686,7 +9686,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/outdoors/w_rockies)
 "gob" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "gon" = (
@@ -9766,7 +9766,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -9776,7 +9776,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/caves/west_caves)
 "grM" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "gsb" = (
@@ -9820,8 +9820,8 @@
 /turf/open/shuttle/dropship/six,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "gui" = (
-/obj/effect/spawner/random/wood,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/wood,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -10013,7 +10013,7 @@
 /area/gelida/caves/central_caves)
 "gzX" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "gAr" = (
@@ -10065,7 +10065,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "gBD" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "gBG" = (
@@ -10109,7 +10109,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "gDe" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -10126,7 +10126,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "gDJ" = (
-/obj/effect/spawner/random/surgical,
+/obj/effect/spawner/random/medical/surgical,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
 "gEa" = (
@@ -10155,7 +10155,7 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
 "gFc" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -10298,7 +10298,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/freezer,
 /area/gelida/indoors/a_block/dorms)
 "gJz" = (
@@ -10455,8 +10455,8 @@
 /area/gelida/landing_zone_1)
 "gNl" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool{
 	pixel_y = -3
 	},
 /turf/open/floor/mainship/black/full,
@@ -10468,7 +10468,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/security)
 "gNz" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
@@ -10639,7 +10639,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "gRT" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "gSb" = (
@@ -10789,7 +10789,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "hau" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 7
 	},
@@ -10809,7 +10809,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/n_rockies)
 "haL" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "haP" = (
@@ -10846,7 +10846,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "hcf" = (
-/obj/effect/spawner/random/heal_pack/bruteweighted,
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "hcv" = (
@@ -10877,7 +10877,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "hcS" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/heal_pack/bruteweighted{
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -10893,7 +10893,7 @@
 /turf/open/floor/plating,
 /area/gelida/landing_zone_1)
 "hdB" = (
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "hdJ" = (
@@ -10936,7 +10936,7 @@
 /obj/item/tool/pen{
 	pixel_x = -7
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 8
 	},
@@ -10944,7 +10944,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_2)
 "hfD" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/structure/prop/vehicle/truck/destructible{
 	dir = 8
 	},
@@ -11055,7 +11055,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "hji" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -11068,7 +11068,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "hjr" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "hjt" = (
@@ -11095,7 +11095,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/c_block/garage)
 "hjU" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -11153,7 +11153,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "hla" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
@@ -11247,7 +11247,7 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "hoH" = (
 /obj/effect/spawner/random/decal/blood,
-/obj/effect/spawner/random/structure/rollerbed,
+/obj/effect/spawner/random/medical/structure/rollerbed,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "hoS" = (
@@ -11255,7 +11255,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "hoV" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -11365,7 +11365,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "hsZ" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /obj/structure/cable,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
@@ -11465,7 +11465,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/hallway)
 "hxl" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/plate,
 /area/gelida/landing_zone_1)
 "hxv" = (
@@ -11543,7 +11543,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
 	},
@@ -11596,7 +11596,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "hBR" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "hCb" = (
@@ -11610,7 +11610,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "hCg" = (
@@ -11679,7 +11679,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "hEl" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/executive)
 "hEP" = (
@@ -11689,7 +11689,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "hFl" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -11719,8 +11719,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "hGz" = (
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "hGC" = (
@@ -11922,7 +11922,7 @@
 /area/gelida/indoors/b_block/bar)
 "hPl" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "hPB" = (
@@ -11945,7 +11945,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/dorm_north)
 "hQf" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -11970,7 +11970,7 @@
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "hRf" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/burger{
+/obj/effect/spawner/random/food_or_drink/burger{
 	pixel_x = -9;
 	pixel_y = 12
 	},
@@ -12206,7 +12206,7 @@
 /area/gelida/indoors/a_block/dorms)
 "hXG" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
@@ -12244,8 +12244,8 @@
 /area/gelida/indoors/c_block/garage)
 "hYH" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/pickaxe,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_street)
 "hYS" = (
@@ -12330,8 +12330,8 @@
 /area/gelida/indoors/a_block/medical)
 "ibl" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "ibt" = (
@@ -12499,7 +12499,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "igM" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "igX" = (
@@ -12544,7 +12544,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "iio" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -12694,7 +12694,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "ils" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_1)
 "ilz" = (
@@ -12755,12 +12755,12 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "inc" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "ing" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -12810,7 +12810,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "ipk" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "ipp" = (
@@ -12951,7 +12951,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/sunglasses{
+/obj/effect/spawner/random/clothing/sunglasses{
 	pixel_y = 5
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -13003,7 +13003,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/spaceport)
 "ivN" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
 "iwn" = (
@@ -13025,7 +13025,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "iwQ" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorms)
@@ -13040,7 +13040,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "ixi" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -13134,7 +13134,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_street)
 "izj" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -13230,7 +13230,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iCI" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -13294,14 +13294,14 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "iFq" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/landing_zone_1)
 "iFF" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "iGe" = (
@@ -13312,11 +13312,11 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "iGA" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "iGR" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "iGX" = (
@@ -13325,7 +13325,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHe" = (
 /obj/structure/fakeplatform,
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iHf" = (
@@ -13458,7 +13458,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "iKW" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorms)
 "iLi" = (
@@ -13562,7 +13562,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
 "iNR" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
@@ -13596,7 +13596,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "iOO" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/mining)
 "iOR" = (
@@ -13658,7 +13658,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "iRN" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "iSy" = (
@@ -13715,7 +13715,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/corpo)
 "iUn" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
 "iUt" = (
@@ -13738,7 +13738,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/corpo)
 "iWq" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "iWI" = (
@@ -13964,7 +13964,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "jcI" = (
@@ -14008,7 +14008,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "jeo" = (
@@ -14049,7 +14049,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/bridges/dorms_fitness)
 "jgt" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -14223,7 +14223,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "jon" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 9;
 	pixel_y = 12
 	},
@@ -14237,7 +14237,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "jpK" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/plate,
 /area/gelida/landing_zone_2)
 "jpP" = (
@@ -14347,11 +14347,11 @@
 /area/gelida/indoors/a_block/hallway)
 "jti" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/radio/highspawn{
+/obj/effect/spawner/random/engineering/radio/highspawn{
 	pixel_x = 6;
 	pixel_y = 11
 	},
-/obj/effect/spawner/random/radio/highspawn{
+/obj/effect/spawner/random/engineering/radio/highspawn{
 	pixel_x = -8;
 	pixel_y = 4
 	},
@@ -14397,7 +14397,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/gelida/indoors/lone_buildings/engineering)
 "juk" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "jum" = (
@@ -14521,7 +14521,7 @@
 /area/gelida/indoors/b_block/hydro)
 "jzt" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "jzz" = (
@@ -14870,7 +14870,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "jMT" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "jMX" = (
@@ -15102,7 +15102,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bridge)
 "jSc" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -11;
 	pixel_y = -3
 	},
@@ -15305,7 +15305,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "jYU" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -15314,11 +15314,11 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "jYY" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "jYZ" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
@@ -15361,7 +15361,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "kbd" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "kbp" = (
@@ -15426,7 +15426,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "kdb" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/cargo)
 "kds" = (
@@ -15462,7 +15462,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "keS" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "keT" = (
@@ -15590,7 +15590,7 @@
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "kjE" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -15600,7 +15600,7 @@
 /area/gelida/indoors/a_block/dorms)
 "kjH" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "kky" = (
@@ -15615,7 +15615,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "kkV" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "klt" = (
@@ -15626,7 +15626,7 @@
 /area/gelida/indoors/a_block/dorms)
 "klA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "klZ" = (
@@ -15643,7 +15643,7 @@
 /obj/machinery/microwave{
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/structure/microwave{
+/obj/effect/spawner/random/machinery/microwave{
 	pixel_y = 15
 	},
 /turf/open/floor/prison/kitchen,
@@ -15838,7 +15838,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "ktc" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "ktM" = (
@@ -15853,7 +15853,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "kuh" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "kuq" = (
@@ -15879,7 +15879,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/north_street)
 "kvt" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -15906,7 +15906,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "kww" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "kwz" = (
@@ -16040,7 +16040,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "kDs" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/darkpurple,
 /area/gelida/indoors/a_block/dorms)
 "kDw" = (
@@ -16048,7 +16048,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "kDG" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "kDS" = (
@@ -16182,7 +16182,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "kHt" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 9;
 	pixel_y = -4
 	},
@@ -16200,7 +16200,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/mining)
 "kHI" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -16231,7 +16231,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
@@ -16244,7 +16244,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "kIe" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "kIj" = (
@@ -16293,7 +16293,7 @@
 /area/gelida/indoors/b_block/bar)
 "kJJ" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/sunglasses,
+/obj/effect/spawner/random/clothing/sunglasses,
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/garage)
 "kJL" = (
@@ -16321,7 +16321,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "kLa" = (
@@ -16360,7 +16360,7 @@
 /area/gelida/indoors/a_block/dorm_north)
 "kMk" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "kMm" = (
@@ -16440,7 +16440,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "kOy" = (
@@ -16461,7 +16461,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges)
 "kOW" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/cable,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
@@ -16566,7 +16566,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/spaceport)
 "kUD" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
 "kUF" = (
@@ -16668,7 +16668,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "kYv" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "kYx" = (
@@ -16781,12 +16781,12 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "lbM" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/machinery/light,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/spaceport)
 "lbP" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
@@ -16851,12 +16851,12 @@
 /area/gelida/caves/east_caves)
 "ldZ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison/darkyellow/full,
 /area/gelida/indoors/lone_buildings/engineering)
 "leo" = (
 /obj/structure/bed/chair/comfy,
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
 "lev" = (
@@ -17015,7 +17015,7 @@
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "lik" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "lin" = (
@@ -17028,11 +17028,11 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "liG" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "ljc" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "lki" = (
@@ -17062,7 +17062,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "lkR" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -17079,7 +17079,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "llu" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "llK" = (
@@ -17098,7 +17098,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "lmG" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -17118,7 +17118,7 @@
 /obj/machinery/atm{
 	pixel_y = 30
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "lnv" = (
@@ -17216,7 +17216,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "lrB" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -17297,7 +17297,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "ltj" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -17316,7 +17316,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "ltZ" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/spaceport)
@@ -17336,7 +17336,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "luJ" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -17386,7 +17386,7 @@
 /turf/open/shuttle/dropship/three,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "lvU" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "lwd" = (
@@ -17436,7 +17436,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/n_rockies)
 "lyJ" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/cargo)
 "lzg" = (
@@ -17524,7 +17524,7 @@
 /area/gelida/indoors/a_block/executive)
 "lBd" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/engineering)
 "lBi" = (
@@ -17648,7 +17648,7 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
 "lGm" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -17721,7 +17721,7 @@
 /area/gelida/indoors/a_block/dorms)
 "lIB" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/radio/highspawn{
+/obj/effect/spawner/random/engineering/radio/highspawn{
 	pixel_x = 7;
 	pixel_y = 14
 	},
@@ -17763,7 +17763,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "lJE" = (
@@ -17918,7 +17918,7 @@
 /turf/open/floor/plating/platebot,
 /area/gelida/indoors/c_block/cargo)
 "lPe" = (
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "lPQ" = (
@@ -18003,7 +18003,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "lSR" = (
@@ -18164,7 +18164,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/spaceport)
 "lXN" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -18203,7 +18203,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "lZo" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "lZt" = (
@@ -18244,7 +18244,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "mav" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/structure/platform_decoration{
 	dir = 1
 	},
@@ -18280,7 +18280,7 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
 	},
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
@@ -18300,7 +18300,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_street)
 "mbA" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/mining)
 "mbK" = (
@@ -18318,7 +18318,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "mcC" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "mcL" = (
@@ -18336,7 +18336,7 @@
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
 "mdb" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "mdh" = (
@@ -18498,7 +18498,7 @@
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/donut{
+/obj/effect/spawner/random/food_or_drink/donut{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/darkred/full,
@@ -18555,10 +18555,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
 "mkC" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 5
 	},
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 19;
 	pixel_y = 18
 	},
@@ -18726,7 +18726,7 @@
 /turf/open/shuttle/dropship/five,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "mnC" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
@@ -18925,7 +18925,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "muP" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "muT" = (
@@ -18959,7 +18959,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "mvW" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
@@ -19019,7 +19019,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "myy" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "myA" = (
@@ -19104,14 +19104,14 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_street)
 "mBv" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "mBI" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "mBK" = (
@@ -19127,7 +19127,7 @@
 /area/gelida/indoors/a_block/medical)
 "mBR" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "mCj" = (
@@ -19197,7 +19197,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "mFO" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen,
 /area/gelida/indoors/a_block/medical)
@@ -19311,7 +19311,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "mLb" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -19345,7 +19345,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "mLW" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "mMd" = (
@@ -19361,7 +19361,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "mME" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "mMH" = (
@@ -19382,7 +19382,7 @@
 	},
 /area/gelida/indoors/b_block/hydro)
 "mNI" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
@@ -19419,7 +19419,7 @@
 /area/gelida/indoors/a_block/dorms)
 "mOQ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "mPb" = (
@@ -19484,7 +19484,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "mRF" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/medical)
@@ -19573,7 +19573,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/landing_zone_1)
 "mUk" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
 "mUy" = (
@@ -19620,7 +19620,7 @@
 /turf/closed/wall/r_wall,
 /area/gelida/outdoors/w_rockies)
 "mVL" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -19661,7 +19661,7 @@
 /obj/structure/platform_decoration{
 	dir = 9
 	},
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "mWB" = (
@@ -19746,12 +19746,12 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "naQ" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
 "nbr" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "nbt" = (
@@ -19898,7 +19898,7 @@
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "nfa" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "nft" = (
@@ -19940,7 +19940,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "ngh" = (
@@ -19986,7 +19986,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "nhq" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "nhI" = (
@@ -20101,7 +20101,7 @@
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "nkF" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/engineering)
 "nkH" = (
@@ -20121,7 +20121,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/bridge)
 "nlB" = (
@@ -20206,7 +20206,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/caves/west_caves)
 "npZ" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "nqO" = (
@@ -20245,7 +20245,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "nsm" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -20356,7 +20356,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "nuv" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/spaceport)
 "nvd" = (
@@ -20446,7 +20446,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "nwV" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "nxC" = (
@@ -20484,7 +20484,7 @@
 /area/gelida/outdoors/colony_streets/south_east_street)
 "nzQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "nzX" = (
@@ -20550,7 +20550,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "nAz" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
 "nAJ" = (
@@ -20636,7 +20636,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "nEH" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -20717,7 +20717,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "nHu" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/greenblue{
 	dir = 9
 	},
@@ -20817,7 +20817,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "nKA" = (
@@ -20856,7 +20856,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "nKO" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "nLj" = (
@@ -20986,7 +20986,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "nOD" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "nOF" = (
@@ -21085,10 +21085,10 @@
 /area/gelida/caves/west_caves)
 "nSb" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "nSf" = (
@@ -21105,7 +21105,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "nSD" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/dorm_north)
 "nSG" = (
@@ -21145,7 +21145,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "nUT" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
@@ -21218,7 +21218,7 @@
 /area/gelida/caves/east_caves)
 "nYI" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "nYL" = (
@@ -21316,7 +21316,7 @@
 /area/gelida/indoors/c_block/cargo)
 "oaS" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -21443,7 +21443,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "oeB" = (
@@ -21460,7 +21460,7 @@
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "oeL" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 5
 	},
@@ -21545,7 +21545,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "oiA" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "oiB" = (
@@ -21666,7 +21666,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "onm" = (
 /obj/structure/closet/bodybag,
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "onR" = (
@@ -21676,7 +21676,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "oor" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/stack/rods,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/lone_buildings/storage_blocks)
@@ -21692,7 +21692,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "opi" = (
@@ -21738,7 +21738,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/hallway)
 "orw" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "orM" = (
@@ -21783,8 +21783,8 @@
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "otk" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/metal,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "otr" = (
@@ -21816,7 +21816,7 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "ouG" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/corpo)
 "ouI" = (
@@ -21849,7 +21849,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "ovk" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -21880,7 +21880,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "ovK" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "owa" = (
@@ -21935,7 +21935,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/powergenerator/superweighted,
+/obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "oya" = (
@@ -22325,7 +22325,7 @@
 /turf/open/floor/plating,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "oJY" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/shard,
 /obj/machinery/light{
 	dir = 1
@@ -22419,7 +22419,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "oMQ" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "oNa" = (
@@ -22493,7 +22493,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "oQY" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
@@ -22504,7 +22504,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "oRm" = (
@@ -22650,7 +22650,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_street)
 "oUu" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "oUK" = (
@@ -22718,7 +22718,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "oWy" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -22808,7 +22808,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "oYU" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "oZr" = (
@@ -22844,7 +22844,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "pai" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "par" = (
@@ -22868,7 +22868,7 @@
 /area/shuttle/drop2/gelida)
 "pbi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "pbD" = (
@@ -22890,7 +22890,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "pcH" = (
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -22929,7 +22929,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "pdp" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -23024,11 +23024,11 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "pfE" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/tool{
 	pixel_x = -4;
 	pixel_y = 1
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "pgs" = (
@@ -23108,7 +23108,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "pik" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "piq" = (
@@ -23138,7 +23138,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "piO" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "piP" = (
@@ -23247,7 +23247,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/dorm_north)
 "pml" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "pmD" = (
@@ -23284,7 +23284,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
 "pnT" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 10;
 	pixel_y = 4
 	},
@@ -23320,7 +23320,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = 7;
 	pixel_y = 8
 	},
@@ -23466,7 +23466,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "puD" = (
@@ -23598,8 +23598,8 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "pzj" = (
-/obj/effect/spawner/random/structure/supplycrate,
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_y = 16
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -23731,7 +23731,7 @@
 /area/gelida/indoors/a_block/corpo)
 "pEs" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "pEA" = (
@@ -23771,7 +23771,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "pET" = (
@@ -23809,7 +23809,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "pFu" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "pFQ" = (
@@ -23868,7 +23868,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "pIq" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/green/full{
 	dir = 4
 	},
@@ -23892,7 +23892,7 @@
 /area/gelida/indoors/c_block/mining)
 "pIS" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 7
 	},
@@ -24055,7 +24055,7 @@
 /area/gelida/indoors/b_block/bar)
 "pMZ" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "pNa" = (
@@ -24134,7 +24134,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "pPE" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "pPQ" = (
@@ -24169,7 +24169,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "pQI" = (
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/gelida/indoors/a_block/kitchen)
 "pRa" = (
@@ -24193,7 +24193,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "pRu" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "pRv" = (
@@ -24333,7 +24333,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "pWb" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
 "pWq" = (
@@ -24399,7 +24399,7 @@
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "pYw" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -4;
 	pixel_y = 7
 	},
@@ -24542,11 +24542,11 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/w_rockies)
 "qcF" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/w_rockies)
 "qcO" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
@@ -24555,7 +24555,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "qdr" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -24659,11 +24659,11 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "qgv" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "qgM" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -12;
 	pixel_y = 6
 	},
@@ -24724,7 +24724,7 @@
 /turf/closed/shuttle/dropship2/finleft,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "qiJ" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "qjq" = (
@@ -24869,7 +24869,7 @@
 	pixel_x = 7;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/donut{
+/obj/effect/spawner/random/food_or_drink/donut{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -24912,7 +24912,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "qpE" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -24930,14 +24930,14 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/b_block/bar)
 "qqd" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "qqt" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/structure/closet/crate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
@@ -25093,7 +25093,7 @@
 	},
 /area/gelida/indoors/b_block/hydro)
 "qxd" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
@@ -25195,7 +25195,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "qzN" = (
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = 16;
 	pixel_y = 14
 	},
@@ -25235,7 +25235,7 @@
 /area/gelida/indoors/c_block/cargo)
 "qCI" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 7;
 	pixel_y = 7
 	},
@@ -25265,7 +25265,7 @@
 	},
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "qEc" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
@@ -25283,7 +25283,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_street)
 "qEv" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "qEA" = (
@@ -25445,7 +25445,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "qJW" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "qKf" = (
@@ -25474,7 +25474,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "qKw" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "qKA" = (
@@ -25527,7 +25527,7 @@
 	pixel_x = -4;
 	pixel_y = 11
 	},
-/obj/effect/spawner/random/donut{
+/obj/effect/spawner/random/food_or_drink/donut{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -25673,7 +25673,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_east_street)
 "qPE" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "qPG" = (
@@ -25777,7 +25777,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "qSj" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -25817,7 +25817,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "qTv" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/item/ore/diamond,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -25825,7 +25825,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/cargo)
 "qTQ" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "qUf" = (
@@ -25915,7 +25915,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "qWq" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
@@ -25933,7 +25933,7 @@
 /area/gelida/indoors/a_block/security)
 "qWV" = (
 /obj/structure/closet/bodybag,
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
@@ -26052,7 +26052,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rbt" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rbD" = (
@@ -26159,7 +26159,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rdC" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rdG" = (
@@ -26180,7 +26180,7 @@
 /turf/open/shuttle/dropship/three,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "rel" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -26204,7 +26204,7 @@
 /area/gelida/indoors/a_block/security)
 "reI" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 4
 	},
@@ -26215,7 +26215,7 @@
 /area/gelida/indoors/a_block/dorms)
 "reQ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 7
 	},
@@ -26251,7 +26251,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "rfy" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -26457,7 +26457,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "rlM" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "rlU" = (
@@ -26484,7 +26484,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "rmA" = (
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "rmB" = (
@@ -26524,7 +26524,7 @@
 /area/gelida/indoors/a_block/admin)
 "rnT" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 2;
 	pixel_y = 4
 	},
@@ -26554,7 +26554,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "roA" = (
@@ -26776,7 +26776,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rxo" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "rxw" = (
@@ -26818,7 +26818,7 @@
 /area/gelida/indoors/a_block/security)
 "ryX" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "rzh" = (
@@ -26834,7 +26834,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "rzE" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -27003,7 +27003,7 @@
 /area/gelida/indoors/a_block/admin)
 "rEc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 8
 	},
@@ -27031,7 +27031,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "rGq" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "rGr" = (
@@ -27089,7 +27089,7 @@
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/hallway)
 "rIx" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "rIE" = (
@@ -27105,18 +27105,18 @@
 /turf/open/ground/river,
 /area/gelida/indoors/a_block/fitness)
 "rIK" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
 "rKj" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "rKm" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/engineering)
 "rKr" = (
@@ -27220,11 +27220,11 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "rNe" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "rNn" = (
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -27444,7 +27444,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "rVL" = (
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "rVO" = (
@@ -27627,7 +27627,7 @@
 /turf/closed/wall/r_wall,
 /area/gelida/outdoors/colony_streets/windbreaker)
 "sct" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "scv" = (
@@ -27635,7 +27635,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "scM" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "scR" = (
@@ -27644,11 +27644,11 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "scS" = (
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "sdo" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_2)
 "sdy" = (
@@ -27945,7 +27945,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/central_caves)
 "snU" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "soc" = (
@@ -28073,7 +28073,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "srD" = (
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /obj/item/newspaper{
 	pixel_x = -7;
 	pixel_y = 5
@@ -28151,7 +28151,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "stc" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "stq" = (
@@ -28164,7 +28164,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "stE" = (
@@ -28234,14 +28234,14 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "svq" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "svG" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -28286,7 +28286,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "sxk" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/structure/bed/chair{
 	dir = 4;
 	pixel_x = 1;
@@ -28347,7 +28347,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "syo" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "syu" = (
@@ -28371,7 +28371,7 @@
 /area/gelida/caves/west_caves)
 "szd" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "szN" = (
@@ -28432,7 +28432,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "sBl" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -28444,7 +28444,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "sBz" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/donut{
+/obj/effect/spawner/random/food_or_drink/donut{
 	pixel_y = 9
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -28476,7 +28476,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sBU" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "sCi" = (
@@ -28549,7 +28549,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "sDS" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "sEe" = (
@@ -28603,7 +28603,7 @@
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "sFl" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
 "sFv" = (
@@ -28635,7 +28635,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "sGM" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "sHi" = (
@@ -28644,7 +28644,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "sHG" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sIj" = (
@@ -28660,7 +28660,7 @@
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "sIF" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -28771,7 +28771,7 @@
 /area/gelida/indoors/c_block/casino)
 "sLU" = (
 /obj/structure/window/framed/colony,
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "sLZ" = (
@@ -28995,7 +28995,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/bridge)
 "sSq" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/fakeplatform{
 	dir = 4
 	},
@@ -29003,7 +29003,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sSr" = (
 /obj/effect/turf_decal/tile/full/black,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "sSY" = (
@@ -29041,7 +29041,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "sUw" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/spaceport)
 "sUO" = (
@@ -29146,7 +29146,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/corpo)
 "sYf" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison{
 	dir = 1
 	},
@@ -29321,14 +29321,14 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "tdr" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
 "tdA" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -29500,7 +29500,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "tjz" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
@@ -29673,7 +29673,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/landing_zone_1)
 "tnR" = (
-/obj/effect/spawner/random/structure/curtain,
+/obj/effect/spawner/random/misc/structure/curtain,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/executive)
 "tod" = (
@@ -29866,7 +29866,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/casino)
 "twC" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "twI" = (
@@ -29942,7 +29942,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "tyS" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "tyY" = (
@@ -30057,11 +30057,11 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "tCJ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/radio/highspawn{
+/obj/effect/spawner/random/engineering/radio/highspawn{
 	pixel_x = -12;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/radio/highspawn{
+/obj/effect/spawner/random/engineering/radio/highspawn{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -30086,7 +30086,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/spaceport)
 "tDO" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -30162,13 +30162,13 @@
 	},
 /area/gelida/indoors/b_block/bridge)
 "tHY" = (
-/obj/effect/spawner/random/structure/curtain/medical,
+/obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/dark2{
 	dir = 4
 	},
 /area/gelida/indoors/a_block/medical)
 "tIb" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -30186,7 +30186,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "tIk" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -30365,7 +30365,7 @@
 /area/gelida/indoors/b_block/hydro)
 "tPv" = (
 /obj/machinery/light,
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/kitchen)
 "tPN" = (
@@ -30379,7 +30379,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "tQv" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "tQB" = (
@@ -30456,7 +30456,7 @@
 	},
 /area/gelida/landing_zone_1)
 "tSN" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "tSO" = (
@@ -30515,7 +30515,7 @@
 /obj/item/tool/pen/blue{
 	pixel_x = -8
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 5;
 	pixel_y = 6
 	},
@@ -30543,7 +30543,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/landing_zone_1)
 "tUR" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "tUU" = (
@@ -30558,7 +30558,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "tVn" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "tVR" = (
@@ -30668,8 +30668,8 @@
 	},
 /area/gelida/indoors/a_block/kitchen)
 "tZM" = (
-/obj/effect/spawner/random/structure/supplycrate,
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_y = 18
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -30678,7 +30678,7 @@
 /turf/closed/wall/r_wall,
 /area/gelida/indoors/b_block/bridge)
 "uau" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/structure/platform_decoration{
 	dir = 8
 	},
@@ -30712,7 +30712,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/bridges/dorms_fitness)
 "ubQ" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_street)
 "ubR" = (
@@ -30743,7 +30743,7 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/b_block/bridge)
 "ucv" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "ucw" = (
@@ -30812,7 +30812,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "ufQ" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "uge" = (
@@ -30865,13 +30865,13 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "ugU" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorms)
 "ugY" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/fitness)
 "uhs" = (
@@ -30914,7 +30914,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreenfull2,
@@ -30946,7 +30946,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "ujH" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/b_block/hydro)
 "ujT" = (
@@ -31022,7 +31022,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "umn" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/b_block/bar)
 "umo" = (
@@ -31042,7 +31042,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "umE" = (
@@ -31084,7 +31084,7 @@
 	pixel_x = -2;
 	pixel_y = -4
 	},
-/obj/effect/spawner/random/radio/highspawn{
+/obj/effect/spawner/random/engineering/radio/highspawn{
 	pixel_x = -4;
 	pixel_y = 13
 	},
@@ -31156,11 +31156,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "uqN" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "urz" = (
@@ -31250,7 +31250,7 @@
 	pixel_x = 6;
 	pixel_y = 14
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -31380,7 +31380,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "uCW" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -31430,7 +31430,7 @@
 /area/gelida/indoors/b_block/bridge)
 "uEo" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/firstaid{
+/obj/effect/spawner/random/medical/firstaid{
 	pixel_x = -3;
 	pixel_y = 9
 	},
@@ -31454,7 +31454,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/security)
 "uEA" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "uED" = (
@@ -31674,7 +31674,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "uLK" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -31812,7 +31812,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "uRq" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -31979,7 +31979,7 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "uWy" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/item/tool/pen/blue{
 	pixel_x = 6
 	},
@@ -32176,7 +32176,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "vcx" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/mainship,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
@@ -32378,7 +32378,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "vjd" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "vjl" = (
@@ -32428,7 +32428,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "vjw" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue{
 	dir = 9
@@ -32477,11 +32477,11 @@
 /area/gelida/indoors/c_block/casino)
 "vmp" = (
 /obj/item/shard,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
 "vnz" = (
-/obj/effect/spawner/random/structure/supplycrate/secureweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "vnB" = (
@@ -32500,7 +32500,7 @@
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "vod" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "vox" = (
@@ -32517,7 +32517,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
 "voS" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
@@ -32535,7 +32535,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "vpj" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -6;
 	pixel_y = 24
 	},
@@ -32672,7 +32672,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "vtf" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "vtl" = (
@@ -32750,7 +32750,7 @@
 /area/gelida/caves/central_caves)
 "vwp" = (
 /obj/effect/landmark/corpsespawner/scientist,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "vws" = (
@@ -32852,7 +32852,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_1)
 "vxR" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "vyd" = (
@@ -32892,7 +32892,7 @@
 	pixel_x = -14;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 6;
 	pixel_y = 8
 	},
@@ -33019,7 +33019,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "vDp" = (
@@ -33038,7 +33038,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "vEj" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "vEz" = (
@@ -33065,7 +33065,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -6;
 	pixel_y = 7
 	},
@@ -33196,7 +33196,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vJu" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/central_streets)
 "vJx" = (
@@ -33250,7 +33250,7 @@
 /turf/closed/shuttle/dropship2/engineone,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "vKx" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "vLr" = (
@@ -33290,7 +33290,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vMT" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "vNb" = (
@@ -33416,7 +33416,7 @@
 /area/gelida/indoors/lone_buildings/spaceport)
 "vRm" = (
 /obj/item/weapon/telebaton,
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
 "vSd" = (
@@ -33542,7 +33542,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "vVT" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -33566,10 +33566,10 @@
 /area/gelida/indoors/a_block/fitness)
 "vWI" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/firstaid{
+/obj/effect/spawner/random/medical/firstaid{
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
@@ -33649,7 +33649,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "vZr" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
@@ -33724,7 +33724,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "wcd" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "wcg" = (
@@ -33762,7 +33762,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "wdq" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/foamedmetal,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -33819,11 +33819,11 @@
 /area/gelida/landing_zone_2)
 "weZ" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/firstaid{
+/obj/effect/spawner/random/medical/firstaid{
 	pixel_x = 6;
 	pixel_y = 11
 	},
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "wfe" = (
@@ -33862,7 +33862,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "whj" = (
@@ -33907,7 +33907,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
 "wiR" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/hydro)
 "wjc" = (
@@ -33947,12 +33947,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "wjR" = (
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = -9;
 	pixel_y = -14
 	},
@@ -33991,7 +33991,7 @@
 /area/gelida/indoors/a_block/corpo)
 "wkY" = (
 /obj/effect/spawner/random/decal/blood,
-/obj/effect/spawner/random/heal_pack/bruteweighted{
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted{
 	pixel_x = -10;
 	pixel_y = 8
 	},
@@ -34010,7 +34010,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "wnb" = (
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "wng" = (
@@ -34118,7 +34118,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "wqs" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "wqy" = (
@@ -34197,10 +34197,10 @@
 	},
 /area/gelida/outdoors/colony_streets/south_east_street)
 "wth" = (
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -12
 	},
-/obj/effect/spawner/random/structure/supplycrate{
+/obj/effect/spawner/random/misc/structure/supplycrate{
 	pixel_x = -10;
 	pixel_y = 18
 	},
@@ -34299,7 +34299,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_2)
 "wvx" = (
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = 9;
 	pixel_y = 4
 	},
@@ -34324,7 +34324,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "wvS" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "wvV" = (
@@ -34373,7 +34373,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "wxy" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/garage)
 "wxV" = (
@@ -34534,7 +34534,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "wEH" = (
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -34799,11 +34799,11 @@
 /area/gelida/indoors/c_block/casino)
 "wMK" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/firstaid{
+/obj/effect/spawner/random/medical/firstaid{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "wNa" = (
@@ -34910,7 +34910,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "wRU" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -35078,7 +35078,7 @@
 "wYz" = (
 /obj/structure/table/mainship,
 /obj/item/toy/bikehorn,
-/obj/effect/spawner/random/plushie{
+/obj/effect/spawner/random/misc/plushie{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -35131,7 +35131,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "xaX" = (
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "xbv" = (
@@ -35181,7 +35181,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "xfA" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/dorms)
 "xfT" = (
@@ -35264,7 +35264,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/powergenerator{
+/obj/effect/spawner/random/engineering/structure/powergenerator{
 	pixel_x = -6
 	},
 /obj/structure/platform_decoration{
@@ -35273,7 +35273,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "xko" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/gelida/outdoors/colony_streets/south_street)
 "xkC" = (
@@ -35435,7 +35435,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "xoM" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/plate,
 /area/gelida/landing_zone_2)
 "xoV" = (
@@ -35540,7 +35540,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "xtn" = (
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "xtp" = (
@@ -35552,7 +35552,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 4
 	},
-/obj/effect/spawner/random/kitchenknife{
+/obj/effect/spawner/random/food_or_drink/kitchenknife{
 	pixel_x = -9;
 	pixel_y = 3
 	},
@@ -35591,7 +35591,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/disposal,
+/obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "xuW" = (
@@ -35665,7 +35665,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "xwL" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "xwV" = (
@@ -35700,13 +35700,13 @@
 /area/gelida/indoors/a_block/kitchen)
 "xyA" = (
 /obj/structure/table/fancywoodentable,
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "xyN" = (
@@ -35903,7 +35903,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "xFv" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "xFw" = (
@@ -35940,8 +35940,8 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "xGX" = (
-/obj/effect/spawner/random/structure/microwave,
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/machinery/microwave,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_street)
 "xHa" = (
@@ -35972,7 +35972,7 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
 "xHR" = (
-/obj/effect/spawner/random/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -36238,7 +36238,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "xOI" = (
-/obj/effect/spawner/random/heal_pack/bruteweighted{
+/obj/effect/spawner/random/medical/heal_pack/bruteweighted{
 	pixel_x = -3;
 	pixel_y = -5
 	},
@@ -36355,14 +36355,14 @@
 /area/gelida/indoors/c_block/mining)
 "xRD" = (
 /obj/structure/prop/vehicle/crane/destructible,
-/obj/effect/spawner/random/toolbox{
+/obj/effect/spawner/random/engineering/toolbox{
 	pixel_y = 16
 	},
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
 "xRL" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "xRX" = (
@@ -36382,7 +36382,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/lone_buildings/spaceport)
 "xSu" = (
-/obj/effect/spawner/random/structure/chair_or_metal,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "xSR" = (
@@ -36413,7 +36413,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
 "xTt" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/admin)
 "xTw" = (
@@ -36484,7 +36484,7 @@
 /obj/structure/fakeplatform{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/barrel,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/central_streets)
 "xVo" = (
@@ -36601,7 +36601,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "xZD" = (
-/obj/effect/spawner/random/structure/girder/highspawn,
+/obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "yan" = (
@@ -36661,11 +36661,11 @@
 /area/gelida/caves/west_caves)
 "ybK" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = -4;
 	pixel_y = -2
 	},
-/obj/effect/spawner/random/folder/nooffset{
+/obj/effect/spawner/random/misc/folder/nooffset{
 	pixel_x = 1;
 	pixel_y = 5
 	},
@@ -36746,7 +36746,7 @@
 /area/gelida/indoors/b_block/hydro)
 "yew" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -36767,7 +36767,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "ygp" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -36811,7 +36811,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/north,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/north,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreenfull2,
@@ -36835,7 +36835,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "yiU" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -36849,7 +36849,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/wood,
+/obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "yjx" = (

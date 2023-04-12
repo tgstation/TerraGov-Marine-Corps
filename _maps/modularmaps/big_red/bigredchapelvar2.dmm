@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bh" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
@@ -229,8 +229,8 @@
 /area/bigredv2/outside/chapel)
 "Dk" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "Ei" = (
@@ -276,7 +276,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "Oe" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Chapel";

@@ -509,7 +509,7 @@
 /area/deathmatch)
 "gE" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "hr" = (
@@ -998,7 +998,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/plushie/fiftyfifty,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (

@@ -21,7 +21,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "bF" = (
 /obj/effect/turf_decal/tile/corsatsemi/white,
-/obj/effect/spawner/random/structure/photocopier,
+/obj/effect/spawner/random/machinery/photocopier,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "bI" = (
@@ -33,7 +33,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "bK" = (
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "bP" = (
@@ -56,7 +56,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "bW" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 8
 	},
@@ -71,18 +71,18 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "ce" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/turf_decal/tile/corsatsemi/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "cV" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "db" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/grayscale/white,
 /area/oscar_outpost/village/abandonedbase)
 "dl" = (
@@ -96,7 +96,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "dJ" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 4
 	},
@@ -121,7 +121,7 @@
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "dU" = (
@@ -139,7 +139,7 @@
 /turf/open/floor/wood/broken/six,
 /area/oscar_outpost/village/abandonedbase)
 "ee" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
 	},
@@ -147,7 +147,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "ey" = (
 /obj/structure/table,
-/obj/effect/spawner/random/clipboard,
+/obj/effect/spawner/random/misc/clipboard,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "eB" = (
@@ -196,7 +196,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "fq" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
 	},
@@ -204,13 +204,13 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "fr" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "ft" = (
 /obj/structure/table,
-/obj/effect/spawner/random/folder,
+/obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "fz" = (
@@ -240,7 +240,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "gn" = (
 /obj/effect/turf_decal/tile/corsatstraight/white,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "gz" = (
@@ -286,7 +286,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "hf" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
@@ -304,7 +304,7 @@
 	dir = 1;
 	layer = 2.7
 	},
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -315,7 +315,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "hM" = (
@@ -326,7 +326,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
-/obj/effect/spawner/random/folder,
+/obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "hP" = (
@@ -368,7 +368,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "jJ" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "jL" = (
@@ -381,9 +381,9 @@
 /area/oscar_outpost/village/abandonedbase)
 "jU" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "kb" = (
@@ -395,12 +395,12 @@
 /area/oscar_outpost/village/abandonedbase)
 "km" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/turf_decal/tile/corsatsemi/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "ko" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/east,
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -410,7 +410,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "kw" = (
 /obj/effect/turf_decal/tile/corsatsemi/white,
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "kF" = (
@@ -434,7 +434,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -462,7 +462,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "ly" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/wood/broken/two,
 /area/oscar_outpost/village/abandonedbase)
 "lA" = (
@@ -505,7 +505,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "lO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/turf_decal/tile/corsatcorner/white{
 	dir = 8
 	},
@@ -572,7 +572,7 @@
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "mH" = (
@@ -582,7 +582,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "mS" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/east,
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -655,7 +655,7 @@
 /obj/effect/turf_decal/tile/corsatcorner/white{
 	dir = 4
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "oV" = (
@@ -696,7 +696,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "pq" = (
@@ -722,7 +722,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "pF" = (
 /obj/structure/bed,
-/obj/effect/spawner/random/folder,
+/obj/effect/spawner/random/misc/folder,
 /obj/item/bedsheet/brown,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
@@ -744,7 +744,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "qj" = (
@@ -809,11 +809,11 @@
 /obj/effect/turf_decal/tile/corsatcorner/white{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/filingcabinet,
+/obj/effect/spawner/random/misc/structure/filingcabinet,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "sc" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -839,7 +839,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "tn" = (
@@ -862,7 +862,7 @@
 /turf/open/floor/grayscale/round/black,
 /area/oscar_outpost/outside/underground)
 "tI" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -896,7 +896,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "uf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /obj/effect/turf_decal/tile/corsatsemi/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -916,7 +916,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "uF" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -939,7 +939,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "uY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -989,7 +989,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -999,7 +999,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "wI" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1008,14 +1008,14 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "yp" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "yJ" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1036,7 +1036,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1046,7 +1046,7 @@
 /area/oscar_outpost/outside/rock)
 "zi" = (
 /obj/structure/table,
-/obj/effect/spawner/random/clipboard,
+/obj/effect/spawner/random/misc/clipboard,
 /obj/item/paper,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/bar,
@@ -1098,7 +1098,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "AI" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1108,7 +1108,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "AO" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 8
 	},
@@ -1116,7 +1116,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "AR" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
 	},
@@ -1140,7 +1140,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "AW" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "Ba" = (
@@ -1170,7 +1170,7 @@
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 8
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1244,7 +1244,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Ej" = (
 /obj/effect/turf_decal/tile/corsatsemi/white,
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Ek" = (
@@ -1261,18 +1261,18 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "EC" = (
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "EG" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "EK" = (
@@ -1312,7 +1312,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Fp" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
@@ -1320,11 +1320,11 @@
 /area/oscar_outpost/village/abandonedbase)
 "Fx" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "FB" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
@@ -1346,7 +1346,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "FV" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "FY" = (
@@ -1381,11 +1381,11 @@
 /area/oscar_outpost/village/abandonedbase)
 "GC" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "GT" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/corsatsemi/white{
@@ -1403,7 +1403,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "HR" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -1425,13 +1425,13 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "HW" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Ia" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Il" = (
@@ -1461,14 +1461,14 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "IA" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/east,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "IF" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 1
 	},
@@ -1483,21 +1483,21 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "IU" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 4
 	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Jd" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 4
 	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Jl" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/east,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1507,7 +1507,7 @@
 	dir = 4;
 	layer = 2
 	},
-/obj/effect/spawner/random/folder,
+/obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Jt" = (
@@ -1543,7 +1543,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Kg" = (
 /obj/structure/closet/cabinet,
-/obj/effect/spawner/random/structure/cabinet,
+/obj/effect/spawner/random/misc/structure/cabinet,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "KD" = (
@@ -1558,7 +1558,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "KH" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1586,7 +1586,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Li" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1601,7 +1601,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/underground)
 "LG" = (
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "LL" = (
@@ -1614,7 +1614,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Mg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood/broken/two,
 /area/oscar_outpost/village/abandonedbase)
 "Mm" = (
@@ -1642,11 +1642,11 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "MY" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/east,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
@@ -1657,7 +1657,7 @@
 	dir = 1;
 	layer = 2.7
 	},
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1689,7 +1689,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "NL" = (
-/obj/effect/spawner/random/structure/broken_ship_window,
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "Oj" = (
@@ -1749,7 +1749,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Pa" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Pl" = (
@@ -1776,7 +1776,7 @@
 /obj/effect/turf_decal/tile/corsatsemi/white{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Qa" = (
@@ -1828,7 +1828,7 @@
 	dir = 1;
 	layer = 2.7
 	},
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "QY" = (
@@ -1850,7 +1850,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Rm" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
 	},
@@ -1872,12 +1872,12 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Rx" = (
-/obj/effect/spawner/random/structure/cabinet,
+/obj/effect/spawner/random/misc/structure/cabinet,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "Ry" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/east,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/east,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "RC" = (
@@ -1910,7 +1910,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Sy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -1918,13 +1918,13 @@
 /area/oscar_outpost/village/abandonedbase)
 "SE" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /obj/effect/turf_decal/tile/corsatstraight/white,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "SJ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/clipboard,
+/obj/effect/spawner/random/misc/clipboard,
 /obj/item/paper,
 /obj/item/tool/pen/blue,
 /obj/effect/decal/cleanable/dirt,
@@ -1943,7 +1943,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Th" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "Ti" = (
@@ -2053,7 +2053,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Vy" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -2135,12 +2135,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "WA" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/structure/random_broken_computer/small/emails,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/emails,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "WM" = (
@@ -2204,7 +2204,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "XI" = (
 /obj/structure/table,
-/obj/effect/spawner/random/folder,
+/obj/effect/spawner/random/misc/folder,
 /obj/structure/platform{
 	dir = 4;
 	layer = 2
@@ -2213,12 +2213,12 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "XP" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "XR" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 4
 	},
@@ -2238,7 +2238,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "XW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/book,
+/obj/effect/spawner/random/misc/book,
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -2248,13 +2248,13 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "Ya" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Ym" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 8
 	},
@@ -2286,7 +2286,7 @@
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "YA" = (
-/obj/effect/spawner/random/structure/office_chair_or_metal/west,
+/obj/effect/spawner/random/misc/structure/office_chair_or_metal/west,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "YJ" = (
@@ -2334,7 +2334,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "Zt" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
 "Zx" = (

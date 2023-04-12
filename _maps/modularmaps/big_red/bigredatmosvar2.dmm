@@ -5,7 +5,7 @@
 	},
 /area/bigredv2/outside/s)
 "ah" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -15,7 +15,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "am" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "an" = (
@@ -63,7 +63,7 @@
 /area/bigredv2/outside/filtration_plant)
 "dv" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -83,7 +83,7 @@
 "fZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "gr" = (
@@ -177,7 +177,7 @@
 	},
 /area/bigredv2/outside/se)
 "om" = (
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -196,7 +196,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "ph" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -252,7 +252,7 @@
 /area/bigredv2/outside/s)
 "qg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -308,7 +308,7 @@
 	},
 /area/bigredv2/outside/s)
 "tF" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "ug" = (
@@ -342,7 +342,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "vv" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -371,7 +371,7 @@
 /area/bigredv2/outside/filtration_plant)
 "xe" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "xm" = (
@@ -379,7 +379,7 @@
 /area/bigredv2/outside/filtration_plant)
 "xp" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -393,7 +393,7 @@
 /area/bigredv2/outside/filtration_plant)
 "xC" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "xP" = (
@@ -530,12 +530,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Eo" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Ex" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -556,7 +556,7 @@
 /area/bigredv2/outside/filtration_plant)
 "FN" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Gf" = (
@@ -645,7 +645,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/filtration_plant)
 "KI" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "Lc" = (
@@ -657,7 +657,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "MA" = (
-/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
@@ -669,7 +669,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "NH" = (
-/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
@@ -680,7 +680,7 @@
 "Oj" = (
 /obj/structure/rack,
 /obj/item/tank/air,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "OF" = (
@@ -737,7 +737,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -775,7 +775,7 @@
 /area/bigredv2/outside/s)
 "Uo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -786,7 +786,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Vy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -845,7 +845,7 @@
 /area/bigredv2/outside/filtration_plant)
 "YV" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
