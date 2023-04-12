@@ -11,29 +11,27 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
+	///If true, lets the player know they can right click the belt to tac reload
+	var/tac_reload_description
 
 /obj/item/storage/belt/attackby_alternate(obj/item/I, mob/user, params) //Right clicking the belt with any gun will perform a tac reload
-	if(!istype(I, /obj/item/weapon/gun))
+	if(!isgun(I))
 		return ..()
 	var/obj/item/weapon/gun/gun_to_reload = I
-	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!(mag.type in gun_to_reload.allowed_ammo_types))
+	for(var/obj/item/item_to_reload_with in contents)
+		if(!(item_to_reload_with.type in gun_to_reload.allowed_ammo_types))
 			continue
 		if(user.l_hand && user.r_hand || length(gun_to_reload.chamber_items))
-			gun_to_reload.tactical_reload(mag, user)
+			gun_to_reload.tactical_reload(item_to_reload_with, user)
 		else
-			gun_to_reload.reload(mag, user)
+			gun_to_reload.reload(item_to_reload_with, user)
 		orient2hud()
 		return
-	for(var/obj/item/cell/cell in contents) //I know it's copy-paste, but it's the simplest solution that I was able to think of
-		if(!(cell.type in gun_to_reload.allowed_ammo_types))
-			continue
-		if(user.l_hand && user.r_hand || length(gun_to_reload.chamber_items))
-			gun_to_reload.tactical_reload(cell, user)
-		else
-			gun_to_reload.reload(cell, user)
-		orient2hud()
-		return
+
+/obj/item/storage/belt/examine(mob/user)
+	. = ..()
+	if(tac_reload_description)
+		. += span_notice("To perform a reload with the amunition inside, right click on the belt with any compatible gun.")
 
 /obj/item/storage/belt/equipped(mob/user, slot)
 	if(slot == SLOT_BELT)
@@ -383,11 +381,10 @@
 		/obj/item/radio/headset,
 		/obj/item/tool/taperoll/police,
 	)
-
 	cant_hold = list(
 		/obj/item/weapon/gun,
 	)
-
+	tac_reload_description = TRUE
 
 
 /obj/item/storage/belt/security/tactical
@@ -425,6 +422,7 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	)
+	tac_reload_description = TRUE
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
@@ -967,6 +965,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
+	tac_reload_description = TRUE
 
 /obj/item/storage/belt/sparepouch/som
 	name= "standard utility pouch"
@@ -979,7 +978,6 @@
 
 /obj/item/storage/belt/gun
 	name = "pistol belt"
-	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 	use_sound = null
@@ -1003,6 +1001,11 @@
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
 	)
+	tac_reload_description = TRUE
+
+/obj/item/storage/belt/gun/Initialize(mapload, ...)
+	. = ..()
+	desc = "A belt-holster assembly that allows one to hold a pistol and [storage_slots-1] magazines."
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -1060,10 +1063,6 @@
 	desc = "A pistol belt that is not a revolver belt"
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
-
-/obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
 
 /obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
@@ -1187,6 +1186,7 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
+	tac_reload_description = FALSE //Can't tac reload a revolver
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -1311,6 +1311,7 @@
 		/obj/item/ammo_magazine/shotgun,
 		/obj/item/ammo_magazine/handful,
 	)
+	tac_reload_description = FALSE //Can't tac reload a shotgun
 
 /obj/item/storage/belt/gun/ts34/full/Initialize()
 	. = ..()
