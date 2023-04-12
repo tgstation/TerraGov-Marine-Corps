@@ -484,7 +484,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adm" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
@@ -9788,7 +9788,7 @@
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "aEG" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "aEH" = (
@@ -12510,7 +12510,7 @@
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "aMu" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/staff_research)
 "aMv" = (
@@ -14389,7 +14389,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/cleaning)
 "aSs" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison,
 /area/prison/cleaning)
 "aSt" = (
@@ -17622,7 +17622,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/central)
 "bcr" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/hallway/staff)
 "bcs" = (
@@ -18651,7 +18651,7 @@
 	},
 /area/prison/security/checkpoint/vip)
 "bfn" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/prison/storage/vip)
 "bfo" = (
@@ -21922,7 +21922,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "boH" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/prison/hallway/central)
@@ -28169,7 +28169,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJy" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJz" = (
@@ -30124,7 +30124,7 @@
 	},
 /area/prison/storage/medsec)
 "bPU" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
 "bPV" = (
@@ -30531,7 +30531,7 @@
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
 "bRp" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -32017,7 +32017,7 @@
 /turf/closed/wall/prison,
 /area/prison/security/head)
 "bWA" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "bWB" = (
@@ -34638,7 +34638,7 @@
 /turf/open/floor/prison,
 /area/prison/security/head)
 "ceG" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -35556,7 +35556,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
 "chG" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
 "chH" = (
@@ -37850,11 +37850,11 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "coL" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "coM" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "coN" = (
@@ -41211,7 +41211,7 @@
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "dEx" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "dGP" = (
@@ -42511,7 +42511,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "hvJ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "hwj" = (
@@ -44142,7 +44142,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "mfh" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "mhm" = (
@@ -45699,7 +45699,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "qea" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "qeF" = (
@@ -46770,7 +46770,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "sMg" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "sMp" = (
@@ -47368,7 +47368,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "uua" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
 "uuc" = (
