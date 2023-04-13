@@ -567,7 +567,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/verb/toggle_auto_eject()
 	set category = null
 	set name = "Toggle Automatic Magazine Ejection (Weapon)"
-	set desc = "Toggles the gun automatically unloading it's magazine upon depletion of magazine."
+	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
 	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
 	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
