@@ -98,7 +98,7 @@
  */
 /datum/greyscale_config/protein
 	json_config = 'code/datums/greyscale/json_configs/protein.json'
-	icon_file = 'icons/obj/items/food.dmi'
+	icon_file = 'icons/obj/items/food/mre.dmi'
 
 ///AMMO - for both bullets and magazines
 /datum/greyscale_config/ammo

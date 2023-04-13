@@ -417,13 +417,13 @@
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
-	.["active_weapon_ammo_name"] =  null
+	.["active_weapon_ammo_name"] = null
 	if(active_weapon)
 		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
 		if(active_weapon.ammo_equipped)
 			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
 			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count
-			.["active_weapon_ammo_name"] =  active_weapon.ammo_equipped.name
+			.["active_weapon_ammo_name"] = active_weapon.ammo_equipped.name
 
 /obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
 	switch(mode)

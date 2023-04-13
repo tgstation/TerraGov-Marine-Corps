@@ -64,7 +64,7 @@
 	},
 /area/bigredv2/outside/nw)
 "fA" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/structure/tank/fuelweighted/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "fF" = (
@@ -245,7 +245,7 @@
 /area/bigredv2/outside/nw)
 "tb" = (
 /obj/machinery/light,
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/structure/tank/fuelweighted/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "th" = (
@@ -350,7 +350,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "yR" = (
-/obj/structure/largecrate/random/case/double,
+/obj/effect/spawner/random/structure/supplycrate/case/double,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "zm" = (
@@ -542,7 +542,7 @@
 /obj/machinery/light{
 	dir = 1;
 	},
-/obj/structure/largecrate/random/case/small,
+/obj/effect/spawner/random/structure/supplycrate/case/small,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "JA" = (

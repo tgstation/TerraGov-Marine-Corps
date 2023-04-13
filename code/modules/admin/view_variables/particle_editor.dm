@@ -138,7 +138,7 @@
 				target.particles.transform += new /list(new_size-size)
 				return
 			//transform is not cast as a list
-			var/list/holder =  target.particles.transform
+			var/list/holder = target.particles.transform
 			holder.Cut(new_size)
 		if("edit")
 			var/particles/owner = target.particles

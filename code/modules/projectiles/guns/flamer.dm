@@ -184,7 +184,7 @@
 	pixel_shift_y = 18
 	damage_mult = 0.75
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE

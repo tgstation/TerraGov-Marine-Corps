@@ -38,13 +38,13 @@
 	var/base_mag_icon
 
 	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
-	var/scatter_mod 	= 0
+	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.
-	var/aim_speed_mod	= 0
+	var/aim_speed_mod = 0
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -552,3 +552,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "Flechette Ammo Box"
 	icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
+
+/obj/item/big_ammo_box/mg
+	name = "big ammo box (10x26mm)"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	caliber = CALIBER_10x26_CASELESS
+	bullet_amount = 3200 //a backpack holds 8 MG-60 box mags, which is 1600 rounds
+	max_bullet_amount = 3200

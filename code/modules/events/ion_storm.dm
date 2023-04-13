@@ -14,11 +14,13 @@
 	announce_when = 0
 
 /datum/round_event/ion_storm/start()
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(fix_comms)), 1 MINUTES)
 	for(var/obj/machinery/telecomms/C AS in GLOB.telecomms_list)
 		if(C.machine_stat & (NOPOWER|BROKEN|DISABLED))
 			continue
 		C.machine_stat |= NOPOWER|BROKEN|DISABLED
+
+	var/comms_knockout_timer = pick(1,1.5,1.7,2,2.3,2.5,3,4,8)
+	addtimer(CALLBACK(src, PROC_REF(fix_comms)), comms_knockout_timer MINUTES)
 
 /datum/round_event/ion_storm/announce()
 	var/alert = pick( "Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you*%fj00)`5vc-BZZT",
@@ -30,10 +32,7 @@
 	)
 	priority_announce(alert)
 
-/datum/round_event/ion_storm/proc/disable_comms(/obj/machinery/telecomms/C)
-	var/comms_knockout_timer = pick(1,1.5,1.7,2,2.3,2.5,3,4,8)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(fix_comms)), comms_knockout_timer MINUTES)
-
+///Restores comms back to normal
 /datum/round_event/ion_storm/proc/fix_comms()
 	for(var/obj/machinery/telecomms/C AS in GLOB.telecomms_list)
 		var/area/A = get_area(C)

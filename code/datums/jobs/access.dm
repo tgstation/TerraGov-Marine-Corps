@@ -43,7 +43,7 @@
 	var/i
 	for(i in req_access)
 		if(!(i in L)) return //doesn't have this access
-	if(req_one_access && length(req_one_access))
+	if(length(req_one_access))
 		for(i in req_one_access)
 			if(i in L) return 1//has an access from the single access list
 		return

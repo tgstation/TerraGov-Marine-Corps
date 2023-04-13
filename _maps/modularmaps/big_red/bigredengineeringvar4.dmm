@@ -64,7 +64,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "dz" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -161,7 +161,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ko" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ks" = (
@@ -561,7 +561,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "GK" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Hz" = (
@@ -648,7 +647,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Mw" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "Mx" = (
@@ -839,7 +838,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "UT" = (

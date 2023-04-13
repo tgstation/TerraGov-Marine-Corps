@@ -150,7 +150,7 @@
 /obj/item/clothing/shoes/marine/icc/guard
 	name = "\improper Modelle/33 tactical shoes"
 	desc = "A set of sturdy tactical boots."
-	icon_state  = "icc_guard"
+	icon_state = "icc_guard"
 
 /obj/item/clothing/shoes/marine/icc/guard/knife
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)

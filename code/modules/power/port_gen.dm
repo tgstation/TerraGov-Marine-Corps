@@ -241,7 +241,7 @@
 	data["power_output"] = DisplayPower(power_gen * power_output)
 	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
 	data["current_heat"] = current_heat
-	. =  data
+	. = data
 
 /obj/machinery/power/port_gen/pacman/ui_act(action, list/params)
 	. = ..()

@@ -265,7 +265,7 @@
 		if(isturf(src))
 			return (type == target_turf.type) ? ADJ_FOUND : NO_ADJ_FOUND
 		var/atom/matching_obj = locate(type) in target_turf
-		return (matching_obj && matching_obj.type == type) ? ADJ_FOUND : NO_ADJ_FOUND
+		return (matching_obj?.type == type) ? ADJ_FOUND : NO_ADJ_FOUND
 
 	if(!isnull(target_turf.smoothing_groups))
 		for(var/target in canSmoothWith)

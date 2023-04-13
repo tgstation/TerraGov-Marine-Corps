@@ -32,24 +32,24 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	force = 1.0
+	force = 1
 	///ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.
 	var/slot = null
 
 	///Modifier to firing accuracy, works off a multiplier.
-	var/accuracy_mod 	= 0
+	var/accuracy_mod = 0
 	///Modifier to firing accuracy but for when scoped in, works off a multiplier.
 	var/scoped_accuracy_mod = 0
 	///Modifier to firing accuracy but for when onehanded.
 	var/accuracy_unwielded_mod = 0
 	///Modifer to the damage mult, works off a multiplier.
-	var/damage_mod 		= 0
+	var/damage_mod = 0
 	///Modifier to damage falloff, works off a multiplier.
 	var/damage_falloff_mod = 0
 	///Flat number that adjusts the amount of mêlée force the weapon this is attached to has.
-	var/melee_mod 		= 0
+	var/melee_mod = 0
 	///Increases or decreases scatter chance.
-	var/scatter_mod 	= 0
+	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
 	///Maximum scatter
@@ -69,27 +69,27 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Minimum scatter when unwielded
 	var/min_scatter_unwielded_mod = 0
 	///If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
-	var/recoil_mod 		= 0
+	var/recoil_mod = 0
 	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
 	var/recoil_unwielded_mod = 0
 	///Modifier to scatter from wielded burst fire, works off a multiplier.
 	var/burst_scatter_mod = 0
 	///Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE
-	var/silence_mod 	= FALSE
+	var/silence_mod = FALSE
 	///Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
-	var/light_mod 		= 0
+	var/light_mod = 0
 	///Changes firing delay. Cannot go below 0.
-	var/delay_mod 		= 0
+	var/delay_mod = 0
 	///Changes burst firing delay. Cannot go below 0.
 	var/burst_delay_mod = 0
 	///Changes amount of shots in a burst
-	var/burst_mod 		= 0
+	var/burst_mod = 0
 	///Increases the weight class.
-	var/size_mod 		= 0
+	var/size_mod = 0
 	///Changes the slowdown amount when wielding a weapon by this value.
-	var/aim_speed_mod	= 0
+	var/aim_speed_mod = 0
 	///How long ADS takes (time before firing)
-	var/wield_delay_mod	= 0
+	var/wield_delay_mod = 0
 	///Changes the speed of projectiles fired
 	var/attach_shell_speed_mod = 0
 	///Modifies accuracy/scatter penalty when firing onehanded while moving.
@@ -1108,7 +1108,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 3
-	aim_speed_mod	= -0.1
+	aim_speed_mod = -0.1
 	aim_mode_movement_mult = -0.2
 
 
@@ -1288,7 +1288,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.25
 	recoil_mod = -2
 	scatter_mod = -6
-	scatter_unwielded_mod =  4
+	scatter_unwielded_mod = 4
 	accuracy_unwielded_mod = -0.1
 
 /obj/item/attachable/foldable/t19stock
@@ -1390,6 +1390,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "build_a_sentry_attachment"
 	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
+	size_mod = 1
 	pixel_shift_x = 10
 	pixel_shift_y = 18
 	///Deploy time for the build-a-sentry

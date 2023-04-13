@@ -45,12 +45,12 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "aJ" = (
-/obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aM" = (
@@ -71,7 +71,7 @@
 /area/bigredv2/outside/space_port)
 "bq" = (
 /obj/structure/table,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "bs" = (
@@ -606,11 +606,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"or" = (
-/obj/structure/table,
-/obj/item/folder/black,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "oE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -805,7 +800,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "tr" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
@@ -814,11 +809,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
-"tu" = (
-/obj/structure/table,
-/obj/item/folder/black_random,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "tF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -1323,7 +1313,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "IM" = (
-/obj/item/folder/yellow,
+/obj/effect/spawner/random/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "IQ" = (
@@ -1397,7 +1387,7 @@
 /area/bigredv2/outside/marshal_office)
 "Ku" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -1521,11 +1511,11 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "NB" = (
-/obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "NC" = (
@@ -1601,7 +1591,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "PO" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -1896,7 +1886,7 @@
 /area/bigredv2/outside/telecomm)
 "Wv" = (
 /obj/structure/table,
-/obj/item/folder/yellow,
+/obj/effect/spawner/random/folder/nooffset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "WB" = (
@@ -2144,7 +2134,7 @@ kz
 kz
 kz
 Qe
-or
+Wv
 gw
 Wt
 vu
@@ -2346,7 +2336,7 @@ cH
 AU
 Nq
 Wv
-tu
+Wv
 nD
 Jp
 mU
@@ -2504,7 +2494,7 @@ Vd
 Vd
 HV
 lP
-tu
+Wv
 wT
 Xq
 eL
