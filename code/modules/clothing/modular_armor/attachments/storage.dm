@@ -97,6 +97,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
 	icon_state = "mod_general_bag"
 	storage = /obj/item/storage/internal/modular/general
+	allows_tactical_reload = TRUE
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 6
@@ -131,6 +132,7 @@
 	icon_state = "mod_mag_bag"
 	storage = /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
+	allows_tactical_reload = TRUE
 
 /obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
 	. = ..()
@@ -288,6 +290,7 @@
 	icon_state = "mod_is_bag"
 	storage = /obj/item/storage/internal/modular/integrated
 	slowdown = 0.2
+	allows_tactical_reload = TRUE
 
 /obj/item/storage/internal/modular/integrated
 	bypass_w_limit = list()

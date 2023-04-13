@@ -982,6 +982,7 @@
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
 	)
+	allows_tactical_reload = TRUE
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -1039,24 +1040,6 @@
 	desc = "A pistol belt that is not a revolver belt"
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
-
-/obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/weapon/gun/pistol))
-		return ..()
-	var/obj/item/weapon/gun/pistol/gun = I
-	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!(mag.type in gun.allowed_ammo_types))
-			continue
-		if(user.l_hand && user.r_hand || length(gun.chamber_items))
-			gun.tactical_reload(mag, user)
-		else
-			gun.reload(mag, user)
-		orient2hud()
-		return
-
-/obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
 
 /obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
@@ -1180,6 +1163,7 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
+	allows_tactical_reload = FALSE
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -1192,6 +1176,7 @@
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
 	)
+	allows_tactical_reload = FALSE
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
@@ -1217,6 +1202,7 @@
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/ammo_magazine/revolver/mateba,
 	)
+	allows_tactical_reload = FALSE
 
 /obj/item/storage/belt/gun/mateba/full/Initialize()
 	. = ..()
