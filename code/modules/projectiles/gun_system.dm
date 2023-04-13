@@ -413,8 +413,8 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(ishandslot(slot) || slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
-		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
+	if(ishandslot(slot))	//Same slots as tac reload
+		mouse_opacity = MOUSE_OPACITY_OPAQUE
 	unwield(user)
 	if(ishandslot(slot))
 		set_gun_user(user)
