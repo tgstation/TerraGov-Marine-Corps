@@ -430,6 +430,10 @@
 		return
 	drop_connected_mag(chamber_items[current_chamber_position], user)
 
+/obj/item/weapon/gun/unequipped(mob/user, slot)
+	. = ..()
+	mouse_opacity = MOUSE_OPACITY_ICON //So that it doesnt remain opaque when you drop or discard the gun
+
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
 	active_attachable?.set_gun_user(user)
