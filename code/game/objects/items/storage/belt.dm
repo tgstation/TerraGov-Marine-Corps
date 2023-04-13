@@ -404,6 +404,7 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	)
+	allows_tactical_reload = TRUE
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
