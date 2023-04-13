@@ -18,10 +18,14 @@
 	var/show_storage = FALSE
 	///Icon for the extra storage overlays.
 	var/show_storage_icon = 'icons/mob/modular/modular_helmet_storage.dmi'
+	///If our module is capable of tactical reload with a gun
+	var/allows_tactical_reload
 
 /obj/item/armor_module/storage/Initialize()
 	. = ..()
 	storage = new storage(src)
+	if(allows_tactical_reload)
+		AddComponent(/datum/component/tac_reload_storage)
 
 /obj/item/armor_module/storage/Destroy()
 	. = ..()
