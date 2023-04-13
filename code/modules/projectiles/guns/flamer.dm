@@ -132,6 +132,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	radial_icon_state = "flamer_blast"
 	fire_delay = 2 SECONDS
+	rounds_per_shot = 10
 
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
@@ -196,8 +197,8 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
-	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "under_x" = 31, "under_y" = 15)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,

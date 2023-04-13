@@ -3642,7 +3642,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/blast/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	flame_radius(1, T)
+	flame_radius(2, T)
+	playsound(T, "incendiary_explosion", 40)
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
