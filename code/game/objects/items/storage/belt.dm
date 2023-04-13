@@ -947,6 +947,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
+	allows_tactical_reload = TRUE
 
 /obj/item/storage/belt/sparepouch/som
 	name= "standard utility pouch"
