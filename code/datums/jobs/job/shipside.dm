@@ -171,7 +171,7 @@ Make the TGMC proud!"})
 	name = FIELD_COMMANDER
 	jobtype = /datum/job/terragov/command/fieldcommander
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/fc
 	belt = /obj/item/storage/holster/blade/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec

@@ -271,7 +271,7 @@
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
 	)
 
-/obj/item/card/id/dogtag
+/obj/item/card/id/dogtag/fc
 	marine_points = list(
 		CAT_FCSUP = COMMANDER_TOTAL_BUY_POINTS,
 	)
