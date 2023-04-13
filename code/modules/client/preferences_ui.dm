@@ -116,6 +116,7 @@
 			data["show_typing"] = show_typing
 			data["tooltips"] = tooltips
 			data["widescreenpref"] = widescreenpref
+			data["screen_resolution"] = screen_resolution
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
 			data["scaling_method"] = scaling_method
@@ -583,7 +584,7 @@
 
 		if("change_quick_equip")
 			var/editing_slot = params["selection"]
-			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
+			var/slot = tgui_input_list(ui.user, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
 			if(!slot)
 				return
 			quick_equip[editing_slot] = slot_fluff_to_flag(slot)
