@@ -434,7 +434,7 @@
 		w_uniform.set_sensors(usr)
 
 	if(href_list["squadfireteam"])
-		if(usr.incapacitated() || !get_dist(usr, src) <= 7 || !hasHUD(usr,"squadleader"))
+		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
 		var/mob/living/carbon/human/H = usr
 		if(!H.mind)
@@ -445,7 +445,7 @@
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
 		var/newfireteam = tgui_input_list(usr, "Assign this marine to a fireteam.", "Fire Team Assignment", list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3"))
-		if(!newfireteam || H.incapacitated() || !get_dist(H, src) <= 7) //We might've moved away or gotten incapacitated in the meantime
+		if(!newfireteam || H.incapacitated() || get_dist(H, src) >= 7) //We might've moved away or gotten incapacitated in the meantime
 			return
 		ID = get_idcard()
 		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine with an ID
