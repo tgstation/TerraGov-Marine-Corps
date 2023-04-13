@@ -54,7 +54,7 @@
 
 
 /datum/component/shield/Destroy()
-	shield_detatch_from_user()
+	shield_detach_from_user()
 	soft_armor = null
 	hard_armor = null
 	cover = null
@@ -131,7 +131,7 @@
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
 	if(!(slot_flags & slot))
-		shield_detatch_from_user()
+		shield_detach_from_user()
 		return
 	shield_affect_user(user)
 
@@ -143,7 +143,7 @@
 		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
-	shield_detatch_from_user()
+	shield_detach_from_user()
 
 	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
 	if(!ishuman(user))
@@ -156,7 +156,7 @@
 	if(affected)
 		if(affected == user)
 			return //Already active
-		shield_detatch_from_user()
+		shield_detach_from_user()
 	affected = user
 	if(active)
 		activate_with_user()
@@ -167,10 +167,10 @@
 /datum/component/shield/proc/deactivate_with_user()
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
 
-/datum/component/shield/proc/shield_detatch_from_user()
+/datum/component/shield/proc/shield_detach_from_user()
 	if(!affected)
 		return
-	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETATCH)
+	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETACH)
 	deactivate_with_user()
 	affected = null
 

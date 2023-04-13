@@ -139,7 +139,7 @@
 /datum/component/stun_mitigation/proc/shield_detach_from_user()
 	if(!affected)
 		return
-	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETATCH)
+	SEND_SIGNAL(affected, COMSIG_MOB_SHIELD_DETACH)
 	deactivate_with_user()
 	affected = null
 
