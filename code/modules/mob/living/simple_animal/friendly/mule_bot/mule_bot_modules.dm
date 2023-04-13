@@ -74,11 +74,11 @@ bassicly dispencer inside robot
 
 /obj/item/mule_module/storage/apply(mob/living/simple_animal/mule_bot/mule)
 	RegisterSignal(mule,COMSIG_ATOM_ATTACK_HAND, PROC_REF(acces_storage))
-	. = ..()
+	return ..()
 
 /obj/item/mule_module/storage/unapply(delete_mod = TRUE)
 	UnregisterSignal(attached_mule, COMSIG_ATOM_ATTACK_HAND)
-	. = ..()
+	return ..()
 
 /obj/item/mule_module/storage/proc/acces_storage(mob/mule, mob/user)
 	SIGNAL_HANDLER
@@ -109,11 +109,11 @@ based on keycard you get your own private storage, imagine MC enderchests sorta 
 
 /obj/item/mule_module/personal_storage/apply(mob/living/simple_animal/mule_bot/mule)
 	RegisterSignal(mule,COMSIG_ATOM_ATTACK_HAND, PROC_REF(acces_storage))
-	. = ..()
+	return ..()
 
 /obj/item/mule_module/personal_storage/unapply(delete_mod = TRUE)
 	UnregisterSignal(attached_mule, COMSIG_ATOM_ATTACK_HAND)
-	. = ..()
+	return ..()
 
 //Since every person gets there own storage bit with this module, we need to either create new storage for the person or let it acces the old one
 /obj/item/mule_module/personal_storage/proc/acces_storage(mob/mule, mob/user)
@@ -142,12 +142,12 @@ Bassicly baldur jeager mod for robot. gives light
 /obj/item/mule_module/light/apply(mob/living/simple_animal/mule_bot/mule)
 	mule.set_light_range_power_color(mod_Light_power,mod_Light_range,mod_light_color)
 	mule.set_light_on(TRUE)
-	. = ..()
+	return ..()
 
 /obj/item/mule_module/light/unapply(delete_mod)
 	attached_mule.set_light_range_power_color(initial(attached_mule.light_range) ,initial(attached_mule.light_power),initial(attached_mule.light_color))
 	attached_mule.set_light_on(FALSE)
-	. = ..()
+	return ..()
 
 /*
 Flare placing module
@@ -164,7 +164,7 @@ Place flares on turf if we find its too dark
 
 /obj/item/mule_module/flare_placer/apply(mob/living/simple_animal/mule_bot/mule)
 	RegisterSignal(mule, COMSIG_MOVABLE_MOVED, PROC_REF(check_lumcount))
-	. = ..()
+	return ..()
 
 
 /obj/item/mule_module/flare_placer/proc/check_lumcount(atom/bot)
