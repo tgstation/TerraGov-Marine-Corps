@@ -462,7 +462,7 @@
 	},
 /area/deathmatch)
 "XY" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "YE" = (
 /obj/structure/largecrate,

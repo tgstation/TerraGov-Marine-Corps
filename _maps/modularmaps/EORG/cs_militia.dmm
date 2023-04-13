@@ -459,7 +459,7 @@
 	},
 /area/deathmatch)
 "Uv" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "US" = (
 /obj/structure/bed/chair/wood/wings{
