@@ -13,6 +13,7 @@
 	desc = "A sturdy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
 	storage = /obj/item/storage/internal/webbing
+	allows_tactical_reload = TRUE
 
 /obj/item/storage/internal/webbing
 	max_w_class = WEIGHT_CLASS_SMALL
@@ -112,6 +113,7 @@
 	desc = "A handgun holster"
 	icon_state = "holster"
 	storage = /obj/item/storage/internal/holster
+	allows_tactical_reload = TRUE
 
 /obj/item/armor_module/storage/uniform/holster/freelancer
 
