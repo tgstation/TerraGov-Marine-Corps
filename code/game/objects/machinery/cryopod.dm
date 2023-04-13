@@ -279,9 +279,11 @@
 		return
 
 	user.forceMove(src)
-
 	occupant = user
 	update_icon()
+
+	if(istype(src, /obj/machinery/cryopod/evacuation)) //Will ghost you if it's an evac pod
+		user.ghostize(FALSE)
 
 /obj/machinery/cryopod/proc/go_out()
 	if(QDELETED(occupant))

@@ -157,10 +157,6 @@
 		M.cryopods += src
 		linked_to_shuttle = TRUE
 
-/obj/machinery/cryopod/evacuation/climb_in(mob/living/carbon/user, mob/helper)
-	. = ..()
-	user.ghostize(FALSE)
-
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"
 	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
