@@ -121,6 +121,10 @@
 	else
 		facing = get_dir(A, X)
 		var/turf/throw_origin = get_step(T, facing)
+		for(var/obj/O in get_turf(X))
+			if(!O.CanPass(A, get_turf(X)))
+				to_chat(X, span_xenowarning("We try to fling [A] behind us, but [A] cant pass throught it!"))
+				return fail_activate()
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
 			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 			return fail_activate()

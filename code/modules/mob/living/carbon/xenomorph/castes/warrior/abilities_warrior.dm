@@ -310,6 +310,11 @@
 	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
 
+	for (var/obj/O in get_turf(X))
+		if(!O.CanPass(target, get_turf(X)))
+			to_chat(X, span_xenowarning("We try to throw [target] away, but [target] cant pass throught it!"))
+			return fail_activate()
+
 	X.face_atom(A)
 	GLOB.round_statistics.warrior_flings++ //I'm going to consider this a fling for the purpose of statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
@@ -337,6 +342,7 @@
 
 	if(X.empower())
 		fling_distance *= 2
+
 	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
