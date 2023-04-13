@@ -27,9 +27,9 @@
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(shield_equipped))
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(shield_dropped))
 
-	if(active)
-		if(ismob(parent_item.loc))
-			shield_init(parent_item.loc)
+	if(active && ismob(parent_item.loc))
+		var/mob/holder_mob = parent_item.loc
+		shield_equipped(parent, holder_mob, holder_mob.get_equipped_slot(parent))
 
 	if(islist(shield_cover))
 		cover = getArmor(arglist(shield_cover))
@@ -44,49 +44,6 @@
 	shield_detach_from_user()
 	cover = null
 	return ..()
-
-///A horrible proc for if the shield is initialised in a slot
-/datum/component/stun_mitigation/proc/shield_init(mob/holder_mob)
-	var/slot
-	if(parent == holder_mob.l_hand)
-		slot = SLOT_L_HAND
-	else if(parent == holder_mob.r_hand)
-		slot = SLOT_R_HAND
-	else if(parent == holder_mob.wear_mask)
-		slot = SLOT_WEAR_MASK
-	else if(iscarbon(holder_mob))
-		var/mob/living/carbon/holder_carbon = holder_mob
-		if(parent == holder_carbon.handcuffed)
-			slot = SLOT_HANDCUFFED
-		else if(parent == holder_carbon.back)
-			slot = SLOT_BACK
-		else if(ishuman(holder_mob))
-			var/mob/living/carbon/human/holder_human = holder_mob
-			if(parent == holder_human.wear_suit)
-				slot = SLOT_WEAR_SUIT
-			else if(parent == holder_human.w_uniform)
-				slot = SLOT_W_UNIFORM
-			else if(parent == holder_human.shoes)
-				slot = SLOT_SHOES
-			else if(parent == holder_human.belt)
-				slot = SLOT_BELT
-			else if(parent == holder_human.gloves)
-				slot = SLOT_GLOVES
-			else if(parent == holder_human.glasses)
-				slot = SLOT_GLASSES
-			else if(parent == holder_human.head)
-				slot = SLOT_HEAD
-			else if(parent == holder_human.wear_ear)
-				slot = SLOT_EARS
-			else if(parent == holder_human.wear_id)
-				slot = SLOT_WEAR_ID
-			else if(parent == holder_human.r_store)
-				slot = SLOT_R_STORE
-			else if(parent == holder_human.l_store)
-				slot = SLOT_L_STORE
-			else if(parent == holder_human.s_store)
-				slot = SLOT_S_STORE
-	shield_equipped(parent, holder_mob, slot)
 
 ///Toggles the mitigation on or off when already equipped
 /datum/component/stun_mitigation/proc/toggle_shield/(datum/source, new_state)
