@@ -329,6 +329,13 @@
 	ammo_type = CAS_LASER_BATTERY
 	cas_effect = /obj/effect/overlay/blinking_laser/laser
 
+/obj/structure/ship_ammo/laser_battery/focused
+	name = "focused laser battery"
+	desc = "A specialized laser battery designed for extreme precision. Moving this will require some sort of lifter."
+	ammo_used_per_firing = 10
+	laze_radius = 1
+	point_cost = 100
+
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
 	. = ..()
 	. += "It's at [round(100*ammo_count/max_ammo_count)]% charge."
