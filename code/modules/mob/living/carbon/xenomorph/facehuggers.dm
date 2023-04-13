@@ -441,9 +441,6 @@
 		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
-	if(on_fire)
-		return FALSE
-
 	if(check_mask)
 		if(wear_mask)
 			var/obj/item/W = wear_mask
