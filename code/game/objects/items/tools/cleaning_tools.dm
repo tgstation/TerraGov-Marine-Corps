@@ -7,8 +7,8 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
 	icon_state = "mop"
-	force = 3.0
-	throwforce = 10.0
+	force = 3
+	throwforce = 10
 	throw_speed = 5
 	throw_range = 10
 	w_class = WEIGHT_CLASS_NORMAL

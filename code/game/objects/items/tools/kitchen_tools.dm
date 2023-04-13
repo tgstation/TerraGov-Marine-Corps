@@ -94,8 +94,8 @@
 	name = "knife"
 	desc = "Can cut through any food."
 	icon_state = "knife"
-	force = 10.0
-	throwforce = 10.0
+	force = 10
+	throwforce = 10
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 
@@ -113,8 +113,8 @@
 	name = "plastic knife"
 	desc = "The bluntest of blades."
 	icon_state = "pknife"
-	force = 10.0
-	throwforce = 10.0
+	force = 10
+	throwforce = 10
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
@@ -130,9 +130,9 @@
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
-	force = 10.0
+	force = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	throwforce = 6.0
+	throwforce = 6
 	throw_speed = 3
 	throw_range = 6
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -157,9 +157,9 @@
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	flags_atom = CONDUCT
-	force = 15.0
+	force = 15
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 8.0
+	throwforce = 8
 	throw_speed = 3
 	throw_range = 6
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -194,8 +194,8 @@
 	icon = 'icons/obj/items/kitchen_tools.dmi'
 	icon_state = "tray"
 	desc = "A metal tray to lay food on."
-	throwforce = 12.0
-	throwforce = 10.0
+	throwforce = 12
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL

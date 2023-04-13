@@ -4,9 +4,9 @@
 	desc = ""
 	gender = NEUTER
 	speak_emote = list("hisses")
-	response_help  = "thinks better of touching"
+	response_help = "thinks better of touching"
 	response_disarm = "flails at"
-	response_harm   = "punches"
+	response_harm = "punches"
 	speak_chance = 1
 	icon = 'icons/mob/mob.dmi'
 	speed = 0

@@ -30,9 +30,9 @@
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 10
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
+	response_harm = "hits"
 	maxHealth = 200
 	health = 200
 	obj_damage = 60

@@ -2494,7 +2494,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "CZ" = (
-/obj/item/weapon/gun/minigun_nest{
+/obj/item/weapon/gun/standard_minigun/nest{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -2998,7 +2998,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "HL" = (
-/obj/item/weapon/gun/minigun_nest{
+/obj/item/weapon/gun/standard_minigun/nest{
 	dir = 1;
 	pixel_y = 7
 	},
@@ -4438,7 +4438,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "YO" = (
-/obj/item/weapon/gun/minigun_nest{
+/obj/item/weapon/gun/standard_minigun/nest{
 	dir = 1;
 	pixel_y = 7
 	},

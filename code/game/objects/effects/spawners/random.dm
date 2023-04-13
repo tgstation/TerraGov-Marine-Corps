@@ -133,6 +133,16 @@
 		/obj/item/cell/hyper = 1,
 	)
 
+/obj/effect/spawner/random/pickaxe
+	name = "Random pickaxe spawner"
+	icon_state = "random_pickaxe"
+	loot = list(
+		/obj/item/tool/pickaxe = 600,
+		/obj/item/tool/pickaxe/drill = 100,
+		/obj/item/tool/pickaxe/borgdrill = 100,
+		/obj/item/tool/pickaxe/plasmacutter = 10, //10 in 800 chance of showing up
+	)
+
 /obj/effect/spawner/random/bomb_supply
 	name = "Bomb Supply"
 	icon_state = "random_scanner"
@@ -347,8 +357,8 @@
 		/obj/item/reagent_containers/food/snacks/candiedapple,
 		/obj/item/reagent_containers/food/snacks/poppypretzel,
 		/obj/item/reagent_containers/food/snacks/fortunecookie,
-		/obj/item/reagent_containers/food/snacks/jellysandwich,
-		/obj/item/reagent_containers/food/snacks/jellysandwich/cherry,
+		/obj/item/reagent_containers/food/snacks/sandwiches/jellysandwich,
+		/obj/item/reagent_containers/food/snacks/sandwiches/jellysandwich/cherry,
 		/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit,
 		/obj/item/reagent_containers/food/snacks/enrg_bar,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps,
@@ -362,7 +372,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk,
 		/obj/item/reagent_containers/food/snacks/lollipop,
-		/obj/item/reagent_containers/food/snacks/appletart,
+		/obj/item/reagent_containers/food/snacks/pastries/appletart,
 	)
 
 
@@ -372,27 +382,27 @@
 	icon_state = "random_outdoors_snack"
 	spawn_random_offset = TRUE
 	loot = list(
-		/obj/item/reagent_containers/food/snacks/taco,
+		/obj/item/reagent_containers/food/snacks/mexican/taco,
 		/obj/item/reagent_containers/food/snacks/hotdog,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito,
 		/obj/item/reagent_containers/food/snacks/fries,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
-		/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza,
-		/obj/item/reagent_containers/food/snacks/packaged_burger,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza,
+		/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs,
 		/obj/item/reagent_containers/food/snacks/upp/fish,
 		/obj/item/reagent_containers/food/snacks/upp/rice,
-		/obj/item/reagent_containers/food/snacks/sliceable/meatbread,
-		/obj/item/reagent_containers/food/snacks/bigbiteburger,
-		/obj/item/reagent_containers/food/snacks/enchiladas,
+		/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread,
+		/obj/item/reagent_containers/food/snacks/burger/bigbite,
+		/obj/item/reagent_containers/food/snacks/mexican/enchiladas,
 		/obj/item/reagent_containers/food/snacks/cheesyfries,
 		/obj/item/reagent_containers/food/snacks/fishandchips,
 		/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
-		/obj/item/reagent_containers/food/snacks/tofuburger,
-		/obj/item/reagent_containers/food/snacks/fishburger,
-		/obj/item/reagent_containers/food/snacks/xenoburger,
+		/obj/item/reagent_containers/food/snacks/burger/tofu,
+		/obj/item/reagent_containers/food/snacks/burger/fishburger,
+		/obj/item/reagent_containers/food/snacks/burger/xeno,
 		/obj/item/reagent_containers/food/snacks/fishfingers,
 	)
 
@@ -584,6 +594,156 @@
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/beaker/large,
 	)
+
+/obj/effect/spawner/random/donut
+	name = "Random donut spawner"
+	icon_state = "random_donut"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/donut/normal = 70, //we could use loot_subtype_path to include all donuts automatically but then we couldn't adjust probabilities
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 15,
+		/obj/item/reagent_containers/food/snacks/donut/cherryjelly = 10,
+		/obj/item/reagent_containers/food/snacks/donut/berry = 10,
+		/obj/item/reagent_containers/food/snacks/donut/trumpet = 10,
+		/obj/item/reagent_containers/food/snacks/donut/apple = 10,
+		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
+		/obj/item/reagent_containers/food/snacks/donut/choco = 15,
+		/obj/item/reagent_containers/food/snacks/donut/blumpkin = 10,
+		/obj/item/reagent_containers/food/snacks/donut/bungo = 10,
+		/obj/item/reagent_containers/food/snacks/donut/matcha = 10,
+		/obj/item/reagent_containers/food/snacks/donut/laugh = 10,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/trumpet = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/apple = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/caramel = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/choco = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/blumpkin = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/bungo = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/matcha = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/laugh = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/plain = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/berry = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/trumpet = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/apple = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/caramel = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/choco = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/blumpkin = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/bungo = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/matcha = 1,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh = 1,
+		/obj/item/reagent_containers/food/snacks/donut/chaos = 1,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 1,
+	)
+
+/obj/effect/spawner/random/burger
+	name = "Random burger spawner"
+	icon_state = "random_burger"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/effect/spawner/random/burger/normal = 95,
+		/obj/effect/spawner/random/burger/weird = 5,
+	)
+
+/obj/effect/spawner/random/burger/bunweighted
+	name = "Random burger bun spawner"
+	icon_state = "random_burger_bun"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/burger/bun = 95,
+		/obj/effect/spawner/random/burger = 5,
+	)
+
+/obj/effect/spawner/random/burger/normal
+	name = "Random normal burger spawner"
+	icon_state = "random_burger_normal"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/burger/plain = 40,
+		/obj/item/reagent_containers/food/snacks/burger/cheese = 20,
+		/obj/item/reagent_containers/food/snacks/burger/baconburger = 10,
+		/obj/item/reagent_containers/food/snacks/burger/chicken = 10,
+		/obj/item/reagent_containers/food/snacks/burger/fishburger = 10,
+		/obj/item/reagent_containers/food/snacks/burger/superbite = 5,
+		/obj/item/reagent_containers/food/snacks/burger/fivealarm = 5,
+	)
+
+/obj/effect/spawner/random/burger/weird
+	name = "Random weird burger spawner"
+	icon_state = "random_burger_weird"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/burger/tofu,
+		/obj/item/reagent_containers/food/snacks/burger/roburger,
+		/obj/item/reagent_containers/food/snacks/burger/roburgerbig,
+		/obj/item/reagent_containers/food/snacks/burger/appendix,
+		/obj/item/reagent_containers/food/snacks/burger/xeno,
+		/obj/item/reagent_containers/food/snacks/burger/human,
+		/obj/item/reagent_containers/food/snacks/burger/bearger,
+		/obj/item/reagent_containers/food/snacks/burger/clown,
+		/obj/item/reagent_containers/food/snacks/burger/mime,
+		/obj/item/reagent_containers/food/snacks/burger/brain,
+		/obj/item/reagent_containers/food/snacks/burger/spell,
+		/obj/item/reagent_containers/food/snacks/burger/jelly,
+		/obj/item/reagent_containers/food/snacks/burger/jelly/cherry,
+		/obj/item/reagent_containers/food/snacks/burger/jelly/slime,
+		/obj/item/reagent_containers/food/snacks/burger/rat,
+		/obj/item/reagent_containers/food/snacks/burger/baseball,
+		/obj/item/reagent_containers/food/snacks/burger/empoweredburger,
+		/obj/item/reagent_containers/food/snacks/burger/catburger,
+		/obj/item/reagent_containers/food/snacks/burger/crab,
+		/obj/item/reagent_containers/food/snacks/burger/soylent,
+		/obj/item/reagent_containers/food/snacks/burger/crazy,
+		/obj/item/reagent_containers/food/snacks/burger/ghostburger,
+		/obj/item/reagent_containers/food/snacks/burger/bun,
+	)
+
+/obj/effect/spawner/random/packagedbar
+	name = "Random food bar spawner"
+	icon_state = "random_foodbar"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 12,
+		/obj/item/reagent_containers/food/snacks/candy = 5,
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 5,
+	)
+
+/obj/effect/spawner/random/packagedbar/candyweighted
+	name = "Random candy bar spawner"
+	icon_state = "random_foodbar_candy"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/candy = 75,
+		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 10,
+		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 5,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 5,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 5,
+	)
+
+/obj/effect/spawner/random/cheesewedge
+	name = "Random cheese wedge spawner"
+	icon_state = "random_cheesewedge"
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 80,
+		/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel = 10,
+		/obj/item/reagent_containers/food/snacks/baked_cheese = 5,
+		/obj/item/reagent_containers/food/snacks/baked_cheese_platter = 5,
+	)
+
+/obj/effect/spawner/random/kitchenknife
+	name = "Random kitchen knife spawner"
+	icon_state = "random_knife"
+	loot = list(
+		/obj/item/tool/kitchen/knife = 9,
+		/obj/item/tool/kitchen/knife/butcher = 1,
+	)
+
+/obj/effect/spawner/random/kitchenknife/butcherweighted
+	name = "Random kitchen knife spawner"
+	icon_state = "random_knife_butcher"
+	loot = list(
+		/obj/item/tool/kitchen/knife/butcher = 9,
+		/obj/item/tool/kitchen/knife = 1,
+	)
+
 
 /obj/effect/spawner/random/beaker/bluespace
 	name = "Random bluespace beaker spawner"
@@ -982,8 +1142,9 @@
 	name = "Random shotgun ammunition spawner"
 	icon_state = "random_shotgun_ammo"
 	loot = list(
-		/obj/item/ammo_magazine/shotgun/buckshot,
-		/obj/item/ammo_magazine/shotgun/flechette,
+		/obj/item/ammo_magazine/shotgun/buckshot = 10,
+		/obj/item/ammo_magazine/shotgun/flechette = 5,
+		/obj/item/ammo_magazine/shotgun/incendiary = 1,
 	)
 
 
@@ -1259,6 +1420,9 @@
 		/obj/item/folder/grape = 5,
 	)
 
+/obj/effect/spawner/random/folder/nooffset
+	spawn_random_offset = FALSE
+
 /obj/effect/spawner/random/beer
 	name = "beer spawner"
 	icon_state = "random_beer"
@@ -1438,6 +1602,9 @@
 	loot = list(
 		/obj/item/radio/survivor,
 	)
+
+/obj/effect/spawner/random/radio/highspawn
+	spawn_loot_chance = 80
 
 /obj/effect/spawner/random/mineral
 	name = "mineral spawner"
@@ -1807,6 +1974,9 @@
 		/obj/structure/girder/reinforced = 1,
 	)
 
+/obj/effect/spawner/random/structure/girder/highspawn
+	spawn_loot_chance = 95
+
 /obj/effect/spawner/random/structure/table_parts
 	name = "table parts spawner"
 	icon_state = "random_tableparts"
@@ -1968,6 +2138,15 @@
 		/obj/structure/window/framed/colony/reinforced = 1,
 	)
 
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn
+	name = "broken reinforced window spawner"
+	icon_state = "random_col_rwindow"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/window/framed/colony/reinforced = 100,
+		/obj/structure/window_frame/colony/reinforced = 1,
+	)
+
 /obj/effect/spawner/random/structure/broken_window
 	name = "broken window spawner"
 	icon_state = "random_col_window"
@@ -1975,6 +2154,14 @@
 	loot = list(
 		/obj/structure/window_frame/colony = 9,
 		/obj/structure/window/framed/colony = 1,
+	)
+
+/obj/effect/spawner/random/structure/broken_window/colonyspawn //used on regular maps, low chance to spawn broken and will always appear
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/window/framed/colony = 75,
+		/obj/structure/window_frame/colony = 1,
+
 	)
 
 /obj/effect/spawner/random/structure/barrel
@@ -1993,13 +2180,20 @@
 /obj/effect/spawner/random/structure/curtain
 	name = "curtain spawner"
 	icon_state = "random_curtain"
-	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/curtain/temple = 90,
-		/obj/structure/curtain/open/temple = 10,
+		/obj/structure/curtain/temple = 9,
+		/obj/structure/curtain/open/temple = 1,
 	)
 
-/obj/effect/spawner/random/structure/chair_or_metal //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/curtain/medical
+	name = "medical curtain spawner"
+	icon_state = "random_med_curtain"
+	loot = list(
+		/obj/structure/curtain/medical = 9,
+		/obj/structure/curtain/open/medical = 1,
+	)
+
+/obj/effect/spawner/random/structure/chair_or_metal
 	name = "chair or metal spawner"
 	icon_state = "random_chair"
 	spawn_loot_chance = 95
@@ -2008,7 +2202,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/chair_or_metal/north //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/chair_or_metal/north
 	name = "chair or metal spawner"
 	icon_state = "random_chair_north"
 	spawn_loot_chance = 95
@@ -2018,7 +2212,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/chair_or_metal/west //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/chair_or_metal/west
 	name = "chair or metal spawner"
 	icon_state = "random_chair_west"
 	spawn_loot_chance = 95
@@ -2028,7 +2222,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/chair_or_metal/east //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/chair_or_metal/east
 	name = "chair or metal spawner"
 	icon_state = "random_chair_east"
 	spawn_loot_chance = 95
@@ -2038,7 +2232,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair"
 	spawn_loot_chance = 95
@@ -2047,7 +2241,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/dark //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair"
 	spawn_loot_chance = 95
@@ -2056,7 +2250,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/east //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/east
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_east"
 	spawn_with_original_direction = TRUE
@@ -2066,7 +2260,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_east"
 	spawn_with_original_direction = TRUE
@@ -2076,7 +2270,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/west //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/west
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_west"
 	spawn_with_original_direction = TRUE
@@ -2086,7 +2280,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_west"
 	spawn_with_original_direction = TRUE
@@ -2096,7 +2290,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/north //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/north
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_north"
 	spawn_with_original_direction = TRUE
@@ -2106,7 +2300,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_north"
 	spawn_with_original_direction = TRUE
@@ -2116,11 +2310,38 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 
-/obj/effect/spawner/random/structure/stool //only works for south facing chairs due to lack of proper directional spawning
+/obj/effect/spawner/random/structure/stool
 	name = "stool spawner"
 	icon_state = "random_stool"
 	spawn_loot_chance = 95
-	loot = list()
+	loot = list(
+		/obj/structure/bed/stool,
+	)
+
+/obj/effect/spawner/random/structure/supplycrate
+	name = "supply crate spawner"
+	icon_state = "random_supplycrate"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/largecrate/random = 30,
+		/obj/structure/largecrate/random/secure = 5,
+	)
+
+/obj/effect/spawner/random/structure/supplycrate/normalweighted
+	loot = list(
+		/obj/structure/largecrate = 30,
+		/obj/effect/spawner/random/structure/supplycrate = 5,
+	)
+
+/obj/effect/spawner/random/structure/supplycrate/secureweighted
+	name = "secure crate spawner"
+	icon_state = "random_securecrate"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/largecrate/random/secure = 30,
+		/obj/structure/largecrate/random = 5,
+	)
+
 
 /obj/effect/spawner/random/structure/machine_frame
 	name = "machine frame spawner"

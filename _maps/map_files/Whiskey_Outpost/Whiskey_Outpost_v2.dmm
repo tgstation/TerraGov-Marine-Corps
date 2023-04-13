@@ -586,7 +586,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "cG" = (
-/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/clothing/suit/storage/marine/smartgunner,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
@@ -4388,6 +4388,10 @@
 	dir = 1
 	},
 /area/whiskey_outpost/outside/north)
+"vv" = (
+/obj/effect/forcefield,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
 "vx" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5359,6 +5363,7 @@
 	name = "Exit Shield";
 	resistance_flags = 3
 	},
+/obj/effect/forcefield,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Bt" = (
@@ -6933,7 +6938,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
 	},
-/obj/item/weapon/gun/minigun_nest{
+/obj/item/weapon/gun/standard_minigun/nest{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -17495,7 +17500,7 @@ kn
 Gj
 kn
 kn
-yw
+vv
 aa
 dx
 "}
@@ -17632,7 +17637,7 @@ fj
 fn
 kn
 kn
-yw
+vv
 aa
 dx
 "}
@@ -17769,7 +17774,7 @@ Hq
 vi
 fj
 fj
-yw
+vv
 aa
 dx
 "}

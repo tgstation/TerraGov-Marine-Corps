@@ -81,7 +81,7 @@
 
 /obj/effect/forcefield/fog/Initialize()
 	. = ..()
-	dir  = pick(CARDINAL_DIRS)
+	dir = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
 
 /obj/effect/forcefield/fog/Destroy()

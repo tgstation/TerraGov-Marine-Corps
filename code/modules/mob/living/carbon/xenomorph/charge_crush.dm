@@ -510,7 +510,8 @@
 /obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	TryToSwitchState(charger)
+	if(!open)
+		toggle_state(charger)
 	if(density)
 		return PRECRUSH_STOPPED
 	charger.visible_message(span_danger("[charger] slams [src] open!"),

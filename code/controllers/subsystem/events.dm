@@ -106,8 +106,8 @@ SUBSYSTEM_DEF(events)
 	holder.force_event()
 
 /datum/admins/proc/force_event()
-	var/dat 	= ""
-	var/normal 	= ""
+	var/dat = ""
+	var/normal = ""
 
 	for(var/datum/round_event_control/E in SSevents.control)
 		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"

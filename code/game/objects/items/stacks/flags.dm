@@ -54,7 +54,7 @@
 		to_chat(user, "The flag won't stand up in this terrain.")
 		return
 
-	if(F && F.upright)
+	if(F?.upright)
 		to_chat(user, "There is already a flag here.")
 		return
 

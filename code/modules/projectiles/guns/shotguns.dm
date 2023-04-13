@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
-	force = 14.0
+	force = 14
 	caliber = CALIBER_12G //codex
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
@@ -130,7 +130,7 @@
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -484,7 +484,7 @@
 // Derringer
 
 /obj/item/weapon/gun/shotgun/double/derringer
-	name = "R-2395 Derringer"
+	name = "\improper R-2395 Derringer"
 	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
 	icon_state = "derringer"
 	item_state = "tp17"
@@ -560,7 +560,7 @@
 // Leicester Rifle. The gun that won the west.
 
 /obj/item/weapon/gun/shotgun/pump/lever/repeater
-	name = "Leicester Repeater"
+	name = "\improper Leicester Repeater"
 	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .45-70 Governemnt."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "leicrepeater"
@@ -818,7 +818,7 @@
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31
 /obj/item/weapon/gun/shotgun/micro_grenade
-	name = "VA-61 micro rail launcher"
+	name = "\improper VA-61 micro rail launcher"
 	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "va61"

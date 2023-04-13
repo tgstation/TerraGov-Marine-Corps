@@ -19,7 +19,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bj" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -153,7 +153,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "hQ" = (
@@ -318,7 +318,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "qg" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -498,7 +498,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "wL" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "rad_door";
@@ -693,7 +693,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "GG" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "Ha" = (
@@ -880,7 +880,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "QH" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "QO" = (
@@ -953,7 +953,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "TQ" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "TY" = (
@@ -974,7 +973,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "VK" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
