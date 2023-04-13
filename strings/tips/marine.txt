@@ -157,3 +157,4 @@ Always stick to your squad, or at least have a buddy.
 Walking to and from the FOB by yourself is an easy way to die.
 Xenomorphs are well armored. Over time, their exoskeleton will wear down by sunder, and they will be very vulnerable.
 You can attach a bullet charger to a BR-127 to become a discount autosniper.
+As the AI, you can hold CTRL and use numbers 1 to 9, to set a "hotkey" for that camera spot. Using it without CTRL brings you to that saved spot, if any. 0 brings you back to the camera spot before you used it.

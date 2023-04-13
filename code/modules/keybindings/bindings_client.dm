@@ -73,6 +73,8 @@
 			continue
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
+	
+	mob?.key_down(_key, src)
 
 
 /client/verb/keyUp(_key as text)
@@ -95,6 +97,8 @@
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
 		if(kb.up(src))
 			break
+	
+	mob?.key_up(_key, src)
 
 /**
  * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
@@ -108,3 +112,7 @@
 	for(var/key in keys_held)
 		keyUp(key)
 
+/datum/proc/key_down(key, client/user) // Called when a key is pressed down initially
+	return
+/datum/proc/key_up(key, client/user) // Called when a key is released
+	return

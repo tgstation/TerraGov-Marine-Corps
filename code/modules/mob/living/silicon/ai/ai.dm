@@ -25,6 +25,8 @@
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = FALSE
+	var/list/cam_hotkeys = new/list(9)
+	var/atom/cam_prev
 
 	var/tracking = FALSE
 	var/last_paper_seen = 0
@@ -492,3 +494,27 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+
+/mob/living/silicon/ai/key_down(_key, client/user)
+	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
+		_key = _key[7] //strings, lists, same thing really
+	switch(_key)
+		if("`", "0")
+			if(cam_prev)
+				to_chat(src, span_notice("Jumping to previous location."))
+				cameraFollow = null //stop following something, we want to jump away.
+				eyeobj.setLoc(cam_prev)
+			return
+		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
+			_key = text2num(_key)
+			if(user.keys_held["Ctrl"]) //do we assign a new hotkey?
+				cam_hotkeys[_key] = eyeobj.loc
+				to_chat(src, span_notice("Location saved to Camera Group [_key]."))
+				return
+			if(cam_hotkeys[_key]) //if this is false, no hotkey for this slot exists.
+				cam_prev = eyeobj.loc
+				cameraFollow = null //stop following something, we want to jump away.
+				eyeobj.setLoc(cam_hotkeys[_key])
+				to_chat(src, span_notice("Jumping to Camera Group [_key]."))
+				return
+	return ..()
