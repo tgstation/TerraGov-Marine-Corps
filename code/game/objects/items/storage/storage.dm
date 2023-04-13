@@ -74,7 +74,7 @@
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
 	///If our storage is capable of tactical reload with a gun
-	var/allows_tactical_reload
+	var/allows_tactical_reload = FALSE //Not every storage is tac reload capable, set it to true when you want something to be
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
