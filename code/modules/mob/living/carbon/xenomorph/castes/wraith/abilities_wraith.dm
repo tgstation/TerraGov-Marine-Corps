@@ -109,7 +109,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	teleport_debuff_aoe(X) //Debuff when we vanish
 
 	if(pulled_target) //Yes, duplicate check because otherwise we end up with the initial teleport debuff AoE happening prior to the wind up which looks really bad and is actually exploitable via deliberate do after cancels
-		pulled_target.forceMove(T) //Teleport to our target turf
+		var/can_pass = TRUE
+
+		for(var/obj/O in get_turf(X))
+			if(!O.CanPass(pulled_target, get_turf(X)))
+				can_pass = FALSE
+				break;
+
+		if(can_pass)
+			pulled_target.forceMove(T) //Teleport to our target turf
 
 	X.forceMove(T) //Teleport to our target turf
 	teleport_debuff_aoe(X) //Debuff when we reappear

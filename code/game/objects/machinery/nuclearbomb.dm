@@ -14,7 +14,7 @@
 	anchored = TRUE
 	coverage = 20
 	flags_atom = CRITICAL_ATOM
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL | PORTAL_IMMUNE
 	layer = BELOW_MOB_LAYER
 	interaction_flags = INTERACT_OBJ_UI
 	var/deployable = TRUE
