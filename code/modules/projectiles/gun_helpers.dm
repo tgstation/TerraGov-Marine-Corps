@@ -104,7 +104,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			return
 		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
 		return
-	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
+	if(src != user.r_hand && src != user.l_hand && (!master_gun || (master_gun != user.r_hand && master_gun != user.l_hand)))
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
