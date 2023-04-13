@@ -66,6 +66,7 @@
 /obj/item/clothing/shoes/marinechief/sa
 	name = "spatial agent's shoes"
 	desc = "Shoes worn by a spatial agent."
+	slowdown = SA_SHOES_SLOWDOWN
 
 /obj/item/clothing/shoes/veteran
 

@@ -119,7 +119,8 @@
 #define MAGAZINE_REFUND_IN_CHAMBER (1<<3)
 
 //Slowdown from various armors.
-#define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
+#define SHOES_SLOWDOWN -1.0 // How much shoes slow you down by default. Negative values speed you up
+#define SA_SHOES_SLOWDOWN -2.0 //Spatial Agent is fast as fuck
 
 #define SLOWDOWN_ARMOR_VERY_LIGHT 0.20
 #define SLOWDOWN_ARMOR_LIGHT 0.3
