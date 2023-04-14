@@ -21,6 +21,9 @@
 	var/list/holsterable_allowed = list()
 	///records the specific special item currently in the holster
 	var/holstered_item = null
+	///Any holster is only capable of holding a single firearm
+	storage_type_limits = list(/obj/item/weapon/gun = 1)
+
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
@@ -334,17 +337,23 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
 		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
 	)
-
-	storage_slots = 4
-	max_storage_space = 10
-	max_w_class = WEIGHT_CLASS_BULKY
-
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
+		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
+	)
 	can_hold = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
 	)
 
+	storage_slots = 7
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_BULKY
+
 /obj/item/storage/holster/t19/full/Initialize()
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+	for(var/I in 1 to (storage_slots-1))
+		new /obj/item/ammo_magazine/smg/standard_machinepistol

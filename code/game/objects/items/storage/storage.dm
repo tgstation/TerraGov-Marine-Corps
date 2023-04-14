@@ -13,9 +13,12 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_NORMAL
-	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
-	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	///List of objects which this item can store (if set, it can't store anything else)
+	var/list/can_hold = list()
+	///List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/cant_hold = list()
+	///List of objects which this item can store despite not passing the w_class limit
+	var/list/bypass_w_limit = list()
 	/**
 	 * Associated list of types and their max count, formatted as
 	 * 	storage_type_limits = list(
