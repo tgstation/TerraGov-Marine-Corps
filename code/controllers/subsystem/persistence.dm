@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_three
-name = "Warsaw Pact vs NATO"
+	name = "Warsaw Pact vs NATO"
 	description = "Hot Guns from the Cold War"
 	item_list = list(
 		/obj/item/weapon/gun/rifle/mpi_km= -1,
