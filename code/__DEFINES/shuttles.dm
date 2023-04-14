@@ -34,6 +34,8 @@
 
 /// shuttle is immune to gamemode timer restrictions
 #define GAMEMODE_IMMUNE (1<<0)
+/// shuttle does not give a notification about moving to AIs
+#define AI_NONOTIFY (1<<1)
 
 // Ripples, effects that signal a shuttle's arrival
 #define SHUTTLE_RIPPLE_TIME 100

@@ -151,7 +151,9 @@
 ///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
 /mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, obj/docking_port/mobile/shuttle, obj/docking_port/stationary/D)
 	SIGNAL_HANDLER
-	to_chat(src, span_notice("NOTICE - [shuttle.name] taking off towards \the [D.name]"))
+	if(shuttle.shuttle_flags & AI_NONOTIFY)
+		return
+	to_chat(src, span_notice("NOTICE - [shuttle.name] taking off towards [istype(D,/obj/docking_port/stationary/transit) ? "orbit" : "\the [D.name]"]"))
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	SHOULD_CALL_PARENT(FALSE)

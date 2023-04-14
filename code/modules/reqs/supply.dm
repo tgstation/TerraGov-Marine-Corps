@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	height = 5
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	use_ripples = FALSE
+	shuttle_flags = AI_NONOTIFY
 	var/list/gears = list()
 	var/list/obj/machinery/door/poddoor/railing/railings = list()
 	///The faction of this docking port (aka, on which ship it is located)
