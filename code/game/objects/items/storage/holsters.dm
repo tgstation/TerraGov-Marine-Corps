@@ -45,25 +45,29 @@
 
 /obj/item/storage/holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	. = ..()
-	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being inserted is the snowflake item
+	if(!. || !is_type_in_list(W,holsterable_allowed)) //check to see if the item being inserted is the snowflake item
 		return
 	holstered_item = W
 	playsound(src, sheathe_sound, 15, 1)
-	update_icon()
-	update_gun_icon() //Belt holsters have a pistol-in-belt sprite to overlay over the belt
+	if(istype(src, /obj/item/storage/holster/belt)) //Belt holsters have a pistol-in-belt sprite to overlay over the belt
+		update_gun_icon()
+	else
+		update_icon()
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
-	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being removed is the snowflake item
+	if(!. || !is_type_in_list(W,holsterable_allowed)) //check to see if the item being removed is the snowflake item
 		return
 	holstered_item = null
 	playsound(src, draw_sound, 15, 1)
-	update_icon()
-	update_gun_icon() //Belt holsters have a pistol-in-belt sprite to overlay over the belt
+	if(istype(src, /obj/item/storage/holster/belt)) //Belt holsters have a pistol-in-belt sprite to overlay over the belt
+		update_gun_icon()
+	else
+		update_icon()
 
 /obj/item/storage/holster/update_icon_state()
 	//sets the icon to full or empty
-	if (holstered_item)
+	if(holstered_item)
 		icon_state = base_icon + "_full"
 	else
 		icon_state = base_icon
@@ -73,7 +77,7 @@
 /obj/item/storage/holster/update_icon()
 	. = ..() //calls update_icon_state to change the icon/item state
 	var/mob/user = loc
-	if (!istype(user))
+	if(!istype(user))
 		return
 	user.update_inv_back()
 	user.update_inv_belt()
@@ -92,20 +96,20 @@
 		*/
 		playsound(src,draw_sound, 15, 1)
 		gun_underlay = image(icon, src, holstered_item.icon_state)
-		icon_state += "_g"
+		icon_state = base_icon + "_full"
 		item_state = icon_state
 		underlays += gun_underlay
 	else
 		playsound(src,sheathe_sound, 15, 1)
 		underlays -= gun_underlay
-		icon_state = copytext(icon_state,1,-2)
+		icon_state = base_icon
 		item_state = icon_state
 		qdel(gun_underlay)
 		gun_underlay = null
 	if(istype(user)) user.update_inv_belt()
 	if(istype(user)) user.update_inv_s_store()
 
-//Will only draw the specific holstered item, not ammo etc.
+///Will only draw the specific holstered item, not ammo etc.
 /obj/item/storage/holster/do_quick_equip(mob/user)
 	if(!holstered_item)
 		return FALSE
@@ -113,6 +117,12 @@
 	if(!remove_from_storage(W, null, user))
 		return FALSE
 	return W
+
+/obj/item/storage/holster/attack_hand(mob/living/user) //If your holstered item is in the storage, clicking the holster will always draw it
+	if(holstered_item && ishuman(user) && loc == user)
+		holstered_item.attack_hand(user)
+	else
+		return ..()
 
 /obj/item/storage/holster/vendor_equip(mob/user)
 	..()
@@ -405,10 +415,7 @@
 		/obj/item/cell/lasgun/volkite/small,
 	)
 	holsterable_allowed = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
-		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun,
 	) //Any pistol you add to a holster should update the sprite. Ammo/Magazines dont update any sprites
 
 /obj/item/storage/holster/belt/Destroy()
@@ -424,9 +431,6 @@
 /obj/item/storage/holster/belt/pistol
 	name = "generic pistol belt"
 	desc = "A pistol belt that is not a revolver belt"
-	icon_state = "m4a3_holster"
-	base_icon = "m4a3_holster"
-	item_state = "m4a3_holster"
 
 /obj/item/storage/holster/belt/pistol/attackby_alternate(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/weapon/gun/pistol))
