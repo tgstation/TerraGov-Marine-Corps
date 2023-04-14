@@ -27,10 +27,6 @@
 /obj/item/stack/barbed_wire/full
 	amount = 20
 
-/obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under pain of entanglement and injury. A classic fortification since the 1900s."
