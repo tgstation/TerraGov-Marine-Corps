@@ -597,11 +597,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return FALSE
 			selected_slot = H.back
 		if(SLOT_IN_HOLSTER)
-			if(!H.belt || (!istype(H.belt,/obj/item/storage/holster) && !istype(H.belt,/obj/item/storage/belt/gun)))
+			if(!H.belt || (!istype(H.belt,/obj/item/storage/holster) && !istype(H.belt,/obj/item/storage/holster/belt)))
 				return FALSE
 			selected_slot = H.belt
 		if(SLOT_IN_S_HOLSTER)
-			if(!H.s_store || (!istype(H.s_store, /obj/item/storage/holster) && !istype(H.s_store,/obj/item/storage/belt/gun)))
+			if(!H.s_store || (!istype(H.s_store, /obj/item/storage/holster) && !istype(H.s_store,/obj/item/storage/holster/belt)))
 				return FALSE
 			selected_slot = H.s_store
 

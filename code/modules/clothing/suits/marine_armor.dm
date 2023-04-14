@@ -29,7 +29,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 		/obj/item/tool/pickaxe/plasmacutter,
@@ -112,7 +112,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
 	)
@@ -200,7 +200,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 	)
 
 /obj/item/clothing/suit/storage/marine/officer/req
@@ -551,7 +551,7 @@
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/gun,
+		/obj/item/storage/holster/belt,
 	)
 
 /obj/item/clothing/suit/storage/RO

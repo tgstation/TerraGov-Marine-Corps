@@ -596,7 +596,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/mateba
 	name = "Mateba Autorevolver belt"
-	contains = list(/obj/item/storage/belt/gun/mateba/full)
+	contains = list(/obj/item/storage/holster/belt/mateba/full)
 	notes = "Contains 6 speedloaders"
 	cost = 150
 	available_against_xeno_only = TRUE

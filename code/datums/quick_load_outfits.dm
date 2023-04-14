@@ -1217,7 +1217,7 @@
 	desc = "Smells like victory. Equipped with an V-62 incinerator and wide nozzle, V-11 equipped for rapid burst fire, heavy armor upgraded with a 'Hades' fireproof module, and a backtank of fuel. Has better than average range and can quickly burn down large areas. It suffers from significant slowdown, lacks an integrated extinguisher, and undisciplined use can result in rapidly consuming all available fuel."
 
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	back = /obj/item/ammo_magazine/flamer_tank/backtank
 	suit_store = /obj/item/weapon/gun/flamer/som/mag_harness
 
@@ -1274,7 +1274,7 @@
 	head = /obj/item/clothing/head/modular/som/lorica
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
 	suit_store = /obj/item/weapon/twohanded/fireaxe/som
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 
 /datum/outfit/quick/som/marine/breacher_melee/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1308,7 +1308,7 @@
 	desc = "Heavy static firesupport. Equipped with a V-41 machine gun, burst fire V-11 sidearm and some basic building supplies. While often ill suited to the SOM's standard doctrine of mobility and aggression, the V-41 is typically seen in defensive positions or second line units where its poor mobility is a minor drawback compared to its sustained firepower."
 
 	suit_store = /obj/item/weapon/gun/rifle/som_mg/standard
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	l_store = /obj/item/storage/pouch/construction/som
 
 /datum/outfit/quick/som/marine/machine_gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1981,7 +1981,7 @@
 	quantity = 2
 
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	suit_store = /obj/item/weapon/energy/sword/som
 	back = /obj/item/blink_drive
 

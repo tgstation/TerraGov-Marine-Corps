@@ -11,6 +11,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	draw_mode = 1
 	allow_drawing_method = TRUE
+	storage_type_limits = list(/obj/item/weapon/gun = 1) //Any holster can only hold 1 gun in it
 	///is used to store the 'empty' sprite name
 	var/base_icon = "m37_holster"
 	///the sound produced when the special item is drawn
@@ -348,3 +349,378 @@
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+////////////////////////////// GUN BELTS /////////////////////////////////////
+
+/obj/item/storage/holster/belt
+	name = "pistol belt"
+	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "m4a3_holster"
+	base_icon = "m4a3_holster"
+	item_state = "m4a3_holster"
+	flags_equip_slot = ITEM_SLOT_BELT
+	use_sound = null
+	storage_slots = 7
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_NORMAL
+	var/image/gun_underlay
+	var/sheatheSound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
+	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
+		/obj/item/cell/lasgun/lasrifle,
+		/obj/item/cell/lasgun/volkite/small,
+	)
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
+		/obj/item/weapon/gun/revolver,
+	) //Any pistol you add to a holster should update the sprite. Ammo/Magazines dont update any sprites
+
+/obj/item/storage/holster/belt/Destroy()
+	if(gun_underlay)
+		qdel(gun_underlay)
+		gun_underlay = null
+	if(holstered_item)
+		qdel(holstered_item)
+		holstered_item = null
+	return ..()
+
+/obj/item/storage/holster/belt/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
+	var/mob/user = loc
+	if(holstered_item) //So it has a gun, let's make an icon.
+		/*
+		Have to use a workaround here, otherwise images won't display properly at all times.
+		Reason being, transform is not displayed when right clicking/alt+clicking an object,
+		so it's necessary to pre-load the potential states so the item actually shows up
+		correctly without having to rotate anything. Preloading weapon icons also makes
+		sure that we don't have to do any extra calculations.
+		*/
+		playsound(src,drawSound, 15, 1)
+		gun_underlay = image(icon, src, holstered_item.icon_state)
+		icon_state += "_g"
+		item_state = icon_state
+		underlays += gun_underlay
+	else
+		playsound(src,sheatheSound, 15, 1)
+		underlays -= gun_underlay
+		icon_state = copytext(icon_state,1,-2)
+		item_state = icon_state
+		qdel(gun_underlay)
+		gun_underlay = null
+	if(istype(user)) user.update_inv_belt()
+	if(istype(user)) user.update_inv_s_store()
+
+//This deliniates between belt/gun/pistol and belt/gun/revolver
+/obj/item/storage/holster/belt/pistol
+	name = "generic pistol belt"
+	desc = "A pistol belt that is not a revolver belt"
+	icon_state = "m4a3_holster"
+	base_icon = "m4a3_holster"
+	item_state = "m4a3_holster"
+
+/obj/item/storage/holster/belt/pistol/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/pistol))
+		return ..()
+	var/obj/item/weapon/gun/pistol/gun = I
+	for(var/obj/item/ammo_magazine/mag in contents)
+		if(!(mag.type in gun.allowed_ammo_types))
+			continue
+		if(user.l_hand && user.r_hand || length(gun.chamber_items))
+			gun.tactical_reload(mag, user)
+		else
+			gun.reload(mag, user)
+		orient2hud()
+		return
+
+/obj/item/storage/holster/belt/pistol/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
+
+/obj/item/storage/holster/belt/pistol/m4a3
+	name = "\improper M4A3 holster rig"
+	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/cell/lasgun/lasrifle,
+	)
+
+/obj/item/storage/holster/belt/pistol/m4a3/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/officer/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/vp70/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70/tactical(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/vp78/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/m4a3/som
+	name = "\improper S19 holster rig"
+	desc = "A belt with origins dating back to old colony security holster rigs."
+	icon_state = "som_belt_pistol"
+	base_icon = "som_belt_pistol"
+	item_state = "som_belt_pistol"
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
+		/obj/item/cell/lasgun/lasrifle,
+		/obj/item/cell/lasgun/volkite/small,
+	)
+
+/obj/item/storage/holster/belt/pistol/m4a3/som/fancy
+	name = "\improper S19-B holster rig"
+	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."
+	icon_state = "som_belt_pistol_fancy"
+	base_icon = "som_belt_pistol_fancy"
+	item_state = "som_belt_pistol_fancy"
+
+/obj/item/storage/holster/belt/pistol/stand
+	name = "\improper M276 pattern M4A3 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
+	)
+
+/obj/item/storage/holster/belt/pistol/standard_pistol
+	name = "\improper T457 pattern pistol holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	icon_state = "tp14_holster"
+	base_icon = "tp14_holster"
+	item_state = "tp14_holster"
+
+/obj/item/storage/holster/belt/revolver/standard_revolver
+	name = "\improper T457 pattern revolver holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	icon_state = "tp44_holster"
+	base_icon = "tp44_holster"
+	item_state = "tp44_holster"
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/revolver,
+	)
+	can_hold = list(
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver,
+	)
+
+/obj/item/storage/holster/belt/m44
+	name = "\improper M276 pattern M44 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
+	icon_state = "m44_holster"
+	base_icon = "m44_holster"
+	item_state = "m44_holster"
+	max_storage_space = 16
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver,
+	)
+
+/obj/item/storage/holster/belt/m44/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/heavy(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/mateba
+	name = "\improper M276 pattern Mateba holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
+	icon_state = "mateba_holster"
+	base_icon = "mateba_holster"
+	item_state = "mateba_holster"
+	max_storage_space = 16
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/revolver/mateba,
+	)
+	can_hold = list(
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/ammo_magazine/revolver/mateba,
+	)
+
+/obj/item/storage/holster/belt/mateba/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/mateba/officer
+	icon_state = "c_mateba_holster"
+	base_icon = "c_mateba_holster"
+	item_state = "c_mateba_holster"
+
+/obj/item/storage/holster/belt/mateba/officer/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/custom(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/mateba/notmarine/Initialize()
+	. = ..()
+	icon_state = "a_mateba_holster"
+	base_icon = "a_mateba_holster"
+	item_state = "a_mateba_holster"
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/korovin
+	name = "\improper Type 41 pistol holster rig"
+	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."
+	icon_state = "korovin_holster"
+	base_icon = "korovin_holster"
+	item_state = "korovin_holster"
+	can_hold = list(
+		/obj/item/weapon/gun/pistol/c99,
+		/obj/item/ammo_magazine/pistol/c99,
+		/obj/item/ammo_magazine/pistol/c99t,
+	)
+
+/obj/item/storage/holster/belt/korovin/standard/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/korovin/tranq/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/tranq(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/ts34
+	name = "\improper M276 pattern SH-34 shotgun holster rig"
+	desc = "A purpose built belt-holster assembly that holds a SH-34 shotgun and one shell box or 2 handfuls."
+	icon_state = "ts34_holster"
+	base_icon = "ts34_holster"
+	item_state = "ts34_holster"
+	max_w_class = WEIGHT_CLASS_BULKY //So it can hold the shotgun.
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 3
+	max_storage_space = 8
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/double/marine,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/handful,
+	)
+	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/double/marine)
+
+/obj/item/storage/holster/belt/ts34/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
+/obj/item/storage/holster/belt/pistol/smart_pistol
+	name = "\improper SP-13 holster rig"
+	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
+	can_hold = list(
+		/obj/item/weapon/gun/pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+	)
+
+/obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)

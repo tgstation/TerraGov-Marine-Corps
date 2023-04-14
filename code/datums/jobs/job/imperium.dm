@@ -163,7 +163,7 @@
 	name = "Imperial Commissar"
 	jobtype = /datum/job/imperial/commissar
 
-	belt = /obj/item/storage/belt/gun/mateba/full //Ideally this can be later replaced with a bolter
+	belt = /obj/item/storage/holster/belt/mateba/full //Ideally this can be later replaced with a bolter
 	w_uniform = /obj/item/clothing/under/marine/imperial/commissar
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/commissar
 	gloves = /obj/item/clothing/gloves/marine/commissar
