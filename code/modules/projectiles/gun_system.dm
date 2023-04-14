@@ -1779,20 +1779,6 @@
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
 
-/obj/item/weapon/gun/on_enter_storage(obj/item/I)
-	if(istype(I,/obj/item/storage/holster/belt))
-		var/obj/item/storage/holster/belt/GB = I
-		if(!GB.current_gun)
-			GB.current_gun = src //If there's no active gun, we want to make this our icon.
-			GB.update_gun_icon()
-
-/obj/item/weapon/gun/on_exit_storage(obj/item/I)
-	if(istype(I,/obj/item/storage/holster/belt))
-		var/obj/item/storage/holster/belt/GB = I
-		if(GB.current_gun == src)
-			GB.current_gun = null
-			GB.update_gun_icon()
-
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))

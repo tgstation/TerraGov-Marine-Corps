@@ -21,7 +21,7 @@
 	///the snowflake item(s) that will update the sprite.
 	var/list/holsterable_allowed = list()
 	///records the specific special item currently in the holster
-	var/holstered_item = null
+	var/obj/holstered_item = null
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
