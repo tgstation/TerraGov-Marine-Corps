@@ -958,7 +958,7 @@
 
 /obj/item/storage/belt/gun
 	name = "pistol belt"
-	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	desc = "A belt-holster assembly that allows one to hold a pistol and six magazines."
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 	use_sound = null
