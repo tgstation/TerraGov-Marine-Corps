@@ -22,6 +22,8 @@
 	var/list/holsterable_allowed = list()
 	///records the specific special item currently in the holster
 	var/obj/holstered_item = null
+	///Image of the pistol that gets overlay'd over the belt sprite
+	var/image/gun_underlay
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
@@ -48,6 +50,7 @@
 	holstered_item = W
 	playsound(src, sheathe_sound, 15, 1)
 	update_icon()
+	update_gun_icon() //Belt holsters have a pistol-in-belt sprite to overlay over the belt
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
@@ -56,6 +59,7 @@
 	holstered_item = null
 	playsound(src, draw_sound, 15, 1)
 	update_icon()
+	update_gun_icon() //Belt holsters have a pistol-in-belt sprite to overlay over the belt
 
 /obj/item/storage/holster/update_icon_state()
 	//sets the icon to full or empty
@@ -74,6 +78,32 @@
 	user.update_inv_back()
 	user.update_inv_belt()
 	user.update_inv_s_store()
+
+///We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
+/obj/item/storage/holster/proc/update_gun_icon()
+	var/mob/user = loc
+	if(holstered_item) //So it has a gun, let's make an icon.
+		/*
+		Have to use a workaround here, otherwise images won't display properly at all times.
+		Reason being, transform is not displayed when right clicking/alt+clicking an object,
+		so it's necessary to pre-load the potential states so the item actually shows up
+		correctly without having to rotate anything. Preloading weapon icons also makes
+		sure that we don't have to do any extra calculations.
+		*/
+		playsound(src,draw_sound, 15, 1)
+		gun_underlay = image(icon, src, holstered_item.icon_state)
+		icon_state += "_g"
+		item_state = icon_state
+		underlays += gun_underlay
+	else
+		playsound(src,sheathe_sound, 15, 1)
+		underlays -= gun_underlay
+		icon_state = copytext(icon_state,1,-2)
+		item_state = icon_state
+		qdel(gun_underlay)
+		gun_underlay = null
+	if(istype(user)) user.update_inv_belt()
+	if(istype(user)) user.update_inv_s_store()
 
 //Will only draw the specific holstered item, not ammo etc.
 /obj/item/storage/holster/do_quick_equip(mob/user)
@@ -364,9 +394,8 @@
 	storage_slots = 7
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
-	var/image/gun_underlay
-	var/sheatheSound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
-	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
+	sheathe_sound = 'sound/weapons/guns/misc/pistol_sheathe.ogg'
+	draw_sound = 'sound/weapons/guns/misc/pistol_draw.ogg'
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
@@ -390,31 +419,6 @@
 		qdel(holstered_item)
 		holstered_item = null
 	return ..()
-
-/obj/item/storage/holster/belt/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
-	var/mob/user = loc
-	if(holstered_item) //So it has a gun, let's make an icon.
-		/*
-		Have to use a workaround here, otherwise images won't display properly at all times.
-		Reason being, transform is not displayed when right clicking/alt+clicking an object,
-		so it's necessary to pre-load the potential states so the item actually shows up
-		correctly without having to rotate anything. Preloading weapon icons also makes
-		sure that we don't have to do any extra calculations.
-		*/
-		playsound(src,drawSound, 15, 1)
-		gun_underlay = image(icon, src, holstered_item.icon_state)
-		icon_state += "_g"
-		item_state = icon_state
-		underlays += gun_underlay
-	else
-		playsound(src,sheatheSound, 15, 1)
-		underlays -= gun_underlay
-		icon_state = copytext(icon_state,1,-2)
-		item_state = icon_state
-		qdel(gun_underlay)
-		gun_underlay = null
-	if(istype(user)) user.update_inv_belt()
-	if(istype(user)) user.update_inv_s_store()
 
 //This deliniates between belt/gun/pistol and belt/gun/revolver
 /obj/item/storage/holster/belt/pistol
