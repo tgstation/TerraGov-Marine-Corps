@@ -46,31 +46,33 @@
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, FALSE, owner, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, XACT_USE_BUSY)))
-		switch(recycled_xeno.tier)
-			if(XENO_TIER_MINION)
-				recycled_xeno.gib()
-			if(XENO_TIER_ZERO)
-				hivelord.balloon_alert(hivelord, "Too young.")
-			if(XENO_TIER_ONE)
-				xeno_job.add_job_points(1)
-				recycled_xeno.gib()
-			if(XENO_TIER_TWO)
-				xeno_job.add_job_points(2)
-				recycled_xeno.gib()
-			if(XENO_TIER_THREE)
-				xeno_job.add_job_points(3)
-				recycled_xeno.gib()
-			if(XENO_TIER_FOUR)
-				xeno_job.add_job_points(4)
-				recycled_xeno.gib()
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability))))
+		return
+	switch(recycled_xeno.tier)
+		if(XENO_TIER_MINION)
+			recycled_xeno.gib()
+		if(XENO_TIER_ZERO)
+			hivelord.balloon_alert(hivelord, "Too young.")
+			return FALSE
+		if(XENO_TIER_ONE)
+			xeno_job.add_job_points(1)
+			recycled_xeno.gib()
+		if(XENO_TIER_TWO)
+			xeno_job.add_job_points(2)
+			recycled_xeno.gib()
+		if(XENO_TIER_THREE)
+			xeno_job.add_job_points(3)
+			recycled_xeno.gib()
+		if(XENO_TIER_FOUR)
+			xeno_job.add_job_points(4)
+			recycled_xeno.gib()
 
-		var/channel = SSsounds.random_available_channel()
-		playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40, channel = channel)
-		hivelord.stop_sound_channel(channel)
-		hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
-		span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
-		return succeed_activate() //dew it
+	var/channel = SSsounds.random_available_channel()
+	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40, channel = channel)
+	hivelord.stop_sound_channel(channel)
+	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
+	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
+	return succeed_activate() //dew it
 
 // ***************************************
 // *********** Resin building
