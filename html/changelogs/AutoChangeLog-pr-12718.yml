@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "The burst larvas have the same hive as the hive of the carrier who did the hug."
