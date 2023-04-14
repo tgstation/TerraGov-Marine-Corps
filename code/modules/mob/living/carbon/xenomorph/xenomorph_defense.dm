@@ -37,4 +37,4 @@ Contains most of the procs that are called when a xeno is attacked by something
 
 ///Calculates fire resistance given caste and coatings, acts as a multiplier to damage taken
 /mob/living/carbon/xenomorph/get_fire_resist()
-	return clamp((100 - get_soft_armor("fire", null)) * 0.01 + fire_resist_modifier, 0, 1)
+	return clamp((100 - get_soft_armor("fire", null)) * 0.01, 0, 1)

@@ -246,12 +246,9 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
 		if(mob_caught.stat == DEAD)
 			continue
-
-		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
@@ -269,7 +266,7 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), BURN, FIRE, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 

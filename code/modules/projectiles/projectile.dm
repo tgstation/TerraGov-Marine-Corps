@@ -1213,8 +1213,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return armor_val / total_weight
 
 /mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone)
-	return ..() * get_sunder()
-
+	return ..() * get_sunder() + resist_modifiers[armor_type]
 
 /mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)

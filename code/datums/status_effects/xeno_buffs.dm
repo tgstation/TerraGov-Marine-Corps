@@ -12,13 +12,15 @@
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier -= 20
+	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, id)
+	X.resist_modifiers[FIRE] += 100
 	X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
 	return TRUE
 
 /datum/status_effect/resin_jelly_coating/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier += 20
+	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, id)
+	X.resist_modifiers[FIRE] -= 100
 	X.remove_filter("resin_jelly_outline")
 	owner.balloon_alert(owner, "We are vulnerable again")
 	return ..()
@@ -778,7 +780,8 @@
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyAllRatings(SENTINEL_DRAIN_SURGE_ARMOR_MOD)
+	for(var/stat in X.resist_modifiers)
+		X.resist_modifiers[stat] += SENTINEL_DRAIN_SURGE_ARMOR_MOD
 	X.visible_message(span_danger("[X]'s chitin glows with a vicious green!"), \
 	span_notice("You imbue your chitinous armor with the toxins of your victim!"), null, 5)
 	X.color = "#7FFF00"
@@ -789,7 +792,8 @@
 
 /datum/status_effect/drain_surge/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
+	for(var/stat in X.resist_modifiers)
+		X.resist_modifiers[stat] -= SENTINEL_DRAIN_SURGE_ARMOR_MOD
 	X.visible_message(span_danger("[X]'s chitin loses its green glow..."), \
 	span_notice("Your chitinous armor loses its glow."), null, 5)
 	X.color = "#FFFFFF"
