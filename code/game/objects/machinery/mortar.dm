@@ -180,6 +180,15 @@
 		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off.")
 		return
 
+	if(istype(I,/obj/item/hud_tablet/artillery))
+		var/obj/item/hud_tablet/artillery/tablet = I
+		if(tablet.active_camera == null)
+			user.balloon_alert(user, "You need to activate a camera first.")
+			return
+		impact_cam = tablet.active_camera
+		user.balloon_alert(user, "You reset the internal camera to the tablet's.")
+
+
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
