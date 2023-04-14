@@ -328,31 +328,30 @@
 		var/slot = text2num(href_list["item"])
 		if(usr.incapacitated() || !Adjacent(usr))
 			return
-		if(slot == SLOT_WEAR_ID)
-			if(istype(wear_id, /obj/item/card/id/dogtag))
-				var/obj/item/card/id/dogtag/DT = wear_id
-				if(!DT.dogtag_taken)
-					if(stat == DEAD)
-						to_chat(usr, span_notice("You take [src]'s information tag, leaving the ID tag"))
-						DT.dogtag_taken = TRUE
-						DT.icon_state = "dogtag_taken"
-						var/obj/item/dogtag/D = new(loc)
-						D.fallen_names = list(DT.registered_name)
-						D.fallen_assignements = list(DT.assignment)
-						usr.put_in_hands(D)
-					else
-						to_chat(usr, span_warning("You can't take a dogtag's information tag while its owner is alive."))
-				else
-					to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
+		if(slot == SLOT_WEAR_ID && istype(wear_id, /obj/item/card/id/dogtag))
+			var/obj/item/card/id/dogtag/DT = wear_id
+			if(DT.dogtag_taken)
+				to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
 				return
+			if(!(stat == DEAD))
+				to_chat(usr, span_warning("You can't take a dogtag's information tag while its owner is alive."))
+				return
+			to_chat(usr, span_notice("You take [src]'s information tag, leaving the ID tag"))
+			DT.dogtag_taken = TRUE
+			DT.icon_state = "dogtag_taken"
+			var/obj/item/dogtag/D = new(loc)
+			D.fallen_names = list(DT.registered_name)
+			D.fallen_assignements = list(DT.assignment)
+			usr.put_in_hands(D)
+			return
 		//police skill lets you strip multiple items from someone at once.
 		if(!usr.do_actions || usr.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
-			var/obj/item/what = get_item_by_slot(slot)
-			if(what)
-				usr.stripPanelUnequip(what,src,slot)
-			else
-				what = usr.get_active_held_item()
-				usr.stripPanelEquip(what,src,slot)
+			var/obj/item/item_in_slot = get_item_by_slot(slot)
+			if(!item_in_slot)
+				item_in_slot = usr.get_active_held_item()
+				usr.stripPanelEquip(item_in_slot, src, slot)
+				return
+			usr.stripPanelUnequip(item_in_slot, src, slot)
 
 	if(href_list["pockets"])
 		if(usr.do_actions)
