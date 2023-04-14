@@ -3428,21 +3428,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "facehugger"
 	///The type of hugger thrown
 	var/obj/item/clothing/mask/facehugger/hugger_type = /obj/item/clothing/mask/facehugger
+	///The hive of the huggers throw
+	var/hugger_hivenumber = XENO_HIVE_NORMAL
 
 /datum/ammo/xeno/hugger/on_hit_mob(mob/M, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M))
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M), hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_obj(obj/O, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O))
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O), hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/do_at_max_range(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hugger_hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/slash
