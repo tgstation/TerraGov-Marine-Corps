@@ -69,6 +69,8 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
+	var/mob/living/carbon/human/H = affected_mob
+
 	if(stage <= 4)
 		counter += 2.5 //Free burst time in ~7/8 min.
 
@@ -76,7 +78,7 @@
 		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
-		counter -= 1 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
+		counter -= 1.25 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
 
 	if(boost_timer)
 		counter += 2.5 //Doubles larval growth progress. Burst time in ~4 min.
@@ -86,9 +88,13 @@
 		counter = 0
 		stage++
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
-		var/mob/living/carbon/C = affected_mob
-		C.med_hud_set_status()
+		H.med_hud_set_status()
 		affected_mob.jitter(stage * 5)
+
+	var/datum/internal_organ/O = H.internal_organs_by_name[pick("heart", "liver", "lungs", "kidneys", "appendix")]
+	O.take_damage(O.min_broken_damage * 0.01 * stage, silent = TRUE) //It needs to get nutrition somehow after all.
+	if(prob(stage))
+		to_chat(affected_mob, span_warning("It feels like something is chewing at your insides.")) //We use custom handling for this since otherwise they would either get no warning or chat spam.
 
 	switch(stage)
 		if(2)
