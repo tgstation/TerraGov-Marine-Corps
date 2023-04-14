@@ -356,4 +356,5 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 	for(var/I in 1 to (storage_slots-1))
-		new /obj/item/ammo_magazine/smg/standard_machinepistol
+		var/obj/item/new_magazine = new /obj/item/ammo_magazine/smg/standard_machinepistol
+		INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_magazine)
