@@ -40,11 +40,11 @@
 		return FALSE
 
 	hivelord.face_atom(victim) //Face towards the target so we don't look silly
-	hivelord.visible_message(span_warning("\The [hivelord] begins opening its mouth and extending a second jaw towards \the [victim]."), \
-	span_danger("We slowly feast upon \the [victim]'s carcass!"), null, 20)
+	hivelord.visible_message(span_warning("\The [hivelord] begins breaking apart \the [victim]'s body."), \
+	span_danger("We slowly deconstruct upon \the [victim]'s carcass!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(hivelord, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(hivelord, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(hivelord, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(hivelord, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = hivelord.health))))
 		hivelord.visible_message(span_xenowarning("\The [hivelord] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		hivelord.stop_sound_channel(channel)
@@ -58,7 +58,7 @@
 		if(XENO_TIER_MINION)
 			recycled_xeno.gib()
 		if(XENO_TIER_ZERO)
-			X.balloon_alert(X, "Too young.")
+			hivelord.balloon_alert(hivelord, "Too young.")
 		if(XENO_TIER_ONE)
 			xeno_job.add_job_points(1)
 			recycled_xeno.gib()
