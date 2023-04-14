@@ -6,8 +6,6 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	if(get_fire_resist() <= 0)
-		return
 	return ..()
 
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
