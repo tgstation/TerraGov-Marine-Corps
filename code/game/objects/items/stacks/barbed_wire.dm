@@ -30,19 +30,6 @@
 /obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/stack/rods))
-		return
-
-	var/obj/item/stack/rods/R = I
-	if(R.amount < 4)
-		to_chat(user, span_warning("You need [4 - R.amount] more [R] to make a razor wire obstacle!"))
-		return
-
-	R.use(4)
-	use(1)
-
-	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
-	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
