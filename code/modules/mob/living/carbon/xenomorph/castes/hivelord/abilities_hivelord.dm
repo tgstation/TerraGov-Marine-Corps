@@ -43,10 +43,10 @@
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/mob/living/carbon/xenomorph/hivelord = owner
-	hivelord.face_atom(victim) //Face towards the target so we don't look silly
-	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [victim]'s carcass."), \
-	if(!do_after(owner, windup_time, FALSE, owner, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
-		span_danger("We slowly deconstruct upon \the [victim]'s carcass!"), null, 20)
+	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
+	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
+	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
+	if(!do_after(owner, 7 SECONDS, FALSE, owner, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, XACT_USE_BUSY)))
 		switch(recycled_xeno.tier)
 			if(XENO_TIER_MINION)
 				recycled_xeno.gib()
@@ -67,10 +67,10 @@
 
 		var/channel = SSsounds.random_available_channel()
 		playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40, channel = channel)
-			hivelord.stop_sound_channel(channel)
-			hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
-			span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
-			succeed_activate() //dew it
+		hivelord.stop_sound_channel(channel)
+		hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
+		span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
+		return succeed_activate() //dew it
 
 // ***************************************
 // *********** Resin building
