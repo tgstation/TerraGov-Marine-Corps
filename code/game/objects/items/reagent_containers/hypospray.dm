@@ -485,6 +485,25 @@
 	)
 	description_overlay = "Na"
 
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus
+	name = "Peridaxon+ hypospray"
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 20,
+		/datum/reagent/medicine/hyronalin = 40,
+	)
+	description_overlay = "Pe+"
+
+/obj/item/reagent_containers/hypospray/advanced/quickclotplus
+	name = "Quickclot+ hypospray"
+	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/quickclotplus = 60,
+	)
+	description_overlay = "Qk+"
+
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
 	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."

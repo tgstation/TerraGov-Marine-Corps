@@ -285,7 +285,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "zp" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Filtration Plant";
@@ -377,7 +377,7 @@
 	},
 /area/bigredv2/outside/se)
 "JK" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -444,7 +444,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
 "Qe" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Qi" = (

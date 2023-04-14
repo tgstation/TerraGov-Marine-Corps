@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "You can no longer magically health scan/defib after being delimbed while wearing scan/defib gloves."

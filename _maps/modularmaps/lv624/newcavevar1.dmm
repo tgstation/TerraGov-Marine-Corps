@@ -124,7 +124,7 @@
 /area/lv624/ground/caves/rock)
 "AR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
