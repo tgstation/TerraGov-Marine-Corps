@@ -49,10 +49,8 @@
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
 		return FALSE
-	succeed_activate() //dew it
 
 /datum/action/xeno_action/activable/recycle/use_ability(atom/target)
-	. = ..()
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -73,7 +71,7 @@
 		if(XENO_TIER_FOUR)
 			xeno_job.add_job_points(4)
 			recycled_xeno.gib()
-
+	succeed_activate() //dew it
 
 // ***************************************
 // *********** Resin building
