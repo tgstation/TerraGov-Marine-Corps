@@ -159,7 +159,7 @@
 
 /obj/machinery/cryopod/evacuation/climb_in(mob/living/carbon/user, mob/helper)
 	. = ..()
-	if(. == TRUE)
+	if(.)
 		user.ghostize(FALSE)
 
 /obj/machinery/door/airlock/evacuation
