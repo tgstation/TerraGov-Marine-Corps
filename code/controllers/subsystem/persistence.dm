@@ -30,9 +30,10 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/rifle_seasonal_one,
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
+		/datum/season_datum/weapons/guns/rifle_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/shotgun_seasonal,
-		/datum/season_datum/weapons/guns/rifle_seasonal_three
+		/datum/season_datum/weapons/guns/lever_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -220,6 +221,22 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		)
 
+/datum/season_datum/weapons/guns/rifle_seasonal_three
+name = "Warsaw Pact vs NATO"
+	description = "Hot Guns from the Cold War"
+	item_list = list(
+		/obj/item/weapon/gun/rifle/mpi_km= -1,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
+		/obj/item/ammo_magazine/packet/pwarsaw = -1,
+		/obj/item/weapon/gun/rifle/m16 = -1,
+		/obj/item/ammo_magazine/rifle/m16 = -1,
+		/obj/item/weapon/gun/rifle/famas = -1,
+		/obj/item/ammo_magazine/rifle/famas = -1,
+		/obj/item/ammo_magazine/packet/pnato = -1,
+		/obj/item/weapon/gun/rifle/sniper/svd = -1,
+		/obj/item/ammo_magazine/sniper/svd = -1,
+		)
+
 /datum/season_datum/weapons/guns/pistol_seasonal_one
 	name = "High Noon"
 	description = "Revolvers? They are yours my friend. Bouncy, single-action, or with buckshot"
@@ -273,22 +290,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/shotgun/combat = -1,
 		/obj/item/weapon/gun/shotgun/pump = -1,
 		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
-		)
-
-/datum/season_datum/weapons/guns/rifle_seasonal_three
-name = "Warsaw Pact vs NATO"
-	description = "Hot Guns from the Cold War"
-	item_list = list(
-		/obj/item/weapon/gun/rifle/mpi_km= -1,
-		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
-		/obj/item/ammo_magazine/packet/pwarsaw = -1,
-		/obj/item/weapon/gun/rifle/m16 = -1,
-		/obj/item/ammo_magazine/rifle/m16 = -1,
-		/obj/item/weapon/gun/rifle/famas = -1,
-		/obj/item/ammo_magazine/rifle/famas = -1,
-		/obj/item/ammo_magazine/packet/pnato = -1,
-		/obj/item/weapon/gun/rifle/sniper/svd = -1,
-		/obj/item/ammo_magazine/sniper/svd = -1,
 		)
 
 /datum/season_datum/weapons/guns/lever_seasonal
