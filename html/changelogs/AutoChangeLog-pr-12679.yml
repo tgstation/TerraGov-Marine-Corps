@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Tables should smooth correctly in odd circumstances"
-  - code_imp: "Integrated tables with the new smoothing system"

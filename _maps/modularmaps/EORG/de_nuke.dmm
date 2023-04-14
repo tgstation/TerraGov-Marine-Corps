@@ -38,7 +38,7 @@
 /area/deathmatch)
 "fF" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "hw" = (
@@ -462,7 +462,7 @@
 	},
 /area/deathmatch)
 "XY" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "YE" = (
 /obj/structure/largecrate,
@@ -482,7 +482,7 @@
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ZH" = (

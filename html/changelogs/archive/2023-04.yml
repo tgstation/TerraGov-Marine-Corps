@@ -187,3 +187,30 @@
   - bugfix: Fixed resin doors not being damagable in melee
   metalyc:
   - bugfix: Scout droids being able to cloak again
+2023-04-13:
+  '@KillerOrcaCora':
+  - imageadd: Flamethrower backtank new sprite.
+  Losenis:
+  - qol: Corpsman vendor now has hypospray option for QC+ and Peri+
+  - balance: Dexaline pill bottle in lifesaver belts replaced with Isotonic Solution
+      pill bottle
+  Lumipharon:
+  - bugfix: fixed a couple of space suit helmet icons
+  RipGrayson:
+  - bugfix: Tables should smooth correctly in odd circumstances
+  - code_imp: Integrated tables with the new smoothing system
+  Xander3359:
+  - qol: Loadouts are re-organizable.
+  - balance: Vali green blood gain scales off weapon attack speed.
+  - bugfix: You can no longer magically health scan/defib after being delimbed while
+      wearing scan/defib gloves.
+  - qol: Some GHMME improvements
+  ivanmixo:
+  - bugfix: Acid on walls gets deleted if the wall gets deleted
+  mc-oofert:
+  - rscadd: robot gibs for unmanned vehicles
+2023-04-14:
+  Mrrpip:
+  - rscadd: 'Adds smooth desert dam rock.
+
+      qol; Adds extra helpers for mappers'

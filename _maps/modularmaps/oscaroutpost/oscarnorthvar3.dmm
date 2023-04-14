@@ -459,20 +459,20 @@
 /area/oscar_outpost/outside/northwest)
 "cL" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -491,13 +491,13 @@
 /area/oscar_outpost/outside/northeast)
 "cQ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -650,7 +650,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "dx" = (
-/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns,
+/obj/effect/spawner/random/misc/structure/crate/medsupplies/alwaysspawns,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "dC" = (
@@ -663,15 +663,15 @@
 /area/oscar_outpost)
 "dE" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -795,16 +795,16 @@
 /area/oscar_outpost)
 "eF" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -827,11 +827,11 @@
 /area/oscar_outpost/outside/northeast)
 "eJ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -867,14 +867,14 @@
 /area/oscar_outpost/outside/west)
 "eZ" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -892,11 +892,11 @@
 /area/oscar_outpost/outside/northeast)
 "fe" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -910,17 +910,17 @@
 /area/oscar_outpost)
 "fm" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -1136,7 +1136,7 @@
 	pixel_x = 10;
 	pixel_y = 20
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 19
 	},
@@ -1181,7 +1181,7 @@
 /obj/structure/platform/trench{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1203,12 +1203,12 @@
 "hl" = (
 /obj/effect/ai_node,
 /obj/machinery/iv_drip,
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "hq" = (
 /obj/structure/platform/trench,
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /obj/effect/ai_node,
@@ -1412,9 +1412,9 @@
 "iX" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -1423,7 +1423,7 @@
 /obj/structure/platform/trench{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -1616,7 +1616,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/east)
 "kU" = (
-/obj/effect/spawner/random/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "kY" = (
@@ -1893,39 +1893,39 @@
 /area/oscar_outpost)
 "nv" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -2049,7 +2049,7 @@
 	},
 /area/oscar_outpost)
 "os" = (
-/obj/effect/spawner/random/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "ou" = (
@@ -2093,7 +2093,7 @@
 /area/oscar_outpost)
 "oB" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -2263,7 +2263,7 @@
 /obj/structure/platform/trench{
 	name = "trench lining"
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2370,7 +2370,7 @@
 	pixel_x = 10;
 	pixel_y = 20
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 10;
 	pixel_y = 23
 	},
@@ -2385,13 +2385,13 @@
 /obj/structure/table/mainship,
 /obj/item/roller,
 /obj/item/roller,
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/engine/cult{
@@ -2456,7 +2456,7 @@
 /obj/structure/platform/trench{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "qF" = (
@@ -2689,7 +2689,7 @@
 /area/oscar_outpost/outside/east)
 "ry" = (
 /obj/structure/platform/trench,
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -2738,7 +2738,7 @@
 "so" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/storage/surgical_tray,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "sr" = (
@@ -2910,7 +2910,7 @@
 	pixel_x = 10;
 	pixel_y = 20
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 9;
 	pixel_y = 19
 	},
@@ -2965,7 +2965,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "uk" = (
-/obj/effect/spawner/random/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "uq" = (
@@ -3233,15 +3233,15 @@
 	plantname = "barley"
 	},
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/kitchen,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor,
 /area/oscar_outpost)
 "wL" = (
 /obj/structure/platform/trench{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3258,11 +3258,11 @@
 "wY" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -3379,7 +3379,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "xT" = (
-/obj/effect/spawner/random/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "xU" = (
@@ -3426,7 +3426,7 @@
 	},
 /area/oscar_outpost)
 "yq" = (
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3557,7 +3557,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "zb" = (
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -3956,7 +3956,7 @@
 /area/oscar_outpost)
 "CL" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -4037,51 +4037,51 @@
 /area/oscar_outpost/outside/northwest)
 "Dj" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -4153,15 +4153,15 @@
 /area/oscar_outpost)
 "Dn" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
-/obj/effect/spawner/random/structure/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -4241,12 +4241,12 @@
 /area/oscar_outpost/outside/northeast)
 "DL" = (
 /obj/structure/platform/trench,
-/obj/effect/spawner/random/cigarettes,
+/obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "DR" = (
 /obj/structure/platform/trench,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "DW" = (
@@ -4478,7 +4478,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "FQ" = (
-/obj/effect/spawner/random/structure/m42c,
+/obj/effect/spawner/random/misc/structure/m42c,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
@@ -4542,7 +4542,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "GD" = (
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /obj/effect/ai_node,
@@ -4793,7 +4793,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "IB" = (
-/obj/effect/spawner/random/structure/m42c,
+/obj/effect/spawner/random/misc/structure/m42c,
 /turf/open/floor,
 /area/oscar_outpost)
 "IE" = (
@@ -4914,7 +4914,7 @@
 /area/oscar_outpost/outside/northeast)
 "Jj" = (
 /obj/machinery/iv_drip,
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Jl" = (
@@ -5077,8 +5077,8 @@
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
-/obj/effect/spawner/random/kitchen,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -5129,7 +5129,7 @@
 	plantname = "barley"
 	},
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
 "Li" = (
@@ -5358,15 +5358,15 @@
 /area/oscar_outpost/outside/northwest)
 "Nb" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher";
 	pixel_y = 12
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher";
 	pixel_y = 6
 	},
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/engine/cult{
@@ -5424,7 +5424,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "NQ" = (
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "NS" = (
@@ -5484,7 +5484,7 @@
 /area/oscar_outpost/outside/road)
 "On" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/random_broken_computer/small/pc,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
 /turf/open/floor,
 /area/oscar_outpost)
 "Ot" = (
@@ -5507,51 +5507,51 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/northwest)
 "OI" = (
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -5585,51 +5585,51 @@
 /area/oscar_outpost/outside/west)
 "OO" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -5674,51 +5674,51 @@
 /area/oscar_outpost/outside/west)
 "OY" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 15
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/beer/oscaroutpost{
+/obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -6053,13 +6053,13 @@
 	},
 /area/oscar_outpost)
 "Qu" = (
-/obj/effect/spawner/random/structure/m42c,
+/obj/effect/spawner/random/misc/structure/m42c,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/oscar_outpost)
 "Qz" = (
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -6274,7 +6274,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Rv" = (
-/obj/effect/spawner/random/structure/crate/medsupplies/alwaysspawns,
+/obj/effect/spawner/random/misc/structure/crate/medsupplies/alwaysspawns,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -6381,7 +6381,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Sl" = (
-/obj/effect/spawner/random/structure/rollerbed,
+/obj/effect/spawner/random/medical/structure/rollerbed,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "So" = (
@@ -6509,7 +6509,7 @@
 /obj/structure/platform/trench{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Ty" = (
@@ -6580,7 +6580,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "TV" = (
-/obj/effect/spawner/random/structure/rocketlauncher{
+/obj/effect/spawner/random/weaponry/explosive/rocketlauncher{
 	name = "\improper T99A3 Anti-Tank Disposable Rocket Launcher"
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -6773,11 +6773,11 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Vw" = (
-/obj/effect/spawner/random/beaker/regularweighted{
+/obj/effect/spawner/random/medical/beaker/regularweighted{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/beaker/regularweighted{
+/obj/effect/spawner/random/medical/beaker/regularweighted{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -6812,7 +6812,7 @@
 /area/oscar_outpost/outside/west)
 "Wa" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/structure/random_broken_computer/small/pc{
+/obj/effect/spawner/random/machinery/random_broken_computer/small/pc{
 	dir = 1
 	},
 /turf/open/floor,
@@ -7036,39 +7036,39 @@
 /area/oscar_outpost/outside/road)
 "Ye" = (
 /obj/structure/table/rusticwoodentable,
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 18
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 13
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/wine{
+/obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 4;
 	pixel_y = 8
 	},

@@ -80,7 +80,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "ej" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 6
 	},
@@ -106,8 +106,8 @@
 "fk" = (
 /obj/structure/table/reinforced,
 /obj/item/mmi,
-/obj/effect/spawner/random/cable,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/cable,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
@@ -156,7 +156,7 @@
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "hl" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
@@ -169,8 +169,8 @@
 /area/bigredv2/caves/undergroundrobotics)
 "hF" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/cable,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -178,12 +178,12 @@
 /area/bigredv2/caves/undergroundrobotics)
 "id" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "io" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
@@ -209,7 +209,7 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
@@ -223,9 +223,9 @@
 /obj/item/weapon/gun/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
@@ -244,7 +244,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "kS" = (
 /obj/effect/landmark/corpsespawner/engineer,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "kT" = (
@@ -273,7 +273,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "mA" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/window/full{
 	dir = 1
@@ -480,7 +480,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "ve" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "xd" = (
@@ -519,8 +519,8 @@
 /area/bigredv2/caves/undergroundrobotics)
 "yt" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 9
 	},
@@ -551,8 +551,8 @@
 "Ci" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 5
@@ -566,7 +566,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Cm" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -623,7 +623,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Ho" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "Hu" = (
@@ -660,13 +660,13 @@
 /area/bigredv2/caves/undergroundrobotics)
 "IU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "IV" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -682,7 +682,7 @@
 "Jq" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Jz" = (
@@ -718,7 +718,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Lm" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -740,21 +740,21 @@
 /area/bigredv2/caves/southeast)
 "LY" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Mq" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Mt" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/flash,
 /obj/machinery/light{
 	dir = 1
@@ -819,8 +819,8 @@
 /area/bigredv2/caves/undergroundrobotics)
 "Qf" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 4
 	},
@@ -837,7 +837,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "QT" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 4
 	},
@@ -859,7 +859,7 @@
 "TG" = (
 /obj/structure/table/mainship,
 /obj/item/paper/crumpled,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -897,7 +897,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "VS" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 6
 	},
@@ -910,7 +910,7 @@
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "Xh" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/undergroundrobotics)
 "Zi" = (
@@ -929,8 +929,8 @@
 /obj/item/weapon/gun/rifle/famas,
 /obj/item/ammo_magazine/rifle/famas,
 /obj/item/ammo_magazine/rifle/famas,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},

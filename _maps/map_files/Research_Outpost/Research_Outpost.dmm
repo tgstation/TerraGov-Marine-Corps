@@ -38,9 +38,9 @@
 /area/outpost/yard/central)
 "aj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "al" = (
@@ -228,7 +228,7 @@
 "bj" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -441,7 +441,7 @@
 "cu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering)
 "cw" = (
@@ -1035,9 +1035,9 @@
 "fl" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -1565,13 +1565,13 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -2821,8 +2821,8 @@
 /area/outpost/medbay)
 "nj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -3168,7 +3168,7 @@
 /area/outpost/engineering/engine)
 "oH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -3344,7 +3344,7 @@
 /area/outpost/engineering/engine)
 "pt" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "pv" = (
@@ -3975,7 +3975,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
 "sf" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -4775,7 +4775,7 @@
 /area/outpost/lz2)
 "vO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/radio,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -4790,7 +4790,7 @@
 "vQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "vR" = (
@@ -4954,8 +4954,8 @@
 "wD" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/attachable/flashlight,
 /obj/item/attachable/heavy_barrel,
 /obj/item/attachable/reddot,
@@ -5177,8 +5177,8 @@
 "xA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -5236,8 +5236,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/radio,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
@@ -5534,7 +5534,7 @@
 /area/outpost/medbay/chemistry)
 "zg" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/clothing/head/beret/sec/warden,
 /obj/machinery/light{
 	dir = 1
@@ -5695,12 +5695,12 @@
 /area/outpost/arrivals/securitylz2)
 "zT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "zW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -6105,7 +6105,7 @@
 /area/outpost/yard/south_east)
 "BL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -6589,7 +6589,7 @@
 /area/outpost/yard/central)
 "Ej" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Ek" = (
@@ -8092,7 +8092,7 @@
 "Ll" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
@@ -8635,8 +8635,8 @@
 /area/outpost/yard/south_east)
 "NG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -9012,7 +9012,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/yard/east)
 "Pq" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -9083,7 +9083,7 @@
 	dir = 8
 	},
 /obj/structure/paper_bin,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -9258,7 +9258,7 @@
 	},
 /area/outpost/hallway/west)
 "Qx" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "Qz" = (
@@ -9286,8 +9286,8 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/attachable/gyro,
 /obj/item/attachable/reddot,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
@@ -9942,7 +9942,7 @@
 	},
 /area/outpost/cargo)
 "Tz" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "TB" = (
@@ -10428,7 +10428,7 @@
 	},
 /area/outpost/medbay)
 "VH" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -10912,7 +10912,7 @@
 /area/outpost/brig)
 "XQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},

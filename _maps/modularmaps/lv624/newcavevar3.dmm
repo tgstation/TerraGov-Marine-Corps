@@ -74,7 +74,7 @@
 /area/lv624/ground/caves/central1)
 "nH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

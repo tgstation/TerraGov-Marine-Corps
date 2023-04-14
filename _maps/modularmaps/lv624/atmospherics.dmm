@@ -132,7 +132,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "kB" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -187,7 +187,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "pD" = (
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -235,7 +235,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "ww" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -265,7 +265,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "yj" = (
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -298,7 +298,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "AF" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Bl" = (

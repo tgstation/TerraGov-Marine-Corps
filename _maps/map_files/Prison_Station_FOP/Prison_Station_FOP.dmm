@@ -484,7 +484,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adm" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
@@ -946,11 +946,11 @@
 /area/prison/research/secret/biolab)
 "aeD" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "aeE" = (
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = 3;
 	pixel_y = 7
 	},
@@ -1645,7 +1645,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
 "agL" = (
@@ -1827,7 +1827,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "aho" = (
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -1840,7 +1840,7 @@
 /area/prison/research/secret/bioengineering)
 "ahp" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "ahq" = (
@@ -3094,8 +3094,8 @@
 /area/prison/research/secret)
 "akT" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/combat,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -3104,7 +3104,7 @@
 /area/prison/research/secret)
 "akU" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/combat,
 /turf/open/floor/prison,
 /area/prison/research/secret)
@@ -4795,7 +4795,7 @@
 /area/prison/medbay/surgery)
 "apV" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
 "apW" = (
@@ -4803,7 +4803,7 @@
 /obj/item/autopsy_scanner{
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -4978,7 +4978,7 @@
 /area/prison/cellblock/highsec/north/north)
 "aqC" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -5208,7 +5208,7 @@
 /area/prison/research/RD)
 "arn" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -8094,7 +8094,7 @@
 /area/prison/medbay/foyer)
 "azG" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -9371,7 +9371,7 @@
 /area/prison/medbay/foyer)
 "aDo" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -9788,7 +9788,7 @@
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "aEG" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "aEH" = (
@@ -9963,7 +9963,7 @@
 /area/prison/security/checkpoint/maxsec)
 "aFo" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -11161,7 +11161,7 @@
 	pixel_x = 5;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -11234,7 +11234,7 @@
 /area/prison/security/checkpoint/maxsec)
 "aIX" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -11262,7 +11262,7 @@
 /area/prison/medbay)
 "aJb" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -12361,7 +12361,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aLZ" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -12510,7 +12510,7 @@
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "aMu" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/staff_research)
 "aMv" = (
@@ -13010,7 +13010,7 @@
 /area/prison/security/monitoring/lowsec/ne)
 "aOh" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -14389,7 +14389,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/cleaning)
 "aSs" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison,
 /area/prison/cleaning)
 "aSt" = (
@@ -14432,7 +14432,7 @@
 /area/prison/maintenance/residential/ne)
 "aSC" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -14488,7 +14488,7 @@
 /area/prison/command/office)
 "aSK" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -14621,7 +14621,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aTf" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -16566,7 +16566,7 @@
 /area/prison/security/monitoring/maxsec/panopticon)
 "aYU" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -17622,7 +17622,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/central)
 "bcr" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/hallway/staff)
 "bcs" = (
@@ -18475,7 +18475,7 @@
 /area/prison/residential/central)
 "beN" = (
 /obj/structure/table,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -18578,7 +18578,7 @@
 /area/prison/security/monitoring/highsec)
 "bfa" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -18651,7 +18651,7 @@
 	},
 /area/prison/security/checkpoint/vip)
 "bfn" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/prison/storage/vip)
 "bfo" = (
@@ -19402,7 +19402,7 @@
 /area/prison/hangar/main)
 "bhv" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -19976,7 +19976,7 @@
 /area/prison/cellblock/maxsec/north)
 "biO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -20415,7 +20415,7 @@
 /area/prison/security/checkpoint/vip)
 "bkg" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -21922,7 +21922,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "boH" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/prison/hallway/central)
@@ -22213,7 +22213,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "bpH" = (
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "bpI" = (
@@ -22820,7 +22820,7 @@
 /area/prison/cellblock/vip)
 "brJ" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -24546,7 +24546,7 @@
 /area/prison/visitation)
 "bxD" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -26806,7 +26806,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bFg" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -27152,7 +27152,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
 "bGb" = (
@@ -28169,7 +28169,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJy" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJz" = (
@@ -28234,7 +28234,7 @@
 /area/prison/security/monitoring/lowsec/sw)
 "bJN" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -28891,7 +28891,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bLX" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -30124,7 +30124,7 @@
 	},
 /area/prison/storage/medsec)
 "bPU" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
 "bPV" = (
@@ -30531,7 +30531,7 @@
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
 "bRp" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -30621,7 +30621,7 @@
 /obj/structure/table/reinforced,
 /obj/item/tool/extinguisher,
 /obj/item/assembly/infra,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -30994,7 +30994,7 @@
 /area/prison/security/checkpoint/medsec)
 "bSO" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -31256,7 +31256,7 @@
 "bTK" = (
 /obj/structure/table/reinforced,
 /obj/item/assembly/signaler,
-/obj/effect/spawner/random/folder/nooffset,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bTP" = (
@@ -31465,7 +31465,7 @@
 /area/prison/security/checkpoint/medsec)
 "bUr" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -31537,7 +31537,7 @@
 /area/prison/library)
 "bUE" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 3
 	},
 /turf/open/floor/wood,
@@ -31647,7 +31647,7 @@
 /area/prison/security)
 "bVj" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -31904,7 +31904,7 @@
 /area/prison/engineering)
 "bVY" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -32017,7 +32017,7 @@
 /turf/closed/wall/prison,
 /area/prison/security/head)
 "bWA" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "bWB" = (
@@ -32708,7 +32708,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "bYP" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -33131,7 +33131,7 @@
 	},
 /area/prison/cellblock/protective)
 "cat" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/reinforced,
 /obj/item/radio/survivor,
 /turf/open/floor/prison,
@@ -33270,7 +33270,7 @@
 /area/prison/security/head)
 "caR" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -34490,7 +34490,7 @@
 /area/prison/engineering)
 "cei" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "cej" = (
@@ -34638,7 +34638,7 @@
 /turf/open/floor/prison,
 /area/prison/security/head)
 "ceG" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -35556,7 +35556,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
 "chG" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
 "chH" = (
@@ -36283,9 +36283,9 @@
 /area/prison/cellblock/mediumsec/south)
 "ckf" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison,
 /area/prison/security/armory/lethal)
 "ckg" = (
@@ -37081,7 +37081,7 @@
 /area/prison/security/monitoring/protective)
 "cmt" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -37850,11 +37850,11 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "coL" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "coM" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "coN" = (
@@ -38266,7 +38266,7 @@
 /turf/open/floor/prison,
 /area/prison/disposal)
 "cqn" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cqo" = (
@@ -38513,7 +38513,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "crl" = (
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -38783,7 +38783,7 @@
 /area/prison/disposal)
 "csk" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/prison/disposal)
 "csl" = (
@@ -40669,7 +40669,7 @@
 /area/prison/security/monitoring/medsec/south)
 "czw" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/paperbin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -41211,7 +41211,7 @@
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "dEx" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "dGP" = (
@@ -42511,7 +42511,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "hvJ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "hwj" = (
@@ -43574,7 +43574,7 @@
 /area/prison/holding/holding2)
 "kin" = (
 /obj/structure/table,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/tool/kitchen/rollingpin,
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
@@ -44142,7 +44142,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "mfh" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "mhm" = (
@@ -45699,7 +45699,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "qea" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "qeF" = (
@@ -46770,7 +46770,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "sMg" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "sMp" = (
@@ -47187,7 +47187,7 @@
 /area/prison/cellblock/maxsec/north)
 "tVE" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
 "tWb" = (
@@ -47368,7 +47368,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "uua" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
 "uuc" = (
