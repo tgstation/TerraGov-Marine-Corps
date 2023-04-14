@@ -209,3 +209,8 @@
   - bugfix: Acid on walls gets deleted if the wall gets deleted
   mc-oofert:
   - rscadd: robot gibs for unmanned vehicles
+2023-04-14:
+  Mrrpip:
+  - rscadd: 'Adds smooth desert dam rock.
+
+      qol; Adds extra helpers for mappers'
