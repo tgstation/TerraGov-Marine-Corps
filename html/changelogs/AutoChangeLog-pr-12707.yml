@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Added a verb/keybind to toggle automatic magazine ejections"
