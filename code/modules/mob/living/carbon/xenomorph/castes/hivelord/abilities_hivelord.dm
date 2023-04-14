@@ -39,21 +39,14 @@
 		hivelord.balloon_alert(hivelord, "Sister isn't dead")
 		return FALSE
 
-	hivelord.face_atom(victim) //Face towards the target so we don't look silly
-	hivelord.visible_message(span_warning("\The [hivelord] begins breaking apart \the [victim]'s body."), \
-	span_danger("We slowly deconstruct upon \the [victim]'s carcass!"), null, 20)
-	var/channel = SSsounds.random_available_channel()
-	playsound(hivelord, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(hivelord, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(hivelord, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = hivelord.health))))
-		hivelord.visible_message(span_xenowarning("\The [hivelord] retracts its inner jaw."), \
-		span_danger("We retract our inner jaw."), null, 20)
-		hivelord.stop_sound_channel(channel)
-		return FALSE
-
 /datum/action/xeno_action/activable/recycle/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/mob/living/carbon/xenomorph/hivelord = owner
+	hivelord.face_atom(victim) //Face towards the target so we don't look silly
+	hivelord.visible_message(span_warning("\The [hivelord] begins breaking apart \the [victim]'s body."), \
+	if(!do_after(owner, windup_time, FALSE, owner, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
+	span_danger("We slowly deconstruct upon \the [victim]'s carcass!"), null, 20)
 	switch(recycled_xeno.tier)
 		if(XENO_TIER_MINION)
 			recycled_xeno.gib()
@@ -72,6 +65,13 @@
 			xeno_job.add_job_points(4)
 			recycled_xeno.gib()
 	succeed_activate() //dew it
+
+	var/channel = SSsounds.random_available_channel()
+	playsound(hivelord, 'sound/vore/escape.ogg', 40, channel = channel)
+		hivelord.visible_message(span_xenowarning("\The [hivelord] retracts its inner jaw."), \
+		span_danger("We retract our inner jaw."), null, 20)
+		hivelord.stop_sound_channel(channel)
+		return FALSE
 
 // ***************************************
 // *********** Resin building
