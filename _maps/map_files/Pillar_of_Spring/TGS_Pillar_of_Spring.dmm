@@ -1926,7 +1926,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "crh" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "csh" = (
@@ -6860,7 +6860,7 @@
 /area/mainship/living/grunt_rnr)
 "iWR" = (
 /obj/effect/landmark/start/job/shiptech,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -6898,18 +6898,18 @@
 	dir = 1
 	},
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/bomb_supply{
+/obj/effect/spawner/random/engineering/bomb_supply{
 	pixel_x = -4
 	},
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool{
 	pixel_x = 2
 	},
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/tool{
 	pixel_x = -6;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/tool{
+/obj/effect/spawner/random/engineering/tool{
 	pixel_x = 8;
 	pixel_y = 5
 	},
@@ -7097,7 +7097,7 @@
 "jpU" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/stack/cable_coil,
 /obj/item/assembly/timer,
 /obj/item/assembly/infra,
@@ -8201,7 +8201,7 @@
 /area/mainship/squads/general)
 "kQr" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /obj/item/weapon/gun/energy/taser,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -9956,10 +9956,10 @@
 /area/mainship/engineering/port_atmos)
 "mPn" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/fuelCell/full,
 /obj/item/assembly/signaler,
 /obj/item/fuelCell/full,
@@ -10270,7 +10270,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/effect/decal/cleanable/vomit,
 /obj/machinery/light/mainship/small{
 	dir = 8
@@ -10604,8 +10604,8 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -10732,7 +10732,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/wrench,
 /obj/item/tool/crowbar,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -12297,7 +12297,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "pRb" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "pRo" = (
@@ -12504,7 +12504,7 @@
 	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/item/flashlight,
 /obj/item/circuitboard/apc,
 /obj/item/frame/apc,
@@ -12948,7 +12948,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "qHj" = (
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "qHv" = (
@@ -13491,7 +13491,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
 "rqW" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "rqX" = (
@@ -14447,7 +14447,7 @@
 "sFo" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/storage/box/tgmc_mre,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -14551,9 +14551,9 @@
 /area/mainship/hallways/hangar)
 "sOJ" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/item/clothing/head/helmet/marine/som,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "sPc" = (
@@ -14690,7 +14690,7 @@
 /area/mainship/medical/medical_science)
 "sXf" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "sXo" = (
@@ -15955,7 +15955,7 @@
 /area/mainship/medical/lower_medical)
 "uvK" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/alarm,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -17754,7 +17754,7 @@
 "wKv" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/extinguisher,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light/mainship{
 	dir = 8
 	},

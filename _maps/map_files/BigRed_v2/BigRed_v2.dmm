@@ -266,7 +266,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "aer" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "aes" = (
@@ -363,7 +363,7 @@
 /area/bigredv2/outside/virology)
 "afk" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "afs" = (
@@ -376,11 +376,11 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "afv" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "afA" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "afB" = (
@@ -485,7 +485,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/caves/lambda_lab)
 "agm" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
@@ -710,7 +710,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aiq" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "ais" = (
@@ -1189,7 +1189,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "akU" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 2";
 	name = "\improper Marshal Office Complex Shutters"
@@ -1403,7 +1403,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "amx" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
@@ -1537,7 +1537,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "anl" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "ano" = (
@@ -1639,7 +1639,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/general_offices)
 "anJ" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
@@ -1821,7 +1821,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "app" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -1879,7 +1879,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "apI" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
@@ -2038,7 +2038,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aqT" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Bar Complex";
@@ -2047,7 +2047,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
 "aqV" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Kitchen";
@@ -2076,7 +2076,7 @@
 "ara" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
-/obj/effect/spawner/random/plushie{
+/obj/effect/spawner/random/misc/plushie{
 	pixel_x = -5;
 	pixel_y = -4
 	},
@@ -2105,9 +2105,9 @@
 /area/bigredv2/outside/ne)
 "arE" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/weapon/gun/shotgun/combat,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2248,7 +2248,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "asT" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -2257,7 +2257,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "asV" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Filtration Plant";
@@ -2305,7 +2305,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "atw" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
@@ -2372,7 +2372,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "atP" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "sci_br";
@@ -2898,7 +2898,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
 "aAM" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aAN" = (
@@ -3057,7 +3057,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aBZ" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aCa" = (
@@ -3068,7 +3068,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/ne)
 "aCe" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -3080,11 +3080,11 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aCh" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "aCr" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aCu" = (
@@ -3565,7 +3565,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aGK" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "sci_br";
@@ -3788,7 +3788,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/outside/bar)
 "aIu" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aIv" = (
@@ -4125,7 +4125,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aKu" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Bar Complex";
 	name = "\improper Bar Complex Shutters"
@@ -4142,7 +4142,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKx" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKy" = (
@@ -4173,7 +4173,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
 "aKF" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
 "aKG" = (
@@ -4279,7 +4279,7 @@
 /area/bigredv2/outside/hydroponics)
 "aLy" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/kitchenknife,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLA" = (
@@ -4717,7 +4717,7 @@
 /area/bigredv2/caves/northeast)
 "aRg" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -4856,7 +4856,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aSz" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aSA" = (
@@ -5088,7 +5088,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aVD" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aVE" = (
@@ -5143,7 +5143,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aWj" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aWk" = (
@@ -5346,7 +5346,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZy" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
@@ -5365,7 +5365,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "aZN" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "aZQ" = (
@@ -5420,7 +5420,7 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bbd" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
@@ -5667,7 +5667,7 @@
 	},
 /area/bigredv2/outside/s)
 "bjI" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "bjJ" = (
@@ -5771,7 +5771,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bkG" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bkH" = (
@@ -5836,7 +5836,7 @@
 	},
 /area/bigredv2/outside/s)
 "blw" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -5920,7 +5920,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bmL" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "bmQ" = (
@@ -5934,7 +5934,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bmY" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bnb" = (
@@ -6050,7 +6050,7 @@
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "boj" = (
@@ -6336,7 +6336,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "btj" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "btl" = (
@@ -6490,7 +6490,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bvS" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/structure/powergenerator/superweighted,
+/obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bvY" = (
@@ -6529,7 +6529,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwJ" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwL" = (
@@ -6928,7 +6928,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzS" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzV" = (
@@ -7345,7 +7345,7 @@
 	},
 /obj/structure/closet/cabinet,
 /obj/item/clothing/tie/armband,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDs" = (
@@ -7607,7 +7607,7 @@
 /area/space)
 "bPF" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bQo" = (
@@ -7734,7 +7734,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "coO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -7761,7 +7761,7 @@
 /area/bigredv2/outside/nw)
 "cta" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "ctQ" = (
@@ -7801,7 +7801,7 @@
 /area/bigredv2/caves/lambda_lab)
 "cCz" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/item/phone,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
@@ -8091,7 +8091,7 @@
 /area/bigredv2/caves/lambda_lab)
 "dqB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "dqT" = (
@@ -8105,7 +8105,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "dst" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "dun" = (
@@ -8185,7 +8185,7 @@
 /area/bigredv2/outside/se)
 "dKx" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -8255,7 +8255,7 @@
 /turf/open/space/basic,
 /area/space)
 "dWZ" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -8308,7 +8308,7 @@
 /area/bigredv2/outside/bar)
 "ees" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "eeS" = (
@@ -8394,7 +8394,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "elJ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -8586,7 +8586,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "eQK" = (
@@ -8769,7 +8769,7 @@
 /area/bigredv2/outside/virology)
 "foX" = (
 /obj/structure/table,
-/obj/effect/spawner/random/kitchen{
+/obj/effect/spawner/random/food_or_drink/kitchen{
 	pixel_x = -2
 	},
 /turf/open/floor,
@@ -8913,7 +8913,7 @@
 /area/bigredv2/caves/lambda_lab)
 "fNw" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "fNY" = (
@@ -8955,7 +8955,7 @@
 /area/bigredv2/outside/engineering)
 "fRt" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "fRA" = (
@@ -9017,7 +9017,7 @@
 "fWZ" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/kitchen{
+/obj/effect/spawner/random/food_or_drink/kitchen{
 	pixel_x = 2;
 	pixel_y = 1
 	},
@@ -9629,7 +9629,7 @@
 /area/bigredv2/outside/cargo)
 "hNr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hNs" = (
@@ -9693,8 +9693,8 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "hZr" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hZH" = (
@@ -9754,7 +9754,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "iix" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /obj/item/clothing/shoes/jackboots,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -9922,7 +9922,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "iPF" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "iPH" = (
@@ -10289,7 +10289,7 @@
 /area/bigredv2/outside/e)
 "jEj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "jFb" = (
@@ -10358,7 +10358,7 @@
 /area/bigredv2/outside/s)
 "jOe" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -10395,7 +10395,7 @@
 /area/bigredv2/caves/lambda_lab)
 "jRa" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "jSh" = (
@@ -10406,7 +10406,7 @@
 /area/bigredv2/caves/lambda_lab)
 "jTj" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "jVc" = (
@@ -10517,7 +10517,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "kog" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "kpp" = (
@@ -10598,7 +10598,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "kEl" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kEu" = (
@@ -10939,7 +10939,7 @@
 /area/bigredv2/outside/c)
 "lLA" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "lNE" = (
@@ -11045,7 +11045,7 @@
 /area/bigredv2/caves/lambda_lab)
 "mdh" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -11193,7 +11193,7 @@
 "mBm" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "mCH" = (
@@ -11270,7 +11270,7 @@
 /area/bigredv2/outside/engineering)
 "mHM" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -11475,11 +11475,11 @@
 /area/bigredv2/outside/engineering)
 "npo" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "npt" = (
@@ -11489,7 +11489,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "npK" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/tool/extinguisher,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -11509,7 +11509,7 @@
 /area/bigredv2/outside/s)
 "nrL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -11766,7 +11766,7 @@
 /area/bigredv2/caves/south)
 "ogV" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -11944,8 +11944,8 @@
 /area/bigredv2/outside/virology)
 "oGf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -11971,7 +11971,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/plate,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "oJB" = (
@@ -12184,7 +12184,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "pyW" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
@@ -12198,19 +12198,19 @@
 /area/space)
 "pBb" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "pBE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "pBY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pCh" = (
@@ -12233,7 +12233,7 @@
 /area/bigredv2/caves/lambda_lab)
 "pGL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 8
 	},
@@ -12482,7 +12482,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "qAm" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "qBP" = (
@@ -12739,7 +12739,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rmY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -12803,7 +12803,7 @@
 /area/bigredv2/outside/marshal_office)
 "ryP" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ryU" = (
@@ -12983,7 +12983,7 @@
 /area/bigredv2/outside/filtration_plant)
 "scx" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "scS" = (
@@ -13027,7 +13027,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "smW" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
@@ -13212,14 +13212,14 @@
 /area/bigredv2/outside/marshal_office)
 "tbM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "tco" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
 "tdv" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -13274,7 +13274,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
 "tnv" = (
-/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
@@ -13360,12 +13360,12 @@
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "txu" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "tza" = (
@@ -13627,7 +13627,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ukv" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ukO" = (
@@ -13650,7 +13650,7 @@
 /area/bigredv2/outside/ne)
 "umj" = (
 /obj/structure/table,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "umt" = (
@@ -13842,7 +13842,7 @@
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "uKk" = (
@@ -13954,7 +13954,7 @@
 /area/bigredv2/outside/s)
 "vec" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 10
 	},
@@ -14057,7 +14057,7 @@
 /area/bigredv2/outside/s)
 "vrt" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -14176,7 +14176,7 @@
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "vDA" = (
@@ -14218,7 +14218,7 @@
 /area/bigredv2/outside/s)
 "vLY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
@@ -14286,8 +14286,8 @@
 /area/bigredv2/caves/lambda_lab)
 "vSK" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "vTi" = (
@@ -14527,11 +14527,11 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "wxT" = (
@@ -14850,7 +14850,7 @@
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "xyQ" = (
@@ -15123,7 +15123,7 @@
 "yfP" = (
 /obj/structure/table,
 /obj/item/trash/plate,
-/obj/effect/spawner/random/kitchen{
+/obj/effect/spawner/random/food_or_drink/kitchen{
 	pixel_y = 3
 	},
 /turf/open/floor/tile/yellow/full,
@@ -15156,8 +15156,8 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ykK" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ylB" = (

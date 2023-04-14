@@ -2486,8 +2486,8 @@
 "hc" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /obj/machinery/alarm{
 	dir = 8
 	},
@@ -2788,7 +2788,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "hU" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "hV" = (
@@ -5662,7 +5662,7 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "qH" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "qI" = (
@@ -6000,7 +6000,7 @@
 "rR" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/stack/cable_coil,
 /obj/item/assembly/timer,
 /obj/item/assembly/infra,
@@ -7704,7 +7704,7 @@
 /area/mainship/living/briefing)
 "wP" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/plushie/nospawnninety,
+/obj/effect/spawner/random/misc/plushie/nospawnninety,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "wQ" = (
@@ -11096,12 +11096,12 @@
 /area/mainship/hull/starboard_hull)
 "GC" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light/mainship/small,
 /obj/item/fuelCell/full,
 /obj/item/assembly/prox_sensor,
@@ -11471,12 +11471,12 @@
 /area/mainship/hull/starboard_hull)
 "HJ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light/mainship/small,
 /obj/item/fuelCell/full,
 /obj/item/assembly/prox_sensor,
@@ -12936,7 +12936,7 @@
 /area/mainship/medical/chemistry)
 "Me" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/plushie/nospawnninety,
+/obj/effect/spawner/random/misc/plushie/nospawnninety,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/briefing)
 "Mf" = (
@@ -13295,7 +13295,7 @@
 "Nj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
 "Nk" = (
@@ -13932,7 +13932,7 @@
 /area/mainship/engineering/engineering_workshop)
 "OV" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/mainship{
 	dir = 1
@@ -13948,7 +13948,7 @@
 "OZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship/small,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Pa" = (
@@ -14913,7 +14913,7 @@
 /turf/open/floor/wood,
 /area/mainship/engineering/ce_room)
 "RZ" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
