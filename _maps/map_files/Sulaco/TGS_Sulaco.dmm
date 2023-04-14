@@ -15813,6 +15813,11 @@
 	dir = 1
 	},
 /area/sulaco/hangar)
+"iVy" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "iVT" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/opened{
@@ -21040,6 +21045,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel/chapel_office)
+"pTH" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "pUm" = (
 /obj/effect/turf_decal/siding{
 	dir = 10
@@ -25391,6 +25400,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"vGj" = (
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "vGn" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -49227,7 +49240,7 @@ nzi
 mDu
 mDu
 mDu
-aEH
+aOk
 aOk
 aOk
 aOk
@@ -49483,12 +49496,12 @@ aaa
 tZr
 vDU
 vDU
-vDU
-mDu
+vyQ
 aOk
 aqT
 iTU
 kNy
+vGj
 ljR
 aOk
 atw
@@ -49740,11 +49753,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 aOk
 bZD
 hrC
+iVy
 vlf
 wtu
 kps
@@ -49997,11 +50010,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
 aOk
 aop
 rXM
+pTH
 xxx
 fqm
 aOk
@@ -50254,8 +50267,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
 nzi
+aOk
 aOk
 aOk
 aOk
@@ -50511,7 +50524,7 @@ aaa
 aaa
 aaa
 aaa
-emV
+nzi
 mDu
 aYZ
 bKr
