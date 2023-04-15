@@ -6021,7 +6021,7 @@
 	dir = 1
 	},
 /obj/machinery/atm{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
