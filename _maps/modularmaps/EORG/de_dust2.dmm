@@ -23,7 +23,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "ez" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "eB" = (
 /obj/effect/landmark/deathmatch,
@@ -47,7 +47,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "gY" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "ht" = (
@@ -234,7 +234,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "xb" = (
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "xg" = (

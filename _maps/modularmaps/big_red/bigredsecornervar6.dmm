@@ -111,7 +111,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "hw" = (
-/obj/effect/spawner/random/structure/supplycrate/case/double,
+/obj/effect/spawner/random/misc/structure/supplycrate/case/double,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "im" = (
@@ -215,7 +215,7 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "mc" = (
-/obj/effect/spawner/random/structure/barrel/green,
+/obj/effect/spawner/random/misc/structure/barrel/green,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "mH" = (
@@ -443,7 +443,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "zn" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "zE" = (
@@ -463,7 +463,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Am" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Ap" = (
@@ -492,7 +492,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "DE" = (
-/obj/effect/spawner/random/structure/supplycrate/case,
+/obj/effect/spawner/random/misc/structure/supplycrate/case,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Em" = (
@@ -529,8 +529,8 @@
 "GI" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
@@ -540,7 +540,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "GV" = (
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "GZ" = (
@@ -591,7 +591,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Kq" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Ks" = (
@@ -601,7 +601,7 @@
 /area/bigredv2/caves/secomplex)
 "KZ" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Le" = (
@@ -702,13 +702,13 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "QG" = (
-/obj/effect/spawner/random/structure/barrel/blue,
+/obj/effect/spawner/random/misc/structure/barrel/blue,
 /obj/effect/decal/cleanable/cobweb2,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QK" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted/barrel,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QY" = (
@@ -857,7 +857,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Yn" = (
-/obj/effect/spawner/random/structure/barrel/blue,
+/obj/effect/spawner/random/misc/structure/barrel/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "YO" = (
@@ -873,7 +873,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Zb" = (
-/obj/effect/spawner/random/structure/supplycrate/normalweighted,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Zd" = (

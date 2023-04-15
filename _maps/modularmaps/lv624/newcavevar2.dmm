@@ -64,7 +64,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gx" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gG" = (
@@ -86,8 +86,8 @@
 /area/lv624/ground/caves/central3)
 "gZ" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "hL" = (
@@ -166,7 +166,7 @@
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "tk" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "ty" = (
@@ -226,7 +226,7 @@
 /area/lv624/ground/caves/central1)
 "AR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -362,7 +362,7 @@
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "Oq" = (
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "OE" = (
@@ -375,7 +375,7 @@
 /obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "Py" = (
@@ -384,7 +384,7 @@
 /area/lv624/ground/caves/central2)
 "PF" = (
 /obj/item/shard,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "PL" = (
@@ -442,7 +442,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "Vc" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "WV" = (

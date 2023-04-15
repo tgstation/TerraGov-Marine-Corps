@@ -1097,6 +1097,7 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
+		hugger_ammo.hugger_hivenumber = hivenumber
 	firing = TRUE
 	update_minimap_icon()
 

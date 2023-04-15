@@ -1433,7 +1433,7 @@
 /area/sulaco/medbay/storage)
 "aeG" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/lightreplacer,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -1824,7 +1824,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/ce)
 "aic" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/prison/darkyellow/corner{
 	dir = 4
 	},
@@ -5602,7 +5602,7 @@
 /area/sulaco/briefing)
 "aBB" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBC" = (
@@ -8011,8 +8011,8 @@
 /area/sulaco/command/eva)
 "aOs" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/red,
 /area/sulaco/command/eva)
 "aOt" = (
@@ -8120,7 +8120,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/maintenance/lower_maint2)
 "aPk" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aPn" = (
@@ -8270,6 +8270,9 @@
 "aQt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_3"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
@@ -8863,9 +8866,6 @@
 "aTt" = (
 /obj/structure/rack,
 /obj/item/storage/box/sentry,
-/obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_2"
-	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aTw" = (
@@ -10192,6 +10192,10 @@
 	},
 /obj/item/robot_parts/head,
 /obj/item/stack/cable_coil,
+/obj/machinery/door_control/mainship/mech{
+	dir = 4;
+	id = "mech_shutters_4"
+	},
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -11009,7 +11013,7 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/electrical,
 /obj/item/clothing/glasses/welding,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
@@ -11349,7 +11353,7 @@
 /area/sulaco/cafeteria/kitchen)
 "cMp" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "cMx" = (
@@ -11719,7 +11723,7 @@
 /obj/effect/ai_node,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/mainship/mech{
-	id = "mech_shutters_1"
+	id = "mech_shutters_4"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
@@ -12251,10 +12255,10 @@
 /area/sulaco/hallway/evac)
 "ear" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison,
 /area/sulaco/bridge/office)
 "eaW" = (
@@ -13193,8 +13197,8 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/weapon/gun/shotgun/pump,
 /obj/item/ammo_magazine/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "fqN" = (
@@ -14013,7 +14017,8 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_5"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -14801,7 +14806,8 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_3"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -16154,6 +16160,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
+"jvK" = (
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_5"
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "jvW" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -17086,6 +17098,12 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
+"kKn" = (
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_4"
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "kKv" = (
 /obj/structure/shuttle/engine/propulsion/burst{
 	dir = 4
@@ -18300,6 +18318,10 @@
 /obj/structure/rack,
 /obj/item/circuitboard/computer/arcade,
 /obj/item/circuitboard/computer/operating,
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_5";
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "mte" = (
@@ -19920,7 +19942,7 @@
 "oCV" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/suit/chef/classic,
@@ -20227,6 +20249,13 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
+"oWL" = (
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_3";
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "oXl" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -20294,7 +20323,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -20646,7 +20675,7 @@
 /area/sulaco/hangar)
 "ptE" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "pum" = (
@@ -21399,7 +21428,7 @@
 /area/space)
 "qDX" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "qFe" = (
@@ -22543,7 +22572,7 @@
 /area/sulaco/hallway/central_hall3)
 "sbM" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/mainship/black,
 /area/sulaco/mechpilotquarters)
 "sbP" = (
@@ -23621,7 +23650,7 @@
 /area/sulaco/hangar/storage)
 "tlQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -24316,7 +24345,7 @@
 "uhf" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
-/obj/effect/spawner/random/burger{
+/obj/effect/spawner/random/food_or_drink/burger{
 	pixel_x = -4;
 	pixel_y = 1
 	},
@@ -24799,7 +24828,7 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/hangar)
 "uQQ" = (
-/obj/effect/spawner/random/structure/machine_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "uRy" = (
@@ -25339,7 +25368,8 @@
 	},
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/mainship/mech{
-	dir = 1
+	dir = 1;
+	id = "mech_shutters_5"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
@@ -68846,11 +68876,11 @@ mDu
 kOr
 jYO
 wTC
-pWS
+oWL
 bYM
 aQt
 aUu
-aWh
+kKn
 aTM
 aUt
 aUt
@@ -71678,7 +71708,7 @@ aWo
 pWS
 aYa
 bYM
-aWh
+jvK
 aTM
 aTM
 aTM

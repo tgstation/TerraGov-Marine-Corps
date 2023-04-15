@@ -37,7 +37,7 @@
 /area/lv624/ground/caves/rock)
 "ao" = (
 /obj/structure/table,
-/obj/effect/spawner/random/structure/random_broken_computer,
+/obj/effect/spawner/random/machinery/random_broken_computer,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
 "ap" = (
@@ -72,7 +72,7 @@
 /area/lv624/lazarus/crashed_ship)
 "aA" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker,
+/obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "aC" = (
@@ -180,7 +180,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/fitness)
 "bh" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -1171,10 +1171,10 @@
 /area/lv624/lazarus/medbay)
 "gr" = (
 /obj/structure/closet,
-/obj/effect/spawner/random/plushie,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/cigarettes,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/misc/plushie,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/effect/spawner/random/misc/cigarettes,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -1413,7 +1413,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "hC" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1600,7 +1600,7 @@
 /area/lv624/lazarus/spaceport)
 "iy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker/largeweighted,
+/obj/effect/spawner/random/medical/beaker/largeweighted,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "iz" = (
@@ -1967,7 +1967,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "kq" = (
-/obj/effect/spawner/random/shard,
+/obj/effect/spawner/random/misc/shard,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
@@ -2717,7 +2717,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "oq" = (
-/obj/effect/spawner/random/structure/closet,
+/obj/effect/spawner/random/misc/structure/closet,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -2828,7 +2828,7 @@
 /area/lv624/lazarus/spaceport)
 "oQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/beaker,
+/obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "oS" = (
@@ -2907,7 +2907,7 @@
 /area/lv624/lazarus/research)
 "pn" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "po" = (
@@ -3020,7 +3020,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "pQ" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
 "pX" = (
@@ -3032,7 +3032,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/tile/blue,
 /area/lv624/lazarus/medbay)
 "pZ" = (
@@ -3076,8 +3076,8 @@
 /area/lv624/lazarus/engineering)
 "qi" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "qk" = (
@@ -3273,7 +3273,7 @@
 /area/lv624/lazarus/captain)
 "re" = (
 /obj/structure/window_frame/colony,
-/obj/effect/spawner/random/shard,
+/obj/effect/spawner/random/misc/shard,
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
 "rg" = (
@@ -3397,7 +3397,7 @@
 /area/lv624/ground/jungle5)
 "rS" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "rV" = (
@@ -3448,7 +3448,7 @@
 /area/lv624/ground/jungle7)
 "sf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/pillbottle,
+/obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "sh" = (
@@ -3659,7 +3659,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/beaker/regularweighted,
+/obj/effect/spawner/random/medical/beaker/regularweighted,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "tb" = (
@@ -3686,7 +3686,7 @@
 /area/lv624/lazarus/spaceport2)
 "th" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research)
 "tk" = (
@@ -3779,7 +3779,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/research)
 "tF" = (
-/obj/effect/spawner/random/structure/cabinet,
+/obj/effect/spawner/random/misc/structure/cabinet,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "tG" = (
@@ -3821,7 +3821,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/lazarus/spaceport)
 "tQ" = (
-/obj/effect/spawner/random/shard,
+/obj/effect/spawner/random/misc/shard,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle9)
 "tR" = (
@@ -3941,7 +3941,7 @@
 /area/lv624/lazarus/spaceport2)
 "uz" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "uA" = (
@@ -4017,12 +4017,12 @@
 /area/lv624/lazarus/spaceport)
 "uR" = (
 /obj/structure/closet,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/food_or_drink/drink_cans,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -4085,7 +4085,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/sleep_male)
 "vh" = (
@@ -4205,7 +4205,7 @@
 /area/lv624/lazarus/hydroponics)
 "vL" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "vM" = (
@@ -4387,7 +4387,7 @@
 /area/lv624/lazarus/chapel)
 "wR" = (
 /obj/structure/bed,
-/obj/effect/spawner/random/bedsheet,
+/obj/effect/spawner/random/misc/bedsheet,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -4418,7 +4418,7 @@
 /area/lv624/ground/jungle5)
 "wY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/medhud,
+/obj/effect/spawner/random/medical/medhud,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "wZ" = (
@@ -4554,7 +4554,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/sleep_male)
 "xN" = (
@@ -4602,7 +4602,7 @@
 "xV" = (
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/colonist/regular,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -4694,8 +4694,8 @@
 /area/lv624/ground/jungle9)
 "ys" = (
 /obj/structure/bed,
-/obj/effect/spawner/random/bedsheet,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/bedsheet,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
@@ -4729,7 +4729,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "yE" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
@@ -4767,7 +4767,7 @@
 /area/lv624/ground/jungle10)
 "yM" = (
 /obj/structure/table,
-/obj/effect/spawner/random/clipboard,
+/obj/effect/spawner/random/misc/clipboard,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research)
 "yN" = (
@@ -4848,7 +4848,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -4870,7 +4870,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -5325,8 +5325,8 @@
 /area/lv624/ground/jungle9)
 "Bq" = (
 /obj/structure/bed,
-/obj/effect/spawner/random/bedsheet,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/bedsheet,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -5383,13 +5383,13 @@
 /area/lv624/ground/jungle10)
 "BG" = (
 /obj/structure/closet,
-/obj/effect/spawner/random/plushie,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/cigarettes,
+/obj/effect/spawner/random/misc/plushie,
+/obj/effect/spawner/random/food_or_drink/drink_cans,
+/obj/effect/spawner/random/misc/cigarettes,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -5659,7 +5659,7 @@
 	},
 /area/lv624/lazarus/research)
 "CU" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /obj/structure/table,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
@@ -5706,7 +5706,7 @@
 /area/lv624/lazarus/security)
 "Dh" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -5809,7 +5809,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "DH" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "DK" = (
@@ -6347,7 +6347,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/jungle9)
 "Gy" = (
-/obj/effect/spawner/random/melee,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Gz" = (
@@ -6383,8 +6383,8 @@
 /area/lv624/ground/caves/east1)
 "GH" = (
 /obj/structure/closet,
-/obj/effect/spawner/random/plushie,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/misc/plushie,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -6395,7 +6395,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/medbay)
 "GJ" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/power/apc/drained{
 	crash_break_probability = 100
 	},
@@ -6758,7 +6758,7 @@
 /area/lv624/ground/jungle7)
 "Iy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/radio,
+/obj/effect/spawner/random/engineering/radio,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "IA" = (
@@ -7270,7 +7270,7 @@
 /area/lv624/ground/jungle5)
 "KR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/radio/survivor,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
@@ -7325,7 +7325,7 @@
 	},
 /area/lv624/lazarus/security)
 "Lg" = (
-/obj/effect/spawner/random/plant,
+/obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/sleep_male)
 "Lh" = (
@@ -7887,7 +7887,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
 "Nz" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "NA" = (
@@ -8059,7 +8059,7 @@
 "Os" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
 	},
@@ -8213,17 +8213,17 @@
 /area/lv624/ground/jungle9)
 "Pa" = (
 /obj/structure/closet/secure_closet/CMO,
-/obj/effect/spawner/random/medbelt,
+/obj/effect/spawner/random/medical/medbelt,
 /turf/open/floor/tile/green,
 /area/lv624/lazarus/medbay)
 "Pd" = (
 /obj/structure/closet/crate/hydroponics,
-/obj/effect/spawner/random/seeds,
-/obj/effect/spawner/random/seeds,
-/obj/effect/spawner/random/seeds,
-/obj/effect/spawner/random/seeds,
-/obj/effect/spawner/random/seeds,
-/obj/effect/spawner/random/seeds,
+/obj/effect/spawner/random/misc/seeds,
+/obj/effect/spawner/random/misc/seeds,
+/obj/effect/spawner/random/misc/seeds,
+/obj/effect/spawner/random/misc/seeds,
+/obj/effect/spawner/random/misc/seeds,
+/obj/effect/spawner/random/misc/seeds,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 10
 	},
@@ -8989,7 +8989,7 @@
 /area/lv624/lazarus/spaceport2)
 "SR" = (
 /obj/structure/table,
-/obj/effect/spawner/random/surgical,
+/obj/effect/spawner/random/medical/surgical,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/research)
 "ST" = (
@@ -9009,7 +9009,7 @@
 /obj/item/reagent_containers/glass/bottle/lemoline{
 	pixel_x = 8
 	},
-/obj/effect/spawner/random/medbottle,
+/obj/effect/spawner/random/medical/medbottle,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
 "Ta" = (
@@ -9062,7 +9062,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -9678,7 +9678,7 @@
 /obj/machinery/recharger,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
 "Wg" = (
@@ -9837,7 +9837,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "WR" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/sleep_male)
 "WS" = (
@@ -9925,7 +9925,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/spaceport2)
 "Xq" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
 	dir = 5
@@ -10094,7 +10094,7 @@
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/machinery/cell_charger,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/effect/spawner/random/sunglasses,
+/obj/effect/spawner/random/clothing/sunglasses,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -10133,7 +10133,7 @@
 /area/lv624/lazarus/medbay)
 "Yu" = (
 /obj/structure/bed/roller,
-/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
 "Yw" = (
@@ -10298,9 +10298,9 @@
 /area/lv624/lazarus/canteen)
 "Zf" = (
 /obj/structure/closet,
-/obj/effect/spawner/random/book,
-/obj/effect/spawner/random/beer,
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/misc/book,
+/obj/effect/spawner/random/food_or_drink/beer,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -10427,7 +10427,7 @@
 /obj/structure/closet/crate/medical,
 /obj/item/tweezers,
 /obj/item/stack/medical/splint,
-/obj/effect/spawner/random/firstaid,
+/obj/effect/spawner/random/medical/firstaid,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
 "ZQ" = (

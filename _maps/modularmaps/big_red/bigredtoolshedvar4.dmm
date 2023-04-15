@@ -20,7 +20,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "e" = (
@@ -34,7 +34,7 @@
 /area/bigredv2/outside/c)
 "g" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "h" = (
@@ -55,7 +55,7 @@
 /area/bigredv2/outside/c)
 "m" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "o" = (
@@ -75,7 +75,7 @@
 /area/bigredv2/outside/storage)
 "q" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "r" = (
@@ -170,7 +170,7 @@
 /area/bigredv2/outside/c)
 "N" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/sign/securearea,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -191,7 +191,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "T" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "U" = (
