@@ -1,8 +1,9 @@
 /obj/effect/spawner/random/misc/structure
 	name = "Random base misc structure spawner"
 	icon_state = "random_securecrate"
-	loot_subtype_path = /obj/effect/spawner/random/misc/structure
-	loot = list()
+	loot = list(
+		/obj/effect/spawner/random/misc/structure/grille,
+	)
 
 /obj/effect/spawner/random/misc/structure/grille
 	name = "grille spawner"

@@ -1193,7 +1193,7 @@
 "FO" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/machinery/status_display{
-	pixel_y = 32
+	pixel_y = 31
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)

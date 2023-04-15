@@ -2583,7 +2583,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "dhv" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display{
+	pixel_y = 2
+	},
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical)
 "dhK" = (
@@ -2593,9 +2595,12 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/briefing)
 "dig" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display{
+	pixel_x = 15
+	},
+/obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/living/cryo_cells)
+/area/mainship/living/briefing)
 "dit" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship/tcomms,
@@ -3676,10 +3681,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "eCd" = (
-/obj/effect/soundplayer,
 /obj/machinery/status_display,
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/upper_medical)
+/turf/closed/wall/mainship,
+/area/mainship/living/cryo_cells)
 "eCr" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -11114,7 +11118,9 @@
 	},
 /area/mainship/living/briefing)
 "orC" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display{
+	pixel_x = -15
+	},
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
@@ -13802,9 +13808,8 @@
 /area/mainship/shipboard/firing_range)
 "rPt" = (
 /obj/machinery/status_display,
-/obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/squads/req)
+/area/mainship/living/bridgebunks)
 "rPu" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -16284,10 +16289,6 @@
 /obj/item/storage/fancy/cigar,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"uQp" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/mainship/living/grunt_rnr)
 "uQI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -18104,10 +18105,6 @@
 	dir = 4
 	},
 /area/mainship/engineering/engineering_workshop)
-"xhG" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/mainship/living/bridgebunks)
 "xhP" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/ai_node,
@@ -46209,7 +46206,7 @@ aKD
 bpc
 bYb
 llr
-whZ
+rPt
 bVU
 aXc
 whZ
@@ -46725,7 +46722,7 @@ pPR
 whZ
 whZ
 whZ
-xhG
+whZ
 oDx
 hUf
 uBn
@@ -47465,10 +47462,10 @@ ffi
 olX
 wnJ
 vHQ
-eCd
+olX
 qvJ
 qvJ
-uQp
+qvJ
 qvJ
 qvJ
 gkL
@@ -50810,7 +50807,7 @@ hhf
 hhf
 dLx
 dLx
-rPt
+lxK
 sAl
 iyl
 vmD
@@ -51067,7 +51064,7 @@ scb
 kKO
 ooM
 pJi
-hhf
+fQO
 iYg
 lhG
 vmD
@@ -53091,7 +53088,7 @@ kDx
 kDx
 plN
 oLC
-orC
+dig
 gnS
 kwS
 nGn
@@ -53366,7 +53363,7 @@ uLY
 qKL
 ocK
 lxK
-fQO
+hhf
 cHE
 czx
 hhf
@@ -53392,10 +53389,10 @@ vab
 bMm
 rUK
 rUF
-hme
+rUF
 rUF
 hwU
-hme
+rUF
 oXs
 rUF
 rUF
@@ -54157,19 +54154,19 @@ wMh
 kTI
 jQT
 vmD
-rUF
+hme
 qhf
 tkW
 lJV
 pGb
 qhf
-rUF
+hme
 gxL
 mNM
 rrh
 pyS
 gxL
-rUF
+hme
 ikM
 jXW
 yhG
@@ -58795,7 +58792,7 @@ aSJ
 heh
 vmB
 fpB
-dig
+aSJ
 cwD
 wJh
 wJh
@@ -59551,27 +59548,27 @@ iWR
 eLt
 owh
 snm
-aSJ
+eCd
 lsh
 hOm
 atN
 pHC
-aSJ
+eCd
 lsh
 qqP
 kQS
 ktb
-aSJ
+eCd
 lsh
 rqX
 atN
 ktb
-aSJ
+eCd
 rzd
 wJh
 wJh
 cwD
-aSJ
+eCd
 rzd
 wJh
 wJh
@@ -60070,18 +60067,18 @@ aSJ
 kir
 hcb
 aSJ
-dig
+aSJ
 aSJ
 kir
 hcb
 aSJ
-dig
+aSJ
 aSJ
 kir
 hcb
 aSJ
-dig
-dig
+aSJ
+aSJ
 aSJ
 aSJ
 aSJ
