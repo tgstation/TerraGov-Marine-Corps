@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "HvH: some items such as B18 or shields now have the chance to convert projectile based hard stuns into staggerslow"
+  - bugfix: "Fixed item active toggling not working correctly in many cases"
