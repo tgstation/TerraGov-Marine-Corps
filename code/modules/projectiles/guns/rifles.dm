@@ -782,9 +782,8 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	wield_delay = 0.5 SECONDS
-	damage_mult = 1.2
-	scatter = 1
-	movement_acc_penalty_mult = 4
+	scatter = 1.5
+	movement_acc_penalty_mult = 5
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
