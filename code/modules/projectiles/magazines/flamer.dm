@@ -61,8 +61,8 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."
 	icon_state = "flametank_large"
-	max_rounds = 75
-	current_rounds = 75
+	max_rounds = 150
+	current_rounds = 150
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
 
@@ -70,8 +70,8 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som"
-	max_rounds = 75
-	current_rounds = 75
+	max_rounds = 150
+	current_rounds = 150
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
 
@@ -89,8 +89,8 @@
 	icon_state = "flamethrower_tank"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 500
-	current_rounds = 500
+	max_rounds = 750
+	current_rounds = 750
 	reload_delay = 1 SECONDS
 	caliber = CALIBER_FUEL_THICK
 	flags_magazine = MAGAZINE_WORN

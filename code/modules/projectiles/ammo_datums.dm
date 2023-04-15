@@ -3597,7 +3597,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	ping = null
 	var/fire_color = "red"
 	var/burntime = 0.5 SECONDS
-	var/burnlevel = 31
+	var/burnlevel = 30
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))
@@ -3634,9 +3634,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 6
 
 /datum/ammo/flamethrower/blast
-	icon_state = "flamer_blast"
-	max_range = 5
-	shell_speed = 0.6
 	damage = 20
 
 /datum/ammo/flamethrower/blast/drop_flame(turf/T)
@@ -3652,7 +3649,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_color = "blue"
 	bullet_color = COLOR_DISABLER_BLUE
 	damage = 15
-	burntime = 1 SECONDS
+	burntime = 0.5 SECONDS
 	burnlevel = 40
 
 /datum/ammo/flamethrower/over/blue
@@ -3662,7 +3659,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_color = "blue"
 	bullet_color = COLOR_DISABLER_BLUE
 	damage = 10
-	burntime = 1 SECONDS
+	burntime = 0.5 SECONDS
 	burnlevel = 40
 
 /datum/ammo/flamethrower/blast/blue
@@ -3672,7 +3669,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_color = "blue"
 	bullet_color = COLOR_DISABLER_BLUE
 	damage = 25
-	burntime = 1 SECONDS
+	burntime = 0.5 SECONDS
 	burnlevel = 40
 
 /datum/ammo/water
