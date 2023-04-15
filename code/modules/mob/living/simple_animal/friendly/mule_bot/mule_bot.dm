@@ -48,11 +48,31 @@
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
 	face_overlay = emissive_appearance(icon, "kerfus_face")
-	internal_id = new internal_id(src)
+	internal_id = new(src)
 	internal_id.iff_signal = TGMC_LOYALIST_IFF
-	update_icon()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot)
+	prepare_huds()
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.add_to_hud(src)
+	set_health_hud()
+	update_icon()
 
+/mob/living/simple_animal/mule_bot/updatehealth(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+	. = ..()
+	set_health_hud()
+
+/mob/living/simple_animal/mule_bot/proc/set_health_hud()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
+
+	if(!holder)
+		return
+
+	if(stat == DEAD)
+		holder.icon_state = "xenohealth0"
+		return
+
+	var/amount = health > 0 ? round(health * 100 / maxHealth, 10) : CEILING(health, 10)
+	holder.icon_state = "xenohealth[amount]"
 
 /mob/living/simple_animal/mule_bot/on_death()
 	. = ..()
