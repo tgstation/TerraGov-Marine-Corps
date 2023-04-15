@@ -354,3 +354,39 @@
 	. = ..()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/flarepouch
+	name = "flare pouch"
+	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
+	flags_equip_slot = ITEM_SLOT_POCKET
+	max_w_class = WEIGHT_CLASS_TINY
+	storage_slots = 28
+	max_storage_space = 28
+	icon = 'icons/Marine/marine-pouches.dmi'
+	base_icon = "flare"
+	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
+	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
+	can_hold = list(
+		/obj/item/explosive/grenade/flare/civilian,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
+		/obj/item/explosive/grenade/flare,
+	)
+	refill_types = list(/obj/item/storage/box/m94)
+	refill_sound = "rustle"
+	holsterable_allowed = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine)
+
+/obj/item/storage/holster/flarepouch/full/Initialize()
+	. = ..()
+	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)
+	for(var/i in 1 to (storage_slots-flare_gun.w_class))
+		new /obj/item/explosive/grenade/flare(src)
+
+/obj/item/storage/holster/flarepouch/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
+		return ..()
+	var/obj/item/weapon/gun/grenade_launcher/single_shot/flare/flare_gun = I
+	for(var/obj/item/flare in contents)
+		flare_gun.reload(flare, user)
+		orient2hud()
+		return
