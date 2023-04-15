@@ -214,3 +214,17 @@
   - rscadd: 'Adds smooth desert dam rock.
 
       qol; Adds extra helpers for mappers'
+2023-04-15:
+  '@KillerOrcaCora':
+  - imageadd: Flamethrower backtank mob sprite
+  QualityVan:
+  - bugfix: You need to be holding a gun to tac reload it
+  RipGrayson:
+  - imagedel: Deleted some ancient unused landmark icons.
+  - code_imp: Reorganized random spawners into smaller individual sections.
+  Xander3359:
+  - spellcheck: pistol belt has 7 slots total, not 3
+  ivanmixo:
+  - bugfix: The burst larvas have the same hive as the hive of the carrier who did
+      the hug.
+  - rscadd: Added a verb/keybind to toggle automatic magazine ejections
