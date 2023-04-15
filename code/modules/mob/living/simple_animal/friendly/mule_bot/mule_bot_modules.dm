@@ -1,43 +1,35 @@
-//towing moduke -- uncertain
-//pepperball module -- might make
-//motion detector module -- will make
-//auto flare mod -- finished
-//medical mod -- uncertain
-//personal storage module -- finished
-//storage module -- finished
-
 /obj/item/mule_module
 	name = "mule module"
 	desc = "Can be used to improve a mule and specialize it"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "modkit"
+	//the mule we are currently on
 	var/mob/living/simple_animal/mule_bot/attached_mule
+	//overlay that reprents the sprite when attached to the bot
 	var/mutable_appearance/mod_overlay
 	var/overlay_icon = 'icons/mob/kerfus.dmi'
 	var/overlay_icon_state = "backpack"
-	var/y_offset = 0
-	var/x_offset = 0
+	//This description appears when examining the bot that has this attached
 	var/module_desc = "this module does not do that much, you think. You'd have no way of knowing."
 
 
 /obj/item/mule_module/Initialize()
 	. = ..()
 	mod_overlay = mutable_appearance(overlay_icon, overlay_icon_state, BACK_LAYER, FLOAT_PLANE)
-	mod_overlay.pixel_y = y_offset
-	mod_overlay.pixel_x = x_offset
 
+//applys all the effects on the mob that should be ready for this module to function, inherent from this proc to add functionality
 /obj/item/mule_module/proc/apply(mob/living/simple_animal/mule_bot/mule)
 	RegisterSignal(mule, COMSIG_PARENT_EXAMINE, PROC_REF(examine_parent))
 	mule.installed_module = src
 	attached_mule = mule
-	src.forceMove(mule)
+	forceMove(mule)
 	return TRUE
 
-
+//cleans up everything done in apply() so that the bot is back to its basic state, overwrite this for cleanup
 /obj/item/mule_module/proc/unapply(delete_mod = TRUE)
 	UnregisterSignal(attached_mule, COMSIG_PARENT_EXAMINE)
 	if(!delete_mod)
-		src.forceMove(attached_mule.loc)
+		forceMove(attached_mule.loc)
 	else
 		qdel(src)
 	attached_mule.installed_module = null
@@ -55,7 +47,7 @@
 	storage_slots = null
 
 /*
-Storage emodule
+Storage module
 
 bassicly dispencer inside robot
 */
@@ -154,7 +146,7 @@ Flare placing module
 
 Place flares on turf if we find its too dark
 
-
+has cooldown of 3 seconds per flare
 */
 
 /obj/item/mule_module/flare_placer
@@ -179,4 +171,4 @@ Place flares on turf if we find its too dark
 		F.activate(bot)
 		//lum count wont update properly since lighting uses moved signals
 		F.forceMove(T)
-		COOLDOWN_START(src,flare_place, 0)
+		COOLDOWN_START(src,flare_place, 3 SECONDS)

@@ -813,10 +813,10 @@
 	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
 // mule bot control signals
-#define COMSIG_REMOTECONTROLL_STOP_FOLLOW "remotecontroll_stop_follow"
+#define COMSIG_REMOTE_CONTROLL_STOP_FOLLOW "remote_controll_stop_follow"
 #define COMSIG_SET_TARGET "set_target"
-#define COMSIG_BOT_STOP "stopped"
-#define COMSIG_BOT_FOLLOW "followed"
+#define COMSIG_REMOTE_UNLINK "remote_unlink"
+#define COMSIG_REMOTE_LINK "remote_link"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"

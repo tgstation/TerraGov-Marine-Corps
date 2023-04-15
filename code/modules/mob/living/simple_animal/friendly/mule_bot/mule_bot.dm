@@ -4,10 +4,10 @@
 	var/mob/living/simple_animal/mule_bot/M = new(loc)
 	var/obj/item/remote/R = new(loc)
 	M.try_link(R)
-	R.bot = M
 	qdel(src)
 
 
+//we use simple animal here primairly to attach AI behavior too it. Aswel as having all the movement stuff baked in.
 /mob/living/simple_animal/mule_bot
 	name = "Felidae Beetle MK 1"
 	desc = "A highly spohisticated load carrying robotic companion for the advanced marine. Manly as hell!"
@@ -40,8 +40,12 @@
 	//TODO to make this  hud actuely work
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	maxHealth  = 200
+	//the remote currenty linked to this bot. used for controlling
+	var/obj/item/remote/linked_remote
 	var/mutable_appearance/face_overlay
+	//currently installed modules, see mule_but_modules.dm
 	var/obj/item/mule_module/installed_module
+	//You can put a hat on the bots head and he we will wear it
 	var/obj/item/clothing/head/hat
 	var/mutable_appearance/hat_overlay
 
@@ -50,10 +54,16 @@
 	. = ..()
 	face_overlay = emissive_appearance(icon, "kerfus_face")
 	update_icon()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot)
 
-/mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/R)
-	if(R)
-		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot, R)
+/mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/new_remote)
+	if(linked_remote)
+		SEND_SIGNAL(src, COMSIG_REMOTE_UNLINK)
+		linked_remote = null
+	if(SEND_SIGNAL(src, COMSIG_REMOTE_LINK, new_remote))
+		linked_remote = new_remote
+		new_remote.bot = src
+
 
 /mob/living/simple_animal/mule_bot/update_overlays()
 	. = ..()
@@ -61,10 +71,12 @@
 
 
 /mob/living/simple_animal/mule_bot/attackby(obj/item/I, mob/living/user, def_zone)
-	//give it a funny hat, could be turned into an actuel proc though
+	if(istype(I,/obj/item/remote))
+		try_link(I)
+	//give it a funny hat to wear, could be turned into an actuel proc though
 	if(istype(I,/obj/item/clothing/head))
 		if(hat)
-			hat.forceMove(src.loc)
+			hat.forceMove(loc)
 		var/obj/item/clothing/head/new_hat = I
 		I.forceMove(src)
 		user?.temporarilyRemoveItemFromInventory(I)
@@ -74,9 +86,9 @@
 		update_icon()
 		return
 	if(istype(I,/obj/item/mule_module))
-		apply_module(I,user)
+		swap_module(I,user)
 		return
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/mule_bot/welder_act(mob/living/user, obj/item/I)
 	var/repair_time = 1 SECONDS
@@ -90,11 +102,11 @@
 	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]."), \
 			span_warning("You patch some dents on \the [src]."))
-		if(src.heal_limb_damage(15,15, robo_repair = FALSE, updating_health = TRUE))
+		if(heal_limb_damage(15,15, robo_repair = FALSE, updating_health = TRUE))
 			UpdateDamageIcon()
 		if(!I.tool_use_check(user, 2))
 			break
-		if(!src.bruteloss)
+		if(!bruteloss)
 			balloon_alert(user, "Dents fully repaired.")
 			break
 	cut_overlay(GLOB.welding_sparks)
@@ -104,12 +116,14 @@
 	remove_module()
 	return TRUE
 
-
+//Swap 1 module for another, use this if you want to apply module on existing bot
 /mob/living/simple_animal/mule_bot/proc/swap_module(obj/item/mule_module/mod, mob/user)
 	remove_module(user, FALSE)
 	apply_module(mod,user, FALSE)
 	update_icon()
 
+
+//apply the module from the bot
 /mob/living/simple_animal/mule_bot/proc/apply_module(obj/item/mule_module/mod, mob/user, update_icon = TRUE)
 	if(mod.apply(src))
 		to_chat(user,span_notice("You succesfully installed [mod]"))
@@ -119,6 +133,8 @@
 	if(update_icon)
 		update_icon()
 
+
+//removes the module from the bot
 /mob/living/simple_animal/mule_bot/proc/remove_module(mob/user, update_icon = TRUE)
 	if(!installed_module)
 		return
@@ -130,7 +146,8 @@
 
 
 /obj/item/remote
-	name = "remote"
+	name = "Felidae Beetle remote"
+	desc = "Controlls a mighty mule of a robot."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "multitool2"
 	var/mob/living/simple_animal/mule_bot/bot
@@ -138,16 +155,14 @@
 /obj/item/remote/attack_self(mob/user)
 	if(!bot)
 		return
-	if(SEND_SIGNAL(src, COMSIG_REMOTECONTROLL_STOP_FOLLOW, usr) & COMSIG_BOT_STOP)
-		to_chat(user,span_notice("[bot] will now stop following"))
-	else
-		to_chat(user,span_notice("[bot] wil now follow you"))
+	if(SEND_SIGNAL(src, COMSIG_REMOTE_CONTROLL_STOP_FOLLOW, usr))
+		balloon_alert(user,span_notice("[bot] wil now follow you"))
 
 
 /obj/item/remote/afterattack(turf/T, mob/living/user)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_SET_TARGET, user, T)
-	to_chat(user, span_notice("[user] is now following [T]"))
+	balloon_alert(user, span_notice("[user] is now following [T]"))
 
 
 /*
@@ -157,39 +172,54 @@ Follow and goto
 In follow, it will follow the remote and who ever is holding it
 in goto. it will go to a selected tile and stay there
 
+im using ai behavior currently but a companion component could also fit
+
 */
 /datum/ai_behavior/mule_bot
 	target_distance = 1
 	base_action = ESCORTING_ATOM
 	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the remote
-	var/datum/weakref/default_escorted_atom
 	var/follow = FALSE
+	var/datum/weakref/linked_remote
 
 /datum/ai_behavior/mule_bot/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
-	default_escorted_atom = WEAKREF(escorted_atom)
-	RegisterSignal(escorted_atom, COMSIG_REMOTECONTROLL_STOP_FOLLOW, PROC_REF(stop_follow))
-	RegisterSignal(escorted_atom, COMSIG_SET_TARGET, PROC_REF(go_to_obj_target))
+	RegisterSignal(parent_to_assign, COMSIG_REMOTE_UNLINK,PROC_REF(unlink_remote))
+	RegisterSignal(parent_to_assign, COMSIG_REMOTE_LINK,PROC_REF(link_remote))
 
-/datum/ai_behavior/mule_bot/proc/stop_follow(atom/source, mob/user)
-	SIGNAL_HANDLER
-	if(follow)
-		follow = FALSE
-		atom_to_walk_to = null
-		change_action(MOVING_TO_ATOM)
-		mob_parent.say("Ill wait right here!")
-		return COMSIG_BOT_STOP
-	else
-		follow = TRUE
-		atom_to_walk_to = source
-		change_action(ESCORTING_ATOM, source)
-		mob_parent.say("Wait im up coming!")
-		return COMSIG_BOT_FOLLOW
+/datum/ai_behavior/mule_bot/Destroy(force, ...)
+	unlink_remote()
+	UnregisterSignal(mob_parent, COMSIG_REMOTE_UNLINK,PROC_REF(unlink_remote))
+	UnregisterSignal(mob_parent, COMSIG_REMOTE_LINK,PROC_REF(link_remote))
+	return ..()
 
-/// Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow
-/datum/ai_behavior/mule_bot/proc/only_set_escorted_atom(source, atom/A)
+//unlink the currenly attached remote
+/datum/ai_behavior/mule_bot/proc/unlink_remote()
+	var/obj/item/remote/remote = linked_remote.resolve()
+	if(remote)
+		UnregisterSignal(remote, COMSIG_REMOTE_CONTROLL_STOP_FOLLOW)
+		UnregisterSignal(remote, COMSIG_SET_TARGET)
+		UnregisterSignal(remote, COMSIG_PARENT_QDELETING)
+
+
+//links the remote, if this runtimes somehow and cutts off it will return null and not link
+/datum/ai_behavior/mule_bot/proc/link_remote(mob/mule, obj/item/remote/new_remote)
+	linked_remote = WEAKREF(new_remote)
+	RegisterSignal(new_remote, COMSIG_REMOTE_CONTROLL_STOP_FOLLOW, PROC_REF(follow))
+	RegisterSignal(new_remote, COMSIG_SET_TARGET, PROC_REF(go_to_obj_target))
+
+	//if remote kicks the bucket some how before the mule bot does
+	RegisterSignal(new_remote, COMSIG_PARENT_QDELETING, PROC_REF(unlink_remote))
+
+	return TRUE
+
+/datum/ai_behavior/mule_bot/proc/follow(atom/source, mob/user)
 	SIGNAL_HANDLER
-	escorted_atom = default_escorted_atom.resolve()
+	follow = TRUE
+	atom_to_walk_to = source
+	change_action(ESCORTING_ATOM, source)
+	mob_parent.say("Wait up im coming!")
+	return TRUE
 
 /// Check so that we dont keep attacking our target beyond it's death
 /datum/ai_behavior/mule_bot/proc/go_to_obj_target(source, obj/remote, turf/target)
