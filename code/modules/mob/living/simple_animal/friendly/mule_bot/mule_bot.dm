@@ -42,13 +42,30 @@
 	//You can put a hat on the bots head and he we will wear it
 	var/obj/item/clothing/head/hat
 	var/mutable_appearance/hat_overlay
+	var/obj/item/card/id/internal_id
 
 
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
 	face_overlay = emissive_appearance(icon, "kerfus_face")
+	internal_id = new internal_id(src)
+	internal_id.iff_signal = TGMC_LOYALIST_IFF
 	update_icon()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot)
+
+
+/mob/living/simple_animal/mule_bot/on_death()
+	. = ..()
+	var/datum/component/ai_component = GetComponent(/datum/component/ai_controller)
+	ai_component.RemoveComponent()
+
+
+/mob/living/simple_animal/mule_bot/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(internal_id?.iff_signal & proj.iff_signal)
+		proj.damage -= proj.damage*proj.damage_marine_falloff
+		return FALSE
+	return ..()
+
 
 /mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/new_remote)
 	if(linked_remote)
@@ -63,6 +80,8 @@
 	. = ..()
 	. += list(hat_overlay,face_overlay,installed_module?.mod_overlay)
 
+/mob/living/simple_animal/mule_bot/get_idcard(hand_first)
+	return internal_id
 
 /mob/living/simple_animal/mule_bot/attackby(obj/item/I, mob/living/user, def_zone)
 	if(istype(I,/obj/item/remote))
