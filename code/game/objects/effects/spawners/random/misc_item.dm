@@ -4,7 +4,7 @@
 	icon = 'icons/effects/random/misc.dmi'
 	icon_state = "random_trash"
 	loot = list(
-		/obj/effect/spawner/random/misc/shard,
+		/obj/structure/prop/mainship/errorprop,
 	)
 
 /obj/effect/spawner/random/misc/shard

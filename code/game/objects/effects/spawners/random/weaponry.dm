@@ -2,8 +2,9 @@
 	name = "Random base clothing spawner"
 	icon = 'icons/effects/random/weaponry.dmi'
 	icon_state = "random_sidearm"
-	loot_subtype_path = /obj/effect/spawner/random/weaponry
-	loot = list()
+	loot = list(
+		/obj/structure/prop/mainship/errorprop,
+	)
 
 /obj/effect/spawner/random/weaponry/gun //restricted to ballistic weapons available on the ship, no auto-9s here
 	name = "Random ballistic ammunition spawner"

@@ -2,7 +2,7 @@
 	name = "Random base misc structure spawner"
 	icon_state = "random_securecrate"
 	loot = list(
-		/obj/effect/spawner/random/misc/structure/grille,
+		/obj/structure/prop/mainship/errorprop,
 	)
 
 /obj/effect/spawner/random/misc/structure/grille
