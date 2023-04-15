@@ -765,6 +765,9 @@
 	dir = 8
 	},
 /obj/machinery/iv_drip,
+/obj/structure/sink{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "vW" = (
