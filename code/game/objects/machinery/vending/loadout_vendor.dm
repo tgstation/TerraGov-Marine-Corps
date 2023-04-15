@@ -11,6 +11,9 @@
 	///The faction of this loadout vendor
 	var/faction = FACTION_NEUTRAL
 
+/obj/machinery/loadout_vendor/crash
+	faction = FACTION_NEUTRAL_CRASH
+
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
 	if(!.)

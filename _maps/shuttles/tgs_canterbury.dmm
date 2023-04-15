@@ -249,7 +249,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/loadout_vendor,
+/obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aP" = (
