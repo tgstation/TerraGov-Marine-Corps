@@ -9052,7 +9052,7 @@
 "bSd" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall,
-/area/deltastation/command/meeting_room/council)
+/area/deltastation/engineering/atmos/storage)
 "bSf" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/sandedge{
@@ -38938,7 +38938,7 @@
 "hQF" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall/r_wall,
-/area/deltastation/maintenance/department/engine/atmos)
+/area/deltastation/command/bridge)
 "hQO" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/grown/log,
@@ -144857,7 +144857,7 @@ vvN
 xLS
 vvN
 hzS
-hzS
+bSd
 lwQ
 upf
 plb
@@ -146393,7 +146393,7 @@ evU
 qRt
 vHM
 vHM
-hQF
+vHM
 vHM
 vHM
 vvN
@@ -156950,7 +156950,7 @@ wyx
 rHg
 vLS
 rHg
-nsO
+hQF
 uFe
 rDC
 jCy
@@ -157983,7 +157983,7 @@ bie
 llj
 xyp
 tDK
-bSd
+mtH
 hIW
 ggo
 tzh

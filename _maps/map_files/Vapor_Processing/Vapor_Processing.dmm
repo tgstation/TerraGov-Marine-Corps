@@ -2592,7 +2592,9 @@
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep/bedrooms)
 "nK" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /obj/structure/cable,
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep/bedrooms)
@@ -2614,7 +2616,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "nT" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "nU" = (
@@ -2668,7 +2670,7 @@
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "om" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "ot" = (
