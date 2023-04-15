@@ -2738,7 +2738,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "oP" = (
-/obj/machinery/door/airlock/colony,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "oS" = (
@@ -5252,7 +5252,6 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "OK" = (
-/obj/machinery/door/airlock/glass,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
