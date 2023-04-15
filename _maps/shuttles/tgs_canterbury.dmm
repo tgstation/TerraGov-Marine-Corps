@@ -531,12 +531,6 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
-/obj/item/radio/intercom{
-	dir = 4;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ca" = (
@@ -558,18 +552,17 @@
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "cd" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/surgical_tray,
-/obj/item/storage/firstaid/adv,
+/obj/machinery/shower{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ce" = (
 /obj/structure/table/reinforced,
-/obj/item/healthanalyzer,
-/obj/machinery/light,
-/obj/machinery/reagentgrinder{
-	pixel_x = -1;
-	pixel_y = 8
+/obj/item/storage/surgical_tray,
+/obj/item/storage/firstaid/adv,
+/obj/structure/sink{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
@@ -898,7 +891,7 @@ bG
 bK
 bR
 bZ
-cd
+cf
 bo
 cl
 "}
@@ -944,7 +937,7 @@ bI
 cs
 cJ
 cJ
-cf
+cd
 bo
 cm
 "}
