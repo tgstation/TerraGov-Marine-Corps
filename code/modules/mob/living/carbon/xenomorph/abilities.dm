@@ -312,6 +312,12 @@
 	if(!SSresinshaping.get_building_points(owner))
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
 		return
+
+	for(var/mob/living/carbon/human AS in cheap_get_humans_near(T, 7))
+		if(human.client && human.stat != DEAD)
+			owner.balloon_alert(owner, "Somebody humanlike is alive nearby!")
+			return
+
 	var/mob/living/carbon/xenomorph/X = owner
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
