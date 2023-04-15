@@ -129,7 +129,7 @@ Bassicly baldur jeager mod for robot. gives light
 	desc = "This module lets the bot cast a bright light."
 	var/mod_Light_power = 10
 	var/mod_Light_range = 23
-	var/mod_light_color = "#f0e0b6"
+	var/mod_light_color = COLOR_BEIGE
 
 /obj/item/mule_module/light/apply(mob/living/simple_animal/mule_bot/mule)
 	mule.set_light_range_power_color(mod_Light_power,mod_Light_range,mod_light_color)

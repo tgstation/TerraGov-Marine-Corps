@@ -18,9 +18,6 @@
 	gender = FEMALE
 	speak = list("Meow!", "Purr!", "Remember to stock up on medicine!", "Ill carry for the team!", "I sure do hope all these munations are safe...",
 	"Did we really need to bring THAT many plasma cutters?", "Oh I may have the thing for that!","I don't think a xenomorphs head would fit...","Sometimes I wonder if moving bullets is the best way to make a living..","Please stop calling me a tin can...","Time to restock!")
-	speak_emote = list("purrs", "meows")
-	emote_hear = list("meows.", "mews.")
-	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 6
@@ -33,9 +30,6 @@
 	a_intent = INTENT_HELP
 	light_system = MOVABLE_LIGHT
 	flags_atom = BUMP_ATTACKABLE //bump attack may not work due to pass flags
-	light_color =  "#3262db"
-	light_range = 2
-	light_power = 1
 	light_on = FALSE
 	//TODO to make this  hud actuely work
 	hud_possible = list(MACHINE_HEALTH_HUD)
@@ -193,7 +187,10 @@ im using ai behavior currently but a companion component could also fit
 	UnregisterSignal(mob_parent, COMSIG_REMOTE_LINK,PROC_REF(link_remote))
 	return ..()
 
-//unlink the currenly attached remote
+
+/**
+ * unlink the currenly attached remote
+ */
 /datum/ai_behavior/mule_bot/proc/unlink_remote()
 	var/obj/item/remote/remote = linked_remote.resolve()
 	if(remote)
