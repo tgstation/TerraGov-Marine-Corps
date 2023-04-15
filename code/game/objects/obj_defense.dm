@@ -133,7 +133,6 @@
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_OBJ, src)
-	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(effects)
 		X.visible_message(span_danger("[X] has slashed [src]!"),
 		span_danger("We slash [src]!"))
