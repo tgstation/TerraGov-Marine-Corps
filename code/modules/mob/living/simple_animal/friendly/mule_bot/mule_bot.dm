@@ -1,19 +1,14 @@
-
-/obj/effect/mule_link/Initialize()
-	. = ..()
-	var/mob/living/simple_animal/mule_bot/M = new(loc)
-	var/obj/item/remote/R = new(loc)
-	M.try_link(R)
-	qdel(src)
-
-
-//we use simple animal here primairly to attach AI behavior too it. Aswel as having all the movement stuff baked in.
+/**
+ * We use simple animals here instead of carbons because carbons have alot of stuff we really do not need
+ * we cannot use machines or vechials like unmanned vechials and roomba does because those do not support ai behavior properly
+ * Simple animal would be the most straight forward for the purposes + it lets it say something funny every once in a while
+ */
 /mob/living/simple_animal/mule_bot
 	name = "Felidae Beetle MK 1"
 	desc = "A highly spohisticated load carrying robotic companion for the advanced marine. Manly as hell!"
 	icon = 'icons/mob/kerfus.dmi'
-	icon_state = "kerfus_blank"
-	icon_living = "kerfus_blank"
+	icon_state = "kerfus"
+	icon_living = "kerfus"
 	icon_dead = "kerfus"
 	gender = FEMALE
 	speak = list("Meow!", "Purr!", "Remember to stock up on medicine!", "Ill carry for the team!", "I sure do hope all these munations are safe...",
@@ -167,7 +162,7 @@
 		update_icon()
 
 
-//removes the module from the bot
+///removes the module from the bot
 /mob/living/simple_animal/mule_bot/proc/remove_module(mob/user, update_icon = TRUE)
 	if(!installed_module)
 		return
@@ -198,20 +193,21 @@
 	balloon_alert(user, span_notice("[user] is now following [T]"))
 
 
-/*
-The bot has 2 modes
-Follow and goto
+/**
+ * The AI behavior of the bot. this steers the bot to go where we want to based on the input of a linked remote
+ * The bot has 2 modes
+ * Follow and goto
+ *
+ * In follow, it will follow the remote and who ever is holding it
+ * in goto. it will go to a selected tile and stay there
+ *
+ * im using ai behavior currently but a companion component could also fit
+ */
 
-In follow, it will follow the remote and who ever is holding it
-in goto. it will go to a selected tile and stay there
 
-im using ai behavior currently but a companion component could also fit
-
-*/
 /datum/ai_behavior/mule_bot
 	target_distance = 1
 	base_action = ESCORTING_ATOM
-	//The atom that will be used in only_set_escorted_atom proc, by default this atom is the remote
 	var/follow = FALSE
 	var/datum/weakref/linked_remote
 
@@ -229,6 +225,7 @@ im using ai behavior currently but a companion component could also fit
 
 /**
  * unlink the currenly attached remote
+ *
  */
 /datum/ai_behavior/mule_bot/proc/unlink_remote()
 	var/obj/item/remote/remote = linked_remote.resolve()
@@ -238,7 +235,7 @@ im using ai behavior currently but a companion component could also fit
 		UnregisterSignal(remote, COMSIG_PARENT_QDELETING)
 
 
-//links the remote, if this runtimes somehow and cutts off it will return null and not link
+/// links the remote, if this runtimes somehow and cutts off it will return null and not link
 /datum/ai_behavior/mule_bot/proc/link_remote(mob/mule, obj/item/remote/new_remote)
 	linked_remote = WEAKREF(new_remote)
 	RegisterSignal(new_remote, COMSIG_REMOTE_CONTROLL_STOP_FOLLOW, PROC_REF(follow))
@@ -266,3 +263,13 @@ im using ai behavior currently but a companion component could also fit
 	atom_to_walk_to = target
 	change_action(MOVING_TO_ATOM, target)
 	mob_parent.say("Ill head on over!")
+
+
+
+/obj/effect/mule_link/Initialize()
+	. = ..()
+	var/mob/living/simple_animal/mule_bot/M = new(loc)
+	var/obj/item/remote/R = new(loc)
+	M.try_link(R)
+	qdel(src)
+

@@ -17,7 +17,9 @@
 	. = ..()
 	mod_overlay = mutable_appearance(overlay_icon, overlay_icon_state, BACK_LAYER, FLOAT_PLANE)
 
-//applys all the effects on the mob that should be ready for this module to function, inherent from this proc to add functionality
+/**
+ * Applys all the things that this module should do to the mob. register signals and such here
+ */
 /obj/item/mule_module/proc/apply(mob/living/simple_animal/mule_bot/mule)
 	RegisterSignal(mule, COMSIG_PARENT_EXAMINE, PROC_REF(examine_parent))
 	mule.installed_module = src
@@ -25,7 +27,9 @@
 	forceMove(mule)
 	return TRUE
 
-//cleans up everything done in apply() so that the bot is back to its basic state, overwrite this for cleanup
+/**
+ * Cleans up everything done in apply() so that the bot is back to its basic state, overwrite this for cleanup
+ */
 /obj/item/mule_module/proc/unapply(delete_mod = TRUE)
 	UnregisterSignal(attached_mule, COMSIG_PARENT_EXAMINE)
 	if(!delete_mod)
@@ -34,7 +38,9 @@
 		qdel(src)
 	attached_mule.installed_module = null
 	attached_mule = null
-
+/**
+ * If you examine the bot when it has this installed. will show lil blib. You can add more stuff to this if for example your module has ammo count/charge
+ */
 /obj/item/mule_module/proc/examine_parent(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 	examine_text += span_notice(module_desc)
@@ -46,16 +52,15 @@
 	max_w_class = 6
 	storage_slots = null
 
-/*
-Storage module
-
-bassicly dispencer inside robot
-*/
+/**
+ * Storage module
+ *
+ * A very large backpack for the bot. can store what ever you want
+ * Currently if the bot dies you can still acces the story, but it wont drop its things if it where to get shuttle gibbed
+ */
 /obj/item/mule_module/storage
 	name = "Storage module"
 	desc = "A module that allows the mule to carry various items"
-	overlay_icon_state = "marine_rocket_full"
-	overlay_icon = 'icons/mob/kerfus.dmi'
 	overlay_icon_state = "backpack"
 
 	var/obj/item/storage/mule_pack/storage_pack = /obj/item/storage/mule_pack
@@ -83,19 +88,17 @@ bassicly dispencer inside robot
 	max_storage_space = 12
 	storage_slots = null
 
-/*
-Personal storage module
-
-based on keycard you get your own private storage, imagine MC enderchests sorta but not shared with other bots
-
-*/
+/**
+ * Personal storage
+ *
+ * This module will open up a small storage thats only accasible to THAT marine
+ * checking is done by ID, so you can take a dead marines ID and look inside there storage if they died and you needed something
+ */
 
 /obj/item/mule_module/personal_storage
 	name = "Personal storage module"
 	desc = "A module that allows the mule to carry various items for various individuels"
-	overlay_icon_state = "marine_rocket_full"
-	overlay_icon = 'icons/mob/kerfus.dmi'
-	overlay_icon_state = "backpack"
+	overlay_icon_state = "private_storage_mod"
 	module_desc = "The installed module allows you to have a personal storage inside the mule based on ID"
 	var/list/obj/item/storage/mule_pack/small/packs = list()
 
@@ -127,6 +130,7 @@ Bassicly baldur jeager mod for robot. gives light
 /obj/item/mule_module/light
 	name = "Spot light module"
 	desc = "This module lets the bot cast a bright light."
+	overlay_icon_state = "light_mod"
 	var/mod_Light_power = 10
 	var/mod_Light_range = 23
 	var/mod_light_color = COLOR_BEIGE
@@ -152,6 +156,7 @@ has cooldown of 3 seconds per flare
 /obj/item/mule_module/flare_placer
 	name = "Flare placing module"
 	desc = "This module places flare automaticly when its too dark."
+	overlay_icon_state = "flare_mod"
 	COOLDOWN_DECLARE(flare_place)
 
 /obj/item/mule_module/flare_placer/apply(mob/living/simple_animal/mule_bot/mule)
