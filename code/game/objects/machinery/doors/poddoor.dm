@@ -103,7 +103,6 @@
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	dir = EAST
 	width = 2
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/two_tile_hor/execution
 	icon_state = "pdoor0"
@@ -127,7 +126,6 @@
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	dir = NORTH
 	width = 2
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/two_tile_ver/riotarmory
 	icon_state = "pdoor0"
@@ -150,7 +148,6 @@
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
 	dir = EAST
 	width = 4
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
@@ -161,7 +158,6 @@
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
 	dir = NORTH
 	width = 4
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/four_tile_ver/secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
