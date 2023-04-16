@@ -2811,8 +2811,8 @@
 /area/lv624/ground/caves/rock)
 "byO" = (
 /obj/structure/rack,
-/obj/item/storage/holster/flarepouch,
-/obj/item/storage/holster/flarepouch,
+/obj/item/storage/holster/flarepouch/full,
+/obj/item/storage/holster/flarepouch/full,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
