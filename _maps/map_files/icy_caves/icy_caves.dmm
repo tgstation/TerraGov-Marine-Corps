@@ -3173,7 +3173,9 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/engineering)
 "rq" = (
-/obj/structure/closet/fireaxecabinet,
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/engineering)
 "rr" = (

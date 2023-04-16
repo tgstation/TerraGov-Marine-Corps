@@ -9439,7 +9439,7 @@
 /area/mainship/hallways/hangar)
 "eWQ" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -15087,6 +15087,12 @@
 "ost" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
+"osZ" = (
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_hallway)
 "otD" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/floor,
@@ -18390,9 +18396,6 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/port_umbilical)
 "tZK" = (
-/obj/machinery/status_display{
-	pixel_y = -30
-	},
 /turf/open/floor/mainship/silver,
 /area/mainship/command/cic)
 "uat" = (
@@ -51309,7 +51312,7 @@ bKI
 tHD
 bMh
 bsC
-ext
+osZ
 dzn
 ruj
 bRa
@@ -54907,7 +54910,7 @@ acB
 kpy
 vfD
 nSl
-ext
+osZ
 bQh
 bWC
 ahO

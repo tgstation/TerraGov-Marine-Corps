@@ -910,17 +910,9 @@
 /area/centcom/valhalla/bridge)
 "bax" = (
 /obj/structure/closet/fireaxecabinet{
-	pixel_y = -32
+	pixel_y = -1
 	},
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
+/turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/bridge)
 "baD" = (
 /obj/structure/girder/reinforced,
@@ -30715,7 +30707,7 @@ sjH
 sjH
 aHO
 azA
-bax
+bac
 bka
 bAx
 xOi
@@ -30850,7 +30842,7 @@ xrI
 xHr
 biW
 biW
-xDl
+bax
 aKm
 aQF
 bac

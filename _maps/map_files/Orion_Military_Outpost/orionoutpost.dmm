@@ -2823,7 +2823,9 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/armory)
 "oU" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display{
+	pixel_y = -1
+	},
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/prep)
 "oW" = (
@@ -3493,6 +3495,14 @@
 "rX" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
+"rZ" = (
+/obj/machinery/status_display{
+	pixel_x = -15;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/turf/closed/wall/mainship/gray,
+/area/orion_outpost/surface/building/barracks)
 "sa" = (
 /obj/structure/cryofeed,
 /turf/open/ground/river,
@@ -4729,7 +4739,9 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "yr" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display{
+	pixel_y = -1
+	},
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/administration)
 "yt" = (
@@ -9282,6 +9294,13 @@
 "Wc" = (
 /turf/open/floor/mainship/orange/full,
 /area/orion_outpost/surface/building/cargo)
+"We" = (
+/obj/machinery/status_display{
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/turf/closed/wall/mainship/gray,
+/area/orion_outpost/surface/building/barracks)
 "Wg" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/orange{
@@ -9858,6 +9877,13 @@
 	dir = 4
 	},
 /area/orion_outpost/surface/building/cargo)
+"Zi" = (
+/obj/machinery/status_display{
+	pixel_x = 15;
+	pixel_y = -1
+	},
+/turf/closed/wall/mainship/gray,
+/area/orion_outpost/surface/building/prep)
 "Zj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -15950,7 +15976,7 @@ QB
 QB
 QB
 QB
-oU
+QB
 QB
 QB
 QB
@@ -17535,7 +17561,7 @@ kK
 kK
 kK
 rA
-oU
+Zi
 Rg
 Ag
 LR
@@ -18587,7 +18613,7 @@ QB
 vh
 vB
 QB
-QB
+oU
 NH
 Ku
 vy
@@ -18856,7 +18882,7 @@ lK
 ll
 vr
 YC
-oU
+QB
 QB
 Ru
 lq
@@ -18956,7 +18982,7 @@ Ud
 Ud
 Ud
 Ud
-ZK
+rZ
 kk
 Ud
 Ud
@@ -19115,7 +19141,7 @@ QB
 vh
 dt
 QB
-QB
+oU
 NH
 Ku
 DR
@@ -20408,7 +20434,7 @@ Ud
 Ud
 Ud
 Ud
-ZK
+We
 IM
 Pf
 sJ
