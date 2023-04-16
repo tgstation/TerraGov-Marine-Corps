@@ -11,7 +11,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	var/list/entangled_list
-	var/sheet_type = /obj/item/stack/sheet/metal
+	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
 	var/table_prefix = "" //used in update_icon()
 	max_integrity = RAZORWIRE_MAX_HEALTH
