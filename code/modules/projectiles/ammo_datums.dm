@@ -129,6 +129,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				to_chat(target, span_highdanger("The blast knocks you off your feet!"))
 		step_away(victim, proj)
 
+///Handles CC application on the victim
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim)
 		CRASH("staggerstun called without a mob target")
@@ -154,10 +155,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stun = 0
 
 	//Check for and apply hard CC.
-	if(hard_size_threshold >= victim.mob_size)
+	if(hard_size_threshold >= victim.mob_size && (stun || weaken || knockback))
 		var/mob/living/living_victim = victim
-		if(!living_victim.IsStun() && !living_victim.IsParalyzed()) //Prevent chain stunning.
+		if(living_victim.IsStun() || living_victim.IsParalyzed()) //Prevent chain stunning.
+			stun = 0
+			weaken = 0
+
+		if(stun || weaken)
+			var/list/stunlist = list(stun, weaken, stagger, slowdown)
+			if(SEND_SIGNAL(living_victim, COMSIG_LIVING_PROJECTILE_STUN, stunlist, armor_type, penetration))
+				stun = stunlist[1]
+				weaken = stunlist[2]
+				stagger = stunlist[3]
+				slowdown = stunlist[4]
 			living_victim.apply_effects(stun,weaken)
+
 		if(knockback)
 			if(isxeno(victim))
 				impact_message += span_xenodanger("The blast knocks you off your feet!")

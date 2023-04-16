@@ -1,0 +1,5 @@
+author: "@Xander3359 @KillerOrcaCora"
+delete-after: True
+changes:
+  - refactor: "Flare pouch is a holster now"
+  - imageadd: "New flare pouch sprites"

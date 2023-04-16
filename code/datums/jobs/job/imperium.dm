@@ -44,7 +44,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial
 	head = /obj/item/clothing/head/helmet/marine/imperial
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/flare/full
+	l_store = /obj/item/storage/holster/flarepouch/full
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

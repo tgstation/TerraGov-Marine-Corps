@@ -97,6 +97,7 @@
 	. = ..()
 	if(!.)
 		return
+	toggle_active(TRUE)
 
 	if(wieldsound)
 		playsound(user, wieldsound, 15, 1)
@@ -108,6 +109,7 @@
 	. = ..()
 	if(!.)
 		return
+	toggle_active(FALSE)
 
 	if(unwieldsound)
 		playsound(user, unwieldsound, 15, 1)
@@ -209,6 +211,7 @@
 /obj/item/weapon/twohanded/fireaxe/som/Initialize()
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 45, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
+	AddComponent(/datum/component/stun_mitigation, SHIELD_TOGGLE, shield_cover = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60))
 
 /obj/item/weapon/twohanded/fireaxe/som/wield(mob/user)
 	. = ..()
@@ -260,19 +263,6 @@
 /obj/item/weapon/twohanded/dualsaber/Initialize()
 	. = ..()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
-
-/obj/item/weapon/twohanded/dualsaber/wield(mob/user)
-	. = ..()
-	if(!.)
-		return
-	toggle_active(TRUE)
-
-/obj/item/weapon/twohanded/dualsaber/unwield(mob/user)
-	. = ..()
-	if(!.)
-		return
-	toggle_active(FALSE)
-
 
 /obj/item/weapon/twohanded/spear
 	name = "spear"
