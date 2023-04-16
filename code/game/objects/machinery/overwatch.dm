@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/rally_order/send_rally_order
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
-    ///Ref of the lase that's had an OB warning mark placed on the minimap
+	///Ref of the lase that's had an OB warning mark placed on the minimap
 	var/obj/effect/overlay/temp/laser_target/cas/OB/marked_lase
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
