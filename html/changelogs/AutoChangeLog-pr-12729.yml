@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Random spawners should no longer malfunction"
+  - bugfix: "Fixed mapper icons for modular spawners displaying error"
+  - imageadd: "Resprited status displays to fit on walls instead of hanging out inside of them"
