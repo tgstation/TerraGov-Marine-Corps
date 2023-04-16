@@ -359,13 +359,11 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
 	flags_equip_slot = ITEM_SLOT_POCKET
-	max_w_class = WEIGHT_CLASS_TINY
 	storage_slots = 28
 	max_storage_space = 28
 	icon = 'icons/Marine/marine-pouches.dmi'
 	base_icon = "flare"
 	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
-	bypass_w_limit = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare)
 	can_hold = list(
 		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
