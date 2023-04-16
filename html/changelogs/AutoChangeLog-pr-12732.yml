@@ -1,0 +1,5 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - bugfix: "AMR Ammo is no longer FIXME"
+  - imageadd: "AMR Resprite"
