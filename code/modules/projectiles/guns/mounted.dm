@@ -457,6 +457,13 @@
 	. = ..()
 	sponson = new sponson(src)
 
+/obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
+	if(user.interactee)
+		visible_message("[icon2html(src, viewers(src))] [span_notice("You cannot reload while you're manning the [src]!")]",)
+		return
+
+	return . = ..()
+
 /obj/machinery/deployable/mounted/moveable/atgun/attack_hand_alternate(mob/living/user)
 	return sponson.open(user)
 
