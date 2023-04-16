@@ -205,12 +205,12 @@
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
 	target_health = target_xeno.health
-	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
+	if(!do_mob(owner, target_xeno, 30 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
 		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/transfusion/proc/extra_health_check(mob/living/target)
-	if(target.health < target_health && !HAS_TRAIT(target, TRAIT_IMMOBILE))
+	if((target.health < target_health && !HAS_TRAIT(target, TRAIT_IMMOBILE)) || (target.health <= target.get_crit_threshold() && target_health > target.get_crit_threshold()))
 		return FALSE
 	target_health = target.health
 	return TRUE
