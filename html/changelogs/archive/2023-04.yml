@@ -228,3 +228,8 @@
   - bugfix: The burst larvas have the same hive as the hive of the carrier who did
       the hug.
   - rscadd: Added a verb/keybind to toggle automatic magazine ejections
+2023-04-16:
+  Lumipharon:
+  - rscadd: 'HvH: some items such as B18 or shields now have the chance to convert
+      projectile based hard stuns into staggerslow'
+  - bugfix: Fixed item active toggling not working correctly in many cases
