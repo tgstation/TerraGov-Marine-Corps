@@ -18,12 +18,12 @@
 
 	if(istype(W, /obj/item/stack/barbed_wire)) // making razorwire obstacles
 		var/obj/item/stack/barbed_wire/B = W
-		if(amount < 4)
-			to_chat(user, span_warning("You need at least [4 - amount] more [src] to make razorwire obstacles!"))
+		if(amount < 8)
+			to_chat(user, span_warning("You need at least [8 - amount] more [src] to make razorwire obstacles!"))
 			return
-		use(4)
+		use(8)
 		B.use(1)
-		var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 3)
+		var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 	if (iswelder(W))
