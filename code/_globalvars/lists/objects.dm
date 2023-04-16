@@ -27,7 +27,6 @@ GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(zones_to_control)					//list of all areas that needs to be controlled to gain point in Civil War
-GLOBAL_LIST_EMPTY(generators_on_ground)
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff

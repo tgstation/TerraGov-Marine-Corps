@@ -3,6 +3,8 @@
 #define GEOTHERMAL_MEDIUM_DAMAGE 2
 #define GEOTHERMAL_HEAVY_DAMAGE 3
 
+GLOBAL_VAR_INIT(generators_on_ground, 0)
+
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'
@@ -97,9 +99,9 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && GLOB.xeno_generators_by_hive[corrupted] > 0)
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
-			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.xeno_generators_by_hive[corrupted] / GLOB.generators_on_ground))
+			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.xeno_generators_by_hive[corrupted] / GLOB.generators_on_ground) / GLOB.xeno_generators_by_hive[corrupted])
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
