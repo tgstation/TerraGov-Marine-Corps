@@ -31,18 +31,15 @@
 	maxHealth  = 200
 	//the remote currenty linked to this bot. used for controlling
 	var/obj/item/remote/linked_remote
-	var/mutable_appearance/face_overlay
 	//currently installed modules, see mule_but_modules.dm
 	var/obj/item/mule_module/installed_module
 	//You can put a hat on the bots head and he we will wear it
 	var/obj/item/clothing/head/hat
-	var/mutable_appearance/hat_overlay
 	var/obj/item/card/id/internal_id
 
 
 /mob/living/simple_animal/mule_bot/Initialize()
 	. = ..()
-	face_overlay = emissive_appearance(icon, "kerfus_face")
 	internal_id = new(src)
 	internal_id.iff_signal = TGMC_LOYALIST_IFF
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/mule_bot)
@@ -55,7 +52,9 @@
 /mob/living/simple_animal/mule_bot/updatehealth(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	set_health_hud()
-
+/**
+ * Show health bar like deployables do. Only visible to marines when they wear there radio headset
+ */
 /mob/living/simple_animal/mule_bot/proc/set_health_hud()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
@@ -74,14 +73,18 @@
 	var/datum/component/ai_component = GetComponent(/datum/component/ai_controller)
 	ai_component.RemoveComponent()
 
-
+/**
+ * This lets the bot not get shot to hell by aim mode, smart gun or sentry
+ */
 /mob/living/simple_animal/mule_bot/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(internal_id?.iff_signal & proj.iff_signal)
 		proj.damage -= proj.damage*proj.damage_marine_falloff
 		return FALSE
 	return ..()
 
-
+/**
+ * If a remote trys to link with us, signal the ai behavior to link to this new remote
+ */
 /mob/living/simple_animal/mule_bot/proc/try_link(obj/item/remote/new_remote)
 	if(linked_remote)
 		SEND_SIGNAL(src, COMSIG_REMOTE_UNLINK)
@@ -90,10 +93,19 @@
 		linked_remote = new_remote
 		new_remote.bot = src
 
-
+/**
+ * Update the overlays. regenerating them based on whats needed
+ */
 /mob/living/simple_animal/mule_bot/update_overlays()
 	. = ..()
-	. += list(hat_overlay,face_overlay,installed_module?.mod_overlay)
+	if(hat)
+		var/mutable_appearance/hat_overlay = mutable_appearance(hat.get_worn_icon_file("Human",slot_head_str), hat.get_worn_icon_state(slot_head_str), HEAD_LAYER, FLOAT_PLANE)
+		// We need to adjust it a little otherwise the hat will clip onto the face
+		hat_overlay.pixel_y -= -5
+		. += hat_overlay
+	. += emissive_appearance(icon, "kerfus_face")
+	if(installed_module)
+		. += mutable_appearance(installed_module.overlay_icon,installed_module.overlay_icon_state,BACK_LAYER, FLOAT_PLANE)
 
 /mob/living/simple_animal/mule_bot/get_idcard(hand_first)
 	return internal_id
@@ -109,8 +121,7 @@
 		I.forceMove(src)
 		user?.temporarilyRemoveItemFromInventory(I)
 		hat = new_hat
-		hat_overlay = mutable_appearance(new_hat.get_worn_icon_file("Human",slot_head_str), new_hat.get_worn_icon_state(slot_head_str), HEAD_LAYER, FLOAT_PLANE)
-		hat_overlay.pixel_y -= -5
+
 		update_icon()
 		return
 	if(istype(I,/obj/item/mule_module))

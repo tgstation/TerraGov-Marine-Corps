@@ -6,16 +6,11 @@
 	//the mule we are currently on
 	var/mob/living/simple_animal/mule_bot/attached_mule
 	//overlay that reprents the sprite when attached to the bot
-	var/mutable_appearance/mod_overlay
 	var/overlay_icon = 'icons/mob/kerfus.dmi'
 	var/overlay_icon_state = "backpack"
 	//This description appears when examining the bot that has this attached
 	var/module_desc = "this module does not do that much, you think. You'd have no way of knowing."
 
-
-/obj/item/mule_module/Initialize()
-	. = ..()
-	mod_overlay = mutable_appearance(overlay_icon, overlay_icon_state, BACK_LAYER, FLOAT_PLANE)
 
 /**
  * Applys all the things that this module should do to the mob. register signals and such here
