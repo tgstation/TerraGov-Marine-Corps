@@ -375,13 +375,6 @@
 	refill_sound = "rustle"
 	holsterable_allowed = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine)
 
-/obj/item/storage/holster/flarepouch/full/Initialize()
-	. = ..()
-	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
-	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)
-	for(var/i in 1 to (storage_slots-flare_gun.w_class))
-		new /obj/item/explosive/grenade/flare(src)
-
 /obj/item/storage/holster/flarepouch/attackby_alternate(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		return ..()
@@ -390,3 +383,10 @@
 		flare_gun.reload(flare, user)
 		orient2hud()
 		return
+
+/obj/item/storage/holster/flarepouch/full/Initialize()
+	. = ..()
+	var/obj/item/flare_gun = new /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flare_gun)
+	for(var/i in 1 to (storage_slots-flare_gun.w_class))
+		new /obj/item/explosive/grenade/flare(src)
