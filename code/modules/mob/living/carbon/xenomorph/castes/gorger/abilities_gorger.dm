@@ -210,7 +210,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/transfusion/proc/extra_health_check(mob/living/target)
-	if((target.health < target_health && !HAS_TRAIT(target, TRAIT_IMMOBILE)) || (target.health <= target.get_crit_threshold() && target_health > target.get_crit_threshold()))
+	if((target.health < target_health && !HAS_TRAIT(target, TRAIT_IMMOBILE)) || (target.InCritical() && target_health > target.get_crit_threshold()))
 		return FALSE
 	target_health = target.health
 	return TRUE
