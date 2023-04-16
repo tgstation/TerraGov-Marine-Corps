@@ -15,7 +15,6 @@ GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
 
-GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)						//list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(mainship_lights)					//list of mainship lights, used for altering intensity and color during red and delta security levels
@@ -28,6 +27,7 @@ GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(zones_to_control)					//list of all areas that needs to be controlled to gain point in Civil War
+GLOBAL_LIST_EMPTY(generators_on_ground)
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff
@@ -39,6 +39,7 @@ GLOBAL_LIST_EMPTY(wire_color_directory)
 GLOBAL_LIST_EMPTY(ai_status_displays)
 GLOBAL_LIST_EMPTY(alert_consoles)			// Station alert consoles, /obj/machinery/computer/station_alert
 
+GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)						//list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)

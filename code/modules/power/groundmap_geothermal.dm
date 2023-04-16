@@ -36,7 +36,10 @@
 		GLOB.xeno_generators_by_hive = list()
 
 	if(corrupted)
-		GLOB.xeno_generators_by_hive[corrupted] += 1
+		corrupt(corrupted)
+
+	if(is_ground_level(z))
+		GLOB.generators_on_ground += 1
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -94,8 +97,9 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && GLOB.xeno_generators_by_hive[corrupted] > 0)
-			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.xeno_generators_by_hive[corrupted])
+		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
+			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.xeno_generators_by_hive[corrupted] / GLOB.generators_on_ground))
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
