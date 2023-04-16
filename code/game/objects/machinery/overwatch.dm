@@ -737,9 +737,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)
 	if(ishuman(A))
 		var/list/radial_options = list(
-			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
+			ASL = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_asl"),
+			SWITCH_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad"),
 		)
 		var/mob/living/carbon/human/target = A
 		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
@@ -758,8 +758,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	else if(istype(A, /obj/effect/overlay/temp/laser_target/cas/OB))
 		var/obj/effect/overlay/temp/laser_target/cas/OB/target = A
 		var/list/radial_options = list(
-			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			MARK_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_mark_ob"),
+			FIRE_LASE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_fire_ob"),
 		)
 
 		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
@@ -768,7 +768,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				if(marked_lase)
 					remove_mark_from_lase() //There can only be one
 					marked_lase = target
-				SSminimaps.add_marker(target, target.z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_platinum_on")
+				SSminimaps.add_marker(target, target.z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "ob_warning")
 				addtimer(CALLBACK(src, PROC_REF(remove_mark_from_lase)), 30 SECONDS)
 			if(FIRE_LASE)
 				selected_target = target
@@ -776,10 +776,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	else
 		var/turf/target = get_turf(A)
 		var/list/radial_options = list(
-			ORBITAL_SPOTLIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			ANNOUNCE_TEXT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+			ORBITAL_SPOTLIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_orbital_spotlight"),
+			MESSAGE_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
+			SQUAD_ACTIONS = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_actions"),
 		)
 
 		var/choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
@@ -796,8 +795,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					current_squad.message_member(H, input, source)
 			if(SQUAD_ACTIONS)
 				radial_options = list(
-					MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
-					SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice"),
+					MESSAGE_SQUAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_near"),
+					SWITCH_SQUAD_NEAR = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_switch_squad_near"),
 				)
 
 				choice = show_radial_menu(source, target, radial_options, null, 48, null, FALSE, TRUE)
@@ -817,7 +816,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/list/squad_options = list()
 
 	for(var/datum/squad/squad in watchable_squads)
-		var/image/squad_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_slice")
+		var/image/squad_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_squad_box")
 		squad_icon.color = squad.color
 		squad_options += list(squad.name = squad_icon)
 

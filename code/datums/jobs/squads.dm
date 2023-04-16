@@ -386,7 +386,7 @@
 	var/text = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)
 	if(ishuman(sender))
 		var/obj/item/card/id/ID = sender.get_idcard()
-		nametext = "[ID?.rank] [sender.name] transmits: "
+		nametext = "[ID?.rank] [sender.real_name] transmits: "
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
@@ -394,7 +394,7 @@
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
 	var/header = "AUTOMATED CIC NOTICE:"
 	if(sender)
-		header = "CIC SQUAD MESSAGE FROM [sender.name]:"
+		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
 
 	for(var/i in marines_list)
 		var/mob/living/marine = i
@@ -403,7 +403,7 @@
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
 		return
-	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.name]:</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
+	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
 	return TRUE
 
 
