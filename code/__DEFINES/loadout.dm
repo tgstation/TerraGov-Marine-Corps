@@ -69,10 +69,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
 		/obj/effect/essentials_set/builder = list(CAT_KIT, "Building kit", 75, "black"),
-		/obj/effect/teleporter_linker = list(CAT_KIT, "Teleporter kit", 30, "black"),
 		/obj/effect/essentials_set/minelayer = list(CAT_KIT, "Minelaying kit", 45, "black"),
 		/obj/effect/essentials_set/mortar = list(CAT_KIT, "Mortar kit", 30, "black"),
-		/obj/effect/essentials_set/plasma_cutter = list(CAT_KIT, "Plasma cutter kit", 20, "black"),
 		/obj/effect/essentials_set/pyro = list(CAT_KIT, "flamethrower kit", 30, "black"),
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", METAL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", PLASTEEL_PRICE_IN_GEAR_VENDOR, "orange"),
@@ -80,6 +78,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/tool/weldingtool/hugetank = list(CAT_ENGSUP, "High-capacity industrial blowtorch", 5, "black"),
 		/obj/item/clothing/glasses/welding/superior = list(CAT_ENGSUP, "Superior welding goggles", 2, "black"),
 		/obj/item/armor_module/module/welding/superior = list(CAT_ENGSUP, "Superior welding module", 2, "black"),
+		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 2, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
 		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "black"),
