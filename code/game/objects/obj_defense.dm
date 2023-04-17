@@ -128,12 +128,12 @@
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(X.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_OBJ, src)
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(X, span_warning("We stare at \the [src] cluelessly."))
 		return FALSE
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_OBJ, src)
 	if(effects)
 		X.visible_message(span_danger("[X] has slashed [src]!"),
 		span_danger("We slash [src]!"))
