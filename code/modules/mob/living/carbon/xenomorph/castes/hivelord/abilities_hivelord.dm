@@ -64,9 +64,7 @@
 			xeno_job.add_job_points(4)
 			recycled_xeno.gib()
 
-	var/channel = SSsounds.random_available_channel()
-	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40, channel = channel)
-	hivelord.stop_sound_channel(channel)
+	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40)
 	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
 	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
 	return succeed_activate() //dew it
