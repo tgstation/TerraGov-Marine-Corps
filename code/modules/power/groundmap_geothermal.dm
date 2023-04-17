@@ -106,7 +106,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(corrupted && corruption_on)
 		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])) && GLOB.xeno_generators_by_hive[corrupted] > 0)
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
-			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.xeno_generators_by_hive[corrupted] / GLOB.generators_on_ground) / GLOB.xeno_generators_by_hive[corrupted])
+			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.xeno_generators_by_hive[corrupted]/(GLOB.generators_on_ground**2)))
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -242,10 +242,10 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		user.visible_message(span_notice("[user] burns [src]'s resin off."),
 		span_notice("You burn [src]'s resin off."))
 		cut_overlay(GLOB.welding_sparks)
+		GLOB.xeno_generators_by_hive[corrupted] -= 1
 		corrupted = 0
 		stop_processing()
 		update_icon()
-		GLOB.xeno_generators_by_hive[corrupted] -= 1
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
