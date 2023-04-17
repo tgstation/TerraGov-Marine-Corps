@@ -1556,6 +1556,52 @@
 			icon_state = "dessert"
 			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sugar = 1)
 
+//Snack Tins
+
+/obj/item/reagent_containers/food/snacks/wrapped_snack
+	name = "\improper Wrapped Snack"
+	package = TRUE
+	bitesize = 2
+	icon_state = "Snack Tin Sealed" //If you see a tin inside a tin, you have a problem
+	icon = 'icons/obj/items/food/snacktin.dmi'
+	var/snacktype = "Swedish Rouny's" //Everything is a rouny until states otherwise
+
+/obj/item/reagent_containers/food/snacks/wrapped_snack/Initialize(mapload, newsnacktype)
+	tastes = list("[pick(SSstrings.get_list_from_file("names/food_adjectives"))]" = 1) //idea, list, gimmick
+	determinetype(newsnacktype)
+	desc = "A packaged [icon_state] from a cute little snack tin, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back.</i>"
+	return ..()
+
+/obj/item/reagent_containers/food/snacks/wrapped_snack/attack_self(mob/user as mob)
+	if(package)
+		to_chat(user, span_notice("You remove the packaging from the wrapped [snacktype], revealing a delicious snack!"))
+		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+		name = "\improper" + snacktype
+		desc = "The contents of a snack tin. This one is " + snacktype + "."
+		icon_state = snacktype
+		package = FALSE
+
+/obj/item/reagent_containers/food/snacks/wrapped_snack/proc/determinetype(newsnacktype)
+	name = "\improper" + newsnacktype
+	snacktype = newsnacktype
+	icon_state = snacktype + " Wrapped"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+
+/*
+	switch(newsnacktype)
+		if("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+		if("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+		if("Jelly Beno's", "Bombastic Rouny", "Popping Jihad", "Defiler's Delight", "Tricord Twink-E")
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+		if("Defoonder Jawbreaker", "Chocolate Pudding", "Vanilla Pudding", "Swedish Rouny'd")
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+*/
+
+
+
+
 
 /obj/item/reagent_containers/food/snacks/lollipop
 	name = "lollipop"

@@ -450,6 +450,42 @@
 	icon_state = "som_mealpack"
 	trash_item = /obj/item/trash/mre/som
 
+/obj/item/storage/box/TIN
+	name = "\improper Snack Tin"
+	desc = "A pre-filled tin filled with various delicious snacks"
+	icon = 'icons/obj/items/food/snacktin.dmi'
+	icon_state = "Snack Tin Sealed"
+	w_class = WEIGHT_CLASS_SMALL
+	storage_slots = 4
+	foldable = 0
+	var/isopened = 0
+	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped_snack)
+
+/obj/item/storage/box/TIN/Initialize()
+	. = ..()
+	pickflavor()
+
+/obj/item/storage/box/TIN/proc/pickflavor()
+	var/snackA = pick("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
+	var/snackB = pick("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
+	var/snackC = pick("Jelly Beno's", "Bombastic Rouny", "Popping Jihad", "Defiler's Delight", "Tricord Twink-E")
+	var/snackD = pick("Defoonder Jawbreaker", "Chocolate Pudding", "Vanilla Pudding", "Swedish Rouny's")
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackA)
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackB)
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackC)
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackD)
+
+/obj/item/storage/box/TIN/update_icon()
+	if(!isopened)
+		isopened = 1
+		icon_state = "Snack Tin Open"
+
+
+
+
+
+
+
 /**
  * # fillable box
  *
