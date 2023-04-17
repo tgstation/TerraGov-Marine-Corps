@@ -450,41 +450,46 @@
 	icon_state = "som_mealpack"
 	trash_item = /obj/item/trash/mre/som
 
-/obj/item/storage/box/TIN
+/obj/item/storage/box/snack_tin
 	name = "\improper Snack Tin"
 	desc = "A pre-filled tin filled with various delicious snacks"
 	icon = 'icons/obj/items/food/snacktin.dmi'
-	icon_state = "Snack Tin Sealed"
+	base_icon_state = "snack_tin"
+	icon_state = "snack_tin_closed"
 	w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 4
 	foldable = 0
-	var/isopened = 0
 	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped_snack)
+	//List of snacks that can spawn in each position
+	var/static/list/snackA = list("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
+	var/static/list/snackB = list("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
+	var/static/list/snackC = list("Jelly Beno's", "Bombastic Rouny", "Popping Jihad", "Defiler's Delight", "Tricord Twink-E")
+	var/static/list/snackD = list("Defoonder Jawbreaker", "Chocolate Pudding", "Vanilla Pudding", "Swedish Rouny's")
 
-/obj/item/storage/box/TIN/Initialize()
+/obj/item/storage/box/snack_tin/Initialize()
 	. = ..()
 	pickflavor()
 
-/obj/item/storage/box/TIN/proc/pickflavor()
-	var/snackA = pick("Twink-E", "Jello", "Kup Cake", "Snow Baller", "Galactic Brownies")
-	var/snackB = pick("Jingles' Can", "Nutty Bars", "Oatmeal Cream Pied", "Jelly Baby", "Snow Cubes")
-	var/snackC = pick("Jelly Beno's", "Bombastic Rouny", "Popping Jihad", "Defiler's Delight", "Tricord Twink-E")
-	var/snackD = pick("Defoonder Jawbreaker", "Chocolate Pudding", "Vanilla Pudding", "Swedish Rouny's")
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackA)
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackB)
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackC)
-	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, snackD)
+/obj/item/storage/box/snack_tin/proc/pickflavor()
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackA))
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackB))
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackC))
+	new /obj/item/reagent_containers/food/snacks/wrapped_snack(src, pick(snackD))
 
-/obj/item/storage/box/TIN/update_icon()
-	if(!isopened)
-		isopened = 1
-		icon_state = "Snack Tin Open"
+/obj/item/storage/box/snack_tin/open(mob/user)
+	. = ..()
+	update_icon()
 
+/obj/item/storage/box/snack_tin/update_icon()
+	if(opened)
+		icon_state = base_icon_state + "_open"
+		update_overlays()
 
-
-
-
-
+/obj/item/storage/box/snack_tin/update_overlays()
+	. = ..()
+	for(var/obj/item/reagent_containers/food/snacks/wrapped_snack in contents)
+		var/mutable_appearance/snackoverlay = mutable_appearance('icons/obj/items/food/snacktin.dmi', "[wrapped_snack.icon_state]_overlay")
+		. += snackoverlay
 
 /**
  * # fillable box

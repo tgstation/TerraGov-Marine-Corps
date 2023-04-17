@@ -1562,8 +1562,8 @@
 	name = "\improper Wrapped Snack"
 	package = TRUE
 	bitesize = 2
-	icon_state = "Snack Tin Sealed" //If you see a tin inside a tin, you have a problem
 	icon = 'icons/obj/items/food/snacktin.dmi'
+	icon_state = "Snack Tin Sealed" //If you see a tin inside a tin, you have a problem
 	var/snacktype = "Swedish Rouny's" //Everything is a rouny until states otherwise
 
 /obj/item/reagent_containers/food/snacks/wrapped_snack/Initialize(mapload, newsnacktype)
@@ -1584,7 +1584,7 @@
 /obj/item/reagent_containers/food/snacks/wrapped_snack/proc/determinetype(newsnacktype)
 	name = "\improper" + newsnacktype
 	snacktype = newsnacktype
-	icon_state = snacktype + " Wrapped"
+	icon_state = "[snacktype]_wrapped"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 
 /*
