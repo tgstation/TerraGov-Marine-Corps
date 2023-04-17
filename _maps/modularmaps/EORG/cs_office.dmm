@@ -1105,7 +1105,7 @@
 "zV" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/tray,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "zZ" = (
@@ -1127,7 +1127,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -2066,7 +2066,7 @@
 /obj/item/stack/sheet/cardboard{
 	amount = 50
 	},
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -2120,7 +2120,7 @@
 "Xl" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/suit/chef/classic,

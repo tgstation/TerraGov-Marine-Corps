@@ -15,7 +15,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bJ" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bR" = (
@@ -148,7 +148,7 @@
 	},
 /area/bigredv2/caves/southwest)
 "jq" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -181,8 +181,8 @@
 /area/bigredv2/outside/c)
 "ks" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kx" = (
@@ -215,7 +215,7 @@
 "mo" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "mW" = (
@@ -245,7 +245,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "oI" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -325,7 +325,7 @@
 /area/bigredv2/outside/sw)
 "sS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ty" = (
@@ -340,7 +340,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "tW" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "rad_door";
@@ -380,7 +380,7 @@
 /area/bigredv2/outside/engineering)
 "wB" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "wF" = (
@@ -438,7 +438,7 @@
 /area/bigredv2/outside/engineering)
 "yi" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -571,7 +571,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Gj" = (
@@ -608,7 +608,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "GD" = (
@@ -673,7 +673,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "JS" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Km" = (
@@ -767,7 +767,7 @@
 /area/bigredv2/outside/engineering)
 "Nn" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -777,7 +777,7 @@
 	},
 /area/bigredv2/outside/c)
 "NB" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -817,7 +817,7 @@
 /area/bigredv2/outside/engineering)
 "Pz" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "PK" = (
@@ -1007,7 +1007,7 @@
 /area/bigredv2/outside/engineering)
 "Zr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},

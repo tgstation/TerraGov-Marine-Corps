@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed some odd behavior when firing rockets at dense objects like windows or airlocks"

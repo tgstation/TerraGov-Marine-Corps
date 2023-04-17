@@ -38,7 +38,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/lab_northeast/east_lab_east_entrance)
 "aau" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_northwest)
 "aaw" = (
@@ -183,7 +183,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_backup)
 "abo" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "abs" = (
@@ -263,7 +263,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "abX" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "abY" = (
@@ -292,7 +292,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_cargo)
 "acc" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
 "acd" = (
@@ -339,7 +339,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
 "acq" = (
@@ -348,7 +348,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "acr" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
@@ -359,7 +359,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/desert_dam/building/security/lobby)
 "acu" = (
-/turf/closed/desertdamrockwall/invincible/perimeter,
+/turf/closed/perimeter,
 /area/desert_dam/exterior/rock)
 "acv" = (
 /obj/structure/platform{
@@ -1838,7 +1838,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "alH" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkpurple,
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "alI" = (
@@ -2256,7 +2256,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "anQ" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "anR" = (
@@ -2398,8 +2398,8 @@
 /area/desert_dam/exterior/valley/valley_northwest)
 "aoF" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison/darkred/full,
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "aoG" = (
@@ -2933,7 +2933,7 @@
 "aqV" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/donut_box,
-/obj/effect/spawner/random/donut,
+/obj/effect/spawner/random/food_or_drink/donut,
 /turf/open/floor/prison/darkred{
 	dir = 8
 	},
@@ -3956,7 +3956,7 @@
 "avJ" = (
 /obj/machinery/light,
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkbrown{
 	dir = 10
 	},
@@ -3996,7 +3996,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
 "avQ" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -4027,7 +4027,7 @@
 	},
 /area/desert_dam/building/substation/northeast)
 "avW" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -4359,14 +4359,14 @@
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/valley/valley_labs)
 "axK" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axL" = (
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axN" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "axO" = (
@@ -5224,7 +5224,7 @@
 	},
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "aCS" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aCV" = (
@@ -5260,7 +5260,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDi" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDk" = (
@@ -5281,7 +5281,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDp" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
@@ -5292,7 +5292,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDr" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDs" = (
@@ -5417,7 +5417,7 @@
 /turf/closed/wall,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aEb" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
@@ -5479,7 +5479,7 @@
 	},
 /area/desert_dam/building/medical/medsecure)
 "aEt" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_room)
 "aEv" = (
@@ -5614,7 +5614,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "aGz" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/lab_northwest/west_lab_xenoflora)
 "aGA" = (
@@ -6456,7 +6456,7 @@
 	},
 /area/desert_dam/building/substation/northeast)
 "aNf" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "aNg" = (
@@ -6496,7 +6496,7 @@
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "aNw" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -6516,7 +6516,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "aNC" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/northeast)
 "aND" = (
@@ -6556,7 +6556,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/building/warehouse/warehouse)
 "aNQ" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/building/substation/northeast)
 "aNR" = (
@@ -6568,7 +6568,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_two/floodgate_control)
 "aNU" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/floodgate_control)
 "aNX" = (
@@ -6639,7 +6639,7 @@
 	},
 /area/desert_dam/interior/east_engineering)
 "aOz" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/east_engineering)
 "aOC" = (
@@ -6771,7 +6771,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "aPF" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -6783,7 +6783,7 @@
 	},
 /area/desert_dam/building/warehouse/loading)
 "aPI" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -6941,7 +6941,7 @@
 /area/shuttle/tri_trans2/alpha)
 "aQS" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkpurple,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "aQU" = (
@@ -7290,7 +7290,7 @@
 	},
 /area/desert_dam/exterior/valley/south_valley_dam)
 "aTM" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/control_room)
 "aTP" = (
@@ -7454,7 +7454,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/equipment)
 "aUR" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/equipment)
 "aUS" = (
@@ -7492,7 +7492,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/office)
 "aVn" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/hallway)
 "aVp" = (
@@ -7722,7 +7722,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/desert_dam/building/security/evidence)
 "aWM" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/control_room)
 "aWO" = (
@@ -7878,7 +7878,7 @@
 	},
 /area/desert_dam/building/administration/control_room)
 "aXL" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/office)
 "aXN" = (
@@ -8291,11 +8291,11 @@
 	},
 /area/desert_dam/building/administration/control_room)
 "aZP" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/hallway)
 "aZR" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/hallway)
@@ -8400,7 +8400,7 @@
 	},
 /area/desert_dam/building/administration/control_room)
 "ban" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/lobby)
 "bap" = (
@@ -8796,7 +8796,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/holding)
 "bcK" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/hallway)
 "bcM" = (
@@ -8830,7 +8830,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/meetingrooom)
 "bcU" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/meetingrooom)
 "bcV" = (
@@ -8889,7 +8889,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/administration/overseer_office)
 "bdg" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/overseer_office)
 "bdh" = (
@@ -9446,7 +9446,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "bgo" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/lobby)
 "bgq" = (
@@ -9830,7 +9830,7 @@
 /turf/open/floor/prison/plate,
 /area/desert_dam/building/security/lobby)
 "biW" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/lobby)
 "biX" = (
@@ -10600,7 +10600,7 @@
 /area/desert_dam/exterior/valley/valley_mining)
 "bnC" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "bnD" = (
@@ -10870,7 +10870,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/security/marshals_office)
 "boO" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/security/northern_hallway)
 "boP" = (
@@ -11081,7 +11081,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_main)
 "bpY" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
 "bqa" = (
@@ -11429,7 +11429,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bsf" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
@@ -11567,7 +11567,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bsO" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -11595,7 +11595,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "btc" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_main)
 "btf" = (
@@ -11804,7 +11804,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "buA" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/wood,
 /area/desert_dam/building/bar/backroom)
 "buC" = (
@@ -12129,13 +12129,13 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bwA" = (
-/obj/effect/spawner/random/structure/powergenerator/superweighted,
+/obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bwB" = (
-/obj/effect/spawner/random/structure/powergenerator/superweighted,
+/obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
@@ -12211,7 +12211,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "bwY" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hanger)
 "bwZ" = (
@@ -12246,7 +12246,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bxn" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkbrown{
 	dir = 4
 	},
@@ -12502,7 +12502,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "byU" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/security/staffroom)
 "byY" = (
@@ -12577,11 +12577,11 @@
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bzo" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bzp" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -12747,7 +12747,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/staffroom)
 "bAh" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bAi" = (
@@ -12779,7 +12779,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/east_caves)
 "bAy" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 10
 	},
@@ -12793,7 +12793,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bAB" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bAC" = (
@@ -13257,7 +13257,7 @@
 	},
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bDy" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_mining)
 "bDz" = (
@@ -13552,7 +13552,7 @@
 "bFm" = (
 /obj/structure/table,
 /obj/item/taperecorder,
-/obj/effect/spawner/random/sunglasses,
+/obj/effect/spawner/random/clothing/sunglasses,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/holding)
 "bFn" = (
@@ -13710,7 +13710,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/control_room)
 "bGc" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_room)
 "bGe" = (
@@ -13820,7 +13820,7 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "bGT" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
@@ -13916,7 +13916,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bHn" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bHo" = (
@@ -14185,11 +14185,11 @@
 /turf/open/floor/prison/green,
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bIB" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/prison/green,
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "bIC" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/prison/green{
 	dir = 6
 	},
@@ -14302,7 +14302,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bJp" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "bJq" = (
@@ -14324,7 +14324,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bJB" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bJD" = (
@@ -14454,7 +14454,7 @@
 	},
 /area/desert_dam/interior/dam_interior/smes_main)
 "bKy" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -14504,11 +14504,11 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_mining)
 "bKL" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/control_room)
 "bKM" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/hanger)
 "bKN" = (
@@ -14610,7 +14610,7 @@
 	},
 /area/desert_dam/interior/dam_interior/lobby)
 "bLz" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bLB" = (
@@ -14776,7 +14776,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_central_north)
 "bMw" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bMy" = (
@@ -15025,8 +15025,8 @@
 /area/desert_dam/building/security/warden)
 "bNR" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "bNS" = (
@@ -15273,11 +15273,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "bPv" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/lobby)
 "bPx" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bPz" = (
@@ -15294,7 +15294,7 @@
 /area/desert_dam/building/security/prison)
 "bPD" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/security/prison)
 "bPE" = (
@@ -15448,7 +15448,7 @@
 	},
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bQl" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bQm" = (
@@ -15594,11 +15594,11 @@
 	},
 /area/desert_dam/interior/dam_interior/CE_office)
 "bRj" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/workshop)
 "bRk" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/office)
 "bRl" = (
@@ -15656,7 +15656,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bRy" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/CE_office)
 "bRz" = (
@@ -15727,7 +15727,7 @@
 	},
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "bRO" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_backup)
 "bRT" = (
@@ -15994,11 +15994,11 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/desert_dam/building/security/prison)
 "bTt" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/break_room)
 "bTu" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "bTD" = (
@@ -16939,7 +16939,7 @@
 /area/desert_dam/building/security/armory)
 "bYr" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/armory)
 "bYs" = (
@@ -17479,14 +17479,14 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "cbe" = (
-/obj/effect/spawner/random/ammo/shotgun{
+/obj/effect/spawner/random/weaponry/ammo/shotgun{
 	pixel_x = 6;
 	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "cbg" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/CE_office)
 "cbi" = (
@@ -18216,7 +18216,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "cfN" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/warden)
 "cfR" = (
@@ -18356,7 +18356,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/exterior/river/riverside_south)
 "cgJ" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/west)
 "cgN" = (
@@ -18394,7 +18394,7 @@
 	},
 /area/desert_dam/building/substation/west)
 "chb" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/building/substation/west)
 "chd" = (
@@ -18687,7 +18687,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/chemistry)
 "ciS" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/chemistry)
 "ciU" = (
@@ -18699,7 +18699,7 @@
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/break_room)
 "ciW" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/break_room)
 "ciY" = (
@@ -18767,7 +18767,7 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "cjs" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/west_wing_hallway)
 "cjt" = (
@@ -18882,7 +18882,7 @@
 	},
 /area/desert_dam/building/medical/chemistry)
 "cjV" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/chemistry)
 "cjW" = (
@@ -19055,7 +19055,7 @@
 	},
 /area/desert_dam/building/medical/break_room)
 "ckY" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
 "ckZ" = (
@@ -19718,7 +19718,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/medical/morgue)
 "coU" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/break_room)
 "coW" = (
@@ -19856,7 +19856,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "cpH" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/north_wing_hallway)
 "cpI" = (
@@ -19961,8 +19961,8 @@
 /area/desert_dam/building/security/warden)
 "cqk" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/warden)
 "cql" = (
@@ -19976,7 +19976,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
 "cqm" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/clothing/head/beret/sec/warden,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/warden)
@@ -20126,7 +20126,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_cargo)
 "crA" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/lobby)
 "crC" = (
@@ -20157,7 +20157,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "crH" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/lobby)
 "crL" = (
@@ -20487,7 +20487,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/medical/primary_storage)
 "ctX" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/primary_storage)
 "ctY" = (
@@ -20507,7 +20507,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_observation)
 "cub" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cuc" = (
@@ -20530,7 +20530,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/medical/CMO)
 "cuf" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/CMO)
 "cug" = (
@@ -21137,7 +21137,7 @@
 	},
 /area/desert_dam/building/medical/primary_storage)
 "cxE" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/surgery_observation)
 "cxH" = (
@@ -21288,7 +21288,7 @@
 	},
 /area/desert_dam/building/medical/surgery_room_two)
 "cyn" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -21325,7 +21325,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/medical/CMO)
 "cyw" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -21516,7 +21516,7 @@
 	},
 /area/desert_dam/building/substation/central)
 "czN" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -21815,7 +21815,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_south)
 "cBa" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "cBc" = (
@@ -21979,7 +21979,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/emergency_room)
 "cCj" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/emergency_room)
 "cCk" = (
@@ -22006,7 +22006,7 @@
 	},
 /area/desert_dam/building/medical/primary_storage)
 "cCn" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -22237,7 +22237,7 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "cDs" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/surgery_room_one)
 "cDt" = (
@@ -22252,7 +22252,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_one)
 "cDu" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/surgery_room_two)
 "cDv" = (
@@ -22267,7 +22267,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/surgery_room_two)
 "cDy" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/office1)
 "cDz" = (
@@ -22281,7 +22281,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/office1)
 "cDA" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/office2)
 "cDB" = (
@@ -22317,7 +22317,7 @@
 /area/desert_dam/building/medical/east_wing_hallway)
 "cDG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -22401,7 +22401,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cEf" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/garage)
 "cEg" = (
@@ -22453,7 +22453,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cEA" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/power/apc{
 	start_charge = 0
 	},
@@ -22491,7 +22491,7 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "cEG" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/treatment_room)
 "cEJ" = (
@@ -22583,7 +22583,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "cFn" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/emergency_room)
 "cFp" = (
@@ -22969,7 +22969,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/medical/virology_wing)
 "cHO" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "cHP" = (
@@ -23145,12 +23145,12 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cII" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/treatment_room)
 "cIJ" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/light,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/prison/whitegreen/full,
@@ -23225,7 +23225,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/church)
 "cJe" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/church)
 "cJg" = (
@@ -23383,7 +23383,7 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "cJN" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
 "cJO" = (
@@ -23756,7 +23756,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -23852,7 +23852,7 @@
 	},
 /area/desert_dam/building/medical/virology_isolation)
 "cNa" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_isolation)
 "cNb" = (
@@ -23892,7 +23892,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "cNo" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/warehouse)
 "cNu" = (
@@ -24272,7 +24272,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cPM" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_isolation)
 "cPN" = (
@@ -24422,7 +24422,7 @@
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/office)
 "cQv" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/southwest)
 "cQw" = (
@@ -24840,7 +24840,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/bar_valley_dam)
 "cTi" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/southwest)
 "cTj" = (
@@ -25107,7 +25107,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/building/warehouse/loading)
 "cVV" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cVX" = (
@@ -25132,7 +25132,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "cWk" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "cWl" = (
@@ -25250,7 +25250,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "cXz" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "cXD" = (
@@ -25402,7 +25402,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_cargo)
 "cZc" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_hydro)
 "cZd" = (
@@ -25445,7 +25445,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "cZu" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/cafeteria)
 "cZv" = (
@@ -25523,7 +25523,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "daN" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "daO" = (
@@ -25588,7 +25588,7 @@
 /turf/open/floor/prison/yellow/full,
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbo" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbp" = (
@@ -25617,7 +25617,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbu" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics)
 "dbw" = (
@@ -25639,12 +25639,12 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dbA" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dbB" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
@@ -25773,7 +25773,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dcl" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dcn" = (
@@ -25875,7 +25875,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "dde" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "ddg" = (
@@ -26039,7 +26039,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "dep" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "des" = (
@@ -26061,7 +26061,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics)
 "deA" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "deC" = (
@@ -26090,7 +26090,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "deI" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 9
 	},
@@ -26116,7 +26116,7 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dfi" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dfj" = (
@@ -26171,7 +26171,7 @@
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "dfD" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "dfI" = (
@@ -26224,11 +26224,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/valley/valley_medical)
 "dgo" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/loading)
 "dgs" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
 "dgt" = (
@@ -26328,7 +26328,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dhe" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/cafeteria/loading)
 "dhf" = (
@@ -26345,7 +26345,7 @@
 	},
 /area/desert_dam/building/warehouse/warehouse)
 "dhs" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/hallway)
 "dhU" = (
@@ -26371,23 +26371,23 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/prison)
 "dil" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/garage)
 "dim" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/dorms/hallway_northwing)
 "din" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
 "diq" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/equipment)
 "dir" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/valley_northwest)
 "diC" = (
@@ -26420,7 +26420,7 @@
 /turf/open/floor/prison/yellow,
 /area/desert_dam/building/hydroponics/hydroponics)
 "diL" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "diM" = (
@@ -26660,7 +26660,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "dkJ" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/darkyellow{
 	dir = 9
 	},
@@ -26709,7 +26709,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_westwing)
 "dlu" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "dlw" = (
@@ -26730,7 +26730,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dlB" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/loading)
 "dlC" = (
@@ -26898,7 +26898,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "dof" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "doA" = (
@@ -27116,7 +27116,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/lobby)
 "dqW" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/lobby)
 "drc" = (
@@ -27279,7 +27279,7 @@
 	},
 /area/desert_dam/building/water_treatment_one/garage)
 "dsM" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/garage)
 "dsO" = (
@@ -27637,7 +27637,7 @@
 	},
 /area/desert_dam/building/security/deathrow)
 "dxa" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
@@ -27731,18 +27731,18 @@
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "dxM" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/cheesewedge,
+/obj/effect/spawner/random/food_or_drink/cheesewedge,
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxR" = (
 /obj/structure/table,
-/obj/effect/spawner/random/donut,
+/obj/effect/spawner/random/food_or_drink/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dxX" = (
@@ -27996,19 +27996,19 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
-/obj/effect/spawner/random/donut,
+/obj/effect/spawner/random/food_or_drink/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/cheesewedge,
+/obj/effect/spawner/random/food_or_drink/cheesewedge,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAk" = (
 /obj/structure/table,
-/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dAm" = (
@@ -28058,8 +28058,8 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBc" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
-/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
@@ -28068,17 +28068,17 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBd" = (
 /obj/structure/table,
-/obj/effect/spawner/random/burger/bunweighted,
-/obj/effect/spawner/random/burger/bunweighted,
-/obj/effect/spawner/random/cheesewedge,
-/obj/effect/spawner/random/donut,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/cheesewedge,
+/obj/effect/spawner/random/food_or_drink/donut,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/cutlet,
-/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dBh" = (
@@ -28106,7 +28106,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
 "dBo" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/dorms/hallway_westwing)
 "dBp" = (
@@ -28383,7 +28383,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/dorms/restroom)
 "dDk" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -28871,7 +28871,7 @@
 /turf/closed/wall,
 /area/desert_dam/building/dorms/pool)
 "dIl" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/dorms/pool)
 "dIo" = (
@@ -29594,7 +29594,7 @@
 	},
 /area/desert_dam/building/dorms/hallway_westwing)
 "dUt" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "dUE" = (
@@ -30162,7 +30162,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
 "edO" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/hallway)
 "edP" = (
@@ -30220,11 +30220,11 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "eeo" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/control_room)
 "eeq" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/breakroom)
 "eer" = (
@@ -30269,7 +30269,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/garage)
 "eeL" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison,
 /area/desert_dam/building/cafeteria/loading)
 "eeS" = (
@@ -30877,7 +30877,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_civilian)
 "exa" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -30948,7 +30948,7 @@
 "ezs" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -31649,8 +31649,8 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "eTR" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/drink_cans,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/food_or_drink/drink_cans,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "eTU" = (
@@ -31671,7 +31671,7 @@
 /area/desert_dam/exterior/valley/valley_labs)
 "eUn" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 4
@@ -32352,7 +32352,7 @@
 	},
 /area/desert_dam/interior/dam_interior/disposals)
 "fpg" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_main)
@@ -32784,7 +32784,7 @@
 /area/desert_dam/exterior/valley/valley_hydro)
 "fCH" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/holding)
@@ -32888,7 +32888,7 @@
 "fFu" = (
 /obj/structure/table,
 /obj/item/folder,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "fGe" = (
@@ -32944,8 +32944,8 @@
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "fHe" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -33507,7 +33507,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/dorms/restroom)
 "fWt" = (
@@ -33874,7 +33874,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
 	},
@@ -34093,7 +34093,7 @@
 	dir = 8;
 	id = "cargo_container"
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -34656,7 +34656,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -34709,8 +34709,8 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "gKp" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "gKO" = (
@@ -34778,7 +34778,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/primary_storage)
 "gNh" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
@@ -34818,7 +34818,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "gOd" = (
@@ -34889,8 +34889,8 @@
 /area/desert_dam/interior/caves/temple)
 "gQS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
-/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -34904,12 +34904,12 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "gRl" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/control_room)
 "gRw" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/desert_dam/building/water_treatment_one/garage)
@@ -34930,7 +34930,7 @@
 /area/desert_dam/building/warehouse/loading)
 "gSd" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkpurple{
 	dir = 4
 	},
@@ -34967,7 +34967,7 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "gSW" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
@@ -34988,7 +34988,7 @@
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/desert_dam/interior/caves/east_caves)
 "gTE" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/building/security/staffroom)
@@ -35148,7 +35148,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "gYu" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
 "gYv" = (
@@ -35843,7 +35843,7 @@
 "huF" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/whiteyellow,
 /area/desert_dam/interior/dam_interior/lobby)
 "huH" = (
@@ -35871,7 +35871,7 @@
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "hvc" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison/blue{
 	dir = 10
 	},
@@ -36194,7 +36194,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/equipment)
 "hDl" = (
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison/darkyellow/corner{
 	dir = 1
 	},
@@ -36243,7 +36243,7 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "hDQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/blue{
 	dir = 6
 	},
@@ -36254,7 +36254,7 @@
 /area/desert_dam/exterior/valley/valley_labs)
 "hDV" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -36341,7 +36341,7 @@
 /area/desert_dam/building/warehouse/warehouse)
 "hHa" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -36486,7 +36486,7 @@
 "hLl" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/chips,
-/obj/effect/spawner/random/donut,
+/obj/effect/spawner/random/food_or_drink/donut,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
@@ -36691,7 +36691,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "hRf" = (
@@ -36712,8 +36712,8 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "hRy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "hSd" = (
@@ -36924,9 +36924,9 @@
 /area/desert_dam/building/medical/chemistry)
 "hYB" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
-/obj/effect/spawner/random/packagedbar/candyweighted,
-/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -37236,9 +37236,9 @@
 /area/desert_dam/building/warehouse/breakroom)
 "iiu" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -37371,7 +37371,7 @@
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "inq" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkred,
 /area/desert_dam/building/security/staffroom)
 "inA" = (
@@ -37714,7 +37714,7 @@
 	},
 /area/desert_dam/interior/caves/temple)
 "iwW" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_two/equipment)
@@ -37831,7 +37831,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
 "izM" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
@@ -38022,7 +38022,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
 "iFT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkbrown{
 	dir = 8
 	},
@@ -38165,7 +38165,7 @@
 "iJL" = (
 /obj/structure/table,
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "iJT" = (
@@ -38190,12 +38190,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "iKw" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple{
 	dir = 9
@@ -38274,7 +38274,7 @@
 /obj/structure/table,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "iNm" = (
@@ -38352,7 +38352,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/southern_hallway)
 "iPK" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
@@ -38958,7 +38958,7 @@
 /turf/open/floor/freezer,
 /area/desert_dam/interior/east_engineering)
 "jhp" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "jhq" = (
@@ -39160,7 +39160,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/desert_dam/building/security/prison)
 "jnT" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/smes_backup)
@@ -39206,7 +39206,7 @@
 /area/desert_dam/exterior/valley/valley_telecoms)
 "jqk" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -39258,7 +39258,7 @@
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
 "jrn" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison,
 /area/desert_dam/building/substation/west)
 "jrq" = (
@@ -39440,7 +39440,7 @@
 "jws" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "jwt" = (
@@ -39448,8 +39448,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkyellow{
 	dir = 5
 	},
@@ -39513,7 +39513,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "jze" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "jzi" = (
@@ -39671,7 +39671,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
 "jCi" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/substation/central)
@@ -39722,7 +39722,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "jDb" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
@@ -39886,7 +39886,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/cafeteria/loading)
 "jHI" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
@@ -40386,7 +40386,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "jXf" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -41502,7 +41502,7 @@
 /turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "kEX" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/desert_dam/building/telecommunication)
 "kFa" = (
@@ -41576,7 +41576,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/emergency_room)
 "kHr" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
@@ -42654,7 +42654,7 @@
 /area/desert_dam/interior/dam_interior/lobby)
 "lnZ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkbrown{
 	dir = 8
 	},
@@ -42725,7 +42725,7 @@
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "lpK" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkred{
 	dir = 10
 	},
@@ -43017,7 +43017,7 @@
 /area/desert_dam/exterior/valley/valley_hydro)
 "lyk" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/item/phone,
 /turf/open/floor/prison/blue{
 	dir = 1
@@ -43720,7 +43720,7 @@
 /area/desert_dam/interior/dam_interior/smes_main)
 "lUM" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "lUT" = (
@@ -43752,7 +43752,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "lWs" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
@@ -43769,14 +43769,14 @@
 /area/desert_dam/building/medical/emergency_room)
 "lXF" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "lYl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -43797,7 +43797,7 @@
 	},
 /area/desert_dam/exterior/valley/north_valley_dam)
 "lYq" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_isolation)
@@ -44085,7 +44085,7 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "mjL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/building/telecommunication)
 "mjU" = (
@@ -44972,9 +44972,9 @@
 /obj/item/inflatable,
 /obj/item/inflatable,
 /obj/item/tool/wirecutters,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "mKA" = (
@@ -45128,7 +45128,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "mOr" = (
-/obj/effect/spawner/random/structure/ivdrip,
+/obj/effect/spawner/random/medical/structure/ivdrip,
 /obj/machinery/door_control{
 	id = "medstorage3";
 	name = "Medical Secure Shutters"
@@ -45173,7 +45173,7 @@
 /obj/item/stack/rods{
 	amount = 25
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -45544,7 +45544,7 @@
 /area/desert_dam/building/telecommunication)
 "nbk" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "nbq" = (
@@ -45709,7 +45709,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "ngq" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
@@ -45834,7 +45834,7 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "nkP" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -45959,8 +45959,8 @@
 /area/desert_dam/exterior/valley/north_valley_dam)
 "noE" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/blue{
 	dir = 5
 	},
@@ -46057,7 +46057,7 @@
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/chemistry)
 "ntl" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -46154,7 +46154,7 @@
 "nxV" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/meatball,
-/obj/effect/spawner/random/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "nxZ" = (
@@ -46238,8 +46238,8 @@
 /area/desert_dam/interior/caves/east_caves)
 "nAy" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "nAK" = (
@@ -46350,7 +46350,7 @@
 /area/desert_dam/building/security/prison)
 "nCp" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light,
 /turf/open/floor/prison/darkpurple,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
@@ -46376,7 +46376,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "nDH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -46562,7 +46562,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
 "nKh" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
@@ -46593,8 +46593,8 @@
 /area/desert_dam/exterior/valley/tradeship)
 "nLH" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 4
 	},
@@ -46919,7 +46919,7 @@
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "nVf" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "nVv" = (
@@ -47178,7 +47178,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "oaw" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/meetingrooom)
@@ -47267,7 +47267,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/control_room)
 "ocw" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/ai_node,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
@@ -47324,9 +47324,9 @@
 /area/desert_dam/building/security/deathrow)
 "oei" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
-/obj/effect/spawner/random/packagedbar/candyweighted,
-/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -47421,7 +47421,7 @@
 	dir = 8;
 	start_charge = 0
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/cable,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
@@ -47737,7 +47737,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/administration/archives)
 "orL" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "orX" = (
@@ -47899,8 +47899,8 @@
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "oxC" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "oxL" = (
@@ -48588,7 +48588,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/virology_isolation)
 "oRR" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
@@ -48661,7 +48661,7 @@
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
 "oTp" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
@@ -48837,7 +48837,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "oXY" = (
-/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "oYo" = (
@@ -48863,7 +48863,7 @@
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "oYW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/breakroom)
 "oYY" = (
@@ -49185,7 +49185,7 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "pfY" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)
 "pgw" = (
@@ -49259,7 +49259,7 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "phS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
@@ -49279,7 +49279,7 @@
 	dir = 8;
 	start_charge = 0
 	},
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/hydroponics/hydroponics)
@@ -49797,7 +49797,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "pwM" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/desert_dam/exterior/valley/tradeship)
 "pwO" = (
@@ -50082,8 +50082,8 @@
 /area/desert_dam/building/dorms/restroom)
 "pEU" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -50953,7 +50953,7 @@
 /area/desert_dam/interior/dam_interior/hanger)
 "qcc" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "qck" = (
@@ -51180,7 +51180,7 @@
 "qij" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "qiu" = (
@@ -51227,7 +51227,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/garage)
 "qjH" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/east_wing_hallway)
@@ -51641,8 +51641,8 @@
 /area/desert_dam/building/medical/virology_wing)
 "qwi" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/stack/sheet/glass{
 	amount = 50;
 	pixel_x = 3;
@@ -51957,7 +51957,7 @@
 /area/desert_dam/building/administration/hallway)
 "qGJ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -52444,7 +52444,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "qWC" = (
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -52639,7 +52639,7 @@
 /area/desert_dam/building/warehouse/loading)
 "rbz" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison/green{
 	dir = 4
 	},
@@ -52837,7 +52837,7 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "rfW" = (
 /obj/structure/cable,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
@@ -53372,7 +53372,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/spawner/random/plushie,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "rzB" = (
@@ -53434,7 +53434,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "rAj" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
@@ -53627,7 +53627,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
 "rIt" = (
-/obj/effect/spawner/random/structure/powergenerator,
+/obj/effect/spawner/random/engineering/structure/powergenerator,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -53942,7 +53942,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/cafeteria)
 "rQI" = (
-/obj/effect/spawner/random/structure/tank/fuelweighted,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/warehouse/loading)
@@ -53999,7 +53999,7 @@
 /area/desert_dam/building/security/warden)
 "rRI" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/lab_northeast/east_lab_workshop)
 "rRQ" = (
@@ -54862,7 +54862,7 @@
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "smO" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -54875,7 +54875,7 @@
 /obj/structure/table,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "sng" = (
@@ -55011,7 +55011,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "sqC" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -55052,7 +55052,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/tank/waterweighted,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "srF" = (
@@ -55293,7 +55293,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "szM" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/cafeteria/loading)
@@ -55432,7 +55432,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/garage)
 "sDN" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/reinforced,
 /obj/item/radio,
 /turf/open/floor/prison/bright_clean,
@@ -55451,7 +55451,7 @@
 /area/desert_dam/building/medical/east_wing_hallway)
 "sEa" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -55699,8 +55699,8 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "sOv" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/blue{
 	dir = 5
 	},
@@ -55992,8 +55992,8 @@
 /area/desert_dam/interior/dam_interior/break_room)
 "taQ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -56425,7 +56425,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_northwest)
 "tmj" = (
-/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
+/obj/effect/spawner/random/engineering/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "tmn" = (
@@ -56503,11 +56503,11 @@
 	amount = 50
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "tok" = (
@@ -56576,7 +56576,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/structure/cable,
 /obj/item/tool/crowbar,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/ai_node,
 /obj/machinery/door_control{
 	id = "port_authority1";
@@ -56724,7 +56724,7 @@
 /area/desert_dam/exterior/valley/north_valley_dam)
 "tti" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/darkpurple{
 	dir = 10
 	},
@@ -56804,8 +56804,8 @@
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "tvZ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -56839,7 +56839,7 @@
 	},
 /area/desert_dam/exterior/river/riverside_east)
 "txj" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -57012,8 +57012,8 @@
 "tCX" = (
 /obj/machinery/light,
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "tCY" = (
@@ -57538,7 +57538,7 @@
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "tTA" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkbrown,
 /area/desert_dam/building/warehouse/warehouse)
 "tTR" = (
@@ -58119,7 +58119,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "uiU" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	desc = "Heavy shutters reinforced to prevent breaches, no way to get through here.";
 	dir = 2;
@@ -58349,7 +58349,7 @@
 "uqO" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkpurple,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "urb" = (
@@ -58452,7 +58452,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert_dam/building/administration/archives)
 "usP" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
 "usU" = (
@@ -58742,7 +58742,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
 "uBx" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "uBK" = (
@@ -58784,7 +58784,7 @@
 /area/desert_dam/interior/caves/central_caves)
 "uDr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkbrown{
 	dir = 8
 	},
@@ -58878,7 +58878,7 @@
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "uGf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "uGj" = (
@@ -59489,7 +59489,7 @@
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "uXr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/desert_dam/interior/east_engineering)
 "uXv" = (
@@ -59540,7 +59540,7 @@
 /area/desert_dam/building/medical/west_wing_hallway)
 "uYO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/wood,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "uZc" = (
@@ -59760,8 +59760,8 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "vfH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -59798,7 +59798,7 @@
 /area/desert_dam/interior/caves/east_caves)
 "vgO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vhb" = (
@@ -59879,7 +59879,7 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "viQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/packagedbar/candyweighted,
+/obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
@@ -59893,7 +59893,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_hydro)
 "vjC" = (
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -59901,9 +59901,9 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "vjF" = (
 /obj/structure/table,
-/obj/effect/spawner/random/burger/bunweighted,
-/obj/effect/spawner/random/burger/bunweighted,
-/obj/effect/spawner/random/cheesewedge,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/burger/bunweighted,
+/obj/effect/spawner/random/food_or_drink/cheesewedge,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
@@ -60180,8 +60180,8 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "vrZ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -60392,7 +60392,7 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
 "vyt" = (
@@ -60455,7 +60455,7 @@
 "vAs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vAT" = (
@@ -60875,7 +60875,7 @@
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "vMh" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkyellow,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
@@ -60903,7 +60903,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vNE" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/desert_dam/building/water_treatment_one/floodgate_control)
@@ -61068,7 +61068,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "vRR" = (
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "vRZ" = (
@@ -61182,7 +61182,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_northwing)
 "vWO" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "vWS" = (
@@ -62776,7 +62776,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_wilderness)
 "wQe" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -63063,7 +63063,7 @@
 /area/desert_dam/building/medical/north_wing_hallway)
 "wWc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -63108,8 +63108,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_two/hallway)
 "wXR" = (
-/obj/effect/spawner/random/structure/supplycrate,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "wXZ" = (
@@ -63303,8 +63303,8 @@
 /area/desert_dam/building/cafeteria/loading)
 "xes" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -64017,7 +64017,7 @@
 	},
 /area/desert_dam/building/medical/west_wing_hallway)
 "xAB" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert_dam/building/administration/control_room)
@@ -64067,7 +64067,7 @@
 /area/desert_dam/exterior/valley/valley_cargo)
 "xBd" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/workshop)
 "xBe" = (
@@ -64091,7 +64091,7 @@
 /area/desert_dam/building/medical/virology_isolation)
 "xBs" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
@@ -64479,7 +64479,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/desert_dam/exterior/valley/valley_northwest)
 "xNj" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -64506,8 +64506,8 @@
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "xNJ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -64569,7 +64569,7 @@
 	dir = 8;
 	id = "cargo_storage"
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -64636,7 +64636,7 @@
 /area/desert_dam/building/security/southern_hallway)
 "xSt" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -64736,7 +64736,7 @@
 /area/desert_dam/building/warehouse/loading)
 "xVc" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -64744,7 +64744,7 @@
 "xVr" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -64940,7 +64940,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/spawner/random/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -65184,8 +65184,8 @@
 	},
 /obj/structure/cable,
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -65251,7 +65251,7 @@
 /area/desert_dam/interior/dam_interior/control_room)
 "yie" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/item/clothing/head/welding,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/warehouse/loading)

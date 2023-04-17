@@ -386,7 +386,7 @@
 /area/lv624/ground/jungle7)
 "GW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/burger{
+/obj/effect/spawner/random/food_or_drink/burger{
 	pixel_x = -3
 	},
 /obj/item/reagent_containers/food/snacks/pastries/orangecakeslice{

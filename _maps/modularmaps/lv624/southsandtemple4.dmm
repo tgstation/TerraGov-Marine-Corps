@@ -131,7 +131,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "sZ" = (
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/effect/turf_decal/tracks/human2/bloody,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -500,7 +500,7 @@
 /area/lv624/lazarus/sandtemple)
 "RZ" = (
 /obj/effect/landmark/corpsespawner/scientist,
-/obj/effect/spawner/random/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "SL" = (
@@ -608,7 +608,7 @@
 /area/lv624/ground/sand6)
 "ZP" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},

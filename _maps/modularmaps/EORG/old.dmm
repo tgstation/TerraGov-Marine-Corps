@@ -224,7 +224,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aX" = (
@@ -402,7 +402,7 @@
 /area/deathmatch)
 "bG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor,
 /area/deathmatch)
 "bH" = (
@@ -622,7 +622,7 @@
 "Ab" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor,
 /area/deathmatch)
 "BR" = (

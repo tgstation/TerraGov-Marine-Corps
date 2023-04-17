@@ -67,7 +67,7 @@
 /area/deathmatch)
 "hy" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/wood,
 /area/deathmatch)
 "iq" = (
@@ -306,7 +306,7 @@
 /turf/closed/wall/wood,
 /area/deathmatch)
 "EV" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine,
+/obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
@@ -459,7 +459,7 @@
 	},
 /area/deathmatch)
 "Uv" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "US" = (
 /obj/structure/bed/chair/wood/wings{

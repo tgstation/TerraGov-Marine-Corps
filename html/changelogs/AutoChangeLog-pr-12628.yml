@@ -1,5 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes:
-  - qol: "made players automatically interact with deployables when they deploy them, it is now an option in game preferences that you can enable and disable at will."
-  - balance: "This change applies to all weapons deployables, like emplacements and machine guns"

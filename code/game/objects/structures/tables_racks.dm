@@ -4,8 +4,8 @@
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon = 'icons/obj/structures/tables.dmi'
-	icon_state = "table"
+	icon = 'icons/obj/smooth_objects/table_regular.dmi'
+	icon_state = "table_regular-0"
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
@@ -13,6 +13,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
+	smoothing_flags = SMOOTH_BITMASK
+	base_icon_state = "table_regular"
 	//determines if we drop metal on deconstruction
 	var/dropmetal = TRUE
 	var/parts = /obj/item/frame/table
@@ -23,6 +25,8 @@
 	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 40
+	smoothing_groups = list(SMOOTH_GROUP_TABLES_GENERAL)
+	canSmoothWith = list(SMOOTH_GROUP_TABLES_GENERAL)
 
 /obj/structure/table/mainship/nometal
 	parts = /obj/item/frame/table/nometal
@@ -45,7 +49,11 @@
 		if(!table)
 			continue
 		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
+	QUEUE_SMOOTH(src)
 
+/obj/structure/table/Destroy()
+	update_adjacent(loc) //so neighbouring tables get updated correctly
+	return ..()
 
 /obj/structure/table/Initialize(mapload)
 	. = ..()
@@ -71,11 +79,6 @@
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
 
-/obj/structure/table/Destroy()
-	var/tableloc = loc
-	update_adjacent(tableloc) //so neighbouring tables get updated correctly
-	return ..()
-
 /obj/structure/table/update_icon()
 	if(flipped)
 		var/ttype = 0
@@ -93,127 +96,6 @@
 			if(tabledirs & turn(dir,-90))
 				icon_state = icon_state+"+"
 		return TRUE
-
-	var/dir_sum = 0
-	for(var/direction in CARDINAL_ALL_DIRS)
-		var/skip_sum = FALSE
-		for(var/obj/structure/window/W in src.loc)
-			if(W.dir == direction) //So smooth tables don't go smooth through windows
-				skip_sum = TRUE
-				continue
-		var/inv_direction = turn(dir, 180) //inverse direction
-		for(var/obj/structure/window/W in get_step(src, direction))
-			if(W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
-				skip_sum = TRUE
-				continue
-		if(!skip_sum) //there is no window between the two tiles in this direction
-			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
-			if(T && !T.flipped)
-				if(direction < 5)
-					dir_sum += direction
-				else
-					if(direction == 5)	//This permits the use of all table directions. (Set up so clockwise around the central table is a higher value, from north)
-						dir_sum += 16
-					if(direction == 6)
-						dir_sum += 32
-					if(direction == 8)	//Aherp and Aderp.  Jezes I am stupid.  -- SkyMarshal
-						dir_sum += 8
-					if(direction == 10)
-						dir_sum += 64
-					if(direction == 9)
-						dir_sum += 128
-
-	var/table_type = 0 //stand_alone table
-	if((dir_sum%16) in GLOB.cardinals)
-		table_type = 1 //endtable
-		dir_sum %= 16
-	if((dir_sum%16) in list(3, 12))
-		table_type = 2 //1 tile thick, streight table
-		if(dir_sum%16 == 3) //3 doesn't exist as a dir
-			dir_sum = 2
-		if(dir_sum%16 == 12) //12 doesn't exist as a dir.
-			dir_sum = 4
-	if((dir_sum%16) in list(5, 6, 9, 10))
-		if(locate(/obj/structure/table, get_step(src.loc, dir_sum%16)))
-			table_type = 3 //full table (not the 1 tile thick one, but one of the 'tabledir' tables)
-		else
-			table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
-		dir_sum %= 16
-	if((dir_sum%16) in list(13, 14, 7, 11)) //Three-way intersection
-		table_type = 5 //full table as three-way intersections are not sprited, would require 64 sprites to handle all combinations.  TOO BAD -- SkyMarshal
-		switch(dir_sum%16)	//Begin computation of the special type tables.  --SkyMarshal
-			if(7)
-				if(dir_sum == 23)
-					table_type = 6
-					dir_sum = 8
-				else if(dir_sum == 39)
-					dir_sum = 4
-					table_type = 6
-				else if(dir_sum == 55 || dir_sum == 119 || dir_sum == 247 || dir_sum == 183)
-					dir_sum = 4
-					table_type = 3
-				else
-					dir_sum = 4
-			if(11)
-				if(dir_sum == 75)
-					dir_sum = 5
-					table_type = 6
-				else if(dir_sum == 139)
-					dir_sum = 9
-					table_type = 6
-				else if(dir_sum == 203 || dir_sum == 219 || dir_sum == 251 || dir_sum == 235)
-					dir_sum = 8
-					table_type = 3
-				else
-					dir_sum = 8
-			if(13)
-				if(dir_sum == 29)
-					dir_sum = 10
-					table_type = 6
-				else if(dir_sum == 141)
-					dir_sum = 6
-					table_type = 6
-				else if(dir_sum == 189 || dir_sum == 221 || dir_sum == 253 || dir_sum == 157)
-					dir_sum = 1
-					table_type = 3
-				else
-					dir_sum = 1
-			if(14)
-				if(dir_sum == 46)
-					dir_sum = 1
-					table_type = 6
-				else if(dir_sum == 78)
-					dir_sum = 2
-					table_type = 6
-				else if(dir_sum == 110 || dir_sum == 254 || dir_sum == 238 || dir_sum == 126)
-					dir_sum = 2
-					table_type = 3
-				else
-					dir_sum = 2 //These translate the dir_sum to the correct dirs from the 'tabledir' icon_state.
-	if(dir_sum%16 == 15)
-		table_type = 4 //4-way intersection, the 'middle' table sprites will be used.
-
-	switch(table_type)
-		if(0)
-			icon_state = "[table_prefix]table"
-		if(1)
-			icon_state = "[table_prefix]1tileendtable"
-		if(2)
-			icon_state = "[table_prefix]1tilethick"
-		if(3)
-			icon_state = "[table_prefix]tabledir"
-		if(4)
-			icon_state = "[table_prefix]middle"
-		if(5)
-			icon_state = "[table_prefix]tabledir2"
-		if(6)
-			icon_state = "[table_prefix]tabledir3"
-
-	if(dir_sum in CARDINAL_ALL_DIRS)
-		setDir(dir_sum)
-	else
-		setDir(SOUTH)
-
 
 /obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -393,7 +275,7 @@
 		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
-	unflip()
+	unflip(TRUE)
 
 	flip_cooldown = world.time + 50
 
@@ -449,6 +331,7 @@
 			T.unflip()
 	update_icon()
 	update_adjacent()
+	QUEUE_SMOOTH(src)
 
 	return TRUE
 
@@ -476,9 +359,11 @@
 /obj/structure/table/woodentable
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "woodtable"
+	icon = 'icons/obj/smooth_objects/wood_table_reinforced.dmi'
+	icon_state = "wood_table_reinforced-0"
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/wood
+	base_icon_state = "wood_table_reinforced"
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
@@ -486,21 +371,27 @@
 /obj/structure/table/fancywoodentable
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "fwoodtable"
+	icon = 'icons/obj/smooth_objects/fancy_table.dmi'
+	icon_state = "fancy_table-0"
+	base_icon_state = "fancy_table"
 	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "pwoodtable"
+	icon = 'icons/obj/smooth_objects/rustic_table.dmi'
+	icon_state = "rustic_table-0"
+	base_icon_state = "rustic_table"
 	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
 
 /obj/structure/table/black
 	name = "black metal table"
 	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "blacktable"
+	icon = 'icons/obj/smooth_objects/black_table.dmi'
+	icon_state = "black_table-0"
+	base_icon_state = "black_table"
 	table_prefix = "black"
 	parts = /obj/item/frame/table
 
@@ -510,7 +401,9 @@
 /obj/structure/table/gamblingtable
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
-	icon_state = "gambletable"
+	icon = 'icons/obj/smooth_objects/pool_table.dmi'
+	icon_state = "pool_table-0"
+	base_icon_state = "pool_table"
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
@@ -522,7 +415,9 @@
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
-	icon_state = "reinftable"
+	icon = 'icons/obj/smooth_objects/table_reinforced.dmi'
+	icon_state = "table_reinforced-0"
+	base_icon_state = "table_reinforced"
 	max_integrity = 100
 	reinforced = TRUE
 	table_prefix = "reinf"
@@ -590,11 +485,25 @@
 
 /obj/structure/table/reinforced/prison
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
-	icon_state = "prisontable"
+	icon = 'icons/obj/smooth_objects/prison_table.dmi'
+	icon_state = "prison_table-0"
+	base_icon_state = "prison_table"
 	table_prefix = "prison"
 
+/obj/structure/table/reinforced/fabric
+	name = "cloth table"
+	desc = "A fancy cloth-topped wooden table, bolted to the floor. Fit for formal occasions."
+	icon = 'icons/obj/smooth_objects/table_fabric.dmi'
+	icon_state = "table_fabric-0"
+	base_icon_state = "table_fabric"
+	table_prefix = "fabric"
+	parts = /obj/item/frame/table
+	reinforced = TRUE
+
 /obj/structure/table/mainship
-	icon_state = "shiptable"
+	icon = 'icons/obj/smooth_objects/mainship_table.dmi'
+	icon_state = "mainship_table-0"
+	base_icon_state = "mainship_table"
 	table_prefix = "ship"
 
 

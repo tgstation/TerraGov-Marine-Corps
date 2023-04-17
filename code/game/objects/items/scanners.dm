@@ -298,6 +298,10 @@ REAGENT SCANNER
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
+/obj/item/healthanalyzer/gloves/unequipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
+
 //when you are wearing these gloves, this will call the normal attack code to health scan the target
 /obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(istype(user) && istype(target))

@@ -121,7 +121,7 @@
 /area/bigredv2/outside/medical)
 "dF" = (
 /obj/item/shard,
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/damaged/five,
 /area/bigredv2/outside/medical)
 "dL" = (
@@ -265,7 +265,7 @@
 /area/bigredv2/outside/medical)
 "hS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
@@ -456,7 +456,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "pr" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -1080,7 +1080,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Fk" = (
@@ -1220,7 +1220,7 @@
 /area/bigredv2/outside/medical)
 "JV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/medical)
 "Km" = (
@@ -1290,7 +1290,7 @@
 /obj/structure/table,
 /obj/item/trash/burger,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
@@ -1457,7 +1457,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Su" = (
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "Sz" = (
@@ -1473,7 +1473,7 @@
 /area/bigredv2/outside/medical)
 "SC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "SE" = (
@@ -1493,7 +1493,7 @@
 /turf/open/floor/tile/damaged/five,
 /area/bigredv2/outside/medical)
 "Tl" = (
-/obj/effect/spawner/random/structure/broken_window/colonyspawn,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Tt" = (
@@ -1588,7 +1588,7 @@
 /area/bigredv2/outside/medical)
 "WC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/table_parts,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
