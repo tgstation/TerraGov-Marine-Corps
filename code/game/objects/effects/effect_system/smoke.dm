@@ -21,7 +21,7 @@
 	var/fraction = 0.2
 	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
 	var/minimum_effect_delay = 1 SECONDS
-
+	///The original source of the smoke. Used for smoke spread checks
 	var/origin
 
 	//Remove this bit to use the old smoke
@@ -120,6 +120,7 @@
 		reagents.copy_to(C, reagents.total_volume, fraction / LAZYLEN(cloud.smoked_mobs))
 	LAZYCLEARLIST(cloud.smoked_mobs)
 
+///Attempts to spread smoke to the surrounding cardinal turfs
 /obj/effect/particle_effect/smoke/proc/spread_smoke()
 	var/turf/t_loc = get_turf(src)
 	if(!t_loc)
@@ -180,19 +181,6 @@
 /obj/effect/particle_effect/smoke/proc/spawn_smoke(list/newsmokes)
 	for(var/obj/effect/particle_effect/smoke/SM in newsmokes)
 		SM.spread_smoke()
-
-///proc to check if smoke can expand to another turf
-/obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
-	for(var/atom/movable/moveable in T)
-		if(istype(moveable, src.type))
-			var/obj/effect/particle_effect/smoke/existing_smoke = moveable
-			if(origin == existing_smoke.origin) //part of the same smoke bloom
-				return FALSE
-			return existing_smoke
-
-		if(!moveable.CanPass(src, T))
-			return FALSE
-	return TRUE
 
 /////////////////////////////////////////////
 // Smoke spread
