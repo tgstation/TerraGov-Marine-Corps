@@ -26,6 +26,8 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	var/armed = FALSE
 	///List of references to each dummy object that serve as triggers for this mine
 	var/list/triggers = list()
+	///Stored reference to the duration timer that leads to self-deletion; can be modified or stopped once started
+	var/deletion_timer
 
 	/* -- Gameplay data -- */
 	///Message sent to nearby players when this mine is triggered; "The [name] [message]"
@@ -151,6 +153,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 ///Process for arming the mine; anchoring, setting who it belongs to, generating the trigger zones
 /obj/item/mine/proc/deploy(mob/living/user, faction)
+	flags_item |= NO_VACUUM	//Stop the roomba from eating the mine upon deployment
 	iff_signal = faction
 	anchored = TRUE
 	armed = TRUE
@@ -216,12 +219,16 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 
 ///Turns off the mine
 /obj/item/mine/proc/disarm()
+	if(!reusable && deletion_timer)	//Non-reuseable mine already doing it's thing? Deletion upon disarming then
+		return qdel(src)
 	armed = FALSE
 	anchored = FALSE
-	if(triggered)	//Good job, you managed to disarm it before it blew
-		triggered = FALSE
+	triggered = FALSE	//Good job, you managed to disarm it before it blew
 	update_icon()
 	QDEL_LIST(triggers)
+	if(deletion_timer)
+		deltimer(deletion_timer)
+	flags_item &= ~NO_VACUUM	//The roomba can eat it again
 
 ///Checks if a mob entered the tile this mine is on, and if it can cause it to trigger
 /obj/item/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
@@ -280,11 +287,11 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		smoke.set_up(gas_range, get_turf(src), gas_duration)
 		smoke.start()
 	if(duration || duration < 0)	//If this is a mine that causes effects over time, call extra_effects() and set timers before deletion/disarming
-		extra_effects(duration, L)
+		extra_effects(L)
 		if(duration > 0)
 			if(reusable)
-				return addtimer(CALLBACK(src, PROC_REF(disarm)), duration)
-			return addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration)
+				return deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration, TIMER_OVERRIDE|TIMER_STOPPABLE)
+			return deletion_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), duration, TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return TRUE
 	if(reusable)
 		return disarm()
@@ -292,7 +299,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 	qdel(src)
 
 ///Shove any code for special effects caused by this mine here
-/obj/item/mine/proc/extra_effects(duration = 1 SECONDS, mob/living/L)
+/obj/item/mine/proc/extra_effects(mob/living/L)
 	return
 
 ///If this mine is volatile, explode! Easier to copy paste this into several places
@@ -460,19 +467,150 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 /* Exotic mines - Rather than just explode, these have special effects */
 /obj/item/mine/radiation
 	name = "radiation mine"
-	desc = "Irradiates the surrounding area when triggered."
+	desc = "Irradiates the surrounding area when triggered. Uses sheets of uranium as a source of fuel. More fuel increases the range of the radiation field."
 	icon_state = "m20"
 	detonation_message = "clicks, emitting a low hum."
 	range = 2
-	duration = 10 SECONDS
-	detonation_delay = 1 SECONDS
+	duration = 30 SECONDS
 	disarm_delay = 5 SECONDS
 	undeploy_delay = 4 SECONDS	//You turn it off veeeery carefully
 	deploy_delay = 2 SECONDS
 	volatile = TRUE
-	///How large our nuclear exclusion zone shall be
-	var/rad_zone_radius = 5
+	custom_range = TRUE
+	///Base damage of the radiation pulse, and determines severity of effects; see extra_effects()
+	var/radiation_damage = 20
+	///How many more times the mine pulses out radiation and refreshes the radiation field
+	var/number_of_pulses = 3
+	///How many units of fuel are inside; each unit is 1 tile of range
+	var/current_fuel = 0
+	///The maximum capacity of fuel units
+	var/max_fuel = 10
+	///Stored reference to the timer that determines when extra_effects() is called again
+	var/pulse_timer
 
+	//Light-related vars for when the radiation glow is emitted
+	light_power = 10
+	light_color = COLOR_GREEN
+	light_system = HYBRID_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
+
+/obj/item/mine/radiation/examine(mob/user)
+	. = ..()
+	. += "Currently has [span_bold("[current_fuel]")] out of [span_bold("[max_fuel]")] fuel."
+
+/obj/item/mine/radiation/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	//While we could use a var/fuel_type instead of hard coded to use uranium, it would be a headache since only /stack/ use amount vars
+	//Also no other /stack/ type apart from maybe phoron would be a good fuel candidate so why bother
+	if(istype(I, /obj/item/stack/sheet/mineral/uranium))
+		if(current_fuel >= max_fuel)
+			return balloon_alert(user, "Already full!")
+		var/obj/item/stack/sheet/mineral/uranium/uranium = I
+		if(uranium.amount < 1)
+			return balloon_alert(user, "Not enough usable fuel!")
+		var/amount_to_transfer = min(uranium.amount, max_fuel - current_fuel)
+		uranium.amount -= amount_to_transfer
+		current_fuel += amount_to_transfer
+		return TRUE
+
+/obj/item/mine/radiation/disarm()
+	if(triggered)
+		current_fuel = 0	//In the event of disarmament when already detonated, have the fuel be already expended
+	deltimer(pulse_timer)
+	light_range = 0	//Hybrid lights don't actually turn off, just have to change light_range
+	. = ..()
+
+/obj/item/mine/radiation/trip_mine(mob/living/L)
+	if(!current_fuel)
+		return FALSE
+	. = ..()
+
+/obj/item/mine/radiation/explode(mob/living/L)
+	. = ..()
+	if(!.)
+		return FALSE
+	//The deletion_timer lasts a second longer so that the last pulse can go off before qdel()
+	deletion_timer = addtimer(CALLBACK(src, PROC_REF(disarm)), duration + 1 SECONDS, TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/obj/item/mine/radiation/extra_effects(mob/living/L)
+	if(!current_fuel)	//While this should NEVER happen, just in case
+		current_fuel = 1	//I would normally have it be disarmed but this mine is not reusable, so just let it continue as normal
+	new /obj/effect/temp_visual/shockwave(get_turf(src), current_fuel * 1.5)
+	light_range = current_fuel * 1.5
+	set_light(light_range, light_power, light_color)
+	var/list/exclusion_zone = circle_range(get_turf(src), current_fuel)	//Radiation passes through walls
+	for(var/mob/living/carbon/victim in exclusion_zone)
+		//Apply initial damages of the detonation evenly in BURN and TOX, then do a fifth of it in cellular damage
+		victim.apply_damages(0, radiation_damage/2, radiation_damage/2, 0, radiation_damage/5, ishuman(victim) ? pick(GLOB.human_body_parts) : null, BIO)
+		victim.adjust_stagger(radiation_damage/5 SECONDS)
+		victim.adjust_radiation(radiation_damage SECONDS)
+	for(var/turf/irradiated_turf in exclusion_zone)
+		//Delete them before the next pulse otherwise the exclusion_zone list will be gigantic
+		new /obj/effect/temp_visual/radiation(irradiated_turf, (duration/number_of_pulses) - 1)
+	pulse_timer = addtimer(CALLBACK(src, PROC_REF(extra_effects)), duration/number_of_pulses, TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/obj/item/mine/radiation/fueled
+	current_fuel = 10
+
+/obj/effect/temp_visual/radiation
+	randomdir = FALSE
+	///How much
+	var/radiation_damage = 10
+	///Reference to the radiation particle effect
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/obj/effect/temp_visual/radiation/Initialize(mapload, effect_duration)
+	. = ..()
+	deltimer(timerid)
+	timerid = QDEL_IN(src, effect_duration)
+	particle_holder = new(src, /particles/radiation)
+	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_cross))
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/temp_visual/radiation/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+	if(!isliving(A))
+		return FALSE
+	if(irradiate(A))
+		START_PROCESSING(SSobj, src)
+
+/obj/effect/temp_visual/radiation/process()
+	if(!irradiate())
+		STOP_PROCESSING(SSobj, src)
+
+/obj/effect/temp_visual/radiation/proc/irradiate(mob/living/crosser)
+	var/turf/turf_to_check = get_turf(src)
+	var/list/radiation_victims = turf_to_check.contents.Copy()
+	var/result = FALSE	//For determining if process() should keep going
+	if(crosser)
+		radiation_victims.Remove(crosser)	//Remove the crosser from the list, they are already going to take damage
+		//Not as punishing if you are just running through a radiation field
+		crosser.apply_damage(radiation_damage/2, BURN, ishuman(crosser) ? pick(GLOB.human_body_parts) : null, BIO)
+		crosser.adjust_radiation(radiation_damage/5 SECONDS)
+		result = TRUE
+	for(var/mob/living/victim in radiation_victims)
+		victim.apply_damage(radiation_damage, BURN, ishuman(victim) ? pick(GLOB.human_body_parts) : null, BIO)
+		victim.adjust_radiation(radiation_damage SECONDS)
+		if(isxeno(victim))	//Benos are immune to the radiation status effect so let's just give them a bit of stagger
+			victim.adjust_stagger(radiation_damage/5 SECONDS)
+		result = TRUE
+	return result
+
+//Radiation dust effects
+/particles/radiation
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "cross"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 0.5
+	lifespan = 30
+	fade = 5
+	fadein = 5
+	position = generator(GEN_CIRCLE, 10, 10, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.01, -0.03), list(0.01, 0.03))
+	scale = list(0.5, 0.5)
+	spin = 5
+	color = COLOR_GREEN
 
 /obj/item/mine/shock
 	name = "shock mine"
@@ -524,7 +662,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 	. = ..()
 
-/obj/item/mine/shock/extra_effects(duration, mob/living/L)
+/obj/item/mine/shock/extra_effects(mob/living/L)
 	if(!battery?.charge || battery.charge < energy_cost)
 		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, sound_range = 7)
 		balloon_alert_to_viewers("Out of charge!")
@@ -614,7 +752,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return
 	. = ..()
 
-/obj/item/mine/alarm/extra_effects(duration, mob/living/L)
+/obj/item/mine/alarm/extra_effects(mob/living/L)
 	triggered = FALSE	//Reset the mine but not disarm it
 	if(!L)
 		return FALSE
@@ -689,7 +827,7 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 	. = ..()
 
-/obj/item/mine/emp/extra_effects(duration, mob/living/L)
+/obj/item/mine/emp/extra_effects(mob/living/L)
 	addtimer(CALLBACK(src, PROC_REF(do_empulse)), duration - 1)	//Make the timer slightly less than duration otherwise it gets disarmed
 
 ///Separate proc that performs empulse() if it was not disarmed before the timer was done
@@ -762,14 +900,14 @@ taking that kind of thing into account, setting buffer_range = 0 or making them 
 		return FALSE
 	. = ..()
 
-/obj/item/mine/flash/extra_effects(duration, mob/living/L)
+/obj/item/mine/flash/extra_effects(mob/living/L)
 	if(!battery?.charge || battery.charge < energy_cost)
 		balloon_alert_to_viewers("Out of charge!")
 		return disarm()
 	triggered = FALSE	//Reset the mine but not disarm it
 	var/turf/epicenter = get_turf(src)
 	playsound(epicenter, "flashbang", 65, FALSE, range + 2)
-	for(var/mob/living/carbon/victim in hearers(range, epicenter))
+	for(var/mob/living/carbon/victim in oviewers(range, epicenter))
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			victim.flash_act(duration = flash_duration)
 	battery.charge -= energy_cost
